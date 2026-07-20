@@ -257,15 +257,15 @@ professionDefObjects.push({
     Const = "LegendCutToTheChase"
 });
 
-::Legends.Profession.LegendDiplomat <- null;
+::Legends.Profession.LegendDiplomacy <- null;
 professionDefObjects.push({
-    ID = "profession.legend_diplomat",
-    Script = "scripts/skills/professions/profession_legend_diplomat",
-    Name = ::Const.Strings.ProfessionName.LegendDiplomat,
-    Tooltip = ::Const.Strings.ProfessionDescription.LegendDiplomat,
-    Icon = "ui/professions/diplomat.png",
-    IconDisabled = "ui/professions/diplomat_bw.png",
-    Const = "LegendDiplomat",
+    ID = "profession.legend_diplomacy",
+    Script = "scripts/skills/professions/profession_legend_diplomacy",
+    Name = ::Const.Strings.ProfessionName.LegendDiplomacy,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendDiplomacy,
+    Icon = "ui/professions/diplomacy.png",
+    IconDisabled = "ui/professions/diplomacy_bw.png",
+    Const = "LegendDiplomacy",
     ScalingArray = [0, 0.1], // relation gain %
     ScalingFactor = 0.5
 });
@@ -598,6 +598,17 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendPetardry <- null;
+professionDefObjects.push({
+    ID = "profession.legend_petardry",
+    Script = "scripts/skills/professions/profession_legend_petardry",
+    Name = ::Const.Strings.ProfessionName.LegendPetardry,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendPetardry,
+    Icon = "ui/professions/petardry.png",
+    IconDisabled = "ui/professions/petardry_bw.png",
+    Const = "LegendPetardry"
+});
+
 ::Legends.Profession.LegendProsthetics <- null;
 professionDefObjects.push({
     ID = "profession.legend_prosthetics",
@@ -620,17 +631,6 @@ professionDefObjects.push({
     Const = "LegendRationing",
     ScalingArray = [0, 1.1], // lowers food consumption
     ScalingFactor = 0.05
-});
-
-::Legends.Profession.LegendSapper <- null;
-professionDefObjects.push({
-    ID = "profession.legend_sapper",
-    Script = "scripts/skills/professions/profession_legend_sapper",
-    Name = ::Const.Strings.ProfessionName.LegendSapper,
-    Tooltip = ::Const.Strings.ProfessionDescription.LegendSapper,
-    Icon = "ui/professions/sapper.png",
-    IconDisabled = "ui/professions/sapper_bw.png",
-    Const = "LegendSapper"
 });
 
 ::Legends.Profession.LegendScholar <- null;

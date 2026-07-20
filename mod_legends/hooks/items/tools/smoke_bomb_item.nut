@@ -73,13 +73,13 @@
 			icon = "ui/icons/special.png",
 			text = "Covers [color=%damage%]7[/color] tiles in smoke for one round, allowing anyone inside to move freely and ignore zones of control"
 		}]);
-		if (!this.World.Retinue.hasFollower("follower.alchemist"))
+		if (::World.Assets.m.ProfessionEffect.LegendPetardry <= 0)
 		{
 			result.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/warning.png",
-				text = "Cannot be refilled after battle, because this company has no Alchemy Tools"
+				text = "Cannot be refilled after battle, because the company has no one specializing in Petardry"
 			});
 		}
 		return result;
@@ -104,7 +104,7 @@
 
 	o.getAmmo <- function() // prevent item from being refilled without the retinue
 	{
-		return m.Ammo == 0 && !this.World.Retinue.hasFollower("follower.alchemist") ? m.AmmoMax + 1 : m.Ammo;
+		return m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendPetardry <= 0 ? m.AmmoMax + 1 : m.Ammo;
 	}
 
 	o.setAmmo <- function ( _a )

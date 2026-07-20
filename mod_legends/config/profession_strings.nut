@@ -17,7 +17,7 @@
 ::Const.Strings.ProfessionName.LegendConvincingProposals <- "Convincing Proposals";
 ::Const.Strings.ProfessionName.LegendCooking <- "Cooking";
 ::Const.Strings.ProfessionName.LegendCutToTheChase <- "Cut To The Chase";
-::Const.Strings.ProfessionName.LegendDiplomat <- "Diplomat";
+::Const.Strings.ProfessionName.LegendDiplomacy <- "Diplomacy";
 ::Const.Strings.ProfessionName.LegendDogBreeder <- "Dog Breeder";
 ::Const.Strings.ProfessionName.LegendDrillSergeant <- "Drill Sergeant";
 ::Const.Strings.ProfessionName.LegendEfficientPacking <- "Efficient Packing";
@@ -45,10 +45,10 @@
 ::Const.Strings.ProfessionName.LegendOffBookDeal <- "Off Book Deal";
 ::Const.Strings.ProfessionName.LegendOnTheGrapevine <- "On The Grapevine";
 ::Const.Strings.ProfessionName.LegendPaymaster <- "Paymaster";
+::Const.Strings.ProfessionName.LegendPetardry <- "Petardry";
 ::Const.Strings.ProfessionName.LegendProsthetics <- "Prosthetics";
 ::Const.Strings.ProfessionName.LegendRationing <- "Rationing";
 ::Const.Strings.ProfessionName.LegendReserveBundles <- "Reserve Bundles";
-::Const.Strings.ProfessionName.LegendSapper <- "Sapper";
 ::Const.Strings.ProfessionName.LegendScholar <- "Scholar";
 ::Const.Strings.ProfessionName.LegendShadyDeals <- "Shady Deals";
 ::Const.Strings.ProfessionName.LegendSilverTongued <- "Silver Tongued";
@@ -76,7 +76,7 @@ Mixing volatile ingredients in the makeshift conditions of a field camp usually 
 [color=%passive%][u]Passive:[/u][/color]
 • Craft bolstering potions and deadly poisons while camping.
 
-• Refill spent poison flasks after battle at the cost of ammunition.
+• Refill spent throwable flasks and poisons after battle at the cost of ammunition.
 
 • Increases the crafting speed of potions and poisons.
 ";
@@ -216,7 +216,7 @@ Time is money, and pleasantries can cost the company a drink.
 // needs an effect
 ";
 
-::Const.Strings.ProfessionDescription.LegendDiplomat <- @"
+::Const.Strings.ProfessionDescription.LegendDiplomacy <- @"
 Knowing when to bow, when to keep silent and when to laugh heartily can go a long way.
 
 [color=%passive%][u]Passive:[/u][/color]
@@ -440,6 +440,17 @@ Shifting numbers, negotiating pay terms and usury are all valid ways of driving 
 • Prevents mercenaries from demanding more pay.
 ";
 
+::Const.Strings.ProfessionDescription.LegendPetardry <- @"
+One can get used to everything. There comes a time when even explosions become mundane.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Craft bombs and grenades while camping.
+
+• Refill spent bombs after battle at the cost of ammunition.
+
+• Increases the crafting speed of bombs and grenades.
+";
+
 ::Const.Strings.ProfessionDescription.LegendProsthetics <- @"
 When you leave a part of yourself on a battlefield, a well-crafted prosthetic is the next best thing.
 
@@ -461,15 +472,6 @@ For when they simply don't stop coming.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases ammunition capacity.
-";
-
-::Const.Strings.ProfessionDescription.LegendSapper <- @"
-One can get used to everything. There comes a time when even explosions become mundane.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Craft bombs and grenades while camping.
-
-• Increases the crafting speed of bombs and grenades.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendScholar <- @"

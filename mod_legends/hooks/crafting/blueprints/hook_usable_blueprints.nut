@@ -36,7 +36,7 @@ foreach (blueprint in bombBlueprints) {
 			create();
 			this.m.Type = this.Const.Items.ItemType.Ammo;
 			this.initSkills([
-				::Legends.Professions.new(::Legends.Profession.LegendSapper)
+				::Legends.Professions.new(::Legends.Profession.LegendPetardry)
 			]);
 		}
 	});
