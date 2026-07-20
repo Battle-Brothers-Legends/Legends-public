@@ -5,11 +5,11 @@ this.legend_make_city_states_aware_ambition <- this.inherit("scripts/ambitions/a
 		this.ambition.create();
 		this.m.ID = "ambition.legend_make_city_states_aware";
 		this.m.Duration = 99999.0 * this.World.getTime().SecondsPerDay;
-		this.m.ButtonText = "We need to catch the eye of one of the southern city states for more profitable work. They\nplay their own dangerous game, but what does it matter as long as the pay is good?";
+		this.m.ButtonText = "We need to catch the eye of one of the southern city states.\nThey play a dangerous game, but what does it matter as long as the pay is good?";
 		this.m.RewardTooltip = "You\'ll get better prices on contracts and items in city states, and earn a named handgonne.";
 		this.m.UIText = "Reach \'Glorious\' renown";
-		this.m.TooltipText = "Become known as \'Glorious\' (2,750 renown) in order to catch the attention of the noble houses. You can increase your renown by completing contracts and winning battles.";
-		this.m.SuccessText = "[img]gfx/ui/events/event_163.png[/img]First the nobles, now the city states! The southern city states truely dwarf the wealth of the north, and are not afraid to show it. It had been a long, hard road to get their attention, but now you have you can expect much greater riches than the nobles could ever muster!";
+		this.m.TooltipText = "Become known as \'Glorious\' (2,750 renown) in order to catch the attention of the southern city states. You can increase your renown by completing contracts and winning battles.";
+		this.m.SuccessText = "[img]gfx/ui/events/event_163.png[/img]First the nobles, now the city states! The southern city states truly dwarf the wealth of the north, and are not afraid to show it. It had been a long, hard road to get their attention, but now you have you can expect much greater riches than the nobles could ever muster!";
 		this.m.SuccessButtonText = "We are about to reach into the southern state\'s endless pockets!";
 	}
 
