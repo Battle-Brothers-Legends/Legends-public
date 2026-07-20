@@ -699,6 +699,12 @@
 		return tooltip;
 	}
 
+	local strategic_queryTileTooltipData = o.strategic_queryTileTooltipData;
+	strategic_queryTileTooltipData = function() {
+		::World.Assets.m.IsShowingExtendedFootprints = ::World.Assets.m.ProfessionEffect.LegendLookout > 0; // no need to reset as its the only thing determining that
+		return strategic_queryTileTooltipData();
+	}
+
 	o.strategic_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
 	{
 		local entity = _entityId != null ? this.Tactical.getEntityByID(_entityId) : null;

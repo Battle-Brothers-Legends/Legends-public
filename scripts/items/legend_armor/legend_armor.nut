@@ -720,7 +720,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		local isLucky = !this.Tactical.State.isScenarioMode() && this.World.Assets.getOrigin().isDroppedAsLoot(this);
 		local repair = this.getRepair();
 		local repairMax = this.getRepairMax();
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && this.World.Assets.m.IsBlacksmithed;
+		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 		if (repair > 10 && isPlayer)
 		{

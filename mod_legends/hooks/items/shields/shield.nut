@@ -76,6 +76,7 @@
 	local isDroppedAsLoot = o.isDroppedAsLoot;
 	o.isDroppedAsLoot = function ()
 	{
+		::World.Assets.m.IsBlacksmithed = ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0; // set this to use in the hook cause its not used otherwise no need to reset
 		if (this.item.isDroppedAsLoot() && this.isNamed())
 		{
 			return true;
@@ -100,7 +101,7 @@
 		if (this.m.Condition == 0)
 		{
 			local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || actor != null && !actor.isNull() && this.isKindOf(actor.get(), "player");
-			local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && this.World.Assets.m.IsBlacksmithed;
+			local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 			if (!isBlacksmithed && this.isNamed()) // already dropped from vanilla blacksmithed
 			{
