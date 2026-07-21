@@ -80,7 +80,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 	if (this.Const.DLC.Wildmen)
 	// 	{
 	// 		weapons.push([
-	// 			"weapons/legend_dilapitated_sling"
+	// 			"weapons/legend_dilapidated_sling"
 	// 		]);
 	// 	}
 

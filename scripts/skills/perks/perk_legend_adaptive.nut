@@ -263,7 +263,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	            return ::Const.Perks.LongswordClassTree;
 
 	    //Slings
-	        case _item.getID() == "weapon.legend_dilapitated_sling":
+	        case _item.getID() == "weapon.legend_dilapidated_sling":
 	            return ::Const.Perks.SlingClassTree;
 
 	    //Staves

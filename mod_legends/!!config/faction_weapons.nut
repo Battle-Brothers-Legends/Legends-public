@@ -37,7 +37,7 @@
 
 //Peasant - low tier ranged weapons - 1 handed
 ::Const.PeasantRangedWeapons1h <- [
-	"weapon.legend_dilapitated_sling"
+	"weapon.legend_dilapidated_sling"
 ];
 
 //Peasant - low tier ranged weapons - 2 handed

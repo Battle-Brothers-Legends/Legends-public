@@ -103,7 +103,7 @@
 		bros[2].addLightInjury();
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+		items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 
 		bros[3].setStartValuesEx([::Legends.Background.Gambler,::Legends.Background.Thief,::Legends.Background.Vagabond]);
 		bros[3].getBackground().m.RawDescription = "You notice that %name% hides from certain noblemen. It is likely that they are a common criminal at large for some petty crime, but so long as they fight well it is no business to you.";

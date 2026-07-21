@@ -225,7 +225,7 @@
     ],
     WeaponsAndTrees = [
         [1, ["wonky_bow", 50]],
-        [2, ["legend_dilapitated_sling", 50]],
+        [2, ["legend_dilapidated_sling", 50]],
         [1, ["legend_slingshot", 50]],
     ],
     LegendaryPerks = [
@@ -301,7 +301,7 @@
         [1, ["legend_sturdy_sling", 65]],
         [1, ["legend_slingshot", 65]],
         [1, ["short_bow", 65]],
-        [3, ["legend_dilapitated_sling", 65]]
+        [3, ["legend_dilapidated_sling", 65]]
     ],
     TraitsPerkList = [
         ::Const.Perks.AgileTree,
@@ -779,7 +779,7 @@
             return ::Const.Perks.LongswordClassTree;
 
     //Slings
-        case _item.getID() == "weapon.legend_dilapitated_sling" || _item.getID() == "weapon.legend_sturdy_sling" || _item.getID() == "weapon.legend_slingshot":
+        case _item.getID() == "weapon.legend_dilapidated_sling" || _item.getID() == "weapon.legend_sturdy_sling" || _item.getID() == "weapon.legend_slingshot":
             return ::Const.Perks.SlingClassTree;
 
     //Staves

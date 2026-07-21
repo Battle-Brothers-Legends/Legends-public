@@ -12,7 +12,7 @@
 			item(10, 1.0, "weapons/legend_wooden_spear"),
 			item(10, 1.0, "weapons/legend_shiv"),
 			item(20, 1.0, "weapons/legend_shovel"),
-			item(15, 1.0, "weapons/legend_dilapitated_sling"),
+			item(15, 1.0, "weapons/legend_dilapidated_sling"),
 			item(40, 1.0, "weapons/legend_sturdy_sling"),
 			item(80, 1.0, "weapons/legend_drum"),
 			item(80, 1.0, "weapons/legend_cat_o_nine_tails"),

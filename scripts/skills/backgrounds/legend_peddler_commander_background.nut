@@ -224,7 +224,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 
 		if (r == 0)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 		}
 		else if (r == 1)
 		{

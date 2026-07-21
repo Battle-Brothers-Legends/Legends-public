@@ -1,10 +1,10 @@
-this.legend_dilapitated_sling <- this.inherit("scripts/items/weapons/weapon", {
+this.legend_dilapidated_sling <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
 	function create()
 	{
 		this.weapon.create();
-		this.m.ID = "weapon.legend_dilapitated_sling";
-		this.m.Name = "Dilapitated Sling";
+		this.m.ID = "weapon.legend_dilapidated_sling";
+		this.m.Name = "Dilapidated Sling";
 		this.m.Description = "A very simple sling, for hurling rocks at your rivals. Time and use have taken it\'s toll on this item and you\'re surprised it doesn\'t fall apart. With stones abundant everywhere, it will never run out of ammunition.";
 		this.m.IconLarge = "weapons/ranged/legend_sling_02.png";
 		this.m.Icon = "weapons/ranged/legend_sling_02_70x70.png";

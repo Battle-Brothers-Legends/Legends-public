@@ -242,7 +242,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			}
 			else if (r <= 80)
 			{
-				items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+				items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 			}
 			else
 			{

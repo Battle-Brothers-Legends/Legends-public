@@ -12,7 +12,7 @@
 		]);
 		list.extend([
 			item(10, 1.0, "weapons/legend_slingshot"),
-			item(10, 1.0, "weapons/legend_dilapitated_sling"),
+			item(10, 1.0, "weapons/legend_dilapidated_sling"),
 			item(40, 1.0, "weapons/legend_sturdy_sling"),
 			item(70, 1.0, "weapons/legend_northern_sling"),
 			item(50, 1.0, "weapons/legend_hand_crossbow"),

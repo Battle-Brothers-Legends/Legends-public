@@ -173,7 +173,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		}
 		else if (r == 4)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

@@ -23,7 +23,7 @@ this.legend_camp_legion_hunt_barbarians_contract <- this.inherit("scripts/contra
 				[70, "weapons/ancient/legend_broken_decorated_sword"],
 				[70, "weapons/ancient/legend_broken_spatha"],
 				[50, "weapons/ancient/legend_sica"],
-				[50, "weapons/legend_dilapitated_sling"],
+				[50, "weapons/legend_dilapidated_sling"],
 				[50, "weapons/legend_sturdy_sling"],
 				[50, "weapons/ancient/legend_gladius"],
 				[50, "weapons/ancient/legend_spatha"],

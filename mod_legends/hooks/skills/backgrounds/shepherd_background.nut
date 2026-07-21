@@ -135,7 +135,7 @@
 
 		if (r <= 25)
 		{
-			items.equip(this.new("scripts/items/weapons/legend_dilapitated_sling"));
+			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 		}
 		else if (r <= 40)
 		{

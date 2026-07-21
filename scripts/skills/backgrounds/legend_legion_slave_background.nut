@@ -170,7 +170,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 			[1, "weapons/ancient/broken_ancient_sword"],
 			[1, "weapons/ancient/falx"],
 			[1, "weapons/ancient/ancient_spear"],
-			[1, "weapons/legend_dilapitated_sling"]
+			[1, "weapons/legend_dilapidated_sling"]
 		], "scripts/items/"));
 
 		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
