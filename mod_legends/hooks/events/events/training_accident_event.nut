@@ -1,4 +1,4 @@
-::mods_hookExactClass("events/events/aging_swordmaster_paycut_event", function (o) {
+::mods_hookExactClass("events/events/training_accident_event", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
