@@ -20,7 +20,6 @@
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
-					MinR = 60,
 					Cost = 14
 				},
 				{
@@ -32,6 +31,15 @@
 		},
 		{
 			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
+			Weight = 12,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.NomadSlinger,
@@ -80,7 +88,16 @@
 			]
 		},
 		{
-			Weight = 10,
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
+			Weight = 12,
 			Types =
 			[
 				{
@@ -172,6 +189,15 @@
 				{
 					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
 					Cost = 18
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
 				}
 			]
 		},
