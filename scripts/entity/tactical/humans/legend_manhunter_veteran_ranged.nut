@@ -118,6 +118,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne") {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/oriental/qatal_dagger"],
+				[1, "weapons/legend_katar"],
 			], "scripts/items/"));
 		} else {
 			this.getItems().addToBag(::Const.World.Common.pickItem([

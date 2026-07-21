@@ -103,6 +103,7 @@ this.legend_manhunter_veteran <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/oriental/heavy_southern_mace",
 					"weapons/oriental/qatal_dagger",
 					"weapons/oriental/qatal_dagger",
+					"weapons/legend_katar",
 					"weapons/oriental/polemace",
 					"weapons/oriental/polemace",
 					"weapons/battle_whip"

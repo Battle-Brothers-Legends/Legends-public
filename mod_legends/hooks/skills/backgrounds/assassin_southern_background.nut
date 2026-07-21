@@ -197,7 +197,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = this.Math.rand(0, 2);
 
 		if (r == 0)
 		{
@@ -206,6 +206,10 @@
 		else if (r == 1)
 		{
 			items.equip(this.new("scripts/items/weapons/dagger"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_katar"));
 		}
 
 		r = this.Math.rand(0, 1);

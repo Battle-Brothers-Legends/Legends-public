@@ -8,6 +8,7 @@
 		}
 		local list = getDefaultShopList();
 		list.extend([
+			item(50, 1.0, "weapons/legend_katar"),
 			item(70, 1.0, "accessory/gloves/legend_cestus_item"),
 			item(99, 1.0, "accessory/gloves/legend_cestus_item_named"),
 			item(90, 1.0, "weapons/legend_zweihander"),
