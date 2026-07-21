@@ -203,7 +203,7 @@
 			list.push({
 				id = 1,
 				icon = "ui/items/" + entry.item.getIcon(),
-				imageOverlayPath = item.getIconOverlay(),
+				imageOverlayPath = entry.item.getIconOverlay(),
 				text = _prefix + (entry.count > 1 ? ::format("%dx ", entry.count) : ::Const.Strings.getArticle(entry.item.makeName())) + entry.item.makeName()
 			});
 		} else {
