@@ -15,11 +15,7 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
 		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill)
-			{
-				_skill.m.IsQatalStab = true;
-				_skill.m.IsBackstab = true;
-			}.bindenv(this));
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBackstab);
 			return;
 		}
 

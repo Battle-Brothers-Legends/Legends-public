@@ -318,6 +318,14 @@ activesDefs.push({
 	Name = "Stab",
 });
 
+::Legends.Active.LegendBackstab <- null;
+activesDefs.push({
+	ID = "actives.legend_backstab",
+	Script = "scripts/skills/actives/legend_backstab_skill",
+	Const = "LegendBackstab",
+	Name = "Backstab",
+});
+
 ::Legends.Active.Bash <- null;
 activesDefs.push({
 	ID = "actives.bash",
