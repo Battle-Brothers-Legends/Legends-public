@@ -45,6 +45,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable),
 		];
 		this.m.Titles = [
 			"the Savage",
@@ -296,33 +297,19 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
-		local r = this.Math.rand(0, 5);
+		weapons = [
+			"weapons/barbarians/crude_axe",
+			"weapons/barbarians/blunt_cleaver",
+			"weapons/barbarians/antler_cleaver",
+			"weapons/barbarians/claw_club",
+			"weapons/barbarians/axehammer",
+			"weapons/woodcutters_axe",
+			"weapons/hatchet"
+		];
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_chain"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
-
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/throwing_axe"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		}
+		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
+		this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 	}
 
 	function onSerialize( _out )
