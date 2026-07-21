@@ -50,42 +50,29 @@
 	}
 
 	local onUse = o.onUse;
-	o.onUse = function ( _user, _targetTile )
-	{
-		local isPlayer = ::MSU.isKindOf(_user, "player");
-		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+	o.onUse = function (_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.m.IsUnholdNet)
-			target.isAlliedWithPlayer = @() false;
+		if (this.m.IsUnholdNet) {
+			target.isAlliedWithPlayer = @()false;
+		}
 
 		this.m.Item.consumeAmmo();
 		local ret = onUse(_user, _targetTile); // this returns `null` or `false`, bruh
 		this.m.Item.drop(_targetTile); // just drop the spent net there
-		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false)
-		{
-			local targetTiles = [];
-			local chance = _user.getCurrentProperties().getRangedSkill() + _user.getCurrentProperties().getRangedDefense();
-			local successes = 1.0;
-			local newRet;
-			for( local i = 0; i != 6; i = ++i )
-			{
-				for( local i = 0; i != 6; i = ++i )
-				{
-					if (_targetTile.hasNextTile(i))
-					{
-						local next = _targetTile.getNextTile(i);
 
-						if (next.IsOccupiedByActor && this.Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
-						{
-							if (this.Math.rand(1, 100) < this.Math.floor(chance / (successes + 1.0)))
-							{
-								newRet = onUse(_user, next);
-								if (newRet != false)
-								{
-									successes += 1.0;
-								}
-							}
+		local properties = _user.getCurrentProperties();
+		if (properties.IsSpecializedInNetCasting && ret != false) {
+			local chance = properties.getRangedSkill() + properties.getRangedDefense();
+			local successes = 1.0;
+
+			for (local i = 0; i < 6; ++i) {
+				if (_targetTile.hasNextTile(i)) {
+					local next = _targetTile.getNextTile(i);
+
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()) {
+						if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0))) {
+							successes += onUse(_user, next) != false ? 1.0 : 0.0;
 						}
 					}
 				}
