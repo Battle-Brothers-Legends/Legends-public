@@ -140,6 +140,17 @@
 		},
 		{
 			Weight = 1,
+			MinR = 300,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Assassin,
+					Roll = true,
+					Cost = 45
+				}
+			]
+		},
+		{
+			Weight = 1,
 			MinR = 160,
 			Types =
 			[
@@ -243,6 +254,17 @@
 					Type = this.Const.World.Spawn.Troops.Executioner,
 					Cost = 55,
 					Roll = true
+				}
+			]
+		},
+		{
+			Weight = 2,
+			MinR = 300,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Assassin,
+					Roll = true,
+					Cost = 45
 				}
 			]
 		},
