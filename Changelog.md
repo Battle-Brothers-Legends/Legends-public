@@ -122,7 +122,10 @@
 - plate_full_greaves_named and plate_full_greaves_painted merged into a single item
 - Vala Cloak changed into L4, Vala now always starts with Vala Dress and Vala Cloak equipped
 
-### Weapons
+### Weapon
+
+**Backup throwing skills**
+- now separated from throw javelin/throw axe in the code to avoid errors when dual wielding thrown weapon and item of the same type
 
 **New Weapons**
 - Heavy Rusty Battleaxe - new barbarian bardiche

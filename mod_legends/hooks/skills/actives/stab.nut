@@ -1,5 +1,4 @@
 ::mods_hookExactClass("skills/actives/stab", function(o) {
-	o.m.IsBackstab <- false;
 	o.m.IsQatalStab <- false;
 
 	o.setItem <- function(_item) {

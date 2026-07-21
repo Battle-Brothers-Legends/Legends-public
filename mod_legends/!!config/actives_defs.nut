@@ -494,12 +494,28 @@ activesDefs.push({
 	Name = "Throw Javelin",
 });
 
+::Legends.Active.LegendThrowBackupSpear <- null;
+activesDefs.push({
+	ID = "actives.legend_throw_backup_spear",
+	Script = "scripts/skills/actives/legend_throw_backup_spear_skill",
+	Const = "LegendThrowBackupSpear",
+	Name = "Throw Backup Spear",
+});
+
 ::Legends.Active.ThrowAxe <- null;
 activesDefs.push({
 	ID = "actives.throw_axe",
 	Script = "scripts/skills/actives/throw_axe",
 	Const = "ThrowAxe",
 	Name = "Throw Axe",
+});
+
+::Legends.Active.LegendThrowBackupAxe <- null;
+activesDefs.push({
+	ID = "actives.legend_throw_backup_axe",
+	Script = "scripts/skills/actives/legend_throw_backup_axe_skill",
+	Const = "LegendThrowBackupAxe",
+	Name = "Throw Backup Axe",
 });
 
 ::Legends.Active.ThrowBalls <- null;
