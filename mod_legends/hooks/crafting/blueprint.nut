@@ -11,9 +11,19 @@
 	{
 		return this.m.Type;
 	}
-	o.getCostForCraft <- function  ()
-	{
-		return this.getCost() * this.m.CraftMultiplier;
+
+	o.getCostForCraft <- function  () {
+		local modifier = 1.0;
+
+    	foreach (reqGroup in this.m.PreviewSkills) {
+			foreach (skillInstance in reqGroup.Instances) {
+				local effect = ::World.Assets.m.ProfessionEffect[::Const.Professions.LookupMap[skillInstance.getID()].Const];
+				if (effect > 0) {
+					modifier /= effect;
+				}	
+       		}
+    	}
+		return this.getCost() * this.m.CraftMultiplier * modifier;
 	}
 
 	o.getIcon = function ()

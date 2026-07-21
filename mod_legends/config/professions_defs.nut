@@ -39,7 +39,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendAlchemy,
     Icon = "ui/professions/alchemy.png",
     IconDisabled = "ui/professions/alchemy_bw.png",
-    Const = "LegendAlchemy"
+    Const = "LegendAlchemy",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendAlcoholPreparation <- null;
@@ -50,7 +52,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendAlcoholPreparation,
     Icon = "ui/professions/alcohol_preparation.png",
     IconDisabled = "ui/professions/alcohol_preparation_bw.png",
-    Const = "LegendAlcoholPreparation"
+    Const = "LegendAlcoholPreparation",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendAmmoScrounger <- null;
@@ -217,7 +221,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendCharlatan,
     Icon = "ui/professions/charlatan.png",
     IconDisabled = "ui/professions/charlatan_bw.png",
-    Const = "LegendCharlatan"
+    Const = "LegendCharlatan",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendConvincingProposals <- null;
@@ -278,7 +284,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendDogBreeder,
     Icon = "ui/professions/dog_breeder.png",
     IconDisabled = "ui/professions/dog_breeder_bw.png",
-    Const = "LegendDogBreeder"
+    Const = "LegendDogBreeder",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendDrillSergeant <- null;
@@ -303,7 +311,7 @@ professionDefObjects.push({
     Icon = "ui/professions/efficient_packing.png",
     IconDisabled = "ui/professions/efficient_packing_bw.png",
     Const = "LegendEfficientPacking",
-    ScalingArray = [0, 8], // extra inventory space
+    ScalingArray = [0, 2], // crafting modifier
     ScalingFactor = 0.5
 });
 
@@ -315,7 +323,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendEnchanter,
     Icon = "ui/professions/enchanter.png",
     IconDisabled = "ui/professions/enchanter_bw.png",
-    Const = "LegendEnchanter"
+    Const = "LegendEnchanter",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendEyeForTalent <- null;
@@ -426,7 +436,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendHerbcraft,
     Icon = "ui/professions/herbcraft.png",
     IconDisabled = "ui/professions/herbcraft_bw.png",
-    Const = "LegendHerbcraft"
+    Const = "LegendHerbcraft",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendHighwayman <- null;
@@ -477,8 +489,8 @@ professionDefObjects.push({
     Icon = "ui/professions/interpretation.png",
     IconDisabled = "ui/professions/interpretation_bw.png",
     Const = "LegendInterpretation",
-    ScalingArray = [0, 0.5, 0.75, 0.9, 1], // extra scroll writing speed
-    ScalingFactor = 0.1
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendLayOfTheLand <- null;
@@ -502,7 +514,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendLeatherworking,
     Icon = "ui/professions/leatherworking.png",
     IconDisabled = "ui/professions/leatherworking_bw.png",
-    Const = "LegendLeatherworking"
+    Const = "LegendLeatherworking",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendLookout <- null;
@@ -538,7 +552,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendMealPreparation,
     Icon = "ui/professions/meal_preparation.png",
     IconDisabled = "ui/professions/meal_preparation_bw.png",
-    Const = "LegendMealPreparation"
+    Const = "LegendMealPreparation",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendMetalworking <- null;
@@ -549,7 +565,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendMetalworking,
     Icon = "ui/professions/metalworking.png",
     IconDisabled = "ui/professions/metalworking_bw.png",
-    Const = "LegendMetalworking"
+    Const = "LegendMetalworking",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendNegotiator <- null;
@@ -608,7 +626,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendPetardry,
     Icon = "ui/professions/petardry.png",
     IconDisabled = "ui/professions/petardry_bw.png",
-    Const = "LegendPetardry"
+    Const = "LegendPetardry",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendProsthetics <- null;
@@ -619,7 +639,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendProsthetics,
     Icon = "ui/professions/prosthetics.png",
     IconDisabled = "ui/professions/prosthetics_bw.png",
-    Const = "LegendProsthetics"
+    Const = "LegendProsthetics",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendRationing <- null;
@@ -745,7 +767,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendTailoring,
     Icon = "ui/professions/tailoring.png",
     IconDisabled = "ui/professions/tailoring_bw.png",
-    Const = "LegendTailoring"
+    Const = "LegendTailoring",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendThrifty <- null;
@@ -821,7 +845,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendTrophyCarving,
     Icon = "ui/professions/trophy_carving.png",
     IconDisabled = "ui/professions/trophy_carving_bw.png",
-    Const = "LegendTrophyCarving"
+    Const = "LegendTrophyCarving",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendVulture <- null;
@@ -871,7 +897,9 @@ professionDefObjects.push({
 	Tooltip = ::Const.Strings.ProfessionDescription.LegendWoodworking,
 	Icon = "ui/professions/woodworking.png",
 	IconDisabled = "ui/professions/woodworking_bw.png",
-	Const = "LegendWoodworking"
+	Const = "LegendWoodworking",
+    ScalingArray = [0, 2], // crafting modifier
+    ScalingFactor = 0.5
 });
 
 ::Const.Professions.addProfessionDefObjects(professionDefObjects);
