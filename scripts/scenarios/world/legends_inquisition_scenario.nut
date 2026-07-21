@@ -251,7 +251,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addBroToRoster(_roster, ::Legends.Background.Flagellant, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Monk, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Witchhunter, 4);
-		this.addBroToRoster(_roster, ::Legends.Background.Youngblood, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendYoungblood, 4);
 
 		foreach( i, bro in bros )
 		{

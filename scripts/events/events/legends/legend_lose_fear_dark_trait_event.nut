@@ -67,7 +67,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 				candidates_darkbro.push(bro);
 			}
 
-			else if (bro.getSkills().hasSkill(::Legends.Trait.Brave) || bro.getSkills().hasSkill(::Legends.Trait.LegendFearless))
+			else if (bro.getSkills().hasSkill(::Legends.Trait.Brave) || bro.getSkills().hasSkill(::Legends.Trait.Fearless))
 			{
 				candidates_brave.push(bro);
 			}
