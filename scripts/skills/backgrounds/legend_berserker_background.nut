@@ -45,6 +45,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable),
 		];
 		this.m.Titles = [
 			"the Savage",
