@@ -6,9 +6,9 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
-		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to themselves.";
-		this.m.GoodEnding = "After {not much  more time | much more time later | a lifetime adrift | a short while | a few more months} after your retirement, %name% found {interest | their calling with | some hope with | work with} a {preacher | thief | vagabond | wildman | wise woman | crusader | odd trio of kids | haughty nobleman | ranger | people\'s militia | cultist band | northern raiding party | group of escaped slaves | hunting party of manhunters}, their time with you taught them {everything | most of what | all | a bit of what} they needed to survive in their new employment. They never spoke your name, but {their memory of you never faded | they go on to greater things in your memory}.";
-		this.m.BadEnding = "Does it matter what happens to a single man or woman? As skilled as %name% was, they never made their mark with your early departure from %companyname%.";
+		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to %themselves%.";
+		this.m.GoodEnding = "After {not much  more time | much more time later | a lifetime adrift | a short while | a few more months} after your retirement, %name% found {interest | %their% calling with | some hope with | work with} a {preacher | thief | vagabond | wildman | wise woman | crusader | odd trio of kids | haughty nobleman | ranger | people\'s militia | cultist band | northern raiding party | group of escaped slaves | hunting party of manhunters}, %their% time with you taught %them% {everything | most of what | all | a bit of what} %they% needed to survive in %their% new employment. %They% never spoke your name, but {%their% memory of you never faded | %they% go on to greater things in your memory}.";
+		this.m.BadEnding = "Does it matter what happens to a single %person%? As skilled as %name% was, %they% never made %their% mark with your early departure from %companyname%.";
 		this.m.HiringCost = 0;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
@@ -32,38 +32,6 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			this.Const.Attributes.RangedSkill
 		];
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Bodies = this.Const.Bodies.Muscular;
-			this.m.Faces = this.Const.Faces.AllWhiteMale;
-			this.m.Hairs = this.Const.Hair.CommonMale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Beards = this.Const.Beards.All;
-			this.m.BeardChance = 60;
-		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Bodies = this.Const.Bodies.Gladiator;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanGladiator;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		}
-
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
 		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[1];
@@ -106,42 +74,21 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Faces = this.Const.Faces.AllWhiteFemale;
-			this.m.Hairs = this.Const.Hair.AllFemale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		if (this.m.Ethnicity == 0) {
+			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale}, 60);
 		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Faces = this.Const.Faces.SouthernFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.Young;
-			this.m.Bodies = this.Const.Bodies.SouthernFemaleMuscular;
+		else if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
 			this.m.Names = this.Const.Strings.SouthernNames;
 			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Faces = this.Const.Faces.AfricanFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Bodies = this.Const.Bodies.AfricanFemaleMuscular;
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 			this.m.Names = this.Const.Strings.SouthernNames;
 			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		}
-
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
 	function onBuildDescription()

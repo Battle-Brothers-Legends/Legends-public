@@ -6,7 +6,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro);
 		this.m.Name = "Master Necromancer";
 		this.m.Icon = "ui/backgrounds/warlock_01.png";
-		this.m.BackgroundDescription = "Years of practical training and close calls have shaped %name% into a cold, dark figure capable of calling colder and darker followers to serve them.";
+		this.m.BackgroundDescription = "Years of practical training and close calls have shaped %name% into a cold, dark figure capable of calling colder and darker followers to serve %them%.";
 		this.m.GoodEnding = "What awaits you at the top? You move from place to place and nothing ever holds your attention for long. Your mind bristles with ideas but the company you keep often fails to keep up in more ways than one. You repeated the same routes, strategies and maximised your efforts, perhaps cutting a few too many corners along the way. Why are you not happy? Is this not what you wanted? Nothing stirs within you — maybe you should have taken things more slowly? Enjoyed the small moments? Even if you did, would it change this outcome? Was this all too easy? Or perhaps too hard? Regardless, you are here now, and you can\'t go back anymore...";
 		this.m.BadEnding = "What awaits you at the top? You move from place to place and nothing ever holds your attention for long. Your mind bristles with ideas but the company you keep often fails to keep up in more ways than one. You repeated the same routes, strategies and maximised your efforts, perhaps cutting a few too many corners along the way. Why are you not happy? Is this not what you wanted? Nothing stirs within you — maybe you should have taken things more slowly? Perhaps enjoyed the small moments? Even if you did, would it change this outcome? Was this all too easy? Or perhaps too hard? Regardless, you are here now, and you can\'t go back anymore...";
 		this.m.HiringCost = 1200000000000;
@@ -49,10 +49,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 			"the Fleshshaper",
 			"the Overseer"
 		];
-		this.m.Faces = this.Const.Faces.NecromancerMale;
-		this.m.Hairs = this.Const.Hair.Necromancer;
-		this.m.HairColors = this.Const.HairColors.Zombie;
-		this.m.Beards = this.Const.Beards.Raider;
 
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
@@ -87,7 +83,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -136,7 +132,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.SpecPolearm,
 					::Legends.Perk.LegendSpecPoison,
 					::Legends.Perk.LegendSpecBandage,
-					::Legends.Perk.LegendExtendendAura
+					::Legends.Perk.LegendExtendedAura
 				],
 				[
 					::Legends.Perk.LegendLacerate,
@@ -175,18 +171,13 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 			];
 	}
 
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.NecromancerFemale, HairColors = ::Const.HairColors.Zombie}) : this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.NecromancerMale, Hairs = ::Const.Hair.Necromancer, HairColors = ::Const.HairColors.Zombie, Beards = ::Const.Beards.Raider});
+	}
 
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.NecromancerFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Zombie;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+	function onBuildDescription() {
+		return "Clothed in the un-reality of your life\'s work, manipulating the undead is a second nature. With nothing to fear, manipulating people was not much more difficult. Despite the pacts you have made and the enemies bested along the way, you feel age catching up to you. How long has it been — how much longer is there to go?";
 	}
 
 	function getTooltip()
@@ -201,11 +192,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 			}
 		);
 		return ret;
-	}
-
-	function onBuildDescription() //—
-	{
-		return "Clothed in the un-reality of your life\'s work, manipulating the undead is second nature. With nothing to fear, manipulating people was not much more difficult. Despite the pacts you have made and the enemies bested along the way, you feel age catching up to you. How long has it been — how much longer is there to go?";
 	}
 
 	function onChangeAttributes()

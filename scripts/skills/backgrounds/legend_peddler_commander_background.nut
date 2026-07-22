@@ -34,34 +34,6 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Bodies = this.Const.Bodies.Skinny;
-			this.m.Faces = this.Const.Faces.AllWhiteMale;
-			this.m.Hairs = this.Const.Hair.CommonMale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Beards = this.Const.Beards.All;
-			this.m.BeardChance = 60;
-		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Bodies = this.Const.Bodies.SouthernMale;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanMale;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-		}
-
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
@@ -86,7 +58,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.1  //oasis
@@ -124,45 +96,22 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-
-		if (_gender != 1) return;
-		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Faces = this.Const.Faces.AllWhiteFemale;
-			this.m.Hairs = this.Const.Hair.AllFemale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		if (this.m.Ethnicity == 0) {
+			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale}, 60);
 		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Faces = this.Const.Faces.SouthernFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.Young;
-			this.m.Bodies = this.Const.Bodies.SouthernFemale;
+		else if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
 		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Faces = this.Const.Faces.AfricanFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Bodies = this.Const.Bodies.AfricanFemale;
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemale, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 		}
-
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		//gender neutral
-		return "{After an exchange gone bad, | Once a proud noble, now | Well read and learned, | In tough times, humanity has a habit of falling to pieces when they need to be together most, hence} %name% now roams the land buying and selling what they can. {More honest than most of their kind | Persisent but kind | Trying to hide from their past | A purveyor of exotic goods | After getting into the business selling {used weapons | wine | trinkets}} {, they prefer to be known as a merchant - not a desperate peddler. Even if an unhealthy lifestyle has caught up with them in the meantime. | , they prefer to be known as someone who is trying their best to get by in an uncaring world | , %name% moves from place to place, possibly for good reasons they\'d rather not discuss in the open. Or at all.}";
+		return "{After an exchange gone bad, | Once a proud noble, now | Well read and learned, | In tough times, humanity has a habit of falling to pieces when they need to be together most, hence} %name% now roams the land buying and selling what they can. {More honest than most of their kind | Persistent but kind | Trying to hide from their past | A purveyor of exotic goods | After getting into the business selling {used weapons | wine | trinkets}} {, they prefer to be known as a merchant - not a desperate peddler. Even if an unhealthy lifestyle has caught up with them in the meantime. | , they prefer to be known as someone who is trying their best to get by in an uncaring world | , %name% moves from place to place, possibly for good reasons they\'d rather not discuss in the open. Or at all.}";
 	}
 
 	function onChangeAttributes()

@@ -33,14 +33,9 @@
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Lowborn;
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Ammo[1];
@@ -69,17 +64,8 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.FemaleMuscular;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
-
 
 	o.onBuildDescription <- function()
 	{

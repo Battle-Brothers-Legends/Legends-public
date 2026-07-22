@@ -2,11 +2,6 @@
 	o.create = function ()
 	{
 		this.thief_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.SouthernYoung;
-		this.m.Beards = this.Const.Beards.Southern;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
@@ -37,23 +32,13 @@
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.SouthernYoung}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.SouthernYoung, Beards = ::Const.Beards.Southern});
 
 		if (_gender != 1) return;
-
 		this.m.Name = "Pickpocket";
 		this.m.Icon = "ui/backgrounds/pickpocket.png";
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.SouthernYoung;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Ethnicity = 1;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 		// Note: endings copied from thief_background for now
 		this.m.GoodEnding = "The former farmhand, %name%, retired from the %companyname%. The money she made was put toward purchasing a bit of land. she spends the rest of her days happily farming and starting a family with way too many children.";
 		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. She purchased a bit of land out {south | north | east | west} and was doing quite well for herself - until noble soldiers hanged her from a tree for refusing to hand over all her crops.";

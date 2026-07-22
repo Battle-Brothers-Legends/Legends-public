@@ -8,9 +8,9 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker);
 		this.m.Name = "Berserker";
 		this.m.Icon = "ui/backgrounds/background_berserker.png";
-		this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
-		this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local princess took a shine to %name% the wildman. He was \'purchased\' for a large sum of gold and given to the noblewoman. You went and visited the man recently. For dinner, he sat at a kingly table, grinning goofily and mimicking the nobles around him as best he could. His new and inexplicable wife adored him, and him her. When you said your goodbyes, he offered you a heavy golden crown off the top of his head. It weighed heavy with traditions and ancient histories. You said it\'d be best if he kept it. The wildman shrugged and walked off, spinning the circlet around a finger.";
-		this.m.BadEnding = "%name% the wildman stayed with the fragmenting %companyname% for a time and then, just like that, he was gone. The company went out looking for him in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
+		this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life in the cities, where the astute and deceitful rule.";
+		this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local princess took a shine to %name% the berserker. %They% was \'purchased\' for a large sum of gold and given to the noblewoman. You went and visited the %person% recently. For dinner, %they% sat at a kingly table, grinning goofily and mimicking the nobles around %them% as best %they% could. %Their% new and inexplicable %partner% adored %them%, and %them% her. When you said your goodbyes, %they% offered you a heavy golden crown off the top of %their% head. It weighed heavy with traditions and ancient histories. You said it\'d be best if %they% kept it. The wildman shrugged and walked off, spinning the circlet around a finger.";
+		this.m.BadEnding = "%name% the wildman stayed with the fragmenting %companyname% for a time and then, just like that, %they% was gone. The company went out looking for %them% in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
 		this.m.HiringCost = 3500;
 		this.m.DailyCost = 35;
 		this.m.Excluded = [
@@ -54,12 +54,6 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			"the Wild",
 			"the Barbarian"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Wild;
-		this.m.BeardChance = 100;
-		this.m.Bodies = this.Const.Bodies.LegendTattos;
 		this.m.Ethnicity = 0;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
@@ -87,7 +81,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			0.025, // snow
 			0.025, // badlands
 			0.025, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -139,21 +133,12 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		}
 	}
 
-
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.LegendTattoos, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Wild}, 100);
+		if(_gender){
+			this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the berserker. %They% was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the %person% recently. For dinner, %they% sat at a kingly table, grinning goofily and mimicking the nobles around %them% as best %they% could. %Their% new and inexplicable %partner% adored %them%, and %them% him. When you said your goodbyes, %they% offered you a heavy golden crown off the top of %their% head. It weighed heavy with traditions and ancient histories. You said it\'d be best if %they% kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
+		}
 	}
 
 	function onBuildDescription()

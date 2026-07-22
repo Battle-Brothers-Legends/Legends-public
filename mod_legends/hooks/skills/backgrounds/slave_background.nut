@@ -49,11 +49,6 @@
 			this.Const.Attributes.Hitpoints,
 			this.Const.Attributes.Bravery
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -75,7 +70,7 @@
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.01, //desert
 				0.01 //oasis
@@ -141,15 +136,7 @@
 	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
 	o.onChangeAttributes = function ()

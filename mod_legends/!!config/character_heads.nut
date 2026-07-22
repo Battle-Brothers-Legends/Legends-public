@@ -499,7 +499,7 @@
 	"bust_naked_body_05"
 ];
 
-::Const.Bodies.LegendTattos <- [
+::Const.Bodies.LegendTattoos <- [
 	"bust_naked_body_04"
 ];
 

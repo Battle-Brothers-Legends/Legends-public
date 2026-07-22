@@ -33,12 +33,6 @@
 			"the Kid",
 			"the Bright"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.YoungMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.All;
-
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
@@ -70,24 +64,12 @@
 		}
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young});
 	}
 
-	o.getTooltip = function()
-	{
+	o.getTooltip = function() {
 		local ret = this.character_background.getTooltip();
 		ret.push(
 			{

@@ -24,14 +24,8 @@
 			"the Exiled",
 			"the Disgraced"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Bodies = this.Const.Bodies.Thick;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Outlaw;
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
@@ -63,25 +57,14 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
 
+		if (_gender != 1) return;
 		this.m.Name = "Disowned Lady";
 		this.m.Icon = "ui/backgrounds/background_08.png";
-		this.m.BackgroundDescription = "Disowned ladies often have profited from some training in ranged warfare at court and know the weaknesses of noble armies.";
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		this.m.BackgroundDescription = "Disowned Ladies often have profited from some training in ranged warfare at court and know the weaknesses of noble armies.";
 
 		this.m.PerkTreeDynamic = {
 			Weapon = [
@@ -105,7 +88,6 @@
 			Class = [],
 			Magic = []
 		}
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
 	o.onBuildDescription <- function ()

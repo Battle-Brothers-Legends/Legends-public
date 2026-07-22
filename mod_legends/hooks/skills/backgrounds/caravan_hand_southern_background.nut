@@ -3,12 +3,6 @@
 	o.create = function ()
 	{
 		this.caravan_hand_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
-		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
@@ -23,22 +17,13 @@
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 	}
 	
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
 
 		if (_gender != 1) return;
 		this.m.GoodEnding = "%name% the once-caravan hand retired from fighting. She used her mercenary money to start a trade-guarding business that specializes in transporting goods through dangerous lands.";
 		this.m.BadEnding = "%name% the caravan hand retired back into guarding trade wagons. She died when defending against an ambush by brigands. They took her clothes and left her body in a ditch.";
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.SouthernFemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
 	}	
 
 	o.onBuildDescription <- function ()	{

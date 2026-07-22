@@ -1,11 +1,6 @@
 ::mods_hookExactClass("skills/backgrounds/servant_southern_background", function (o) {
 	o.create = function () {
 		this.servant_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernThick;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
@@ -37,14 +32,7 @@
 
 	o.setGender <- function (_gender = -1)	{
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = this.Const.Bodies.SouthernFemaleThick;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleThick, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern});
 	}
 
 	o.onBuildDescription <- function () {

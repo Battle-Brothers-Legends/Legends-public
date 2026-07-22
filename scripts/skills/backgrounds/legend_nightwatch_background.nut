@@ -7,8 +7,8 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Name = "Night Watch";
 		this.m.Icon = "ui/backgrounds/background_nightwatch.png";
 		this.m.BackgroundDescription = "The night watch are an unlucky few chosen to break up fights and keep towns lawful at the worst time of the day.";
-		this.m.GoodEnding = "%name% found themselves quite comfortable within the darkness, mingling with the company and learning many valuable skills. After they retired from service, they joined with a group of beast hunters that sought to hunt down the horrors of the night. Last you heard, they have been doing quite well for themselves. Able to spot and expell an alp from a village without breaking a sweat.";
-		this.m.BadEnding = "After many sleepless nights, remembering the horrors they faced within the company, %Name% returned to their village and became a night watchman once more. Unfortunately, a few days later they were found dead at their post. Their eyes shut, yet face contorted into a look of horror. Not a single villager heard any commotion during the night, but one reported seeing a pale figure stalking off in the moonlight.";
+		this.m.GoodEnding = "%name% found themselves quite comfortable within the darkness, mingling with the company and learning many valuable skills. After %they% retired from service, %they% joined with a group of beast hunters that sought to hunt down the horrors of the night. Last you heard, %they% have been doing quite well for themselves. Able to spot and expel an alp from a village without breaking a sweat.";
+		this.m.BadEnding = "After many sleepless nights, remembering the horrors %they% faced within the company, %Name% returned to %their% village and became a night watchman once more. Unfortunately, a few days later %they% were found dead at their post. %Their% eyes shut, yet face contorted into a look of horror. Not a single villager heard any commotion during the night, but one reported seeing a pale figure stalking off in the moonlight.";
 		this.m.HiringCost = 120;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
@@ -20,15 +20,8 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
-
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
 		this.m.Modifiers.Terrain = [
@@ -47,7 +40,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 				0.0, // snow
 				0.01, // badlands
 				0.01, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -76,26 +69,12 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "%name% found themselves quite comfortable within the darkness, mingling with the company and learning many valuable skills. After they retired from service, they joined with a group of beast hunters that sought to hunt down the horrors of the night. Last you heard, they have been doing quite well for themselves. Able to spot and expell an alp from a village without breaking a sweat.";
-		this.m.BadEnding = "After many sleepless nights, remembering the horrors they faced within the company, %Name% returned to their village and became a night watchman once more. Unfortunately, a few days later they were found dead at their post. Their eyes shut, yet face contorted into a look of horror. Not a single villager heard any commotion during the night, but one reported seeing a pale figure stalking off in the moonlight.";
-
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
 			return "{Never one to fear the night, %name%'s path in life lead them to the mantle of watchman. | With pale skin and bloodshot eyes, %name% carries the 'look' of a night watchman. | %name% carries an old lantern attached to a stick over their shoulder. An eerie smile on their face as they stare you down. | With their bellowing voice and keen eyes, it's no wonder %name% was selected as %townname%\'s watchwoman. | %name% was assigned to watchman duty as punishment for falling asleep during the day. Cursed to a dark, and lonely service in the local militia. | %name% was forced into the duty of night watchman as a punishment after being accused for a string of night robberies within %townname%.} {Living a quiet life in the night became quite a lonely and soul crushing experience for %name%. They sought something more, hanging up their lantern and looking to join a band of wandering mercenaries. | After falling asleep at an inopportune time, which ended up with two children being kidnapped right out of their homes. %name% sought to escape persecution for the failure in any way they could. | After a string of haunting visions in the night, %name% found themselves unable to cope with such. Resigning immediately and looking for a new avenue of employment.} {Night watchman has molded them into a pale and wiry figure. But still a somewhat capable fighter. | With all the horrors that stalk the night, %name% seems like a fitting member to keep around. | %name% looks like they haven't slept in days. But they assure you they get plenty of rest, and their odd sleep patterns will not be an issue. | %name%'s keen eyes will be /very/ useful in the coming days. Having someone to watch you while you sleep is a blessing considering what roams in the dark.}";

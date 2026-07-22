@@ -7,8 +7,8 @@
 		this.m.Name = "Houndmaster";
 		this.m.Icon = "ui/backgrounds/background_50.png";
 		this.m.BackgroundDescription = "Houndmasters are used to handle dogs of war.";
-		this.m.GoodEnding = "Dogs were not simply \'hounds\' to %name%, despite his title as \'houndmaster.\' To him, they were the most loyal friends of his life. After leaving the company, he discovered an ingenious way to breed the animals specifically tailored to the desires of the nobility. Wanted a brutish beast for a guard dog? He could do it. Wanted something small and cuddly for the children? He could do that, too. The former mercenary now earns an incredible earning doing what he loves - working with dogs.";
-		this.m.BadEnding = "What\'s merely a hound to one man is a loyal beast to %name%. After leaving the company, the houndmaster went out to work for the nobility. Unfortunately, he refused to let hundreds of his dogs be used as a battle vanguard to be thrown away for some short-lived tactical advantage. He was hanged for his \'traitorous ideals\'.";
+		this.m.GoodEnding = "Dogs were not simply \'hounds\' to %name%, despite %their% title as \'houndmaster.\' To %them%, they were the most loyal friends of %their% life. After leaving the company, %they% discovered an ingenious way to breed the animals specifically tailored to the desires of the nobility. Wanted a brutish beast for a guard dog? %They% could do it. Wanted something small and cuddly for the children? %They% could do that, too. The former mercenary now earns an incredible earning doing what %they% loves - working with dogs.";
+		this.m.BadEnding = "What\'s merely a hound to one man is a loyal beast to %name%. After leaving the company, the houndmaster went out to work for the nobility. Unfortunately, %they% refused to let hundreds of %their% dogs be used as a battle vanguard to be thrown away for some short-lived tactical advantage. %They% was hanged for %their% \'traitorous ideals\'.";
 		this.m.HiringCost = 85;
 		this.m.DailyCost = 11;
 		this.m.Excluded = [
@@ -27,11 +27,6 @@
 			"the Kennelmaster",
 			"the Dogkeeper"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -65,27 +60,9 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1)	{
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "Dogs were not simply \'hounds\' to %name%, despite her title as \'houndmaster.\' To her, they were the most loyal friends of her life. After leaving the company, she discovered an ingenious way to breed the animals specifically tailored to the desires of the nobility. Wanted a brutish beast for a guard dog? She could do it. Wanted something small and cuddly for the children? She could do that, too. The former mercenary now earns an incredible earning doing what she loves - working with dogs.";
-		this.m.BadEnding = "What\'s merely a hound to some folks is a loyal beast to %name%. After leaving the company, the houndmaster went out to work for the nobility. Unfortunately, she refused to let hundreds of her dogs be used as a battle vanguard to be thrown away for some short-lived tactical advantage. She was hanged for her \'traitorous ideals\'.";
-
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny});
 	}
 
 	o.getTooltip = function ()

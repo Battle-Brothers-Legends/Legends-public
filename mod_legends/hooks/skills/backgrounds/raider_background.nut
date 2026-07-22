@@ -41,11 +41,6 @@
 			"the Pillager",
 			"the Menace"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
@@ -80,27 +75,12 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Beards = null;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Hairs = ::Const.Hair.UntidyMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Raider});
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function ()	{
 		local maleOnlyOption = this.getContainer().getActor().getGender() != 1 ? "| But while raping and pillaging, %name% was noticed to have a preference for the husbands over the wives. %Their% taste ostracized %them% from the rest of the warband." : "";
 		return "{Living by the shore, %name%\'s life was peppered with the spice of sea raiders. As an adult, %they% joined them in the raiding. | When %their% family was slaughtered, newborn %name% was taken in by the very raiders who did it. | Born in a faraway place, %name% traveled to this land looking for towns to pillage. | A strong %person% from a remote part of the land, %name%\'s presence here has been hellacious for local residents. | A raider with a strong oar-arm and an even greater axe-arm, %name% is part of the folklore that keeps kids in bed at night. | Part warrior, part criminal, %name% has made a good life as a raider. | %name% decided many years ago to take by force from the weak and feeble whatever %they% desired, and has made %their% presence known by raiding caravans and villages ever since. | A poor and starved %child% growing up, %name% took to joining robbers and cutthroats out of desperation. For the first time in %their% life %they% didn\'t feel hunger every night, and so %they% continued to take by force from others what %they% needed. %They% learned to fight and to kill without remorse, and before long, %they% was a monster of a %person%. | Wearing a lord\'s boots and a queen\'s torn dress as a shawl, %name%\'s attire reflects %their% years of raiding well. | The threat that stirs lords in their sleep and rushes housewives beneath beds, %name% is a menacing raider. | The strong take from the weak - that is the order of things that %name% lives by.} {%They% and %their% comrades raided caravans and preyed on outlying farms, only to find themselves being attacked for spoils of war one day. A small band of orcs had spotted %name%\'s camp and washed it away like a force of nature, scattering the few survivors into every which direction. %name% ran and didn\'t look behind. | After many years of ill-gotten gains, the %person% gave up the life after a raid on an orphanage ended with an out of control fire and the deaths of those inside. | A devoted believer in the old ways, %name% desires to die a glorious warrior\'s death to take %their% place beside the gods. But slaughtering villagers like cattle won\'t get the attention of the gods, and so %they% now looks for a greater challenge. " + maleOnlyOption + " | It started with a good raid on a merchant caravan. The few guards were quickly cut down and the fleeing merchant didn\'t run fast enough - a javelin to his back attested to it. The spoils were rich, but before long there was heated argument about how they were to be shared. By evening, most of the raiders had killed each other. %name% only barely escaped and had nothing to show for %their% day but a limping leg. | But %they% always had a soft spot for women, and the constant rape and murder by %their% comrades pushed the raider away from this lifestyle. | Caught by a lord\'s guards, the raider barely escaped, instead watching from a hilltop as %their% comrades were executed. | But one village ambushed %their% party on a raid, cutting down everyone but %themselves% as %they% stole a stable horse and escaped certain doom. | While staking out in a forest, the raider\'s party was attacked by vicious beasts. %They% fed %their% own comrade to the foul things just to save %their% own neck. | But as war tears the world asunder, the raider realized there was less and less to actually pillage. | But as conflicts boil, every village %they% ran into was either dirt poor or already armed to face other fiends of the world.} {Now, %name% just wants a fresh start, even in the dour field of sellswords. | %name% can\'t be wholly trusted as a mercenary, but having been in league with brigands and raiders at the very least makes %them% fit for the work. | The %person% is not brotherly in the least, but %they% can wield a weapon like it\'s one of %their% missing fingers. | While %name%\'s past leaves a bad taste in anyone\'s mouth, there are even worse out there. | %name% is adept at killing and looting, just make sure those skills are directed toward your enemies. | While a good fighter, %name% is first and foremost loyal to loot. | %name% is here to kill things and take things. For you, this is a good thing. | %name% wears a necklace of ears about %their% neck, and another necklace adorned with those ears\' earrings. Fancy. | %name% is a strong fighter, but %they're% in good running to be the least-liked individual in your whole party. | The countryside is an alluring, green canvas upon which to build a life. Maybe the raider just wants to settle down. | Wearing clothes tracked with their previous owner\'s blood, %name% looks strikingly ready for duty. | You get the feeling that %name% is wearing clothes that someone was probably murdered in.}";
 	}

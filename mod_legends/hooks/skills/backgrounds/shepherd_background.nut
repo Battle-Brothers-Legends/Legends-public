@@ -37,11 +37,6 @@
 			"Hoofmind",
 			"the Sheep"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
@@ -74,15 +69,7 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.FemaleSkinny;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale});
 	}
 
 	o.onBuildDescription <- function ()	{

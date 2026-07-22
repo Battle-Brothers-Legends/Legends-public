@@ -7,15 +7,14 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Name = "Blacksmith";
 		this.m.Icon = "ui/backgrounds/blacksmith.png";
 		this.m.BackgroundDescription = "Blacksmiths tend to be strong and are skilled at repairing equipment.";
-		this.m.GoodEnding = "Perhaps one of the strongest men you\'ve ever met, %name% the blacksmith was a vital asset in the %companyname%, repairing both their own equipment and that of their comrades with practiced hands. With plenty of crowns stored, he retired from fighting and blacksmithing both. Last you heard he was living out their years comfortably on the coast.";
-		this.m.BadEnding = "%name% the blacksmith was a strong and capable sellsword in the %companyname%. He held out until the bitter end, sticking with the company as it lurched from one disaster to the next. Perhaps, had he been born in a different time he would have gone on to do great things, making legendary weapons for regal kings. Instead, many wars, invasions, and plagues spreading across the land ultimately ensured %name% and many other talented men went to total waste.";
+		this.m.GoodEnding = "Perhaps one of the strongest %people% you\'ve ever met, %name% the blacksmith was a vital asset in the %companyname%, repairing both %their% own equipment and that of %their% comrades with practiced hands. With plenty of crowns stored, %they% retired from fighting and blacksmithing both. Last you heard %they% was living out %their% years comfortably on the coast.";
+		this.m.BadEnding = "%name% the blacksmith was a strong and capable sellsword in the %companyname%. %They% held out until the bitter end, sticking with the company as it lurched from one disaster to the next. Perhaps, had %they% been born in a different time %they% would have gone on to do great things, making legendary weapons for regal kings. Instead, many wars, invasions, and plagues spreading across the land ultimately ensured %name% and many other talented %people% went to total waste.";
 		this.m.HiringCost = 500;
 		this.m.DailyCost = 23;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-
 		];
 		this.m.Titles = [
 			"Iron-arm",
@@ -27,11 +26,6 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 			"the Smith",
 			"the Metalsmith"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Noble;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
@@ -67,24 +61,9 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		}
 	}
 
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
- 			//Female
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.m.Name = "Farrier";
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.Icon = "ui/backgrounds/blacksmith.png"; //keep the same otherwise people will get confused.
-		this.m.BackgroundDescription = "Everyone needs shoes — and the same applies to four legs, not just two.";
-		this.m.GoodEnding = "Perhaps one of the strongest women you\'ve ever met, %name% the blacksmith was a vital asset in the %companyname%, repairing both their own equipment and that of their comrades with practiced hands. With plenty of crowns stored, she retired from fighting and blacksmithing both. Last you heard she was living out their years comfortably on the coast.";
-		this.m.BadEnding = "%name% the blacksmith was a strong and capable sellsword in the %companyname%. She held out until the bitter end, sticking with the company as it lurched from one disaster to the next. Perhaps, had she been born in a different time she would have gone on to do great things, making legendary weapons for regal kings. Instead, many wars, invasions, and plagues spreading across the land ultimately ensured %name% and many other talented women went to total waste.";
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
 	}
 
 	function onBuildDescription()

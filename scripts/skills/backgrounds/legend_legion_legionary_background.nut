@@ -4,9 +4,9 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionLegionary);
-		this.m.Name = "Legionaire";
+		this.m.Name = "Legionary";
 		this.m.Icon = "ui/backgrounds/background_legion_legionaire.png";
-		this.m.BackgroundDescription = "The backbone of the Empire, the legionaire sees horrors far and wide — and now travels those lands as one.";
+		this.m.BackgroundDescription = "The backbone of the Empire, the legionary sees horrors far and wide — and now travels those lands as one.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
 		this.m.HiringCost = 0;
@@ -19,17 +19,7 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 			this.Const.Attributes.Fatigue,
 			this.Const.Attributes.Bravery
 		];
-
-		//apperance
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		//---
 		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.Names = this.Const.Strings.AncientDeadNames;
-		// this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(2, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
@@ -52,7 +42,7 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 				0.011, // snow
 				0.015, // badlands
 				0.015, //highlands
-				0.025, //stepps
+				0.025, //steppes
 				0.0, //ocean
 				0.01, //desert
 				0.025 //oasis
@@ -84,26 +74,15 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.Names = this.Const.Strings.AncientDeadNamesFemale;
-		// this.m.LastNames = this.Const.Strings.AncientDeadTitles;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.m.Names = _gender ? ::Const.Strings.AncientDeadNamesFemale : ::Const.Strings.AncientDeadNames;
 	}
 
 	function onBuildDescription()
 	{
-		return "{Hailing from a long line of soldiers, %name% joined the Legion eager to serve the Emperor through force of arms. | With few prospects in civilian life, %name% turned to a career in the military as a rank and file soldier. After falling into the Legion, they have dedicated their new life to perfecting their martial skills in hopes of one day finding peace. | Having signed a short military contract to pay off debts, %name% found their service extended indefinitely upon being drafted into the Legion. While they still hope to one day complete their contract, for now- duty calls. | With a choice between punishment in a penal colony, or a shorter sentence in the Legion, %name% figured the latter would be safer and better for their personal growth. Wrong on both counts and bound by eternal service, the Legion is the only place they have left. | Found amongst an old battlefield by the Legion, %name% was all too eager to link up with their new unit upon hearing their mission. With new companions and a purpose renewed, they promise a strong presence in the ranks.} {Confidently filling the ranks of the fighting Legion, this legionary is well versed in formation fighting and sustained combat- through years of training, they're well equipped to deliver death to the Emperor's foes. | Killing men is this legionary's speciality, able to maintain pike ranks with relentless discipline and lead charges in shield formation. With men needing killing more than ever, the front might just be this legionary's best chance at it. | Between battles, the endless apparatus of the Legion is maintained by its many skilled troops. This legionary in particular assists in the logistics and camp works before whetting their blade on the Emperor's foes. | When orders are given, you need strong and devoted men to obey them. This legionary follows the call of duty without question, and is invaluable in any formation, whether protecting their comrades or slaying the enemy.} {Stoic and reserved, %name% dedicates what's left of their humanity to quiet reflection, and is often seen reflecting on the minutia of their daily observations. Whether they're still lucid enough to understand or appreciate them is another matter. | %name% brings a loud and haughty personality to the ranks that betrays a deep satisfaction in their station. While simple to some, they enjoy the honest routine that comes from their position. | Thriving on a diet of violence and honourable service, %name% relishes each encounter with the enemy as a fresh opportunity to see their foes vanquished and the Empire's glory bolstered. | %name% avoids their fellow soldiers when they can, muttering nonsense about the dead not staying dead. While peculiar at times, they remain a strong and loyal soldier to the Emperor. | Between the cynical mockery of their station and cheek often bordering on insubordinate, %name% is as devoted to the Emperor as they come, and is ready to lay down their life for their mission when the time comes.}";
+		return "{Hailing from a long line of soldiers, %name% joined the Legion eager to serve the Emperor through force of arms. | With few prospects in civilian life, %name% turned to a career in the military as a rank and file soldier. After falling into the Legion, they have dedicated their new life to perfecting their martial skills in hopes of one day finding peace. | Having signed a short military contract to pay off debts, %name% found their service extended indefinitely upon being drafted into the Legion. While they still hope to one day complete their contract, for now- duty calls. | With a choice between punishment in a penal colony, or a shorter sentence in the Legion, %name% figured the latter would be safer and better for their personal growth. Wrong on both counts and bound by eternal service, the Legion is the only place they have left. | Found amongst an old battlefield by the Legion, %name% was all too eager to link up with their new unit upon hearing their mission. With new companions and a purpose renewed, they promise a strong presence in the ranks.} {Confidently filling the ranks of the fighting Legion, this legionary is well versed in formation fighting and sustained combat- through years of training, they're well equipped to deliver death to the Emperor's foes. | Killing men is this legionary's specialty, able to maintain pike ranks with relentless discipline and lead charges in shield formation. With men needing killing more than ever, the front might just be this legionary's best chance at it. | Between battles, the endless apparatus of the Legion is maintained by its many skilled troops. This legionary in particular assists in the logistics and camp works before whetting their blade on the Emperor's foes. | When orders are given, you need strong and devoted men to obey them. This legionary follows the call of duty without question, and is invaluable in any formation, whether protecting their comrades or slaying the enemy.} {Stoic and reserved, %name% dedicates what's left of their humanity to quiet reflection, and is often seen reflecting on the minutia of their daily observations. Whether they're still lucid enough to understand or appreciate them is another matter. | %name% brings a loud and haughty personality to the ranks that betrays a deep satisfaction in their station. While simple to some, they enjoy the honest routine that comes from their position. | Thriving on a diet of violence and honourable service, %name% relishes each encounter with the enemy as a fresh opportunity to see their foes vanquished and the Empire's glory bolstered. | %name% avoids their fellow soldiers when they can, muttering nonsense about the dead not staying dead. While peculiar at times, they remain a strong and loyal soldier to the Emperor. | Between the cynical mockery of their station and cheek often bordering on insubordinate, %name% is as devoted to the Emperor as they come, and is ready to lay down their life for their mission when the time comes.}";
 	}
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
@@ -154,7 +133,7 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 
 		local actor = this.getContainer().getActor();
 		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
-		actor.getFlags().add("legion_can_command");  //justfies if this background is subject to the legion command skill
+		actor.getFlags().add("legion_can_command");  //justifies if this background is subject to the legion command skill
 	}
 
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.

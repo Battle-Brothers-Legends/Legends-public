@@ -77,7 +77,7 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.1, //stepps
+				0.1, //steppes
 				0.0, //ocean
 				0.1, //desert
 				0.2 //oasis

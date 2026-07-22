@@ -40,7 +40,7 @@
 			0.0, // snow
 			0.0, // badlands
 			0.0, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -96,6 +96,22 @@
 	o.m.CustomProfessionTree <- null;
 	o.m.ProfessionTreeMap <- null;
 	o.m.ProfessionTree <- null;
+	o.m.DefaultSprites <- {
+		Male = {
+			Bodies = ::Const.Bodies.AllMale,
+			Faces = ::Const.Faces.AllWhiteMale,
+			Hairs = ::Const.Hair.AllMale,
+			HairColors = ::Const.HairColors.All,
+			Beards = ::Const.Beards.All
+		},
+		Female = {
+			Bodies = ::Const.Bodies.NorthernFemale,
+			Faces = ::Const.Faces.AllWhiteFemale,
+			Hairs = ::Const.Hair.AllFemale,
+			HairColors = ::Const.HairColors.All
+			Beards = null
+		},
+	}
 
 	local create = o.create;
 	o.create = function()
@@ -329,7 +345,7 @@
 		}
 		val = terrains[15] * 100.0;
 		if (val > 0) {
-			ttext += "\nStepps +" + val +"%"
+			ttext += "\nSteppes +" + val +"%"
 		}
 		val = terrains[17] * 100.0;
 		if (val > 0) {
@@ -1762,9 +1778,7 @@
 	}
 
 	//0 = Male, 1 = Female, -1 = Either
-	o.setGender <- function (_gender)
-	{
-	}
+	o.setGender <- function (_gender) {}
 
 	o.randomizeHumanGender <- function () {
 		if (::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue()) {
@@ -1783,6 +1797,25 @@
 			return 1;
 		} else {
 			return 0;
+		}
+	}
+
+	o.setDefaultGenderedSprite <- function (_gender, _bodyPart, _spriteObject) {
+		this.m[_bodyPart] = _spriteObject != null && _bodyPart in _spriteObject ? _spriteObject[_bodyPart] : (_gender ? this.m.DefaultSprites.Female[_bodyPart] : this.m.DefaultSprites.Male[_bodyPart])
+	}
+
+	o.setBodyCharacteristics <- function(_gender, _spriteObject = null, _beardChanceForce = null) {
+		local sprites = ["Bodies", "Faces", "Hairs", "HairColors", "Beards"];
+		foreach(sprite in sprites){
+			this.setDefaultGenderedSprite(_gender, sprite, _spriteObject);
+		}
+		if (_gender) {
+			this.m.BeardChance = 0;
+			this.addBackgroundType(::Const.BackgroundType.Female);
+		}
+		
+		if (_beardChanceForce != null) {
+			this.m.BeardChance = _beardChanceForce;
 		}
 	}
 

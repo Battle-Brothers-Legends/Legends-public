@@ -6,8 +6,8 @@
 		this.m.Name = "Squire";
 		this.m.Icon = "ui/backgrounds/background_03.png";
 		this.m.BackgroundDescription = "Squires usually have received some training in warfare, and often have a high resolve to excel in what they do.";
-		this.m.GoodEnding = "%name% the squire eventually left the %companyname%. You\'ve heard that he\'s since been knighted. No doubt he is sitting happy as a plum wherever he is.";
-		this.m.BadEnding = "The squire, %name%, eventually departed the %companyname%. He intended to return home and become knighted, fulfilling his lifelong dream. Cruel politics got in the way and not only was he not knighted, he was stripped of his squire duties. Word has it he hanged himself from a barn\'s rafters.";
+		this.m.GoodEnding = "%name% the squire eventually left the %companyname%. You\'ve heard that %they're% since been knighted. No doubt %they% is sitting happy as a plum wherever %they% is.";
+		this.m.BadEnding = "The squire, %name%, eventually departed the %companyname%. %They% intended to return home and become knighted, fulfilling %their% lifelong dream. Cruel politics got in the way and not only was %they% not knighted, %they% was stripped of %their% squire duties. Word has it %they% hanged %themselves% from a barn\'s rafters.";
 		this.m.HiringCost = 320;
 		this.m.DailyCost = 26;
 		this.m.Excluded = [
@@ -32,13 +32,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.YoungMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Tidy;
-
-
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax; //Neutral-good essentially
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
@@ -77,21 +70,9 @@
 		return this.character_background.getTooltip();
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.PrettyFemale;
-		this.m.Beards = null;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "%name% the squire eventually left the %companyname%. You\'ve heard that she\'s since been knighted. No doubt she is sitting happy as a plum wherever she is.";
-		this.m.BadEnding = "The squire, %name%, eventually departed the %companyname%. She intended to return home and become knighted, fulfilling her lifelong dream. Cruel politics got in the way and not only was she not knighted, she was stripped of her squire duties. Word has it she hanged herself from a barn\'s rafters.";
-
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
 	}
 
 	o.onBuildDescription <- function ()

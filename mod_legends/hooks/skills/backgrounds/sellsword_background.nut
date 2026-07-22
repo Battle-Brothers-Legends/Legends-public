@@ -6,8 +6,8 @@
 		this.m.Name = "Sellsword";
 		this.m.Icon = "ui/backgrounds/background_10.png";
 		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";
-		this.m.GoodEnding = "%name% the sellsword left the %companyname% and started his own mercenary company. As far as you know, it\'s a very successful venture and he often buddies up with the men of the %companyname% to work together.";
-		this.m.BadEnding = "%name% left the %companyname% and started his own competing company. The two companies clashed on opposite sides of a battle between nobles. The sellsword died when a mercenary from the %companyname% stove his head in with a hedge knight\'s helmet.";
+		this.m.GoodEnding = "%name% the sellsword left the %companyname% and started %their% own mercenary company. As far as you know, it\'s a very successful venture and %they% often buddies up with the men of the %companyname% to work together.";
+		this.m.BadEnding = "%name% left the %companyname% and started %their% own competing company. The two companies clashed on opposite sides of a battle between nobles. The sellsword died when a mercenary from the %companyname% stove %their% head in with a hedge knight\'s helmet.";
 		this.m.HiringCost = 100;
 		this.m.DailyCost = 30;
 		this.m.Excluded = [
@@ -28,13 +28,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
-
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
@@ -78,35 +71,13 @@
 		return this.character_background.getTooltip();
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";
-		this.m.GoodEnding = "%name% the sellsword left the %companyname% and started her own mercenary company. As far as you know, it\'s a very successful venture and she often buddies up with the mercenaries of the %companyname% to work together.";
-		this.m.BadEnding = "%name% left the %companyname% and started her own competing company. The two companies clashed on opposite sides of a battle between nobles. The sellsword died when a mercenary from the %companyname% stove her head in with a hedge knight\'s helmet.";
-
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular});
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{%fullname%\'s worked as a sellsword since her father handed down his equipment. | %fullname% can\'t remember a time when she wasn\'t a sword for hire. | As a mercenary, %fullname% has never had to look long for work. | The literate talk about letting loose the dogs of war. %fullname% is one such hound. | In war, there is death and profit. %fullname% causes the former to earn the latter. | There has never been a better time for mercenaries like %name% to earn a crown or two. | After her husband ran off with her children, an angry %name% made a steady career as a nasty sellsword. | A decade ago %name% lost everything in a fire. She\'s been working as a sellsword ever since. | %name% always had the mind for violence and has pursued a long career as a sellsword. | Once dirt poor, %name% has earned a very tidy sum over the years as a sellsword. | %fullname% prefers to keep for herself whence she came, but her reputation as a sword for hire speaks for itself.} {Well experienced, she has traveled in the company of many outfits in her time. | Military campaigns are but notches in her belt. | From work as a lord\'s bodyguard to being an enforcer for a skeevy merchant, %name% has seen it all. | She once made a living off slaying the wild beasts that encroach on human settlements. | With a grim grin, she boasts she has slain all manner of living creatures. | Through plenty of use, the mercenary has learned a thing or two about weapons you didn\'t even know existed. | The sellsword is counting how many she has slain to this day and she appears to not be stopping any time soon. | With a sword and shield in hand, the mercenary appears to do what she does best for a living.} {The woman is no stranger to the fields of battle. | The woman is no stranger to the cruelties of war. | She is used to the harsh realities of mercenary life. | She is said to be a reliable cog in any shield wall. | Some say she can hold a battle line as well as an oak tree. | Rumors abound that the woman enjoys the sight of blood. | Without shame, she takes an uneasy pleasure in the misery of others on the battlefield. | Strangely, she seldom joins others around the campfire, instead keeping to herself. | The woman loves to tell a good tale about how she killed this thing or that. | Given a chance, the woman is quick to showcase a wide variety of fighting styles.} {As long as you have the coin, %name% is yours to command. | A true mercenary, %name% will fight anyone for the right price. | Displaying some fine sword skills, %name% says she can run any man through. | With but a hint of a nod, %name% agrees to join you if you have the crowns. | Excited for an opportunity to earn coin, %name% knocks her mug on the table.}";
-		}
-		else
-		{
-			return "{%fullname%\'s worked as a sellsword since his father handed down his equipment. | %fullname% can\'t remember a time when he wasn\'t a sword for hire. | As a mercenary, %fullname% has never had to look long for work. | The literate talk about letting loose the dogs of war. %fullname% is one such hound. | In war, there is death and profit. %fullname% causes the former to earn the latter. | There has never been a better time for mercenaries like %name% to earn a crown or two. | After his wife ran off with his children, an angry %name% made a steady career as a nasty sellsword. | A decade ago %name% lost everything in a fire. He\'s been working as a sellsword ever since. | %name% always had the mind for violence and has pursued a long career as a sellsword. | Once dirt poor, %name% has earned a very tidy sum over the years as a sellsword. | %fullname% prefers to keep for himself whence he came, but his reputation as a sword for hire speaks for itself.} {Well experienced, he has traveled in the company of many outfits in his time. | Military campaigns are but notches in his belt. | From work as a lord\'s bodyguard to being an enforcer for a skeevy merchant, %name% has seen it all. | He once made a living off slaying the wild beasts that encroach on human settlements. | With a grim grin, he boasts he has slain all manner of living creatures. | Through plenty of use, the mercenary has learned a thing or two about weapons you didn\'t even know existed. | The sellsword is counting how many he has slain to this day and he appears to not be stopping any time soon. | With a sword and shield in hand, the mercenary appears to do what he does best for a living.} {The man is no stranger to the fields of battle. | The man is no stranger to the cruelties of war. | He is used to the harsh realities of mercenary life. | He is said to be a reliable cog in any shield wall. | Some say he can hold a battle line as well as an oak tree. | Rumors abound that the man enjoys the sight of blood. | Without shame, he takes an uneasy pleasure in the misery of others on the battlefield. | Strangely, he seldom joins others around the campfire, instead keeping to himself. | The man loves to tell a good tale about how he killed this thing or that. | Given a chance, the man is quick to showcase a wide variety of fighting styles.} {As long as you have the coin, %name% is yours to command. | A true mercenary, %name% will fight anyone for the right price. | Displaying some fine swordsmanship, %name% says he can run any man through. | With but a hint of a nod, %name% agrees to join you if you have the crowns. | Excited for an opportunity to earn coin, %name% knocks his mug on the table.}";
-		}
+	o.onBuildDescription <- function ()	{
+		return "{%fullname%\'s worked as a sellsword since %their% father handed down %their% equipment. | %fullname% can\'t remember a time when %they% wasn\'t a sword for hire. | As a mercenary, %fullname% has never had to look long for work. | The literate talk about letting loose the dogs of war. %fullname% is one such hound. | In war, there is death and profit. %fullname% causes the former to earn the latter. | There has never been a better time for mercenaries like %name% to earn a crown or two. | After %their% %partner% ran off with %their% children, an angry %name% made a steady career as a nasty sellsword. | A decade ago %name% lost everything in a fire. %They're% been working as a sellsword ever since. | %name% always had the mind for violence and has pursued a long career as a sellsword. | Once dirt poor, %name% has earned a very tidy sum over the years as a sellsword. | %fullname% prefers to keep for %themselves% whence she came, but %their% reputation as a sword for hire speaks for itself.} {Well experienced, %they% has traveled in the company of many outfits in %their% time. | Military campaigns are but notches in %their% belt. | From work as a lord\'s bodyguard to being an enforcer for a skeevy merchant, %name% has seen it all. | %They% once made a living off slaying the wild beasts that encroach on human settlements. | With a grim grin, %they% boasts %they% has slain all manner of living creatures. | Through plenty of use, the mercenary has learned a thing or two about weapons you didn\'t even know existed. | The sellsword is counting how many %they% has slain to this day and %they% appears to not be stopping any time soon. | With a sword and shield in hand, the mercenary appears to do what %they% does best for a living.} {The %person% is no stranger to the fields of battle. | The %person% is no stranger to the cruelties of war. | %They% is used to the harsh realities of mercenary life. | %They% is said to be a reliable cog in any shield wall. | Some say %they% can hold a battle line as well as an oak tree. | Rumors abound that the %person% enjoys the sight of blood. | Without shame, %they% takes an uneasy pleasure in the misery of others on the battlefield. | Strangely, %they% seldom joins others around the campfire, instead keeping to %themselves%. | The %person% loves to tell a good tale about how %they% killed this thing or that. | Given a chance, the %person% is quick to showcase a wide variety of fighting styles.} {As long as you have the coin, %name% is yours to command. | A true mercenary, %name% will fight anyone for the right price. | Displaying some fine sword skills, %name% says %they% can run any man through. | With but a hint of a nod, %name% agrees to join you if you have the crowns. | Excited for an opportunity to earn coin, %name% knocks %their% mug on the table.}";
 	}
 
 	o.onSetAppearance = function ()

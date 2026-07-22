@@ -37,25 +37,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
 		this.m.Ethnicity = this.Math.rand(1, 2);
-		if (this.m.Ethnicity == 1)
-		{
-			this.m.Bodies = this.Const.Bodies.Gladiator;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-		}
-		else
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanGladiator;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-		}
-
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 5);
@@ -80,7 +61,7 @@
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.05, //stepps
+				0.05, //steppes
 				0.0, //ocean
 				0.1, //desert
 				0.1 //oasis
@@ -131,30 +112,14 @@
 		return ret;
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		if (this.m.Ethnicity == 1)
-		{
-			this.m.Faces = this.Const.Faces.SouthernFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.Young;
-			this.m.Bodies = this.Const.Bodies.SouthernFemaleMuscular;
+		if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
 		}
-		else
-		{
-			this.m.Faces = this.Const.Faces.AfricanFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Bodies = this.Const.Bodies.AfricanFemaleMuscular;
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
 		}
-
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
 	o.onBuildDescription <- function ()

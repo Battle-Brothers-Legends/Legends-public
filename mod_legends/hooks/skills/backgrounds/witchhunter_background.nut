@@ -28,11 +28,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
 			::Legends.Traits.getID(::Legends.Trait.Drunkard)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
@@ -58,7 +53,7 @@
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -111,19 +106,9 @@
 		return "{%name% appeared one day in %townname%, some say upon request {of the local council | of a local priest}. | %name% has a reputation of showing up where things out of the ordinary happen and being out and about at the darkest part of the night. | Being a quiet and grim %person%, %name% has the tendency to make other people feel uncomfortable around %them%, even afraid. | The name of %name% is known in many a village, for %they% has travelled the land to wherever %their% talents are needed the most.} {A Witchhunter %they% calls %themselves%. With %their% assortment of exotic tools %they% has a great deal of experience in getting people to confess in agony their sinful liaisons with demons and devils under terrible torture. | %They% refers to %themselves% as a Witchhunter, but only superstitious fools would believe this and fall for %their% preposterous tales. | A Witchhunter %they% calls %randomname%, and %they% claims to have seen horrors from beyond that would drive a lesser mind insane. | After %their% arrival in %townname%, rumors spread that %they% was on the hunt for devil worshippers and creatures of the night, but no one knew what the real purpose of %their% visit was. | In %townname% %they% killed an elderly woman and was thrown into the dungeon. As it turned out, the woman was responsible for the abduction and death of 3 infants, and so %they% was set free again. | For nights on end %they% sat in %townname%\'s pub, silently studying every patron like a bird of prey circling above, %their% crossbow never far away. It didn\'t sit well with the residents but they didn\'t dare approach %them%.} {By now most of the local folks want %name% to be gone rather sooner than later and would happily see %them% join a travelling mercenary company. | It seems that whatever %their% mission was is now accomplished and so %name% offers %their% service as a mercenary. | It is somewhat obvious that %name% is not easily scared and %they% also knows how to handle a crossbow. Nobody was therefore surprised as %they% approached a mercenary company that was hiring. | Now, a mercenary company would be just the tool %they% needed to fulfill %their% personal quest against the evil from the world beyond. | Most people would be glad to get rid of %them%.}";
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
 	}
 
 	o.onSetAppearance = function ()

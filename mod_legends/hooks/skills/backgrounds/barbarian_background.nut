@@ -37,14 +37,9 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.Titles = this.Const.Strings.BarbarianTitles;
-		this.m.Faces = this.Const.Faces.WildMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.WildExtended;
 		this.m.Ethnicity = 0;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.ExpertHunter;
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
@@ -66,7 +61,7 @@
 			0.05, // snow
 			0.00, // badlands
 			0.05, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -99,29 +94,13 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.WildMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Faces = ::Const.Faces.WildMale, Hairs = ::Const.Hair.WildMale, Beards = ::Const.Beards.WildExtended});
 	}
 
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function ()	{
 			return "{%name% survived the battle between yourself and %their% own tribe of warriors. %They% offered %themselves% to your company or to your sword. Impressed by %their% bravery, you chose to take %them% in. A foreign brute, %they% hardly speaks your native tongue and %they% is not well liked by the rest of the company. But if anything can bond two people it is fighting beside one another, killing when it counts, and drinking the night away at the tavern.}";
 	}
 

@@ -26,10 +26,6 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 			"the Iron-shaper",
 			"the Scrounger"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.YoungMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.All;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
@@ -64,23 +60,12 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young});
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{When one needs tools repaired but cannot afford a blacksmith, they seek out their local ironmonger. | A self taught smith working from scrap metal, the ironmonger works mostly with farm tools and horseshoes.} {No ironmonger can compare to the skills of a full fledged blacksmith, but it can be a lucrative profession in smaller villages. | Though lacking the skills of a fully trained blacksmith, ironmongers are vital for some settlements, too small or remote to merit a resident blacksmith.} {%name% was an ironmonger in %townname%. | %name% served for many years as an ironmonger in %townname%. | %name% was an ironmonger, like %their% father. | Urged by %their% parents to join the craft, %name% was an ironmonger for many years. | Not to be outdone by %their% overachieving militia sister, %name% learned to smith and served as the local ironmonger.} {Unfortunately, a trained blacksmith arrived in town, and %name%\'s skills were quickly rendered obsolete. Facing poverty, %they% left home to join a company of sellswords. | %name%\'s clients eventually dried up, and %they% was forced to leave home and seek new work. | %name% eventually left home due to a tragedy that %they% refused to speak of. Face grim, %they% seeks new employment.}";
 	}
 

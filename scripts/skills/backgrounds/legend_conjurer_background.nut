@@ -33,12 +33,7 @@ this.legend_conjurer_background <- this.inherit("scripts/skills/backgrounds/char
 			"Beastfolk",
 			"The wild"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid;
+		this.m.BackgroundType = this.Const.BackgroundType.Performing | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid;
 		this.m.Level = 1;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
@@ -77,18 +72,9 @@ this.legend_conjurer_background <- this.inherit("scripts/skills/backgrounds/char
 	}
 
 	//Default feMale
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 0) return;
-
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
-		this.removeBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.CommonMale});
 	}
 
 

@@ -49,12 +49,6 @@
 			"the Wild",
 			"the Barbarian"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Wild;
-		this.m.BeardChance = 100;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
@@ -80,7 +74,7 @@
 			0.025, // snow
 			0.025, // badlands
 			0.025, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -124,24 +118,17 @@
 		return ret
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Wild}, 100);
 
-		this.m.Name = "Wildwoman";
-		this.m.Icon = "ui/backgrounds/wildwoman.png";
-		this.m.BackgroundDescription = "Wildwomen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
-		this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the wildwoman. She was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the woman recently. For dinner, she sat at a kingly table, grinning goofily and mimicking the nobles around her as best she could. Her new and inexplicable husband adored her, and her him. When you said your goodbyes, she offered you a heavy golden crown off the top of her head. It weighed heavy with traditions and ancient histories. You said it\'d be best if she kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
-		this.m.BadEnding = "%name% the wildwoman stayed with the fragmenting %companyname% for a time and then, just like that, she was gone. The company went out looking for her in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
-
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		if (_gender) {
+			this.m.Name = "Wildwoman";
+			this.m.Icon = "ui/backgrounds/wildwoman.png";
+			this.m.BackgroundDescription = "Wildwomen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
+			this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the wildwoman. She was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the woman recently. For dinner, she sat at a kingly table, grinning goofily and mimicking the nobles around her as best she could. Her new and inexplicable husband adored her, and her him. When you said your goodbyes, she offered you a heavy golden crown off the top of her head. It weighed heavy with traditions and ancient histories. You said it\'d be best if she kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
+			this.m.BadEnding = "%name% the wildwoman stayed with the fragmenting %companyname% for a time and then, just like that, she was gone. The company went out looking for her in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
+		}
 	}
 
 	o.onBuildDescription <- function ()

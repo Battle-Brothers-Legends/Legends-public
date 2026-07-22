@@ -6,10 +6,9 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Militia);
 		this.m.Name = "Militia";
 		this.m.Icon = "ui/backgrounds/background_35.png";
-		//gender neutral description
 		this.m.BackgroundDescription = "Anyone that\'s been in the militia will have received at least some basic training in matters of combat.";
-		this.m.GoodEnding = "A former militia recruit such as %name% eventually left the %companyname%. Traveling the lands, visiting villages and helping them establish credible militias with which to defend themselves. Finding success in an increasingly dangerous world, %name% eventually came to be a known name, called upon as a sort of \'fixer\' to come and ensure these villages would remain safe. Last you heard, %name% had purchased a plot of land and was raising a family far from the strife of the world.";
-		this.m.BadEnding = "%name% left the collapsing company and returned to the village. Back in the militia, it wasn\'t long until {greenskins | raiders} attacked and the militia was called to action. It\'s said that %name% stood tall, rallying the defense while slaying through countless enemies before succumbing to mortal wounds. When you visited the village, you found children playfighting beneath a statue made in the %name%\'s image.";
+		this.m.GoodEnding = "A former militiaman such as %name% eventually left the %companyname%. %They% traveled the lands, visiting villages and helping them establish credible militias with which to defend themselves. Finding success in an increasingly dangerous world, %name% eventually came to be a known name, called upon as a sort of \'fixer\' to come and ensure these villages would remain safe. Last you heard, %they're% purchased a plot of land and was raising a family far from the strife of the world.";
+		this.m.BadEnding = "%name% left the collapsing company and returned to %their% village. Back in the militia, it wasn\'t long until {greenskins | raiders} attacked and %they% was called to action. It\'s said that %they% stood tall, rallying the defense as %they% slew through countless enemies before succumbing to mortal wounds. When you visited the village, you found children playfighting beneath a statue made in the militiaman\'s image.";
 		this.m.HiringCost = 85;
 		this.m.DailyCost = 14;
 		this.m.Excluded = [
@@ -21,11 +20,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
@@ -58,24 +52,13 @@
 		}
 	}
 
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Beards = null;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Young});
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		//removed one gender specific sentence - now it is neutral
-		return "{A militia recruit like %name% is only raised in times of need. | Broke and without work, %name% joined the local militia. | Caught stealing an apple, %name% was pressed into the militia as a form of punishment. | Although a member of the peasantry, %name% was always willing to join the militia and protect the homestead. | War is a hungry beast - militia conscripts like %name% are what feed it.} {While %name% got proper training, there was rarely enough food to go around for the \'second-rate soldiers\'. | %name% fought just as hard as the professionals, but was unable to garner any sort of respect for the work. | Being the bottom rung of soldiering, quickly makes it clear that your life is expendable. | %name%\'s weapons were rusted and the armor nonexistent. Unfortunately, enemies were not so kindly under-equipped.} {After a year of traipsing around with shoddy gear, %name% decided to look for something a bit more welcoming: sellswords. | Years in an outfit where %name% couldn\'t depend on the solider beside, drove %name% to find something better. Perhaps not the best soldier you\'ve ever seen, but earnest. | When the local militia was disbanded, %name% returned home to find the town had been burned to the ground. One foot already in the door, it only made sense to join one of the numerous mercenary bands roaming the land. | %name%\'s modest military garb belies one who has seen their fair share of training and combat.}";
+	o.onBuildDescription <- function ()	{
+		return "{A militiaman like %name% is only raised in times of need. | Broke and without work, %name% joined %their% local militia. | Caught stealing an apple, %name% was pressed into the militia as a form of punishment. | Although a member of the peasantry, %name% was always willing to join the militia and protect %their% homestead. | War is a hungry beast - militia conscripts like %name% are what feed it.} {While %they% got proper training, there was rarely enough food to go around for the \'second-rate soldiers\'. | Even though %they% fought just as hard as the professionals, %they% found %themselves% unable to garner any sort of respect for %their% work. | Being the bottom rung of soldiering, %they% quickly realized that it meant %their% life was expendable. | %Their% weapons were rusted and the armor nonexistent. Unfortunately, enemies were not so kindly under-equipped.} {After a year of traipsing around with shoddy gear, %they% decided to look for something a bit more to %their% liking: sellswords. | When a lord sent %their% entire militia to almost certain doom, %name% realized %they% had better seek something better if %they% wanted to live. %They% took %their% modest skill set to the field of mercenaries. | Years in an outfit where %they% couldn\'t depend on the man next to %them% drove %name% to find something better. %They're% not the best soldier you\'ve ever seen, but %they% is earnest. | When %their% militia was disbanded, %they% returned home to find %their% town had been burned to the ground. One foot already in the door, it only made sense to join one of the numerous mercenary bands roaming the land. | %name%\'s modest military garb belies a %person% who has seen %their% fair share of training and combat.}";
 	}
 
 	o.onChangeAttributes = function ()

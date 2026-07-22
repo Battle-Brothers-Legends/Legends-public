@@ -45,13 +45,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			"the Heartless",
 			"the Swine"
 		];
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
-		this.m.BeardChance = 90;
-		this.m.Bodies = this.Const.Bodies.SouthernThick;
-
 		this.m.Ethnicity = 1;
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
@@ -78,7 +71,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			0.0, // snow
 			0.02, // badlands
 			0.02, //highlands
-			0.05, //stepps
+			0.05, //steppes
 			0.0, //ocean
 			0.05, //desert
 			0.05 //oasis
@@ -116,22 +109,9 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		}
 	}
 
-	//Default Male
 	function setGender(_gender = -1) {
-		if (_gender == -1) {
-			_gender = this.randomizeHumanGender();
-		}
-
-		if (_gender != 1) {
-			return;
-		}
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
 	}
 
 	function getTooltip() {

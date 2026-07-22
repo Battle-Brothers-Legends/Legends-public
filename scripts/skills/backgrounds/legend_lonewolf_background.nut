@@ -52,38 +52,6 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		];
 
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Bodies = this.Const.Bodies.Muscular;
-			this.m.Faces = this.Const.Faces.AllWhiteMale;
-			this.m.Hairs = this.Const.Hair.CommonMale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Beards = this.Const.Beards.All;
-			this.m.BeardChance = 60;
-		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Bodies = this.Const.Bodies.Gladiator;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanGladiator;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Beards = this.Const.Beards.Southern;
-			this.m.BeardChance = 60;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		}
-
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3];
 
 		this.m.PerkTreeDynamic = {
@@ -119,43 +87,24 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-
-		if (_gender != 1) return;
-		this.m.Ethnicity = this.Math.rand(0, 2);
-		if (this.m.Ethnicity == 0)
-		{
-			this.m.Faces = this.Const.Faces.AllWhiteFemale;
-			this.m.Hairs = this.Const.Hair.AllFemale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Bodies = this.Const.Bodies.NorthernFemale;
-			this.m.Names = this.Const.Strings.CharacterNamesFemale;
+		if (this.m.Ethnicity == 0) {
+			_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale}, 60);
+			if(_gender) {
+				this.m.Names = ::Const.Strings.CharacterNamesFemale;
+			}
 		}
-		else if (this.m.Ethnicity == 1)
-		{
-			this.m.Faces = this.Const.Faces.SouthernFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.Young;
-			this.m.Bodies = this.Const.Bodies.SouthernFemaleMuscular;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		else if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
-		else if (this.m.Ethnicity == 2)
-		{
-			this.m.Faces = this.Const.Faces.AfricanFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Bodies = this.Const.Bodies.AfricanFemaleMuscular;
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
-
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
 	function onBuildDescription()

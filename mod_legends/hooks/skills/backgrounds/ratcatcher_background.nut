@@ -6,8 +6,8 @@
 		this.m.Name = "Ratcatcher";
 		this.m.Icon = "ui/backgrounds/background_41.png";
 		this.m.BackgroundDescription = "Ratcatchers need to have quick reflexes to catch their prey.";
-		this.m.GoodEnding = "%name% the ratcatcher came from stranger stocks, and to stranger stocks he returned. After retiring from the %companyname%, he started a ratcatching company. He was doing wonderful business until it came out that he hadn\'t been killing any of the rats, but instead stowing thousands of them in a storehouse just outside town. Last you heard, the man was quite content with his new and numerous friends.";
-		this.m.BadEnding = "You didn\'t think %name% would fit in with sellswords, but he proved himself capable. Unfortunately, the %companyname% fell apart and he returned to ratcatching. You got word that his body was found in a sewer utterly covered in nibbling rats. It\'s said that he had a smile on his face.";
+		this.m.GoodEnding = "%name% the ratcatcher came from stranger stocks, and to stranger stocks %they% returned. After retiring from the %companyname%, %they% started a ratcatching company. %They% was doing wonderful business until it came out that %they% hadn\'t been killing any of the rats, but instead stowing thousands of them in a storehouse just outside town. Last you heard, the %person% was quite content with %their% new and numerous friends.";
+		this.m.BadEnding = "You didn\'t think %name% would fit in with sellswords, but %they% proved %themselves% capable. Unfortunately, the %companyname% fell apart and %they% returned to ratcatching. You got word that %their% body was found in a sewer utterly covered in nibbling rats. It\'s said that %they% had a smile on %their% face.";
 		this.m.HiringCost = 40;
 		this.m.DailyCost = 4;
 		this.m.Excluded = [
@@ -33,11 +33,6 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
@@ -68,35 +63,13 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-		//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.GoodEnding = "%name% the ratcatcher came from stranger stocks, and to stranger stocks she returned. After retiring from the %companyname%, she started a ratcatching company. She was doing wonderful business until it came out that she hadn\'t been killing any of the rats, but instead stowing thousands of them in a storehouse just outside town. Last you heard, the woman was quite content with her new and numerous friends.";
-		this.m.BadEnding = "You didn\'t think %name% would fit in with sellswords, but she proved herself capable. Unfortunately, the %companyname% fell apart and he returned to ratcatching. You got word that her body was found in a sewer utterly covered in nibbling rats. It\'s said that she had a smile on her face.";
-
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, Hairs = ::Const.Hair.UntidyMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	o.onBuildDescription = function ()
-	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-			return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions herself as a woman of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned her into one.} She grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, her father taught her the ways of snaring tiny rodents | Her fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | Her mother demanded the finest meats she could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting her rat-whispering skills}, %name% now seeks to {put her shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before her, and to hear the squeals of their kin. She has a thousand-yard stare and a clenched fist as she tells you this. | perhaps graduate her skills from rats to dogs and maybe humans, so she says. She doesn\'t appear to know what she\'s in for, but perhaps it is best to not tell her. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
-		return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions himself as a man of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned him into one.} He grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, his father taught him the ways of snaring tiny rodents | His fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | His mother demanded the finest meats he could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting his rat-whispering skills}, %name% now seeks to {put his shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before him, and to hear the squeals of their kin. He has a thousand-yard stare and a clenched fist as he tells you this. | perhaps graduate his skills from rats to dogs and maybe humans, so he says. He doesn\'t appear to know what he\'s in for, but perhaps it is best to not tell him. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
+	o.onBuildDescription = function () {
+		return "{Catcher of rats, that\'s the title %name% once preferred. | With perhaps misplaced pride, %name% fashions %themselves% as a %person% of the sewers. | Bowlegged and scrawny, %name%\'s career of hunting rats has seemingly turned %them% into one.} %They% grew up in %townname%, surviving {in the alleys | on rat, the fruit of the sewers | alongside the furry and scuttling, as well as some rats}. {For cheap entertainment, %their% father taught %them% the ways of snaring tiny rodents | %Their% fallen brother\'s body was eaten by rats, forging an angry future of rodent-revenge | %Their% mother demanded the finest meats %they% could find, and she didn\'t mean from the market}. But %townname% wears on people, and it wore on %name% like a giant, nibbling creature. {Hearing of greater rats in the world | Sensing that there must be more to life than rats | Trusting %their% rat-whispering skills}, %name% now seeks to {put %their% shriveled nose, odd gnawing habits, and quick but kind of gross hands to better use. | crush every rat, see them driven before %them%, and to hear the squeals of their kin. %They% has a thousand-yard stare and a clenched fist as %they% tells you this. | perhaps graduate %their% skills from rats to dogs and maybe humans, so %they% says. %They% doesn\'t appear to know what %they're% in for, but perhaps it is best to not tell %them%. | dish up some rat soup, rat salad, rat kebab, rat bread, rat stew, rat chicken, rat wine... after a while, you just stop listening.}";
 	}
 
 	o.onChangeAttributes = function ()

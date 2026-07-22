@@ -51,7 +51,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			0.015, // snow
 			0.015, // badlands
 			0.015, //highlands
-			0.05, //stepps
+			0.05, //steppes
 			0.0, //ocean
 			0.01, //desert
 			0.05 //oasis

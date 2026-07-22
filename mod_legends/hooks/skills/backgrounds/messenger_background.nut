@@ -32,10 +32,6 @@
 			"the Courier",
 			"the Runner"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Tidy;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
@@ -57,7 +53,7 @@
 			0.03, // snow
 			0.03, // badlands
 			0.07, //highlands
-			0.1, //stepps
+			0.1, //steppes
 			0.0, //ocean
 			0.03, //desert
 			0.1 //oasis
@@ -83,26 +79,11 @@
 			Profession = [],
 			Magic = []
 		}
-		this.m.Bodies = this.Const.Bodies.Skinny;
 	}
-
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	o.setGender <- function (_gender = -1)
-	{
+	
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
 	}
 
 	o.onBuildDescription <- function ()

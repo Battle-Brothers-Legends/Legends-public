@@ -27,11 +27,6 @@
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Thick;
 		this.m.IsCombatBackground = true;
 		this.m.IsNoble = true;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
@@ -60,20 +55,13 @@
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
 
-		if (_gender != 1) return;
- 			//Female
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.Icon = "ui/backgrounds/background_06.png";
+		if (_gender) {
+			this.m.Icon = "ui/backgrounds/background_06.png";
+		}
 	}
 
 	o.onBuildDescription <- function ()

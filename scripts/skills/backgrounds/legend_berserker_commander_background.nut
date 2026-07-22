@@ -54,12 +54,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			"the Wild",
 			"the Barbarian"
 		];
-		this.m.Faces = this.Const.Faces.Berserker;
-		this.m.Hairs = this.Const.Hair.Berserker;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Berserker;
-		this.m.BeardChance = 100;
-		this.m.Bodies = this.Const.Bodies.LegendTattos;
 		this.m.Ethnicity = 0;
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented;
@@ -85,7 +79,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			0.025, // snow
 			0.025, // badlands
 			0.025, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -156,19 +150,9 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		];
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.PrettyFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.LegendTattoos, Faces = ::Const.Faces.Berserker, Hairs = ::Const.Hair.Berserker, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Berserker}, 100);
 	}
 
 	function onBuildDescription()

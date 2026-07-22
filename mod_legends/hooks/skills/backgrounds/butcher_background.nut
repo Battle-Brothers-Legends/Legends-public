@@ -35,18 +35,12 @@
 			"Redmeat",
 			"Bloodeye"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
 		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
 		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Bodies = this.Const.Bodies.Thick;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
@@ -72,31 +66,16 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick});
+		
 		if (_gender != 1) return;
-
 		this.m.Name = "Fishmonger";
 		this.m.Icon = "ui/backgrounds/fishwife.png";
 		this.m.BackgroundDescription = "Fishmongers are used to spilled guts.";
 		this.m.GoodEnding = "Mercenary work is a bloody business, which is probably why a fishmonger like %name% felt right at home in it. While an outstanding fighter, you hear that she still has problems with the war dogs in the party and has been repeatedly caught trying to slaughter them. Eventually, if not desperately, the company gave the woman an adorable puppy to raise as her own. From what you know of, the little runt\'s glowy doe eyes converted the dog hater into a lover. Now she goes into an insatiable bloodlust whenever a wardog is harmed and her little mongrel grew up to be the fiercest beast in the company!";
 		this.m.BadEnding = "%name% the fishmonger eventually left the declining company. She joined up with another outfit, but was caught slaughtering one of their war dogs. Apparently, she had been feeding the mercenaries dogmeat from all their mongrels that had gone \'missing\'. They did not take this news kindly, stripped the butcher, and fed her to the beasts.";
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
 	}
 
 	o.onBuildDescription <- function ()

@@ -79,7 +79,7 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 				::Legends.Perk.LegendDeathtouch,
 				::Legends.Perk.LegendLookout,
 				::Legends.Perk.LegendSpecialistSelfdefense,
-				::Legends.Perk.LegendExtendendAura
+				::Legends.Perk.LegendExtendedAura
 			],
 			[
 				::Legends.Perk.SpecDagger,

@@ -6,8 +6,8 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister);
 		this.m.Name = "Magister";
 		this.m.Icon = "ui/backgrounds/background_magister.png";
-		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane preside over, their quiet madness eclipses all and causes the rest to fall in line.";
-		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often they appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
+		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";
+		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often %they% appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
 		this.m.BadEnding = "You heard that %name%, the cultist, left the company at some juncture and went out to spread the faith. There\'s no telling what became of the fanatic, but there was a recent inquisition against unholy faiths and hundreds of \'folk in dark cloaks with even darker intentions\' were burned at the stake across the realm.";
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 27;
@@ -48,11 +48,6 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.Level = this.Math.rand(2, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
@@ -96,25 +91,16 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	// Should overwrite the "character_backgrounds" isCultist() check
-	function isCultist()
-	{
+	function onBuildDescription() {
+		return "{Magisters are a conduit of evil in the world, seemingly sucking up all the suffering around them and directing it upon whoever they please.} {%name% is wreathed in fabrics that seem to obey a different set of rules to the rest of the world. | %name% occasionally turns their head as if an unseen force was whispering to them, nodding and whispering back to the unseen force in kind, almost as if affirming their own madness. | %name% whispers into their weapon and nods in agreement with it, almost as if conversing with a long lost friend. | %name% tracks and nods towards unseen figures like a ringmaster for a ghostly parade. | The look in the eyes of %name% reveals little, aside from the fact that the more you look at %them% the more you notice the irregularities, having a smaller, second pupil for instance. | %name% stands with a a crooked posture, as if holding up a heavy and unseen burden.} \"Davkul awaits us all\" %they% parrot. You are not certain, but you feel a second voice repeat those words in unison from deep inside your mind.";
+	}
+
+	function isCultist() {
 		return true;
 	}
 
@@ -130,11 +116,6 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			}
 		);
 		return ret
-	}
-
-	function onBuildDescription()
-	{
-		return "{Magisters are a conduit of evil in the world, seemingly sucking up all the suffering around them and directing it upon whoever they please.} {%name% is wreathed in fabrics that seem to obey a differant set of rules to the rest of the world. | %name% occasionally turns their head as if an unseen force was whispering to them, nodding and whispering back to the unseen force in kind, almost as if affirming their own madness. | %name% whispers into their weapon and nods in agreement with it, almost as if conversing with a long lost friend. | The stranger tracks and nods towards unseen figures like a ringmaster for a ghostly parade. | The look in the eyes of %name% reveals little, aside from the fact that the more you look at them the more you notice the irregularaties, having a smaller, second pupil for instance. | They stand with a a crooked posture, as if holding up a heavy and unseen burden.} \"Davkul awaits us all\" %name% parrots. You are not certain, but you feel a second voice repeat those words in unison from deep inside your mind.";
 	}
 
 	function onChangeAttributes()

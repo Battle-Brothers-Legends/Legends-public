@@ -69,7 +69,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			0.011, // snow
 			0.015, // badlands
 			0.015, //highlands
-			0.025, //stepps
+			0.025, //steppes
 			0.0, //ocean
 			0.01, //desert
 			0.025 //oasis

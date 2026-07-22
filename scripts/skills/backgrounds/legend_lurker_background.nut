@@ -53,11 +53,6 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
@@ -86,7 +81,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -122,31 +117,17 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	// Should overwrite the "character_backgrounds" isCultist() check
-	function isCultist()
-	{
+	function onBuildDescription() {
+		return "{%name% has always been a quiet sort, preferring to observe rather than act impulsively. | %name% gravitates to the darkest places possible and has no problem marching through difficult terrain. | Shot in the head by a bolt at close range, %name% was pulled from a shallow grave far in the southern sands by a healer, now %they% seek reprisal. | Clothed in rags, %name% is surprisingly at ease with their surroundings, ever watchful of potential predators...or prey. | %name% carries a myriad of makeshift arrows, some bone and others metal. However a few shafts and arrowheads seem more otherworldly than the others... | Looking at %name% you can\'t help but feel that you have met one another before. A familial bond links the two of you together as if you have known each other a lifetime before.} %They% places a finger on %their% lips and your thoughts evaporate. \"Davkul awaits us all, chosen one\".";
+	}
+
+	function isCultist() {
 		return true;
-	}
-
-	function onBuildDescription()
-	{
-		return "{%name% has always been a quiet sort, preferring to observe rather than act impulsively. | They gravitate to the darkest places possible and have no problem marching through difficult terrain. | Shot in the head by a bolt at close range, %name% was pulled from a shallow grave far in the southern sands by a healer, now they seek reprisal. | Clothed in rags, %name% is suprisingly at ease with their surroundings, ever watchful of potential predators...or prey. | %name% carries a myriad of makeshift arrows, some bone and others metal. However a few shafts and arrowheads seem more otherworldly than the others... | Looking at %name% you can\'t help but feel that you have met one another before. A familial bond links the two of you together as if you have known each other a lifetime before.} They place a finger on their lips and your thoughts evaporate. \"Davkul awaits us all, chosen one\".";
 	}
 
 	function onChangeAttributes()

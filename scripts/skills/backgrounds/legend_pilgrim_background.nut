@@ -42,11 +42,6 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.IsGuaranteed = ["hate_undead_trait"];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -71,7 +66,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 				0.0, // snow
 				0.02, // badlands
 				0.02, //highlands
-				0.02, //stepps
+				0.02, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -121,32 +116,18 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		return ret;
 	}
 
-	function onBuildDescription()
-	{
-		// background descriptions have some differences and there's no point in uniting them
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-
-			return "{%name% has walked long and hard to almost all the holy sites. | As a shepherd\'s wife of a rural farm out in the hinterlands, %name% often dealt with trepassers. One day a budding necromancer and his three apprentices took the farm for herself. Her husband was slain and still wanders someplace between the world of the living and the dead. Ever since %name% has been looking for a way to avenge her husband\'s death and purge the land of the undead. | A fight with an innkeeper over the rates that they were charging for beds quickly escalated into a brawl. After the night watch broke up and took all of %name%\'s crowns for \'services\', they did what they could to find safe passage to her last designation. Thats where you come in. | A northerner with a hefty and well known family name marked %name% as a target the moment they set foot on the road alone with little more than a staff and good intentions. Bandits quickly descended upon her. Without passes and forms to prove her status as a pilgrim %name% had all but given up hope of ever getting out on the road again. | %name% talks at great lengths about her vocation as a missionary and woman of god. However a large stash of valubles they accumulate leads to to believe something more sinister is afoot.}";
-		}
-		else
-		{
-			return "{%name% has walked long and hard to almost all the holy sites. | As a farmhand in an orchard around the border towns of the south and north %name% lived a peaceful life until a throng of anicent dead swept through the village and burnt everything to the ground. Ever since a fire has burned in his heart to clean the land of the dead that still walk the earth. | Once a billman in service to a local lord, %name% quickly fell out of service when said lord was drowned in the river by an angry mob. Now with a target painted on his back, %name% tries to blend in to the crowd as a pilgrim. They say they always wanted to give 'this holy lark' a 'fair shake' anyway. | Born a bastard to a local lord, %name% lived most of his life in the countryside as a farmhand. One day a messanger arrived, escorted by a dozen or so footmen \'requesting\' that they come pay respects to a new lord of the land. Sensing a trap %name% made a break for it and spends his time far away from the nobility as possible. | %name% is lucky to be alive, if the tales are true then they are one of the few survivors of a small hamlet in the north swarming with undead. A local necromancer has since seized the hamlet for himself. Wanting to do more and reclaim his home, he now searches for the wisdom of the old gods to fight back.}";
-		}
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+	function onBuildDescription() {
+		// background descriptions have some differences and there's no point in uniting them
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
+			return "{%name% has walked long and hard to almost all the holy sites. | As a shepherd\'s wife of a rural farm out in the hinterlands, %name% often dealt with trespassers. One day a budding necromancer and his three apprentices took the farm for herself. Her husband was slain and still wanders someplace between the world of the living and the dead. Ever since %name% has been looking for a way to avenge her husband\'s death and purge the land of the undead. | A fight with an innkeeper over the rates that they were charging for beds quickly escalated into a brawl. After the night watch broke up and took all of %name%\'s crowns for \'services\', they did what they could to find safe passage to her last designation. Thats where you come in. | A northerner with a hefty and well known family name marked %name% as a target the moment they set foot on the road alone with little more than a staff and good intentions. Bandits quickly descended upon her. Without passes and forms to prove her status as a pilgrim %name% had all but given up hope of ever getting out on the road again. | %name% talks at great lengths about her vocation as a missionary and woman of god. However a large stash of valuables they accumulate leads to to believe something more sinister is afoot.}";
+		} else {
+			return "{%name% has walked long and hard to almost all the holy sites. | As a farmhand in an orchard around the border towns of the south and north %name% lived a peaceful life until a throng of ancient dead swept through the village and burnt everything to the ground. Ever since a fire has burned in his heart to clean the land of the dead that still walk the earth. | Once a billman in service to a local lord, %name% quickly fell out of service when said lord was drowned in the river by an angry mob. Now with a target painted on his back, %name% tries to blend in to the crowd as a pilgrim. They say they always wanted to give 'this holy lark' a 'fair shake' anyway. | Born a bastard to a local lord, %name% lived most of his life in the countryside as a farmhand. One day a messenger arrived, escorted by a dozen or so footmen \'requesting\' that they come pay respects to a new lord of the land. Sensing a trap %name% made a break for it and spends his time far away from the nobility as possible. | %name% is lucky to be alive, if the tales are true then they are one of the few survivors of a small hamlet in the north swarming with undead. A local necromancer has since seized the hamlet for himself. Wanting to do more and reclaim his home, he now searches for the wisdom of the old gods to fight back.}";
+		}
 	}
 
 	function onChangeAttributes()

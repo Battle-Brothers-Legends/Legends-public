@@ -2,11 +2,6 @@
 	o.create = function ()
 	{
 		this.tailor_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernThick;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),
@@ -34,19 +29,13 @@
 	o.setGender <- function (_gender = -1)
 	{
 		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemale, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors = ::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernThick, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern});
 
 		if (_gender != 1) return;
 
 		this.m.Name = "Seamstress";
 		this.m.Icon = "ui/backgrounds/seamstress.png";
 		this.m.BackgroundDescription = "Seamstresses are not used to hard physical labor.";
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 		this.m.GoodEnding = "What was a Seamstress doing in a mercenary company? A good question, but %name% certainly answered it well by killing so many enemies they could\'ve made an epic tapestry out of story. After a few good years in the company, she eventually left to start up a business creating clothes for southern nobility. Her name is world-renowned, well, the known-world-renowned, and she gets so much business she\'s making a very different killing these days.";
 		this.m.BadEnding = "A tailor at heart, it didn\'t take much to compel %name% to bail from the quickly sinking company. She left to go start a business, but was kidnapped along the way by a group of nomads. When they threatened to kill her, she pretended to be a simple and weak tailor and showed her talents in creating clothes. Impressed, the raggedly dressed outlaws took her into their band. A few days later they were all dead and this \'meek\' woman walked out of their camp with a bit of red on her. She started her business a week later and is doing well to this day.";
 	}

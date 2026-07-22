@@ -30,11 +30,6 @@
 			"the Crawler",
 			"Earthside"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
@@ -57,7 +52,7 @@
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -89,26 +84,12 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.FemaleSkinny;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function ()	{
 		return "{To support a fatherless family, %name% went into the mines at a very young age. | An orphan, the only work %name% could find was working the mines of the earth. | Mining is tough work, the sort of job %people% like %name% flock to. | Even though %their% father died in the mines, %name% felt compelled to work in them %themselves%, like most people do where %they% grew up. | %name% worked in the mines as a family tradition spanning many generations. | Whenever wars start up, miners like %name% are more needed than ever, lest an army wishes to go without steel to wield. | A hardhelm and a pickaxe, the tools %name% has been taking deep into the earth for years.} {But, as always, a mine doesn\'t last forever, and the miner barely escaped the last collapse. | Sadly, %they% proved to be the only survivor of a shaft collapse, and there\'s no way %they're% digging back in there by %themselves%. | After a tragic mine collapse, the sight of dozens of widows and widowers moved the %person% to think of a different field of work. | Surviving yet another collapse, the %person%\'s %partner% demanded %they% seek a new line of work no matter what it was. | Bending over and scuttling about in the dark gets old, though, and so the %person% sought a different vocation. | Working in environments far too dark, the %person% accidentally killed a coworker. The tragedy pushed %them% from the field. | After %their% own son lost %their% life in the mines, the %person% left the job forever. | But suffering from relentless coughs, the %person% felt maybe a career in fresh air would better serve %them%.} {%name% has the stocky frame of a miner. Unfortunately, %they% has the lungs of one, too. | %They're% tough alright, but %name%\'s wheezing sounds like rusted blades grinding together.  | You have to wonder if %name%\'s lungs have enough metal dust in them to fashion a blade or two. | %name%\'s breath could probably ink a chunk of coal. | %name% spent years earning keep for a company store. Now %they% wants to earn some real coin. | %name% looks forward to pocketing some of that gold %they% spent years plucking out of the earth. | Annoyingly, %name% points at half your gear - the metal stuff, mostly - and reminds everyone who\'s responsible for it being there. | %name% has almost catlike vision in the dark. %They% would have made for a good assassin if it weren\'t for %their% damned wheezing. | %name% has cheated death a few times, so why not try it a few times more as mercenary? | %name%\'s already had the earth itself out for %their% head so a few things above the soil don\'t scare %them% much. | If darkness truly is death\'s ambassador, %name%\'s already been talking to it for years. | Stupidly brave souls like %name% can definitely find a good register in an outfit such as this. | %name% proudly boasts that, once upon a time, %they% could play cards in the dark. You don\'t doubt it. | If %name% can swing a sword as well as a pickaxe, then all is well.}";
 	}
 

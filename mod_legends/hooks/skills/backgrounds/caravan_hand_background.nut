@@ -19,14 +19,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
@@ -46,7 +40,7 @@
 				0.011, // snow
 				0.015, // badlands
 				0.015, //highlands
-				0.025, //stepps
+				0.025, //steppes
 				0.0, //ocean
 				0.01, //desert
 				0.025 //oasis
@@ -86,15 +80,7 @@
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.FemaleSkinny;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
 	o.onBuildDescription <- function ()	{

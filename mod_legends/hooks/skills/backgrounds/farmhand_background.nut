@@ -7,8 +7,8 @@
 		this.m.Name = "Farmhand";
 		this.m.Icon = "ui/backgrounds/background_09.png";
 		this.m.BackgroundDescription = "Farmhands are used to hard physical labor.";
-		this.m.GoodEnding = "The former farmhand, %name%, retired from the %companyname%. The money he made was put toward purchasing a bit of land. He spends the rest of his days happily farming and starting a family with way too many children.";
-		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. He purchased a bit of land out {south | north | east | west} and was doing quite well for himself - until noble soldiers hanged him from a tree for refusing to hand over all his crops.";
+		this.m.GoodEnding = "The former farmhand, %name%, retired from the %companyname%. The money %they% made was put toward purchasing a bit of land. %They% spends the rest of %their% days happily farming and starting a family with way too many children.";
+		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. %They% purchased a bit of land out {south | north | east | west} and was doing quite well for %themselves% - until noble soldiers hanged %them% from a tree for refusing to hand over all %their% crops.";
 		this.m.HiringCost = 90;
 		this.m.DailyCost = 10;
 		this.m.Excluded = [
@@ -20,14 +20,8 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
 
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
@@ -47,7 +41,7 @@
 				0.0, // snow
 				0.0, // badlands
 				0.0, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis
@@ -75,30 +69,14 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-
-		this.m.Name = "Milkmaid";
-		this.m.Icon = "ui/backgrounds/milkmaid.png";
-		this.m.BackgroundDescription = "Milkmaids are used to physical labor.";
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.GoodEnding = "The former farmhand, %name%, retired from the %companyname%. The money she made was put toward purchasing a bit of land. she spends the rest of her days happily farming and starting a family with way too many children.";
-		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. She purchased a bit of land out {south | north | east | west} and was doing quite well for herself - until noble soldiers hanged her from a tree for refusing to hand over all her crops.";
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		if(_gender) {
+			this.m.Name = "Milkmaid";
+			this.m.Icon = "ui/backgrounds/milkmaid.png";
+			this.m.BackgroundDescription = "Milkmaids are used to physical labor.";
+		}
 	}
 
 	o.onBuildDescription <- function ()

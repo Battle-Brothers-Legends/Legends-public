@@ -5,10 +5,9 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Refugee);
 		this.m.Name = "Refugee";
 		this.m.Icon = "ui/backgrounds/background_38.png";
-		//gender neutral descriptions
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";
-		this.m.GoodEnding = "%name% the refugee proved to be a natural fighter, but eventually retired from the %companyname%. Word has it %name% returned home and is using the wealth gained in the company to help rebuild the town.";
-		this.m.BadEnding = "With the downfall of the %companyname% written plainly on the wall, %name% the refugee split with the company. Using their remaining scant crowns to purchase a set of shoes and returned to a destroyed home, to try and rebuild it. While walking home, an illiterate wildman murdered %name% and ate the shoes.";
+		this.m.GoodEnding = "%name% the refugee showed %themselves% to be a natural fighter, but %they% eventually retired from the %companyname%. Word has it %they% returned to %their% home and is currently using all %their% crowns to help rebuild it.";
+		this.m.BadEnding = "With the downfall of the %companyname% written plainly on the wall, %name% the refugee split with the company. %They% used what scant crowns %they% had left to purchase a set of shoes and returned to %their% destroyed home to try and rebuild it. While walking home, an illiterate wildman murdered %them% and ate the shoes.";
 		this.m.HiringCost = 40;
 		this.m.DailyCost = 4;
 		this.m.Excluded = [
@@ -37,25 +36,7 @@
 			"the Derelict",
 			"the Surbated"
 		];
-		this.m.Ethnicity = this.Math.rand(1, 2);
-		if (this.m.Ethnicity == 1)
-		{
-			this.m.Ethnicity = 0;
-			this.m.Faces = this.Const.Faces.AllWhiteMale;
-			this.m.Hairs = this.Const.Hair.UntidyMale;
-			this.m.HairColors = this.Const.HairColors.All;
-			this.m.Beards = this.Const.Beards.Untidy;
-			this.m.Bodies = this.Const.Bodies.Skinny;
-		}
-		else
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanMale;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Beards = this.Const.Beards.Untidy;
-		}
-
+		this.m.Ethnicity = ::Math.rand(0, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -84,29 +65,26 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Beards = null;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+			
+		if (this.m.Ethnicity == 0) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+		}
+		else if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMale, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Untidy});
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		}
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleSkinny, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Untidy});
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		}
 	}
 
-	o.onBuildDescription <- function ()
-	{
-		//gender neutral description
-		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%name% fled the disaster with only clothes. | With home ablaze, %name% saved what little could be saved, and fled. | After stumbling upon %their% dead family, %name% gathered what could be saved and ran. | War, famine, disease. It\'s all a blur now.} {%name% is merely anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %name%\'s body and glazes %their% eyes, but the mercenary is easily motivated to never experience that past again. | Whatever befell the %name%\'s town didn\'t get %name% and, judging by the rumors you hear, that\'s saying something. | %name% isn\'t skilled in martial arts, but is damn sure determined to survive. | Whatever vocation %name% had in the past is now lost. Like many others, seeking mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this victim has decided to stop running and start fighting.}";
+	o.onBuildDescription <- function ()	{
+		return "{Catastrophes are cheap. | Disease, the ultimate invisible hand. | Win or lose a war, everything is as it has been.} %name% hails from a tiny village that {is now only remembered by spoken word, a generation away from being forgotten. | was destroyed, to put it succinctly. | now stands as a mere footnote, wasting little of the historian\'s ink. | suffered the world\'s wrath.} But %name% is a survivor. {%They% fled the disaster with just the clothes on %their% back. | %Their% home ablaze, %they% saved what %they% could and fled. | After stumbling upon %their% dead family, %they% gathered what %they% could and ran. | War, famine, disease. It\'s all a blur to %them% now.} {%name% is merely a %person% anxious to look ahead rather than behind. | %name% carries little more than a sense of steeled determination, but that is something worth having. | A horrific history scars %their% body and glazes %their% eyes, but the %person% is easily motivated to never experience that past again. | Whatever befell the %person%\'s town didn\'t get %them% and, judging by the rumors you hear, that\'s saying something. | The %person% isn\'t skilled in martial arts, but %they% is for damn sure determined to survive. | Whatever vocation %they% had in the past is now lost. Like many others, %they% seeks mercenary work to get by in this increasingly bloody world. | One of many refugees you\'ve seen, this %person% has decided to stop running and start fighting.}";
 	}
 
 	o.onChangeAttributes = function ()

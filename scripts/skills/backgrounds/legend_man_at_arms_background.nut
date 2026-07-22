@@ -28,11 +28,6 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.Fat)
 
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
@@ -69,25 +64,15 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-		this.m.Name = "Woman-At-Arms";
-
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale, HairColors = ::Const.HairColors.Old});
+		if (_gender){
+			this.m.Name = "Woman-At-Arms";
+		}
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		//gender neutral
 		return "{Years ago, %name% decided to join the local militia. The pay was good and the job was easy. At first. | %name% had no talents in %their% youth, but quickly found %their% calling when defending %their% home from bandits. | When the living dead swarmed into town one cold night years ago, %name% was one of the few who took up arms to protect %their% home - which bought precious time for others to flee. | %name% was never destined for greatness - %they% quickly found %themselves% content in protecting an otherwise sleepy village outside of %randomtown% with a handful of others. | Bored of farming, %name% used %their% talents of stabbing and hammering to protect the village %they% grew up in.} {%name% is largely self taught, practising %their% combat skills on the occasional lost undead or meek bandit raid. Although %their% current injuries suggest that at one time %they% still had a lot to learn. | %name% has fought alongside farmers, mercenaries and even nobles. However %their% inability to gain fame led %them% to age past %their% prime - and pick up an injury along the way. | The injury %name% carries is quite evident, however %they% assure you that %they% can fight just as well as any mercenary could. Only time will tell how much of a lie this might be. | %name%\'s injury was unrelated to %their% duties protecting %their% home. Instead %they% recite the tale of 'The cat, the witchling and the cupboard'. Which you find works well as a way to fall asleep on your feet.} {With the writing on the wall that %name% may have a long and painful death ahead of %them%, %they% decided to do what %they% always dreamed of - fighting in a real battle. | Years have not been kind to %name%, however %their% longer than usual time spent training has gifted %them% with a much broader skillset than your average militia. | %name% has outlived enemies and allies alike, and now finds %themselves% completely alone in a world full of strangers. | %name%\'s experience and determination in the face of danger is a skill that is rare, even among more hardened professions.}";
 	}

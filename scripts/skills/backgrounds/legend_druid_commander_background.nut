@@ -9,8 +9,8 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.Name = "Druid Commander";
 		this.m.Icon = "ui/backgrounds/druid_background.png";
 		this.m.BackgroundDescription = "Druids are from the wild lands and are ardent defenders of nature.";
-		this.m.GoodEnding = "While the %companyname% visited a settlement in the far north %name% bit off more than they could chew with an Unhold contract. Dazed and injured they were taken by a particularly large Unhold for unknown purposes. Months later %name% was found eating, sleeping and even fighting with the giants to defend their home. Sellswords today still joke about the 'giant farker' in the woods, but who is the pet and who is the master is quite the mystery to this day.";
-		this.m.BadEnding = "%name% stayed for a little while longer with the company after your departure, then without notice they simply vanished from the company records entirely. Some say they were tired of what the company had become - obsessed with gold and trinkets and straying too far from what it was founded on.";
+		this.m.GoodEnding = "While the %companyname% visited a settlement in the far north %name% bit off more than %they% could chew with an Unhold contract. Dazed and injured %they% was taken by a particularly large Unhold for unknown purposes. Months later %name% was found eating, sleeping and even fighting with the giants to defend their home. Sellswords today still joke about the 'giant farker' in the woods, but who is the pet and who is the master is quite the mystery to this day.";
+		this.m.BadEnding = "%name% stayed for a little while longer with the company after your departure, then without notice %they% simply vanished from the company records entirely. Some say %they% were tired of what the company had become - obsessed with gold and trinkets and straying too far from what it was founded on.";
 		this.m.HiringCost = 10000;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
@@ -61,12 +61,6 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			"the Wolf",
 			"the Sapling"
 		];
-		this.m.Faces = this.Const.Faces.AfricanMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.African;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.BeardChance = 100;
-		this.m.Bodies = this.Const.Bodies.AfricanMale;
 		this.m.Ethnicity = 2;
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented;
@@ -92,7 +86,7 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 			0.05, // snow
 			0.05, // badlands
 			0.05, //highlands
-			0.05, //stepps
+			0.05, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -185,19 +179,9 @@ this.legend_druid_commander_background <- this.inherit("scripts/skills/backgroun
 
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.setCommanderGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AfricanFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.African;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AfricanFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemale, Faces = ::Const.Faces.AfricanFemale, HairColors = ::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Untidy});
 	}
 
 	function onBuildDescription()

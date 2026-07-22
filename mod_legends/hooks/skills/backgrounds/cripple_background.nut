@@ -7,8 +7,8 @@
 		this.m.Name = "Cripple";
 		this.m.Icon = "ui/backgrounds/background_51.png";
 		this.m.BackgroundDescription = "The only thing swift about a cripple is their expected demise in a real battle.";
-		this.m.GoodEnding = "It\'s shocking that a person of %name%\'s stature survived at all, but the cripple did retire from the %companyname% with a sizeable stack of crowns. He runs an orphanage these days, spending his crowns to help the world\'s broken and abandoned children. That, or it\'s just a front for cheap labor. Can\'t be too sure these days.";
-		this.m.BadEnding = "When you left the %companyname%, there was one thing you were almost certain of: that damned cripple, %name%, wouldn\'t last long. Despite all odds, he did survive. Long enough in fact to retire himself, albeit departing with about as many crowns as he had when he joined up. You\'ve no idea what became of him, but surely he\'s dead by now. Surely, right?";
+		this.m.GoodEnding = "It\'s shocking that a %person% of %name%\'s stature survived at all, but the cripple did retire from the %companyname% with a sizeable stack of crowns. %They% runs an orphanage these days, spending %their% crowns to help the world\'s broken and abandoned children. That, or it\'s just a front for cheap labor. Can\'t be too sure these days.";
+		this.m.BadEnding = "When you left the %companyname%, there was one thing you were almost certain of: that damned cripple, %name%, wouldn\'t last long. Despite all odds, %they% did survive. Long enough in fact to retire %themselves%, albeit departing with about as many crowns as %they% had when %they% joined up. You\'ve no idea what became of %them%, but surely %they're% dead by now. Surely, right?";
 		this.m.HiringCost = 30;
 		this.m.DailyCost = 2;
 		this.m.Excluded = [
@@ -39,14 +39,8 @@
 			"the Broken",
 			"the Grotesque"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
 		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[2];
@@ -78,27 +72,9 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
-		return this.character_background.getTooltip();
-	}
-
-	//Default Male
-	o.setGender <- function(_gender = -1)
-	{
+	o.setGender <- function(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.GoodEnding = "It\'s shocking that a woman of %name%\'s stature survived at all, but the cripple did retire from the %companyname% with a sizeable stack of crowns. She runs an orphanage these days, spending her crowns to help the world\'s broken and abandoned children. That, or it\'s just a front for cheap labor. Can\'t be too sure these days.";
-		this.m.BadEnding = "When you left the %companyname%, there was one thing you were almost certain of: that damned cripple, %name%, wouldn\'t last long. Despite all odds, she did survive. Long enough in fact to retire herself, albeit departing with about as many crowns as she had when she joined up. You\'ve no idea what became of her, but surely she\'s dead by now. Surely, right?";
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleSkinny;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
 	o.getTooltip = function()

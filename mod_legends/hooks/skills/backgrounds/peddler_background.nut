@@ -31,11 +31,6 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.TidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
-		this.m.Bodies = this.Const.Bodies.Thick;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
@@ -69,22 +64,9 @@
 		}
 	}
 
-	o.getTooltip = function () {
-		return this.character_background.getTooltip();
-	}
-
-	o.setGender <- function (_gender = -1)
-	{
+	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.FemaleThick;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.HairColors = ::Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleThick, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Thick, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Old, Beards = ::Const.Beards.Tidy});
 	}
 
 	o.onBuildDescription <- function ()	{

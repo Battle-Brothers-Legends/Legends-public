@@ -19,16 +19,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 			// this.Const.Attributes.Bravery,
 			this.Const.Attributes.Fatigue
 		];
-
-		//apperance
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		//---
 		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.Names = this.Const.Strings.AncientDeadNames;
 		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
 		this.m.Level = this.Math.rand(5, 7);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
@@ -50,7 +41,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 				0.011, // snow
 				0.015, // badlands
 				0.015, //highlands
-				0.025, //stepps
+				0.025, //steppes
 				0.0, //ocean
 				0.01, //desert
 				0.025 //oasis
@@ -91,26 +82,15 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 			id = 12,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Can directly command a single unit that is not another Legate" //see function onadded below.
+			text = "Can directly command a single unit that is not another Legate" //see function onAdded below.
 		});
 		return ret;
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
+	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.Names = this.Const.Strings.AncientDeadNamesFemale;
-		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
+		this.m.Names = _gender ? ::Const.Strings.AncientDeadNamesFemale : ::Const.Strings.AncientDeadNames;
 	}
 
 	function onBuildDescription() //— \n { TODO | TODO }

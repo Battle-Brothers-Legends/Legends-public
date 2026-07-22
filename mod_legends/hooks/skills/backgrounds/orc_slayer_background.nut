@@ -76,7 +76,7 @@
 				0.015, // snow
 				0.015, // badlands
 				0.015, //highlands
-				0.0, //stepps
+				0.0, //steppes
 				0.0, //ocean
 				0.0, //desert
 				0.0 //oasis

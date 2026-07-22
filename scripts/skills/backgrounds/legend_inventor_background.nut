@@ -7,7 +7,7 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.Name = "Inventor";
 		this.m.Icon = "ui/backgrounds/legend_inventor.png";
 		this.m.BackgroundDescription = "Inventors are trenchant problem solvers, fueled by a burning passion for knowledge.";
-		this.m.GoodEnding = "%name% initially did not fit in well with %companyname%, but given time everyone saw %their% value in setting both weapons and joints back together. %They% took their small fortune and set up a workshop to call %their% own, accidently creating a mortar that did not fire up in the air, but rather directly at the enemy.";
+		this.m.GoodEnding = "%name% initially did not fit in well with %companyname%, but given time everyone saw %their% value in setting both weapons and joints back together. %They% took their small fortune and set up a workshop to call %their% own, accidentally creating a mortar that did not fire up in the air, but rather directly at the enemy.";
 		this.m.BadEnding = "%name% was a misfit from the start, %their% lack of skill on the battlefield held %them% back compared to %their% stronger mercenary counterparts. %Their% journey ironically ended not on the battlefield but instead in %their% workshop, which now stands only a charred ruin.";
 		this.m.HiringCost = 1250;
 		this.m.DailyCost = 25;
@@ -28,11 +28,6 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 			"the Eclectic",
 			"the Tinkerer"
 		];
-		this.m.Bodies = ::Const.Bodies.AllMale;
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
@@ -88,19 +83,10 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function setGender (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		if (_gender != 1) return;
-
-		this.m.Bodies = ::Const.Bodies.NorthernFemale;
-		this.m.Faces = ::Const.Faces.AllWhiteFemale;
-		this.m.Hairs = ::Const.Hair.AllFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(::Const.BackgroundType.Female);
+		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young});
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{Having spent most of %their% life in and around %townname%, covered in books, conducting various experiments and creating all sort of contraptions, %name% eventually turned %their% eyes towards knights, soldiers, sellswords, brigands and others that live and die by the sword. Perhaps %their% knowledge could be applied to their circumstances? Could %they% possibly become a great fighter %themselves%? Tempted and intrigued by %their% own thoughts, %they% wasted no time setting out to look for a mercenary company that would consider taking %them% in. What could go wrong?}";
 	}
 

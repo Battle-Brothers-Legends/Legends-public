@@ -1,30 +1,17 @@
 ::mods_hookExactClass("skills/backgrounds/beggar_southern_background", function (o) {
 	o.create = function () {
 		this.beggar_background.create();
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.SouthernUntidy;
-		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
-		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Names = this.Const.Strings.SouthernNames;
 	}
 
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleSkinny, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.UntidyMale, HairColors =::Const.HairColors.Southern}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernSkinny, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.UntidyMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.SouthernUntidy}, 90);
 		if (_gender != 1) return;
 		this.m.Name = "Widow";
 		this.m.Icon = "ui/backgrounds/background_widow.png";
 		this.m.BackgroundDescription = "Widows who can\'t find another husband have few choices, mercenary work is a last resort of the hopeless.";
-		this.m.Bodies = ::Const.Bodies.SouthernFemaleSkinny;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-
 	}
 
 	o.onBuildDescription <- function () {
