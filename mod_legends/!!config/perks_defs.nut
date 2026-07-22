@@ -1345,15 +1345,15 @@ perkDefObjects.push({
 	Const = "LegendSpawnSkeletonHigh"
 });
 
-::Legends.Perk.LegendExtendendAura <- null;
+::Legends.Perk.LegendExtendedAura <- null;
 perkDefObjects.push({
 	ID = "perk.legend_extended_aura",
 	Script = "scripts/skills/perks/perk_legend_extended_aura",
-	Name = ::Const.Strings.PerkName.LegendExtendendAura,
-	Tooltip = ::Const.Strings.PerkDescription.LegendExtendendAura,
+	Name = ::Const.Strings.PerkName.LegendExtendedAura,
+	Tooltip = ::Const.Strings.PerkDescription.LegendExtendedAura,
 	Icon = "ui/perks/extended_aura_circle.png",
 	IconDisabled = "ui/perks/extended_aura_circle_bw.png",
-	Const = "LegendExtendendAura"
+	Const = "LegendExtendedAura"
 });
 
 ::Legends.Perk.LegendChanneledPower <- null;
@@ -2426,7 +2426,7 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_ambidextrous",
 	Name = ::Const.Strings.PerkName.LegendAmbidextrous,
 	Tooltip = ::Const.Strings.PerkDescription.LegendAmbidextrous,
-	Icon = "ui/perks/ambidexterity_circle.png", // Just borrowed duelist, change later w/ Olve's art
+	Icon = "ui/perks/ambidexterity_circle.png",
 	IconDisabled = "ui/perks/ambidexterity_circle_bw.png",
 	Const = "LegendAmbidextrous"
 });

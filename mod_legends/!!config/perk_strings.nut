@@ -274,7 +274,7 @@
 ::Const.Strings.PerkName.LegendSpawnSkeletonLow <- "Arrange Bones";
 ::Const.Strings.PerkName.LegendSpawnSkeletonMed <- "Align Joints";
 ::Const.Strings.PerkName.LegendSpawnSkeletonHigh <- "Rebuild Skeleton";
-::Const.Strings.PerkName.LegendExtendendAura <- "Extended Aura";
+::Const.Strings.PerkName.LegendExtendedAura <- "Extended Aura";
 ::Const.Strings.PerkName.LegendChanneledPower <- "Channeled Power";
 ::Const.Strings.PerkName.LegendReclamation <- "Reclamation";
 ::Const.Strings.PerkName.LegendConservation <- "Conservation";
@@ -1015,7 +1015,7 @@ Painstakingly reorganize each bone such that, once raised, no tarsus is out of p
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendExtendendAura <- @"
+::Const.Strings.PerkDescription.LegendExtendedAura <- @"
 Yield to the dark power, let it ooze from your pores. With the fell energy now unrestrained, you can further project your art of rousing the dead.
 
 [color=%passive%][u]Passive:[/u][/color]

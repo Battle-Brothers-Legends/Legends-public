@@ -349,7 +349,7 @@ if (!("Perks" in ::Const))
 		::Legends.Perk.LegendSpawnZombieLow,
 		],
 		[],
-		[::Legends.Perk.LegendExtendendAura],
+		[::Legends.Perk.LegendExtendedAura],
 		[::Legends.Perk.LegendSpawnZombieMed,],
 		[::Legends.Perk.LegendReclamation],
 		[::Legends.Perk.LegendViolentDecomposition,],

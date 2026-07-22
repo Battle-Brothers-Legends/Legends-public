@@ -50,7 +50,7 @@
 - `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
 - `Backswing` - new gfx to differentiate from feint
 - `Anticipation` - removed for now
-- `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile travelled
+- `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile traveled
 - `Wind Reader` - reduces hitchance penalty with tile traveled by 2%, gains the vanilla `Anticipation` effect, moved to tier 3
 - `Night Raider` - will now also appear in the Devious trait tree
 - `Prepared` - crossbows and firearms in your bags will be loaded at combat start
@@ -199,6 +199,7 @@
 > shows the level needed to acquire the build
 > shows the number of optional perks picked
 - added a visual to display the number of books and scrolls read/available
+- books/scrolls will now show a tooltip in shops and other screens based on last selected bro (with name)
 
 
 ## Camping changes
@@ -239,3 +240,7 @@
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
 - Tabbard -> Tabard | tabbard -> tabard
 - Hesistant -> Hesitant
+- legend_dilapitated_sling -> legend_dilapidated sling
+- camp buildings: getModifierToolip -> getModifierTooltip
+- LegendExtendendAura -> LegendExtendedAura
+- LegendTattos -> LegendTattoos
