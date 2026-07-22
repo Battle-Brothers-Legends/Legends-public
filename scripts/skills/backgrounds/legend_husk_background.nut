@@ -53,7 +53,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.IsGuaranteed = ["mad_trait"];
+		this.m.IsGuaranteed = [::Legends.Traits.new(::Legends.Trait.Mad)];
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;

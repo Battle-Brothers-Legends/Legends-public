@@ -41,7 +41,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
-		this.m.IsGuaranteed = ["hate_undead_trait"];
+		this.m.IsGuaranteed = [::Legends.Traits.new(::Legends.Trait.HateUndead)];
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;

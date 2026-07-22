@@ -21,7 +21,7 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.ExcludedTalents = [];
-		// this.m.IsGuaranteed = ["tough_trait"]
+		// this.m.IsGuaranteed = [::Legends.Traits.new(::Legends.Trait.Tough)]
 		this.m.Bodies = this.Const.Bodies.SouthernMale;
 		this.m.Faces = this.Const.Faces.SouthernMale;
 		this.m.Hairs = this.Const.Hair.SouthernMale;
