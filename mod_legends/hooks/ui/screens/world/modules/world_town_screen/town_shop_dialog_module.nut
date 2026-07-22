@@ -327,14 +327,13 @@
 		return ret;
 	}
 
-	o.onSellAllButtonClicked <- function (_)
-    {
+	o.onSellAllButtonClicked <- function (_) {
         local shopStash = this.m.Shop.getStash();
         local stashItems = ::Stash.getItems();
         local itemsSold = 0;
+		local totalGold = 0;
 
-        for (local i = 0; i < stashItems.len(); i++)
-        {
+        for (local i = 0; i < stashItems.len(); i++) {
             local item = stashItems[i];
             
             if (item == null) {
@@ -352,7 +351,7 @@
 
                 if (removedItem != null) {
                     removedItem.setTransactionPrice(removedItem.getSellPrice());
-                    ::World.Assets.addMoney(removedItem.getSellPrice());
+                    totalGold += removedItem.getSellPrice();
                     removedItem.addSettlementToTradeHistory(this.m.Shop.getSettlement());
                     shopStash.add(removedItem);
                     removedItem.setSold(true);
@@ -365,6 +364,10 @@
                 }
             }
         }
+
+		if (totalGold > 0) {
+			::World.Assets.addMoney(totalGold);
+		}
 
         local result = {
             Result = 0,
