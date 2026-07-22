@@ -297,7 +297,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
-		weapons = [
+		local weapons = [
 			"weapons/barbarians/crude_axe",
 			"weapons/barbarians/blunt_cleaver",
 			"weapons/barbarians/antler_cleaver",
