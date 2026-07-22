@@ -287,6 +287,6 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.LegendWicht <-
 	::Const.EntityType.addNew("wicht_orientation", "Wicht", "Wichts", this.Const.FactionType.Undead);
 ::Const.EntityType.LegendBanditExecutioner <-
-	::Const.EntityType.addNew("wicht_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendBanditExecutionerHigh <-
-	::Const.EntityType.addNew("wicht_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
