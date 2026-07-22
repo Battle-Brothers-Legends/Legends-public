@@ -18,7 +18,9 @@ this.perk_legend_vengeance <- this.inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
 		local actor = this.getContainer().getActor();
-		swearVengeance(actor, !_attacker.isAlliedWith(actor))	
+		if (!::Legends.S.isEntityNullOrDead(_attacker)) {
+			swearVengeance(actor, !_attacker.isAlliedWith(actor))
+		}
 	}
 
 	function onOtherActorDeath(_killer, _victim, _skill, _deathTile, _corpseTile, _fatalityType) {
