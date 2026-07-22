@@ -18,4 +18,12 @@
 			onButtonPressed(_buttonID);
 		}
 	}
+
+	local hide = o.hide;
+	o.hide = function(_withSlideAnimation = false) {
+		hide(_withSlideAnimation);
+		if (::Legends.Mod.ModSettings.getSetting("PauseOnEvents").getValue() && !::World.State.isInLoadingScreen()){
+			::World.State.setPause(true);
+		}
+	}
 });

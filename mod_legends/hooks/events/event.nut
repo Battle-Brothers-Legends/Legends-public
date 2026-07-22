@@ -358,14 +358,6 @@
 		return true;
 	}
 
-	local clear = o.clear;
-	o.clear = function() {
-		clear();
-		if (::Legends.Mod.ModSettings.getSetting("PauseOnEvents").getValue() && !::World.State.isInLoadingScreen() && this.m.WasEventFired){
-			::World.State.setPause(true);
-		}
-	}
-
 	local fire = o.fire;
 	o.fire = function () {
         this.m.WasEventFired = true;
