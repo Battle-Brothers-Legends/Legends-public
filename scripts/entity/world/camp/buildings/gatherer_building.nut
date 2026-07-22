@@ -42,7 +42,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return desc;
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		local mod = this.getModifiers();
 		local ret = [

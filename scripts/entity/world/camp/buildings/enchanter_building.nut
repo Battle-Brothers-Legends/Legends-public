@@ -182,7 +182,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		return desc;
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		this.init();
 		local mod = this.getModifiers();

@@ -180,7 +180,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return desc;
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		local mod = this.getModifiers();
 		local generator = ::Const.HuntingLoot.getGenerator(::World.State.getPlayer().getTile().Type, this.getUpgraded(), this.getHuntLevel(), this.getCookLevel(), this.getBrewLevel(), this.getAssignedBackgrounds(true));

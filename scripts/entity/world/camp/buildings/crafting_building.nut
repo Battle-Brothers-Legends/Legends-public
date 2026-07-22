@@ -71,7 +71,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return "Craft items in selected order when encamped. Partial progress is kept.";
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		this.init();
 		local mod = this.getModifiers();

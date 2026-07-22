@@ -333,7 +333,7 @@ this.camp_building <- {
 				text = this.getDescription()
 			}
 		];
-		local mod = this.getModifierToolip();
+		local mod = this.getModifierTooltip();
 		foreach (i in mod)
 		{
 			res.push(i);
@@ -341,7 +341,7 @@ this.camp_building <- {
 		return res;
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		return [];
 	}
