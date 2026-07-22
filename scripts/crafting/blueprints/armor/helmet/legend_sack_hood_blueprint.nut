@@ -14,10 +14,10 @@ this.legend_sack_hood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendSpecCultHood)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Perks.new(::Legends.Perk.LegendSpecCultHood),
+			::Legends.Professions.new(::Legends.Profession.LegendTailoring)
+		]);
 	}
 
 	function onCraft( _stash )
