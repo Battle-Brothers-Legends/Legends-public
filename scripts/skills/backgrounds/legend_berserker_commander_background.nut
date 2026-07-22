@@ -307,9 +307,9 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			"weapons/hatchet"
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
-		this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
+		items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 	}
 
 	function onSerialize( _out )
