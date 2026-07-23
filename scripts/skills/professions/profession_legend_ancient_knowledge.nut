@@ -1,8 +1,8 @@
-this.profession_legend_materialist <- this.inherit("scripts/skills/legend_profession_skill", {
+this.profession_legend_ancient_knowledge <- this.inherit("scripts/skills/legend_profession_skill", {
 	m = {},
 
 	function create() {
-		::Legends.Professions.onCreate(this, ::Legends.Profession.LegendMaterialist);
+		::Legends.Professions.onCreate(this, ::Legends.Profession.LegendAncientKnowledge);
 	}
 
 	function getDynamicTooltip(_def, _active) {

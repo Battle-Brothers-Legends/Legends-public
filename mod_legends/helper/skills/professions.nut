@@ -90,14 +90,19 @@ if (!("Professions" in ::Legends))
 	_profession.m.IsHidden = false;
 }
 
+::Legends.Professions.getProfessionEffect <- function (_def, _additionalBros = 0) {
+    local count = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getSkills().hasSkill(_def.ID)).len();
+    count += _additionalBros;
+    local effect = 0.0;
+    if (count > 0 && "ScalingArray" in _def) {
+        local end = _def.ScalingArray.len() - 1;
+        effect = count > end ? _def.ScalingArray[end] * (1.0 + ((count - end) * _def.ScalingFactor)) : _def.ScalingArray[count];
+    }
+    return effect;
+}
+
 ::Legends.Professions.setProfessionEffect <- function (_def) {
-	local count = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getSkills().hasSkill(_def.ID)).len();
-	local effect = 0.0;
-	if (count > 0 && "ScalingArray" in _def) {
-		local end = _def.ScalingArray.len() - 1;
-		effect = count > end ? _def.ScalingArray[end] * (1.0 + ((count - end) * _def.ScalingFactor)) : _def.ScalingArray[count];
-	}
-	::World.Assets.m.ProfessionEffect[_def.Const] = effect;
+	::World.Assets.m.ProfessionEffect[_def.Const] = ::Legends.Professions.getProfessionEffect(_def);
 }
 
 ::Legends.Professions.recalculateAllProfessions <- function() {

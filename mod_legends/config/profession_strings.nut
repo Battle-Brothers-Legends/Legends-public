@@ -2,6 +2,7 @@
 ::Const.Strings.ProfessionName.LegendAlchemy <- "Alchemy";
 ::Const.Strings.ProfessionName.LegendAlcoholPreparation <- "Alcohol Preparation";
 ::Const.Strings.ProfessionName.LegendAmmoScrounger <- "Ammo Scrounger";
+::Const.Strings.ProfessionName.LegendAncientKnowledge <- "Ancient Knowledge";
 ::Const.Strings.ProfessionName.LegendAmusingOurselvesToDeath <- "Amusing Ourselves to Death";
 ::Const.Strings.ProfessionName.LegendBandageBales <- "Bandage Bales";
 ::Const.Strings.ProfessionName.LegendBalladeInTheMaking <- "Ballade In The Making";
@@ -21,7 +22,7 @@
 ::Const.Strings.ProfessionName.LegendDogBreeder <- "Dog Breeder";
 ::Const.Strings.ProfessionName.LegendDrillSergeant <- "Drill Sergeant";
 ::Const.Strings.ProfessionName.LegendEfficientPacking <- "Efficient Packing";
-::Const.Strings.ProfessionName.LegendEnchanter <- "Enchanter";
+::Const.Strings.ProfessionName.LegendEnchantersAssistant <- "Enchanter's Assistant";
 ::Const.Strings.ProfessionName.LegendEyeForTalent <- "Eye For Talent";
 ::Const.Strings.ProfessionName.LegendFerretItOut <- "Ferret It Out";
 ::Const.Strings.ProfessionName.LegendFieldSurgery <- "Field Surgery";
@@ -97,6 +98,13 @@ Digging through corpses to retrieve intact ammunition is just good economic sens
 • Recovers a part of all ammunition used during battle.
 ";
 
+::Const.Strings.ProfessionDescription.LegendAncientKnowledge <- @"
+The ancients were able to channel magic in a very controlled manner.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the minimum quality of crafted runes.
+";
+
 ::Const.Strings.ProfessionDescription.LegendAmusingOurselvesToDeath <- @"
 Shared japes and strong drink. Anything to keep the company from thinking ahead.
 
@@ -162,10 +170,12 @@ They say that practice makes perfect. It just so happens that this one favours p
 
 [color=%passive%][u]Passive:[/u][/color]
 • Every brother without a permanent injury is guaranteed to survive an otherwise fatal blow.
+
+• Adds a chance to lower the magnitude of permanent injuries.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendCarouser <- @"
-Nothing loosens the tongues like a good drink. And noone drinks like a mercenary.
+Nothing loosens the tongues like a good drink. And no one drinks like a mercenary.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increase the number of rumours available at taverns.
@@ -250,12 +260,10 @@ A place for everything, and everything forcefully crammed into its rightful plac
 • Grants additional stash space.
 ";
 
-::Const.Strings.ProfessionDescription.LegendEnchanter <- @"
-The art of inscribing runes is about using the right tools for the right material.
+::Const.Strings.ProfessionDescription.LegendEnchantersAssistant <- @"
+The art of inscribing runes requires the right tools for the right material.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases the minimum quality of crafted runes.
-
 • Increases the rune creation speed.
 ";
 

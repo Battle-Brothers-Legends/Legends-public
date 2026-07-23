@@ -934,24 +934,7 @@
 			];
 
 			if (!player.hasProfession(_professionId)) {
-				if ((::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && "HasUnactivatedProfessionTooltipHints" in profession	&& profession.HasUnactivatedProfessionTooltipHints)
-				{
-					// Allow Professions to push Tooltip elements that will be displayed when the user views the Tooltips of inactive Professions in the Profession screen
-					local tempContainer = this.new("scripts/skills/skill_container");
-					local tempProfession = this.new(profession.Script); // Need to instantiate a dummy profession because the player character's profession tree doesn't hold actual professions
-					local playerClone = clone player;
-					tempProfession.m.IsForProfessionTooltip = true; // onAdded() can check for this so it doesn't do anything when the dummy profession is added to the dummy skill container
-					tempContainer.setActor(playerClone); // Associate a clone of the player character to the dummy container so that the dummy profession can read the character's data
-					tempContainer.add(tempProfession);
-					local professionHints = tempProfession.getUnactivatedProfessionTooltipHints(); // get the additional hints (these will be capable of using the character's data)
-					if (professionHints != null && professionHints.len() > 0) {
-						ret.extend(professionHints);
-					}
-					// Clean up
-					tempProfession = null;
-					tempContainer = null;
-					playerClone = null;
-				}
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, false));
 
 				if (player.getProfessionPointsSpent() >= profession.Unlocks) {
 					if (player.getProfessionPoints() == 0) {
@@ -977,6 +960,8 @@
 						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession point is spent"
 					});
 				}
+			} else {
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, true));
 			}
 
 			return ret;

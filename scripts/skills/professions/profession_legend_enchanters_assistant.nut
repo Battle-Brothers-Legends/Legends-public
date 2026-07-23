@@ -1,8 +1,8 @@
-this.profession_legend_ammo_scrounger <- this.inherit("scripts/skills/legend_profession_skill", {
+this.profession_legend_enchanters_assistant <- this.inherit("scripts/skills/legend_profession_skill", {
 	m = {},
 
 	function create() {
-		::Legends.Professions.onCreate(this, ::Legends.Profession.LegendAmmoScrounger);
+		::Legends.Professions.onCreate(this, ::Legends.Profession.LegendEnchantersAssistant);
 	}
 
 	function getDynamicTooltip(_def, _active) {
@@ -11,13 +11,13 @@ this.profession_legend_ammo_scrounger <- this.inherit("scripts/skills/legend_pro
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = "Ammo recovered after combat"
+				text = "Crafting speed"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/plus.png"
-				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
+				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (::Legends.Professions.getProfessionEffect(_def, 0) == 0	? 1	: ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
 			},
 		]
 

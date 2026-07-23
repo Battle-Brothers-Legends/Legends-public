@@ -70,6 +70,18 @@ professionDefObjects.push({
     ScalingFactor = 0.1
 });
 
+::Legends.Profession.LegendAncientKnowledge <- null;
+professionDefObjects.push({
+    ID = "profession.legend_ancient_knowledge",
+    Script = "scripts/skills/professions/profession_legend_ancient_knowledge",
+    Name = ::Const.Strings.ProfessionName.LegendAncientKnowledge,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendAncientKnowledge,
+    Icon = "ui/professions/ancient_knowledge.png",
+    IconDisabled = "ui/professions/ancient_knowledge_bw.png",
+    Const = "LegendAncientKnowledge"
+    // improves minimum quality of ancient runes
+});
+
 ::Legends.Profession.LegendAmusingOurselvesToDeath <- null;
 professionDefObjects.push({
     ID = "profession.legend_amusing_ourselves_to_death",
@@ -118,7 +130,7 @@ professionDefObjects.push({
     Icon = "ui/professions/big_game_hunter.png",
     IconDisabled = "ui/professions/big_game_hunter_bw.png",
     Const = "LegendBigGameHunter",
-    ScalingArray = [0, 5], // gold for champion slain (based on xp gained)
+    ScalingArray = [0, 5], // chance to get a legendary contract
     ScalingFactor = 0.5
 });
 
@@ -235,7 +247,7 @@ professionDefObjects.push({
     Icon = "ui/professions/convincing_proposals.png",
     IconDisabled = "ui/professions/convincing_proposals_bw.png",
     Const = "LegendConvincingProposals",
-    ScalingArray = [0, 0.02], // extra xp for non veterans
+    ScalingArray = [0, 0.02], // extra barter
     ScalingFactor = 0.25
 });
 
@@ -311,19 +323,19 @@ professionDefObjects.push({
     Icon = "ui/professions/efficient_packing.png",
     IconDisabled = "ui/professions/efficient_packing_bw.png",
     Const = "LegendEfficientPacking",
-    ScalingArray = [0, 2], // crafting modifier
+    ScalingArray = [0, 2], // % extra slots
     ScalingFactor = 0.5
 });
 
-::Legends.Profession.LegendEnchanter <- null;
+::Legends.Profession.LegendEnchantersAssistant <- null;
 professionDefObjects.push({
-    ID = "profession.legend_enchanter",
-    Script = "scripts/skills/professions/profession_legend_enchanter",
-    Name = ::Const.Strings.ProfessionName.LegendEnchanter,
-    Tooltip = ::Const.Strings.ProfessionDescription.LegendEnchanter,
-    Icon = "ui/professions/enchanter.png",
-    IconDisabled = "ui/professions/enchanter_bw.png",
-    Const = "LegendEnchanter",
+    ID = "profession.legend_enchanters_assistant",
+    Script = "scripts/skills/professions/profession_legend_enchanters_assistant",
+    Name = ::Const.Strings.ProfessionName.LegendEnchantersAssistant,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendEnchantersAssistant,
+    Icon = "ui/professions/enchanters_assistant.png",
+    IconDisabled = "ui/professions/enchanters_assistant_bw.png",
+    Const = "LegendEnchantersAssistant",
     ScalingArray = [0, 2], // crafting modifier
     ScalingFactor = 0.5
 });
@@ -781,7 +793,7 @@ professionDefObjects.push({
     Icon = "ui/professions/thrifty.png",
     IconDisabled = "ui/professions/thrifty_bw.png",
     Const = "LegendThrifty",
-    ScalingArray = [0, 20], // tool space
+    ScalingArray = [0, 20], // chance to save ingredients while crafting
     ScalingFactor = 0.05
 });
 

@@ -4,7 +4,7 @@
 		this.follower.create();
 		this.m.ID = "follower.trader";
 		this.m.Name = "Secure Chests";
-		this.m.Description = "While not common, some companies have special goods stashed away to tell on the road to travellers. These goods are always kept in the most fortified chests the company has to offer, to prevent prying fingers from outside and inside the camp.";
+		this.m.Description = "While not common, some companies have special goods stashed away to tell on the road to travelers. These goods are always kept in the most fortified chests the company has to offer, to prevent prying fingers from outside and inside the camp.";
 		this.m.Image = "ui/campfire/legend_trader_01";
 		this.m.Cost = 3500;
 		this.m.Effects = [
