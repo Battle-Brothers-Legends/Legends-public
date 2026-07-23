@@ -41,64 +41,26 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local p = this.getContainer().getActor().getCurrentProperties();
 		local ret = ::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
-
-		if (p.IsSpecializedInFists)
-		{
-
-			// if (!this.m.HasLeg)
-			// {
-			// 	ret.push({
-			// 		id = 6,
-			// 		type = "text",
-			// 		icon = "ui/icons/hitchance.png",
-			// 		text = "Has [color=%positive%]+40%[/color] chance to hit"
-			// 	});
-			// }
-			// New
-			ret.push({
+		ret.extend([
+			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
-			});
-			ret.push({
+			},
+			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]50%[/color] chance to daze on a hit"
-			});
-		}
-		else
-		{
-			// if (!hasLeg)
-			// {
-			// 	ret.push({
-			// 		id = 6,
-			// 		type = "text",
-			// 		icon = "ui/icons/hitchance.png",
-			// 		text = "Has [color=%positive%]+25%[/color] chance to hit"
-			// 	});
-			// }
-			// New
-			ret.push({
-				id = 7,
+				text = "Has a [color=%positive%]" + this.m.DazeChance + "[/color] chance to daze on a hit"
+			},
+			{
+				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]100%[/color] chance to stagger on a hit"
-			});
-			ret.push({
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]25%[/color] chance to daze on a hit"
-			});
-		}
-		ret.push({
-			id = 9,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Inflicts [color=%damage%]" + this.m.FatigueDamage + "[/color] fatigue on hit"
-		});
+				text = "Inflicts [color=%damage%]" + this.m.FatigueDamage + "[/color] fatigue on hit"
+			}
+		]);
 		return ret;
 	}
 
