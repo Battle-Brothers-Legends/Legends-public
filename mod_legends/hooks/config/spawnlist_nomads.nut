@@ -119,11 +119,11 @@
 		},
 		{
 			Weight = 6,
-			MinR = 140,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.NomadLeader,
+					MinR = 140,
 					Cost = 60,
 					Roll = true
 				}
@@ -140,35 +140,35 @@
 		},
 		{
 			Weight = 1,
-			MinR = 300,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Assassin,
 					Roll = true,
-					Cost = 45
+					Cost = 45,
+					MinR = 300,
 				}
 			]
 		},
 		{
 			Weight = 1,
-			MinR = 160,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.Executioner,
 					Cost = 65,
+					MinR = 160,
 					Roll = true
 				}
 			]
 		},
 		{
 			Weight = 1,
-			MinR = 310,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.DesertDevil,
 					Cost = 65,
+					MinR = 310,
 					Roll = true
 				}
 			]
@@ -235,47 +235,47 @@
 		},
 		{
 			Weight = 5,
-			MinR = 140,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.NomadLeader,
 					Cost = 40,
+					MinR = 140,
 					Roll = true
 				}
 			]
 		},
 		{
 			Weight = 2,
-			MinR = 365,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.Executioner,
 					Cost = 55,
+					MinR = 365,
 					Roll = true
 				}
 			]
 		},
 		{
 			Weight = 2,
-			MinR = 300,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Assassin,
 					Roll = true,
+					MinR = 300,
 					Cost = 45
 				}
 			]
 		},
 		{
 			Weight = 2,
-			MinR = 420,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.DesertDevil,
 					Cost = 50,
+					MinR = 420,
 					Roll = true
 				}
 			]
