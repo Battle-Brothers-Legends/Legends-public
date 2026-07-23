@@ -24,7 +24,7 @@
 ::Const.Strings.PerkName.LegendLookout <- "Lookout";
 ::Const.Strings.PerkName.LegendBoondockBlade <- "Boondock Blade";
 ::Const.Strings.PerkName.LegendVengeance <- "Vengeance";
-::Const.Strings.PerkName.LegendDoubleStrike <- "Double Strike";
+::Const.Strings.PerkName.LegendDoubleStrike <- "Flux";
 ::Const.Strings.PerkName.LegendImmovableObject <- "Immovable Object";
 ::Const.Strings.PerkName.LegendBloodyHarvest <- "Bloody Harvest";
 ::Const.Strings.PerkName.LegendPerfectFocus <- "Perfect Focus";
@@ -427,14 +427,14 @@ Heavy armor, a trusty shield and your heels dug into the ground and you can weat
 ";
 
 ::Const.Strings.PerkDescription.LegendDoubleStrike <- @"
-Master the art of following up for devastating effects.
+Master chaining your attacks for a devastating effect.
 
 [color=%passive%][u]Passive:[/u][/color]
-• After landing a hit, the next attack this turn does [color=%positive%]25%[/color] overall damage and it costs [color=%negative%]20%[/color] less Fatigue than normal.
+• After landing a hit, gain a [color=%positive%]25%[/color] bonus to damage and recover [color=%positive%]1-2[/color] fatigue with each further hit.
 
-• If the attack misses, the effect is lost.
+• Missing or ending your turn will remove the effect.
 
-• When [color=%status%]Dual Wielding[/color] daggers, if both weapons successfully hit, the next mainhand attack costs [color=%positive%]-1[/color] AP and deals [color=%positive%]+10%[/color] damage.
+• When [color=%status%]Dual Wielding[/color] daggers, the bonus to damage is increased to [color=%positive%]35%[/color].
 ";
 
 ::Const.Strings.PerkDescription.LegendVengeance <- @"
