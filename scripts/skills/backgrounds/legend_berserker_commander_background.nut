@@ -134,7 +134,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			],
 			[],
 			[
-				::Legends.Perk.LegendDoubleStrike,
+				::Legends.Perk.LegendFlux,
 				::Legends.Perk.LegendBattleheart,
 				::Legends.Perk.LegendTwirl,
 				::Legends.Perk.LegendLionheart

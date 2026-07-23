@@ -11,7 +11,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPerfectFit);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendDoubleStrike);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendFlux);
 		}
 	}
 

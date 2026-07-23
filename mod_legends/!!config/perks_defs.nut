@@ -860,15 +860,15 @@ perkDefObjects.push({
 	Const = "LegendAthlete"
 });
 
-::Legends.Perk.LegendDoubleStrike <- null;
+::Legends.Perk.LegendFlux <- null;
 perkDefObjects.push({
 	ID = "perk.legend_double_strike",
-	Script = "scripts/skills/perks/perk_legend_double_strike",
-	Name = ::Const.Strings.PerkName.LegendDoubleStrike,
-	Tooltip = ::Const.Strings.PerkDescription.LegendDoubleStrike,
+	Script = "scripts/skills/perks/perk_legend_flux",
+	Name = ::Const.Strings.PerkName.LegendFlux,
+	Tooltip = ::Const.Strings.PerkDescription.LegendFlux,
 	Icon = "ui/perks/doublestrike_circle.png",
 	IconDisabled = "ui/perks/doublestrike_circle_bw.png",
-	Const = "LegendDoubleStrike"
+	Const = "LegendFlux"
 });
 
 ::Legends.Perk.LegendSpecPoison <- null;

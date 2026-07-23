@@ -112,7 +112,7 @@ if (!("EnemyPerks" in ::Const))
 	[3, ::Legends.Perk.BattleForged, 3],
 	[3, ::Legends.Perk.LegendMuscularity, 3],
 	[2, ::Legends.Perk.LegendComposure, 2],
-	[3, ::Legends.Perk.LegendDoubleStrike, 2],
+	[3, ::Legends.Perk.LegendFlux, 2],
 	[3, ::Legends.Perk.LegendSmackdown, 2],
 	[1, ::Legends.Perk.LegendStrengthInNumbers, 1],
 	[1, ::Legends.Perk.Colossus, 1],
@@ -124,7 +124,7 @@ if (!("EnemyPerks" in ::Const))
 
 ::Const.EnemyPerks.FreeCompanyLeader <- [
 	[4, ::Legends.Perk.Berserk, 3],
-	[3, ::Legends.Perk.LegendDoubleStrike, 2],
+	[3, ::Legends.Perk.LegendFlux, 2],
 	[1, [::Legends.Perk.Footwork, ::Legends.Perk.LegendTumble], 2],
 	[2, ::Legends.Perk.ReachAdvantage, 2],
 	[3, ::Legends.Perk.LegendSmackdown, 2],

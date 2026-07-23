@@ -361,7 +361,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[::Legends.Perk.SpecDagger],
-		[::Legends.Perk.LegendDoubleStrike],
+		[::Legends.Perk.LegendFlux],
 		[],
 		[]
 	]
