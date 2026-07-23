@@ -22,14 +22,8 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		return desc;
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		local sub = "empty";
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return "dude_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function getAssignedBros()

@@ -19,40 +19,16 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Name = "Healing";
 		this.m.Description = "Place brothers in reserves in order to heal from wounds.";
 		this.m.BannerImage = "ui/buttons/banner_heal.png";
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/healer_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 3; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_healer_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/healer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/healer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/camp/healer_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/healer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/healer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 		this.m.InjurySounds = [
 			{
 				File = "sounds/ambience/camp/camp_healer_treatment_bandage_01.wav",
@@ -93,21 +69,13 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.m.Name +  " *Not Upgraded*";
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc += "Injuries are a prerequisite for any self respecting battle brother. The quicker temporary injuries are patched up, the quicker a battle brother can get some more! ";
-		desc += "Assigning brothers to this tent allows them to treat any wounds in the company roster and also help restore health points of any injured brother by +10%. ";
-		desc += "Treating an injury requires a cost of medicine and time (vs coin in a temple). The more people assigned to the tent, the quicker injuries will be treated and healthpoints restored. ";
-		desc += "\n\n";
-		desc += "The healing tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent provides a 66% increase in hitpoint recovery speed, 33% increase in wound treatment speed and a 25% decrease in medicine cost for each injury.";
-		return desc;
+	function getDescription() {
+		// "The healing tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent provides a 66% increase in hitpoint recovery speed, 33% increase in wound treatment speed and a 25% decrease in medicine cost for each injury.";
+		return "Injuries are a daily occurrence in a life of a mercenary. Assign brothers to patch up injuries and recover wounds of anyone in the company. Treating an injury costs extra medicine.";
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		this.init();
-		local mod = this.getModifiers();
 		local ret = [
 			{
 				id = 3,
@@ -135,8 +103,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			}
 		];
 		local id = 7;
-		foreach (bro in mod.Modifiers)
-		{
+		foreach (bro in this.getModifiers().Modifiers) {
 			ret.push({
 				id = id++,
 				type = "hint",
@@ -147,70 +114,39 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ret;
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Healer);
+	function getUpgraded() {
+		return ::Stash.hasItem(::Legends.Camp.Tent.Healer);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function getCost(_injury)
-	{
-		local debugScriptName = ::IO.scriptFilenameByHash(_injury.ClassNameHash);
-		if (!::MSU.isKindOf(_injury, "injury")) {
-			::logInfo("injury is instance? " + typeof _injury == "instance");
-			::logInfo("supposed injury script: " + ::IO.scriptFilenameByHash(_injury.ClassNameHash));
-		}
+	function getCost(_injury) {
 		local cost = _injury.getCost();
-		if (this.getUpgraded())
-			cost = this.Math.floor(cost * 0.75);
-		return cost;
+		return this.getUpgraded() ? ::Math.floor(cost * 0.75) : cost;
 	}
 
-	function init()
-	{
+	function init()	{
 		this.m.MedsUsed = 0;
 		this.m.InjuriesTreated = 0;
 		this.m.InjuriesHealed = [];
-		local roster = this.World.getPlayerRoster().getAll();
 		this.m.PointsNeeded = 0;
-		foreach( bro in roster )
-		{
+
+		foreach(bro in ::World.getPlayerRoster().getAll()) {
 			bro.setCampHealing(0);
-			this.m.PointsNeeded = this.Math.max(this.m.PointsNeeded, (bro.getHitpointsMax() - bro.getHitpoints()));
+			this.m.PointsNeeded = ::Math.max(this.m.PointsNeeded, (bro.getHitpointsMax() - bro.getHitpoints()));
 		}
-		local mod = this.getModifiers();
-		this.m.Rate = mod.Craft;
+		this.m.Rate = this.getModifiers().Craft;
 		this.onInit();
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		local q = [];
-		if (this.m.Queue == null)
-		{
-			local brothers = this.World.getPlayerRoster().getAll();
-			foreach (b in brothers)
-			{
-				local allInjuries = b.getSkills().query(this.Const.SkillType.TemporaryInjury);
-				foreach (i in allInjuries)
-				{
-					if (i.isTreated() || !i.isTreatable() || i.getQueue() == 0)
-					{
+		if (this.m.Queue == null) {
+			foreach (b in ::World.getPlayerRoster().getAll()) {
+				foreach (i in b.getSkills().query(this.Const.SkillType.TemporaryInjury)) {
+					if (i.isTreated() || !i.isTreatable() || i.getQueue() == 0)	{
 						continue;
 					}
 
@@ -270,26 +206,20 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			});
 		}
 
-		foreach (b in this.m.InjuriesHealed)
-		{
+		foreach (b in this.m.InjuriesHealed) {
 			if (b == null || !("getID" in b))
 				continue;
-			local ID = b.getID();
-			if (b.getIcon() != null && b.getName() != null)
-			{
+			if (b.getIcon() != null && b.getName() != null)	{
 				res.push({
 					id = id++,
-					icon = "" + b.getIcon(),
+					icon = b.getIcon(),
 					text = b.getName()
 				});
 			}
 		}
 
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( b in roster )
-		{
-			if (b.getCampHealing() > 0)
-			{
+		foreach( b in ::World.getPlayerRoster().getAll() ) {
+			if (b.getCampHealing() > 0)	{
 				res.push({
 					id = id++,
 					icon = "ui/icons/health.png",

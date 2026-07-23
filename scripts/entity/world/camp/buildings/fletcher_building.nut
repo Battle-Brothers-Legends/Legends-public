@@ -17,33 +17,15 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Description = "Make some ammo";
 		this.m.BannerImage = "ui/buttons/banner_fletch.png";
 		this.m.CanEnter = false;
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_fletcher_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 5; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_fletcher_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_fletcher_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_fletcher_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_fletcher_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_fletcher_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = [];
 	}
 
@@ -109,20 +91,8 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.Stash.hasItem(::Legends.Camp.Tent.Fletcher);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function init()

@@ -79,8 +79,7 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 		return "Customize the appearance of weapons and armor in the company.";
 	}
 
-	function getLevel()
-	{
+	function getLevel()	{
 		return "empty";
 	}
 

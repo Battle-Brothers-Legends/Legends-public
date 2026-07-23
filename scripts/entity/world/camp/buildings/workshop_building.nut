@@ -20,70 +20,16 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Name = "Salvage Tent";
 		this.m.Description = "Turn scrap into useable parts";
 		this.m.BannerImage = "ui/buttons/banner_scrap.png";
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_scrap_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 6; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_scrap_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_scrap_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function getTitle()

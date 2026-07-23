@@ -20,63 +20,15 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Name = "Repair Tent";
 		this.m.Description = "Manage the repair of company items";
 		this.m.BannerImage = "ui/buttons/banner_repair.png";
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_blacksmith_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 11; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_blacksmith_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_10.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_blacksmith_11.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = [];
 	}
 
@@ -89,17 +41,9 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.m.Name +  " *Not Upgraded*"
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc += "This tent repairs damaged items in your stash and equipped fighers. Equipment is repaired one item at time in the order they were queued.";
-		desc += "At the end of a battle, any damaged equipped gear is added to the front of the repair queue.";
-		desc += "\n\n";
-		desc += "Items will repair very slowly when not camped. Camping increases the speed even with no one assigned. Default repair speed is based on game combat difficulty.";
-		desc += "The more people assigned to the repair tent, the quicker the repairs. Mercenaries with repair skills increase the speed even further and may save you tools.";
-		desc += "\n\n";
-		desc += "Buying an upgraded tent from a settlement will increase repair speed by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] and increase tool efficiency by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] (1 tool repairs 20 instead of 15).";
-		return desc;
+	function getDescription() {
+		//"Buying an upgraded tent from a settlement will increase repair speed by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] and increase tool efficiency by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] (1 tool repairs 20 instead of 15).";
+		return "Repair damaged items in selected order. Equipped items are added automatically to the front of the queue at the end of the battle.\n\nRepair speed increases considerably when encamped. Default repair speed is based on game combat difficulty.";
 	}
 
 	function getModifierTooltip()
@@ -151,20 +95,8 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.Stash.hasItem(::Legends.Camp.Tent.Repair);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function init()

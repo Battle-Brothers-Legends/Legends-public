@@ -9,50 +9,21 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Crafting;
+		this.m.ID = ::Const.World.CampBuildings.Crafting;
 		this.m.ModName = "Crafting";
 		this.m.BaseCraft = 10.0;
 		this.m.Slot = "craft";
 		this.m.Name = "Craft";
 		this.m.Description = "Craft items";
 		this.m.BannerImage = "ui/buttons/banner_craft.png";
-		local sounds = [
-			{
-				File = "ambience/camp/camp_taxidermist_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 7; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_taxidermist_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_taxidermist_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
@@ -123,20 +94,8 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.Stash.hasItem(::Legends.Camp.Tent.Craft);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function init()

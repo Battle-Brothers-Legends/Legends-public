@@ -31,30 +31,16 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Description = "A kitchen tent with supplies for hunting, preparing and cooking food";
 		this.m.BannerImage = "ui/buttons/banner_hunt.png";
 		this.m.CanEnter = false;
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_hunter_01.wav",
+		local sounds = [];
+		for (local i = 1; i <= 2; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_hunter_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_hunter_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-		{
-				File = "ambience/camp/camp_hunter_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_hunter_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function hasPopup()
@@ -221,20 +207,8 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return this.Stash.hasItem(::Legends.Camp.Tent.Hunter);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function init()
