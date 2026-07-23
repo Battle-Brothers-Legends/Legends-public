@@ -8,10 +8,10 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.ID = "background.legend_berserker";
 		this.m.Name = "Berserker";
 		this.m.Icon = "ui/backgrounds/background_berserker.png";
-		this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
+		this.m.BackgroundDescription = "Hailing from the north, berserkers are often feared even among the wildmen and the barbarians. Incredibly hardy and often maddened from the overuse of mushrooms, they almost rival orcs in raw strength.";
 		this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local princess took a shine to %name% the wildman. He was \'purchased\' for a large sum of gold and given to the noblewoman. You went and visited the man recently. For dinner, he sat at a kingly table, grinning goofily and mimicking the nobles around him as best he could. His new and inexplicable wife adored him, and him her. When you said your goodbyes, he offered you a heavy golden crown off the top of his head. It weighed heavy with traditions and ancient histories. You said it\'d be best if he kept it. The wildman shrugged and walked off, spinning the circlet around a finger.";
 		this.m.BadEnding = "%name% the wildman stayed with the fragmenting %companyname% for a time and then, just like that, he was gone. The company went out looking for him in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
-		this.m.HiringCost = 3500;
+		this.m.HiringCost = 1000;
 		this.m.DailyCost = 35;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
@@ -48,12 +48,11 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable),
 		];
 		this.m.Titles = [
-			"the Savage",
-			"the Outcast",
-			"the Wildman",
-			"the Feral",
-			"the Wild",
-			"the Barbarian"
+			"the Berserker",
+			"Ulfhednar",
+			"the Crazed",
+			"the Uncontrollable",
+			"the Frenzied"
 		];
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.WildMale;
@@ -159,14 +158,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onBuildDescription()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{For some, the wild is a refuge. | It is said that woman is born with the wilderness in her, and that she does wrong by turning her back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where she hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason she seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about her body. When asked why she wishes to join a band of mercenaries, she hoots and, with a crooked finger, replicates one of her fleshen arts across the sky. | Wounds, old and fresh, dot her already mottled body. And they are not superficial - this woman had been fighting something fierce in the wild. | One has to wonder if the calamities which chased her into the forests have come to chase her back out. | Judging by her wild grunting, it\'s doubtful she\'s here to rejoin civilization. | Years as a recluse haven\'t made the woman forget what a few crowns can get you. The question is, why did she come back? | She has the strength to wrestle a boar - and her many scars makes you wonder if perhaps she did.}";
-		}
-		else
-		{
-			return "{For some, the wild is a refuge. | It is said that man is born with the wilderness in him, and that he does wrong by turning his back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where he hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason he seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about his body. When asked why he wishes to join a band of mercenaries, he hoots and, with a crooked finger, replicates one of his fleshen arts across the sky. | Wounds, old and fresh, dot his already mottled body. And they are not superficial - this man had been fighting something fierce in the wild. | One has to wonder if the calamities which chased him into the forests have come to chase him back out. | Judging by his wild grunting, it\'s doubtful he\'s here to rejoin civilization. | Years as a recluse haven\'t made the man forget what a few crowns can get you. The question is, why did he come back? | He has the strength to wrestle a boar - and his many scars makes you wonder if perhaps he did.}";
-		}
+		return "{For some, the wild is a refuge. | It is said that %person% is born with the wilderness in %them%, and that %they% does wrong by turning %them% back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where %they% hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason %they% seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about %them% body. When asked why %they% wishes to join a band of mercenaries, %they% hoots and, with a crooked finger, replicates one of %them% fleshen arts across the sky. | Wounds, old and fresh, dot %them% already mottled body. And they are not superficial - this woman had been fighting something fierce in the wild. | One has to wonder if the calamities which chased %them% into the forests have come to chase %them% back out. | Judging by %them% wild grunting, it\'s doubtful %they%\'s here to rejoin civilization. | Years as a recluse haven\'t made the woman forget what a few crowns can get you. The question is, why did %they% come back? | She has the strength to wrestle a boar - and %them% many scars makes you wonder if perhaps %they% did.}";
 	}
 
 	function onChangeAttributes()
@@ -235,55 +227,37 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		}
 	}
 
-	function onAdded()
-	{
-
-		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		actor.setTitle("The Berserker");
-
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_berserk"));
-
-	}
-
-
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 3;
+		talents[this.Const.Attributes.Hitpoints] = 3;
 		 this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
+			[1, ::Legends.Armor.Barbarian.rugged_scale_armor],
+			[1, ::Legends.Armor.Barbarian.scrap_metal_armor],
+			[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor],
+			[1, ::Legends.Armor.Barbarian.heavy_iron_armor],
+			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
+			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		]));
 		local item = this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
+			[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
+			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]);
-		local r = this.Math.rand(0, 4);
+		local weapons = [
+			"weapons/barbarians/skull_hammer",
+			"weapons/barbarians/two_handed_spiked_mace",
+			"weapons/barbarians/rusty_warblade",
+			"weapons/barbarians/heavy_rusty_axe"
+		];
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/rhomphaia"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/warbrand"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/ancient/crypt_cleaver"));
-		}
-
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_zweihander"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/greenskins/orc_axe_2h"));
-		}
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		this.getContainer().getActor().TherianthropeInfectionRandom();
 	}
