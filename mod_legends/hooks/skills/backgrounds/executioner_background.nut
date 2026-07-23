@@ -186,15 +186,9 @@
 			"weapons/hatchet",
 			"weapons/hand_axe",
 			"weapons/exesword",
-			"weapons/woodcutters_axe"
+			"weapons/woodcutters_axe",
+			"weapons/bardiche"
 		];
-
-		if (this.Const.DLC.Wildmen)
-		{
-			weapons.extend([
-				"weapons/bardiche"
-			]);
-		}
 		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		items.equip(::Const.World.Common.pickArmor([

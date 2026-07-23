@@ -63,7 +63,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Ethnicity = 0;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.Level = 1;
+		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
@@ -244,12 +244,12 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		]));
-		local item = this.Const.World.Common.pickHelmet([
+		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
-		]);
+		]));
 		local weapons = [
 			"weapons/barbarians/skull_hammer",
 			"weapons/barbarians/two_handed_spiked_mace",
