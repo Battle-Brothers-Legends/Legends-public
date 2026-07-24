@@ -17,7 +17,7 @@
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-			_skill.m.IsBreachSlash = true;
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBreach)
 
 		this.weapon.addSkill(_skill);
 	}

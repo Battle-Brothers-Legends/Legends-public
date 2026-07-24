@@ -31,7 +31,7 @@
 	o.onEquip = function ()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
 			_skill.m.IsGreatBreachSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {

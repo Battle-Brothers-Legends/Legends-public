@@ -2,7 +2,10 @@
 	o.addSkill <- function( _skill )
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-			_skill.m.IsGreatBreachSlash = true;
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBreach, function (_skill) {
+				_skill.m.IsGreatBreachSlash = true;
+			}.bindenv(this));
+			return;
 
 		this.weapon.addSkill(_skill);
 	}

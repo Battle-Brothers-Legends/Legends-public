@@ -254,6 +254,14 @@ activesDefs.push({
 	Name = "Slash",
 });
 
+::Legends.Active.LegendBreach <- null;
+activesDefs.push({
+	ID = "actives.legend_breach",
+	Script = "scripts/skills/actives/legend_breach_skill",
+	Const = "LegendBreach",
+	Name = "Breach",
+});
+
 ::Legends.Active.SlashLightning <- null;
 activesDefs.push({
 	ID = "actives.slash_lightning",
