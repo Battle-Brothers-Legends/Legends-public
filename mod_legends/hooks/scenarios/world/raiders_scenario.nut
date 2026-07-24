@@ -219,21 +219,7 @@
 	}
 
 	o.isDroppedAsLoot = function(_item) {
-		// local chanceIsLucky = 15;
-		// local brothers = this.World.getPlayerRoster().getAll();
-		// foreach (bro in brothers)
-		// {
-		// 	if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
-		// 	{
-		// 		chanceIsLucky += 10;
-		// 	}
-		// 	if (bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyCaravan))
-		// 	{
-		// 		chanceIsLucky += 5;
-		// 	}
-		// }
-		// return this.Math.rand(1, 100) < chanceIsLucky;
-		return false; // produces a lot of bugs with unlayered armors
+		return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (100 * ::World.Assets.m.ProfessionEffect.LegendFerretItOut + 15) : ::Math.rand(1, 100) < 15;
 	}
 
 	o.onHiredByScenario <- function(_bro) {

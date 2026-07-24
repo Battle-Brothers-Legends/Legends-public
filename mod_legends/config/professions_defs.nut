@@ -361,7 +361,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendFerretItOut,
     Icon = "ui/professions/ferret_it_out.png",
     IconDisabled = "ui/professions/ferret_it_out_bw.png",
-    Const = "LegendFerretItOut"
+    Const = "LegendFerretItOut",
+    ScalingArray = [0, 0.05], // extra loot chance
+    ScalingFactor = 0.2
 });
 
 ::Legends.Profession.LegendFieldSurgery <- null;

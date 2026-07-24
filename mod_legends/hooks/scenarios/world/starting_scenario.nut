@@ -15,20 +15,8 @@
 	o.m.ExcludedAmbitions <- []; // set in onInit, it's not serialized and doesn't need to be
 	o.m.BrotherScaling <- 1.0;
 
-	o.isDroppedAsLoot = function (_item)
-	{
-		// local chanceIsLucky = 0;
-		// local brothers = ::World.getPlayerRoster().getAll();
-		// foreach (bro in brothers)
-		// {
-		// 	if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
-		// 		chanceIsLucky += 10;
-
-		// 	if (bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyCaravan))
-		// 		chanceIsLucky += 5;
-		// }
-		// return ::Math.rand(1, 100) < chanceIsLucky;
-		return false; // produces too many errors with unlayered items
+	o.isDroppedAsLoot = function (_item) {
+		 return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (::World.Assets.m.ProfessionEffect.LegendFerretItOut * 100) : false;
 	}
 
 	local getDifficultyForUI = o.getDifficultyForUI;
