@@ -19,7 +19,7 @@ this.profession_legend_friends_in_right_places <- this.inherit("scripts/skills/l
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (::Legends.Professions.getProfessionEffect(_def, 0)) + "[/color]"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

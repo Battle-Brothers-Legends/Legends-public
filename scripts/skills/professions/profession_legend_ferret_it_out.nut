@@ -19,7 +19,7 @@ this.profession_legend_ferret_it_out <- this.inherit("scripts/skills/legend_prof
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

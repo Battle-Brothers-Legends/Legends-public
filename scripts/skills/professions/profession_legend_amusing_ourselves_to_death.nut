@@ -19,7 +19,7 @@ this.profession_legend_amusing_ourselves_to_death <- this.inherit("scripts/skill
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

@@ -124,7 +124,7 @@
 					}
 				}
 			}
-		
+
 			if (("State" in this.World)
 				&& this.World.State != null
 				&& this.World.Assets.getOrigin().getID() == "scenario.manhunters")
@@ -206,7 +206,7 @@
 		}
 		return this.UIDataHelper.convertEntityToUIData(bro, null);
 	}
-	
+
 	o.queryRosterSizeData <- function (_shake = false)
 	{
 		local brosInCombat = ("State" in ::World && this.World.State != null) ? ::World.State.getBrothersInFrontline() : 18;
@@ -225,7 +225,7 @@
 
 		return result;
 	}
-	
+
 	o.queryData = function () {
 		local result = {
 			brothers = this.onQueryBrothersList()
@@ -261,7 +261,7 @@
 
 		return result;
 	}
-	
+
 	o.onSwapInventoryItem = function (_data) {
 		if (_data[2]) {
 			return this.general_onUpgradeInventoryItem(_data);
@@ -362,7 +362,7 @@
 		if (item == null) {
 			return result;
 		}
-		
+
 		local baseId = item.getID();
 		local currentState = ::World.Flags.getAsInt("AutoState_" + baseId);
 		local nextState = 0;
@@ -493,7 +493,7 @@
 
 		if (!this.Tactical.isActive() && data.sourceItem.isUsable()) {
 			local targetItem = null;
-			
+
 			if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand" && data.sourceItem.getID().find("inscription") != null) { //for equipping runes on offhand with shift
         		targetItem = data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
 				if(targetItem != null && ((targetItem.getItemType() & this.Const.Items.ItemType.Weapon) == 0)){
@@ -744,20 +744,20 @@
 	}
 
 	o.onCyclePerkPlan <- function( _data ) {
-		local bro = ::Tactical.getEntityByID(_data[0])
+		local bro = ::Tactical.getEntityByID(_data[0]);
     	local perkPlan = bro.getPerkPlan();
 
     	local perkID = _data[1];
-   		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0; 
+   		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0;
     	local nextState = (currentState + 1) % 4;
-    
+
     	if (nextState == 0) {
         	delete perkPlan[perkID];
     	} else {
         	perkPlan[perkID] <- nextState;
     	}
-    
-    	return ::UIDataHelper.convertEntityToUIData(bro, null); 
+
+    	return ::UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
 	o.onFormationChanged <- function (_data) {
@@ -1216,10 +1216,10 @@
 				}
 
 				local result = base_item.item.setUpgrade(upgrade.item);
-				
+
 				if (typeof result == "table") {
 					::Stash.removeByIndex(upgrade.idx);
-					
+
 					if (result.item != null) {
 						::Stash.insert(result.item, upgrade.idx);
 						upgrades.push({

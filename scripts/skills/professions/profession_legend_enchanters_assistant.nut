@@ -19,7 +19,7 @@ this.profession_legend_enchanters_assistant <- this.inherit("scripts/skills/lege
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (::Legends.Professions.getProfessionEffect(_def, 0) == 0	? 1	: ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

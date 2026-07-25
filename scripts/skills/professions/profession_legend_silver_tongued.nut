@@ -19,7 +19,7 @@ this.profession_legend_silver_tongued <- this.inherit("scripts/skills/legend_pro
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (1 / ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color]"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

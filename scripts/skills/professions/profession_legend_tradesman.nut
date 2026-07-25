@@ -19,7 +19,7 @@ this.profession_legend_tradesman <- this.inherit("scripts/skills/legend_professi
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + ::Legends.Professions.getProfessionEffect(_def, 0) + "%[/color] gold value"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({

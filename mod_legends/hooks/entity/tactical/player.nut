@@ -138,11 +138,11 @@
 
 	o.getHiringTalents <- function () {
 		local ret = [];
-	
+
 		local starsRevealed = 0;
 		local talents = this.getTalents();
 		local attributes = ["Hitpoints", "Bravery", "Stamina", "Initiative", "MeleeSkill", "RangedSkill", "MeleeDefense", "RangedDefense"];
-		local allowedStars = this.m.IsTryoutDone ? 9 : ::Math.max(1, ::World.Assets.m.ProfessionEffect.LegendEyeForTalent)
+		local allowedStars = this.m.IsTryoutDone ? 9 : ::Math.max(1, ::World.Assets.m.ProfessionEffect.LegendEyeForTalent);
 
 		foreach (attrIndex in this.m.Hiring.Talents) {
 			local stars = talents[attrIndex];
@@ -160,7 +160,7 @@
 		return ret;
 	}
 
-	
+
 	o.getHiringAttributes <- function () {
 		local ret = {};
 
@@ -1715,7 +1715,7 @@
 			return 0;
 		}
 		local mod = this.getBackground().getModifiers().Barter;
-		
+
 		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {
 			mod += skill.getModifier();
@@ -2053,7 +2053,7 @@
 		_out.writeU8(this.m.CompanyID);
 		_out.writeU8(this.m.ProfessionPoints);
 		_out.writeU8(this.m.ProfessionPointsSpent);
-		
+
 		_out.writeU16(this.getPerkPlan().len());
 		foreach (perkID, state in this.getPerkPlan()) {
 			_out.writeString(perkID);

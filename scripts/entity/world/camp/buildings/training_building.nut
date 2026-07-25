@@ -386,7 +386,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				continue;
 			}
 
-			local skills = bro.getSkills()
+			local skills = bro.getSkills();
 			if (skills.hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
 				this.getBreak(bro, "recovering from an injury");
 				continue;

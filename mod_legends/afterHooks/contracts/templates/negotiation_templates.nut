@@ -301,7 +301,7 @@ local OverviewStart = ::Const.Contracts.Overview[0].start;
 
 ::Const.Contracts.Negotiation.getNegotiationResult <- function (_contract, _annoyanceMultiplier = 1 , _canNegotiationFail = false, _extraFailCondition = false) {
 	_contract.m.Payment.Annoyance += ::Math.maxf(1.0, ::Math.rand(::Const.Contracts.Settings.NegotiationAnnoyanceGainMin, ::Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0	? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
-	local failChance = ::Math.min(90, ::Const.Contracts.Settings.NegotiationRefuseChance * _contract.m.Payment.Annoyance * _annoyanceMultiplier)
+	local failChance = ::Math.min(90, ::Const.Contracts.Settings.NegotiationRefuseChance * _contract.m.Payment.Annoyance * _annoyanceMultiplier);
 
 	if (_canNegotiationFail && ::Math.rand(1, 100) <= failChance) {
 		return "Negotiation.Fail";

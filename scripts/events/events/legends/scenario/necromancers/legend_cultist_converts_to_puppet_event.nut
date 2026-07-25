@@ -86,14 +86,13 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				Text = "Let\'s go.",
 				getResult = @(_event) 0
 			}],
-			function start(_event)
-			{
-				foreach( bro in brothers )
-				{
+			function start(_event) {
+				local brothers = ::World.getPlayerRoster().getAll();
+				foreach (bro in brothers) {
 					this.List.push({
-					id = 16,
-					icon = "ui/icons/mood_02.png",
-					text = _event.m.Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]becomes upset[/color]"
+						id = 16,
+						icon = "ui/icons/mood_02.png",
+						text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "] becomes upset [/color]"
 					});
 				}
 

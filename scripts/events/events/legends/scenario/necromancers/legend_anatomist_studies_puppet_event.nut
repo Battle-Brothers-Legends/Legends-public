@@ -74,7 +74,7 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 					this.List.push({
 						id = 16,
 						icon = "ui/icons/xp_received.png",
-						text = Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
+						text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
 					});
 				}
 			}
@@ -239,7 +239,7 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				candidates_puppet.push(bro);
 			}
 					//Anatomist cannot have missing finger already
-			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Anatomist) && (!bro.getSkills().hasSkill("injury.missing_finger"))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Anatomist) && !bro.getSkills().hasSkill("injury.missing_finger"))
 			{
 				candidates_anatomist.push(bro);
 			}

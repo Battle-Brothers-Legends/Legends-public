@@ -19,7 +19,7 @@ this.profession_legend_highwayman <- this.inherit("scripts/skills/legend_profess
 				icon = "ui/icons/plus.png"
 				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color] baseline"
 			},
-		]
+		];
 
 		if (!_active) {
 			ret.push({
