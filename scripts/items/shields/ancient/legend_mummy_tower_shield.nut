@@ -38,7 +38,7 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		return result;
 	}
 
-	o.onUpdateProperties <- function (_properties) {
+	function onUpdateProperties (_properties) {
 		this.shield.onUpdateProperties(_properties);
 		_properties.DamageReceivedRangedMult *= 0.7;
 	}

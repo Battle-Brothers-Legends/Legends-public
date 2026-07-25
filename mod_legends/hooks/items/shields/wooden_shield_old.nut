@@ -6,3 +6,4 @@
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;
 	}
+});

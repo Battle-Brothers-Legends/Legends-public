@@ -61,10 +61,9 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.setCondition(shield.getConditionMax());	// To discourage the player stalling battles to fully repair this shield
 	}
 
-	function applyShieldDamage( _damage, _playHitSound = true )
-	{
+	function applyShieldDamage( _damage, _playHitSound = true ) {
 		if (!this.m.Stack) {
-			return this.shield.applyShieldDamage( _damage, _playHitSound)
+			return this.shield.applyShieldDamage(_damage, _playHitSound);
 		}
 		if (this.m.Condition == 0) {
 			return;
@@ -82,7 +81,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 				this.Sound.play(this.m.SoundOnDestroyed[this.Math.rand(0, this.m.SoundOnDestroyed.len() - 1)], this.Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 			}
 			this.setCondition(this.getConditionMax());
-			
+
 			actor.setDirty(true);
 
 			if (!actor.isHiddenToPlayer()) {
@@ -91,6 +90,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + "\'s shield regrows to full durability");
 			}
 		}
+	}
 
 	function onCombatStarted () {
 		this.m.Stack = 2;
