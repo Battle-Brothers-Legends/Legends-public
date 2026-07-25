@@ -54,6 +54,7 @@
 
 ### Shield Ability Changes
 - `Fortify` - deleted
+- `Buckler Effect` - now grants 5% of Initiative as Defense and Block
 
 ## Noble House Changes
 - introduced 40 new traits into the noble house trait system

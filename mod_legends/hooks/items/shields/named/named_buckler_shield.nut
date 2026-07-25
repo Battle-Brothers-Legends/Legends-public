@@ -4,7 +4,7 @@
 	local create = o.create;
 	o.create <- function () {
 		create();
-		this.m.Description += " Gains defense depending on how many enemies are within 1 tile.";
+		this.m.Description += += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.Block = 10;

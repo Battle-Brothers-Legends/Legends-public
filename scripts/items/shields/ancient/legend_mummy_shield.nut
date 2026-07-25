@@ -7,7 +7,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.shield.create();
 		this.m.ID = "shield.legend_mummy_shield";
 		this.m.Name = "Ancient Southern Shield";
-		this.m.Description = "A small shield made of wood and reinforced with bronze. Time has taken its toll and the wood has become brittle, but it is still an agile parrying tool.";
+		this.m.Description = "A small shield made of wood and reinforced with bronze. Time has taken its toll and the wood has become brittle, but it is still an agile parrying tool. Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
 		this.m.Variants = [

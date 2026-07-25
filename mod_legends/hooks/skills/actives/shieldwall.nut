@@ -34,7 +34,7 @@
 			{
 				id = 4,
 				type = "text",
-				icon = "ui/icons/melee_defense.png",
+				icon = "ui/icons/block.png",
 				text = "Grants an additional [%positive]+" + this.Math.floor(item.getMeleeDefense() * mult + proficiencyBonus) + "[/color] [%status]Block[/color] against attacks"
 			}
 		];

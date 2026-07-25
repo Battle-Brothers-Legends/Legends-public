@@ -6,6 +6,7 @@
 			1,
 			2
 		];
+		this.m.Description += += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.MeleeDefense = 4;
 		this.m.RangedDefense = 8;

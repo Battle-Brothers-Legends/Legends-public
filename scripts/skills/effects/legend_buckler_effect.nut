@@ -1,11 +1,8 @@
 this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-		DefenseSingleEnemy = 12,
-		DefenseTwoEnemies = 6,
-		DefenseThreeEnemies = 4
+		Bonus = 5
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBuckler);
 		this.m.Icon = "ui/perks/perk_02.png";
 		//this.m.IconMini = "perk_02_mini";
@@ -16,108 +13,19 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 	}
 
-	function getDescription()
-	{
-		return "Bucklers work best against a single opponent. Gain [color=%positive%]+" + this.m.DefenseSingleEnemy + "[/color] Melee Defense when facing one enemy, [color=%positive%]+" + this.m.DefenseTwoEnemies + "[/color] when facing two, or [color=%positive%]+" + this.m.DefenseThreeEnemies + "[/color] when facing three, and half as much Ranged Defense.";
+	function getDescription() {
+		return "Bucklers favor a quick fighter.";
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return this.getBonus() == 0;
 	}
 
-	function getBonus()
-	{
-		local actor = this.getContainer().getActor();
-		if (actor == null)
-		{
-			return 0;
-		}
-
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
-		{
-			return 0;
-		}
-
-		local myTile = actor.getTile();
-		local myFaction = actor.getFaction();
-		local nearbyEnemies = 0;
-
-		if (myTile == null)
-		{
-			return 0;
-		}
-
-		if (!("Entities" in this.Tactical))
-		{
-			return 0;
-		}
-
-		if (this.Tactical.Entities == null)
-		{
-			return 0;
-		}
-
-		if (this.Tactical.State.isAutoRetreat())
-		{
-			return 0;
-		}
-
-		if (!this.Tactical.isActive())
-		{
-			return 0;
-		}
-
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
-		local bonus = 0;
-		foreach( a in actors )
-		{
-			if (a == null)
-			{
-				continue;
-			}
-
-			if(!a.isPlacedOnMap())
-			{
-				continue;
-			}
-
-			if (a.getFaction() == myFaction)
-			{
-				continue;
-			}
-
-			if (a.getTile() == null)
-			{
-				continue;
-			}
-
-			if (a.getTile().getDistanceTo(myTile) != 1)
-			{
-				continue;
-			}
-			++nearbyEnemies;
-		}
-
-		if (nearbyEnemies == 3)
-		{
-			return this.m.DefenseThreeEnemies;
-		}
-
-		if (nearbyEnemies == 2)
-		{
-			return this.m.DefenseTwoEnemies;
-		}
-		if (nearbyEnemies == 1)
-		{
-			return this.m.DefenseSingleEnemy;
-		}
-
-		return 0;
+	function getBonus() {
+		return this.getContainer().getActor().getInitiative() * 0.01 * this.m.Bonus;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local bonus = this.getBonus();
 		local tooltip = [
 			{
@@ -143,7 +51,13 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=%positive%]+" + bonus / 2 + "[/color]  Ranged Defense"
+				text = "[color=%positive%]+" + bonus + "[/color] Ranged Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/block.png",
+				text = "[color=%positive%]+" + bonus + "[/color] Block"
 			}])
 		}
 		return tooltip;
