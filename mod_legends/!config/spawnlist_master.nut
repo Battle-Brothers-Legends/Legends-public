@@ -935,6 +935,17 @@
 	Script = "scripts/entity/tactical/enemies/legend_goblin_tribe_defender"
 };
 
+::Const.World.Spawn.Troops.LegendNomadGladiator <- {
+	ID = this.Const.EntityType.LegendNomadGladiator,
+	Variant = 2,
+	Strength = 40,
+	Cost = 40,
+	Row = 0,
+	Script = "scripts/entity/tactical/humans/legend_nomad_gladiator",
+	NameList = this.Const.Strings.SouthernNames,
+	TitleList = this.Const.Strings.GladiatorTitles
+};
+
 ::Const.World.Spawn.CaravanFort <-
 {
 	Name = "CaravanFort",

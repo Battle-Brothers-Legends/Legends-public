@@ -231,6 +231,18 @@
 					Roll = true
 				}
 			]
+		},
+		{
+			Weight = 2,
+			MinR = 420,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.LegendNomadGladiator,
+					Cost = 50,
+					Roll = true
+				}
+			]
 		}
 	]
 };

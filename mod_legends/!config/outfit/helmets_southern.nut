@@ -564,3 +564,24 @@
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Southern.blade_dancer_helmet_00);
 
+::Legends.Helmet.Southern.nomad_gladiator_helmet_00 <- {
+	ID = "nomad_gladiator_helmet_00", // 50 -1 -0 320
+	Script = "",
+	Sets = [{
+		Hoods = [
+			[1, "hood/legend_helmet_southern_niqaab"] // 45 -1 -0 300
+		],
+		Helms = [
+			[1, "helm/legend_helmet_southern_gladiator_helm_crested"], // 130 -6 -3 2500
+			[1, "helm/legend_helmet_southern_gladiator_helm_split"], // 130 -6 -3 2500
+			[1, "helm/legend_helmet_southern_gladiator_helm_masked"], // 130 -6 -3 2500
+		],
+		Tops = [
+		],
+		Vanity = [
+			[5, "vanity/legend_helmet_southern_turban_open"], // 5 -0 -0 20
+			[3, ""],
+		]
+	}]
+};
+::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Southern.assassin_face_mask);

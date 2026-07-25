@@ -436,3 +436,94 @@
 };
 ::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Southern.nomad_archer_armor_00);
 
+::Legends.Armor.Southern.nomad_gladiator_armor_00 <-  {
+	ID = "nomad_gladiator_armor_00",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_southern_gladiator_harness"],
+			[1, "cloth/legend_armor_tunic_wrap"], // 20 -1 25
+			[1, "cloth/legend_armor_southern_robe"], // 25 -1 35
+			[1, "cloth/legend_armor_southern_tunic"],],
+		Chain = [
+			[1, "chain/legend_armor_southern_mail"]
+		],
+		Plate = [
+			[1, "plate/legend_armor_southern_strips"]
+		],
+		Cloak = [
+			[1, ""],
+			[1, "cloak/legend_armor_southern_scarf"]
+		],
+		Tabard = [
+			[1, ""],
+			[1, "tabard/legend_armor_southern_overcloth"]
+		],
+		Attachments = [
+			[1, "armor_upgrades/legend_heavy_gladiator_upgrade"]
+		],
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Southern.nomad_gladiator_armor_00);
+
+::Legends.Armor.Southern.nomad_gladiator_armor_01 <-  {
+	ID = "nomad_gladiator_armor_01",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_southern_split_gambeson"],
+			[1, "cloth/legend_southern_gambeson"]
+		],
+		Chain = [
+			[1, "chain/legend_armor_southern_padded_chest"]
+		],
+		Plate = [
+			[1, "plate/legend_armor_southern_leather_scale"]
+		],
+		Cloak = [
+			[1, ""],
+			[1, "cloak/legend_armor_southern_scarf"]
+		],
+		Tabard = [
+			[1, ""],
+			[1, "tabard/legend_armor_southern_overcloth"]
+		],
+		Attachments = [
+			[1, "armor_upgrades/legend_light_gladiator_upgrade"]
+		],
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Southern.nomad_gladiator_armor_01);
+
+::Legends.Armor.Southern.nomad_gladiator_armor_02 <-  {
+	ID = "nomad_gladiator_armor_02",
+	Script = "",
+	Sets = [{
+		Cloth = [
+			[1, "cloth/legend_armor_southern_gladiator_harness", 1],
+			[1, "cloth/legend_armor_southern_split_gambeson"],
+			[1, "cloth/legend_southern_gambeson"]
+		],
+		Chain = [
+			[1, "chain/legend_armor_mail_shirt_simple"],
+			[1, "chain/legend_armor_southern_padded_chest"]
+		],
+		Plate = [
+			[3, "plate/legend_armor_southern_plate"],
+			[1, "chain/legend_armor_southern_mail"]
+		],
+		Cloak = [
+			[2, ""],
+			[1, "cloak/legend_armor_southern_scarf"]
+		],
+		Tabard = [
+			[1, ""],
+			[1, "tabard/legend_armor_southern_overcloth"]
+		],
+		Attachments = [
+			[1, "armor_upgrades/legend_light_gladiator_upgrade"],
+			[1, "armor_upgrades/legend_heavy_gladiator_upgrade"]
+		],
+	}]
+};
+::Const.LegendMod.ArmorObjs.push(::Legends.Armor.Southern.nomad_gladiator_armor_02);
