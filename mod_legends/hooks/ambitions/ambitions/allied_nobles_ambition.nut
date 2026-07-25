@@ -18,57 +18,53 @@
 
 		local item;
 		local stash = this.World.Assets.getStash();
+		local i = this.Math.rand(1, 11); //No shields or daggers. Also no potentially overpowered weapons at this stage in the game like greatswords, 2h cleavers, 2h hammers, throwing weapons, etc.
 
-		item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm, banner]]);
-		stash.add(item);
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/items/" + item.getIcon(),
-			imageOverlayPath = item.getIconOverlay(),
-			text = "You gain " + item.makeName()
-		});
+		if (i == 1)
+		{
+			item = this.new("scripts/items/weapons/named/named_axe");
+		}
+		else if (i == 2)
+		{
+			item = this.new("scripts/items/weapons/named/named_warhammer");
+		}
+		else if (i == 3)
+		{
+			item = this.new("scripts/items/weapons/named/named_cleaver");
+		}
+		else if (i == 4)
+		{
+			item = this.new("scripts/items/weapons/named/named_crossbow");
+		}
+		else if (i == 5)
+		{
+			item = this.new("scripts/items/weapons/named/named_flail");
+		}
+		else if (i == 6)
+		{
+			item = this.new("scripts/items/weapons/named/named_warbrand");
+		}
+		else if (i == 7)
+		{
+			item = this.new("scripts/items/weapons/named/named_greatsword");
+		}
+		else if (i == 8)
+		{
+			item = this.new("scripts/items/weapons/named/named_mace");
+		}
+		else if (i == 9)
+		{
+			item = this.new("scripts/items/weapons/named/named_spear");
+		}
+		else if (i == 10)
+		{
+			item = this.new("scripts/items/weapons/named/named_sword");
+		}
+		else if (i == 11)
+		{
+			item = this.new("scripts/items/weapons/named/named_warbow");
+		}
 
-
-		item = this.Const.World.Common.pickArmor([
-			[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],
-		]);
-		stash.add(item);
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/items/" + item.getIcon(),
-			imageOverlayPath = item.getIconOverlay(),
-			text = "You gain " + item.makeName()
-		});
-		item = this.new("scripts/items/shields/faction_heater_shield");
-		item.setFaction(banner);
-		item.setVariant(2);
-		stash.add(item);
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-		});
-		item = this.new("scripts/items/shields/faction_heater_shield");
-		item.setFaction(banner);
-		item.setVariant(2);
-		stash.add(item);
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-		});
-		item = this.new("scripts/items/shields/faction_kite_shield");
-		item.setFaction(banner);
-		item.setVariant(2);
-		stash.add(item);
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-		});
-		item = this.new("scripts/items/shields/faction_kite_shield");
-		item.setFaction(banner);
-		item.setVariant(2);
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,
