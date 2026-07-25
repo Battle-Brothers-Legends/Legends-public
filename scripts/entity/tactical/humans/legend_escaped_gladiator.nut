@@ -1,7 +1,7 @@
-this.legend_nomad_gladiator <- this.inherit("scripts/entity/tactical/human/gladiator", {
+this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/human/gladiator", {
 	function create() {
 		this.gladiator.create();
-		this.m.Type = this.Const.EntityType.LegendNomadGladiator;
+		this.m.Type = this.Const.EntityType.LegendEscapedGladiator;
 		this.actor.create();
 	}
 

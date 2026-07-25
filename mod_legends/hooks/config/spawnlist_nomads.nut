@@ -238,7 +238,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendNomadGladiator,
+					Type = this.Const.World.Spawn.Troops.LegendEscapedGladiator,
 					Cost = 50,
 					Roll = true
 				}

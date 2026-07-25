@@ -290,5 +290,5 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
 ::Const.EntityType.LegendBanditExecutionerHigh <-
 	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
-::Const.EntityType.LegendNomadGladiator <-
+::Const.EntityType.LegendEscapedGladiator <-
 	::Const.EntityType.addNew("gladiator_orientation", "Escaped Gladiator", "Escaped Gladiators", this.Const.FactionType.OrientalBandits);

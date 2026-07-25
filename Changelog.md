@@ -218,6 +218,13 @@
 - `Peasant Squire` - removed from comps
 - `Peasant Witchhunter` - removed from comps
 
+### Nomads
+- `Escaped Gladiator` - new enemy that will appear in nomad comps, more or less will feel familiar to regular Gladiators you meet in arena, but they aren't dressed like they're putting on a show
+> `Lithe` will replace `Nimble` vs regular gladiators
+
+### City States
+- `Gladiators` - gain `Net Casting`, `Net Mastery`, additionally gain `Alert` and `Lone Wolf` on Legendary
+
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems
 > use 1-4 in the World, F1-F4 in combat to change the speed
@@ -289,13 +296,13 @@
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
 - defs created for backgrounds
+- background_stats created for background stat rolls and migrated them from bgs
 - changed background.legend_peddler_commander -> background.legend_commander_peddler
 - legend_mage_background and legend_mage_commander_mage removed
 - human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
 - Tabbard -> Tabard | tabbard -> tabard
 - Hesistant -> Hesitant
-<<<<<<< HEAD
 - legend_dilapitated_sling -> legend_dilapidated sling
 - camp buildings: getModifierToolip -> getModifierTooltip
 - LegendExtendendAura -> LegendExtendedAura
