@@ -127,41 +127,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				-3
-			],
-			Stamina = [
-				2,
-				0
-			],
-			MeleeSkill = [
-				12,
-				10
-			],
-			RangedSkill = [
-				5,
-				0
-			],
-			MeleeDefense = [
-				6,
-				5
-			],
-			RangedDefense = [
-				6,
-				5
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Nomad);
 	}
 
 	o.onAdded <- function ()

@@ -114,41 +114,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				8,
-				12
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				6,
-				12
-			],
-			MeleeSkill = [
-				10,
-				13
-			],
-			RangedSkill = [
-				5,
-				8
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				0,
-				3
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Sellsword);
 	}
 
 	o.onAdded = function ()

@@ -97,41 +97,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				4,
-				8
-			],
-			Bravery = [
-				-2,
-				-3
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				1,
-				3
-			],
-			RangedSkill = [
-				1,
-				4
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Daytaler);
 	}
 
 	o.onAddEquipment = function ()

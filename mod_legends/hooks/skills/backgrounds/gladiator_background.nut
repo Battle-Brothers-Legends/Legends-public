@@ -201,41 +201,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				6
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				5,
-				8
-			],
-			MeleeSkill = [
-				10,
-				13
-			],
-			RangedSkill = [
-				6,
-				8
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				5,
-				8
-			],
-			Initiative = [
-				3,
-				8
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Gladiator);
 	}
 
 	o.onAdded = function ()

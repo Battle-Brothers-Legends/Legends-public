@@ -78,41 +78,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				5
-			],
-			Stamina = [
-				6,
-				13
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				5,
-				13
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				10,
-				14
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Shepherd);
 	}
 
 	o.onAddEquipment = function ()

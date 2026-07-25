@@ -211,41 +211,7 @@
 	}
 
 	o.onChangeAttributes = function () {
-		local c = {
-			Hitpoints = [
-				12,
-				13
-			],
-			Bravery = [
-				4,
-				9
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				10,
-				11
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				9,
-				12
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-14,
-				-7
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.HedgeKnight);
 	}
 
 	o.onAddEquipment = function () {

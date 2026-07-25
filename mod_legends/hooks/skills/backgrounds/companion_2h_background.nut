@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Companion);
+		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Companion2h);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.HiringCost = 0;
@@ -108,41 +108,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				10,
-				14
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				7,
-				12
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				5,
-				5
-			],
-			RangedDefense = [
-				0,
-				2
-			],
-			Initiative = [
-				-5,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Companion2h);
 	}
 
 	o.onAdded = function ()

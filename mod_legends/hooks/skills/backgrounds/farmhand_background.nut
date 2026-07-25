@@ -94,41 +94,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				7,
-				10
-			],
-			Bravery = [
-				-3,
-				-2
-			],
-			Stamina = [
-				10,
-				20
-			],
-			MeleeSkill = [
-				0,
-				4
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				4
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Farmhand);
 	}
 
 

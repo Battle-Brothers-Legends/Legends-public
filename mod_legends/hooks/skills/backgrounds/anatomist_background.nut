@@ -149,43 +149,8 @@
 		}
 	}
 
-	o.onChangeAttributes = function ()
-	{
-		local c = {
-			Hitpoints = [
-				-2,
-				0
-			],
-			Bravery = [
-				12,
-				14
-			],
-			Stamina = [
-				-5,
-				0
-			],
-			MeleeSkill = [
-				5,
-				7
-			],
-			RangedSkill = [
-				5,
-				9
-			],
-			MeleeDefense = [
-				0,
-				1
-			],
-			RangedDefense = [
-				0,
-				1
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+	o.onChangeAttributes = function () {
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Anatomist);
 	}
 
 	o.onAddEquipment = function ()

@@ -67,41 +67,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				5
-			],
-			Bravery = [
-				-2,
-				2
-			],
-			Stamina = [
-				2,
-				4
-			],
-			MeleeSkill = [
-				3,
-				6
-			],
-			RangedSkill = [
-				4,
-				9
-			],
-			MeleeDefense = [
-				0,
-				2
-			],
-			RangedDefense = [
-				0,
-				1
-			],
-			Initiative = [
-				5,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Fisherman);
 	}
 
 	o.onAddEquipment = function ()

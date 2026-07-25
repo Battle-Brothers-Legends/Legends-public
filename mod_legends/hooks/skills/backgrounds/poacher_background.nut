@@ -90,41 +90,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				5
-			],
-			Stamina = [
-				0,
-				3
-			],
-			MeleeSkill = [
-				0,
-				2
-			],
-			RangedSkill = [
-				7,
-				15
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				4
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Poacher);
 	}
 
 	o.onAddEquipment = function ()

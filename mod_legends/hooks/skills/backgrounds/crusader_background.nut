@@ -144,41 +144,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				10
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				10,
-				10
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-5,
-				-10
-			],
-			MeleeDefense = [
-				2,
-				4
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Crusader);
 	}
 
 	o.onAdded = function ()

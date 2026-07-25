@@ -148,78 +148,7 @@
 	{
 		if (this.isBackgroundType(this.Const.BackgroundType.Female))
 		{
-			return {
-				Hitpoints = [
-					3,
-					8
-				],
-				Bravery = [
-					10,
-					12
-				],
-				Stamina = [
-					23,
-					28
-				],
-				MeleeSkill = [
-					7,
-					10
-				],
-				RangedSkill = [
-					-5,
-					0
-				],
-				MeleeDefense = [
-					-5,
-					0
-				],
-				RangedDefense = [
-					-5,
-					-5
-				],
-				Initiative = [
-					5,
-					12
-				]
-			};
-		}
-		else
-		{
-			return {
-				Hitpoints = [
-					8,
-					13
-				],
-				Bravery = [
-					10,
-					12
-				],
-				Stamina = [
-					23,
-					25
-				],
-				MeleeSkill = [
-					7,
-					10
-				],
-				RangedSkill = [
-					-5,
-					0
-				],
-				MeleeDefense = [
-					-5,
-					0
-				],
-				RangedDefense = [
-					-5,
-					-5
-				],
-				Initiative = [
-					5,
-					12
-				]
-			};
-		}
+			return ::Legends.Backgrounds.getStats(::Legends.Background.Wildman);
 	}
 
 	o.onSetAppearance = function ()

@@ -103,41 +103,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				10
-			],
-			Bravery = [
-				0,
-				5
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				6,
-				8
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Lumberjack);
 	}
 
 	o.onAddEquipment = function ()

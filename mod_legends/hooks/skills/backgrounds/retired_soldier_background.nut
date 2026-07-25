@@ -94,41 +94,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-15,
-				-10
-			],
-			Bravery = [
-				13,
-				10
-			],
-			Stamina = [
-				-10,
-				-10
-			],
-			MeleeSkill = [
-				13,
-				10
-			],
-			RangedSkill = [
-				5,
-				0
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				5,
-				8
-			],
-			Initiative = [
-				-5,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.RetiredSoldier);
 	}
 
 	o.onAddEquipment = function ()

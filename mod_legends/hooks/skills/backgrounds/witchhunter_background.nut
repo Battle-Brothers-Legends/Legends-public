@@ -145,41 +145,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				5,
-				8
-			],
-			MeleeSkill = [
-				2,
-				6
-			],
-			RangedSkill = [
-				10,
-				18
-			],
-			MeleeDefense = [
-				2,
-				5
-			],
-			RangedDefense = [
-				3,
-				6
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Witchhunter);
 	}
 
 	o.onAdded = function ()

@@ -71,41 +71,7 @@
 
 	o.onChangeAttributes <- function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				-2
-			],
-			Bravery = [
-				4,
-				14
-			],
-			Stamina = [
-				-10,
-				-5
-			],
-			MeleeSkill = [
-				5,
-				15
-			],
-			RangedSkill = [
-				0,
-				10
-			],
-			MeleeDefense = [
-				1,
-				8
-			],
-			RangedDefense = [
-				1,
-				8
-			],
-			Initiative = [
-				1,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.RegentInAbsentia);
 	}
 
 	o.onAddEquipment = function ()

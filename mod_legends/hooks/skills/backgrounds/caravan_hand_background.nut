@@ -89,41 +89,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				5
-			],
-			Bravery = [
-				3,
-				3
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				0,
-				4
-			],
-			RangedSkill = [
-				2,
-				5
-			],
-			MeleeDefense = [
-				1,
-				3
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.CaravanHand);
 	}
 
 	o.onAddEquipment = function ()

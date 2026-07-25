@@ -58,41 +58,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				4,
-				9
-			],
-			Bravery = [
-				0,
-				2
-			],
-			Stamina = [
-				8,
-				14
-			],
-			MeleeSkill = [
-				4,
-				8
-			],
-			RangedSkill = [
-				3,
-				5
-			],
-			MeleeDefense = [
-				0,
-				1
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-8,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.SlaveBarbarian);
 	}
 
 	//no need to do legendsequipment here because it inherits from slave_background

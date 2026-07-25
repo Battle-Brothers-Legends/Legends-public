@@ -122,41 +122,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				5
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				7,
-				12
-			],
-			MeleeSkill = [
-				5,
-				7
-			],
-			RangedSkill = [
-				6,
-				12
-			],
-			MeleeDefense = [
-				1,
-				4
-			],
-			RangedDefense = [
-				1,
-				2
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.BeastSlayer);
 	}
 
 	o.onSetAppearance = function ()

@@ -128,41 +128,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				6,
-				8
-			],
-			RangedSkill = [
-				10,
-				14
-			],
-			MeleeDefense = [
-				3,
-				5
-			],
-			RangedDefense = [
-				2,
-				5
-			],
-			Initiative = [
-				20,
-				30
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.AssassinSouthern);
 	}
 
 	o.onAddEquipment = function ()

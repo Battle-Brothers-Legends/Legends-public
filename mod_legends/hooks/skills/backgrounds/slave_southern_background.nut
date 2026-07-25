@@ -42,41 +42,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				4,
-				8
-			],
-			Bravery = [
-				-5,
-				0
-			],
-			Stamina = [
-				4,
-				10
-			],
-			MeleeSkill = [
-				0,
-				2
-			],
-			RangedSkill = [
-				6,
-				10
-			],
-			MeleeDefense = [
-				1,
-				3
-			],
-			RangedDefense = [
-				2,
-				5
-			],
-			Initiative = [
-				3,
-				8
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.SlaveSouthern);
 	}
 
 	o.onAdded <- function ()

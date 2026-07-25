@@ -75,41 +75,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				-5,
-				-5
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				-5,
-				5
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Bastard);
 	}
 
 	o.onAdded <- function ()

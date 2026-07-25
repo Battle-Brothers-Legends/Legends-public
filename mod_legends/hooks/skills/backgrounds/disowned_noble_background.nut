@@ -102,81 +102,12 @@
 		this.character_background.onAdded();
 	}
 
-	o.onChangeAttributes = function ()
-	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return {
-				Hitpoints = [
-					-2,
-					3
-				],
-				Bravery = [
-					-6,
-					-1
-				],
-				Stamina = [
-					-10,
-					-5
-				],
-				MeleeSkill = [
-					0,
-					10
-				],
-				RangedSkill = [
-					5,
-					15
-				],
-				MeleeDefense = [
-					-3,
-					2
-				],
-				RangedDefense = [
-					0,
-					5
-				],
-				Initiative = [
-					5,
-					10
-				]
-			};
+	o.onChangeAttributes = function () {
+		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+			return ::Legends.Backgrounds.getStatsFemale(::Legends.Background.DisownedNoble);
 		}
-		else
-		{
-			return {
-				Hitpoints = [
-					-2,
-					3
-				],
-				Bravery = [
-					-6,
-					-1
-				],
-				Stamina = [
-					-10,
-					-5
-				],
-				MeleeSkill = [
-					5,
-					15
-				],
-				RangedSkill = [
-					0,
-					10
-				],
-				MeleeDefense = [
-					-1,
-					4
-				],
-				RangedDefense = [
-					-2,
-					3
-				],
-				Initiative = [
-					-5,
-					5
-				]
-			};
+		else {
+			return ::Legends.Backgrounds.getStats(::Legends.Background.DisownedNoble);
 		}
 	}
 

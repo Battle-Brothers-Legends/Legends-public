@@ -115,41 +115,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				14,
-				18
-			],
-			Bravery = [
-				10,
-				12
-			],
-			Stamina = [
-				6,
-				12
-			],
-			MeleeSkill = [
-				11,
-				11
-			],
-			RangedSkill = [
-				8,
-				10
-			],
-			MeleeDefense = [
-				5,
-				7
-			],
-			RangedDefense = [
-				-3,
-				-3
-			],
-			Initiative = [
-				8,
-				14
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LindwurmSlayer);
 	}
 
 	o.onAdded = function ()

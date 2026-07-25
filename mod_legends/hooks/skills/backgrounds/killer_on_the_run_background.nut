@@ -101,41 +101,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				-5,
-				-5
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				3,
-				6
-			],
-			RangedSkill = [
-				3,
-				5
-			],
-			MeleeDefense = [
-				1,
-				3
-			],
-			RangedDefense = [
-				-3,
-				0
-			],
-			Initiative = [
-				0,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.KillerOnTheRun);
 	}
 
 	o.onAddEquipment = function ()

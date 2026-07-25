@@ -141,41 +141,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				-5,
-				0
-			],
-			Stamina = [
-				6,
-				12
-			],
-			MeleeSkill = [
-				0,
-				2
-			],
-			RangedSkill = [
-				0,
-				3
-			],
-			MeleeDefense = [
-				0,
-				2
-			],
-			RangedDefense = [
-				0,
-				2
-			],
-			Initiative = [
-				-5,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Slave);
 	}
 
 	o.onSetAppearance = function ()

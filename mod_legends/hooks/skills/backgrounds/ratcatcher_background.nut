@@ -74,41 +74,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				4,
-				8
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				15,
-				18
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Ratcatcher);
 	}
 
 	o.onAdded = function ()

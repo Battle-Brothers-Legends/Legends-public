@@ -93,41 +93,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				5
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				0,
-				5
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				3,
-				6
-			],
-			MeleeDefense = [
-				3,
-				3
-			],
-			RangedDefense = [
-				1,
-				2
-			],
-			Initiative = [
-				12,
-				18
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Houndmaster);
 	}
 
 	o.onAdded <- function ()

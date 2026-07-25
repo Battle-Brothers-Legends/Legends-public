@@ -119,41 +119,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				-3,
-				0
-			],
-			Stamina = [
-				0,
-				2
-			],
-			MeleeSkill = [
-				10,
-				12
-			],
-			RangedSkill = [
-				0,
-				5
-			],
-			MeleeDefense = [
-				5,
-				6
-			],
-			RangedDefense = [
-				5,
-				6
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Raider);
 	}
 
 	o.onAddEquipment = function ()

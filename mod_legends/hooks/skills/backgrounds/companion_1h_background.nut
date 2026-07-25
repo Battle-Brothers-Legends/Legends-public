@@ -110,41 +110,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				2,
-				7
-			],
-			Bravery = [
-				10,
-				14
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				5,
-				8
-			],
-			RangedSkill = [
-				5,
-				5
-			],
-			MeleeDefense = [
-				5,
-				5
-			],
-			RangedDefense = [
-				5,
-				5
-			],
-			Initiative = [
-				-5,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Companion);
 	}
 
 	o.onAdded = function ()

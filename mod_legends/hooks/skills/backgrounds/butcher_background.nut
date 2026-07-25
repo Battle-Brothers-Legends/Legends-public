@@ -92,41 +92,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				4
-			],
-			Bravery = [
-				3,
-				5
-			],
-			Stamina = [
-				0,
-				4
-			],
-			MeleeSkill = [
-				4,
-				7
-			],
-			RangedSkill = [
-				-3,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Butcher);
 	}
 
 	o.onAddEquipment = function ()

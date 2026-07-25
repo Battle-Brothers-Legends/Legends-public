@@ -106,41 +106,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				10,
-				15
-			],
-			Stamina = [
-				0,
-				6
-			],
-			MeleeSkill = [
-				5,
-				5
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				3,
-				6
-			],
-			RangedDefense = [
-				0,
-				3
-			],
-			Initiative = [
-				5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Minstrel);
 	}
 
 	o.onAddEquipment = function ()

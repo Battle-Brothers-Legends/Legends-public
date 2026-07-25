@@ -74,41 +74,7 @@
 
 	o.onChangeAttributes = function()
 	{
-		local c = {
-			Hitpoints = [
-				6,
-				10
-			],
-			Bravery = [
-				2,
-				5
-			],
-			Stamina = [
-				7,
-				10
-			],
-			MeleeSkill = [
-				3,
-				5
-			],
-			RangedSkill = [
-				-6,
-				-6
-			],
-			MeleeDefense = [
-				1,
-				2
-			],
-			RangedDefense = [
-				-3,
-				0
-			],
-			Initiative = [
-				5,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Brawler);
 	}
 
 	o.getTooltip = function ()

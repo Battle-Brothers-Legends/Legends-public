@@ -145,41 +145,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				0,
-				3
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				5,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Barbarian);
 	}
 
 	o.onAddEquipment = function ()

@@ -110,41 +110,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-4,
-				-2
-			],
-			Bravery = [
-				-10,
-				-5
-			],
-			Stamina = [
-				-10,
-				-10
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				1,
-				4
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Beggar);
 	}
 
 	o.onSetAppearance = function ()

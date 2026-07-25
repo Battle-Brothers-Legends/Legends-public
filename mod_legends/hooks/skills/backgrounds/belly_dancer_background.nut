@@ -90,41 +90,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				-5,
-				-5
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				7,
-				14
-			],
-			RangedSkill = [
-				5,
-				10
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				10,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.BellyDancer);
 	}
 
 	o.onUpdate <- function ( _properties )

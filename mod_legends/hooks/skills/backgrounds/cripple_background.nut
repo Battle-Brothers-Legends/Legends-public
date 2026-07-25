@@ -105,41 +105,7 @@
 
 	o.onChangeAttributes = function()
 	{
-		local c = {
-			Hitpoints = [
-				-10,
-				-7
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				-5,
-				0
-			],
-			MeleeSkill = [
-				-5,
-				0
-			],
-			RangedSkill = [
-				-5,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-15,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Cripple);
 	}
 
 	o.onSetAppearance = function()

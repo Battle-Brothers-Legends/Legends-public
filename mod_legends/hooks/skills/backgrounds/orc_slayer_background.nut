@@ -151,41 +151,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				10
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				10,
-				10
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-10,
-				-5
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.OrcSlayer);
 	}
 
 	o.onAdded = function ()

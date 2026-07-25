@@ -103,41 +103,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-2,
-				-3
-			],
-			Bravery = [
-				5,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				-2,
-				3
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				5,
-				8
-			],
-			Initiative = [
-				12,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Thief);
 	}
 
 	o.onAddEquipment = function ()

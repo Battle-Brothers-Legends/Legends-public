@@ -77,41 +77,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				5
-			],
-			Bravery = [
-				-2,
-				5
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				-2,
-				4
-			],
-			RangedSkill = [
-				-5,
-				5
-			],
-			MeleeDefense = [
-				-2,
-				4
-			],
-			RangedDefense = [
-				-2,
-				5
-			],
-			Initiative = [
-				5,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Vagabond);
 	}
 
 	o.onAddEquipment = function ()

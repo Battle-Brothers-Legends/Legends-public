@@ -107,81 +107,12 @@
 		return "{A minor noble | As the third in the line of succession | A young and brash %noble% | A skilled swords%person%}, %name%\'s life at court {had grown stale for %them% | was not exciting enough for %them% with endless studying of court etiquette and family lineage | felt like wasting the best time of %their% life | was not half as exciting to %them% as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of %their% brother | To the frustration of %their% mother | Finally making a decision to change things}, %name% rode out to {prove %themselves% | make a name for themselves | earn glory on the battlefield | test %their% skills in battle} and {live life to its fullest as %they% imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn %their% place in the world | be knighted for %their% valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
 	}
 
-	o.onChangeAttributes = function ()
-	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return {
-				Hitpoints = [
-					-1,
-					4
-				],
-				Bravery = [
-					15,
-					20
-				],
-				Stamina = [
-					0,
-					5
-				],
-				MeleeSkill = [
-					0,
-					5
-				],
-				RangedSkill = [
-					15,
-					25
-				],
-				MeleeDefense = [
-					-5,
-					3
-				],
-				RangedDefense = [
-					2,
-					5
-				],
-				Initiative = [
-					-2,
-					3
-				]
-			};
+	o.onChangeAttributes = function () {
+		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+			return ::Legends.Backgrounds.getStatsFemale(::Legends.Background.AdventurousNoble);
 		}
-		else
-		{
-			return {
-				Hitpoints = [
-					-1,
-					4
-				],
-				Bravery = [
-					15,
-					20
-				],
-				Stamina = [
-					0,
-					5
-				],
-				MeleeSkill = [
-					10,
-					15
-				],
-				RangedSkill = [
-					0,
-					10
-				],
-				MeleeDefense = [
-					3,
-					8
-				],
-				RangedDefense = [
-					-5,
-					-10
-				],
-				Initiative = [
-					-2,
-					-7
-				]
-			};
+		else {
+			return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble);
 		}
 	}
 

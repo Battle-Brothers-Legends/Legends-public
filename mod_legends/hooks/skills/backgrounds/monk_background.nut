@@ -115,40 +115,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		return {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				11,
-				11
-			],
-			Stamina = [
-				-10,
-				0
-			],
-			MeleeSkill = [
-				-5,
-				-5
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Monk);
 	}
 
 	o.onAddEquipment = function ()

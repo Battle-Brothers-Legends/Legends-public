@@ -108,41 +108,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-3,
-				-0
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				10,
-				12
-			],
-			RangedSkill = [
-				5,
-				5
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				20,
-				30
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Assassin);
 	}
 
 	o.onSetAppearance <- function ()

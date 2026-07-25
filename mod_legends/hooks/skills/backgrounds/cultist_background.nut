@@ -102,41 +102,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				-3,
-				5
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				-2,
-				8
-			],
-			MeleeSkill = [
-				-5,
-				5
-			],
-			RangedSkill = [
-				-5,
-				5
-			],
-			MeleeDefense = [
-				-5,
-				5
-			],
-			RangedDefense = [
-				-5,
-				5
-			],
-			Initiative = [
-				0,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Cultist);
 	}
 
 	o.onSetAppearance = function ()

@@ -89,41 +89,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				2,
-				5
-			],
-			Bravery = [
-				3,
-				7
-			],
-			Stamina = [
-				5,
-				7
-			],
-			MeleeSkill = [
-				5,
-				7
-			],
-			RangedSkill = [
-				0,
-				3
-			],
-			MeleeDefense = [
-				2,
-				4
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				1,
-				4
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Squire);
 	}
 
 	o.onUpdate <- function ( _properties )

@@ -91,41 +91,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				6
-			],
-			Bravery = [
-				7,
-				9
-			],
-			Stamina = [
-				3,
-				5
-			],
-			MeleeSkill = [
-				8,
-				12
-			],
-			RangedSkill = [
-				7,
-				14
-			],
-			MeleeDefense = [
-				4,
-				8
-			],
-			RangedDefense = [
-				-1,
-				-1
-			],
-			Initiative = [
-				5,
-				12
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Manhunter);
 	}
 
 	o.onAddEquipment = function ()
