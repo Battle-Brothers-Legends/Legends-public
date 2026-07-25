@@ -108,12 +108,7 @@
 	}
 
 	o.onChangeAttributes = function () {
-		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
-			return ::Legends.Backgrounds.getStatsFemale(::Legends.Background.AdventurousNoble);
-		}
-		else {
-			return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble);
-		}
+		return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble, this.isBackgroundType(this.Const.BackgroundType.Female));
 	}
 
 	o.onAddEquipment = function ()

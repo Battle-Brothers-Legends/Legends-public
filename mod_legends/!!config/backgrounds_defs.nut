@@ -25,14 +25,14 @@ if (!("Background" in ::Legends)) {
 	return ::Legends.Backgrounds.BackgroundDefObjects[_def].ID;
 }
 
-::Legends.Backgrounds.getStats <- function (_def) {
-    return ::Legends.BackgroundDefObjects[_def].Stats[0];
+::Legends.Backgrounds.getStats <- function (_def, _isFemale = false) {
+    if (_isFemale) { 
+        return ::Legends.BackgroundDefObjects[_def].Stats.top();
+    }
+    else {
+        return ::Legends.BackgroundDefObjects[_def].Stats[0];
+    }
 }
-
-::Legends.Backgrounds.getStatsFemale <- function (_def) {
-    return ::Legends.BackgroundDefObjects[_def].Stats[::Legends.BackgroundDefObjects[_def].Stats.len() - 1];
-}
-
 local backgroundDefs = [];
 
 ::Legends.Background.AdventurousNoble <- null;
