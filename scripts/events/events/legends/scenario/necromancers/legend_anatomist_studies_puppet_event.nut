@@ -64,9 +64,9 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				this.Characters.push(_event.m.Puppet.getImagePath());
 				this.Characters.push(_event.m.Anatomist.getImagePath());
 
-				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 0.5, "Studied a living cadaver")
+				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 0.5, "Studied a living cadaver");
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(30, 200)
+				local xp = this.Math.rand(30, 200);
 				foreach( bro in brothers )
 				{
 					_event.m.Anatomist.addXP(xp);
@@ -99,26 +99,31 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 			{
 				this.Characters.push(_event.m.Puppet.getImagePath());
 				this.Characters.push(_event.m.Anatomist.getImagePath());
-
 				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(280, 550)
-				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, -1.0, "Lost a finger in search of knowledge")
-				foreach( bro in brothers )
-				{
-					_event.m.Anatomist.addXP(xp);
-					_event.m.Anatomist.updateLevel();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/xp_received.png",
-						text = Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
-					});
+				local xp = this.Math.rand(280, 550);
+				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, -1.0, "Lost a finger in search of knowledge");
 
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/damage_received.png",
-						text = Anatomist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]"lost a finger"[/color]"
-					});
-				}
+				local injury = _event.m.Anatomist.addInjury([
+					{
+						ID = "injury.missing_finger",
+						Threshold = 0.0,
+						Script = "injury_permanent/missing_finger_injury"
+					}
+				]);
+
+				this.List.push({
+					id = 10,
+					icon = injury.getIcon(),
+					text = _event.m.Anatomist.getName() + " suffers " + injury.getNameOnly()
+				});
+
+				_event.m.Anatomist.addXP(xp);
+				_event.m.Anatomist.updateLevel();
+				this.List.push({
+					id = 16,
+					icon = "ui/icons/xp_received.png",
+					text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
+				});
 			}
 
 		});
@@ -140,9 +145,9 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Anatomist.getImagePath());
-				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 1.5, "Performed a study on the living dead")
-				local brothers = this.World.getPlayerRoster().getAll();
-				local xp = this.Math.rand(280, 550)
+				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 1.5, "Performed a study on the living dead");
+				this.List.push(::Legends.EventList.changeBroExperience(_event.m.Anatomist, ::rand(280, 550)));
+
 				foreach( bro in brothers )
 				{
 					_event.m.Anatomist.addXP(xp);
@@ -160,7 +165,7 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 			ID = "E", //kill zombie but get a ton of xp for everyone
 			Text = "[img]gfx/ui/events/event_63.png[/img]%anatomist%, with a sudden spring in their step, unfurls an array of tools that mix between medical and torture. They retreat to their tent, only to emerge with think gloves, a face covering and what you can only surmise as a butcher\'s apron. They find a spare table and set out an open air surgery in the middle of the camp. The rest of %companyname% orginally pays no notice, but keeps a curious eye on the excitement. You order %puppet% to shed it\'s armour and onto the table. To no surprise %anatomist% does not make any effort to put the creature out of it\'s misery for what comes next. \n\n%anatomist% starts at the legs, mumbling to themselves as a carpenter\'s saw bites into the dead flesh. %SPEECH%_ON%...and here, the damage from the weight of the armour is starting to show. The amount of weight needed to hold up itself and all that metal has caused the bone to come under stress...%SPEECH_OFF%%randombro% passes by, and is pulled into observing what is going on with a morbid curiosity. The surgeon does not pause. %SPEECH_ON%...over here — a similar story in the upper arms. In some places broken but still functional enough to swing or grab...%SPEECH_OFF%%anatomist% hands a part of %puppet%, who is calmly observing their own vivisection, to thr now growing crowd, who are nodding along.%SPEECH_ON%...and now...%SPEECH_OFF%The anatomist stops in their tracks as they cut open the chest. To you, all you see is a putrid mass of decayed organs in a slurry or jellied state. But to the trained eye, something seems amiss here. The silence is broken by a cleaver hacking violently at the neck of %puppet%, who offers no resistance aside from a gurgle. %anatomist% severs the head on the third swing which, still, refuses to die. After insepcting the still-living head as a washerwoman would a melon, the anatomist scoops out a black mucus from inside the throat from the wrong end. In doing this, the head spasams and falls silent. As they commit some notes, you see quite a crowd has formed, all of which seem to be visually dissecting the remains on the table.",
 			Image = "",
-			List = [],n
+			List = [],
 			Characters = [],
 			Options = [
 				{
@@ -176,8 +181,8 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				this.Characters.push(_event.m.Anatomist.getImagePath());
 
 				_event.m.Puppet.getItems().transferToStash(this.World.Assets.getStash());
-				this.World.getPlayerRoster().remove(_event.m.Puppet)
-				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 3.0, "Vivisected and throughly studied the living dead")
+				this.World.getPlayerRoster().remove(_event.m.Puppet);
+				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 3.0, "Vivisected and throughly studied the living dead");
 				local xp = ::Math.rand(390, 1700); //gain this xp
 				foreach (bro in ::World.getPlayerRoster().getAll())
 				{
@@ -186,17 +191,17 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 						this.List.push(::Legends.EventList.changeBroExperience(bro, xp));
 						::Legends.Traits.remove(::Legends.Trait.FearUndead);
 					}
-					this.List.push({
-						id = 11,
-						icon = "ui/icons/kills.png",
-						text = Puppet.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]" has been dismembered and met final death "[/color] "
-					});
-					this.List.push({
-						id = 11,
-						icon = "ui/icons/xp_received.png",
-						text = "Some of your company learned something."
-					});
 				}
+				this.List.push({
+					id = 11,
+					icon = "ui/icons/kills.png",
+					text = _event.m.Puppet.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]has been dismembered and met final death.[/color]"
+				});
+				this.List.push({
+					id = 11,
+					icon = "ui/icons/xp_received.png",
+					text = "Some of your company learned something, those afraid of undead are no longer afraid."
+				});
 			}
 		});
 	}
@@ -229,35 +234,31 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				continue;
 			}
 					//puppet must be lvl 7 or higher to justify the cost of the sacrifice
-			if (bro.getLevel() < 7 && bro.getBackground().getID() ==(::Legends.Background.LegendPuppet))
+			if (bro.getLevel() < 7 && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendPuppet))
 			{
 				candidates_puppet.push(bro);
 			}
 					//Anatomist cannot have missing finger already
-			else if (bro.getBackground().getID() == (::Legends.Background.Anatomist)) && (!bro.getSkills().hasSkill("injury.missing_finger"))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Anatomist) && (!bro.getSkills().hasSkill("injury.missing_finger"))
 			{
 				candidates_anatomist.push(bro);
 			}
 		}
 
 		if (candidates_puppet.len() == 0)
-		{
 			return;
-		}
 
-		this.m.Puppet = candidates_puppet[this.Math.rand(0, candidates_puppet.len() - 1)];
+		if (candidates_anatomist.len() == 0)
+			return;
 
-		if (candidates_anatomist.len() != 0)
-		{
-			this.m.Anatomist = candidates_anatomist[this.Math.rand(0, candidates_anatomist.len() - 1)];
-		}
+		this.m.Puppet = candidates_puppet[::Math.rand(0, candidates_puppet.len() - 1)];
+		this.m.Anatomist = candidates_anatomist[::Math.rand(0, candidates_anatomist.len() - 1)];
 
 		this.m.Score = candidates_puppet.len() * 8;
 	}
 
 	function onPrepare()
-	{
-	}
+	{}
 
 	function onPrepareVariables( _vars )
 	{

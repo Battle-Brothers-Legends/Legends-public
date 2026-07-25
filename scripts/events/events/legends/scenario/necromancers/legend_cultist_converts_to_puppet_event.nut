@@ -64,13 +64,13 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 					this.List.push({
 					id = 16,
 					icon = "ui/icons/kills.png",
-					text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]" has been reborn "[/color]"
+					text = _event.m.Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]has been reborn.[/color]"
 					});
 
 					this.List.push({
 						id = 16,
 						icon = "ui/icons/regular_damage.png",
-						text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength[/color]"
+						text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength![/color]"
 					});
 				}
 			}
@@ -93,11 +93,11 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 					this.List.push({
 					id = 16,
 					icon = "ui/icons/mood_02.png",
-					text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]" becomes upset "[/color]"
+					text = _event.m.Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]becomes upset[/color]"
 					});
 				}
 
-				local entry = ::Legends.EventList.changeMood(_event.m.Cultist, 1.5, "Was rejected from ascending")
+				local entry = ::Legends.EventList.changeMood(_event.m.Cultist, 1.5, "Was rejected from ascending");
 				this.Characters.push(_event.m.Cultist.getImagePath());
 			}
 		});
@@ -122,13 +122,14 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				continue;
 			}
 			//cultist must be lvl 9 or higher to justify the cost of the sacrifice
-			if (bro.getLevel() < 9 && bro.getBackground().getID() == (::Legends.Background.Cultist))
+			if (bro.getLevel() < 9 && ::Legends.Backgrounds.has(bro, ::Legends.Background.Cultist))
 			{
 				candidates_cultist.push(bro);
 			}
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		{
 			return;
 		}
 
