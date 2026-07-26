@@ -597,14 +597,14 @@ if (!("BackgroundsStats" in ::Legends)) {
 }];
 
 ::Legends.BackgroundsStats.Paladin <- [{
-	Hitpoints = [10, 6],
-	Bravery = [13, 16],
-	Stamina = [5, 10],
-	MeleeSkill = [5, 9],
-	RangedSkill = [3, 6],
-	MeleeDefense = [5, 7],
-	RangedDefense = [-10, -5],
-	Initiative = [13, 12]
+	Hitpoints = [8, 10],
+	Bravery = [14, 18],
+	Stamina = [9, 16],
+	MeleeSkill = [9, 13],
+	RangedSkill = [0, 0],
+	MeleeDefense = [8, 12],
+	RangedDefense = [-4, 1],
+	Initiative = [-15, -6]
 }];
 
 ::Legends.BackgroundsStats.Peddler <- [{
