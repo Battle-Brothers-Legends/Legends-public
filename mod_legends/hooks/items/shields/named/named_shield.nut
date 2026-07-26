@@ -43,21 +43,19 @@
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		local available = [];
-		_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
-		available.push(function ( _i )
-		{
+		available.push(function(_i) {
+			_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
+		});
+		available.push(function(_i) {
 			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
 		});
-		available.push(function ( _i )
-		{
+		available.push(function(_i) {
 			_i.m.RangedDefense = this.Math.round(_i.m.RangedDefense * this.Math.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
 		});
-		available.push(function ( _i )
-		{
+		available.push(function(_i) {
 			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - this.Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
 		});
-		available.push(function ( _i )
-		{
+		available.push(function(_i) {
 			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
 		});

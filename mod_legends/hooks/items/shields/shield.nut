@@ -119,7 +119,7 @@
 	}
 
 	o.getBlock <- function () {
-		this.m.getBlock();
+		return this.m.Block;
 	}
 
 	local onUpdateProperties = o.onUpdateProperties;
