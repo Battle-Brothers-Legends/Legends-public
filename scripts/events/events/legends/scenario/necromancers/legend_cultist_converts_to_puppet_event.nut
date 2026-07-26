@@ -17,7 +17,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				getResult = @(_event) "B"
 			}, {
 				Text = "Decline the wish.",
-				getResult = @(_event) "B"
+				getResult = @(_event) "C"
 			}],
 			function start(_event)
 			{

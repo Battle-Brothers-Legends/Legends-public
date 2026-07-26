@@ -26,43 +26,12 @@
 						});
 					}
 
-					_event.m.Dude.getBaseProperties().MeleeSkill += 12;
-					_event.m.Dude.getBaseProperties().MeleeDefense += 7;
-					_event.m.Dude.getBaseProperties().RangedDefense += 7;
-					_event.m.Dude.getBaseProperties().Hitpoints += 15;
-					_event.m.Dude.getBaseProperties().Stamina += 10;
-					_event.m.Dude.getBaseProperties().Initiative += 10;
-					_event.m.Dude.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_defense.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+7[/color] Melee Defense"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/ranged_defense.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+7[/color] Ranged Defense"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_skill.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+12[/color] Melee Skill"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/fatigue.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+10[/color] Max Fatigue"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/initiative.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+10[/color] Initiative"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/health.png",
-						text = _event.m.Dude.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+15[/color] Hitpoints"
-					});
+					this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Dude, 12));
+					this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.Dude, 7));
+					this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Dude, 7));
+					this.List.push(::Legends.EventList.changeHitpoints(_event.m.Dude, 15));
+					this.List.push(::Legends.EventList.changeFatigue(_event.m.Dude, 10));
+					this.List.push(::Legends.EventList.changeInitiative(_event.m.Dude, 10));
 				}
 			}
 		}

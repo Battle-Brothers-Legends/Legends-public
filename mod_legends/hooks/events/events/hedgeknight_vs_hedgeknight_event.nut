@@ -28,14 +28,9 @@
 					this.Characters.push(_event.m.HedgeKnight1.getImagePath());
 					this.Characters.push(_event.m.HedgeKnight2.getImagePath());
 
-					this.World.Assets.addMoney(-2000);
-					this.List = [{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]2000[/color] Crowns"
-					}];
-					local brothers = this.World.getPlayerRoster().getAll();
+					this.List.push(::Legends.EventList.changeMoney(-2000));
 
+					local brothers = this.World.getPlayerRoster().getAll();
 					foreach( bro in brothers ) {
 						if (bro.getID() == _event.m.HedgeKnight1.getID() || bro.getID() == _event.m.HedgeKnight2.getID())
 							continue;
@@ -77,28 +72,11 @@
 						text = _event.m.HedgeKnight1.getName() + " suffers " + injury.getNameOnly()
 					});
 
-					if (this.Math.rand(1, 2) == 1)
-					{
-						local v = this.Math.rand(1, 2);
-						_event.m.HedgeKnight1.getBaseProperties().MeleeSkill += v;
-						this.List.push({
-							id = 16,
-							icon = "ui/icons/melee_skill.png",
-							text = _event.m.HedgeKnight1.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + v + "[/color] Melee Skill"
-						});
+					if (this.Math.rand(1, 2) == 1) {
+						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.HedgeKnight1, ::Math.rand(1, 2)));
+					} else {
+						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.HedgeKnight1, ::Math.rand(1, 2)));
 					}
-					else
-					{
-						local v = this.Math.rand(1, 2);
-						_event.m.HedgeKnight1.getBaseProperties().MeleeDefense += v;
-						this.List.push({
-							id = 16,
-							icon = "ui/icons/melee_defense.png",
-							text = _event.m.HedgeKnight1.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + v + "[/color] Melee Defense"
-						});
-					}
-
-					_event.m.HedgeKnight1.getSkills().update();
 
 					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				}
@@ -124,28 +102,11 @@
 						text = _event.m.HedgeKnight2.getName() + " suffers " + injury.getNameOnly()
 					});
 
-					if (this.Math.rand(1, 2) == 1)
-					{
-						local v = this.Math.rand(1, 2);
-						_event.m.HedgeKnight2.getBaseProperties().MeleeSkill += v;
-						this.List.push({
-							id = 16,
-							icon = "ui/icons/melee_skill.png",
-							text = _event.m.HedgeKnight2.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + v + "[/color] Melee Skill"
-						});
+					if (this.Math.rand(1, 2) == 1) {
+						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.HedgeKnight2, ::Math.rand(1, 2)));
+					} else {
+						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.HedgeKnight2, ::Math.rand(1, 2)));
 					}
-					else
-					{
-						local v = this.Math.rand(1, 2);
-						_event.m.HedgeKnight2.getBaseProperties().MeleeDefense += v;
-						this.List.push({
-							id = 16,
-							icon = "ui/icons/melee_defense.png",
-							text = _event.m.HedgeKnight2.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + v + "[/color] Melee Defense"
-						});
-					}
-
-					_event.m.HedgeKnight2.getSkills().update();
 
 					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				}
@@ -156,16 +117,9 @@
 				{
 					this.Characters.push(_event.m.Monk.getImagePath());
 
-					if (!_event.m.Monk.getFlags().has("resolve_via_hedgeknight"))
-					{
+					if (!_event.m.Monk.getFlags().has("resolve_via_hedgeknight")) {
 						_event.m.Monk.getFlags().add("resolve_via_hedgeknight");
-						_event.m.Monk.getBaseProperties().Bravery += 2;
-						_event.m.Monk.getSkills().update();
-						this.List = [{
-							id = 16,
-							icon = "ui/icons/bravery.png",
-							text = _event.m.Monk.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+3[/color] Resolve"
-						}];
+						this.List.push(::Legends.EventList.changeResolve(_event.m.Monk, 2));
 					}
 					this.List.push(::Legends.EventList.changeMoralReputation(2));
 				}

@@ -16,12 +16,9 @@
 				s.Options[0].Text = "Don\'t get too used to this kind of work, mercenaries.";
 				s.start <- function ( _event ) {
 					this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationFavor, "You lend some help to build a mill");
-					this.World.Assets.addMoney(150);
-					this.List = [{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]150[/color] Crowns"
-					}];
+
+					this.List.push(::Legends.EventList.changeMoney(150));
+
 					local brothers = this.World.getPlayerRoster().getAll();
 					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 					foreach( bro in brothers )

@@ -107,13 +107,7 @@
 				if (_event.m.Wildman != null && _event.m.Berserker == null)
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
-
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 				this.List.push(::Legends.EventList.changeMoralReputation(2));
 			}
 		});
@@ -124,13 +118,10 @@
 				getResult = @(_event) 0
 			}];
 			_screen.start <- function ( _event ) {
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
 				this.Characters.push(_event.m.Wildman.getImagePath());
+
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
+
 				_event.m.Wildman.getBaseProperties().DailyWage -= this.Math.floor(_event.m.Wildman.getDailyCost() / 4);
 				_event.m.Wildman.getSkills().update();
 				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
@@ -189,12 +180,8 @@
 				if (_event.m.Wildman != null && _event.m.Berserker == null)
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
+
 				local brothers = this.World.getPlayerRoster().getAll();
 				foreach( bro in brothers ) {
 					if (bro.getBackground().isCombatBackground() && this.Math.rand(1, 100) <= 33)
@@ -225,13 +212,10 @@
 				}
 			}],
 			function start( _event ) {
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
 				this.Characters.push(_event.m.Berserker.getImagePath());
+
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
+
 				_event.m.Berserker.getBaseProperties().DailyWage -= this.Math.floor(_event.m.Berserker.getDailyCost() / 4);
 				_event.m.Berserker.getSkills().update();
 				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
@@ -291,12 +275,7 @@
 				if (_event.m.Wildman != null && _event.m.Berserker == null)
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
-				this.World.Assets.addMoney(-_event.m.Compensation);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Compensation + "[/color] Crowns"
-				});
+				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 				this.List.push(::Legends.EventList.changeMoralReputation(2));
 			}
 		});

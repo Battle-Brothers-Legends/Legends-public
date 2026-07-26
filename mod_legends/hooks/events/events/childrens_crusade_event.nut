@@ -114,14 +114,7 @@
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Doubter.getImagePath());
-				local resolve = this.Math.rand(1, 2);
-				_event.m.Doubter.getBaseProperties().Bravery += resolve;
-				_event.m.Doubter.getSkills().update();
-				this.List.push({
-					id = 16,
-					icon = "ui/icons/bravery.png",
-					text = _event.m.Doubter.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + resolve + "[/color] Resolve"
-				});
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Doubter, ::Math.rand(1, 2)));
 				_event.m.Doubter.improveMood(1.0, "Saved some children from certain doom");
 
 				if (_event.m.Doubter.getMoodState() >= this.Const.MoodState.Neutral) {

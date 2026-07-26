@@ -296,6 +296,7 @@
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
+- added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
 - defs created for backgrounds
 - background_stats created for background stat rolls and migrated them from bgs
 - changed background.legend_peddler_commander -> background.legend_commander_peddler

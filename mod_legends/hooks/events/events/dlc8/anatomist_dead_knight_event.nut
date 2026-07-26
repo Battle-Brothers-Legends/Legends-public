@@ -105,7 +105,7 @@
 					this.List.push({
 						id = 16,
 						icon = "ui/icons/xp_received.png",
-						text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+200[/color] Experience"
+						text = _event.m.Anatomist.getName() + " gains [color=%positiveEvent%]+200[/color] Experience"
 					});
 				}
 			}

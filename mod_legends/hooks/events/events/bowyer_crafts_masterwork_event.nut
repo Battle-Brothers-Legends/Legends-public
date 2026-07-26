@@ -25,12 +25,9 @@
 				s.start = function ( _event )
 				{
 					this.Characters.push(_event.m.Bowyer.getImagePath());
-					this.World.Assets.addMoney(-500);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-					});
+
+					this.List.push(::Legends.EventList.changeMoney(-500));
+
 					local stash = this.World.Assets.getStash().getItems();
 
 					foreach( i, item in stash )
@@ -83,14 +80,10 @@
 			}],
 			function start( _event ) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
-				this.World.Assets.addMoney(-500);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
 
+				this.List.push(::Legends.EventList.changeMoney(-500));
+
+				local stash = this.World.Assets.getStash().getItems();
 				foreach( i, item in stash ) {
 					if (item != null && item.getID() == "misc.quality_wood") {
 						stash[i] = null;

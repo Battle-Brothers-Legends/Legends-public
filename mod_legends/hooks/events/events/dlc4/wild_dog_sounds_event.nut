@@ -71,24 +71,15 @@
 				s.Text = "[img]gfx/ui/events/event_14.png[/img]{It does appear the mercenaries will not be assuaged by telling them to grow a pair. %hunter% elects to go seek out the noise, sure it\'s nothing more than the wild dogs squabbling over primacy over the pack. You agree, the archer venturing into the dark all alone. Just as soon as the outline is gone the canines cease their crying and you hear a growl that seems as though it came from a much higher ground. The whole camp is dead silent, daring not to even move.\n\n An hour later and the hunter walks into camp, nobody having heard the archer come in. The hunter is camouflaged in mud slaked with twigs and leaves. %hunter%\'s grafted stems into a hood, worn like some arboreal abbess. With hushed tones, the sellswords ask what it was. With a shrug the reply comes.%SPEECH_ON%Well. I seen about a dozen dead dogs. Some ripped apart. Found a few in the pit of very large footprints and they\'d not found the print but had been stomped there, you know. And I saw something move along in the shadows between the tree tops and it went the other way and I did not follow. I found a deer dead on its feet leaning against a tree. Heart faltered by whatever it saw, I suppose. I harvested everything I could.%SPEECH_OFF%The hunter turns and slings forward a rack of meat strung to a paneling of wood and leaves.%SPEECH_ON%Anyone hungry?%SPEECH_OFF%} ";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Hunter.getImagePath());
-					local item = this.new("scripts/items/supplies/cured_venison_item");
-					local item = this.new("scripts/items/supplies/cured_venison_item");
-					this.World.Assets.getStash().add(item);
-					this.List.push({
-						id = 10,
-						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + item.getName()
-					});
-					_event.m.Hunter.getBaseProperties().Bravery += 1;
-					_event.m.Hunter.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Hunter.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Resolve"
-					});
-					local brothers = this.World.getPlayerRoster().getAll();
 
-					foreach( bro in brothers ) {
+					this.List.push(::Legends.EventList.addItems([
+						::new("scripts/items/supplies/cured_venison_item"),
+						::new("scripts/items/supplies/cured_venison_item")
+					], ::World.Assets.getStash()));
+
+					this.List.push(::Legends.EventList.changeResolve(_event.m.Hunter, 1));
+
+					foreach( bro in ::World.getPlayerRoster().getAll()) {
 						if (::Legends.Backgrounds.hasAny(bro,
 							::Legends.Background.Hunter,
 							::Legends.Background.Poacher,
@@ -123,15 +114,10 @@
 				s.Text = "[img]gfx/ui/events/event_33.png[/img]{You look about the company. A young %recruit% looks back. They look down, as though to look within themself, and then hurriedly gets to their feet.%SPEECH_ON%Say no more, captain. I will find out what this disturbance is.%SPEECH_OFF%The fresh recruit gathers their things and then stands at the edge of the camp\'s light, a very dark forest looking back at them. The mercenary stares down again and clenches and unclenches their hands. %recruit% huffs and then steps forth, immediately slipping into the shadows. Hours pass. Finally, %recruit% returns. Their clothes are in tatters. Weapons are gone.  Spitting forth story after story. Magic rings, volcanoes, giant eagles, absolute nonsense. Whatever %recruit% saw, it\'s clear the blubbering sellsword needs to clear their head with some well earned beauty sleep. Which the\'ll get since all that awful noise has ceased.}";
 				s.start <- function( _event ) {
 					this.Characters.push(_event.m.Expendable.getImagePath());
-					_event.m.Expendable.addXP(200, false);
-					_event.m.Expendable.updateLevel();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/xp_received.png",
-						text = _event.m.Expendable.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+200[/color] Experience"
-					});
-					_event.m.Expendable.improveMood(3.0, "Had an excellent adventure");
 
+					this.List.push(::Legends.EventList.changeBroExperience(_event.m.Expendable, 200));
+
+					_event.m.Expendable.improveMood(3.0, "Had an excellent adventure");
 					if (_event.m.Expendable.getMoodState() >= this.Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,

@@ -79,13 +79,7 @@
 						stash.push(item);
 					}
 				}
-
-				this.World.Assets.addMoney(-100);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]100[/color] Crowns"
-				});
+				this.List.push(::Legends.EventList.changeMoney(-100));
 
 				foreach( i, item in stash )
 				{

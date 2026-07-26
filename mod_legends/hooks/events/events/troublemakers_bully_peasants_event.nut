@@ -47,18 +47,13 @@
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
 
 				this.List.push(::Legends.EventList.changeMoralReputation(-5));
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(100, 500)));
 
 				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
 				f.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You pillaged the town");
-				local money = this.Math.rand(100, 500);
-				this.World.Assets.addMoney(money);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
-				});
-				local brothers = this.World.getPlayerRoster().getAll();
 
+
+				local brothers = this.World.getPlayerRoster().getAll();
 				foreach( bro in brothers )
 				{
 					if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))

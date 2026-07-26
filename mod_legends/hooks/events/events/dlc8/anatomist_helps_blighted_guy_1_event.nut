@@ -65,7 +65,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]65[/color] Crowns"
+					text = "You gain [color=%positiveEvent%]65[/color] Crowns"
 				});
 
 				if (::Math.rand(1, 100) < 75) {

@@ -21,23 +21,10 @@
 						icon = "ui/icons/relation.png",
 						text = _event.m.Monk1.getName() + " and " + _event.m.Monk2.getName() + " grow distant"
 					});
+					this.List.push(::Legends.EventList.changeResolve(_event.m.Monk1, 1));
+					this.List.push(::Legends.EventList.changeResolve(_event.m.Monk2, 1));
 
-					_event.m.Monk1.getBaseProperties().Bravery += 1;
-					_event.m.Monk1.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Monk1.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Resolve"
-					});
-					_event.m.Monk2.getBaseProperties().Bravery += 1;
-					_event.m.Monk2.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Monk2.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+1[/color] Resolve"
-					});
 					_event.m.Monk1.worsenMood(1.0, "Lost composure and resorted to violence");
-
 					if (_event.m.Monk1.getMoodState() < this.Const.MoodState.Neutral)
 					{
 						this.List.push({

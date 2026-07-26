@@ -45,12 +45,6 @@ this.legend_legendary_locations_check_event <- this.inherit("scripts/events/even
                     txt = txt + "\n\nIf you're not concerned about them, you can continue playing.";
                     this.Text = txt
                 }
-
-	            this.List.push({
-		            id = 10,
-		            icon = "ui/icons/xp_received.png",
-		            text = " gains [color=%positiveEvent%]" + _value + "[/color] Experience"
-	            })
             }
         });
     }

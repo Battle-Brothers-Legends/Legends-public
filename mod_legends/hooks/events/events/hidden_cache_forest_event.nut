@@ -6,13 +6,9 @@
 			_screen.Text = "[img]gfx/ui/events/event_25.png[/img]The forest is no friend of man which is why men of ill-repute sure love to put their keepsakes there. And today you\'ve stumbled across one: a cache that %otherbrother% found by way of stubbing %their_otherbrother% toe on the edge of it. Digging out the crate and cracking it open, you find an assortment of weapons, armor, and gold. You clap the sellsword on the shoulder and thank him for %their_otherbrother% \'hard work\'. %They_otherbrother% wags %their_otherbrother% boot around.%SPEECH_ON%Yessir, I\'ve got a toe like the nose of a bloodhound.%SPEECH_OFF%",
 			_screen.start <- function ( _event ) {
 				this.Characters.push(_event.m.Otherbrother.getImagePath());
-				local money = this.Math.rand(30, 150);
-				this.World.Assets.addMoney(money);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
-				});
+
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(30, 150)));
+
 				local r = this.Math.rand(1, 8);
 				local item;
 

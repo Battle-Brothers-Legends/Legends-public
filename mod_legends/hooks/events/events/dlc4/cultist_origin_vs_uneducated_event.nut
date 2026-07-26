@@ -16,7 +16,6 @@
 					_event.m.Uneducated.getBackground().m.RawDescription += " " + _event.m.Cultist.getName() + " helped " + _event.m.Uneducated.getName() + " see the darkness.";
 					_event.m.Uneducated.getBackground().buildDescription(true);
 					_event.m.Uneducated.getBaseProperties().DailyWage -= _event.m.Uneducated.getDailyCost() / 2;
-					_event.m.Uneducated.getBaseProperties().MeleeSkill += 10;
 					_event.m.Uneducated.getSkills().update();
 
 					this.List = [{
@@ -24,19 +23,8 @@
 						icon = _event.m.Uneducated.getBackground().getIcon(),
 						text = _event.m.Uneducated.getName() + " has been converted to a Cultist"
 					}];
-
-					_event.m.Cultist.getBaseProperties().Bravery += 2;
-					_event.m.Cultist.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Cultist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+2[/color] Resolve"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_skill.png",
-						text = _event.m.Uneducated.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+10[/color] Melee Skill"
-					});
+					this.List.push(::Legends.EventList.changeResolve(_event.m.Cultist, 2));
+					this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Uneducated, 10));
 				}
 			}
 			if (s.ID == "C") {

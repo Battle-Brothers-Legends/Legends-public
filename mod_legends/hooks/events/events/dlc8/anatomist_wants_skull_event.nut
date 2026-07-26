@@ -34,21 +34,9 @@
 						});
 					}
 
-					_event.m.Anatomist.addXP(100, false);
-					_event.m.Anatomist.updateLevel();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/xp_received.png",
-						text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+100[/color] Experience"
-					});
-					local initiativeBoost = this.Math.rand(2, 4);
-					_event.m.Thief.getBaseProperties().Initiative += initiativeBoost;
-					_event.m.Thief.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/initiative.png",
-						text = _event.m.Thief.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + initiativeBoost + "[/color] Initiative"
-					});
+					this.List.push(::Legends.EventList.changeBroExperience(_event.m.Anatomist, 100));
+					this.List.push(::Legends.EventList.changeInitiative(_event.m.Thief, ::Math.rand(2, 4)));
+
 					local item;
 					local weaponList = [
 						"militia_spear",

@@ -2,41 +2,34 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "B") {
-				s.start <- function (_event) {
-					this.Characters.push(_event.m.Cultist.getImagePath());
-					this.Characters.push(_event.m.Uneducated.getImagePath());
+		::Legends.Screens.hook(this, "B", function(_screen) {
+			_screen.start <- function (_event) {
+				this.Characters.push(_event.m.Cultist.getImagePath());
+				this.Characters.push(_event.m.Uneducated.getImagePath());
 
-					this.List.push(::Legends.EventList.changeMoralReputation(-1));
+				this.List.push(::Legends.EventList.changeMoralReputation(-1));
 
-					_event.m.Uneducated.getBackground().Convert();
-					_event.m.Uneducated.getBackground().m.RawDescription += " " + _event.m.Cultist.getName() + " helped " + _event.m.Uneducated.getName() + " see the darkness.";
-					_event.m.Uneducated.getBackground().buildDescription(true);
-					_event.m.Uneducated.getSkills().update();
-					//set relations
-					this.List = [{
-						id = 13,
-						icon = _event.m.Uneducated.getBackground().getIcon(),
-						text = _event.m.Uneducated.getName() + " has been converted to a Cultist"
-					}];
-					_event.m.Cultist.getBaseProperties().Bravery += 2;
-					_event.m.Cultist.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Cultist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+2[/color] Resolve"
-					});
-				}
+				_event.m.Uneducated.getBackground().Convert();
+				_event.m.Uneducated.getBackground().m.RawDescription += " " + _event.m.Cultist.getName() + " helped " + _event.m.Uneducated.getName() + " see the darkness.";
+				_event.m.Uneducated.getBackground().buildDescription(true);
+				_event.m.Uneducated.getSkills().update();
+				//set relations
+				this.List = [{
+					id = 13,
+					icon = _event.m.Uneducated.getBackground().getIcon(),
+					text = _event.m.Uneducated.getName() + " has been converted to a Cultist"
+				}];
+
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Cultist, 2));
 			}
-			if (s.ID == "C") {
-				local start = s.start;
-				s.start <- function (_event) {
-					this.List.push(::Legends.EventList.changeMoralReputation(2));
-					start(_event);
-				}
+		});
+		::Legends.Screens.hook(this, "B", function(_screen) {
+			local start = _screen.start;
+			_screen.start <- function (_event) {
+				this.List.push(::Legends.EventList.changeMoralReputation(2));
+				start(_event);
 			}
-		}
+		});
 	}
 
 	o.onUpdateScore = function () {

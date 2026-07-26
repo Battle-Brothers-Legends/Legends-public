@@ -10,7 +10,7 @@
 						this.List.push({
 							id = 10,
 							icon = "ui/icons/asset_medicine.png",
-							text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]-2[/color] Medical Supplies."
+							text = "You lose [color=%negativeEvent%]-2[/color] Medical Supplies."
 						});
 					}
 

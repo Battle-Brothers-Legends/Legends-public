@@ -13,12 +13,9 @@
 				s.Text = "[img]gfx/ui/events/event_05.png[/img]%peddler% makes off and you tend to other business for the day.\n\nAs you step out of your tent hours later, you see a slumped shape in the distance, steadily heading your way. It appears to be the peddler, carrying nothing but a frown. As %peddler% gets closer, you begin to see the bruises that dot their body. %peddler% explains that while managing to purchase the goods from the source, the actual townspeople weren\'t particularly warm to the selling tactics.\n\nWhat money was invested has been lost and %peddler% heads to a tent to nurse those wounds.";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Peddler.getImagePath());
-					this.World.Assets.addMoney(-500);
-					this.List = [{
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-					}];
+
+					this.List.push(::Legends.EventList.changeMoney(-500));
+
 					_event.m.Peddler.addLightInjury();
 					this.List.push({
 						id = 10,

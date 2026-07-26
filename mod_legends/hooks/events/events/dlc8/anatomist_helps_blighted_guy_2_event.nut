@@ -27,55 +27,14 @@
 						});
 					}
 
-					_event.m.MilitiaCaptain.getBaseProperties().MeleeDefense += 4;
-					_event.m.MilitiaCaptain.getBaseProperties().RangedDefense += 4;
-					_event.m.MilitiaCaptain.getBaseProperties().MeleeSkill += 8;
-					_event.m.MilitiaCaptain.getBaseProperties().RangedSkill += 7;
-					_event.m.MilitiaCaptain.getBaseProperties().Stamina += 3;
-					_event.m.MilitiaCaptain.getBaseProperties().Initiative += 6;
-					_event.m.MilitiaCaptain.getBaseProperties().Bravery += 12;
-					_event.m.MilitiaCaptain.getBaseProperties().Hitpoints += 5;
-					_event.m.MilitiaCaptain.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_defense.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+4[/color] Melee Defense"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/ranged_defense.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+4[/color] Ranged Defense"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_skill.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+8[/color] Melee Skill"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/ranged_skill.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+7[/color] Ranged Skill"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/fatigue.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+3[/color] Max Fatigue"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/initiative.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+6[/color] Initiative"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+12[/color] Resolve"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/health.png",
-						text = _event.m.MilitiaCaptain.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+5[/color] Hitpoints"
-					});
+					this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.MilitiaCaptain, 4));
+					this.List.push(::Legends.EventList.changeRangedDefense(_event.m.MilitiaCaptain, 4));
+					this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.MilitiaCaptain, 8));
+					this.List.push(::Legends.EventList.changeRangedSkill(_event.m.MilitiaCaptain, 7));
+					this.List.push(::Legends.EventList.changeFatigue(_event.m.MilitiaCaptain, 3));
+					this.List.push(::Legends.EventList.changeInitiative(_event.m.MilitiaCaptain, 6));
+					this.List.push(::Legends.EventList.changeResolve(_event.m.MilitiaCaptain, 12));
+					this.List.push(::Legends.EventList.changeHitpoints(_event.m.MilitiaCaptain, 5));
 				}
 			}
 		}

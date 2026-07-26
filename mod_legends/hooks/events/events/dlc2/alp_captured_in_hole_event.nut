@@ -41,28 +41,16 @@
 
 			function start( _event ) {
 				this.Characters.push(_event.m.Guildmaster.getImagePath());
-				this.World.Assets.addMoney(350);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]350[/color] Crowns"
-				});
-				local item = this.new("scripts/items/misc/parched_skin_item");
-				local item = this.new("scripts/items/weapons/pike");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + item.getName()
-				});
+
+				this.List.push(::Legends.EventList.changeMoney(350));
+				this.List.extend(::Legends.EventList.addItems([
+					::new("scripts/items/misc/parched_skin_item"),
+					::new("scripts/items/weapons/pike")
+				], ::World.Assets.getStash()));
+
 				_event.m.Guildmaster.improveMood(1.0, "Dealt with an Alp");
-				_event.m.Guildmaster.getBaseProperties().Bravery += 5;
-				_event.m.Guildmaster.getSkills().update();
-				this.List.push({
-					id = 16,
-					icon = "ui/icons/bravery.png",
-					text = _event.m.Guildmaster.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+3[/color] Resolve"
-				});
+
+				this.List.push(::Legends.EventList.changeResolve(_event.m.Guildmaster, 5));
 			}
 		});
 	}

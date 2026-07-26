@@ -44,12 +44,7 @@
 						imageOverlayPath = item.getIconOverlay(),
 						text = "You gain " + item.makeName()
 					});
-					this.World.Assets.addMoney(-9000);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]9,000[/color] Crowns"
-					});
+					this.List.push(::Legends.EventList.changeMoney(-9000));
 				}
 			}
 			if (s.ID == "Oathtaker") {

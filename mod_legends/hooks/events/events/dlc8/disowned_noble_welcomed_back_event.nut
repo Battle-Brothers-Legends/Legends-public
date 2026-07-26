@@ -31,35 +31,10 @@
 						text = _event.m.Disowned.getName() + " is now a Regent in Absentia"
 					}];
 
-					local resolve_boost = this.Math.rand(10, 15);
-					local initiative_boost = this.Math.rand(6, 10);
-					local melee_defense_boost = this.Math.rand(2, 4);
-					local ranged_defense_boost = this.Math.rand(3, 5);
-					_event.m.Disowned.getBaseProperties().Bravery += resolve_boost;
-					_event.m.Disowned.getBaseProperties().Initiative += initiative_boost;
-					_event.m.Disowned.getBaseProperties().MeleeDefense += melee_defense_boost;
-					_event.m.Disowned.getBaseProperties().RangedDefense += ranged_defense_boost;
-					_event.m.Disowned.getSkills().update();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/bravery.png",
-						text = _event.m.Disowned.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + resolve_boost + "[/color] Resolve"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/initiative.png",
-						text = _event.m.Disowned.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + initiative_boost + "[/color] Initiative"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/melee_defense.png",
-						text = _event.m.Disowned.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + melee_defense_boost + "[/color] Melee Defense"
-					});
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/ranged_defense.png",
-						text = _event.m.Disowned.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + ranged_defense_boost + "[/color] Ranged Defense"
-					});
+					this.List.push(::Legends.EventList.changeResolve(_event.m.Disowned, ::Math.rand(10, 15)));
+					this.List.push(::Legends.EventList.changeInitiative(_event.m.Disowned, ::Math.rand(6, 10)));
+					this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.Disowned, ::Math.rand(2, 4)));
+					this.List.push(::Legends.EventList.changeRangedDefense(_event.m.Disowned, ::Math.rand(3, 5)));
 				}
 			}
 			if (s.ID == "D") {

@@ -10,7 +10,7 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_supplies.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + amount + "[/color] Tools and Supplies."
+						text = "You gain [color=%positiveEvent%]+" + amount + "[/color] Tools and Supplies."
 					});
 					local brothers = this.World.getPlayerRoster().getAll();
 

@@ -10,33 +10,14 @@
 		});
 		::Legends.Screens.hook(this, "Robbing", function(_screen) {
 			_screen.start <- function ( _event ) {
-				local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]);
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					imageOverlayPath = item.getIconOverlay(),
-					text = "You gain " + item.makeName()
-				});
-				item = this.new("scripts/items/weapons/lute");
-				this.World.Assets.getStash().add(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
-				});
-				item = this.Math.rand(50, 200);
-				this.World.Assets.addMoney(item);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + item + "[/color] Crowns"
-				});
-
 				this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(50, 200)));
+				this.List.extend(::Legends.EventList.addItems([
+					::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]),
+					::new("scripts/items/weapons/lute")
+				], ::World.Assets.getStash()));
 
 				local brothers = this.World.getPlayerRoster().getAll();
-
 				foreach( bro in brothers ) {
 					if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Raider)) {
 						bro.improveMood(1.0, "Enjoyed beating up a traveling troupe");
