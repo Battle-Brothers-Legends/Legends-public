@@ -52,7 +52,7 @@
 			foreach (tooltip in result) {
 				if (("text" in tooltip) && typeof tooltip.text == "string") {
 					if (tooltip.text.find("Is empty and useless") != null) {
-						tooltip.text = "[color=" + ::Const.UI.Color.NegativeValue + "]Has no spare ammunition[/color]";
+						tooltip.text = "[color=%negative%]Has no spare ammunition[/color]";
 						break;
 					}
 				}

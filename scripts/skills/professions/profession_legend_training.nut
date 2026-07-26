@@ -10,7 +10,7 @@ this.profession_legend_training <- this.inherit("scripts/skills/legend_professio
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = "[color=" + ::Const.UI.Color.PositiveValue + "]10%[/color] increased personal Training skill."
+				text = "[color=%positive%]10%[/color] increased personal Training skill."
 			}];
 	}
 });

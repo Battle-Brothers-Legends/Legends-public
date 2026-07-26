@@ -17,7 +17,7 @@ this.profession_legend_highwayman <- this.inherit("scripts/skills/legend_profess
 				id = 11,
 				type = "text",
 				icon = "ui/icons/plus.png"
-				text = "Current: [color=" + ::Const.UI.Color.PositiveValue + "]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color] baseline"
+				text = "Current: [color=%positive%]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 0)) * 100 + "%[/color] baseline"
 			},
 		];
 
@@ -26,7 +26,7 @@ this.profession_legend_highwayman <- this.inherit("scripts/skills/legend_profess
 				id = 12,
 				type = "text",
 				icon = "ui/icons/level_dark.png"
-				text = "Next: [color=" + ::Const.UI.Color.PositiveValue + "]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color] baseline"
+				text = "Next: [color=%positive%]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color] baseline"
 			});
 		}
 	}
