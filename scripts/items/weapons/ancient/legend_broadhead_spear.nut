@@ -37,7 +37,7 @@ this.legend_broadhead_spear <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowJavelin, function (_skill) {
-			_skill.m.IsBackupSpear = true;
+//			_skill.m.IsBackupSpear = true;
 		}.bindenv(this));
 	}
 
