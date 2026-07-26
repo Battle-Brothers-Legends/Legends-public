@@ -2,7 +2,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Backgrounds <- {};
 }
 
-::Legends.Backgrounds.getContainer <- function (_target, _onError = "") {
+::Legends.Backgrounds.getContainer <- function(_target, _onError = "") {
 	if (_target == null) {
 		::logError("_target == null " + _onError);
 		throw "_target == null";
@@ -41,7 +41,7 @@ if (!("Backgrounds" in ::Legends)) {
  *
  * Returns newly added skill
  */
-::Legends.Backgrounds.grant <- function (_target, _def, _applyFn = null) {
+::Legends.Backgrounds.grant <- function(_target, _def, _applyFn = null) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on grant");
 	local skillDef = ::Legends.Backgrounds.BackgroundDefObjects[_def];
 
@@ -81,7 +81,7 @@ if (!("Backgrounds" in ::Legends)) {
 	return skill;
 }
 
-::Legends.Backgrounds.get <- function (_target, _def) {
+::Legends.Backgrounds.get <- function(_target, _def) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on get");
 	local id = ::Legends.Backgrounds.getID(_def);
 	if (container.hasSkill(id)) {
@@ -90,36 +90,55 @@ if (!("Backgrounds" in ::Legends)) {
 	return null;
 }
 
-::Legends.Backgrounds.getName <- function (_def) {
+::Legends.Backgrounds.getName <- function(_def) {
 	return ::Legends.Backgrounds.BackgroundDefObjects[_def].Name;
 }
 
-::Legends.Backgrounds.has <- function (_target, _def) {
+::Legends.Backgrounds.has <- function(_target, _def) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on has");
 	if (container.getBackground() == null)
 		return false;
 	return container.getBackground().getID() == ::Legends.Backgrounds.getID(_def);
 }
 
-::Legends.Backgrounds.hasAny <- function (_target, ...) {
+::Legends.Backgrounds.hasAny <- function(_target, ...) {
 	local arr = vargv;
 	if (typeof vargv[0] == "array")
 		arr = vargv[0];
 	return ::Legends.S.any(arr, @(_def) ::Legends.Backgrounds.has(_target, _def));
 }
 
-::Legends.Backgrounds.remove <- function (_target, _def) {
+::Legends.Backgrounds.remove <- function(_target, _def) {
 	local container = ::Legends.Backgrounds.getContainer(_target, "on remove");
 	container.removeByID(::Legends.Backgrounds.getID(_def));
 }
 
-::Legends.Backgrounds.new <- function (_def) {
+::Legends.Backgrounds.new <- function(_def) {
 	return ::new(::Legends.Backgrounds.BackgroundDefObjects[_def].Script);
 }
 
-::Legends.Backgrounds.onCreate <- function (_target, _def) {
+::Legends.Backgrounds.onCreate <- function(_target, _def) {
 	local fn = "onCreate";
 	local defs = ::Legends.Backgrounds.BackgroundDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;
+}
+
+::Legends.Backgrounds.getStats <- function(_def, _isFemale = false) {
+	local name = ::Legends.Backgrounds.BackgroundDefObjects[_def].Const;
+	if (!(name in ::Legends.BackgroundsStats)) {
+		::logError(name + " missing in ::Legends.BackgroundsStats, using default");
+		return {
+			Hitpoints = [0, 0],
+			Bravery = [0, 0],
+			Stamina = [0, 0],
+			MeleeSkill = [0, 0],
+			RangedSkill = [0, 0],
+			MeleeDefense = [0, 0],
+			RangedDefense = [0, 0],
+			Initiative = [0, 0]
+		};
+	}
+	local stats = ::Legends.BackgroundsStats[name];
+	return _isFemale ? stats.top() : stats[0];
 }

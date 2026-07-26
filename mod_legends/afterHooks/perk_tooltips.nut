@@ -74,3 +74,9 @@
 }
 
 ::Legends.updatePerkGroupTooltips();
+
+// call to check if crashes
+foreach (def in ::Legends.Background) {
+	if (def != null)
+		::Legends.Backgrounds.getStats(def);
+}
