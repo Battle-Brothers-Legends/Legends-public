@@ -14,10 +14,10 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 			Characters = [],
 			Options = [{
 				Text = "Grant the wish.",
-				getResult = @(_event) "B"
+				getResult = @(_event) "A"
 			}, {
 				Text = "Decline the wish.",
-				getResult = @(_event) "C"
+				getResult = @(_event) "B"
 			}],
 			function start(_event)
 			{
@@ -26,7 +26,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 
 		});
 		this.m.Screens.push({ //— \n |
-			ID = "B", //become puppet
+			ID = "A", //become puppet
 			Text = "[img]gfx/ui/events/event_140.png[/img]%cultist% is overjoyed — So overjoyed in fact that they take a knife from a table and cut their own throat open. \n\nAs they lay there. Bleeding. Dead. A thought crosses your mind. You have usually settled for scraps and corpses in much worse states than this. If you acted now and raised %cultist%, there is a strong potential that they would become thing much stronger than what you normally find. You have sold yourself on the idea. Even if it was after the fact that the affected party made the final commitment to do so. \nA ritual is prepared, and a new puppet is remade. The blood still seeping from the wound. The newly raised looks at you with lifeless eyes, you gaze into them and see something remains of %puppet% in this new vessel.\n Are they happy? Do they have the answers they dedicated their life to? It is hard to judge these things beyond the veil. \n\nYou think you hear them murmer something, but brush it aside as nothing more than the wind.",
 			Image = "",
 			List = [],
