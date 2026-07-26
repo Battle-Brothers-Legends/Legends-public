@@ -369,4 +369,20 @@
 			fire();
 		}
 	}
+
+	local getUIList = o.getUIList;
+	o.getUIList = function () {
+		// Add templates from _tooltip_templates to event lists
+		local list = getUIList();
+		local transform = function (_list) {
+			 _list.items = _list.items.map(function (_item) {
+				if ("text" in _item)
+					_item.text = ::Legends.tooltip(_item.text);
+				return _item;
+			});
+			return _list;
+		}
+
+		return list.map(transform);
+	}
 });
