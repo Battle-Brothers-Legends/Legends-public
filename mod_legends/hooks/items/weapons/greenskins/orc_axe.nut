@@ -29,9 +29,7 @@
 	o.onEquip = function()
 	{
 		onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowAxe, function (_skill) {
-			_skill.m.IsBackupAxe = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupAxe);
 	}
 
 });

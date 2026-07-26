@@ -31,8 +31,6 @@
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Thrust);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker);
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowJavelin, function (_skill) {
-//			_skill.m.IsBackupSpear = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupSpear);
 	}
 });

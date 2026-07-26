@@ -36,9 +36,7 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker);
 		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.ThrowJavelin, function (_skill) {
-//			_skill.m.IsBackupSpear = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupSpear);
 	}
 
 	function onUpdateProperties( _properties )
