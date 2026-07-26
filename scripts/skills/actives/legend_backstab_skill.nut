@@ -1,7 +1,7 @@
 this.legend_backstab_skill <- this.inherit("scripts/skills/actives/stab", {
 	m = {}
 	function create() {
-		this.stab.onCreate();
+		this.stab.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBackstab);
 		this.m.Description = "A quick and fast stab that takes advantage of a distracted target.";
 	}
