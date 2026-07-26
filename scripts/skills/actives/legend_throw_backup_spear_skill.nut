@@ -1,7 +1,7 @@
 this.legend_throw_backup_spear_skill <- this.inherit("scripts/skills/actives/throw_javelin", {
 	m = {}
 	function create() {
-		this.throw_javelin.onCreate();
+		this.throw_javelin.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendThrowBackupSpear);
 		this.m.Description = "Hurl your backup spear at a target. Can not be used while engaged in melee.";
 		this.m.ActionPointCost = 5;

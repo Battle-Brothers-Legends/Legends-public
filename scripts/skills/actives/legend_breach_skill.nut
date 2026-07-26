@@ -1,7 +1,7 @@
 this.legend_breach_skill <- this.inherit("scripts/skills/actives/slash", {
 	m = {}
 	function create() {
-		this.slash.onCreate();
+		this.slash.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBreach);
 		this.m.Description = "A swift slashing attack making good use of the light blade of the weapon to maneuver around longer weapons.";
 	}

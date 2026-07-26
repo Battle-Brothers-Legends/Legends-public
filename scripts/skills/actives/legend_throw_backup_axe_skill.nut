@@ -1,7 +1,7 @@
 this.legend_throw_backup_axe_skill <- this.inherit("scripts/skills/actives/throw_axe", {
 	m = {}
 	function create() {
-		this.throw_axe.onCreate();
+		this.throw_axe.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendThrowBackupAxe);
 		this.m.Description = "Hurl your backup axe at a target. Can not be used while engaged in melee.";
 		this.m.ActionPointCost = 5;
