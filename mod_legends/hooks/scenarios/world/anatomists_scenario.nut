@@ -155,4 +155,9 @@
 		this.World.Statistics.getFlags().set("isWhiteDirewolfPotionAcquired", false);
 		this.World.Assets.m.Money = this.World.Assets.m.Money + 700;
 	}
+
+	o.onUpdateHiringRoster <- function ( _roster )
+	{
+		this.addBroToRoster(_roster, ::Legends.Background.Anatomist, 4);
+	}
 });

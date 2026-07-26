@@ -42,7 +42,8 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.Strong),
 			::Legends.Traits.getID(::Legends.Trait.Tough),
-			::Legends.Traits.getID(::Legends.Trait.Superstitious)
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearDark)
 		];
 		this.m.Titles = [
 			"the Vulture",
@@ -92,6 +93,7 @@
 				::Const.Perks.SwordTree,
 				::Const.Perks.SpearTree,
 				::Const.Perks.CrossbowTree,
+				::Const.Perks.DaggerTree,
 				::Const.Perks.PolearmTree
 			],
 			Defense = [
