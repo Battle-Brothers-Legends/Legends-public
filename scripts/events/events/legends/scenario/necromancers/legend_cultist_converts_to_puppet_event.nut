@@ -59,20 +59,17 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Cultist.getImagePath());
 
-				foreach( bro in brothers )
-				{
-					this.List.push({
+				this.List.push({
 					id = 16,
 					icon = "ui/icons/kills.png",
 					text = _event.m.Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]has been reborn.[/color]"
-					});
+				});
 
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/regular_damage.png",
-						text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength![/color]"
-					});
-				}
+				this.List.push({
+					id = 16,
+					icon = "ui/icons/regular_damage.png",
+					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength![/color]"
+				});
 			}
 
 		});
@@ -86,15 +83,14 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				Text = "Let\'s go.",
 				getResult = @(_event) 0
 			}],
-			function start(_event) {
+			function start(_event)
+			{
 				local brothers = ::World.getPlayerRoster().getAll();
-				foreach (bro in brothers) {
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/mood_02.png",
-						text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "] becomes upset [/color]"
-					});
-				}
+				this.List.push({
+					id = 16,
+					icon = "ui/icons/mood_02.png",
+					text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "] becomes upset [/color]"
+				});
 
 				local entry = ::Legends.EventList.changeMood(_event.m.Cultist, 1.5, "Was rejected from ascending");
 				this.Characters.push(_event.m.Cultist.getImagePath());
