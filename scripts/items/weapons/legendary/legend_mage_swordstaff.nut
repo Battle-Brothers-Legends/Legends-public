@@ -44,7 +44,7 @@ this.legend_mage_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
 		::Legends.Actives.grant(this, ::Legends.Active.Lunge, function (_skill) {
-			_skill.m.isGreatLunge = true;
+			_skill.m.IsGreatLunge = true;
 			_skill.m.IsStaffLunge = true;
 		}.bindenv(this));
 	}

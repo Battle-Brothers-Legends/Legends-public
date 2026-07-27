@@ -1,10 +1,10 @@
 ::mods_hookExactClass("skills/actives/lunge_skill", function (o) {
-	o.m.isGreatLunge <- false;
+	o.m.IsGreatLunge <- false;
 	o.m.IsStaffLunge <- false;
 
 	o.setItem <- function (_item) {
 		this.skill.setItem(_item);
-		if (this.m.isGreatLunge) {
+		if (this.m.IsGreatLunge) {
 			this.m.Name = "Great Lunge";
 			this.m.Description = "A stronger lunge towards a target 2 tiles away, followed by a precise thrusting attack to catch them unprepared. The faster you are, the more damage you do.";
 			this.m.ActionPointCost = this.m.IsStaffLunge ? 6 : 5;
