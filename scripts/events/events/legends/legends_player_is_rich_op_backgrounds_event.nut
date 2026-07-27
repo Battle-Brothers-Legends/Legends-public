@@ -154,13 +154,13 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		local thetrader = null;
 
 		foreach (bro in brothers) {
-			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderPeddler))
 				continue;
 
 			if (bro.isStabled() || ::Legends.Backgrounds.has(bro, ::Legends.Background.Slave))
 				continue;
 
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderTrader)) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Peddler)) {
 				thetrader = bro;
 				continue;
 			}
@@ -170,8 +170,6 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				::Legends.Background.LegendCrusader,
 				::Legends.Background.LegendBerserker,
 				::Legends.Background.LegendNecro,
-				::Legends.Background.LegendWitch,
-				::Legends.Background.LegendTrader,
 				::Legends.Background.LegendRanger,
 				::Legends.Background.RegentInAbsentia
 			)) {

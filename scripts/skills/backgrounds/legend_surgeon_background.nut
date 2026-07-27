@@ -126,41 +126,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				0
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				5,
-				5
-			],
-			RangedSkill = [
-				-5,
-				0
-			],
-			MeleeDefense = [
-				-3,
-				-3
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendSurgeon);
 	}
 
 	function onAddEquipment()

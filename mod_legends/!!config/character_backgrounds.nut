@@ -150,7 +150,6 @@ if (!("Backgrounds" in ::Legends)) {
 ];
 ::Const.CharacterFemaleBackgrounds <- [
 	::Legends.Background.LegendShieldmaiden,
-	::Legends.Background.LegendWitch,
 ];
 ::Const.SupposedWitchBackgrounds <- [
 	::Legends.Background.LegendShieldmaiden,
@@ -159,42 +158,21 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Monk
 ];
 ::Const.CharacterPartyBackgrounds <- [
-	::Legends.Background.LegendDiviner,
 	::Legends.Background.LegendIllusionist,
-	::Legends.Background.LegendSpiritualist,
-	::Legends.Background.LegendEntrancer,
-	::Legends.Background.LegendDeathSummoner,
-	::Legends.Background.LegendEnchanter,
 	::Legends.Background.LegendWarlock,
-	::Legends.Background.LegendWitch,
-	::Legends.Background.LegendRunesmith,
-	::Legends.Background.LegendTransmuter,
 	::Legends.Background.LegendNecromancer,
-	//::Legends.Background.LegendAncientSummoner,
 	::Legends.Background.LegendMasterArcher,
 	::Legends.Background.LegendBerserker,
 	::Legends.Background.LegendNecrosavant,
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.Assassin,
-	::Legends.Background.LegendCrusader,
-	::Legends.Background.LegendConjurer
+	::Legends.Background.LegendCrusader
 ];
 
 ::Const.CharacterMagicBackgrounds <- [
-	//::Legends.Background.LegendAncientSummoner,
-	::Legends.Background.LegendConjurer,
-	::Legends.Background.LegendDeathSummoner,
-	::Legends.Background.LegendDiviner,
-	::Legends.Background.LegendEnchanter,
-	::Legends.Background.LegendEntrancer,
 	::Legends.Background.LegendIllusionist,
 	::Legends.Background.LegendMasterArcher,
 	::Legends.Background.LegendNecrosavant,
-	::Legends.Background.LegendRunesmith,
-	::Legends.Background.LegendSpiritualist,
-	::Legends.Background.LegendTransmuter,
-	// ::Legends.Background.LegendPhilosopher, //not using these from krolock's recommendation as to the original astro/philo intentions. will leave them as possible options should we ever decide to change it
-	// ::Legends.Background.LegendAstrologist,
 	::Legends.Background.LegendWarlock
 ];
 
@@ -229,7 +207,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Hunter,
 	::Legends.Background.Juggler,
 	::Legends.Background.KillerOnTheRun,
-	::Legends.Background.LegendCannibal,
 	::Legends.Background.LegendCrusader,
 	::Legends.Background.LegendBerserker,
 	::Legends.Background.LegendBlacksmith,
@@ -240,7 +217,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendRanger,
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.LegendVala,
-	// ::Legends.Background.LegendWitch,
 	::Legends.Background.LegendHerbalist,
 	::Legends.Background.LegendInventor,
 	::Legends.Background.LegendIronmonger,
@@ -269,19 +245,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Vagabond,
 	::Legends.Background.Wildman,
 	::Legends.Background.Witchhunter,
-	// ::Legends.Background.LegendDiviner,
-	// ::Legends.Background.LegendIllusionist,
-	// ::Legends.Background.LegendSpiritualist,
-	// ::Legends.Background.LegendEntrancer,
-	// ::Legends.Background.LegendDeathSummoner,
-	// ::Legends.Background.LegendEnchanter,
-	// ::Legends.Background.LegendRunesmith,
-	// ::Legends.Background.LegendTransmuter,
-	// ::Legends.Background.LegendNecromancer,
-	// ::Legends.Background.LegendAncientSummoner,
 	::Legends.Background.LegendMasterArcher,
-	// ::Legends.Background.LegendNecrosavant,
-	// ::Legends.Background.LegendConjurer,
 	::Legends.Background.Slave,
 	::Legends.Background.SlaveSouthern,
 	::Legends.Background.AssassinSouthern,

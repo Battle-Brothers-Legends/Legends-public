@@ -134,41 +134,7 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-10,
-				-10
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				15,
-				20
-			],
-			MeleeSkill = [
-				-5,
-				-5
-			],
-			RangedSkill = [
-				15,
-				20
-			],
-			MeleeDefense = [
-				-10,
-				-10
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				20,
-				25
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderWitch);
 	}
 
 	function onAdded()

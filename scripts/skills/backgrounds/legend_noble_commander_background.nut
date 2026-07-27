@@ -114,41 +114,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-15,
-				-15
-			],
-			Bravery = [
-				25,
-				25
-			],
-			Stamina = [
-				-10,
-				-10
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				 0,
-				 0
-			],
-			MeleeDefense = [
-				5,
-				5
-			],
-			RangedDefense = [
-				15,
-				15
-			],
-			Initiative = [
-				-20,
-				-20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderNoble);
 	}
 
 	function onAdded()

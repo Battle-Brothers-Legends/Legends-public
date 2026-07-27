@@ -67,41 +67,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				8,
-				12
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				-5,
-				2
-			],
-			RangedSkill = [
-				6,
-				8
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				1,
-				3
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAlchemist);
 	}
 
 	function onBuildDescription()

@@ -116,41 +116,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-8,
-				-5
-			],
-			Bravery = [
-				-5,
-				-5
-			],
-			Stamina = [
-				-5,
-				-5
-			],
-			MeleeSkill = [
-				-5,
-				0
-			],
-			RangedSkill = [
-				-5,
-				0
-			],
-			MeleeDefense = [
-				4,
-				8
-			],
-			RangedDefense = [
-				3,
-				9
-			],
-			Initiative = [
-				0,
-				7
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderPeddler);
 	}
 
 	function onAdded()

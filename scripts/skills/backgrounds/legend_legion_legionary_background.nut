@@ -87,41 +87,7 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
 	{
-		local c = {
-			Hitpoints = [
-				1,
-				3
-			],
-			Bravery = [ //not needed except for resisting charm and sleep
-				5,
-				10
-			],
-			Stamina = [ //not needed except for equipment weight
-				15,
-				15
-			],
-			MeleeSkill = [
-				2,
-				5
-			],
-			RangedSkill = [
-				5,
-				9
-			],
-			MeleeDefense = [
-				2,
-				4
-			],
-			RangedDefense = [
-				3,
-				6
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionLegionary);
 	}
 
 	function onAdded()

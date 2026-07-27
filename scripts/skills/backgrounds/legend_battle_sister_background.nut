@@ -84,41 +84,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				7
-			],
-			Bravery = [
-				14,
-				18
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				6,
-				10
-			],
-			RangedSkill = [
-				-10,
-				-5
-			],
-			MeleeDefense = [
-				3,
-				5
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				5,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBattleSister);
 	}
 
 	function onSetAppearance()

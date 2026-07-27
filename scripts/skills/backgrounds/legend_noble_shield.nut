@@ -92,41 +92,7 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				5
-			],
-			Bravery = [
-				10,
-				5
-			],
-			Stamina = [
-				3,
-				3
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-5,
-				0
-			],
-			MeleeDefense = [
-				5,
-				10
-			],
-			RangedDefense = [
-				5,
-				5
-			],
-			Initiative = [
-				-5,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNobleShield);
 	}
 
 	function onAdded()

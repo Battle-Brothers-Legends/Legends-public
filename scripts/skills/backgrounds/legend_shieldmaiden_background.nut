@@ -77,41 +77,7 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				7,
-				10
-			],
-			Bravery = [
-				6,
-				8
-			],
-			Stamina = [
-				8,
-				12
-			],
-			MeleeSkill = [
-				4,
-				6
-			],
-			RangedSkill = [
-				6,
-				10
-			],
-			MeleeDefense = [
-				8,
-				12
-			],
-			RangedDefense = [
-				4,
-				7
-			],
-			Initiative = [
-				-15,
-				-7
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendShieldmaiden);
 	}
 
 	function onAddEquipment()

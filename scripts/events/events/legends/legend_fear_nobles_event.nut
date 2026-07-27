@@ -9,7 +9,6 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			::Legends.Background.LegendCommanderNoble,
 			::Legends.Background.LegendCompanionMelee,
 			::Legends.Background.LegendCompanionRanged,
-			::Legends.Background.LegendNoble,
 			::Legends.Background.LegendNoble2h,
 			::Legends.Background.LegendNobleRanged,
 			::Legends.Background.LegendNobleShield

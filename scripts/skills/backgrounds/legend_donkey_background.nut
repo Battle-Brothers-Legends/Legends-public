@@ -181,41 +181,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	function onChangeAttributes() {
-		local c = {
-			Hitpoints = [
-				95,
-				125
-			],
-			Bravery = [
-				-5,
-				0
-			],
-			Stamina = [
-				50,
-				75
-			],
-			MeleeSkill = [
-				-10,
-				4
-			],
-			RangedSkill = [
-				-50,
-				-50
-			],
-			MeleeDefense = [
-				-7,
-				-2
-			],
-			RangedDefense = [
-				-5,
-				-1
-			],
-			Initiative = [
-				-15,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDonkey);
 	}
 
 	function onUpdate(_properties) {

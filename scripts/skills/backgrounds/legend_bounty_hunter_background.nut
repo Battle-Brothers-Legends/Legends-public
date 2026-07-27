@@ -141,41 +141,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 	}
 
 	function onChangeAttributes() {
-		local c = {
-			Hitpoints = [
-				5,
-				7
-			],
-			Bravery = [
-				8,
-				10
-			],
-			Stamina = [
-				10,
-				14
-			],
-			MeleeSkill = [
-				5,
-				8
-			],
-			RangedSkill = [
-				10,
-				14
-			],
-			MeleeDefense = [
-				5,
-				9
-			],
-			RangedDefense = [
-				5,
-				5
-			],
-			Initiative = [
-				20,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBountyHunter);
 	}
 
 	function onAddEquipment() {

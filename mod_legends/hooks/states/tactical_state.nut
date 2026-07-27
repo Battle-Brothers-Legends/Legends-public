@@ -568,9 +568,6 @@
 
 			switch (bro.getBackground().getID())
 			{
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal):
-					CannibalsInRoster += 1;
-					break;
 				case ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger):
 					zombieSalvage += 5;
 					break;

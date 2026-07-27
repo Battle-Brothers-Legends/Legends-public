@@ -99,41 +99,7 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				100,
-				120
-			],
-			Bravery = [
-				-10,
-				-10
-			],
-			Stamina = [
-				40,
-				50
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-10,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorseRouncey);
 	}
 
 	function onAddEquipment()

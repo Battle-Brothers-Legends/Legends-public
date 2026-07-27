@@ -98,41 +98,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				2,
-				5
-			],
-			MeleeSkill = [
-				-3,
-				0
-			],
-			RangedSkill = [
-				12,
-				16
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				2,
-				5
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendMuladi);
 	}
 
 	function onAddEquipment()

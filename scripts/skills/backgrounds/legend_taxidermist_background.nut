@@ -84,41 +84,7 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-3,
-				0
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendTaxidermist);
 	}
 
 	function onAddEquipment()

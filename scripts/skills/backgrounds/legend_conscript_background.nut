@@ -128,41 +128,7 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				8,
-				8
-			],
-			Bravery = [
-				10,
-				5
-			],
-			Stamina = [
-				4,
-				0
-			],
-			MeleeSkill = [
-				7,
-				10
-			],
-			RangedSkill = [
-				0,
-				5
-			],
-			MeleeDefense = [
-				5,
-				10
-			],
-			RangedDefense = [
-				5,
-				2
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendConscript);
 	}
 
 	function onAdded()

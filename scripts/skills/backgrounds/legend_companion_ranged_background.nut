@@ -99,41 +99,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [ //THIS BACKGROUND GAINS EXTRA STATS IN RECRUITMENT EVENTS DEPENDING ON PLAYER CHOICES
-				3,
-				0
-			],
-			Bravery = [
-				5,
-				7
-			],
-			Stamina = [
-				9,
-				5
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				6,
-				9
-			],
-			MeleeDefense = [
-				-3,
-				0
-			],
-			RangedDefense = [
-				4,
-				5
-			],
-			Initiative = [
-				9,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCompanionRanged);
 	}
 
 	function onAdded() // enables relationships

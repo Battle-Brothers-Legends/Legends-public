@@ -155,41 +155,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				15,
-				15
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				15,
-				15
-			],
-			MeleeSkill = [
-				20,
-				20
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				10,
-				10
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				-5,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBerserker);
 	}
 
 	function onSetAppearance()

@@ -132,41 +132,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-3
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				0,
-				10
-			],
-			MeleeSkill = [
-				2,
-				5
-			],
-			RangedSkill = [
-				7,
-				12
-			],
-			MeleeDefense = [
-				-5,
-				2
-			],
-			RangedDefense = [
-				1,
-				3
-			],
-			Initiative = [
-				8,
-				16
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLurker);
 	}
 
 	function onSetAppearance()

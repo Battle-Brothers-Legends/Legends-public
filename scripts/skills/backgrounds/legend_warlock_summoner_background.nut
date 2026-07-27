@@ -145,41 +145,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-10,
-				-5
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				-10,
-				-5
-			],
-			MeleeSkill = [
-				-2,
-				0
-			],
-			RangedSkill = [
-				-4,
-				-2
-			],
-			MeleeDefense = [
-				4,
-				6
-			],
-			RangedDefense = [
-				5,
-				7
-			],
-			Initiative = [
-				-15,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendWarlockSummoner);
 	}
 
 

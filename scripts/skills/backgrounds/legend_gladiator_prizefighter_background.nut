@@ -39,41 +39,7 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				14,
-				15
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				9,
-				11
-			],
-			RangedSkill = [
-				3,
-				6
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				0,
-				3
-			],
-			Initiative = [
-				5,
-				8
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendGladiatorPrizefighter);
 	}
 
 	function getTooltip ()

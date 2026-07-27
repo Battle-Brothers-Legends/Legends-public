@@ -137,41 +137,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				15,
-				15
-			],
-			RangedSkill = [
-				4,
-				8
-			],
-			MeleeDefense = [
-				8,
-				12
-			],
-			RangedDefense = [
-				8,
-				12
-			],
-			Initiative = [
-				15,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderAssassin);
 	}
 
 

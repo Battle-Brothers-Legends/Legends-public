@@ -81,41 +81,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				15
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				5,
-				8
-			],
-			MeleeSkill = [
-				-4,
-				0
-			],
-			RangedSkill = [
-				-15,
-				0
-			],
-			MeleeDefense = [
-				-5,
-				2
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				-10,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPuppet);
 	}
 
 	function onAdded() //bite, exceptions to some injuries and zombie trait

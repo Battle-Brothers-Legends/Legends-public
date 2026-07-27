@@ -73,41 +73,7 @@ this.legend_qiyan_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-10,
-				3
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				5,
-				8
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				-5,
-				5
-			],
-			MeleeDefense = [
-				-5,
-				10
-			],
-			RangedDefense = [
-				-6,
-				4
-			],
-			Initiative = [
-				-5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendQiyan);
 	}
 
 	function onBuildDescription()

@@ -120,41 +120,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				5
-			],
-			Bravery = [
-				15,
-				25
-			],
-			Stamina = [
-				-4,
-				6
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				5,
-				8
-			],
-			MeleeDefense = [
-				-2,
-				5
-			],
-			RangedDefense = [
-				2,
-				5
-			],
-			Initiative = [
-				-5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendMagister);
 	}
 
 	function onSetAppearance()

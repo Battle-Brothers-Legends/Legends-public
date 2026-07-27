@@ -114,41 +114,7 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				5
-			],
-			Stamina = [
-				5,
-				7
-			],
-			MeleeSkill = [
-				-5,
-				-5
-			],
-			RangedSkill = [
-				23,
-				27
-			],
-			MeleeDefense = [
-				-6,
-				-3
-			],
-			RangedDefense = [
-				6,
-				10
-			],
-			Initiative = [
-				8,
-				14
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendMasterArcher);
 	}
 
 	function onAddEquipment()

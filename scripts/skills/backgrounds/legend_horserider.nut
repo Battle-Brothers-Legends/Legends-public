@@ -111,41 +111,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				100,
-				120
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				40,
-				50
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorserider);
 	}
 
 	function onSetAppearance()

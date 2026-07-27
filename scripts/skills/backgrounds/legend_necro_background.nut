@@ -136,41 +136,7 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				15,
-				20
-			],
-			Bravery = [
-				-10,
-				-5
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				-5,
-				-5
-			],
-			RangedDefense = [
-				-10,
-				-5
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNecro);
 	}
 
 	function onAddEquipment()

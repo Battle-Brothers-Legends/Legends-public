@@ -93,41 +93,7 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				12,
-				17
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				3,
-				6
-			],
-			RangedDefense = [
-				2,
-				4
-			],
-			Initiative = [
-				-5,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNoble2h);
 	}
 
 	function onAdded()

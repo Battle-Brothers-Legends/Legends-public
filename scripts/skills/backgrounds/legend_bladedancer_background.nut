@@ -102,41 +102,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				7
-			],
-			Bravery = [
-				7,
-				10
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				15,
-				20
-			],
-			RangedSkill = [
-				-10,
-				-10
-			],
-			MeleeDefense = [
-				4,
-				6
-			],
-			RangedDefense = [
-				0,
-				1
-			],
-			Initiative = [
-				15,
-				25
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBountyHunter);
 	}
 
 	function onAddEquipment()

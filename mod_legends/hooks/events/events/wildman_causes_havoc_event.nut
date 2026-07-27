@@ -300,8 +300,8 @@
 
 		foreach( bro in brothers ) {
 			switch (bro.getBackground().getID()) {
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendTrader):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderTrader):
+				case ::Legends.Backgrounds.getID(::Legends.Background.Peddler):
+				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler):
 					thetraders.push(bro);
 					break;
 				case ::Legends.Backgrounds.getID(::Legends.Background.Wildman):

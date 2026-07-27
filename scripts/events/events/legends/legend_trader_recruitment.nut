@@ -35,7 +35,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Trader = roster.create("scripts/entity/tactical/player");
-				_event.m.Trader.setStartValuesEx([::Legends.Background.LegendTrader]);
+				_event.m.Trader.setStartValuesEx([::Legends.Background.LegendCommanderPeddler]);
 				::Legends.Traits.grant(_event.m.Trader, ::Legends.Trait.Greedy);
 				this.Characters.push(_event.m.Trader.getImagePath());
 			}
@@ -68,7 +68,7 @@ this.legend_trader_recruitment <- this.inherit("scripts/events/event", {
 		local brotherlevels = 0;
 
 		foreach (bro in brothers) {
-			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendTrader, ::Legends.Background.LegendCommanderTrader))
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendCommanderPeddler))
 				return;
 
 			totalbrothers++;

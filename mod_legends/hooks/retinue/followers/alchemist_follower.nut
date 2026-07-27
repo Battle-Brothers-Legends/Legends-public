@@ -26,7 +26,6 @@
 			::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendTaxidermist),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendDruid),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendAlchemist),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged)

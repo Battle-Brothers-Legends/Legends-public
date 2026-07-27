@@ -2926,14 +2926,6 @@ activesDefs.push({
 	Name = "Spearwall",
 });
 
-::Legends.Active.LegendStaffLunge <- null;
-activesDefs.push({
-	ID = "actives.legend_staff_lunge",
-	Script = "scripts/skills/actives/legend_staff_lunge_skill",
-	Const = "LegendStaffLunge",
-	Name = "Lunge",
-});
-
 ::Legends.Active.LegendStaffThrust <- null;
 activesDefs.push({
 	ID = "actives.legend_staff_thrust",

@@ -132,41 +132,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-8,
-				8
-			],
-			Bravery = [
-				10,
-				20
-			],
-			Stamina = [
-				-8,
-				8
-			],
-			MeleeSkill = [
-				-8,
-				8
-			],
-			RangedSkill = [
-				-8,
-				8
-			],
-			MeleeDefense = [
-				-5,
-				5
-			],
-			RangedDefense = [
-				-5,
-				5
-			],
-			Initiative = [
-				-6,
-				12
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPilgrim);
 	}
 
 	function onSetAppearance()

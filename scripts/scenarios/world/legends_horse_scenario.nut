@@ -42,7 +42,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[0].setPlaceInFormation(3);
 		bros[1].setStartValuesEx([::Legends.Background.LegendHorserider]);
 		bros[1].setPlaceInFormation(3);
-		bros[2].setStartValuesEx([::Legends.Background.LegendCommanderTrader]);
+		bros[2].setStartValuesEx([::Legends.Background.LegendCommanderPeddler]);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Player);
 		bros[2].getFlags().set("IsPlayerCharacter", true);
 		bros[2].setPlaceInFormation(4);

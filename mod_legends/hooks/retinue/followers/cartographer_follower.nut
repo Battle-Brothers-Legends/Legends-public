@@ -18,7 +18,6 @@
 		this.addSkillRequirement("Have at least one of the following backgrounds: Adventurous Noble/Lady, Noble Commander, Philosopher, Historian", [
 			::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble),
 			::Legends.Backgrounds.getID(::Legends.Background.Historian),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendPhilosopher),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged)

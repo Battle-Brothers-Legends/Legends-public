@@ -106,41 +106,7 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				125,
-				145
-			],
-			Bravery = [
-				10,
-				15
-			],
-			Stamina = [
-				55,
-				65
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				10,
-				10
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-5,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorseDestrier);
 	}
 
 

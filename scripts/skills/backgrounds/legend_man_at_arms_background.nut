@@ -79,41 +79,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				8,
-				15
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				7,
-				11
-			],
-			RangedSkill = [
-				7,
-				7
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				2,
-				4
-			],
-			Initiative = [
-				-10,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendManAtArms);
 	}
 
 	function onAddEquipment() // NO TWO HANDED WEAPONS OR OFFHANDS HERE - 'missing hand' will unequip the item and cause errors if you add them.

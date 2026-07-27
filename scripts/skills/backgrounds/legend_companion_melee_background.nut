@@ -98,41 +98,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [ //THIS BACKGROUND GAINS EXTRA STATS IN RECRUITMENT EVENTS DEPENDING ON PLAYER CHOICES
-				5,
-				5
-			],
-			Bravery = [
-				5,
-				7
-			],
-			Stamina = [
-				8,
-				4
-			],
-			MeleeSkill = [
-				4,
-				6
-			],
-			RangedSkill = [
-				-5,
-				-3
-			],
-			MeleeDefense = [
-				5,
-				3
-			],
-			RangedDefense = [
-				-4,
-				0
-			],
-			Initiative = [
-				-5,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCompanionMelee);
 	}
 
 	function onAdded() // enables relationships

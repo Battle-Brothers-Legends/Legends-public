@@ -129,41 +129,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				-10,
-				0
-			],
-			RangedSkill = [
-				-10,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDruid);
 	}
 
 

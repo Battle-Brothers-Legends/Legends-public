@@ -125,41 +125,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				14
-			],
-			Bravery = [
-				-8,
-				-5
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				10,
-				14
-			],
-			RangedSkill = [
-				-10,
-				0
-			],
-			MeleeDefense = [
-				0,
-				3
-			],
-			RangedDefense = [
-				0,
-				1
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHusk);
 	}
 
 	function onSetAppearance()

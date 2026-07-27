@@ -134,41 +134,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				4,
-				4
-			],
-			Bravery = [
-				10,
-				15
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				3,
-				3
-			],
-			RangedSkill = [
-				5,
-				10
-			],
-			MeleeDefense = [
-				0,
-				4
-			],
-			RangedDefense = [
-				0,
-				4
-			],
-			Initiative = [
-				5,
-				8
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendYoungblood);
 	}
 
 	function onAddEquipment()

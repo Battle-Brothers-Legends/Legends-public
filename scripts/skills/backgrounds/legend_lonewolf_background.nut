@@ -146,41 +146,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				12,
-				16
-			],
-			Bravery = [
-				8,
-				12
-			],
-			Stamina = [
-				12,
-				18
-			],
-			MeleeSkill = [
-				10,
-				14
-			],
-			RangedSkill = [
-				10,
-				16
-			],
-			MeleeDefense = [
-				6,
-				9 // nice
-			],
-			RangedDefense = [
-				6,
-				7
-			],
-			Initiative = [
-				5,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLonewolf);
 	}
 
 

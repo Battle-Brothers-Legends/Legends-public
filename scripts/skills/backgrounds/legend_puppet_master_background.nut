@@ -152,41 +152,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				5
-			],
-			Bravery = [
-				-15,
-				-10
-			],
-			Stamina = [
-				10,
-				10
-			],
-			MeleeSkill = [
-				5,
-				5
-			],
-			RangedSkill = [
-				10,
-				10
-			],
-			MeleeDefense = [
-				-5,
-				0
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPuppetMaster);
 	}
 
 

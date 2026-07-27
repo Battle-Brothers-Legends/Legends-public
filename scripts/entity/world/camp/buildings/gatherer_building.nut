@@ -323,7 +323,6 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist):
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendAlchemist):
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid):
-				case ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid):
 					map.Apothecary += bro.getLevel();
 			}
 

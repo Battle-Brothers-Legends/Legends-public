@@ -196,41 +196,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				20,
-				25
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				5,
-				8
-			],
-			MeleeSkill = [
-				2,
-				6
-			],
-			RangedSkill = [
-				10,
-				18
-			],
-			MeleeDefense = [
-				2,
-				5
-			],
-			RangedDefense = [
-				3,
-				6
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderNecro);
 	}
 
 	function onAdded()

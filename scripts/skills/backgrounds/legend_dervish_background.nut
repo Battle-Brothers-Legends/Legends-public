@@ -61,41 +61,7 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				15,
-				25
-			],
-			Bravery = [
-				15,
-				20
-			],
-			Stamina = [
-				10,
-				14
-			],
-			MeleeSkill = [
-				6,
-				10
-			],
-			RangedSkill = [
-				0,
-				3
-			],
-			MeleeDefense = [
-				-3,
-				2
-			],
-			RangedDefense = [
-				-2,
-				-2
-			],
-			Initiative = [
-				10,
-				16
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDervish);
 	}
 
 	function onAdded()

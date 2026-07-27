@@ -90,41 +90,7 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [ //not needed except for resisting charm and sleep
-				20,
-				25
-			],
-			Stamina = [ //not needed except for equipment weight
-				20,
-				25
-			],
-			MeleeSkill = [
-				8,
-				10
-			],
-			RangedSkill = [
-				4,
-				7
-			],
-			MeleeDefense = [
-				5,
-				8
-			],
-			RangedDefense = [
-				3,
-				6
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionPrefect);
 	}
 
 	function onAdded()

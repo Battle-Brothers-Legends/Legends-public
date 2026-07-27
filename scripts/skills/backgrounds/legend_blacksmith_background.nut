@@ -73,41 +73,7 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				9
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				15,
-				20
-			],
-			MeleeSkill = [
-				5,
-				8
-			],
-			RangedSkill = [
-				-10,
-				-10
-			],
-			MeleeDefense = [
-				0,
-				3
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBlacksmith);
 	}
 
 	function onAddEquipment()

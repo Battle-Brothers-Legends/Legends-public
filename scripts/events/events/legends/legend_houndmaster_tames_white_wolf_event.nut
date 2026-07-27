@@ -76,7 +76,7 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 		foreach (bro in brothers) {
 			if (bro.getLevel() < 5)
 				continue;
-			if (!::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendCommanderRanger, ::Legends.Background.LegendCommanderDruid))
+			if (!::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendCommanderRanger))
 				continue;
 			candidates.push(bro);
 		}

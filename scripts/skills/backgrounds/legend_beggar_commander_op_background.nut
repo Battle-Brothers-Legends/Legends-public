@@ -144,41 +144,7 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-20,
-				-20
-			],
-			Bravery = [
-				-20,
-				-15
-			],
-			Stamina = [
-				-20,
-				-20
-			],
-			MeleeSkill = [
-				-5,
-				-5
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				-5,
-				-5
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				20,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderBeggarScaling);
 	}
 
 	function onSetAppearance()

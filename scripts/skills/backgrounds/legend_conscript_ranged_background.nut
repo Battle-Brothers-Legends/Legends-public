@@ -38,41 +38,7 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				8,
-				8
-			],
-			Bravery = [
-				6,
-				2
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				5,
-				3
-			],
-			RangedSkill = [
-				15,
-				12
-			],
-			MeleeDefense = [
-				2,
-				0
-			],
-			RangedDefense = [
-				6,
-				8
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendConscriptRanged);
 	}
 
 	function onAdded()

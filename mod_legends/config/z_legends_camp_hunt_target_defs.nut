@@ -5,7 +5,6 @@
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer)] <- "Beast Slayer";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker)] <- "Berserker";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker)] <- "Berserker Commander";
-::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal)] <- "Cannibal";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Cultist)] <- "Cultist";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)] <- "Converted Cultist";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Fisherman)] <- "Fisherman";
@@ -25,7 +24,6 @@
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Anatomist)] <- "Anatomist";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Daytaler)] <- "Daytaler";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)] <- "Druid";
-::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid)] <- "Druid Commander";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Farmhand)] <- "Farmhand";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.Gravedigger)] <- "Gravedigger";
 ::Const.HuntingLoot.RequiredBackgrounds[::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist)] <- "Herbalist / Apothecary";
@@ -39,7 +37,6 @@
 	::Legends.Backgrounds.getID(::Legends.Background.Barbarian),
 	::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer),
 	::Legends.Backgrounds.getID(::Legends.Background.Hunter),
-	::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal),
 	::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger),
 	::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi),
 	::Legends.Backgrounds.getID(::Legends.Background.LegendMasterArcher),
@@ -55,7 +52,6 @@
 	::Legends.Backgrounds.getID(::Legends.Background.Miller),
 	::Legends.Backgrounds.getID(::Legends.Background.Butcher),
 	::Legends.Backgrounds.getID(::Legends.Background.Servant),
-	::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal),
 ];
 
 // Define the various targets that can be hunted / looted
@@ -283,7 +279,6 @@
 			[2,"scripts/items/misc/ghoul_horn_item"]
 		],
 		Backgrounds = [
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal),
 			::Legends.Backgrounds.getID(::Legends.Background.Cultist),
 			::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist),
 			::Legends.Backgrounds.getID(::Legends.Background.Witchhunter)
@@ -304,7 +299,6 @@
 			[2,"scripts/items/loot/goblin_rank_insignia_item"]
 		],
 		Backgrounds = [
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendRanger),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger),
 			::Legends.Backgrounds.getID(::Legends.Background.Wildman)
@@ -325,7 +319,6 @@
 			[1,"scripts/items/misc/witch_hair_item"]
 		],
 		Backgrounds = [
-			::Legends.Backgrounds.getID(::Legends.Background.LegendCannibal),
 			::Legends.Backgrounds.getID(::Legends.Background.Cultist),
 			::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist),
 			::Legends.Backgrounds.getID(::Legends.Background.Witchhunter)

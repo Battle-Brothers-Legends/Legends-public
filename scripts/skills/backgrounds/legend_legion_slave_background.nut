@@ -87,41 +87,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onChangeAttributes() //uses Character_background.nut template (Skeleton)
 	{
-		local c = {
-			Hitpoints = [
-				-3,
-				7
-			],
-			Bravery = [ //not needed except for resisting charm and sleep
-				0,
-				0
-			],
-			Stamina = [ //not needed except for equipment weight
-				0,
-				5
-			],
-			MeleeSkill = [
-				-2,
-				1
-			],
-			RangedSkill = [
-				4,
-				8
-			],
-			MeleeDefense = [
-				-1,
-				2
-			],
-			RangedDefense = [
-				0,
-				2
-			],
-			Initiative = [
-				-4,
-				3
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionSlave);
 	}
 
 	function onAdded()

@@ -84,41 +84,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-15,
-				-20
-			],
-			Bravery = [
-				15,
-				10
-			],
-			Stamina = [
-				0,
-				5
-			],
-			MeleeSkill = [
-				-10,
-				-10
-			],
-			RangedSkill = [
-				20,
-				15
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendIllusionist);
 	}
 
 	function onAddEquipment()

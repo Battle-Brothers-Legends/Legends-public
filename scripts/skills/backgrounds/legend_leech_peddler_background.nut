@@ -101,41 +101,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				5
-			],
-			Bravery = [
-				-3,
-				-1
-			],
-			Stamina = [
-				0,
-				6
-			],
-			MeleeSkill = [
-				0,
-				5
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLeechPeddler);
 	}
 
 	function onAddEquipment() {

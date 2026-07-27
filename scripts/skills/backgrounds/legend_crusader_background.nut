@@ -176,41 +176,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				10
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				10,
-				10
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				15,
-				15
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-20,
-				-20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCrusader);
 	}
 
 	function onAdded()

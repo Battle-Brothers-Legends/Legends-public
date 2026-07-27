@@ -71,41 +71,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				5
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				2,
-				3
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendIronmonger);
 	}
 
 

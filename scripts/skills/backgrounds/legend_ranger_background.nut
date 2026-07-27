@@ -118,41 +118,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 	function onChangeAttributes()
 	{
 
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				5,
-				5
-			],
-			RangedSkill = [
-				15,
-				23
-			],
-			MeleeDefense = [
-				-5,
-				0
-			],
-			RangedDefense = [
-				3,
-				6
-			],
-			Initiative = [
-				15,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendRanger);
 	}
 
 	function onAdded()

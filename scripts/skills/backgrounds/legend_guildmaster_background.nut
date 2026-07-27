@@ -125,41 +125,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				0
-			],
-			Bravery = [
-				13,
-				17
-			],
-			Stamina = [
-				0,
-				5
-			],
-			MeleeSkill = [
-				10,
-				14
-			],
-			RangedSkill = [
-				9,
-				13
-			],
-			MeleeDefense = [
-				3,
-				4
-			],
-			RangedDefense = [
-				2,
-				4
-			],
-			Initiative = [
-				5,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendGuildmaster);
 	}
 
 	function onSetAppearance()

@@ -779,22 +779,6 @@ backgroundDefs.push({
     Name = "Alchemist",
 });
 
-::Legends.Background.LegendAncientSummoner <- null;
-backgroundDefs.push({
-    ID = "background.legend_ancient_summoner",
-    Script = "scripts/skills/backgrounds/legend_ancient_summoner_background",
-    Const = "LegendAncientSummoner",
-    Name = "Ancient Summoner",
-});
-
-::Legends.Background.LegendAstrologist <- null;
-backgroundDefs.push({
-    ID = "background.legend_astrologist",
-    Script = "scripts/skills/backgrounds/legend_astrologist_background",
-    Const = "LegendAstrologist",
-    Name = "Astrologist",
-});
-
 ::Legends.Background.LegendBattleSister <- null;
 backgroundDefs.push({
     ID = "background.legend_battle_sister",
@@ -835,14 +819,6 @@ backgroundDefs.push({
     Name = "Bounty Hunter",
 });
 
-::Legends.Background.LegendCannibal <- null;
-backgroundDefs.push({
-    ID = "background.legend_cannibal",
-    Script = "scripts/skills/backgrounds/legend_cannibal_background",
-    Const = "LegendCannibal",
-    Name = "Cannibal",
-});
-
 ::Legends.Background.LegendCommanderAssassin <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_assassin",
@@ -873,14 +849,6 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/legend_berserker_commander_background",
     Const = "LegendCommanderBerserker",
     Name = "Berserker Commander",
-});
-
-::Legends.Background.LegendCommanderDruid <- null;
-backgroundDefs.push({
-    ID = "background.legend_commander_druid",
-    Script = "scripts/skills/backgrounds/legend_druid_commander_background",
-    Const = "LegendCommanderDruid",
-    Name = "Druid Commander",
 });
 
 ::Legends.Background.LegendCommanderNecro <- null;
@@ -915,14 +883,6 @@ backgroundDefs.push({
     Name = "Ranger Commander",
 });
 
-::Legends.Background.LegendCommanderTrader <- null;
-backgroundDefs.push({
-    ID = "background.legend_commander_trader",
-    Script = "scripts/skills/backgrounds/legend_trader_commander_background",
-    Const = "LegendCommanderTrader",
-    Name = "Trader Commander",
-});
-
 ::Legends.Background.LegendCommanderWitch <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_witch",
@@ -945,14 +905,6 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/legend_companion_ranged_background",
     Const = "LegendCompanionRanged",
     Name = "Companion",
-});
-
-::Legends.Background.LegendConjurer <- null;
-backgroundDefs.push({
-    ID = "background.legend_conjurer",
-    Script = "scripts/skills/backgrounds/legend_conjurer_background",
-    Const = "LegendConjurer",
-    Name = "Conjurer",
 });
 
 ::Legends.Background.LegendConscript <- null;
@@ -979,28 +931,12 @@ backgroundDefs.push({
     Name = "Crusader",
 });
 
-::Legends.Background.LegendDeathSummoner <- null;
-backgroundDefs.push({
-    ID = "background.legend_death_summoner",
-    Script = "scripts/skills/backgrounds/legend_death_summoner_background",
-    Const = "LegendDeathSummoner",
-    Name = "Death Summoner",
-});
-
 ::Legends.Background.LegendDervish <- null;
 backgroundDefs.push({
     ID = "background.legend_dervish",
     Script = "scripts/skills/backgrounds/legend_dervish_background",
     Const = "LegendDervish",
     Name = "Dervish",
-});
-
-::Legends.Background.LegendDiviner <- null;
-backgroundDefs.push({
-    ID = "background.legend_diviner",
-    Script = "scripts/skills/backgrounds/legend_diviner_background",
-    Const = "LegendDiviner",
-    Name = "Diviner",
 });
 
 ::Legends.Background.LegendDonkey <- null;
@@ -1019,22 +955,6 @@ backgroundDefs.push({
     Name = "Druid",
 });
 
-::Legends.Background.LegendEnchanter <- null;
-backgroundDefs.push({
-    ID = "background.legend_enchanter",
-    Script = "scripts/skills/backgrounds/legend_enchanter_background",
-    Const = "LegendEnchanter",
-    Name = "Enchanter",
-});
-
-::Legends.Background.LegendEntrancer <- null;
-backgroundDefs.push({
-    ID = "background.legend_entrancer",
-    Script = "scripts/skills/backgrounds/legend_entrancer_background",
-    Const = "LegendEntrancer",
-    Name = "Entrancer",
-});
-
 ::Legends.Background.LegendGladiatorPrizefighter <- null;
 backgroundDefs.push({
     ID = "background.gladiator",
@@ -1049,14 +969,6 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/legend_guildmaster_background",
     Const = "LegendGuildmaster",
     Name = "Guildmaster",
-});
-
-::Legends.Background.LegendHealer <- null;
-backgroundDefs.push({
-    ID = "background.legend_healer",
-    Script = "scripts/skills/backgrounds/legend_healer_background",
-    Const = "LegendHealer",
-    Name = "Healer",
 });
 
 ::Legends.Background.LegendHerbalist <- null;
@@ -1291,14 +1203,6 @@ backgroundDefs.push({
     Name = "Nightwatch",
 });
 
-::Legends.Background.LegendNoble <- null;
-backgroundDefs.push({
-    ID = "background.legend_noble",
-    Script = "scripts/skills/backgrounds/legend_noble_background",
-    Const = "LegendNoble",
-    Name = "Noble",
-});
-
 ::Legends.Background.LegendNoble2h <- null;
 backgroundDefs.push({
     ID = "background.legend_noble_2h",
@@ -1323,28 +1227,12 @@ backgroundDefs.push({
     Name = "Noble Shield",
 });
 
-::Legends.Background.LegendPhilosopher <- null;
-backgroundDefs.push({
-    ID = "background.legend_philosopher",
-    Script = "scripts/skills/backgrounds/legend_philosopher_background",
-    Const = "LegendPhilosopher",
-    Name = "Philosopher",
-});
-
 ::Legends.Background.LegendPilgrim <- null;
 backgroundDefs.push({
     ID = "background.legend_pilgrim",
     Script = "scripts/skills/backgrounds/legend_pilgrim_background",
     Const = "LegendPilgrim",
     Name = "Pilgrim",
-});
-
-::Legends.Background.LegendPremonitionist <- null;
-backgroundDefs.push({
-    ID = "background.legend_premonitionist",
-    Script = "scripts/skills/backgrounds/legend_premonitionist_background",
-    Const = "LegendPremonitionist",
-    Name = "Premonitionist",
 });
 
 ::Legends.Background.LegendPreserver <- null;
@@ -1387,28 +1275,12 @@ backgroundDefs.push({
     Name = "Ranger",
 });
 
-::Legends.Background.LegendRunesmith <- null;
-backgroundDefs.push({
-    ID = "background.legend_runesmith",
-    Script = "scripts/skills/backgrounds/legend_runesmith_background",
-    Const = "LegendRunesmith",
-    Name = "Runesmith",
-});
-
 ::Legends.Background.LegendShieldmaiden <- null;
 backgroundDefs.push({
     ID = "background.legend_shieldmaiden",
     Script = "scripts/skills/backgrounds/legend_shieldmaiden_background",
     Const = "LegendShieldmaiden",
     Name = "Shieldmaiden",
-});
-
-::Legends.Background.LegendSpiritualist <- null;
-backgroundDefs.push({
-    ID = "background.legend_spiritualist",
-    Script = "scripts/skills/backgrounds/legend_spiritualist_background",
-    Const = "LegendSpiritualist",
-    Name = "Spiritualist",
 });
 
 ::Legends.Background.LegendSurgeon <- null;
@@ -1425,22 +1297,6 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/legend_taxidermist_background",
     Const = "LegendTaxidermist",
     Name = "Taxidermist",
-});
-
-::Legends.Background.LegendTrader <- null;
-backgroundDefs.push({
-    ID = "background.legend_trader",
-    Script = "scripts/skills/backgrounds/legend_trader_background",
-    Const = "LegendTrader",
-    Name = "Trader",
-});
-
-::Legends.Background.LegendTransmuter <- null;
-backgroundDefs.push({
-    ID = "background.legend_transmuter",
-    Script = "scripts/skills/backgrounds/legend_transmuter_background",
-    Const = "LegendTransmuter",
-    Name = "Transmuter",
 });
 
 ::Legends.Background.LegendVala <- null;
@@ -1465,14 +1321,6 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/legend_warlock_summoner_background",
     Const = "LegendWarlockSummoner",
     Name = "Warlock Summoner",
-});
-
-::Legends.Background.LegendWitch <- null;
-backgroundDefs.push({
-    ID = "background.legend_witch",
-    Script = "scripts/skills/backgrounds/legend_witch_background",
-    Const = "LegendWitch",
-    Name = "Witch",
 });
 
 ::Legends.Background.LegendYoungblood <- null;

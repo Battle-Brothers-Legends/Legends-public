@@ -171,41 +171,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				20,
-				25
-			],
-			Bravery = [
-				5,
-				10
-			],
-			Stamina = [
-				15,
-				20
-			],
-			MeleeSkill = [
-				20,
-				25
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				10,
-				10
-			],
-			RangedDefense = [
-				-5,
-				-5
-			],
-			Initiative = [
-				-5,
-				-5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderBerserker);
 	}
 
 	function getTooltip ()

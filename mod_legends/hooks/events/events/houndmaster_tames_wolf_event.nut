@@ -41,7 +41,6 @@
 			if (bro.getLevel() >= 5 && (::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Houndmaster,
 				::Legends.Background.LegendDruid,
-				::Legends.Background.LegendCommanderDruid,
 				::Legends.Background.LegendMuladi)
 			)) {
 				candidates.push(bro);

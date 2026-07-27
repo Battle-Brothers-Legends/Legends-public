@@ -40,7 +40,6 @@
 				::Legends.Background.Monk,
 				::Legends.Background.BeastSlayer,
 				::Legends.Background.LegendHerbalist,
-				::Legends.Background.LegendWitch,
 				::Legends.Background.LegendCommanderWitch
 			))
 				candidates_healer.push(bro);

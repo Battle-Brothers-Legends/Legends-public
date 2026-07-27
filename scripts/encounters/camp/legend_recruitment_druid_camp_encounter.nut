@@ -120,7 +120,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		// }
 
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if ((bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)) || (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderDruid)))
+			if ((bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)))
 				return false;
 
 			totalbrothers += 1;
