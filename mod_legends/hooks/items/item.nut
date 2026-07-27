@@ -265,14 +265,15 @@
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug. Variant = " + this.getRuneVariant();
-		return def.getTooltip(this);
+		return ::Legends.Runes.getTooltip(this, def);
 	}
 
-	o.setRuneBonus <- function ( _bonus = false) {
+	o.setRuneBonus <- function ( _upgraded = false, _crafted = _false) {
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return;
-		def.setRuneBonus(this, _bonus);
+
+		::Legends.Runes.setRuneBonuses(def, _upgraded, _crafted);
 	}
 
 	o.updateRuneSigilToken <- function() {

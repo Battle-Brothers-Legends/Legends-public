@@ -17,30 +17,13 @@ This item has the power of the rune sigil of Endurance:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Endurance:
-[color=%positive%]+0[/color] to [color=%positive%]+%max1%[/color] Fatigue recovery per turn.
-[color=%negative%]3%[/color] to [color=%positive%]%max2%%[/color] reduced Fatigue cost of all your skills.
+[color=%positive%]+%min1%[/color] to [color=%positive%]+%max1%[/color] Fatigue recovery per turn.
+[color=%negative%]%min2%%[/color] to [color=%positive%]%max2%%[/color] reduced Fatigue cost of all your skills.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(0, 3));
-			_item.setRuneBonus2(::Math.rand(3, 9));
-		} else {
-			_item.setRuneBonus1(::Math.rand(0, 1));
-			_item.setRuneBonus2(::Math.rand(3, 6));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()],
-			["bonus2", _item.getRuneBonus2()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 3 : 1],
-			["max2", _item.isUpgraded() ? 9 : 6]
-		]);
-	}
+	Effect = [
+		[0, 2],
+		[3, 6]
+	]
 });
 
 ::Legends.Rune.LegendRsaSafety <- ::Legends.Runes.add({
@@ -58,30 +41,13 @@ This item has the power of the rune sigil of Safety:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Safety:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Hitpoints.
-[color=%negative%]-3%[/color] to [color=%positive%]-%max2%%[/color] Damage received.
+[color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Hitpoints.
+[color=%negative%]-%min2%%[/color] to [color=%positive%]-%max2%%[/color] Damage received.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(3, 9));
-			_item.setRuneBonus2(::Math.rand(3, 9));
-		} else {
-			_item.setRuneBonus1(::Math.rand(3, 6));
-			_item.setRuneBonus2(::Math.rand(3, 6));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()],
-			["bonus2", _item.getRuneBonus2()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 9 : 6],
-			["max2", _item.isUpgraded() ? 9 : 6]
-		]);
-	}
+	Effect = [
+		[3, 6],
+		[3, 6]
+	]
 });
 
 // TODO, this rune is deprecated since 2023, why do we keep it?
@@ -104,14 +70,7 @@ This item has the power of the rune sigil of Resilience:
 
 This item has the power of the rune sigil of Resilience:
 [color=%positive%]Immune[/color] to stun, knockback and grab.
-	",
-	setRuneBonus = function(_item, _bonus) {},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip);
-	}
-	getRuneTooltip = function (_item) {
+	"
 		// Removed 22/1/23 as part of the steel brow rework. May rework this rune in a similar manner later where its not blanket immunity
 		// return "This item has the power of the rune sigil of Resilience:\n[color=%positive%]Immune[/color] to stun, knockback and grab.";
-		return ::Legends.tooltip(this.RuneTooltip);
-	}
 });

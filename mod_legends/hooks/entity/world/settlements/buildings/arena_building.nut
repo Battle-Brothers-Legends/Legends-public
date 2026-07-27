@@ -2,7 +2,7 @@
 {
 	o.m.Attempts <- [];
 
-	o.getMaxAttempts <- @() (1 + ((::World.Assets.m.ProfessionEffect.LegendBreadAndGames * 100).tointeger() + ::Math.rand(0, 99)) / 100);
+	o.getMaxAttempts <- @() (1 + ::Legends.S.randomizeFractionToInt(::World.Assets.m.ProfessionEffect.LegendBreadAndGames));
 	o.getCurrentAttempts <- @() this.m.Attempts.len();
 
 	o.registerAttempt <- function() {

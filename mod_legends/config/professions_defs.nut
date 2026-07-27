@@ -78,8 +78,10 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendAncientKnowledge,
     Icon = "ui/professions/ancient_knowledge.png",
     IconDisabled = "ui/professions/ancient_knowledge_bw.png",
-    Const = "LegendAncientKnowledge"
-    // improves minimum quality of ancient runes
+    Const = "LegendAncientKnowledge",
+    ScalingArray = [0, 0.5], // improves minimum quality of ancient runes
+    ScalingFactor = 0.05
+    
 });
 
 ::Legends.Profession.LegendAmusingOurselvesToDeath <- null;

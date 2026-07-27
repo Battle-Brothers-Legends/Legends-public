@@ -283,7 +283,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 77,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = rune.getTooltip(this)
+				text = ::Legends.Runes.getTooltip(this, rune)
 			});
 		}
 
@@ -352,7 +352,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = rune.getTooltip(this)
+				text = ::Legends.Runes.getTooltip(this, rune)
 			});
 		}
 

@@ -29,6 +29,10 @@
 	return this.regexp(pattern).search(text);
 };
 
+::Legends.S.randomizeFractionToInt <- function(_value) {
+	return ((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
+}
+
 ::Legends.S.isCharacterWeaponSpecialized <- function( _properties, _weapon )
 {
 	switch (true)

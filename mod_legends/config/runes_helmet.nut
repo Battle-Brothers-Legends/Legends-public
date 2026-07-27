@@ -17,30 +17,13 @@ This item has the power of the rune sigil of Clarity:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Clarity:
-[color=%positive%]+0[/color] to [color=%positive%]+%max1%[/color] Vision.
-[color=%positive%]+3%[/color] to [color=%positive%]+%max2%%[/color] Experience gain.
+[color=%positive%]+%min1%[/color] to [color=%positive%]+%max1%[/color] Vision.
+[color=%positive%]+%min2%%[/color] to [color=%positive%]+%max2%%[/color] Experience gain.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(0, 2));
-			_item.setRuneBonus2(::Math.rand(3, 9));
-		} else {
-			_item.setRuneBonus1(::Math.rand(0, 1));
-			_item.setRuneBonus2(::Math.rand(3, 6));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()],
-			["bonus2", _item.getRuneBonus2()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 2 : 1],
-			["max2", _item.isUpgraded() ? 9 : 6]
-		]);
-	}
+	Effect = [
+		[0, 1],
+		[3, 6]
+	]
 });
 
 ::Legends.Rune.LegendRshBravery <- ::Legends.Runes.add({
@@ -58,30 +41,13 @@ This item has the power of the rune sigil of Bravery:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Bravery:
-[color=%positive%]+0[/color] to [color=%positive%]+%max1%%[/color] Resolve.
-[color=%positive%]+1[/color] to [color=%positive%]+%max2%[/color] Resolve at all morale checks.
+[color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Resolve.
+[color=%positive%]+%min2%[/color] to [color=%positive%]+%max2%[/color] Resolve at all morale checks.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(3, 9));
-			_item.setRuneBonus2(::Math.rand(1, 5));
-		} else {
-			_item.setRuneBonus1(::Math.rand(3, 6));
-			_item.setRuneBonus2(::Math.rand(1, 3));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()],
-			["bonus2", _item.getRuneBonus2()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 9 : 6],
-			["max2", _item.isUpgraded() ? 5 : 3]
-		]);
-	}
+	Effect = [
+		[3, 6],
+		[1, 3]
+	]
 });
 
 ::Legends.Rune.LegendRshLuck <- ::Legends.Runes.add({
@@ -98,25 +64,11 @@ This item has the power of the rune sigil of Luck:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Luck:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] chance to have any attacker require two successful attack rolls in order to hit.
+[color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] chance to have any attacker require two successful attack rolls in order to hit.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(3, 9));
-		} else {
-			_item.setRuneBonus1(::Math.rand(3, 6));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 9 : 6]
-		]);
-	}
+	Effect = [
+		[3, 6]
+	]
 });
 
 ::Legends.Rune.LegendRshPatience <- ::Legends.Runes.add({
@@ -134,28 +86,11 @@ This item has the power of the rune sigil of Patience:
 	",
 	RuneTooltip = @"
 This item has the power of the rune sigil of Patience:
-[color=%positive%]+3%[/color] to [color=%positive%]+%max1%%[/color] Initiative.
-[color=%positive%]+3%[/color] to [color=%positive%]+%max2%%[/color] Hit chance to next attack after you wait a turn.
+[color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Initiative.
+[color=%positive%]+%min2%%[/color] to [color=%positive%]+%max2%%[/color] Hit chance to next attack after you wait a turn.
 	",
-	setRuneBonus = function(_item, _bonus) {
-		if (_bonus) {
-			_item.setRuneBonus1(::Math.rand(3, 9));
-			_item.setRuneBonus2(::Math.rand(3, 9));
-		} else {
-			_item.setRuneBonus1(::Math.rand(3, 6));
-			_item.setRuneBonus2(::Math.rand(3, 6));
-		}
-	},
-	getTooltip = function(_item) {
-		return ::Legends.tooltip(this.Tooltip, [
-			["bonus1", _item.getRuneBonus1()],
-			["bonus2", _item.getRuneBonus2()]
-		]);
-	}
-	getRuneTooltip = function (_item) {
-		return ::Legends.tooltip(this.RuneTooltip, [
-			["max1", _item.isUpgraded() ? 9 : 6],
-			["max2", _item.isUpgraded() ? 9 : 6]
-		]);
-	}
+	Effect = [
+		[3, 6],
+		[3, 6]
+	]
 });

@@ -36,7 +36,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		local def = ::Legends.Runes.get(this.m.Rune);
 		if (def == null)
 			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug.";
-		return def.getRuneTooltip(this);
+		return ::Legends.Runes.getRuneTooltip(def, this.isUpgraded());
 	}
 
 	function isQualified()
@@ -44,14 +44,13 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 		return this.blueprint.isQualified();
 	}
 
-	function onEnchant( _stash, _bonus )
-	{
+	function onEnchant( _stash, _upgraded )	{
 		local def = ::Legends.Runes.get(this.m.Rune);
 		if (def == null)
 			return;
 		local rune = ::new(def.Script);
 		rune.setRuneVariant(this.m.Rune);
-		rune.setRuneBonus(_bonus);
+		rune.setRuneBonus(_upgraded, true);
 		if (def.ItemType == ::Legends.Runes.Target.Weapon || def.ItemType == ::Legends.Runes.Target.Shield) {
 			rune.updateRuneSigilToken();
 		}

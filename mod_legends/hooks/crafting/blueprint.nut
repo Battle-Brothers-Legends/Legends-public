@@ -17,7 +17,11 @@
 
     	foreach (reqGroup in this.m.PreviewSkills) {
 			foreach (skillInstance in reqGroup.Instances) {
-				local effect = ::World.Assets.m.ProfessionEffect[::Const.Professions.LookupMap[skillInstance.getID()].Const];
+				local skillID = skillInstance.getID(); // switcheroo for enchanting - we require vala but assist with enchanters assistant
+				if(skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
+					skillID = ::Legends.Professions.getID(::Legends.Profession.LegendEnchantersAssistant);
+				}
+				local effect = ::World.Assets.m.ProfessionEffect[::Const.Professions.findById(skillID).Const];
 				if (effect > 0) {
 					modifier /= effect;
 				}	
