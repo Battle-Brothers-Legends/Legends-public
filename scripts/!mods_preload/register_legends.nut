@@ -17,7 +17,7 @@
 	"dlc_wildmen",
 	"dlc_desert",
 	"dlc_paladins",
-	"mod_events_delayed_fix_legends",
+	//"mod_events_delayed_fix_legends",
 	">blazing_deserts_plus(>=0.9)",
 	"!mod_tooltip_extension(<=1.01)"
 ].reduce(@(p, n) ::format("%s, %s", p, n)), function () {
