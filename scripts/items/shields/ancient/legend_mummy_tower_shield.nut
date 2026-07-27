@@ -55,7 +55,7 @@ this.legend_mummy_tower_shield <- this.inherit("scripts/items/shields/shield", {
 	function onEquip()
 	{
 		this.shield.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.ShieldWall, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall, function (_skill) {
 			this.m.Icon = "skills/fortify_square.png";
 			this.m.IconDisabled = "skills/fortify_square_bw.png";
 		});

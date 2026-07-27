@@ -1,7 +1,5 @@
-::mods_hookExactClass("skills/actives/shieldwall", function(o)
-{
-	o.getTooltip = function ()
-	{
+::mods_hookExactClass("skills/actives/shieldwall", function (o) {
+	o.getTooltip = function () {
 		local actor = this.getContainer().getActor();
 		local p = actor.getCurrentProperties();
 		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
@@ -16,7 +14,8 @@
 			proficiencyBonus = 5;
 		}
 
-		return [{
+		return [
+			{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -44,13 +43,12 @@
 		return this.skill.isUsable();
 	}
 
-	o.onAfterUpdate = function ( _properties ) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInShields || _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	o.onAfterUpdate = function (_properties) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields	|| _properties.IsProficientWithShieldWall || _properties.IsProficientWithShieldSkills ? ::Const.Combat.WeaponSpecFatigueMult	: 1.0;
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
-		::Legends.Effects.grant(_entity, ::Legends.Effect.LegendShieldwall);
+	o.onUse = function (_user, _targetTile) {
+		::Legends.Effects.grant(_targetTile.getEntity(), ::Legends.Effect.LegendShieldwall);
 
 		if (!_user.isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
