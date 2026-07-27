@@ -34,7 +34,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/block.png",
-				text = "Grants an additional [%positive]+" + this.Math.floor(item.getMeleeDefense() * mult + proficiencyBonus) + "[/color] [%status]Block[/color] against attacks"
+				text = "Grants an additional [color=%positive%]+" + ::Math.floor(item.getMeleeDefense() * mult + proficiencyBonus) + "[/color] [color=%status%]Block[/color] against attacks"
 			}
 		];
 	}
