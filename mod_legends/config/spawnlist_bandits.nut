@@ -11,7 +11,7 @@
 	Fixed = [
 		{
 			Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
-			Weight = 100, //100 Weight guarentees this will be added
+			Weight = 100, //100 Weight guarantees this will be added
 			Cost = 1, //dictates cost taken from minR
 			Roll = true
 		},

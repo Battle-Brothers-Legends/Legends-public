@@ -79,7 +79,7 @@ local VanillaTree = [
 ::Const.Perks.BuildPerkTreeFromTemplate <- function (_custom)
 {
 	local tree = [];
-	local treeMap = {}
+	local treeMap = {};
 
 	for( local row = 0; row < VanillaTree.len(); row = ++row )
 	{
@@ -116,7 +116,7 @@ local VanillaTree = [
 	local pT = {
 		Tree = [],
 		Map = {}
-	}
+	};
 	pT.addPerk <- function (_perk, _row=0)
 	{
 		local perk = clone ::Const.Perks.PerkDefObjects[_perk];
@@ -187,7 +187,7 @@ local VanillaTree = [
 		Class = [],
 		Profession = [],
 		Magic = []
-	}
+	};
 
 	//Clone so we don't overwrite the default character background ones
 	if ("Weapon" in _map) {
@@ -380,8 +380,8 @@ local VanillaTree = [
 		}
 	}
 
-	local _totals = {}
-	local _overflows = {}
+	local _totals = {};
+	local _overflows = {};
 	foreach (v in _localMap)
 	{
 		foreach(mT in v)

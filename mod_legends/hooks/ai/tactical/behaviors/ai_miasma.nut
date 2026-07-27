@@ -8,12 +8,11 @@
 		local usedIDs = [];
 		local opponents = this.getAgent().getKnownOpponents();
 
-		foreach (o in opponents)
-		{
-			if (o.Actor.isNull())
+		foreach (opponent in opponents)	{
+			if (opponent.Actor.isNull())
 				continue;
 
-			local opponentTile = o.Actor.getTile();
+			local opponentTile = opponent.Actor.getTile();
 
 			if (_myTile.getDistanceTo(opponentTile) > _skill.getMaxRange() + 1)
 				continue;

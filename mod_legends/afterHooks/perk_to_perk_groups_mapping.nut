@@ -80,11 +80,9 @@ foreach(key, value in ::Legends.Perks.PerkGroupCategoriesOrder)
 // 	null,
 // 	null
 // ]
-::Legends.Perks.buildPerkGroupCategoriesArray <- function()
-{
-	ret = [];
-	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
-	{
+::Legends.Perks.buildPerkGroupCategoriesArray <- function() {
+	local ret = [];
+	foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder) {
 		ret.push(null);
 	}
 	return ret;

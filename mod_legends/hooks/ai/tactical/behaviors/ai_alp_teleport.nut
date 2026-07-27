@@ -25,8 +25,6 @@
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		local skills = [];
-
 		foreach( skillID in this.m.PossibleSkills )
 		{
 			local skill = _entity.getSkills().getSkillByID(skillID);
@@ -38,12 +36,10 @@
 			}
 		}
 
-		if (this.m.SelectedSkill == null)
-		{
+		if (this.m.SelectedSkill == null) {
 			return this.Const.AI.Behavior.Score.Zero;
 		}
 
-		local myTile = _entity.getTile();
 		local potentialDestinations = [];
 
 		if (this.Const.Tactical.Actor.Alp.TeleportTargets.len() == 0 || this.Const.Tactical.Actor.Alp.TeleportFrame != this.Time.getFrame())
@@ -54,26 +50,24 @@
 			this.getStrategy().compileKnownOpponents();
 			local targets = this.getAgent().getKnownOpponents();
 
-			foreach( t in targets )
+			foreach( target in targets )
 			{
-				if (t.Actor.isNull())
+				if (target.Actor.isNull())
 				{
 					continue;
 				}
 
-				local targetValue = this.queryTargetValue(_entity, t.Actor);
+				local targetValue = this.queryTargetValue(_entity, target.Actor);
 
-				if (t.Actor.getCurrentProperties().IsStunned && t.Actor.getSkills().hasEffect(::Legends.Effect.Sleeping))
-				{
+				if (target.Actor.getCurrentProperties().IsStunned && target.Actor.getSkills().hasEffect(::Legends.Effect.Sleeping))	{
 					targetValue = targetValue * 1.5;
 				}
 
-				if (t.Actor.getCurrentProperties().MoraleCheckBraveryMult[1] > 0.0)
-				{
-					targetValue = targetValue / t.Actor.getCurrentProperties().MoraleCheckBraveryMult[1];
+				if (target.Actor.getCurrentProperties().MoraleCheckBraveryMult[1] > 0.0) {
+					targetValue = targetValue / target.Actor.getCurrentProperties().MoraleCheckBraveryMult[1];
 				}
 
-				local potentialTiles = this.queryDestinationsInRange(t.Actor.getTile(), this.getProperties().EngageRangeMin, this.getProperties().EngageRangeMax);
+				local potentialTiles = this.queryDestinationsInRange(target.Actor.getTile(), this.getProperties().EngageRangeMin, this.getProperties().EngageRangeMax);
 
 				foreach( tile in potentialTiles )
 				{
@@ -87,22 +81,19 @@
 					score = score + tile.TVTotal;
 					score = score - (this.hasNegativeTileEffect(tile, _entity) ? 40.0 : 0.0);
 
-					foreach( o in targets )
+					foreach( target in targets )
 					{
-						if (o.Actor.isNull() || o.Actor.getID() == t.Actor.getID())
-						{
+						if (target.Actor.isNull() || target.Actor.getID() == target.Actor.getID()) {
 							continue;
 						}
 
-						if (o.Actor.getMoraleState() == this.Const.MoraleState.Fleeing || o.Actor.getCurrentProperties().IsStunned)
-						{
+						if (target.Actor.getMoraleState() == this.Const.MoraleState.Fleeing || target.Actor.getCurrentProperties().IsStunned) {
 							continue;
 						}
 
-						local d = o.Actor.getTile().getDistanceTo(tile);
+						local d = target.Actor.getTile().getDistanceTo(tile);
 
-						if (d <= 3)
-						{
+						if (d <= 3)	{
 							score = score - 5.0;
 						}
 					}

@@ -24,7 +24,7 @@ if (!("Professions" in ::Const)) {
 	local pT = {
 		Tree = [],
 		Map = {}
-	}
+	};
 	pT.addProfession <- function (_profession, _row = 0) {
 		local profession = clone ::Const.Professions.ProfessionDefObjects[_profession];
 

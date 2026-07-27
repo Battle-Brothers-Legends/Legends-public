@@ -889,7 +889,7 @@ if (!("Spawn" in ::Const.World))
 					MinGuards = 1,
 					MaxGuards = 2,
 					MaxGuardsWeight = 66,
-					Weight = 0, //0 Weight guarentees this will be added
+					Weight = 0, //0 Weight guarantees this will be added
 					Guards = [
 						{
 							Type = this.Const.World.Spawn.Troops.DirewolfBodyguard,

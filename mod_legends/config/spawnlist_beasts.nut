@@ -15,7 +15,7 @@
 			MinGuards = 2,
 			MaxGuards = 3,
 			MaxGuardsWeight = 50,
-			Weight = 0, // 0 guarentees this will be added
+			Weight = 0, // 0 guarantees this will be added
 			Guards = [
 				{
 					Type = this.Const.World.Spawn.Troops.LegendRedbackSpiderBodyguard,

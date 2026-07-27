@@ -97,13 +97,13 @@ This item has the power of the rune sigil of Safety:
 [color=%negative%]This rune is not supposed to drop, if you see this, post bug report.[/color]
 
 This item has the power of the rune sigil of Resilience:
-[color=%positive%]Immune[/color] to stuns, knockbacks and grabs.
+[color=%positive%]Immune[/color] to stun, knockback and grab.
 	",
 	RuneTooltip = @"
 [color=%negative%]This rune is not supposed to drop, if you see this, post bug report.[/color]
 
 This item has the power of the rune sigil of Resilience:
-[color=%positive%]Immune[/color] to stuns, knockbacks and grabs.
+[color=%positive%]Immune[/color] to stun, knockback and grab.
 	",
 	setRuneBonus = function(_item, _bonus) {},
 	getTooltip = function(_item) {
@@ -111,7 +111,7 @@ This item has the power of the rune sigil of Resilience:
 	}
 	getRuneTooltip = function (_item) {
 		// Removed 22/1/23 as part of the steel brow rework. May rework this rune in a similar manner later where its not blanket immunity
-		// return "This item has the power of the rune sigil of Resilience:\n[color=%positive%]Immune[/color] to stuns, knockbacks and grabs.";
+		// return "This item has the power of the rune sigil of Resilience:\n[color=%positive%]Immune[/color] to stun, knockback and grab.";
 		return ::Legends.tooltip(this.RuneTooltip);
 	}
 });

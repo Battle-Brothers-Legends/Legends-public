@@ -18,7 +18,7 @@ foreach(k, v in this.Const.World.Spawn)
 	//this.logInfo("Calculating costs for " + k)
 	foreach (i, _t in v.Troops)
 	{
-		local costMap = {}
+		local costMap = {};
 		foreach (tt in _t.Types) {
 			if (!(tt.Cost in costMap)) {
 				costMap[tt.Cost] <- []
