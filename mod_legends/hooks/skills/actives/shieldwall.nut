@@ -48,7 +48,7 @@
 	}
 
 	o.onUse = function (_user, _targetTile) {
-		::Legends.Effects.grant(_targetTile.getEntity(), ::Legends.Effect.LegendShieldwall);
+		::Legends.Effects.grant(_targetTile.getEntity(), ::Legends.Effect.Shieldwall);
 
 		if (!_user.isHiddenToPlayer()) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
