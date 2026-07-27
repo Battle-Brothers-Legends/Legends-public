@@ -258,6 +258,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [0, 5]
 }];
 
+::Legends.BackgroundsStats.ConvertedCultist <- clone ::Legends.BackgroundsStats.Cultist;
+
 ::Legends.BackgroundsStats.Daytaler <- [{
 	Hitpoints = [4, 8],
 	Bravery = [-2, -3],
@@ -325,6 +327,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	RangedDefense = [-5, -5],
 	Initiative = [-5, -5]
 }];
+
+::Legends.BackgroundsStats.ExecutionerSouthern <- clone ::Legends.BackgroundsStats.Executioner;
 
 ::Legends.BackgroundsStats.Farmhand <- [{
 	Hitpoints = [7, 10],
@@ -462,6 +466,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 12]
 }];
 
+::Legends.BackgroundsStats.JugglerSouthern <- clone ::Legends.BackgroundsStats.Juggler;
+
 ::Legends.BackgroundsStats.KillerOnTheRun <- [{
 	Hitpoints = [0, 0],
 	Bravery = [-5, -5],
@@ -472,6 +478,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	RangedDefense = [-3, 0],
 	Initiative = [0, 5]
 }];
+
+::Legends.BackgroundsStats.KingsGuard <- clone ::Legends.BackgroundsStats.Beggar;
 
 ::Legends.BackgroundsStats.LindwurmSlayer <- [{
 	Hitpoints = [14, 18],

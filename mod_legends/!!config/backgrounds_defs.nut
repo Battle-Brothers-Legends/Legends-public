@@ -191,7 +191,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_2h_southern_background",
-    Const = "Companion2hSouthern",
+    Const = "CompanionSouthern2h",
     Name = "Companion",
 });
 
@@ -199,7 +199,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_ranged_southern_background",
-    Const = "CompanionRangedSouthern",
+    Const = "CompanionSouthernRanged",
     Name = "Companion",
 });
 

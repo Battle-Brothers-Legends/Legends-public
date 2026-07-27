@@ -35,12 +35,12 @@
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
 
-		bros[1].setStartValuesEx([::Legends.Background.Companion2hSouthern]);
+		bros[1].setStartValuesEx([::Legends.Background.CompanionSouthern2h]);
 		bros[1].getBackground().m.RawDescription = "{If loyalty was gold, this might be the wealthiest person to stand beneath the Gilder\'s eye. You found %name% being ambushed in an alley and promptly fought off the thieves. The southerner swore allegiance to you for one year. And it has been many since. Despite a lousy first fighting impression, %name% is a formidable warrior when not getting bushwhacked.}";
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
 
-		bros[2].setStartValuesEx([::Legends.Background.CompanionRangedSouthern]);
+		bros[2].setStartValuesEx([::Legends.Background.CompanionSouthernRanged]);
 		bros[2].getBackground().m.RawDescription = "{You are not entirely sure of %name%\'s past, only that the path traveled has not had as much shine as one would hope. %name% has attempted to live many lives, but the army said no, the city guard refused and the brothels closed their doors shut. A life as a Crownling it is then. %name% thinks a glorious and hastened death will mean a faster trip to the Gilder\'s eye so the two of them can discuss why exactly the life lived was so troublesome. When the southerner is not moping about, %name% can be cheerful and funny. Just keep the mercenary away from drinks and priests.}";
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
