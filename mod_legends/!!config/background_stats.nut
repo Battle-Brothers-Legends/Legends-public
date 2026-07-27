@@ -1210,10 +1210,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionAuxiliary <- [{
 	Hitpoints = [-1, 4],
-	Bravery = [//not needed except for resisting charm and sleep
-		0, 5],
-	Stamina = [//not needed except for equipment weight
-		10, 10],
+	Bravery = [0, 5], //not needed except for resisting charm and sleep
+	Stamina = [10, 10], //not needed except for equipment weight
 	MeleeSkill = [1, 3],
 	RangedSkill = [9, 14],
 	MeleeDefense = [0, 2],
@@ -1223,10 +1221,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionCenturion <- [{
 	Hitpoints = [10, 12],
-	Bravery = [//not needed except for resisting charm and sleep
-		20, 25],
-	Stamina = [//not needed except for equipment weight
-		20, 25],
+	Bravery = [20, 25], //not needed except for resisting charm and sleep
+	Stamina = [20, 25], //not needed except for equipment weight
 	MeleeSkill = [8, 10],
 	RangedSkill = [4, 7],
 	MeleeDefense = [5, 8],
@@ -1236,10 +1232,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionGladiator <- [{
 	Hitpoints = [20, 30],
-	Bravery = [//not needed except for resisting charm and sleep
-		5, 10],
-	Stamina = [//not needed except for equipment weight
-		10, 15],
+	Bravery = [5, 10], //not needed except for resisting charm and sleep
+	Stamina = [10, 15], //not needed except for equipment weight
 	MeleeSkill = [12, 16],
 	RangedSkill = [10, 18],
 	MeleeDefense = [5, 8],
@@ -1249,10 +1243,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionHonourGuard <- [{
 	Hitpoints = [3, 6],
-	Bravery = [//not needed except for resisting charm and sleep
-		10, 15],
-	Stamina = [//not needed except for equipment weight
-		20, 20],
+	Bravery = [10, 15], //not needed except for resisting charm and sleep
+	Stamina = [20, 20], //not needed except for equipment weight
 	MeleeSkill = [5, 8],
 	RangedSkill = [2, 4],
 	MeleeDefense = [4, 7],
@@ -1262,10 +1254,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionLegate <- [{
 	Hitpoints = [12, 16],
-	Bravery = [//not needed except for resisting charm and sleep
-		20, 25],
-	Stamina = [//not needed except for equipment weight
-		20, 25],
+	Bravery = [20, 25], //not needed except for resisting charm and sleep
+	Stamina = [20, 25], //not needed except for equipment weight
 	MeleeSkill = [15, 20],
 	RangedSkill = [5, 9],
 	MeleeDefense = [9, 15],
@@ -1275,10 +1265,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionLegionary <- [{
 	Hitpoints = [1, 3],
-	Bravery = [//not needed except for resisting charm and sleep
-		5, 10],
-	Stamina = [//not needed except for equipment weight
-		15, 15],
+	Bravery = [5, 10], //not needed except for resisting charm and sleep
+	Stamina = [15, 15], //not needed except for equipment weight
 	MeleeSkill = [2, 5],
 	RangedSkill = [5, 9],
 	MeleeDefense = [2, 4],
@@ -1288,10 +1276,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionPrefect <- [{
 	Hitpoints = [5, 10],
-	Bravery = [//not needed except for resisting charm and sleep
-		20, 25],
-	Stamina = [//not needed except for equipment weight
-		20, 25],
+	Bravery = [20, 25], //not needed except for resisting charm and sleep
+	Stamina = [20, 25], //not needed except for equipment weight
 	MeleeSkill = [8, 10],
 	RangedSkill = [4, 7],
 	MeleeDefense = [5, 8],
@@ -1301,10 +1287,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 
 ::Legends.BackgroundsStats.LegendLegionSlave <- [{
 	Hitpoints = [-3, 7],
-	Bravery = [//not needed except for resisting charm and sleep
-		0, 0],
-	Stamina = [//not needed except for equipment weight
-		0, 5],
+	Bravery = [0, 0], //not needed except for resisting charm and sleep
+	Stamina = [0, 5], //not needed except for equipment weight
 	MeleeSkill = [-2, 1],
 	RangedSkill = [4, 8],
 	MeleeDefense = [-1, 2],
