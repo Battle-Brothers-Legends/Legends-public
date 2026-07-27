@@ -1,9 +1,70 @@
-::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function(o) {
-
+::mods_hookExactClass("ui/screens/tooltip/tooltip_events", function(o) {
 	o.onQueryUIProfessionTooltipData <- function ( _entityId, _professionId )	{
 		return this.TooltipEvents.general_queryUIProfessionTooltipData(_entityId, _professionId);
 	}
 
+	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
+		local player = this.Tactical.getEntityByID(_entityId);
+		local profession = player.getBackground().getProfession(_professionId);
+
+		local vars = [
+			["name", player.getNameOnly()],
+			["fullname", player.getName()],
+			["title", player.getTitle()]
+		];
+		::Const.LegendMod.extendVarsWithPronouns(vars, player);
+		local tooltip = this.buildTextFromTemplate(profession.Tooltip, vars);
+
+		if (profession != null) {
+			local ret = [{
+				id = 1,
+				type = "title",
+				text = profession.Name
+			}, {
+				id = 2,
+				type = "description",
+				text = tooltip
+			}];
+
+			if (!player.hasProfession(_professionId)) {
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, false));
+
+				if (player.getProfessionPointsSpent() >= profession.Unlocks) {
+					if (player.getProfessionPoints() == 0) {
+						ret.push({
+							id = 3,
+							type = "hint",
+							icon = "ui/icons/icon_locked.png",
+							text = "Available, but this character has no profession point to spend"
+						});
+					}
+				} else if (profession.Unlocks - player.getProfessionPointsSpent() > 1) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession points are spent"
+					});
+				} else {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession point is spent"
+					});
+				}
+			} else {
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, true));
+			}
+
+			return ret;
+		}
+
+		return null;
+	}
+});
+
+::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function(o) {
 	o.onQueryFollowerTooltipData = function ( _followerID )
 	{
 		if (typeof _followerID == "integer")
@@ -493,7 +554,7 @@
 
 			local slot = _item.getSlotType();
 			if (_item.getRepair() >= _item.getRepairMax() && ( slot == this.Const.ItemSlot.Body || slot == this.Const.ItemSlot.Head || slot == this.Const.ItemSlot.Mainhand || slot == this.Const.ItemSlot.Offhand ) && !_item.isItemType(::Const.Items.ItemType.Net))
-			{	
+			{
 				tooltip.push({
 					id = 3,
 					type = "hint",
@@ -567,7 +628,7 @@
 						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
 						text = "Mark for autosalvage"
 					});
-				} 
+				}
 			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 1) {
 				if((_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade") && !_item.canBeSalvaged())){
 					tooltip.push({
@@ -590,7 +651,7 @@
 						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
 						text = "Mark for autosalvage"
 					});
-				} 
+				}
 			} else {
 				tooltip.push({
 					id = 4,
@@ -899,69 +960,6 @@
 						text = "Locked until " + (perk.Unlocks - player.getPerkPointsSpent()) + " more perk point is spent"
 					});
 				}
-			}
-
-			return ret;
-		}
-
-		return null;
-	}
-
-	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
-		local player = this.Tactical.getEntityByID(_entityId);
-		local profession = player.getBackground().getProfession(_professionId);
-
-		local vars = [
-			["name", player.getNameOnly()],
-			["fullname", player.getName()],
-			["title", player.getTitle()]
-		];
-		::Const.LegendMod.extendVarsWithPronouns(vars, player);
-		local tooltip = this.buildTextFromTemplate(profession.Tooltip, vars);
-
-		if (profession != null) {
-			local ret = [
-				{
-					id = 1,
-					type = "title",
-					text = profession.Name
-				},
-				{
-					id = 2,
-					type = "description",
-					text = tooltip
-				}
-			];
-
-			if (!player.hasProfession(_professionId)) {
-				ret.extend(::new(profession.Script).getDynamicTooltip(profession, false));
-
-				if (player.getProfessionPointsSpent() >= profession.Unlocks) {
-					if (player.getProfessionPoints() == 0) {
-						ret.push({
-							id = 3,
-							type = "hint",
-							icon = "ui/icons/icon_locked.png",
-							text = "Available, but this character has no profession point to spend"
-						});
-					}
-				} else if (profession.Unlocks - player.getProfessionPointsSpent() > 1) {
-					ret.push({
-						id = 3,
-						type = "hint",
-						icon = "ui/icons/icon_locked.png",
-						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession points are spent"
-					});
-				} else {
-					ret.push({
-						id = 3,
-						type = "hint",
-						icon = "ui/icons/icon_locked.png",
-						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession point is spent"
-					});
-				}
-			} else {
-				ret.extend(::new(profession.Script).getDynamicTooltip(profession, true));
 			}
 
 			return ret;
@@ -4211,7 +4209,7 @@
 			];
 
 		case "world-town-screen.main-dialog-module.Arena":
-			
+
 			local ret = [
 				{
 					id = 1,
@@ -4233,7 +4231,7 @@
 					icon = "ui/icons/melee_skill.png",
 					text = "There are " + ttinfo[0] + " / " + ttinfo[1] + " fights available today."
 				});
-				
+
 				if (this.World.State.getCurrentTown().getBuilding("building.arena").isClosed()) {
 					ret.push({
 						id = 3,

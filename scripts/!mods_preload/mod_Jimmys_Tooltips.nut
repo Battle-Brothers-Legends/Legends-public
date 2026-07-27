@@ -69,6 +69,8 @@
 			@(__original) @(_entityId, _elementId, _elementOwner) patchTooltip(__original(_entityId, _elementId, _elementOwner));
 		q.onQueryFollowerTooltipData =
 			@(__original) @(_followerID) patchTooltip(__original(_followerID));
+		q.onQueryUIProfessionTooltipData =
+			@(__original) @(_entityId, _professionId) patchTooltip(__original(_entityId, _professionId));
 	});
 }, ::Hooks.QueueBucket.VeryLate);
 
