@@ -43,7 +43,7 @@ this.legend_decorated_rhomphaia <- this.inherit("scripts/items/weapons/weapon", 
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
-			_skill.m.isGreatBreachSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Split);
 		::Legends.Actives.grant(this, ::Legends.Active.Swing);

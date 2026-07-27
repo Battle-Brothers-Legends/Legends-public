@@ -1,6 +1,6 @@
 this.legend_breach_skill <- this.inherit("scripts/skills/actives/slash", {
 	m = {
-		isGreatBreachSlash = false
+		IsGreatBreachSlash = false
 	}
 	function create() {
 		this.slash.create();
@@ -9,7 +9,7 @@ this.legend_breach_skill <- this.inherit("scripts/skills/actives/slash", {
 	}
 
 	function setItem (_item) {
-		if (this.m.isGreatBreachSlash) {
+		if (this.m.IsGreatBreachSlash) {
 			this.m.DirectDamageMult = 0.25;
 			this.m.FatigueCost = 13;
 		}

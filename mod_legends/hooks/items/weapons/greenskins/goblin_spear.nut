@@ -43,7 +43,7 @@
 	{
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
-			_skill.m.isGreatBreachSlash = true;
+			_skill.m.IsGreatBreachSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
 			_skill.m.IsMeleeRupture = true;

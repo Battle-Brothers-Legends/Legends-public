@@ -12,7 +12,7 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
 			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBreach, function (_skill) {
-				_skill.m.isGreatBreachSlash = true;
+				_skill.m.IsGreatBreachSlash = true;
 			}.bindenv(this));
 			return;
 
