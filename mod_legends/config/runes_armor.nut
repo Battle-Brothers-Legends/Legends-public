@@ -20,7 +20,7 @@ This item has the power of the rune sigil of Endurance:
 [color=%positive%]+%min1%[/color] to [color=%positive%]+%max1%[/color] Fatigue recovery per turn.
 [color=%negative%]%min2%%[/color] to [color=%positive%]%max2%%[/color] reduced Fatigue cost of all your skills.
 	",
-	Effect = [
+	EffectValues = [
 		[0, 2],
 		[3, 6]
 	]
@@ -44,7 +44,7 @@ This item has the power of the rune sigil of Safety:
 [color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Hitpoints.
 [color=%negative%]-%min2%%[/color] to [color=%positive%]-%max2%%[/color] Damage received.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 6],
 		[3, 6]
 	]

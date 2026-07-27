@@ -32,7 +32,7 @@
 
 ::Legends.Runes.getTooltip <- function (_item, _def) {
 	local ret = [];
-	foreach (i, value in _def.Effect) {
+	foreach (i, value in _def.EffectValues) {
 		if (i == 0) {
 			ret.extend([
 				["bonus" + (i + 1), _item.getRuneBonus1()]
@@ -48,7 +48,7 @@
 
 ::Legends.Runes.getRuneTooltip <- function (_def, _upgraded) {
 	local ret = [];
-	foreach (i, value in _def.Effect) {
+	foreach (i, value in _def.EffectValues) {
 		local maxValue = this.getMaxBonus(value[1], _upgraded);
 		local minValue = ::Math.floor(this.getMinBonus(value[0], maxValue));
 
@@ -61,7 +61,7 @@
 }
 
 ::Legends.Runes.setRuneBonuses <- function (_def, _upgraded, _crafted) {
-	foreach (i, value in _def.Effect) {
+	foreach (i, value in _def.EffectValues) {
 		local maxValue = this.getMaxBonus(value[1], _upgraded);
 		local minValue = this.getMinBonus(value[0], maxValue);
 		local result = ::Math.rand(_crafted ? ::Legends.S.randomizeFractionToInt(minValue) : value[0], maxValue);

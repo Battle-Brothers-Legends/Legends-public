@@ -20,7 +20,7 @@ This item has the power of the rune sigil of Clarity:
 [color=%positive%]+%min1%[/color] to [color=%positive%]+%max1%[/color] Vision.
 [color=%positive%]+%min2%%[/color] to [color=%positive%]+%max2%%[/color] Experience gain.
 	",
-	Effect = [
+	EffectValues = [
 		[0, 1],
 		[3, 6]
 	]
@@ -44,7 +44,7 @@ This item has the power of the rune sigil of Bravery:
 [color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Resolve.
 [color=%positive%]+%min2%[/color] to [color=%positive%]+%max2%[/color] Resolve at all morale checks.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 6],
 		[1, 3]
 	]
@@ -66,7 +66,7 @@ This item has the power of the rune sigil of Luck:
 This item has the power of the rune sigil of Luck:
 [color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] chance to have any attacker require two successful attack rolls in order to hit.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 6]
 	]
 });
@@ -89,7 +89,7 @@ This item has the power of the rune sigil of Patience:
 [color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] Initiative.
 [color=%positive%]+%min2%%[/color] to [color=%positive%]+%max2%%[/color] Hit chance to next attack after you wait a turn.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 6],
 		[3, 6]
 	]

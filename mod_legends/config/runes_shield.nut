@@ -20,7 +20,7 @@ This item has the power of the rune sigil of Defense:
 [color=%positive%]+%min1%%[/color] to [color=%positive%]+%max1%%[/color] to Melee defense.
 [color=%positive%]+%min2%%[/color] to [color=%positive%]+%max2%%[/color] to Ranged defense.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 6],
 		[3, 6]
 	]
@@ -44,7 +44,7 @@ This item has the power of the rune sigil of Radiance:
 [color=%negative%]-%min1%%[/color] to [color=%negative%]-%max1%%[/color] to all adjacent enemies' Melee skill.
 [color=%negative%]-%min2%%[/color] to [color=%negative%]-%max2%%[/color] to all adjacent enemies' Melee defense.
 	",
-	Effect = [
+	EffectValues = [
 		[3, 8],
 		[3, 8]
 	]
@@ -69,7 +69,7 @@ This item has the power of the rune sigil of Durability:
 Has [color=%positive%]%min2%%[/color] to [color=%positive%]%max2%%[/color] chance to ignore damage to shield.
 	",
 	Flag = "LegendRuneExtraDurability"
-	Effect = [
+	EffectValues = [
 		[9, 18],
 		[15, 30]
 	]
