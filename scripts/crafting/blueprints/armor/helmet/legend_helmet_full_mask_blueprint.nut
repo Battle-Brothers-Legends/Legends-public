@@ -15,7 +15,8 @@ this.legend_helmet_full_mask_blueprint <- this.inherit("scripts/crafting/bluepri
 		];
 		this.init(ingredients);
 		this.initSkills([
-			::Legends.Professions.new(::Legends.Profession.LegendTailoring)
+			::Legends.Professions.new(::Legends.Profession.LegendTailoring),
+			::Legends.Perks.new(::Legends.Perk.LegendMedIngredients)
 		]);
 	}
 

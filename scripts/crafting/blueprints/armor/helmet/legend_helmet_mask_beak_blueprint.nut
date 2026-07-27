@@ -19,7 +19,8 @@ this.legend_helmet_mask_beak_blueprint <- this.inherit("scripts/crafting/bluepri
 		];
 		this.init(ingredients);
 		this.initSkills([
-			::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)
+			::Legends.Professions.new(::Legends.Profession.LegendLeatherworking),
+			::Legends.Perks.new(::Legends.Perk.LegendMedPackages)
 		]);
 	}
 
