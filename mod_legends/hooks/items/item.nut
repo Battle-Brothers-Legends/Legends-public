@@ -268,7 +268,7 @@
 		return ::Legends.Runes.getTooltip(this, def);
 	}
 
-	o.setRuneBonus <- function ( _upgraded = false, _crafted = _false) {
+	o.setRuneBonus <- function ( _upgraded = false, _crafted = false) {
 		local def = ::Legends.Runes.get(this.getRuneVariant());
 		if (def == null)
 			return;
