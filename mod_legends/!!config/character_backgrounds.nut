@@ -11,34 +11,34 @@ if (!("Backgrounds" in ::Legends)) {
 		Stamina = [10, 10]
 	},
 	Default = {
-		Hitpoints = [60, 60],
-		Bravery = [40, 40],
-		Stamina = [100, 100],
-		MeleeSkill = [50, 50],
-		RangedSkill = [40, 40],
-		MeleeDefense = [0, 0],
-		RangedDefense = [0, 0],
-		Initiative = [100, 100]
+		Hitpoints = [50, 60],
+		Bravery = [30, 40],
+		Stamina = [90, 100],
+		MeleeSkill = [47, 57],
+		RangedSkill = [32, 42],
+		MeleeDefense = [0, 5],
+		RangedDefense = [0, 5],
+		Initiative = [100, 110]
 	},
 	Skeleton = {
-		Hitpoints = [50, 50],
-		Bravery = [100, 100],
-		Stamina = [40, 40],
-		MeleeSkill = [50, 50],
-		RangedSkill = [40, 40],
-		MeleeDefense = [3, 3],
-		RangedDefense = [5, 5],
-		Initiative = [95, 95]
+		Hitpoints = [40, 50],
+		Bravery = [90, 100],
+		Stamina = [30, 40],
+		MeleeSkill = [47, 57],
+		RangedSkill = [32, 42],
+		MeleeDefense = [3, 8],
+		RangedDefense = [5, 10],
+		Initiative = [95, 105]
 	},
 	Zombie = {
-		Hitpoints = [75, 75],
-		Bravery = [100, 100],
-		Stamina = [100, 100],
-		MeleeSkill = [40, 40],
-		RangedSkill = [20, 20],
-		MeleeDefense = [-5, -5],
-		RangedDefense = [-6, -6],
-		Initiative = [65, 65]
+		Hitpoints = [65, 75],
+		Bravery = [90, 100],
+		Stamina = [90, 100],
+		MeleeSkill = [47, 57],
+		RangedSkill = [20, 30],
+		MeleeDefense = [-5, 0],
+		RangedDefense = [-6, -1],
+		Initiative = [65, 75]
 	},
 
 	resolve = function (_tag) {

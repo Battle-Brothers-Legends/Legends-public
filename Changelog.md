@@ -7,6 +7,38 @@
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
 
+## Backgrounds
+
+### Background stats
+- Randomization has been restored
+- Regular Brothers roll between:
+> Hitpoints 50 - 60
+> Bravery 30 - 40
+> Stamina 90 - 100
+> MeleeSkill 47 - 57
+> RangedSkill 32 - 42
+> MeleeDefense 0 - 5
+> RangedDefense 0 - 5
+> Initiative 100 - 110
+- Legion brothers roll between:
+> Hitpoints 40 - 50
+> Bravery 90 - 100
+> Stamina 30 - 40
+> MeleeSkill 47 - 57
+> RangedSkill 32 - 42
+> MeleeDefense 3 - 8
+> RangedDefense 5 - 10
+> Initiative 95 - 105
+- Puppet brothers roll between
+> Hitpoints 65 - 75
+> Bravery 90 - 100
+> Stamina 90 - 100
+> MeleeSkill 47 - 57
+> RangedSkill 20 - 30
+> MeleeDefense -5 - 0
+> RangedDefense -6 - -1
+> Initiative 65 - 75
+
 ### Regular Shield Item Changes
 - Shields in general no longer reduce ranged Damage Taken
 - Auxiliary Shield - now has 15 Block, 10-25 Damage
