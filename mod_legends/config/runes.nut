@@ -60,16 +60,16 @@
 	return ::Legends.tooltip(_def.RuneTooltip, ret);
 }
 
-::Legends.Runes.setRuneBonuses <- function (_def, _upgraded, _crafted) {
+::Legends.Runes.setRuneBonuses <- function (_item, _def, _upgraded, _crafted) {
 	foreach (i, value in _def.EffectValues) {
 		local maxValue = this.getMaxBonus(value[1], _upgraded);
 		local minValue = this.getMinBonus(value[0], maxValue);
 		local result = ::Math.rand(_crafted ? ::Legends.S.randomizeFractionToInt(minValue) : value[0], maxValue);
 
 		if (i == 0) {
-			this.setRuneBonus1(result);
+			_item.setRuneBonus1(result);
 		} else if (i == 1) {
-			this.setRuneBonus2(result);
+			_item.setRuneBonus2(result);
 		}
 	}
 }

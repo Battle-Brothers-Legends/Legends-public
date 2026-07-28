@@ -273,7 +273,7 @@
 		if (def == null)
 			return;
 
-		::Legends.Runes.setRuneBonuses(def, _upgraded, _crafted);
+		::Legends.Runes.setRuneBonuses(this, def, _upgraded, _crafted);
 	}
 
 	o.updateRuneSigilToken <- function() {
