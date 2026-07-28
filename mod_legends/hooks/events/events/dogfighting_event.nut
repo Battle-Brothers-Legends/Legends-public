@@ -14,7 +14,7 @@
 						this.World.Assets.addMoralReputation(1);
 						return 0;
 					}
-				}]
+				}];
 			}
 			if (s.ID == "B") {
 				s.start <- function (_event) {

@@ -18,7 +18,7 @@
 					function getResult( _event ) {
 						return this.Math.rand(1, 100) <= 25 ? "F" : "G";
 					}
-				})
+				});
 			}
 			if (s.ID == "B") {
 				s.Text = "[img]gfx/ui/events/event_05.png[/img]The drunkard falls on their back, staring aimlessly at the sky. You see tears in their eyes and %drunkard% covers their face, trying to hide the shame. There is something about their past that you do not know, perhaps something that led to the drink in the first place. You can\'t possibly punish someone for what they cannot control.";
@@ -144,7 +144,6 @@
 					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
 					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
-				local brothers = this.World.getPlayerRoster().getAll();
 			}
 		});
 		this.m.Screens.push({
@@ -172,7 +171,6 @@
 					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
 					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
-				local brothers = this.World.getPlayerRoster().getAll();
 			}
 		});
 	}

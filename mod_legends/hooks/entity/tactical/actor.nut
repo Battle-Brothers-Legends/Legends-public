@@ -90,7 +90,7 @@
 	}
 
 	local checkMorale = o.checkMorale;
-	o.checkMorale = function (_change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
+	o.checkMorale = function (_change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
 	{
 		if (m.KillerPercentOnKillOtherActorModifier != 1.0)
 			_difficulty = ::Math.floor(_difficulty * m.KillerPercentOnKillOtherActorModifier);
@@ -607,14 +607,14 @@
 	{
 		if (_id == null)
 		{
-			_id = ""
+			_id = "";
 		}
 		this.m.RiderID = _id;
 	}
 
 	o.getRiderID <- function()
 	{
-		return this.m.RiderID
+		return this.m.RiderID;
 	}
 
 	o.getRider <- function()
@@ -657,7 +657,7 @@
 	o.isReallyKilled = function( _fatalityType )
 	{
 		local ret = isReallyKilled(_fatalityType);
-		if (!ret) TherianthropeInfection(_killer);
+		//if (!ret) TherianthropeInfection(_killer);
 		return ret;
 	}
 
@@ -733,7 +733,7 @@
 	}
 
 	local kill = o.kill;
-	o.kill = function (_killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false) {
+	o.kill = function (_killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false) {
 		if (!this.isHiddenToPlayer() && this.m.HitInfo)
 			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
 

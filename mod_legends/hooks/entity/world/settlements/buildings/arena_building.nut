@@ -6,7 +6,7 @@
 	o.getCurrentAttempts <- @() this.m.Attempts.len();
 
 	o.registerAttempt <- function() {
-		this.m.Attempts.push(::World.getTime().Days)
+		this.m.Attempts.push(::World.getTime().Days);
 	}
 
 	o.refreshTooltip <- function () {

@@ -139,7 +139,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		if (this.m.NumBros == 0)
 		{
-			return null
+			return null;
 		}
 
 		if (this.World.Assets.getAmmo() + this.m.AmmoAdded >= this.World.Assets.getMaxAmmo())

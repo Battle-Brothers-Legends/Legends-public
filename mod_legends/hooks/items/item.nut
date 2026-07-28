@@ -108,7 +108,7 @@
 
 	o.canBeSalvaged <- function ()
 	{
-		return ((this.getItemType() & this.Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & this.Const.Items.ItemFilter.Armor) != 0
+		return ((this.getItemType() & this.Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & this.Const.Items.ItemFilter.Armor) != 0;
 	}
 
 	o.getRepair <- function ()
@@ -385,7 +385,7 @@
 			return true;
 		if (this.isItemType(this.Const.Items.ItemType.Legendary))
 			return true;
-		return false
+		return false;
 	}
 
 
@@ -410,7 +410,7 @@
 
 	o.getTradeHistorySettlements <- function ()
 	{
-		return this.m.TradeHistorySettlementIDs.map(function(id){return ::World.getEntityByID(id)});
+		return this.m.TradeHistorySettlementIDs.map(function(id){return ::World.getEntityByID(id);});
 	}
 
 	o.setOriginSettlementID <- function ( _id )

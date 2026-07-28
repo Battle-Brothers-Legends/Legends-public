@@ -52,7 +52,7 @@
 
 	o.getDailyCost = function () {
 		if (!("State" in this.World)) {
-			return 0
+			return 0;
 		}
 		local worldMult = ::World.State != null ? this.World.Assets.getDailyWageMult() : 1.0;
 		local wageMult = (this.m.CurrentProperties.DailyWageMult * worldMult);
@@ -279,7 +279,6 @@
 				style = "fatigue-slim"
 			}
 		]);
-		local result = [];
 		local statusEffects = this.getSkills().query(this.Const.SkillType.StatusEffect | this.Const.SkillType.TemporaryInjury, false, true);
 
 		foreach( i, statusEffect in statusEffects )
@@ -515,7 +514,7 @@
 	{
 		create();
 		this.m.Formations = this.new("scripts/entity/tactical/formations_container");
-		this.m.LifetimeStats.Tags = this.new("scripts/tools/tag_collection")
+		this.m.LifetimeStats.Tags = this.new("scripts/tools/tag_collection");
 	}
 
 	local onInit = o.onInit;
@@ -707,7 +706,7 @@
 		}
 	}
 
-	o.checkMorale = function ( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	o.checkMorale = function ( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasTrait(::Legends.Trait.Insecure))
 		{
@@ -1754,7 +1753,7 @@
 		local StatusEffect = this.Const.SkillType.StatusEffect;
 		local Special = this.Const.SkillType.Special;
 
-		foreach (i, s in skills)
+		foreach (_, s in skills)
 		{
 			if ((s.isType(Trait) || s.isType(Background)) && !s.isType(StatusEffect) && !s.isType(Special))
 			{
@@ -1776,7 +1775,7 @@
 		local list_perks = [];
 		local PerkType = this.Const.SkillType.Perk;
 
-		foreach (i, skill in this.getSkills().query(PerkType, true, true))
+		foreach (_, skill in this.getSkills().query(PerkType, true, true))
 		{
 			if (!skill.isType(PerkType))
 				continue;
@@ -1805,7 +1804,7 @@
 		local skills = this.getSkills().query(PermanentInjury);
 		local list_perminjuries = [];
 
-		foreach (i, s in skills)
+		foreach (_, s in skills)
 		{
 			if(s.isType(this.Const.SkillType.PermanentInjury))
 			{
@@ -1846,8 +1845,7 @@
 	}
 
 	o.getToggleAccessoryTooltip <- function (_slot, _layer) {
-		local accessory = this.getItems().getItemAtSlot(_slot);
-		local tt = [
+		return [
 			{
 				id = 1,
 				type = "title",
@@ -1859,7 +1857,6 @@
 				text = "Click to toggle the visibility of the accessory layer."
 			}
 		];
-		return tt;
 	}
 
 	o.getRemoveLayerTooltip <- function (_slot, _layer)

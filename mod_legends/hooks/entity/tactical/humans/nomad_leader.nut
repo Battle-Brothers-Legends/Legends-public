@@ -85,7 +85,7 @@
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{
-				this.m.Items.equip(item)
+				this.m.Items.equip(item);
 			}
 			return;
 		}

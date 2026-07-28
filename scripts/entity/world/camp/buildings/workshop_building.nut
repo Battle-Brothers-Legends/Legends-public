@@ -61,7 +61,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		this.init();
 		local nonNullEntries = 0;
-		foreach (key, value in this.m.Salvage) {
+		foreach (_, value in this.m.Salvage) {
 		    if (value != null) {
         		nonNullEntries++;
 			}
@@ -148,7 +148,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.NumBros = mod.Assigned;
 		this.m.PointsNeeded = 0;
 
-		foreach( i, r in this.m.Salvage )
+		foreach( _, r in this.m.Salvage )
 		{
 			if (r == null)
 			{
@@ -230,7 +230,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		local points = 0;
 
-		foreach( i, r in this.m.Salvage )
+		foreach( _, r in this.m.Salvage )
 		{
 			if (r == null)
 			{
@@ -253,7 +253,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return 0;
 		}
 
-		foreach( i, r in this.m.Salvage )
+		foreach( _, r in this.m.Salvage )
 		{
 			if (r == null)
 			{

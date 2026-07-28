@@ -64,7 +64,7 @@
 		head.Color = body.Color;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		this.addSprite("accessory");
 		this.addSprite("accessory_special");

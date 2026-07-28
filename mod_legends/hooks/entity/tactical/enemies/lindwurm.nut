@@ -70,7 +70,7 @@
 	}
 
 	local kill = o.kill;
-	o.kill = function (_killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false) {
+	o.kill = function (_killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false) {
 		kill(_killer, _skill, _fatalityType, _silent);
 		::Tactical.TurnSequenceBar.ForceRecheckNextTurnCondition();
 	}

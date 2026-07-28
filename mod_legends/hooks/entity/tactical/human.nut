@@ -90,11 +90,11 @@
 			{
 				this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
 			}
-			volume *= this.Const.WomanSounds[this.m.VoiceSet].Volume
+			volume *= this.Const.WomanSounds[this.m.VoiceSet].Volume;
 		}
 		else
 		{
-			volume *= this.Const.HumanSounds[this.m.VoiceSet].Volume
+			volume *= this.Const.HumanSounds[this.m.VoiceSet].Volume;
 		}
 
 		this.Sound.play(this.m.Sound[_type][this.Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
@@ -108,7 +108,7 @@
 			// a cheese to stop donkey background from being raised back as zombie during undead crisis
 			originalFunc = ::World.FactionManager.get().isUndeadScourge;
 			::World.FactionManager.get().isUndeadScourge = function () {
-				return false
+				return false;
 			};
 		}
 
@@ -611,6 +611,6 @@
 		this.m.Gender = _in.readU8();
 		this.m.VoiceSet = _in.readU8();
 		this.m.Body = _in.readU8();
-		this.setGender(this.m.Gender, false)
+		this.setGender(this.m.Gender, false);
 	}
 });

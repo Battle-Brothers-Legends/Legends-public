@@ -17,11 +17,8 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
-		local banner = 3;
-		r = this.Math.rand(1, 2);
+	o.assignRandomEquipment = function () {
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{

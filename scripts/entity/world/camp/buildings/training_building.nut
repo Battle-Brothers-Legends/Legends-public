@@ -33,7 +33,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function getTitle() {
-		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*")
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
 	function getDescription()

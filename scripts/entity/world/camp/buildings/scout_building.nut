@@ -23,9 +23,9 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
@@ -70,7 +70,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	{
 		if (::Legends.Settings.skipCamp())
 			return false;
-		return !this.World.Flags.get(::Legends.Camp.Flag.Scout)
+		return !this.World.Flags.get(::Legends.Camp.Flag.Scout);
 	}
 
 	function getUpgraded()
@@ -141,7 +141,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		 		id = id++,
 		 		icon = b.Icon,
 		 		text = b.Text
-			})
+			});
 		}
 		return res;
 	}
@@ -162,7 +162,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 		if (!this.getUpgraded())
 		{
-			return
+			return;
 		}
 
 		// local r = this.Math.min(75, 10 * this.Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
@@ -220,19 +220,19 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local tracks = "";
 		if (f.getType() == this.Const.FactionType.Orcs)
 		{
-			tracks = "Orc"
+			tracks = "Orc";
 		}
 		else if (f.getType() == this.Const.FactionType.Goblins)
 		{
-			tracks = "Goblin"
+			tracks = "Goblin";
 		}
 		else if (f.getType() == this.Const.FactionType.Undead)
 		{
-			tracks = "Undead"
+			tracks = "Undead";
 		}
 		else
 		{
-			tracks = "Human"
+			tracks = "Human";
 		}
 
 		local distance = location != null  ? this.World.State.getPlayer().getTile().getDistanceTo(location.getTile()) : 0;

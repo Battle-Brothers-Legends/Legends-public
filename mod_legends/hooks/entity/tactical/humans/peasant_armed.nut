@@ -57,7 +57,7 @@
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.headscarf],
 				[1, ::Legends.Helmet.Standard.feathered_hat]
-			]))
+			]));
 		}
 	}
 });

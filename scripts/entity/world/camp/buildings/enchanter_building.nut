@@ -382,7 +382,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			{
 				this.m.CurrentProgress = r.Points / r.Blueprint.getCostForCraft();
 				this.m.CurrentCraft = r.Blueprint.getName();
-				break
+				break;
 			}
 		}
 
@@ -479,7 +479,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			{
 				continue;
 			}
-			q.push(this.m.Queue[i])
+			q.push(this.m.Queue[i]);
 		}
 		this.m.Queue = q;
 	}
@@ -508,7 +508,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		foreach( b in this.m.Queue )
 		{
 			_out.writeString(b.Blueprint.getID());
-			_out.writeF32(b.Points)
+			_out.writeF32(b.Points);
 		}
 	}
 
@@ -520,7 +520,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			this.m.Queue.push({
 				Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
 				Points = _in.readF32(),
-			})
+			});
 		}
 	}
 

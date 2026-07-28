@@ -32,7 +32,7 @@
 		e.getFlags().set("Devoured", false);
 		if (e.getFlags().has("IsSummoned"))
 		{
-			return
+			return;
 		}
 		local slime = e.getSprite("dirt");
 		slime.setBrush("bust_slime");

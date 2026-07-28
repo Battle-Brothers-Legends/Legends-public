@@ -25,9 +25,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
+	o.assignRandomEquipment = function () {
 		local banner = 4;
 
 		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())
@@ -61,7 +59,7 @@
 					[1, ::Legends.Helmet.Standard.kettle_hat],
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat],
 					[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]
-				])
+				]);
 			}
 			else if (banner <= 7)
 			{
@@ -69,7 +67,7 @@
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail]
-				])
+				]);
 			}
 			else
 			{
@@ -77,7 +75,7 @@
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]
-				])
+				]);
 			}
 
 			if (helmet != null)

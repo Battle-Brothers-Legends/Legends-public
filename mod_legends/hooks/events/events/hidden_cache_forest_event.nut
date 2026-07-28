@@ -3,7 +3,7 @@
 	o.create = function() {
 		create();
 		::Legends.Screens.hook(this, "A", function (_screen) {
-			_screen.Text = "[img]gfx/ui/events/event_25.png[/img]The forest is no friend of man which is why men of ill-repute sure love to put their keepsakes there. And today you\'ve stumbled across one: a cache that %otherbrother% found by way of stubbing %their_otherbrother% toe on the edge of it. Digging out the crate and cracking it open, you find an assortment of weapons, armor, and gold. You clap the sellsword on the shoulder and thank him for %their_otherbrother% \'hard work\'. %They_otherbrother% wags %their_otherbrother% boot around.%SPEECH_ON%Yessir, I\'ve got a toe like the nose of a bloodhound.%SPEECH_OFF%",
+			_screen.Text = "[img]gfx/ui/events/event_25.png[/img]The forest is no friend of man which is why men of ill-repute sure love to put their keepsakes there. And today you\'ve stumbled across one: a cache that %otherbrother% found by way of stubbing %their_otherbrother% toe on the edge of it. Digging out the crate and cracking it open, you find an assortment of weapons, armor, and gold. You clap the sellsword on the shoulder and thank him for %their_otherbrother% \'hard work\'. %They_otherbrother% wags %their_otherbrother% boot around.%SPEECH_ON%Yessir, I\'ve got a toe like the nose of a bloodhound.%SPEECH_OFF%";
 			_screen.start <- function ( _event ) {
 				this.Characters.push(_event.m.Otherbrother.getImagePath());
 

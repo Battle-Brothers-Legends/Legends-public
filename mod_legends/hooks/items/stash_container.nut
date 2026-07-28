@@ -63,7 +63,7 @@
 			local targetItem = this.m.Items[_targetIndex];
 						
 			if ((sourceItem.SuperName.find("upgrade") != null || sourceItem[sourceItem.SuperName].SuperName.find("upgrade") != null) && targetItem.SuperName.find("upgrade") == null) //prevent trying to equip bases on upgrades or other bases and upgrades on upgrades
-				return sourceItem.onUse(null, targetItem, true)
+				return sourceItem.onUse(null, targetItem, true);
 		}
 		return false;
 	}
@@ -79,7 +79,7 @@
 
 			if (item.getID() == _id)
 			{
-				return true
+				return true;
 			}
 		}
 		return false;

@@ -149,7 +149,7 @@
 
 			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{
-				this.m.Items.equip(item)
+				this.m.Items.equip(item);
 			}
 			return;
 		}
@@ -166,7 +166,7 @@
 				[1, ::Legends.Armor.Standard.red_bandit_leader_armor]
 			];
 
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor))
+			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
 		}
 
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)

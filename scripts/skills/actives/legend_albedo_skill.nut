@@ -44,10 +44,10 @@ this.legend_albedo_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.skill.isUsable())
 		{
-			return false
+			return false;
 		}
 
-		return true
+		return true;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -112,12 +112,12 @@ this.legend_albedo_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (missingHeadArmor > 0)
 			{
-				head.setArmor(this.Math.minf(maxHeadArmor, currentHeadArmor + missingHeadArmor))
+				head.setArmor(this.Math.minf(maxHeadArmor, currentHeadArmor + missingHeadArmor));
 			}
 
 			if (missingBodyArmor > 0)
 			{
-				body.setArmor(this.Math.minf(maxBodyArmor, currentBodyArmor + missingBodyArmor))
+				body.setArmor(this.Math.minf(maxBodyArmor, currentBodyArmor + missingBodyArmor));
 			}
 			local cost = (missingHeadArmor + missingBodyArmor) * -1.0;
 			return;
@@ -148,12 +148,12 @@ this.legend_albedo_skill <- this.inherit("scripts/skills/skill", {
 
 		if (maxHeadRepair > 0)
 		{
-			head.setArmor(this.Math.minf(maxHeadArmor, currentHeadArmor + maxHeadRepair))
+			head.setArmor(this.Math.minf(maxHeadArmor, currentHeadArmor + maxHeadRepair));
 		}
 
 		if (maxBodyRepair > 0)
 		{
-			body.setArmor(this.Math.minf(maxBodyArmor, currentBodyArmor + maxBodyRepair))
+			body.setArmor(this.Math.minf(maxBodyArmor, currentBodyArmor + maxBodyRepair));
 		}
 	}
 

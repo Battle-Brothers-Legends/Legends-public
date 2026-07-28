@@ -14,9 +14,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
+	o.assignRandomEquipment = function () {
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_crossbow"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_falchion"));

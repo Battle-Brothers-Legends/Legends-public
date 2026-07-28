@@ -25,7 +25,7 @@
 					function getResult( _event ) {
 						return "C";
 					}
-				}]
+				}];
 			}
 			if (s.ID == "B") {
 				s.Text = "[img]gfx/ui/events/event_05.png[/img]You immediately stand up and rap the table with your knuckles.%SPEECH_ON%The best of minds truly must think alike for I have already set aside some crowns for hiring new comrades!%SPEECH_OFF%The anxious, almost sad faces on the mercenaries slowly begin to change. They smile and nod and say things like \'alright\' and \'that\'s good.\' When they turn to leave, you notice they\'ve got daggers sheathed behind their backs.";

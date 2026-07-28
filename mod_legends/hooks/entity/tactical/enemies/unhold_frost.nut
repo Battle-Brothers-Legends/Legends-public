@@ -21,7 +21,7 @@
 		{
 			if (a == "helmet")
 				continue;
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		if(::Legends.isLegendaryDifficulty())
 		{

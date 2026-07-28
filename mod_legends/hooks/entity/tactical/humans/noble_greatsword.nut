@@ -30,9 +30,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
+	o.assignRandomEquipment = function () {
 		local banner = 3;
 
 		if (!this.Tactical.State.isScenarioMode())

@@ -77,7 +77,7 @@
 					[1, ::Legends.Helmet.Standard.mail_coif],
 					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
 					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
+				]);
 			}
 			else if (banner <= 7)
 			{
@@ -90,7 +90,7 @@
 					[1, ::Legends.Helmet.Standard.mail_coif],
 					[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
 					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
+				]);
 			}
 			else
 			{
@@ -103,7 +103,7 @@
 					[1, ::Legends.Helmet.Standard.mail_coif],
 					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
 					[5, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
+				]);
 			}
 
 			if (helmet != null)
@@ -119,7 +119,7 @@
 				[2, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.None],
 				[1, ::Legends.Helmet.Standard.headscarf]
-			]))
+			]));
 		}
 	}
 });

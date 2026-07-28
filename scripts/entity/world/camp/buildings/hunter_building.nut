@@ -160,7 +160,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					::Const.UI.getColorized("crafting",::Const.UI.Color.getHighlightLightBackgroundValue())
 				);
 		desc += "\n\n";
-		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg]}),"and",false) + "\n\n";
+		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg];}),"and",false) + "\n\n";
 		desc += "Cooking backgrounds: Miller / Baker, Butcher / Fishmonger, Servant, Cannibal";
 
 		return desc;
@@ -199,7 +199,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function isHidden() {
 		if (::Legends.Settings.skipCamp())
 			return false;
-		return !::World.Flags.get(::Legends.Camp.Flag.Hunter)
+		return !::World.Flags.get(::Legends.Camp.Flag.Hunter);
 	}
 
 	function getUpgraded()
@@ -563,10 +563,9 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local mod = this.getModifiers();
 		local bgs = this.getAssignedBackgrounds(true);
 		local huntLevel = this.getHuntLevel(false);
-		local expertHunters = this.getExpertHunters();
+		local expertHunters = this.getExpertHunters()
 		local cooks = this.getCooks();
 		local brewers = this.getBrewers();
-		local indent = "<span style=\"display: inline-block; width: 1rem\"></span>";
 
 		ret.push("Hunting points per hour: " + mod.Craft);
 		ret.push("Hunt Tier: " + ::Const.HuntingLoot.getHuntLevelTier(huntLevel));

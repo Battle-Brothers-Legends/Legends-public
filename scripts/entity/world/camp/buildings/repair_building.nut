@@ -36,9 +36,9 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription() {
@@ -50,7 +50,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	{
 		this.init();
 		local nonNullEntries = 0;
-		foreach (key, value in this.m.Repairs) {
+		foreach (_, value in this.m.Repairs) {
 		    if (value != null) {
         		nonNullEntries++;
 			}
@@ -106,14 +106,14 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.PointsRepaired = 0;
 		this.m.ItemsRepaired = 0;
 		this.m.PointsNeeded = 0;
-		foreach (i, r in this.m.Repairs)
+		foreach (_, r in this.m.Repairs)
 		{
 			if (r == null)
 			{
 				continue;
 			}
 
-			this.m.PointsNeeded += r.Item.getRepairMax() - r.Item.getRepair()
+			this.m.PointsNeeded += r.Item.getRepairMax() - r.Item.getRepair();
 		}
 	}
 
@@ -198,14 +198,14 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getRequiredSupplies()
 	{
 		local points = 0;
-		foreach (i, r in this.m.Repairs)
+		foreach (_, r in this.m.Repairs)
 		{
 			if (r == null)
 			{
 				continue;
 			}
 
-			points += r.Item.getRepairMax() - r.Item.getRepair()
+			points += r.Item.getRepairMax() - r.Item.getRepair();
 		}
 		local modifiers = this.getModifiers();
 		return this.Math.ceil(points * modifiers.Consumption);
@@ -220,14 +220,14 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			return 0;
 		}
 
-		foreach (i, r in this.m.Repairs)
+		foreach (_, r in this.m.Repairs)
 		{
 			if (r == null)
 			{
 				continue;
 			}
 
-			points += r.Item.getRepairMax() - r.Item.getRepair()
+			points += r.Item.getRepairMax() - r.Item.getRepair();
 		}
 		local modifiers = this.getModifiers();
 		return this.Math.ceil(points / modifiers.Craft);
@@ -526,7 +526,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		if (sourceItemOwner == targetItemOwner && sourceItemIdx == targetItemIdx)
 		{
-			return false
+			return false;
 		}
 
 		local sourceList = null;
@@ -552,7 +552,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			if (sourceItemOwner == targetItemOwner)
 			{
 				targetList = this.m.Repairs;
-				isRepair = true
+				isRepair = true;
 			}
 			else
 			{
@@ -575,7 +575,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			//Make sure array is big enough for target spot
 			while (targetItemIdx > targetList.len() - 1)
 			{
-				targetList.push(null)
+				targetList.push(null);
 			}
 			sourceList[sourceItemIdx] = targetList[targetItemIdx];
 			targetList[targetItemIdx] = sourceItem;
@@ -583,10 +583,10 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			local index = 0;
 			if (isRepair)
 			{
-				index = targetItemIdx
+				index = targetItemIdx;
 			}
 			sourceItem.Item.setToBeRepaired(isRepair, index);
-			return true
+			return true;
 		}
 
 		//didn't pick a spot to drop, find the first null spot
@@ -602,10 +602,10 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			local index = 0;
 			if (isRepair)
 			{
-				index = i
+				index = i;
 			}
 			sourceItem.Item.setToBeRepaired(isRepair, index);
-			return true
+			return true;
 		}
 
 		//No null spot, push to the end
@@ -615,10 +615,10 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local index = 0;
 		if (isRepair)
 		{
-			index = targetList.len() - 1
+			index = targetList.len() - 1;
 		}
 		sourceItem.Item.setToBeRepaired(isRepair, index);
-		return true
+		return true;
 	}
 
 	function onClicked( _campScreen )

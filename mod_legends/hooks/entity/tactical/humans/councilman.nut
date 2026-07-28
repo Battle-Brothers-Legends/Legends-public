@@ -80,13 +80,13 @@
 			{
 				this.m.Items.equip(this.Const.World.Common.pickHelmet([
 						[1, ::Legends.Helmet.Standard.feathered_hat]
-					]))
+					]));
 			}
 			else
 			{
 				this.m.Items.equip(this.Const.World.Common.pickHelmet([
 						[1, ::Legends.Helmet.Standard.noble_headgear]
-					]))
+					]));
 			}
 		}
 	}

@@ -96,7 +96,7 @@
 		f.setName("Dummy Faction");
 		f.setDiscovered(true);
 		f.addTrait(this.Const.FactionTrait.DummyFaction);
-		this.m.Factions.push(f)
+		this.m.Factions.push(f);
 	}
 
 	o.createNobleHouses = function()
@@ -209,7 +209,7 @@
 			local best;
 			local bestAvgDist = 9000.0;
 
-			foreach( i, n in _nobleHouses )
+			foreach( _, n in _nobleHouses )
 			{
 				local locales = n.getSettlements();
 				local avgDist = 0.0;

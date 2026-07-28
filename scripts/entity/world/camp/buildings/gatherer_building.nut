@@ -196,7 +196,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
         		{ script = "scripts/items/supplies/legend_medicine_small_item", chance = 1 }
     		];
 			if (gatherItem(-3.0 / (this.m.Craft + 0.4) + 7.5, lootTable)) {
-				return this.getUpdateText()
+				return this.getUpdateText();
 			}
         }
 
@@ -207,7 +207,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{ script = null, chance = 4 }
     		];
 			if (gatherItem(-500.0 / (levels.Woodsman + 60) + 10, lootTable)) {
-				return this.getUpdateText()
+				return this.getUpdateText();
 			}
 
 			lootTable = [
@@ -215,7 +215,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{ script = null, chance = levels.Woodsman > 5 ? 0 : 2 }
 			];
 			if (gatherItem(-300.0 / (levels.Woodsman + 60) + 10, lootTable)) {
-				return this.getUpdateText()
+				return this.getUpdateText();
 			}
 		}
 
@@ -227,7 +227,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{ script = null, chance = levels.Miner <= 10 ? 0 : 5 }
 			];
 			if (gatherItem(-500.0 / (levels.Miner + 60) + 10, lootTable)) {
-				return this.getUpdateText()
+				return this.getUpdateText();
 			}
 
 			lootTable = [
@@ -235,7 +235,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				{ script = null, chance = levels.Miner > 5 ? 0 : 2 }
 			];
 			if (gatherItem(-300.0 / (levels.Miner + 60) + 10, lootTable)) {
-				return this.getUpdateText()
+				return this.getUpdateText();
 			}
 		}
 
@@ -335,12 +335,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return map;
 	}
 
-	function completed()
-	{
-		local item;
-
-		if (this.m.MedsAdded > 0)
-		{
+	function completed() {
+		if (this.m.MedsAdded > 0) {
 			this.World.Assets.addMedicine(this.Math.floor(this.m.MedsAdded));
 		}
 	}

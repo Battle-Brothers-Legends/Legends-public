@@ -61,7 +61,7 @@
 		injury.Visible = false;
 		injury.setBrush("bust_orc_02_head_injured");
 		foreach (a in this.Const.CharacterSprites.Helmets) {
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		local v = 3;
 		local v2 = -5;

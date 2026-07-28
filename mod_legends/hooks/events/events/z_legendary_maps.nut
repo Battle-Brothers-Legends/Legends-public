@@ -27,7 +27,7 @@ foreach(entry in [
 				}
 			}
 		}
-	})
+	});
 }
 
 foreach (location in [
