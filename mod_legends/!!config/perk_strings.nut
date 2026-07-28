@@ -3430,11 +3430,11 @@ Every fight is like a dance, and you have just the right moves.
 Oftentimes better than a master of one.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Confers [color=%positive%]2[/color] stacks of Ranged Damage bonus after hitting an enemy with a Melee Attack and [color=%positive%]2[/color] stacks of Melee Damage bonus after hitting an enemy with a Ranged Attack.
+• Confers [color=%positive%]1[/color] stacks of Ranged Damage bonus after hitting an enemy with a Melee Attack and [color=%positive%]1[/color] stacks of Melee Damage bonus after hitting an enemy with a Ranged Attack.
 
-• Each stack will grant [color=%positive%]10%[/color] damage for the relevant attack.
+• Each stack will grant [color=%positive%]10%[/color] Damage for the relevant attack, up to a maximum of [color=%positive%]3[/color] Stacks and [color=%positive%]30%[/color] Damage.
 
-• Attacking a target, hit or miss, will reduce stacks by [color=%negative%]1[/color].
+• Attacking a target, hit or miss, will reduce the relevant stacks by [color=%negative%]1[/color].
 
 • Passively gain [color=%positive%]10%[/color] of your base Ranged Skill as Melee Skill and [color=%positive%]10%[/color] of your base Melee Skill as Ranged Skill.
 ";
