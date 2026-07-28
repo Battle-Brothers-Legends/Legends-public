@@ -896,7 +896,7 @@ if (!("World" in ::Const))
 				minr = t.MinR;
 			}
 
-			if (_resources < minr && this.World.getTime().Days <= dateToSkip)
+			if (_resources < minr)
 			{
 				continue
 			}
@@ -1088,7 +1088,7 @@ if (!("World" in ::Const))
 					minr = troop.SortedTypes[i].Types[index].MinR;
 				}
 
-				if (_resources < minr && this.World.getTime().Days <= dateToSkip)
+				if (_resources < minr)
 				{
 					continue
 				}

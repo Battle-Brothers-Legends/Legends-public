@@ -208,6 +208,9 @@
 
 ## Enemies
 
+### Dynamic Troops Day To Skip
+- `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
+
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
 - `Peasant Blacksmith` - removed from comps
