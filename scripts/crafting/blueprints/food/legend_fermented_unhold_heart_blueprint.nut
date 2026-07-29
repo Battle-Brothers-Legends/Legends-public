@@ -17,6 +17,7 @@ this.legend_fermented_unhold_heart_blueprint <- this.inherit("scripts/crafting/l
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMealPreparation)]);
 	}
 
 	function onCraft( _stash )

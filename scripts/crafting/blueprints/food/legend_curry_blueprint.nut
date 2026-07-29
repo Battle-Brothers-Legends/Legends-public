@@ -20,10 +20,7 @@ this.legend_curry_blueprint <- this.inherit("scripts/crafting/legend_food_bluepr
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendCampCook)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMealPreparation)]);
 
 	}
 

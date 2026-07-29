@@ -13,10 +13,7 @@ this.legend_cooking_spices_02_blueprint <- this.inherit("scripts/crafting/legend
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.new(::Legends.Perk.LegendCampCook)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMealPreparation)]);
 	}
 
 	function onCraft( _stash )

@@ -17,6 +17,7 @@ this.legend_yummy_sausages_03_blueprint <- this.inherit("scripts/crafting/legend
 		];
 		this.init(ingredients);
 		this.initSkills([
+			::Legends.Professions.new(::Legends.Profession.LegendMealPreparation),
 			::Legends.Traits.new(::Legends.Trait.LegendCannibalistic)
 		]);
 	}
