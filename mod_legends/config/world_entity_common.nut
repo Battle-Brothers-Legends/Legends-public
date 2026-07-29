@@ -867,8 +867,8 @@ if (!("World" in ::Const))
 			break;
 	}
 
-	if (::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue() < 150)
-		dateToSkip = ::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue();
+	/*if (::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue() < 150)
+		dateToSkip = ::Legends.Mod.ModSettings.getSetting("DynamicDayToSkip").getValue();*/
 
 	//Go through each Item in the spawn list (which are structures defining enemies)
 	foreach (t in _list)
