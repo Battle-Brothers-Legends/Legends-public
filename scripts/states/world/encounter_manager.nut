@@ -7,17 +7,17 @@ this.encounter_manager <- {
     },
 
     function onInit() {
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/events")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/events")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/generic")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/generic")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/situation")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/situation")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
 
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/camp")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/camp")) {
             this.m.CampEncounters.push(this.new(scriptFile));
         }
     }

@@ -27,7 +27,7 @@ this.legend_camp_unlock_heal_encounter <- this.inherit("scripts/encounters/encou
 					icon = "ui/icons/special.png",
 					text = "Healing unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag.Healer, true)
+				::World.Flags.set(::Legends.Camp.Flag.Healer, true);
 			}
 		});
 	}

@@ -24,7 +24,7 @@ this.encounter <- {
 
     function getTitle()
     {
-        return this.getName()
+        return this.getName();
     }
 
     function getName()
@@ -239,7 +239,7 @@ this.encounter <- {
 	    if (_full) {
 		    this.onPrepareVariables(vars);
 	    } else {
-			try { this.onPrepareVariables(vars); } catch(e) {}
+			try { this.onPrepareVariables(vars); } catch(_) {}
 	    }
 
         return this.buildTextFromTemplate(_text, vars);

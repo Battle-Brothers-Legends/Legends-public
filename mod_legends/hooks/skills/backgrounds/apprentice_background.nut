@@ -100,7 +100,7 @@
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.apron]
-		]))
+		]));
 	}
 
 	o.onUpdate <- function ( _properties )

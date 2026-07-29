@@ -299,7 +299,7 @@ this.camp_building <- {
 		local terrainlabel = _terrain;
 		if (this.m.TerrainLabel != "")
 		{
-			terrainlabel = this.m.TerrainLabel
+			terrainlabel = this.m.TerrainLabel;
 		}
 		else if (_terrain < 10)
 		{
@@ -430,7 +430,7 @@ this.camp_building <- {
 
 	function onBroEnter ( _bro )
 	{
-		return !_bro.isStabled()
+		return !_bro.isStabled();
 	}
 
 	function onSerialize( _out )
@@ -539,7 +539,7 @@ this.camp_building <- {
 		}
 
 		roster.sort(this.onSortByModifier);
-		return roster
+		return roster;
 	}
 
 	function onPopupButtonClicked( _data )

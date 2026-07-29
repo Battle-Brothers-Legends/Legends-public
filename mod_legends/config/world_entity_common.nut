@@ -176,14 +176,14 @@ if (!("World" in ::Const))
 		data.destinationID = _destinationID;
 		data.investment = _investment;
 		data.profit = _profit;
-		data.itemHashes = _items.map(function(item){ return item.ClassNameHash });
-		data.coordinates = _coordinates; // an array of length 2 for X, Y hexagonal coordiantes; when type is: Initiated->origin settlement, Completed->destination settlement, Destroyed->location of death
+		data.itemHashes = _items.map(function(item){return item.ClassNameHash;});
+		data.coordinates = _coordinates; // an array of length 2 for X, Y hexagonal coordinates; when type is: Initiated->origin settlement, Completed->destination settlement, Destroyed->location of death
 		return data;
 	}
 
 	function getCaravanHistoryDataItems( _data )
 	{
-		return _data.itemHashes.map(function(hash){return this.new( ::IO.scriptFilenameByHash(hash) )});
+		return _data.itemHashes.map(function(hash){return this.new(::IO.scriptFilenameByHash(hash));});
 	}
 
 	function getWeightContainer( _array = null )
@@ -376,8 +376,9 @@ if (!("World" in ::Const))
 	{
 		local max = 15;
 
-		if (_target == null) _target = { Items = [], Value = 0, Decision = "FillerGoods" };
-		else max -= _target.Items.len();
+		if (_target == null) {
+		 _target = { Items = [], Value = 0, Decision = "FillerGoods" };
+		} else max -= _target.Items.len();
 
 		if (max <= 0) return _target;
 
@@ -416,13 +417,12 @@ if (!("World" in ::Const))
 			if (min > this.PriceLookUp[p]) min = this.PriceLookUp[p];
 		}
 
-		// fill up the weigted array
-		foreach(k, pair in map)
+		// fill up the weighted array
+		foreach(_, pair in map)
 		{
 			array.push(pair);
 		}
 
-		local ret = [];
 		local tries = 0;
 		local isOverBudget = false;
 		local weight_container = this.getWeightContainer(array);
@@ -459,7 +459,7 @@ if (!("World" in ::Const))
 			// see if it exceeds the threshold
 			if (result.Items.len() >= this.PreferProduceNumMax) break;
 
-			// check if the remaning budget can still be enough to buy the cheapest product
+			// check if the remaining budget can still be enough to buy the cheapest product
 			if (_budget < min) break;
 		}
 
@@ -482,7 +482,7 @@ if (!("World" in ::Const))
 			local _i = data.Items.remove(::Math.rand(0, data.Items.len() - 1));
 			local v = _i.Item.getValue();
 
-			// check if the budget is enought to buy
+			// check if the budget is enough to buy
 			if (v > _budget)
 			{
 				if (isOverBudget || v > _budget + extra)
@@ -730,12 +730,12 @@ if (!("World" in ::Const))
 		local outfitLength = _in.readU8();
 		for (local i = 0; i < outfitLength; i++) {
 			if (_in.readU8() == 2) {
-				outfits.push( [_in.readU8(), _in.readString()] )
+				outfits.push( [_in.readU8(), _in.readString()] );
 			} else {
-				outfits.push( [_in.readU8(), _in.readString(), _in.readString()] )
+				outfits.push( [_in.readU8(), _in.readString(), _in.readString()] );
 			}
 		}
-		troop.Outfits <- clone outfits
+		troop.Outfits <- clone outfits;
 	}
 
 	local hash = _in.readI32();
@@ -752,7 +752,7 @@ if (!("World" in ::Const))
 
 	if (typeof(_partyList) == "table")
 	{
-		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources)
+		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources);
 	}
 	else
 	{
@@ -889,7 +889,7 @@ if (!("World" in ::Const))
 			local minr = 0;
 			if (typeof(t.MinR) == "function")
 			{
-				minr = t.MinR()
+				minr = t.MinR();
 			}
 			else
 			{
@@ -898,14 +898,14 @@ if (!("World" in ::Const))
 
 			if (_resources < minr)
 			{
-				continue
+				continue;
 			}
 		}
 
 		local w = 0;
 		if (typeof(t.Weight) == "function")
 		{
-			w = t.Weight(_scale)
+			w = t.Weight(_scale);
 		}
 		else
 		{
@@ -1081,7 +1081,7 @@ if (!("World" in ::Const))
 				local minr = 0;
 				if (typeof(troop.SortedTypes[i].Types[index].MinR) == "function")
 				{
-					minr = troop.SortedTypes[i].Types[index].MinR()
+					minr = troop.SortedTypes[i].Types[index].MinR();
 				}
 				else
 				{
@@ -1090,7 +1090,7 @@ if (!("World" in ::Const))
 
 				if (_resources < minr)
 				{
-					continue
+					continue;
 				}
 			}
 
@@ -1145,7 +1145,7 @@ if (!("World" in ::Const))
 
 			if ("Guards" in troop.SortedTypes[i].Types[index])
 			{
-				_credits = this.Const.World.Common.dynamicSelectTroop(troop.SortedTypes[i].Types[index].Guards, _resources, _scale, _map, _credits)
+				_credits = this.Const.World.Common.dynamicSelectTroop(troop.SortedTypes[i].Types[index].Guards, _resources, _scale, _map, _credits);
 			}
 			break;
 		}
@@ -1153,7 +1153,7 @@ if (!("World" in ::Const))
 //	if (startingCredits == _credits && T.len() > 0) {
 //		throw "dynamicSelectTroop didn't change credits"
 //	}
-	return _credits
+	return _credits;
 }
 
 ::Const.World.Common.DynamicTroops <- {
@@ -1192,7 +1192,6 @@ if (!("World" in ::Const))
 	local credits = ::Const.World.Common.DynamicTroops.getCredits(_template, _resources);
 	local scale = ::Const.World.Common.DynamicTroops.getScale(_template, _resources);
 	local troopMap = {};
-	local prevPoints = 0;
 //	::logInfo("*DynamicTroopList : credits = " + credits + " : scale = " + scale);
 
 	foreach(name in ::Const.World.Common.DynamicTroops.Templates) {
@@ -1202,7 +1201,7 @@ if (!("World" in ::Const))
 	}
 
 	local count = 0;
-	foreach (k, v in troopMap)
+	foreach (_, v in troopMap)
 		count += v.Num;
 	local partySizeLimit = 200 - count;
 
@@ -1210,8 +1209,8 @@ if (!("World" in ::Const))
 	credits = ::Math.max(0, credits);
 
 	local T = [];
-	foreach (k, v in troopMap) {
-		v.Credits <- credits,
+	foreach (_, v in troopMap) {
+		v.Credits <- credits;
 		T.push(v);
 	}
 
@@ -1284,7 +1283,7 @@ if (!("World" in ::Const))
 	if (::World.FactionManager.isAlliedWithPlayer(_faction)) {
 		fact = this.World.FactionManager.getFactionOfType(this.Const.FactionType.DummyFaction).getID();
 	}
-	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify)
+	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify);
 }
 
 //Perks array is [weight, perk name, cost]

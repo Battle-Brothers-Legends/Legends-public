@@ -125,7 +125,7 @@
 	{
 		function addToBackgroundType(_type, _constType){
 			if (!_type) return
-			this.m.BackgroundType = this.m.BackgroundType == this.Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType
+			this.m.BackgroundType = this.m.BackgroundType == this.Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
 		}
 		this.addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
 		this.addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
@@ -217,7 +217,7 @@
 	o.getPerkTreeGroupDescription <- function ( _p, _prefix = "")
 	{
 		if( _p.len() == 0) {
-			return ""
+			return "";
 		}
 		local i = 0;
 		local text = _prefix + " " + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
@@ -243,7 +243,7 @@
 			}
 			else if (i <  _p.len() - 1)
 			{
-				text = text + " and "
+				text = text + " and ";
 			}
 		}
 		return text + ".\n";
@@ -310,51 +310,51 @@
 		local ttext = "";
 		val = terrains[2] * 100.0;
 		if (val > 0) {
-			ttext += "\nPlains +" + val +"%"
+			ttext += "\nPlains +" + val +"%";
 		}
 		val = terrains[3] * 100.0;
 		if (val > 0) {
-			ttext += "\nSwamp +" + val +"%"
+			ttext += "\nSwamp +" + val +"%";
 		}
 		val = terrains[4] * 100.0;
 		if (val > 0) {
-			ttext += "\nHills +" + val +"%"
+			ttext += "\nHills +" + val +"%";
 		}
 		val = terrains[5] * 100.0;
 		if (val > 0) {
-			ttext += "\nForests +" + val +"%"
+			ttext += "\nForests +" + val +"%";
 		}
 		val = terrains[9] * 100.0;
 		if (val > 0) {
-			ttext += "\nMountains +" + val +"%"
+			ttext += "\nMountains +" + val +"%";
 		}
 		val = terrains[11] * 100.0;
 		if (val > 0) {
-			ttext += "\nFarmland +" + val +"%"
+			ttext += "\nFarmland +" + val +"%";
 		}
 		val = terrains[12] * 100.0;
 		if (val > 0) {
-			ttext += "\nSnow +" + val +"%"
+			ttext += "\nSnow +" + val +"%";
 		}
 		val = terrains[13] * 100.0;
 		if (val > 0) {
-			ttext += "\nBadlands +" + val +"%"
+			ttext += "\nBadlands +" + val +"%";
 		}
 		val = terrains[14] * 100.0;
 		if (val > 0) {
-			ttext += "\nHighlands +" + val +"%"
+			ttext += "\nHighlands +" + val +"%";
 		}
 		val = terrains[15] * 100.0;
 		if (val > 0) {
-			ttext += "\nSteppes +" + val +"%"
+			ttext += "\nSteppes +" + val +"%";
 		}
 		val = terrains[17] * 100.0;
 		if (val > 0) {
-			ttext += "\nDeserts +" + val +"%"
+			ttext += "\nDeserts +" + val +"%";
 		}
 		val = terrains[18] * 100.0;
 		if (val > 0) {
-			ttext += "\nOases +" + val +"%"
+			ttext += "\nOases +" + val +"%";
 		}
 
 		if (ttext != "")
@@ -897,7 +897,7 @@
 
 	o.removePerkGroup <- function ( _group )
 	{
-		foreach (i, row in _group.Tree)
+		foreach (_, row in _group.Tree)
 		{
 			foreach (perk in row)
 			{
@@ -953,7 +953,7 @@
 			if (::Legends.Perks.isPerkGroupFullyRepresented(id, entry.PerkDefs))
 			{
 				ret.CompleteGroupsIDs[entry.Category].push(id);
-				foreach (key, v in entry.PerkDefs)
+				foreach (key, _ in entry.PerkDefs)
 				{
 					if (!(key in nonStrayPerks))
 					{
@@ -963,7 +963,7 @@
 			}
 			else
 			{
-				foreach (key, v in entry.PerkDefs)
+				foreach (key, _ in entry.PerkDefs)
 				{
 					possibleStrayPerks.push(key);
 				}
@@ -1005,7 +1005,7 @@
 
 			local counter = 0;
 
-			foreach (index, group in data.CompleteGroupsIDs[category])
+			foreach (_, group in data.CompleteGroupsIDs[category])
 			{
 				counter++;
 				arr.push({
@@ -1403,7 +1403,7 @@
 
 		if (this.m.PerkTreeDynamic != null)
 		{
-			this.rebuildPerkTree(this.m.CustomPerkTree)
+			this.rebuildPerkTree(this.m.CustomPerkTree);
 		}
 
 		//When deserializing, the scenario isn't set yet, so it will be null - in this case, the sceario should
@@ -1604,7 +1604,7 @@
 			local levels = 0;
 			local count = 0;
 
-			foreach( i, bro in roster )
+			foreach( _, bro in roster )
 			{
 				local brolevel = bro.getLevel();
 				levels = levels + brolevel;
@@ -1675,7 +1675,7 @@
 				}
 				else if (this.m.Ethnicity == 2)
 				{
-					names = this.Const.Strings.BarbarianNames
+					names = this.Const.Strings.BarbarianNames;
 				}
 
 				if (this.isBackgroundType(this.Const.BackgroundType.Female))
@@ -1807,7 +1807,7 @@
 	}
 
 	o.setDefaultGenderedSprite <- function (_gender, _bodyPart, _spriteObject) {
-		this.m[_bodyPart] = _spriteObject != null && _bodyPart in _spriteObject ? _spriteObject[_bodyPart] : (_gender ? this.m.DefaultSprites.Female[_bodyPart] : this.m.DefaultSprites.Male[_bodyPart])
+		this.m[_bodyPart] = _spriteObject != null && _bodyPart in _spriteObject ? _spriteObject[_bodyPart] : (_gender ? this.m.DefaultSprites.Female[_bodyPart] : this.m.DefaultSprites.Male[_bodyPart]);
 	}
 
 	o.setBodyCharacteristics <- function(_gender, _spriteObject = null, _beardChanceForce = null) {
@@ -1902,11 +1902,11 @@
 		if(_in.readBool())
 		{
 			this.addBackgroundType(this.Const.BackgroundType.Female);
-			this.setGender(1)
+			this.setGender(1);
 		}
 		else
 		{
-			this.setGender(0)
+			this.setGender(0);
 		}
 
 		if (_in.readBool())
@@ -1922,7 +1922,7 @@
 			local perks = [];
 			for( local j = 0; j < numPerks; j = ++j )
 			{
-				perks.push(_in.readU16())
+				perks.push(_in.readU16());
 			}
 			this.m.CustomPerkTree.push(perks);
 		}

@@ -572,7 +572,7 @@ this.camp_manager <- {
 		::MSU.Serialization.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);
-		foreach(i, e in this.m.CampEncounters) {
+		foreach(_, e in this.m.CampEncounters) {
 			if (e.isValid(this)) {
 				_out.writeBool(true);
 				_out.writeString(e.getType());
