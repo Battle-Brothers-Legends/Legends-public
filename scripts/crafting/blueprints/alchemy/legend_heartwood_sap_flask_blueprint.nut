@@ -22,12 +22,6 @@ this.legend_heartwood_sap_flask_blueprint <- this.inherit("scripts/crafting/blue
 			::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
 		]);
 	}
-
-
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
 	
 	function onCraft( _stash )
 	{

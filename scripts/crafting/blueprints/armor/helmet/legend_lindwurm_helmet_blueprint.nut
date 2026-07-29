@@ -23,10 +23,6 @@ this.legend_lindwurm_helmet_blueprint <- this.inherit("scripts/crafting/blueprin
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_helmets/named/legend_named_lindwurm_helmet"));
 	}

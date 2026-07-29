@@ -1,7 +1,7 @@
 this.legend_stollwurm_scales_cloak_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_stollwurm_scales_cloak";
 		this.m.Type = this.Const.Items.ItemType.Armor;
@@ -22,14 +22,7 @@ this.legend_stollwurm_scales_cloak_blueprint <- this.inherit("scripts/crafting/b
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_armor/cloak/legend_stollwurm_scales_cloak"));
 	}
 });
-

@@ -17,10 +17,6 @@ this.legend_restored_ancient_chest <- this.inherit("scripts/crafting/blueprint",
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 
 		local item = this.new("scripts/items/legend_armor/plate/legend_armor_plate_ancient_chest_restored");

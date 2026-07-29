@@ -21,13 +21,8 @@ this.legend_white_wolf_helmet_layered_blueprint <- this.inherit("scripts/craftin
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_white_wolf_helm");
 		_stash.add(item);
 	}
-
 });

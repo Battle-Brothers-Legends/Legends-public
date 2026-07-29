@@ -17,10 +17,6 @@ this.legend_white_wolf_pelt_upgrade_blueprint <- this.inherit("scripts/crafting/
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_armor/cloak/legend_armor_white_wolf_pelt_cloak"));
 	}

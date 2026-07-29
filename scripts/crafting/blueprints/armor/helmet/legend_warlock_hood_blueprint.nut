@@ -22,10 +22,6 @@ this.legend_warlock_hood_blueprint <- this.inherit("scripts/crafting/legend_warl
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/named/legend_named_warlock_hood");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);

@@ -29,10 +29,6 @@ this.legend_mountain_helmet_layered_blueprint <- this.inherit("scripts/crafting/
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_helmets/vanity/legend_helmet_mountain_helm"));
 	}

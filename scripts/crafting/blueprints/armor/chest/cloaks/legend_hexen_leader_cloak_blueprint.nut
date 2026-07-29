@@ -22,10 +22,6 @@ this.legend_hexen_leader_cloak_blueprint <- this.inherit("scripts/crafting/bluep
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/legend_armor/cloak/legend_hexen_leader_cloak"));
 	}

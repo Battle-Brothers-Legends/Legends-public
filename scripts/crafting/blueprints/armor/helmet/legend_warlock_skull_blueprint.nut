@@ -27,10 +27,6 @@ this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/legend_war
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/named/legend_named_warlock_skull");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);

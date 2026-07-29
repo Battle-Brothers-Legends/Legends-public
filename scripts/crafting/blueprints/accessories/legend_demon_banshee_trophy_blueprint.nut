@@ -21,10 +21,6 @@ this.legend_demon_banshee_trophy_blueprint <- this.inherit("scripts/crafting/blu
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_demon_banshee_trophy_item"));
 	}

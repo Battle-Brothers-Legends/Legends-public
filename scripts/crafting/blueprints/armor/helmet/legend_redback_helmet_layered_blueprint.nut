@@ -29,10 +29,6 @@ this.legend_redback_helmet_layered_blueprint <- this.inherit("scripts/crafting/b
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_redback_helm");
 		_stash.add(item);

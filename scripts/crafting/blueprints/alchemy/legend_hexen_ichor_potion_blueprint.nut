@@ -1,7 +1,7 @@
 this.legend_hexen_ichor_potion_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_hexen_ichor_potion";
 		this.m.Type = this.Const.Items.ItemType.Usable;
@@ -27,16 +27,8 @@ this.legend_hexen_ichor_potion_blueprint <- this.inherit("scripts/crafting/bluep
 		]);
 	}
 
-
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-	
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_hexen_ichor_potion_item"));
 	}
 
 });
-

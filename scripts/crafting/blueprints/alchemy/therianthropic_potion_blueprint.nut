@@ -47,7 +47,6 @@ this.therianthropic_potion_blueprint <- this.inherit("scripts/crafting/blueprint
 //		{
 			return false;
 //		}
-		return this.blueprint.isQualified();
 	}
 
 	function onCraft( _stash )

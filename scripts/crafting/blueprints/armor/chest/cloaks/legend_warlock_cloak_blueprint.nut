@@ -32,10 +32,6 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_war
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = ::new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
 		item.m.Name = "";

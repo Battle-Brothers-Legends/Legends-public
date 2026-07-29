@@ -21,10 +21,6 @@ this.legend_pack_large_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_pack_large"));
 	}

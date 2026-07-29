@@ -21,14 +21,6 @@ this.legend_snake_oil_15_blueprint <- this.inherit("scripts/crafting/blueprint",
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendCharlatan)]);
 	}
 
-	function isCraftable() {
-		return this.blueprint.isCraftable();
-	}
-
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/misc/snake_oil_item"));
 	}

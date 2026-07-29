@@ -26,10 +26,6 @@ this.legend_tabard_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard");
 		item.setVariant(item.m.Variants[this.m.Variant - 1]);

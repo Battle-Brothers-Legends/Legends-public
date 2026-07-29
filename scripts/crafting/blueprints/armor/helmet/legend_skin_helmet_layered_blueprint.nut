@@ -21,10 +21,6 @@ this.legend_skin_helmet_layered_blueprint <- this.inherit("scripts/crafting/blue
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_nach_helm");
 		//item.m.Name = "";

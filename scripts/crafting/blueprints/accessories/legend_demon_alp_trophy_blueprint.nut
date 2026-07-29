@@ -25,10 +25,6 @@ this.legend_demon_alp_trophy_blueprint <- this.inherit("scripts/crafting/bluepri
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/accessory/legend_demonalp_trophy_item"));
 	}

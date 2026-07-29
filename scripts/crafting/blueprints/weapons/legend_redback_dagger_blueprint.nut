@@ -21,10 +21,6 @@ this.legend_redback_dagger_blueprint <- this.inherit("scripts/crafting/blueprint
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTrophyCarving)]);
 	}
 
-	function isQualified() {
-		return this.blueprint.isQualified();
-	}
-
 	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/weapons/legend_redback_dagger"));
 	}
