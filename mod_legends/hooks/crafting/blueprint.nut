@@ -21,10 +21,14 @@
 				if(skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
 					skillID = ::Legends.Professions.getID(::Legends.Profession.LegendEnchantersAssistant);
 				}
-				local effect = ::World.Assets.m.ProfessionEffect[::Const.Professions.findById(skillID).Const];
-				if (effect > 0) {
-					modifier /= effect;
-				}	
+				
+				local professionDef = ::Const.Professions.findById(skillID);
+				if(professionDef != null) {
+					local effect = ::World.Assets.m.ProfessionEffect[professionDef.Const];
+					if (effect > 0) {
+						modifier /= effect;
+					}
+				}
        		}
     	}
 		return this.getCost() * this.m.CraftMultiplier * modifier;
