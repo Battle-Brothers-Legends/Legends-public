@@ -82,7 +82,7 @@
 		local distance = this.getDistanceOnRoads(this.m.Home.getTile(), this.m.Destination.getTile());
 		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed, false);
 
-		local modrate = this.World.State.getPlayer().getBarterMult();
+		local modrate = this.World.State.getPlayer().getHaggleMult();
 
 		if (days >= 2 || distance >= 40)
 		{

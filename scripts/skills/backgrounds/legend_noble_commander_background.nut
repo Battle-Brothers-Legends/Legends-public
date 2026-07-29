@@ -42,7 +42,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
 		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.Modifiers.Terrain = [

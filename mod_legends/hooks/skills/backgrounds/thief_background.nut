@@ -51,7 +51,7 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

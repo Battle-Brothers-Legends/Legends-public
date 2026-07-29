@@ -45,7 +45,7 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Performing;
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.DaggerTree,

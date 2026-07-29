@@ -48,7 +48,7 @@
 		];
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Performing;
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[2];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.DaggerTree,

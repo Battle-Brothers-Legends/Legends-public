@@ -43,7 +43,7 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Ranger;
 		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[2];
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
 		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
 		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[2];

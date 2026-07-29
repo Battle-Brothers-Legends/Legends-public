@@ -11,7 +11,7 @@ this.profession_legend_convincing_proposals <- this.inherit("scripts/skills/lege
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = "Extra barter"
+				text = "Extra haggling"
 			},
 			{
 				id = 11,
@@ -38,7 +38,7 @@ this.profession_legend_convincing_proposals <- this.inherit("scripts/skills/lege
 		if (::World.State.getPlayer() == null) {
 			return;
 		}
-		::World.State.getPlayer().calculateBarterMult();
+		::World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onRemoved() {
@@ -46,7 +46,7 @@ this.profession_legend_convincing_proposals <- this.inherit("scripts/skills/lege
 		if (::World.State.getPlayer() == null) {
 			return;
 		}
-		::World.State.getPlayer().calculateBarterMult();
+		::World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onUpdate( _properties ) {

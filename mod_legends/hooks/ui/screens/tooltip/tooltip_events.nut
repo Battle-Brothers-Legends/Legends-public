@@ -1029,9 +1029,9 @@
 		case "assets.Money":
 			local money = ::World.Assets.getMoney();
 			local dailyMoney = 0;
-			local barterMult = 0.0;
+			local haggleMult = 0.0;
 			local brolist = [];
-			barterMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
+			haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 			foreach( bro in ::World.getPlayerRoster().getAll() ) {
 				local L = [];
 				dailyMoney = dailyMoney + bro.getDailyCost();
@@ -1041,12 +1041,12 @@
 					bro.getName(),
 					bro.getBackground().getNameOnly()
 				];
-				local bm = ::Math.floor(bro.getBarterModifier() * 10000.0) / 100;
+				local bm = ::Math.floor(bro.getHaggleModifier() * 10000.0) / 100;
 
 				if (bm > 0)
 				{
-					barterMult = barterMult + bm;
-					L[2] = L[2] + " [color=%positive%]" + bm + "%[/color] Barter";
+					haggleMult = haggleMult + bm;
+					L[2] = L[2] + " [color=%positive%]" + bm + "%[/color] Haggling";
 				}
 
 				brolist.push(L);
@@ -1133,7 +1133,7 @@
 				id = id,
 				type = "text",
 				icon = "ui/icons/asset_moral_reputation.png",
-				text = "[color=%positive%]+" + barterMult + "[/color]% Barter Multiplier"
+				text = "[color=%positive%]+" + haggleMult + "[/color]% Haggling Multiplier"
 			});
 			id = ++id;
 			return ret;

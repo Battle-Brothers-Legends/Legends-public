@@ -1706,14 +1706,14 @@
 		return this.getBackground().getModifiers().Meds;
 	}
 
-	o.getBarterModifier <- function ()
+	o.getHaggleModifier <- function ()
 	{
 		local bg = this.getBackground();
 		if (bg == null)
 		{
 			return 0;
 		}
-		local mod = this.getBackground().getModifiers().Barter;
+		local mod = this.getBackground().getModifiers().Haggle;
 
 		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {

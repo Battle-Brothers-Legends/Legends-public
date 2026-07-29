@@ -41,7 +41,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];
 		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[3];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[4];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[4];
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean

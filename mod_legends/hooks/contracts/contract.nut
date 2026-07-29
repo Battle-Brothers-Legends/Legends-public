@@ -69,14 +69,14 @@
 	o.m.Payment.getOnCompletion = function ()
 	{
 		local val = getOnCompletion();
-		return this.Math.max(this.Const.Difficulty.MinPayments[this.World.Assets.getEconomicDifficulty()], val)
+		return this.Math.max(this.Const.Difficulty.MinPayments[this.World.Assets.getEconomicDifficulty()], val);
 	}
 
 	local getPerCount = o.m.Payment.getPerCount;
 	o.m.Payment.getPerCount = function ()
 	{
 		local val = getPerCount();
-		return this.Math.max(this.Const.Difficulty.MinHeadPayments[this.World.Assets.getEconomicDifficulty()], val)
+		return this.Math.max(this.Const.Difficulty.MinHeadPayments[this.World.Assets.getEconomicDifficulty()], val);
 	}
 
 	o.getScaledDifficultyMult = function()
@@ -89,7 +89,7 @@
 	o.getPaymentMult = function()
 	{
 		local repDiffMult = this.Math.pow(this.getScaledDifficultyMult(), 0.5);
-		local broMult = this.World.State.getPlayer().getBarterMult();
+		local broMult = this.World.State.getPlayer().getHaggleMult();
 		return (this.m.PaymentMult + broMult) * (this.m.DifficultyMult * repDiffMult) * this.World.Assets.m.ContractPaymentMult;
 	}
 
@@ -123,7 +123,7 @@
 
 		if (typeof(_partyList) == "table")
 		{
-			p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources)
+			p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources);
 		}
 		else
 		{
@@ -336,7 +336,6 @@
 		}
 		while (randomTown == null || randomTown == this.m.Home.getNameOnly());
 
-		local text;
 		local vars = [
 			[
 				"SPEECH_ON",
@@ -534,10 +533,10 @@
 			local towns = contract_faction.getSettlements();
 			this.m.BulletpointsObjectives.pop();
 			if (this.m.Type == "contract.big_game_hunt"){
-				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid")
+				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid");
 			}
 			else{
-				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName())
+				this.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName());
 			}
 			foreach (town in towns)
 			{
@@ -546,5 +545,4 @@
 			this.World.State.getWorldScreen().updateContract(this);
 		}
 	}
-
 });

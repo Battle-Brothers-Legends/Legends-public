@@ -102,7 +102,7 @@
 		this.m.Destination = this.WeakTableRef(candidates[this.Math.rand(0, candidates.len() - 1)]);
 		local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), this.m.Destination.getTile());
 		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
-		local modrate = 10 * this.World.State.getPlayer().getBarterMult();
+		local modrate = 10 * this.World.State.getPlayer().getHaggleMult();
 
 
 		if (days >= 5)
@@ -235,8 +235,7 @@
 						local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
 						local numParties = 0;
 
-						foreach( party in parties )
-						{
+						foreach( _ in parties )	{
 							numParties = ++numParties;
 						}
 
@@ -326,14 +325,14 @@
 			{
 				foreach (option in s.Options)
 				{
-					option.Text = "Those should be worth a pretty crown. (Decrease Moral Reputation)"
+					option.Text = "Those should be worth a pretty crown. (Decrease Moral Reputation)";
 				}
 			}
 			if (s.ID == "Prisoner2")
 			{
 				foreach (option in s.Options)
 				{
-					option.Text = "I see my pocket filled with crowns already! (Decrease Moral Reputation)"
+					option.Text = "I see my pocket filled with crowns already! (Decrease Moral Reputation)";
 				}
 			}
 			if (s.ID == "Success1")

@@ -15,7 +15,7 @@
 		Repair = this.Const.LegendMod.ResourceModifiers.Repair[0],
 		Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[0],
 		Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[0],
-		Barter = this.Const.LegendMod.ResourceModifiers.Barter[0],
+		Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[0],
 		ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[0],
 		MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[0],
 		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
@@ -507,8 +507,8 @@
 				icon = "ui/icons/banner_enchant_icon.png"
 			},
 			{
-				key = "Barter",
-				name = "Bartering",
+				key = "Haggle",
+				name = "Haggling",
 				icon = "ui/icons/banner_rest_icon.png"
 			}
 		];

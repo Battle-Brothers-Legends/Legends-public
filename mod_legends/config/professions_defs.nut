@@ -249,7 +249,7 @@ professionDefObjects.push({
     Icon = "ui/professions/convincing_proposals.png",
     IconDisabled = "ui/professions/convincing_proposals_bw.png",
     Const = "LegendConvincingProposals",
-    ScalingArray = [0, 0.02], // extra barter
+    ScalingArray = [0, 0.02], // extra haggling
     ScalingFactor = 0.25
 });
 

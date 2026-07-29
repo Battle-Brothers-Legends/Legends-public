@@ -44,7 +44,7 @@
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
 		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[1];
 		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[1];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[2];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[2];
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
 		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[1];
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];

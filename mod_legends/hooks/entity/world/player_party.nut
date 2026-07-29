@@ -1,6 +1,6 @@
 ::mods_hookExactClass("entity/world/player_party", function(o)
 {
-	o.m.BarterMultiplier <- 0.0;
+	o.m.HaggleMultiplier <- 0.0;
 	o.m.AmmoMultiplier <- 0;
 	o.m.ArmorPartsMultiplier <- 0;
 	o.m.MedsMultiplier <- 0;
@@ -302,9 +302,9 @@
 		this.getSprite("body").setBrush(image);
 	}
 
-	o.getBarterMult <- function ()
+	o.getHaggleMult <- function ()
 	{
-		return this.m.BarterMultiplier;
+		return this.m.HaggleMultiplier;
 	}
 
 	o.getAmmoModifier <- function ()
@@ -331,7 +331,7 @@
 	{
 		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
-			this.calculateBarterMult();
+			this.calculateHaggleMult();
 			this.calculateAmmoModifier();
 			this.calculateArmorPartsModifier();
 			this.calculateMedsModifier();
@@ -339,21 +339,21 @@
 		}
 	}
 
-	o.calculateBarterMult <- function ()
+	o.calculateHaggleMult <- function ()
 	{
 		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
 
-		local barterMult = 0.0;
+		local haggleMult = 0.0;
 		foreach (bro in this.World.getPlayerRoster().getAll()) {
-			barterMult += bro.getBarterModifier();
+			haggleMult += bro.getHaggleModifier();
 		}
-		barterMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
+		haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.trader")
-			barterMult = barterMult * 1.1;
+			haggleMult = haggleMult * 1.1;
 
-		this.m.BarterMultiplier = barterMult;
+		this.m.HaggleMultiplier = haggleMult;
 	}
 
 	o.calculateAmmoModifier <- function ()

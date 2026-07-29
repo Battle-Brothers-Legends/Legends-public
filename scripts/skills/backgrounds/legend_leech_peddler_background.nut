@@ -37,7 +37,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
 		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[2];
 		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.Terrain = [
 				0.0, // ?
 				0.0, //ocean

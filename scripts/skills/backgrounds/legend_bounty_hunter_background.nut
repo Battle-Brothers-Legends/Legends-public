@@ -51,7 +51,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
 
 		this.m.Level = this.Math.rand(3, 6);
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
 		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
 		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];

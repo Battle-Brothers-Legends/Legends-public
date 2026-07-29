@@ -205,9 +205,9 @@ A fool and his gold are easily parted, especially when one doesn't have any qual
 A mercenary who knows how to count can be a tremendous asset. One that unfortunately also counts his pay.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases the Barter skill, improving prices and rewards from trade contracts.
+• Increases the Haggling skill, improving prices and rewards from trade contracts.
 
-• Barter skill begins falling off at higher total rates.
+• Haggling skill begins falling off at higher total rates.
 
 • Increases the daily pay rate by [color=%negative%]+25%[/color].
 ";

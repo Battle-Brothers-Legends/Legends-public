@@ -35,7 +35,7 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[3];
 		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[3];
 		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[2];
-		this.m.Modifiers.Barter = this.Const.LegendMod.ResourceModifiers.Barter[1];
+		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
 		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [

@@ -18,7 +18,7 @@ this.perk_legend_barter_trustworthy <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateBarterMult();
+		this.World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onRemoved()
@@ -27,7 +27,7 @@ this.perk_legend_barter_trustworthy <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateBarterMult();
+		this.World.State.getPlayer().calculateHaggleMult();
 	}
 
 });

@@ -114,7 +114,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		this.m.Destination = this.WeakTableRef(candidates[this.Math.rand(0, candidates.len() - 1)]);
 		local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), this.m.Destination.getTile());
 		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
-		local modrate = this.World.State.getPlayer().getBarterMult();
+		local modrate = this.World.State.getPlayer().getHaggleMult();
 		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
 		this.m.Payment.Pool = this.Math.max(100, 3 * distance * (4 + modrate) * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult());
 		this.m.Payment.Completion = 0.75;
