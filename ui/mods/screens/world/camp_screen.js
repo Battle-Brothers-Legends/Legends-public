@@ -811,11 +811,16 @@ CampScreen.prototype.notifyBackendBrothersButtonPressed = function ()
 	}
 };
 
-CampScreen.prototype.notifyBackendSlotClicked = function (_data)
-{
+CampScreen.prototype.notifyBackendSlotClicked = function (_data) {
 	if(this.mSQHandle !== null)
 	{
 		SQ.call(this.mSQHandle, 'onSlotClicked', _data);
+	}
+};
+
+CampScreen.prototype.notifyBackendSlotRightClicked = function (_data) {
+	if(this.mSQHandle !== null)	{
+		SQ.call(this.mSQHandle, 'onSlotRightClicked', _data);
 	}
 };
 

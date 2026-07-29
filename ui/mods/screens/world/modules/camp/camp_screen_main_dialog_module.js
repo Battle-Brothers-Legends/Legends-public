@@ -366,12 +366,12 @@ CampScreenMainDialogModule.prototype.createSlot = function (_data, _i, _content)
 	var isUsable = 'CanEnter' in _data && _data.CanEnter == true;
 	var slot_placeholder = null;
 
-	if (isUsable)
+	//if (isUsable)
 		slot_placeholder = _content.createImage(Path.GFX + _data.Image + '_b.png', null, null, 'slot-' + _data.Slot + ' opacity-almost-none no-pointer-events');
 
 	var slot = _content.createImage(Path.GFX + _data.Image + '.png', function (_image)
 	{
-		if (isUsable)
+		//if (isUsable)
 		{
 			slot_placeholder.addClass('opacity-almost-none');
 			slot_placeholder.attr('src', Path.GFX + _data.Image + '.png');
@@ -380,11 +380,15 @@ CampScreenMainDialogModule.prototype.createSlot = function (_data, _i, _content)
 
 	slot.bindTooltip({ contentType: 'ui-element', elementId: _data.Tooltip });
 
-	if(isUsable)
-	{
-		slot.click(function(_event)
-		{
-			self.mParent.notifyBackendSlotClicked(_data.Tooltip);
+		if(isUsable) {
+			slot.click(function(_event)	{
+				self.mParent.notifyBackendSlotClicked(_data.Tooltip);
+			});
+		}
+		slot.mousedown(function (_event) {
+			if (_event.which === 3)	{
+				self.mParent.notifyBackendSlotRightClicked(_data.Tooltip);
+			}
 		});
 		slot.mouseover(function()
 		{
@@ -400,7 +404,7 @@ CampScreenMainDialogModule.prototype.createSlot = function (_data, _i, _content)
 			slot.attr('src', Path.GFX + _data.Image + '.png');
 			slot_placeholder.removeClass('opacity-almost-none');
 		});
-	}
+	//}
 }
 
 CampScreenMainDialogModule.prototype.updateContracts = function (_data)

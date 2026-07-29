@@ -562,8 +562,10 @@ CampScreenCommanderDialogModule.prototype.loadFromData = function (_data)
 
 	//this.onBrothersListLoaded(_data.brothers);
 	var selectedID = null;
-	if (this.mSelectedTent !== null)
-	{
+	if ('SelectedID' in _data && _data.SelectedID !== null)	{
+		selectedID = _data.SelectedID;
+	}
+	else if (this.mSelectedTent !== null) {
 		selectedID = this.mSelectedTent.data('ID');
 	}
 

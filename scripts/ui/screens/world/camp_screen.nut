@@ -751,6 +751,21 @@ this.camp_screen <- {
 		building.onClicked(this);
 	}
 
+	function onSlotRightClicked(_data) {
+		if (this.isAnimating() || _data == ::Const.World.CampBuildings.Barber || _data == ::Const.World.CampBuildings.Painter) {
+			return;
+		}
+
+		local building = ::World.Camp.getBuildingByID(_data);
+
+		if (building == null) {
+			return;
+		}
+
+		this.m.CommanderDialogModule.m.RightClickedTent = _data;
+		::World.Camp.getBuildingByID(::Const.World.CampBuildings.Commander).onClicked(this);
+	}
+
 	function getTimeRequired()
 	{
 		return "No camp tasks have been scheduled...";

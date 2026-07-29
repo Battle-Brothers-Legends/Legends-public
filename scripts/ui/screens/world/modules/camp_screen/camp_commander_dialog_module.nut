@@ -4,6 +4,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 		Description = "Select a tent to assign workers from the list. Workers sorted from best to worse.",
 		PopupDialogVisible = false,
 		CurrentTent = null,
+		RightClickedTent = null
 	},
 	function create()
 	{
@@ -48,8 +49,10 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 			SubTitle = this.m.Description,
 			brothers = this.queryRosterInformation(),
 			buildings = this.onQueryBuildingsList(),
-			Assets = this.m.Parent.queryAssetsInformation()
+			Assets = this.m.Parent.queryAssetsInformation(),
+			SelectedID = this.m.RightClickedTent
 		};
+		this.m.RightClickedTent = null;
 		return result;
 	}
 
@@ -227,7 +230,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	{
 		::Legends.Mod.Debug.printLog("Saving camping assignments preset: " + _presetNumber);
 		::World.Camp.saveAssignmentPreset( _presetNumber );
-		this.Sound.play("sounds/scribble.wav", 1.0)
+		this.Sound.play("sounds/scribble.wav", 1.0);
 	}
 
 	function onLoadAssignmentPreset ( _presetNumber )
