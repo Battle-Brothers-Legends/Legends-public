@@ -35,7 +35,8 @@ this.camp_manager <- {
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/training_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/fletcher_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/gatherer_building"));
-		this.addBuilding(this.new("scripts/entity/world/camp/buildings/hunter_building"));
+		//this.addBuilding(this.new("scripts/entity/world/camp/buildings/hunter_building"));
+		this.addBuilding(this.new("scripts/entity/world/camp/buildings/kitchen_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/enchanter_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/barber_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/painter_building")); //PaintingTent

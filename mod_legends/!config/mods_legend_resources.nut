@@ -73,7 +73,8 @@
 	Barter = [0.0, 0.005, 0.01, 0.02, 0.03],
 	ToolConsumption = [0.0, 0.01, 0.03, 0.05],
 	MedConsumption = [0.0, 0.05, 0.10, 0.20],
-	Hunting = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier
+	Hunting = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier MFD
+	Cooking = [0.0, 0.50, 0.75, 1.0],
 	Fletching = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier
 	Scout = [0.0, 0.1, 0.2, 0.3], // = BasePoints + BasePoints * Modifier
 	Gather = [0.0, 0.30, 0.50, 1.0], // = BasePoints + BasePoints * Modifier

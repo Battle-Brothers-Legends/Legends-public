@@ -228,7 +228,8 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		::World.Flags.set(::Legends.Camp.Flag.Craft, true);
 		::World.Flags.set(::Legends.Camp.Flag.Fletcher, true);
 		::World.Flags.set(::Legends.Camp.Flag.Healer, true);
-		::World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+		//::World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+		::World.Flags.set(::Legends.Camp.Flag.Kitchen, true);
 		::World.Flags.set(::Legends.Camp.Flag.Scout, true);
 		::World.Flags.set(::Legends.Camp.Flag.Scrap, true);
 		::World.Flags.set(::Legends.Camp.Flag.Training, true);

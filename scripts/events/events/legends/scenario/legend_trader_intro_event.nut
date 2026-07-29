@@ -17,8 +17,8 @@ this.legend_trader_intro_event <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				this.logInfo("Unlocking fletching");
 				this.World.Flags.set(::Legends.Camp.Flag.Fletcher, true);
-				this.logInfo("Unlocking hunting");
-				this.World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+				//this.logInfo("Unlocking hunting");
+				//this.World.Flags.set(::Legends.Camp.Flag.Hunter, true);
 				this.logInfo("Unlocking scouting");
 				this.World.Flags.set(::Legends.Camp.Flag.Scout, true);
 			}

@@ -18,7 +18,8 @@
 		Barter = this.Const.LegendMod.ResourceModifiers.Barter[0],
 		ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[0],
 		MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[0],
-		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0],
+		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
+		Cooking = ::Const.LegendMod.ResourceModifiers.Cooking[0],
 		Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[0],
 		Scout = this.Const.LegendMod.ResourceModifiers.Scout[0],
 		Gathering = this.Const.LegendMod.ResourceModifiers.Gather[0],
@@ -490,10 +491,15 @@
 				name = "Gathering Supplies"
 				icon = "ui/icons/banner_gather_icon.png"
 			},
-			{
+			/*{
 				key = "Hunting",
 				name = "Hunting",
 				icon = "ui/icons/banner_hunt_icon.png"
+			},*/
+			{
+				key = "Cooking",
+				name = "Cooking",
+				icon = "ui/icons/banner_cook_icon.png"
 			},
 			{
 				key = "Enchanting",

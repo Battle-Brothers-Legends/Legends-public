@@ -43,11 +43,11 @@
 				P = 1.0,
 				S = "weapons/legend_northern_sling"
 			});
-				_list.push({
+			/*	_list.push({
 				R = 90,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 		}
 	}
 });

@@ -8,7 +8,8 @@ this.camp_screen <- {
 		EnchanterDialogModule = null,
 		FletcherDialogModule = null,
 		HealerDialogModule = null,
-		HunterDialogModule = null,
+		//HunterDialogModule = null,
+		KitchenDialogModule = null,
 		PainterDialogModule = null,
 		RepairDialogModule = null,
 		RestDialogModule = null,
@@ -73,9 +74,14 @@ this.camp_screen <- {
 		return this.m.HealerDialogModule;
 	}
 
-	function getHunterDialogModule()
+	/*function getHunterDialogModule()
 	{
 		return this.m.HunterDialogModule;
+	}*/
+
+	function getKitchenDialogModule()
+	{
+		return this.m.KitchenDialogModule;
 	}
 
 	function getPainterDialogModule()
@@ -185,9 +191,12 @@ this.camp_screen <- {
 		this.m.HealerDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_healer_dialog_module");
 		this.m.HealerDialogModule.setParent(this);
 		this.m.HealerDialogModule.connectUI(this.m.JSHandle);
-		this.m.HunterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_hunter_dialog_module");
+		/*this.m.HunterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_hunter_dialog_module");
 		this.m.HunterDialogModule.setParent(this);
-		this.m.HunterDialogModule.connectUI(this.m.JSHandle);
+		this.m.HunterDialogModule.connectUI(this.m.JSHandle);*/
+		this.m.KitchenDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_kitchen_dialog_module");
+		this.m.KitchenDialogModule.setParent(this);
+		this.m.KitchenDialogModule.connectUI(this.m.JSHandle);
 		this.m.PainterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_painter_dialog_module");
 		this.m.PainterDialogModule.setParent(this);
 		this.m.PainterDialogModule.connectUI(this.m.JSHandle);
@@ -222,7 +231,8 @@ this.camp_screen <- {
 		this.m.EnchanterDialogModule.destroy();
 		this.m.FletcherDialogModule.destroy();
 		this.m.HealerDialogModule.destroy();
-		this.m.HunterDialogModule.destroy();
+		//this.m.HunterDialogModule.destroy();
+		this.m.KitchenDialogModule.destroy();
 		this.m.PainterDialogModule.destroy();
 		this.m.RepairDialogModule.destroy();
 		this.m.RestDialogModule.destroy();
@@ -236,7 +246,8 @@ this.camp_screen <- {
 		this.m.EnchanterDialogModule = null;
 		this.m.FletcherDialogModule = null;
 		this.m.HealerDialogModule = null;
-		this.m.HunterDialogModule = null;
+		//this.m.HunterDialogModule = null;
+		this.m.KitchenDialogModule = null;
 		this.m.PainterDialogModule = null;
 		this.m.RepairDialogModule = null;
 		this.m.RestDialogModule = null;
@@ -256,7 +267,8 @@ this.camp_screen <- {
 		this.m.EnchanterDialogModule.clear();
 		this.m.FletcherDialogModule.clear();
 		this.m.HealerDialogModule.clear();
-		this.m.HunterDialogModule.clear();
+		//this.m.HunterDialogModule.clear();
+		this.m.KitchenDialogModule.clear();
 		this.m.PainterDialogModule.clear();
 		this.m.RepairDialogModule.clear();
 		this.m.RestDialogModule.clear();
@@ -339,9 +351,13 @@ this.camp_screen <- {
 		{
 			this.showHealerDialog();
 		}
-		else if (this.m.LastActiveModule == this.m.HunterDialogModule)
+		/*else if (this.m.LastActiveModule == this.m.HunterDialogModule)
 		{
 			this.showHunterDialog();
+		}*/
+		else if (this.m.LastActiveModule == this.m.KitchenDialogModule)
+		{
+			this.showKitchenDialog();
 		}
 		else if (this.m.LastActiveModule == this.m.PainterDialogModule)
 		{
@@ -419,8 +435,12 @@ this.camp_screen <- {
 			this.showHealerDialog();
 			break;
 
-		case this.Const.World.CampBuildings.Hunter:
+		/*case this.Const.World.CampBuildings.Hunter:
 			this.showHunterDialog();
+			break;*/
+
+		case ::Const.World.CampBuildings.Kitchen:
+			this.showKitchenDialog();
 			break;
 
 		case this.Const.World.CampBuildings.Painter:
@@ -510,13 +530,23 @@ this.camp_screen <- {
 		}
 	}
 
-	function showHunterDialog()
+	/*function showHunterDialog()
 	{
 		if (this.m.JSHandle != null && this.isVisible())
 		{
 			this.m.LastActiveModule = this.m.HunterDialogModule;
 			this.Tooltip.hide();
 			this.m.JSHandle.asyncCall("showHunterDialog", this.m.HunterDialogModule.queryLoad());
+		}
+	}*/
+
+	function showKitchenDialog()
+	{
+		if (this.m.JSHandle != null && this.isVisible())
+		{
+			this.m.LastActiveModule = this.m.KitchenDialogModule;
+			this.Tooltip.hide();
+			this.m.JSHandle.asyncCall("showKitchenDialog", this.m.KitchenDialogModule.queryLoad());
 		}
 	}
 

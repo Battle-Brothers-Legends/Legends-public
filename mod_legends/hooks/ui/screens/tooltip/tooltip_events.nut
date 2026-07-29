@@ -4756,7 +4756,8 @@
 		case "camp.enchanter":
 		case "camp.fletcher":
 		case "camp.healer":
-		case "camp.hunter":
+		//case "camp.hunter":
+		case "camp.kitchen":
 		case "camp.repair":
 		case "camp.rest":
 		case "camp.scout":

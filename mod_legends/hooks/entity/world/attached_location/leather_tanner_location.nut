@@ -27,11 +27,11 @@
 				P = 1.0,
 				S = "weapons/legend_chain"
 			});
-			_list.push({
+			/*_list.push({
 				R = 90,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 			_list.push({
 				R = 80,
 				P = 1.0,

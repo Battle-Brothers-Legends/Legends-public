@@ -1,4 +1,4 @@
-this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", {
+/*this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	m = {
 		Items = [],
 		NumBros = 0,
@@ -899,3 +899,4 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 });
+*/

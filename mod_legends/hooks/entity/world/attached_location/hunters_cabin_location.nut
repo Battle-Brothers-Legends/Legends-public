@@ -93,11 +93,11 @@
 				P = 1.0,
 				S = "weapons/knife"
 			});
-			_list.push({
+			/*_list.push({
 				R = 80,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 		}
 	}
 });

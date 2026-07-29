@@ -257,6 +257,13 @@
 		top: 23.0rem;
 	}
 
+/*.camp-screen > .l-main-dialog-container .slot-cook {
+		-webkit-transform: scale(0.7, 0.7);
+		position: absolute;
+		left: 45.0rem;
+		top: 23.0rem;
+	}*/
+
 .camp-screen > .l-main-dialog-container .slot-painter {
 	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;

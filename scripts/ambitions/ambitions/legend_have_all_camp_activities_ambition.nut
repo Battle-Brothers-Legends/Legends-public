@@ -19,7 +19,8 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		local crafting = ::World.Flags.get(::Legends.Camp.Flag.Craft) == true;
 		local training = ::World.Flags.get(::Legends.Camp.Flag.Training) == true;
 		local fletching = ::World.Flags.get(::Legends.Camp.Flag.Fletcher) == true;
-		local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		//local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		local cooking = ::World.Flags.get(::Legends.Camp.Flag.Kitchen) == true;
 		local gathering = ::World.Flags.get(::Legends.Camp.Flag.Gather) == true;
 		local scrapping = ::World.Flags.get(::Legends.Camp.Flag.Scrap) == true;
 		local scouting = ::World.Flags.get(::Legends.Camp.Flag.Scout) == true;
@@ -34,8 +35,11 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		if (!gathering) {
 			ret += "\n- Gathering";
 		}
-		if (!hunting) {
+		/*if (!hunting) {
 			ret += "\n- Hunting";
+		}*/
+		if (!cooking) {
+			ret += "\n- Cooking";
 		}
 		if (!scouting) {
 			ret += "\n- Patrolling";
@@ -53,11 +57,12 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		local crafting = ::World.Flags.get(::Legends.Camp.Flag.Craft) == true;
 		local training = ::World.Flags.get(::Legends.Camp.Flag.Training) == true;
 		local fletching = ::World.Flags.get(::Legends.Camp.Flag.Fletcher) == true;
-		local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		//local hunting = ::World.Flags.get(::Legends.Camp.Flag.Hunter) == true;
+		local cooking = ::World.Flags.get(::Legends.Camp.Flag.Kitchen) == true;
 		local gathering = ::World.Flags.get(::Legends.Camp.Flag.Gather) == true;
 		local scrapping = ::World.Flags.get(::Legends.Camp.Flag.Scrap) == true;
 		local scouting = ::World.Flags.get(::Legends.Camp.Flag.Scout) == true;
-		return crafting && training && fletching && hunting && gathering && scrapping && scouting;
+		return crafting && training && fletching && cooking && gathering && scrapping && scouting;
 	}
 
 	function onUpdateScore() {

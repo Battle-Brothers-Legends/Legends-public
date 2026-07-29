@@ -11,7 +11,8 @@ if (!("Camp" in ::Legends))
 	Fletcher = "HasLegendCampFletching",
 	Gather = "HasLegendCampGathering",
 	Healer = "HasLegendCampHealing",
-	Hunter = "HasLegendCampHunting",
+	//Hunter = "HasLegendCampHunting",
+	Kitchen = "HasLegendCampCooking",
 	Painter = "HasLegendCampPainter",
 	Scout = "HasLegendCampScouting",
 	Scrap = "HasLegendCampScrapping",
@@ -24,7 +25,8 @@ if (!("Camp" in ::Legends))
 	Fletcher = "tent.fletcher_tent",
 	Gather = "tent.gather_tent",
 	Healer = "tent.healer_tent",
-	Hunter = "tent.hunter_tent",
+	Kitchen = "tent.kitchen_tent",
+	Hunter = "tent.hunter_tent", //mfd
 	Repair = "tent.repair_tent",
 	Scout = "tent.scout_tent",
 	Scrap = "tent.scrap_tent",
@@ -46,10 +48,14 @@ if (!("Camp" in ::Legends))
 	}, {
 		ID = ::Legends.Camp.Tent.Healer,
 		Script = "tents/legend_tent_heal"
-	}, {
+	}, /*{
 		ID = ::Legends.Camp.Tent.Hunter,
 		Script = "tents/legend_tent_hunter"
-	}, {
+	},{
+		ID = ::Legends.Camp.Tent.Kitchen,
+		Script = "tents/legend_tent_kitchen"
+	},*/
+	 {
 		ID = ::Legends.Camp.Tent.Repair,
 		Script = "tents/legend_tent_repair"
 	}, {
