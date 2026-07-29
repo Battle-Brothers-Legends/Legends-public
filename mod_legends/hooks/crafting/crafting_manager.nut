@@ -1,34 +1,14 @@
 ::mods_hookNewObject("crafting/crafting_manager", function(o)
 {
-	o.getQualifiedBlueprintsForUI = function (_filter = this.Const.Items.ItemFilter.All)
-	{
+	o.getQualifiedBlueprintsForUI <- function (_filter = ::Const.Items.ItemFilter.All, _type = "Crafting") {
 		local ret = [];
 
-		foreach( b in this.m.Blueprints )
-		{
-			if ((b.getItemType() & _filter) == 0)
-			{
+		foreach( b in this.m.Blueprints ) {
+			if (b.m.BlueprintType == "Crafting" && (b.getItemType() & _filter) == 0) {
 				continue;
 			}
 
-			if (b.isQualified())
-			{
-				ret.push(b.getUIData());
-			}
-		}
-
-		ret.sort(this.onSortBlueprints);
-		return ret;
-	}
-
-	o.getQualifiedEnchanterBlueprintsForUI <- function ()
-	{
-		local ret = [];
-
-		foreach( b in this.m.Blueprints )
-		{
-			if (b.isQualifiedEnchant())
-			{
+			if (b.isQualified() && (_type == b.m.BlueprintType)) {
 				ret.push(b.getUIData());
 			}
 		}

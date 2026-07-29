@@ -7,7 +7,7 @@ this.legend_uncut_gems_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.PreviewCraftable = this.new("scripts/items/trade/uncut_gems_item");
 		this.m.Cost = 500;
 		this.m.Type = this.Const.Items.ItemType.Misc;
-		this.m.Enchanter = true;
+		this.m.BlueprintType = "Enchanting";
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/legend_gem_shards_item",

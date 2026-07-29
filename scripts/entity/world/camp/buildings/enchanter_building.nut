@@ -1,18 +1,13 @@
-this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building", {
+this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting_building", {
 	m = {
+		ActivityName = "Enchant",
 		BaseCraft = 30.0,
-		ItemsCrafted = [],
-		Queue = [],
-		CurrentProgress = 0,
-		CurrentCraft = null,
-		NumBros = 0
 	},
-	function create()
-	{
+	function create() {
 		this.camp_building.create();
 		this.m.ID = this.Const.World.CampBuildings.Enchanter;
 		this.m.Slot = "enchant";
-		this.m.Name = "Enchanter";
+		this.m.Name = "Enchant";
 		this.m.Description = "Oooo.. Pretty glowing things...";
 		this.m.BannerImage = "ui/buttons/banner_enchant.png";
 		this.m.Sounds = [
@@ -161,17 +156,16 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		];
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
+	function isHidden() {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getBackground().getModifiers().Enchanting > 0) {
+				return false;
+			}
 		}
-		return this.m.Name +  " *Not Upgraded*";
+		return true;
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		local desc = "";
 		desc += "Tha Vala emporium of mystical (and maybe even magical) mischief. While encamped, the Vala can retreat into her books and experiments. ";
 		desc += "Rune requests can be queued up for the Vala to try her hand at. What comes of them, you'll just have to wait and see what she inscribes. ";
@@ -182,8 +176,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		return desc;
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		this.init();
 		local mod = this.getModifiers();
 		local ret = [
@@ -220,66 +213,19 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 		return ret;
 	}
 
-	function init()
-	{
-		this.onInit();
-		this.m.ItemsCrafted = [];
-		this.m.CurrentProgress = 0;
-		this.m.CurrentCraft = null;
-		local mod = this.getModifiers();
-		this.m.NumBros = mod.Assigned;
-	}
-
-	function isHidden()
-	{
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getBackground().getModifiers().Enchanting > 0)
-			{
-				return false;
-			}
-		}
-		return true;
-	}
-
-	function onInit()
-	{
-		local q = [];
-		for (local i = 0; i < this.m.Queue.len(); i = ++i)
-		{
-			if (this.m.Queue[i] == null)
-			{
-				continue;
-			}
-			if (this.m.Queue[i].Blueprint == null)
-			{
-				continue;
-			}
-			q.push(this.m.Queue[i]);
-		}
-		this.m.Queue = q;
-	}
-
-	function getModifiers()
-	{
-		local ret =
-		{
+	function getModifiers()	{
+		local ret =	{
 			Craft = 0.0,
 			Assigned = 0,
 			Modifiers = []
 		}
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
-			{
+		foreach(bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getCampAssignment() != this.m.ID) {
 				continue;
 			}
 
 			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Enchanting;
-			if (bro.getLevel() >= 12)
-			{
+			if (bro.getLevel() >= 12) {
 				rm *= 1.3;
 			}
 			ret.Craft += rm;
@@ -287,241 +233,19 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/camp_building
 			ret.Modifiers.push([rm, bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
-		if (this.getUpgraded())
-		{
+		if (this.getUpgraded())	{
 			ret.Craft *= 1.15;
 		}
 
 		return ret;
 	}
 
-	function getResults()
-	{
-		local res = [];
-		local id = 20;
-		foreach (b in this.m.ItemsCrafted)
-		{
-			res.push({
-		 		id = id,
-		 		icon = "ui/items/" + b.getIcon(),
-		 		text = "Enchanting completed: " + b.getName()
-			});
-			++id;
-		}
-		return res;
-	}
-
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Enchant);
-	}
-
-	function getLevel()	{
-		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
-	}
-
-	function getUpdateText()
-	{
-		if (this.m.Queue.len() <= 0)
-		{
-			return null;
-		}
-
-		if (this.m.NumBros == 0)
-		{
-			return "No one assigned to enchant";
-		}
-
-		local crafted = this.m.ItemsCrafted.len();
-		local numToCraft = this.m.Queue.len();
-		local progress = this.Math.floor(10000 * this.m.CurrentProgress) / 100.0;
-
-		if (crafted == numToCraft) return "Crafted ..." + crafted + " / " + crafted;
-
-		return "Enchanted ... " + crafted + "/" + numToCraft + " ... " + progress + "% of " + this.m.CurrentCraft;
-	}
-
-	function update ()
-	{
-		local modifiers = this.getModifiers();
-		foreach (i, r in this.m.Queue)
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			if (r.Blueprint == null)
-			{
-				continue;
-			}
-
-			if (!r.Blueprint.isCraftable())
-			{
-				continue;
-			}
-
-			local needed = r.Blueprint.getCost() - r.Points;
-
-			if (modifiers.Craft < needed)
-			{
-				needed = modifiers.Craft;
-			}
-			r.Points += needed;
-			modifiers.Craft -= needed;
-
-			if (r.Points >= r.Blueprint.getCost())
-			{
-				r.Blueprint.enchant(this.getUpgraded()); // will do nothing if it's a craft item like uncut gems
-				r.Blueprint.onCraft(this.Stash); // will do nothing if it's a rune
-				this.m.ItemsCrafted.push(r.Blueprint);
-				this.m.Queue[i] = null;
-			}
-
-			if (modifiers.Craft <= 0)
-			{
-				this.m.CurrentProgress = r.Points / r.Blueprint.getCostForCraft();
-				this.m.CurrentCraft = r.Blueprint.getName();
-				break;
-			}
-		}
-
-		return this.getUpdateText();
-	}
-
-	function getQueue()
-	{
-		local ret = [];
-		foreach( b in this.m.Queue )
-		{
-			if (b == null)
-			{
-				continue;
-			}
-			local r = b.Blueprint.getUIData();
-			r.Percentage <- (b.Points / (b.Blueprint.getCost() * 1.0)) * 100;
-			ret.push(r);
-		}
-		return ret;
-	}
-
-	function getResourceImage()
-	{
-		return "ui/buttons/icon_time.png";
-	}
-
-	function getResourceCount()
-	{
-		return this.getRequiredTime();
-	}
-
-	function getRequiredTime()
-	{
-		local points = 0;
-		this.init();
-		if (this.m.Queue == null)
-		{
-			return 0;
-		}
-
-		foreach (r in this.m.Queue)
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			points += (r.Blueprint.getCost() - r.Points);
-		}
-		local modifiers = this.getModifiers();
-		if (modifiers.Craft <= 0)
-		{
-			return 0
-		}
-		return this.Math.ceil(points / modifiers.Craft);
-	}
-
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
-	}
-
-	function onBroEnter ( _bro )
-	{
+	function onBroEnter ( _bro ) {
 		return _bro.getBackground().getModifiers().Enchanting > 0;
 	}
 
-
-	function onAdd ( _result )
-	{
-		local blueprint = this.World.Crafting.getBlueprint(_result.ID);
-		if (!blueprint.isCraftable())
-		{
-			return;
-		}
-		this.m.Queue.push({
-			Points = 0.0,
-			Blueprint = blueprint
-		});
-		if (blueprint.getSounds().len() != 0)
-		{
-			this.Sound.play(blueprint.getSounds()[this.Math.rand(0, blueprint.getSounds().len() - 1)], 1.0);
-		}
-	}
-
-	function onRemove ( _idx )
-	{
-		local q = [];
-		for (local i = 0; i < this.m.Queue.len(); i = ++i)
-		{
-			if (i == _idx)
-			{
-				continue;
-			}
-			q.push(this.m.Queue[i]);
-		}
-		this.m.Queue = q;
-	}
-
-	function onSwap ( _source, _target)
-	{
-		local item = this.m.Queue[_source];
-		this.m.Queue[_source] = this.m.Queue[_target];
-		this.m.Queue[_target] = item;
-		if (item.Blueprint.getSounds().len() != 0)
-		{
-			this.Sound.play(item.Blueprint.getSounds()[this.Math.rand(0, item.Blueprint.getSounds().len() - 1)], 1.0);
-		}
-	}
-
-	function onClicked( _campScreen )
-	{
+	function onClicked( _campScreen ) {
 		_campScreen.showEnchanterDialog();
 		this.camp_building.onClicked(_campScreen);
 	}
-
-	function onSerialize( _out )
-	{
-		this.onInit(); //clear out null queue items
-		_out.writeU16(this.m.Queue.len());
-		foreach( b in this.m.Queue )
-		{
-			_out.writeString(b.Blueprint.getID());
-			_out.writeF32(b.Points);
-		}
-	}
-
-	function onDeserialize( _in )
-	{
-		local num = _in.readU16();
-		for( local i = 0; i < num; i = ++i )
-		{
-			this.m.Queue.push({
-				Blueprint =  this.World.Crafting.getBlueprint(_in.readString()),
-				Points = _in.readF32(),
-			});
-		}
-	}
-
 });

@@ -1,95 +1,21 @@
-this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
+this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modules/camp_screen/camp_item_creation_dialog_module", {
 	m = {
 		Title = "Crafting",
 		Description = "Craft trophies and equipment while encamped.",
-		InventoryFilter = this.Const.Items.ItemFilter.All,
-		CurrentPage = 0,
+		InventoryFilter = ::Const.Items.ItemFilter.All,
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "CampCraftingDialogModule";
 		this.ui_module.create();
 	}
 
-	function getTent()
-	{
-		return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Crafting);
+	function getTent() {
+		return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Crafting);
 	}
 
-	function onShow()
-	{
-		this.m.CurrentPage = 0;
-		this.getTent().onInit();
-		return this.queryLoad();
-	}
-
-	function queryQueue()
-	{
-		local result = {
-			Assets = this.assetsInformation(),
-			Queue = this.getTent().getQueue()
-		};
-		return result;
-	}
-
-	function assetsInformation()
-	{
-		return {
-			Time = this.getTent().getRequiredTime(),
-			Brothers = this.getTent().getAssignedBros()
-		};
-	}
-
-	function loadCraftList()
-	{
-		local result = this.queryQueue();
-		this.m.JSHandle.asyncCall("loadFromData", result);
-	}
-
-	function destroy()
-	{
-		this.ui_module.destroy();
-	}
-
-	function onSwap( _data )
-	{
-		this.getTent().onSwap(_data[0], _data[1]);
-		this.loadCraftList();
-	}
-
-	function onRemove( _idx )
-	{
-		this.getTent().onRemove(_idx);
-		this.loadCraftList();
-	}
-
-	function onAdd( _result )
-	{
-		this.getTent().onAdd(_result.ID);
-		this.loadCraftList();
-	}
-
-	function onCraftForever (_result)
-	{
-		if (this.getTent().onCraftForever(_result.ID))
-		{
-			this.loadCraftList();
-		}
-	}
-
-	function onLeaveButtonPressed()
-	{
-		this.m.Parent.onModuleClosed();
-	}
-
-	function onBrothersButtonPressed()
-	{
-		this.m.Parent.onCommanderButtonPressed();
-	}
-
-	function queryLoad()
-	{
-		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
+	function queryLoad() {
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
 		local indexStart = this.m.CurrentPage * 4;
 		local result = {
 			Title = this.m.Title,
@@ -103,9 +29,8 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		return result;
 	}
 
-	function loadBlueprints()
-	{
-		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
+	function loadBlueprints() {
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
 		local indexStart = this.m.CurrentPage * 4;
 		local result = {
 			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
@@ -115,51 +40,29 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
-	function onFilterAll()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	function onFilterAll() {
+		this.onFilter("All");
 	}
 
-	function onFilterWeapons()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	function onFilterWeapons() {
+		this.onFilter("Weapons");
 	}
 
-	function onFilterArmor()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	function onFilterArmor() {
+		this.onFilter("Armor");
 	}
 
-	function onFilterMisc()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Misc)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Misc;
-			this.m.CurrentPage = 0;
-			this.loadBlueprints();
-		}
+	function onFilterMisc() {
+		this.onFilter("Misc");
 	}
 
-	function onFilterUsable()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Usable)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Usable;
+	function onFilterUsable() {
+		this.onFilter("Usable");
+	}
+
+	function onFilter(_filter) {
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter[_filter]) {
+			this.m.InventoryFilter = ::Const.Items.ItemFilter[_filter];
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -169,6 +72,4 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 		this.m.CurrentPage = _result.ID;
 		this.loadBlueprints();
 	}
-
 });
-

@@ -3,7 +3,7 @@
 	while(!("ID" in o.m)) o=o[o.SuperName];
 
 	o.m.PreviewSkills <- [];
-	o.m.Enchanter <- false;
+	o.m.BlueprintType <- "Crafting";
 	o.m.Type <- this.Const.Items.ItemType.None;
 	o.m.CraftMultiplier <- 1.0;
 
@@ -202,15 +202,8 @@
 		return true;
 	}
 
-	o.isQualified = function ()
-	{
-		if (this.m.Enchanter)
-		{
-			return false;
-		}
-
-		if (this.m.TimesCrafted >= 1)
-		{
+	o.isQualified = function ()	{
+		if (this.m.TimesCrafted >= 1) {
 			return true;
 		}
 
@@ -218,16 +211,6 @@
 		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "One Ingredient Available") return this.isPartlyCraftable();
 
 		return this.isCraftable();
-	}
-
-	o.isQualifiedEnchant <- function ()
-	{
-		if (this.m.Enchanter)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
 	o.getUIData = function ()
@@ -341,7 +324,7 @@
 		local stash = ::World.Assets.getStash();
 
 		foreach (c in this.m.PreviewComponents) {
-			for (local j = 0; j < c.Num; j = j) {
+			for (local j = 0; j < c.Num; j++) {
 				local item = stash.getItemByID(c.Instance.getID());
 
 				if (::World.Assets.m.ProfessionEffect.LegendThrifty <= 0 || item.getMagicNumber() > ::World.Assets.m.ProfessionEffect.LegendThrifty * 100) {
@@ -353,8 +336,6 @@
 				} else {
 					item.setMagicNumber(this.Math.rand(1, 100));
 				}
-
-				j = ++j;
 			}
 		}
 
@@ -362,29 +343,5 @@
 		this.onCraft(stash);
 	}
 
-	o.enchant <- function ( _bonus )
-	{
-		if (!this.isQualifiedEnchant())
-		{
-			return;
-		}
-
-		local stash = this.World.Assets.getStash();
-
-		foreach( c in this.m.PreviewComponents )
-		{
-			for( local j = 0; j < c.Num; j = j )
-			{
-				stash.removeByID(c.Instance.getID());
-				j = ++j;
-			}
-		}
-
-		++this.m.TimesCrafted;
-		this.onEnchant(stash, _bonus);
-	}
-
-	o.onEnchant <- function ( _stash, _bonus )
-	{
-	}
+	o.onEnchant <- function (_upgraded) {}
 });
