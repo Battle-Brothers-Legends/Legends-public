@@ -163,7 +163,7 @@
 
 /* Bottow row of tents */
 .camp-screen > .l-main-dialog-container .slot-craft {
-	-webkit-transform: scale(-0.7, 0.7);
+	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
 	left: 7.0rem;
 	top: 42.0rem;
@@ -172,14 +172,14 @@
 .camp-screen > .l-main-dialog-container .slot-train {
 	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
-	left: 20.0rem;
+	left: 24.0rem;
 	top: 46.0rem;
 }
 
 .camp-screen > .l-main-dialog-container .slot-rest {
 	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
-	left: 44.0rem;
+	left: 49.0rem;
 	top: 47.0rem;
 }
 
