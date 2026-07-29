@@ -98,7 +98,7 @@
 ## Profession system
 - introduced a new system connecting camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree
-- uses separate points, independent to regular perks
+- uses separate points, independent to regular perks and conveys bonuses for the whole company
 
 ## Scenarios
 
@@ -146,6 +146,11 @@
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
+
+### Runes
+- rune effect values were redone slightly, so they all follow the same rules now
+- this means that upgraded tent produces up to 1.5 more powerful effects than not upgraded uniformly (rounded)
+- affected runes are: endurance, radiance, durability, blazing (slight changes)
 
 ### Armors
 - added Segmented Breastplate
@@ -302,8 +307,16 @@
 
 ## Camping changes
 - made most dialogs shorter
+- hunters tent removed
 - crafting system has been overhauled
+- cooking tent (station) added
+- cleaned up cooking and enchanting ui
+- cooking and enchanting work similarly to regular crafting now (allows crafting forever and preselecting recipes)
+- all crafting and cooking recipes require professions now
+- professions affect the crafting process
 - crafted items types reassigned in some cases to make it more intuitive
+- small visual reorganization to make the stations easier to click
+- right click tents to open the correct list in commander's tent
 
 ## Events
 - added a new town encounter during drought
@@ -321,27 +334,32 @@
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
-- text fixes
+- various text fixes
 - graphical/ui fixes
 - bros can now use the basic training options until level 12 in town training halls instead of 11
 - fixed settlement situations applying twice
 - improved stability
 - assassinate no longer grants more damage than the tooltip indicates
 - dog and bag item functionality and tooltip fixes
+- fixed hover boxes on camp objects
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
 - added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
 - defs created for backgrounds
 - background_stats created for background stat rolls and migrated them from bgs
+- bro sprite setting per background moved to bg's setGender; uses setBodyCharacteristics which accepts an object with fields to overwrite default sprites with (default are norther, all)
 - changed background.legend_peddler_commander -> background.legend_commander_peddler
 - legend_mage_background and legend_mage_commander_mage removed
 - human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
 - Tabbard -> Tabard | tabbard -> tabard
 - Hesistant -> Hesitant
+- LegendExtendendAura -> LegendExtendedAura
 - legend_dilapitated_sling -> legend_dilapidated sling
 - camp buildings: getModifierToolip -> getModifierTooltip
+- Barter -> Haggle
+- removed delayed event fix (Vanilla already fixed it in a better place in the chain, possibly fixes event bugs)
 - `LegendExtendendAura` -> `LegendExtendedAura`
 - `LegendTattos` -> `LegendTattoos`
 - `LegendFortify` -> deleted

@@ -1,8 +1,7 @@
 this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modules/camp_screen/camp_item_creation_dialog_module", {
 	m = {
 		Title = "Crafting",
-		Description = "Craft trophies and equipment while encamped.",
-		InventoryFilter = ::Const.Items.ItemFilter.All,
+		Description = "Craft trophies and equipment while encamped."
 	},
 
 	function create() {
@@ -12,32 +11,6 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modul
 
 	function getTent() {
 		return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Crafting);
-	}
-
-	function queryLoad() {
-		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
-		local indexStart = this.m.CurrentPage * 4;
-		local result = {
-			Title = this.m.Title,
-			SubTitle = this.m.Description,
-			Assets = this.assetsInformation(),
-			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
-			Queue = this.getTent().getQueue(),
-			CurrentPage = this.m.CurrentPage,
-			Pages = ::Math.floor((bps.len() + 3) / 4)
-		};
-		return result;
-	}
-
-	function loadBlueprints() {
-		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
-		local indexStart = this.m.CurrentPage * 4;
-		local result = {
-			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
-			CurrentPage = this.m.CurrentPage,
-			Pages = ::Math.floor((bps.len() + 3) / 4)
-		};
-		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
 	function onFilterAll() {
@@ -66,10 +39,5 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modul
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
-	}
-
-	function onPageChange(_result) {
-		this.m.CurrentPage = _result.ID;
-		this.loadBlueprints();
 	}
 });

@@ -896,9 +896,14 @@ CampScreenCraftingDialogModule.prototype.loadFromData = function (_data)
 		return;
 	}
 
-	if('Title' in _data && _data.Title !== null)
-	{
+	if('Title' in _data && _data.Title !== null) {
 		 this.mDialogContainer.findDialogTitle().html(_data.Title);
+
+		 if(_data.Title === "Crafting")	{
+			this.mFilterPanel.removeClass('display-none').addClass('display-block');
+		} else {
+			this.mFilterPanel.removeClass('display-block').addClass('display-none');
+		}
 	}
 
 	if('SubTitle' in _data && _data.SubTitle !== null)

@@ -1,6 +1,7 @@
 this.camp_item_creation_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		CurrentPage = 0,
+		InventoryFilter = ::Const.Items.ItemFilter.All
 	},
 
 	function onShow() {
@@ -17,14 +18,29 @@ this.camp_item_creation_dialog_module <- this.inherit("scripts/ui/screens/ui_mod
 	}
 
 	function queryLoad() {
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
+		local indexStart = this.m.CurrentPage * 4;
 		local result = {
 			Title = this.m.Title,
 			SubTitle = this.m.Description,
 			Assets = this.assetsInformation(),
-			Blueprints = ::World.Crafting.getQualifiedBlueprintsForUI(::Const.Items.ItemFilter.All, this.m.Title),
-			Queue = this.getTent().getQueue()
+			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
+			Queue = this.getTent().getQueue(),
+			CurrentPage = this.m.CurrentPage,
+			Pages = ::Math.floor((bps.len() + 3) / 4)
 		};
 		return result;
+	}
+
+	function loadBlueprints() {
+		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter, this.m.Title);
+		local indexStart = this.m.CurrentPage * 4;
+		local result = {
+			Blueprints = bps.slice(indexStart, ::Math.min(indexStart + 4, bps.len())),
+			CurrentPage = this.m.CurrentPage,
+			Pages = ::Math.floor((bps.len() + 3) / 4)
+		};
+		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
 	function assetsInformation() {
@@ -69,5 +85,10 @@ this.camp_item_creation_dialog_module <- this.inherit("scripts/ui/screens/ui_mod
 
 	function onBrothersButtonPressed() {
 		this.m.Parent.onCommanderButtonPressed();
+	}
+
+	function onPageChange(_result) {
+		this.m.CurrentPage = _result.ID;
+		this.loadBlueprints();
 	}
 });
