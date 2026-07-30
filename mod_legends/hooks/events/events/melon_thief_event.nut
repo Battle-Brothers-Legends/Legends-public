@@ -21,7 +21,7 @@
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					} else {
-						_event.m.Dude.setStartValuesEx([::Legends.Background.Thief], true, -1);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.Thief], true, 0);
 					}
 
 					_event.m.Dude.setTitle("the Melon Mugger");
