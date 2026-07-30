@@ -148,16 +148,13 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				local entry = ::Legends.EventList.changeMood(_event.m.Anatomist, 1.5, "Performed a study on the living dead");
 				this.List.push(::Legends.EventList.changeBroExperience(_event.m.Anatomist, ::rand(280, 550)));
 
-				foreach( bro in brothers )
-				{
-					_event.m.Anatomist.addXP(xp);
-					_event.m.Anatomist.updateLevel();
-					this.List.push({
-						id = 16,
-						icon = "ui/icons/xp_received.png",
-						text = Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
-					});
-				}
+				_event.m.Anatomist.addXP(xp);
+				_event.m.Anatomist.updateLevel();
+				this.List.push({
+					id = 16,
+					icon = "ui/icons/xp_received.png",
+					text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]"+ xp +"[/color] Experience"
+				});
 			}
 
 		});
@@ -218,11 +215,6 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 			return;
 		}
 
-		if (brothers.len() < 5) //must have at least 5 fighters or more, to pad against sacrificing a fighter too early on
-		{
-			return;
-		}
-
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_puppet = [];
 		local candidates_anatomist = [];
@@ -243,6 +235,11 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 			{
 				candidates_anatomist.push(bro);
 			}
+		}
+
+		if (brothers.len() < 5) //must have at least 5 fighters or more, to pad against sacrificing a fighter too early on
+	 	{
+			return;
 		}
 
 		if (candidates_puppet.len() == 0)
