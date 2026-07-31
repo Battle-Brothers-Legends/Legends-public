@@ -274,7 +274,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendCutToTheChase,
     Icon = "ui/professions/cut_to_the_chase.png",
     IconDisabled = "ui/professions/cut_to_the_chase_bw.png",
-    Const = "LegendCutToTheChase"
+    Const = "LegendCutToTheChase",
+    ScalingArray = [0, 2], // items shown in a rumoured location's inventory
+    ScalingFactor = 0.5
 });
 
 ::Legends.Profession.LegendDiplomacy <- null;
@@ -518,7 +520,7 @@ professionDefObjects.push({
     Icon = "ui/professions/lay_of_the_land.png",
     IconDisabled = "ui/professions/lay_of_the_land_bw.png",
     Const = "LegendLayOfTheLand",
-    ScalingArray = [0, 2], // items shown in a rumoured location's inventory
+    ScalingArray = [0, 5], // extra chance to draw maps after clearing locations
     ScalingFactor = 0.5
 });
 

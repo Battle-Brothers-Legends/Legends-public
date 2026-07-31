@@ -41,7 +41,7 @@
 
 	o.setCommanderDied <- function ( _v )
 	{
-		this.m.CommanderDied = _v
+		this.m.CommanderDied = _v;
 	}
 
 	local onInit = o.onInit;
@@ -427,7 +427,7 @@
 		if (::World.Camp.isCamping())
 		{
 			this.onCamp();
-			return
+			return;
 		}
 		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), this.Const.Music.CrossFadeTime);
 		this.setPause(true);
@@ -1275,7 +1275,7 @@
 
 		local val = this.m.IDToRef[_id];
 		if (val == -1) {
-			return null
+			return null;
 		}
 		return val;
 	}

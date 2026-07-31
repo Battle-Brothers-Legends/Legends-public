@@ -337,7 +337,7 @@ this.encounter <- {
 	}
 
     function isOnCooldown() {
-        return this.m.CooldownUntil > this.Time.getVirtualTimeF()
+        return this.m.CooldownUntil > this.Time.getVirtualTimeF();
     }
 
     function reset()

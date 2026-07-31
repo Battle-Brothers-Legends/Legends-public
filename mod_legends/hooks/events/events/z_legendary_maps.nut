@@ -54,7 +54,7 @@ foreach (location in [
 	::mods_hookExactClass(location, function(o) {
 		local onDropLootForPlayer = o.onDropLootForPlayer;
 		o.onDropLootForPlayer = function (_lootTable) {
-			if (this.Math.rand(1, 4) == 1)
+			if (::Math.rand(1, 100) <= 20 + ::World.Assets.m.ProfessionEffect.LegendLayOfTheLand)
 				_lootTable.push(this.new("scripts/items/misc/legend_map_named_item"));
 			onDropLootForPlayer(_lootTable);
 		}

@@ -19,7 +19,7 @@
 					text = "[color=%negative%][u]No extra items in the location[/u][/color]"
 				});
 			} else {
-				local num = ::Math.min(loot.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand));
+				local num = ::Math.min(loot.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase));
 				ret.push({
 					id = 51,
 					type = "text",
@@ -33,11 +33,11 @@
 						text = loot[i].getName()
 					});
 				}
-				if (loot.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand)) {
+				if (loot.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase)) {
 					ret.push({
 						id = 53 + num,
 						type = "text",
-						text = "And " + (loot.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendLayOfTheLand)) + " more item(s)"
+						text = "And " + (loot.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase)) + " more item(s)"
 					});
 				}
 			}

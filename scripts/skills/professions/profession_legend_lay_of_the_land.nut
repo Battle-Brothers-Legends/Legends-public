@@ -11,13 +11,13 @@ this.profession_legend_lay_of_the_land <- this.inherit("scripts/skills/legend_pr
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png"
-				text = "Items shown in rumoured locations"
+				text = "Extra chance to find maps"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/plus.png"
-				text = "Current: [color=%positive%]" + (::Legends.Professions.getProfessionEffect(_def, 0)) + "[/color]"
+				text = "Current: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 0) + "%[/color]"
 			},
 		];
 
@@ -26,7 +26,7 @@ this.profession_legend_lay_of_the_land <- this.inherit("scripts/skills/legend_pr
 				id = 12,
 				type = "text",
 				icon = "ui/icons/level_dark.png"
-				text = "Next: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 1) + "[/color]"
+				text = "Next: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 1) + "%[/color]"
 			});
 		}
 

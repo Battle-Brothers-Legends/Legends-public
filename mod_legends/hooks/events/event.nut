@@ -210,7 +210,6 @@
 			}
 		}
 
-		local text;
 		local vars = [
 			[
 				"SPEECH_ON",

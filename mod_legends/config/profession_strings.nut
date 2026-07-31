@@ -223,7 +223,9 @@ Taking gristle, bone, and whatever else the dog dragged in, and confidently call
 Time is money, and pleasantries can cost the company a drink.
 
 [color=%passive%][u]Passive:[/u][/color]
-// needs an effect
+• Receiving a location rumour reveals it on the map.
+
+• Reveals the most expensive items in the rumoured location.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendDiplomacy <- @"
@@ -370,9 +372,7 @@ Words have hidden meanings, and every silken lie hides a single thread of truth.
 Rumours of a fabled treasure are only rumours until one learns to connect the dots the right way.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Receiving a location rumour reveals it on the map.
-
-• Reveals the most expensive items in the rumoured location.
+• Increases the chance of gathering information to be drawn on maps after camp fights.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendLeatherworking <- @"
