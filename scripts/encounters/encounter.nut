@@ -166,8 +166,8 @@ this.encounter <- {
         this.m.ActiveScreen.Title = this.getUITitle();
         this.m.ActiveScreen.Text = this.buildText(this.m.ActiveScreen.Text);
 
-	    ::logInfo("title is: " + this.m.ActiveScreen.Title);
-	    ::logInfo("text is: " + this.m.ActiveScreen.Text);
+	    ::logInfo("encounter activated: " + this.m.ActiveScreen.Title);
+	    //::logInfo("text is: " + this.m.ActiveScreen.Text);
 
         foreach( option in this.m.ActiveScreen.Options )
         {
