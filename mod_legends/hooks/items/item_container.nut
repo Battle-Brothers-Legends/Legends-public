@@ -232,7 +232,7 @@
 			&& this.canDualWield(actor, oh);
 		if (dw) {
 			local ambidextrous = ::Legends.Perks.get(actor, ::Legends.Perk.LegendAmbidextrous);
-			dw = ambidextrous == null || ambidextrous.m.ApplicableItems.find(oh.getID()) == null;
+			dw = ambidextrous == null;
 		}
 		if (dw) {
 			::Legends.Effects.grant(actor, ::Legends.Effect.LegendDualWield);
