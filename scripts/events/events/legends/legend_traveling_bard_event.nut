@@ -112,7 +112,7 @@ this.legend_traveling_bard_event <- this.inherit("scripts/events/event", {
 		if (brothers.len() <= 3) //fewer than or equal to 3 = event triggers
 			return;
 
-		if (this.World.Assets.getMoney() >= 500)
+		if (this.World.Assets.getMoney() < 500)
 			return;
 
 		if (!this.World.getTime().IsDaytime)
