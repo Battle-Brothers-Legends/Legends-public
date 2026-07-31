@@ -1309,67 +1309,53 @@
 
 	/**
 	 * Adds convenience method to world state to mimic original
-	 * Shows encouter dialog while in settlement
+	 * Shows encounter dialog while in settlement
 	 */
 	o.showEncounterScreenFromTown <- function (_encounter, _playSound = true) {
-		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
-		{
-			if (::isKindOf(_encounter, "encounter_event")) {
-				::World.Events.addSpecialEvent(_encounter.m.Event);
-				::World.State.getMenuStack().popAll(true);
-				::Time.scheduleEvent(::TimeUnit.Real, 100, function ( _tag ) {
-					::World.State.setPause(false);
-				}, null);
-				::World.Encounters.clearActiveEvent();
-			} else {
-				if (_playSound && ::Const.Events.GlobalSound != "")
-					::Sound.play(::Const.Events.GlobalSound, 1.0);
-
-				this.m.WorldTownScreen.hideAllDialogs();
-				this.m.EventScreen.setIsEncounter(true);
-				this.m.EventScreen.show(_encounter);
-				this.m.MenuStack.push(function () {
-					this.m.EventScreen.hide();
-					this.m.WorldTownScreen.showLastActiveDialog();
-					this.m.EventScreen.setIsEncounter(false);
-					this.m.WorldTownScreen.refresh();
-				}, function () {
-					return false;
-				});
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && ::Const.Events.GlobalSound != "") {
+				::Sound.play(::Const.Events.GlobalSound, 1.0);
 			}
+
+			this.m.WorldTownScreen.hideAllDialogs();
+			this.m.EventScreen.setIsEncounter(true);
+			this.m.EventScreen.show(_encounter);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				::World.Encounters.clearActiveEvent();
+				::World.Events.clearActiveEvent();
+				this.m.WorldTownScreen.showLastActiveDialog();
+				this.m.EventScreen.setIsEncounter(false);
+				this.m.WorldTownScreen.refresh();
+			}, function () {
+				return false;
+			});
 		}
 	}
 
 	/**
 	 * Adds convenience method to world state to mimic original
-	 * Shows encouter dialog while in camp
+	 * Shows encounter dialog while in camp
 	 */
 	o.showEncounterScreenFromCamp <- function (_encounter, _playSound = true) {
-		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
-		{
-			if (::isKindOf(_encounter, "encounter_event")) {
-				::World.Events.addSpecialEvent(_encounter.m.Event);
-				::World.State.getMenuStack().popAll(true);
-				::Time.scheduleEvent(::TimeUnit.Real, 100, function ( _tag ) {
-					::World.State.setPause(false);
-				}, null);
-				::World.Encounters.clearActiveEvent();
-			} else {
-				if (_playSound && ::Const.Events.GlobalSound != "")
-					::Sound.play(::Const.Events.GlobalSound, 1.0);
-
-				this.m.CampScreen.hide();
-				this.m.EventScreen.setIsEncounter(true);
-				this.m.EventScreen.show(_encounter);
-				this.m.MenuStack.push(function() {
-					this.m.EventScreen.hide();
-					this.m.CampScreen.show();
-					this.m.EventScreen.setIsEncounter(false);
-					this.m.WorldTownScreen.refresh();
-				}, function() {
-					return false;
-				});
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && ::Const.Events.GlobalSound != "") {
+				::Sound.play(::Const.Events.GlobalSound, 1.0);
 			}
+
+			this.m.CampScreen.hide();
+			this.m.EventScreen.setIsEncounter(true);
+			this.m.EventScreen.show(_encounter);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				::World.Encounters.clearActiveEvent();
+				::World.Events.clearActiveEvent();
+				this.m.CampScreen.show();
+				this.m.EventScreen.setIsEncounter(false);
+				this.m.CampScreen.refresh();
+			}, function () {
+				return false;
+			});
 		}
 	}
 
@@ -1377,12 +1363,9 @@
 	 * Adds convenience method to world state to mimic original
 	 * Shows event dialog while in camp
 	 */
-	o.showEventScreenFromCamp <- function ( _event, _isContract = false, _playSound = true )
-	{
-		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
-		{
-			if (_playSound && this.Const.Events.GlobalSound != "")
-			{
+	o.showEventScreenFromCamp <- function ( _event, _isContract = false, _playSound = true ) {
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && this.Const.Events.GlobalSound != "") {
 				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
 			}
 
@@ -1391,9 +1374,11 @@
 			this.m.EventScreen.show(_event);
 			this.m.MenuStack.push(function () {
 				this.m.EventScreen.hide();
+				::World.Encounters.clearActiveEvent();
+				::World.Events.clearActiveEvent();
 				this.m.EventScreen.setIsContract(false);
 				this.m.CampScreen.show();
-				this.m.WorldTownScreen.refresh();
+				this.m.CampScreen.refresh();
 			}, function () {
 				return false;
 			});

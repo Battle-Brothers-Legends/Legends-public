@@ -8,9 +8,6 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 	function isVisible() {
 		// there's some bug that crashes it in 1st day when you don't have ambition
 		// this is supposed to be temporary fix i think...
-		if (!::World.Events.canFireEvent()) {
-			return false;
-		}
 		return ::World.Ambitions.hasActiveAmbition() || ::World.getTime().Time >= ::World.getTime().SecondsPerDay * 5;
 	}
 
@@ -36,6 +33,59 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 			return;
 		}
 
-		this.encounter.fire();
+		local event = this.getEncounterEvent();
+        if (event != null) {
+            event.fire();
+        }
+
+        this.m.CooldownUntil = this.Time.getVirtualTimeF() + this.m.Cooldown;
 	}
+
+	function getEncounterEvent() {
+        return ::World.Events.getEvent(this.m.Event);
+    }
+
+	function getUITitle() {
+        return this.getEncounterEvent().getUITitle();
+    }
+
+    function getUIButtons() {
+        return this.getEncounterEvent().getUIButtons();
+    }
+
+    function getUIContent() {
+        return this.getEncounterEvent().getUIContent();
+    }
+
+    function getUIList() {
+        return this.getEncounterEvent().getUIList();
+    }
+
+    function getUIImage() {
+        return this.getEncounterEvent().getUIImage();
+    }
+
+    function getUICharacterImage( _index = 0 ) {
+        return this.getEncounterEvent().getUICharacterImage(_index);
+    }
+
+    function getUIMiddleOverlay() {
+        return this.getEncounterEvent().getUIMiddleOverlay();
+    }
+
+    function hasBigButtons() {
+        return this.getEncounterEvent().hasBigButtons();
+    }
+
+    function processInput( _option ) {
+        return this.getEncounterEvent().processInput(_option);
+    }
+
+    function clear() {
+        local event = this.getEncounterEvent();
+        if (event != null) {
+            event.clear();
+        }
+        this.onClear();
+    }
 });

@@ -36,6 +36,10 @@ this.encounter_manager <- {
 		if (this.m.ActiveEvent != null)
 			this.m.ActiveEvent.clear();
 		this.m.ActiveEvent = null;
+
+        if (this.m.ActiveCampEvent != null)
+			this.m.ActiveCampEvent.clear();
+		this.m.ActiveCampEvent = null;
 	}
 
     function getEncounter(_typeID) {

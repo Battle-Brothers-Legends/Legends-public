@@ -1,7 +1,6 @@
 ::mods_hookBaseClass("events/event", function (o)
 {
 	while(!("ID" in o.m)) o=o[o.SuperName];
-	o.m.WasEventFired <- false;
 
 	local isSpecial = o.isSpecial;
 	o.isSpecial = function () {
@@ -355,18 +354,6 @@
 
 	o.canFire <- function () {
 		return true;
-	}
-
-	local fire = o.fire;
-	o.fire = function () {
-        this.m.WasEventFired = true;
-		if("isValidForEncounter" in this.m) {
-			this.update(); // force update for a case when game loaded and update didn't happen yet
-			fire();
-			::World.Events.removeSpecialEvent(this.m.ID);
-		} else {
-			fire();
-		}
 	}
 
 	local getUIList = o.getUIList;

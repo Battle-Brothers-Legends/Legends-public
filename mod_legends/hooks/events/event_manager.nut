@@ -5,8 +5,7 @@
 	{
 		local scriptFiles = this.IO.enumerateFiles("scripts/events/events/");
 
-		foreach( i, scriptFile in scriptFiles )
-		{
+		foreach(_, scriptFile in scriptFiles) {
 			this.m.Events.push(this.new(scriptFile));
 		}
 
@@ -247,6 +246,12 @@
 		this.m.ActiveEvent.fire();
 		this.m.IsEventShown = this.World.State.showEventScreen(this.m.ActiveEvent);
 		return true;
+	}
+
+	o.clearActiveEvent <- function() {
+		if (this.m.ActiveEvent != null)
+			this.m.ActiveEvent.clear();
+		this.m.ActiveEvent = null;
 	}
 
 	/**

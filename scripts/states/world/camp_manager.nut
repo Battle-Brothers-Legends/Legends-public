@@ -378,7 +378,7 @@ this.camp_manager <- {
 	 * Updates encounters in the camp.
 	 */
 	function updateEncounters () {
-		if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+		/*if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (i, e in this.m.CampEncounters) {
 				if (i > 0 && !e.isValid(this))
@@ -388,11 +388,11 @@ this.camp_manager <- {
 				::MSU.Array.removeByValue(this.m.CampEncounters, e);
 			}
 			return;
-		}
+		}*/
 
 		local list = [::World.Encounters.m.CampEncounters[0]];
 		foreach (e in ::World.Encounters.m.CampEncounters) {
-			if (e.isValid(this)) {
+			if (e.isValid(this) && e.isVisible()) {
 				list.push(e);
 			}
 		}
@@ -406,7 +406,7 @@ this.camp_manager <- {
 		foreach (e in list) {
 			this.m.CampEncounters.push(e);
 		}
-		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);
+		//this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);
 	}
 
 	function getContracts() {
