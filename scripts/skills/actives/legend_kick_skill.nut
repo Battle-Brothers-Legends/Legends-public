@@ -153,7 +153,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 		local success = this.attackEntity(_user, target);
 
-		if (::Legends.S.skillEntityAliveCheck(_user, target))
+		if (::Legends.S.isEntityNullOrDead(_user, target))
 			return success;
 
 		if (!success)

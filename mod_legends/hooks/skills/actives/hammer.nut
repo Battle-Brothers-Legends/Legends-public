@@ -60,7 +60,7 @@
 		if (_bodyPart != this.Const.BodyPart.Head)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) {
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
 		}
 

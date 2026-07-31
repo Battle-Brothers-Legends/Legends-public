@@ -73,7 +73,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		this.m.TilesUsed = [];
 		if (_skill.isRanged()) return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) return;
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) return;
 
 		if (_targetEntity.isNonCombatant()) return;
 

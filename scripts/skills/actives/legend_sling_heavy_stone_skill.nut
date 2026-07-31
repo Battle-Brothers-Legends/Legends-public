@@ -181,7 +181,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();

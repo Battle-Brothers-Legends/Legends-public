@@ -29,10 +29,10 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 			return;
 		local actor = this.getContainer().getActor();
 
-		if (::Legends.S.skillEntityAliveCheck(_attacker))
+		if (::Legends.S.isEntityNullOrDead(_attacker))
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(actor))
+		if (::Legends.S.isEntityNullOrDead(actor))
 			return;
 
 		local skill = null;

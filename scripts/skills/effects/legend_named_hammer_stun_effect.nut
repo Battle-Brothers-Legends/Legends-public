@@ -52,7 +52,7 @@ this.legend_named_hammer_stun_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.getItem().getID() != this.getItem().getID())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToStun)

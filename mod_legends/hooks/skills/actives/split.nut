@@ -44,7 +44,7 @@
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
 
 		local ret = false;
-		if (::Legends.S.skillEntityAliveCheck(_user)) {
+		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return ret;
 		}
 

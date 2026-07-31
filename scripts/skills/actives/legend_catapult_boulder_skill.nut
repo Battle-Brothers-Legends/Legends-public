@@ -158,7 +158,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToStun)

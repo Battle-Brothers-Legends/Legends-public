@@ -109,7 +109,7 @@
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();

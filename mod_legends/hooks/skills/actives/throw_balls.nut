@@ -75,7 +75,7 @@
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 			
 		if (_bodyPart != ::Const.BodyPart.Body)

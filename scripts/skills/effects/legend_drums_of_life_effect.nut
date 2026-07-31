@@ -52,7 +52,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 
 	function removeEffectFromAffected() {
 		foreach(actor in this.m.AffectedActors) {
-			if (::Legends.S.skillEntityAliveCheck(actor))
+			if (::Legends.S.isEntityNullOrDead(actor))
 				continue;
 			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfLife);
 		}

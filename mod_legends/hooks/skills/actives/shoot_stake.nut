@@ -71,7 +71,7 @@
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		local actor = this.getContainer().getActor();
@@ -93,7 +93,7 @@
 		if (_skill != this && _skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendStrafingRun))
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		_properties.RangedSkill += this.m.AdditionalAccuracy;

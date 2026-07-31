@@ -56,7 +56,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 			return 0;
 
 		local myself = this.getContainer().getActor();
-		if (::Legends.S.skillEntityAliveCheck(myself))
+		if (::Legends.S.isEntityNullOrDead(myself))
 			return 0;
 
 		if (!myself.isPlacedOnMap())
@@ -70,7 +70,7 @@ this.perk_legend_bloodbath <- this.inherit("scripts/skills/skill", {
 			.filter(function (_, _actor) {
 				if (!::MSU.isKindOf(_actor, "actor"))
 					return false;
-				if (::Legends.S.skillEntityAliveCheck(_actor))
+				if (::Legends.S.isEntityNullOrDead(_actor))
 					return false;
 				if (!_actor.isPlacedOnMap())
 					return false;

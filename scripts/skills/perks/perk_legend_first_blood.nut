@@ -10,7 +10,7 @@ this.perk_legend_first_blood <- this.inherit("scripts/skills/skill", {
 		if (_skill == null || !_skill.isAttack())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.getHitpointsPct() == 1.0)

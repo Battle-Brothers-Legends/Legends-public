@@ -10,7 +10,7 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 		if (_skill == null)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return false;
 
 		if (_targetEntity.isNonCombatant())

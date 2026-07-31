@@ -42,7 +42,7 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)

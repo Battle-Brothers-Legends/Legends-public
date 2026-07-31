@@ -8,7 +8,7 @@ this.perk_legend_pummel_into_submission <- this.inherit("scripts/skills/skill", 
 
 	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity)) {
+		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
 		}
 

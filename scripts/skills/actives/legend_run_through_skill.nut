@@ -64,7 +64,7 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
 
 		local ret = false;
-		if (::Legends.S.skillEntityAliveCheck(_user)) {
+		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return ret;
 		}
 

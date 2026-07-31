@@ -33,7 +33,7 @@ this.perk_legend_grappler <- this.inherit("scripts/skills/skill", {
 		if (this.Math.rand(1, 100) > this.m.GrappleChance)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrappled);

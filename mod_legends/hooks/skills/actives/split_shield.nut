@@ -96,7 +96,7 @@
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplitShield);
 
 			if (this.m.IsHammer) {
-				if (::Legends.S.skillEntityAliveCheck(_user, target)) {
+				if (::Legends.S.isEntityNullOrDead(_user, target)) {
 					return true;
 				}
 
@@ -143,7 +143,7 @@
 				}
 			}
 
-			if (::Legends.S.skillEntityAliveCheck(_user, target)) {
+			if (::Legends.S.isEntityNullOrDead(_user, target)) {
 				return true;
 			}
 

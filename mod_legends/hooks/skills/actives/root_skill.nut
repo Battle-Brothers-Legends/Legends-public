@@ -103,7 +103,7 @@
 			::Legends.Effects.grant(target, ::Legends.Effect.Rooted, function(_effect) {
 				_effect.setDamage(10, 20);
 			}.bindenv(this));
-			if (::Legends.S.skillEntityAliveCheck(target))
+			if (::Legends.S.isEntityNullOrDead(target))
 				continue;
 			::Legends.Actives.grant(target, ::Legends.Active.BreakFree, function (_skill) {
 				_skill.setDecal("roots_destroyed");

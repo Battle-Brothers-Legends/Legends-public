@@ -91,7 +91,7 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendCompromisedArmor);

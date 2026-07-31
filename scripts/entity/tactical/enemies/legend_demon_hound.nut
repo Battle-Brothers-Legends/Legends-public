@@ -194,7 +194,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onTeleportStart( _tag )
 	{
-		if (::Legends.S.skillEntityAliveCheck(_tag.User))
+		if (::Legends.S.isEntityNullOrDead(_tag.User))
 			return;
 		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 0.0);
 	}

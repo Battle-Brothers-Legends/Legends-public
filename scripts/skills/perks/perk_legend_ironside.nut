@@ -15,7 +15,7 @@ this.perk_legend_ironside <- this.inherit("scripts/skills/skill", {
 		if (!::MSU.isKindOf(_actor, "actor"))
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_actor))
+		if (::Legends.S.isEntityNullOrDead(_actor))
 			return;
 
 		if (::Math.abs(_actor.getTile().Level - _tag.Actor.getTile().Level) > 1)
@@ -44,7 +44,7 @@ this.perk_legend_ironside <- this.inherit("scripts/skills/skill", {
 			return 0;
 
 		local actor = this.getContainer().getActor();
-		if (::Legends.S.skillEntityAliveCheck(actor))
+		if (::Legends.S.isEntityNullOrDead(actor))
 			return 0;
 
 		if (!actor.isPlacedOnMap())

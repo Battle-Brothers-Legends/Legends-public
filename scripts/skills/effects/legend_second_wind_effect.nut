@@ -68,7 +68,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (::Legends.S.skillEntityAliveCheck(actor))
+		if (::Legends.S.isEntityNullOrDead(actor))
 			return;
 
 		actor.setFatigue(0);

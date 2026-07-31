@@ -18,7 +18,7 @@
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 
-		if (::Legends.S.skillEntityAliveCheck(_user, target))
+		if (::Legends.S.isEntityNullOrDead(_user, target))
 			return success;
 
 		if (success) {

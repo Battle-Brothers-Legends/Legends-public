@@ -111,7 +111,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return; // or if you are using hand to hand while the mainhand is holding a weapon
 		}
 
-		if (::Legends.S.skillEntityAliveCheck(actor, _targetEntity)) {
+		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
 			return;
 		}
 
@@ -148,7 +148,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 					_skill.executeFollowUpAttack({
 						TargetTile = _targetEntity.getTile(),
 						Skill = skillToUse
-					})
+					});
 				}.bindenv(this), this);
 				/*this.Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
@@ -161,7 +161,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function executeFollowUpAttack(_info) {
 		local entity = _info.TargetTile.getEntity();
-		if (::Legends.S.skillEntityAliveCheck(entity)) {
+		if (::Legends.S.isEntityNullOrDead(entity)) {
 			return;
 		}
 		if (::MSU.isNull(_info.Skill)) {

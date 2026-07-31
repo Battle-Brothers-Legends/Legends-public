@@ -24,7 +24,7 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		if (_targetEntity.getFlags().has("undead"))

@@ -12,7 +12,7 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 		if (_skill == null)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.isAlliedWith(this.getContainer().getActor()))

@@ -50,7 +50,7 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.getItem().getID() != this.getItem().getID())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(this.getContainer().getActor(), _targetEntity))
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		local user = this.getContainer().getActor();

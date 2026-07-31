@@ -13,7 +13,7 @@ this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 		if (!_skill.isAttack())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (!_targetEntity.isPlacedOnMap())

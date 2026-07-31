@@ -151,12 +151,7 @@
 	return properties.IsStunned	|| properties.IsRooted;
 }
 
-// Sorry chop but I really need to alias this function for my sanity
 ::Legends.S.isEntityNullOrDead <- function (_entity, _otherEntity = 0) {
-	return ::Legends.S.skillEntityAliveCheck(_entity, _otherEntity);
-}
-
-::Legends.S.skillEntityAliveCheck <- function (_entity, _otherEntity = 0) {
 	if (::Legends.S.isNull(_entity) || !_entity.isAlive() || _entity.isDying())
 		return true;
 	if (_otherEntity == 0)

@@ -164,7 +164,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)

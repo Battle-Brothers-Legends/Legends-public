@@ -11,7 +11,7 @@ this._legend_tips_encounter <- this.inherit("scripts/encounters/encounter", {
 
     function createScreens() {
         local text = "Here are some tips for you:";
-        foreach(i, tip in ::Const.TipOfTheDay) {
+        foreach(_, tip in ::Const.TipOfTheDay) {
             text = text + "\n- " + tip;
         }
         this.m.Screens.extend([{

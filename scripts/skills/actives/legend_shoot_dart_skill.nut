@@ -124,7 +124,7 @@ this.legend_shoot_dart_skill <- this.inherit("scripts/skills/skill", {
 		if (_skill != this)
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < 1 || _targetEntity.getHitpoints() <= 0)

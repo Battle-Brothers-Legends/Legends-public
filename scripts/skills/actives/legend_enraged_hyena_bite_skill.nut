@@ -142,7 +142,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local target = _targetTile.getEntity();
-		if (::Legends.S.skillEntityAliveCheck(target)) {
+		if (::Legends.S.isEntityNullOrDead(target)) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: Target is not alive");
 			return false;
 		}
@@ -252,12 +252,12 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	function onAttackStart(_tag) {
 		// ::logDebug("legend_enraged_hyena_bite_skill: onAttackStart _tag= " + _tag);
 
-		if (::Legends.S.skillEntityAliveCheck(_tag.target)) {
+		if (::Legends.S.isEntityNullOrDead(_tag.target)) {
 			::logError("legend_enraged_hyena_bite_skill: Target is no longer valid");
 			return;
 		}
 		local success = _tag.skill.attackEntity(_tag.actor, _tag.target);
-		if (!success || _tag.target.getHitpoints() <= 0 || ::Legends.S.skillEntityAliveCheck(_tag.target)) {
+		if (!success || _tag.target.getHitpoints() <= 0 || ::Legends.S.isEntityNullOrDead(_tag.target)) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: Attack missed or target is dead");
 			return;
 		}
@@ -293,7 +293,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 	function onDragStart(_tag) {
 		// ::logDebug("legend_enraged_hyena_bite_skill: onDragStart _tag= " + _tag);
 
-		if (::Legends.S.skillEntityAliveCheck(_tag.target)) {
+		if (::Legends.S.isEntityNullOrDead(_tag.target)) {
 			::logError("legend_enraged_hyena_bite_skill: Target is no longer valid");
 			return;
 		}

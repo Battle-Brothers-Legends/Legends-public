@@ -99,10 +99,10 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		if (_damageHitpoints >= actor.getHitpoints())
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(actor))
+		if (::Legends.S.isEntityNullOrDead(actor))
 			return;
 
-		if (::Legends.S.skillEntityAliveCheck(_attacker))
+		if (::Legends.S.isEntityNullOrDead(_attacker))
 			return;
 
 		if (_attacker.getType() == ::Const.EntityType.FlyingSkull)

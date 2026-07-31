@@ -51,7 +51,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (::Legends.S.skillEntityAliveCheck(_targetEntity))
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return false;
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToStun)

@@ -93,7 +93,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
 
 		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
-			if (::Legends.S.skillEntityAliveCheck(entity)) {
+			if (::Legends.S.isEntityNullOrDead(entity)) {
 				continue;
 			}
 			if (!entity.getFlags().has("LegendEnragedHyenaAttacker")) {
@@ -121,7 +121,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
 
 		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
-			if (::Legends.S.skillEntityAliveCheck(entity)) {
+			if (::Legends.S.isEntityNullOrDead(entity)) {
 				continue;
 			}
 			if (!entity.getFlags().has("LegendEnragedHyenaAttacker")) {
