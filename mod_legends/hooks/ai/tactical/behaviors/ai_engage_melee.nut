@@ -385,39 +385,29 @@
 					}
 				}
 
-				if (this.getProperties().IgnoreTargetValueOnEngage)
-				{
+				if (this.getProperties().IgnoreTargetValueOnEngage)	{
 					letOthersGoScore = letOthersGoScore + this.Math.abs(myTile.SquareCoords.Y - targetTile.SquareCoords.Y) * 20.0;
 					local myDistanceToTarget = myTile.getDistanceTo(targetTile);
-					local targets = this.getAgent().getKnownAllies();
 
-					foreach( ally in targets )
-					{
-						if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
+					foreach(ally in this.getAgent().getKnownAllies()) {
+						if (::Legends.S.isEntityNullOrDead(ally) || ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions())) {
 							continue;
 						}
 
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
+						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget) {
 							letOthersGoScore = letOthersGoScore + 2.0;
 						}
 					}
-				}
-				else
-				{
+				} else {
 					local myDistanceToTarget = myTile.getDistanceTo(targetTile);
 					local targets = this.getAgent().getKnownAllies();
 
-					foreach( ally in targets )
-					{
-						if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
+					foreach( ally in targets ) {
+						if (::Legends.S.isEntityNullOrDead(ally) || ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions())) {
 							continue;
 						}
 
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
+						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget) {
 							letOthersGoScore = letOthersGoScore + 0.5;
 						}
 					}
