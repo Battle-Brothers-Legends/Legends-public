@@ -174,8 +174,9 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	}
 
 	function executeFollowUpAttack(_info) {
+		local actor = this.getContainer().getActor();
 		local entity = _info.TargetTile.getEntity();
-		if (::Legends.S.skillEntityAliveCheck(entity)) {
+		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 		if (::MSU.isNull(_info.Skill)) {
