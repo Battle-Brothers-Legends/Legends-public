@@ -35,7 +35,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			if (settlement.isMilitary()) {
 				militarySettlements.push(settlement);
 			} else {
-				sourceSettlements.push(settlement)
+				sourceSettlements.push(settlement);
 			}
 		}
 
@@ -61,7 +61,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			if (settlement.isMilitary()) {
 				militarySettlements.push(settlement);
 			} else {
-				sourceSettlements.push(settlement)
+				sourceSettlements.push(settlement);
 			}
 		}
 		// limit these to 3 nearest
@@ -311,13 +311,18 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 					local playerTile = ::World.State.getPlayer().getTile();
                     local banditFaction = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits);
                     local targetCamp = banditFaction.getNearestSettlement(playerTile);
-                    if (targetCamp == null) {
-                        local tile = this.Contract.getTileToSpawnLocation(playerTile, 9, 15);
-                        tile.clear();
-                        targetCamp = ::World.spawnLocation("scripts/entity/world/locations/bandit_camp_location", tile.Coords);
+					if (targetCamp == null) {
+						local maxDist = 15;
+						local tile = null;
+						while (tile == null) {
+							tile = this.Contract.getTileToSpawnLocation(playerTile, 9, maxDist);
+							maxDist++;
+						}
+						tile.clear();
+						targetCamp = ::World.spawnLocation("scripts/entity/world/locations/bandit_camp_location", tile.Coords);
 						targetCamp.onSpawned();
-                        targetCamp.setFaction(banditFaction.getID());
-                    }
+						targetCamp.setFaction(banditFaction.getID());
+					}
                     this.Contract.m.Camp = ::WeakTableRef(targetCamp);
 					this.Contract.m.Camp.getFlags().set("isContractLocation", true);
 					this.Contract.m.Camp.setDiscovered(true);
