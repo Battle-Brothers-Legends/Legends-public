@@ -201,7 +201,7 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 					_skill.executeFollowUpAttack({
 						TargetTile = _targetEntity.getTile(),
 						Skill = skillToUse
-					})
+					});
 				}.bindenv(this), this);
 				//this.Const.SkillCounter++;
 				/*::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {

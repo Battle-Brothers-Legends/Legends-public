@@ -593,7 +593,7 @@
 			});
 		}
 
-		return this.modGetHitFactors(ret, _targetTile)
+		return this.modGetHitFactors(ret, _targetTile);
 	}
 
 	o.modGetHitFactors <- function( ret, _targetTile )
@@ -656,7 +656,7 @@
 				{
 					local tooltip = terrainEffect.getTooltip();
 
-					foreach( i, r in tooltip )
+					foreach( _, r in tooltip )
 					{
 						if (("type" in r) && r.type == "text" && ("icon" in r) && "text" in r)
 						{
