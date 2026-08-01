@@ -67,7 +67,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
 		{
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
-			this.m.ActionPointCost = 3
+			this.m.ActionPointCost = 3;
 		}
 	}
 
@@ -97,8 +97,8 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
-			_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
+			_properties.DamageRegularMin = this.getItem().m.RegularDamage;
+			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
 			if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash)) {

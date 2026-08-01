@@ -75,7 +75,7 @@
 		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
 		{
 			this.m.FatigueCostMult = this.m.FatigueCostMult *= 0.75;
-			this.m.ActionPointCost = 3
+			this.m.ActionPointCost = 3;
 		}
 	}
 
@@ -90,15 +90,15 @@
 		if (_properties.IsSpecializedInShields)
 			this.m.HitChanceBonus += 15;
 
-		_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
-		_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
+		_properties.DamageRegularMin = this.getItem().m.RegularDamage;
+		_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 		_properties.DamageArmorMult = 0.5;
 		_properties.FatigueDealtPerHitMult += 1.0;
 
 		if (::Legends.Perks.has(this, ::Legends.Perk.ShieldBash))
 		{
-			_properties.DamageRegularMin = this.getItem().getRegularDamageMin();
-			_properties.DamageRegularMax = this.getItem().getRegularDamageMax();
+			_properties.DamageRegularMin = this.getItem().m.RegularDamage;
+			_properties.DamageRegularMax = this.getItem().m.RegularDamageMax;
 			_properties.DamageArmorMult = 0.5;
 			_properties.FatigueDealtPerHitMult += 1.0;
 		}
