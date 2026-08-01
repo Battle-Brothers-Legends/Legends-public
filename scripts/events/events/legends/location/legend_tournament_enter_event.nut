@@ -12,7 +12,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{ You approach a large metal door set into a huge defensive wall. There is clearly only one way in. A guard calls down from the battlements %SPEECH_ON%Here for the tournament? Never heard of you. Prove yourselves in the southern arena before you tread these hallowed grounds.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{ You approach a large metal door set into a huge defensive wall. There is clearly only one way in. A guard calls down from the battlements %SPEECH_ON%Here for the tournament? Never heard of you. Prove yourselves in the southern arena before you tread these hallowed grounds.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -28,7 +28,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/legend_tournament_castle.png[/img]{ You approach a large metal door set into a huge defensive wall. There is clearly only one way in. A guard calls down from the battlements gesturing towards your arena veteran %SPEECH_ON%Hail %veteran%! I heard of your performance in the arena, but who are these welps with you? Your party will need at least three veterans before we can let you in to the grand tournament. Teach them your ways and come back, we look forward to seeing you in the tourney. %SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_31.png[/img]{ You approach a large metal door set into a huge defensive wall. There is clearly only one way in. A guard calls down from the battlements gesturing towards your arena veteran %SPEECH_ON%Hail %veteran%! I heard of your performance in the arena, but who are these welps with you? Your party will need at least three veterans before we can let you in to the grand tournament. Teach them your ways and come back, we look forward to seeing you in the tourney. %SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -41,7 +41,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "C",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{ You approach the huge defensive wall, the metal door opens without a guard in sight. As you pass through the gates a round of trumpets call out, and a voice echoes. %SPEECH_ON%Welcome %companyname% to the grand tournament!%SPEECH_OFF% A scattered round of applause follows the announcement and you head into the entrance hall.}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{You approach the huge defensive wall, the metal door opens without a guard in sight. As you pass through the gates a round of trumpets call out, and a voice echoes. %SPEECH_ON%Welcome %companyname% to the grand tournament!%SPEECH_OFF% A scattered round of applause follows the announcement and you head into the entrance hall.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -54,7 +54,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "D",
-			Text = "[img]gfx/ui/events/legend_tournament_artemesia.png[/img]{On the other side of the hall a door opens and a confident woman strides up to you. The trumpets sound again and a voice announces Artemisia, marshal of the grand tournament. She carries herself with the bearing of a fighter, wearing well made chainmail, a well worn scabbard and a welcoming smile. %SPEECH_ON%Good to see the renowned %companyname%, I am glad to see you have joined us among the ranks of the greatest fighters. Have you come for bragging rights, or coin? No matter, you shall find both here%SPEECH_OFF% She leads you to a window that looks down on a large grassy arena where rich patrons watch on as warriors are sparring with one another. %SPEECH_ON%We have three events to compete in today, a Show Match against a specific foe of your choosing, The Gauntlet against endless waves of humans, or The Grand Melee against a mix of all foes. Would you like to compete today? %SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_91.png[/img]{On the other side of the hall a door opens and a confident woman strides up to you. The trumpets sound again and a voice announces Artemisia, marshal of the grand tournament. She carries herself with the bearing of a fighter, wearing well made chainmail, a well worn scabbard and a welcoming smile. %SPEECH_ON%Good to see the renowned %companyname%, I am glad to see you have joined us among the ranks of the greatest fighters. Have you come for bragging rights, or coin? No matter, you shall find both here%SPEECH_OFF% She leads you to a window that looks down on a large grassy arena where rich patrons watch on as warriors are sparring with one another. %SPEECH_ON%We have three events to compete in today, a Show Match against a specific foe of your choosing, The Gauntlet against endless waves of humans, or The Grand Melee against a mix of all foes. Would you like to compete today? %SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -93,7 +93,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "D2",
-			Text = "[img]gfx/ui/events/legend_tournament_artemesia.png[/img]{You return to the main hall and find Artemesia talking with a ground of foreign fighters while they watch a bout of the Grand Melee through the viewing windows.  She sees you return, asks her leave from the fighters and greets you with a smile. %SPEECH_ON% So the %companyname% is not satisfied with mere Show Matches. I thought I saw a spark of something more in you. Which will it be, the Grand Melee or the Gauntlet?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_91.png[/img]{You return to the main hall and find Artemesia talking with a ground of foreign fighters while they watch a bout of the Grand Melee through the viewing windows.  She sees you return, asks her leave from the fighters and greets you with a smile. %SPEECH_ON% So the %companyname% is not satisfied with mere Show Matches. I thought I saw a spark of something more in you. Which will it be, the Grand Melee or the Gauntlet?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -127,7 +127,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "E",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{Artemisia smiles and excitedly recites the rules of the Grand Melee %SPEECH_ON%These are the mandated rules of the Grand Melee, \n\n 1. Your company will fight round after round, against both humans and beasts of all kinds, without combat rules.  \n\n 2. The prize begins at 1000 crowns. With each battle, the difficulty will increase and the prize will double. \n\n 3. You may keep any loot you find after the battle.%SPEECH_OFF%She smiles again, with genuine interest. %SPEECH_ON%This is the most glorious of the tournament events and I am delighted to personally watch your performance.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{Artemisia smiles and excitedly recites the rules of the Grand Melee %SPEECH_ON%These are the mandated rules of the Grand Melee, \n\n 1. Your company will fight round after round, against both humans and beasts of all kinds, without combat rules.  \n\n 2. The prize begins at 1000 crowns. With each battle, the difficulty will increase and the prize will double. \n\n 3. You may keep any loot you find after the battle.%SPEECH_OFF%She smiles again, with genuine interest. %SPEECH_ON%This is the most glorious of the tournament events and I am delighted to personally watch your performance.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -172,7 +172,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "F",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{After the battle you fall back to a private antechamber off the main tourney grounds. Artemisia congratulates you on a round well fought and offers you a choice to keep going with the Melee or take your prize.}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{After the battle you fall back to a private antechamber off the main tourney grounds. Artemisia congratulates you on a round well fought and offers you a choice to keep going with the Melee or take your prize.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -204,7 +204,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "F2",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{After the battle you are led to the warrior hall where you are congratulated by the other warriors. A tournament official congratulates you on a round well fought and offers you a choice to keep going with the Gauntlet or take your prize}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{After the battle you are led to the warrior hall where you are congratulated by the other warriors. A tournament official congratulates you on a round well fought and offers you a choice to keep going with the Gauntlet or take your prize}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -321,7 +321,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "H",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{Artemisia sighs a little before repeating a speech she has clearly given many times %SPEECH_ON%The rules of the Gauntlet are simple, \n\n One — fight as many battles in a row as you can. \n\n Two — you will fight a mix of human competitors from across the lands without combat rules. \n\n Three — the prize begins at 250 crowns, each battle the difficulty will increase and the prize will double.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{Artemisia sighs a little before repeating a speech she has clearly given many times %SPEECH_ON%The rules of the Gauntlet are simple, \n\n One — fight as many battles in a row as you can. \n\n Two — you will fight a mix of human competitors from across the lands without combat rules. \n\n Three — the prize begins at 250 crowns, each battle the difficulty will increase and the prize will double.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -366,7 +366,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "I",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{Artemisia nods at your choice, though you detect some disapointment. %SPEECH_ON%Show Matches are our most basic format, \n\n 1. Fight as many battles in a row as you can.  \n\n  2. Each round you choose what kind of enemy you\'ll fight against \n\n 3. The prize begins at 100 crowns, each battle the difficulty will increase and the prize will double. \n\n 4. No looting.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{Artemisia nods at your choice, though you detect some disapointment. %SPEECH_ON%Show Matches are our most basic format, \n\n 1. Fight as many battles in a row as you can.  \n\n  2. Each round you choose what kind of enemy you\'ll fight against \n\n 3. The prize begins at 100 crowns, each battle the difficulty will increase and the prize will double. \n\n 4. No looting.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -408,7 +408,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "J",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{Artemisia leads you to one of the smaller tournament fields, she seems distracted or perhaps a little bored.%SPEECH_ON%Good luck with your show, I must return to the Grand Melee, I will leave you in the capable hands of an attendent.%SPEECH_OFF% She turns quickly and heads back to the grand hall towards the cheering crowds. An attendant had been standing so still by the wall you had not noticed them, they step forward with the neutral expression of one long wearied by a repeatitive task and asks very matter of factly.%SPEECH_ON%Which enemy would you like to fight?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{Artemisia leads you to one of the smaller tournament fields, she seems distracted or perhaps a little bored.%SPEECH_ON%Good luck with your show, I must return to the Grand Melee, I will leave you in the capable hands of an attendent.%SPEECH_OFF% She turns quickly and heads back to the grand hall towards the cheering crowds. An attendant had been standing so still by the wall you had not noticed them, they step forward with the neutral expression of one long wearied by a repeatitive task and asks very matter of factly.%SPEECH_ON%Which enemy would you like to fight?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -479,7 +479,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "J2",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant is unphased by your decision and merely repeats %SPEECH_ON%Which enemy would you like to fight?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant is unphased by your decision and merely repeats %SPEECH_ON%Which enemy would you like to fight?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -532,7 +532,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "J3",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{After the match you are led back to a small room, the attendant asks if you\'d like another Show Match or receive your reward.}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{After the match you are led back to a small room, the attendant asks if you\'d like another Show Match or receive your reward.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -603,7 +603,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "K",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant appears unmoved by your choice. %SPEECH_ON%Very good, any preference to the kind of Greenskins?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant appears unmoved by your choice. %SPEECH_ON%Very good, any preference to the kind of Greenskins?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -668,7 +668,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "L",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant does not react to your ghoulish request. %SPEECH_ON%Very good, any preference to the kind of abomination?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant does not react to your ghoulish request. %SPEECH_ON%Very good, any preference to the kind of abomination?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -733,7 +733,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "M",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant does not skip a beat. %SPEECH_ON%Very well, what kind of of beast?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant does not skip a beat. %SPEECH_ON%Very well, what kind of of beast?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -809,7 +809,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "N",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant barely moves. %SPEECH_ON%Not a problem, any preference to which humans you fight?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant barely moves. %SPEECH_ON%Not a problem, any preference to which humans you fight?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -864,7 +864,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "O",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant barely moves %SPEECH_ON%Not a problem, any preference to which humans you fight?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant barely moves %SPEECH_ON%Not a problem, any preference to which humans you fight?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -939,7 +939,7 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "P",
-			Text = "[img]gfx/ui/events/legend_tournament.png[/img]{The attendant shifts slightly but says nothing. %SPEECH_ON%Not a problem, any preference to the kind of Outlaw?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_74.png[/img]{The attendant shifts slightly but says nothing. %SPEECH_ON%Not a problem, any preference to the kind of Outlaw?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],

@@ -171,7 +171,7 @@
 			{
 				id = 42,
 				name = "Enraged Hyenas (Legendary)",
-				description = "[p=c][img]gfx/ui/events/legend_enraged_hyena.png[/img][/p]\n[p=c]Face a dozen raging hyenas.[/p]"
+				description = "[p=c][img]gfx/ui/events/event_148.png[/img][/p]\n[p=c]Face a dozen raging hyenas.[/p]"
 			},
 			{
 				id = 41,

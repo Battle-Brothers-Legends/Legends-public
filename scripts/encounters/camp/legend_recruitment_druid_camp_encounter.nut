@@ -13,7 +13,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
         this.m.Screens.push({
             ID = "Start",
             Title = "The forest burns...",
-	        Text = "[img]gfx/ui/events/event_25.png[/img]{From a distance, you see a great blaze, the size of a small mountain, over a section of the old woods. You reckon it\'s perhaps a little under an hour\'s trek, but you feel oddly compelled to pay tribute to the death of something that has spanned so many centuries.}",
+	        Text = "[img]gfx/ui/events/legend_forest_burns.png[/img]{From a distance, you see a great blaze, the size of a small mountain, over a section of the old woods. You reckon it\'s perhaps a little under an hour\'s trek, but you feel oddly compelled to pay tribute to the death of something that has spanned so many centuries.}",
 			Image = "",
 			List = [],
 			Characters = [],

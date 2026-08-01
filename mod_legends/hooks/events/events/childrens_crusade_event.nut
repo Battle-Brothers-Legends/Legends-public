@@ -103,7 +103,7 @@
 
 		this.m.Screens.push({
 			ID = "Doubter",
-			Text = "[img]gfx/ui/events/legend_doubter_kids.png[/img]Looking grizzled and sad %doubter% approaches the kids, gets on a knee down at their level and speaks directly. He encourages them to march on, saying that the heartless fires of war needed their bodies as kindling. He speaks of the inevitability of death, the gruesome horrors of violence, the certainty of injury, a lifetimes of disability for the victors, and the endless entropy which tears at the bodies and souls of fragile humans.  The children stare mouths agape in horror, one cries and another runs. Their crusade is over.",
+			Text = "[img]gfx/ui/events/event_64.png[/img]Looking grizzled and sad %doubter% approaches the kids, gets on a knee down at their level and speaks directly. He encourages them to march on, saying that the heartless fires of war needed their bodies as kindling. He speaks of the inevitability of death, the gruesome horrors of violence, the certainty of injury, a lifetimes of disability for the victors, and the endless entropy which tears at the bodies and souls of fragile humans.  The children stare mouths agape in horror, one cries and another runs. Their crusade is over.",
 			Image = "",
 			List = [],
 			Characters = [],
