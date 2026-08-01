@@ -29,5 +29,7 @@ this.profession_legend_hippology <- this.inherit("scripts/skills/legend_professi
 				text = "Next: [color=%positive%]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color]"
 			});
 		}
+		
+		return ret;
 	}
 });

@@ -32,5 +32,7 @@ this.profession_legend_negotiator <- this.inherit("scripts/skills/legend_profess
 				text = "Next: [color=%positive%]" + (1 + ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color]"
 			});
 		}
+		
+		return ret;
 	}
 });

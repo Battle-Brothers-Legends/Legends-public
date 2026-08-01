@@ -29,5 +29,7 @@ this.profession_legend_trailblazer <- this.inherit("scripts/skills/legend_profes
 				text = "Next: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 1) * 100 + "%[/color]"
 			});
 		}
+		
+		return ret;
 	}
 });

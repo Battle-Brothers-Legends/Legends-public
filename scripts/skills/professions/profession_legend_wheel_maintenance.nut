@@ -29,5 +29,7 @@ this.profession_legend_wheel_maintenance <- this.inherit("scripts/skills/legend_
 				text = "Next: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 1) * 100 + "%[/color]"
 			});
 		}
+		
+		return ret;
 	}
 });

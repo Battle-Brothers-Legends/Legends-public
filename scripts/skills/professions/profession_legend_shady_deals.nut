@@ -29,5 +29,7 @@ this.profession_legend_shady_deals <- this.inherit("scripts/skills/legend_profes
 				text = "Next: [color=%positive%]" + (1 / ::Legends.Professions.getProfessionEffect(_def, 1)) * 100 + "%[/color]"
 			});
 		}
+		
+		return ret;
 	}
 });

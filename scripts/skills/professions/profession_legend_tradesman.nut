@@ -29,5 +29,7 @@ this.profession_legend_tradesman <- this.inherit("scripts/skills/legend_professi
 				text = "Next: [color=%positive%]" + ::Legends.Professions.getProfessionEffect(_def, 1) + "%[/color] gold value"
 			});
 		}
+		
+		return ret;
 	}
 });
