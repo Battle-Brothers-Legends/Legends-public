@@ -620,7 +620,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendOnTheGrapevine,
     Icon = "ui/professions/on_the_grapevine.png",
     IconDisabled = "ui/professions/on_the_grapevine_bw.png",
-    Const = "LegendOnTheGrapevine"
+    Const = "LegendOnTheGrapevine",
+    ScalingArray = [0, 4], // reveals contracts, prices and situations in nearest settlements
+    ScalingFactor = 0.25
 });
 
 ::Legends.Profession.LegendPaymaster <- null;

@@ -437,6 +437,8 @@ It is amazing what one can hear about a place without ever setting foot there. S
 
 [color=%passive%][u]Passive:[/u][/color]
 • Reveal contracts and situations in nearby settlements.
+
+• Reveal prices in nearby settlements.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendPaymaster <- @"

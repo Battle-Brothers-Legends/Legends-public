@@ -169,26 +169,64 @@
 			});
 
 
-		if (this.World.Retinue.hasFollower("follower.agent")) {
-			local contracts = this.getContracts();
-			local situations = this.getSituations();
-			local addedSituations = {};
+		if (::World.Assets.m.ProfessionEffect.LegendOnTheGrapevine > 0) {
+			local towns = ::World.EntityManager.getSettlements();
+			local playerTile = ::World.State.getPlayer().getTile();
+			towns.sort(@(a, b) playerTile.getDistanceTo(a.getTile()) <=> playerTile.getDistanceTo(b.getTile()));
 
-			foreach( i, s in situations )
-			{
-				if (s.isValid() && !(s.getValidUntil() == 0 && !this.World.Contracts.hasContractWithSituation(s.getInstanceID()))) {
-					local id = s.getID();
+			local scouted = false;
+			for (local i = 0; i < ::Math.min(::World.Assets.m.ProfessionEffect.LegendOnTheGrapevine, towns.len()); i++) {
+        		if (towns[i].getID() == this.getID()) {
+            		scouted = true;
+            		break;
+        		}
+			}
 
-					if (!(id in addedSituations)) {
+			if (scouted) {
+				local contracts = this.getContracts();
+				local situations = this.getSituations();
+				local addedSituations = {};
+
+				foreach(i, c in contracts) {
+					if (!c.isActive()) {
 						ret.push({
-							id = 10 + contracts.len() + i,
+							id = 10 + i,
 							type = "text",
-							icon = s.getIcon(),
-							text = s.getName()
+							icon = "ui/icons/contract_scroll.png",
+							text = c.getName()
 						});
-						addedSituations[id] <- true;
 					}
 				}
+
+				foreach(i, s in situations) {
+					if (s.isValid() && !(s.getValidUntil() == 0 && !this.World.Contracts.hasContractWithSituation(s.getInstanceID()))) {
+						local id = s.getID();
+
+						if (!(id in addedSituations)) {
+							ret.push({
+								id = 10 + contracts.len() + i,
+								type = "text",
+								icon = s.getIcon(),
+								text = s.getName()
+							});
+							addedSituations[id] <- true;
+						}
+					}
+				}
+
+				ret.push({
+					id = 100,
+					type = "text",
+					icon = "ui/icons/bag.png",
+					text = "Buy Price: [color=%positive%]" + ::Math.ceil(this.getBuyPriceMult() * ::Const.World.Assets.BaseBuyPrice * ::Const.Difficulty.BuyPriceMult[::World.Assets.getEconomicDifficulty()] * 100) + "%[/color]"
+				});
+
+				ret.push({
+					id = 101,
+					type = "text",
+					icon = "ui/icons/automation_sell_item.png",
+					text = "Sell Price: [color=%negative%]" + ::Math.floor(this.getSellPriceMult() * ::Const.World.Assets.BaseSellPrice * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()] * 100) + "%[/color]"
+				});
 			}
 		}
 		else if (this.World.State.getDistantVisionBonus()) {
