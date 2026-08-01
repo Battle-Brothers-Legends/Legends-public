@@ -1,14 +1,14 @@
 this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 	m = {
-		AlreadyUsed = false	
+		AlreadyUsed = false,
+		ExecutingAttack = false
 	},
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWideSwings);
 	}
 
-	function onTargetMissed( _skill, _targetEntity )
-	{
+	function onTargetMissed( _skill, _targetEntity ) {
 		if (!_skill.isAttack() || _skill.isRanged()) {
 			return;
 		}
