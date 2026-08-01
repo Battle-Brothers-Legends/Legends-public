@@ -304,7 +304,7 @@
 			}
 			else if (_item.getTradeHistorySettlementIDs().len() > 1)
 			{
-				local arr = _item.getTradeHistorySettlements().map(function(s){return s.getName()});
+				local arr = _item.getTradeHistorySettlements().map(function(s){return s.getName();});
 				local slice = arr.slice(0,arr.len() - 1);
 				tooltip.push({
 					id = 50,

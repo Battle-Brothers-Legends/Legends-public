@@ -319,8 +319,7 @@ this.camp_building <- {
 		return this.m.Name;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local res = [
 			{
 				id = 1,
@@ -333,9 +332,24 @@ this.camp_building <- {
 				text = this.getDescription()
 			}
 		];
+		if(this.canEnter()) {
+			res.push({
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button.png",
+					text = "Open Tent Dialog"
+			});
+		}
+		if(this.inCommanderTent()) {
+			res.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button.png",
+					text = "Open Tent Menu in Commander Dialog"
+			});
+		}
 		local mod = this.getModifierTooltip();
-		foreach (i in mod)
-		{
+		foreach (i in mod) {
 			res.push(i);
 		}
 		return res;

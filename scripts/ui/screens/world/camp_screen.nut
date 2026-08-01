@@ -752,7 +752,7 @@ this.camp_screen <- {
 	}
 
 	function onSlotRightClicked(_data) {
-		if (this.isAnimating() || _data == ::Const.World.CampBuildings.Barber || _data == ::Const.World.CampBuildings.Painter) {
+		if (this.isAnimating() || !::World.Camp.getBuildingByID(_data).inCommanderTent()) {
 			return;
 		}
 
