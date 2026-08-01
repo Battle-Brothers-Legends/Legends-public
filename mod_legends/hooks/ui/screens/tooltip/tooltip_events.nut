@@ -2765,7 +2765,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Normal Speed (1)"
+					text = "Normal Speed (F1)"
 				},
 				{
 					id = 2,
@@ -2779,7 +2779,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Fast Speed (2)"
+					text = "Fast Speed (F2)"
 				},
 				{
 					id = 2,
@@ -2793,7 +2793,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Very Fast Speed (3)"
+					text = "Very Fast Speed (F3)"
 				},
 				{
 					id = 2,
@@ -2807,7 +2807,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Super Fast Speed (4)"
+					text = "Super Fast Speed (F4)"
 				},
 				{
 					id = 2,
