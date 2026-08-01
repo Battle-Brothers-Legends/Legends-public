@@ -1,26 +1,4 @@
-::mods_hookExactClass("ambitions/ambitions/make_nobles_aware_ambition", function(o)
-{
-	o.onReward = function ()
-	{
-		this.m.SuccessList.push({
-			id = 10,
-			icon = "ui/icons/special.png",
-			text = "Nobles will now give you contracts"
-		});
-
-		if (!this.World.Assets.getOrigin().isFixedLook())
-		{
-			if (this.World.Assets.getOrigin().getID() == "scenario.southern_quickstart")
-			{
-				this.World.Assets.updateLook(14);
-			}
-			else
-			{
-				this.World.Assets.updateLook(2);
-			}
-		}
-	}
-
+::mods_hookExactClass("ambitions/ambitions/make_nobles_aware_ambition", function(o) {
 	o.onUpdateScore = function ()
 	{
 		if (this.World.Ambitions.getDone() < 2 && !this.World.Assets.getOrigin().getID() == "scenario.legends_noble")

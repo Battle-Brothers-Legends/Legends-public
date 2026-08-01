@@ -247,7 +247,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		items.getData()[this.Const.ItemSlot.Body][0] = -1;
 		items.getData()[this.Const.ItemSlot.Ammo][0] = -1;
 		items.getData()[this.Const.ItemSlot.Accessory][0] = -1;
-		actor.getItems().setUnlockedBagSlots(0);
+		items.setUnlockedBagSlots(0);
 
 		this.character_background.onAdded();
 	}
