@@ -25,6 +25,11 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands)
 		];
+
+		this.m.ExcludedTalents = [
+			this.Const.Attributes.RangedSkill
+		];
+
 		this.m.Titles = [
 			"the Vala"
 		];
