@@ -174,12 +174,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			],
 			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
-				::World.Assets.addMoney(-500);
-				this.List = [{
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.PositiveEventValue + "]500[/color] Crowns"
-				}];
+				::Legends.EventList.changeMoney(-500);
 			}
 		});
 	}
