@@ -48,7 +48,7 @@
 		ButtonAssignAll = ::MSU.Class.BasicTooltip("Assign All","Assign all mercenaries to the current tent"),
 		ButtonConfigure = ::MSU.Class.CustomTooltip(function(_data){
 			local ret = [];
-			switch(_data.tent)
+			/*switch(_data.tent)
 			{
 				case ::Const.World.CampBuildings.Hunter:
 					if (::World.Camp.getBuildingByID(::Const.World.CampBuildings.Hunter).getUpgraded())
@@ -78,7 +78,7 @@
 						})
 					}
 					break;
-				default:
+				default:*/
 					ret.push({
 						id = 0,
 						type = "title",
@@ -88,8 +88,8 @@
 						id = 1,
 						type = "description",
 						text = "There are no special configurations for this tent."
-					})
-			}
+					});
+			//}
 			return ret;
 		}),
 	},

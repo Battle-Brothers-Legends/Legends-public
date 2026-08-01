@@ -31,7 +31,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			if (u != null && u.isNamed())
 				return true;
 		}
-		return false
+		return false;
 	}
 
 	function isArmorLegendary() {
@@ -41,7 +41,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
 				return true;
 		}
-		return false
+		return false;
 	}
 
 	function isBought()
@@ -142,7 +142,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	{
 		local value = _base;
 
-		foreach (i, upgrade in this.m.Upgrades)
+		foreach (_, upgrade in this.m.Upgrades)
 		{
 			if (upgrade != null)
 			{
@@ -176,7 +176,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 	function getStaminaModifier()
 	{
 		local upgradeMultiplier = 1;
-		foreach( i, upgrade in this.m.Upgrades )
+		foreach( _, upgrade in this.m.Upgrades )
 		{
 			if (upgrade != null && upgrade.m.FatiguePenaltyMultiplier != null)
 			{
@@ -313,7 +313,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 	function setArmor( _a )
 	{
-		this.setCondition( _a)
+		this.setCondition( _a);
 	}
 
 	function onRepair( _a)
@@ -332,7 +332,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		}
 		else
 		{
-			this.removeArmor(oldValue - _a)
+			this.removeArmor(oldValue - _a);
 		}
 
 		this.updateAppearance();
@@ -447,7 +447,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 
 
 		if ("Assets" in this.World && this.World.Assets != null) {
-			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID())
+			oldIndex = this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
 		else {
 			local gt = this.getroottable();
@@ -950,17 +950,17 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		{
 			if ((this.m.ItemType & _t) != 0)
 			{
-				return true
+				return true;
 			}
 
 			foreach( u in this.m.Upgrades )
 			{
 				if (u != null && u.isItemType(_t))
 				{
-					return true
+					return true;
 				}
 			}
-			return false
+			return false;
 		}
 
 		return (this.m.ItemType & _t) != 0;
@@ -975,7 +975,7 @@ this.legend_armor <- this.inherit("scripts/items/armor/armor", {
 		this.armor.onSerialize(_out);
 		_out.writeU8(this.m.Upgrades.len());
 
-		foreach (i, upgrade in this.m.Upgrades)
+		foreach (_, upgrade in this.m.Upgrades)
 		{
 			if (upgrade == null)
 			{
