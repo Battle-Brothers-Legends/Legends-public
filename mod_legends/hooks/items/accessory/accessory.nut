@@ -18,7 +18,7 @@
 			}
 
 			if (tooltip.id == 8 && tooltip.icon == "ui/icons/fatigue.png") {
-				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
 			}
 		}
 		if (this.m.StaminaModifier > 0)
@@ -53,7 +53,7 @@
 			{
 				return;
 			}
-			this.World.State.getPlayer().calculateStashModifier()
+			this.World.State.getPlayer().calculateStashModifier();
 		}
 
 		this.setAccessoryVisible(this.m.AccessoryVisible);
@@ -77,7 +77,7 @@
 		if (this.m.StashModifier > 0)
 		{
 			this.getContainer().unequipNoUpdate(this);
-			this.World.State.getPlayer().calculateStashModifier()
+			this.World.State.getPlayer().calculateStashModifier();
 		}
 
 	}

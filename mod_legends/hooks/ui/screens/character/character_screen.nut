@@ -773,13 +773,13 @@
 
 	o.removeInventoryItemUpgrades <- function (_data) {
 		local armor = this.Stash.getItemAtIndex(_data[0]).item;
-		return this.removeAllUpgradesFromItem(armor)
+		return this.removeAllUpgradesFromItem(armor);
 	}
 
 	o.removePaperdollItemUpgrades <- function (_data) {
 		local bro = this.Tactical.getEntityByID(_data[0]);
 		local item = bro.m.Items.getItemByInstanceID(_data[1]);
-		return this.removeAllUpgradesFromItem(item, bro)
+		return this.removeAllUpgradesFromItem(item, bro);
 	}
 
 	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
@@ -873,7 +873,7 @@
 			rider.setRiderID("");
 		}
 
-		return this.onQueryBrothersList()
+		return this.onQueryBrothersList();
 	}
 
 	o.onBrotherSelected <- function (_data) {
@@ -912,10 +912,14 @@
 		}
 		sourceItem = sourceItem.item;
 
+		local inventory = entity.getItems();
+		local slotType = sourceItem.getSlotType();
+		if (inventory.getUnlockedBagSlots() == 0 && slotType == ::Const.ItemSlot.Bag) {
+        	return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+    	}
+
 		// Proceed only if this is a 1h main hand weapon
-		if (sourceItem.getSlotType() != this.Const.ItemSlot.Mainhand
-			|| sourceItem.getBlockedSlotType() != null)
-		{
+		if (slotType != this.Const.ItemSlot.Mainhand || sourceItem.getBlockedSlotType() != null) {
 			return general_onEquipStashItem(_data);
 		}
 

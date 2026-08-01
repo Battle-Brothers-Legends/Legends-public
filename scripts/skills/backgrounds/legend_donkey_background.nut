@@ -195,13 +195,14 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	function onAdded() {
+		local actor = this.getContainer().getActor();
 		if (this.m.IsNew) {
-			this.getContainer().getActor().getFlags().set("donkey", true);
+			actor.getFlags().set("donkey", true);
 		}
 		if (!this.m.Container.hasActive(::Legends.Active.LegendDonkeyKick)) {
 			::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
 		}
-		local items = this.getContainer().getActor().getItems();
+		local items = actor.getItems();
 			//ineloquent solution for forcing the item assigned to any of these slots via hotkey to be unassigned and returned to ground or stash. We squish this code later.
 			//Note that 'item.unequip();' does not work.
 		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand))
@@ -246,6 +247,8 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		items.getData()[this.Const.ItemSlot.Body][0] = -1;
 		items.getData()[this.Const.ItemSlot.Ammo][0] = -1;
 		items.getData()[this.Const.ItemSlot.Accessory][0] = -1;
+		actor.getItems().setUnlockedBagSlots(0);
+
 		this.character_background.onAdded();
 	}
 
