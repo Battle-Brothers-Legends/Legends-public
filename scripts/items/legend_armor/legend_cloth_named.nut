@@ -52,8 +52,9 @@ this.legend_cloth_named <- this.inherit("scripts/items/legend_armor/legend_armor
 
 	function getTooltip(){
 		local result = this.legend_armor.getTooltip();
-		::Legends.Items.Named.ShowArmorPotential(this, result);
-
+		if (this.m.Upgrades.filter(@(_, u) u != null).len() == 0) {
+    		::Legends.Items.Named.ShowArmorPotential(this, result);
+		}
     	return result;
 	}
 
