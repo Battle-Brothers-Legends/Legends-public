@@ -174,7 +174,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 			],
 			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
-				::Legends.EventList.changeMoney(-500);
+				this.List.extend([::Legends.EventList.changeMoney(-500)]);
 			}
 		});
 	}
