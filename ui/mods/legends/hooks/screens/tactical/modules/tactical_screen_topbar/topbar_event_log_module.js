@@ -25,8 +25,8 @@ TacticalScreenTopbarEventLogModule.prototype.createDIV = function (_parentDiv)
 	this.mContainer.append(eventLogsContainerLayout);
 	this.mEventsListContainer = eventLogsContainerLayout.createList(15);
 	this.mEventsListScrollContainer = this.mEventsListContainer.findListScrollContainer();
-
-	this.mEventsListContainer.css('background-size', newlog.width() - 65, + " " + newlog.height());
+	//this.mEventsListContainer.css('background-size', newlog.width() - 65, + " " + newlog.height()); // line changed from the bugged ver with the comma to its equivalent below
+	this.mEventsListContainer.css('background-size', newlog.width() - 65 + " auto");
 
 	// create: button
 	var layout = $('<div class="l-expand-button"/>');
