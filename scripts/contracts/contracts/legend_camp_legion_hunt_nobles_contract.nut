@@ -96,7 +96,6 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 
 			function end()
 			{
-				local r = ::Math.rand(1, 100);
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.setScreen("Overview");

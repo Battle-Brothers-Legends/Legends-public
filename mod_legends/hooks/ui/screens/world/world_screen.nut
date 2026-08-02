@@ -15,7 +15,7 @@
 
 	o.onDevConsoleCommand <- function ( _data )
 	{
-		this.LegendsMod.onDevConsole(_data[0], _data[1])
+		this.LegendsMod.onDevConsole(_data[0], _data[1]);
 	}
 
 	o.onDevConsoleIsVisible <- function ( _data )

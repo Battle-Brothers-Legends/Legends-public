@@ -35,9 +35,8 @@
 		return ret;
 	}
 
-	o.isUsable <- function()
-	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+	o.isUsable <- function() {
+		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 	}
 
 	o.getAmmo <- function() {
@@ -56,14 +55,14 @@
 		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
 
-			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist) {
-				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+			if (_user.getTile().getDistanceTo(_targetTile) >= ::Const.Combat.SpawnProjectileMinDist) {
+				::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
 
 		this.consumeAmmo();
 
-		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
+		::Time.scheduleEvent(::TimeUnit.Real, 250, this.onApply.bindenv(this), {
 			Skill = this,
 			User = _user,
 			TargetTile = _targetTile
@@ -74,7 +73,7 @@
 	}
 
 	o.onAfterUpdate = function( _properties ) {
-		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
 	}
 
@@ -83,22 +82,18 @@
 		targets.push(_data.TargetTile);
 
 		for( local i = 0; i != 6; i = ++i ) {
-			if (!_data.TargetTile.hasNextTile(i)) {
-				continue;
-			}
-			else {
-				local tile = _data.TargetTile.getNextTile(i);
-				targets.push(tile);
+			if (_data.TargetTile.hasNextTile(i)) {
+				targets.push(_data.TargetTile.getNextTile(i));
 			}
 		}
 
 		if (_data.Skill.m.SoundOnHit.len() != 0) {
-			this.Sound.play(_data.Skill.m.SoundOnHit[this.Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _data.TargetTile.Pos);
+			::Sound.play(_data.Skill.m.SoundOnHit[::Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _data.TargetTile.Pos);
 		}
 
 		foreach( tile in targets ) {
-			for( local i = 0; i < this.Const.Tactical.DazeParticles.len(); i = ++i ) {
-				this.Tactical.spawnParticleEffect(false, this.Const.Tactical.DazeParticles[i].Brushes, tile, this.Const.Tactical.DazeParticles[i].Delay, this.Const.Tactical.DazeParticles[i].Quantity, this.Const.Tactical.DazeParticles[i].LifeTimeQuantity, this.Const.Tactical.DazeParticles[i].SpawnRate, this.Const.Tactical.DazeParticles[i].Stages);
+			for( local i = 0; i < ::Const.Tactical.DazeParticles.len(); i = ++i ) {
+				::Tactical.spawnParticleEffect(false, ::Const.Tactical.DazeParticles[i].Brushes, tile, ::Const.Tactical.DazeParticles[i].Delay, ::Const.Tactical.DazeParticles[i].Quantity, ::Const.Tactical.DazeParticles[i].LifeTimeQuantity, ::Const.Tactical.DazeParticles[i].SpawnRate, ::Const.Tactical.DazeParticles[i].Stages);
 			}
 
 			local target = tile.getEntity();
@@ -107,8 +102,8 @@
 				if (!target.getCurrentProperties().IsImmuneToStun && target.getSkills().hasEffect(::Legends.Effect.Dazed)) {
 					::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
-					if (!_data.User.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-						this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_data.User) + " was already dazed, so the flash pot has stunned " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+					if (!_data.User.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
+						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_data.User) + " was already dazed, so the flash pot has stunned " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 					}
 				}
 

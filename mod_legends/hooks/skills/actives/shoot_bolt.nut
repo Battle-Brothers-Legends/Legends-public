@@ -89,7 +89,7 @@
 		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
 		{
 			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
-			_properties.DamageDirectAdd += 0.25 - (distance * 0.05)
+			_properties.DamageDirectAdd += 0.25 - (distance * 0.05);
 		}
 	}
 });

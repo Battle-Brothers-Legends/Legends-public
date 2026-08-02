@@ -500,7 +500,7 @@
 			}
 		}
 
-		foreach (id, tile in ::Tactical.Entities.m.NetTiles)
+		foreach (_, tile in ::Tactical.Entities.m.NetTiles)
 		{
 			if (!tile.IsContainingItems) continue;
 

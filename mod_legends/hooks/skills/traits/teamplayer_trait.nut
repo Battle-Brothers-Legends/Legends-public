@@ -46,7 +46,7 @@
 					icon = "ui/icons/special.png",
 					text = "Melee Skill and Ranged Skill increased when fighting next to an ally"
 				}
-			])
+			]);
 		}
 
 		return ret;

@@ -67,7 +67,7 @@
 			available.remove(r);
 		}
 
-		this.m.Block = this
+		this.m.Block = this;
 	}
 
 	local onSerialize = o.onSerialize;

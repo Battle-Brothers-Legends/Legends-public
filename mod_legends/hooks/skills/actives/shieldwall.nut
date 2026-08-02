@@ -2,15 +2,15 @@
 	o.getTooltip = function () {
 		local actor = this.getContainer().getActor();
 		local p = actor.getCurrentProperties();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local mult = 1.0;
 		local proficiencyBonus = 0;
 
-		if (actor.getCurrentProperties().IsSpecializedInShields) {
+		if (p.IsSpecializedInShields) {
 			mult = mult * 1.25;
 		}
 
-		if (actor.getCurrentProperties().IsProficientWithShieldSkills) {
+		if (p.IsProficientWithShieldSkills) {
 			proficiencyBonus = 5;
 		}
 
@@ -51,7 +51,7 @@
 		::Legends.Effects.grant(_targetTile.getEntity(), ::Legends.Effect.Shieldwall);
 
 		if (!_user.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Shieldwall");
 		}
 		return true;
 	}

@@ -146,7 +146,7 @@
 
 	o.setArmor <- function ( _a )
 	{
-		this.setCondition( _a)
+		this.setCondition( _a);
 	}
 
 	o.onRepair <- function ( _a)

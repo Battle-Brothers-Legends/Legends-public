@@ -23,7 +23,7 @@ this.legend_arena_tournament_encounter <- this.inherit("scripts/encounters/encou
 				getResult = @(_event) 0
 			}],
 			function start (_event) {
-				_event.m.Town.getSituationByID("situation.arena_tournament").setValidForDays(5)
+				_event.m.Town.getSituationByID("situation.arena_tournament").setValidForDays(5);
 			}
 		});
 	}

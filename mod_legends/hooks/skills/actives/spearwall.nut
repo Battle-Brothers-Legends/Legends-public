@@ -3,7 +3,7 @@
 	local getDescription = o.getDescription;
 	o.getDescription = function ()
 	{
-		return getDescription() + " Attacks from this ability are considered attacks of opportunity."
+		return getDescription() + " Attacks from this ability are considered attacks of opportunity.";
 	}
 
 	local getTooltip = o.getTooltip;

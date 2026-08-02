@@ -75,12 +75,11 @@
 }
 
 ::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0)
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
 }
 
 ::Legends.S.getNeighbouringActors <- function (_tile)
 {
-	local c = 0;
 	local actors = [];
 
 	for( local i = 0; i != 6; i = ++i )
@@ -319,31 +318,31 @@
 		upgText.push("\"\"");
 	}
 	else {
-		upgText.push("\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0))
+		upgText.push("\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0));
 	}
 	if (upgrade[1] == null) {
 		upgText.push("\"\"");
 	}
 	else {
-		upgText.push("\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1))
+		upgText.push("\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1));
 	}
 	if (upgrade[3] == null) {
 		upgText.push("\"\"");
 	}
 	else {
-		upgText.push("\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3))
+		upgText.push("\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3));
 	}
 	if (upgrade[2] == null) {
 		upgText.push("\"\"");
 	}
 	else {
-		upgText.push("\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2))
+		upgText.push("\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2));
 	}
 	if (upgrade[4] == null) {
 		upgText.push("\"\"");
 	}
 	else {
-		upgText.push("\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4))
+		upgText.push("\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4));
 	}
 
 	local toPrint = "{"       +
@@ -376,11 +375,11 @@
 	local hoodText = "\"hood/" + split(_helmet.getID(), ".")[2] + "\", " + _helmet.getVariant();
 
 	if (upgrade[0] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0))}
+		else {upgText.push("\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0));}
 	if (upgrade[1] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1))}
+		else {upgText.push("\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1));}
 	if (upgrade[2] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2))}
+		else {upgText.push("\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2));}
 
 	local toPrint = "{"       +
 					"\n\tID = \"CHANGEME\"," +
@@ -451,5 +450,5 @@
         return false;
     if (_bro.getFlags().get("PlayerSkeleton"))
         return false;
-    return true
+    return true;
 }
