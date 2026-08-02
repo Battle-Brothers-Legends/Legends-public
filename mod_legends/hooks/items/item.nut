@@ -51,6 +51,20 @@
 		return this.m.Type;
 	}
 
+	local getTooltip = o.getTooltip;
+	o.getTooltip <- function () {
+		local result = getTooltip();
+		if (this.m.IsOffBookDeal) {
+			result.push({
+                id = 100,
+                type = "text",
+                icon = "ui/professions/off_book_deal.png"
+                text = "Off Book Deal"
+			});
+		}
+		return result;
+	}
+
 	o.makeName <- function() {
 		return this.getName();
 	}
