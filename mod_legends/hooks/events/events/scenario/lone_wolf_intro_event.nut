@@ -262,10 +262,6 @@
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AxeTree.Tree);
 				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
 
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.ShieldTree.Tree);
-
 				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/fighting_axe"));
 				_event.m.Dude.getItems().equip(::new("scripts/items/shields/buckler_shield"));
 				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
@@ -474,7 +470,7 @@
 				item = this.Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
