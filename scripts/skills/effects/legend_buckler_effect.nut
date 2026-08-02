@@ -22,7 +22,13 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getBonus() {
-		return this.getContainer().getActor().getInitiative() * 0.01 * this.m.Bonus;
+		local actor = this.getContainer().getActor();
+
+		if (actor == null || !actor.isPlacedOnMap() || !::Tactical.isActive()) {
+			return 0;
+		}
+
+		return ::Math.round(actor.getInitiative() * 0.01 * this.m.Bonus);
 	}
 
 	function getTooltip() {
@@ -58,7 +64,7 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/block.png",
 				text = "[color=%positive%]+" + bonus + "[/color] Block"
-			}])
+			}]);
 		}
 		return tooltip;
 	}
