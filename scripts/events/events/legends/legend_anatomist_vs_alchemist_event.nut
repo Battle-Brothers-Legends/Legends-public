@@ -5,16 +5,16 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 	},
 	function create() {
 		this.m.ID = "event.legend_anatomist_vs_alchemist";  //— \n |
-		this.m.Title = "During camp..."; //anatomist and alch. talk about dissection and chemestry
+		this.m.Title = "During camp...";
 		this.m.Cooldown = 55.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_63.png[/img]At a break on the road, you find %anatomist% and %alchemist% in deep conversation about something. The conversations seems to have been going on for quite some time. %SPEECH_ON%...and that is the problem, you don't need to take samples with a knife — if you don't require the speciman whole, you can saw off what you need and stick it into a boling pot for a few hours. Aside from the consistency the results are mostly the same, and you don't spend hours peeling it off the bone.%SPEECH_OFF%%anatomist% crosses their arms and seems quite satisfied, while %alchemist% makes notes. %SPEECH_ON%In this case, you would only need roughly half a pound of ghoul flesh for this method — in turn meaning you could distil the gut lining with far less time and effort than before.%SPEECH_OFF% The alchemist makes some final calculations.%SPEECH_ON%So yes, I think your theroy on using ghoul gut lining as a subsitute for your hammock string would indeed work if you boiled it as sinew...%SPEECH_OFF%",
+			Text = "[img]gfx/ui/events/event_63.png[/img]At a break on the march, you find %anatomist% and %alchemist% have set aside from the rest of the camp more than usual. You follow the assortment of dropped pans, vials and similar equipment to a tent staked at the periphery of camp. You enter the flap to a heady smell of fumes — of which both seem completely immunised.%SPEECH_ON%Captain! You're just in time!%SPEECH_OFF% The Alchemist grins and pours one liquid into another. Your anatomist is busy focusing on a simple apparatus, two vials oppose on another with a tube connecting the two. The neck of each vial has been securly wound several times over. %anatomist% makes some final notes as if they were %their% last — %alchemist% does the same and, with great precision, takes two steps backward. %anatomist% grimaces and upturns one vial onto the other in a quick but steady fashion. \n\nNothing happens, except the liquid now converges into the bottom vial and turns a threatening green hue. \n\nBoth exhale sharply, and exchange a solumn handshake with one another. The Anatomist finally notices your presence.%SPEECH_ON%Here scapegrace, you of all people should know what to do with this.%SPEECH_OFF% They hand you the vial and wipe their hands on their apron. You inquire briefly about what could've happened. %anatomist% shrugs and says not much, while %alchemist% in tandem says %SPEECH_ON%About fifty-fifty%SPEECH_OFF% You decide it may be best never to find out.",
 			Image = "",
 			List = [],
 			Characters = [],
 			Options = [{
-				Text = "The first man that builds their bed from body parts gets a flogging.",
+				Text = "Right.",
 				getResult = @(_event) 0
 			}],
 			function start(_event)
@@ -22,14 +22,20 @@ this.legend_anatomist_vs_alchemist_event <- this.inherit("scripts/events/event",
 				this.Characters.push(_event.m.anatomist.getImagePath());
 				this.Characters.push(_event.m.alchemist.getImagePath());
 
-				this.List.push(::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "Had some theories reaffirmed by " + _event.m.Alchemist.getName()));
-				this.List.push(::Legends.EventList.changeBravery(_event.m.Anatomist, ::Math.rand(2, 4)));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "Had a perplexing conundrum solved with help from " + _event.m.Alchemist.getName()));
+				this.List.push(::Legends.EventList.changeBravery(_event.m.Anatomist, ::Math.rand(1, 4)));
 
-				this.List.push(::Legends.EventList.changeMood(_event.m.Alchemist, 1.0, "Learned some new cutting techniques from " + _event.m.Anatomist.getName()));
-				this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.Alchemist, ::Math.rand(3, 5)));
+				this.List.push(::Legends.EventList.changeMood(_event.m.Alchemist, 1.0, "Managed to help " + _event.m.Anatomist.getName()));
+				this.List.push(::Legends.EventList.changeBravery(_event.m.Alchemist, ::Math.rand(1, 4)));
 
 				_event.m.Anatomist.getSkills().update();
 				_event.m.Alchemist.getSkills().update();
+
+				this.List.extend(::Legends.EventList.addItems([
+					::Const.World.Common.pickItem([
+						[1, "misc/anatomist/apotheosis_potion_item"], //leaving like this for now because I'm thinking about adding more into this list later. - Luft
+					], "scripts/items/")
+				]), ::World.Assets.getStash());
 			}
 		});
 	}
