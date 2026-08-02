@@ -4,16 +4,27 @@
 	o.isClosedAtDay <- function() {
 		return this.m.IsClosedAtDay;
 	}
+
 	o.fillStash = function(_list, _stash, _priceMult, _allowDamagedEquipment = false) {
 		_stash.clear();
-		local rarityMult = this.getSettlement().getModifiers().RarityMult;
+		this.addStock(_list, _stash, _priceMult, _allowDamagedEquipment);
+		if (::World.Assets.m.ProfessionEffect.LegendOffBookDeal > 0) {
+			this.addStock(_list, _stash, _priceMult * 2.0 / ::World.Assets.m.ProfessionEffect.LegendOffBookDeal, _allowDamagedEquipment, true);
+		}
+		_stash.sort();
+	}
+
+	o.addStock <- function(_list, _stash, _priceMult, _allowDamagedEquipment = false, _offBookDeal = false) {
+		local offBookDeal = ::Legends.Professions.new(::Legends.Profession.LegendOffBookDeal);
+		local rarityMult = this.getSettlement().getModifiers().RarityMult * (_offBookDeal ? offBookDeal.m.RarityMult : 1.0);
 		local foodRarityMult = this.getSettlement().getModifiers().FoodRarityMult;
 		local medicineRarityMult = this.getSettlement().getModifiers().MedicalPriceMult;
 		local mineralRarityMult = this.getSettlement().getModifiers().MineralRarityMult;
 		local buildingRarityMult = this.getSettlement().getModifiers().BuildingRarityMult;
-		local isTrader = this.World.Retinue.hasFollower("follower.trader");
 
 		foreach (i in _list) {
+			if (_offBookDeal && ::Math.rand(1, 100) > offBookDeal.m.ExtraItemPercentage) continue;
+
 			local r = i.R;
 
 			for (local num = 0; true;) {
@@ -45,7 +56,7 @@
 					]);
 				} else {
 					if (script in ::Legends.Buildings.Replacement) {
-						script = ::Legends.Buildings.Replacement[script]
+						script = ::Legends.Buildings.Replacement[script];
 					}
 					item = this.new("scripts/items/" + script);
 				}
@@ -84,6 +95,7 @@
 							}
 						}
 						it.setPriceMult(i.P * _priceMult);
+						it.m.IsOffBookDeal = _offBookDeal;
 						if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) {
 							it.setOriginSettlement(this.getSettlement());
 						}
@@ -107,8 +119,6 @@
 				}
 			}
 		}
-
-		_stash.sort();
 	}
 
 	o.onUpdateStablesList <- function(_list) {}

@@ -85,7 +85,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			if (u != null && u.isItemType(::Const.Items.ItemType.Legendary))
 				return true;
 		}
-		return false
+		return false;
 	}
 
 	function isBought()
@@ -316,7 +316,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	function clearSkills()
 	{
 		this.item.clearSkills();
-		this.doOnFunction("clearSkills")
+		this.doOnFunction("clearSkills");
 	}
 
 	function addArmor( _a )
@@ -472,7 +472,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				ids.push(u.getID());
 			}
 		}
-		return ids
+		return ids;
 	}
 
 	function getUpgradesNamed() {
@@ -538,7 +538,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		};
 		if (oldItem != null && !oldItem.isDestroyedOnRemove())
 		{
-			result.item = oldItem
+			result.item = oldItem;
 		}
 
 		this.updateAppearance();
@@ -1053,7 +1053,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		_out.writeF32(this.m.Condition);
 		_out.writeU8(this.m.Upgrades.len());
 
-		foreach (i, upgrade in this.m.Upgrades)
+		foreach (_, upgrade in this.m.Upgrades)
 		{
 			if (upgrade == null)
 			{

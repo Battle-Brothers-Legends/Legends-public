@@ -14,6 +14,7 @@
 	o.m.LastTransactionPrice <- null;
 	o.m.IsQueryingSellPrice <- 0;
 	o.m.IsQueryingBuyPrice <- 0;
+	o.m.IsOffBookDeal <- false;
 
 	local setSold = o.setSold;
 	o.setSold = function (_f) {
@@ -25,6 +26,9 @@
 	o.setBought = function (_f) {
 		setBought(_f);
 		this.m.IsBought = _f;
+		if (!_f) {
+            this.m.IsOffBookDeal = false;
+        }
 	}
 
 	o.getOldInstanceID <- function ()

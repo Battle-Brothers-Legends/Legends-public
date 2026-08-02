@@ -52,4 +52,18 @@
 			return price;
 		}
 	};
+
+	local getTooltip = ::mods_getMember(o, "getTooltip");
+	o.getTooltip <- function () {
+		local result = getTooltip();
+		if (this.m.IsOffBookDeal && result.filter(@(idx, t)(t.id == 100)).len() == 0) {
+			result.push({
+                id = 100,
+                type = "text",
+                icon = "ui/professions/off_book_deal.png"
+                text = "Off Book Deal"
+			});
+		}
+		return result;
+	}
 });

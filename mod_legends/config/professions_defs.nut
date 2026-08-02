@@ -609,7 +609,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendOffBookDeal,
     Icon = "ui/professions/off_book_deal.png",
     IconDisabled = "ui/professions/off_book_deal_bw.png",
-    Const = "LegendOffBookDeal"
+    Const = "LegendOffBookDeal",
+    ScalingArray = [0, 1], // improves off book deal prices
+    ScalingFactor = 0.03
 });
 
 ::Legends.Profession.LegendOnTheGrapevine <- null;
