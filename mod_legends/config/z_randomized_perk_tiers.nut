@@ -40,7 +40,7 @@
     LegendaryPerks = [],
 	LegendaryTraits = [],
     WeaponsAndTrees = [
-        ["knife",  100, 75] // [Weapon Script, Chance to roll weapon-perks, chacne to roll weapon-class-perks]
+        ["knife",  100, 75] // [Weapon Script, Chance to roll weapon-perks, chance to roll weapon-class-perks]
     ],
     LevelRange = [3, 3],
     PerkPower = ::Const.PerkPurchasePower.Low
@@ -728,7 +728,7 @@
 		}
         if (weapon.len() >= 3) //probably will change this later, it should probably be a tree at this point
         {
-            return [weapon[1], weapon[2]]
+            return [weapon[1], weapon[2]];
         }
         return [weapon[1]];
     }

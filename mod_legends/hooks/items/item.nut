@@ -207,7 +207,7 @@
 	o.onUnequip = function ()
 	{
 		this.clearSkills();
-		if (this.m.Container != null && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
+		if (this.m.Container != null && "getActor" in this.m.Container && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
 		maybeUpdateParryingDaggerSkills();
 	}
 
@@ -244,10 +244,10 @@
 
 	o.onEquip = function ()
 	{
-		if (this.m.Container != null)
-		{
-			if (this.m.Container.getActor() != null) this.m.LastEquippedByFaction = this.m.Container.getActor().getFaction();
-			if ("getSkills" in this.getContainer().getActor()) this.getContainer().getActor().getSkills().update();
+		if (this.m.Container != null && "getActor" in this.m.Container) {
+			local actor = this.m.Container.getActor();
+			if (actor != null) this.m.LastEquippedByFaction = actor.getFaction();
+			if ("getSkills" in actor) actor.getSkills().update();
 		}
 		if (this.isRuned())
 		{

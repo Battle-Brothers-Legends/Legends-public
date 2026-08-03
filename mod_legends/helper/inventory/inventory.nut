@@ -63,7 +63,7 @@
 }
 
 ::Legends.Inventory.queryStashItemDataByIndex <- function (_sourceIndex, _targetIndex) {
-	local stash = ::World.Assets.getStash();
+	local stash = ("State" in ::Tactical && ::Tactical.State != null && ::Tactical.State.isScenarioMode()) ? ::Stash : ::World.Assets.getStash();
 	if (stash == null) {
 		return {
 				error = "Failed to acquire stash."
@@ -95,7 +95,7 @@
 };
 
 ::Legends.Inventory.applyAutomationStateEffects <- function (_item, _idx, _state) {	// 0 - nothing, 1 - sell, 2 - repair and sell, 3 - repair, 4 - salvage
-	if("State" in ::Tactical && ::Tactical.State.isScenarioMode())
+	if("State" in ::Tactical && ::Tactical.State != null && ::Tactical.State.isScenarioMode())
 		return;
 	if (_state == 2 || _state == 3) {
 		_item.setToBeRepaired(true, _idx);
@@ -110,7 +110,7 @@
 }
 
 ::Legends.Inventory.getCompositeAutomationState <- function (_item, _state = null) {
-	if("State" in ::Tactical && ::Tactical.State.isScenarioMode())
+	if("State" in ::Tactical && ::Tactical.State != null && ::Tactical.State.isScenarioMode())
 		return null;
 	local state = _state != null ? _state : ::World.Flags.getAsInt("AutoState_" + _item.getID());
 	if (::Legends.Inventory.isItemLayered(_item)) {

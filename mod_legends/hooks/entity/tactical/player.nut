@@ -585,8 +585,10 @@
 				}
 			}
 		}
-		this.getCurrentProperties().SurviveWithInjuryChanceMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendFieldSurgery);
-		::World.Assets.m.IsSurvivalGuaranteed = (::World.Assets.m.ProfessionEffect.LegendButcherBarber > 0); // using this so there's no need to hook the entire thing and the flag is only used for this anyway so no need to revert to original value after
+		if("Assets" in ::World && ::World.Assets != null) {
+			this.getCurrentProperties().SurviveWithInjuryChanceMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendFieldSurgery);
+			::World.Assets.m.IsSurvivalGuaranteed = (::World.Assets.m.ProfessionEffect.LegendButcherBarber > 0); // using this so there's no need to hook the entire thing and the flag is only used for this anyway so no need to revert to original value after
+		}
 		// call the original
 		local result = isReallyKilled(_fatalityType);
 		// return this array back to normal
@@ -1233,6 +1235,7 @@
 		local background = this.new("scripts/skills/backgrounds/" + this.Const.CharacterBackgrounds[this.Math.rand(0, this.Const.CharacterBackgrounds.len() - 1)]);
 		background.addBackgroundType(this.Const.BackgroundType.Scenario);
 		this.m.Skills.add(background);
+		background.setGender(-1);
 		background.buildDescription();
 		background.setAppearance();
 		local c = this.m.CurrentProperties;
@@ -1296,9 +1299,8 @@
 		local r = _backgrounds[this.Math.rand(0, _backgrounds.len() - 1)];
 		local background = typeof r == "integer" ? ::Legends.Backgrounds.new(r) : this.new("scripts/skills/backgrounds/" + r);
 
-		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
-			background.setGender(_gender);
-		}
+		background.setGender(_gender);
+		
 		this.m.Skills.add(background);
 
 		/*Skill onAdded sets these values

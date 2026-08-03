@@ -39,13 +39,13 @@
 			];
 			local relevant = 0;
 
-			foreach( o in allOpponents )
+			foreach( opponent in allOpponents )
 			{
-				local opponent = o.Actor;
-				local dist = o.Actor.getTile().getDistanceTo(importantAllyTile);
+				local opponent = opponent.Actor;
+				local dist = opponent.Actor.getTile().getDistanceTo(importantAllyTile);
 				local score = 1.0;
 
-				if (dist <= 11 && this.isRangedUnit(o.Actor))
+				if (dist <= 11 && this.isRangedUnit(opponent.Actor))
 				{
 					score = 1.0;
 				}
@@ -106,7 +106,6 @@
 						local immediateBonus = 0;
 						score = score + dirs[i] / this.Math.max(1, allOpponents.len()) * this.Const.AI.Behavior.ProtectAllyDirectionMult;
 						score = score - myTile.getDistanceTo(tile);
-						local importantAlliesAtTile = 0;
 
 						for( local j = 0; j != 6; j = ++j )
 						{
@@ -181,7 +180,6 @@
 		local navigator = this.Tactical.getNavigator();
 		local settings = navigator.createSettings();
 		local myTile = _entity.getTile();
-		local myFaction = _entity.getFaction();
 		potential_tiles.sort(this.onSortByScore);
 		local attempts = 0;
 		local time = this.Time.getExactTime();

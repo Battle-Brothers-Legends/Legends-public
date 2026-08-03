@@ -44,7 +44,7 @@
 			}
 
 			if (tooltip.id == 7 && tooltip.icon == "ui/icons/fatigue.png") {
-				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
 			}
 		}
 
@@ -70,7 +70,8 @@
 	local isDroppedAsLoot = o.isDroppedAsLoot;
 	o.isDroppedAsLoot = function ()
 	{
-		::World.Assets.m.IsBlacksmithed = ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0; // set this to use in the hook cause its not used otherwise no need to reset
+		if("Assets" in ::World && ::World.Assets != null)
+			::World.Assets.m.IsBlacksmithed = ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0; // set this to use in the hook cause its not used otherwise no need to reset
 		if (this.item.isDroppedAsLoot() && this.isNamed())
 		{
 			return true;

@@ -542,7 +542,7 @@
 				}
 			}
 
-			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 			{
 				tooltip.push({
 					id = 2,
