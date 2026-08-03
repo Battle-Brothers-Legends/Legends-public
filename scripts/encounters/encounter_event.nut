@@ -20,8 +20,10 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 		if (event == null) {
 			return false;
 		}
-		event.clear();
-		event.onUpdateScore();
+        if (::World.Encounters.m.ActiveEvent == null && ::World.Encounters.m.ActiveCampEvent == null) {
+            event.clear();
+            event.onUpdateScore();
+        }
 		return event.m.isValidForEncounter;
 	}
 

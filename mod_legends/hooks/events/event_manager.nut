@@ -60,6 +60,30 @@
 		}
 	}
 
+	local onRetreatedFromCombat = o.onRetreatedFromCombat;
+    o.onRetreatedFromCombat = function( _combatID ) {
+        if (::World.Encounters.m.ActiveEvent != null || ::World.Encounters.m.ActiveCampEvent != null) {
+            if (this.m.DefeatScreen != null) {
+                this.m.ForceScreen = this.m.DefeatScreen;
+                this.m.VictoryScreen = null;
+                this.m.DefeatScreen = null;
+            }
+        }
+        onRetreatedFromCombat(_combatID);
+    }
+
+    local onCombatVictory = o.onCombatVictory;
+    o.onCombatVictory = function( _combatID ) {
+        if (::World.Encounters.m.ActiveEvent != null || ::World.Encounters.m.ActiveCampEvent != null) {
+            if (this.m.VictoryScreen != null) {
+                this.m.ForceScreen = this.m.VictoryScreen;
+                this.m.VictoryScreen = null;
+                this.m.DefeatScreen = null;
+            }
+        }
+        onCombatVictory(_combatID);
+    }
+
 	o.update = function () {
 		if (this.World.State.getMenuStack().hasBacksteps() || this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible())) {
 			return;
@@ -67,6 +91,19 @@
 
 		if (("State" in this.Tactical) && this.Tactical.State != null) {
 			return;
+		}
+
+		local activeEncounter = (::World.Encounters.m.ActiveEvent != null ? ::World.Encounters.m.ActiveEvent : ::World.Encounters.m.ActiveCampEvent);
+		if (activeEncounter != null) {
+			local activeEncounterEvent = ::World.Events.getEvent(activeEncounter.m.Event);
+			if (activeEncounterEvent != null) {
+				if (this.m.ForceScreen != null) {
+					activeEncounterEvent.setScreen(activeEncounterEvent.getScreen(this.m.ForceScreen));
+					this.m.ForceScreen = null;
+                    ::World.State.showEncounterScreenAfterCombat(activeEncounter);
+				}
+				return;
+			}
 		}
 
 		if (this.m.ActiveEvent != null) {

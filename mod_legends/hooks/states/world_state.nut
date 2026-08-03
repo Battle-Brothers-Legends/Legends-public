@@ -1322,11 +1322,15 @@
 			this.m.EventScreen.show(_encounter);
 			this.m.MenuStack.push(function () {
 				this.m.EventScreen.hide();
-				::World.Encounters.clearActiveEvent();
-				::World.Events.clearActiveEvent();
 				this.m.WorldTownScreen.showLastActiveDialog();
-				this.m.EventScreen.setIsEncounter(false);
-				this.m.WorldTownScreen.refresh();
+				if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+					::World.Encounters.clearActiveEvent();
+					::World.Events.clearActiveEvent();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.WorldTownScreen.refresh();
+				} else {
+					this.m.WorldTownScreen.hide();
+				}
 			}, function () {
 				return false;
 			});
@@ -1348,11 +1352,13 @@
 			this.m.EventScreen.show(_encounter);
 			this.m.MenuStack.push(function () {
 				this.m.EventScreen.hide();
-				::World.Encounters.clearActiveEvent();
-				::World.Events.clearActiveEvent();
-				this.m.CampScreen.show();
-				this.m.EventScreen.setIsEncounter(false);
-				this.m.CampScreen.refresh();
+				if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+					::World.Encounters.clearActiveEvent();
+					::World.Events.clearActiveEvent();
+					this.m.CampScreen.show();
+					this.m.EventScreen.setIsEncounter(false);
+					this.m.CampScreen.refresh();
+				}
 			}, function () {
 				return false;
 			});
@@ -1374,8 +1380,8 @@
 			this.m.EventScreen.show(_event);
 			this.m.MenuStack.push(function () {
 				this.m.EventScreen.hide();
-				::World.Encounters.clearActiveEvent();
-				::World.Events.clearActiveEvent();
+				//::World.Encounters.clearActiveEvent(); // most likely unneeded, perhaps restore + the victory screen check if there are some combat camp events? that break
+				//::World.Events.clearActiveEvent();
 				this.m.EventScreen.setIsContract(false);
 				this.m.CampScreen.show();
 				this.m.CampScreen.refresh();
@@ -1383,6 +1389,39 @@
 				return false;
 			});
 		}
+	}
+
+	o.showEncounterScreenAfterCombat <- function (_encounter, _playSound = true)
+	{
+		if (this.m.EventScreen.isVisible() || this.m.EventScreen.isAnimating() || this.m.MenuStack.hasBacksteps()) {
+			return false;
+		}
+
+		if (_playSound && ::Const.Events.GlobalSound != "") {
+			::Sound.play(::Const.Events.GlobalSound, 1.0);
+		}
+
+		if (!this.isPaused()) {
+			this.setNormalTime();
+		}
+
+		this.setAutoPause(true);
+		this.m.EventScreen.setIsEncounter(true);
+		this.m.EventScreen.show(_encounter);
+		this.m.WorldScreen.hide();
+		this.Cursor.setCursor(::Const.UI.Cursor.Hand);
+		this.m.MenuStack.push(function () {
+			this.m.EventScreen.setIsEncounter(false);
+			this.m.EventScreen.hide();
+			this.m.WorldScreen.show();
+			this.updateTopbarAssets();
+			::World.Encounters.clearActiveEvent();
+			::World.Events.clearActiveEvent();
+			this.setAutoPause(false);
+		}, function () {
+			return false;
+		});
+		return true;
 	}
 
 	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )

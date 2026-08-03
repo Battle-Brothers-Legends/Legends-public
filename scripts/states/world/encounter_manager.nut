@@ -63,8 +63,10 @@ this.encounter_manager <- {
                 this.World.State.getEventScreen().show(this.m.ActiveEvent);
                 return false;
             } else {
-                this.m.ActiveEvent.clear();
-                this.m.ActiveEvent = null;
+                if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+                    this.m.ActiveEvent.clear();
+                    this.m.ActiveEvent = null;
+                }
                 this.World.State.getMenuStack().pop(true);
                 return true;
             }
@@ -74,8 +76,10 @@ this.encounter_manager <- {
                 this.World.State.getEventScreen().show(this.m.ActiveCampEvent);
                 return false;
             } else {
-                this.m.ActiveCampEvent.clear();
-                this.m.ActiveCampEvent = null;
+                if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+                    this.m.ActiveCampEvent.clear();
+                    this.m.ActiveCampEvent = null;
+                }
                 this.World.State.getMenuStack().pop(true);
                 return true;
             }
