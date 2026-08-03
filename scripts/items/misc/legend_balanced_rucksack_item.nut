@@ -53,7 +53,10 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 	}
 
 	function onUse(_actor, _item = null) {
-		if(_actor.getItems().getUnlockedBagSlots() == 2) {
+		if(_actor.isStabled()){
+			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("Are you trying to put a rucksack on an animal?"));
+			return false;
+		} else if(_actor.getItems().getUnlockedBagSlots() == 2) {
 			this.playInventorySound(null);
 			_actor.getItems().setUnlockedBagSlots(4);
 			return true;
