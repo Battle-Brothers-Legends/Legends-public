@@ -41,7 +41,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 
 			function start(_event) {
 				if (_event.checkTownProximity()) {
-					_event.m.Title = "In town..."
+					_event.m.Title = "In town...";
 				}
 				_event.m.Candidates.sort(function(_a, _b) {
 					if (_a.getXP() > _b.getXP()) {
@@ -140,7 +140,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 				_event.m.Title = "After the battle...";
 				this.Characters.push(_event.m.Champion.getImagePath());
 
-				this.List = [::Legends.EventList.changeRenown()];
+				this.List = [::Legends.EventList.changeRenown(50)];
 
 				if (_event.m.Champion.getBaseProperties().MeleeSkill < 100) {
 					_event.m.Champion.improveMood(0.5, "Improved his skills though duel");
