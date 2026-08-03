@@ -125,7 +125,7 @@
 				[15, ::Legends.Helmet.Standard.faction_helm, banner],
 				[5, ::Legends.Helmet.Standard.legend_frogmouth_helm],
 				[1, ::Legends.Helmet.Standard.legend_frogmouth_helm_crested]
-			]))
+			]));
 		}
 	}
 

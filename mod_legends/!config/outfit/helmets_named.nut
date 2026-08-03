@@ -743,7 +743,7 @@
 };
 ::Const.LegendMod.HelmObjs.push(::Legends.Helmet.Named.ghost_helmet_named);
 
-::Legends.Helmet.Named.ghost_knight_helmet <- { // can we have double vanity? if so [1, "vanity/legend_helmet_ hood_cloth_wide", 3], // 10 -0 -0 100
+::Legends.Helmet.Named.ghost_knight_helmet <- { // rachegeist helm, ornament added in waterwheel_location
 	ID = "ghost_knight_helmet",
 	Script = "",
 	Sets = [{
@@ -757,7 +757,7 @@
 		],
 		Tops = [],
 		Vanity = [
-			[1, "vanity/legend_helmet_rotten_faction_helmet", 8], // 10 -0 -0 100
+			[1, "vanity/legend_helmet_hood_cloth_wide", 3] // 10 -0 -0 100
 		]
 	}]
 };

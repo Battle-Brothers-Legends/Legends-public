@@ -26,4 +26,16 @@
 			}, false, 100);
 		}
 	}
+
+	o.onDropLootForPlayer = function( _lootTable ){
+		this.location.onDropLootForPlayer(_lootTable);
+		local helmet = ::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Named.ghost_knight_helmet],
+		]);
+		local ornament = this.new("scripts/items/legend_helmets/vanity/legend_helmet_rotten_faction_helmet");
+		ornament.setVariant(8);
+		ornament.updateVariant();
+		helmet.setUpgrade(ornament);
+		_lootTable.push(helmet);
+	}
 });
