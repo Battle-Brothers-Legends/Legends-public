@@ -10,6 +10,7 @@
 	o.m.Encounters <- null;
     o.m.LastMorningPauseDay <- -1;
 	o.m.LastNewDayPauseDay <- -1;
+	o.m.LastButtonPress <- 0.0;
 
 	o.getBrothersInReserves <- function ()
 	{
@@ -903,6 +904,22 @@
 			return true;
 		}
 
+		switch(_key.getState() == 0 && _key.getKey()){
+			// stop spam press of CIOTPR buttons
+			case 13:
+			case 19:
+			case 25:
+			case 26:
+			case 28:
+			case 30:
+				local timeOfButtonPress = ::Time.getRealTimeF();
+				if (timeOfButtonPress - this.m.LastButtonPress < 0.5) {
+					return true;
+				}
+				this.m.LastButtonPress = timeOfButtonPress;
+				break;
+			}
+
 		//if (this.isInDevScreen())
 		//{
 		//	switch(_key.getKey())
@@ -1018,6 +1035,8 @@
 					// {
 					// 	this.onCamp();
 					// }
+				} else if (this.m.CampScreen.isVisible()) {
+					this.m.CampScreen.onModuleClosed();
 				}
 
 				break;
