@@ -256,7 +256,7 @@
 		local factionsNotAlliedWithPlayer = hasCampDeployment || _properties.InCombatAlready && ai_entities.len() <= 2 ? 1 : 0;
 		local lastFaction = 99;
 
-		foreach( i, f in ai_entities )
+		foreach( _, f in ai_entities )
 		{
 			if ((!f.IsAlliedWithPlayer || _properties.InCombatAlready) && f.DeploymentType != this.Const.Tactical.DeploymentType.Camp && (lastFaction == 99 || !this.World.FactionManager.isAllied(lastFaction, f.Faction)))
 			{
@@ -595,7 +595,7 @@
 		if (_info.Type == "")
 			return;
 
-		if (!this.MSU.Tile.canResurrectOnTile(_info.Tile, true))
+		if (_info.Tile == null || !this.MSU.Tile.canResurrectOnTile(_info.Tile, true))
 		{
 			return;
 		}
