@@ -138,7 +138,7 @@
 		entity = this.spawnEntity("scripts/entity/tactical/humans/noble_footman", x, x, 12, 12);
 		entity.setFaction(this.Const.Faction.Goblins);
 		entity.assignRandomEquipment();
-		entity = this.spawnEntity("scripts/entity/tactical/humans/noble_footman_veteran", x, x, 13, 13);
+		entity = this.spawnEntity("scripts/entity/tactical/humans/legend_noble_footman_veteran", x, x, 13, 13);
 		//entity.setFaction(this.Const.Faction.Goblins);
 		//entity.assignRandomEquipment();
 		entity = this.spawnEntity("scripts/entity/tactical/humans/knight", x, x, 14, 14);
