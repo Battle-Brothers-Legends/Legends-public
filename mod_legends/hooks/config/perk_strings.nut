@@ -105,7 +105,7 @@ Knights would do well to fear your heavy blows.
 Glide through battle like a leaf in a stream.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]-10%[/color] of characters base maximum Fatigue (before penalties due to armor weight are applied).
+• Once per turn, upon killing an opponent, reduce current Fatigue by [color=%negative%]10%[/color] of characters base maximum Fatigue (before penalties due to armor weight are applied).
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.BattleFlow].Tooltip = ::Const.Strings.PerkDescription.BattleFlow;
 ::Const.Strings.PerkDescription.SpecBow <- @"
