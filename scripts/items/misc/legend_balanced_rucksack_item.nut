@@ -36,13 +36,7 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Grants the user [color=%positive%]+2[/color] bag slots"
-		});
-		result.push({
-			id = 11,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Has no effect if the user has the Bags and Belts perk"
+			text = "Consume to grant the user [color=%positive%]+2[/color] bag slots"
 		});
 
 		return result;
