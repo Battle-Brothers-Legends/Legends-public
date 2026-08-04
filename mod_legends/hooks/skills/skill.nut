@@ -1381,9 +1381,19 @@
 		}
 
 		local isHit = r <= toHit;
-		if (defenderProperties.IsEvadingAllAttacks)
-		{
+		if (defenderProperties.IsEvadingAllAttacks) {
 			isHit = false;
+		}
+
+		if (!defenderProperties.IsEvadingAllAttacks && !isHit ) {
+			if (this.Math.rand(1, 100) <= properties.RerollAttackChance) {
+				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " got lucky and rerolled " + this.getName() + ".");
+				r = this.Math.rand(1, 100);
+				isHit = r <= toHit;
+			}
+			else {
+				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + "\' luck didn\'t pan out.");
+			}
 		}
 
 		if (!_user.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer())

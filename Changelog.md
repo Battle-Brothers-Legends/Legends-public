@@ -12,9 +12,7 @@
 - Updated the 'make nobles aware' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.
 - Updated 'roster of six' ambition to give an item payout of food supplies to ease that sharp shift more difficult origins experience from this milestone expansion.
 
-## Shield Changes
-- Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
-- Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
+
 
 ## Backgrounds
 
@@ -47,6 +45,10 @@
 > MeleeDefense -5 - 0
 > RangedDefense -6 - -1
 > Initiative 65 - 75
+
+## Shield Changes
+- Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
+- Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
 
 ### Regular Shield Item Changes
 - Shields in general no longer reduce ranged Damage Taken
@@ -206,6 +208,8 @@
 - `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 - `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type, up to 3 stacks that can gradually be reduced
 
+### Trait Changes
+- `Lucky` - now additionally gives 10% chance to reroll a missed attack
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
@@ -461,6 +465,7 @@
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
 - added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
 - defs created for backgrounds
+- new `RerollAttackChance` property in `CharacterProperties`, allows you to reroll a miss
 - background_stats created for background stat rolls and migrated them from bgs
 - bro sprite setting per background moved to bg's setGender; uses setBodyCharacteristics which accepts an object with fields to overwrite default sprites with (default are norther, all)
 - changed background.legend_peddler_commander -> background.legend_commander_peddler
