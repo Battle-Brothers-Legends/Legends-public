@@ -160,27 +160,11 @@
 	return false;
 }
 
-::Legends.S.getDaysToScaleDifficulty <- function () {
-	switch (::World.Assets.getCombatDifficulty()) {
-		case this.Const.Difficulty.Easy:
-			return 120;
-		case this.Const.Difficulty.Normal:
-			return 90;
-		case this.Const.Difficulty.Hard:
-			return 60;
-		case this.Const.Difficulty.Legendary:
-			return 30;
-		default:
-			::logError("Unknown combat difficulty: " + ::World.Assets.getCombatDifficulty());
-			return 0;
-	}
-}
-
 ::Legends.S.scaleBaseProperties <- function (_properties) {
 	if (this.Tactical.State.isScenarioMode()) {
 		return;
 	}
-	local daysToScale = ::World.getTime().Days - this.getDaysToScaleDifficulty();
+	local daysToScale = ::World.getTime().Days - ::Legends.Difficulty.DayScaling[::World.Assets.getCombatDifficulty()];
 	if (daysToScale > 0) {
 		local bonus = this.Math.floor(daysToScale / 20.0);
 		_properties.MeleeSkill += bonus;

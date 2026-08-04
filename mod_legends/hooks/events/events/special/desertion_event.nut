@@ -8,10 +8,10 @@
 				{
 					Text = "{I can hardly force any of %them_deserter% to remain with the company... | Bad news, indeed. | A momentary setback. | I can not let something like this happen again. | This will impact the bottom line.}",
 					function getResult(_event) {
-						if (this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Hard	&& this.World.Assets.getEconomicDifficulty() != this.Const.Difficulty.Legendary) {
-							_event.m.Deserter.getItems().transferToStash(this.World.Assets.getStash());
+						if (::Legends.Difficulty.DeserterTakesItems[::World.Assets.getEconomicDifficulty()]) {
+							_event.m.Deserter.getItems().transferToStash(::World.Assets.getStash());
 						}
-						_event.m.Deserter.getSkills().onDeath(this.Const.FatalityType.None);
+						_event.m.Deserter.getSkills().onDeath(::Const.FatalityType.None);
 						::Legends.addFallen(_event.m.Deserter, "Deserted the company");
 						this.World.getPlayerRoster().remove(_event.m.Deserter);
 						_event.m.Deserter = null;
@@ -19,7 +19,7 @@
 						return 0;
 					}
 				}
-			]
+			];
 		});
 	}
 })

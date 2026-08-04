@@ -59,87 +59,45 @@
 			return;
 		}
 
-		local broScale = this.World.Assets.getOrigin().getBrotherScaling();
-		
-
 		local zombieSummonLevel = 0;
 		local skeletonSummonLevel = 0;
 
 		local count = 0;
-		foreach( i, bro in roster )
-		{
-			if (i >= 25)
-			{
+		foreach( i, bro in roster )	{
+			if (i >= 25) {
 				break;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))	{
 				continue;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
-			{
+			this.m.Strength += ::Legends.Difficulty.BroStrengthScaling(bro.getLevel(), count);
+			this.m.Strength += ::Legends.Difficulty.BroItemScaling(bro.getItems().getAllItems());
+			count++;
+
+			
+			// this is flawed because it sets zombie summon level rather than adding it
+			// if we have a low level bro with SpawnZombieLow he'll override the bro with higher level and summon zombie high
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh)) {
 				zombieSummonLevel = 7;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed))
-			{
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed)) {
 				zombieSummonLevel = 5;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow))
-			{
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow)) {
 				zombieSummonLevel = 2;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh)) {
 				skeletonSummonLevel = 7;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed))
-			{
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed)) {
 				skeletonSummonLevel = 5;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow))
-			{
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow)) {
 				skeletonSummonLevel = 2;
 			}
-
-			local brolevel = bro.getLevel();
-
-			if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Easy)
-			{
-				this.m.Strength += (3 + ((brolevel / 4) + (brolevel - 1)) * 1.5) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Normal)
-			{
-				this.m.Strength += (10 + (((3 * brolevel) / 4) + (brolevel - 1)) * 2) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Hard)
-			{
-				this.m.Strength += (6 + (count / 2) + ((brolevel / 2) + (pow(brolevel,1.2)))) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary )
-			{
-				this.m.Strength += (count + (brolevel + (pow(brolevel,1.2)))) * broScale;
-			}
-
-			local gearvalue = 0;
-			foreach (item in bro.getItems().getAllItems())
-			{
-				if (item != null)
-					gearvalue += item.getValue() / 1000;
-			} 
-
-			this.m.Strength += gearvalue;
-			// item scaling end
-
-			count++;
-
 		}
 
-		if  (zombieSummonLevel == 0 && skeletonSummonLevel == 0)
-		{
-			return
+		if  (zombieSummonLevel == 0 && skeletonSummonLevel == 0) {
+			return;
 		}
 
 		//  Scaling based on money and stash - was controversial

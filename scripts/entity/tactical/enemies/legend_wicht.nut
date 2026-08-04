@@ -352,8 +352,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.S.scaleBaseProperties(b); // this bit increases hitpoints
 		b.Hitpoints = 1;
 
-		local daysToScale = this.Math.floor(this.World.getTime().Days / ::Legends.S.getDaysToScaleDifficulty());
-		this.m.ArmorDifficultyMult += 0.1 * this.Math.floor(daysToScale);
+		this.m.ArmorDifficultyMult += 0.1 * ::Math.floor(::World.getTime().Days / ::Legends.Difficulty.DayScaling[::World.Assets.getCombatDifficulty()]);
 	}
 
 	function onRender() {

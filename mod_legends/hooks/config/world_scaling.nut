@@ -4,13 +4,6 @@
 ::Const.World.Scaling.AI <- {};
 ::Const.World.Scaling.AI.LegendsCorruptionAdvancedAIDay <- 100;
 
-::Const.World.Scaling.LegendaryLocations <- {};
-::Const.World.Scaling.LegendaryLocations.GoblinCity <- {};
-::Const.World.Scaling.LegendaryLocations.GoblinCity.Easy <- 400;
-::Const.World.Scaling.LegendaryLocations.GoblinCity.Normal <- 300;
-::Const.World.Scaling.LegendaryLocations.GoblinCity.Hard <- 200;
-::Const.World.Scaling.LegendaryLocations.GoblinCity.Legendary <- 100;
-
 ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1 <- 20;
 ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2 <- 40;
 ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3 <- 50;

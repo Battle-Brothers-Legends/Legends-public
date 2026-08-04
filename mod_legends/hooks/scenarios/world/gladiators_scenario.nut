@@ -116,7 +116,7 @@
 		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() - 9);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money / 2 - (this.World.Assets.getEconomicDifficulty() == 0 ? 0 : 300);
+		this.World.Assets.m.Money = this.World.Assets.m.Money / 2 + ::Legends.Difficulty.GladiatorsStartingMoney[::World.Assets.getEconomicDifficulty()];
 		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
 		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 2;
 		this.World.Assets.m.Ammo = 0;

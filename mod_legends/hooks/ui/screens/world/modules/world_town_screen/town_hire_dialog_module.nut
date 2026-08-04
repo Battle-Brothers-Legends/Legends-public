@@ -13,37 +13,23 @@
 		return ret;
 	}
 
-	o.onDismissRosterEntry <- function ( _entityID )
-	{
+	o.onDismissRosterEntry <- function ( _entityID ) {
 		local entry = this.findEntityWithinRoster(_entityID);
-
-		if (entry != null)
-		{
-			local roster = this.World.getPlayerRoster();
-			local entities = roster.getAll();
-			local currentMoney = this.World.Assets.getMoney();
+		if (entry != null) {
 			local tryoutCost = entry.getTryoutCost();
 
-			if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getEconomicDifficulty() == this.Const.Difficulty.Legendary)
-			{
-				if (currentMoney < tryoutCost)
-				{
+			if (::Legends.Difficulty.DismissCost[::World.Assets.getCombatDifficulty()])	{
+				if (::World.Assets.getMoney() < tryoutCost) {
 					return {
 						Result = this.Const.UI.Error.NotEnoughMoney,
 						Assets = null
 					};
 				}
+				::World.Assets.addMoney(-tryoutCost);
 			}
 
-			this.World.getRoster(this.m.RosterID).remove(entry);
-
-			if ("Assets" in this.World && this.World.Assets != null && this.World.Assets.getEconomicDifficulty() == this.Const.Difficulty.Legendary)
-			{
-			 this.World.Assets.addMoney(-tryoutCost);
-			}
-
-			if (this.World.getRoster(this.m.RosterID).getSize() == 0)
-			{
+			::World.getRoster(this.m.RosterID).remove(entry);
+			if (::World.getRoster(this.m.RosterID).getSize() == 0) {
 				this.m.Parent.getMainDialogModule().reload();
 			}
 

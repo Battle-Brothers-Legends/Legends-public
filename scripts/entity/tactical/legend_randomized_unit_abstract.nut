@@ -81,8 +81,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 
 		this.m.EnemyLevel = this.Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] );
 		this.m.XP = this.m.EnemyLevel * 35;
-		if (!("Assets" in this.World) || (this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary))
-		{
+		if (!::Legends.isLegendaryDifficulty())	{
 			this.m.PerkPower -= 1;
 		}
 	}
