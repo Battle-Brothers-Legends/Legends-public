@@ -109,7 +109,7 @@
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.linen_tunic]
-		]))
+		]));
 	}
 });
 

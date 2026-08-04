@@ -703,7 +703,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     ID = "background.slave",
     Script = "scripts/skills/backgrounds/slave_barbarian_background",
-    Const = "Slave",
+    Const = "SlaveBarbarian",
     Name = "Slave",
 });
 

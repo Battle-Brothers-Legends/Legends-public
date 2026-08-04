@@ -72,9 +72,7 @@
 		talents[this.Const.Attributes.Fatigue] = 2;
 		talents[this.Const.Attributes.MeleeSkill] = 1;
 		talents[this.Const.Attributes.Hitpoints] = 1;
-		bros[2].setStartValuesEx([
-			::Legends.Background.SlaveSouthern
-		]);
+		bros[2].setStartValuesEx([::Legends.Background.SlaveSouthern]);
 		bros[2].setTitle("the Learned");
 		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with %their% wrists until you intervened, opining that %they% owed the Gilder far before %they% owed any man. You hoped to offload %them% to high-paying Viziers, but none would take %them% as %they% was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a %person% of %their% standing, %they% does harbor a fair bit of respect for you.}";
 		bros[2].setPlaceInFormation(2);
@@ -99,9 +97,7 @@
 		bros[3].worsenMood(2.0, "Almost got executed");
 		bros[3].improveMood(2.0, "Relieved that %they% escaped execution");
 		bros[3].worsenMood(0.0, "Worried about what awaits %them% next");
-		bros[4].setStartValuesEx([
-			::Legends.Background.SlaveSouthern
-		]);
+		bros[4].setStartValuesEx([::Legends.Background.SlaveSouthern]);
 		bros[4].setTitle("the Deserter");
 		bros[4].getBackground().m.RawDescription = "{%name% is an heirloom of heresy, a %person% gifted to you by one of the Vizier\'s priests. The %person% was a deserter in the high lord\'s army, but through wealthy connections managed to avoid execution. However, there\'s only one way to avoid the fire of the hells, and that is through indebted gratitude. %They% will work for you until %they% finds salvation, and when that happens is entirely up to you.}";
 		bros[4].setPlaceInFormation(4);
@@ -110,9 +106,7 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
 		bros[4].worsenMood(0.5, "Feels cursed to have deserted one army only to end up an indebted in another");
-		bros[5].setStartValuesEx([
-			::Legends.Background.SlaveSouthern
-		]);
+		bros[5].setStartValuesEx([::Legends.Background.SlaveSouthern]);
 		bros[5].setTitle("the Beggar");
 		bros[5].getBackground().m.RawDescription = "{Found on the streets, %name% never stood much of a chance. Being a beggar, it was physically easy to slap the chains on %them%, and socially no one would care. The Gilder cares not for those who do not work, and every day the %person% squandered without putting in %their% sweat %they% accrued a debt. Now it must be paid lest %they% taste that desert fire for eternity. %They're% actually healthier looking now than when you found %them%, though %they% never seems to thank you for this.}";
 		bros[5].setPlaceInFormation(5);
