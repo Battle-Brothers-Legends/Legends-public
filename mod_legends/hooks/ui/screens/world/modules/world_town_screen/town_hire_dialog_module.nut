@@ -18,7 +18,7 @@
 		if (entry != null) {
 			local tryoutCost = entry.getTryoutCost();
 
-			if (::Legends.Difficulty.DismissCost[::World.Assets.getCombatDifficulty()])	{
+			if (::Legends.Difficulty.DismissCost[::World.Assets.getEconomicDifficulty()])	{
 				if (::World.Assets.getMoney() < tryoutCost) {
 					return {
 						Result = this.Const.UI.Error.NotEnoughMoney,

@@ -67,5 +67,11 @@
 		false,
 		false,
 		true
+	],
+	RollBonus = [
+		5,
+		0,
+		0,
+		0
 	]
 };

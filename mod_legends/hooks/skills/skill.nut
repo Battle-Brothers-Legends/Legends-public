@@ -1368,15 +1368,15 @@
 
 		local r = this.Math.rand(1, 100);
 
-		if (("Assets" in this.World) && this.World.Assets != null && this.World.Assets.getCombatDifficulty() == 0)
+		if (("Assets" in this.World) && this.World.Assets != null)
 		{
 			if (_user.isPlayerControlled())
 			{
-				r = this.Math.max(1, r - 5);
+				r = this.Math.max(1, r - ::Legends.Difficulty.RollBonus[::World.Assets.getCombatDifficulty()]);
 			}
 			else if (_targetEntity.isPlayerControlled())
 			{
-				r = this.Math.min(100, r + 5);
+				r = this.Math.min(100, r + ::Legends.Difficulty.RollBonus[::World.Assets.getCombatDifficulty()]);
 			}
 		}
 
