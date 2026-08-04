@@ -85,10 +85,9 @@
 
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
-		local mult = this.World.FactionManager.isCivilWar() ? 1.1 : 1.0;
-		if (::Legends.isLegendaryDifficulty())
-		{
-			local mult = this.World.FactionManager.isCivilWar() ? 1.2 : 1.0;
+		local mult = ::World.FactionManager.isCivilWar() ? 1.1 : 1.0;
+		if (::Legends.isLegendaryDifficulty()) {
+			mult = ::World.FactionManager.isCivilWar() ? 1.2 : 1.0;
 		}
 		local distanceToNextSettlement = this.getDistanceToSettlements(settlement.getTile());
 		if (::Legends.Mod.ModSettings.getSetting("DistanceScaling").getValue() && distanceToNextSettlement > 14)

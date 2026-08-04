@@ -25,10 +25,9 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isGreenskinInvasion() ? 1.1 : 1.0;
-		if (::Legends.isLegendaryDifficulty())
-			{
-			local mult = this.World.FactionManager.isGreenskinInvasion() ? 1.2 : 1.0;
-			}
+		if (::Legends.isLegendaryDifficulty()) {
+			mult = this.World.FactionManager.isGreenskinInvasion() ? 1.2 : 1.0;
+		}
 		local rand = this.Math.rand(75, 120);
 		//	local nearestOrcs = this.getNearestLocationTo(origin, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getSettlements());
 		//		if (::Legends.isLegendaryDifficulty() && nearestOrcs > 28)

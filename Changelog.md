@@ -317,6 +317,7 @@
 - crafted items types reassigned in some cases to make it more intuitive
 - small visual reorganization to make the stations easier to click
 - right click tents to open the correct list in commander's tent
+- painter tent allows painting the shoulder layer
 
 ## Events
 - added a new town encounter during drought
@@ -327,10 +328,10 @@
 - added a mod setting allowing the player to choose % of female characters
 - added a mod setting allowing the player to choose % of enemy female characters
 - some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler, Widow, Caravan Hand, Miner, Servant (southern), Juggler
+- fixed a bunch of remaining gender issues
 
 ## Other
 - donkey appetite and donkey body integrated into the background
-- painter tent allows painting the shoulder layer
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -342,6 +343,14 @@
 - assassinate no longer grants more damage than the tooltip indicates
 - dog and bag item functionality and tooltip fixes
 - fixed hover boxes on camp objects
+- fixed travelling bard
+- fixed tips button in camp screen overflowing the log
+- fixed encounter event issues
+- donkeys can no longer use tools
+- fixed daze bomb stun
+- fixed window opening related ui bugs
+- various scenario fixes
+- players aren't required to have a brother on the first two rows anymore
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

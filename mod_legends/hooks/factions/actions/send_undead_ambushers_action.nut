@@ -37,10 +37,9 @@
 		local settlement = this.pickWeightedRandom(settlements);
 		settlement.setLastSpawnTimeToNow();
 		local mult = this.World.FactionManager.isUndeadScourge() ? 1.1 : 1.0;
-		if (::Legends.isLegendaryDifficulty())
-			{
+		if (::Legends.isLegendaryDifficulty()) {
 			 mult = this.World.FactionManager.isUndeadScourge() ? 1.2 : 1.0;
-			}
+		}
 		local rand = this.Math.rand(75, 120);
 		local distanceToNextSettlement = this.getDistanceToSettlements(settlement.getTile());
 			if (::Legends.Mod.ModSettings.getSetting("DistanceScaling").getValue() && distanceToNextSettlement > 14)
