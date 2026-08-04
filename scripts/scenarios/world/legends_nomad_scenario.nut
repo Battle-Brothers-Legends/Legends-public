@@ -204,10 +204,10 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			_bro.getSprite("socket").setBrush("bust_base_nomads");
 			::Legends.Perks.grant(_bro, ::Legends.Perk.Dodge);
 		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.Slave)) {
-			bro.improveMood(2.0, "I was emancipated!");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNomad);
-			bro.getSprite("socket").setBrush("bust_base_nomads");
-			::Legends.Perks.grant(bro, ::Legends.Perk.Colossus);
+			_bro.improveMood(2.0, "I was emancipated!");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendNomad);
+			_bro.getSprite("socket").setBrush("bust_base_nomads");
+			::Legends.Perks.grant(_bro, ::Legends.Perk.Colossus);
 		} else {
 			_bro.worsenMood(2.0, "Nomadic life isn\'t for me...");
 		}

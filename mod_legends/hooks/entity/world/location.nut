@@ -194,7 +194,7 @@
 
 		if (this.m.DefenderSpawnList && ("Name" in this.m.DefenderSpawnList))
 		{
-			best = this.Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources)
+			best = this.Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources);
 		}
 		else
 		{
@@ -248,7 +248,7 @@
 
 		if (best == null)
 		{
-			return
+			return;
 		}
 
 		this.m.Troops = [];
