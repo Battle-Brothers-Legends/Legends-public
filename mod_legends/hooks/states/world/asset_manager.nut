@@ -180,7 +180,6 @@
 			}
 		}
 
-		local repairNet = false;
 		foreach( bro in roster )
 		{
 			if (bro.getFlags().get("LegendsCanRepairNet")) {
@@ -778,10 +777,10 @@
 			{
 				activeContract.m.BulletpointsObjectives.pop();
 				if (activeContract.m.Type == "contract.big_game_hunt"){
-					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid")
+					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName() + " to get paid");
 				}
 				else{
-					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName())
+					activeContract.m.BulletpointsObjectives.push("Return to any town of " + contract_faction.getName());
 				}
 				activeContract.m.Flags.set("UpdatedBulletpoints", true);
 				foreach (town in towns)
@@ -795,7 +794,7 @@
 				if (activeContract.isPlayerAt(town))
 				{
 					activeContract.m.Home = this.WeakTableRef(town);
-					break
+					break;
 				}
 			}
 		}
@@ -888,6 +887,46 @@
 
 		stash.sort();
 		this.updateFormation();
+	}
+
+	o.updateFormation = function (considerMaxBros = false) {
+		local NOT_IN_FORMATION = 255;
+		local formation = [];
+		formation.resize(27, false);
+		local roster = this.World.getPlayerRoster().getAll();
+		local hasUnplaced = false;
+		local inCombat = 0;
+
+		foreach (b in roster) {
+			if (b.getPlaceInFormation() != NOT_IN_FORMATION	&& formation[b.getPlaceInFormation()] == false	&& (!considerMaxBros || inCombat < this.m.BrothersMaxInCombat))
+			{
+				formation[b.getPlaceInFormation()] = true;
+				inCombat = ++inCombat;
+			} else {
+				b.setPlaceInFormation(NOT_IN_FORMATION);
+				hasUnplaced = true;
+			}
+		}
+
+		if (hasUnplaced) {
+			foreach (b in roster) {
+				if (b.getPlaceInFormation() != NOT_IN_FORMATION) {
+					continue;
+				}
+
+				local i = 0;
+				while (i != formation.len()) {
+					if (formation[i] == false) {
+						b.setPlaceInFormation(i);
+						formation[i] = true;
+						inCombat = ++inCombat;
+						break;
+					}
+
+					i = ++i;
+				}
+			}
+		}
 	}
 
 	o.clearFormation <- function ()
@@ -1096,7 +1135,6 @@
 
 	o.addBrotherEnding = function ( _brothers, _excludedBackgrounds, _isPositive )
 	{
-		local removeIndex;
 		local candidates = [];
 
 		foreach( i, bro in _brothers )
@@ -1229,12 +1267,12 @@
 		local sortfn = function (first, second)
 		{
 			if (first.Level == second.Level) {
-				return 0
+				return 0;
 			}
 			if (first.Level > second.Level)	{
-				return -1
+				return -1;
 			}
-			return 1
+			return 1;
 		}
 		ret.Brothers.sort(sortfn);
 		return ret;
@@ -1279,7 +1317,7 @@
 		this.m.FormationIndex = _in.readU8();
 		for (local i = 0; i < this.Const.LegendMod.Formations.Count; i++)
 		{
-			this.setFormationName(i, _in.readString())
+			this.setFormationName(i, _in.readString());
 		}
 		this.m.LastDayResourcesUpdated = _in.readU16();
 	}
