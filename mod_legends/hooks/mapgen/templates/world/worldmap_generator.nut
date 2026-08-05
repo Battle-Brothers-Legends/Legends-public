@@ -382,7 +382,7 @@
 			settlementTiles.push(tile);
 			return settlementTiles;
 		}
-		return settlementTiles
+		return settlementTiles;
 	}
 
 	o.buildSettlements = function ( _rect )
@@ -432,7 +432,7 @@
 		}
 
 		this.logInfo("Created " + settlementTiles.len() + " settlements.");
-		return settlementTiles.len() >= 19
+		return settlementTiles.len() >= 19;
 	}
 
 	o.guaranteeAllBuildingsInSettlements = function ()
@@ -719,7 +719,7 @@
 			{
 				if (a.getTypeID() in locs)
 				{
-					locs[a.getTypeID()].Amount += 1
+					locs[a.getTypeID()].Amount += 1;
 				}
 			}
 		}

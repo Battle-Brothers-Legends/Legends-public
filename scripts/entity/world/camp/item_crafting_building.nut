@@ -82,12 +82,12 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		local numToCraft = craftableQueue.len() + crafted;
 		local progress = ::Math.floor(10000 * this.m.CurrentProgress) / 100.0;
 
-		local ret = this.m.ActivityName + "ed ..." + crafted + " / ";
+		local ret = this.m.ActivityName + "ed ... " + crafted + " / ";
 		if (craftableQueue.len() == 0) {
 			return ret + crafted;
 		}
 
-		return ret + numToCraft + " ... " + progress + "% of " + this.m.CurrentCraft;
+		return ret + numToCraft + " ... " + progress + "%" + (this.m.CurrentCraft != null ? " of " + this.m.CurrentCraft : "");
 	}
 
 	function getCraftableQueue() {

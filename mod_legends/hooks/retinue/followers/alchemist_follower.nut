@@ -18,7 +18,7 @@
 		}, false, function( _r ) {
 			_r.Count <- 10;
 			_r.UpdateText <- function() {
-				this.Text = "Crafted " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("ItemsCrafted")) + "/" + this.Count + " items"
+				this.Text = "Crafted " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("ItemsCrafted")) + "/" + this.Count + " items";
 			};
 		});
 

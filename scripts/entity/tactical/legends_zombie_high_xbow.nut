@@ -20,10 +20,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		this.m.Skills.update();
 	}
 
-	function assignRandomEquipment()
-	{
-		local r;
-
+	function assignRandomEquipment() {
 		this.m.Items.equip(this.new("scripts/items/weapons/heavy_crossbow"));
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
