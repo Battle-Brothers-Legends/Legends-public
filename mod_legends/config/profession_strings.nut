@@ -46,6 +46,7 @@
 ::Const.Strings.ProfessionName.LegendOffBookDeal <- "Off Book Deal";
 ::Const.Strings.ProfessionName.LegendOnTheGrapevine <- "On The Grapevine";
 ::Const.Strings.ProfessionName.LegendPaymaster <- "Paymaster";
+::Const.Strings.ProfessionName.LegendPersonalSeal <- "Personal Seal";
 ::Const.Strings.ProfessionName.LegendPetardry <- "Petardry";
 ::Const.Strings.ProfessionName.LegendProsthetics <- "Prosthetics";
 ::Const.Strings.ProfessionName.LegendRationing <- "Rationing";
@@ -55,6 +56,7 @@
 ::Const.Strings.ProfessionName.LegendSilverTongued <- "Silver Tongued";
 ::Const.Strings.ProfessionName.LegendSizeThemUp <- "Size Them Up";
 ::Const.Strings.ProfessionName.LegendSkillfulStacking <- "Skillful Stacking";
+::Const.Strings.ProfessionName.LegendSkinning <- "Skinning";
 ::Const.Strings.ProfessionName.LegendSpareParts <- "Spare Parts";
 ::Const.Strings.ProfessionName.LegendSpotTheTells <- "Spot The Tells";
 ::Const.Strings.ProfessionName.LegendTailoring <- "Tailoring";
@@ -381,7 +383,7 @@ Skin, the most flexible and durable material known to man.
 [color=%passive%][u]Passive:[/u][/color]
 • Craft leather equipment while camping.
 
-•Increases the crafting speed of leather equipment.
+• Increases the crafting speed of leather equipment.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendLookout <- @"
@@ -448,6 +450,13 @@ Shifting numbers, negotiating pay terms and usury are all valid ways of driving 
 • Lowers the wages in the company.
 
 • Prevents mercenaries from demanding more pay.
+";
+
+::Const.Strings.ProfessionDescription.LegendPersonalSeal <- @"
+A mark of a craftsman can make steel famous without a hand wielding it.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Crafting equipment increases renown slightly.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendPetardry <- @"
@@ -523,6 +532,13 @@ By creating neat stacks and tying gear down well ensure not a single inch goes t
 
 [color=%passive%][u]Passive:[/u][/color]
 • Grants additional stash space.
+";
+
+::Const.Strings.ProfessionDescription.LegendSkinning <- @"
+Killing the beast is only half the work and a proper payday requires a careful hand.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Grants a chance to loot extra monster trophies.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendSpareParts <- @"

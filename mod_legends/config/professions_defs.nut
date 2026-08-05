@@ -640,6 +640,19 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendPersonalSeal <- null;
+professionDefObjects.push({
+    ID = "profession.legend_personal_seal",
+    Script = "scripts/skills/professions/profession_legend_personal_seal",
+    Name = ::Const.Strings.ProfessionName.LegendPersonalSeal,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendPersonalSeal,
+    Icon = "ui/professions/personal_seal.png",
+    IconDisabled = "ui/professions/personal_seal_bw.png",
+    Const = "LegendPersonalSeal",
+    ScalingArray = [0, 0.5], // renown for crafting 0.1 equals to 1 per 1k value
+    ScalingFactor = 0.05
+});
+
 ::Legends.Profession.LegendPetardry <- null;
 professionDefObjects.push({
     ID = "profession.legend_petardry",
@@ -726,6 +739,19 @@ professionDefObjects.push({
     IconDisabled = "ui/professions/size_them_up_bw.png",
     Const = "LegendSizeThemUp",
     ScalingArray = [0, 0.5], // attribute range clamping
+    ScalingFactor = 0.05
+});
+
+::Legends.Profession.LegendSkinning <- null;
+professionDefObjects.push({
+    ID = "profession.legend_skinning",
+    Script = "scripts/skills/professions/profession_legend_skinning",
+    Name = ::Const.Strings.ProfessionName.LegendSkinning,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendSkinning,
+    Icon = "ui/professions/skinning.png",
+    IconDisabled = "ui/professions/skinning_bw.png",
+    Const = "LegendSkinning",
+    ScalingArray = [0, 0.2], // chance of extra loot from beasts
     ScalingFactor = 0.05
 });
 

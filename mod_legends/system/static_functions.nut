@@ -75,7 +75,7 @@
 }
 
 ::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
 }
 
 ::Legends.S.getNeighbouringActors <- function (_tile)
