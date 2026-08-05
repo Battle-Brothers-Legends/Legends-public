@@ -68,6 +68,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[3].getBackground().m.RawDescription = "Once a proud necromancer, %name% took three pupils under their wing to train the next generation of great necromancers. What %name% did not seeing coming is a heart attack - one that left them like a corpse like they used to command. With this macabre irony in mind, they now serve their students in unlife as little more than fodder.";
 		bros[3].setPlaceInFormation(12);
 		bros[3].setVeteranPerks(2);
+		bros[3].PerkPoints = 1;
+		bros[3].LevelUps = 1;
+		bros[3].Level = 2;
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendZombieBite);
 
 		//Starting stash

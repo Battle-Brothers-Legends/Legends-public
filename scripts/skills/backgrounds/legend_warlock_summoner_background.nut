@@ -153,7 +153,8 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 	{
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeDefense] = 2;
+		talents[this.Const.Attributes.Hitpoints] = 2;
+		talents[this.Const.Attributes.MeleeDefense] = 1;
 		talents[this.Const.Attributes.RangedDefense] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
