@@ -120,10 +120,12 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		else
 		{
 			_properties.IsAffectedByLosingHitpoints = true;
-			_properties.IsAffectedByInjuries = true;
-			_properties.IsAffectedByFreshInjuries = true;
-			_properties.IsImmuneToBleeding = false;
-			_properties.IsImmuneToPoison = false;
+			if (!::Legends.Traits.has(this.getContainer().getActor(), ::Legends.Trait.RacialGhost)) {
+				_properties.IsAffectedByInjuries = true;
+				_properties.IsAffectedByFreshInjuries = true;
+				_properties.IsImmuneToBleeding = false;
+				_properties.IsImmuneToPoison = false;
+			}
 		}
 	}
 
