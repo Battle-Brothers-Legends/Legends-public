@@ -370,19 +370,9 @@ this.camp_building <- {
 		return this.m.TooltipIcon;
 	}
 
-	function getNumberAssigned()
-	{
-		local count = 0;
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( b in roster )
-		{
-			if (b.getCampAssignment() != this.m.ID)
-			{
-				continue;
-			}
-			++count;
-		}
-		return count;
+	function getNumberAssigned() {
+		local self = this;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && !_bro.isStabled()).len();
 	}
 
 	function getBanner(bro = null)
