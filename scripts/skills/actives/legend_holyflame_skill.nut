@@ -93,7 +93,7 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 		{
 			if (!_targetTile.hasNextTile(i))
 			{
-				continue
+				continue;
 			}
 			local tile = _targetTile.getNextTile(i);
 			targets.push(tile);
