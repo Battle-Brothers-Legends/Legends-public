@@ -110,7 +110,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		local r = this.Math.rand(1, 100);
 		local chance = this.Math.min(100, this.Math.floor(bonus * 0.5));
 		if (r <= chance) {
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(actor) + "\'s " + this.getName() + " completely bypasseses " + this.Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses with great flourish (Chance: " + chance + ", Rolled: " + r + ")");
+			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(actor) + "\'s " + this.getName() + " completely bypasses " + this.Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses (Chance: " + chance + ", Rolled: " + r + ")");
 			_hitInfo.DamageDirect = 1.0;
 		}
 	}
