@@ -20,14 +20,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Description = "Training";
 		this.m.BannerImage = "ui/buttons/banner_train.png";
 		this.m.CanEnter = false;
-		local sounds = [];
-		for (local i = 1; i <= 3; i++)	{
-			sounds.push({
-				File = format("ambience/camp/camp_training_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = getCampSounds(3, "training");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
@@ -36,14 +29,9 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription()
-	{
-		local desc = "Whether a seasoned veteran or a green recruit, there\'s always something new to learn. Gain experience over time based on the total training modifier of mercenaries in this tent. Brothers are liable to get inured or exhausted while training.";
-
-		desc = desc + "Having highly skilled teachers in the grounds increases the chances of successfully learning something new, which will be tracked under \'Intensive Training\' progress under their traits. ";
-		desc = desc + "\n\n";
-		desc = desc + "Training grounds can be upgraded by purchasing an upgrade set in local markets. Upgraded grounds reduce the risk of accidents from a minimum of 5% to 1% and also give the chance of a permanent random skill increase.";
-		return desc;
+	function getDescription() {
+		//"Training grounds can be upgraded by purchasing an upgrade set in local markets. Upgraded grounds reduce the risk of accidents from a minimum of 5% to 1% and also give the chance of a permanent random skill increase.";
+		return "Brothers will train here, gaining experience while camping. Every training session carries a risk of exhaustion and injury.";
 	}
 
 	function getModifierTooltip() {
@@ -85,14 +73,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function init()	{
 		this.m.Results = [];
 		this.m.NumBros = this.getAssignedBros();
-		this.m.UnTrained = 0;
-
-		foreach( bro in ::World.getPlayerRoster().getAll() ) {
-			if (bro.getCampAssignment() != this.m.ID) {
-				continue;
-			}
-			++this.m.UnTrained;
-		}
+		local self = this;
+		this.m.UnTrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID).len();	
 	}
 
 	function getModifiers()	{
@@ -102,33 +84,15 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			Modifiers = []
 		};
 		local roster = ::World.getPlayerRoster().getAll();
-		local hasTrainer = false;
 
-		foreach( bro in roster ) {
-			if (bro.getCampAssignment() == this.m.ID && bro.getSkills().hasPerk(::Legends.Perk.LegendMasterTrainer))
-			{
-				hasTrainer = true;
-			}
-		}
+		local self = this;
+		local hasTrainer = roster.filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && _bro.getSkills().hasPerk(::Legends.Perk.LegendMasterTrainer)).len() > 0;
 
-
-		foreach( bro in roster ) {
-			if (bro.getCampAssignment() != this.m.ID) {
-				continue;
-			}
-
-			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers().Training;
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics))	{
-				mod += 0.1;
-			}
-
-			if (hasTrainer)	{
-				mod += 0.1;
-			}
-
-			++ret.Assigned;
+		local trainingBros = roster.filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID);
+		foreach( bro in trainingBros ) {
+			ret.Assigned++;
 			ret.Modifiers.push([
-				mod,
+				this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Training) + (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics) ? 0.1 : 0) + (hasTrainer ? 0.1 : 0),
 				bro.getName(),
 				bro.getBackground().getNameOnly(),
 				bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) ? ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining).isMaxReached() : false
@@ -153,7 +117,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 		}
 
-		return names[this.Math.rand(0, names.len() - 1)];
+		return names[::Math.rand(0, names.len() - 1)];
 	}
 
 
@@ -188,7 +152,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getDescriptors( bro, extraTrainingDescriptors){
 		local numberOfMTA = this.m.TrainingDescriptors.M.len() * this.m.TrainingDescriptors.T.len() * this.m.TrainingDescriptors.A.len();
 		local numberOfExtraDescriptors = extraTrainingDescriptors.len() + numberOfMTA;
-		local r = this.Math.rand(0, numberOfExtraDescriptors - 1);
+		local r = ::Math.rand(0, numberOfExtraDescriptors - 1);
 
 		if (r < numberOfMTA) {
 			return "After practicing " + this.m.TrainingDescriptors.M[(r / (this.m.TrainingDescriptors.A.len() * this.m.TrainingDescriptors.T.len())) % this.m.TrainingDescriptors.M.len()] + this.m.TrainingDescriptors.T[(r / this.m.TrainingDescriptors.A.len()) % this.m.TrainingDescriptors.T.len()] + bro.getName() + this.m.TrainingDescriptors.A[r % this.m.TrainingDescriptors.A.len()];
@@ -201,7 +165,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function getTrained( bro )
 	{
 		local inTraining = ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining);
-		local XPbonus = this.Math.floor(this.m.Camp.getCampTimeHours() * (this.getUpgraded() ? 10 : 5) * (inTraining == null ? 1 : (1 + inTraining.getBonusXP())));
+		local XPbonus = ::Math.floor(this.m.Camp.getCampTimeHours() * (this.getUpgraded() ? 10 : 5) * (inTraining == null ? 1 : (1 + inTraining.getBonusXP())));
 		local originalXP = bro.m.XP;
 		bro.addXP(XPbonus);
 		bro.updateLevel();
@@ -227,13 +191,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Results.push({
 			Icon = "ui/icons/xp_received.png",
-			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + (bro.m.XP - originalXP) + "[/color] XP."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains [color=%positive%]" + (bro.m.XP - originalXP) + "[/color] XP."
 		});
 		return true;
 	}
 
-	function getTrainedAfter11( bro )
-	{
+	function getTrainedAfter11( bro ) {
 		if (bro.getSkills().hasEffect(::Legends.Effect.Trained)) {
 			return;
 		}
@@ -250,7 +213,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Results.push({
 			Icon = effect.getIcon(),
-			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains a [color=" + this.Const.UI.Color.PositiveEventValue + "]10%[/color] xp increase for the next battle."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains a [color=%positive%]10%[/color] xp increase for the next battle."
 		});
 		return true;
 	}
@@ -354,12 +317,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			inTraining.finishedTraining(traitConst);
 			this.m.Results.push({
 				Icon = "ui/icons/level.png",
-				Text = bro.getName() + " completed the training course and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]1[/color] " + text + ", Perk Point and " + ::Legends.Traits.get(bro, traitConst).getName()
+				Text = bro.getName() + " completed the training course and gains [color=%positive%]1[/color] " + text + ", Perk Point and " + ::Legends.Traits.get(bro, traitConst).getName()
 			});
 		} else {
 			this.m.Results.push({
 				Icon = icon,
-				Text = bro.getName() + " had a breakthrough training session and gains [color=" + this.Const.UI.Color.PositiveEventValue + "]1[/color] " + text
+				Text = bro.getName() + " had a breakthrough training session and gains [color=%positive%]1[/color] " + text
 			});
 		}
 	}
@@ -434,21 +397,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
                     });
                 }
 			}
-
 		}
-	}
-
-	function onClicked( _campScreen ) {
-		_campScreen.showTrainingDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out ) {
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )  {
-		this.camp_building.onDeserialize(_in);
 	}
 });
 

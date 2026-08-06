@@ -9,16 +9,25 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.Escorting = true;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
-		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here. .";
+		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here.";
 		this.m.BannerImage = "ui/buttons/banner_rest.png";
+		local sounds = [
+			{
+				File = "ambience/camp/camp_rest_campfire.wav",
+				Volume = 1.0,
+				Pitch = 1.0
+			}
+		];
+		sounds.extend(this.getCampSounds(9, "rest_general"));
+		sounds.extend(this.getCampSounds(3, "rest_laugh"));
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
+		this.m.SoundsAtNight.extend(this.getCampSounds(3, "rest_snore"));
 		this.m.CanEnter = false;
 	}
 
 	function getDescription() {
-		local desc = "";
-		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. ";
-		desc += "Resting can improve the mood of even the grumpiest mercenary.";
-		return desc;
+		return "Set your mercenaries to rest here. Prolonged rest can improve mood of even the grumpiest mercenary.";
 	}
 
 	function getLevel() {
@@ -36,7 +45,6 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	}
 
 	function completed() {
-
 		if (this.m.Camp.getCampTimeHours() < 8) {
 			return;
 		}
@@ -50,16 +58,12 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			mood = 1.5;
 		}
 
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getCampAssignment() != this.m.ID) {
-				continue;
-			}
-
-			if (bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - bro.getLastCampTime() > ::World.getTime().SecondsPerDay) {
+		local self = this;
+		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay)));
+		foreach (bro in restingBros) {
 				this.getRested(bro);
 				bro.improveMood(mood, "Was able to rest in camp");
 				bro.setLastCampTime(this.m.Camp.getStopTime());
-			}
 		}
 	}
 
@@ -68,17 +72,12 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local activities = [
 			"While resting at camp, " + bro.getName() + " has a liquid lunch or three",
 			bro.getName() + " makes shadow puppets by the fire",
-			bro.getName() + " naps through the day", // can technically make this for multiple days
+			bro.getName() + " naps through the day",
 			bro.getName() + " yells unconstructive criticism at the rest of the camp",
 			bro.getName() + " frolics through a nearby flower patch",
 			bro.getName() + " draws generously proportioned figures with a stick",
 			bro.getName() + " talks about putting a handgonne on an axe",
 			bro.getName() + " makes a makeshift flail with a stick and some onions"
-			// "Bill and Jill dance a merry jig around camp",
-			// "Bill and Jill take turns kicking a leather ball around",
-			// "Bill and Jill take turns swapping increasingly tall stories",
-			// "Bill and Jill take turns arm wrestling",
-			// "Bill and Jill play dice to wile away the hours"
 		];
 
 		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk))
@@ -137,18 +136,4 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function getResults() {
 		return this.m.Results;
 	}
-
-	function onClicked(_campScreen) {
-		_campScreen.showRestDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize(_out) {
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize(_in) {
-		this.camp_building.onDeserialize(_in);
-	}
-
 });

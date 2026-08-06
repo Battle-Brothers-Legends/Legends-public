@@ -369,6 +369,8 @@
 - camp buildings: getModifierToolip -> getModifierTooltip
 - Barter -> Haggle
 - removed delayed event fix (Vanilla already fixed it in a better place in the chain, possibly fixes event bugs)
+- moved `player_party` bro and equipment strength calculations to difficulty helper
+- camp screen and building changes
 - `LegendExtendendAura` -> `LegendExtendedAura`
 - `LegendTattos` -> `LegendTattoos`
 - `LegendFortify` -> deleted

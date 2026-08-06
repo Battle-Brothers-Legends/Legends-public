@@ -15,50 +15,25 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.BaseCraft = 10;
 		this.m.Conversion = 30.0;
 		this.m.ModName = "Salvage";
-		this.m.ID = this.Const.World.CampBuildings.Workshop;
+		this.m.ID = ::Const.World.CampBuildings.Workshop;
 		this.m.Slot = "scrap";
 		this.m.Name = "Salvage Tent";
 		this.m.Description = "Turn scrap into useable parts";
 		this.m.BannerImage = "ui/buttons/banner_scrap.png";
-		local sounds = [];
-		for (local i = 1; i <= 6; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_scrap_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = getCampSounds(6, "scrap");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
-		}
-
-		return this.m.Name + " *Not Upgraded*";
+	function getTitle() {
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc = desc + "Repairing equipment takes tools. Break down and reuse equipment in your stash to create tools to repair other gear. ";
-		desc = desc + "Once an item reaches zero durability, it will be consumed and destroyed. Every 30 durability equals a tool. ";
-		desc = desc + "\n\n";
-		desc = desc + "The more people assigned to the tent, the quicker items will be salvaged. People with salvage skills increase the speed further.";
-		desc = desc + "\n\n";
-		desc = desc + "The salvage tent can be upgraded by purchasing a salvage cart from a settlement merchant. An upgraded tent has a 15% increase in salvage speed and every 10 durability equals a tool.";
-		desc = desc + "\n\n";
-		desc = desc + "Holding Alt and right clicking on an item in your inventory can send it to your repair or salvage queues";
-
-		return desc;
+	function getDescription() {	//desc = desc + "The salvage tent can be upgraded by purchasing a salvage cart from a settlement merchant. An upgraded tent has a 15% increase in salvage speed and every 10 durability equals a tool.";
+		return "Break down equipment into tools in selected order. Once an item reaches zero durability, it will be destroyed.";
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		this.init();
 		local nonNullEntries = 0;
 		foreach (_, value in this.m.Salvage) {
@@ -104,58 +79,27 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return ret;
 	}
 
-	function isHidden()
-	{
-		if (::Legends.Settings.skipCamp())
-		{
-			return false;
-		}
-
-		return !::World.Flags.get(::Legends.Camp.Flag.Scrap);
+	function isHidden()	{
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Scrap);
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Scrap);
+	function getUpgraded() {
+		return ::Stash.hasItem(::Legends.Camp.Tent.Scrap);
 	}
 
-	function getLevel()
-	{
-		local pro = "dude";
-
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0)
-		{
-			sub = "full";
-		}
-
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()
-	{
+	function init()	{
 		this.onInit();
 		this.m.ToolsCreated = 0;
 		this.m.PointsSalvaged = 0;
 		this.m.ItemsDestroyed = 0;
-		local mod = this.getModifiers();
-		this.m.NumBros = mod.Assigned;
+		this.m.NumBros = this.getModifiers().Assigned;
 		this.m.PointsNeeded = 0;
-
-		foreach( _, r in this.m.Salvage )
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			this.m.PointsNeeded += r.Item.getRepair();
+		foreach (item in this.m.Salvage.filter(@(_, _item) (_item != null))) {
+			this.m.PointsNeeded += item.Item.getRepair();
 		}
 	}
 
@@ -167,41 +111,33 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local capacity = this.m.Salvage.len() + this.m.Stash.len();
 		this.m.Capacity = capacity;
 
-		while (this.m.Stash.len() < capacity)
-		{
+		while (this.m.Stash.len() < capacity) {
 			this.m.Stash.push(null);
 		}
 
-		while (this.m.Salvage.len() < capacity)
-		{
+		while (this.m.Salvage.len() < capacity)	{
 			this.m.Salvage.push(null);
 		}
 	}
 
-	function getConversionRate()
-	{
+	function getConversionRate() {
 		return this.m.Conversion;
 	}
 
-	function getStash()
-	{
+	function getStash()	{
 		return this.m.Stash;
 	}
 
-	function getRepairs()
-	{
+	function getRepairs() {
 		return this.m.Salvage;
 	}
 
-	function getCapacity()
-	{
+	function getCapacity() {
 		return this.m.Capacity;
 	}
 
-	function getResults()
-	{
-		if (this.m.ToolsCreated == 0)
-		{
+	function getResults() {
+		if (this.m.ToolsCreated == 0) {
 			return [];
 		}
 
@@ -209,143 +145,84 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			{
 				id = 11,
 				icon = "ui/icons/asset_supplies.png",
-				text = "You created [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Math.floor(this.m.ToolsCreated) + "[/color] units of tools and salvaged [color=" + this.Const.UI.Color.NegativeEventValue + "]" + this.m.ItemsDestroyed + "[/color] pieces of equipment."
+				text = "You created [color=%positive%]" + ::Math.floor(this.m.ToolsCreated) + "[/color] units of tools and salvaged [color=%negative%]" + this.m.ItemsDestroyed + "[/color] pieces of equipment."
 			}
 		];
 	}
 
-	function getModifiers()
-	{
+	function getModifiers()	{
 		local ret = this.camp_building.getModifiers();
 
-		if (this.getUpgraded())
-		{
+		if (this.getUpgraded())	{
 			ret.Consumption = 1.0 / 10.0;
 		}
 
 		return ret;
 	}
 
-	function getRequiredSupplies()
-	{
+	function getSalvagePoints(){
 		local points = 0;
-
-		foreach( _, r in this.m.Salvage )
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			points = points + r.Item.getRepair();
+		local salvage = this.m.Salvage.filter(@(_, _item) (_item != null));
+		foreach (_item in salvage) {
+			points += _item.Item.getRepair();
 		}
-
-		local modifiers = this.getModifiers();
-		return this.Math.ceil(points * modifiers.Consumption);
+		return points;
 	}
 
-	function getRequiredTime()
-	{
-		local points = 0;
+	function getRequiredSupplies() {
+		return ::Math.ceil(this.getSalvagePoints() * this.getModifiers().Consumption);
+	}
+
+	function getRequiredTime() {
 		this.init();
-		if (this.m.Salvage == null)
-		{
+		if (this.m.Salvage == null)	{
 			return 0;
 		}
 
-		foreach( _, r in this.m.Salvage )
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			points = points + r.Item.getRepair();
-		}
-
-		local modifiers = this.getModifiers();
-
-		if (modifiers.Craft <= 0)
-		{
-			return 0;
-		}
-
-		return this.Math.ceil(points / modifiers.Craft);
+		return this.getModifiers().Craft > 0 ? ::Math.ceil(this.getSalvagePoints() / this.getModifiers().Craft) : 0;
 	}
 
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
+	function getAssignedBros() {
+		return this.getModifiers().Assigned;
 	}
 
-	function getResourceImage()
-	{
+	function getResourceImage()	{
 		return "ui/buttons/icon_time.png";
 	}
 
-	function getResourceCount()
-	{
+	function getResourceCount()	{
 		return this.getRequiredTime();
 	}
 
-	function getUpdateText()
-	{
+	function getUpdateText() {
 		if (this.m.PointsNeeded == 0)
 			return "No salvage queued";
 
 		if (this.getRequiredSupplies() == 0)
 			return "Salvaged ... 100%";
 
-		local percent = this.Math.floor(this.m.PointsSalvaged / this.m.PointsNeeded * 10000) / 100.0;
-		local text = "Salvaged ... " + percent + "%";
-
-		if (this.World.Assets.getArmorPartsF() == this.World.Assets.getMaxArmorParts())
-			return text + " (At max tools!)";
-
-		return text;
+		return "Salvaged ... " + (::Math.floor((this.m.PointsSalvaged / this.m.PointsNeeded) * 10000) / 100.0) + "%" + (::World.Assets.getArmorPartsF() == ::World.Assets.getMaxArmorParts() ? "(At max tools!)" : "");
 	}
 
-	function update()
-	{
-		if (this.World.Assets.getArmorPartsF() >= this.World.Assets.getMaxArmorParts())
-		{
-			return this.getUpdateText();
-		}
-
-		if (this.m.Salvage == null)
-		{
-			return this.getUpdateText();
-		}
-
-		if (this.m.Salvage.len() == 0)
-		{
+	function update() {
+		if (this.m.Salvage == null || this.m.Salvage.len() == 0 || ::World.Assets.getArmorPartsF() >= ::World.Assets.getMaxArmorParts()) {
 			return this.getUpdateText();
 		}
 
 		local modifiers = this.getModifiers();
 
-		foreach( i, r in this.m.Salvage )
-		{
-			if (r == null)
-			{
+		foreach(i, r in this.m.Salvage)	{
+			if (r == null) {
 				continue;
 			}
 
-			if (this.World.Assets.getArmorPartsF() >= this.World.Assets.getMaxArmorParts())
-			{
-				break;
-			}
-
-			if (modifiers.Craft <= 0)
-			{
+			if (modifiers.Craft <= 0 || ::World.Assets.getArmorPartsF() >= ::World.Assets.getMaxArmorParts()) {
 				break;
 			}
 
 			local consumed = r.Item.getRepair();
 
-			if (modifiers.Craft < consumed)
-			{
+			if (modifiers.Craft < consumed)	{
 				consumed = modifiers.Craft;
 			}
 
@@ -354,10 +231,9 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			this.m.PointsSalvaged += consumed;
 			local created = consumed * modifiers.Consumption;
 			this.m.ToolsCreated += created;
-			this.World.Assets.addArmorPartsF(created);
+			::World.Assets.addArmorPartsF(created);
 
-			if (r.Item.getRepair() <= 0)
-			{
+			if (r.Item.getRepair() <= 0) {
 				this.m.ItemsDestroyed += 1;
 				local myItem = ::World.Assets.getStash().getItemByInstanceID(r.Item.getInstanceID());
 				if (myItem == null)
@@ -373,7 +249,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					this.World.Assets.getStash().add(rune);
 				}
 
-				this.World.Assets.getStash().remove(r.Item);
+				::World.Assets.getStash().remove(r.Item);
 				this.m.Salvage[i] = null;
 			}
 		}
@@ -381,177 +257,99 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.getUpdateText();
 	}
 
-	function sortSalvageQueue( _f1, _f2 )
-	{
-		if (_f1.Item.isToBeSalvagedQ() > _f2.Item.isToBeSalvagedQ())
-		{
-			return 1;
-		}
-		else if (_f1.Item.isToBeSalvagedQ() < _f2.Item.isToBeSalvagedQ())
-		{
-			return -1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-
 	function getListOfEquipment()
 	{
 		local items = [];
 		local stash = [];
-		local roster = this.World.getPlayerRoster().getAll();
-		local stashItems = this.Stash.getItems();
-
-		foreach( item in stashItems )
-		{
-			if (item == null)
-			{
-				continue;
-			}
-
-			if (item.isIndestructible())
-			{
-				continue;
-			}
-
-			if (item.getCondition() <= 0)
-			{
-				continue;
-			}
-
-			if (item.isToBeRepaired())
-			{
-				continue;
-			}
-
-			if (!item.canBeSalvaged())
-			{
-				continue;
-			}
-
-			if (item.isToBeSalvaged())
-			{
-				items.push({
-					Bro = null,
-					Item = item
-				});
-			}
-			else
-			{
-				stash.push({
-					Bro = null,
-					Item = item
-				});
-			}
+		local stashItemsToBeSalvaged = ::Stash.getItems().filter(@(_,_item) (_item != null && !_item.isIndestructible() && _item.getCondition() > 0 && !_item.isToBeRepaired() && _item.canBeSalvaged()));
+		foreach(item in stashItemsToBeSalvaged)	{
+			local target = item.isToBeSalvaged() ? items : stash;
+			target.push({
+				Bro = null,
+				Item = item
+			});
 		}
 
-		items.sort(this.sortSalvageQueue);
+		items.sort(@(_a, _b) _a.Item.isToBeSalvagedQ() - _b.Item.isToBeSalvagedQ());
 		return {
 			Items = items,
 			Stash = stash
 		};
 	}
 
-	function assignAll( _filter = 0 )
-	{
-		if (_filter == 0)
-		{
-			_filter = this.Const.Items.ItemFilter.All;
+	function assignAll( _filter = 0 ) {
+		if (_filter == 0) {
+			_filter = ::Const.Items.ItemFilter.All;
 		}
 
 		local index = 0;
-
-		foreach( i, s in this.m.Stash )
-		{
-			if (s == null)
-			{
+		foreach (i, s in this.m.Stash) {
+			if (s == null) {
 				continue;
 			}
 
-			if (_filter == 99 && s.Bro != null)
-			{
+			if (_filter == 99 && s.Bro != null)	{
 				continue;
-			}
-			else if ((s.Item.getItemType() & _filter) == 0)
-			{
+			} else if ((s.Item.getItemType() & _filter) == 0) {
 				continue;
 			}
 
-			while (index < this.m.Salvage.len())
-			{
-				if (this.m.Salvage[index] == null)
-				{
+			while (index < this.m.Salvage.len()) {
+				if (this.m.Salvage[index] == null) {
 					break;
 				}
-
-				index = ++index;
+				index++;
 			}
 
 			s.Item.setToBeSalvaged(true, index);
-
-			if (index >= this.m.Salvage.len())
-			{
+			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			if (index >= this.m.Salvage.len()) {
 				this.m.Salvage.push(s);
-			}
-			else
-			{
+			} else {
 				this.m.Salvage[index] = s;
 			}
-
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+			
 			this.m.Stash[i] = null;
+			index++;
 		}
 	}
 
-	function removeAll()
-	{
+	function removeAll() {
 		local index = 0;
 
-		foreach( i, s in this.m.Salvage )
-		{
-			if (s == null)
-			{
+		foreach(i, s in this.m.Salvage)	{
+			if (s == null) {
 				continue;
 			}
 
-			while (index < this.m.Salvage.len())
-			{
-				if (this.m.Stash[index] == null)
-				{
+			while (index < this.m.Stash.len()) {
+				if (this.m.Stash[index] == null) {
 					break;
 				}
-
-				index = ++index;
+				index++;
 			}
 
 			s.Item.setToBeSalvaged(false, 0);
-
-			if (index >= this.m.Stash.len())
-			{
+			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			if (index >= this.m.Stash.len()) {
 				this.m.Stash.push(s);
-			}
-			else
-			{
+			} else {
 				this.m.Stash[index] = s;
 			}
 
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
 			this.m.Salvage[i] = null;
+			index++;
 		}
 	}
 
 	function swapItems( sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx )
 	{
-		if (targetItemOwner == null)
-		{
+		if (targetItemOwner == null) {
 			this.logError("onSwapItem #1");
 			return false;
 		}
 
-		if (sourceItemOwner == targetItemOwner && sourceItemIdx == targetItemIdx)
-		{
+		if (sourceItemOwner == targetItemOwner && sourceItemIdx == targetItemIdx) {
 			return false;
 		}
 
@@ -559,17 +357,13 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local targetList;
 		local isRepair = false;
 
-		switch(sourceItemOwner)
-		{
+		switch(sourceItemOwner)	{
 		case "camp-screen-workshop-dialog-module.stash":
 			sourceList = this.m.Stash;
 
-			if (sourceItemOwner == targetItemOwner)
-			{
+			if (sourceItemOwner == targetItemOwner)	{
 				targetList = this.m.Stash;
-			}
-			else
-			{
+			} else {
 				targetList = this.m.Salvage;
 				isRepair = true;
 			}
@@ -579,13 +373,10 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		case "camp-screen-workshop-dialog-module.shop":
 			sourceList = this.m.Salvage;
 
-			if (sourceItemOwner == targetItemOwner)
-			{
+			if (sourceItemOwner == targetItemOwner)	{
 				targetList = this.m.Salvage;
 				isRepair = true;
-			}
-			else
-			{
+			} else {
 				targetList = this.m.Stash;
 			}
 
@@ -594,83 +385,40 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		local sourceItem = sourceList[sourceItemIdx];
 
-		if (sourceItem == null)
-		{
+		if (sourceItem == null) {
 			this.logError("onSwapItem(stash) #2");
 			return false;
 		}
 
-		if (targetItemIdx != null)
-		{
-			while (targetItemIdx > targetList.len() - 1)
-			{
+		if (targetItemIdx != null) {
+			while (targetItemIdx > targetList.len() - 1) {
 				targetList.push(null);
 			}
 
 			sourceList[sourceItemIdx] = targetList[targetItemIdx];
 			targetList[targetItemIdx] = sourceItem;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-			local index = 0;
-
-			if (isRepair)
-			{
-				index = targetItemIdx;
-			}
-
-			sourceItem.Item.setToBeSalvaged(isRepair, index);
+			sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			sourceItem.Item.setToBeSalvaged(isRepair, isRepair ? targetItemIdx : 0);
 			return true;
 		}
 
-		foreach( i, r in targetList )
-		{
-			if (r != null)
-			{
+		foreach( i, r in targetList ) {
+			if (r != null) {
 				continue;
 			}
 
 			targetList[i] = sourceItem;
 			sourceList[sourceItemIdx] = null;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-			local index = 0;
-
-			if (isRepair)
-			{
-				index = i;
-			}
-
-			sourceItem.Item.setToBeSalvaged(isRepair, index);
+			sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			sourceItem.Item.setToBeSalvaged(isRepair, isRepair ? i : 0);
 			return true;
 		}
 
 		targetList.push(sourceItem);
 		sourceList[sourceItemIdx] = null;
-		sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-		local index = 0;
-
-		if (isRepair)
-		{
-			index = targetList.len() - 1;
-		}
-
-		sourceItem.Item.setToBeSalvaged(isRepair, index);
+		sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+		sourceItem.Item.setToBeSalvaged(isRepair, isRepair ? targetList.len() - 1 : 0);
 		return true;
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showWorkshopDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });
 

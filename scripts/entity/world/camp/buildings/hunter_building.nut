@@ -31,14 +31,7 @@
 		this.m.Description = "A kitchen tent with supplies for hunting, preparing and cooking food";
 		this.m.BannerImage = "ui/buttons/banner_hunt.png";
 		this.m.CanEnter = false;
-		local sounds = [];
-		for (local i = 1; i <= 2; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_hunter_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = getCampSounds(2, "hunter");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
@@ -881,22 +874,5 @@
 			this.m.VerboseResults[_category].Items[id].Targets.push(_targetName);
 		}
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showHunterDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });
 */

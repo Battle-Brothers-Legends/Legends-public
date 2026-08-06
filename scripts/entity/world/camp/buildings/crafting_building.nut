@@ -11,14 +11,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/item_crafting_
 		this.m.Name = "Craft";
 		this.m.Description = "Craft items";
 		this.m.BannerImage = "ui/buttons/banner_craft.png";
-		local sounds = [];
-		for (local i = 1; i <= 7; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_taxidermist_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = this.getCampSounds(7, "taxidermist");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
@@ -63,10 +56,5 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/item_crafting_
 			++id;
 		}
 		return ret;
-	}
-
-	function onClicked( _campScreen ) {
-		_campScreen.showCraftingDialog();
-		this.camp_building.onClicked(_campScreen);
 	}
 });

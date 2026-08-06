@@ -5,10 +5,10 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		NumBros = 0,
 		Craft = 0
 	},
-	function create()
-	{
+
+	function create() {
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Fletcher;
+		this.m.ID = ::Const.World.CampBuildings.Fletcher;
 		this.m.ModName = "Fletching";
 		this.m.ModMod = 10.0;
 		this.m.BaseCraft = 1.0;
@@ -17,41 +17,22 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Description = "Make some ammo";
 		this.m.BannerImage = "ui/buttons/banner_fletch.png";
 		this.m.CanEnter = false;
-		local sounds = [];
-		for (local i = 1; i <= 5; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_fletcher_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = this.getCampSounds(5, "fletcher");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = [];
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
-		}
-		return this.m.Name +  " *Not Upgraded*";
+	function getTitle() {
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc += "Arrows, bolts, little rocks (and Big Rocks!). The ammunition of war. ";
-		desc += "Keep the company stocks full between battles by assigning some members of the company to the task of making ammo. ";
-		desc += "Ammunition fabrication only occurs while encamped. The more people assigned, the more ammo crafted. ";
-		desc += "\n\n";
-		desc += "The Fletching tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in production speed. ";
-		desc += "Additionally, there's a chance that ammunition of the disposable throwing kind will be crafted.";
-		return desc;
+	function getDescription() {
+		//"The Fletching tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in production speed. ";
+		//"Additionally, there's a chance that ammunition of the disposable throwing kind will be crafted.";
+		return "Craft ammunition while encamped.";
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		local mod = this.getModifiers();
 		local ret = [
 			{
@@ -62,8 +43,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 		];
 		local id = 6;
-		foreach (bro in mod.Modifiers)
-		{
+		foreach (bro in mod.Modifiers) {
 			ret.push({
 				id = id,
 				type = "hint",
@@ -75,28 +55,22 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return ret;
 	}
 
-	function isHidden()
-	{
-
-		if (::Legends.Settings.skipCamp())
-		{
+	function isHidden() {
+		if (::Legends.Settings.skipCamp()) {
 			return false;
 		}
-
 		return !this.World.Flags.get(::Legends.Camp.Flag.Fletcher);
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Fletcher);
+	function getUpgraded() {
+		return ::Stash.hasItem(::Legends.Camp.Tent.Fletcher);
 	}
 
-	function getLevel()	{
+	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()
-	{
+	function init() {
 		this.m.AmmoAdded = 0;
 		this.m.Items = [];
 		local mod = this.getModifiers();
@@ -104,74 +78,55 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Craft = mod.Craft;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		local res = [];
 		local id = 50;
-		if (this.m.AmmoAdded > 0)
-		{
+		if (this.m.AmmoAdded > 0) {
 			res.push({
-		 		id = id,
-		 		icon = "ui/buttons/asset_ammo_up.png",
-		 		text = "You created " + this.Math.floor(this.m.AmmoAdded) + " units of ammo"
+				id = id,
+				icon = "ui/buttons/asset_ammo_up.png",
+				text = "You created " + this.Math.floor(this.m.AmmoAdded) + " units of ammo"
 			});
 			++id;
 		}
-		foreach (b in this.m.Items)
-		{
+		foreach (b in this.m.Items) {
 			res.push({
-		 		id = id,
-		 		icon = "ui/items/" + b.getIcon(),
-		 		text = "You gained " + b.getName()
+				id = id,
+				icon = "ui/items/" + b.getIcon(),
+				text = "You gained " + b.getName()
 			});
 			++id;
 		}
 		return res;
 	}
 
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
+	function getAssignedBros() {
+		return this.getModifiers().Assigned;
 	}
 
-	function update()
-	{
-		if (this.m.NumBros == 0)
-		{
+	function update() {
+		if (this.m.NumBros == 0) {
 			return null;
 		}
 
-		if (this.World.Assets.getAmmo() + this.m.AmmoAdded >= this.World.Assets.getMaxAmmo())
-		{
-			return "Fletched ... " + this.Math.floor(this.m.AmmoAdded) + " ammo";
+		if (::World.Assets.getAmmo() + this.m.AmmoAdded < ::World.Assets.getMaxAmmo()) {
+			this.m.AmmoAdded = ::Math.min(::World.Assets.getMaxAmmo(), (::Math.floor(this.m.Craft * this.m.Camp.getElapsedHours()) / 2.0));
 		}
 
-		local points = this.Math.floor(this.m.Craft * this.m.Camp.getElapsedHours());
-		this.m.AmmoAdded = this.Math.min(this.World.Assets.getMaxAmmo(), (points / 2.0));
-		return "Fletched ... " + this.Math.floor(this.m.AmmoAdded) + " ammo";
+		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " ammo";
 	}
 
-	function completed()
-	{
-		if (this.m.NumBros == 0)
-		{
+	function completed() {
+		if (this.m.NumBros == 0) {
 			return;
 		}
 
 		local item = null;
-		if (this.m.AmmoAdded > 0)
-		{
-			this.World.Assets.addAmmo(this.Math.floor(this.m.AmmoAdded));
+		if (this.m.AmmoAdded > 0) {
+			::World.Assets.addAmmo(::Math.floor(this.m.AmmoAdded));
 		}
 
-		if (!this.getUpgraded())
-		{
-			return;
-		}
-
-		if (this.Stash.getNumberOfEmptySlots() == 0)
-		{
+		if (!this.getUpgraded() || ::Stash.getNumberOfEmptySlots() == 0) {
 			return;
 		}
 
@@ -180,30 +135,10 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			"scripts/items/weapons/javelin"
 		];
 
-		//this can be upgrade system
-		if (this.Math.rand(1, 100) <= this.m.Camp.getElapsedHours())
-		{
-			local item = this.new(secondary[this.Math.rand(0, secondary.len()-1)]);
+		if (::Math.rand(1, 100) <= this.m.Camp.getElapsedHours()) {
+			local item = ::new(secondary[::Math.rand(0, secondary.len() - 1)]);
 			this.m.Items.push(item);
-			this.Stash.add(item);
+			::Stash.add(item);
 		}
-
-	}
-
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showFletcherDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
 	}
 });

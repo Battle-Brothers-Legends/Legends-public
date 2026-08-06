@@ -3,76 +3,15 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Painter;
+		this.m.ID = ::Const.World.CampBuildings.Painter;
 		this.m.Slot = "painter";
 		this.m.Name = "Painting Tent";
 		this.m.Description = "Here you can repaint your armor.";
 		this.m.InCommanderTent = false;
 		this.m.TerrainLabel = "00";
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_scrap_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_scrap_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_scrap_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+		local sounds = getCampSounds(6, "scrap");
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function getDescription() {
@@ -84,26 +23,7 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 	}
 
 	function isHidden() {
-		if (::Legends.Settings.skipCamp())
-			return false;
-		return !::World.Flags.get(::Legends.Camp.Flag.Painter);
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Painter);
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showPainterDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });
 

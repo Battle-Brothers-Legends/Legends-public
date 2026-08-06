@@ -138,7 +138,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 		this.addBroToRoster(_roster, ::Legends.Background.LegendShieldmaiden, 6);
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (bro.isStabled())
 			{

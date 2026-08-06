@@ -8,24 +8,21 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Gatherer;
+		this.m.ID = ::Const.World.CampBuildings.Gatherer;
 		this.m.ModName = "Gathering";
 		this.m.BaseCraft = 0.5;
 		this.m.Slot = "gather";
 		this.m.Name = "Supply Tent";
 		this.m.Description = "Send people out to gather supplies like medicinal herbs, plants, wood and stones.";
 		this.m.BannerImage = "ui/buttons/banner_gather.png";
+		local sounds = this.getCampSounds(4, "gatherer");
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 		this.m.CanEnter = false;
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
-		}
-
-		return this.m.Name + " *Not Upgraded*";
+	function getTitle() {
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
 	function getDescription()
@@ -69,14 +66,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return ret;
 	}
 
-	function isHidden()
-	{
-		if (::Legends.Settings.skipCamp())
-		{
-			return false;
-		}
-
-		return !this.World.Flags.get(::Legends.Camp.Flag.Gather);
+	function isHidden() {
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Gather);
 	}
 
 	function getUpgraded()
@@ -339,12 +330,6 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		if (this.m.MedsAdded > 0) {
 			this.World.Assets.addMedicine(this.Math.floor(this.m.MedsAdded));
 		}
-	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showGathererDialog();
-		this.camp_building.onClicked(_campScreen);
 	}
 
 	function onSerialize( _out )

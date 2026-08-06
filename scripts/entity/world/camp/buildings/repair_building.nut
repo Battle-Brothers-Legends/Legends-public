@@ -12,7 +12,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Repair;
+		this.m.ID = ::Const.World.CampBuildings.Repair;
 		this.m.BaseCraft = 10.0;
 		this.m.ModName = "Repair";
 		this.m.Escorting = true;
@@ -20,25 +20,13 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Name = "Repair Tent";
 		this.m.Description = "Manage the repair of company items";
 		this.m.BannerImage = "ui/buttons/banner_repair.png";
-		local sounds = [];
-		for (local i = 1; i <= 11; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_blacksmith_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = getCampSounds(11, "blacksmith");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = [];
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
-		}
-		return this.m.Name +  " *Not Upgraded*";
+	function getTitle() {
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
 	function getDescription() {
@@ -49,12 +37,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function getModifierTooltip()
 	{
 		this.init();
-		local nonNullEntries = 0;
-		foreach (_, value in this.m.Repairs) {
-		    if (value != null) {
-        		nonNullEntries++;
-			}
-		}
+		local nonNullEntries = this.m.Repairs.filter(@(_, _item) (_item != null)).len();
 		local mod = this.getModifiers();
 		local ret = [
 			{
@@ -90,47 +73,36 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return ret;
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Repair);
+	function getUpgraded() {
+		return ::Stash.hasItem(::Legends.Camp.Tent.Repair);
 	}
 
 	function getLevel()	{
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()
-	{
+	function init()	{
 		this.onInit();
 		this.m.ToolsUsed = 0;
 		this.m.PointsRepaired = 0;
 		this.m.ItemsRepaired = 0;
 		this.m.PointsNeeded = 0;
-		foreach (_, r in this.m.Repairs)
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			this.m.PointsNeeded += r.Item.getRepairMax() - r.Item.getRepair();
+		foreach (item in this.m.Repairs.filter(@(_, _item) (_item != null))) {
+			this.m.PointsNeeded += item.Item.getRepairMax() - item.Item.getRepair();
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		local items = this.getListOfItemsNeedingRepair();
 		this.m.Stash = items.Stash;
 		this.m.Repairs = items.Items;
 		local capacity =  this.m.Repairs.len() + this.m.Stash.len();
 		this.m.Capacity = capacity;
-		while (this.m.Stash.len() < capacity)
-		{
+		while (this.m.Stash.len() < capacity) {
 			this.m.Stash.push(null);
 		}
 
-		while (this.m.Repairs.len() < capacity)
-		{
+		while (this.m.Repairs.len() < capacity)	{
 			this.m.Repairs.push(null);
 		}
 	}
@@ -139,38 +111,34 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	// Base: ArmorPartsPerArmor=0.067 (~1/15).
 	// If upgraded, reduce tools-per-condition by ~25% yielding ~20 per tool instead of 15.
 	function getConversionRate() {
-		local cons = this.World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency();
-		return this.Math.floor(1.0 / cons + 0.5);
+		return this.Math.floor(1.0 / (::World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency()) + 0.5);
 	}
 
-	function getStash()
-	{
+	function getStash() {
 		return this.m.Stash;
 	}
 
-	function getRepairs()
-	{
+	function getRepairs() {
 		return this.m.Repairs;
 	}
 
 
-	function getCapacity()
-	{
+	function getCapacity() {
 		return this.m.Capacity;
 	}
 
-	function getResults()
-	{
-		if (this.m.ToolsUsed == 0)
-		{
+	function getResults() {
+		if (this.m.ToolsUsed == 0) {
 			return [];
 		}
 
-		return [{
+		return [
+			{
 				id = 10,
 				icon = "ui/icons/asset_supplies.png",
-				text = "You used [color=" + this.Const.UI.Color.NegativeEventValue + "]" + this.Math.floor(this.m.ToolsUsed) + "[/color] units of tools and repaired [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.m.ItemsRepaired + "[/color] pieces of equipment."
-			}];
+				text = "You used [color=%negative%]" + ::Math.floor(this.m.ToolsUsed) + "[/color] units of tools and repaired [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.m.ItemsRepaired + "[/color] pieces of equipment."
+			}
+		];
 	}
 
 
@@ -180,461 +148,274 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		// Align consumption with field repairs.
 		// Base: ArmorPartsPerArmor=0.067 (~1/15).
 		// If upgraded, reduce tools-per-condition by ~25% yielding ~20 per tool instead of 15.
-		ret.Consumption = this.World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency();
+		ret.Consumption = ::World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency();
 
 		ret.Craft += this.m.BaseCraft;
-		ret.Craft = ret.Craft * this.World.Assets.m.RepairSpeedMult;
+		ret.Craft *= ::World.Assets.m.RepairSpeedMult;
 		if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
 			ret.Craft *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut);
-		local buff =  this.Math.ceil(this.World.getPlayerRoster().getAll().len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.World.Assets.m.RepairSpeedMult * (1.33 * this.Const.World.Assets.ArmorPerHour));
+		local buff = ::Math.ceil(::World.getPlayerRoster().getAll().len() * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * ::World.Assets.m.RepairSpeedMult * (1.33 * ::Const.World.Assets.ArmorPerHour));
 		ret.Craft = ret.Craft + buff; // to buff it as a compensation for disabling asset_manager part while camping
-		if (this.getUpgraded())
-		{
-			ret.Craft = this.Math.ceil(ret.Craft * 1.33);
+		if (this.getUpgraded())	{
+			ret.Craft = ::Math.ceil(ret.Craft * 1.33);
 		}
 		return ret;
 	}
 
-	function getRequiredSupplies()
-	{
+	function getRepairPoints(){
 		local points = 0;
-		foreach (_, r in this.m.Repairs)
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			points += r.Item.getRepairMax() - r.Item.getRepair();
+		local repairs = this.m.Repairs.filter(@(_, _item) (_item != null));
+		foreach (_item in repairs) {
+			points += _item.Item.getRepairMax() - _item.Item.getRepair();
 		}
-		local modifiers = this.getModifiers();
-		return this.Math.ceil(points * modifiers.Consumption);
+		return points;
 	}
 
-	function getRequiredTime()
-	{
-		local points = 0;
+	function getRequiredSupplies() {
+		return ::Math.ceil(this.getRepairPoints() * this.getModifiers().Consumption);
+	}
+
+	function getRequiredTime() {
 		this.init();
-		if (this.m.Repairs == null)
-		{
+		if (this.m.Repairs == null)	{
 			return 0;
 		}
 
-		foreach (_, r in this.m.Repairs)
-		{
-			if (r == null)
-			{
-				continue;
-			}
-
-			points += r.Item.getRepairMax() - r.Item.getRepair();
-		}
-		local modifiers = this.getModifiers();
-		return this.Math.ceil(points / modifiers.Craft);
+		return ::Math.ceil(this.getRepairPoints() / this.getModifiers().Craft);
 	}
 
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
+	function getAssignedBros() {
+		return this.getModifiers().Assigned;
 	}
 
 
-	function getResourceImage()
-	{
+	function getResourceImage()	{
 		return "ui/buttons/icon_time.png";
 	}
 
-	function getResourceCount()
-	{
+	function getResourceCount()	{
 		return this.getRequiredTime();
 	}
 
-	function getUpdateText()
-	{
+	function getUpdateText() {
 		if (this.m.PointsNeeded == 0)
 			return "No repairs queued";
 
 		if (this.getRequiredSupplies() == 0)
 			return "Repaired ... 100%";
 
-		local percent = this.Math.floor((this.m.PointsRepaired / this.m.PointsNeeded) * 10000) / 100.0;
-		local text = "Repaired ... " + percent + "%";
-
-		if (this.World.Assets.getArmorParts() == 0)
-			return text + " (No tools left!)";
-
-		return text;
+		return "Repaired ... " + (::Math.floor((this.m.PointsRepaired / this.m.PointsNeeded) * 10000) / 100.0) + "%" + (::World.Assets.getArmorParts() == 0 ? "(No tools left!)" : "");
 	}
 
-	function update ()
-	{
-		if (this.m.Repairs == null)
-		{
+	function update () {
+		if (this.m.Repairs == null)	{
 			this.init();
 		}
 
-		if (this.m.Repairs.len() == 0)
-		{
-			return this.getUpdateText();
-		}
-
-		if (this.World.Assets.getArmorPartsF() == 0)
-		{
+		if (this.m.Repairs.len() == 0 || ::World.Assets.getArmorPartsF() == 0) {
 			return this.getUpdateText();
 		}
 
 		local modifiers = this.getModifiers();
 		modifiers.Craft = this.Math.round(modifiers.Craft); //important
 
-		foreach (i, r in this.m.Repairs)
-		{
-			if (r == null)
-			{
+		foreach (i, item in this.m.Repairs) {
+			if (item == null) {
 				continue;
 			}
 
-			local needed = r.Item.getRepairMax() - r.Item.getRepair();
-			if (modifiers.Craft < needed)
-			{
+			local needed = item.Item.getRepairMax() - item.Item.getRepair();
+			if (modifiers.Craft < needed) {
 				needed = modifiers.Craft;
 			}
 
-			r.Item.onRepair(r.Item.getRepair() + needed);
+			item.Item.onRepair(item.Item.getRepair() + needed);
 			this.m.PointsRepaired += needed;
 			modifiers.Craft -= needed;
 
-			if (this.World.Assets.isConsumingAssets()) {
+			if (::World.Assets.isConsumingAssets()) {
 				// Round to 3 decimal places for better determinism
-				local toolsUsed = this.Math.round(needed * modifiers.Consumption * 1000.0) / 1000.0;
+				local toolsUsed = ::Math.round(needed * modifiers.Consumption * 1000.0) / 1000.0;
 				this.m.ToolsUsed += toolsUsed;
-				this.World.Assets.addArmorPartsF(toolsUsed * -1.0);
+				::World.Assets.addArmorPartsF(toolsUsed * -1.0);
 			}
 
-			if (r.Item.getRepair() >= r.Item.getRepairMax())
-			{
+			if (item.Item.getRepair() >= item.Item.getRepairMax()) {
 				this.m.ItemsRepaired += 1;
 				this.swapItems("camp-screen-repair-dialog-module.shop", i, "camp-screen-repair-dialog-module.stash", null);
 			}
 
-			if (modifiers.Craft <= 0)
-			{
-				break;
-			}
-
-			if ( this.World.Assets.getArmorPartsF() == 0)
-			{
+			if (modifiers.Craft <= 0 || ::World.Assets.getArmorPartsF() == 0) {
 				break;
 			}
 		}
-
 		return this.getUpdateText();
 	}
 
-	function sortRepairQueue( _f1, _f2 )
-	{
-		if (_f1.Item.isToBeRepairedQ() > _f2.Item.isToBeRepairedQ())
-		{
-			return 1;
-		}
-		else if (_f1.Item.isToBeRepairedQ() < _f2.Item.isToBeRepairedQ())
-		{
-			return -1;
-		}
-		else
-		{
-			return 0;
-		}
-	}
-
-	function getListOfItemsNeedingRepair()
-	{
+	function getListOfItemsNeedingRepair() {
 		local items = [];
 		local stash = [];
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach (bro in roster)
-		{
-			local bitems = bro.getItems().getAllItems();
-			foreach( item in bitems )
-			{
-				if (item == null)
-				{
-					continue;
-				}
-
-				if (item.getRepair() >= item.getRepairMax())
-				{
-					continue;
-				}
-
+		foreach (bro in ::World.getPlayerRoster().getAll())	{
+			local broItemsToBeRepaired = bro.getItems().getAllItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax()));
+			foreach(item in broItemsToBeRepaired) {
 				items.push({
 					Bro = bro.getID(),
 					Item = item
 				});
 			}
 		}
-		local stashItems = this.Stash.getItems();
-		foreach( item in stashItems)
-		{
-			if (item == null)
-			{
-				continue;
-			}
-
-			if (item.getRepair() >= item.getRepairMax())
-			{
-				continue;
-			}
-
-			if (item.isToBeSalvaged())
-			{
-				continue;
-			}
-
-			if (item.isToBeRepaired())
-			{
-				items.push({
-					Bro = null,
-					Item = item
-				});
-			}
-			else
-			{
-				stash.push({
-					Bro = null,
-					Item = item
-				});
-			}
+		local stashItemsToBeRepaired = ::Stash.getItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax()) && !_item.isToBeSalvaged());
+		foreach(item in stashItemsToBeRepaired) {
+			local target = item.isToBeRepaired() ? items : stash;
+			target.push({
+				Bro = null,
+				Item = item
+			});
 		}
-		items.sort(this.sortRepairQueue);
+		items.sort(@(_a, _b) _a.Item.isToBeRepairedQ() - _b.Item.isToBeRepairedQ());
 		return {Items = items, Stash = stash};
 	}
 
-	function assignEquipped()
-	{
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster)
-		{
-			local bitems = bro.getItems().getAllItems();
-			foreach( item in bitems )
-			{
-				if (item == null)
-				{
-					continue;
-				}
-
-				if (item.getRepair() >= item.getRepairMax())
-				{
-					continue;
-				}
-
-				if (item.isToBeRepaired())
-				{
-					continue;
-				}
-
+	function assignEquipped() {
+		foreach( bro in ::World.getPlayerRoster().getAll())	{
+			local broItemsNeedingRepair = bro.getItems().getAllItems().filter(@(_,_item) (_item != null && _item.getRepair() < _item.getRepairMax() && !_item.isToBeRepaired()));
+			foreach(item in broItemsNeedingRepair) {
 				item.setToBeRepaired(true, 0);
 			}
 		}
 	}
 
-	function assignAll( _filter = 0 )
-	{
-		if (_filter == 0)
-		{
-			_filter = this.Const.Items.ItemFilter.All;
+	function assignAll( _filter = 0 ) {
+		if (_filter == 0) {
+			_filter = ::Const.Items.ItemFilter.All;
 		}
 
 		local index = 0;
-		foreach (i, s in this.m.Stash)
-		{
-			if (s == null)
-			{
+		foreach (i, s in this.m.Stash) {
+			if (s == null) {
 				continue;
 			}
 
-			if (_filter == 99 && s.Bro != null)
-			{
+			if (_filter == 99 && s.Bro != null)	{
 				continue;
-			}
-			else if ((s.Item.getItemType() & _filter) == 0)
-			{
+			} else if ((s.Item.getItemType() & _filter) == 0) {
 				continue;
 			}
 
-			for (index; index < this.m.Repairs.len(); index = ++index)
-			{
-				if (this.m.Repairs[index] == null)
-				{
-					break;
-				}
-			}
+			while (index < this.m.Repairs.len() && this.m.Repairs[index] != null) {
+                index++;
+            }
 
 			s.Item.setToBeRepaired(true, index);
-			if (index >= this.m.Repairs.len())
-			{
+			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			if (index >= this.m.Repairs.len()) {
 				this.m.Repairs.push(s);
-			}
-			else
-			{
+			} else {
 				this.m.Repairs[index] = s;
 			}
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+			
 			this.m.Stash[i] = null;
+			index++;
 		}
 	}
 
-	function removeAll()
-	{
+	function removeAll() {
 		local index = 0;
-		foreach (i, s in this.m.Repairs)
-		{
-			if (s == null)
-			{
+		foreach (i, s in this.m.Repairs) {
+			if (s == null)	{
 				continue;
-			}
-
-			for (index; index < this.m.Repairs.len(); index = ++index)
-			{
-				if (this.m.Stash[index] == null)
-				{
-					break;
-				}
 			}
 
 			s.Item.setToBeRepaired(false, 0);
-			if (index >= this.m.Stash.len())
-			{
+			s.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+
+			while (index < this.m.Stash.len() && this.m.Stash[index] != null) {
+                index++;
+            }
+			
+			if (index >= this.m.Stash.len()) {
 				this.m.Stash.push(s);
-			}
-			else
-			{
+			} else {
 				this.m.Stash[index] = s;
 			}
-			s.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+			
 			this.m.Repairs[i] = null;
+			index++;
 		}
 	}
 
-	function swapItems( sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx )
-	{
-		if (targetItemOwner == null)
-		{
+	function swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx) {
+		if (targetItemOwner == null) {
 			this.logError("onSwapItem #1");
 			return false;
 		}
 
-		if (sourceItemOwner == targetItemOwner && sourceItemIdx == targetItemIdx)
-		{
+		if (sourceItemOwner == targetItemOwner && sourceItemIdx == targetItemIdx) {
 			return false;
 		}
 
 		local sourceList = null;
 		local targetList = null;
 		local isRepair = false;
-		switch(sourceItemOwner)
-		{
-		case "camp-screen-repair-dialog-module.stash":
-			sourceList = this.m.Stash;
-			if (sourceItemOwner == targetItemOwner)
-			{
-				targetList = this.m.Stash;
-			}
-			else
-			{
-				targetList = this.m.Repairs;
-				isRepair = true;
-			}
-			break;
+		switch (sourceItemOwner) {
+			case "camp-screen-repair-dialog-module.stash":
+				sourceList = this.m.Stash;
+				if (sourceItemOwner == targetItemOwner) {
+					targetList = this.m.Stash;
+				} else {
+					targetList = this.m.Repairs;
+					isRepair = true;
+				}
+				break;
 
-		case "camp-screen-repair-dialog-module.shop":
-			sourceList = this.m.Repairs;
-			if (sourceItemOwner == targetItemOwner)
-			{
-				targetList = this.m.Repairs;
-				isRepair = true;
-			}
-			else
-			{
-				targetList = this.m.Stash;
-			}
-			break;
+			case "camp-screen-repair-dialog-module.shop":
+				sourceList = this.m.Repairs;
+				if (sourceItemOwner == targetItemOwner) {
+					targetList = this.m.Repairs;
+					isRepair = true;
+				} else {
+					targetList = this.m.Stash;
+				}
+				break;
 		}
 
 		local sourceItem = sourceList[sourceItemIdx];
 
-		if (sourceItem == null)
-		{
+		if (sourceItem == null) {
 			this.logError("onSwapItem(stash) #2");
 			return false;
 		}
 
 		//We've picked a spot to drop it
-		if (targetItemIdx != null)
-		{
+		if (targetItemIdx != null) {
 			//Make sure array is big enough for target spot
-			while (targetItemIdx > targetList.len() - 1)
-			{
+			while (targetItemIdx > targetList.len() - 1) {
 				targetList.push(null);
 			}
 			sourceList[sourceItemIdx] = targetList[targetItemIdx];
 			targetList[targetItemIdx] = sourceItem;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-			local index = 0;
-			if (isRepair)
-			{
-				index = targetItemIdx;
-			}
-			sourceItem.Item.setToBeRepaired(isRepair, index);
+			sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			sourceItem.Item.setToBeRepaired(isRepair, isRepair ? targetItemIdx : 0);
 			return true;
 		}
 
 		//didn't pick a spot to drop, find the first null spot
-		foreach (i,r in targetList)
-		{
-			if (r != null)
-			{
+		foreach (i, r in targetList) {
+			if (r != null) {
 				continue;
 			}
 			targetList[i] = sourceItem;
 			sourceList[sourceItemIdx] = null;
-			sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-			local index = 0;
-			if (isRepair)
-			{
-				index = i;
-			}
-			sourceItem.Item.setToBeRepaired(isRepair, index);
+			sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+			sourceItem.Item.setToBeRepaired(isRepair, isRepair ? i : 0);
 			return true;
 		}
 
 		//No null spot, push to the end
 		targetList.push(sourceItem);
 		sourceList[sourceItemIdx] = null;
-		sourceItem.Item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
-		local index = 0;
-		if (isRepair)
-		{
-			index = targetList.len() - 1;
-		}
-		sourceItem.Item.setToBeRepaired(isRepair, index);
+		sourceItem.Item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
+		sourceItem.Item.setToBeRepaired(isRepair, isRepair ? targetList.len() - 1 : 0);
 		return true;
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showRepairDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });

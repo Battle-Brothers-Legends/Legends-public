@@ -14,196 +14,8 @@ this.camp_building <- {
 		Tooltip = null,
 		TooltipIcon = "",
 		TerrainLabel = "",
-		Sounds = [
-			{
-				File = "ambience/camp/camp_rest_campfire.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		],
-		SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_rest_campfire.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-
-		],
+		Sounds = [],
+		SoundsAtNight = [],
 		CanEnter = true,
 		HasPopup = false,
 		InCommanderTent = true,
@@ -214,108 +26,86 @@ this.camp_building <- {
 		BaseCraft = 0.0,
 		Conversion = 1.0
 	},
-	function create()
-	{
-	}
 
-	function destroy()
-	{
-	}
+	function create() {}
 
-	function init()
-	{
-	}
+	function destroy() {}
 
-	function completed()
-	{
-	}
+	function init() {}
 
-	function Camping()
-	{
+	function completed() {}
+
+	function Camping() {
 		return this.m.Camping;
 	}
 
-	function Escorting()
-	{
+	function Escorting() {
 		return this.m.Escorting;
 	}
 
-	function getUpdateText()
-	{
+	function getUpdateText() {
 		return null;
 	}
 
-	function update ()
-	{
+	function update() {
 		return this.getUpdateText();
 	}
 
-	function updateTick (_hours)
-	{
-	}
+	function updateTick(_hours) {}
 
-	function hasPopup()
-	{
+	function hasPopup() {
 		return this.m.HasPopup;
 	}
 
-	function canEnter()
-	{
+	function canEnter() {
 		return this.m.CanEnter;
 	}
 
-	function getID()
-	{
+	function getID() {
 		return this.m.ID;
 	}
 
-	function getName()
-	{
+	function getName() {
 		return this.m.Name;
 	}
 
-	function getSlot()
-	{
+	function getSlot() {
 		return this.m.Slot;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		return [];
 	}
 
-	function isHidden()
-	{
+	function isHidden() {
 		return false;
 	}
 
-	function getLevel()
-	{
+	function getLevel() {
 		return "empty";
 	}
 
-	function getUIImage( _terrain )
-	{
-		local terrainlabel = _terrain;
-		if (this.m.TerrainLabel != "")
-		{
-			terrainlabel = this.m.TerrainLabel;
+	function getCampSounds(_number, _slot, _volume = 1.0, _pitch = 1.0) {
+		local sounds = [];
+		for (local i = 1; i <= _number; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_" + _slot + "_%02d.wav", i),
+				Volume = _volume,
+				Pitch = _pitch
+			});
 		}
-		else if (_terrain < 10)
-		{
-			terrainlabel = "0" + _terrain;
-		}
-		local day = this.World.getTime().IsDaytime ? "day" : "night";
-		return "ui/settlements/" + terrainlabel + "_" + this.getSlot() + "_" + this.getLevel() + "_" + day;
+		return sounds;
 	}
 
-	function getTooltipID()
-	{
+	function getUIImage(_terrain) {
+		return "ui/settlements/" + (this.m.TerrainLabel != "" ? this.m.TerrainLabel : (_terrain < 10 ? "0" + _terrain : _terrain)) + "_" + this.getSlot() + "_" + this.getLevel() + "_"	+ (::World.getTime().IsDaytime ? "day" : "night");
+	}
+
+	function getTooltipID() {
 		return this.m.ID;
 	}
 
-	function getTitle()
-	{
+	function getTitle() {
 		return this.m.Name;
 	}
 
@@ -332,41 +122,38 @@ this.camp_building <- {
 				text = this.getDescription()
 			}
 		];
-		if(this.canEnter()) {
-			res.push({
-					id = 3,
-					type = "hint",
-					icon = "ui/icons/mouse_left_button.png",
-					text = "Open Tent Dialog"
-			});
-		}
-		if(this.inCommanderTent()) {
-			res.push({
-					id = 4,
-					type = "hint",
-					icon = "ui/icons/mouse_right_button.png",
-					text = "Open Tent Menu in Commander Dialog"
-			});
-		}
 		local mod = this.getModifierTooltip();
 		foreach (i in mod) {
 			res.push(i);
 		}
+		if (this.canEnter()) {
+			res.push({
+				id = 61,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Open Tent Dialog"
+			});
+		}
+		if (this.inCommanderTent()) {
+			res.push({
+				id = 62,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button.png",
+				text = "Open Tent Menu in Commander Dialog"
+			});
+		}
 		return res;
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		return [];
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return this.m.Description;
 	}
 
-	function getTooltipIcon()
-	{
+	function getTooltipIcon() {
 		return this.m.TooltipIcon;
 	}
 
@@ -375,184 +162,121 @@ this.camp_building <- {
 		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && !_bro.isStabled()).len();
 	}
 
-	function getBanner(bro = null)
-	{
+	function getBanner(bro = null) {
 		return this.m.BannerImage;
 	}
 
-	function getResourceImage()
-	{
+	function getResourceImage() {
 		return "";
 	}
 
-	function getResourceCount()
-	{
+	function getResourceCount() {
 		return 0;
 	}
 
-	function inCommanderTent()
-	{
+	function inCommanderTent() {
 		return this.m.InCommanderTent && !this.isHidden();
 	}
 
-	function pushUIMenuStack()
-	{
-		this.World.State.getMenuStack().push(function ()
-		{
-			this.World.State.getCampScreen().showMainDialog();
-		}, function ()
-		{
-			return !this.World.State.getCampScreen().isAnimating();
+	function pushUIMenuStack() {
+		::World.State.getMenuStack().push(function () {
+			::World.State.getCampScreen().showMainDialog();
+		}, function () {
+			return !::World.State.getCampScreen().isAnimating();
 		});
 	}
 
-	function assignBro( _bro )
-	{
+	function assignBro(_bro) {
 		_bro.setCampAssignment(this.m.ID);
 	}
 
-	function setCamp ( _camp )
-	{
+	function setCamp(_camp) {
 		this.m.Camp = this.WeakTableRef(_camp);
 	}
 
-	function onClicked( _campScreen )
-	{
-		this.World.State.getMenuStack().push(function ()
-		{
-			this.World.State.getCampScreen().showMainDialog();
-			this.World.State.getCampScreen().refresh();
-		}, function ()
-		{
-			return !this.World.State.getCampScreen().isAnimating();
+	function onClicked(_campScreen) {
+		_campScreen.showCampBuildingDialog(this.m.ID);
+		::World.State.getMenuStack().push(function () {
+			::World.State.getCampScreen().showMainDialog();
+			::World.State.getCampScreen().refresh();
+		}, function () {
+			return !::World.State.getCampScreen().isAnimating();
 		});
 	}
 
-	function onBroLeave ( _bro )
-	{
-	}
+	function onBroLeave(_bro) {}
 
-	function onBroEnter ( _bro )
-	{
+	function onBroEnter(_bro) {
 		return !_bro.isStabled();
 	}
 
-	function onSerialize( _out )
-	{
-	}
+	function onSerialize(_out) {}
 
-	function onDeserialize( _in )
-	{
-	}
+	function onDeserialize(_in) {}
 
-	function sortModifiers( _f1, _f2 )
-	{
-		if (_f1[0] > _f2[0])
-		{
+	function sortModifiers( _f1, _f2 ) {
+		if (_f1[0] > _f2[0]) {
 			return -1;
-		}
-		else if (_f1[0] < _f2[0])
-		{
+		} else if (_f1[0] < _f2[0]) {
 			return 1;
-		}
-		else
-		{
+		} else {
 			return 0;
 		}
 	}
 
-	function getModifiers()
-	{
-		local ret =
-		{
+	function getModifiers() {
+		local ret = {
 			Consumption = 1.0 / this.m.Conversion,
 			Craft = 0.0, // total Craft value of all characters assigned to the tent
 			Assigned = 0, // number of characters assigned to the tent
 			Modifiers = [] // each element is [Craft value contributed by the character (including bonuses), Name of character, Background of character]
 		}
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
-			{
-				continue;
-			}
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID));
+		foreach (bro in assignedBros) {
 			// Each character assigned will contribute the tent's BaseCraft plus any bonuses from their modifiers
 			// If the character does not have the relevant skill, they will contribute only the BaseCraft value
 			// If the character is skilled, they will contribute the BaseCraft value + the bonuses from their modifiers. The bonuses are further multiplied by the tent's ModMod value
 			// A higher ModMod value means that skilled characters will have a more significant impact on the output
-			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod;
 			++ret.Assigned;
-			ret.Modifiers.push([mod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
-		for (local i = 0; i < ret.Modifiers.len(); i = ++i)
-		{
-			ret.Modifiers[i][0] = ret.Modifiers[i][0] * this.Math.pow(i + 1, -0.5); // each additional character grants diminishing returns
-			if (this.getUpgraded())
-			{
-				ret.Modifiers[i][0] *= 1.15; // an upgraded tent grants a 15% bonus to each character's Craft contribution
-			}
+		for (local i = 0; i < ret.Modifiers.len(); i++) {
+			ret.Modifiers[i][0] = ret.Modifiers[i][0] * ::Math.pow(i + 1, -0.5) * (this.getUpgraded() ? 1.15 : 1); // each additional character grants diminishing returns
 			ret.Craft += ret.Modifiers[i][0];
 		}
 		return ret;
 	}
 
-	function getInfo()
-	{
+	function getInfo() {
 		return null;
 	}
 
-	function onSortByModifier( _a, _b )
-	{
-		if (_a.Modifier > _b.Modifier)
-		{
-			return -1;
-		}
-		else if (_a.Modifier < _b.Modifier)
-		{
-			return 1;
-		}
-
-		return 0;
-	}
-
-	function getSortedRoster()
-	{
-		local brothers = this.World.getPlayerRoster().getAll();
+	function getSortedRoster() {
 		local roster = [];
-
-		foreach( b in brothers )
-		{
-			if (!this.onBroEnter(b))
-			{
-				continue;
-			}
-			local bro = this.UIDataHelper.convertEntityToUIData(b, null);
-			local tent = this.World.Camp.getBuildingByID( b.getCampAssignment() );
-			bro.bannerImage <- tent.getBanner(b);
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (self.onBroEnter(_bro)));
+		foreach (b in assignedBros) {
+			local bro = ::UIDataHelper.convertEntityToUIData(b, null);
+			bro.bannerImage <- ::World.Camp.getBuildingByID(b.getCampAssignment()).getBanner(b);
 			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
-			local modifier = 0;
-			if (this.m.ModName != "")
-			{
-				modifier = b.getBackground().getModifiers()[this.m.ModName];
-			}
-			bro.Modifier <- modifier;
+			bro.Modifier <- this.m.ModName != "" ? b.getBackground().getModifiers()[this.m.ModName] : 0;
 			roster.push(bro);
 		}
 
-		roster.sort(this.onSortByModifier);
+		roster.sort(function(_a, _b) {
+            if (_a.Modifier > _b.Modifier) return -1;
+            if (_a.Modifier < _b.Modifier) return 1;
+            return 0;
+        });
 		return roster;
 	}
 
-	function onPopupButtonClicked( _data )
-	{
+	function onPopupButtonClicked(_data) {}
 
-	}
-
-	function queryConfigureSettings()
-	{
+	function queryConfigureSettings() {
 		return {};
 	}
 }

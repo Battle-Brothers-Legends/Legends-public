@@ -73,9 +73,4 @@ this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_b
 
 		return ret;
 	}
-
-	function onClicked(_campScreen) {
-		_campScreen.showKitchenDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
 });

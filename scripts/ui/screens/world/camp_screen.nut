@@ -1,750 +1,265 @@
 this.camp_screen <- {
 	m = {
 		JSHandle = null,
-		MainDialogModule = null,
-		CommanderDialogModule = null,
-		BarberDialogModule = null,
-		CraftingDialogModule = null,
-		EnchanterDialogModule = null,
-		FletcherDialogModule = null,
-		HealerDialogModule = null,
-		//HunterDialogModule = null,
-		KitchenDialogModule = null,
-		PainterDialogModule = null,
-		RepairDialogModule = null,
-		RestDialogModule = null,
-		ScoutDialogModule = null,
-		TrainingDialogModule = null,
-		GathererDialogModule = null,
-		WorkshopDialogModule = null,
 		Visible = null,
 		Animating = false,
 		LastActiveModule = null,
 		returnModule = null,
-		OnConnectedListener = null,
-		OnDisconnectedListener = null,
-		OnBrothersButtonPressedListener = null,
-		OnCommanderButtonPressedListener = null,
-		OnTentButtonPressedListener = null,
-		OnModuleClosedListener = null,
-		OnCampListener = null
+
+		Modules = {}
+		ModuleConfig = {
+			[::Const.World.CampBuildings.Commander] = { name = "Commander", dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Barber]    = { name = "Barber",    dataFn = "queryRosterInformation" },
+			[::Const.World.CampBuildings.Crafting]  = { name = "Crafting",  dataFn = "onShow" },
+			[::Const.World.CampBuildings.Enchanter] = { name = "Enchanter", dataFn = "onShow" },
+			[::Const.World.CampBuildings.Fletcher]  = { name = "Fletcher",  dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Gatherer] = { name = "Gatherer", dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Healer] = { name = "Healer", dataFn = "onShow" },
+			//[::Const.World.CampBuildings.Hunter]  = { name = "Hunter",  dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Kitchen] = { name = "Kitchen", dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Painter]  = { name = "Painter",  dataFn = "queryRosterInformation" },
+			[::Const.World.CampBuildings.Repair] = { name = "Repair", dataFn = "onShow" },
+			[::Const.World.CampBuildings.Rest]  = { name = "Rest",  dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Scout] = { name = "Scout", dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Training]  = { name = "Training",  dataFn = "queryLoad" },
+			[::Const.World.CampBuildings.Workshop] = { name = "Workshop", dataFn = "onShow" },
+    	}
+
+		Listeners = {
+			OnConnected = null,
+			OnDisconnected = null,
+			OnBrothersButtonPressed = null,
+			OnCommanderButtonPressed = null,
+			OnTentButtonPressed = null,
+			OnModuleClosed = null,
+			OnCamp = null
+		}
 	},
-	function isVisible()
-	{
-		return this.m.Visible != null && this.m.Visible == true;
+
+	function isVisible() {
+		return this.m.Visible == true;
 	}
 
-	function isAnimating()
-	{
-		return this.m.Animating == true || this.m.MainDialogModule.isAnimating() || this.m.CommanderDialogModule.isAnimating();
+	function isAnimating() {
+		return this.m.Animating == true || this.m.Modules.Main.isAnimating() || this.m.Modules[::Const.World.CampBuildings.Commander].isAnimating();
 	}
 
-	function getMainDialogModule()
-	{
-		return this.m.MainDialogModule;
+	function getDialogModule(_dialog) {
+		return this.m.DialogModule[_dialog];
 	}
 
-	function getBarberDialogModule()
-	{
-		return this.m.BarberDialogModule;
+	function setListener(_name, _listener) {
+		this.m.Listeners[_name] = _listener;
 	}
 
-	function getCommanderDialogModule()
-	{
-		return this.m.CommanderDialogModule;
+	function clearEventListener() {
+		this.m.Listeners = {};
 	}
 
-	function getCraftingDialogModule()
-	{
-		return this.m.CraftingDialogModule;
-	}
-
-	function getEnchanterDialogModule()
-	{
-		return this.m.EnchanterDialogModule;
-	}
-
-	function getFletcherDialogModule()
-	{
-		return this.m.FletcherDialogModule;
-	}
-
-	function getHealerDialogModule()
-	{
-		return this.m.HealerDialogModule;
-	}
-
-	/*function getHunterDialogModule()
-	{
-		return this.m.HunterDialogModule;
-	}*/
-
-	function getKitchenDialogModule()
-	{
-		return this.m.KitchenDialogModule;
-	}
-
-	function getPainterDialogModule()
-	{
-		return this.m.PainterDialogModule;
-	}
-
-	function getRepairDialogModule()
-	{
-		return this.m.RepairDialogModule;
-	}
-
-	function getRestDialogModule()
-	{
-		return this.m.RestDialogModule;
-	}
-
-	function getScoutDialogModule()
-	{
-		return this.m.ScoutDialogModule;
-	}
-
-	function getTrainingDialogModule()
-	{
-		return this.m.TrainingDialogModule;
-	}
-
-	function getGathererDialogModule()
-	{
-		return this.m.GathererDialogModule;
-	}
-
-	function getWorkshopDialogModule()
-	{
-		return this.m.WorkshopDialogModule;
-	}
-
-	function setOnConnectedListener( _listener )
-	{
-		this.m.OnConnectedListener = _listener;
-	}
-
-	function setOnDisconnectedListener( _listener )
-	{
-		this.m.OnDisconnectedListener = _listener;
-	}
-
-	function setOnBrothersPressedListener( _listener )
-	{
-		this.m.OnBrothersButtonPressedListener = _listener;
-	}
-
-	function setOnCommanderPressedListener( _listener )
-	{
-		this.m.OnCommanderButtonPressedListener = _listener;
-	}
-
-	function setOnTentPressedListener( _listener )
-	{
-		this.m.OnTentButtonPressedListener = _listener;
-	}
-
-	function setOnModuleClosedListener( _listener )
-	{
-		this.m.OnModuleClosedListener = _listener;
-	}
-
-	function setOnCampListener( _listener )
-	{
-		this.m.OnCampListener = _listener;
-	}
-
-	function clearEventListener()
-	{
-		this.m.OnConnectedListener = null;
-		this.m.OnDisconnectedListener = null;
-		this.m.OnBrothersButtonPressedListener = null;
-		this.m.OnCommanderButtonPressedListener = null;
-		this.m.OnTentButtonPressedListener = null;
-		this.m.OnModuleClosedListener = null;
-		this.m.OnCampListener = null;
-	}
-
-	function create()
-	{
+	function create() {
 		this.m.Visible = false;
 		this.m.Animating = false;
 		this.m.JSHandle = this.UI.connect("CampScreen", this);
-		this.m.MainDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_main_dialog_module");
-		this.m.MainDialogModule.setParent(this);
-		this.m.MainDialogModule.connectUI(this.m.JSHandle);
-		this.m.CommanderDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_commander_dialog_module");
-		this.m.CommanderDialogModule.setParent(this);
-		this.m.CommanderDialogModule.connectUI(this.m.JSHandle);
-		this.m.BarberDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_barber_dialog_module");
-		this.m.BarberDialogModule.setParent(this);
-		this.m.BarberDialogModule.connectUI(this.m.JSHandle);
-		this.m.CraftingDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_crafting_dialog_module");
-		this.m.CraftingDialogModule.setParent(this);
-		this.m.CraftingDialogModule.connectUI(this.m.JSHandle);
-		this.m.EnchanterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_enchanter_dialog_module");
-		this.m.EnchanterDialogModule.setParent(this);
-		this.m.EnchanterDialogModule.connectUI(this.m.JSHandle);
-		this.m.FletcherDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_fletcher_dialog_module");
-		this.m.FletcherDialogModule.setParent(this);
-		this.m.FletcherDialogModule.connectUI(this.m.JSHandle);
-		this.m.HealerDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_healer_dialog_module");
-		this.m.HealerDialogModule.setParent(this);
-		this.m.HealerDialogModule.connectUI(this.m.JSHandle);
-		/*this.m.HunterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_hunter_dialog_module");
-		this.m.HunterDialogModule.setParent(this);
-		this.m.HunterDialogModule.connectUI(this.m.JSHandle);*/
-		this.m.KitchenDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_kitchen_dialog_module");
-		this.m.KitchenDialogModule.setParent(this);
-		this.m.KitchenDialogModule.connectUI(this.m.JSHandle);
-		this.m.PainterDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_painter_dialog_module");
-		this.m.PainterDialogModule.setParent(this);
-		this.m.PainterDialogModule.connectUI(this.m.JSHandle);
-		this.m.RepairDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_repair_dialog_module");
-		this.m.RepairDialogModule.setParent(this);
-		this.m.RepairDialogModule.connectUI(this.m.JSHandle);
-		this.m.RestDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_rest_dialog_module");
-		this.m.RestDialogModule.setParent(this);
-		this.m.RestDialogModule.connectUI(this.m.JSHandle);
-		this.m.ScoutDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_scout_dialog_module");
-		this.m.ScoutDialogModule.setParent(this);
-		this.m.ScoutDialogModule.connectUI(this.m.JSHandle);
-		this.m.TrainingDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_training_dialog_module");
-		this.m.TrainingDialogModule.setParent(this);
-		this.m.TrainingDialogModule.connectUI(this.m.JSHandle);
-		this.m.GathererDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_gatherer_dialog_module");
-		this.m.GathererDialogModule.setParent(this);
-		this.m.GathererDialogModule.connectUI(this.m.JSHandle);
-		this.m.WorkshopDialogModule = this.new("scripts/ui/screens/world/modules/camp_screen/camp_workshop_dialog_module");
-		this.m.WorkshopDialogModule.setParent(this);
-		this.m.WorkshopDialogModule.connectUI(this.m.JSHandle);
+
+		this.m.Modules["Main"] <- this.new("scripts/ui/screens/world/modules/camp_screen/camp_main_dialog_module");
+        this.m.Modules["Main"].setParent(this);
+        this.m.Modules["Main"].connectUI(this.m.JSHandle);
+
+		foreach (id, config in this.m.ModuleConfig) {
+            this.m.Modules[id] <- this.new("scripts/ui/screens/world/modules/camp_screen/camp_" + config.name.tolower() + "_dialog_module");
+            this.m.Modules[id].setParent(this);
+            this.m.Modules[id].connectUI(this.m.JSHandle);
+        }
 	}
 
-	function destroy()
-	{
+	function destroy() {
 		this.clearEventListener();
-		this.m.MainDialogModule.destroy();
-		this.m.MainDialogModule = null;
-		this.m.CommanderDialogModule.destroy();
-		this.m.BarberDialogModule.destroy();
-		this.m.CraftingDialogModule.destroy();
-		this.m.EnchanterDialogModule.destroy();
-		this.m.FletcherDialogModule.destroy();
-		this.m.HealerDialogModule.destroy();
-		//this.m.HunterDialogModule.destroy();
-		this.m.KitchenDialogModule.destroy();
-		this.m.PainterDialogModule.destroy();
-		this.m.RepairDialogModule.destroy();
-		this.m.RestDialogModule.destroy();
-		this.m.ScoutDialogModule.destroy();
-		this.m.TrainingDialogModule.destroy();
-		this.m.GathererDialogModule.destroy();
-		this.m.WorkshopDialogModule.destroy();
-		this.m.CommanderDialogModule = null;
-		this.m.BarberDialogModule = null;
-		this.m.CraftingDialogModule = null;
-		this.m.EnchanterDialogModule = null;
-		this.m.FletcherDialogModule = null;
-		this.m.HealerDialogModule = null;
-		//this.m.HunterDialogModule = null;
-		this.m.KitchenDialogModule = null;
-		this.m.PainterDialogModule = null;
-		this.m.RepairDialogModule = null;
-		this.m.RestDialogModule = null;
-		this.m.ScoutDialogModule = null;
-		this.m.TrainingDialogModule = null;
-		this.m.GathererDialogModule = null;
-		this.m.WorkshopDialogModule = null;
+		foreach (module in this.m.Modules) {
+            module.destroy();
+        }
+		this.m.Modules = {};
 		this.m.JSHandle = this.UI.disconnect(this.m.JSHandle);
 	}
 
-	function clear()
-	{
-		this.m.MainDialogModule.clear();
-		this.m.CommanderDialogModule.clear();
-		this.m.BarberDialogModule.clear();
-		this.m.CraftingDialogModule.clear();
-		this.m.EnchanterDialogModule.clear();
-		this.m.FletcherDialogModule.clear();
-		this.m.HealerDialogModule.clear();
-		//this.m.HunterDialogModule.clear();
-		this.m.KitchenDialogModule.clear();
-		this.m.PainterDialogModule.clear();
-		this.m.RepairDialogModule.clear();
-		this.m.RestDialogModule.clear();
-		this.m.ScoutDialogModule.clear();
-		this.m.TrainingDialogModule.clear();
-		this.m.GathererDialogModule.clear();
-		this.m.WorkshopDialogModule.clear();
+	function clear() {
+		foreach (module in this.m.Modules) {
+            module.clear();
+        }
 	}
 
-	function show()
-	{
-		this.World.Camp.onEnter();
-		if (this.m.JSHandle != null)
-		{
+	function show() {
+		::World.Camp.onEnter();
+		if (this.m.JSHandle != null) {
 			this.m.LastActiveModule = null;
-			this.Tooltip.hide();
+			::Tooltip.hide();
 			this.m.JSHandle.asyncCall("show", this.queryCampInformation());
 		}
 	}
 
-	function hide()
-	{
-		if (this.m.JSHandle != null)
-		{
+	function hide()	{
+		if (this.m.JSHandle != null) {
 			this.m.LastActiveModule = null;
 			this.m.JSHandle.asyncCall("hide", null);
-			this.Tooltip.hide();
+			::Tooltip.hide();
 		}
 	}
 
-	function hideAllDialogs()
-	{
-		if (this.m.JSHandle != null)
-		{
-			this.Tooltip.hide();
+	function hideAllDialogs() {
+		if (this.m.JSHandle != null) {
+			::Tooltip.hide();
 			this.m.JSHandle.asyncCall("hideAllDialogs", null);
 		}
 	}
 
-	function refresh()
-	{
-		if (this.m.JSHandle != null)
-		{
+	function refresh() {
+		if (this.m.JSHandle != null) {
 			this.m.LastActiveModule = null;
-			this.Tooltip.hide();
+			::Tooltip.hide();
 			this.m.JSHandle.asyncCall("refresh", this.queryCampInformation());
 		}
 	}
 
-	function showLastReturnDialog()
-	{
+	function showLastReturnDialog() {
 		this.m.LastActiveModule = this.m.returnModule;
 		this.m.returnModule = null;
 		this.showLastActiveDialog();
 	}
 
-	function showLastActiveDialog()
-	{
-		if (this.m.LastActiveModule == this.m.CommanderDialogModule)
-		{
-			this.showCommanderDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.BarberDialogModule)
-		{
-			this.showBarberDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.CraftingDialogModule)
-		{
-			this.showCraftingDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.EnchanterDialogModule)
-		{
-			this.showEnchanterDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.FletcherDialogModule)
-		{
-			this.showFletcherDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.HealerDialogModule)
-		{
-			this.showHealerDialog();
-		}
-		/*else if (this.m.LastActiveModule == this.m.HunterDialogModule)
-		{
-			this.showHunterDialog();
-		}*/
-		else if (this.m.LastActiveModule == this.m.KitchenDialogModule)
-		{
-			this.showKitchenDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.PainterDialogModule)
-		{
-			this.showPainterDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.RepairDialogModule)
-		{
-			this.showRepairDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.RestDialogModule)
-		{
-			this.showRestDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.GathererDialogModule)
-		{
-			this.showGathererDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.ScoutDialogModule)
-		{
-			this.showScoutDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.TrainingDialogModule)
-		{
-			this.showTrainingDialog();
-		}
-		else if (this.m.LastActiveModule == this.m.WorkshopDialogModule)
-		{
-			this.showWorkshopDialog();
-		}
-		else
-		{
-			this.showMainDialog();
-		}
+	function showLastActiveDialog()	{
+		if (this.m.LastActiveModule != null && this.m.LastActiveModule in this.m.Modules) {
+            this.showCampBuildingDialog(this.m.LastActiveModule);
+        } else {
+            this.showMainDialog();
+        }
 	}
 
-	function showMainDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
+	function showMainDialog() {
+		if (this.m.JSHandle != null && this.isVisible()) {
 			this.m.LastActiveModule = null;
 			this.Tooltip.hide();
 			this.m.JSHandle.asyncCall("showMainDialog", this.queryAssetsInformation());
 		}
 	}
 
-	function showTentBuildingDialog( _id )
-	{
-		switch(_id)
-		{
-		case this.Const.World.CampBuildings.Commander:
-			this.showCommanderDialog();
-			break;
+	function showCampBuildingDialog( _id ) {
+		if (this.m.JSHandle != null && this.isVisible()) {
 
-		case this.Const.World.CampBuildings.Barber:
-			this.showBarberDialog();
-			break;
+            local module = this.m.Modules[_id];
+            local config = this.m.ModuleConfig[_id];
+            
+            this.m.LastActiveModule = _id;
+            this.Tooltip.hide();
+            
+            local data = null;
+            if (config.dataFn == "queryLoad") data = module.queryLoad();
+            else if (config.dataFn == "onShow") data = module.onShow();
+            else if (config.dataFn == "queryRosterInformation") data = module.queryRosterInformation();
 
-		case this.Const.World.CampBuildings.Crafting:
-			this.showCraftingDialog();
-			break;
 
-		case this.Const.World.CampBuildings.Enchanter:
-			this.showEnchanterDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Fletcher:
-			this.showFletcherDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Gatherer:
-			this.showGathererDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Healer:
-			this.showHealerDialog();
-			break;
-
-		/*case this.Const.World.CampBuildings.Hunter:
-			this.showHunterDialog();
-			break;*/
-
-		case ::Const.World.CampBuildings.Kitchen:
-			this.showKitchenDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Painter:
-			this.showPainterDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Repair:
-			this.showRepairDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Rest:
-			this.showRestDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Scout:
-			this.showScoutDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Training:
-			this.showTrainingDialog();
-			break;
-
-		case this.Const.World.CampBuildings.Workshop:
-			this.showWorkshopDialog();
-			break;
-
-		}
+            this.m.JSHandle.asyncCall("show" + config.name + "Dialog", data);
+        }
 	}
 
-	function showCommanderDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.CommanderDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showCommanderDialog", this.m.CommanderDialogModule.queryLoad());
-		}
-	}
-
-	function showBarberDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.BarberDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showBarberDialog", this.m.BarberDialogModule.queryRosterInformation());
-		}
-	}
-
-	function showCraftingDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.CraftingDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showCraftingDialog", this.m.CraftingDialogModule.onShow());
-		}
-	}
-
-	function showEnchanterDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.EnchanterDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showEnchanterDialog", this.m.EnchanterDialogModule.onShow());
-		}
-	}
-
-	function showFletcherDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.FletcherDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showFletcherDialog", this.m.FletcherDialogModule.queryLoad());
-		}
-	}
-
-	function showHealerDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.HealerDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showHealerDialog", this.m.HealerDialogModule.onShow());
-		}
-	}
-
-	/*function showHunterDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.HunterDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showHunterDialog", this.m.HunterDialogModule.queryLoad());
-		}
-	}*/
-
-	function showKitchenDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.KitchenDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showKitchenDialog", this.m.KitchenDialogModule.queryLoad());
-		}
-	}
-
-	function showPainterDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.PainterDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showPainterDialog", this.m.PainterDialogModule.queryRosterInformation());
-		}
-	}
-
-	function showRepairDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.RepairDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showRepairDialog", this.m.RepairDialogModule.onShow());
-		}
-	}
-
-	function showRestDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.RestDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showRestDialog", this.m.RestDialogModule.queryLoad());
-		}
-	}
-
-	function showScoutDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.ScoutDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showScoutDialog", this.m.ScoutDialogModule.queryLoad());
-		}
-	}
-
-	function showTrainingDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.TrainingDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showTrainingDialog", this.m.TrainingDialogModule.queryLoad());
-		}
-	}
-
-	function showGathererDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.GathererDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showGathererDialog", this.m.GathererDialogModule.queryLoad());
-		}
-	}
-
-	function showWorkshopDialog()
-	{
-		if (this.m.JSHandle != null && this.isVisible())
-		{
-			this.m.LastActiveModule = this.m.WorkshopDialogModule;
-			this.Tooltip.hide();
-			this.m.JSHandle.asyncCall("showWorkshopDialog", this.m.WorkshopDialogModule.onShow());
-		}
-	}
-
-	function updateContracts()
-	{
+	function updateContracts() {
 		this.m.JSHandle.asyncCall("updateContracts", ::World.Camp.getUIContractInformation());
 	}
 
-	function updateAssets()
-	{
+	function updateAssets() {
 		this.m.JSHandle.asyncCall("loadAssetData", this.queryAssetsInformation());
 	}
 
-	function onScreenConnected()
-	{
-		if (this.m.OnConnectedListener != null)
-		{
-			this.m.OnConnectedListener();
+	function onScreenConnected() {
+		if (this.m.Listeners.OnConnected != null)	{
+			this.m.Listeners.OnConnected();
 		}
 	}
 
-	function onScreenDisconnected()
-	{
-		if (this.m.OnDisconnectedListener != null)
-		{
-			this.m.OnDisconnectedListener();
+	function onScreenDisconnected() {
+		if (this.m.Listeners.OnDisconnected != null) {
+			this.m.Listeners.OnDisconnected();
 		}
 	}
 
-	function onScreenShown()
-	{
+	function onScreenShown() {
 		this.m.Visible = true;
 		this.m.Animating = false;
 	}
 
-	function onScreenHidden()
-	{
+	function onScreenHidden() {
 		this.m.Visible = false;
 		this.m.Animating = false;
 	}
 
-	function onScreenAnimating()
-	{
+	function onScreenAnimating() {
 		this.m.Animating = true;
 	}
 
-	function onBrothersButtonPressed()
-	{
-		if (this.m.OnBrothersButtonPressedListener != null)
-		{
-			this.m.OnBrothersButtonPressedListener();
+	function onBrothersButtonPressed() {
+		if (this.m.Listeners.OnBrothersButtonPressed != null)	{
+			this.m.Listeners.OnBrothersButtonPressed();
 		}
 	}
 
-	function onCommanderButtonPressed()
-	{
-		if (this.m.returnModule != null)
-		{
+	function onCommanderButtonPressed()	{
+		if (this.m.returnModule != null) {
 			return false;
 		}
 
-		if (this.m.OnCommanderButtonPressedListener == null)
-		{
+		if (this.m.Listeners.OnCommanderButtonPressed == null) {
 			return false;
 		}
 
 		this.m.returnModule = this.m.LastActiveModule;
-		this.m.OnCommanderButtonPressedListener();
+		this.m.Listeners.OnCommanderButtonPressed();
 		return true;
 	}
 
-	function onShowTentBuilding( _id )
-	{
-		if (this.m.returnModule != null)
-		{
+	function onShowTentBuilding( _id ) {
+		if (this.m.returnModule != null) {
 			return false;
 		}
 
-		if (this.m.OnTentButtonPressedListener == null)
-		{
+		if (this.m.Listeners.OnTentButtonPressed == null)	{
 			return false;
 		}
 
 		this.m.returnModule = this.m.LastActiveModule;
-		this.m.OnTentButtonPressedListener(_id);
+		this.m.Listeners.OnTentButtonPressed(_id);
 		return true;
 	}
 
 	function onEncounterClicked (_data) {
 		if (this.isAnimating())
 			return;
-		this.World.Camp.onEncounterClicked(_data, this);
+		::World.Camp.onEncounterClicked(_data, this);
 	}
 
-	function onModuleClosed()
-	{
-		if (this.m.OnModuleClosedListener != null)
-		{
-			this.m.OnModuleClosedListener();
+	function onModuleClosed() {
+		if (this.m.Listeners.OnModuleClosed != null) {
+			this.m.Listeners.OnModuleClosed();
 		}
 	}
 
-	function onCampClosed()
-	{
-		if (this.m.OnCampListener != null)
-		{
-			this.m.OnCampListener();
+	function onCampClosed() {
+		if (this.m.Listeners.OnCamp != null)	{
+			this.m.Listeners.OnCamp();
 		}
 	}
 
-	function onContractClicked( _data )
-	{
+	function onContractClicked( _data ) {
 		if (this.isAnimating())
 			return;
-		this.World.Contracts.showContractByID(_data);
+		::World.Contracts.showContractByID(_data);
 	}
 
-	function onSlotClicked( _data )
-	{
-		if (this.isAnimating())
-		{
+	function onSlotClicked( _data ) {
+		if (this.isAnimating())	{
 			return;
 		}
 
-		local building = this.World.Camp.getBuildingByID(_data);
+		local building = ::World.Camp.getBuildingByID(_data);
 
-		if (building == null)
-		{
+		if (building == null) {
 			return;
 		}
 
@@ -762,33 +277,28 @@ this.camp_screen <- {
 			return;
 		}
 
-		this.m.CommanderDialogModule.m.RightClickedTent = _data;
+		this.m.Modules[::Const.World.CampBuildings.Commander].m.RightClickedTent = _data;
 		::World.Camp.getBuildingByID(::Const.World.CampBuildings.Commander).onClicked(this);
 	}
 
-	function getTimeRequired()
-	{
+	function getTimeRequired() {
 		return "No camp tasks have been scheduled...";
 	}
 
-	function getUITerrain()
-	{
-		return this.World.Camp.getUITerrain();
+	function getUITerrain() {
+		return ::World.Camp.getUITerrain();
 	}
 
-	function queryCampInformation()
-	{
+	function queryCampInformation()	{
 		return this.getUIInformation();
 	}
 
-	function queryAssetsInformation()
-	{
-		return this.UIDataHelper.convertAssetsInformationToUIData();
+	function queryAssetsInformation() {
+		return ::UIDataHelper.convertAssetsInformationToUIData();
 	}
 
-	function getUIInformation()
-	{
-		local result = this.World.Camp.getUIInformation();
+	function getUIInformation()	{
+		local result = ::World.Camp.getUIInformation();
 		result.Assets <- this.queryAssetsInformation();
 		return result;
 	}

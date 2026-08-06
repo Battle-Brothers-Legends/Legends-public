@@ -8,7 +8,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Scout;
+		this.m.ID = ::Const.World.CampBuildings.Scout;
 		this.m.ModName = "Scout";
 		this.m.ModMod = 10.0;
 		this.m.BaseCraft = 0.1;
@@ -19,28 +19,15 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.CanEnter = false;
 	}
 
-	function getTitle()
-	{
-		if (this.getUpgraded())
-		{
-			return this.m.Name + " *Upgraded*";
-		}
-		return this.m.Name +  " *Not Upgraded*";
+	function getTitle() {
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc += "Getting ambushed while camping is the surest way to ruin a good nights sleep. ";
-		desc += "Make sure someone is on patrol in order to have eyes and ears and the local landscape. ";
-		desc += "The more men assigned on patrol, the faster and further your visibility grows.";
-		desc += "\n\n";
-		desc += "The Patrol station can be upgraded by purchasing a patrol cart from a settlement merchant. An upgraded tent has a 15% increase in patrol speed and ";
-		desc += "has a chance of revealing the defenders of any camps encountered. ";
-		desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined.";
-		desc += "\n\n";
-		desc += "Assigned scouts with the Lookout perk will pause time when an enemy is sighted";
-		return desc;
+	function getDescription() {
+		//desc += "The Patrol station can be upgraded by purchasing a patrol cart from a settlement merchant. An upgraded tent has a 15% increase in patrol speed and ";
+		//desc += "has a chance of revealing the defenders of any camps encountered. ";
+		//desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined.";
+		return "Assign men to scout around and reveal information about the surroundings.";
 	}
 
 	function getModifierTooltip()
@@ -66,29 +53,23 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		return ret;
 	}
 
-	function isHidden()
-	{
-		if (::Legends.Settings.skipCamp())
-			return false;
-		return !this.World.Flags.get(::Legends.Camp.Flag.Scout);
+	function isHidden()	{
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Scout);
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Scout);
+	function getUpgraded() {
+		return ::Stash.hasItem(::Legends.Camp.Tent.Scout);
 	}
 
 	function getLevel()	{
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function getVisionRadius()
-	{
+	function getVisionRadius() {
 		return this.m.Radius;
 	}
 
-	function init()
-	{
+	function init()	{
 		this.m.Radius = 250;
 		local mod = this.getModifiers();
 		this.m.Rate = mod.Craft;
@@ -96,47 +77,32 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.NumBros = mod.Assigned;
 	}
 
-	function getModifiers()
-	{
-		local ret =
-		{
+	function getModifiers() {
+		local ret =	{
 			Craft = 0.0,
 			Assigned = 0,
 			Modifiers = []
 		}
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
-				continue;
-			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers().Scout;
-
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout))
-				mod = mod * 1.1;
-
-			++ret.Assigned;
-			ret.Modifiers.push([mod, bro.getName(), bro.getBackground().getNameOnly()]);
+		local self = this;
+		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID);
+		foreach (bro in scoutingBros) {
+			ret.Assigned++;
+			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout) * (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout) ? 1.1 : 1), bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
 		for (local i = 0; i < ret.Modifiers.len(); i = ++i)
-		{
-			ret.Modifiers[i][0] = ret.Modifiers[i][0] * this.Math.pow(i + 1, -0.5);
-			if (this.getUpgraded())
-			{
-				ret.Modifiers[i][0] *= 1.15;
-			}
-			ret.Craft += ret.Modifiers[i][0];
+		foreach (i, mod in ret.Modifiers) {
+			mod[0] *= ::Math.pow(i + 1, -0.5) * (this.getUpgraded() ? 1.15 : 1);
+			ret.Craft += mod[0];
 		}
 		return ret;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		local res = [];
 		local id = 110;
-		foreach (b in this.m.Results)
-		{
+		foreach (b in this.m.Results) {
 			res.push({
 		 		id = id++,
 		 		icon = b.Icon,
@@ -146,25 +112,15 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		return res;
 	}
 
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
+	function getAssignedBros() {
+		return this.getModifiers().Assigned;
 	}
 
-	function completed()
-	{
+	function completed() {
 		local mod = this.getModifiers();
-		if (mod.Assigned == 0)
-		{
+		if (mod.Assigned == 0 || !this.getUpgraded()) {
 			return;
 		}
-
-		if (!this.getUpgraded())
-		{
-			return;
-		}
-
 		// local r = this.Math.min(75, 10 * this.Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
 
 		// if (this.Math.rand(1, 100) > r)
@@ -172,109 +128,64 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		//	 return;
 		// }
 
-		local bro = mod.Modifiers[this.Math.rand(0, mod.Modifiers.len() - 1)][1];
+		local bro = mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1];
+		local playerTile = ::World.State.getPlayer().getTile();
+        local campHours = this.m.Camp.getCampTimeHours();
 
 		local locations = [];
-		foreach( s in this.World.EntityManager.getLocations() )
-		{
-			if (s.isAlliedWithPlayer())
-			{
-				continue;
-			}
-
-			//If within patrol radius, give chance to discover defenders
-			if (!s.isShowingDefenders() && s.m.IsSpawningDefenders && s.getDefenderCount() > 0 && this.m.Camp.getCampTimeHours() > 3)
-			{
-				if (s.isVisibleToEntity(this.World.State.getPlayer(), this.m.Radius))
-				{
+		local scoutableLocations = ::World.EntityManager.getLocations().filter(@(_, _location) !_location.isAlliedWithPlayer());
+		foreach(location in scoutableLocations)	{
+			if (!location.isShowingDefenders() && location.m.IsSpawningDefenders && location.getDefenderCount() > 0 && campHours > 3) {
+				if (location.isVisibleToEntity(::World.State.getPlayer(), this.m.Radius)) {
 					this.m.Results.push({
 						Icon = "ui/icons/vision.png",
-						Text = "While on patrol, " + bro + " discovered " + s.getName() + " has " + s.getDefenderCount() + " defenders."
+						Text = "While on patrol, " + bro + " discovered " + location.getName() + " has " + location.getDefenderCount() + " defenders."
 					});
 				}
-				s.m.IsShowingDefenders = true;
+				location.m.IsShowingDefenders = true;
 			}
 
-
-			if (s.getLoot().isEmpty())
-			{
+			if (location.getLoot().isEmpty() || location.getTile().getDistanceTo(playerTile) - ::Math.rand(1, 10) > 20) {
 				continue;
 			}
-
-			local d = s.getTile().getDistanceTo(this.World.State.getPlayer().getTile());
-			if (d - this.Math.rand(1, 10) > 20)
-			{
-				continue;
-			}
-
-			locations.push(s);
+			locations.push(location);
 		}
 
-		if (locations.len() == 0)
-		{
+		if (locations.len() == 0) {
 			return;
 		}
 
-		local location = locations[this.Math.rand(0, locations.len() - 1)];
-		local f = this.World.FactionManager.getFaction(location.getFaction());
+		local location = locations[::Math.rand(0, locations.len() - 1)];
+		local f = ::World.FactionManager.getFaction(location.getFaction());
 		local tracks = "";
-		if (f.getType() == this.Const.FactionType.Orcs)
-		{
-			tracks = "Orc";
-		}
-		else if (f.getType() == this.Const.FactionType.Goblins)
-		{
-			tracks = "Goblin";
-		}
-		else if (f.getType() == this.Const.FactionType.Undead)
-		{
-			tracks = "Undead";
-		}
-		else
-		{
-			tracks = "Human";
-		}
-
-		local distance = location != null  ? this.World.State.getPlayer().getTile().getDistanceTo(location.getTile()) : 0;
-		distance = this.Const.Strings.Distance[this.Math.min(this.Const.Strings.Distance.len() - 1, distance / 30.0 * (this.Const.Strings.Distance.len() - 1))];
-		local direction = location != null ? this.Const.Strings.Direction8[this.World.State.getPlayer().getTile().getDirection8To(location.getTile())] : "";
+		switch (f.getType()) {
+            case ::Const.FactionType.Orcs:
+                tracks = "Orc";
+                break;
+            case ::Const.FactionType.Goblins:
+                tracks = "Goblin";
+                break;
+            case ::Const.FactionType.Undead:
+            case ::Const.FactionType.Zombies:
+                tracks = "Undead";
+                break;
+            default:
+                tracks = "Human";
+                break;
+        }
 
 		this.m.Results.push({
 			Icon = "ui/icons/vision.png",
-			Text = "While on patrol, " + bro + " came across some " + tracks + " tracks. The tracks lead off towards the " + direction + ". The age of the tracks indicate that the group must be " + distance + "."
+			Text = "While on patrol, " + bro + " came across some " + tracks + " tracks. The tracks lead off towards the " + (location != null ? ::Const.Strings.Direction8[::playerTile.getDirection8To(location.getTile())] : "") + ". The age of the tracks indicates that the group must be " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, (location != null  ? playerTile.getDistanceTo(location.getTile()) : 0) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + "."
 		});
 
 	}
 
-	function getUpdateText()
-	{
-		if (this.m.NumBros == 0)
-		{
-			return "No one on patrol!";
-		}
-
-		return "Patrol radius ... " + this.m.Radius;
+	function getUpdateText() {
+		return this.m.NumBros == 0 ? "No one on patrol!" : ("Patrol radius ... " + this.m.Radius);
 	}
 
-	function updateTick ( _hours )
-	{
-		this.m.Radius = 250 + this.Math.pow(this.m.Rate, 0.5) * 300.0 * this.Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
+	function updateTick ( _hours ) {
+		this.m.Radius = 250 + ::Math.pow(this.m.Rate, 0.5) * 300.0 * ::Math.pow(_hours, 0.5 - (0.1 * this.m.Rate));
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showScoutDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });

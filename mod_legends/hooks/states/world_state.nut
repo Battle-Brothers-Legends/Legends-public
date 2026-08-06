@@ -61,11 +61,11 @@
 	o.onInitUI = function()
 	{
 		this.m.CampScreen <- this.new("scripts/ui/screens/world/camp_screen");
-		this.m.CampScreen.setOnBrothersPressedListener(this.camp_screen_main_dialog_module_onBrothersButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnCommanderPressedListener(this.camp_screen_main_dialog_module_onCommanderButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnTentPressedListener(this.camp_screen_main_dialog_module_onTentButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnModuleClosedListener(this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnCampListener(this.onCamp.bindenv(this));
+		this.m.CampScreen.setListener("OnBrothersButtonPressed", this.camp_screen_main_dialog_module_onBrothersButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnCommanderButtonPressed", this.camp_screen_main_dialog_module_onCommanderButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnTentButtonPressed", this.camp_screen_main_dialog_module_onTentButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnModuleClosed", this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnCamp", this.onCamp.bindenv(this));
 		onInitUI();
 		this.m.WorldScreen.getTopbarDayTimeModule().setOnTimeSuperFastPressedListener(this.setSuperFastTime.bindenv(this));
 	}
@@ -478,7 +478,7 @@
 
 	o.camp_screen_main_dialog_module_onCommanderButtonClicked <- function ()
 	{
-		this.showCommanderScreenFromCamp();
+		this.showTentScreenFromCamp(::Const.World.CampBuildings.Commander);
 	}
 
 	o.camp_screen_main_dialog_module_onTentButtonClicked <- function ( _id )
@@ -569,7 +569,7 @@
 	o.showTentScreenFromCamp <- function ( _id )
 	{
 		this.m.CampScreen.hideAllDialogs();
-		this.m.CampScreen.showTentBuildingDialog( _id );
+		this.m.CampScreen.showCampBuildingDialog( _id );
 		this.m.MenuStack.push(function ()
 		{
 			this.m.CampScreen.showLastReturnDialog();

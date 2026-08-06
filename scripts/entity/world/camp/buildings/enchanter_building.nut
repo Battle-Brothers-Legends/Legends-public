@@ -5,175 +5,24 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Enchanter;
+		this.m.ID = ::Const.World.CampBuildings.Enchanter;
 		this.m.Slot = "enchant";
 		this.m.Name = "Enchant";
 		this.m.Description = "Oooo.. Pretty glowing things...";
 		this.m.BannerImage = "ui/buttons/banner_enchant.png";
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_vala_chanting_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_chanting_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_10.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_vala_chanting_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_chanting_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_singing_10.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_vala_stones_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+		local sounds = this.getCampSounds(14, this.m.Slot);
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function isHidden() {
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getBackground().getModifiers().Enchanting > 0) {
-				return false;
-			}
-		}
-		return true;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getBackground().getModifiers().Enchanting > 0).len() != 0;
 	}
 
 	function getDescription() {
-		local desc = "";
-		desc += "Tha Vala emporium of mystical (and maybe even magical) mischief. While encamped, the Vala can retreat into her books and experiments. ";
-		desc += "Rune requests can be queued up for the Vala to try her hand at. What comes of them, you'll just have to wait and see what she inscribes. ";
-		desc += "Only the Vala can be assigned to the Enchanting tent. The Vala can innately enchant runes, but the enchanting speed will increase by 30% if she is over level 12.";
-		desc += "\n\n";
-		desc += "The Enchanting tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in enchanting speed.";
-		desc += "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes.";
-		return desc;
+		// An upgraded tent has a 15% increase in enchanting speed.";
+		// "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes.";
+		return "Inscribe runes in selected order when encamped. Partial progress is kept. Only the Vala can work here.";
 	}
 
 	function getModifierTooltip() {
@@ -242,10 +91,5 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 
 	function onBroEnter ( _bro ) {
 		return _bro.getBackground().getModifiers().Enchanting > 0;
-	}
-
-	function onClicked( _campScreen ) {
-		_campScreen.showEnchanterDialog();
-		this.camp_building.onClicked(_campScreen);
 	}
 });

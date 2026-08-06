@@ -7,14 +7,7 @@ this.barber_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Name = "Barber";
 		this.m.Description = "Customize the appearance of the mercenaries in the company.";
 		this.m.InCommanderTent = false;
-		local sounds = [];
-		for (local i = 1; i <= 2; i++) {
-			sounds.push({
-				File = format("ambience/camp/camp_barber_%02d.wav", i),
-				Volume = 1.0,
-				Pitch = 1.0
-			});
-		}
+		local sounds = this.getCampSounds(2, this.m.Slot);
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 	}
@@ -24,13 +17,6 @@ this.barber_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function isHidden() {
-		if (::Legends.Settings.skipCamp())
-			return false;
-		return !::World.Flags.get(::Legends.Camp.Flag.Barber);
-	}
-
-	function onClicked( _campScreen ) {
-		_campScreen.showBarberDialog();
-		this.camp_building.onClicked(_campScreen);
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Barber);
 	}
 });
