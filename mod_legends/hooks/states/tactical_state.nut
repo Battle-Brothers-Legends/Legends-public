@@ -554,7 +554,7 @@
 		local zombieLoot = false;
 		local skeletonLoot = false;
 
-		local livingBrothers = ::World.getPlayerRoster().getAll().fiter(@(_, _bro) (_bro.isAlive()));
+		local livingBrothers = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.isAlive()));
 		local CannibalisticButchersInRoster = livingBrothers.filter(@(_, _bro) (::Legends.Backgrounds.has(_bro, ::Legends.Background.Butcher) && ::Legends.Traits.has(_bro, ::Legends.Trait.LegendCannibalistic))).len();
 		
 		foreach (bro in livingBrothers)	{
@@ -657,11 +657,10 @@
 				}
 			}
 		}
-
 		if (!isArena && this.m.StrategicProperties != null)	{
-			local eligibleParties = this.m.StrategicProperties.Parties.filter(@(_, _party)(party.getTroops().len() == 0 && party.isAlive() && !party.isAlliedWithPlayer() && party.isDroppingLoot() && (playerKills > 0 || this.m.IsDeveloperModeEnabled)));
+			local eligibleParties = this.m.StrategicProperties.Parties.filter(@(_, _party)(_party.getTroops().len() == 0 && _party.isAlive() && !_party.isAlliedWithPlayer() && _party.isDroppingLoot() && (playerKills > 0 || this.m.IsDeveloperModeEnabled)));
 			foreach(party in eligibleParties) {
-					party.onDropLootForPlayer(loot);
+				party.onDropLootForPlayer(loot);
 			}
 
 			foreach( item in this.m.StrategicProperties.Loot ) {
