@@ -42,31 +42,6 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[2];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
-		this.m.Modifiers.Enchanting = 0.1;
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.00,//plains
-				0.030, //swamp
-				0.01, //hills
-				0.030, //forest
-				0.030, //forest
-				0.030, //forest_leaves
-				0.030, //autumn_forest
-				0.03, //mountains
-				0.0, // ?
-				0.00, //farmland
-				0.020, // snow
-				0.020, // badlands
-				0.020, //highlands
-				0.01, //steppes
-				0.0, //ocean
-				0.01, //desert
-				0.01 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SpearTree,

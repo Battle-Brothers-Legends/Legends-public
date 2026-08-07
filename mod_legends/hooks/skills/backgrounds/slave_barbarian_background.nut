@@ -60,8 +60,5 @@
 	{
 		return ::Legends.Backgrounds.getStats(::Legends.Background.SlaveBarbarian);
 	}
-
-	//no need to do legendsequipment here because it inherits from slave_background
-
 });
 

@@ -54,9 +54,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.CleaverTree,

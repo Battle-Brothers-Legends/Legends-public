@@ -50,8 +50,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 		this.m.Level = this.Math.rand(2, 5);
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

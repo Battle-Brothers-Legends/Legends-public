@@ -45,32 +45,6 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[1];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
-		this.m.Modifiers.Terrain =  [
-				0.0, // ?
-				0.0, //ocean
-				0.01,//plains
-				0.0, //swamp
-				0.02, //hills
-				0.02, //forest
-				0.02, //forest
-				0.02, //forest_leaves
-				0.02, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.01, //farmland
-				0.0, // snow
-				0.02, // badlands
-				0.02, //highlands
-				0.02, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.HammerTree,

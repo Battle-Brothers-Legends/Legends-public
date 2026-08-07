@@ -44,11 +44,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[3];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.FlailTree,

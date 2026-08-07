@@ -30,10 +30,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.ThrowingTree,

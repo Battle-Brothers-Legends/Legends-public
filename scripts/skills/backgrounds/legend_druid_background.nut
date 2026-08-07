@@ -53,31 +53,6 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[3];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0, //plains
-			0.05, //swamp
-			0.05, //hills
-			0.1, //forest
-			0.1, //forest
-			0.1, //forest_leaves
-			0.0, //autumn_forest
-			0.05, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.05, // snow
-			0.05, // badlands
-			0.05, //highlands
-			0.05, //steppes
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		];
 	this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

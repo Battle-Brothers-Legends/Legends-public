@@ -17,11 +17,6 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 			::Legends.Traits.getID(::Legends.Trait.Bright),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[3];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[4];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[4];
-
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Colossus,

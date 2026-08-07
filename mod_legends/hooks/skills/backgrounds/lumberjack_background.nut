@@ -41,32 +41,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Combat;
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[2];
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0,//plains
-				0.0, //swamp
-				0.0, //hills
-				0.05, //forest
-				0.05, //forest
-				0.05, //forest_leaves
-				0.05, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.AxeTree,

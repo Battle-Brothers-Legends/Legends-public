@@ -53,12 +53,6 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.Level = this.Math.rand(2, 4);
 
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Educated;
-
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[3];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[2];
-
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.CleaverTree,

@@ -27,8 +27,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.PolearmTree,

@@ -50,8 +50,5 @@
 		this.character_background.onAdded();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
 	}
-
-	//no need to do legendsequipment here because it inherits from slave_background
-
 });
 

@@ -51,31 +51,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
 
 		this.m.Level = this.Math.rand(3, 6);
-		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.01, //plains
-			0.02, //swamp
-			0.01, //hills
-			0.02, //forest
-			0.02, //forest
-			0.02, //forest_leaves
-			0.02, //autumn_forest
-			0.0, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.0, // snow
-			0.02, // badlands
-			0.02, //highlands
-			0.05, //steppes
-			0.0, //ocean
-			0.05, //desert
-			0.05 //oasis
-		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.MaceTree,

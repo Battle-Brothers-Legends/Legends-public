@@ -42,10 +42,6 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[3];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
-		this.m.Modifiers.Enchanting = 1.0;
 		this.m.Level = 2;
 		this.m.PerkTreeDynamic = {
 			Weapon = [

@@ -43,8 +43,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.PerkTreeDynamic = {
 			Weapon = [

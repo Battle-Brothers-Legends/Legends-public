@@ -29,14 +29,6 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Noble;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[3];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[3];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[3];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[2];
-		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[1];
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[3];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.HammerTree,

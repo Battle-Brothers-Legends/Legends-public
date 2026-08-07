@@ -28,32 +28,6 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[1];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[1];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.025,//plains
-				0.0, //swamp
-				0.025, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.01, //steppes
-				0.0, //ocean
-				0.025, //desert
-				0.025 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.BowTree,

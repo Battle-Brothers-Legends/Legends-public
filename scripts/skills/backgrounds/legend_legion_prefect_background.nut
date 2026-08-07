@@ -23,33 +23,6 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[1];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[3]; // 5, 8, 13, 21, 34, 55
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[2]; // 0.0, 0.05, 0.10, 0.20
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[2]; // 0.0, 0.10, 0.30, 0.50, 1.0
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[2]; // 0.0, 0.10, 0.30, 0.50
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.025,//plains
-				0.01, //swamp
-				0.01, //hills
-				0.01, //forest
-				0.01, //forest
-				0.01, //forest_leaves
-				0.01, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.025, //farmland
-				0.011, // snow
-				0.015, // badlands
-				0.015, //highlands
-				0.025, //steppes
-				0.0, //ocean
-				0.01, //desert
-				0.025 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.DaggerTree,

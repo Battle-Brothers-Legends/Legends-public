@@ -24,32 +24,6 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.m.Level = this.Math.rand(3, 5);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3]; // 0.0, 0.1, 0.2, 0.3
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[3]; // 5, 8, 13, 21, 34, 55
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[2]; // 0.0, 0.05, 0.10, 0.20
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.02, //plains
-				0.02, //swamp
-				0.02, //hills
-				0.02, //forest
-				0.02, //forest
-				0.02, //forest_leaves
-				0.02, //autumn_forest
-				1.0, //mountains - hannibal time
-				0.0, // ?
-				0.02, //farmland
-				0.02, //snow
-				0.02, //badlands
-				0.02, //highlands
-				0.02, //steppes
-				0.0, //ocean
-				0.02, //desert
-				0.02 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.DaggerTree,

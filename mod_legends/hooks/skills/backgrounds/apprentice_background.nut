@@ -36,11 +36,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[1];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[1];
-		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[0];
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[2];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

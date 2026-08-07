@@ -213,6 +213,7 @@
 ::Const.CharacterProperties.FlatOnKillOtherActorModifier <- 0;
 ::Const.CharacterProperties.PercentOnKillOtherActorModifier <- 1.0;
 ::Const.CharacterProperties.FatigueDealtAsPercentOfMaxFatigue <- 0.0;
+::Const.CharacterProperties.Modifiers <- {};
 
 ::Const.CharacterProperties.getInitiativeMinDamage <- function ()
 {

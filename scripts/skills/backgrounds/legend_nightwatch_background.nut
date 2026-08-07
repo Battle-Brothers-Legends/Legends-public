@@ -23,28 +23,6 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.015,//plains
-				0.0, //swamp
-				0.01, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.015, //farmland
-				0.0, // snow
-				0.01, // badlands
-				0.01, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.PolearmTree,

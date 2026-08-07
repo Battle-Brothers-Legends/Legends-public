@@ -34,7 +34,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.MaceTree,

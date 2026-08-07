@@ -58,30 +58,6 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.05, //plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.1, //steppes
-				0.0, //ocean
-				0.1, //desert
-				0.2 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

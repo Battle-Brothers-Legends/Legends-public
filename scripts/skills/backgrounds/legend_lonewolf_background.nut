@@ -52,8 +52,6 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		];
 
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3];
-
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

@@ -37,10 +37,6 @@
 		];
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.PerkTreeDynamic = {
 			Weapon = [

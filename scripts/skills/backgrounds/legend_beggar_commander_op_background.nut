@@ -40,8 +40,6 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
-		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[3];
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.FastAdaption,

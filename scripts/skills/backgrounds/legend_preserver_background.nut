@@ -43,34 +43,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Female;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[1];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[3];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0,//plains
-				0.0, //swamp
-				0.0, //hills
-				0.10, //forest
-				0.10, //forest
-				0.10, //forest_leaves
-				0.10, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.02, // snow
-				0.02, // badlands
-				0.02, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
+		
 		this.m.CustomPerkTree = [
 		[
 			::Legends.Perk.LegendSpecialistShepherd,

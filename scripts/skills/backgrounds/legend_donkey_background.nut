@@ -44,35 +44,10 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[4];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[5];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[4];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[5];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.RangedSkill,
 			this.Const.Attributes.RangedDefense,
 			this.Const.Attributes.MeleeDefense
-		];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.025, //plains
-			0.01, //swamp
-			0.01, //hills
-			0.01, //forest
-			0.01, //forest
-			0.01, //forest_leaves
-			0.01, //autumn_forest
-			0.01, //mountains
-			0.0, // ?
-			0.025, //farmland
-			0.011, // snow
-			0.015, // badlands
-			0.015, //highlands
-			0.025, //steppes
-			0.0, //ocean
-			0.01, //desert
-			0.025 //oasis
 		];
 		this.m.CustomPerkTree = [
 			[

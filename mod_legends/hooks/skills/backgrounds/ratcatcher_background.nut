@@ -36,9 +36,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.ThrowingTree,

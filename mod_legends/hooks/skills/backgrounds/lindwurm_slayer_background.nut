@@ -42,35 +42,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[1];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[2];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[3];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.00,//plains
-				0.025, //swamp
-				0.0, //hills
-				0.025, //forest
-				0.025, //forest
-				0.025, //forest_leaves
-				0.025, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.00, //farmland
-				0.015, // snow
-				0.015, // badlands
-				0.015, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
-
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.PolearmTree,

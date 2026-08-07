@@ -23,30 +23,6 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 		this.m.Level = this.Math.rand(2, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		// this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.025,//plains
-				0.01, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.025, //farmland
-				0.011, // snow
-				0.015, // badlands
-				0.015, //highlands
-				0.025, //steppes
-				0.0, //ocean
-				0.01, //desert
-				0.025 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.DaggerTree,

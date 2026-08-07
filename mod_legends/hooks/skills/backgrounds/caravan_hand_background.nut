@@ -22,29 +22,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.025,//plains
-				0.01, //swamp
-				0.01, //hills
-				0.01, //forest
-				0.01, //forest
-				0.01, //forest_leaves
-				0.01, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.025, //farmland
-				0.011, // snow
-				0.015, // badlands
-				0.015, //highlands
-				0.025, //steppes
-				0.0, //ocean
-				0.01, //desert
-				0.025 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

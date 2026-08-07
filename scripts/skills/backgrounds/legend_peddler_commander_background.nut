@@ -38,31 +38,6 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[3];
-		this.m.Modifiers.Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[4];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.2, //plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.1, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.1  //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.PolearmTree,

@@ -59,31 +59,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0,//plains
-			0.025, //swamp
-			0.025, //hills
-			0.0, //forest
-			0.0, //forest
-			0.0, //forest_leaves
-			0.0, //autumn_forest
-			0.025, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.025, // snow
-			0.025, // badlands
-			0.025, //highlands
-			0.0, //steppes
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.MaceTree,

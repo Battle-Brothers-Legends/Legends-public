@@ -54,33 +54,6 @@
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = 9;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader;
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[2];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[3];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[1];
-		this.m.Modifiers.Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[1];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.00,//plains
-				0.025, //swamp
-				0.0, //hills
-				0.025, //forest
-				0.025, //forest
-				0.025, //forest_leaves
-				0.025, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.00, //farmland
-				0.015, // snow
-				0.015, // badlands
-				0.015, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.HammerTree,

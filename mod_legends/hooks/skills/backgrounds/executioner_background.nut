@@ -43,8 +43,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | this.Const.BackgroundType.Performing;
-		this.m.Modifiers.Meds = ::Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.Injury = ::Const.LegendMod.ResourceModifiers.Injury[1];
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.CleaverTree,

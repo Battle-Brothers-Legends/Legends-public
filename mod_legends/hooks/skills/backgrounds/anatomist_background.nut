@@ -60,34 +60,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
 		this.m.BackgroundType = this.Const.BackgroundType.Educated;
 		this.m.Level = this.Math.rand(1, 2);
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[2];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[1];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[1];
-
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0, //plains
-				0.02, //swamp
-				0.03, //hills
-				0.05, //forest
-				0.05, //forest
-				0.05, //forest_leaves
-				0.05, //autumn_forest
-				0.01, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
-
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.CleaverTree,
