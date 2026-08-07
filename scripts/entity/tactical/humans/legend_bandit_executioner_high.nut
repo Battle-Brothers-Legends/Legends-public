@@ -42,7 +42,7 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 		this.getItems().equip(this.Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.executioner_hood],
 			[8, ::Legends.Helmet.Standard.bandit_executioner_hood]
-		]))
+		]));
 	}
 
 	function makeMiniboss() {

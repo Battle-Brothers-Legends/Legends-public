@@ -62,7 +62,7 @@ this.legend_peasant_blacksmith <- this.inherit("scripts/entity/tactical/human", 
 				[1, ::Legends.Helmet.Standard.headscarf],
 				[2, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.straw_hat]
-			]))
+			]));
 		}
 	}
 

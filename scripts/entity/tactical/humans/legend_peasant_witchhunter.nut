@@ -62,7 +62,7 @@ this.legend_peasant_witchhunter <- this.inherit("scripts/entity/tactical/human",
 			this.getItems().equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.witchhunter_hat],
 				[6, ::Legends.Helmet.Standard.hood]
-			]))
+			]));
 		}
 	}
 

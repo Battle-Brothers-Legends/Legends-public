@@ -60,7 +60,7 @@ this.legend_peasant_miner <- this.inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
 				[2, ::Legends.Helmet.Standard.mouth_piece],
 				[1, ::Legends.Helmet.Standard.hood]
-			]))
+			]));
 		}
 	}
 

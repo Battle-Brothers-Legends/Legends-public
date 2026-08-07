@@ -70,7 +70,7 @@ this.legend_peasant_squire <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet]
-		]))
+		]));
 	}
 
 });

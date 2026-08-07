@@ -67,7 +67,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 					[1, ::Legends.Helmet.Standard.hood],
 					[1, ::Legends.Helmet.Standard.headscarf],
 					[1, ::Legends.Helmet.Standard.feathered_hat]
-				]))
+				]));
 			}
 		}
 	}
@@ -88,7 +88,7 @@ this.legend_peasant_butcher <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_champion_butcher_helmet]
-		]))
+		]));
 	}
 
 });

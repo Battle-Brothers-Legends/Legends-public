@@ -46,7 +46,6 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
 		local weapons = [
 			[
 				"weapons/short_bow",
@@ -82,7 +81,7 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 			this.getItems().equip(::Const.World.Common.pickHelmet([
 				// [1, ::Legends.Helmet.Standard.hunters_hat],
 				[3, ::Legends.Helmet.Standard.hood]
-			]))
+			]));
 		}
 	}
 

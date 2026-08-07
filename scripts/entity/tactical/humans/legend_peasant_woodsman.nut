@@ -61,7 +61,7 @@ this.legend_peasant_woodsman <- this.inherit("scripts/entity/tactical/human", {
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
 				[3, ::Legends.Helmet.Standard.straw_hat],
 				[1, ::Legends.Helmet.Standard.hood]
-			]))
+			]));
 		}
 	}
 

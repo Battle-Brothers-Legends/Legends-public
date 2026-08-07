@@ -76,7 +76,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.open_leather_cap],
 				[1, ::Legends.Helmet.Standard.full_leather_cap]
-			]))
+			]));
 		}
 	}
 

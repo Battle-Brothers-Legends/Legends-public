@@ -2,14 +2,14 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBanditExecutioner;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendBanditExecutioner.XP;
+		this.m.Type = ::Const.EntityType.LegendBanditExecutioner;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendBanditExecutioner.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_butcher_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -45,7 +45,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		}
 		else {
 			this.getItems().equip(::Const.World.Common.pickItem([
-				[5, "weapons/blunt_cleaver"],
+				[5, "weapons/barbarians/blunt_cleaver"],
 				[5, "weapons/scramasax"],
 				[1, "weapons/legend_militia_glaive"]
 			], "scripts/items/"));
@@ -58,7 +58,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		this.getItems().equip(this.Const.World.Common.pickHelmet([
 			[10, ::Legends.Helmet.Standard.executioner_hood],
 			[1, ::Legends.Helmet.Standard.bandit_executioner_hood]
-		]))
+		]));
 	}
 
 	function makeMiniboss() {
@@ -77,9 +77,9 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 			"armor/named/blue_studded_mail_armor"
 		];
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			this.getItems().equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.getItems().equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{

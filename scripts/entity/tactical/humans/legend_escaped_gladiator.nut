@@ -1,7 +1,7 @@
 this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gladiator", {
 	function create() {
 		this.gladiator.create();
-		this.m.Type = this.Const.EntityType.LegendEscapedGladiator;
+		this.m.Type = ::Const.EntityType.LegendEscapedGladiator;
 		this.actor.create();
 	}
 
@@ -16,10 +16,7 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 		}
 	}
 
-	function assignRandomEquipment ()
-	{
-		local r;
-
+	function assignRandomEquipment () {
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
