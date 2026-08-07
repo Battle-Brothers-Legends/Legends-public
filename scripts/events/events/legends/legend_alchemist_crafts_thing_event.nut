@@ -34,7 +34,7 @@ this.legend_alchemist_crafts_thing_event <- this.inherit("scripts/events/event",
 						[1, "accessory/spider_poison_item"],
 						[1, "misc/potion_of_knowledge_item"],
 					], "scripts/items/")
-				]), ::World.Assets.getStash());
+				], ::World.Assets.getStash()));
 			}
 		});
 	}
@@ -50,7 +50,7 @@ this.legend_alchemist_crafts_thing_event <- this.inherit("scripts/events/event",
 			return;
 
 		this.m.Alchemist = candidates_monk[::Math.rand(0, candidates_monk.len() - 1)];
-		this.m.Score = 5;
+		this.m.Score = 555;
 	}
 
 	function onPrepareVariables(_vars) {
