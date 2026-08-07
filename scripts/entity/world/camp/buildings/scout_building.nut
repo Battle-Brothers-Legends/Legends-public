@@ -87,11 +87,10 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID);
 		foreach (bro in scoutingBros) {
 			ret.Assigned++;
-			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout) * (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout) ? 1.1 : 1), bro.getName(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout) * (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout) ? 1.1 : 1.0), bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
-		for (local i = 0; i < ret.Modifiers.len(); i = ++i)
 		foreach (i, mod in ret.Modifiers) {
 			mod[0] *= ::Math.pow(i + 1, -0.5) * (this.getUpgraded() ? 1.15 : 1);
 			ret.Craft += mod[0];
@@ -118,7 +117,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function completed() {
 		local mod = this.getModifiers();
-		if (mod.Assigned == 0 || !this.getUpgraded()) {
+		if (mod.Assigned == 0) {
 			return;
 		}
 		// local r = this.Math.min(75, 10 * this.Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
@@ -128,7 +127,6 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		//	 return;
 		// }
 
-		local bro = mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1];
 		local playerTile = ::World.State.getPlayer().getTile();
         local campHours = this.m.Camp.getCampTimeHours();
 
@@ -139,46 +137,55 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 				if (location.isVisibleToEntity(::World.State.getPlayer(), this.m.Radius)) {
 					this.m.Results.push({
 						Icon = "ui/icons/vision.png",
-						Text = "While on patrol, " + bro + " discovered " + location.getName() + " has " + location.getDefenderCount() + " defenders."
+						Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " discovered " + location.getName() + " has " + location.getDefenderCount() + " defenders."
 					});
 				}
 				location.m.IsShowingDefenders = true;
 			}
 
-			if (location.getLoot().isEmpty() || location.getTile().getDistanceTo(playerTile) - ::Math.rand(1, 10) > 20) {
-				continue;
-			}
+			if (location.isDiscovered() || location.getTile().getDistanceTo(playerTile) - ::Math.rand(1, 10) > 20 * (1 + this.getModifiers().Craft)) {
+                continue;
+            }
 			locations.push(location);
 		}
+	
+		if(this.getUpgraded()) {
+			for(local i = 0; i < ::Legends.S.randomizeFractionToInt(campHours * 0.1 + (0.1 * this.getModifiers().Craft)) ; i++) {
+				if (locations.len() == 0) {
+        			break; 
+    			}
+				
+				local randomLocationIndex = ::Math.rand(0, locations.len() - 1);
+				local location = locations[randomLocationIndex];
+				locations.remove(randomLocationIndex);
+				location.setDiscovered(true);
+				::World.uncoverFogOfWar(location.getTile().Pos, 400.0);
 
-		if (locations.len() == 0) {
-			return;
+				local tracks = "";
+				switch (::World.FactionManager.getFaction(location.getFaction()).getType()) {
+					case ::Const.FactionType.Orcs:
+						tracks = "Orc";
+						break;
+					case ::Const.FactionType.Goblins:
+						tracks = "Goblin";
+						break;
+					case ::Const.FactionType.Undead:
+					case ::Const.FactionType.Zombies:
+						tracks = "Undead";
+						break;
+					default:
+						tracks = "Human";
+						break;
+				}
+
+				if (location != null) {
+					this.m.Results.push({
+						Icon = "ui/icons/vision.png",
+						Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + location.getName() + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
+					});
+				}
+			}
 		}
-
-		local location = locations[::Math.rand(0, locations.len() - 1)];
-		local f = ::World.FactionManager.getFaction(location.getFaction());
-		local tracks = "";
-		switch (f.getType()) {
-            case ::Const.FactionType.Orcs:
-                tracks = "Orc";
-                break;
-            case ::Const.FactionType.Goblins:
-                tracks = "Goblin";
-                break;
-            case ::Const.FactionType.Undead:
-            case ::Const.FactionType.Zombies:
-                tracks = "Undead";
-                break;
-            default:
-                tracks = "Human";
-                break;
-        }
-
-		this.m.Results.push({
-			Icon = "ui/icons/vision.png",
-			Text = "While on patrol, " + bro + " came across some " + tracks + " tracks. The tracks lead off towards the " + (location != null ? ::Const.Strings.Direction8[::playerTile.getDirection8To(location.getTile())] : "") + ". The age of the tracks indicates that the group must be " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, (location != null  ? playerTile.getDistanceTo(location.getTile()) : 0) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + "."
-		});
-
 	}
 
 	function getUpdateText() {
