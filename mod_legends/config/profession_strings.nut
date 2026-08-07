@@ -394,10 +394,12 @@ Learn to find your enemies before they find you.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendMaterialist <- @"
-Once a piece of equipment proves its worth, it just isn't right to simply leave it behind.
+A careful hand can pick apart carrion and recover what yet may be worth precious coins.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Recover all broken equipment worn by your men on death.
+
+• Equipment looted from enemies can be recovered in slightly better condition.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendMealPreparation <- @"

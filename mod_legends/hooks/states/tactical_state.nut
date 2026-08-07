@@ -532,95 +532,64 @@
 		::Tactical.Entities.m.NetTiles = {};
 	}
 
-	o.gatherLoot = function()
-	{
+	o.gatherLoot = function() {
 		local playerKills = 0;
 
-		foreach( bro in this.m.CombatResultRoster )
-		{
+		foreach( bro in this.m.CombatResultRoster )	{
 			playerKills = playerKills + bro.getCombatStats().Kills;
 		}
 
-		if (!this.isScenarioMode())
-		{
+		if (!this.isScenarioMode())	{
 			this.returnBrokenNetToOwner();
-			this.World.Statistics.getFlags().set("LastCombatKills", playerKills);
+			::World.Statistics.getFlags().set("LastCombatKills", playerKills);
 		}
 
 		local isArena = !this.isScenarioMode() && this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode;
-
 		if (!isArena && !this.isScenarioMode() && this.m.StrategicProperties != null && this.m.StrategicProperties.IsLootingProhibited)
 			return;
 
-		local EntireCompanyRoster = this.World.getPlayerRoster().getAll();
-		local CannibalsInRoster = 0;
-		local CannibalisticButchersInRoster = 0;
-		local zombieSalvage = 10;
+		//local CannibalsInRoster = 0; // unused
+		
+		local corpseSalvageThreshold = 10;
 		local zombieLoot = false;
 		local skeletonLoot = false;
 
-		foreach (bro in EntireCompanyRoster)
-		{
-			if (!bro.isAlive())
-			{
-				continue;
+		local livingBrothers = ::World.getPlayerRoster().getAll().fiter(@(_, _bro) (_bro.isAlive()));
+		local CannibalisticButchersInRoster = livingBrothers.filter(@(_, _bro) (::Legends.Backgrounds.has(_bro, ::Legends.Background.Butcher) && ::Legends.Traits.has(_bro, ::Legends.Trait.LegendCannibalistic))).len();
+		
+		foreach (bro in livingBrothers)	{
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Gravedigger,	::Legends.Background.Graverobber)) {
+				corpseSalvageThreshold += 5;
 			}
 
-			switch (bro.getBackground().getID())
-			{
-				case ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger):
-					zombieSalvage += 5;
-					break;
-				case ::Legends.Backgrounds.getID(::Legends.Background.Graverobber):
-					zombieSalvage += 5;
-					break;
-				case ::Legends.Backgrounds.getID(::Legends.Background.Butcher):
-					if (bro.getSkills().hasTrait(::Legends.Trait.LegendCannibalistic))
-					{
-						CannibalisticButchersInRoster += 1;
-					}
-					break;
+			if (::Legends.Perks.has(bro, ::Legends.Perk.LegendReclamation)) {
+				corpseSalvageThreshold += ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation).m.LootChance;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendReclamation))
-			{
-				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation);
-				zombieSalvage += skill.m.LootChance;
+			if (::Legends.Perks.has(bro, ::Legends.Perk.LegendResurrectionist)) {
+				corpseSalvageThreshold += ::Legends.Perks.get(bro, ::Legends.Perk.LegendResurrectionist).m.LootChance;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendResurrectionist))
-			{
-				local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendResurrectionist);
-				zombieSalvage += skill.m.LootChance;
-			}
-
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
-			{
+			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendSpawnZombieLow, ::Legends.Perk.LegendSpawnZombieMed, ::Legends.Perk.LegendSpawnZombieHigh)) {
 				zombieLoot = true;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed) || bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
-			{
+			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendSpawnSkeletonLow, ::Legends.Perk.LegendSpawnSkeletonMed, ::Legends.Perk.LegendSpawnSkeletonHigh)) {
 				skeletonLoot = true;
 			}
-
 		}
 
 		local loot = [];
 
-		local alive = this.Tactical.Entities.getAllInstancesAsArray();
+		local alive = ::Tactical.Entities.getAllInstancesAsArray();
 		foreach (actor in alive) {
-			if (!::Legends.S.isEntityNullOrDead(actor) && actor.getFaction() == this.Const.Faction.PlayerAnimals && actor.getType() == this.Const.EntityType.ZombieYeoman) {
-				foreach( item in actor.getItems().getAllItems() ) {
-					if (isArena && item.getLastEquippedByFaction() != 1) {
-						continue;
-					}
-
+			if (!::Legends.S.isEntityNullOrDead(actor) && actor.getFaction() == ::Const.Faction.PlayerAnimals && actor.getType() == ::Const.EntityType.ZombieYeoman) {
+				local eligibleItems = actor.getItems().getAllItems().filter(@(_,_item) (!isArena || _item.getLastEquippedByFaction() == 1));
+				foreach(item in eligibleItems) {
 					item.onCombatFinished();
 					if (!item.isChangeableInBattle() && item.isDroppedAsLoot()) {
-						if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && this.Math.rand(1, 100) <= 66) {
-							local c = this.Math.minf(item.getCondition(), this.Math.rand(this.Math.maxf(10, item.getConditionMax() * 0.35), item.getConditionMax()));
-							item.setCondition(c);
+						if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
+							item.setCondition(::Math.minf(item.getCondition(), ::Math.rand(::Math.maxf(10, item.getConditionMax() * 0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist), item.getConditionMax())));
 						}
 
 						item.removeFromContainer();
@@ -632,90 +601,50 @@
 			}
 		}
 
-		local size = this.Tactical.getMapSize();
+		local size = ::Tactical.getMapSize();
 
-		for( local x = 0; x < size.X; x = ++x )
-		{
-			for( local y = 0; y < size.Y; y = ++y )
-			{
-				local tile = this.Tactical.getTileSquare(x, y);
-
-				if (tile.IsContainingItems)
-				{
-					foreach( item in tile.Items )
-					{
-						if (isArena && item.getLastEquippedByFaction() != 1)
-						{
-							continue;
-						}
-
+		for( local x = 0; x < size.X; x = ++x )	{
+			for( local y = 0; y < size.Y; y = ++y )	{
+				local tile = ::Tactical.getTileSquare(x, y);
+				if (tile.IsContainingItems) {
+					local eligibleItems = tile.Items.filter(@(_,_item) (!isArena || _item.getLastEquippedByFaction() == 1));
+					foreach( item in eligibleItems ) {
 						item.onCombatFinished();
 						loot.push(item);
 					}
 				}
 
-				if (zombieLoot && tile.Properties.has("Corpse"))
-				{
-					if (tile.Properties.get("Corpse").isHuman == 1 || tile.Properties.get("Corpse").isHuman == 2)
-					{
-						if (this.Math.rand(1, 100) <= zombieSalvage)
-						{
-							local zloot = this.new("scripts/items/spawns/legend_zombie_item");
-							loot.push(zloot);
-						}
+				if(tile.Properties.has("Corpse") && tile.Properties.get("Corpse").isHuman == 1) {
+					if (zombieLoot && ::Math.rand(1, 100) <= corpseSalvageThreshold) { // tile.Properties.get("Corpse").isHuman == 2 used to be an alternative, but its some unused bs?
+						loot.push(::new("scripts/items/spawns/legend_zombie_item"));
+					}
+
+					//if (zombieLoot && tile.Properties.has("Corpse") && tile.Properties.get("Corpse").isHuman == 1 && ::Math.rand(1, 100) <= corpseSalvageThreshold) { // tile.Properties.get("Corpse").isHuman == 3 used to be an alternative, but its some unused bs?
+					//	loot.push(::new("scripts/items/spawns/legend_skeleton_item")); //Removed until skeleton summoning is reworked into another origin - Luft 12/12/22
+					//}
+
+					if (::Math.rand(1, 100) <= 8) {
+						if (CannibalisticButchersInRoster >= 1)	{
+							local humanMeat = ::new("scripts/items/supplies/legend_yummy_sausages");
+							humanMeat.randomizeAmount();
+							humanMeat.randomizeBestBefore();
+							loot.push(humanMeat);
+						} /*else if (CannibalisticButchersInRoster < 1 && CannibalsInRoster >= 1)	{ // unused, cannibalsinroster is never set to anything else than 0
+							local humanMeat = ::new("scripts/items/supplies/legend_human_parts");
+							humanMeat.randomizeAmount();
+							humanMeat.randomizeBestBefore();
+							loot.push(humanMeat);
+						}*/
 					}
 				}
 
-				// if (skeletonLoot && tile.Properties.has("Corpse")) //Removed until skeleton summoning is reworked into another origin - Luft 12/12/22
-				// {
-				// 	if (tile.Properties.get("Corpse").isHuman == 1 || tile.Properties.get("Corpse").isHuman == 3)
-				// 	{
-				// 		if (this.Math.rand(1, 100) <= zombieSalvage)
-				// 		{
-				// 			local zloot = this.new("scripts/items/spawns/legend_skeleton_item");
-				// 			loot.push(zloot);
-				// 		}
-				// 	}
-				// }
-
-				if (this.Math.rand(1, 100) <= 8 && tile.Properties.has("Corpse") && tile.Properties.get("Corpse").isHuman == 1)
-				{
-					if (CannibalisticButchersInRoster >= 1)
-					{
-						local humanmeat = this.new("scripts/items/supplies/legend_yummy_sausages");
-						humanmeat.randomizeAmount();
-						humanmeat.randomizeBestBefore();
-						loot.push(humanmeat);
-					}
-					else if (CannibalisticButchersInRoster < 1 && CannibalsInRoster >= 1)
-					{
-						local humanmeat = this.new("scripts/items/supplies/legend_human_parts");
-						humanmeat.randomizeAmount();
-						humanmeat.randomizeBestBefore();
-						loot.push(humanmeat);
-					}
-				}
-
-
-				if (tile.Properties.has("Corpse") && tile.Properties.get("Corpse").Items != null && !tile.Properties.has("IsSummoned"))
-				{
-					local items = tile.Properties.get("Corpse").Items.getAllItems();
-
-					foreach( item in items )
-					{
-
-						if (isArena && item.getLastEquippedByFaction() != 1)
-						{
-							continue;
-						}
-
+				if (tile.Properties.has("Corpse") && tile.Properties.get("Corpse").Items != null && !tile.Properties.has("IsSummoned"))	{
+					local eligibleItems = tile.Properties.get("Corpse").Items.getAllItems().filter(@(_,_item) (!isArena || _item.getLastEquippedByFaction() == 1));
+					foreach( item in eligibleItems ) {
 						item.onCombatFinished();
-						if (!item.isChangeableInBattle() && item.isDroppedAsLoot())
-						{
-							if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && this.Math.rand(1, 100) <= 66)
-							{
-								local c = this.Math.minf(item.getCondition(), this.Math.rand(this.Math.maxf(10, item.getConditionMax() * 0.35), item.getConditionMax()));
-								item.setCondition(c);
+						if (!item.isChangeableInBattle() && item.isDroppedAsLoot())	{
+							if (item.getCondition() > 1 && item.getConditionMax() > 1 && item.getCondition() > item.getConditionMax() * 0.66 && ::Math.rand(1, 100) <= 66) {
+								item.setCondition(::Math.minf(item.getCondition(), ::Math.rand(::Math.maxf(10, item.getConditionMax() * (0.35 + ::World.Assets.m.ProfessionEffect.LegendMaterialist)), item.getConditionMax())));
 							}
 
 							item.removeFromContainer();
@@ -729,47 +658,35 @@
 			}
 		}
 
-		if (!isArena && this.m.StrategicProperties != null)
-		{
-			local player = this.World.State.getPlayer();
-
-			foreach( party in this.m.StrategicProperties.Parties )
-			{
-				if (party.getTroops().len() == 0 && party.isAlive() && !party.isAlliedWithPlayer() && party.isDroppingLoot() && (playerKills > 0 || this.m.IsDeveloperModeEnabled))
-				{
+		if (!isArena && this.m.StrategicProperties != null)	{
+			local eligibleParties = this.m.StrategicProperties.Parties.filter(@(_, _party)(party.getTroops().len() == 0 && party.isAlive() && !party.isAlliedWithPlayer() && party.isDroppingLoot() && (playerKills > 0 || this.m.IsDeveloperModeEnabled)));
+			foreach(party in eligibleParties) {
 					party.onDropLootForPlayer(loot);
-				}
 			}
 
-			foreach( item in this.m.StrategicProperties.Loot )
-			{
-				loot.push(this.new(item));
+			foreach( item in this.m.StrategicProperties.Loot ) {
+				loot.push(::new(item));
 			}
 		}
 
-		if (!isArena && !this.isScenarioMode())
-		{
-			if (::Tactical.Entities.getAmmoSpent() > 0 && ::World.Assets.m.ProfessionEffect.LegendAmmoScrounger > 0)
-			{
+		if (!isArena && !this.isScenarioMode())	{
+			if (::Tactical.Entities.getAmmoSpent() > 0 && ::World.Assets.m.ProfessionEffect.LegendAmmoScrounger > 0) {
 				local amount = ::Math.max(1, ::Tactical.Entities.getAmmoSpent() * ::World.Assets.m.ProfessionEffect.LegendAmmoScrounger);
 				amount = ::Math.rand(amount / 2, amount);
 
-				if (amount > 0)
-				{
-					local ammo = this.new("scripts/items/supplies/ammo_item");
+				if (amount > 0)	{
+					local ammo = ::new("scripts/items/supplies/ammo_item");
 					ammo.setAmount(amount);
 					loot.push(ammo);
 				}
 			}
 
-			if (this.Tactical.Entities.getArmorParts() > 0 && ::World.Assets.m.ProfessionEffect.LegendVulture > 0)
-			{
-				local amount = ::Math.min(60, this.Math.max(1, ::Tactical.Entities.getArmorParts() * ::Const.World.Assets.ArmorPartsPerArmor * ::World.Assets.m.ProfessionEffect.LegendVulture));
+			if (this.Tactical.Entities.getArmorParts() > 0 && ::World.Assets.m.ProfessionEffect.LegendVulture > 0) {
+				local amount = ::Math.min(60, ::Math.max(1, ::Tactical.Entities.getArmorParts() * ::Const.World.Assets.ArmorPartsPerArmor * ::World.Assets.m.ProfessionEffect.LegendVulture));
 				amount = ::Math.rand(amount / 2, amount);
 
-				if (amount > 0)
-				{
-					local parts = this.new("scripts/items/supplies/armor_parts_item");
+				if (amount > 0)	{
+					local parts = ::new("scripts/items/supplies/armor_parts_item");
 					parts.setAmount(amount);
 					loot.push(parts);
 				}

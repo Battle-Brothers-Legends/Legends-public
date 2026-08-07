@@ -63,8 +63,22 @@ if (!("Perks" in ::Legends))
 	return null;
 }
 
-::Legends.Perks.has <- function (_target, _def) {
+/*::Legends.Perks.has <- function (_target, _def) {
 	return ::Legends.Perks.getContainer(_target, "on get").hasSkill(::Legends.Perks.getID(_def));
+}*/
+
+::Legends.Perks.has <- function(_target, _def) {
+	local container = ::Legends.Perks.getContainer(_target, "on has");
+	if (container == null)
+		return false;
+	return container.hasSkill(::Legends.Perks.getID(_def));
+}
+
+::Legends.Perks.hasAny <- function(_target, ...) {
+	local arr = vargv;
+	if (typeof vargv[0] == "array")
+		arr = vargv[0];
+	return ::Legends.S.any(arr, @(_def) ::Legends.Perks.has(_target, _def));
 }
 
 ::Legends.Perks.remove <- function (_target, _def) {

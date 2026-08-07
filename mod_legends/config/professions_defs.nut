@@ -558,7 +558,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendMaterialist,
     Icon = "ui/professions/materialist.png",
     IconDisabled = "ui/professions/materialist_bw.png",
-    Const = "LegendMaterialist"
+    Const = "LegendMaterialist",
+    ScalingArray = [0, 0.1], // better state of repair of undamaged by player items looted
+    ScalingFactor = 0.2
 });
 
 
