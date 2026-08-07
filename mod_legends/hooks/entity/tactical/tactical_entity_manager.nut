@@ -464,6 +464,47 @@
 		this.Math.seedRandom(this.Time.getRealTime());
 	}
 
+	o.placePlayersAtBorder = function (_players) {
+		for (local x = 9; x <= 23; x = ++x) {
+			for (local y = 2; y <= 4; y = ++y) {
+				this.Tactical.getTile(x, y - x / 2).removeObject();
+			}
+		}
+
+		foreach (e in _players) {
+			local p = e.getPlaceInFormation();
+			local y = 4 - p / 9;
+			local x = 11 + p % 9;
+			local tile = ::Tactical.getTileSquare(x, y);
+
+			if (!tile.IsEmpty) {
+				tile.removeObject();
+			}
+
+			if (this.isTileIsolated(tile)) {
+				local avg = 0;
+
+				for (local n = 0; n < 6; ++n) {
+					if (tile.hasNextTile(n)) {
+						avg += tile.getNextTile(n).Level;
+					}
+				}
+
+				tile.Level = avg / 6;
+			}
+
+			::Tactical.addEntityToMap(e, tile.Coords.X, tile.Coords.Y);
+
+			if (!::World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight) {
+				::Legends.Effects.grant(e, ::Legends.Effect.Night);
+			}
+
+			if (::Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)	{
+				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
+			}
+		}
+	}
+
 	o.placePlayersInFormation = function ( _players, _offsetX = 0, _offsetY = 0 )
 	{
 		for( local x = 11 + _offsetX; x <= 14 + _offsetX; x = ++x )
