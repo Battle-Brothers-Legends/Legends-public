@@ -1313,7 +1313,7 @@ activesDefs.push({
 ::Legends.Active.LegendDebilitate <- null; // active debilitate
 activesDefs.push({
 	ID = "actives.legend_debilitate",
-	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
+	Script = "scripts/skills/actives/legend_debilitate_skill", 
 	Const = "LegendDebilitate",
 	Name = "Debilitate",
 });
@@ -1321,7 +1321,7 @@ activesDefs.push({
 ::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
 activesDefs.push({
 	ID = "actives.legend_debilitate",
-	Script = "scripts/skills/actives/legend_debilitate_skill", 
+	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
 	Const = "LegendWhipDebilitate",
 	Name = "Debilitate",
 });
