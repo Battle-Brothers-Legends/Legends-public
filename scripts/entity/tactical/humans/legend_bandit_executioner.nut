@@ -45,7 +45,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		}
 		else {
 			this.getItems().equip(::Const.World.Common.pickItem([
-				[5, "weapons/barbarians/blunt_cleaver"],
+				[5, "weapons/butchers_cleaver"],
 				[5, "weapons/scramasax"],
 				[1, "weapons/legend_militia_glaive"]
 			], "scripts/items/"));
