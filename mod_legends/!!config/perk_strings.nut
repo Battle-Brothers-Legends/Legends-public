@@ -398,7 +398,7 @@ Take a deep breath, then get to work.
 
 • Undead characters can not use this ability, but instead gain [color=%positive%]+3[/color] Action Points.
 
-• Costs [color=%negative%]0[/color] AP and [color=%negative%]30[/color] Fatigue.
+• Costs [color=%negative%]0[/color] AP and [color=%negative%]30[/color] Fatigue, but Fatigue cost will increase by [color=%positive%]50%[/color] for each subsequent use this combat.
 ";
 
 // ::Const.Strings.PerkDescription.Furor <- @"
