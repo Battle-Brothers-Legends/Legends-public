@@ -27,8 +27,8 @@ this.legend_vengeance_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isAttack()) {
 			this.m.Stacks -= 1;
 		}
-		if (this.m.Stacks <= 0){
-			::Legends.Effects.remove(_skill.getContainer().getActor(), ::Legends.Effect.LegendVengeance)
+		if (this.m.Stacks <= 0) {
+			this.removeSelf();
 		}
 	}
 });
