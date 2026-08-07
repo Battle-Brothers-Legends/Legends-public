@@ -24,7 +24,7 @@
 	{
 		if (this.m.Upgrade == null)
 		{
-			return null
+			return null;
 		}
 		local item = this.m.Upgrade;
 		this.setUpgrade(null);

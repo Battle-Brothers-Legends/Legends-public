@@ -2,7 +2,6 @@ if (!("Perks" in ::Legends))
 	::Legends.Perks <- {};
 
 ::Legends.Perks.getContainer <- function (_target, _onError = "") {
-	local container = null;
 	if (_target == null) {
 		::logError( "_target == null " + _onError);
 		throw "_target == null";

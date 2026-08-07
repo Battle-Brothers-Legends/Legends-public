@@ -11,7 +11,7 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 		return ::World.Ambitions.hasActiveAmbition() || ::World.getTime().Time >= ::World.getTime().SecondsPerDay * 5;
 	}
 
-	function isValid(_settlement) {
+	function isValid(_settlement, _forceUpdate = false) {
 		if (this.m.OldEvent != null) {
 			this.m.Event = this.m.OldEvent;
 			this.m.OldEvent = null;
@@ -20,7 +20,7 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 		if (event == null) {
 			return false;
 		}
-        if (::World.Encounters.m.ActiveEvent == null && ::World.Encounters.m.ActiveCampEvent == null) {
+        if ((::World.Encounters.m.ActiveEvent == null && ::World.Encounters.m.ActiveCampEvent == null) || _forceUpdate) {
             event.clear();
             event.onUpdateScore();
         }
@@ -29,9 +29,10 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
 
 	// override the event with missed opportunity if it became illegal between spawning and clicking
 	function fire() {
-		if (!this.isValid(::Legends.S.getClosestSettlement())) {
+		if (!this.isValid(::Legends.S.getClosestSettlement(), true)) {
 			this.m.OldEvent = this.m.Event;
 			this.m.Event = "event.legend_missed_opportunity";
+            this.getEncounterEvent().fire();
 			return;
 		}
 

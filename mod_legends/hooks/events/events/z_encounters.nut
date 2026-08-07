@@ -38,7 +38,7 @@ foreach(event in [
 			this.m.isValidForEncounter = this.m.Score > 0 && this.Time.getVirtualTimeF() > this.m.CooldownUntil;
 			this.m.Score = 0; // this disables event from happening normally
 		}
-	})
+	});
 }
 
 // these events were moved to encounters entirely, just disable them
@@ -49,5 +49,5 @@ foreach(event in [
 		o.onUpdateScore = function() {
 			this.m.Score = 0; // this disables event from happening normally
 		}
-	})
+	});
 }

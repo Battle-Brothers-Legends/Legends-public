@@ -22,7 +22,7 @@
 	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
 	{
 		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this)) {
-			getFlags().remove("CanNotBeStaggered"); // a hack to prevent teamplayer user from staggering ally
+			this.getFlags().remove("CanNotBeStaggered"); // a hack to prevent teamplayer user from staggering ally
 			::Const.Tactical.Common.removeStances(this);
 		}
 
@@ -76,26 +76,26 @@
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function ( _killer, _victim, _skill )
 	{
-		if (!isAlive() || isDying())
+		if (::Legends.S.isEntityNullOrDead(this))
 			return;
 
-		if (_killer != null && getAlliedFactions().find(_victim.getFaction()) != null) {
-			m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
-			m.KillerFlatOnKillOtherActorModifier = _killer.getFlatOnKillOtherActorModifier();
+		if (_killer != null && this.getAlliedFactions().find(_victim.getFaction()) != null) {
+			this.m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
+			this.m.KillerFlatOnKillOtherActorModifier = _killer.getFlatOnKillOtherActorModifier();
 		}
 
 		onOtherActorDeath(_killer, _victim, _skill);
-		m.KillerPercentOnKillOtherActorModifier = 1.0;
-		m.KillerFlatOnKillOtherActorModifier = 0;
+		this.m.KillerPercentOnKillOtherActorModifier = 1.0;
+		this.m.KillerFlatOnKillOtherActorModifier = 0;
 	}
 
 	local checkMorale = o.checkMorale;
 	o.checkMorale = function (_change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
 	{
-		if (m.KillerPercentOnKillOtherActorModifier != 1.0)
-			_difficulty = ::Math.floor(_difficulty * m.KillerPercentOnKillOtherActorModifier);
+		if (this.m.KillerPercentOnKillOtherActorModifier != 1.0)
+			_difficulty = ::Math.floor(_difficulty * this.m.KillerPercentOnKillOtherActorModifier);
 
-		return checkMorale(_change, _difficulty + m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
+		return checkMorale(_change, _difficulty + this.m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
 	o.getPercentOnKillOtherActorModifier <- function ()
@@ -116,7 +116,7 @@
 	local isTurnDone = o.isTurnDone;
 	o.isTurnDone = function()
 	{
-		if (!this.Tactical.getNavigator().isTravelling(this) && isPlayerControlled() && !m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
+		if (!this.Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
 		{
 			local usableSkill = false;
 			foreach (skill in this.m.Skills.queryActives())
@@ -474,44 +474,44 @@
 	local onAppearanceChanged = o.onAppearanceChanged;
 	o.onAppearanceChanged = function( _appearance, _setDirty = true )
 	{
-		if (!isAlive() || isDying()) return;
+		if (::Legends.S.isEntityNullOrDead(this)) return;
 
 		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Helmet) // for layered helmet
 		{
-			if (!hasSprite(id))
+			if (!this.hasSprite(id))
 				continue;
 
-			if (_appearance[key].len() != 0 && !m.IsHidingHelmet) {
-				local helmet = getSprite(id);
+			if (_appearance[key].len() != 0 && !this.m.IsHidingHelmet) {
+				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Color = _appearance.HelmetColor;
 				helmet.Visible = true;
 			}
 			else {
-				getSprite(id).Visible = false;
+				this.getSprite(id).Visible = false;
 			}
 		}
 
 		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Armor) // for layered armor
 		{
-			if (!hasSprite(id))
+			if (!this.hasSprite(id))
 				continue;
 
 			if (_appearance[key].len() != 0) {
-				local helmet = getSprite(id);
+				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Visible = true;
 			}
 			else {
-				getSprite(id).Visible = false;
+				this.getSprite(id).Visible = false;
 			}
 		}
 
-		if (hasSprite("permanent_injury_scarred"))
-			getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
+		if (this.hasSprite("permanent_injury_scarred"))
+			this.getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
 
-		if (hasSprite("permanent_injury_burned"))
-			getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
+		if (this.hasSprite("permanent_injury_burned"))
+			this.getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
 
 		onAppearanceChanged(_appearance, _setDirty);
 
@@ -529,36 +529,36 @@
 		}
 
 		// Flip the offhand weapon sprite when dual wielding
-		if (hasSprite("shield_icon") && _appearance.Shield.len() != 0)
+		if (this.hasSprite("shield_icon") && _appearance.Shield.len() != 0)
 		{
 			if (::Legends.Weapons.isDualWielding(this))
 			{
 				this.setAlwaysApplySpriteOffset(true);
 				local flip = !this.isAlliedWithPlayer();
 				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-				local ohSprite = getSprite("shield_icon");
+				local ohSprite = this.getSprite("shield_icon");
 				ohSprite.setHorizontalFlipping(!flip);
 				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded))
 				{
 					// WIP, not sure if dual-wielding two handed weapons will stay
 					ohSprite.Scale = 0.80;
-					setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+					this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
 				}
 				else
 				{
 					ohSprite.Scale = 1.0;
-					setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+					this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
 				}
 				this.m.IsOffhandFlipped = true;
 			}
 			else if (this.m.IsOffhandFlipped) //We only want to reset sprite position when it's actually needed
 			{
 				this.m.IsOffhandFlipped = false;
-				local ohSprite = getSprite("shield_icon");
+				local ohSprite = this.getSprite("shield_icon");
 				ohSprite.setHorizontalFlipping(!this.isAlliedWithPlayer());
 				ohSprite.Scale = 1.0;
 				this.setAlwaysApplySpriteOffset(false);
-				setSpriteOffset("shield_icon", this.createVec(0, 0));
+				this.setSpriteOffset("shield_icon", this.createVec(0, 0));
 			}
 		}
 	}
@@ -566,19 +566,19 @@
 	local onFactionChanged = o.onFactionChanged;
 	o.onFactionChanged = function () {
 		onFactionChanged();
-		if (hasSprite("shield_icon") && ::Legends.Weapons.isDualWielding(this)) {
+		if (this.hasSprite("shield_icon") && ::Legends.Weapons.isDualWielding(this)) {
 			this.setAlwaysApplySpriteOffset(true);
 			local flip = !this.isAlliedWithPlayer();
 			local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			local ohSprite = getSprite("shield_icon");
+			local ohSprite = this.getSprite("shield_icon");
 			ohSprite.setHorizontalFlipping(!flip);
 			if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) {
 				// WIP, not sure if dual-wielding two handed weapons will stay
 				ohSprite.Scale = 0.80;
-				setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+				this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
 			} else {
 				ohSprite.Scale = 1.0;
-				setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+				this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
 			}
 		}
 	}
@@ -586,9 +586,9 @@
 	local setHitpoints = o.setHitpoints;
 	o.setHitpoints = function( _h )
 	{
-		local healGoal = _h + m.HealRemainder;
+		local healGoal = _h + this.m.HealRemainder;
 		local healTick = ::Math.floor(healGoal);
-		m.HealRemainder = healGoal - healTick;
+		this.m.HealRemainder = healGoal - healTick;
 		setHitpoints(healTick);
 	}
 
