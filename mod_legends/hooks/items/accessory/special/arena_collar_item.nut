@@ -8,7 +8,7 @@
 		this.m.IsAllowedInBag = true;
 	}
 
-	local getTooltip = o.getTooltip;
+	/*local getTooltip = o.getTooltip; // disabled for at least the time being as climbing is disabled in arena anyway
 	o.getTooltip = function ()
 	{
 		local result = getTooltip();
@@ -16,10 +16,10 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "Disables specific skills than can be used to scale the arena walls when worn."
+			text = "Disables specific skills that can be used to scale the arena walls when worn."
 		});
 		return result;
-	}
+	}*/
 
 	o.onEquip <- function ()
 	{
