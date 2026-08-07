@@ -169,7 +169,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
 		});
 		this.m.Screens.push({
 			ID = "E",
-			Text = "[img]gfx/ui/events/event_39.png[/img]%optimist% breaks into a coarse laugh, slapping %their_optimist% hand against %their_optimist% thigh. %SPEECH_ON%I don't need no guide to know that I'd rather die fighting and farking and drinking in this here company than shivering from the bloody flux in some darn hovel. Let those who wish to take us on try, I say! I'd spit in their eyes and dance on their graves before death takes me!%SPEECH_OFF%The sheer bravado of the claim breaks the tension immediately. The men chuckle, shaking their heads at the %optimist%'s defiance, and the morbid mood brought on by the text is entirely dispelled...",
+			Text = "[img]gfx/ui/events/event_39.png[/img]%optimist% breaks into a coarse laugh, slapping %their_optimist% hand against %their_optimist% thigh. %SPEECH_ON%I don't need no guide to know that I'd rather die fighting and farking and drinking in this here company than shivering from the bloody flux in some darn hovel. Let those who wish to take us on try, I say! I'd spit in their eyes and dance on their graves before death takes me!%SPEECH_OFF%The sheer bravado of the claim breaks the tension immediately. The men chuckle, shaking their heads at %optimist%'s defiance, and the morbid mood brought on by the text is entirely dispelled...",
 			Image = "",
 			List = [],
 			Characters = [],

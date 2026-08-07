@@ -168,7 +168,7 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
             this.changeIndex(arr, sprite, _change);
 		} else if (_layerID == "hair" || _layerID == "beard") {
 			local sprite = temp.getSprite(_layerID);
-            local arr = this.getSpriteArray(bro, _layerID == "hair" ? "Hairs" : "Beards", gender, ethnicity);
+            local arr = this.getSpriteArray(bro, _layerID == "hair" ? "Hairs" : "Beards", gender, ethnicity, sprite);
             this.changeIndexEx(arr, sprite, _change, _layerID, color, "");
 
             if (_layerID == "beard") {
