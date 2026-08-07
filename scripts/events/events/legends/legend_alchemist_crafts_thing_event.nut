@@ -50,7 +50,7 @@ this.legend_alchemist_crafts_thing_event <- this.inherit("scripts/events/event",
 			return;
 
 		this.m.Alchemist = candidates_monk[::Math.rand(0, candidates_monk.len() - 1)];
-		this.m.Score = 555;
+		this.m.Score = 5;
 	}
 
 	function onPrepareVariables(_vars) {
