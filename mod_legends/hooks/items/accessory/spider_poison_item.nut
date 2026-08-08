@@ -1,4 +1,4 @@
-::mods_hookExactClass("items/accessory/poison_item", function (o) {
+::mods_hookExactClass("items/accessory/spider_poison_item", function (o) {
 	o.m.OriginalValue <- null;
 	o.m.OriginalDescription <- null;
 	o.m.Ammo <- null;
@@ -9,7 +9,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "A flask of poison used by goblins. Can be used to coat your weapons and arrowtips.";
+		this.m.Description = "A flask of oil laced with concentrated webknecht poison. Can be used to coat your weapons and arrowtips.";
 		this.m.OriginalDescription = this.m.Description;
 		this.m.OriginalValue = this.m.Value;
 		this.m.ItemType = ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Tool;
@@ -93,14 +93,14 @@
 		this.m.Ammo = _a;
 
 		if (this.m.Ammo > 0) {
-			this.m.Name = "Goblin Poison";
+			this.m.Name = "Poisoned Oil";
 			this.m.ShowArmamentIcon = true;
 			this.m.Description = this.m.OriginalDescription;
 			this.m.Value = this.m.OriginalValue;
 		} else {
-			this.m.Name = "Goblin Poison (Used)";
+			this.m.Name = "Poisoned Oil (Used)";
 			this.m.ShowArmamentIcon = false;
-			this.m.Description = "A spent poison vial.";
+			this.m.Description = "A spent spider poison vial.";
 			this.m.Value = 0;
 		}
 
