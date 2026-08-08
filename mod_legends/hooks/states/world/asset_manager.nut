@@ -157,7 +157,7 @@
 
 	o.refillAmmo = function()
 	{
-		if (m.Ammo == 0)
+		if (this.m.Ammo == 0)
 			return;
 
 		local roster = this.World.getPlayerRoster().getAll();
@@ -188,7 +188,7 @@
 			}
 		}
 
-		foreach (item in getStash().getItems())
+		foreach (item in this.getStash().getItems())
 		{
 			if (item == null)
 				continue;
@@ -453,7 +453,7 @@
 
 	o.update = function ( _worldState )
 	{
-		if (isCamping())
+		if (this.isCamping())
 			::World.State.m.Camp.update(_worldState);
 
 		if (this.World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= this.World.getTime().Days)

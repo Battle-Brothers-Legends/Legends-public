@@ -113,7 +113,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable() {
 		if (!this.getContainer().getActor().isArmedWithRangedWeapon()) {
-			return false
+			return false;
 		}
 		return (!this.Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}

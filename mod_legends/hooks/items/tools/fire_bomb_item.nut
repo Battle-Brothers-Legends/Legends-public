@@ -98,14 +98,14 @@
 
 	o.getAmmo <- function() // prevent item from being refilled without the retinue
 	{
-		return m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendPetardry <= 0 ? m.AmmoMax + 1 : m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendPetardry <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
 	}
 
 	o.consumeAmmo <- function()
 	{
-		m.AmmoCost = 0;
-		weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
-		m.AmmoCost = 30;
+		this.m.AmmoCost = 0;
+		this.weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
+		this.m.AmmoCost = 30;
 	}
 
 	o.setAmmo <- function ( _a )
@@ -115,11 +115,11 @@
 		if (this.m.Ammo > 0)
 		{
 			this.m.Name = "Fire Pot";
-			this.m.Description = m.OriginalDescription;
+			this.m.Description = this.m.OriginalDescription;
 			this.m.IconLarge = "tools/fire_pot_01.png";
 			this.m.Icon = "tools/fire_pot_01_70x70.png";
 			this.m.ShowArmamentIcon = true;
-			this.m.Value = m.OriginalValue;
+			this.m.Value = this.m.OriginalValue;
 		}
 		else
 		{

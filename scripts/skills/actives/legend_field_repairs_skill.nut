@@ -60,13 +60,13 @@ this.legend_field_repairs_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.skill.isUsable())
 		{
-			return false
+			return false;
 		}
 		if (this.World.Assets.getArmorParts() / 5.0 < 1)
 		{
-			return false
+			return false;
 		}
-		return true
+		return true;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

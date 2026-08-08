@@ -104,9 +104,9 @@
 
 	o.consumeAmmo <- function()
 	{
-		m.AmmoCost = 0;
-		weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
-		m.AmmoCost = 30;
+		this.m.AmmoCost = 0;
+		this.weapon.consumeAmmo(); // to prevent scavenger retinue from recover ammo part
+		this.m.AmmoCost = 30;
 	}
 
 	o.isAmountShown <- function ()
@@ -121,7 +121,7 @@
 
 	o.getAmmo <- function() // prevent item from being refilled without the retinue
 	{
-		return m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? m.AmmoMax + 1 : m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
 	}
 
 	o.setAmmo <- function ( _a )
@@ -135,7 +135,7 @@
 			this.m.Icon = "tools/holy_water_01_70x70.png";
 			this.m.ShowArmamentIcon = true;
 			this.m.Description = this.m.OriginalDescription;
-			this.m.Value = m.OriginalValue;
+			this.m.Value = this.m.OriginalValue;
 		}
 		else
 		{

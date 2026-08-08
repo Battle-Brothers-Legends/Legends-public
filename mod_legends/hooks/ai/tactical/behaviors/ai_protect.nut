@@ -39,13 +39,13 @@
 			];
 			local relevant = 0;
 
-			foreach( opponent in allOpponents )
+			foreach( opponentContainer in allOpponents )
 			{
-				local opponent = opponent.Actor;
-				local dist = opponent.Actor.getTile().getDistanceTo(importantAllyTile);
+				local opponent = opponentContainer.Actor;
+				local dist = opponent.getTile().getDistanceTo(importantAllyTile);
 				local score = 1.0;
 
-				if (dist <= 11 && this.isRangedUnit(opponent.Actor))
+				if (dist <= 11 && this.isRangedUnit(opponent))
 				{
 					score = 1.0;
 				}

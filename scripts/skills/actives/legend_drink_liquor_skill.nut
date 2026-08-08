@@ -13,7 +13,7 @@ this.legend_drink_liquor_skill <- this.inherit("scripts/skills/actives/base/lege
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks liquor"
+		return this.Const.UI.getColorizedEntityName(_user) + " drinks liquor";
 	}
 
 	function tacticalLogGive(_user, _target) {

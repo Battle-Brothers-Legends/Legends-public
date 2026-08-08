@@ -276,7 +276,7 @@
 		this.addBroToRoster(_roster, ::Legends.Background.LegendManAtArms, 7);
 		this.addBroToRoster(_roster, ::Legends.Background.Nightwatch, 5);
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Stabled)) //keep lowborn and stabled, delete all else.
 			{

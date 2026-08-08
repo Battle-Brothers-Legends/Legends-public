@@ -39,7 +39,7 @@
 
 		for (local i = result.len() - 1; i >= 0; --i) {
 			if (result[i].type == "text" && result[i].id == 8) {
-				result[i].text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+				result[i].text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]";
 			}
 
 			if (result[i].type == "text" && result[i].text == "Is destroyed on use") {

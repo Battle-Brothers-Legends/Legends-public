@@ -156,7 +156,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
 			{

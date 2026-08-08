@@ -48,7 +48,7 @@ this.legend_field_treats_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return skill.isUsable() && ::World.Assets.getFood() >= 20;
+		return this.skill.isUsable() && ::World.Assets.getFood() >= 20;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )

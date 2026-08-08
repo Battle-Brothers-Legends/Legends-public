@@ -109,7 +109,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		if (item != null) {
 			item.consumeAmmo();
 			if (this.canDoubleGrip()) {
-				item.consumeAmmo()
+				item.consumeAmmo();
 			}
 		}
 	}

@@ -109,7 +109,7 @@
 
 	o.getAmmo <- function() // prevent item from being refilled without the retinue
 	{
-		return m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? m.AmmoMax + 1 : m.Ammo;
+		return this.m.Ammo == 0 && ::World.Assets.m.ProfessionEffect.LegendAlchemy <= 0 ? this.m.AmmoMax + 1 : this.m.Ammo;
 	}
 
 	o.setAmmo <- function ( _a )
@@ -123,7 +123,7 @@
 			this.m.Icon = "tools/acid_flask_01_70x70.png";
 			this.m.ShowArmamentIcon = true;
 			this.m.Description = this.m.OriginalDescription;
-			this.m.Value = m.OriginalValue;
+			this.m.Value = this.m.OriginalValue;
 		}
 		else
 		{
