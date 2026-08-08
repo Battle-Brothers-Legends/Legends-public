@@ -120,11 +120,11 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Hitpoints = [-5, -5],
 	Bravery = [-5, -5],
 	Stamina = [-5, -5],
-	MeleeSkill = [7, 14],
-	RangedSkill = [5, 10],
+	MeleeSkill = [10, 10],
+	RangedSkill = [5, 5],
 	MeleeDefense = [0, 0],
 	RangedDefense = [0, 0],
-	Initiative = [10, 20]
+	Initiative = [10, 10]
 }];
 
 ::Legends.BackgroundsStats.Bowyer <- [{
@@ -1514,17 +1514,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [-5, 0],
 	RangedDefense = [-5, 0],
 	Initiative = [5, 5]
-}];
-
-::Legends.BackgroundsStats.LegendQiyan <- [{
-	Hitpoints = [-10, 3],
-	Bravery = [5, 10],
-	Stamina = [5, 8],
-	MeleeSkill = [5, 10],
-	RangedSkill = [-5, 5],
-	MeleeDefense = [-5, 10],
-	RangedDefense = [-6, 4],
-	Initiative = [-5, 5]
 }];
 
 ::Legends.BackgroundsStats.LegendRanger <- [{

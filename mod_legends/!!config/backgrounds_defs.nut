@@ -1259,14 +1259,6 @@ backgroundDefs.push({
     Name = "Puppet Master",
 });
 
-::Legends.Background.LegendQiyan <- null;
-backgroundDefs.push({
-    ID = "background.legend_qiyan",
-    Script = "scripts/skills/backgrounds/legend_qiyan_background",
-    Const = "LegendQiyan",
-    Name = "Qiyan",
-});
-
 ::Legends.Background.LegendRanger <- null;
 backgroundDefs.push({
     ID = "background.legend_ranger",

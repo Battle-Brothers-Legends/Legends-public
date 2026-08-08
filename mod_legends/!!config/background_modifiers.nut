@@ -1988,12 +1988,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	];
 };
 
-::Legends.BackgroundModifiers.LegendQiyan <- {
-	Haggle = 0.02;
-	Stash = 8;
-	Scout = 0.1;
-};
-
 ::Legends.BackgroundModifiers.LegendRanger <- {
 	Ammo = 55;
 	Stash = 5;

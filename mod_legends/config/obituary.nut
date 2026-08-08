@@ -263,7 +263,6 @@
     [::Legends.Backgrounds.getID(::Legends.Background.LegendPreserver)]               = { pos = "Found a new calling selling fruit preserves", 	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendPuppet)]                  = { pos = "Death was only the beginning", 				neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendPuppetMaster)]           = { pos = "Found new toys to play with", 					neg = "" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendQiyan)]                   = { pos = "Found shady employment elsewhere", 			neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendRanger)]                  = { pos = "Disappeared into the wild frontiers", 			neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger)]        = { pos = "Disappeared into the wild frontiers", 			neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendShieldmaiden)]            = { pos = "Left to join a group of famed companions", 	neg = "" },

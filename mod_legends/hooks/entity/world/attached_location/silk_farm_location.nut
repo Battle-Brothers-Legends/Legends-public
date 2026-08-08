@@ -11,8 +11,8 @@
 	o.onUpdateDraftList = function ( _list )
 	{
 		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
-			_list.push(::Legends.Background.LegendQiyan);
-			_list.push(::Legends.Background.LegendQiyan);
+			_list.push(::Legends.Background.BellyDancer);
+			_list.push(::Legends.Background.BellyDancer);
 		}
 
 		onUpdateDraftList(_list);

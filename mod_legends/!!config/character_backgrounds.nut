@@ -257,7 +257,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendGladiatorPrizefighter,
 	::Legends.Background.LegendMuladi,
 	::Legends.Background.DaytalerSouthern,
-	::Legends.Background.LegendQiyan,
 	::Legends.Background.ShepherdSouthern,
 	::Legends.Background.Executioner,
 	::Legends.Background.ExecutionerSouthern
