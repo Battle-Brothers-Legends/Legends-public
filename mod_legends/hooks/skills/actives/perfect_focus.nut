@@ -54,6 +54,10 @@
 		this.m.Counter += 1;
 	}
 
+	o.onTurnStart <- function () {
+		this.m.Counter = this.Math.max(0, this.m.Counter - 1);
+	}
+ 
 	o.onCombatStarted <- function() {
 		this.m.Counter = 0;
 	}
