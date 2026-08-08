@@ -1390,14 +1390,6 @@ effectsDefs.push({
 	Const = "LegendSafeguarded"
 });
 
-::Legends.Effect.LegendStaffwall <- null;
-effectsDefs.push({
-	ID = "effects.legend_staffwall",
-	Script = "scripts/skills/effects/legend_staffwall_effect",
-	Name = "Spearwall",
-	Const = "LegendStaffwall"
-});
-
 ::Legends.Effect.LegendSummonedBearEffect <- null;
 effectsDefs.push({
 	ID = "effects.legend_summoned_bear_effect",

@@ -2926,22 +2926,6 @@ activesDefs.push({
 	Name = "Strafing Run",
 });
 
-::Legends.Active.LegendStaffwall <- null;
-activesDefs.push({
-	ID = "actives.legend_staffwall",
-	Script = "scripts/skills/actives/legend_staffwall_skill",
-	Const = "LegendStaffwall",
-	Name = "Spearwall",
-});
-
-::Legends.Active.LegendStaffThrust <- null;
-activesDefs.push({
-	ID = "actives.legend_staff_thrust",
-	Script = "scripts/skills/actives/legend_staff_thrust_skill",
-	Const = "LegendStaffThrust",
-	Name = "Thrust",
-});
-
 ::Legends.Active.LegendStealth <- null;
 activesDefs.push({
 	ID = "actives.legend_stealth",

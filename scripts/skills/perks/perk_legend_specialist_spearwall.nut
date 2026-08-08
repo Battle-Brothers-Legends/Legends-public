@@ -1,7 +1,6 @@
 this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 	m = {
 		SkillsToAdjust = [
-			::Legends.Active.LegendStaffwall,
 			::Legends.Active.Spearwall
 		]
 	},
