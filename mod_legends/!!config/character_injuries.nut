@@ -99,7 +99,7 @@
 		Script = "injury_permanent/missing_hand_injury"
 	}
 ];
-::Const.Injury.CampTraining <- [
+::Const.Injury.CampActivities <- [
 	{
 		ID = "injury.fractured_hand",
 		Threshold = 0.25000000,

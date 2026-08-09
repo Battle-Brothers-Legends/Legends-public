@@ -24,7 +24,8 @@ this.camp_building <- {
 		ModName = "",
 		ModMod = 1.0,
 		BaseCraft = 0.0,
-		Conversion = 1.0
+		Conversion = 1.0,
+		RequiresHealthyBros = false
 	},
 
 	function create() {}
@@ -232,7 +233,7 @@ this.camp_building <- {
 			Modifiers = [] // each element is [Craft value contributed by the character (including bonuses), Name of character, Background of character]
 		}
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach (bro in assignedBros) {
 			// Each character assigned will contribute the tent's BaseCraft plus any bonuses from their modifiers
 			// If the character does not have the relevant skill, they will contribute only the BaseCraft value
@@ -278,5 +279,57 @@ this.camp_building <- {
 
 	function queryConfigureSettings() {
 		return {};
+	}
+
+	function isRecovering(_bro) {
+		if(!this.m.RequiresHealthyBros) {
+			return false;
+		}
+		local skills = _bro.getSkills();
+		if (skills.hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
+			this.getBreak(_bro, "recovering from an injury");
+			return true;
+		} else if(skills.hasSkillOfType(::Const.SkillType.SemiInjury)) {
+			this.getBreak(_bro, skills.getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
+			return true;
+		}
+		return false;
+	}
+
+	function getBreak( _bro, cause ) {
+		this.m.Results.push({
+			Icon = "ui/icons/days_wounded.png",
+			Text = _bro.getName() + " was " + cause + " and has forgone" + this.m.ActivityName + "."
+		});
+	}
+
+	function addNegativeSideEffects(_bro, _hours) {
+		local r = ::Math.min(this.getUpgraded() ? 1 : 5, 4 * ::Math.pow(_hours, 0.5) - _bro.getLevel());
+
+		if (::Math.rand(1, 100) < r) {
+			_bro.addLightInjury();
+			this.m.Results.push({
+				Icon = "ui/icons/days_wounded.png",
+				Text = _bro.getName() + " suffers light wounds while " + this.m.ActivityName.tolower() + "."
+			});
+		}
+
+		if (::Math.rand(1, 100) < r) {
+			local injury = _bro.addInjury(::Const.Injury.CampActivities);
+			this.m.Results.push({
+				Icon = injury.getIcon(),
+				Text = _bro.getName() + " suffers " + injury.getNameOnly() + " while " + this.m.ActivityName.tolower() + "."
+			});
+		}
+
+		if (::Math.rand(1, 100) < r) {
+			local effect = ::Legends.Effects.grant(_bro, ::Legends.Effect.Exhausted);
+			if (effect != null) {
+				this.m.Results.push({
+					Icon = effect.getIcon(),
+					Text = "Hard work during " + this.m.ActivityName + " left " + _bro.getName() + " Exhausted."
+				});
+			}
+		}
 	}
 }

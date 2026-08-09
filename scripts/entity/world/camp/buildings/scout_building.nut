@@ -3,7 +3,8 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		Radius = 250,
 		Rate = 0,
 		Results = [],
-		NumBros = 0
+		NumBros = 0,
+		ActivityName = "Scouting"
 	},
 	function create()
 	{
@@ -17,6 +18,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.Description = "Send out a patrol to keep an eye on the surrounding terrain";
 		this.m.BannerImage = "ui/buttons/banner_scout.png";
 		this.m.CanEnter = false;
+		this.m.RequiresHealthyBros = true;
 	}
 
 	function getTitle() {
@@ -26,7 +28,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function getDescription() {
 		//desc += "The Patrol station can be upgraded by purchasing a patrol cart from a settlement merchant. An upgraded tent has a 15% increase in patrol speed and ";
 		//desc += "has a chance of revealing the defenders of any camps encountered. ";
-		//desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined.";
+		//desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined."; remember reduces chance of getting hurt
 		return "Assign men to scout around and reveal information about the surroundings.";
 	}
 
@@ -80,7 +82,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			Modifiers = []
 		}
 		local self = this;
-		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID);
+		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach (bro in scoutingBros) {
 			ret.Assigned++;
 			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout) * (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout) ? 1.1 : 1.0), bro.getName(), bro.getBackground().getNameOnly()]);
@@ -123,9 +125,14 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		//	 return;
 		// }
 
-		local playerTile = ::World.State.getPlayer().getTile();
-        local campHours = this.m.Camp.getCampTimeHours();
+		local campHours = this.m.Camp.getCampTimeHours();
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster.getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		foreach(bro in assignedBros) {
+			this.addNegativeSideEffects(bro, campHours);
+		}
 
+		local playerTile = ::World.State.getPlayer().getTile();
 		local locations = [];
 		local scoutableLocations = ::World.EntityManager.getLocations().filter(@(_, _location) !_location.isAlliedWithPlayer());
 		foreach(location in scoutableLocations)	{

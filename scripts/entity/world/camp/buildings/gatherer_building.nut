@@ -3,7 +3,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		Items = [],
 		MedsAdded = 0,
 		NumBros = 0,
-		Craft = 0
+		Craft = 0,
+		ActivityName = "Gathering"
 	},
 	function create()
 	{
@@ -19,6 +20,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 		this.m.CanEnter = false;
+		this.m.RequiresHealthyBros = true;
 	}
 
 	function getTitle() {
@@ -34,8 +36,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		desc = desc + "Assigning Woodsmen with the Woodsman\'s Cuts perk can return wood for trade, while Miners with the Ore Hunter perk can find gems. ";
 		desc = desc + "Assigning skilled apocatheries like Herbalists, Vala, Alchemists and Druids can return more advanced medicines and bandages.";
 		desc = desc + "\n\n";
-		desc = desc + "Buying an upgraded tent will increase gathering speed by 15% and produce more kinds of medicine. ";
-		desc = desc + "Having both an upgraded tent and skilled apothecaries can provide rare medicines, and powerful potions.";
+		//desc = desc + "Buying an upgraded tent will increase gathering speed by 15% and produce more kinds of medicine. ";
+		//desc = desc + "Having both an upgraded tent and skilled apothecaries can provide rare medicines, and powerful potions."; remember reduces chance of getting hurt
 		return desc;
 	}
 
@@ -325,6 +327,13 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function completed() {
 		if (this.m.MedsAdded > 0) {
 			this.World.Assets.addMedicine(this.Math.floor(this.m.MedsAdded));
+		}
+
+		local campHours = this.m.Camp.getCampTimeHours();
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster.getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		foreach(bro in assignedBros) {
+			this.addNegativeSideEffects(bro, campHours);
 		}
 	}
 

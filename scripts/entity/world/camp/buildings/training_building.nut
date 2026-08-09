@@ -8,7 +8,8 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			M = ["Short Guard ", "Upper Snake Guard ", "Bastard Cross ", "The Middle Iron Door ", "thrusts ", "trips ", "grapples ", "foot passing ", "striking ", "vambrace traps ", "a pommel bash ", "half sword ", "The Thumb Scissor ", "jabs ", "hand to hand combat "],
     		T = ["for hours, ", "all day, ", "for several hours, ", "until exhaustion, ", "as long as possible, "],
      		A = [" feels ready for a fight", " needs a real opponent", " is prepared for battle", " is keen to try it out", " is ready for a scrap"],
-		}
+		},
+		ActivityName = "Training"
 	},
 	function create()
 	{
@@ -23,6 +24,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local sounds = getCampSounds(3, "training");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
+		this.m.RequiresHealthyBros = true;
 	}
 
 	function getTitle() {
@@ -84,7 +86,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local self = this;
 		local hasTrainer = roster.filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && _bro.getSkills().hasPerk(::Legends.Perk.LegendMasterTrainer)).len() > 0;
 
-		local trainingBros = roster.filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID);
+		local trainingBros = roster.filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach( bro in trainingBros ) {
 			ret.Assigned++;
 			ret.Modifiers.push([
@@ -121,7 +123,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local res = [];
 		local id = 120;
 
-		foreach( b in this.m.Results ) {
+		foreach (b in this.m.Results) {
 			res.push({
 				id = id++,
 				icon = b.Icon,
@@ -133,16 +135,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getAssignedBros() {
 		return this.getModifiers().Assigned;
-	}
-
-
-	function getInjury( bro ) {
-		local skills = bro.getSkills();
-		local injury = skills.hasSkillOfType(this.Const.SkillType.TemporaryInjury) || skills.hasSkillOfType(this.Const.SkillType.SemiInjury) ? bro.addInjury(this.Const.Injury.Permanent) : bro.addInjury(this.Const.Injury.CampTraining);
-		this.m.Results.push({
-			Icon = injury.getIcon(),
-			Text = bro.getName() + " suffers " + injury.getNameOnly() + " while training."
-		});
 	}
 
 	function getDescriptors( bro, extraTrainingDescriptors){
@@ -218,13 +210,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Results.push({
 			Icon = "ui/tooltips/negative.png", //Should get an icon for failed training
 			Text = _bro.getName() + " didn't learn anything useful."
-		});
-	}
-
-	function getBreak( _bro, cause ) {
-		this.m.Results.push({
-			Icon = "ui/icons/days_wounded.png", //Should get an icon for failed training
-			Text = _bro.getName() + " was " + cause + " and didn't train."
 		});
 	}
 
@@ -338,22 +323,11 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function completed() {
 		local campHours = this.m.Camp.getCampTimeHours();
-		local injuryMin = this.getUpgraded() ? 1 : 5;
 		local mod = this.getUpgraded() ? this.getModifiers() : null;
-
-		foreach(bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getCampAssignment() != this.m.ID) {
-				continue;
-			}
-
-			local skills = bro.getSkills();
-			if (skills.hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
-				this.getBreak(bro, "recovering from an injury");
-				continue;
-			} else if(skills.hasSkillOfType(::Const.SkillType.SemiInjury)) {
-				this.getBreak(bro, skills.getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
-				continue;
-			}
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster.getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		foreach(bro in assignedBros) {
+			this.addNegativeSideEffects(bro, campHours);
 
 			if (::Math.rand(1, 100) < ::Math.min(95, 100 * ::Math.pow(campHours / 12.0, 0.6 + 0.1 * bro.getLevel()))) {
 				if (bro.getLevel() < 12) {
@@ -366,33 +340,16 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			}
 
 			if (this.getUpgraded())	{
-				for(local camphrs = campHours; camphrs > 0;) {
-					local r = this.Math.rand(1, 100);
+				for(local hours = campHours; hours > 0;) {
+					local r = ::Math.rand(1, 100);
 
-					if (r <= camphrs + mod.Craft * camphrs)	{
+					if (r <= hours + mod.Craft * hours)	{
 						this.getBonus(bro);
-						camphrs -= r;
-					}
-					else {
+						hours -= r;
+					} else {
 						break;
 					}
 				}
-			}
-
-			local r = ::Math.min(injuryMin, 4 * ::Math.pow(campHours, 0.5) - bro.getLevel());
-
-			if (this.Math.rand(1, 100) < r)	{
-				this.getInjury(bro);
-			}
-
-			if (this.Math.rand(1, 100) < r)	{
-				local effect = ::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted);
-                if (effect != null) {
-                    this.m.Results.push({
-                        Icon = effect.getIcon(),
-                        Text = bro.getName() + " pushed themselves too hard and became Exhausted."
-                    });
-                }
 			}
 		}
 	}
