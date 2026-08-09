@@ -9,7 +9,7 @@
 		this.m.GoodEnding = "%name% the sellsword left the %companyname% and started %their% own mercenary company. As far as you know, it\'s a very successful venture and %they% often buddies up with the men of the %companyname% to work together.";
 		this.m.BadEnding = "%name% left the %companyname% and started %their% own competing company. The two companies clashed on opposite sides of a battle between nobles. The sellsword died when a mercenary from the %companyname% stove %their% head in with a hedge knight\'s helmet.";
 		this.m.HiringCost = 100;
-		this.m.DailyCost = 30;
+		this.m.DailyCost = 35;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
@@ -32,17 +32,16 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamicMins.Enemy = 2;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,
 				::Const.Perks.ShieldTree,
 				::Const.Perks.CrossbowTree,
 				::Const.Perks.AxeTree,
+				::Const.Perks.ThrowingTree,
 			],
 			Defense = [
-				::Const.Perks.HeavyArmorTree
+				::Const.Perks.MediumArmorTree
 			],
 			Traits = [
 				::Const.Perks.TrainedTree,

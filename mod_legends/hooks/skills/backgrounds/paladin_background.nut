@@ -8,8 +8,8 @@
 		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which increases their health and initiative.";
 		this.m.GoodEnding = "%name% the Oathtaker stayed with the %companyname%, wielding Young Anselm\'s skull to proselytize knightly virtues unto the world. Most see %them% as something of an annoyance, but there is also some charm in a %person% who believes fully in matters of honor and pride and doing good. Last you heard, %they% singlehandedly saved a lord\'s princess from a gang of alley thieves. In celebration, he was wed to the damsel, though rumors abound that she is unhappy in bed, proclaiming that the Oathtaker insists on Young Anselm\'s skull watching from the corner. Whatever\'s going on, you\'re happy that the %person% is still doing %their% thing to the fullest.";
 		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with %their% fellow believers and one night had a dream that they were, in fact, the true heretics. %They% slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of %them%, %they% reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, %their% new Oathbringer brethren promptly slew %them% down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
-		this.m.HiringCost = 295;
-		this.m.DailyCost = 34;
+		this.m.HiringCost = 150;
+		this.m.DailyCost = 22;
 		this.m.Titles = [
 			"the Crusader",
 			"the Zealot",
@@ -43,15 +43,18 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Tough),
 			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Initiative,
+			this.Const.Attributes.Hitpoints,
 			this.Const.Attributes.RangedSkill
 
 		];
 		this.m.Level = this.Math.rand(1, 3);
+		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.IsCombatBackground = true;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
@@ -62,16 +65,14 @@
 				::Const.Perks.ShieldTree,
 				::Const.Perks.MaceTree,
 				::Const.Perks.HammerTree,
-				::Const.Perks.FlailTree,
 				::Const.Perks.SwordTree
 			],
 			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.MediumArmorTree
+				::Const.Perks.HeavyArmorTree
 			],
 			Traits = [
 				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
+				::Const.Perks.IndestructibleTree,
 				::Const.Perks.MartyrTree,
 				::Const.Perks.FitTree
 			],
