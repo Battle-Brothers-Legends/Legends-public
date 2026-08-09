@@ -15,7 +15,7 @@ this.legend_inquisition_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.World.Flags.set(::Legends.Camp.Flag.Healer, true);
+				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Healer], true);
 			}
 		});
 	}

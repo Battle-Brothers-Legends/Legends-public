@@ -4,7 +4,7 @@ this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_b
 	},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Kitchen;
+		this.m.ID = ::Legends.Camp.CampBuildings.Kitchen;
 		this.m.Slot = "hunt"; // "cook"; gfx + css to change once 64 gfx are ready..
 		this.m.Name = "Kitchen";
 		this.m.BannerImage = "ui/buttons/banner_cook.png";

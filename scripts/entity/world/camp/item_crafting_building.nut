@@ -30,13 +30,6 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		this.m.Queue = q;
 	}
 
-	function isHidden() {
-		if (::Legends.Settings.skipCamp()) {
-			return false;
-		}
-		return !::World.Flags.get(::Legends.Camp.Flag[this.m.Name]);
-	}
-
 	function getTitle() {
 		if (this.getUpgraded()) {
 			return this.m.Name + " *Upgraded*";

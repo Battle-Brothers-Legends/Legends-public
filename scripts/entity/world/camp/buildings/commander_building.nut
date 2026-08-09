@@ -2,7 +2,7 @@ this.commander_building <- this.inherit("scripts/entity/world/camp/camp_building
 	m = {},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Commander;
+		this.m.ID = ::Legends.Camp.CampBuildings.Commander;
 		this.m.Slot = "commander";
 		this.m.Name = "Commanders Tent";
 		this.m.Description = "Assign mercenaries to different tasks while encamped.";
@@ -11,6 +11,10 @@ this.commander_building <- this.inherit("scripts/entity/world/camp/camp_building
 		// this.m.UIImageFull = "ui/settlements/commander_day";
 		// this.m.UIImageNightFull = "ui/settlements/commander_night";
 		this.m.InCommanderTent = false;
+	}
+
+	function isHidden() {
+		return false;
 	}
 
 	function getLevel()	{

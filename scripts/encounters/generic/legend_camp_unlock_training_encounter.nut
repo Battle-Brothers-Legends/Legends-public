@@ -27,7 +27,7 @@ this.legend_camp_unlock_training_encounter <- this.inherit("scripts/encounters/e
 					icon = "ui/icons/special.png",
 					text = "Training unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag.Training, true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_training_encounter <- this.inherit("scripts/encounters/e
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get(::Legends.Camp.Flag.Training))
+		if (::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training]))
 			return false;
 
 		if (!_settlement.hasBuilding("building.training_hall"))
@@ -48,7 +48,7 @@ this.legend_camp_unlock_training_encounter <- this.inherit("scripts/encounters/e
 	function onPrepareVariables (_vars) {
 		_vars.push([
 			"description",
-			::World.Camp.getBuildingByID(::Const.World.CampBuildings.Training).getDescription()
+			::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Training).getDescription()
 		]);
 	}
 });

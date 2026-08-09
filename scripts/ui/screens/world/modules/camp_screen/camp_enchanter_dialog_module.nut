@@ -10,6 +10,6 @@ this.camp_enchanter_dialog_module <- this.inherit("scripts/ui/screens/world/modu
 	}
 
 	function getTent() {
-		return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Enchanter);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Enchanter);
 	}
 });

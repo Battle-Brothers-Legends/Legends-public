@@ -228,7 +228,7 @@ this.camp_manager <- {
 
 	function assignRepairs()
 	{
-		this.getBuildingByID(::Const.World.CampBuildings.Repair).assignEquipped();
+		this.getBuildingByID(::Legends.Camp.CampBuildings.Repair).assignEquipped();
 	}
 
 	function update( _worldState )
@@ -489,13 +489,13 @@ this.camp_manager <- {
 	function getUIInformation () {
 		local night = !::World.getTime().IsDaytime;
 		local highest = this.getUITerrain();
-		local foreground = ::Const.World.TerrainCampImages[highest].Foreground;
+		local foreground = ::Legends.Camp.TerrainCampImages[highest].Foreground;
 		local result = {
 			Title = ::World.Assets.getName() + " Camp",
 			SubTitle = "No camp tasks have been scheduled...",
 			HeaderImagePath = null,
-			Background = ::Const.World.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
-			Mood = ::Const.World.TerrainCampImages[highest].Mood + ".png",
+			Background = ::Legends.Camp.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
+			Mood = ::Legends.Camp.TerrainCampImages[highest].Mood + ".png",
 			Foreground = foreground != null ? foreground + (night ? "_night" : "") + ".png" : null,
 			Slots = [],
 			Situations = [],

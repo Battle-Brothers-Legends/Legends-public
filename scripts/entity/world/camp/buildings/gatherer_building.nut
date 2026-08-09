@@ -8,7 +8,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Gatherer;
+		this.m.ID = ::Legends.Camp.CampBuildings.Gatherer;
 		this.m.ModName = "Gathering";
 		this.m.BaseCraft = 0.5;
 		this.m.Slot = "gather";
@@ -64,10 +64,6 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		}
 
 		return ret;
-	}
-
-	function isHidden() {
-		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Gather);
 	}
 
 	function getUpgraded()

@@ -18,7 +18,7 @@ this.legend_necro_intro_event <- this.inherit("scripts/events/event", {
 				//	this.logInfo("Making zombies like you");
 				//	this.World.FactionManager.makeZombiesFriendlyToPlayer(); //DOES THIS WORK? - (it does, but removed due to locking player into some contracts they can't complete!)
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
+				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 			}
 		});
 	}

@@ -180,7 +180,7 @@
 	o.getVisionRadius = function ()	{
 		::World.Assets.m.VisionRadiusMult = 1 + ::World.Assets.m.ProfessionEffect.LegendLookout;
 		if (::World.Assets.isCamping())
-			return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Scout).getVisionRadius();
+			return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Scout).getVisionRadius();
 		return getVisionRadius();
 	}
 

@@ -13,7 +13,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function getTent()
 	{
-		return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 	}
 
 	function destroy()
@@ -37,8 +37,8 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 			Repairs = [],
 			Capacity = this.getTent().getCapacity()
 		};
-		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getRepairs(), result.Repairs, this.Const.UI.ItemOwner.Shop);
-		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getStash(), result.Stash, this.Const.UI.ItemOwner.Stash, this.m.InventoryFilter);
+		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getRepairs(), result.Repairs, ::Const.UI.ItemOwner.Shop);
+		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getStash(), result.Stash, ::Const.UI.ItemOwner.Stash, this.m.InventoryFilter);
 		return result;
 	}
 
@@ -61,50 +61,38 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function onSortButtonClicked()
 	{
-		if (this.Tactical.isActive())
-		{
-			this.getroottable().Stash.sort();
-		}
-		else
-		{
-			this.World.Assets.getStash().sort();
+		if (::Tactical.isActive()) {
+			::Stash.sort();
+		} else {
+			::World.Assets.getStash().sort();
 		}
 
 		this.getTent().onInit();
 		this.loadStashList();
 	}
 
-	function onFilterAll()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
-			this.loadStashList();
-		}
+	function onFilterAll() {
+		this.onFilter("All");
 	}
 
-	function onFilterWeapons()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
-			this.loadStashList();
-		}
+	function onFilterWeapons() {
+		this.onFilter("Weapons");
 	}
 
-	function onFilterArmor()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
+	function onFilterArmor() {
+		this.onFilter("Armor");
+	}
+
+	function onFilter(_filter) {
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter[_filter]) {
+			this.m.InventoryFilter = ::Const.Items.ItemFilter[_filter];
 			this.loadStashList();
 		}
 	}
 
 	function onFilterBro()
 	{
-		if (this.m.InventoryFilter != 99)
-		{
+		if (this.m.InventoryFilter != 99) {
 			this.m.InventoryFilter = 99;
 			this.loadStashList();
 		}
@@ -141,6 +129,4 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	{
 		this.m.Parent.onCommanderButtonPressed();
 	}
-
-
 });

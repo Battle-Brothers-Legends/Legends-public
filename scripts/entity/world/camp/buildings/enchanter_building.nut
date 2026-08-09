@@ -5,7 +5,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Enchanter;
+		this.m.ID = ::Legends.Camp.CampBuildings.Enchanter;
 		this.m.Slot = "enchant";
 		this.m.Name = "Enchant";
 		this.m.Description = "Oooo.. Pretty glowing things...";

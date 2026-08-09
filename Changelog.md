@@ -138,7 +138,7 @@
 - `Ballistics` - no longer reduces hitchance penalty with tile traveled, instead deals an additional 2 damage per tile traveled
 - `Wind Reader` - reduces hitchance penalty with tile traveled by 2%, gains the vanilla `Anticipation` effect, moved to tier 3
 - `Night Raider` - will now also appear in the Devious trait tree
-- `Prepared` - crossbows and firearms in your bags will be loaded at combat start
+- `Prepared` - crossbows and firearms in your bags will be loaded at combat start; bombs and poisons cost 0 at the first turn of combat
 - `Anticipation` - reduce damage taken by 1% for each point of Ranged Defense you have for the first few hits you take in combat
 - `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 - `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type, up to 3 stacks that can gradually be reduced
@@ -321,6 +321,7 @@
 - right click tents to open the correct list in commander's tent
 - painter tent allows painting the shoulder layer
 - upgraded scouting has been improved and allows the party to scout for locations while camping
+- gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
 
 ## Events
 - added a new town encounter during drought
@@ -354,7 +355,9 @@
 - fixed window opening related ui bugs
 - various scenario fixes
 - players aren't required to have a brother on the first two rows anymore
-- brothers will be deployed on three rows properly during edge deployment 
+- brothers will be deployed on three rows properly during edge deployment
+- fixed intensive training preferring ranged defense as a trained stat
+- fixed hurt brothers being counted towards training modifier
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -375,6 +378,8 @@
 - removed delayed event fix (Vanilla already fixed it in a better place in the chain, possibly fixes event bugs)
 - moved `player_party` bro and equipment strength calculations to difficulty helper
 - camp screen and building changes
+- camp flags are now indexed by building
+- camp buildings moved to ::Legends.Camp
 - `LegendExtendendAura` -> `LegendExtendedAura`
 - `LegendTattos` -> `LegendTattoos`
 - `LegendFortify` -> deleted

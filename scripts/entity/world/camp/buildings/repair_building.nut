@@ -12,7 +12,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Repair;
+		this.m.ID = ::Legends.Camp.CampBuildings.Repair;
 		this.m.BaseCraft = 10.0;
 		this.m.ModName = "Repair";
 		this.m.Escorting = true;
@@ -23,6 +23,10 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local sounds = getCampSounds(11, "blacksmith");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = [];
+	}
+
+	function isHidden() {
+		return false;
 	}
 
 	function getTitle() {

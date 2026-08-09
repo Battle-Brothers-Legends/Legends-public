@@ -5,7 +5,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 	function create() {
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Rest;
+		this.m.ID = ::Legends.Camp.CampBuildings.Rest;
 		this.m.Escorting = true;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
@@ -24,6 +24,10 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.SoundsAtNight = sounds;
 		this.m.SoundsAtNight.extend(this.getCampSounds(3, "rest_snore"));
 		this.m.CanEnter = false;
+	}
+
+	function isHidden() {
+		return false;
 	}
 
 	function getDescription() {

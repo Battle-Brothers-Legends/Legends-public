@@ -113,8 +113,8 @@
 		}
 
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Flags.set(::Legends.Camp.Flag.Craft, true);
-		//this.World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting], true);
+		//this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));

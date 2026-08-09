@@ -48,7 +48,7 @@
 		bros[0].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
 		//---
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Flags.set(::Legends.Camp.Flag.Training, true);
+		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money / 3 + ::Legends.Difficulty.LoneWolfStartingMoney[::World.Assets.getEconomicDifficulty()];
 		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;

@@ -8,7 +8,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Fletcher;
+		this.m.ID = ::Legends.Camp.CampBuildings.Fletcher;
 		this.m.ModName = "Fletching";
 		this.m.ModMod = 10.0;
 		this.m.BaseCraft = 1.0;
@@ -53,13 +53,6 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			++id;
 		}
 		return ret;
-	}
-
-	function isHidden() {
-		if (::Legends.Settings.skipCamp()) {
-			return false;
-		}
-		return !this.World.Flags.get(::Legends.Camp.Flag.Fletcher);
 	}
 
 	function getUpgraded() {

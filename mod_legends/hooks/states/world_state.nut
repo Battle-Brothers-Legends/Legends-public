@@ -478,7 +478,7 @@
 
 	o.camp_screen_main_dialog_module_onCommanderButtonClicked <- function ()
 	{
-		this.showTentScreenFromCamp(::Const.World.CampBuildings.Commander);
+		this.showTentScreenFromCamp(::Legends.Camp.CampBuildings.Commander);
 	}
 
 	o.camp_screen_main_dialog_module_onTentButtonClicked <- function ( _id )

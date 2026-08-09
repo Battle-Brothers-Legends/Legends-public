@@ -1363,7 +1363,7 @@
 			return ret;
 
 		case "repairs.Supplies":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local desc = "Number of tools on hand to repair equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
 			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
 			local ret = [
@@ -1381,7 +1381,7 @@
 			return ret;
 
 		case "repairs.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local desc = "Number of tools required to repair the selected equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition.";
 			local ret = [
 				{
@@ -1398,7 +1398,7 @@
 			return ret;
 
 		case "repairs.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be repaired.";
 			local ret = [
@@ -4838,7 +4838,7 @@
 			];
 
 		case "workshop.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local desc = "Number of tools that will be salvaged from selected equipment. " + tent.getConversionRate() + " points of item condition equals 1 tool. Once a tools condition reaches zero it will be destroyed.";
 			local ret = [
 				{
@@ -4855,7 +4855,7 @@
 			return ret;
 
 		case "workshop.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be salvaged.";
 			local ret = [
@@ -4907,7 +4907,7 @@
 			return ret;
 
 		case "crafting.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Crafting);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Crafting);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to crafting duty. The more assigned, the quicker items can be crafted.";
 			local ret = [
@@ -4991,7 +4991,7 @@
 			return ret;
 
 		case "healer.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Healer);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local desc = "Quantity of Medicine required to treat selected injuries.";
 			local ret = [
 				{
@@ -5008,7 +5008,7 @@
 			return ret;
 
 		case "healer.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Healer);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to tent duty. The more assigned, the quicker injuries can be treated.";
 			local ret = [

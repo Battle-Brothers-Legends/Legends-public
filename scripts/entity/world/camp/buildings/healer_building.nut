@@ -9,7 +9,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Healer;
+		this.m.ID = ::Legends.Camp.CampBuildings.Healer;
 		this.m.BaseCraft = 1.0;
 		this.m.ModName = "Healing";
 		this.m.Escorting = true;
@@ -21,12 +21,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 		this.m.InjurySounds = getCampSounds(1, "healer_treatment_bandage");
-	}
-
-	function isHidden() {
-		if (::Legends.Settings.skipCamp())
-			return false;
-		return !::World.Flags.get(::Legends.Camp.Flag.Healer);
 	}
 
 	function getRate() {

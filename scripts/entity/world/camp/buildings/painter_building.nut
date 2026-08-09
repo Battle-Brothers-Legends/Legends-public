@@ -3,7 +3,7 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Painter;
+		this.m.ID = ::Legends.Camp.CampBuildings.Painter;
 		this.m.Slot = "painter";
 		this.m.Name = "Painting Tent";
 		this.m.Description = "Here you can repaint your armor.";
@@ -20,10 +20,6 @@ this.painter_building <- this.inherit("scripts/entity/world/camp/camp_building",
 
 	function getLevel()	{
 		return "empty";
-	}
-
-	function isHidden() {
-		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Painter);
 	}
 });
 

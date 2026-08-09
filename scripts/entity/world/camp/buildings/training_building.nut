@@ -13,7 +13,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Training;
+		this.m.ID = ::Legends.Camp.CampBuildings.Training;
 		this.m.ModName = "Training";
 		this.m.Slot = "train";
 		this.m.Name = "Training Grounds";
@@ -56,10 +56,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		}
 
 		return ret;
-	}
-
-	function isHidden()	{
-		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Training);
 	}
 
 	function getUpgraded() {

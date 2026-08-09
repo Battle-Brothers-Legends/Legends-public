@@ -27,7 +27,7 @@ this.legend_camp_unlock_painter_encounter <- this.inherit("scripts/encounters/en
 					icon = "ui/icons/special.png",
 					text = "Armor painting unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag.Painter, true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Painter], true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_painter_encounter <- this.inherit("scripts/encounters/en
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get(::Legends.Camp.Flag.Painter))
+		if (::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Painter]))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.workshop") || _settlement.hasBuilding("building.armorsmith") || _settlement.hasBuilding("building.armorsmith_oriental")))
@@ -48,7 +48,7 @@ this.legend_camp_unlock_painter_encounter <- this.inherit("scripts/encounters/en
 	function onPrepareVariables (_vars) {
 		_vars.push([
 			"description",
-			::World.Camp.getBuildingByID(::Const.World.CampBuildings.Painter).getDescription()
+			::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Painter).getDescription()
 		]);
 	}
 });

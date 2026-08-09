@@ -10,7 +10,7 @@ this.camp_crafting_dialog_module <- this.inherit("scripts/ui/screens/world/modul
 	}
 
 	function getTent() {
-		return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Crafting);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Crafting);
 	}
 
 	function onFilterAll() {

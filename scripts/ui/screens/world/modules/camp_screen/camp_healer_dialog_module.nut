@@ -13,7 +13,7 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function getTent()
 	{
-		return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Healer);
+		return this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 	}
 
 	function onShow()

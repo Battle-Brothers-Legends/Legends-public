@@ -8,21 +8,21 @@ this.camp_screen <- {
 
 		Modules = {}
 		ModuleConfig = {
-			[::Const.World.CampBuildings.Commander] = { name = "Commander", dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Barber]    = { name = "Barber",    dataFn = "queryRosterInformation" },
-			[::Const.World.CampBuildings.Crafting]  = { name = "Crafting",  dataFn = "onShow" },
-			[::Const.World.CampBuildings.Enchanter] = { name = "Enchanter", dataFn = "onShow" },
-			[::Const.World.CampBuildings.Fletcher]  = { name = "Fletcher",  dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Gatherer] = { name = "Gatherer", dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Healer] = { name = "Healer", dataFn = "onShow" },
-			//[::Const.World.CampBuildings.Hunter]  = { name = "Hunter",  dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Kitchen] = { name = "Kitchen", dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Painter]  = { name = "Painter",  dataFn = "queryRosterInformation" },
-			[::Const.World.CampBuildings.Repair] = { name = "Repair", dataFn = "onShow" },
-			[::Const.World.CampBuildings.Rest]  = { name = "Rest",  dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Scout] = { name = "Scout", dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Training]  = { name = "Training",  dataFn = "queryLoad" },
-			[::Const.World.CampBuildings.Workshop] = { name = "Workshop", dataFn = "onShow" },
+			[::Legends.Camp.CampBuildings.Commander] = { name = "Commander", dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Barber]    = { name = "Barber",    dataFn = "queryRosterInformation" },
+			[::Legends.Camp.CampBuildings.Crafting]  = { name = "Crafting",  dataFn = "onShow" },
+			[::Legends.Camp.CampBuildings.Enchanter] = { name = "Enchanter", dataFn = "onShow" },
+			[::Legends.Camp.CampBuildings.Fletcher]  = { name = "Fletcher",  dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Gatherer] = { name = "Gatherer", dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Healer] = { name = "Healer", dataFn = "onShow" },
+			//[::Legends.Camp.CampBuildings.Hunter]  = { name = "Hunter",  dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Kitchen] = { name = "Kitchen", dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Painter]  = { name = "Painter",  dataFn = "queryRosterInformation" },
+			[::Legends.Camp.CampBuildings.Repair] = { name = "Repair", dataFn = "onShow" },
+			[::Legends.Camp.CampBuildings.Rest]  = { name = "Rest",  dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Scout] = { name = "Scout", dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Training]  = { name = "Training",  dataFn = "queryLoad" },
+			[::Legends.Camp.CampBuildings.Workshop] = { name = "Workshop", dataFn = "onShow" },
     	}
 
 		Listeners = {
@@ -41,7 +41,7 @@ this.camp_screen <- {
 	}
 
 	function isAnimating() {
-		return this.m.Animating == true || this.m.Modules.Main.isAnimating() || this.m.Modules[::Const.World.CampBuildings.Commander].isAnimating();
+		return this.m.Animating == true || this.m.Modules.Main.isAnimating() || this.m.Modules[::Legends.Camp.CampBuildings.Commander].isAnimating();
 	}
 
 	function getDialogModule(_dialog) {
@@ -277,8 +277,8 @@ this.camp_screen <- {
 			return;
 		}
 
-		this.m.Modules[::Const.World.CampBuildings.Commander].m.RightClickedTent = _data;
-		::World.Camp.getBuildingByID(::Const.World.CampBuildings.Commander).onClicked(this);
+		this.m.Modules[::Legends.Camp.CampBuildings.Commander].m.RightClickedTent = _data;
+		::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Commander).onClicked(this);
 	}
 
 	function getTimeRequired() {

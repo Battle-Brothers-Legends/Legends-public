@@ -4,7 +4,7 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/item_crafting_
 	},
 	function create() {
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Crafting;
+		this.m.ID = ::Legends.Camp.CampBuildings.Crafting;
 		this.m.ModName = "Crafting";
 		this.m.BaseCraft = 10.0;
 		this.m.Slot = "craft";

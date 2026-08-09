@@ -48,7 +48,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 		bros[5].setStartValuesEx([::Legends.Background.AdventurousNoble], true, 1);
 		bros[5].setPlaceInFormation(14);
-		this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
+		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
 	}

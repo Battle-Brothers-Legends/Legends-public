@@ -22,7 +22,7 @@ this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 				this.logInfo("Making a noble house hate you");
 				//this.World.FactionManager.makeRandomNoblesUnfriendlyToPlayer();
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set(::Legends.Camp.Flag.Scout, true);
+				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 			}
 		});
 	}

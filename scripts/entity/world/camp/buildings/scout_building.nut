@@ -8,7 +8,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = ::Const.World.CampBuildings.Scout;
+		this.m.ID = ::Legends.Camp.CampBuildings.Scout;
 		this.m.ModName = "Scout";
 		this.m.ModMod = 10.0;
 		this.m.BaseCraft = 0.1;
@@ -51,10 +51,6 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			++id;
 		}
 		return ret;
-	}
-
-	function isHidden()	{
-		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Scout);
 	}
 
 	function getUpgraded() {
@@ -103,9 +99,9 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local id = 110;
 		foreach (b in this.m.Results) {
 			res.push({
-		 		id = id++,
-		 		icon = b.Icon,
-		 		text = b.Text
+				id = id++,
+				icon = b.Icon,
+				text = b.Text
 			});
 		}
 		return res;

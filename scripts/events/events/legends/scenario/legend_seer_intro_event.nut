@@ -16,9 +16,9 @@ this.legend_seer_intro_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set(::Legends.Camp.Flag.Gather, true);
+				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 				this.logInfo("Unlocking training");
-				this.World.Flags.set(::Legends.Camp.Flag.Training, true);
+				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
 			}
 		});
 	}

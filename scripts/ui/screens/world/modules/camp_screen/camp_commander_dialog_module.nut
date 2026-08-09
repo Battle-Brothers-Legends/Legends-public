@@ -276,7 +276,7 @@ this.camp_commander_dialog_module <- this.inherit("scripts/ui/screens/ui_module"
 	{
 		if (this.m.CurrentTent == null || this.m.CurrentTent.getID() != _id || this.m.JSHandle == null || !this.isVisible()) return;
 
-		foreach (camp, i in this.Const.World.CampBuildings)
+		foreach (camp, i in ::Legends.Camp.CampBuildings)
 		{
 			if (i != _id) continue;
 

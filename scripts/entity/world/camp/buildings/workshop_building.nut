@@ -15,7 +15,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.BaseCraft = 10;
 		this.m.Conversion = 30.0;
 		this.m.ModName = "Salvage";
-		this.m.ID = ::Const.World.CampBuildings.Workshop;
+		this.m.ID = ::Legends.Camp.CampBuildings.Workshop;
 		this.m.Slot = "scrap";
 		this.m.Name = "Salvage Tent";
 		this.m.Description = "Turn scrap into useable parts";
@@ -77,10 +77,6 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		}
 
 		return ret;
-	}
-
-	function isHidden()	{
-		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag.Scrap);
 	}
 
 	function getUpgraded() {

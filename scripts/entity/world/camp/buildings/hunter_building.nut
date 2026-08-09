@@ -21,7 +21,7 @@
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Hunter;
+		this.m.ID = ::Legends.Camp.CampBuildings.Hunter;
 		this.m.ModName = "Hunting";
 		this.m.HasPopup = true;
 		this.m.ModMod = 10.0;
@@ -187,12 +187,6 @@
 			++id;
 		}
 		return ret;
-	}
-
-	function isHidden() {
-		if (::Legends.Settings.skipCamp())
-			return false;
-		return !::World.Flags.get(::Legends.Camp.Flag.Hunter);
 	}
 
 	function getUpgraded()

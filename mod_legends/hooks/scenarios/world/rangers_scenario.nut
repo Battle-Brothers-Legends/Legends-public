@@ -73,7 +73,7 @@
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
-		//this.World.Flags.set(::Legends.Camp.Flag.Hunter, true);
+		//this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		//this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() - 18); creates a crash on legendary eco difficulty due to taking too many slots away
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));

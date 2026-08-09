@@ -50,8 +50,8 @@
 			local ret = [];
 			/*switch(_data.tent)
 			{
-				case ::Const.World.CampBuildings.Hunter:
-					if (::World.Camp.getBuildingByID(::Const.World.CampBuildings.Hunter).getUpgraded())
+				case ::Legends.Camp.CampBuildings.Hunter:
+					if (::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Hunter).getUpgraded())
 					{
 						ret.push({
 							id = 0,

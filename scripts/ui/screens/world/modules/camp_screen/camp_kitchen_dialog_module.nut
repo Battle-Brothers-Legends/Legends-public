@@ -10,6 +10,6 @@ this.camp_kitchen_dialog_module <- this.inherit("scripts/ui/screens/world/module
 	}
 
 	function getTent() {
-		return ::World.Camp.getBuildingByID(::Const.World.CampBuildings.Kitchen);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Kitchen);
 	}
 });

@@ -349,7 +349,7 @@
 		 if(::Legends.Mod.ModSettings.getSetting("PauseOnEnemySighted").getValue() && !::World.State.isPaused() && this.isAttackable() && this.getFaction() != 0 && !this.isAlliedWithPlayer() && this.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 12) {
 		// 	foreach( bro in playerRoster )
 		// 	{
-		// 		if (bro.getCampAssignment() != this.Const.World.CampBuildings.Scout)
+		// 		if (bro.getCampAssignment() != ::Legends.Camp.CampBuildings.Scout)
 		// 			{
 		// 				if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout)
 		// 					{

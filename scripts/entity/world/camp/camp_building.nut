@@ -78,7 +78,7 @@ this.camp_building <- {
 	}
 
 	function isHidden() {
-		return false;
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag[this.m.ID]);
 	}
 
 	function getLevel() {

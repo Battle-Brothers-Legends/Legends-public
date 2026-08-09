@@ -27,7 +27,7 @@ this.legend_camp_unlock_scrap_encounter <- this.inherit("scripts/encounters/enco
 					icon = "ui/icons/special.png",
 					text = "Scrapping unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag.Scrap, true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop], true)
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_camp_unlock_scrap_encounter <- this.inherit("scripts/encounters/enco
 		if (::Legends.Settings.skipCamp())
 			return false;
 
-		if (::World.Flags.get(::Legends.Camp.Flag.Scrap))
+		if (::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop]))
 			return false;
 
 		if (!(_settlement.hasAttachedLocation("attached_location.workshop") || _settlement.hasBuilding("building.armorsmith") || _settlement.hasBuilding("building.armorsmith_oriental")))
@@ -48,7 +48,7 @@ this.legend_camp_unlock_scrap_encounter <- this.inherit("scripts/encounters/enco
 	function onPrepareVariables (_vars) {
 		_vars.push([
 			"description",
-			::World.Camp.getBuildingByID(::Const.World.CampBuildings.Workshop).getDescription()
+			::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop).getDescription()
 		]);
 	}
 });
