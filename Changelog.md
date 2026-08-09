@@ -207,6 +207,8 @@
 - `Anticipation` - reduce damage taken by 1% for each point of Ranged Defense you have for the first few hits you take in combat
 - `Return Favor` - If you're armed with a ranged weapon and a ranged attack misses you, gain a chance to fire back at your attacker. The chance is based on Ranged Defense.
 - `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type, up to 3 stacks that can gradually be reduced
+- `Rebound` - moved to tier 6
+- `Overwhelm` - moved to tier 3
 
 ### Trait Changes
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack

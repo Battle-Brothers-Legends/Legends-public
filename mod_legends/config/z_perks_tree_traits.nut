@@ -833,16 +833,15 @@ if (!("Perks" in ::Const))
 		],
 		[],
 		[
-			::Legends.Perk.LegendAthlete
-		],
-		[],
-		[],
-		[
+			::Legends.Perk.LegendAthlete,
 			::Legends.Perk.Overwhelm
 		],
+		[],
+		[],
 		[
 			::Legends.Perk.LegendRebound
-		]
+		],
+		[]
 	]
 };
 ::Const.Perks.TrainedTree <- {
