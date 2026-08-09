@@ -38,7 +38,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		desc = desc + "\n\n";
 		//desc = desc + "Buying an upgraded tent will increase gathering speed by 15% and produce more kinds of medicine. ";
 		//desc = desc + "Having both an upgraded tent and skilled apothecaries can provide rare medicines, and powerful potions."; remember reduces chance of getting hurt
-		return desc;
+		return desc + "Scrounging for supplies carries a risk of exhaustion and injury.";
 	}
 
 	function getModifierTooltip()

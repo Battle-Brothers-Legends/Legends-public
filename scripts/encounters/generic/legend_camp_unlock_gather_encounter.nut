@@ -27,7 +27,7 @@ this.legend_camp_unlock_gather_encounter <- this.inherit("scripts/encounters/enc
 					icon = "ui/icons/special.png",
 					text = "Gathering unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 			}
 		});
 	}

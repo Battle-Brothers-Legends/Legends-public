@@ -27,7 +27,7 @@ this.legend_camp_unlock_fletching_encounter <- this.inherit("scripts/encounters/
 					icon = "ui/icons/special.png",
 					text = "Fletching unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Fletcher], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Fletcher], true);
 			}
 		});
 	}

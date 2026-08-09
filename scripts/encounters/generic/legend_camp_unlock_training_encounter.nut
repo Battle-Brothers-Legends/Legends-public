@@ -27,7 +27,7 @@ this.legend_camp_unlock_training_encounter <- this.inherit("scripts/encounters/e
 					icon = "ui/icons/special.png",
 					text = "Training unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
 			}
 		});
 	}

@@ -391,6 +391,8 @@ Learn to find your enemies before they find you.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases the sight radius on the world map.
+
+• Provides detailed information about footprints.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendMaterialist <- @"

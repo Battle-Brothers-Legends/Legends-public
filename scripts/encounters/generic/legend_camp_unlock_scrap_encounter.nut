@@ -27,7 +27,7 @@ this.legend_camp_unlock_scrap_encounter <- this.inherit("scripts/encounters/enco
 					icon = "ui/icons/special.png",
 					text = "Scrapping unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop], true);
 			}
 		});
 	}

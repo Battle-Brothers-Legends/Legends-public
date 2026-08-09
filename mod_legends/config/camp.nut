@@ -18,100 +18,122 @@ if (!("Camp" in ::Legends))
 	Workshop = "camp.workshop",
 	Painter = "camp.painter" //PaintingTent
 };
-::Legends.Camp.TerrainCampImages <- [
-	{},
-	{
+::Legends.Camp.TerrainCampImages <- {
+	[::Const.World.TerrainType.Impassable] = {
 		Foreground = null,
 		Background = null,
-		Ramp = null,
-		Mood = null
+		Mood = null,
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Ocean] = {
+		Foreground = null,
+		Background = null,
+		Mood = null,
+		BuildingVariant = 0
+	},
+	[::Const.World.TerrainType.Plains] = {
 		Foreground = null,
 		Background = "ui/settlements/camp_bg_01",
-		Mood = "ui/settlements/mood_grass"
+		Mood = "ui/settlements/mood_grass",
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Swamp] = {
 		Foreground = "ui/settlements/foreground_06",
 		Background = "ui/settlements/camp_bg_07",
-		Mood = "ui/settlements/mood_swamp"
+		Mood = "ui/settlements/mood_swamp",
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Hills] = {
 		Foreground = "ui/settlements/foreground_01",
 		Background = "ui/settlements/camp_bg_06",
-		Mood = "ui/settlements/mood_dark_mountains"
+		Mood = "ui/settlements/mood_dark_mountains",
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Forest] = {
 		Foreground = "ui/settlements/foreground_05",
 		Background = "ui/settlements/camp_bg_05",
-		Mood = "ui/settlements/mood_dark_forest"
+		Mood = "ui/settlements/mood_dark_forest",
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.SnowyForest] = {
 		Foreground = "ui/settlements/foreground_05",
-		Background = "ui/settlements/camp_bg_05",
-		Mood = "ui/settlements/mood_snow"
+		Background = "ui/settlements/camp_bg_04",
+		Mood = "ui/settlements/mood_snow",
+		BuildingVariant = 4
 	},
-	{
+	[::Const.World.TerrainType.LeaveForest] = {
 		Foreground = "ui/settlements/foreground_02",
 		Background = "ui/settlements/camp_bg_02",
-		Mood = "ui/settlements/mood_forest"
+		Mood = "ui/settlements/mood_forest",
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.AutumnForest] = {
 		Foreground = "ui/settlements/foreground_07",
 		Background = "ui/settlements/camp_bg_03",
-		Mood = "ui/settlements/mood_forest"
+		Mood = "ui/settlements/mood_forest",
+		BuildingVariant = 9
 	},
-	{
+	[::Const.World.TerrainType.Mountains] = {
 		Foreground = "ui/settlements/foreground_01",
-		Background = "ui/settlements/camp_bg_06",
-		Mood = "ui/settlements/mood_dark_mountains"
+		Background = "ui/settlements/camp_bg_04",
+		Mood = "ui/settlements/mood_dark_mountains",
+		BuildingVariant = 4
 	},
-	{},
-	{},
-	{
+	[::Const.World.TerrainType.Urban] = {
+		Foreground = null,
+		Background = "ui/settlements/camp_bg_01",
+		Mood = null,
+		BuildingVariant = 0
+	},
+	[::Const.World.TerrainType.Farmland] = {
+		Foreground = null,
+		Background = "ui/settlements/camp_bg_01",
+		Mood = "ui/settlements/mood_grass",
+		BuildingVariant = 0
+	},
+	[::Const.World.TerrainType.Snow] = {
 		Foreground = "ui/settlements/foreground_03",
 		Background = "ui/settlements/camp_bg_04",
-		Mood = "ui/settlements/mood_snow"
+		Mood = "ui/settlements/mood_snow",
+		BuildingVariant = 4
 	},
-	{},
-	{
+	[::Const.World.TerrainType.Badlands] = {
+		Foreground = "ui/settlements/foreground_08",
+		Background = "ui/settlements/camp_bg_08",
+		Mood = "ui/settlements/mood_dark_mountains",
+		BuildingVariant = 0
+	},
+	[::Const.World.TerrainType.Tundra] = {
 		Foreground = null,
 		Background = "ui/settlements/camp_bg_09",
-		Mood = "ui/settlements/mood_tundra"
+		Mood = "ui/settlements/mood_tundra",
+		BuildingVariant = 9
 	},
-	{
+	[::Const.World.TerrainType.Steppe] = {
 		Foreground = null,
 		Background = "ui/settlements/camp_bg_08",
-		Mood = "ui/settlements/mood_steppe"
+		Mood = "ui/settlements/mood_steppe",
+		BuildingVariant = 8
 	},
-	{
+	[::Const.World.TerrainType.Shore] = {
 		Foreground = null,
-		Background = null,
-		Ramp = null
+		Background = "ui/settlements/camp_bg_01",
+		Mood = null,
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Desert] = {
 		Foreground = "ui/settlements/foreground_08",
 		Background = "ui/settlements/camp_bg_10",
-		Mood = "ui/settlements/mood_steppe"
+		Mood = null,
+		BuildingVariant = 0
 	},
-	{
+	[::Const.World.TerrainType.Oasis] = {
 		Foreground = "ui/settlements/foreground_08",
 		Background = "ui/settlements/camp_bg_10",
-		Mood = "ui/settlements/mood_steppe"
-	},
-	{
-		Foreground = "ui/settlements/foreground_06",
-		Background = "ui/settlements/camp_bg_07",
-		Mood = "ui/settlements/mood_swamp"
-	},
-	{
-		Foreground = "ui/settlements/foreground_06",
-		Background = "ui/settlements/camp_bg_07",
-		Mood = "ui/settlements/mood_swamp"
+		Mood = null,
+		BuildingVariant = 0
 	}
-];
-
-
+};
 
 /*
 	Flags define if tent in camp screen is visible.

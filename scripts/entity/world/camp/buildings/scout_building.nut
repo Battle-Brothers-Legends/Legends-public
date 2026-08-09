@@ -29,7 +29,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		//desc += "The Patrol station can be upgraded by purchasing a patrol cart from a settlement merchant. An upgraded tent has a 15% increase in patrol speed and ";
 		//desc += "has a chance of revealing the defenders of any camps encountered. ";
 		//desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined."; remember reduces chance of getting hurt
-		return "Assign men to scout around and reveal information about the surroundings.";
+		return "Assign men to scout around and reveal information about the surroundings. Scouting carries a risk of exhaustion and injury.";
 	}
 
 	function getModifierTooltip()

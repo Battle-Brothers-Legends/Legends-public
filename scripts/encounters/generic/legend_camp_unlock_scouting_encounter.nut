@@ -27,7 +27,7 @@ this.legend_camp_unlock_scouting_encounter <- this.inherit("scripts/encounters/e
 					icon = "ui/icons/special.png",
 					text = "Patrol unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 			}
 		});
 	}

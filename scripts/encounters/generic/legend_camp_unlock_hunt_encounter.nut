@@ -27,7 +27,7 @@ this.legend_camp_unlock_hunt_encounter <- this.inherit("scripts/encounters/encou
 					icon = "ui/icons/special.png",
 					text = "Hunting unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
 			}
 		});
 	}

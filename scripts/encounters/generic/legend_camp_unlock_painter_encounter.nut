@@ -27,7 +27,7 @@ this.legend_camp_unlock_painter_encounter <- this.inherit("scripts/encounters/en
 					icon = "ui/icons/special.png",
 					text = "Armor painting unlocked in camp"
 				});
-				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Painter], true)
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Painter], true);
 			}
 		});
 	}

@@ -458,28 +458,32 @@ this.camp_manager <- {
 		local terrain = [];
 		terrain.resize(::Const.World.TerrainType.COUNT, 0);
 
+		terrain[tile.Type] += 2;
+
 		for(local i = 0; i < 6; i++) {
 			if (tile.hasNextTile(i))
 				++terrain[tile.getNextTile(i).Type];
 		}
 
-		terrain[::Const.World.TerrainType.Plains] = this.Math.max(0, terrain[::Const.World.TerrainType.Plains] - 1);
+		terrain[::Const.World.TerrainType.Plains] = this.Math.max(0, terrain[::Const.World.TerrainType.Plains] - 2);
 
-		if (terrain[::Const.World.TerrainType.Steppe] != 0 && this.Math.abs(terrain[::Const.World.TerrainType.Steppe] - terrain[::Const.World.TerrainType.Hills]) <= 2)
-			terrain[::Const.World.TerrainType.Steppe] += 2;
-
-		if (terrain[::Const.World.TerrainType.Snow] != 0 && this.Math.abs(terrain[::Const.World.TerrainType.Snow] - terrain[::Const.World.TerrainType.Hills]) <= 2)
-			terrain[::Const.World.TerrainType.Snow] += 2;
-
-		local highest = 0;
-
-		for(local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
-		{
-			if (i == ::Const.World.TerrainType.Ocean || i == ::Const.World.TerrainType.Shore)
-			{
+		if (terrain[::Const.World.TerrainType.Hills] > 0 || terrain[::Const.World.TerrainType.Mountains] > 0) {
+			if (terrain[::Const.World.TerrainType.Steppe] > 0) {
+				terrain[::Const.World.TerrainType.Steppe] += 2;
 			}
-			else if (terrain[i] >= terrain[highest])
-			{
+			if (terrain[::Const.World.TerrainType.Snow] > 0) {
+				terrain[::Const.World.TerrainType.Snow] += 2;
+			}
+		}
+
+		local highest = tile.Type;
+
+		if (highest == ::Const.World.TerrainType.Ocean || highest == ::Const.World.TerrainType.Shore) {
+			highest = ::Const.World.TerrainType.Plains;
+		}
+
+		for(local i = 0; i < ::Const.World.TerrainType.COUNT; i++) {
+			if (i != ::Const.World.TerrainType.Ocean && i != ::Const.World.TerrainType.Shore && terrain[i] > terrain[highest]) {
 				highest = i;
 			}
 		}
@@ -489,13 +493,16 @@ this.camp_manager <- {
 	function getUIInformation () {
 		local night = !::World.getTime().IsDaytime;
 		local highest = this.getUITerrain();
-		local foreground = ::Legends.Camp.TerrainCampImages[highest].Foreground;
+		local terrain = ::Legends.Camp.TerrainCampImages[highest];
+		local background = terrain.Background;
+		local foreground = terrain.Foreground;
+		local mood = terrain.Mood;
 		local result = {
 			Title = ::World.Assets.getName() + " Camp",
 			SubTitle = "No camp tasks have been scheduled...",
 			HeaderImagePath = null,
-			Background = ::Legends.Camp.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
-			Mood = ::Legends.Camp.TerrainCampImages[highest].Mood + ".png",
+			Background = background != null ? background + (night ? "_night" : "") + ".jpg" : null,
+			Mood = mood != null ? mood + ".png" : null,
 			Foreground = foreground != null ? foreground + (night ? "_night" : "") + ".png" : null,
 			Slots = [],
 			Situations = [],
@@ -503,24 +510,15 @@ this.camp_manager <- {
 			IsContractActive = ::World.Contracts.getActiveContract() != null,
 			IsContractsLocked = false,
 		};
-		foreach (building in this.getBuildings())
-		{
-			if (building == null || building.isHidden())
-			{
+
+		foreach (building in this.getBuildings()) {
+			if (building == null || building.isHidden()) {
 				result.Slots.push(null);
 				continue;
 			}
 
-			local image = null;
-
-			if (highest == ::Const.World.TerrainType.Hills || highest == ::Const.World.TerrainType.AutumnForest || highest == ::Const.World.TerrainType.Mountains) {
-				image = building.getUIImage(highest);
-			} else {
-				image = building.getUIImage(0);
-			}
-
 			local b = {
-				Image = image,
+				Image = building.getUIImage(::Legends.Camp.TerrainCampImages[highest].BuildingVariant),
 				Tooltip = building.getTooltipID(),
 				Slot = building.getSlot(),
 				CanEnter = building.canEnter()
@@ -531,13 +529,12 @@ this.camp_manager <- {
 		local isEscorting = ::World.State.m.EscortedEntity != null && !::World.State.m.EscortedEntity.isNull();
 		if (!isEscorting) {
 			result.Encounters <- [];
-			foreach(encounter in this.m.CampEncounters) {
-				if (encounter != null && encounter.isVisible()) {
-					result.Encounters.push({
-						Icon = encounter.m.Icon,
-						Type = encounter.getType(),
-					});
-				}
+			local visibleEncounters = this.m.CampEncounters.filter(@(_,_enc) (_enc != null && _enc.isVisible()));
+			foreach(encounter in visibleEncounters) {
+				result.Encounters.push({
+					Icon = encounter.m.Icon,
+					Type = encounter.getType(),
+				});
 			}
 		}
 
