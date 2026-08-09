@@ -19,6 +19,21 @@
 		return ret;
 	}
 
+	o.onShieldHitSkills <- function ( _skill, _attacker, _shield ) {
+		this.m.IsUpdating = true;
+
+		foreach( skill in this.m.Skills ) {
+			if (skill.isGarbage()) {
+				continue;
+			}
+
+			skill.onShieldHitSkills( _skill, _attacker, _shield );
+		}
+
+		this.m.IsUpdating = false;
+		this.update();
+	}
+
 	// o.buildPropertiesForDefense = function( _attacker, _skill )
 	// {
 	// 	local superCurrent = this.m.Actor.getCurrentProperties().getClone();

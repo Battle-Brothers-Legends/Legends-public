@@ -13,6 +13,10 @@
 	o.m.HitInfo <- null;
 	o.m.IsOffhandFlipped <- false;
 
+	o.getBlock <- function() {
+		return this.getCurrentProperties().Block;
+	}
+
 	o.getGender <- function()
 	{
 		return -1;

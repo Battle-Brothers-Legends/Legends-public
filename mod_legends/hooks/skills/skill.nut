@@ -9,6 +9,15 @@
 	o.m.MinRangeForPerTile <- 2; // to fix HitChanceAdditionalWithEachTile in cases where the min range is higher than 2
 	o.m.IsExecutingOffhand <- false;
 
+	o.onShieldHitSkills <- function ( _skill, _attacker, _shield ) {
+	}
+
+	local onShieldHit = o.onShieldHit;
+	o.onShieldHit = function ( _info ) {
+		onShieldHit();
+		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.TargetEntity, _info.Shield);
+	}
+
 	o.getDescription = function () {
 		local vars = [];
 		local container = this.getContainer();
@@ -1614,8 +1623,7 @@
 	{
 		_info.Container.setBusy(false);
 
-		if (!_info.TargetEntity.isAlive())
-		{
+		if (::Legends.S.isEntityNullOrDead(_info.TargetEntity)) {
 			return;
 		}
 
@@ -1623,12 +1631,10 @@
 		local bodyPart = this.Const.BodyPart.Body;
 		local bodyPartDamageMult = 1.0;
 
-		if (partHit <= _info.Properties.getHitchance(this.Const.BodyPart.Head))
-		{
+		if (partHit <= _info.Properties.getHitchance(this.Const.BodyPart.Head)) {
 			bodyPart = this.Const.BodyPart.Head;
 		}
-		else
-		{
+		else {
 			bodyPart = this.Const.BodyPart.Body;
 		}
 
@@ -1677,6 +1683,38 @@
 		hitInfo.InjuryThresholdMult = _info.Properties.ThresholdToInflictInjuryMult;
 		hitInfo.Tile = _info.TargetEntity.getTile();
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
+
+		hitInfo.DamageRegular = this.Math.max(hitInfo.DamageRegular - _info.TargetEntity.getBlock(), 0);
+		hitInfo.DamageArmor = this.Math.max(hitInfo.DamageArmor - _info.TargetEntity.getBlock(), 0);
+
+		// I'm kind of sure there will be errors so here's an explanation: block works after calculating damage on attacker side and before damage on defender, any further damage is substracted
+		// if the entire damage is substracted it'll count as a shield hit but i'm also envisioning that you can gain block without a shield so there's a check below
+		// the third param in #onMissed is _dontShake which only happens when the shield is hit
+		// you've got a new #onShieldHitSkills which calls the container if you want to add any fancy logic
+		if (hitInfo.DamageRegular == 0 && hitInfo.DamageArmor == 0) {
+			local shield = _info.TargetEntity.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+			if (shield != null && !shield.isItemType(this.Const.Items.ItemType.Shield)) {
+				shield = null;
+			}
+
+			if (shield != null && shield.isItemType(this.Const.Items.ItemType.Shield)) {
+				local info = {
+					Skill = this,
+					User = _info.User,
+					TargetEntity = _info.TargetEntity,
+					Shield = shield
+				};
+				this.onShieldHit(info);
+				_info.TargetEntity.onMissed(_user, this, true);
+			}
+			else {
+				_info.TargetEntity.onMissed(_user, this, false);
+			}
+			this.m.Container.onTargetMissed(this, _info.TargetEntity);
+			this.m.IsExecutingOffhand = false;
+			return;
+		}
+
 		local pos = _info.TargetEntity.getPos();
 		local hasArmorHitSound = _info.TargetEntity.getItems().getAppearance().ImpactSound[bodyPart].len() != 0;
 		_info.TargetEntity.onDamageReceived(_info.User, _info.Skill, hitInfo);
