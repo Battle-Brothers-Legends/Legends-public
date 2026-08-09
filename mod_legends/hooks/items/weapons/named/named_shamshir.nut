@@ -15,10 +15,7 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
 		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Slash, function (_skill)
-			{
-				_skill.m.IsShamshirSlash = true;
-			}.bindenv(this));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFlowingSlash);
 			return;
 		}
 

@@ -262,6 +262,22 @@ activesDefs.push({
 	Name = "Breach",
 });
 
+::Legends.Active.LegendHalfsword <- null;
+activesDefs.push({
+	ID = "actives.legend_halfsword",
+	Script = "scripts/skills/actives/legend_halfsword_skill",
+	Const = "LegendHalfsword",
+	Name = "Halfsword",
+});
+
+::Legends.Active.LegendFlowingSlash <- null;
+activesDefs.push({
+	ID = "actives.legend_flowing_slash",
+	Script = "scripts/skills/actives/legend_flowing_slash_skill",
+	Const = "LegendFlowingSlash",
+	Name = "Flowing Slash",
+});
+
 ::Legends.Active.SlashLightning <- null;
 activesDefs.push({
 	ID = "actives.slash_lightning",

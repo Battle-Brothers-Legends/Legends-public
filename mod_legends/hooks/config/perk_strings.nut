@@ -194,7 +194,7 @@ Master the art of swordfighting and using your opponent's mistakes to your advan
 
 • [color=%skill%]Gash[/color] has a [color=%negative%]50%[/color] lower threshold to inflict [color=%status%]Injuries[/color].
 
-• [color=%skill%]Flowing Slash[/color] now attacks again on miss.
+• [color=%skill%]Flowing Slash[/color] now has [color=%positive%]20%[/color] chance to reroll the attack.
 
 • When [color=%status%]Dual Wielding[/color] swords, [color=%skill%]Riposte[/color] can trigger from both weapons, allowing two counter-attacks per missed enemy attack.
 ";

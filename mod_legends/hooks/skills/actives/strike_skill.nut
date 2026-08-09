@@ -28,7 +28,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
+			text = "Has a range of [color=%positive%]2[/color] tiles"
 		});
 
 		if (!::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))

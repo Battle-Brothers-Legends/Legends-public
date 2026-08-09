@@ -29,8 +29,7 @@
 		this.weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike);
 		::Legends.Actives.grant(this, ::Legends.Active.Swing);
-		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
-			_skill.m.IsHalfsword = true;
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHalfsword, function (_skill) {
 			_skill.m.IsGreatHalfsword = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {

@@ -45,9 +45,7 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 			_skill.m.IsGreatSlash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Riposte);
-		::Legends.Actives.grant(this, ::Legends.Active.Puncture, function (_skill) {
-			_skill.m.IsHalfsword = true;
-		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHalfsword);
 		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
 			_skill.m.IsMordhau = true;
 		}.bindenv(this));
