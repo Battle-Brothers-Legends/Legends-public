@@ -3,8 +3,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		RageStacks = 0,
 		LastRageSoundTime = 0
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBerserkerRage);
 		this.m.Icon = "ui/perks/berserker_rage_circle.png";
 		this.m.IconMini = "status_effect_34_mini";
@@ -30,10 +29,8 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function getTooltip()
-	{
-		return [
-			{
+	function getTooltip() {
+		return [{
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -69,20 +66,17 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 			}
 		];
 	}
-	function getDescription()
-	{
+
+	function getDescription() {
 		return "The smell of blood and death sends this character into an uncontrollable rage. Once in a rage, they must continuously feed it to keep it going.";
 	}
 
-	function addRage( _r )
-	{
+	function addRage( _r ) {
 		this.m.RageStacks += _r;
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnUse.len() != 0 && this.Time.getVirtualTimeF() - this.m.LastRageSoundTime > 5.0)
-			{
+		if (!actor.isHiddenToPlayer()) {
+			if (this.m.SoundOnUse.len() != 0 && this.Time.getVirtualTimeF() - this.m.LastRageSoundTime > 5.0) {
 				this.m.LastRageSoundTime = this.Time.getVirtualTimeF();
 				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * (this.Math.rand(75, 100) * 0.01), actor.getPos(), this.Math.rand(75, 100) * 0.01);
 			}
@@ -92,48 +86,43 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.m.RageStacks >= 40)
+	function onUpdate( _properties ) {
+		if (this.m.RageStacks >= 40) {
 			this.m.RageStacks = 40;
+		}
 		this.m.IsHidden = this.m.RageStacks == 0;
 		_properties.Bravery += 1 * this.m.RageStacks;
 		_properties.DamageTotalMult *= 1.0 + this.m.RageStacks * 0.01;
 		_properties.Initiative += 1 * this.m.RageStacks;
 	}
 
-	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (::MSU.isNull(_attacker) || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack())
+	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties ) {
+		if (::MSU.isNull(_attacker) || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack()) {
 			return;
+		}
 
 		_properties.DamageReceivedTotalMult *= this.Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
 	}
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.m.RageStacks = this.Math.max(0, this.m.RageStacks - 2);
 	}
 
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
+	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor ) {
 		this.addRage(1);
 	}
 
-	function onTargetKilled( _targetEntity, _skill )
-	{
+	function onTargetKilled( _targetEntity, _skill ) {
 		this.addRage(3);
 	}
 
-	function onCombatStarted()
-	{
+	function onCombatStarted() {
 		this.m.RageStacks = 0;
 		this.m.LastRageSoundTime = 0;
 		this.skill.onCombatStarted();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		this.m.RageStacks = 0;
 		this.m.LastRageSoundTime = 0;
 		this.skill.onCombatFinished();

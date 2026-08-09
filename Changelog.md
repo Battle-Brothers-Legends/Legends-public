@@ -216,6 +216,9 @@
 - poisons are now refillable and use the ammo system
 - added redback poison vials and blueprints
 
+### Miscellaneous
+- `Berserker Mushrooms` - if the character has berserker rage it'll grant 5 points of rage at turn start
+
 ### Runes
 - rune effect values were redone slightly, so they all follow the same rules now
 - this means that upgraded tent produces up to 1.5 more powerful effects than not upgraded uniformly (rounded)
@@ -290,20 +293,20 @@
 
 **1h Shamshir and 1h scimitar**
 - `Slash` is now `Flowing Slash`
-> will attack again for 50% damage on a miss with mastery
+> has a 10 (20 with mastery) % to reroll the attack
 - `Gash` - unchanged
 - `Debilitate`
 
 **1h ancient swords**
+- `Slash`
+- `Gut`
+> replaces riposte
+- `Halfsword`
+
+**1h maces**
 - `Bash`
 - `Knock Out`
 - `Return Favor`
-
-**1h maces**
-- `Slash` is now `Flowing Slash`
-> will attack again for 50% damage on a miss with mastery
-- `Gash` - unchanged
-- `Debilitate`
 
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot
