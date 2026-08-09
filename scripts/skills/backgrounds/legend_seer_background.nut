@@ -1,11 +1,11 @@
-this.legend_witch_commander_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create()
 	{
 		this.character_background.create();
 		this.m.Name = "Seer";
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderWitch);
-		this.m.Icon = "ui/backgrounds/seer_02.png";
+		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendSeer);
+		this.m.Icon = "ui/backgrounds/background_seer.png";
 		this.m.HiringCost = 250;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [
@@ -129,7 +129,7 @@ this.legend_witch_commander_background <- this.inherit("scripts/skills/backgroun
 
 	function onChangeAttributes()
 	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderWitch);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendSeer);
 	}
 
 	function onAdded()

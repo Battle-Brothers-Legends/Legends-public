@@ -89,7 +89,7 @@
 		
 		if (_gender != 1) return;
 		this.m.Name = "Pickpocket";
-		this.m.Icon = "ui/backgrounds/pickpocket.png";
+		this.m.Icon = "ui/backgrounds/background_pickpocket.png";
 		this.m.BackgroundDescription = "A good pickpocket will have quick reflexes and the ability to evade any captors.";
 	}
 

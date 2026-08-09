@@ -68,7 +68,7 @@
 		
 		if (_gender != 1) return;
 		this.m.Name = "Fishmonger";
-		this.m.Icon = "ui/backgrounds/fishwife.png";
+		this.m.Icon = "ui/backgrounds/background_fishmonger.png";
 		this.m.BackgroundDescription = "Fishmongers are used to spilled guts.";
 		this.m.GoodEnding = "Mercenary work is a bloody business, which is probably why a fishmonger like %name% felt right at home in it. While an outstanding fighter, you hear that she still has problems with the war dogs in the party and has been repeatedly caught trying to slaughter them. Eventually, if not desperately, the company gave the woman an adorable puppy to raise as her own. From what you know of, the little runt\'s glowy doe eyes converted the dog hater into a lover. Now she goes into an insatiable bloodlust whenever a wardog is harmed and her little mongrel grew up to be the fiercest beast in the company!";
 		this.m.BadEnding = "%name% the fishmonger eventually left the declining company. She joined up with another outfit, but was caught slaughtering one of their war dogs. Apparently, she had been feeding the mercenaries dogmeat from all their mongrels that had gone \'missing\'. They did not take this news kindly, stripped the butcher, and fed her to the beasts.";

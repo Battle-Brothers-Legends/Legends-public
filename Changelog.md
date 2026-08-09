@@ -521,3 +521,4 @@
 - `legend_staffwall_skill` -> deleted
 - `legend_staff_thrust_skill` -> deleted
 - `legend_staffwall_effect` -> deleted
+- `legend_witch_commander_background` renamed to `legend_seer_background`

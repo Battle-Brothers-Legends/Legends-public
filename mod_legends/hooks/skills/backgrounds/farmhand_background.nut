@@ -51,7 +51,7 @@
 		_gender ? this.setBodyCharacteristics(_gender) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale});
 		if(_gender) {
 			this.m.Name = "Milkmaid";
-			this.m.Icon = "ui/backgrounds/milkmaid.png";
+			this.m.Icon = "ui/backgrounds/background_milkmaid.png";
 			this.m.BackgroundDescription = "Milkmaids are used to physical labor.";
 		}
 	}

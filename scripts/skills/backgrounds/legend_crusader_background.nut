@@ -5,7 +5,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.character_background.create();
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCrusader);
 		this.m.Name = "Holy Crusader";
-		this.m.Icon = "ui/backgrounds/crusader.png";
+		this.m.Icon = "ui/backgrounds/background_54.png";
 		this.m.HiringCost = 3500;
 		this.m.DailyCost = 0;
 		this.m.Excluded = [

@@ -883,12 +883,12 @@ backgroundDefs.push({
     Name = "Ranger Commander",
 });
 
-::Legends.Background.LegendCommanderWitch <- null;
+::Legends.Background.LegendSeer <- null;
 backgroundDefs.push({
-    ID = "background.legend_commander_witch",
-    Script = "scripts/skills/backgrounds/legend_witch_commander_background",
-    Const = "LegendCommanderWitch",
-    Name = "Witch Commander",
+    ID = "background.legend_seer",
+    Script = "scripts/skills/backgrounds/legend_seer_background",
+    Const = "LegendSeer",
+    Name = "Seer",
 });
 
 ::Legends.Background.LegendCompanionMelee <- null;

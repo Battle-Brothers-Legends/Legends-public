@@ -89,7 +89,7 @@
 		}
 
 		this.m.Name = "Nun";
-		this.m.Icon = "ui/backgrounds/nun.png";
+		this.m.Icon = "ui/backgrounds/background_nun.png";
 		this.m.Titles.push("the Nun");
 		this.m.BackgroundDescription = "Nuns tend to have a high resolve in what they do, but are not used to hard physical labor or warfare.";
 		this.m.GoodEnding = "%name% the nun retired back into calmer spiritual duties. She is currently out in a mountain convent, enjoying the quiet while reflecting on her time in the mercenary company. The other nuns hate her for fighting and killing, but she\'s penning a world-changing tome on the balance between peace and violence.";

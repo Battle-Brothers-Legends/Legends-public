@@ -98,7 +98,7 @@
 
 		if (_gender) {
 			this.m.Name = "Wildwoman";
-			this.m.Icon = "ui/backgrounds/wildwoman.png";
+			this.m.Icon = "ui/backgrounds/background_wildwoman.png";
 			this.m.BackgroundDescription = "Wildwomen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
 			this.m.GoodEnding = "While the %companyname% visited a town for rest and recuperation, a local prince took a shine to %name% the wildwoman. She was \'purchased\' for a large sum of gold and given to the nobleman. You went and visited the woman recently. For dinner, she sat at a kingly table, grinning goofily and mimicking the nobles around her as best she could. Her new and inexplicable husband adored her, and her him. When you said your goodbyes, she offered you a heavy golden crown off the top of her head. It weighed heavy with traditions and ancient histories. You said it\'d be best if she kept it. The wildwoman shrugged and walked off, spinning the circlet around a finger.";
 			this.m.BadEnding = "%name% the wildwoman stayed with the fragmenting %companyname% for a time and then, just like that, she was gone. The company went out looking for her in a forest, eventually finding some sort of crude note: an enormous pile of crowns next to a dirt-drawing of the %companyname% and some of its members, all of them being hugged by a big, literal stick figure with a goofy smile on its face. There was also an offering of a dead, half-eaten rabbit.";
@@ -156,71 +156,39 @@
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		if (this.Const.DLC.Unhold)
-		{
-			r = this.Math.rand(0, 7);
+		r = this.Math.rand(0, 7);
 
-			if (r == 0)
-			{
-				items.equip(this.new("scripts/items/weapons/hatchet"));
-			}
-			else if (r == 1)
-			{
-				items.equip(this.new("scripts/items/weapons/wooden_stick"));
-			}
-			else if (r == 2)
-			{
-				items.equip(this.new("scripts/items/weapons/greenskins/orc_metal_club"));
-			}
-			else if (r == 3)
-			{
-				items.equip(this.new("scripts/items/weapons/greenskins/orc_wooden_club"));
-			}
-			else if (r == 4)
-			{
-				items.equip(this.new("scripts/items/weapons/boar_spear"));
-			}
-			else if (r == 5)
-			{
-				items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-			}
-			else if (r == 6)
-			{
-				items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-			}
-			else if (r == 7)
-			{
-				items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
-			}
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/weapons/hatchet"));
 		}
-		else
+		else if (r == 1)
 		{
-			r = this.Math.rand(0, 6);
-
-			if (r == 0)
-			{
-				items.equip(this.new("scripts/items/weapons/hatchet"));
-			}
-			else if (r == 1)
-			{
-				items.equip(this.new("scripts/items/weapons/wooden_stick"));
-			}
-			else if (r == 2)
-			{
-				items.equip(this.new("scripts/items/weapons/greenskins/orc_metal_club"));
-			}
-			else if (r == 3)
-			{
-				items.equip(this.new("scripts/items/weapons/greenskins/orc_wooden_club"));
-			}
-			else if (r == 4)
-			{
-				items.equip(this.new( "scripts/items/weapons/boar_spear"));
-			}
-			else if (r == 5)
-			{
-				items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-			}
+			items.equip(this.new("scripts/items/weapons/wooden_stick"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/greenskins/orc_metal_club"));
+		}
+		else if (r == 3)
+		{
+			items.equip(this.new("scripts/items/weapons/greenskins/orc_wooden_club"));
+		}
+		else if (r == 4)
+		{
+			items.equip(this.new("scripts/items/weapons/boar_spear"));
+		}
+		else if (r == 5)
+		{
+			items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
+		}
+		else if (r == 6)
+		{
+			items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
+		}
+		else if (r == 7)
+		{
+			items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

@@ -33,7 +33,9 @@ if (!("LegendMod" in ::Const))
 	"Offspring",
 	"offspring",
 	"Partner",
-	"partner"
+	"partner",
+	"Viscount",
+	"viscount"
 ];
 
 ::Const.LegendMod.PronounTable <- {
@@ -50,7 +52,8 @@ if (!("LegendMod" in ::Const))
 	sib = ["sib", "bro", "sis"],
 	child = ["child", "boy", "girl"],
 	offspring = ["child", "son", "daughter"],
-	partner = ["partner", "wife", "husband"]
+	partner = ["partner", "wife", "husband"],
+	viscount = ["viscount", "viscount", "viscountess"]
 }
 
 // _gender = -1 for neuter, 0 for male, 1 for female

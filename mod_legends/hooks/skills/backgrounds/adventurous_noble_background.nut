@@ -69,7 +69,7 @@
 		
 		if (_gender != 1) return;
 		this.m.Name = "Adventurous Lady";
-		this.m.Icon = "ui/backgrounds/adventurous_noble_woman.png";
+		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
 		this.m.BackgroundDescription = "Adventurous Ladies tend to have high resolve and ranged skills, but often neglect melee defense.";
 		this.m.Names = this.Const.Strings.LadyNames;
 
