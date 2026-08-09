@@ -24,8 +24,8 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		this.m.OriginalValue = this.m.Value;
 		this.m.OriginalDescription = this.m.Description;
 		this.m.ItemType = ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Tool;
-		this.m.Ammo = 1;
-		this.m.AmmoMax = 1;
+		this.m.Ammo = 2;
+		this.m.AmmoMax = 2;
 		this.m.AmmoCost = 20;
 		this.m.ShowArmamentIcon <- true;
 	}
