@@ -273,15 +273,13 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			break;
 
 		case 4:
-			if (properties.MeleeSkill > properties.RangedSkill)
-			{
+		case 5:
+			if (properties.MeleeSkill > properties.RangedSkill)	{
 				properties.MeleeSkill += 1;
 				icon = "ui/icons/melee_skill.png";
 				text = "Melee Skill";
 				inTraining.addMatk();
-			}
-			else
-			{
+			} else {
 				properties.RangedSkill += 1;
 				icon = "ui/icons/ranged_skill.png";
 				text = "Ranged Skill";
@@ -290,19 +288,22 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 			break;
 
-		case 5:
+		case 6:
 			properties.MeleeDefense += 1;
 			icon = "ui/icons/melee_defense.png";
 			text = "Melee Defense";
 			inTraining.addMdef();
 			break;
 
-		default:
+		case 7:
 			properties.RangedDefense += 1;
 			icon = "ui/icons/ranged_defense.png";
 			text = "Ranged Defense";
 			inTraining.addRdef();
 			break;
+
+		default:
+			::logDebug("Intensive training attribute selection bug, please report it.")
 		}
 
 		bro.getSkills().update();
