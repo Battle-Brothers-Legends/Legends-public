@@ -408,7 +408,7 @@
 	]
 }
 
-::Const.World.Spawn.WitchunterMercenaries =
+::Const.World.Spawn.WitchunterMercenaries <-
 {
 	Name = "WitchunterMercenaries",
 	IsDynamic = true,
@@ -459,7 +459,7 @@
 	]
 }
 
-::Const.World.Spawn.Witchunters =
+::Const.World.Spawn.Witchunters <-
 {
 	Name = "Witchunters",
 	IsDynamic = true,
