@@ -406,4 +406,88 @@
 			]
 		}
 	]
+}
+
+::Const.World.Spawn.WitchunterMercenaries =
+{
+	Name = "WitchunterMercenaries",
+	IsDynamic = true,
+	MovementSpeedMult = 1.0,
+	VisibilityMult = 1.0,
+	VisionMult = 1.0,
+	Body = "figure_bandit_03",
+	MaxR = 690,
+	MinR = 97,
+	Troops = [
+		{
+			Weight = 75,
+			Types = [
+				{
+					MaxR = 400,
+					Type = this.Const.World.Spawn.Troops.MercenaryLOW,
+					Cost = 18
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.Mercenary,
+					Cost = 25
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Wardog,
+					Cost = 8
+				}
+			]
+		},
+		{
+			Weight = 15,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.MercenaryRanged,
+					Cost = 60
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Cost = 25
+				}
+			]
+		}
+	]
+}
+
+::Const.World.Spawn.Witchunters =
+{
+	Name = "Witchunters",
+	IsDynamic = true,
+	MovementSpeedMult = 1.0,
+	VisibilityMult = 1.0,
+	VisionMult = 1.0,
+	Body = "figure_bandit_03",
+	MaxR = 330,
+	MinR = 97,
+	Troops = [
+		{
+			Weight = 75,
+			Types = [
+				{
+					MaxR = 400,
+					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Cost = 20
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Wardog,
+					Cost = 5
+				}
+			]
+		}
+	]
 };
