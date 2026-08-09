@@ -1458,6 +1458,8 @@ You have stepped up above playing shameful songs, ridiculing nobles and are a mu
 • Unlocks the [color=%skill%]Martial March[/color] skill which increases AP by [color=%negative%]1[/color] for one turn to all allies within an 8 tile range.
 
 • Costs [color=%negative%]9[/color] AP and [color=%negative%]45[/color] Fatigue.
+
+• [color=%negative%]Requires an instrument equipped to use.[/color]
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistButcher <- @"
@@ -2790,7 +2792,7 @@ Your way with animals extends so far as turning those dogs that would do you har
 Your heightened senses leads your strikes to vitals.
 
 [color=%passive%][u]Passive:[/u][/color]
-• [color=%positive%]15%[/color] of your current Initiative will be translated into damage done. The bonus is an additive multiplier. 
+• [color=%positive%]15%[/color] of your current Initiative will be translated into damage done. The bonus is an additive multiplier.
 ";
 
 ::Const.Strings.PerkDescription.LegendWindReader <- @"
