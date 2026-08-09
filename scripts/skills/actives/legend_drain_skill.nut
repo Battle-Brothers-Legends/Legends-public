@@ -79,7 +79,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 			local heal = maxHP / 10;
 			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
 		}
-		return res
+		return res;
 	}
 
 });

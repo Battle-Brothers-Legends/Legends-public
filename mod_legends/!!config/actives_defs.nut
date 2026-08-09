@@ -1302,6 +1302,14 @@ activesDefs.push({
 	Name = "Use Poisoned Oil",
 });
 
+::Legends.Active.LegendCoatWithRedbackPoison <- null;
+activesDefs.push({
+	ID = "actives.legend_coat_with_redback_poison",
+	Script = "scripts/skills/actives/legend_coat_with_redback_poison_skill",
+	Const = "LegendCoatWithRedbackPoison",
+	Name = "Use Redback Poison",
+});
+
 ::Legends.Active.Debilitate <- null; // vanilla implementation - activate and next strike debilitates / shelved
 activesDefs.push({
 	ID = "actives.debilitate",

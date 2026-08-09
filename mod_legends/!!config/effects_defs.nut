@@ -66,7 +66,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.spider_poison",
 	Script = "scripts/skills/effects/spider_poison_effect",
-	Name = "Poisoned",
+	Name = "Poisoned (spider)",
 	Const = "SpiderPoison"
 });
 
@@ -318,6 +318,14 @@ effectsDefs.push({
 	Const = "SpiderPoisonCoat"
 });
 
+::Legends.Effect.LegendRedbackPoisonCoat <- null;
+effectsDefs.push({
+	ID = "effects.legend_redback_poison_coat",
+	Script = "scripts/skills/effects/legend_redback_poison_coat_effect",
+	Name = "Weapon coated with poison",
+	Const = "LegendRedbackPoisonCoat"
+});
+
 ::Legends.Effect.DebilitatingAttack <- null;
 effectsDefs.push({
 	ID = "effects.debilitating_attack",
@@ -330,7 +338,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.goblin_poison",
 	Script = "scripts/skills/effects/goblin_poison_effect",
-	Name = "Poisoned",
+	Name = "Poisoned (goblin)",
 	Const = "GoblinPoison"
 });
 
@@ -1098,7 +1106,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.legend_redback_spider_poison",
 	Script = "scripts/skills/effects/legend_redback_spider_poison_effect",
-	Name = "Redback Poisoned",
+	Name = "Poisoned (redback)",
 	Const = "LegendRedbackSpiderPoison"
 });
 
@@ -1146,7 +1154,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.legend_RSW_poison_effect",
 	Script = "scripts/skills/rune_sigils/legend_RSW_poison_effect",
-	Name = "Poisoned",
+	Name = "Poisoned (rune)",
 	Const = "LegendRswPoisonEffect"
 });
 
@@ -1178,7 +1186,7 @@ effectsDefs.push({
 effectsDefs.push({
 	ID = "effects.legend_basilisk_poison",
 	Script = "scripts/skills/effects/legend_basilisk_poison_effect",
-	Name = "Poisoned",
+	Name = "Poisoned (basilisk)",
 	Const = "LegendBasiliskPoison"
 });
 

@@ -146,6 +146,8 @@
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
+- poisons are now refillable and use the ammo system
+- added redback poison vials and blueprints
 
 ### Runes
 - rune effect values were redone slightly, so they all follow the same rules now
@@ -318,6 +320,7 @@
 - small visual reorganization to make the stations easier to click
 - right click tents to open the correct list in commander's tent
 - painter tent allows painting the shoulder layer
+- upgraded scouting has been improved and allows the party to scout for locations while camping
 
 ## Events
 - added a new town encounter during drought
@@ -351,6 +354,7 @@
 - fixed window opening related ui bugs
 - various scenario fixes
 - players aren't required to have a brother on the first two rows anymore
+- brothers will be deployed on three rows properly during edge deployment 
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
