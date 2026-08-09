@@ -7,7 +7,7 @@
 	}
 
 	o.onAfterUpdate <- function (_properties) {
-		if (::Time.getRound() == 1) {
+		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}
 	}

@@ -87,7 +87,7 @@ this.legend_coat_with_redback_poison_skill <- this.inherit("scripts/skills/skill
 	}
 
 	function onAfterUpdate (_properties) {
-		if (::Time.getRound() == 1) {
+		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}
 	}

@@ -3232,6 +3232,8 @@ Preparation can make or break a battle and you won't be caught with your pants d
 
 [color=%passive%][u]Passive:[/u][/color]
 • Crossbows or Firearms in your bags will be loaded at the start of combat.
+
+• Poisons and bombs cost [color=%positive%]0[/color] AP to use on the first turn.
 ";
 
 ::Const.Strings.PerkDescription.LegendLurker <- @"
