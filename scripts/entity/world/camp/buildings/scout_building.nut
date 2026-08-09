@@ -127,7 +127,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster.getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach(bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 		}
