@@ -33,7 +33,7 @@ this.legend_camp_unlock_hunt_encounter <- this.inherit("scripts/encounters/encou
 	}
 
 	function isValid(_settlement) {
-		if (::Legends.Settings.skipCamp())
+		/*if (::Legends.Settings.skipCamp())
 			return false;
 
 		if (::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter]))
@@ -42,7 +42,8 @@ this.legend_camp_unlock_hunt_encounter <- this.inherit("scripts/encounters/encou
 		if (!(_settlement.hasAttachedLocation("attached_location.trapper") || _settlement.hasAttachedLocation("attached_location.hunters_cabin")))
 			return false;
 
-		return !this.isOnCooldown();
+		return !this.isOnCooldown();*/
+		return false;
 	}
 
 	function onPrepareVariables (_vars) {

@@ -242,7 +242,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (bro.isStabled())
 			{
