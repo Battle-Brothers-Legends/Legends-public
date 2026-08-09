@@ -482,14 +482,14 @@ if (!("BackgroundsStats" in ::Legends)) {
 ::Legends.BackgroundsStats.KingsGuard <- clone ::Legends.BackgroundsStats.Beggar;
 
 ::Legends.BackgroundsStats.LindwurmSlayer <- [{
-	Hitpoints = [14, 18],
-	Bravery = [10, 12],
+	Hitpoints = [16, 20],
+	Bravery = [15, 17],
 	Stamina = [6, 12],
-	MeleeSkill = [11, 11],
+	MeleeSkill = [14, 18],
 	RangedSkill = [8, 10],
 	MeleeDefense = [5, 7],
-	RangedDefense = [-3, -3],
-	Initiative = [8, 14]
+	RangedDefense = [-6, -4],
+	Initiative = [11, 15]
 }];
 
 ::Legends.BackgroundsStats.Lumberjack <- [{
