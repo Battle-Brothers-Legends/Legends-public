@@ -207,21 +207,18 @@ this.legend_necro_vs_witchhunters_event <- this.inherit("scripts/events/event", 
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		local candidates = [];
-
 		if (brothers.len() < 2)
 		{
 			return;
 		}
 
-		foreach( bro in brothers )
-		{
-			if (bro.getBackground().getID() == [::Legends.Background.LegendCommanderNecro] || bro.getBackground().getID() == [::Legends.Background.LegendPreserver] || bro.getBackground().getID() == [::Legends.Background.LegendWarlockSummoner] || bro.getBackground().getID() == [::Legends.Background.LegendPuppetMaster])
-			{
-				candidates.push(bro);
-			}
-		}
+		local brothers = this.World.getPlayerRoster().getAll();
+		local candidates = brothers.filter(@(_, bro) ::Legends.Backgrounds.hasAny(bro,
+			::Legends.Background.LegendCommanderNecro,
+			::Legends.Background.LegendPreserver,
+			::Legends.Background.LegendWarlockSummoner,
+			::Legends.Background.LegendPuppetMaster
+		));
 
 		if (candidates.len() == 0)
 		{
