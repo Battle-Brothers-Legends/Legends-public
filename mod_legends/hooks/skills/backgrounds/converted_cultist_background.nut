@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.ConvertedCultist);
 		this.m.Name = "Cultist";
 		this.m.Icon = "ui/backgrounds/background_34.png";
 		this.m.Excluded = [

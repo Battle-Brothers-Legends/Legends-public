@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Crucified);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Crucified);
 		this.m.Name = "Converted Crusader";
 		this.m.Icon = "ui/backgrounds/background_65.png";
 		this.m.Excluded = [

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Pimp);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Pimp);
 		this.m.Name = "Pimp";
 		this.m.Icon = "ui/backgrounds/background_56.png";
 		this.m.Excluded = [

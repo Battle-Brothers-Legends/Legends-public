@@ -3,7 +3,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendManAtArms);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendManAtArms);
 		this.m.Name = "Man-At-Arms";
 		this.m.Icon = "ui/backgrounds/background_man_at_arms.png";
 		this.m.BackgroundDescription = "An old soldier, maimed by some forgettable past conflict, waits for another war that may never come.";

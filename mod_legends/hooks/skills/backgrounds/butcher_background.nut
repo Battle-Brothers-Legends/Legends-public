@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Butcher);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Butcher);
 		this.m.Name = "Butcher";
 		this.m.Icon = "ui/backgrounds/background_43.png";
 		this.m.BackgroundDescription = "Butchers are used to bloodshed.";

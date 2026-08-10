@@ -3,7 +3,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendMuladi);
 		this.m.Name = "Muladí";
 		this.m.Icon = "ui/backgrounds/background_muladi.png";
 		this.m.BackgroundDescription = "A muladi is accustomed to the south, although not entirely accepted by the locals.";

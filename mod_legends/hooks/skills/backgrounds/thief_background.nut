@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Thief);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Thief);
 		this.m.Name = "Thief";
 		this.m.Icon = "ui/backgrounds/background_11.png";
 		this.m.BackgroundDescription = "A good thief will have quick reflexes and the ability to evade any captors.";

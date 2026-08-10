@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Deserter);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Deserter);
 		this.m.Name = "Deserter";
 		this.m.Icon = "ui/backgrounds/background_07.png";
 		this.m.BackgroundDescription = "Deserters have received some martial training, but usually aren\'t eager to put it to use.";

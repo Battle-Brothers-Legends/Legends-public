@@ -2,7 +2,7 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 	m = {},
 	function create() {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNobleShield);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNobleShield);
 		this.m.Name = "Foot Soldier";
 		this.m.Icon = "ui/backgrounds/background_nobleshield.png";
 		this.m.DailyCostMult = 1.0;

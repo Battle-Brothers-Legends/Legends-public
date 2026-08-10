@@ -3,7 +3,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNightwatch);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNightwatch);
 		this.m.Name = "Night Watch";
 		this.m.Icon = "ui/backgrounds/background_nightwatch.png";
 		this.m.BackgroundDescription = "The night watch are an unlucky few chosen to break up fights and keep towns lawful at the worst time of the day.";

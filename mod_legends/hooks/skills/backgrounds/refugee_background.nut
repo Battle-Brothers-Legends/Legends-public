@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Refugee);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Refugee);
 		this.m.Name = "Refugee";
 		this.m.Icon = "ui/backgrounds/background_38.png";
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";

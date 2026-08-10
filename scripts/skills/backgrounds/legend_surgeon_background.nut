@@ -3,7 +3,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendSurgeon);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendSurgeon);
 		this.m.Name = "Surgeon";
 		this.m.Icon = "ui/backgrounds/background_surgeon.png";
 		this.m.BackgroundDescription = "A learned surgeon from the south, their knowledge of medicine outstrips those of the oldest monks and witches.";

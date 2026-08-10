@@ -3,7 +3,7 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendShieldmaiden);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendShieldmaiden);
 		this.m.Name = "Shieldmaiden";
 		this.m.Icon = "ui/backgrounds/legend_shieldmaiden.png";
 		this.m.BackgroundDescription = "Shieldmaidens are fierce female warriors from the northern settlements.";

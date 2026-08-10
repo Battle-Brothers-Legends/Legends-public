@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/backgrounds/belly_dancer_background", function(o) {
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.BellyDancer);
+		::Legends.Backgrounds.onCreate(::Legends.Background.BellyDancer);
 		this.m.Name = "Belly Dancer";
 		this.m.Icon = "ui/backgrounds/background_64.png";
 		this.m.BackgroundDescription = "";

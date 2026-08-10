@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Historian);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Historian);
 		this.m.Name = "Historian";
 		this.m.Icon = "ui/backgrounds/background_47.png";
 		this.m.BackgroundDescription = "Historians are studious individuals with vast amounts of knowledge, none of it any use on the battlefield.";

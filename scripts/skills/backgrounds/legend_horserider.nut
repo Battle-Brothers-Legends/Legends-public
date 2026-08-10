@@ -3,7 +3,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendHorserider);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendHorserider);
 		this.m.Name = "Horse Rider";
 		this.m.Icon = "ui/backgrounds/donkey.png";
 		this.m.BackgroundDescription = "Horses are used to long and exhausting travels.";

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Squire);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Squire);
 		this.m.Name = "Squire";
 		this.m.Icon = "ui/backgrounds/background_03.png";
 		this.m.BackgroundDescription = "Squires usually have received some training in warfare, and often have a high resolve to excel in what they do.";

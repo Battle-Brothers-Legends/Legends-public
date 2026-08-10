@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Assassin);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Assassin);
 		this.m.Name = "Assassin";
 		this.m.Icon = "ui/backgrounds/background_53.png";
 		this.m.BackgroundDescription = "The same as any other mercenary, a skilled assassin can be hired for a good sum of crowns.";

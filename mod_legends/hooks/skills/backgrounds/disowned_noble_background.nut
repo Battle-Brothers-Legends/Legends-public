@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble);
+		::Legends.Backgrounds.onCreate(::Legends.Background.DisownedNoble);
 		this.m.Name = "Disowned Noble";
 		this.m.Icon = "ui/backgrounds/background_08.png";
 		this.m.BackgroundDescription = "Disowned nobles often have profited from some training in melee fighting at court and know the weaknesses of noble armies.";

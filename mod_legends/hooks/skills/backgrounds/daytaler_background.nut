@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Daytaler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Daytaler);
 		this.m.Name = "Daytaler";
 		this.m.Icon = "ui/backgrounds/background_36.png";
 		this.m.BackgroundDescription = "Daytalers are used to all kinds of physical work, but don\'t excel in any.";

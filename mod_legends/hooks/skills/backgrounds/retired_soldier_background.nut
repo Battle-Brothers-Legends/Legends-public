@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.RetiredSoldier);
+		::Legends.Backgrounds.onCreate(::Legends.Background.RetiredSoldier);
 		this.m.Name = "Retired Soldier";
 		this.m.Icon = "ui/backgrounds/background_24.png";
 		this.m.BackgroundDescription = "Retired soldiers tend to have decent experience in warfare, and their resolve is not easily broken. However, their age may have taken a toll on their physical attributes.";

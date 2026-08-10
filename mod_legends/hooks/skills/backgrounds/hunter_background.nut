@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Hunter);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Hunter);
 		this.m.Name = "Hunter";
 		this.m.Icon = "ui/backgrounds/background_22.png";
 		this.m.BackgroundDescription = "Hunters are used to expertly hunt animals with bow and arrow, and traverse the woods on their own.";

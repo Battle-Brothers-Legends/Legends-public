@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Witchhunter);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Witchhunter);
 		this.m.Name = "Witchhunter";
 		this.m.Icon = "ui/backgrounds/background_23.png";
 		this.m.BackgroundDescription = "Witchhunters tend to have some martial experience, and their resolve often remains unbroken even in the face of unspeakable horror.";

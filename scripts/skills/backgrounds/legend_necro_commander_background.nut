@@ -3,7 +3,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderNecro);
 		this.m.Name = "Master Necromancer";
 		this.m.Icon = "ui/backgrounds/warlock_01.png";
 		this.m.BackgroundDescription = "Years of practical training and close calls have shaped %name% into a cold, dark figure capable of calling colder and darker followers to serve %them%.";

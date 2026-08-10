@@ -3,7 +3,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendGuildmaster);
 		this.m.Name = "Guild Master";
 		this.m.Icon = "ui/backgrounds/background_guildmaster.png";
 		this.m.BackgroundDescription = "An aging master slayer of a local guild, time has taken their youth but their skills still surpass those they train.";

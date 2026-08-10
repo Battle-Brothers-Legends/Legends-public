@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LindwurmSlayer);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LindwurmSlayer);
 		this.m.Name = "Lindwurm Slayer";
 		this.m.Icon = "ui/backgrounds/background_71.png";
 		this.m.BackgroundDescription = "This mercenary is a one of a kind Lindwurm hunter, descendant of Dirk the Dragonslayer.";

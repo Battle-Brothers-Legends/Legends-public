@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Bowyer);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Bowyer);
 		this.m.Name = "Bowyer";
 		this.m.Icon = "ui/backgrounds/background_29.png";
 		this.m.BackgroundDescription = "Bowyers tend to have some knowledge about how to use the ranged weaponry they used to craft.";

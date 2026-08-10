@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.RegentInAbsentia);
+		::Legends.Backgrounds.onCreate(::Legends.Background.RegentInAbsentia);
 		this.m.Name = "Regent in Absentia";
 		this.m.Icon = "ui/backgrounds/background_06.png";
 		this.m.BackgroundDescription = "%name% is a Regent in Absentia, choosing to spend their time with a mercenary company as opposed to in court.";

@@ -3,7 +3,7 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNobleRanged);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNobleRanged);
 		this.m.Name = "Arbalester";
 		this.m.Icon = "ui/backgrounds/background_nobleranged.png";
 		this.m.DailyCostMult = 1.0;

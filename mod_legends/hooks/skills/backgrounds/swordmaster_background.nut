@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Swordmaster);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Swordmaster);
 		this.m.Name = "Swordmaster";
 		this.m.Icon = "ui/backgrounds/background_30.png";
 		this.m.BackgroundDescription = "A swordmaster excels in melee combat like no other, but may be vulnerable at range. Age may have taken a toll on %their% physical attributes and may continue to do so. Swordmasters fight smart and conserve their strength which allows them to have a reduced impact on initiative due to fatigue.";

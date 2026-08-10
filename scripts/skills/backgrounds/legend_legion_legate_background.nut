@@ -3,7 +3,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionLegate);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionLegate);
 		this.m.Name = "Legate";
 		this.m.Icon = "ui/backgrounds/background_legion_legate.png";
 		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";

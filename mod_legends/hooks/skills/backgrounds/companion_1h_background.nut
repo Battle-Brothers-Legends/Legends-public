@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Companion);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Companion);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.DailyCostMult = 1.0; //basically never increases in daily wage hikes.

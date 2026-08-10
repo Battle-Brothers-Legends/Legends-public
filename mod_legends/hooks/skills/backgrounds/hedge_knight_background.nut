@@ -4,7 +4,7 @@
 
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.HedgeKnight);
+		::Legends.Backgrounds.onCreate(::Legends.Background.HedgeKnight);
 		this.m.Name = "Hedge Knight";
 		this.m.Icon = "ui/backgrounds/background_33.png";
 		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";

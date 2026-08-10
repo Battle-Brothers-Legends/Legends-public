@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Brawler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Brawler);
 		this.m.Name = "Brawler";
 		this.m.Icon = "ui/backgrounds/background_27.png";
 		this.m.BackgroundDescription = "Brawlers are unmatched in unarmed combat, and physical exercise tends to leave them in good shape.";

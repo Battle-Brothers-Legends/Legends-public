@@ -3,7 +3,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionGladiator);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionGladiator);
 		this.m.Name = "Gladiator";
 		this.m.Icon = "ui/backgrounds/background_legion_gladiator.png";
 		this.m.BackgroundDescription = "A leader to few, a slave of many.";

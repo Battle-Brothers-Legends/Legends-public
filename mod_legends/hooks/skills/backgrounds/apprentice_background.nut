@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Apprentice);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Apprentice);
 		this.m.Name = "Apprentice";
 		this.m.Icon = "ui/backgrounds/background_40.png";
 		this.m.BackgroundDescription = "Apprentices tend to be eager for knowledge and learn faster than others.";

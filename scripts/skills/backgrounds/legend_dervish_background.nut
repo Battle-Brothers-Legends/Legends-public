@@ -3,7 +3,7 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendDervish);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendDervish);
 		this.m.Name = "Dervish";
 		this.m.Icon = "ui/backgrounds/background_dervish.png";
 		this.m.BackgroundDescription = "The dervish is a religious background that enters an almost trance-like state in combat.";

@@ -3,7 +3,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCompanionRanged);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to %themselves%.";

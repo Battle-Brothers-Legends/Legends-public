@@ -3,7 +3,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 	function create()
 	{
 		this.legend_horse.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendHorseCourser);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendHorseCourser);
 		this.m.Name = "Courser";
 		this.m.Icon = "ui/backgrounds/legend_horse.png";
 		this.m.BackgroundDescription = "Coursers are swift and strong horses well-suited for war, hunting and transportation.";

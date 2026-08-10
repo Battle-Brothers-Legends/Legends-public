@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Tailor);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Tailor);
 		this.m.Name = "Tailor";
 		this.m.Icon = "ui/backgrounds/background_48.png";
 		this.m.BackgroundDescription = "Tailors are not used to hard physical labor.";

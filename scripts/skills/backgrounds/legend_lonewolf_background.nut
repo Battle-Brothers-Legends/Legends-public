@@ -3,7 +3,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLonewolf);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLonewolf);
 		this.m.Name = "Lone Wolf";
 		this.m.Icon = "ui/backgrounds/background_lone_wolf.png";
 		this.m.BackgroundDescription = "You\'ve come this far. Is it worth it? What are a few more heads on the pile in the pursuit of satisfaction?";

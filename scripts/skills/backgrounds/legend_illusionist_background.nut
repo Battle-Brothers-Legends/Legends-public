@@ -2,7 +2,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 	m = {},
 	function create() {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendIllusionist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendIllusionist);
 		this.m.Icon = "ui/backgrounds/background_wizard.png";
 		this.m.Name = "Illusionist";
 		this.m.Excluded = [

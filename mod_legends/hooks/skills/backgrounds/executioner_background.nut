@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Executioner);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Executioner);
 		this.m.Name = "Executioner";
 		this.m.Icon = "ui/backgrounds/background_72.png";
 		this.m.BackgroundDescription = "Executioners are dour and used to violence, although they have little experience in true warfare.";

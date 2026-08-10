@@ -3,7 +3,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLeechPeddler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLeechPeddler);
 		this.m.Name = "Leech Peddler";
 		this.m.Icon = "ui/backgrounds/background_leech_peddler.png";
 		this.m.BackgroundDescription = "Leech peddlers are of questionable mindset at the best of times, but their unusual remedies often help those who cannot afford a real healer.";

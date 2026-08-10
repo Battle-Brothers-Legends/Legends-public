@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Gladiator);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Gladiator);
 		this.m.Name = "Gladiator";
 		this.m.Icon = "ui/backgrounds/background_61.png";
 		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters. Always a show off, gladiators fight better if there are no allies nearby.";

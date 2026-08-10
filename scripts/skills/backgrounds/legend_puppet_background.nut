@@ -3,7 +3,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendPuppet);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendPuppet);
 		this.m.Name = "Puppet";
 		this.m.Icon = "ui/backgrounds/background_puppet.png";
 		this.m.BackgroundDescription = "A corpse in varying forms of decay. While slow on the uptake, it makes for a frightening opponent to most. You can also pick any name you like!";

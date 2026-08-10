@@ -5,7 +5,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBerserker);
 		this.m.Name = "Berserker";
 		this.m.Icon = "ui/backgrounds/background_berserker.png";
 		this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life in the cities, where the astute and deceitful rule.";

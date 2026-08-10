@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Sellsword);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Sellsword);
 		this.m.Name = "Sellsword";
 		this.m.Icon = "ui/backgrounds/background_10.png";
 		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";

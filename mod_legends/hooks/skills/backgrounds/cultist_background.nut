@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Cultist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Cultist);
 		this.m.Name = "Cultist";
 		this.m.Icon = "ui/backgrounds/background_34.png";
 		this.m.BackgroundDescription = "Cultists have a resolve to spread further their cult that is second to few.";

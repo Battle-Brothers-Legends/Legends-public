@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Crusader);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Crusader);
 		this.m.Name = "Crusader";
 		this.m.Icon = "ui/backgrounds/background_54.png";
 		this.m.Titles = [

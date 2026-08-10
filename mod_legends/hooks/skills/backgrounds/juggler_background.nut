@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Juggler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Juggler);
 		this.m.Name = "Juggler";
 		this.m.Icon = "ui/backgrounds/background_14.png";
 		this.m.BackgroundDescription = "Jugglers need to have good reflexes and hand-eye-coordination for their profession.";

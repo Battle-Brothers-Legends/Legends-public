@@ -3,7 +3,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLurker);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLurker);
 		this.m.Name = "Lurker";
 		this.m.Icon = "ui/backgrounds/background_lurker.png";
 		this.m.BackgroundDescription = "This one is unsettling, even for a cultist. Ever quiet and brooding, but with eyes as keen as that of a vengeful god.";

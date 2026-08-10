@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern);
+		::Legends.Backgrounds.onCreate(::Legends.Background.AssassinSouthern);
 		this.m.Name = "Hashassin";
 		this.m.Icon = "ui/backgrounds/background_53.png";
 		this.m.BackgroundDescription = "An assassin has to be quick on %their% feet and skilled with the use of weapons.";

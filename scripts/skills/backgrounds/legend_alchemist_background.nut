@@ -3,7 +3,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendAlchemist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendAlchemist);
 		this.m.Name = "Alchemist";
 		this.m.Icon = "ui/backgrounds/background_alchemist.png";
 		this.m.BackgroundDescription = "The alchemist creates potions and gunpowder accessories, for a price.";

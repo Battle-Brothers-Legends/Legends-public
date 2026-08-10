@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Bastard);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Bastard);
 		this.m.Name = "Bastard";
 		this.m.Icon = "ui/backgrounds/background_37.png";
 		this.m.BackgroundDescription = "Bastards often have profited from some training in melee fighting and know the weaknesses of noble armies.";

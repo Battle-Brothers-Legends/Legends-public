@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Vagabond);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Vagabond);
 		this.m.Name = "Vagabond";
 		this.m.Icon = "ui/backgrounds/background_32.png";
 		this.m.BackgroundDescription = "Vagabonds are used to long travels, but don\'t excel in anything in particular.";

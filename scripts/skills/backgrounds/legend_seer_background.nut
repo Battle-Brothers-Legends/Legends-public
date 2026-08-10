@@ -4,7 +4,7 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 	{
 		this.character_background.create();
 		this.m.Name = "Seer";
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendSeer);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendSeer);
 		this.m.Icon = "ui/backgrounds/background_seer.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

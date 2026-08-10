@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Wildman);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Wildman);
 		this.m.Name = "Wildman";
 		this.m.Icon = "ui/backgrounds/background_31.png";
 		this.m.BackgroundDescription = "Wildmen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";

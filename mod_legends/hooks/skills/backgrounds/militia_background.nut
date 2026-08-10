@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Militia);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Militia);
 		this.m.Name = "Militia";
 		this.m.Icon = "ui/backgrounds/background_35.png";
 		this.m.BackgroundDescription = "Anyone that\'s been in the militia will have received at least some basic training in matters of combat.";

@@ -4,7 +4,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendIronmonger);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendIronmonger);
 		this.m.Name = "Ironmonger";
 		this.m.Icon = "ui/backgrounds/background_ironmonger.png";
 		this.m.BackgroundDescription = "Ironmongers are stronger than average and good at maintaining equipment.";

@@ -3,7 +3,7 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionHonourGuard); //I don't care who they send, im not spelling it 'honor'.
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionHonourGuard); //I don't care who they send, im not spelling it 'honor'.
 		this.m.Name = "Honour Guard";
 		this.m.Icon = "ui/backgrounds/background_legion_honourguard.png";
 		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their luck and prowess with ever increasing danger.";

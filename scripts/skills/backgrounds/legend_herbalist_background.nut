@@ -3,7 +3,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendHerbalist);
 		this.m.Name = "Herbalist / Apothecaries";
 		this.m.Icon = "ui/backgrounds/background_herbalist.png";
 		this.m.BackgroundDescription = "Herbalists and Apothecaries are skilled with a sickle, harvesting herbs for use in medicine";

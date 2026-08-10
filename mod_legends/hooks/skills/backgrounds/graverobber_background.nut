@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Graverobber);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Graverobber);
 		this.m.Name = "Graverobber";
 		this.m.Icon = "ui/backgrounds/background_25.png";
 		this.m.BackgroundDescription = "Graverobbers are not faint of heart.";

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Gravedigger);
 		this.m.Name = "Gravedigger";
 		this.m.Icon = "ui/backgrounds/background_28.png";
 		this.m.BackgroundDescription = "Gravediggers are used to physical labor and handling the dead.";

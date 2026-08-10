@@ -3,7 +3,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendMagister);
 		this.m.Name = "Magister";
 		this.m.Icon = "ui/backgrounds/background_magister.png";
 		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";

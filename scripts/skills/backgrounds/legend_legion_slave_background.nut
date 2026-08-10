@@ -3,7 +3,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendLegionSlave);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionSlave);
 		this.m.Name = "Servus";
 		this.m.Icon = "ui/backgrounds/background_legion_slave.png";
 		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";

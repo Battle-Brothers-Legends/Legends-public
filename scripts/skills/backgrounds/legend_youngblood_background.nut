@@ -3,7 +3,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendYoungblood);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendYoungblood);
 		this.m.Name = "Youngblood";
 		this.m.Icon = "ui/backgrounds/background_youngblood.png";
 		this.m.BackgroundDescription = "Youngbloods are students who have yet to prove themselves as capable witchhunters.";

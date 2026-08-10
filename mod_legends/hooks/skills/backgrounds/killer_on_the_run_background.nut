@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.KillerOnTheRun);
+		::Legends.Backgrounds.onCreate(::Legends.Background.KillerOnTheRun);
 		this.m.Name = "Killer on the Run";
 		this.m.Icon = "ui/backgrounds/background_02.png";
 		this.m.BackgroundDescription = "A killer on the run may kill again, and %they% knows where to aim.";

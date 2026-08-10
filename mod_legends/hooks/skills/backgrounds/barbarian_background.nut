@@ -6,7 +6,7 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Barbarian);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Barbarian);
 		this.m.Name = "Barbarian";
 		this.m.Icon = "ui/backgrounds/background_58.png";
 		this.m.BackgroundDescription = "";

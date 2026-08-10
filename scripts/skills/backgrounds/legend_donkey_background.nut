@@ -3,7 +3,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function create() {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendDonkey);
 		this.m.Name = "Donkey";
 		this.m.Icon = "ui/backgrounds/background_donkey.png";
 		this.m.BackgroundDescription = "Donkeys are generally patient and deliberate in their actions. Can\'t use weapons, shields, ammunition or armor. The donkey does not seem bothered by these limitations. %They% has a huge appetite and will eat anything. Better bring extra provisions and expect %them% to leave fast if you ever run out of provisions entirely.";

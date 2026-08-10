@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Peddler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Peddler);
 		this.m.Name = "Peddler";
 		this.m.Icon = "ui/backgrounds/background_19.png";
 		this.m.BackgroundDescription = "Peddlers are not used to hard physical labor or warfare, but they do excel at haggling for good prices.";

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Paladin);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Paladin);
 		this.m.Name = "Oathtaker";
 		this.m.Icon = "ui/backgrounds/background_69.png";
 		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which increases their health and initiative.";

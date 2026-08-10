@@ -3,7 +3,7 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendWarlock);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendWarlock);
 		this.m.Icon = "ui/backgrounds/warlock_02.png";
 		this.m.Name = "Warlock";
 		this.m.Excluded = [

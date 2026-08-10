@@ -3,7 +3,7 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBeggar);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderBeggar);
 		this.m.Name = "Framed Beggar";
 		this.m.Icon = "ui/backgrounds/background_18.png";
 		this.m.BackgroundDescription = "Beggars aren\'t the most determined persons, and living on the street tends to be detrimental to their health.";

@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.CaravanHand);
+		::Legends.Backgrounds.onCreate(::Legends.Background.CaravanHand);
 		this.m.Name = "Caravan Hand";
 		this.m.Icon = "ui/backgrounds/background_12.png";
 		this.m.BackgroundDescription = "Caravan hands are used to long and exhausting travels.";

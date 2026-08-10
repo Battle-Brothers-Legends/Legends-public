@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Servant);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Servant);
 		this.m.Name = "Servant";
 		this.m.Icon = "ui/backgrounds/background_16.png";
 		this.m.BackgroundDescription = "Servants are not used to hard labour, but do have good knowledge of more mundane activities.";

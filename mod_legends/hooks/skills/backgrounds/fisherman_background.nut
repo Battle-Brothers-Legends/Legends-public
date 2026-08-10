@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Fisherman);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Fisherman);
 		this.m.Name = "Fisher";
 		this.m.Icon = "ui/backgrounds/background_15.png";
 		this.m.BackgroundDescription = "Fishers are used to physical labor.";

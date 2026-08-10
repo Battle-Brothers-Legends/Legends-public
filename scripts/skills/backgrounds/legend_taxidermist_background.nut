@@ -3,7 +3,7 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendTaxidermist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendTaxidermist);
 		this.m.Name = "Taxidermist";
 		this.m.Icon = "ui/backgrounds/background_taxidermist.png";
 		this.m.BackgroundDescription = "Taxidermists are good at gutting beasts, but not fighting them.";

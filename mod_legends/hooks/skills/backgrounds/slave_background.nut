@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Slave);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Slave);
 		this.m.Name = "Indebted";
 		this.m.Icon = "ui/backgrounds/background_60.png";
 		this.m.BackgroundDescription = "The indebted are a caste of de-facto slaves in the city states, and as such are not hired, but bought, and receive no daily wage.";

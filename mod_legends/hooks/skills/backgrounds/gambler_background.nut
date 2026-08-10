@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Gambler);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Gambler);
 		this.m.Name = "Gambler";
 		this.m.Icon = "ui/backgrounds/background_20.png";
 		this.m.BackgroundDescription = "Gamblers tend to have quick reflexes and a higher resolve than their opponents at the card table.";

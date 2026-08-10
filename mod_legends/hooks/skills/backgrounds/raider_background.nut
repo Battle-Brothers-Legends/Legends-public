@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Raider);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Raider);
 		this.m.Name = "Raider";
 		this.m.Icon = "ui/backgrounds/background_49.png";
 		this.m.BackgroundDescription = "Any raider that survived so far will have some expertise in fighting.";

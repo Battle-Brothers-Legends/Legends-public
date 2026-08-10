@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Lumberjack);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Lumberjack);
 		this.m.Name = "Lumberjack";
 		this.m.Icon = "ui/backgrounds/background_04.png";
 		this.m.BackgroundDescription = "Lumberjacks are used to hard physical labor. And axes.";

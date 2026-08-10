@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Poacher);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Poacher);
 		this.m.Name = "Poacher";
 		this.m.Icon = "ui/backgrounds/background_21.png";
 		this.m.BackgroundDescription = "Poachers tend to have some skill in using bow and arrow to hunt down rabbits and the like.";

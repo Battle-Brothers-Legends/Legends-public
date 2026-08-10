@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Anatomist);
+		::Legends.Backgrounds.onCreate(::Legends.Background.Anatomist);
 		this.m.Name = "Anatomist";
 		this.m.Icon = "ui/backgrounds/background_70.png";
 		this.m.BackgroundDescription = "Part scientist and part surgeon, Anatomists are unaccustomed to battle but well served by steady hands.";

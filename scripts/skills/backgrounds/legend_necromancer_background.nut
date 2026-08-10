@@ -3,7 +3,7 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNecromancer);
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNecromancer);
 		this.m.Icon = "ui/backgrounds/background_necromancer_4.png";
 		this.m.Name = "Necromancer";
 		this.m.Excluded = [

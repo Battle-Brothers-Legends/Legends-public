@@ -3,7 +3,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function create() {
 		this.character_background.create(); //—
-		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendBountyHunter); //only for solo assassin origin
+		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBountyHunter); //only for solo assassin origin
 		this.m.Name = "Bounty Hunter";
 		this.m.Icon = "ui/backgrounds/background_bountyhunter.png";
 		this.m.BackgroundDescription = "Bounty Hunters are solitary in nature who prefer more direct means to that of assassins. Anyone who is brave enough to walk the roads and take coin alone is either a fool or has more than meets the eye to them";
