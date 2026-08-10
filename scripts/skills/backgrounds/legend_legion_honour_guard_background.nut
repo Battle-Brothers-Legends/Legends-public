@@ -9,8 +9,6 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their luck and prowess with ever increasing danger.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

@@ -9,8 +9,6 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to %themselves%.";
 		this.m.GoodEnding = "After {not much  more time | much more time later | a lifetime adrift | a short while | a few more months} after your retirement, %name% found {interest | %their% calling with | some hope with | work with} a {preacher | thief | vagabond | wildman | wise woman | crusader | odd trio of kids | haughty nobleman | ranger | people\'s militia | cultist band | northern raiding party | group of escaped slaves | hunting party of manhunters}, %their% time with you taught %them% {everything | most of what | all | a bit of what} %they% needed to survive in %their% new employment. %They% never spoke your name, but {%their% memory of you never faded | %they% go on to greater things in your memory}.";
 		this.m.BadEnding = "Does it matter what happens to a single %person%? As skilled as %name% was, %they% never made %their% mark with your early departure from %companyname%.";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.Craven),

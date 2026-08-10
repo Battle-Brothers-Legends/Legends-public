@@ -12,8 +12,6 @@
 		this.m.BackgroundDescription = "";
 		this.m.GoodEnding = "%name% the barbarian took all the coin %they% earned with the company and ventured north. With %their% money, %they% gathered a band of warriors and conquered so many tribes that, last you heard, %they% had been ordained \'king of the north\'.";
 		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard %they% was traveling north. Penniless with little to %their% name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to %their% ilk, %they're% either been killed already or captured as a slave.";
-		this.m.HiringCost = 300;
-		this.m.DailyCost = 30;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

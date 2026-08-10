@@ -122,6 +122,8 @@ if (!("Backgrounds" in ::Legends)) {
 	local defs = ::Legends.Backgrounds.BackgroundDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;
+	_target.m.HiringCost = defs.HiringCost;
+	_target.m.DailyCost = defs.DailyCost;
 }
 
 ::Legends.Backgrounds.getStats <- function(_def, _isFemale = false) {

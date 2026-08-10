@@ -9,8 +9,6 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundDescription = "The dervish is a religious background that enters an almost trance-like state in combat.";
 		this.m.GoodEnding = "Although the life of excess was not the way of the dervish, %name% took the money given to them and set it aside, accumulating a Vizier\'s fortune of crowns. %name% donated this money to local widows and shelters for the poor before selling what they were wearing and wandering back into the streets, just as they were found.";
 		this.m.BadEnding = "The life of a mercenary sated the brutal needs of %name%, but allowed their spiritual nature to become corrupt and twisted. %name% turned to a life of mercenary work fully, becoming greedy and dining on the pleasures of excess. In turn they made many enemies and disgusted their former peers. Through unknown methods %name% was found poisoned a few seasons later.";
-		this.m.HiringCost = 140;
-		this.m.DailyCost = 14;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Ailing),

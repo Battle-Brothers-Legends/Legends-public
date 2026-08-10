@@ -10,8 +10,6 @@
 		this.m.BackgroundDescription = "The same as any other mercenary, a skilled assassin can be hired for a good sum of crowns.";
 		this.m.GoodEnding = "%name% joined the company in place of the bastard nobleman %they% had come to kill. So strange was this agreement that you kept your eye on the assassin for many days. But all %they% did was fight for the %companyname%, and fight well. Last you heard, the assassin departed the company and has not been seen or heard from since. You checked in on the bastard nobleman himself to see if perhaps the assassin had finished the job, but the man was alive and well. A peculiar run in, in the end.";
 		this.m.BadEnding = "%name% joined the company in place of the bastard nobleman %they% had come to kill. So strange was this agreement that you kept your eye on the assassin for many days. But all %they% did was fight for the %companyname%, and fight well. Last you heard, the assassin departed the company not long after your hurried retirement. You decided to check in on %their% target the bastard nobleman only to find out that %they% had been slain by an unseen assassin. It appears %name% finished the job in the end.";
-		this.m.HiringCost = 2000;
-		this.m.DailyCost = 25;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

@@ -6,8 +6,6 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.Name = "Seer";
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendSeer);
 		this.m.Icon = "ui/backgrounds/background_seer.png";
-		this.m.HiringCost = 250;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),

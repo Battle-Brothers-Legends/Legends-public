@@ -3,7 +3,6 @@
 	o.create = function ()
 	{
 		this.nomad_background.create();
-		this.m.HiringCost = 300;
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.MaceTree,

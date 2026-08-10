@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Graverobbers are not faint of heart.";
 		this.m.GoodEnding = "Graverobbers like %name% aren\'t exactly the most well liked men in this world, but all you needed from him was to be a great mercenary and he came through in spades. After you left the business, you learned that the graverobber stayed for the long haul. From what you know, he\'s now the company\'s trainer, helping green recruits get up to speed.";
 		this.m.BadEnding = "A man like %name% the graverobber came to the company to help escape from his most unlawful and immoral errors, and what better way to do that than killing people for money? Unfortunately, the %companyname% slowly began to fall apart. You learned that %name% eventually left the company and joined with a similar, competing outfit. You\'re not sure where he is now, and you\'re not sure whether to be insulted by his betrayal or understand the reasoning behind it. Business is only business, after all.";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 6;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

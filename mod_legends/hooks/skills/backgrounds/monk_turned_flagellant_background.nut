@@ -6,8 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.MonkTurnedFlagellant);
 		this.m.Name = "Monk turned Flagellant";
 		this.m.Icon = "ui/backgrounds/background_26.png";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 5;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Tough),

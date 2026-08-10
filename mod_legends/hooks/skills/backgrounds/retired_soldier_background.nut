@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Retired soldiers tend to have decent experience in warfare, and their resolve is not easily broken. However, their age may have taken a toll on their physical attributes.";
 		this.m.GoodEnding = "%name% retired again, this time from sellswording instead of soldiering. Leaving the %companyname% behind, %they% built a cabin out in the woods and enjoys the peace and quiet, staying as far away from all the fighting as %they% can get.";
 		this.m.BadEnding = "Tired of all the fighting, %name% left the quickly declining %companyname% and went out and built %themselves% a cabin in the woods. Unfortunately, vagabonds attacked. Word has it %they% was found bleeding out on the floor, surrounded by six dead men and the last man standing, a nervous, broken boy shakily waving a sword at the dying old %person%.";
-		this.m.HiringCost = 140;
-		this.m.DailyCost = 15;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Swift),

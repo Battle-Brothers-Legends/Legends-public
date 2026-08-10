@@ -9,8 +9,6 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

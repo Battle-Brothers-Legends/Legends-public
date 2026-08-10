@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "A miller is used to physical labor.";
 		this.m.GoodEnding = "%name% the once-miller stayed with the %companyname% for a time, collecting enough crowns to start %their% own bakery. Last you heard, %their% sword-shaped desserts have been a hit with the nobility and %they% makes more money selling to them than %they% ever did with the company.";
 		this.m.BadEnding = "As the %companyname% fell on hard times, %name% the miller saw fit to go ahead and leave while %they% could still walk. %They% helped a nobleman test out a new way of grinding grains with mules and waterwheels working in tandem. Unfortunately, by \'helping\' %they% managed to fall into the contraption and was brutally crushed to death.";
-		this.m.HiringCost = 65;
-		this.m.DailyCost = 7;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

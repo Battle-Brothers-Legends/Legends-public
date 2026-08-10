@@ -9,8 +9,6 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundDescription = "A muladi is accustomed to the south, although not entirely accepted by the locals.";
 		this.m.GoodEnding = "Ever an outcast, %name% returned home and used the crowns gained from %their% adventures to buy a home far away from those who scorned %them% in the past. The link between nature and %name% strengthened, acting a safe haven for those wronged or on the run.";
 		this.m.BadEnding = "Living on the divide was a dangerous business, in attempting to return home %they% were driven out by northern militia on a border town with the desert. Alone, hungry and desperate. %name% was easy prey for the wild animals %they% once called kin.";
-		this.m.HiringCost = 100;
-		this.m.DailyCost = 16;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),

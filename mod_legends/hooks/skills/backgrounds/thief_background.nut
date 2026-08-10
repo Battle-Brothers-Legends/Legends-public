@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "A good thief will have quick reflexes and the ability to evade any captors.";
 		this.m.GoodEnding = "%name% the thief retired from fighting and disappeared off the map. You haven\'t heard word of the %person% since, but there are rumors that a certain nobleman had one of his vaults completely drained in a perfectly executed heist.";
 		this.m.BadEnding = "%name% the thief read the lines being drawn in the sands and retired from the %companyname% while %they% still could. %They% took what money %they% had made and threw together a crew of thieves and brigands. Last you heard, %they% pulled off a perfect heist only for one of %their% partners to stab %them% in the back and take off with all the goods.";
-		this.m.HiringCost = 95;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

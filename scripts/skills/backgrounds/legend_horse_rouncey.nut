@@ -9,8 +9,6 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 		this.m.BackgroundDescription = "Rounceys are primarily packhorses used to long and exhausting travels, though they are able to be trained for battle";
 		this.m.GoodEnding = "%name% the horse was retired to a lovely paddock and spent the days eating and carousing with other horses.";
 		this.m.BadEnding = "%name% the horse was sold to a trader, their caravan was attacked by orcs and the remains of %name% were never found";
-		this.m.HiringCost = 10000;
-		this.m.DailyCost = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Houndmasters are used to handle dogs of war.";
 		this.m.GoodEnding = "Dogs were not simply \'hounds\' to %name%, despite %their% title as \'houndmaster.\' To %them%, they were the most loyal friends of %their% life. After leaving the company, %they% discovered an ingenious way to breed the animals specifically tailored to the desires of the nobility. Wanted a brutish beast for a guard dog? %They% could do it. Wanted something small and cuddly for the children? %They% could do that, too. The former mercenary now earns an incredible earning doing what %they% loves - working with dogs.";
 		this.m.BadEnding = "What\'s merely a hound to one man is a loyal beast to %name%. After leaving the company, the houndmaster went out to work for the nobility. Unfortunately, %they% refused to let hundreds of %their% dogs be used as a battle vanguard to be thrown away for some short-lived tactical advantage. %They% was hanged for %their% \'traitorous ideals\'.";
-		this.m.HiringCost = 85;
-		this.m.DailyCost = 11;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),

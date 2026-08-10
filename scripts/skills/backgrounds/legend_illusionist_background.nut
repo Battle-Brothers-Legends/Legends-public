@@ -5,8 +5,6 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendIllusionist);
 		this.m.Icon = "ui/backgrounds/background_wizard.png";
 		this.m.Name = "Illusionist";
-		this.m.HiringCost = 1000;
-		this.m.DailyCost = 20;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

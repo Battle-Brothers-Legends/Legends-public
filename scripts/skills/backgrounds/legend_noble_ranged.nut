@@ -6,8 +6,6 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNobleRanged);
 		this.m.Name = "Arbalester";
 		this.m.Icon = "ui/backgrounds/background_nobleranged.png";
-		this.m.HiringCost = 900;
-		this.m.DailyCost = 35;
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

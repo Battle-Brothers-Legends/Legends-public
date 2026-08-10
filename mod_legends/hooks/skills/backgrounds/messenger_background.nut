@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Messengers are used to long and tiring travels.";
 		this.m.GoodEnding = "The oddity of having %name% the messenger in your band did not seem so strange after %they% showed %themselves% to be a killer sellsword. As far as you know, %they%\'s still with the company, preferring the march of a mercenary to that of a messenger. You don\'t blame %them%: an errand %child% must bend the knee to every nobleman %they% comes across, but in the company of sellswords %they%\'ll no doubt get the occasional chance to kill one of them bastards. Not a hard trade off to accept!";
 		this.m.BadEnding = "%name% the messenger departed the %companyname% and returned to being an errand %child% for the letters of lieges. You tried to find out where the %person% had gone to and eventually tracked %them% down - or what was left of %them%. Unfortunately, \'don\'t shoot the messenger\' is not an adage well followed in these fractured lands.";
-		this.m.HiringCost = 80;
-		this.m.DailyCost = 9;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

@@ -6,8 +6,6 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNecrosavant);
 		this.m.Icon = "ui/backgrounds/background_vampire.png";
 		this.m.Name = "Necrosavant";
-		this.m.HiringCost = 1000;
-		this.m.DailyCost = 20;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

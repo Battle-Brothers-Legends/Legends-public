@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Farmhands are used to hard physical labor.";
 		this.m.GoodEnding = "The former farmhand, %name%, retired from the %companyname%. The money %they% made was put toward purchasing a bit of land. %They% spends the rest of %their% days happily farming and starting a family with way too many children.";
 		this.m.BadEnding = "The former farmhand, %name%, soon left the %companyname%. %They% purchased a bit of land out {south | north | east | west} and was doing quite well for %themselves% - until noble soldiers hanged %them% from a tree for refusing to hand over all %their% crops.";
-		this.m.HiringCost = 90;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

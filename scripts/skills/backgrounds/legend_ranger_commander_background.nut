@@ -9,8 +9,6 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 		this.m.BackgroundDescription = "Rangers are expert trackers and archers, used to hunting prey of any kind";
 		this.m.GoodEnding = "While the %companyname% continued on with great success, %name% the ranger eventually saw fit to leave it all behind. %They% returned to the forests and fields, hunting deer and small game. %They% rarely showed the grim reality of hunting humans, but you have to imagine %they%\'d just rather stop doing it. As far as you know, %they're% doing well for %themselves% these days. %They% purchased a bit of land and helps guide nobles on pricy hunting trips.";
 		this.m.BadEnding = "With the decline of the %companyname% readily obvious, %name% the ranger departed from the company and returned to game hunting. Unfortunately, a hunting trip with a nobleman went awry when the lord was gored through both cheeks by a boar. The hunter, fearing %they%\'d be blamed, shot by the nobleman and his guard and fled through the forests on %their% own. %They% has not been seen since.";
-		this.m.HiringCost = 12000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.Weasel),

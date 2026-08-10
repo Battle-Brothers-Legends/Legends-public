@@ -9,8 +9,6 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundDescription = "A learned surgeon from the south, their knowledge of medicine outstrips those of the oldest monks and witches.";
 		this.m.GoodEnding = "After finding near limitless work with %companyname%, %name% managed to hone their craft with every battle that passed. Their experience on the battlefield and cutting open more \'animated\' subjects left them with new ideas, which culminated in a book that was printed and reprinted for many years after %their% passing.";
 		this.m.BadEnding = "%name% was a quick learner, but not qucker than the arrows, bolts, shrapnel and other assortment of dangers on the battlefield. After you left, %they% steadily accumulated injury after injury. Interrupted by expermintation on themselves to restore their mind and body. After one injury too many, they drank every mixture they could prepare to numb the pain. It worked, but not as %they% intended...";
-		this.m.HiringCost = 0; //Found via holy war
-		this.m.DailyCost = 45;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

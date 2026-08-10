@@ -9,8 +9,6 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";
 		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often %they% appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
 		this.m.BadEnding = "You heard that %name%, the cultist, left the company at some juncture and went out to spread the faith. There\'s no telling what became of the fanatic, but there was a recent inquisition against unholy faiths and hundreds of \'folk in dark cloaks with even darker intentions\' were burned at the stake across the realm.";
-		this.m.HiringCost = 250;
-		this.m.DailyCost = 27;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

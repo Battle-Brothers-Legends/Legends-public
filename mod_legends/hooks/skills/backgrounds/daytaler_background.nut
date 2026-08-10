@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Daytalers are used to all kinds of physical work, but don\'t excel in any.";
 		this.m.GoodEnding = "%name% the daytaler retired from fighting and, well, %they% keeps working with %their% hands. Now %they're% back to laying bricks and carrying hay instead of slaying beasts and crushing heads. %They% took all %their% mercenary money to purchase a bit of land and settle down. While not the richest %person%, word has it that there is hardly a happier %person% in the realm.";
 		this.m.BadEnding = "%name% retired from fighting while %they% still had most of %their% fingers and toes intact. %They% went back to working for the nobility. Last you heard %they% was out {south | north | east | west} building a great tower for some nobleman. Sadly, you also heard that tower collapsed halfway through its construction with many workers going down with it.";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 6;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.HateBeasts),

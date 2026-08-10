@@ -9,8 +9,6 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 		this.m.BackgroundDescription = "The backbone of the Empire, the legionary sees horrors far and wide — and now travels those lands as one.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

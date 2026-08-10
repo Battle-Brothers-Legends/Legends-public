@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Caravan hands are used to long and exhausting travels.";
 		this.m.GoodEnding = "%name% the once-caravan hand retired from fighting. %They% used %their% mercenary money to start a trade-guarding business that specializes in transporting goods through dangerous lands.";
 		this.m.BadEnding = "%name% the caravan hand retired back into guarding trade wagons. %They% died when defending against a brigand ambush. They took %their% shirt and left %their% body in a ditch.";
-		this.m.HiringCost = 75;
-		this.m.DailyCost = 8;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

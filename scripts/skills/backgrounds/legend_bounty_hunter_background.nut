@@ -9,8 +9,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundDescription = "Bounty Hunters are solitary in nature who prefer more direct means to that of assassins. Anyone who is brave enough to walk the roads and take coin alone is either a fool or has more than meets the eye to them";
 		this.m.GoodEnding = "%name% stayed with the company a while longer after you left, eventually retiring to a quieter life. %They% settled in the mountains and discovered a hidden talent for raising wolves. %They% lived a long life separated from those %they% once hunted, surrounded by a new family of %their% own.";
 		this.m.BadEnding = "Like the shifting sands, %name% quickly moved elsewhere after the company collapsed. %They% found it difficult to return to %their% craft after making so many enemies in both the north and the south. Standing alone once again, one too many killers sent in the night eventually wore %them% down. Like %their% past, %they% simply vanished into the background.";
-		this.m.HiringCost = 500; //Equipment will factor into cost and these guys can be quite well equipped
-		this.m.DailyCost = 55;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

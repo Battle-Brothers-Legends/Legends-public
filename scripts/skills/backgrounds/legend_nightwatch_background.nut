@@ -9,8 +9,6 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.BackgroundDescription = "The night watch are an unlucky few chosen to break up fights and keep towns lawful at the worst time of the day.";
 		this.m.GoodEnding = "%name% found themselves quite comfortable within the darkness, mingling with the company and learning many valuable skills. After %they% retired from service, %they% joined with a group of beast hunters that sought to hunt down the horrors of the night. Last you heard, %they% have been doing quite well for themselves. Able to spot and expel an alp from a village without breaking a sweat.";
 		this.m.BadEnding = "After many sleepless nights, remembering the horrors %they% faced within the company, %Name% returned to %their% village and became a night watchman once more. Unfortunately, a few days later %they% were found dead at their post. %Their% eyes shut, yet face contorted into a look of horror. Not a single villager heard any commotion during the night, but one reported seeing a pale figure stalking off in the moonlight.";
-		this.m.HiringCost = 120;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

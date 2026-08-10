@@ -9,8 +9,6 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundDescription = "Donkeys are generally patient and deliberate in their actions. Can\'t use weapons, shields, ammunition or armor. The donkey does not seem bothered by these limitations. %They% has a huge appetite and will eat anything. Better bring extra provisions and expect %them% to leave fast if you ever run out of provisions entirely.";
 		this.m.GoodEnding = "%name% the donkey retired to a lovely green paddock. %They% spent their days loafing about and eating carrots fed to %them% by local children.";
 		this.m.BadEnding = "%name% the donkey was sold to a foul-tempered trader who did not spare the rod. Their caravan was attacked by orcs and the remains of %name% were never found.";
-		this.m.HiringCost = 5000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),

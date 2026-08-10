@@ -6,8 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist);
 		this.m.Name = "Cultist";
 		this.m.Icon = "ui/backgrounds/background_34.png";
-		this.m.HiringCost = 45;
-		this.m.DailyCost = 4;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.Bright),

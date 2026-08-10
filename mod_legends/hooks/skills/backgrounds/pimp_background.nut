@@ -5,8 +5,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Pimp);
 		this.m.Name = "Pimp";
 		this.m.Icon = "ui/backgrounds/background_56.png";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 6;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

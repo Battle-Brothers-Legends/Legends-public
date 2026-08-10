@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "A miner will be used to physical labor, but breathing in the dusty air of the mines may have taken a toll on %their% health over the years.";
 		this.m.GoodEnding = "%name% the miner never did return to the mines, thankfully. If there\'s one life that could be worse than that of fighting for a living, it very well may be digging into mountains for a living! Apparently, the miner built a home by the sea, spending the rest of %their% days peacefully fishing for dinner and enjoying sunrises or some such sappy shite.";
 		this.m.BadEnding = "If there\'s one life that\'s more rough than that of being a sellsword, it is that of being a miner. Sadly, %name% returned to that life, going back into the mines to dig out metals and ores to fill some rich man\'s pockets. A recent earthquake collapsed many such mines. You\'re not sure if the ol\' %sibling% survived, but it\'s looking pretty grim.";
-		this.m.HiringCost = 75;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

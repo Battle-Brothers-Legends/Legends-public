@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Witchhunters tend to have some martial experience, and their resolve often remains unbroken even in the face of unspeakable horror.";
 		this.m.GoodEnding = "%name% the witchhunter eventually heard word of evil spreading in northern villages. %They% departed the %companyname% and has been burning those horrid witches at the stake ever since.";
 		this.m.BadEnding = "Word of evil spreading in the north drew %name% the witchhunter from the company. %They% departed with stakes, vials of strange liquids, and a lot of kindling. A month later a peasant found %them% wandering the northern wastes with %their% eyes gouged out and %their% mouth sewn shut. %They% had a strange symbol ironed into %their% chest and when the peasant touched it both %people% exploded.";
-		this.m.HiringCost = 325;
-		this.m.DailyCost = 21;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

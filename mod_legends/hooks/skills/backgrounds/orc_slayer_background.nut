@@ -6,8 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.OrcSlayer);
 		this.m.Name = "Orc Slayer";
 		this.m.Icon = "ui/backgrounds/background_55.png";
-		this.m.HiringCost = 200;
-		this.m.DailyCost = 25;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

@@ -6,13 +6,7 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNecro);
 		this.m.Icon = "ui/backgrounds/warlock_02.png";
 		local r = this.Math.rand(0, 3);
-
-
 		this.m.Name = "Warlock";
-
-
-		this.m.HiringCost = 20000;
-		this.m.DailyCost = 50;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

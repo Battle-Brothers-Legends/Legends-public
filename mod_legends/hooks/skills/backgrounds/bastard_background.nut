@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Bastards often have profited from some training in melee fighting and know the weaknesses of noble armies.";
 		this.m.GoodEnding = "{%name%, the bastard son of a familially inconsiderate nobleman, departed the %companyname% to try to carve out his own family lineage. The last you heard, he\'d managed to acquire himself a good plot of land and a modest stone castle rests on it. While successful, he still harbors resentment for his family. | A bastard son of a nobleman, %name% couldn\'t help but always have that lingering feeling he just didn\'t belong in this world. But the %companyname% gave him a brotherhood to call family. As far as you know, he still fights with the company to this day.}";
 		this.m.BadEnding = "Bastards like %name% usually don\'t get far in this world. They\'re too hated in the highborn world in which they live, and hated by the lowborn because they don\'t understand the politics that would make a bastard more common to them than any nobleman. Not long after you left the company, you got wind of %name%\'s passing. Apparently, a young and cruel lord took over his noble house and saw the bastard as a threat to his throne. Despite the bastard wanting nothing to do with that life anymore, it managed to catch up with him anyway. He was assassinated in a tavern bed, his throat cut as he slept.";
-		this.m.HiringCost = 170;
-		this.m.DailyCost = 21;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Ailing),

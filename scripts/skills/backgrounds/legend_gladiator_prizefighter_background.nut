@@ -6,8 +6,6 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		this.m.Name = "Gladiator Prizefighter";
 		this.m.Icon = "ui/backgrounds/background_gladiator_prizefighter.png";
 		this.m.BackgroundDescription = "Gladiator Prizefighters cost a lot of coin, but their time exchanging punches in the arena has made them tough as nails and fit as a butcher\'s dog.";
-		this.m.HiringCost = 550; // higher to offset the cheaper gear
-
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,

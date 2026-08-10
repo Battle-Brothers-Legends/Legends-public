@@ -9,8 +9,6 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundDescription = "Battle Sisters are warrior women trained by the inquisition to fight and destroy evil.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 160; //currently cannot recruit battle sisters - will update in inq. origin update - Luft
-		this.m.DailyCost = 18;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

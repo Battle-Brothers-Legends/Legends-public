@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "A killer on the run may kill again, and %they% knows where to aim.";
 		this.m.GoodEnding = "Always a risk taker, you accepted %name% into the %companyname%\'s ranks despite %them% being a killer on the run. It worked in your favor as %they% proved %themselves% an able and brave sellsword. As far as you know, %they% is still with the company, thoroughly enjoying every \'business\' opportunity it affords %them%.";
 		this.m.BadEnding = "While many doubted the risk of hiring a killer on the run such as %name%, the %person% did prove %themselves% a very capable sellsword. Unfortunately, an old life never trails far behind and bounty hunters kidnapped %them% in the night. You can find %their% skeleton squatting in a gibbet fifty feet in the air.";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 6;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

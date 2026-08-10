@@ -9,8 +9,6 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundDescription = "An old soldier, maimed by some forgettable past conflict, waits for another war that may never come.";
 		this.m.GoodEnding = "A former militia recruit such as %name% eventually left the %companyname%. Traveling the lands, visiting villages and helping %them% establish credible militias with which to defend %themselves%. Finding success in an increasingly dangerous world, %name% eventually came to be a known name, called upon as a sort of \'fixer\' to come and ensure these villages would remain safe. Last you heard, %name% had purchased a plot of land and was raising a family far from the strife of the world.";
 		this.m.BadEnding = "%name% left the collapsing company and returned to the village. Back in the militia, it wasn\'t long until {greenskins | raiders} attacked and the militia was called to action. It\'s said that %name% stood tall, rallying the defense while slaying through countless enemies before succumbing to mortal wounds. When you visited the village, you found children playfighting beneath a statue made in the %name%\'s image.";
-		this.m.HiringCost = 130;
-		this.m.DailyCost = 15;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Swift),

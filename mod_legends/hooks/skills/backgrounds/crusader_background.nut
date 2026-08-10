@@ -6,8 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Crusader);
 		this.m.Name = "Crusader";
 		this.m.Icon = "ui/backgrounds/background_54.png";
-		this.m.HiringCost = 200;
-		this.m.DailyCost = 23;
 		this.m.Titles = [
 			"the Exalted",
 			"the Crusader",

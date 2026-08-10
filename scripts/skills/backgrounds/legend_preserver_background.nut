@@ -9,8 +9,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BackgroundDescription = "Preservers practice the art of anatomy over resurrection - taking a more scientific approach to how dead things work.";
 		this.m.GoodEnding = "As time went on, %name% found work not too far from where they once grew up. The local village needed a new herbalist to heal the sick and tend to the wounded coming back from the wars. %name% occasionally recognised some of the casualties that ended up in her hut as a few of those who got away in the past. Thankfully they did not have the same attention to detail.";
 		this.m.BadEnding = "%name% continued to move with the company for some time. As time went on their interest in the sciences around the dead shifted more from the living and further towards the dead. Living in a graveyard with a few puppets for company, %name% was eventually subdued and burnt at the stake by a mercenary company sent to clear the graveyard.";
-		this.m.HiringCost = 1200000000000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

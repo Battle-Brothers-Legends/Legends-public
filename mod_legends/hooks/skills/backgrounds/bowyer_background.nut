@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Bowyers tend to have some knowledge about how to use the ranged weaponry they used to craft.";
 		this.m.GoodEnding = "While at a jousting tournament, a young %child% was using an oddly shaped, yet perfectly crafted bow. %Their% aiming hand was shaky, yet the arrows did not wobble upon being loosed. After %they% won the competition, you inquired about where the %child% had gotten such an incredible bow. %They% stated that a bowyer by the name of %name% had crafted it. Apparently, %they're% known for making the finest bows in all the land!";
 		this.m.BadEnding = "After you left the %companyname%, you sent a letter inquiring about the status of %name% the bowyer. You got word that he had discovered a way to craft the finest bow possible and, instead of giving this secret to the company, he departed to start his own business. He did not get far: whatever he had learned about his trade died with him on a muddy road out {north | south | west | east} of here, his body ironically skewered with what is said to have been a dozen arrows.";
-		this.m.HiringCost = 80;
-		this.m.DailyCost = 8;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

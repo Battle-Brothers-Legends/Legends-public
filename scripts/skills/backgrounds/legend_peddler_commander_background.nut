@@ -10,8 +10,6 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.BackgroundDescription = "Merchants were held in high regard and powerful people, they could bankroll armies or buy entire estates if they had the reason to do so.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 10000;
-		this.m.DailyCost = 0; //avatar
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

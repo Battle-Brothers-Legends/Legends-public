@@ -9,8 +9,6 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

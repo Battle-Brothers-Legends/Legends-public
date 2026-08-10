@@ -5,8 +5,6 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 		this.legend_conscript_background.create();
 		this.m.Name = "Conscript Gunner";
 		this.m.Icon = "ui/backgrounds/background_ranged_conscript.png";
-		this.m.HiringCost = 100; //this is less than normal (300) because the handgonne is 3k value and that is being added to the recruit cost along with other equipment. Combined with extra levels and other recruiting rules they are being generated with a ~20k hire cost.
-		this.m.DailyCost = 35;
 		this.m.DailyCostMult = 1.0;
 
 		this.m.PerkTreeDynamic = {

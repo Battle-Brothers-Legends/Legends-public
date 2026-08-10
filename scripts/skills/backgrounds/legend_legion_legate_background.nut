@@ -9,8 +9,6 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
 		// this.m.GoodEnding = ""; //to do
 		// this.m.BadEnding = ""; //to do
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

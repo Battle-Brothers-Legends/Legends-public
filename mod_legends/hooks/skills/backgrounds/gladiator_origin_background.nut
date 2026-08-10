@@ -3,7 +3,6 @@
 	o.create = function ()
 	{
 		this.gladiator_background.create();
-		this.m.DailyCost = 50;
 		this.m.DailyCostMult = 1.0;
 	}
 

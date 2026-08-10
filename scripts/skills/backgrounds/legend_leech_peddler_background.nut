@@ -9,8 +9,6 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundDescription = "Leech peddlers are of questionable mindset at the best of times, but their unusual remedies often help those who cannot afford a real healer.";
 		this.m.GoodEnding = "%name% continued %their% bizarre adventure after you left %companyname%, soon after %they% made %their% way back to the swamps in search of new 'pets'. %They% happened to bump into a {wildwoman | wildman} who was almost as deranged as %they% is. %They% quickly formed a bond and it is said %they% adopted children and now leave peacefully in the swamp. However you suspect said children are really just more leeches.";
 		this.m.BadEnding = "%name% went off to join another mercenary company in a large city somewhere. %They% traveled with what is said to be a witch hunter and a small boy. What became of %name% is unknown at that point - some say they were killed... or worse.";
-		this.m.HiringCost = 45;
-		this.m.DailyCost = 6;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Swift),
 			::Legends.Traits.getID(::Legends.Trait.Brave),

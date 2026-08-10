@@ -9,8 +9,6 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundDescription = "Taxidermists are good at gutting beasts, but not fighting them.";
 		this.m.GoodEnding = "What was a taxidermist doing in a mercenary company? A good question, but %name% got so much practice collecting trophies he became one of the most skilled taxidermists in the land. After a few good years in the company, he eventually left to start up a business creating trinkets from rare beasts. His name is world-renowned, well, the known-world-renowned, and he gets so much business he\'s making a very different killing these days.";
 		this.m.BadEnding = "A taxidermist at heart, it didn\'t take much to compel %name% to bail from the quickly sinking company. He left to go start a business, but was kidnapped along the way by a group of brigands. When they threatened to kill him, he pretended to be a simple and weak taxidermist and showed his talents in creating trinkets. Impressed, the superstitious outlaws took him into their band. A few days later they were all dead and this \'meek\' man walked out of their camp with a bit of red on him. He started his business a week later and is doing well to this day.";
-		this.m.HiringCost = 250;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),

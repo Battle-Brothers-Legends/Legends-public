@@ -5,8 +5,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.PacifiedFlagellant);
 		this.m.Name = "Pacified Flagellant";
 		this.m.Icon = "ui/backgrounds/background_13.png";
-		this.m.HiringCost = 60;
-		this.m.DailyCost = 5;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Tough),

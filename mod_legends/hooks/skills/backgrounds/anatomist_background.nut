@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Part scientist and part surgeon, Anatomists are unaccustomed to battle but well served by steady hands.";
 		this.m.GoodEnding = "Out of all the %people% you came to know in the %companyname%, it was %name% the anatomist who is perhaps the most difficult to forget. An unending stream of letters only helps ensure you never will. You skim over %their% latest, one-sided correspondence: \"Captain! I\'ve managed to...\" skimming, skimming, \"...the greatest invention! The most...\" skimming, skimming. \"I\'m going to be famous! My brain will be studied for its weight is surely...\" Nothing new, it seems, though you are glad %they're% still in good health, albeit perhaps more so in body than mind.";
 		this.m.BadEnding = "Having fled the %companyname%, %name% the anatomist continued %their% studies elsewhere. %They% was admonished by %their% peers for venturing out in such an uncouth manner and found %themselves% suffering in intellectual mediocrity. Some years later, %they% made a small contribution to the study of beetles after which %they% promptly threw %themselves% off a seaside cliff, donating %their% brain to the rocks and %their% body to the ocean.";
-		this.m.HiringCost = 130;
-		this.m.DailyCost = 12;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.Ailing),

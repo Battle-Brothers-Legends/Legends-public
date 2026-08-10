@@ -9,8 +9,6 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 		this.m.BackgroundDescription = "An official or administrator with some standing to someone who\'s name and title is unknown to you.";
 		this.m.GoodEnding = ""; //to do
 		this.m.BadEnding = ""; //to do
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "An assassin has to be quick on %their% feet and skilled with the use of weapons.";
 		this.m.GoodEnding = "%name% the assassin departed the %companyname% with a large chest of gold and traveled far away. From what rumors you\'ve heard, %they% built a castle in the mountains east of the southern kingdoms. You\'re not sure if it\'s true, but there\'s been a steady increase in dead viziers and lords alike as of late.";
 		this.m.BadEnding = "%name% disappeared not long after your retirement from the %companyname%. The assassin presumably does not want to be found and there\'s no telling where %they% is. In moments of honesty, you tell others you wished you never hired %them% at all. You just can\'t shake the terror that it is you %they% is stalking and hunting, and you spend many nights with one eye open, looking for the %person% in black with the crooked dagger.";
-		this.m.HiringCost = 800;
-		this.m.DailyCost = 25;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

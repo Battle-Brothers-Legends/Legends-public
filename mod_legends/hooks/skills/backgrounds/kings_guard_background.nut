@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "";
 		this.m.GoodEnding = "You thought %name% a simple peasant when you found him freezing in the wastes of the north. As it turned out, he was very much a King\'s Guard, not only in title but in action. He fought like a man protecting his liege from the world at large. Thankfully, for a time, that \'liege\' happened to be you. Last you heard he traveled to the southern realms and is protecting an upstart nomad king trying to overthrow the local Viziers.";
 		this.m.BadEnding = "You never truly found out which king %name% supposedly \'guarded\' in his days before joining the %companyname%, but it matters not now. After your abrupt retirement, the King\'s Guard took himself to the southern deserts. He served a Vizier for a time but failed to protect the royal from a concubine\'s poison. For punishment, %name%\'s equipment was melted into a pot and poured down his throat.";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 30;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;

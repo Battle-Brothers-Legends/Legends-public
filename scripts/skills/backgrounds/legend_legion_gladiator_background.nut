@@ -9,8 +9,6 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.BackgroundDescription = "A leader to few, a slave of many.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0;
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [

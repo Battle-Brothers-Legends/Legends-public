@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Anyone that\'s been in the militia will have received at least some basic training in matters of combat.";
 		this.m.GoodEnding = "A former militiaman such as %name% eventually left the %companyname%. %They% traveled the lands, visiting villages and helping them establish credible militias with which to defend themselves. Finding success in an increasingly dangerous world, %name% eventually came to be a known name, called upon as a sort of \'fixer\' to come and ensure these villages would remain safe. Last you heard, %they're% purchased a plot of land and was raising a family far from the strife of the world.";
 		this.m.BadEnding = "%name% left the collapsing company and returned to %their% village. Back in the militia, it wasn\'t long until {greenskins | raiders} attacked and %they% was called to action. It\'s said that %they% stood tall, rallying the defense as %they% slew through countless enemies before succumbing to mortal wounds. When you visited the village, you found children playfighting beneath a statue made in the militiaman\'s image.";
-		this.m.HiringCost = 85;
-		this.m.DailyCost = 14;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

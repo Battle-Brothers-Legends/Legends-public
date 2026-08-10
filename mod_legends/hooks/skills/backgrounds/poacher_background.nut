@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Poachers tend to have some skill in using bow and arrow to hunt down rabbits and the like.";
 		this.m.GoodEnding = "%name%, former poacher, eventually saved enough money to leave the %companyname%. You learned %they% found a bit of mountain land and works it for a local nobleman. Ironically, %their% job is to hunt down poachers.";
 		this.m.BadEnding = "No longer seeing the point in risking %their% life for so few crowns, %name% the former poacher put down the sellsword\'s life and returned to unlawfully hunting deer in the woods. A nobleman once offered you a good satchel of crowns to specifically hunt the %person% down. You declined the offer, but the writing was on the wall: %their% days are numbered.";
-		this.m.HiringCost = 100;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),

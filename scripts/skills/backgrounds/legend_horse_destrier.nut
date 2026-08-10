@@ -8,8 +8,6 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 		this.m.BackgroundDescription = "Despite being so highly prized by fighting men they are also called Great Horses, not all knights can afford them over courser, and rare indeed is the non-Noble riding one";
 		this.m.GoodEnding = "A marvel of a fighting horse, %name% the Destrier was retired to horse breeder, where he was treated lavishly as he helped father the next generation of living engines-of-war";
 		this.m.BadEnding = "%name% the horse was sold to a trader, their caravan was attacked by orcs and the remains of %name% were never found";
-		this.m.HiringCost = 55000;
-		this.m.DailyCost = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),

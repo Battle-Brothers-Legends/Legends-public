@@ -6,8 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Companion2h);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 12;
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

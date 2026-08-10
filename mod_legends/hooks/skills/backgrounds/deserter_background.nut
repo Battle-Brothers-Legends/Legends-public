@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Deserters have received some martial training, but usually aren\'t eager to put it to use.";
 		this.m.GoodEnding = "%name% the deserter continued fighting for the %companyname%, ever striving to redeem %their% name. Word has it that during a brutal fight with orcs, %they% dove headfirst into a crowd of greenskins, surfing across the top of their shocked heads. %Their% heroism rallied the men to an incredible victory and %they% lives out %their% days getting toasted in every bar %they% enters.";
 		this.m.BadEnding = "You heard %name% the deserter actually renewed %their% title and fled a battle the %companyname% had with some greenskins. Goblins caught %them% out in the woods and turned %their% head into a goblet for an orc warlord.";
-		this.m.HiringCost = 85;
-		this.m.DailyCost = 11;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Impatient),

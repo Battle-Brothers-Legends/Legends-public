@@ -9,8 +9,6 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundDescription = "Puppet masters are warlocks in training. While they do not understand the raising or preservation of the dead, they do excel at controlling them.";
 		this.m.GoodEnding = "%name% continued to practice their control over immortal objects for some time after mastering the basics from their time with the company. Given time they slowly strayed further and further from mortal company and surrounded themselves with marionettes of their own making — it didn\'t take long for them to muster a court of silent friends and comrades that agreed with their every word and whim. %name% had found a place where they could belong, even if the road to get here was paved with darker intentions.";
 		this.m.BadEnding = "%name% gradually detached from reality as their powers grew, forming their own as the world around them fell apart. Living or dead — it no longer mattered to him. %name% left quietly one night with a small group of his puppets, only to realise that when you are cold and alone, a brutal overseer has few friends when he needs them most.";
-		this.m.HiringCost = 1200000000000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),

@@ -9,8 +9,6 @@
 		this.m.BackgroundDescription = "Gravediggers are used to physical labor and handling the dead.";
 		this.m.GoodEnding = "With the great successes of the %companyname%, %name% the gravedigger got continued practice in his trade. As the crowns began to stack, he eventually left the company and returned to the graveyards. Last you heard, he had retired to digging holes again and was happily raising a family of sextons.";
 		this.m.BadEnding = "The way you heard things, %name% the gravedigger was one of the last men to leave the %companyname%. With hardly a crown to his name, he slipped hard into drinking and last you heard his body was found in a muddied gully.";
-		this.m.HiringCost = 50;
-		this.m.DailyCost = 5;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

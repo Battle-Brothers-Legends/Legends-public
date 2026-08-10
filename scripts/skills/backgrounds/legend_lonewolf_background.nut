@@ -9,8 +9,6 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BackgroundDescription = "You\'ve come this far. Is it worth it? What are a few more heads on the pile in the pursuit of satisfaction?";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 0;
-		this.m.DailyCost = 0; //Avatar
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

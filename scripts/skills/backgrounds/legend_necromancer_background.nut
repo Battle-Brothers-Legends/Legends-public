@@ -6,8 +6,6 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.LegendNecromancer);
 		this.m.Icon = "ui/backgrounds/background_necromancer_4.png";
 		this.m.Name = "Necromancer";
-		this.m.HiringCost = 1000;
-		this.m.DailyCost = 20;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

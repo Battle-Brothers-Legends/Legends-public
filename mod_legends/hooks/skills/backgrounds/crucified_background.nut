@@ -6,7 +6,6 @@
 		this.m.ID = ::Legends.Backgrounds.getID(::Legends.Background.Crucified);
 		this.m.Name = "Converted Crusader";
 		this.m.Icon = "ui/backgrounds/background_65.png";
-		this.m.DailyCost = 30;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),

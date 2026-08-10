@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";
 		this.m.GoodEnding = "%name% the sellsword left the %companyname% and started %their% own mercenary company. As far as you know, it\'s a very successful venture and %they% often buddies up with the men of the %companyname% to work together.";
 		this.m.BadEnding = "%name% left the %companyname% and started %their% own competing company. The two companies clashed on opposite sides of a battle between nobles. The sellsword died when a mercenary from the %companyname% stove %their% head in with a hedge knight\'s helmet.";
-		this.m.HiringCost = 100;
-		this.m.DailyCost = 35;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),

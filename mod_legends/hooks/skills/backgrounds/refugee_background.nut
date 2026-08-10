@@ -8,8 +8,6 @@
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";
 		this.m.GoodEnding = "%name% the refugee showed %themselves% to be a natural fighter, but %they% eventually retired from the %companyname%. Word has it %they% returned to %their% home and is currently using all %their% crowns to help rebuild it.";
 		this.m.BadEnding = "With the downfall of the %companyname% written plainly on the wall, %name% the refugee split with the company. %They% used what scant crowns %they% had left to purchase a set of shoes and returned to %their% destroyed home to try and rebuild it. While walking home, an illiterate wildman murdered %them% and ate the shoes.";
-		this.m.HiringCost = 40;
-		this.m.DailyCost = 4;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Impatient),
 			::Legends.Traits.getID(::Legends.Trait.IronJaw),
