@@ -408,9 +408,9 @@
 	]
 }
 
-::Const.World.Spawn.WitchunterMercenaries <-
+::Const.World.Spawn.WitchhunterMercenaries <-
 {
-	Name = "WitchunterMercenaries",
+	Name = "WitchhunterMercenaries",
 	IsDynamic = true,
 	MovementSpeedMult = 1.0,
 	VisibilityMult = 1.0,
@@ -459,9 +459,9 @@
 	]
 }
 
-::Const.World.Spawn.Witchunters <-
+::Const.World.Spawn.Witchhunters <-
 {
-	Name = "Witchunters",
+	Name = "Witchhunters",
 	IsDynamic = true,
 	MovementSpeedMult = 1.0,
 	VisibilityMult = 1.0,

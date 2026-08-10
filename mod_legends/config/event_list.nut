@@ -104,7 +104,7 @@
 }
 
 ::Legends.EventList.changeMoralReputation <- function (_value, _actually_change_value = true) {
-	local amount = ::Math.min(2, ::Math.abs(_value) / 2); // 1 <- "sligthly", 2,3 <- "", 4+ <- "greatly"
+	local amount = ::Math.min(2, ::Math.abs(_value) / 2); // 1 <- "slightly", 2,3 <- "", 4+ <- "greatly"
 	if (_actually_change_value)
 		::World.Assets.addMoralReputation(2);
 	return {
