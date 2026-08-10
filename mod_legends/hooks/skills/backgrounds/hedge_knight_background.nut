@@ -135,9 +135,9 @@
 		this.m.AlreadyUsed = true;
 
 		local executeFollowup;
-		executeFollowup = (function( _tag ) {
+		executeFollowup = (function( _retries ) {
 			local actor = this.getContainer().getActor();
-			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == this.Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
+			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
 				this.m.AlreadyUsed = false;
 				return;
 			}
@@ -153,16 +153,21 @@
 
 			local targetsAreMovingInvoluntarily = false;
 
-			for (local i = 0; i != 6; i = ++i) {
+			for (local i = 0; i < 6; i++) {
 				if (tile.hasNextTile(i)) {
 					local next = tile.getNextTile(i);
 
-					if (next.IsOccupiedByActor && this.Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()	&& AOO.onVerifyTarget(tile, next)) {
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer() && AOO.onVerifyTarget(tile, next)) {
 						local entity = next.getEntity();
-						if (entity.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
+						if (::Legends.S.isEntityNullOrDead(entity)) {
+							continue;
+						}
+
+						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
 							targetsAreMovingInvoluntarily = true;
 							break;
 						}
+
 						if (AOO.onVerifyTarget(tile, next)) {
 							targetTiles.push(next);
 						}
@@ -171,7 +176,11 @@
 			}
 
 			if (targetsAreMovingInvoluntarily) {
-            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _tag);
+				if (_retries > 20) {
+                    this.m.AlreadyUsed = false;
+                    return; 
+                }
+            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
             	return;
         	}
 
@@ -184,7 +193,7 @@
 			AOO.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
 			this.m.ExecutingAttack = false;
 		}).bindenv(this);
-		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, this);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
 	}
 
 	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
