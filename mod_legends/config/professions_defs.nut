@@ -197,8 +197,8 @@ professionDefObjects.push({
     Icon = "ui/professions/butcher_barber.png",
     IconDisabled = "ui/professions/butcher_barber_bw.png",
     Const = "LegendButcherBarber",
-    ScalingArray = [0, 1], // NEEDS A SECONDARY SCALING EFFECT
-    ScalingFactor = 0
+    ScalingArray = [0, 0.1], // chance to lower the magnitude of gained permanent injury
+    ScalingFactor = 0.05
 });
 
 ::Legends.Profession.LegendCarouser <- null;

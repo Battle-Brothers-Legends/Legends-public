@@ -212,6 +212,77 @@
 	}
 ];
 
+::Const.Injury.PermanentMajor <- [
+	{
+		ID = "injury.missing_eye",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/missing_eye_injury"
+	},
+	{
+		ID = "injury.brain_damage",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/brain_damage_injury"
+	},
+	{
+		ID = "injury.broken_knee",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/broken_knee_injury"
+	},
+	{
+		ID = "injury.weakened_heart",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/weakened_heart_injury"
+	},
+	{
+		ID = "injury.collapsed_lung_part",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/collapsed_lung_part_injury"
+	},
+	{
+		ID = "injury.broken_elbow_joint",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/broken_elbow_joint_injury"
+	},
+	{
+		ID = "injury.missing_hand",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/missing_hand_injury"
+	},
+];
+
+::Const.Injury.PermanentLesser = [
+	{
+		ID = "injury.missing_nose",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/missing_nose_injury"
+	},	
+	{
+		ID = "injury.missing_ear",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/missing_ear_injury"
+	},
+	{
+		ID = "injury.traumatized",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/traumatized_injury"
+	},
+	{
+		ID = "injury.missing_finger",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/missing_finger_injury"
+	},
+	{
+		ID = "injury.maimed_foot",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/maimed_foot_injury"
+	},
+	{
+		ID = "injury.legend_scarred_injury",
+		Threshold = 0.50000000,
+		Script = "injury_permanent/legend_scarred_injury"
+	}
+];
+
 ::Const.Injury.PermaInjuryToProsthetic <- {};
 ::Const.Injury.PermaInjuryToProsthetic["injury.broken_elbow_joint"] <- "trait.legend_prosthetic_forearm";
 ::Const.Injury.PermaInjuryToProsthetic["injury.broken_knee"] <- "trait.legend_prosthetic_leg";

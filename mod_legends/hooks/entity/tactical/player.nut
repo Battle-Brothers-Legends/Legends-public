@@ -588,6 +588,10 @@
 		if("Assets" in ::World && ::World.Assets != null) {
 			this.getCurrentProperties().SurviveWithInjuryChanceMult *= (1 + ::World.Assets.m.ProfessionEffect.LegendFieldSurgery);
 			::World.Assets.m.IsSurvivalGuaranteed = (::World.Assets.m.ProfessionEffect.LegendButcherBarber > 0); // using this so there's no need to hook the entire thing and the flag is only used for this anyway so no need to revert to original value after
+
+			if (::World.Assets.m.ProfessionEffect.LegendButcherBarber > 0 && ::Math.rand(1, 100) <= ::World.Assets.m.ProfessionEffect.LegendButcherBarber) {
+				::Const.Injury.Permanent = ::Const.Injury.PermanentLesser;
+			}
 		}
 		// call the original
 		local result = isReallyKilled(_fatalityType);
