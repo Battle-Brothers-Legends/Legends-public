@@ -220,10 +220,9 @@ this.camp_manager <- {
 	 * Callback function for UI, called on encounter icon click
 	 */
 	function onEncounterClicked (_i, _townScreen) {
-		::World.Encounters.fireCampEncounter(this.m.CampEncounters.filter(@(_,_enc) (_enc.isVisible()))[_i]);
-		if (_i > 0) { // 1st are tips, don't remove them
-			this.m.CampEncounters.remove(_i);
-		}
+		local selectedEncounter = this.m.CampEncounters.filter(@(_, _enc) _enc.isVisible())[_i];
+		::World.Encounters.fireCampEncounter(selectedEncounter);
+    	this.m.CampEncounters.remove(this.m.CampEncounters.find(selectedEncounter));
 	}
 
 	function assignRepairs()

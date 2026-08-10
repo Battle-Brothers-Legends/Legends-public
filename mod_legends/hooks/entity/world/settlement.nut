@@ -1142,8 +1142,9 @@
 	}
 
 	o.onEncounterClicked <- function(_i, _townScreen){
-		::World.Encounters.fireEncounter(this.m.SettlementEncounters.filter(@(_,_enc) (_enc.isVisible()))[_i]);
-		this.m.SettlementEncounters.remove(_i);
+		local selectedEncounter = this.m.SettlementEncounters.filter(@(_, _enc) _enc.isVisible())[_i];
+		::World.Encounters.fireEncounter(selectedEncounter);
+    	this.m.SettlementEncounters.remove(this.m.SettlementEncounters.find(selectedEncounter));
 	}
 
 	/**
