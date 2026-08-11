@@ -19,6 +19,13 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
 	this.mProfessionTree = null;
 	this.mProfessionRows = [];
 
+	this.mStatusBar = null;
+    this.mPlanLabels = {
+        Planned: null,
+        Tentative: null
+    };
+	this.mSelectedBrotherId = null;
+
 	this.registerDatasourceListener();
 };
 
@@ -48,6 +55,28 @@ CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 
 	this.mLeftColumn = $('<div class="column"/>');
 	this.mListScrollContainer.append(this.mLeftColumn);
+
+	this.mStatusBar = $('<div class="profession-plan-status-bar"/>');
+    this.mContainer.append(this.mStatusBar);
+
+    var createStatusItem = function(_iconPath, _tooltipId) {
+        var item = $('<div class="status-item"/>');
+        var img = $('<img/>').attr('src', Path.GFX + _iconPath);
+        var label = $('<div class="status-label text-font-small font-bold font-color-value"/>');
+        
+        item.append(img);
+        item.append(label);
+        
+        item.bindTooltip({ contentType: 'ui-element', elementId: _tooltipId });
+
+        return { container: item, label: label, img: img };
+    };
+
+    this.mPlanLabels.Planned = createStatusItem(Asset.PLAN_LEVEL_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenPlanned);
+    this.mPlanLabels.Tentative = createStatusItem(Asset.PLAN_TENTATIVE_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenTentative); 
+
+    this.mStatusBar.append(this.mPlanLabels.Planned.container);
+    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
 };
 
 CharacterScreenProfessionModule.prototype.destroyDIV = function () {
@@ -64,6 +93,8 @@ CharacterScreenProfessionModule.prototype.destroyDIV = function () {
 	this.mContainer.empty();
 	this.mContainer.remove();
 	this.mContainer = null;
+
+	this.mSelectedBrotherId = null;
 };
 
 
@@ -103,6 +134,9 @@ CharacterScreenProfessionModule.prototype.createProfessionTreeDIV = function (_p
 			profession.Image = $('<img class="profession-image-layer"/>');
 			profession.Image.attr('src', Path.GFX + profession.IconDisabled);
 			profession.Container.append(profession.Image);
+
+			profession.PlanImage = $('<img class="plan-image-layer display-none"/>');
+            profession.Container.append(profession.PlanImage);
 		}
 
 		centerDIV.find(".l-profession-container").css({ 'width': '4.0rem' });
@@ -125,13 +159,13 @@ CharacterScreenProfessionModule.prototype.resetProfessionTree = function (_profe
 	this.mProfessionTree = _professionTree;
 
 	for (var row = 0; row < this.mProfessionRows.length; ++row) {
-		this.mProfessionRows[row].removeClass('is-unlocked').addClass('is-locked');
+		this.mProfessionRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
 	}
 
 	for (var row = 0; row < _professionTree.length; ++row) {
 		for (var i = 0; i < _professionTree[row].length; ++i) {
 			var profession = _professionTree[row][i];
-			console.error(Object.keys(profession));
+			//console.error(Object.keys(profession));
 			profession.Unlocked = false;
 
 			profession.Image.attr('src', Path.GFX + profession.IconDisabled);
@@ -172,7 +206,7 @@ CharacterScreenProfessionModule.prototype.initProfessionTree = function (_profes
 
 	for (var row = 0; row < this.mProfessionRows.length; ++row) {
 		if (row <= professionPointsSpent) {
-			this.mProfessionRows[row].addClass('is-unlocked').removeClass('is-locked');
+			this.mProfessionRows[row].addClass('is-row-unlocked').removeClass('is-row-locked');
 		}
 		else {
 			break;
@@ -199,21 +233,34 @@ CharacterScreenProfessionModule.prototype.setupProfessionTree = function (_profe
 	this.createProfessionTreeDIV(this.mProfessionTree, this.mLeftColumn);
 
 	this.setupProfessionsEventHandlers(this.mProfessionTree);
+	for (var row = 0; row < this.mProfessionRows.length; ++row) {
+		this.mProfessionRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
+	}
 };
 
 CharacterScreenProfessionModule.prototype.updateProfessionTreeLayout = function (_inventoryMode) {
 };
 
 CharacterScreenProfessionModule.prototype.loadProfessionTreesWithBrotherData = function (_brother) {
-	this.setupProfessionTree(_brother[CharacterScreenIdentifier.Profession.Tree]);
+	var brotherId = _brother[CharacterScreenIdentifier.Entity.Id];
+    var fullSetup = (this.mSelectedBrotherId !== brotherId);
+
+	if (this.mProfessionTree === null || fullSetup) {
+        this.mSelectedBrotherId = brotherId;
+        this.setupProfessionTree(_brother[CharacterScreenIdentifier.Profession.Tree]);
+    } else {
+        this.resetProfessionTree(this.mProfessionTree);
+    }
 
 	if (CharacterScreenIdentifier.Profession.Key in _brother) {
 		this.initProfessionTree(this.mProfessionTree, _brother[CharacterScreenIdentifier.Profession.Key]);
 	}
 
-	if (CharacterScreenIdentifier.Entity.Id in _brother) {
+	if (fullSetup && CharacterScreenIdentifier.Entity.Id in _brother) {
 		this.setupProfessionTreeTooltips(this.mProfessionTree, _brother[CharacterScreenIdentifier.Entity.Id]);
 	}
+	
+	this.updateProfessionPlanVisuals(_brother);
 };
 
 CharacterScreenProfessionModule.prototype.isProfessionUnlockable = function (_profession) {
@@ -224,6 +271,32 @@ CharacterScreenProfessionModule.prototype.isProfessionUnlockable = function (_pr
 	var professionPointsSpent = this.mDataSource.getBrotherProfessionPointsSpent(_brother);
 
 	return professionPoints > 0 && professionPointsSpent >= _profession.Unlocks;
+};
+
+CharacterScreenProfessionModule.prototype.updateProfessionPlanVisuals = function (_brother) {
+    var plan = _brother.ProfessionPlan || {};
+    
+    for (var row = 0; row < this.mProfessionTree.length; ++row) {
+        for (var i = 0; i < this.mProfessionTree[row].length; ++i) {
+            var profession = this.mProfessionTree[row][i];
+            var state = plan[profession.ID] || 0;
+            
+            if (state === 0 || profession.Unlocked) {
+                profession.PlanImage.removeClass('display-block').addClass('display-none');
+            } else {
+                profession.PlanImage.removeClass('display-none').addClass('display-block');
+                
+                if (state === 1) profession.PlanImage.attr('src', Path.GFX + Asset.PLAN_PLANNED);
+                else if (state === 2) profession.PlanImage.attr('src', Path.GFX + Asset.PLAN_TENTATIVE);
+                else if (state === 3) profession.PlanImage.attr('src', Path.GFX + Asset.PLAN_EXCLUDED);
+            }
+        }
+    }
+    
+    if (CharacterScreenIdentifier.Entity.Character.Level in _brother[CharacterScreenIdentifier.Entity.Character.Key]) {
+        this.mPlanLabels.Planned.label.text(_brother.PlannedProfessionLevelRequired || 0);
+        this.mPlanLabels.Tentative.label.text(_brother.TentativeProfessionCount || 0);
+    }
 };
 
 CharacterScreenProfessionModule.prototype.attachEventHandler = function (_profession) {
@@ -254,6 +327,15 @@ CharacterScreenProfessionModule.prototype.attachEventHandler = function (_profes
 			self.showProfessionUnlockDialog(_profession);
 		}
 	});
+
+	_profession.Container.on('mousedown' + CharacterScreenIdentifier.KeyEvent.ProfessionsModuleNamespace, null, this, function (_event) {
+		if (_event.which === 3) {
+			_event.preventDefault();
+			if (_profession.Unlocked) return false;
+			self.mDataSource.notifyBackendCycleProfessionPlan([self.mDataSource.getSelectedBrother()[CharacterScreenIdentifier.Entity.Id], _profession.ID]);
+			return false;
+		}
+    });
 }
 
 CharacterScreenProfessionModule.prototype.removeProfessionsEventHandler = function (_professionTree) {

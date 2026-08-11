@@ -3582,7 +3582,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Level required for all the acquired and planned talents."
+					text = "Level required for all the acquired and planned perks."
 				}
 			];
 
@@ -3597,6 +3597,34 @@
 					id = 2,
 					type = "description",
 					text = "Number of perks marked as tentative."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.ProfessionPlanScreenPlanned":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Level Required"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Level required for all the acquired and planned professions."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.ProfessionPlanScreenTentative":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Tentative Professions"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of professions marked as tentative."
 				}
 			];
 

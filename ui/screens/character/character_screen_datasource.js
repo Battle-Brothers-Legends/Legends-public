@@ -2357,6 +2357,13 @@ CharacterScreenDatasource.prototype.notifyBackendCyclePerkPlan = function (_data
     });
 };
 
+CharacterScreenDatasource.prototype.notifyBackendCycleProfessionPlan = function (_data) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onCycleProfessionPlan', _data, function (_brotherData) {
+        self.notifyEventListener(CharacterScreenDatasourceIdentifier.Brother.Updated, _brotherData);
+    });
+};
+
 CharacterScreenDatasource.prototype.notifyBackendAssignRider = function (_rider, _horse, _callback)
 {
 	SQ.call(this.mSQHandle, 'onAssignRider', [ _rider, _horse ], _callback);

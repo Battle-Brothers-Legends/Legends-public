@@ -760,6 +760,23 @@
     	return ::UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
+	o.onCycleProfessionPlan <- function( _data ) {
+		local bro = ::Tactical.getEntityByID(_data[0]);
+    	local professionPlan = bro.getProfessionPlan();
+
+    	local professionID = _data[1];
+   		local currentState = professionID in professionPlan ? professionPlan[professionID] : 0; 
+    	local nextState = (currentState + 1) % 4;
+    
+    	if (nextState == 0) {
+        	delete professionPlan[professionID];
+    	} else {
+        	professionPlan[professionID] <- nextState;
+    	}
+    
+    	return ::UIDataHelper.convertEntityToUIData(bro, null); 
+	}
+
 	o.onFormationChanged <- function (_data) {
 		local index = _data[0];
 		this.World.Assets.changeFormation(index);

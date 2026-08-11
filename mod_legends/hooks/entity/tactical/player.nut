@@ -25,9 +25,14 @@
 
 	// perks plan
 	o.m.PerkPlan <- {};
+	o.m.ProfessionPlan <- {};
 
 	o.getPerkPlan <- function () {
 		return this.m.PerkPlan;
+	}
+
+	o.getProfessionPlan <- function () {
+		return this.m.ProfessionPlan;
 	}
 
 	o.getProfessionPoints <- function () {
@@ -885,6 +890,10 @@
 		this.m.Skills.add(p);
 		p.onUnlocked();
 		this.m.Skills.update();
+
+		if (_id in this.getProfessionPlan()) {
+			delete this.getProfessionPlan()[_id];
+		}
 
 		return true;
 	}
@@ -2063,6 +2072,12 @@
 			_out.writeU8(state);
 		}
 
+		_out.writeU16(this.getProfessionPlan().len());
+		foreach (professionID, state in this.getProfessionPlan()) {
+			_out.writeString(professionID);
+			_out.writeU8(state);
+		}
+
 		_out.writeU8(this.m.Hiring.Traits.len());
     	foreach (traitID, state in this.m.Hiring.Traits) {
         	_out.writeString(traitID);
@@ -2111,6 +2126,12 @@
 		for (local i = 0; i < planSize; i++) {
 			local perkID = _in.readString();
 			this.getPerkPlan()[perkID] <- _in.readU8();
+		}
+
+		local profPlanSize = _in.readU16();
+		for (local i = 0; i < profPlanSize; i++) {
+			local profID = _in.readString();
+			this.getProfessionPlan()[profID] <- _in.readU8();
 		}
 
 		local traitsLen = _in.readU8();

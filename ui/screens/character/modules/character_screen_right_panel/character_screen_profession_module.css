@@ -37,12 +37,12 @@
     display: block;
 }
 
-.character-screen-container .scroll-container .is-unlocked {
-    opacity: 1;
+.character-screen-container .scroll-container .is-row-unlocked .profession-image-layer {
+	opacity: 1;
 }
 
-.character-screen-container .scroll-container .is-locked {
-    opacity: 0.33;
+.character-screen-container .scroll-container .is-row-locked .profession-image-layer {
+	opacity: 0.33;
 }
 
 
@@ -78,6 +78,17 @@
     z-index: 2;
 }
 
+.character-screen-container .scroll-container .l-profession-container .plan-image-layer {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin: auto;
+    z-index: 2;
+}
 
 /* Unlock Popup Dialog */
 .character-screen .ui-control.popup-dialog.unlock-profession-popup {
@@ -144,4 +155,27 @@
     font-size: 1.6rem;
     line-height: 1.4;
     margin-right: 0.6rem;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar {
+    position: absolute;
+    bottom: 0.0rem;
+    left: 24.0rem;
+    width: 30%;
+    height: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar .status-item {
+    display: flex;
+    align-items: center;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar .status-item img {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-right: 0.8rem;
 }

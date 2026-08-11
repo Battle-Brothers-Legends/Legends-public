@@ -355,6 +355,8 @@ var TooltipIdentifier =
 			PerkPlanScreenScrolls: 'character-screen.right-panel-header-module.PerkPlanScreenScrolls',
 			PerkPlanScreenPlanned: 'character-screen.right-panel-header-module.PerkPlanScreenPlanned',
 			PerkPlanScreenTentative: 'character-screen.right-panel-header-module.PerkPlanScreenTentative',
+			ProfessionPlanScreenPlanned: 'character-screen.right-panel-header-module.ProfessionPlanScreenPlanned',
+			ProfessionPlanScreenTentative: 'character-screen.right-panel-header-module.ProfessionPlanScreenTentative',
 		},
 
 		BattleStartFooterModule:
