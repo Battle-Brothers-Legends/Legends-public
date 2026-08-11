@@ -189,8 +189,10 @@
 
 		local tier3 = [ // >2650
 			::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble),
+			::Legends.Backgrounds.getID(::Legends.Background.LegendAdventurousLady),
 			::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer),
 			::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble),
+			::Legends.Backgrounds.getID(::Legends.Background.LegendDisownedLady),
 			::Legends.Backgrounds.getID(::Legends.Background.Raider),
 			::Legends.Backgrounds.getID(::Legends.Background.Witchhunter),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendConscript),

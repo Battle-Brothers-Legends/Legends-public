@@ -39,8 +39,10 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		bros[0].setVeteranPerks(2);
 		bros[0].setStartValuesEx([ //wildcard 1 all possible wildcards
 			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousLady,
 			::Legends.Background.Bastard,
 			::Legends.Background.BeastSlayer,
+			::Legends.Background.LegendDisownedLady,
 			::Legends.Background.DisownedNoble,
 			::Legends.Background.Militia,
 			::Legends.Background.Nomad,
@@ -56,8 +58,10 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		bros[1].setVeteranPerks(2);
 		bros[1].setStartValuesEx([ //wildcard 2 all possible wildcards minus noble ranged
 			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousLady,
 			::Legends.Background.Bastard,
 			::Legends.Background.BeastSlayer,
+			::Legends.Background.LegendDisownedLady,
 			::Legends.Background.DisownedNoble,
 			::Legends.Background.Militia,
 			::Legends.Background.Nomad,

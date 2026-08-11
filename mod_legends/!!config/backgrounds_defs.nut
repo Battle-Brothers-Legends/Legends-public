@@ -999,6 +999,16 @@ backgroundDefs.push({
     DailyCost = 21,
 });
 
+::Legends.Background.LegendAdventurousLady <- null;
+backgroundDefs.push({
+    ID = "background.legend_adventurous_lady",
+    Script = "scripts/skills/backgrounds/legend_adventurous_lady_background",
+    Const = "LegendAdventurousLady",
+    Name = "Adventurous Lady",
+    HiringCost = 300,
+    DailyCost = 35,
+});
+
 ::Legends.Background.LegendAlchemist <- null;
 backgroundDefs.push({
     ID = "background.legend_alchemist",
@@ -1208,6 +1218,16 @@ backgroundDefs.push({
     Name = "Dervish",
     HiringCost = 140,
     DailyCost = 14,
+});
+
+::Legends.Background.LegendDisownedLady <- null;
+backgroundDefs.push({
+    ID = "background.legend_disowned_lady",
+    Script = "scripts/skills/backgrounds/legend_disowned_lady_background",
+    Const = "LegendDisownedLady",
+    Name = "Disowned Lady",
+    HiringCost = 135,
+    DailyCost = 17,
 });
 
 ::Legends.Background.LegendDonkey <- null;

@@ -159,6 +159,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 			::Legends.Background.Thief,
 			::Legends.Background.Vagabond,
 			::Legends.Background.Wildman,
+			::Legends.Background.LegendDisownedLady,
 			::Legends.Background.DisownedNoble,
 			::Legends.Background.Cripple,
 			::Legends.Background.Apprentice,

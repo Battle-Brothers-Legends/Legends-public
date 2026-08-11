@@ -15,15 +15,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [3, 8],
 	RangedDefense = [-5, -10],
 	Initiative = [-2, -7]
-}, {
-	Hitpoints = [-1, 4],
-	Bravery = [15, 20],
-	Stamina = [0, 5],
-	MeleeSkill = [0, 5],
-	RangedSkill = [15, 25],
-	MeleeDefense = [-5, 3],
-	RangedDefense = [2, 5],
-	Initiative = [-2, 3]
 }];
 
 ::Legends.BackgroundsStats.Anatomist <- [{
@@ -160,6 +151,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [0, 0]
 }];
 
+::Legends.BackgroundsStats.ButcherSouthern <- clone ::Legends.BackgroundsStats.Butcher;
+
 ::Legends.BackgroundsStats.CaravanHand <- [{
 	Hitpoints = [3, 5],
 	Bravery = [3, 3],
@@ -293,15 +286,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [-1, 4],
 	RangedDefense = [-2, 3],
 	Initiative = [-5, 5]
-}, {
-	Hitpoints = [-2, 3],
-	Bravery = [-6, -1],
-	Stamina = [-10, -5],
-	MeleeSkill = [0, 10],
-	RangedSkill = [5, 15],
-	MeleeDefense = [-3, 2],
-	RangedDefense = [0, 5],
-	Initiative = [5, 10]
 }];
 
 ::Legends.BackgroundsStats.Eunuch <- [{
@@ -375,6 +359,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	RangedDefense = [2, 8],
 	Initiative = [10, 12]
 }];
+
+::Legends.BackgroundsStats.GamblerSouthern <- clone ::Legends.BackgroundsStats.Gambler;
 
 ::Legends.BackgroundsStats.Gladiator <- [{
 	Hitpoints = [3, 6],
@@ -876,6 +862,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 12]
 }];
 
+::Legends.BackgroundsStats.LegendAdventurousLady <- [{
+	Hitpoints = [-1, 4],
+	Bravery = [15, 20],
+	Stamina = [0, 5],
+	MeleeSkill = [0, 5],
+	RangedSkill = [15, 25],
+	MeleeDefense = [-5, 3],
+	RangedDefense = [2, 5],
+	Initiative = [-2, 3]
+}];
+
 ::Legends.BackgroundsStats.LegendAlchemist <- [{
 	Hitpoints = [-5, -5],
 	Bravery = [8, 12],
@@ -1030,6 +1027,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 	MeleeDefense = [15, 15],
 	RangedDefense = [0, 0],
 	Initiative = [-20, -20]
+}];
+
+::Legends.BackgroundsStats.LegendDisownedLady <- [{
+	Hitpoints = [-2, 3],
+	Bravery = [-6, -1],
+	Stamina = [-10, -5],
+	MeleeSkill = [0, 10],
+	RangedSkill = [5, 15],
+	MeleeDefense = [-3, 2],
+	RangedDefense = [0, 5],
+	Initiative = [5, 10]
 }];
 
 ::Legends.BackgroundsStats.LegendDervish <- [{

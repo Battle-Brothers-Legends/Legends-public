@@ -52,7 +52,9 @@ if (!("Backgrounds" in ::Legends)) {
 
 ::Const.CharacterCombatBackgrounds <- [
 	::Legends.Background.DisownedNoble,
+	::Legends.Background.LegendDisownedLady,
 	::Legends.Background.AdventurousNoble,
+	::Legends.Background.LegendAdventurousLady,
 	::Legends.Background.RetiredSoldier,
 	::Legends.Background.Swordmaster,
 	::Legends.Background.Sellsword,
@@ -94,6 +96,7 @@ if (!("Backgrounds" in ::Legends)) {
 ];
 ::Const.CharacterBackgroundsAnimated <- [
 	::Legends.Background.AdventurousNoble,
+	::Legends.Background.LegendAdventurousLady,
 	::Legends.Background.Apprentice,
 	::Legends.Background.Bastard,
 	::Legends.Background.BeastSlayer,
@@ -106,6 +109,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Daytaler,
 	::Legends.Background.Deserter,
 	::Legends.Background.DisownedNoble,
+	::Legends.Background.LegendDisownedLady,
 	::Legends.Background.Eunuch,
 	::Legends.Background.Farmhand,
 	::Legends.Background.Fisherman,
@@ -154,7 +158,9 @@ if (!("Backgrounds" in ::Legends)) {
 ::Const.SupposedWitchBackgrounds <- [
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.AdventurousNoble,
+	::Legends.Background.LegendAdventurousLady,
 	::Legends.Background.DisownedNoble,
+	::Legends.Background.LegendDisownedLady,
 	::Legends.Background.Monk
 ];
 ::Const.CharacterPartyBackgrounds <- [
@@ -178,6 +184,7 @@ if (!("Backgrounds" in ::Legends)) {
 
 ::Const.CharacterBackgroundsRandom <- [
 	::Legends.Background.AdventurousNoble,
+	::Legends.Background.LegendAdventurousLady,
 	::Legends.Background.Apprentice,
 	::Legends.Background.Assassin,
 	::Legends.Background.Barbarian,
@@ -192,6 +199,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.Daytaler,
 	::Legends.Background.Deserter,
 	::Legends.Background.DisownedNoble,
+	::Legends.Background.LegendDisownedLady,
 	::Legends.Background.Eunuch,
 	::Legends.Background.Farmhand,
 	::Legends.Background.Thief,
@@ -266,12 +274,14 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendPuppet,
 	::Legends.Background.Cultist,
 	::Legends.Background.AdventurousNoble,
+	::Legends.Background.LegendAdventurousLady,
 	::Legends.Background.Barbarian,
 	::Legends.Background.Bastard,
 	::Legends.Background.BeastSlayer,
 	::Legends.Background.CaravanHand,
 	::Legends.Background.Deserter,
 	::Legends.Background.DisownedNoble,
+	::Legends.Background.LegendDisownedLady,
 	::Legends.Background.Farmhand,
 	::Legends.Background.Thief,
 	::Legends.Background.Fisherman,

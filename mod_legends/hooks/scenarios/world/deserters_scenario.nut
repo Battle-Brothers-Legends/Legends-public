@@ -216,6 +216,7 @@
 		this.addBroToRoster(_roster, ::Legends.Background.Bastard, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Deserter, 3);
 		this.addBroToRoster(_roster, ::Legends.Background.DisownedNoble, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendDisownedLady, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.Militia, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.RetiredSoldier, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Swordmaster, 6);

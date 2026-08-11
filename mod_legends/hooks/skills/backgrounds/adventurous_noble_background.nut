@@ -31,6 +31,7 @@
 		this.m.Names = this.Const.Strings.KnightNames;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Noble;
+		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young})
 		this.m.PerkTreeDynamic = {
 			Weapon = [
 				::Const.Perks.SwordTree,
@@ -56,128 +57,52 @@
 		}
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		return this.character_background.getTooltip();
 	}
 
-	o.setGender <- function (_gender = -1) {
-		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
-		
-		if (_gender != 1) return;
-		this.m.Name = "Adventurous Lady";
-		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
-		this.m.BackgroundDescription = "Adventurous Ladies tend to have high resolve and ranged skills, but often neglect melee defense.";
-		this.m.Names = this.Const.Strings.LadyNames;
-
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SwordTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Magic = []
-		}
-	}
-
-	o.onBuildDescription <- function ()
-	{
+	o.onBuildDescription <- function () {
 		return "{A minor noble | As the third in the line of succession | A young and brash %noble% | A skilled swords%person%}, %name%\'s life at court {had grown stale for %them% | was not exciting enough for %them% with endless studying of court etiquette and family lineage | felt like wasting the best time of %their% life | was not half as exciting to %them% as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of %their% brother | To the frustration of %their% mother | Finally making a decision to change things}, %name% rode out to {prove %themselves% | make a name for themselves | earn glory on the battlefield | test %their% skills in battle} and {live life to its fullest as %they% imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn %their% place in the world | be knighted for %their% valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
 	}
 
 	o.onChangeAttributes = function () {
-		return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble, this.isBackgroundType(this.Const.BackgroundType.Female));
+		return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble);
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		r = this.Math.rand(0, 2);
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (r == 0)
 		{
-			if (r == 0)
-			{
-				items.equip(this.new("scripts/items/weapons/hunting_bow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-			}
-			else if (r == 1)
-			{
-				items.equip(this.new("scripts/items/weapons/crossbow"));
-				items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-			}
-			else if (r == 2)
-			{
-				items.equip(this.new("scripts/items/weapons/pike"));
-			}
-
-
-			items.equip(this.Const.World.Common.pickArmor([
-				[1, ::Legends.Armor.Standard.mail_shirt],
-				[1, ::Legends.Armor.Standard.basic_mail_shirt],
-				[1, ::Legends.Armor.Standard.mail_hauberk]
-			]));
-
-			items.equip(this.Const.World.Common.pickHelmet([
-				[2, ::Legends.Helmet.Standard.nasal_helmet],
-				[2, ::Legends.Helmet.Standard.padded_nasal_helmet],
-				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
-				[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
-				[1, ::Legends.Helmet.Standard.legend_noble_hat],
-				[1, ::Legends.Helmet.Standard.legend_noble_hood],
-				[1, ::Legends.Helmet.Standard.legend_noble_crown],
-				[1, ::Legends.Helmet.Standard.mail_coif],
-				[2, ::Legends.Helmet.None]
-			]));
+			items.equip(this.new("scripts/items/weapons/fencing_sword"));
 		}
-		else
+		else if (r == 1)
 		{
-			if (r == 0)
-			{
-				items.equip(this.new("scripts/items/weapons/fencing_sword"));
-			}
-			else if (r == 1)
-			{
-				items.equip(this.new("scripts/items/weapons/pike"));
-			}
-			else if (r == 2)
-			{
-				items.equip(this.new("scripts/items/weapons/rondel_dagger"));
-				items.equip(this.new("scripts/items/shields/buckler_shield"));
-			}
-
-			items.equip(this.Const.World.Common.pickArmor([
-				[1, ::Legends.Armor.Standard.mail_shirt],
-				[1, ::Legends.Armor.Standard.basic_mail_shirt],
-				[1, ::Legends.Armor.Standard.mail_hauberk]
-			]));
-
-			items.equip(this.Const.World.Common.pickHelmet([
-				[1, ::Legends.Helmet.Standard.nasal_helmet],
-				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
-				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
-				[1, ::Legends.Helmet.Standard.mail_coif],
-				[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
-				[1, ::Legends.Helmet.Standard.legend_noble_hat],
-				[1, ::Legends.Helmet.Standard.legend_noble_hood],
-				[1, ::Legends.Helmet.Standard.legend_noble_crown],
-				[2, ::Legends.Helmet.None]
-			]));
+			items.equip(this.new("scripts/items/weapons/pike"));
 		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/rondel_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.mail_hauberk]
+		]));
+
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_hood],
+			[1, ::Legends.Helmet.Standard.legend_noble_crown],
+			[2, ::Legends.Helmet.None]
+		]));
 	}
 });

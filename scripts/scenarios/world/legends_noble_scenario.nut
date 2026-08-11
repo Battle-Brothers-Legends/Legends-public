@@ -297,6 +297,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.AdventurousNoble, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.DisownedNoble, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendAdventurousLady, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendDisownedLady, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendNoble2h, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendNobleRanged, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendNobleShield, 4);

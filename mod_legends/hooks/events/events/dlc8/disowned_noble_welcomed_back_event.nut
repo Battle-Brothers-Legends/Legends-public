@@ -19,6 +19,7 @@
 					background.m.IsNew = false;
 					local oldPerkTree = _event.m.Disowned.getBackground().m.CustomPerkTree;
 					_event.m.Disowned.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble));
+					_event.m.Disowned.getSkills().removeByID(::Legends.Backgrounds.getID(::Legends.Background.LegendDisownedLady));
 					_event.m.Disowned.getSkills().add(background);
 					background.buildDescription();
 					_event.m.Disowned.m.Background = background;

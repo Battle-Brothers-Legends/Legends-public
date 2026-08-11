@@ -3,7 +3,9 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 		Casualty = null,
 		ExcludedBackgrounds = [
 			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousLady,
 			::Legends.Background.Companion,
+			::Legends.Background.LegendDisownedLady,
 			::Legends.Background.DisownedNoble,
 			::Legends.Background.HedgeKnight,
 			::Legends.Background.LegendCommanderNoble,
