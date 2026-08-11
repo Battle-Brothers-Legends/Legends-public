@@ -140,13 +140,13 @@
 
 					if (next.IsOccupiedByActor && ::Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer() && AOO.onVerifyTarget(tile, next)) {
 						local entity = next.getEntity();
-						if (::Legends.S.isEntityNullOrDead(entity)) {
-							continue;
-						}
-
 						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
-							targetsAreMovingInvoluntarily = true;
-							break;
+							if (_retries > 20) {
+                    			entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+               				} else {
+								targetsAreMovingInvoluntarily = true;
+								break;
+							}
 						}
 
 						if (AOO.onVerifyTarget(tile, next)) {
@@ -157,10 +157,6 @@
 			}
 
 			if (targetsAreMovingInvoluntarily) {
-				if (_retries > 20) {
-                    this.m.AlreadyUsed = false;
-                    return; 
-                }
             	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
             	return;
         	}

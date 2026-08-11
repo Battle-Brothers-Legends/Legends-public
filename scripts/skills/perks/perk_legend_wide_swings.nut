@@ -3,8 +3,7 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 		AlreadyUsed = false,
 		ExecutingAttack = false
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWideSwings);
 	}
 
@@ -17,32 +16,35 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (this.Math.rand(1, 100) < 50)
+		if (::Math.rand(1, 100) < 50)
 
 		this.m.AlreadyUsed = true;
 		local executeFollowup;
-		executeFollowup = (function( _tag ) {
+		executeFollowup = (function( _retries ) {
 			local actor = this.getContainer().getActor();
-			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == this.Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
+			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
 				this.m.AlreadyUsed = false;
 				return;
 			}
 
 			local tile = actor.getTile();
-			local _skill = this.getContainer().getAttackOfOpportunity();
 			local targetTiles = [];
 
 			local targetsAreMovingInvoluntarily = false;
 
-			for (local i = 0; i != 6; i = ++i) {
+			for (local i = 0; i < 6; i++) {
 				if (tile.hasNextTile(i)) {
 					local next = tile.getNextTile(i);
 
-					if (next.IsOccupiedByActor && this.Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer()	&& _skill.onVerifyTarget(tile, next)) {
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer() && _skill.onVerifyTarget(tile, next)) {
 						local entity = next.getEntity();
-						if (entity.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
-							targetsAreMovingInvoluntarily = true;
-							break;
+						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
+							if (_retries > 20) {
+                    			entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+               				} else {
+								targetsAreMovingInvoluntarily = true;
+								break;
+							}
 						}
 						if (_skill.onVerifyTarget(tile, next)) {
 							targetTiles.push(next);
@@ -52,7 +54,7 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 			}
 
 			if (targetsAreMovingInvoluntarily) {
-            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _tag);
+            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
             	return;
         	}
 
@@ -64,7 +66,7 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 			_skill.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
 			this.m.ExecutingAttack = false;
 		}).bindenv(this);
-		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, this);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
 	}
 
 	function onAnySkillUsed (_skill, _targetEntity, _properties) {

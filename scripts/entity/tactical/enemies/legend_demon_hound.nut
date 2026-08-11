@@ -57,36 +57,38 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo )
-	{
+	function onDamageReceived( _attacker, _skill, _hitInfo ) {
 		local ret = this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 
-		if (!this.isAlive() || this.isDying())
-			return ret;
+		if (!::Legends.S.isEntityNullOrDead(this)) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, 30, this.teleport.bindenv(this), 0);
+		}
 
-		this.Sound.play(this.m.SoundOnTeleport[this.Math.rand(0, this.m.SoundOnTeleport.len() - 1)], this.Const.Sound.Volume.Skill);
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 30, this.teleport.bindenv(this), null);
 		return ret;
 	}
 
-	function teleport( _tag )
-	{
+	function teleport( _retries = 0 ) {
 		if (::Legends.S.isEntityNullOrDead(this) || ::Legends.S.isEntityMovementDisabled(this))
 			return;
 
-		if (this.actor.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary) {
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, this.teleport.bindenv(this), _tag);
-			return;
+		if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
+			if (_retries > 20) {
+				this.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+			} else {
+				::Time.scheduleEvent(::TimeUnit.Virtual, 50, this.teleport.bindenv(this), _retries + 1);
+				return;
+			}
 		}
+
+		::Sound.play(this.m.SoundOnTeleport[::Math.rand(0, this.m.SoundOnTeleport.len() - 1)], ::Const.Sound.Volume.Skill);
 
 		local result = {
 			TargetTile = this.getTile(),
 			Destinations = []
 		};
-		this.Tactical.queryTilesInRange(this.getTile(), 2, 6, false, [], this.onQueryTiles, result);
+		::Tactical.queryTilesInRange(this.getTile(), 2, 6, false, [], this.onQueryTiles, result);
 
-		if (result.Destinations.len() == 0)
-		{
+		if (result.Destinations.len() == 0)	{
 			return;
 		}
 

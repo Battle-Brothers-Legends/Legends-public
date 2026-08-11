@@ -60,7 +60,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		return null; // tile or null
 	}
 
-	function teleportMe(_user, _targetTile) {
+	function teleport(_user, _targetTile, _retries) {
 		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return;
 		}
@@ -75,11 +75,13 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			OnRepelled = this.onRepelled
 		};
 
-		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary){
-			::Time.scheduleEvent(::TimeUnit.Virtual, 50, function ( _tag ) {
-                _tag.Skill.teleportMe(_tag.User, _tag.TargetTile);
-            }.bindenv(this), tag);
-			return;
+		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
+			if (_retries > 20) {
+				_user.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+			} else {
+				::Time.scheduleEvent(::TimeUnit.Virtual, 50, this.teleport.bindenv(this), tag);
+				return;
+			}
 		}
 
 		if (tag.OldTile.IsVisibleForPlayer || _targetTile.IsVisibleForPlayer) {
@@ -171,7 +173,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.m.EvadeSkillCounter = ::Const.SkillCounter;
-		this.teleportMe(actor, targetTile);
+		this.teleport(actor, targetTile, 0);
 	}
 
 	function onCombatStarted()	{

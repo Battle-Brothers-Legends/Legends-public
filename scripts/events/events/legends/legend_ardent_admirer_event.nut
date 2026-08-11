@@ -33,7 +33,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 					this.Options.push({
 						Text = "Our handgonner seems itching to introduce themself...",
 						getResult = @(_event) "D"
-					})
+					});
 				}
 			}
 
