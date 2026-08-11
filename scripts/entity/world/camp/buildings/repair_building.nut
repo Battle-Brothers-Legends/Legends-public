@@ -34,7 +34,6 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function getDescription() {
-		//"Buying an upgraded tent from a settlement will increase repair speed by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] and increase tool efficiency by [color=" + this.Const.UI.Color.PositiveEventValue + "]33%[/color] (1 tool repairs 20 instead of 15).";
 		return "Repair damaged items in selected order. Equipped items are added automatically to the front of the queue at the end of the battle.\n\nRepair speed increases considerably when encamped. Default repair speed is based on game combat difficulty.";
 	}
 
@@ -75,10 +74,6 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			++id;
 		}
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Repair);
 	}
 
 	function getLevel()	{

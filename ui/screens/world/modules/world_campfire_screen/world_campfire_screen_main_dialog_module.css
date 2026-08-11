@@ -114,51 +114,82 @@
 	height: 58.8rem;
 }
 
-.world-campfire-screen > .l-main-dialog-container .slot0
-{
-	-webkit-transform: scale(0.8, 0.8);
-	position: absolute;
-	left: 18.0rem;
-	bottom: 12.0rem;
-}
-
-.world-campfire-screen > .l-main-dialog-container .slot1
-{
-	-webkit-transform: scale(-0.8, 0.8);
-	position: absolute;
-	left: 36.0rem;
-	bottom: 11.0rem;
-}
-
 .world-campfire-screen > .l-main-dialog-container .fire
 {
 	position: absolute;
 	pointer-events: none;
 	width: 102.4rem;
 	height: 58.8rem;
+	left: -2.0rem;
+	bottom: -5.0rem;
 }
 
-.world-campfire-screen > .l-main-dialog-container .slot2
-{
-	-webkit-transform: scale(0.9, 0.9);
+.world-campfire-screen > .l-main-dialog-container .slot0 { /* crafting */
 	position: absolute;
-	left: 0.0rem;
-	bottom: 7.0rem;
+	left: 26.3rem;
+	bottom: 19.5rem;
+	z-index: 102 !important;
 }
 
-.world-campfire-screen > .l-main-dialog-container .slot3
-{
+.world-campfire-screen > .l-main-dialog-container .slot1 { /* enchanter */
+	position: absolute;
+	left: 23.2rem;
+	bottom: 28.3rem;
+	z-index: 100 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot2 { /* fletcher */
+	position: absolute;
+	left: 32.5rem;
+	bottom: 22.2rem;
+	z-index: 101 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot3 { /* gatherer */
 	position: absolute;
 	left: 11.0rem;
 	bottom: -5.0rem;
 }
 
-.world-campfire-screen > .l-main-dialog-container .slot4
-{
-	-webkit-transform: scaleX(-1);
+.world-campfire-screen > .l-main-dialog-container .slot4 { /* healer */
 	position: absolute;
-	left: 49.0rem;
+	left: 8.9rem;
+	bottom: 19.6rem;
+	z-index: 106 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot5 { /* kitchen */
+	position: absolute;
+	left: 24.2rem;
+	bottom: 0.4rem;
+	z-index: 107 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot6 { /* repair */
+	position: absolute;
+	left: 9.0rem;
 	bottom: 2.0rem;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot7 { /* scout */
+	position: absolute;
+	left: -0.8rem;
+	bottom: 9.1rem;
+	z-index: 109 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot8 { /* training */
+	position: absolute;
+	left: -0.3rem;
+	bottom: -0.3rem;
+	z-index: 108 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot9 { /* workshop */
+	position: absolute;
+	left: 42.0rem;
+	bottom: 2.0rem;
+	z-index: 103 !important;
 }
 
 /*.world-campfire-screen > .l-main-dialog-container .slot0

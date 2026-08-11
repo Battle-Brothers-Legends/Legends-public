@@ -69,23 +69,6 @@
 	{
 		if (typeof _followerID == "integer")
 		{
-			local renown = "\'" + this.Const.Strings.BusinessReputation[this.Const.FollowerSlotRequirements[_followerID]] + "\' (" + this.Const.BusinessReputation[this.Const.FollowerSlotRequirements[_followerID]] + ")";
-			local ret = [
-				{
-					id = 1,
-					type = "title",
-					text = "Insufficient Renown"
-				},
-				{
-					id = 4,
-					type = "description",
-					text = "Your company lacks the renown necessary to accommodate more equipment in your camp. Attain at least " + renown + " renown in order to unlock this space. Gain renown by completing ambitions and contracts, as well as by winning battles."
-				}
-			];
-			return ret;
-		}
-		else if (_followerID == "free")
-		{
 			local ret = [
 				{
 					id = 1,
@@ -3830,12 +3813,12 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Retinue (P)"
+					text = "Camping Tools (P)"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = "See your retinue of non-combat followers that grant various advantages outside combat, and upgrade your cart for more inventory space."
+					text = "Purchase tools to upgrade the camp to gain various advantages outside combat, and upgrade your cart for more inventory space."
 				}
 			];
 

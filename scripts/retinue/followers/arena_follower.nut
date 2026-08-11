@@ -22,5 +22,7 @@ this.arena_follower <- this.inherit("scripts/retinue/follower", {
 		::World.Assets.m.IsArenaTooled = true;
 	}
 
-
+	function isVisible () {
+		return false;
+	}
 });

@@ -20,8 +20,6 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	}
 
 	function getDescription() {
-		// An upgraded tent has a 15% increase in enchanting speed.";
-		// "Additionally, the upgraded tools and equipment from the cart allows the Vala to produce potentially more powerful Runes.";
 		return "Inscribe runes in selected order when encamped. Partial progress is kept. Only the Vala can work here.";
 	}
 

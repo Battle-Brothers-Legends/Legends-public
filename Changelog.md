@@ -100,6 +100,11 @@
 - the tree is accessible via character screen, next to the perk tree
 - uses separate points, independent to regular perks and conveys bonuses for the whole company
 
+## Retinue
+- removed all current retinues
+- purchasable camp upgrades became the new retinues with gorgeous art
+- no renown requirements anymore, just a bunch of gold
+
 ## Scenarios
 
 ### Anatomists

@@ -26,9 +26,6 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	}
 
 	function getDescription() {
-		//desc += "The Patrol station can be upgraded by purchasing a patrol cart from a settlement merchant. An upgraded tent has a 15% increase in patrol speed and ";
-		//desc += "has a chance of revealing the defenders of any camps encountered. ";
-		//desc += "Additionally, while on patrol there's a chance that the location of enemy outposts can be determined."; remember reduces chance of getting hurt
 		return "Assign men to scout around and reveal information about the surroundings. Scouting carries a risk of exhaustion and injury.";
 	}
 
@@ -53,10 +50,6 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			++id;
 		}
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Scout);
 	}
 
 	function getLevel()	{
@@ -152,7 +145,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			locations.push(location);
 		}
 	
-		if(this.getUpgraded()) {
+		if (this.getUpgraded()) {
 			for(local i = 0; i < ::Legends.S.randomizeFractionToInt(campHours * 0.1 + (0.1 * this.getModifiers().Craft)) ; i++) {
 				if (locations.len() == 0) {
         			break; 

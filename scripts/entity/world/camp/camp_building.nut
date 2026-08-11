@@ -82,6 +82,10 @@ this.camp_building <- {
 		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag[this.m.ID]);
 	}
 
+	function getUpgraded() {
+		return this.m.ID in ::Legends.Camp.Upgrades ? ::World.Retinue.hasFollower(::Legends.Camp.Upgrades[this.m.ID]) : false;
+	}
+
 	function getLevel() {
 		return "empty";
 	}

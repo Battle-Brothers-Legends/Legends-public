@@ -27,8 +27,6 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function getDescription() {
-		//"The Fletching tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent has a 15% increase in production speed. ";
-		//"Additionally, there's a chance that ammunition of the disposable throwing kind will be crafted.";
 		return "Craft ammunition while encamped.";
 	}
 
@@ -53,10 +51,6 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			++id;
 		}
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Fletcher);
 	}
 
 	function getLevel() {

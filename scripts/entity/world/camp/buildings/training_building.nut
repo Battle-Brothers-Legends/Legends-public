@@ -32,7 +32,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	}
 
 	function getDescription() {
-		//"Training grounds can be upgraded by purchasing an upgrade set in local markets. Upgraded grounds reduce the risk of accidents from a minimum of 5% to 1% and also give the chance of a permanent random skill increase.";
 		return "Brothers will train here, gaining experience while camping. Every training session carries a risk of exhaustion and injury.";
 	}
 
@@ -58,10 +57,6 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		}
 
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Training);
 	}
 
 	function getLevel()	{

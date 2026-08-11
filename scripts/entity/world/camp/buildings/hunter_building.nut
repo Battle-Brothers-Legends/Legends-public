@@ -189,11 +189,6 @@
 		return ret;
 	}
 
-	function getUpgraded()
-	{
-		return this.Stash.hasItem(::Legends.Camp.Tent.Hunter);
-	}
-
 	function getLevel()	{
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}

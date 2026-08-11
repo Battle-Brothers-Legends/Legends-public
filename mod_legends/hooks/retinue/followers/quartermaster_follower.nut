@@ -38,5 +38,9 @@
 	o.onDismiss <- function () {
 		::Legends.Stash.resize();
 	}
+
+	o.isVisible <- function () {
+		return false;
+	}
 });
 

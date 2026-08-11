@@ -17,7 +17,7 @@
 		}, true, function( _r ) {
 			_r.Count <- 3;
 			_r.UpdateText <- function() {
-				this.Text = "Raided " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("CaravansRaided")) + "/" + this.Count + " caravans"
+				this.Text = "Raided " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("CaravansRaided")) + "/" + this.Count + " caravans";
 			};
 		});
 
@@ -38,6 +38,10 @@
 
 	o.onEvaluate = function () {
 		this.follower.onEvaluate();
+	}
+
+	o.isVisible <- function () {
+		return false;
 	}
 });
 

@@ -51,10 +51,6 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 		return res;
 	}
 
-	function getUpgraded() {
-		return this.Stash.hasItem(::Legends.Camp.Tent[this.m.Name]);
-	}
-
 	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0
 			? "full"

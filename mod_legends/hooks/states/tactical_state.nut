@@ -658,7 +658,8 @@
 			}
 		}
 		if (!isArena && this.m.StrategicProperties != null)	{
-			local eligibleParties = this.m.StrategicProperties.Parties.filter(@(_, _party)(_party.getTroops().len() == 0 && _party.isAlive() && !_party.isAlliedWithPlayer() && _party.isDroppingLoot() && (playerKills > 0 || this.m.IsDeveloperModeEnabled)));
+			local self = this;
+			local eligibleParties = this.m.StrategicProperties.Parties.filter(@(_, _party)(_party.getTroops().len() == 0 && _party.isAlive() && !_party.isAlliedWithPlayer() && _party.isDroppingLoot() && (playerKills > 0 || self.m.IsDeveloperModeEnabled)));
 			foreach(party in eligibleParties) {
 				party.onDropLootForPlayer(loot);
 			}

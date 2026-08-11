@@ -32,7 +32,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function getDescription() {
-		// "The healing tent can be upgraded by purchasing a crafting cart from a settlement merchant. An upgraded tent provides a 66% increase in hitpoint recovery speed, 33% increase in wound treatment speed and a 25% decrease in medicine cost for each injury.";
 		return "Injuries are a daily occurrence in a life of a mercenary. Assign brothers to patch up injuries and recover wounds of anyone in the company. Treating an injury costs extra medicine.";
 	}
 
@@ -74,10 +73,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			});
 		}
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Healer);
 	}
 
 	function getLevel()	{

@@ -17,7 +17,7 @@
 		}, true, function( _r ) {
 			_r.Count <- 50;
 			_r.UpdateText <- function() {
-				this.Text = "Won at least " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("BattlesWon")) + "/" + this.Count + " battles"
+				this.Text = "Won at least " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("BattlesWon")) + "/" + this.Count + " battles";
 			};
 		});
 
@@ -39,6 +39,10 @@
 
 	o.onEvaluate = function () {
 		this.follower.onEvaluate();
+	}
+
+	o.isVisible <- function () {
+		return false;
 	}
 });
 

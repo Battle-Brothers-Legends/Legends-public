@@ -13,7 +13,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	{
 		this.camp_building.create();
 		this.m.BaseCraft = 10;
-		this.m.Conversion = 30.0;
+		this.m.Conversion = 20.0;
 		this.m.ModName = "Salvage";
 		this.m.ID = ::Legends.Camp.CampBuildings.Workshop;
 		this.m.Slot = "scrap";
@@ -29,7 +29,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription() {	//desc = desc + "The salvage tent can be upgraded by purchasing a salvage cart from a settlement merchant. An upgraded tent has a 15% increase in salvage speed and every 10 durability equals a tool.";
+	function getDescription() {
 		return "Break down equipment into tools in selected order. Once an item reaches zero durability, it will be destroyed.";
 	}
 
@@ -77,10 +77,6 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		}
 
 		return ret;
-	}
-
-	function getUpgraded() {
-		return ::Stash.hasItem(::Legends.Camp.Tent.Scrap);
 	}
 
 	function getLevel()	{

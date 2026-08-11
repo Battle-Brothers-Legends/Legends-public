@@ -30,5 +30,9 @@
 	o.onEvaluate = function () {
 		this.follower.onEvaluate();
 	}
+
+	o.isVisible <- function () {
+		return false;
+	}
 });
 

@@ -16,7 +16,7 @@
 		}, false, function( _r ) {
 			_r.Count <- 25;
 			_r.UpdateText <- function() {
-				this.Text = "Sold " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("TradeGoodsSold")) + "/" + this.Count + " trade goods"
+				this.Text = "Sold " + ::Math.min(this.Count, ::World.Statistics.getFlags().getAsInt("TradeGoodsSold")) + "/" + this.Count + " trade goods";
 			};
 		});
 
@@ -32,6 +32,10 @@
 
 	o.onEvaluate = function () {
 		this.follower.onEvaluate();
+	}
+
+	o.isVisible <- function () {
+		return false;
 	}
 });
 

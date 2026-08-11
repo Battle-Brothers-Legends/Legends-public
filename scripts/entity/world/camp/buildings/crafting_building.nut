@@ -17,7 +17,6 @@ this.crafting_building <- this.inherit("scripts/entity/world/camp/item_crafting_
 	}
 
 	function getDescription() {
-		//"An upgraded tent has a 15% increase in crafting speed.";
 		return "Craft items in selected order when encamped. Partial progress is kept.";
 	}
 

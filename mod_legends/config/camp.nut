@@ -16,7 +16,7 @@ if (!("Camp" in ::Legends))
 	Scout = "camp.scout",
 	Training = "camp.training",
 	Workshop = "camp.workshop",
-	Painter = "camp.painter" //PaintingTent
+	Painter = "camp.painter"
 };
 ::Legends.Camp.TerrainCampImages <- {
 	[::Const.World.TerrainType.Impassable] = {
@@ -152,6 +152,19 @@ if (!("Camp" in ::Legends))
 	[::Legends.Camp.CampBuildings.Workshop] = "HasLegendCampScrapping",
 	[::Legends.Camp.CampBuildings.Training] = "HasLegendCampTraining"
 }
+
+::Legends.Camp.Upgrades <- {
+	[::Legends.Camp.CampBuildings.Crafting] = "upgrade.crafting",
+	[::Legends.Camp.CampBuildings.Enchanter] = "upgrade.enchanter",
+	[::Legends.Camp.CampBuildings.Fletcher] = "upgrade.fletcher",
+	[::Legends.Camp.CampBuildings.Gatherer] = "upgrade.gatherer",
+	[::Legends.Camp.CampBuildings.Healer] = "upgrade.healer",
+	[::Legends.Camp.CampBuildings.Kitchen] = "upgrade.kitchen",
+	[::Legends.Camp.CampBuildings.Repair] = "upgrade.repair",
+	[::Legends.Camp.CampBuildings.Scout] = "upgrade.scout",
+	[::Legends.Camp.CampBuildings.Training] = "upgrade.training",
+	[::Legends.Camp.CampBuildings.Workshop] = "upgrade.workshop",
+};
 
 ::Legends.Camp.Tent <- {
 	Craft = "tent.craft_tent",
