@@ -125,7 +125,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		if (!getContainer().getActor().isArmedWithMagicStaff())
 			return false;
 
-		return !::Tactical.isActive() || skill.isUsable() && !getContainer().getActor().getTile().hasZoneOfControlOtherThan(getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && !getContainer().getActor().getTile().hasZoneOfControlOtherThan(getContainer().getActor().getAlliedFactions());
 	}
 
 	function onAfterUpdate( _properties )
@@ -192,7 +192,7 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	function onShieldHit( _info )
 	{
-		skill.onShieldHit(_info);
+		this.skill.onShieldHit(_info);
 
 		if (_info.Skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendChainLightning))
 			_info.Skill.summonChainLighting(_info.User, _info.TargetEntity.getTile());

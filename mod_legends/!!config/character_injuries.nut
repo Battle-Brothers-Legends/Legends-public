@@ -250,7 +250,7 @@
 	},
 ];
 
-::Const.Injury.PermanentLesser = [
+::Const.Injury.PermanentLesser <- [
 	{
 		ID = "injury.missing_nose",
 		Threshold = 0.50000000,

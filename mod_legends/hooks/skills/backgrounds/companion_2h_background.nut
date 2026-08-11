@@ -142,6 +142,6 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.headscarf]
-		]))
+		]));
 	}
 });;

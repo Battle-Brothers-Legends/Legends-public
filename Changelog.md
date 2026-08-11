@@ -358,6 +358,7 @@
 - brothers will be deployed on three rows properly during edge deployment
 - fixed intensive training preferring ranged defense as a trained stat
 - fixed hurt brothers being counted towards training modifier
+- fixed encounters in towns sometimes being inconsistent
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
