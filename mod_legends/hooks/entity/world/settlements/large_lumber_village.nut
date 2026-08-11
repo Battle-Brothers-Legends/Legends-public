@@ -5,7 +5,8 @@
 		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendDisownedLady,
 		]);
 	}
 });

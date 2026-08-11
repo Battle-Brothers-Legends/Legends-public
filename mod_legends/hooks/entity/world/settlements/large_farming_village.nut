@@ -3,7 +3,8 @@
 	o.create = function() {
 		create();
 		this.m.DraftList.extend([
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

@@ -4,7 +4,10 @@
 		create();
 		this.m.DraftList.extend([
 			::Legends.Background.LegendIronmonger,
-			::Legends.Background.LegendNoble2h
+			::Legends.Background.LegendNoble2h,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendAdventurousLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendHorseDestrier,

@@ -1,4 +1,12 @@
 ::mods_hookExactClass("entity/world/settlements/medium_tundra_fort", function(o) {
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.DraftList.extend([
+			::Legends.Background.LegendDisownedLady,
+		]);
+	}
+
 	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

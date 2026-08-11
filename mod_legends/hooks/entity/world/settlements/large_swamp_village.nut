@@ -3,7 +3,9 @@
 	o.create = function() {
 		create();
 		this.m.DraftList.extend([
-			::Legends.Background.LegendInventor
+			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendDisownedLady,
 		]);
 	}
 

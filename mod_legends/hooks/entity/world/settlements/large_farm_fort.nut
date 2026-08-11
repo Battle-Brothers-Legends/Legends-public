@@ -5,7 +5,9 @@
 		this.m.DraftList.extend([
 			::Legends.Background.LegendIronmonger,
 			::Legends.Background.LegendNobleShield,
-
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendDisownedLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

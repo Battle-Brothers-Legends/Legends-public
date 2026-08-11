@@ -8,6 +8,8 @@
 			::Legends.Background.LegendTaxidermist,
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendNobleRanged,
+			::Legends.Background.LegendAdventurousLady
+			::Legends.Background.LegendAdventurousLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendHorseDestrier,

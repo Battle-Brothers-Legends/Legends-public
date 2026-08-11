@@ -4,7 +4,8 @@
 	o.create = function() {
 		create();
 		this.m.FemaleDraftList = [
-			::Legends.Background.BellyDancer
+			::Legends.Background.BellyDancer,
+			::Legends.Background.LegendDisownedLady,
 		];
 		this.m.DraftList.extend([
 			::Legends.Background.JugglerSouthern,

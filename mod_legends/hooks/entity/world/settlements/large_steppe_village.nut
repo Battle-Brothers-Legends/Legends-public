@@ -4,6 +4,9 @@
 		create();
 		this.m.DraftList.extend([
 			::Legends.Background.LegendInventor,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendDisownedLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

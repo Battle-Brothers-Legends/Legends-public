@@ -2,6 +2,10 @@
 	local create = o.create;
 	o.create = function() {
 		create();
+		this.m.DraftList.extend([
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendDisownedLady,
+		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
 			::Legends.Background.LegendHorseRouncey,

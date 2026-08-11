@@ -5,6 +5,8 @@
 		this.m.DraftList.extend([
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendDisownedLady,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,
