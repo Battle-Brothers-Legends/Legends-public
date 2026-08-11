@@ -1415,41 +1415,42 @@
 						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and the shot goes astray and hits " + this.Const.UI.getColorizedEntityName(_targetEntity));
 					}
 				}
-				else if (this.isUsingHitchance())
-				{
-					if (isHit)
-					{
-						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + this.Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
-					}
-					else
-					{
-						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and misses " + this.Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
+				else if (this.isUsingHitchance()) {
+					local tumble = ::Legends.Perks.get(_targetEntity, ::Legends.Perk.LegendTumble);
+					if (isHit && ::Legends.Perks.has(_targetEntity, ::Legends.Perk.LegendTumble) && tumble.m.CanTeleport) {
+						local tumbleDefense = _targetEntity.getTumbleDefense(_user, this, defenderProperties);
+						local tumbleToHit = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit + defense - tumbleDefense));
+								
+						r = ::Math.rand(1, 100);
+						isHit = r <= tumbleToHit;
+								
+						if (!isHit) {
+							tumble.validateTeleport();
+							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and is about to hit (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + "), but " + ::Const.UI.getColorizedEntityName(_targetEntity) + " tumbles away! (Chance: " + tumbleToHit + ", Rolled: " + r + ")");
+						} else {
+							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ") as " + ::Const.UI.getColorizedEntityName(_targetEntity) + " fumbles the tumble! (Chance: " + tumbleToHit + ", Rolled: " + r + ")");
+						}
+					} else if (isHit) {
+						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + ::Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
+					} else {
+						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and misses " + ::Const.UI.getColorizedEntityName(_targetEntity) + " (Chance: " + ::Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + ")");
 					}
 				}
-				else
-				{
+				else {
 					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and hits " + this.Const.UI.getColorizedEntityName(_targetEntity));
 				}
 			}
 		}
 
-		if (isHit && defenderProperties.RerollDefenseChance > 0) {
-			if (this.Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
-				r = this.Math.rand(1, 100);
-				local tumble = ::Legends.Perks.get(this, ::Legends.Perk.LegendTumble);
-				isHit = r <= toHit;
-				if(!isHit) {
-					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " got lucky (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
-					if (tumble) {
-						tumble.m.CanTeleport = true;
-					} 
-				}
-				else {
-					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and " + this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough (Chance: " + this.Math.min(maximumHitChance, this.Math.max(minimumHitChance, toHit)) + ", Rolled: " + r + ")");
-				}
-			}
-			else {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
+			
+
+		if (isHit && ::Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
+			r = ::Math.rand(1, 100);
+			isHit = r <= toHit;
+			if(!isHit) {
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " got lucky.");
+			} else {
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
 			}
 		}
 		
