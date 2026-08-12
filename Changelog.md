@@ -388,6 +388,7 @@
 - painter tent allows painting the shoulder layer
 - upgraded scouting has been improved and allows the party to scout for locations while camping
 - gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
+- healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
 
 ## Events
 - added a new town encounter during drought

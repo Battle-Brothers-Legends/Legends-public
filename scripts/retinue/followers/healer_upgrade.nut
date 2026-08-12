@@ -9,9 +9,9 @@ this.healer_upgrade <- this.inherit("scripts/retinue/follower", {
 		this.m.Image = "ui/campfire/legend_healer";
 		this.m.Cost = 10000;
 		this.m.Effects = [
-			"Increase health regeneration speed by 66%",
-			"Increase wound treatment speed by 33%",
-			"Decreases the medicine cost of treating injuries by 25%"
+			"Increase health regeneration speed by 15%",
+			"Decreases the medicine cost of treating injuries by 25% and time by 33%",
+			"Enables intensive treatment - healing hitpoints faster at the cost of medicine"			
 		];
 	}
 });
