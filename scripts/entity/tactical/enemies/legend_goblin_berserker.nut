@@ -20,6 +20,7 @@ this.legend_goblin_berserker <- this.inherit("scripts/entity/tactical/enemies/go
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
+		::Legends.Perks.remove(this, ::Legends.Perk.LegendTumble);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
