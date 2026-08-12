@@ -280,7 +280,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 
 		local faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany);
 		local party = faction.spawnEntity(nearTile, names[::Math.rand(0, names.len() - 1)], false, spawnType, ::Math.rand(75, 90) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
-		party.setDescription("A party of graberobbers and pillagers.");
+		party.setDescription("A party of graverobbers and pillagers.");
 		party.setAttackableByAI(false);
 
 		party.getLoot().Money = this.Math.rand(21, 111);
