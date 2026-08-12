@@ -3,6 +3,15 @@
 ## Blazing Desert Plus
 - added patch for BD+ by Sato
 
+## Global Changes
+- Implemented a game-wide check that prohibits donkeys, undead ('untalkables') and skeletons ('origin-locked') from interacting in events unless SPECIFICALLY mentioned.
+- Fixes the spawning mechanism (dogs, bears, zombies, etc.) to always be 'animals' for the purposes of preserving lone wolf activation and not absorbing xp in battle.
+
+## Ambitions
+- New ambition: make city states aware (triggers at 800 renown or more).
+- Updated the 'make nobles aware' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.
+- Updated 'roster of six' ambition to give an item payout of food supplies to ease that sharp shift more difficult origins experience from this milestone expansion.
+
 ## Shield Changes
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
@@ -105,7 +114,41 @@
 - purchasable camp upgrades became the new retinues with gorgeous art
 - no renown requirements anymore, just a bunch of gold
 
-## Scenarios
+# Scenarios
+## Legion Origin
+- Removed camera pan to monolith at the start of a legion run after the opening event
+- Legate now has background text
+- Legion now all have background art, thanks to the squishy and cute Narkh
+- Implemented a unique weapon for legion via an event
+- Rebalanced the terrain movement modifiers of all possible hires
+- Fixes an issue for the Legate in the legion origin where the 'command' skill was capping AP at 4, rather than giving +4 AP
+- Fixed an issue where if the player interacted or destroyed the black monolith as legion, the game would hang
+- Fixed an issue where the legendary ram hammer for legion had its graphic occasionally apply to random named 2h hammers
+ 
+**New camp contracts for Legion:**
+- Hunt: nobles (medium-hard)
+- Hunt: barbarians (medium-hard)
+- Raid: farmstead (low-hard, depending on choices made mid-contract)
+- Siege: nobles (very hard)
+- Sack & destroy (hard-very hard)
+
+## Necro Trio & Solo Origins
+- Shuffled possible backgrounds that could spawn as undead for the purposes of several events
+- Most, if not all, necromancer events now decrease relationships with potential employers if the player accepts the rewards of said event(s)
+- Summoner loses 1 melee defence talent, gets 2 hitpoint defence talents. 
+- Starting puppet now starts at level 2 as opposed to 1.
+
+## Nomads Origin
+- You now earn 0.1 relationship with the nomad faction per day per southern fighter under your command
+- Nomads can no longer get the following ambitions: make city states aware, win x arena fights, defeat holy war.
+- Indebted are now factored into the southern roster for this origin, and earn the 'anchor' perk for free
+- Indebted are now also pushed to Steppe towns as other nomads are
+- (Roughly) doubled Nomad spawns in steppe towns
+- City states are permanently hostile
+- Nomads now start with 2 sturdy slings in their stash
+- Nomads can now convert a slave into a Nomad, Muladi, or Blade Dancer via an event
+- Nomads can now recruit nomads via a repeating event while in the desert
+- New camp contract: Nomads raid caravan
 
 ### Anatomists
 - new conqueror potion
@@ -122,6 +165,21 @@
 - new stollwurm potion
 - new skinghoul potion
 - new white direwolf potion
+
+- Anatomists can no longer be scared of the dark
+- Anatomists now have the dagger perktree
+- gives anatomists one tier of skill in gathering (ref: herbalist has 3) at camp as most of their perktree was predisposed towards it
+- Anatomist origin has an additional chance of finding anatomists (~1 in 4 chance per refresh)
+
+### Oathtakers
+- oathtakers get flail tree
+- oathtakers get medium armour tree
+- Oathtaker stats now more on par with hedge knights except for two areas; Resolve (higher) and ranged defence (lower)
+- all other stats identical to hedge knights or just 1-3 lower or higher.
+- Oathtakers can now roll hitpoints talents, but not ranged skill
+- Oathtakers can now roll paranoid and tough traits
+- Hiring cost dropped from 350 to 295 (as legends armour layers were massively inflating their recruit cost).
+- Scenario unchanged
 
 ## Perks
 
@@ -251,6 +309,8 @@
 - `Balanced Rucksack` - usable item sold around marketplaces which adds 2 extra bag slots to a mercenary
 
 ## Enemies
+- Estoc removed from robber barons and bandit leaders
+- Added dagger mastery to swordmasters and fencers for the purposes of vanilla estoc compatibility
 
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
@@ -310,6 +370,7 @@
 > shows the number of optional perks picked
 - added a visual to display the number of books and scrolls read/available
 - books/scrolls will now show a tooltip in shops and other screens based on last selected bro (with name)
+- Lone wolf equipment will now self-equip on game start as opposed to being in the stash
 
 
 ## Camping changes
@@ -331,6 +392,23 @@
 ## Events
 - added a new town encounter during drought
 - added a new event requiring a well read person
+- Added an event involving a sighthound
+- Added an event involving a northen warhound
+- Removed moral rep. hit from children crusade event
+- Two brave and/or fearless trait bros can now cure another bro of their fear of the dark trait
+- Added puppet interacting with anatomist
+- Added an event to necro both origins to convert a cultist to a puppet
+- Added event between anatomist and alchemist
+- Added an event between surgeon and anatomist
+- Ressurect stronger varient of undead (cyclical) - necro origins only
+- Ressurect a knight as undead (semi-unique, rare) - necro origins only
+- Puppets in a town cause trouble - necro origins only
+- Necromancer(s) run into a witchhunter patrol - necro origins only
+- Visit nomad tents location(s) with detailed interactions - Nomads origin only
+- Deathspiral (generic) - legion only
+- Trenches (generic) - legion only
+- Training (cyclical) - legion only
+- Crypt (unique) - legion only
 
 ## Gender settings and changes
 - added a mod setting allowing the player to choose the gender of the commander avatar
@@ -341,6 +419,18 @@
 
 ## Other
 - donkey appetite and donkey body integrated into the background
+- Added some clarifications and cleanup to tools usage tooltip.
+- Vala can no longer roll ranged skill stars
+
+### Cannibal background:
+- Abridged some of the cannibal recruitment event
+- New blueprint for sausages - 3 strange meat and 1 cooking spice
+- Tweaked cannibal eats part of brother event to be much more forgiving
+
+## Masterwork Tools
+- Masterwork tools cost from 750 to 1250.
+- Masterwork metal cost from 1450 to 2900.
+- Masterwork fabric cost from 950 to 1140.
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -364,6 +454,7 @@
 - fixed intensive training preferring ranged defense as a trained stat
 - fixed hurt brothers being counted towards training modifier
 - fixed encounters in towns sometimes being inconsistent
+- Meistersanger now states it needs an instrument equipped to use in the perk desc
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
