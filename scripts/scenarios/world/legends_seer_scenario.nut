@@ -20,7 +20,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		local roster = this.World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
-		bro.setStartValuesEx([::Legends.Background.LegendCommanderWitch]);
+		bro.setStartValuesEx([::Legends.Background.LegendSeer]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicDaze);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Student);

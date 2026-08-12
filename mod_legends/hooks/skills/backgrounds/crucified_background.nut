@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Crucified);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crucified);
 		this.m.Name = "Converted Crusader";
 		this.m.Icon = "ui/backgrounds/background_65.png";
 		this.m.Excluded = [
@@ -35,35 +35,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.FlailTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-					::Const.Perks.OutlawTree,
-					::Const.Perks.CivilizationTree
-					],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

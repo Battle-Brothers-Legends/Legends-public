@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Manhunter);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Manhunter);
 		this.m.Name = "Manhunter";
 		this.m.Icon = "ui/backgrounds/background_62.png";
 		this.m.BackgroundDescription = "Manhunters are used to hunting down people in the rough environment of the south.";
@@ -45,35 +45,6 @@
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

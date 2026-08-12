@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Wildman);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Wildman);
 		this.m.Name = "Wildman";
 		this.m.Icon = "ui/backgrounds/background_31.png";
 		this.m.BackgroundDescription = "Wildmen are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
@@ -51,29 +51,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.GreenskinTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Companion);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Companion);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.DailyCostMult = 1.0; //basically never increases in daily wage hikes.
@@ -51,27 +51,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.ThrowingTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.FastTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		};
 	}
 
 	o.getTooltip = function ()

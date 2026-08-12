@@ -3,7 +3,7 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNecrosavant);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNecrosavant);
 		this.m.Icon = "ui/backgrounds/background_vampire.png";
 		this.m.Name = "Necrosavant";
 		this.m.Excluded = [
@@ -39,28 +39,6 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Magic = [
-				::Const.Perks.VampireMagicTree
-			]
-		}
 	}
 
 

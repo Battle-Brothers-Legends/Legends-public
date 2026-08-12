@@ -3,7 +3,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendPilgrim);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPilgrim);
 		this.m.Name = "Pilgrim";
 		this.m.Icon = "ui/backgrounds/background_pilgrim.png";
 		this.m.BackgroundDescription = "Dirty and tired, these disciples of the old gods look for clarity and power in their teachings.";
@@ -43,32 +43,6 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree
-			],
-			Class = [
-				::Const.Perks.FaithClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function getTooltip() //nobody loves pilgrims

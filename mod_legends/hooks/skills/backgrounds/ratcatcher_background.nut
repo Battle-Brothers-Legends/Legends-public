@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Ratcatcher);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Ratcatcher);
 		this.m.Name = "Ratcatcher";
 		this.m.Icon = "ui/backgrounds/background_41.png";
 		this.m.BackgroundDescription = "Ratcatchers need to have quick reflexes to catch their prey.";
@@ -34,28 +34,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.SpearTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

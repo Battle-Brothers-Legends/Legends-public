@@ -3,7 +3,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendPuppet);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPuppet);
 		this.m.Name = "Puppet";
 		this.m.Icon = "ui/backgrounds/background_puppet.png";
 		this.m.BackgroundDescription = "A corpse in varying forms of decay. While slow on the uptake, it makes for a frightening opponent to most. You can also pick any name you like!";
@@ -23,26 +23,6 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.HammerTree
-			],
-			Defense = [
-				this.Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

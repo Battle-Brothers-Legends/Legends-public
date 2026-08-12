@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Nomad);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Nomad);
 		this.m.Name = "Nomad";
 		this.m.Icon = "ui/backgrounds/background_63.png";
 		this.m.BackgroundDescription = "Any nomad that survived out in the desert will have some expertise in fighting.";
@@ -48,30 +48,6 @@
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.BeastTree,
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

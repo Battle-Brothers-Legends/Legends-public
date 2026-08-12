@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Servant);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Servant);
 		this.m.Name = "Servant";
 		this.m.Icon = "ui/backgrounds/background_16.png";
 		this.m.BackgroundDescription = "Servants are not used to hard labour, but do have good knowledge of more mundane activities.";
@@ -35,30 +35,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree,
-				::Const.Perks.ChefProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Squire);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Squire);
 		this.m.Name = "Squire";
 		this.m.Icon = "ui/backgrounds/background_03.png";
 		this.m.BackgroundDescription = "Squires usually have received some training in warfare, and often have a high resolve to excel in what they do.";
@@ -33,27 +33,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax; //Neutral-good essentially
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.CrossbowTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

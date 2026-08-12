@@ -5,7 +5,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendDruid);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDruid);
 		this.m.Name = "Druid";
 		this.m.Icon = "ui/backgrounds/druid_background.png";
 		this.m.BackgroundDescription = "Druids are from the wild lands and are ardent defenders of nature.";
@@ -51,35 +51,6 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-	this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.FistsTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			]
-			Magic = [
-				::Const.Perks.DruidMagicTree,
-				::Const.Perks.StavesMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

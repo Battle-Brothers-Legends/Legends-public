@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Houndmaster);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Houndmaster);
 		this.m.Name = "Houndmaster";
 		this.m.Icon = "ui/backgrounds/background_50.png";
 		this.m.BackgroundDescription = "Houndmasters are used to handle dogs of war.";
@@ -28,30 +28,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.HoundmasterClassTree
-			],
-			Profession = [
-				::Const.Perks.DogBreederProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1)	{

@@ -3,7 +3,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function create() {
 		this.character_background.create(); //—
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBountyHunter); //only for solo assassin origin
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBountyHunter); //only for solo assassin origin
 		this.m.Name = "Bounty Hunter";
 		this.m.Icon = "ui/backgrounds/background_bountyhunter.png";
 		this.m.BackgroundDescription = "Bounty Hunters are solitary in nature who prefer more direct means to that of assassins. Anyone who is brave enough to walk the roads and take coin alone is either a fool or has more than meets the eye to them";
@@ -49,37 +49,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
 
 		this.m.Level = this.Math.rand(3, 6);
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.SwordmastersTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.AssassinMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

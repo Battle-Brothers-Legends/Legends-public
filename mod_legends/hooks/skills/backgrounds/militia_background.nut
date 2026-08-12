@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Militia);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Militia);
 		this.m.Name = "Militia";
 		this.m.Icon = "ui/backgrounds/background_35.png";
 		this.m.BackgroundDescription = "Anyone that\'s been in the militia will have received at least some basic training in matters of combat.";
@@ -22,30 +22,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

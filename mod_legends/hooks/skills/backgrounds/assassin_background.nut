@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Assassin);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Assassin);
 		this.m.Name = "Assassin";
 		this.m.Icon = "ui/backgrounds/background_53.png";
 		this.m.BackgroundDescription = "The same as any other mercenary, a skilled assassin can be hired for a good sum of crowns.";
@@ -48,34 +48,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 		this.m.Level = this.Math.rand(2, 5);
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.ThrowingTree,
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree,
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.AssassinMagicTree
-			]
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

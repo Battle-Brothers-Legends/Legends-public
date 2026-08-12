@@ -2,7 +2,7 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendIllusionist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendIllusionist);
 		this.m.Icon = "ui/backgrounds/background_wizard.png";
 		this.m.Name = "Illusionist";
 		this.m.Excluded = [
@@ -34,33 +34,6 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.Level = 1;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.SpearTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.OccultTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.IllusionistMagicTree,
-				::Const.Perks.PremonitionMagicTree,
-				::Const.Perks.StavesMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Raider);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Raider);
 		this.m.Name = "Raider";
 		this.m.Icon = "ui/backgrounds/background_49.png";
 		this.m.BackgroundDescription = "Any raider that survived so far will have some expertise in fighting.";
@@ -43,31 +43,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.AxeTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FlailTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

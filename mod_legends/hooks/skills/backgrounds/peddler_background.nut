@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Peddler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Peddler);
 		this.m.Name = "Peddler";
 		this.m.Icon = "ui/backgrounds/background_19.png";
 		this.m.BackgroundDescription = "Peddlers are not used to hard physical labor or warfare, but they do excel at haggling for good prices.";
@@ -32,30 +32,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.MaceTree
-
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [::Const.Perks.OutlawTree],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -33,7 +33,7 @@
 				::Legends.Background.Monk,
 				::Legends.Background.Historian,
 				::Legends.Background.LegendInventor,
-				::Legends.Background.LegendCommanderWitch
+				::Legends.Background.LegendSeer
 			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 				scholar_candidates.push(bro);
 		}

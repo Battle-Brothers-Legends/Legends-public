@@ -3,7 +3,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLurker);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLurker);
 		this.m.Name = "Lurker";
 		this.m.Icon = "ui/backgrounds/background_lurker.png";
 		this.m.BackgroundDescription = "This one is unsettling, even for a cultist. Ever quiet and brooding, but with eyes as keen as that of a vengeful god.";
@@ -57,35 +57,6 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.MartyrTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-
-			],
-			Class = [
-				::Const.Perks.BeastClassTree,
-				::Const.Perks.NinetailsClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

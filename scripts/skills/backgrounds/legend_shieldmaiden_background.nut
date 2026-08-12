@@ -3,7 +3,7 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendShieldmaiden);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendShieldmaiden);
 		this.m.Name = "Shieldmaiden";
 		this.m.Icon = "ui/backgrounds/legend_shieldmaiden.png";
 		this.m.BackgroundDescription = "Shieldmaidens are fierce female warriors from the northern settlements.";
@@ -37,32 +37,6 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		// this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.ThrowingTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Profession = [],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function onBuildDescription()

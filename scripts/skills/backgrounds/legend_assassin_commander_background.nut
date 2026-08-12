@@ -5,7 +5,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderAssassin);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderAssassin);
 		this.m.Name = "Assassin";
 		this.m.BackgroundDescription = "This character\'s history is a secret";
 		this.m.GoodEnding = "After leaving %companyname%, %name% was never heard from again. %name%\'s calling card has been found near a few accidents, so you believe the assassin is doing well.";
@@ -56,46 +56,6 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.DeviousTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.LargeTree
-
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.JugglerClassTree,
-				::Const.Perks.PoisonClassTree
-			],
-			Profession = [],
-			Magic = [
-				::Const.Perks.AssassinMagicTree,
-				::Const.Perks.AssassinLeftoverTree
-			]
-
-
-		};
 		this.m.CustomPerkTree = [
 			[],
 			[],

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Hunter);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Hunter);
 		this.m.Name = "Hunter";
 		this.m.Icon = "ui/backgrounds/background_22.png";
 		this.m.BackgroundDescription = "Hunters are used to expertly hunt animals with bow and arrow, and traverse the woods on their own.";
@@ -39,31 +39,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.OccultTree,
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

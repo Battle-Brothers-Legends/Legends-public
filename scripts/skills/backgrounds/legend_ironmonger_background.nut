@@ -4,7 +4,7 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendIronmonger);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendIronmonger);
 		this.m.Name = "Ironmonger";
 		this.m.Icon = "ui/backgrounds/background_ironmonger.png";
 		this.m.BackgroundDescription = "Ironmongers are stronger than average and good at maintaining equipment.";
@@ -27,29 +27,6 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.AxeTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.RepairProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Fisherman);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Fisherman);
 		this.m.Name = "Fisher";
 		this.m.Icon = "ui/backgrounds/background_15.png";
 		this.m.BackgroundDescription = "Fishers are used to physical labor.";
@@ -25,31 +25,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

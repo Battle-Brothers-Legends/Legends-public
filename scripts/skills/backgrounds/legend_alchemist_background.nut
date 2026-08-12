@@ -3,7 +3,7 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendAlchemist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAlchemist);
 		this.m.Name = "Alchemist";
 		this.m.Icon = "ui/backgrounds/background_alchemist.png";
 		this.m.BackgroundDescription = "The alchemist creates potions and gunpowder accessories, for a price.";
@@ -31,32 +31,6 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BeardChance = 50;
 		this.m.Ethnicity = 1;
 		this.m.BackgroundType = this.Const.BackgroundType.Educated;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [ //lf 5
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.OrganisedTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.PoisonClassTree
-			]
-			Profession = [
-				::Const.Perks.BarterProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function onChangeAttributes()

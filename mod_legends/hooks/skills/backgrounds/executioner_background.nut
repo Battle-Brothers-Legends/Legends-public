@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Executioner);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Executioner);
 		this.m.Name = "Executioner";
 		this.m.Icon = "ui/backgrounds/background_72.png";
 		this.m.BackgroundDescription = "Executioners are dour and used to violence, although they have little experience in true warfare.";
@@ -41,30 +41,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
 		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | this.Const.BackgroundType.Performing;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function () {

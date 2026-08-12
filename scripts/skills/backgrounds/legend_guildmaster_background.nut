@@ -3,7 +3,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendGuildmaster);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendGuildmaster);
 		this.m.Name = "Guild Master";
 		this.m.Icon = "ui/backgrounds/background_guildmaster.png";
 		this.m.BackgroundDescription = "An aging master slayer of a local guild, time has taken their youth but their skills still surpass those they train.";
@@ -40,34 +40,6 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.TrainedTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.OccultTree,
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

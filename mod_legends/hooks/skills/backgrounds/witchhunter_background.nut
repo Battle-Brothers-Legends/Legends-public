@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Witchhunter);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Witchhunter);
 		this.m.Name = "Witchhunter";
 		this.m.Icon = "ui/backgrounds/background_23.png";
 		this.m.BackgroundDescription = "Witchhunters tend to have some martial experience, and their resolve often remains unbroken even in the face of unspeakable horror.";
@@ -30,33 +30,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree,
-				::Const.Perks.OccultTree
-			],
-			Class = [
-				::Const.Perks.PoisonClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Cultist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Cultist);
 		this.m.Name = "Cultist";
 		this.m.Icon = "ui/backgrounds/background_34.png";
 		this.m.BackgroundDescription = "Cultists have a resolve to spread further their cult that is second to few.";
@@ -52,33 +52,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.NinetailsClassTree,
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

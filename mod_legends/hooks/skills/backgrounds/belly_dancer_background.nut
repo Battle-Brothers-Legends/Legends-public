@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/backgrounds/belly_dancer_background", function(o) {
 	o.create = function () {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.BellyDancer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.BellyDancer);
 		this.m.Name = "Belly Dancer";
 		this.m.Icon = "ui/backgrounds/background_64.png";
 		this.m.BackgroundDescription = "";
@@ -36,32 +36,6 @@
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 1;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.IntelligentTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.JugglerClassTree
-			],
-			Profession = [],
-			Magic = [
-				::Const.Perks.BardMagicTree
-			]
-		}
 	}
 
 	function onBuildDescription() {

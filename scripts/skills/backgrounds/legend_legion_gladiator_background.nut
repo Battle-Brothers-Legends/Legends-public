@@ -3,7 +3,7 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionGladiator);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionGladiator);
 		this.m.Name = "Gladiator";
 		this.m.Icon = "ui/backgrounds/background_legion_gladiator.png";
 		this.m.BackgroundDescription = "A leader to few, a slave of many.";
@@ -19,34 +19,6 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.Level = this.Math.rand(4, 5);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.BeastClassTree,
-				::Const.Perks.JugglerClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

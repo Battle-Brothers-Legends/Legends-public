@@ -3,7 +3,7 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionLegionary);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionLegionary);
 		this.m.Name = "Legionary";
 		this.m.Icon = "ui/backgrounds/background_legion_legionaire.png";
 		this.m.BackgroundDescription = "The backbone of the Empire, the legionary sees horrors far and wide — and now travels those lands as one.";
@@ -21,31 +21,6 @@ this.legend_legion_legionary_background <- this.inherit("scripts/skills/backgrou
 		this.m.Level = this.Math.rand(2, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

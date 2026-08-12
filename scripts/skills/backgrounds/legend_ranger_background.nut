@@ -3,7 +3,7 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendRanger);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendRanger);
 		this.m.Name = "Ranger";
 		this.m.Icon = "ui/backgrounds/background_ranger.png";
 		this.m.BackgroundDescription = "Rangers are expert trackers and marksman, used to hunting prey of any kind";
@@ -41,38 +41,6 @@ this.legend_ranger_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.OccultTree,
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = [
-				::Const.Perks.RangerHuntMagicTree,
-				::Const.Perks.MasterArcherTree
-			]
-		};
 	}
 
 	function setGender(_gender = -1) {

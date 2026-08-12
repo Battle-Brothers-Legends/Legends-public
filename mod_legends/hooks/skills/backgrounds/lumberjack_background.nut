@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Lumberjack);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Lumberjack);
 		this.m.Name = "Lumberjack";
 		this.m.Icon = "ui/backgrounds/background_04.png";
 		this.m.BackgroundDescription = "Lumberjacks are used to hard physical labor. And axes.";
@@ -39,28 +39,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Combat;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.AxeTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.WoodworkingProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

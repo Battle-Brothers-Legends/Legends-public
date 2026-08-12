@@ -3,7 +3,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendMagister);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMagister);
 		this.m.Name = "Magister";
 		this.m.Icon = "ui/backgrounds/background_magister.png";
 		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";
@@ -52,36 +52,6 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.NinetailsClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Slave);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Slave);
 		this.m.Name = "Indebted";
 		this.m.Icon = "ui/backgrounds/background_60.png";
 		this.m.BackgroundDescription = "The indebted are a caste of de-facto slaves in the city states, and as such are not hired, but bought, and receive no daily wage.";
@@ -50,31 +50,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Gambler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gambler);
 		this.m.Name = "Gambler";
 		this.m.Icon = "ui/backgrounds/background_20.png";
 		this.m.BackgroundDescription = "Gamblers tend to have quick reflexes and a higher resolve than their opponents at the card table.";
@@ -43,28 +43,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Performing;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.DeviousTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.ConArtistTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

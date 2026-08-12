@@ -3,7 +3,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendYoungblood);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendYoungblood);
 		this.m.Name = "Youngblood";
 		this.m.Icon = "ui/backgrounds/background_youngblood.png";
 		this.m.BackgroundDescription = "Youngbloods are students who have yet to prove themselves as capable witchhunters.";
@@ -39,36 +39,6 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.Level = this.Math.rand(1, 2);
 
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree,
-				::Const.Perks.OccultTree
-			],
-			Class = [
-				::Const.Perks.FaithClassTree
-			],
-			Profession = [
-				::Const.Perks.ChefProfessionTree,
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

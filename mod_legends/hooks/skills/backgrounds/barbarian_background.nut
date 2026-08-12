@@ -6,7 +6,7 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Barbarian);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Barbarian);
 		this.m.Name = "Barbarian";
 		this.m.Icon = "ui/backgrounds/background_58.png";
 		this.m.BackgroundDescription = "";
@@ -40,32 +40,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.ExpertHunter;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.AxeTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-				],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

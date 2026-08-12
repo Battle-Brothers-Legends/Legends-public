@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Swordmaster);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Swordmaster);
 		this.m.Name = "Swordmaster";
 		this.m.Icon = "ui/backgrounds/background_30.png";
 		this.m.BackgroundDescription = "A swordmaster excels in melee combat like no other, but may be vulnerable at range. Age may have taken a toll on %their% physical attributes and may continue to do so. Swordmasters fight smart and conserve their strength which allows them to have a reduced impact on initiative due to fatigue.";
@@ -54,33 +54,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.FencingTeacherProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1)

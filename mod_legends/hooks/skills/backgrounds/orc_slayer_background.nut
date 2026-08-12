@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.OrcSlayer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.OrcSlayer);
 		this.m.Name = "Orc Slayer";
 		this.m.Icon = "ui/backgrounds/background_55.png";
 		this.m.Excluded = [
@@ -52,30 +52,6 @@
 		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = 9;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [
-					::Const.Perks.GreenskinTree,
-					::Const.Perks.BeastTree,
-					],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

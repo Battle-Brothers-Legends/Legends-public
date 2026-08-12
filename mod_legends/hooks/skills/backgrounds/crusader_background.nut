@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Crusader);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crusader);
 		this.m.Name = "Crusader";
 		this.m.Icon = "ui/backgrounds/background_54.png";
 		this.m.Titles = [
@@ -59,36 +59,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.FaithClassTree
-			]
-		}
 	}
 
 	o.getTooltip = function ()

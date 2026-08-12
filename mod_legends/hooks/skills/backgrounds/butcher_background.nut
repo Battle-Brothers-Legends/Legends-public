@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Butcher);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Butcher);
 		this.m.Name = "Butcher";
 		this.m.Icon = "ui/backgrounds/background_43.png";
 		this.m.BackgroundDescription = "Butchers are used to bloodshed.";
@@ -36,28 +36,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.ChefProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

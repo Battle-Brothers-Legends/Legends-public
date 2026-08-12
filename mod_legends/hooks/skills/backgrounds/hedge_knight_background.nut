@@ -4,7 +4,7 @@
 
 	o.create = function () {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.HedgeKnight);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.HedgeKnight);
 		this.m.Name = "Hedge Knight";
 		this.m.Icon = "ui/backgrounds/background_33.png";
 		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
@@ -57,32 +57,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.Level = this.Math.rand(2, 5);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function () {

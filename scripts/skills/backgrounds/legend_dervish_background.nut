@@ -3,7 +3,7 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendDervish);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDervish);
 		this.m.Name = "Dervish";
 		this.m.Icon = "ui/backgrounds/background_dervish.png";
 		this.m.BackgroundDescription = "The dervish is a religious background that enters an almost trance-like state in combat.";
@@ -27,31 +27,6 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BeardChance = 50;
 		this.m.Ethnicity = 1;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CleaverTree,
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [ //lf 5
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.FaithClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-			],
-			Magic = []
-		}
 	}
 
 	function onChangeAttributes()

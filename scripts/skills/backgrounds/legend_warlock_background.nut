@@ -3,7 +3,7 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendWarlock);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendWarlock);
 		this.m.Icon = "ui/backgrounds/warlock_02.png";
 		this.m.Name = "Warlock";
 		this.m.Excluded = [
@@ -39,30 +39,6 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.WarlockMagicTree,
-				::Const.Perks.StavesMagicTree
-			]
-		}
 	}
 
 

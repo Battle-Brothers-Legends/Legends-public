@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.KillerOnTheRun);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.KillerOnTheRun);
 		this.m.Name = "Killer on the Run";
 		this.m.Icon = "ui/backgrounds/background_02.png";
 		this.m.BackgroundDescription = "A killer on the run may kill again, and %they% knows where to aim.";
@@ -43,33 +43,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-			],
-			Profession = [],
-			Class = [],
-			Magic = [
-				::Const.Perks.AssassinMagicTree
-			]
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

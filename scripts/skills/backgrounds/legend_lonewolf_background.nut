@@ -3,7 +3,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLonewolf);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLonewolf);
 		this.m.Name = "Lone Wolf";
 		this.m.Icon = "ui/backgrounds/background_lone_wolf.png";
 		this.m.BackgroundDescription = "You\'ve come this far. Is it worth it? What are a few more heads on the pile in the pursuit of satisfaction?";
@@ -50,37 +50,6 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		];
 
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.ImmortalMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

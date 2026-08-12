@@ -3,7 +3,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendManAtArms);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendManAtArms);
 		this.m.Name = "Man-At-Arms";
 		this.m.Icon = "ui/backgrounds/background_man_at_arms.png";
 		this.m.BackgroundDescription = "An old soldier, maimed by some forgettable past conflict, waits for another war that may never come.";
@@ -30,34 +30,6 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.BeastTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.FencingTeacherProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

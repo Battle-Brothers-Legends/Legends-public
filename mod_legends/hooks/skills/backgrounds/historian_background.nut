@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Historian);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Historian);
 		this.m.Name = "Historian";
 		this.m.Icon = "ui/backgrounds/background_47.png";
 		this.m.BackgroundDescription = "Historians are studious individuals with vast amounts of knowledge, none of it any use on the battlefield.";
@@ -48,31 +48,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.SpearTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = [
-				// ::Const.Perks.CaptainMagicTree,
-				::Const.Perks.PhilosophyMagicTree
-			]
-		}
 	}
 
 	o.getTooltip = function ()

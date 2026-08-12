@@ -3,7 +3,7 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCrusader);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCrusader);
 		this.m.Name = "Holy Crusader";
 		this.m.Icon = "ui/backgrounds/background_54.png";
 		this.m.Excluded = [
@@ -48,44 +48,6 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Combat | this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Untalented;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.ShieldTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.OccultTree,
-				::Const.Perks.BeastTree,
-				::Const.Perks.UndeadTree
-			],
-			Class = [
-				::Const.Perks.FaithClassTree
-			],
-			Profession = [
-				::Const.Perks.RepairProfessionTree
-			],
-			Magic = []
-		};
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Student,

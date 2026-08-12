@@ -3,7 +3,7 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionPrefect);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionPrefect);
 		this.m.Name = "Prefect";
 		this.m.Icon = "ui/backgrounds/background_legion_prefect.png"; 
 		this.m.BackgroundDescription = "An official or administrator with some standing to someone who\'s name and title is unknown to you.";
@@ -21,31 +21,6 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

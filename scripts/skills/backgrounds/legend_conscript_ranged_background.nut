@@ -6,32 +6,6 @@ this.legend_conscript_ranged_background <- this.inherit("scripts/skills/backgrou
 		this.m.Name = "Conscript Gunner";
 		this.m.Icon = "ui/backgrounds/background_ranged_conscript.png";
 		this.m.DailyCostMult = 1.0;
-
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.TrainedTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function onChangeAttributes()

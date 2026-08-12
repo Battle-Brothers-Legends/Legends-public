@@ -3,38 +3,8 @@
 	o.create = function ()
 	{
 		this.paladin_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PaladinOld);
 		this.m.HairColors = this.Const.HairColors.Old;
-
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.AxeTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.onSetAppearance = function ()

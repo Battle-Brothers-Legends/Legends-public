@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Messenger);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Messenger);
 		this.m.Name = "Messenger";
 		this.m.Icon = "ui/backgrounds/background_46.png";
 		this.m.BackgroundDescription = "Messengers are used to long and tiring travels.";
@@ -33,27 +33,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SpearTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 	
 	o.setGender <- function (_gender = -1) {

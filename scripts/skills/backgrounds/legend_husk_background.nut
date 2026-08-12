@@ -3,7 +3,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendHusk);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHusk);
 		this.m.Name = "Husk";
 		this.m.Icon = "ui/backgrounds/background_husk.png";
 		this.m.BackgroundDescription = "Once imbued with the will of a dead god, the departing of said god left this one...unpredictable.";
@@ -58,34 +58,6 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.AxeTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.BeastClassTree,
-				::Const.Perks.NinetailsClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

@@ -2,7 +2,7 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNobleShield);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNobleShield);
 		this.m.Name = "Foot Soldier";
 		this.m.Icon = "ui/backgrounds/background_nobleshield.png";
 		this.m.DailyCostMult = 1.0;
@@ -46,27 +46,6 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.SwordTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.FastTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		};
 	}
 
 	function setGender( _gender = -1 ) {

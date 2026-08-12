@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.KingsGuard);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.KingsGuard);
 		this.m.Name = "King\'s Guard";
 		this.m.Icon = "ui/backgrounds/background_59.png";
 		this.m.BackgroundDescription = "";
@@ -12,31 +12,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree
-			],
-			Class = [],
-			Profession = [], 
-			Magic = [
-				this.Const.Perks.ImmortalMagicTree
-			]
-		}
 	}
 
 	o.getTooltip = function ()

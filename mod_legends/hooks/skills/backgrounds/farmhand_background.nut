@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Farmhand);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Farmhand);
 		this.m.Name = "Farmhand";
 		this.m.Icon = "ui/backgrounds/background_09.png";
 		this.m.BackgroundDescription = "Farmhands are used to hard physical labor.";
@@ -21,27 +21,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.CleaverTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Mason);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Mason);
 		this.m.Name = "Mason";
 		this.m.Icon = "ui/backgrounds/background_17.png";
 		this.m.BackgroundDescription = "A good mason is used to physical labor and studying to improve his craft.";
@@ -26,27 +26,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 		this.m.Bodies = this.Const.Bodies.Skinny;
 	}
 

@@ -3,7 +3,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendHerbalist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHerbalist);
 		this.m.Name = "Herbalist / Apothecaries";
 		this.m.Icon = "ui/backgrounds/background_herbalist.png";
 		this.m.BackgroundDescription = "Herbalists and Apothecaries are skilled with a sickle, harvesting herbs for use in medicine";
@@ -39,33 +39,6 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.BowTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [::Const.Perks.OccultTree],
-			Class = [
-				::Const.Perks.PoisonClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

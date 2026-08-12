@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.BeastSlayer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.BeastSlayer);
 		this.m.Name = "Beast Slayer";
 		this.m.Icon = "ui/backgrounds/background_57.png";
 		this.m.BackgroundDescription = "Beast Slayers are used to expertly hunt monstrous beasts at all ranges.";
@@ -41,35 +41,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.AxeTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.OccultTree,
-				::Const.Perks.BeastTree,
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

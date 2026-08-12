@@ -3,7 +3,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendPreserver); //always female
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPreserver); //always female
 		this.m.Name = "Preserver";
 		this.m.Icon = "ui/backgrounds/background_necromancer_2.png";
 		this.m.BackgroundDescription = "Preservers practice the art of anatomy over resurrection - taking a more scientific approach to how dead things work.";

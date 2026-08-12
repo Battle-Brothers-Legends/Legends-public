@@ -3,7 +3,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderNoble);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderNoble);
 		this.m.Name = "Noble Usurper";
 		this.m.Icon = "ui/backgrounds/background_noble_usurper.png";
 		this.m.BackgroundDescription = "A noble with a birthright claim to authority";
@@ -33,37 +33,6 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.Level = 2;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Untalented;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree
-			],
-			Magic = [
-				::Const.Perks.CaptainMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

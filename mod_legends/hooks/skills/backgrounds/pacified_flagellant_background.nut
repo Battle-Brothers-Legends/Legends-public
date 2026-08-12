@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.PacifiedFlagellant);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PacifiedFlagellant);
 		this.m.Name = "Pacified Flagellant";
 		this.m.Icon = "ui/backgrounds/background_13.png";
 		this.m.Excluded = [
@@ -26,32 +26,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.FlailTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.NinetailsClassTree,
-				::Const.Perks.FaithClassTree
-				],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-			],
-			Magic = []
-		}
 	}
 
 	o.onBuildDescription <- function ()

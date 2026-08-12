@@ -2,7 +2,7 @@
 {
 	o.create = function () {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.CaravanHand);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.CaravanHand);
 		this.m.Name = "Caravan Hand";
 		this.m.Icon = "ui/backgrounds/background_12.png";
 		this.m.BackgroundDescription = "Caravan hands are used to long and exhausting travels.";
@@ -20,32 +20,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.ShieldTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.CaravaneerProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

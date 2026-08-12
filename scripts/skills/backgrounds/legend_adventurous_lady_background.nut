@@ -1,34 +1,12 @@
 this.legend_adventurous_lady_background <- this.inherit("scripts/skills/backgrounds/adventurous_noble_background", {
 	function create () {
 		this.adventurous_noble_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendAdventurousLady);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousLady);
 		this.m.BackgroundType = this.m.BackgroundType | this.Const.BackgroundType.Female;
 		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
 		this.m.BackgroundDescription = "Adventurous Ladies tend to have high resolve and ranged skills, but often neglect melee defense.";
 		this.m.Names = this.Const.Strings.LadyNames;
 		this.setBodyCharacteristics(1, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young})
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SwordTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function onChangeAttributes () {

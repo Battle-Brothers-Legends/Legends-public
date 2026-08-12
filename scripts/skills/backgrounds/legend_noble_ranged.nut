@@ -3,7 +3,7 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNobleRanged);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNobleRanged);
 		this.m.Name = "Arbalester";
 		this.m.Icon = "ui/backgrounds/background_nobleranged.png";
 		this.m.DailyCostMult = 1.0;
@@ -47,31 +47,6 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.BowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.FastTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Profession = [],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

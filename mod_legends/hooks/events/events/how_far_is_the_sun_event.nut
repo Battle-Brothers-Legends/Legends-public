@@ -35,7 +35,7 @@
 						if (bro.getID() == _event.m.Historian.getID() || ::Legends.Backgrounds.hasAny(bro,
 							::Legends.Background.Historian,
 							::Legends.Background.LegendInventor,
-							::Legends.Background.LegendCommanderWitch
+							::Legends.Background.LegendSeer
 						) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
 							continue;
 
@@ -66,7 +66,7 @@
 						if(::Legends.Backgrounds.hasAny(bro,
 							::Legends.Background.Historian,
 							::Legends.Background.LegendInventor,
-							::Legends.Background.LegendCommanderWitch,
+							::Legends.Background.LegendSeer,
 							::Legends.Background.LegendNecro,
 							::Legends.Background.LegendCommanderNecro
 						))
@@ -213,7 +213,7 @@
 			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar) || ::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Historian,
 				::Legends.Background.LegendInventor,
-				::Legends.Background.LegendCommanderWitch
+				::Legends.Background.LegendSeer
 			)) {
 				candidate_historian.push(bro);
 			} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk)) {

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Thief);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Thief);
 		this.m.Name = "Thief";
 		this.m.Icon = "ui/backgrounds/background_11.png";
 		this.m.BackgroundDescription = "A good thief will have quick reflexes and the ability to evade any captors.";
@@ -48,32 +48,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.BowTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [
-				::Const.Perks.ConArtistTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

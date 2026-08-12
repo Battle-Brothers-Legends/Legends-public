@@ -2,10 +2,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	::Legends.BackgroundsStats <- {};
 }
 
-/*
-* First item is male, second is female.
-*/
-
 ::Legends.BackgroundsStats.AdventurousNoble <- [{
 	Hitpoints = [-1, 4],
 	Bravery = [15, 20],
@@ -1612,7 +1608,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-15, -5]
 }];
 
-::Legends.BackgroundsStats.LegendCommanderWitch <- [{
+::Legends.BackgroundsStats.LegendSeer <- [{
 	Hitpoints = [-10, -10],
 	Bravery = [5, 5],
 	Stamina = [15, 20],

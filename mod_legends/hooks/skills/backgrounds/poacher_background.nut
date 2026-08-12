@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Poacher);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Poacher);
 		this.m.Name = "Poacher";
 		this.m.Icon = "ui/backgrounds/background_21.png";
 		this.m.BackgroundDescription = "Poachers tend to have some skill in using bow and arrow to hunt down rabbits and the like.";
@@ -23,30 +23,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.GreenskinTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

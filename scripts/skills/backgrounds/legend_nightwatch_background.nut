@@ -3,7 +3,7 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNightwatch);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNightwatch);
 		this.m.Name = "Night Watch";
 		this.m.Icon = "ui/backgrounds/background_nightwatch.png";
 		this.m.BackgroundDescription = "The night watch are an unlucky few chosen to break up fights and keep towns lawful at the worst time of the day.";
@@ -21,28 +21,6 @@ this.legend_nightwatch_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [
-				::Const.Perks.OccultTree
-			],
-			Profession = [],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

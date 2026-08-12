@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Juggler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Juggler);
 		this.m.Name = "Juggler";
 		this.m.Icon = "ui/backgrounds/background_14.png";
 		this.m.BackgroundDescription = "Jugglers need to have good reflexes and hand-eye-coordination for their profession.";
@@ -35,31 +35,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Performing;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.JugglerClassTree,
-				::Const.Perks.ConArtistTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

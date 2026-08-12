@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Bastard);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Bastard);
 		this.m.Name = "Bastard";
 		this.m.Icon = "ui/backgrounds/background_37.png";
 		this.m.BackgroundDescription = "Bastards often have profited from some training in melee fighting and know the weaknesses of noble armies.";
@@ -33,29 +33,6 @@
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

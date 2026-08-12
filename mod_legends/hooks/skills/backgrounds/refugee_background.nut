@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Refugee);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Refugee);
 		this.m.Name = "Refugee";
 		this.m.Icon = "ui/backgrounds/background_38.png";
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";
@@ -39,26 +39,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Monk);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Monk);
 		this.m.Name = "Monk";
 		this.m.Icon = "ui/backgrounds/background_13.png";
 		this.m.BackgroundDescription = "Monks tend to have a high resolve in what they do, but are not used to hard physical labor or warfare.";
@@ -42,34 +42,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.FlailTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree
-			],
-			Class = [
-				::Const.Perks.FaithClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

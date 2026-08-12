@@ -5,7 +5,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBerserker);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBerserker);
 		this.m.Name = "Berserker";
 		this.m.Icon = "ui/backgrounds/background_berserker.png";
 		this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life in the cities, where the astute and deceitful rule.";
@@ -59,31 +59,6 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.GreenskinTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.BerserkerMagicTree
-			]
-		}
 	}
 
 	function getTooltip ()

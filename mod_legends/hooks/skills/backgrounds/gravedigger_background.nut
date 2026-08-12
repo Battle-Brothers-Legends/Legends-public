@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Gravedigger);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gravedigger);
 		this.m.Name = "Gravedigger";
 		this.m.Icon = "ui/backgrounds/background_28.png";
 		this.m.BackgroundDescription = "Gravediggers are used to physical labor and handling the dead.";
@@ -32,29 +32,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.UndeadTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

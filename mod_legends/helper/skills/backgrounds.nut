@@ -124,6 +124,23 @@ if (!("Backgrounds" in ::Legends)) {
 	_target.m.Name = defs.Name;
 	_target.m.HiringCost = defs.HiringCost;
 	_target.m.DailyCost = defs.DailyCost;
+	_target.m.PerkTreeDynamic = ::Legends.Backgrounds.getPerkTrees(defs.Const);
+}
+
+::Legends.Backgrounds.getPerkTrees <- function(_name) {
+	if (!(_name in ::Legends.BackgroundPerkTrees)) {
+		::logError(_name + " missing in ::Legends.BackgroundPerkTrees, using default");
+		return {
+			Weapon = [],
+			Defense = [],
+			Traits = [],
+			Enemy = [],
+			Class = [],
+			Profession = [],
+			Magic = []
+		};
+	}
+	return ::Legends.BackgroundPerkTrees[_name];
 }
 
 ::Legends.Backgrounds.getStats <- function(_def, _isFemale = false) {

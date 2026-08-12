@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Apprentice);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Apprentice);
 		this.m.Name = "Apprentice";
 		this.m.Icon = "ui/backgrounds/background_40.png";
 		this.m.BackgroundDescription = "Apprentices tend to be eager for knowledge and learn faster than others.";
@@ -34,27 +34,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.AxeTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

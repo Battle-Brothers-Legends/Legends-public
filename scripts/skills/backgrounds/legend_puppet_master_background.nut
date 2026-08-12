@@ -3,7 +3,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendPuppetMaster);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPuppetMaster);
 		this.m.Name = "Puppet Master";
 		this.m.Icon = "ui/backgrounds/background_necromancer.png"; //—
 		this.m.BackgroundDescription = "Puppet masters are warlocks in training. While they do not understand the raising or preservation of the dead, they do excel at controlling them.";

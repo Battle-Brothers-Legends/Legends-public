@@ -3,7 +3,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderPeddler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderPeddler);
 		this.m.Name = "Merchant";
 		this.m.Icon = "ui/backgrounds/background_19.png"; //needs new
 		//gender neutral description
@@ -36,37 +36,6 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.MaceTree
-
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree,
-				::Const.Perks.CaravaneerProfessionTree
-			],
-			Magic = [
-				::Const.Perks.PhilosophyMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Deserter);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Deserter);
 		this.m.Name = "Deserter";
 		this.m.Icon = "ui/backgrounds/background_07.png";
 		this.m.BackgroundDescription = "Deserters have received some martial training, but usually aren\'t eager to put it to use.";
@@ -42,30 +42,6 @@
 		this.m.Level = this.Math.rand(1, 2);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
 		this.m.PerkTreeDynamicMins.Defense = 3;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SpearTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

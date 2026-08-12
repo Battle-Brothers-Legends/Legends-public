@@ -2,7 +2,7 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBlacksmith);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBlacksmith);
 		this.m.Name = "Blacksmith";
 		this.m.Icon = "ui/backgrounds/background_blacksmith.png";
 		this.m.BackgroundDescription = "Blacksmiths tend to be strong and are skilled at repairing equipment.";
@@ -26,28 +26,6 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Noble;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.RepairProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

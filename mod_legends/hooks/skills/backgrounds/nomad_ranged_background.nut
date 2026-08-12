@@ -3,30 +3,7 @@
 	o.create = function ()
 	{
 		this.nomad_background.create();
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.BeastTree,
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.NomadRanged);
 	}
 
 	o.onChangeAttributes = function ()

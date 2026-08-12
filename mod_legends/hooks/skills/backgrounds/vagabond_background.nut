@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Vagabond);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Vagabond);
 		this.m.Name = "Vagabond";
 		this.m.Icon = "ui/backgrounds/background_32.png";
 		this.m.BackgroundDescription = "Vagabonds are used to long travels, but don\'t excel in anything in particular.";
@@ -33,26 +33,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin; //Bottom half of neutral for slightly neutral evil
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
 		}
 	}
 

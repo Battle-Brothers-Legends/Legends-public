@@ -3,7 +3,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionLegate);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionLegate);
 		this.m.Name = "Legate";
 		this.m.Icon = "ui/backgrounds/background_legion_legate.png";
 		this.m.BackgroundDescription = "A military figure of great experience and prowess, the legate has risen through the ranks with bloody blade in hand.";
@@ -22,33 +22,6 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Level = this.Math.rand(5, 7);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function getTooltip ()

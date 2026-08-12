@@ -3,7 +3,7 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendConscript);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendConscript);
 		this.m.Name = "Conscript";
 		this.m.Icon = "ui/backgrounds/background_conscript.png";
 		this.m.BackgroundDescription = "Better trained and equipped than northern militia, conscripts are the rank and file of the southern military.";
@@ -56,31 +56,6 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.TrainedTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function onBuildDescription() //Male only // —

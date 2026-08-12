@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.AdventurousNoble);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.AdventurousNoble);
 		this.m.Name = "Adventurous Noble";
 		this.m.Icon = "ui/backgrounds/background_06.png";
 		this.m.BackgroundDescription = "Adventurous Nobles tend to have high resolve and melee skills, but often neglect ranged defense.";
@@ -32,29 +32,6 @@
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Noble;
 		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young})
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CrossbowTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function () {

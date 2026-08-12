@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Flagellant);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Flagellant);
 		this.m.Name = "Flagellant";
 		this.m.Icon = "ui/backgrounds/background_26.png";
 		this.m.BackgroundDescription = "Flagellants have a high resolve in what they do, and a high tolerance for pain, but their work has often left their bodies scarred for life.";
@@ -32,30 +32,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.FlailTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SlingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.NinetailsClassTree,
-				::Const.Perks.FaithClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Shepherd);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Shepherd);
 		this.m.Name = "Shepherd";
 		this.m.Icon = "ui/backgrounds/background_44.png";
 		this.m.BackgroundDescription = "Shepherds are used to physical labor and known to keep the occasional wolf at bay with a sling.";
@@ -38,28 +38,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SlingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [::Const.Perks.BeastTree],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

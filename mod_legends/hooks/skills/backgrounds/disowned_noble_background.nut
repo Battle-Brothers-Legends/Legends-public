@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.DisownedNoble);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.DisownedNoble);
 		this.m.Name = "Disowned Noble";
 		this.m.Icon = "ui/backgrounds/background_08.png";
 		this.m.BackgroundDescription = "Disowned nobles often have profited from some training in melee fighting at court and know the weaknesses of noble armies.";
@@ -27,29 +27,6 @@
 		this.m.Level = this.Math.rand(1, 3);
 		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Thick})
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Outlaw;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.MartyrTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.onBuildDescription <- function ()

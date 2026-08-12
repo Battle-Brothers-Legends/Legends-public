@@ -4,7 +4,7 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 	{
 		this.character_background.create();
 		this.m.Name = "Seer";
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendSeer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendSeer);
 		this.m.Icon = "ui/backgrounds/background_seer.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
@@ -43,34 +43,6 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.Level = 3;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.OccultTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-			],
-			Magic = [
-				::Const.Perks.SeerMagicTree,
-				::Const.Perks.IllusionistMagicTree,
-				::Const.Perks.StavesMagicTree
-			]
-		};
 
 		this.m.CustomPerkTree = [
 			[

@@ -3,7 +3,7 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionCenturion);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionCenturion);
 		this.m.Name = "Centurion";
 		this.m.Icon = "ui/backgrounds/background_legion_centurion.png";
 		this.m.BackgroundDescription = "A leader of many, a slave to a few.";
@@ -22,32 +22,6 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 		this.m.Level = this.Math.rand(3, 5);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

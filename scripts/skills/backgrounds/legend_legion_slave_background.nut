@@ -3,7 +3,7 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionSlave);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionSlave);
 		this.m.Name = "Servus";
 		this.m.Icon = "ui/backgrounds/background_legion_slave.png";
 		this.m.BackgroundDescription = "Taken from a distant land lost to time, this slave still fights for their master.";
@@ -21,32 +21,6 @@ this.legend_legion_slave_background <- this.inherit("scripts/skills/backgrounds/
 		// this.m.Level = this.Math.rand(2, 4);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

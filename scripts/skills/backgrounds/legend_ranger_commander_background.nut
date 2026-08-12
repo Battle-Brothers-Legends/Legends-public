@@ -3,7 +3,7 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderRanger);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderRanger);
 		this.m.Name = "Ranger";
 		this.m.Icon = "ui/backgrounds/background_ranger.png";
 		this.m.BackgroundDescription = "Rangers are expert trackers and archers, used to hunting prey of any kind";
@@ -42,44 +42,6 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.AxeTree,
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.GreenskinTree,
-				::Const.Perks.OccultTree,
-			],
-			Class = [
-				::Const.Perks.BeastClassTree,
-				::Const.Perks.HoundmasterClassTree
-			],
-			Profession = [],
-			Magic = [
-				::Const.Perks.RangerHuntMagicTree,
-				::Const.Perks.MasterArcherTree,
-				::Const.Perks.ArcherCommandTree
-			]
-		};
 
 		this.m.CustomPerkTree = [
 			[

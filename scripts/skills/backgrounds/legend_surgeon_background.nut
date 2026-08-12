@@ -3,7 +3,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendSurgeon);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendSurgeon);
 		this.m.Name = "Surgeon";
 		this.m.Icon = "ui/backgrounds/background_surgeon.png";
 		this.m.BackgroundDescription = "A learned surgeon from the south, their knowledge of medicine outstrips those of the oldest monks and witches.";
@@ -51,33 +51,6 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.Level = this.Math.rand(2, 4);
 
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Educated;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

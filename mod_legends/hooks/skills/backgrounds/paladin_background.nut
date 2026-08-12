@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Paladin);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Paladin);
 		this.m.Name = "Oathtaker";
 		this.m.Icon = "ui/backgrounds/background_69.png";
 		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which increases their health and initiative.";
@@ -57,30 +57,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.SwordTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.UndeadTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

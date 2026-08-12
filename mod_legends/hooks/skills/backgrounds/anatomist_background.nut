@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Anatomist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Anatomist);
 		this.m.Name = "Anatomist";
 		this.m.Icon = "ui/backgrounds/background_70.png";
 		this.m.BackgroundDescription = "Part scientist and part surgeon, Anatomists are unaccustomed to battle but well served by steady hands.";
@@ -58,37 +58,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
 		this.m.BackgroundType = this.Const.BackgroundType.Educated;
 		this.m.Level = this.Math.rand(1, 2);
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.HerbalistProfessionTree,
-			],
-			Magic = [
-				::Const.Perks.PhilosophyMagicTree
-			]
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

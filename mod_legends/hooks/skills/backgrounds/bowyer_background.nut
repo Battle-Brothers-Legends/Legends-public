@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Bowyer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Bowyer);
 		this.m.Name = "Bowyer";
 		this.m.Icon = "ui/backgrounds/background_29.png";
 		this.m.BackgroundDescription = "Bowyers tend to have some knowledge about how to use the ranged weaponry they used to craft.";
@@ -39,27 +39,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Ranger;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

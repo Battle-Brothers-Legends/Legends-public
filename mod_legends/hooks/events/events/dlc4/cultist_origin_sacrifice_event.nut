@@ -41,7 +41,7 @@
 								::Legends.Background.LegendCommanderNecro,
 								::Legends.Background.LegendNecro,
 								::Legends.Background.LegendVala,
-								::Legends.Background.LegendCommanderWitch,
+								::Legends.Background.LegendSeer,
 								::Legends.Background.LegendDonkey
 							)
 						)  {

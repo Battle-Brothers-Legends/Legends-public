@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Tailor);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Tailor);
 		this.m.Name = "Tailor";
 		this.m.Icon = "ui/backgrounds/background_48.png";
 		this.m.BackgroundDescription = "Tailors are not used to hard physical labor.";
@@ -37,31 +37,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;		
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.TailorClassTree
-			],
-			Profession = [
-				::Const.Perks.RepairProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

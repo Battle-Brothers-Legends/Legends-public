@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Pimp);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Pimp);
 		this.m.Name = "Pimp";
 		this.m.Icon = "ui/backgrounds/background_56.png";
 		this.m.Excluded = [
@@ -37,30 +37,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree,
-				::Const.Perks.OutlawTree
-					],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree
-			],
-			Magic = []
-		}
 		this.m.Bodies = this.Const.Bodies.Thick;
 	}
 

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Graverobber);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Graverobber);
 		this.m.Name = "Graverobber";
 		this.m.Icon = "ui/backgrounds/background_25.png";
 		this.m.BackgroundDescription = "Graverobbers are not faint of heart.";
@@ -32,29 +32,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.UndeadTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

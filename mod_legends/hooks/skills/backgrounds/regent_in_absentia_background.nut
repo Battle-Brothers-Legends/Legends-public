@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.RegentInAbsentia);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.RegentInAbsentia);
 		this.m.Name = "Regent in Absentia";
 		this.m.Icon = "ui/backgrounds/background_06.png";
 		this.m.BackgroundDescription = "%name% is a Regent in Absentia, choosing to spend their time with a mercenary company as opposed to in court.";
@@ -30,17 +30,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Crusader;
-		this.m.PerkTreeDynamic = {
-			Weapon = [],
-			Defense = [],
-			Traits = [],
-			Enemy = [],
-			Class = [],
-			Magic = [
-				::Const.Perks.CaptainMagicTree
-			],
-			Profession = []
-		}
 	}
 
 	o.getTooltip = function ()

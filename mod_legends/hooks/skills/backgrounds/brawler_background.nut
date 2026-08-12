@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Brawler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Brawler);
 		this.m.Name = "Brawler";
 		this.m.Icon = "ui/backgrounds/background_27.png";
 		this.m.BackgroundDescription = "Brawlers are unmatched in unarmed combat, and physical exercise tends to leave them in good shape.";
@@ -35,27 +35,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLeechPeddler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLeechPeddler);
 		this.m.Name = "Leech Peddler";
 		this.m.Icon = "ui/backgrounds/background_leech_peddler.png";
 		this.m.BackgroundDescription = "Leech peddlers are of questionable mindset at the best of times, but their unusual remedies often help those who cannot afford a real healer.";
@@ -30,35 +30,6 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree
-			],
-			Class = [
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			],
-			Magic = [
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

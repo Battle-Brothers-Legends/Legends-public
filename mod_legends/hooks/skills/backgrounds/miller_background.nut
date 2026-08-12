@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Miller);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Miller);
 		this.m.Name = "Miller";
 		this.m.Icon = "ui/backgrounds/background_05.png";
 		this.m.BackgroundDescription = "A miller is used to physical labor.";
@@ -28,29 +28,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.ChefProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

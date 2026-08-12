@@ -5,7 +5,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCommanderBerserker);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderBerserker);
 		this.m.Name = "Berserker";
 		this.m.Icon = "ui/backgrounds/background_berserker.png";
 		// this.m.BackgroundDescription = "Berserkers are used to the hard life of the wild where only the strong prevail. They are less used to the life of cities, where the astute and deceitful rule.";
@@ -57,39 +57,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.GreenskinTree,
-				::Const.Perks.BeastTree
-			],
-			Class = [],
-			Magic = [
-				::Const.Perks.BerserkerMagicTree
-			]
-		};
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Steadfast,

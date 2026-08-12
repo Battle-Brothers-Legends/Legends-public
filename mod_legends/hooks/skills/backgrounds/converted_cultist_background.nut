@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.ConvertedCultist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.ConvertedCultist);
 		this.m.Name = "Cultist";
 		this.m.Icon = "ui/backgrounds/background_34.png";
 		this.m.Excluded = [
@@ -35,28 +35,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.ConvertedCultist;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.FlailTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.NinetailsClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 		this.m.Bodies = this.Const.Bodies.Skinny;
 	}
 

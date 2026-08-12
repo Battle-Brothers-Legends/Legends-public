@@ -3,7 +3,7 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendTaxidermist);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendTaxidermist);
 		this.m.Name = "Taxidermist";
 		this.m.Icon = "ui/backgrounds/background_taxidermist.png";
 		this.m.BackgroundDescription = "Taxidermists are good at gutting beasts, but not fighting them.";
@@ -34,36 +34,6 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundType = this.Const.BackgroundType.Ranger;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree,
-				::Const.Perks.OccultTree
-			],
-			Profession = [
-				::Const.Perks.WoodworkingProfessionTree,
-				::Const.Perks.RepairProfessionTree
-			],
-			Class = [
-				::Const.Perks.TailorClassTree
-			],
-			Magic = []
-		}
 	}
 
 	function getTooltip()

@@ -28,32 +28,6 @@
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Bravery
 		];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.AxeTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.onChangeAttributes = function ()

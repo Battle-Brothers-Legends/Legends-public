@@ -3,7 +3,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendBladedancer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBladedancer);
 		this.m.Name = "Bladedancer";
 		this.m.Icon = "ui/backgrounds/background_bladedancer.png";
 		this.m.BackgroundDescription = "A skilled nomadic fighter of the south who prefers speed and reach over raw power.";
@@ -42,32 +42,6 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.MaceTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.SwordmastersTree,
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

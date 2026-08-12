@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Daytaler);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Daytaler);
 		this.m.Name = "Daytaler";
 		this.m.Icon = "ui/backgrounds/background_36.png";
 		this.m.BackgroundDescription = "Daytalers are used to all kinds of physical work, but don\'t excel in any.";
@@ -19,29 +19,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.FitTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LindwurmSlayer);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LindwurmSlayer);
 		this.m.Name = "Lindwurm Slayer";
 		this.m.Icon = "ui/backgrounds/background_71.png";
 		this.m.BackgroundDescription = "This mercenary is a one of a kind Lindwurm hunter, descendant of Dirk the Dragonslayer.";
@@ -40,36 +40,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.BowTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.DeviousTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.BeastTree
-			],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

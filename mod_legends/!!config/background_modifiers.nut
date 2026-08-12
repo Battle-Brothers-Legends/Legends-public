@@ -2110,7 +2110,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	];
 };
 
-::Legends.BackgroundModifiers.LegendCommanderWitch <- {
+::Legends.BackgroundModifiers.LegendSeer <- {
 	Meds = 34;
 	Stash = 8;
 	Healing = 0.30;

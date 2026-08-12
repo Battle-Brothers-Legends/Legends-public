@@ -3,7 +3,7 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendMuladi);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMuladi);
 		this.m.Name = "Muladí";
 		this.m.Icon = "ui/backgrounds/background_muladi.png";
 		this.m.BackgroundDescription = "A muladi is accustomed to the south, although not entirely accepted by the locals.";
@@ -26,30 +26,6 @@ this.legend_muladi_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.AgileTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.HoundmasterClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

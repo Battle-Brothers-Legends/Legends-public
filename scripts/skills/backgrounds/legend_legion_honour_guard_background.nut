@@ -3,7 +3,7 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendLegionHonourGuard); //I don't care who they send, im not spelling it 'honor'.
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionHonourGuard); //I don't care who they send, im not spelling it 'honor'.
 		this.m.Name = "Honour Guard";
 		this.m.Icon = "ui/backgrounds/background_legion_honourguard.png";
 		this.m.BackgroundDescription = "A veteran of hundreds of battles, the honour guard is rewarded for their luck and prowess with ever increasing danger.";
@@ -22,31 +22,6 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CleaverTree
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

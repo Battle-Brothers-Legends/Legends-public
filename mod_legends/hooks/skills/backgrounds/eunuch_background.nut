@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Eunuch);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Eunuch);
 		this.m.Name = "Eunuch";
 		this.m.Icon = "ui/backgrounds/background_52.png";
 		this.m.BackgroundDescription = "The fact that eunuchs can\'t sire children is probably a secondary concern for a mercenary company.";
@@ -31,30 +31,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Performing;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.CleaverTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.MaceTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.MartyrTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.BarterProfessionTree
-			],
-			Magic = []
-		}
-
 	}
 
 	o.getTooltip = function ()

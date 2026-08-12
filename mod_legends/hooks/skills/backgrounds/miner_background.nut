@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Miner);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Miner);
 		this.m.Name = "Miner";
 		this.m.Icon = "ui/backgrounds/background_45.png";
 		this.m.BackgroundDescription = "A miner will be used to physical labor, but breathing in the dusty air of the mines may have taken a toll on %their% health over the years.";
@@ -31,31 +31,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.SturdyTree
-			],
-			Enemy = [
-				::Const.Perks.GreenskinTree,
-				::Const.Perks.BeastTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.MinerProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendCompanionMelee);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCompanionMelee);
 		this.m.Name = "Companion";
 		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.BackgroundDescription = "This one has lost all interest in glory and gold. With nothing else to prove but to %themselves%.";
@@ -30,34 +30,6 @@ this.legend_companion_melee_background <- this.inherit("scripts/skills/backgroun
 			this.Const.Attributes.RangedSkill
 		];
 		this.m.Ethnicity = this.Math.rand(0, 2);
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.SpearTree,
-				::Const.Perks.FlailTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.HammerTree,
-				::Const.Perks.ShieldTree
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree,
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.MartyrTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

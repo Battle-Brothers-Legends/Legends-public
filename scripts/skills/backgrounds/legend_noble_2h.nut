@@ -2,7 +2,7 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendNoble2h);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNoble2h);
 		this.m.Name = "Warrior";
 		this.m.Icon = "ui/backgrounds/background_noble2h.png";
 		this.m.DailyCostMult = 1.0;
@@ -47,27 +47,6 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.SwordTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.TrainedTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function setGender(_gender = -1) {

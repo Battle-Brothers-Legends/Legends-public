@@ -6,33 +6,6 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		this.m.Name = "Gladiator Prizefighter";
 		this.m.Icon = "ui/backgrounds/background_gladiator_prizefighter.png";
 		this.m.BackgroundDescription = "Gladiator Prizefighters cost a lot of coin, but their time exchanging punches in the arena has made them tough as nails and fit as a butcher\'s dog.";
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.MaceTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.ViciousTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.LargeTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.MartyrTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.BeastClassTree
-			],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	function onChangeAttributes()

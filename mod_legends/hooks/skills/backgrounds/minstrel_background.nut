@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Minstrel);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Minstrel);
 		this.m.Name = "Minstrel";
 		this.m.Icon = "ui/backgrounds/background_troubadour.png";
 		this.m.BackgroundDescription = "A good minstrel will sing a saga to inspire the men, play the flute to calm them, or entertain them with poetry around the camp fire. A lute is not a weapon, however, and minstrels are often not used to physical labor or bloodshed.";
@@ -43,34 +43,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Performing;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.MaceTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.ThrowingTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.DaggerTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [
-				::Const.Perks.JugglerClassTree
-			],
-			Profession = [],
-			Magic = [
-				::Const.Perks.BardMagicTree,
-			]
-		}
 	}
 
 	o.getTooltip = function ()

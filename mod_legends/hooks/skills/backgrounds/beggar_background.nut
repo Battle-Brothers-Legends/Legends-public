@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Beggar);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Beggar);
 		this.m.Name = "Beggar";
 		this.m.Icon = "ui/backgrounds/background_18.png";
 		this.m.BackgroundDescription = "Beggars aren\'t the most determined persons, and living on the street tends to be detrimental to their health.";
@@ -45,27 +45,6 @@
 			"the Homeless"
 		];
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Performing;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.CalmTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

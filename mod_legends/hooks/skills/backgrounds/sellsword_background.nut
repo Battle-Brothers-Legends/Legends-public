@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Sellsword);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Sellsword);
 		this.m.Name = "Sellsword";
 		this.m.Icon = "ui/backgrounds/background_10.png";
 		this.m.BackgroundDescription = "Sellswords are expensive, but a life of warfare has forged them into skilled fighters.";
@@ -30,32 +30,6 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ThrowingTree,
-			],
-			Defense = [
-				::Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.SturdyTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.LargeTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree,
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.getTooltip = function ()

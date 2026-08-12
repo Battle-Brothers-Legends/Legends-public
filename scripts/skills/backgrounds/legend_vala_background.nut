@@ -3,7 +3,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendVala);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendVala);
 		this.m.Name = "Vala";
 		this.m.Icon = "ui/backgrounds/background_vala.png";
 		this.m.BackgroundDescription = "A Vala is a travelling seer, shaman and sorceress.";
@@ -41,37 +41,6 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.Level = 2;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.PolearmTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.SturdyTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [
-				::Const.Perks.StaffClassTree,
-				::Const.Perks.HealerClassTree
-			],
-			Profession = [
-				::Const.Perks.HealerProfessionTree,
-				::Const.Perks.ChefProfessionTree,
-				::Const.Perks.HerbalistProfessionTree
-			],
-			Magic = [
-				::Const.Perks.ValaChantMagicTree,
-				::Const.Perks.ValaTranceMagicTree,
-				::Const.Perks.ValaSpiritMagicTree
-			]
-		};
 		this.m.CustomPerkTree = [
 			[::Legends.Perk.LegendSpecialistSelfdefense],
 			[],

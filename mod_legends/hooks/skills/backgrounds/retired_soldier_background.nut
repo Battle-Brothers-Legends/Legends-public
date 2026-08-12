@@ -2,7 +2,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.RetiredSoldier);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.RetiredSoldier);
 		this.m.Name = "Retired Soldier";
 		this.m.Icon = "ui/backgrounds/background_24.png";
 		this.m.BackgroundDescription = "Retired soldiers tend to have decent experience in warfare, and their resolve is not easily broken. However, their age may have taken a toll on their physical attributes.";
@@ -43,32 +43,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.PerkTreeDynamicMins.Enemy = 2;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.AxeTree,
-				::Const.Perks.ShieldTree,
-				::Const.Perks.ThrowingTree,
-			],
-			Defense = [
-				::Const.Perks.HeavyArmorTree,
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.TrainedTree,
-				::Const.Perks.OrganisedTree,
-				::Const.Perks.InspirationalTree,
-				::Const.Perks.FitTree
-			],
-			Enemy = [
-				::Const.Perks.OutlawTree
-			],
-			Class = [],
-			Profession = [
-				::Const.Perks.FencingTeacherProfessionTree
-			],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

@@ -3,7 +3,7 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendMasterArcher);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMasterArcher);
 		this.m.Name = "Master Archer";
 		this.m.Icon = "ui/backgrounds/background_master_archer.png";
 		this.m.BackgroundDescription = "Master Archers have spent years honing their craft in hunting, sport and war.";
@@ -46,32 +46,6 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.BowTree,
-				::Const.Perks.CrossbowTree,
-				::Const.Perks.SwordTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree
-			],
-			Traits = [
-				::Const.Perks.AgileTree,
-				::Const.Perks.FastTree,
-				::Const.Perks.ViciousTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.DeviousTree
-			],
-			Enemy = [
-
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.RangerHuntMagicTree
-			]
-		}
 	}
 
 	function setGender(_gender = -1) {

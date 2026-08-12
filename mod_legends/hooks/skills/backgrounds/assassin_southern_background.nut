@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.AssassinSouthern);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.AssassinSouthern);
 		this.m.Name = "Hashassin";
 		this.m.Icon = "ui/backgrounds/background_53.png";
 		this.m.BackgroundDescription = "An assassin has to be quick on %their% feet and skilled with the use of weapons.";
@@ -51,33 +51,6 @@
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.SwordTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CleaverTree,
-				::Const.Perks.BowTree,
-				::Const.Perks.ThrowingTree
-			],
-			Defense = [
-				::Const.Perks.LightArmorTree,
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.CalmTree,
-				::Const.Perks.FitTree,
-				::Const.Perks.AgileTree,
-				::Const.Perks.ViciousTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = [
-				::Const.Perks.AssassinMagicTree
-			]
-		}
 	}
 
 	o.setGender <- function (_gender = -1) {

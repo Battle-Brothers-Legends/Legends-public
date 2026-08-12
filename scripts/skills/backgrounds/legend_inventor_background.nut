@@ -3,7 +3,7 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.LegendInventor);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendInventor);
 		this.m.Name = "Inventor";
 		this.m.Icon = "ui/backgrounds/background_inventor.png";
 		this.m.BackgroundDescription = "Inventors are trenchant problem solvers, fueled by a burning passion for knowledge.";
@@ -29,33 +29,6 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Educated;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.HammerTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.DaggerTree,
-				::Const.Perks.CrossbowTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.CalmTree,
-				::Const.Perks.IndestructibleTree,
-				::Const.Perks.OrganisedTree
-			],
-			Enemy = [],
-			Class = [],
-			Profession = [
-				::Const.Perks.RepairProfessionTree,
-				::Const.Perks.CaravaneerProfessionTree
-			],
-			Magic = [
-				::Const.Perks.PhilosophyMagicTree,
-				::Const.Perks.InventorMagicTree
-			]
-		}
 	}
 
 	function getTooltip()

@@ -273,6 +273,6 @@
     [::Legends.Backgrounds.getID(::Legends.Background.LegendVala)]                    = { pos = "Continued healing the world", 					neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendWarlock)]                 = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendWarlockSummoner)]        = { pos = "", 											neg = "" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderWitch)]         = { pos = "Established a new coven of misery", 			neg = "Killed by a hexenjager, some say the Wight" },
+    [::Legends.Backgrounds.getID(::Legends.Background.LegendSeer)]         = { pos = "Established a new coven of misery", 			neg = "Killed by a hexenjager, some say the Wight" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendYoungblood)]              = { pos = "Found a new cause to fight for", 				neg = "" },
 };

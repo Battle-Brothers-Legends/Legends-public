@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(::Legends.Background.Cripple);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Cripple);
 		this.m.Name = "Cripple";
 		this.m.Icon = "ui/backgrounds/background_51.png";
 		this.m.BackgroundDescription = "The only thing swift about a cripple is their expected demise in a real battle.";
@@ -40,29 +40,6 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				::Const.Perks.DaggerTree,
-				::Const.Perks.SlingTree,
-				::Const.Perks.PolearmTree,
-				::Const.Perks.FistsTree
-			],
-			Defense = [
-				::Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				::Const.Perks.MartyrTree,
-				::Const.Perks.IntelligentTree,
-				::Const.Perks.DeviousTree,
-				::Const.Perks.IndestructibleTree
-			],
-			Enemy = [
-				::Const.Perks.CivilizationTree
-			],
-			Class = [],
-			Profession = [],
-			Magic = []
-		}
 	}
 
 	o.setGender <- function(_gender = -1) {
