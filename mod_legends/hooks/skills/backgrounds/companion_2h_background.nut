@@ -144,4 +144,4 @@
 			[1, ::Legends.Helmet.Standard.headscarf]
 		]));
 	}
-});;
+});

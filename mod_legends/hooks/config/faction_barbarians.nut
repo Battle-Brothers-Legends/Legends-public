@@ -23,7 +23,7 @@
 		110
 	],
 	FatigueRecoveryRate = 35
-};;
+};
 
 ::Const.Tactical.Actor.BarbarianMadman.FatigueRecoveryRate = 30;
 

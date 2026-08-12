@@ -7,7 +7,7 @@ this.legend_named_accessory <- this.inherit("scripts/items/accessory/accessory",
 	function create()
 	{
 		this.accessory.create();
-		this.m.ItemType = this.Const.Items.ItemType.Accessory | this.Const.Items.ItemType.Named;;
+		this.m.ItemType = this.Const.Items.ItemType.Accessory | this.Const.Items.ItemType.Named;
 	}
 
 	function getRandomCharacterName( _list )
@@ -92,17 +92,17 @@ this.legend_named_accessory <- this.inherit("scripts/items/accessory/accessory",
 });
 
 
-	
 
-	
 
-	
 
-	
 
-	
 
-	
 
-	
+
+
+
+
+
+
+
 

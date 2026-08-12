@@ -6,15 +6,6 @@ this.profession_legend_on_the_grapevine <- this.inherit("scripts/skills/legend_p
 	}
 
 	function getDynamicTooltip(_def, _active) {
-		return [{
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png"
-				text = "TBD"
-			}];
-	}
-
-	function getDynamicTooltip(_def, _active) {
 		local ret = [
 			{
 				id = 10,
@@ -38,7 +29,7 @@ this.profession_legend_on_the_grapevine <- this.inherit("scripts/skills/legend_p
 				text = "Next: [color=%positive%]" + (::Legends.Professions.getProfessionEffect(_def, 1)) + "[/color]"
 			});
 		}
-		
+
 		return ret;
 	}
 });
