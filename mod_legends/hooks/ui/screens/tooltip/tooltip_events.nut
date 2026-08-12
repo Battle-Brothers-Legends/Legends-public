@@ -5042,7 +5042,7 @@
 			return ret;
 
 		case "healer.Time":
-			local desc = "Total number of hours required to treat all the selected injuries. Assign more people to this task to decrease the amout of time required. Some backgrounds are better than others!";
+			local desc = "Total number of hours required to treat all the selected injuries. Assign more people to this task to decrease the amount of time required. Some backgrounds are better than others!";
 			local ret = [
 				{
 					id = 1,
@@ -5056,6 +5056,20 @@
 				}
 			];
 			return ret;
+
+		case "healer.IntensiveCare":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Intensive Care"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Allow the usage of extra medical attention to heal faster at the cost of additional medicine supplies. Requires the Surgeon Table upgrade."
+				}
+			];
 
 		case "camp-screen.main-dialog-module.CampButton":
 			return [

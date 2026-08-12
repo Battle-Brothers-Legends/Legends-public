@@ -90,19 +90,3 @@ this.legend_named_accessory <- this.inherit("scripts/items/accessory/accessory",
 		this.m.Name = _in.readString();
 	}
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

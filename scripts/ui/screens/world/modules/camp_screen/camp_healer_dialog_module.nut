@@ -1,41 +1,36 @@
-
 this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Healing",
 		Description = "Mend wounds and tend injuries."
 	},
 
-	function create()
-	{
+	function create() {
 		this.m.ID = "CampHealerDialogModule";
 		this.ui_module.create();
 	}
 
-	function getTent()
-	{
+	function getTent() {
 		return this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 	}
 
-	function onShow()
-	{
+	function onShow() {
 		this.getTent().onInit();
 		return this.queryLoad();
 	}
 
-	function queryLoad()
-	{
+	function queryLoad() {
 		local result = {
 			Title = this.m.Title,
 			SubTitle = this.m.Description,
 			Assets = this.assetsInformation(),
 			Roster = this.getTent().getRoster(),
-			Queue = this.getTent().getQueue()
+			Queue = this.getTent().getQueue(),
+			IsUpgraded = this.getTent().getUpgraded()
 		};
 		return result;
 	}
 
-	function queryQueue()
-	{
+	function queryQueue() {
 		local result = {
 			Assets = this.assetsInformation(),
 			Queue = this.getTent().getQueue()
@@ -43,51 +38,47 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		return result;
 	}
 
-	function assetsInformation()
-	{
+	function assetsInformation() {
 		return {
 			Meds = this.World.Assets.getMedicine(),
-			MedsMax  = this.World.Assets.getMaxMedicine(),
+			MedsMax = this.World.Assets.getMaxMedicine(),
 			MedsRequired = this.getTent().getRequiredMeds(),
 			Time = this.getTent().getRequiredTime(),
 			Brothers = this.getTent().getAssignedBros()
 		};
 	}
 
-	function loadQueueList()
-	{
-		local result = this.queryQueue();
-		this.m.JSHandle.asyncCall("loadFromData", result);
+	function loadQueueList() {
+		this.m.JSHandle.asyncCall("loadFromData", this.queryQueue());
 	}
 
-	function onSwap ( _data )
-	{
-		this.getTent().onSwap( _data[0], _data[1] );
+	function onSwap(_data) {
+		this.getTent().onSwap(_data[0], _data[1]);
 		this.loadQueueList();
 	}
 
-	function onRemove ( _idx)
-	{
-		local res = this.getTent().onRemove( _idx );
-		local result = this.queryLoad();
-		this.m.JSHandle.asyncCall("loadFromData", result);
+	function onRemove(_idx) {
+		this.getTent().onRemove(_idx);
+		this.m.JSHandle.asyncCall("loadFromData", this.queryLoad());
 	}
 
-	function onAdd( _data )
-	{
-		local res = this.getTent().onAdd( _data[0], _data[1] );
-		local result = this.queryLoad();
-		this.m.JSHandle.asyncCall("loadFromData", result);
+	function onAdd(_data) {
+		this.getTent().onAdd(_data[0], _data[1]);
+		this.m.JSHandle.asyncCall("loadFromData", this.queryLoad());
 	}
 
-	function onLeaveButtonPressed()
-	{
+	function onLeaveButtonPressed() {
 		this.m.Parent.onModuleClosed();
 	}
 
-	function onBrothersButtonPressed()
-	{
+	function onBrothersButtonPressed() {
 		this.m.Parent.onCommanderButtonPressed();
 	}
 
+	function onToggleIntensiveCare( _broID ) {
+		local flags = ::Tactical.getEntityByID(_broID).getFlags();
+		flags.set("CampIntensiveCare", !flags.get("CampIntensiveCare"));
+    
+		this.m.JSHandle.asyncCall("loadFromData", this.queryLoad());
+	}
 });

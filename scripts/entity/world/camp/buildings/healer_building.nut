@@ -1,11 +1,16 @@
 this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	m = {
-		MedsUsed = 0,
+		MedsUsedInjury = 0,
 		Rate = 0,
 		PointsNeeded = 0,
 		Queue = null,
 		InjuriesHealed = [],
-		InjurySounds = []
+		InjurySounds = [],
+		MedsUsedHP = 0,
+		IntensiveHPHealed = 0,
+		IntensiveRate = 2.0,
+		IntensiveCost = 0.2,
+		AutoIntensiveHealing = false
 	},
 	function create() {
 		this.camp_building.create();
@@ -21,10 +26,11 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 		this.m.InjurySounds = getCampSounds(1, "healer_treatment_bandage");
+		this.m.HasPopup = true;
 	}
 
 	function getRate() {
-		return ::Const.World.Assets.HitpointsPerHour * (1 + this.m.Rate) * (this.getUpgraded() ? 1.66 : 1.1);
+		return ::Const.World.Assets.HitpointsPerHour * (1 + this.m.Rate) * (this.getUpgraded() ? (1.15 * 1.1) : 1.1);
 	}
 
 	function getTitle() {
@@ -85,7 +91,9 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function init()	{
-		this.m.MedsUsed = 0;
+		this.m.MedsUsedInjury = 0;
+		this.m.MedsUsedHP = 0;
+		this.m.IntensiveHPHealed = 0;
 		this.m.InjuriesHealed = [];
 		this.m.PointsNeeded = 0;
 
@@ -131,16 +139,25 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.Queue = q;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		local id = 30;
 		local res = [];
-		if (this.m.MedsUsed > 0) {
-			res.push({
-				id = id++,
-				icon = "ui/buttons/asset_medicine_down.png",
-				text = "You used [color=" + this.Const.UI.Color.NegativeEventValue + "]" + ::Math.floor(this.m.MedsUsed) + "[/color] units of medicine and treated [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.m.InjuriesHealed.len() + "[/color] injuries."
-			});
+		local medsUsed = this.m.MedsUsedInjury + this.m.MedsUsedHP;
+		if (medsUsed > 0) {
+			if (this.m.InjuriesHealed.len() > 0) {
+				res.push({
+					id = id++,
+					icon = "ui/buttons/asset_medicine_down.png",
+					text = "You used [color=%negative%]" + ::Math.floor(this.m.MedsUsedInjury) + "[/color] units of medicine and treated [color=%positive%]" + this.m.InjuriesHealed.len() + "[/color] injuries."
+				});
+			}
+			if (this.m.IntensiveHPHealed > 0) {
+            	res.push({
+					id = id++,
+					icon = "ui/buttons/asset_medicine_down.png",
+					text = "You used [color=%negative%]" + ::Math.floor(this.m.MedsUsedHP) + "[/color] units of medicine and healed [color=%positive%]" + ::Math.floor(this.m.IntensiveHPHealed) + "[/color] HP."
+				});
+        	}
 		}
 
 		local injuries = this.m.InjuriesHealed.filter(@(_, _i) (_i != null && _i.getIcon() != null && _i.getName() != null));
@@ -157,7 +174,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			res.push({
 				id = id++,
 				icon = "ui/icons/health.png",
-				text = bro.getName() + " healed [color=" + ::Const.UI.Color.PositiveEventValue + "]" + ::Math.floor(bro.getCampHealing()) + "[/color] points."
+				text = bro.getName() + " healed [color=%positive%]" + ::Math.floor(bro.getCampHealing()) + "[/color] points."
 			});
 		}
 		return res;
@@ -251,7 +268,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				modifiers.Craft -= needed;
 
 				::World.Assets.addMedicine(-needed);
-				this.m.MedsUsed += needed;
+				this.m.MedsUsedInjury += needed;
 
 				if (r.getPoints() >= this.getCost(r)) {
 					this.healInjury(i);
@@ -271,16 +288,32 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		// Hitpoints block
 		local currentMissingHP = 0.0;
 		local healText = "Health points ... ";
-		local rate = this.getRate();
 
 		local brothersToHeal = ::World.getPlayerRoster().getAll().filter(@(_, _b) (_b.getHitpointsMax() - _b.getHitpoints() > 0));
 		foreach (bro in brothersToHeal) {
-			bro.setCampHealing(bro.getCampHealing() + rate);
-			local newHitpoints = ::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + rate);
+			local rate = this.getRate();	
+			local missing = bro.getHitpointsMax().tofloat() - bro.getHitpoints();
+			if (missing > rate && this.getUpgraded() && (this.m.AutoIntensiveHealing || bro.getFlags().get("CampIntensiveCare")) && ::World.Assets.getMedicine() > 0) {
+				local medCost = this.getIntensiveCost() * ::Math.minf(missing - rate, rate * (this.getIntensiveRate() - 1.0));
+				if (::World.Assets.getMedicine() >= medCost) {
+            		::World.Assets.addMedicine(-medCost);
+            		this.m.MedsUsedHP += medCost;
+            		rate *= this.getIntensiveRate();
+				} else {
+					local availableMeds = ::World.Assets.getMedicine();
+					::World.Assets.addMedicine(-availableMeds);
+					this.m.MedsUsedHP += availableMeds;
+					rate += availableMeds / this.getIntensiveCost();
+				}
+				this.m.IntensiveHPHealed += ::Math.minf(rate - this.getRate(), missing - this.getRate());
+			}
+			local healAmount = ::Math.minf(missing, rate);
+			bro.setCampHealing(bro.getCampHealing() + healAmount);
+			local newHitpoints = bro.getHitpoints() + healAmount;
 			bro.setHitpoints(newHitpoints);
-			local missing = bro.getHitpointsMax().tofloat() - newHitpoints;
-			if (missing > 0) {
-				currentMissingHP += missing;
+			local newMissing = bro.getHitpointsMax().tofloat() - newHitpoints;
+			if (newMissing > 0) {
+				currentMissingHP += newMissing;
 			}
 		}
 
@@ -341,11 +374,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					points = i.getPoints()
 				});
 			}
-			
-
-			if (injuries.len() == 0) {
-				continue;
-			}
 
 			local background = b.getBackground();
 			local e = {
@@ -356,10 +384,14 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				ImageOffsetY = b.getImageOffsetY(),
 				BackgroundImagePath = background.getIconColored(),
 				BackgroundText = background.getDescription(),
-				Injuries = injuries
+				Injuries = injuries,
+				Order = injuries.len() > 0 ? 1 : b.getHitpointsMax() > b.getHitpoints() ? 2 : 3,
+            	IsIntensiveCare = b.getFlags().get("CampIntensiveCare")
 			};
 			roster.push(e);
 		}
+
+		roster.sort(@(_a, _b) _a.Order - _b.Order);
 		return roster;
 	}
 
@@ -428,5 +460,46 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function playTreatmentSound() {
 		local sound = this.m.InjurySounds[::Math.rand(0, this.m.InjurySounds.len() - 1)];
 		::Sound.play("sounds/" + sound.File, sound.Volume);
+	}
+
+	function getIntensiveRate() {
+		return this.m.IntensiveRate; 
+	}
+
+	function getIntensiveCost() {
+    	return this.m.IntensiveCost; 
+	}
+
+	function onPopupButtonClicked(_data) {
+		if (_data.len() == 2) {
+			this[_data[1]](_data[0]);
+			::Sound.play("sounds/move_pot_clay_01.wav", 2.0);
+		}
+	}
+
+	function setMode( _m ) {
+		this.m.AutoIntensiveHealing = _m ? true : false;
+	}
+
+	function queryConfigureSettings() {
+		return {
+			Title = "Auto Intensive Care",
+			Buttons = ["Manual", "Auto"],
+			CurrentMode = this.m.AutoIntensiveHealing ? 1 : 0
+		};
+	}
+
+	function hasPopup() {
+		return this.m.HasPopup && this.getUpgraded();
+	}
+
+	function onSerialize( _out ) {
+    	this.camp_building.onSerialize(_out);
+    	_out.writeBool(this.m.AutoIntensiveHealing);
+	}
+
+	function onDeserialize( _in ) {
+    	this.camp_building.onDeserialize(_in);
+    	this.m.AutoIntensiveHealing = _in.readBool();
 	}
 });
