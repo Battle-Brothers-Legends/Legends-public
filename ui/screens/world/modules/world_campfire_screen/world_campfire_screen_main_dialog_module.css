@@ -187,8 +187,8 @@
 
 .world-campfire-screen > .l-main-dialog-container .slot9 { /* workshop */
 	position: absolute;
-	left: 42.0rem;
-	bottom: 2.0rem;
+	left: 44.0rem;
+	bottom: 20.0rem;
 	z-index: 103 !important;
 }
 

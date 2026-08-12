@@ -1,4 +1,4 @@
-::mods_hookNewObject("retinue/retinue_manager", function (o) {
+::mods_hookExactClass("retinue/retinue_manager", function (o) {
 	o.m.OwnedFollowerIDs <- [];
 
 	local create = o.create;
@@ -69,7 +69,6 @@
 	o.setFollower = function (_slot, _follower) {
 		local visibleFollowers = this.m.Followers.filter(@(_idx, _f) _f.isVisible());
         visibleFollowers.sort(@(_a, _b) _a.getID() <=> _b.getID());
-
 		local fixedSlot = -1;
 		foreach (i, f in visibleFollowers) {
             if (f.getID() == _follower.getID()) {
@@ -91,14 +90,8 @@
 		}
 	}
 
-	o.hasFollower <- function (_id) {
-		foreach (a in this.m.Slots) {
-			if (a != null && a.getID() == _id && a.isEnabled()) {
-				return true;
-			}
-		}
-
-		return false;
+	o.hasFollower = function (_id) {
+		return this.m.Slots.filter(@(_,_f) (_f != null && _f.getID() == _id) && _f.isEnabled()).len() > 0;
 	}
 
 	o.hasFollowersToRemove <- function () {

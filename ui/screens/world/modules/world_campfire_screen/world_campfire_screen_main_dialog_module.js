@@ -283,7 +283,7 @@ WorldCampfireScreenMainDialogModule.prototype.loadFromData = function (_data) {
 		});
 	}
 	
-	if ('Fire' in _data && _data['Fire'] !== null && _data['Fire'] != '' && _data['Slots'][5].ID === "locked") {
+	if ('Fire' in _data && _data['Fire'] !== null && _data['Fire'] != '' && (_data['Slots'][5] == null || _data['Slots'][5].ID === "locked")) {
 		content.createImage(Path.GFX + _data['Fire'], null, null, 'display-block fire');
 	}
 
