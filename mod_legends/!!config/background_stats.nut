@@ -107,11 +107,11 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Hitpoints = [-5, -5],
 	Bravery = [-5, -5],
 	Stamina = [-5, -5],
-	MeleeSkill = [10, 10],
-	RangedSkill = [5, 5],
-	MeleeDefense = [0, 0],
-	RangedDefense = [0, 0],
-	Initiative = [10, 10]
+	MeleeSkill = [7, 14],
+	RangedSkill = [5, 10],
+	MeleeDefense = [5, 10],
+	RangedDefense = [5, 10],
+	Initiative = [10, 20]
 }];
 
 ::Legends.BackgroundsStats.Bowyer <- [{
@@ -914,6 +914,17 @@ if (!("BackgroundsStats" in ::Legends)) {
 }];
 
 ::Legends.BackgroundsStats.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundsStats.LegendCommanderBeggar;
+
+::Legends.BackgroundsStats.LegendBellyDancer <- [{
+	Hitpoints = [-5, -5],
+	Bravery = [-5, -5],
+	Stamina = [-5, -5],
+	MeleeSkill = [2, 5],
+	RangedSkill = [5, 5],
+	MeleeDefense = [0, 0],
+	RangedDefense = [0, 0],
+	Initiative = [10, 10]
+}];
 
 ::Legends.BackgroundsStats.LegendBerserker <- [{
 	Hitpoints = [15, 15],

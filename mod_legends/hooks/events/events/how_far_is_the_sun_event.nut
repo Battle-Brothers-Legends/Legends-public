@@ -233,7 +233,7 @@
 				::Legends.Background.Nomad,
 				::Legends.Background.Shepherd,
 				::Legends.Background.Manhunter,
-				::Legends.Background.BellyDancer,
+				::Legends.Background.LegendBellyDancer,
 				::Legends.Background.Gladiator,
 				::Legends.Background.LegendMuladi,
 				::Legends.Background.BellyDancer,

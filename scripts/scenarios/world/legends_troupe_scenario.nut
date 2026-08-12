@@ -174,7 +174,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 	function onUpdateHiringRoster( _roster )
 	{
-		this.addBroToRoster(_roster, ::Legends.Background.BellyDancer, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendBellyDancer, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.Beggar, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.Eunuch, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.Gambler, 8);

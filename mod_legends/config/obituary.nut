@@ -145,6 +145,7 @@
     [::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer)]                    = { pos = "Took up the hunt for monsters once more",     	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Beggar)]                         = { pos = "Worked the streets for more coin",            	neg = "Returned to the gutter" },
     [::Legends.Backgrounds.getID(::Legends.Background.BellyDancer)]                    = { pos = "Took their performance to new crowds",        	neg = "" },
+    [::Legends.Backgrounds.getID(::Legends.Background.LegendBellyDancer)]              = { pos = "Took their performance to new crowds",        	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Bowyer)]                         = { pos = "Resumed work with wood and sinew",            	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Brawler)]                        = { pos = "Sought a new fight",                          	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Butcher)]                        = { pos = "Went back to the chopping block",             	neg = "" },

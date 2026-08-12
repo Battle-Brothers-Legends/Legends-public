@@ -81,17 +81,6 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 				_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + ::Legends.S.getClosestSettlement().getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit them	.";
 				_event.m.Dude.getBackground().buildDescription(true);
 
-				_event.m.Dude.getBaseProperties().MeleeSkill += 5;
-				_event.m.Dude.getBaseProperties().MeleeDefense += 5;
-				_event.m.Dude.getBaseProperties().RangedDefense += 5;
-				_event.m.Dude.getBaseProperties().Initiative += 10;
-
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.TrainedTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DeviousTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.JugglerClassTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AssassinMagicTree.Tree);
-				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordmastersTree.Tree);
-
 				local items = _event.m.Dude.getItems();
 
 				local armor = items.getItemAtSlot(::Const.ItemSlot.Body);

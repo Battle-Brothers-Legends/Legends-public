@@ -50,7 +50,9 @@ this.legend_qiyan_dances_encounter <- this.inherit("scripts/encounters/encounter
 		local roster = ::World.getPlayerRoster().getAll();
 		if (roster.len() < 3)
 			return false;
-		local candidatesQiyan = roster.filter(@(_, _bro) _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BellyDancer));
+		local candidatesQiyan = roster.filter(@(_, _bro) ::Legends.Backgrounds.hasAny(_bro,
+			::Legends.Background.BellyDancer,
+			::Legends.Background.LegendBellyDancer));
 		if (!candidatesQiyan.len())
 			return false;
 

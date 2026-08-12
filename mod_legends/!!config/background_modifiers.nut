@@ -985,6 +985,12 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundModifiers.LegendCommanderBeggar;
 
+::Legends.BackgroundModifiers.LegendBellyDancer <- {
+	Barter = 0.02;
+	Stash = 8;
+	Scout = 0.1;
+};
+
 ::Legends.BackgroundModifiers.LegendBerserker <- {
 			Stash = 5;
 		Hunting = 0.2;

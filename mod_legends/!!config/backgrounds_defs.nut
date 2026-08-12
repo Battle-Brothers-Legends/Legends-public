@@ -1029,6 +1029,16 @@ backgroundDefs.push({
     DailyCost = 18,
 });
 
+::Legends.Background.LegendBellyDancer <- null;
+backgroundDefs.push({
+    ID = "background.legend_belly_dancer",
+    Script = "scripts/skills/backgrounds/legend_belly_dancer_background",
+    Const = "LegendBellyDancer",
+    Name = "Belly Dancer",
+    HiringCost = 500,
+    DailyCost = 10,
+});
+
 ::Legends.Background.LegendBerserker <- null;
 backgroundDefs.push({
     ID = "background.legend_berserker",
