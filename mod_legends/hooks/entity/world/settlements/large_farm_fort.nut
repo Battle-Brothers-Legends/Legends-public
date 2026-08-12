@@ -4,7 +4,7 @@
 		create();
 		this.m.DraftList.extend([
 			::Legends.Background.LegendIronmonger,
-			::Legends.Background.LegendNobleShield,
+			::Legends.Background.LegendFootSoldier,
 			::Legends.Background.LegendAdventurousLady,
 			::Legends.Background.LegendDisownedLady,
 			::Legends.Background.LegendDisownedLady,

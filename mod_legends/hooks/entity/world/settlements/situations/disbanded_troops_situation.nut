@@ -17,8 +17,8 @@
 		add(::Legends.Background.Sellsword, 3);
 		add(::Legends.Background.HedgeKnight, 3);
 		add(::Legends.Background.LegendNoble2h, 2);
-		add(::Legends.Background.LegendNobleRanged, 2);
-		add(::Legends.Background.LegendNobleShield, 2);
+		add(::Legends.Background.LegendArbalester, 2);
+		add(::Legends.Background.LegendFootSoldier, 2);
 		add(::Legends.Background.LegendMasterArcher, 2);
 
 		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {

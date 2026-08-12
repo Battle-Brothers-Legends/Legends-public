@@ -1572,22 +1572,22 @@ backgroundDefs.push({
     DailyCost = 35,
 });
 
-::Legends.Background.LegendNobleRanged <- null;
+::Legends.Background.LegendArbalester <- null;
 backgroundDefs.push({
-    ID = "background.legend_noble_ranged",
-    Script = "scripts/skills/backgrounds/legend_noble_ranged",
-    Const = "LegendNobleRanged",
-    Name = "Noble Ranged",
+    ID = "background.legend_arbalester",
+    Script = "scripts/skills/backgrounds/legend_arbalester_background",
+    Const = "LegendArbalester",
+    Name = "Arbalester",
     HiringCost = 900,
     DailyCost = 35,
 });
 
-::Legends.Background.LegendNobleShield <- null;
+::Legends.Background.LegendFootSoldier <- null;
 backgroundDefs.push({
-    ID = "background.legend_noble_shield",
-    Script = "scripts/skills/backgrounds/legend_noble_shield",
-    Const = "LegendNobleShield",
-    Name = "Noble Shield",
+    ID = "background.legend_foot_soldier",
+    Script = "scripts/skills/backgrounds/legend_foot_soldier_background",
+    Const = "LegendFootSoldier",
+    Name = "Foot Soldier",
     HiringCost = 300,
     DailyCost = 35,
 });

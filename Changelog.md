@@ -522,3 +522,5 @@
 - `legend_staff_thrust_skill` -> deleted
 - `legend_staffwall_effect` -> deleted
 - `legend_witch_commander_background` renamed to `legend_seer_background`
+- `legend_noble_ranged` renamed to `legend_arbalester_background`
+- `legend_noble_shield` renamed to `legend_foot_soldier_background`

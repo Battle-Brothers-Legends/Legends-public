@@ -12,8 +12,8 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 			::Legends.Background.LegendCompanionMelee,
 			::Legends.Background.LegendCompanionRanged,
 			::Legends.Background.LegendNoble2h,
-			::Legends.Background.LegendNobleRanged,
-			::Legends.Background.LegendNobleShield
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendFootSoldier
 		],
 		ExcludedTraits = [
 			::Legends.Trait.Bloodthirsty,

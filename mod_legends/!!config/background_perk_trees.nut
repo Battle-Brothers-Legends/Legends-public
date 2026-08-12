@@ -3342,7 +3342,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendNobleRanged <- {
+::Legends.BackgroundPerkTrees.LegendArbalester <- {
 	Weapon = [
 		::Const.Perks.CrossbowTree,
 		::Const.Perks.ThrowingTree,
@@ -3368,7 +3368,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendNobleShield <- {
+::Legends.BackgroundPerkTrees.LegendFootSoldier <- {
 	Weapon = [
 		::Const.Perks.SpearTree,
 		::Const.Perks.ThrowingTree,

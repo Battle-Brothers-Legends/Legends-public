@@ -43,7 +43,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// End Noble Commander Create
 		// Noble Shield 1 Create
 
-		bros[1].setStartValuesEx([::Legends.Background.LegendNobleShield], false);
+		bros[1].setStartValuesEx([::Legends.Background.LegendFootSoldier], false);
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
 		local r = this.Math.rand(1, 2);
@@ -82,7 +82,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// End Noble 2h Create
 		// Noble Shield 2 Create
 
-		bros[3].setStartValuesEx([::Legends.Background.LegendNobleShield], false);
+		bros[3].setStartValuesEx([::Legends.Background.LegendFootSoldier], false);
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
 		r = this.Math.rand(1, 2);
@@ -130,7 +130,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// End Noble Servant Create
 		// Arbalester Create
 
-		bros[5].setStartValuesEx([::Legends.Background.LegendNobleRanged], false);
+		bros[5].setStartValuesEx([::Legends.Background.LegendArbalester], false);
 		bros[5].getBackground().m.RawDescription = "%name% has won the house archery contest several years running, but never shuts up about it. The constant stream of narration makes the great aim easy to dodge.";
 		bros[5].getBackground().buildDescription(true);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendSureshot);
@@ -300,8 +300,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, ::Legends.Background.LegendAdventurousLady, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendDisownedLady, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendNoble2h, 4);
-		this.addBroToRoster(_roster, ::Legends.Background.LegendNobleRanged, 4);
-		this.addBroToRoster(_roster, ::Legends.Background.LegendNobleShield, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendArbalester, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendFootSoldier, 4);
 
 		foreach( i, bro in bros )
 		{

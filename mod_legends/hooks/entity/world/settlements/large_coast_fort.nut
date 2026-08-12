@@ -7,7 +7,7 @@
 			::Legends.Background.Manhunter,
 			::Legends.Background.LegendTaxidermist,
 			::Legends.Background.LegendBlacksmith,
-			::Legends.Background.LegendNobleRanged,
+			::Legends.Background.LegendArbalester,
 			::Legends.Background.LegendAdventurousLady
 			::Legends.Background.LegendAdventurousLady,
 		]);

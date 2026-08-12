@@ -17,13 +17,13 @@
 			_list.push(::Legends.Background.LegendMasterArcher);
 
 		if (this.Math.rand(0, 9) == 1)
-			_list.push(::Legends.Background.LegendNobleShield);
+			_list.push(::Legends.Background.LegendFootSoldier);
 		
 		if (this.Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendNoble2h);
 		
 		if (this.Math.rand(0, 9) == 1)
-			_list.push(::Legends.Background.LegendNobleRanged);
+			_list.push(::Legends.Background.LegendArbalester);
 		
 		onUpdateDraftList(_list);
 	}

@@ -1837,13 +1837,13 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 
-::Legends.BackgroundModifiers.LegendNobleRanged <- {
+::Legends.BackgroundModifiers.LegendArbalester <- {
 	Ammo = 21;
 	Stash = 8;
 	Training = 0.1;
 };
 
-::Legends.BackgroundModifiers.LegendNobleShield <- {
+::Legends.BackgroundModifiers.LegendFootSoldier <- {
 	ArmorParts = 8;
 	Stash = 8;
 	Injury = 0.03;

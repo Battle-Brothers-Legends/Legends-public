@@ -5,8 +5,8 @@
 	{
 		create();
 		this.m.DraftList.extend([		 	
-			::Legends.Background.LegendNobleRanged,
-			::Legends.Background.LegendNobleRanged,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendArbalester,
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendDisownedLady,
 

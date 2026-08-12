@@ -1443,7 +1443,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-5, -10]
 }];
 
-::Legends.BackgroundsStats.LegendNobleRanged <- [{
+::Legends.BackgroundsStats.LegendArbalester <- [{
 	Hitpoints = [-5, 0],
 	Bravery = [5, 5],
 	Stamina = [0, 0],
@@ -1454,7 +1454,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-5, -5]
 }];
 
-::Legends.BackgroundsStats.LegendNobleShield <- [{
+::Legends.BackgroundsStats.LegendFootSoldier <- [{
 	Hitpoints = [5, 5],
 	Bravery = [10, 5],
 	Stamina = [3, 3],

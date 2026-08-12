@@ -1,8 +1,8 @@
-this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNobleShield);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendFootSoldier);
 		this.m.Name = "Foot Soldier";
 		this.m.Icon = "ui/backgrounds/background_nobleshield.png";
 		this.m.DailyCostMult = 1.0;
@@ -65,7 +65,7 @@ this.legend_noble_shield <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function onChangeAttributes()
 	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNobleShield);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendFootSoldier);
 	}
 
 	function onAdded()

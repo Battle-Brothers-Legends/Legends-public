@@ -226,7 +226,7 @@
 				::Legends.Background.Sellsword,
 				::Legends.Background.LegendRanger,
 				::Legends.Background.LegendCommanderRanger,
-				::Legends.Background.LegendNobleRanged
+				::Legends.Background.LegendArbalester
 			)) {
 				candidate_archer.push(bro);
 			} else if (::Legends.Backgrounds.hasAny(bro,

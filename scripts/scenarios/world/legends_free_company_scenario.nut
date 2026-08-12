@@ -50,8 +50,8 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Sellsword,
 			::Legends.Background.LegendConscript,
-			::Legends.Background.LegendNobleRanged,
-			::Legends.Background.LegendNobleShield
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendFootSoldier
 		]);
 
 		bros[1].setPlaceInFormation(3);
@@ -69,7 +69,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			::Legends.Background.RetiredSoldier,
 			::Legends.Background.Sellsword,
 			::Legends.Background.LegendConscript,
-			::Legends.Background.LegendNobleShield
+			::Legends.Background.LegendFootSoldier
 		]);
 
 		bros[2].setPlaceInFormation(4);
@@ -90,7 +90,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			::Legends.Background.Hunter,
 			::Legends.Background.Poacher,
 			::Legends.Background.LegendConscriptRanged,
-			::Legends.Background.LegendNobleRanged,
+			::Legends.Background.LegendArbalester,
 			::Legends.Background.NomadRanged
 		]);
 

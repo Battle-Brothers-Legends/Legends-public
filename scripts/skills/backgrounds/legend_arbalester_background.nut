@@ -1,9 +1,9 @@
-this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create()
 	{
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNobleRanged);
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendArbalester);
 		this.m.Name = "Arbalester";
 		this.m.Icon = "ui/backgrounds/background_nobleranged.png";
 		this.m.DailyCostMult = 1.0;
@@ -65,7 +65,7 @@ this.legend_noble_ranged <- this.inherit("scripts/skills/backgrounds/character_b
 
 	function onChangeAttributes()
 	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNobleRanged);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendArbalester);
 	}
 
 	function onAdded()
