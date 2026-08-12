@@ -1418,12 +1418,15 @@
 				else if (this.isUsingHitchance()) {
 					local tumble = ::Legends.Perks.get(_targetEntity, ::Legends.Perk.LegendTumble);
 					if (isHit && ::Legends.Perks.has(_targetEntity, ::Legends.Perk.LegendTumble) && tumble.m.CanTeleport) {
+						if (::Const.SkillCounter == tumble.m.HitSkillCounter) {
+            				tumble.m.SequenceHit = true;
+        				}
 						local tumbleDefense = _targetEntity.getTumbleDefense(_user, this, defenderProperties);
 						local tumbleToHit = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit + defense - tumbleDefense));
-								
+						
 						r = ::Math.rand(1, 100);
 						isHit = r <= tumbleToHit;
-								
+						
 						if (!isHit) {
 							tumble.validateTeleport();
 							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and is about to hit (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + "), but " + ::Const.UI.getColorizedEntityName(_targetEntity) + " tumbles away! (Chance: " + tumbleToHit + ", Rolled: " + r + ")");

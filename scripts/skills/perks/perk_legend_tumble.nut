@@ -35,12 +35,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
-        if (::Const.SkillCounter == this.m.HitSkillCounter) {
-            this.m.SequenceHit = true;
-        }
-    }
-
 	function findFreeTile() {
 		local myTile = this.getContainer().getActor().getTile();
 		local freeTiles = [];
