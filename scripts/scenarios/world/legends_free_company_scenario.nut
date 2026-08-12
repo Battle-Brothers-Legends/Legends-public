@@ -78,7 +78,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			::Legends.Background.AssassinSouthern,
 			::Legends.Background.Gladiator,
 			::Legends.Background.HedgeKnight,
-			::Legends.Background.LegendNoble2h,
+			::Legends.Background.LegendHouseGuard,
 			::Legends.Background.Swordmaster,
 			::Legends.Background.LegendMasterArcher
 		]);

@@ -1798,7 +1798,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	];
 };
 
-::Legends.BackgroundModifiers.LegendNoble2h <- {
+::Legends.BackgroundModifiers.LegendHouseGuard <- {
 	ArmorParts = 8;
 	Stash = 8;
 	Training = 0.1;

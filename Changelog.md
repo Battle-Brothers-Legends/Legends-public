@@ -524,3 +524,4 @@
 - `legend_witch_commander_background` renamed to `legend_seer_background`
 - `legend_noble_ranged` renamed to `legend_arbalester_background`
 - `legend_noble_shield` renamed to `legend_foot_soldier_background`
+- `legend_noble_2h` renamed to `legend_house_guard_background`

@@ -1562,12 +1562,12 @@ backgroundDefs.push({
     DailyCost = 10,
 });
 
-::Legends.Background.LegendNoble2h <- null;
+::Legends.Background.LegendHouseGuard <- null;
 backgroundDefs.push({
-    ID = "background.legend_noble_2h",
-    Script = "scripts/skills/backgrounds/legend_noble_2h",
-    Const = "LegendNoble2h",
-    Name = "Noble 2h",
+    ID = "background.legend_houseguard",
+    Script = "scripts/skills/backgrounds/legend_houseguard_background",
+    Const = "LegendHouseGuard",
+    Name = "House Guard",
     HiringCost = 500,
     DailyCost = 35,
 });

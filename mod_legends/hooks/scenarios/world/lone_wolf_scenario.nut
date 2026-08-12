@@ -215,7 +215,7 @@
 			::Legends.Backgrounds.getID(::Legends.Background.Paladin),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendManAtArms),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendNoble2h),
+			::Legends.Backgrounds.getID(::Legends.Background.LegendHouseGuard),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendArbalester),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendFootSoldier)
 		];

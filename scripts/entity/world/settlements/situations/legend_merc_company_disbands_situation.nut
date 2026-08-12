@@ -54,7 +54,7 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 		_draftList.push(::Legends.Background.Militia);
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_noble") {
-			_draftList.push(::Legends.Background.LegendNoble2h);
+			_draftList.push(::Legends.Background.LegendHouseGuard);
 			_draftList.push(::Legends.Background.LegendFootSoldier);
 			_draftList.push(::Legends.Background.LegendArbalester);
 			_draftList.push(::Legends.Background.AdventurousNoble);

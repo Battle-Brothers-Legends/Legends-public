@@ -1432,7 +1432,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-20, -20]
 }];
 
-::Legends.BackgroundsStats.LegendNoble2h <- [{
+::Legends.BackgroundsStats.LegendHouseGuard <- [{
 	Hitpoints = [5, 10],
 	Bravery = [5, 5],
 	Stamina = [5, 5],

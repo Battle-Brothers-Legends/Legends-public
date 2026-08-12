@@ -54,7 +54,7 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 		local noble2h_candidates = [];
 
 		foreach (bro in brothers) {
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendNoble2h)) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendHouseGuard)) {
 				noble2h_candidates.push(bro);
 			}
 		}

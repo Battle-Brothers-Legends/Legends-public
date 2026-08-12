@@ -256,7 +256,7 @@
     [::Legends.Backgrounds.getID(::Legends.Background.LegendNecro)]                   = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro)]         = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendNightwatch)]              = { pos = "", 											neg = "" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendNoble2h)]                = { pos = "", 											neg = "" },
+    [::Legends.Backgrounds.getID(::Legends.Background.LegendHouseGuard)]                = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNoble)]         = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendArbalester)]            = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendFootSoldier)]            = { pos = "", 											neg = "" },

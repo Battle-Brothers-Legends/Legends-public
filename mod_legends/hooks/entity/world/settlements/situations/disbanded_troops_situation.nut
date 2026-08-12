@@ -16,7 +16,7 @@
 		add(::Legends.Background.Squire, 5);
 		add(::Legends.Background.Sellsword, 3);
 		add(::Legends.Background.HedgeKnight, 3);
-		add(::Legends.Background.LegendNoble2h, 2);
+		add(::Legends.Background.LegendHouseGuard, 2);
 		add(::Legends.Background.LegendArbalester, 2);
 		add(::Legends.Background.LegendFootSoldier, 2);
 		add(::Legends.Background.LegendMasterArcher, 2);

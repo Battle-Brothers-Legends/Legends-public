@@ -69,7 +69,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// End Noble Shield 1 Create
 		// Noble 2h create
 
-		bros[2].setStartValuesEx([::Legends.Background.LegendNoble2h], false);
+		bros[2].setStartValuesEx([::Legends.Background.LegendHouseGuard], false);
 		bros[2].getBackground().m.RawDescription = "%name% is a hulking figure, both upward and outward. Not much of a talker, but a big eater.";
 		bros[2].getBackground().buildDescription(true);
 		::Legends.Traits.remove(bros[2], ::Legends.Trait.Tiny);
@@ -299,7 +299,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, ::Legends.Background.DisownedNoble, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendAdventurousLady, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendDisownedLady, 8);
-		this.addBroToRoster(_roster, ::Legends.Background.LegendNoble2h, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendHouseGuard, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendArbalester, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendFootSoldier, 4);
 

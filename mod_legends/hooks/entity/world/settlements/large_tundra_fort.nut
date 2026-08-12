@@ -8,7 +8,7 @@
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
-			::Legends.Background.LegendNoble2h,
+			::Legends.Background.LegendHouseGuard,
 			::Legends.Background.LegendDisownedLady,
 		]);
 		this.m.StablesList = [

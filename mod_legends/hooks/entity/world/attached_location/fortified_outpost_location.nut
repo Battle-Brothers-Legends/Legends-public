@@ -20,7 +20,7 @@
 			_list.push(::Legends.Background.LegendFootSoldier);
 		
 		if (this.Math.rand(0, 9) == 1)
-			_list.push(::Legends.Background.LegendNoble2h);
+			_list.push(::Legends.Background.LegendHouseGuard);
 		
 		if (this.Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendArbalester);

@@ -3320,7 +3320,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	]
 };
 
-::Legends.BackgroundPerkTrees.LegendNoble2h <- {
+::Legends.BackgroundPerkTrees.LegendHouseGuard <- {
 	Weapon = [
 		::Const.Perks.PolearmTree,
 		::Const.Perks.ThrowingTree,

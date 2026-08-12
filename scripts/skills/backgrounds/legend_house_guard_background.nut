@@ -1,9 +1,8 @@
-this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_house_guard_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create() {
 		this.character_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNoble2h);
-		this.m.Name = "Warrior";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHouseGuard);
 		this.m.Icon = "ui/backgrounds/background_noble2h.png";
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
@@ -67,7 +66,7 @@ this.legend_noble_2h <- this.inherit("scripts/skills/backgrounds/character_backg
 
 	function onChangeAttributes()
 	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendNoble2h);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHouseGuard);
 	}
 
 	function onAdded()
