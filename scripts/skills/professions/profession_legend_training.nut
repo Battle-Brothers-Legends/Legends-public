@@ -13,4 +13,8 @@ this.profession_legend_training <- this.inherit("scripts/skills/legend_professio
 				text = "[color=%positive%]10%[/color] increased personal Training skill."
 			}];
 	}
+
+	function onUpdate(_properties){
+		_properties.Modifiers.Training += 0.1;
+	}
 });

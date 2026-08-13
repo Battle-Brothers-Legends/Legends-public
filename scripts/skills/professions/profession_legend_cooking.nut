@@ -13,4 +13,8 @@ this.profession_legend_cooking <- this.inherit("scripts/skills/legend_profession
 				text = "[color=%positive%]10%[/color] increased personal Cooking skill."
 			}];
 	}
+
+	function onUpdate(_properties){
+		_properties.Modifiers.Cooking += 0.1;
+	}
 });

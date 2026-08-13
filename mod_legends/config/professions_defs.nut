@@ -266,6 +266,19 @@ professionDefObjects.push({
     ScalingFactor = 0
 });
 
+::Legends.Profession.LegendCrafting <- null;
+professionDefObjects.push({
+    ID = "profession.legend_crafting",
+    Script = "scripts/skills/professions/profession_legend_crafting",
+    Name = ::Const.Strings.ProfessionName.LegendCrafting,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendCrafting,
+    Icon = "ui/professions/crafting.png",
+    IconDisabled = "ui/professions/crafting_bw.png",
+    Const = "LegendCrafting",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
+});
+
 ::Legends.Profession.LegendCutToTheChase <- null;
 professionDefObjects.push({
     ID = "profession.legend_cut_to_the_chase",
@@ -383,6 +396,19 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendFletching <- null;
+professionDefObjects.push({
+    ID = "profession.legend_fletching",
+    Script = "scripts/skills/professions/profession_legend_fletching",
+    Name = ::Const.Strings.ProfessionName.LegendFletching,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendFletching,
+    Icon = "ui/professions/fletching.png",
+    IconDisabled = "ui/professions/fletching_bw.png",
+    Const = "LegendFletching",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
+});
+
 ::Legends.Profession.LegendFoodPreservation <- null;
 professionDefObjects.push({
     ID = "profession.legend_food_preservation",
@@ -417,7 +443,9 @@ professionDefObjects.push({
     Tooltip = ::Const.Strings.ProfessionDescription.LegendGathering,
     Icon = "ui/professions/gathering.png",
     IconDisabled = "ui/professions/gathering_bw.png",
-    Const = "LegendGathering"
+    Const = "LegendGathering",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendGreasedPalms <- null;
@@ -444,6 +472,19 @@ professionDefObjects.push({
     Const = "LegendHammerThemOut",
     ScalingArray = [0, 0.3], // repair speed bonus
     ScalingFactor = 0.2
+});
+
+::Legends.Profession.LegendHealing <- null;
+professionDefObjects.push({
+    ID = "profession.legend_healing",
+    Script = "scripts/skills/professions/profession_legend_healing",
+    Name = ::Const.Strings.ProfessionName.LegendHealing,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendHealing,
+    Icon = "ui/professions/healing.png",
+    IconDisabled = "ui/professions/healing_bw.png",
+    Const = "LegendHealing",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendHerbcraft <- null;
@@ -694,6 +735,32 @@ professionDefObjects.push({
     ScalingFactor = 0.05
 });
 
+::Legends.Profession.LegendRepairing <- null;
+professionDefObjects.push({
+    ID = "profession.legend_repairing",
+    Script = "scripts/skills/professions/profession_legend_repairing",
+    Name = ::Const.Strings.ProfessionName.LegendRepairing,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendRepairing,
+    Icon = "ui/professions/repairing.png",
+    IconDisabled = "ui/professions/repairing_bw.png",
+    Const = "LegendRepairing",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
+});
+
+::Legends.Profession.LegendReserveBundles <- null;
+professionDefObjects.push({
+    ID = "profession.legend_reserve_bundles",
+    Script = "scripts/skills/professions/profession_legend_reserve_bundles",
+    Name = ::Const.Strings.ProfessionName.LegendReserveBundles,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendReserveBundles,
+    Icon = "ui/professions/reserve_bundles.png",
+    IconDisabled = "ui/professions/reserve_bundles_bw.png",
+    Const = "LegendReserveBundles",
+    ScalingArray = [0, 80], // ammo space
+    ScalingFactor = 0.2
+});
+
 ::Legends.Profession.LegendScholar <- null;
 professionDefObjects.push({
     ID = "profession.legend_scholar",
@@ -703,6 +770,32 @@ professionDefObjects.push({
     Icon = "ui/professions/scholar.png",
     IconDisabled = "ui/professions/scholar_bw.png",
     Const = "LegendScholar"
+});
+
+::Legends.Profession.LegendScouting <- null;
+professionDefObjects.push({
+    ID = "profession.legend_scouting",
+    Script = "scripts/skills/professions/profession_legend_scouting",
+    Name = ::Const.Strings.ProfessionName.LegendScouting,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendScouting,
+    Icon = "ui/professions/scouting.png",
+    IconDisabled = "ui/professions/scouting_bw.png",
+    Const = "LegendScouting",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
+});
+
+::Legends.Profession.LegendScrapping <- null;
+professionDefObjects.push({
+    ID = "profession.legend_scrapping",
+    Script = "scripts/skills/professions/profession_legend_scrapping",
+    Name = ::Const.Strings.ProfessionName.LegendScrapping,
+    Tooltip = ::Const.Strings.ProfessionDescription.LegendScrapping,
+    Icon = "ui/professions/scrapping.png",
+    IconDisabled = "ui/professions/scrapping_bw.png",
+    Const = "LegendScrapping",
+    ScalingArray = [0, 1], // core profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendShadyDeals <- null;
@@ -794,19 +887,6 @@ professionDefObjects.push({
     Const = "LegendSpotTheTells",
     ScalingArray = [0, 0.5, 0.65], // chance to recognize traits
     ScalingFactor = 0.05
-});
-
-::Legends.Profession.LegendReserveBundles <- null;
-professionDefObjects.push({
-    ID = "profession.legend_reserve_bundles",
-    Script = "scripts/skills/professions/profession_legend_reserve_bundles",
-    Name = ::Const.Strings.ProfessionName.LegendReserveBundles,
-    Tooltip = ::Const.Strings.ProfessionDescription.LegendReserveBundles,
-    Icon = "ui/professions/reserve_bundles.png",
-    IconDisabled = "ui/professions/reserve_bundles_bw.png",
-    Const = "LegendReserveBundles",
-    ScalingArray = [0, 80], // ammo space
-    ScalingFactor = 0.2
 });
 
 ::Legends.Profession.LegendTailoring <- null;

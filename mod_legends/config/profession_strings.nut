@@ -17,6 +17,7 @@
 ::Const.Strings.ProfessionName.LegendCharlatan <- "Charlatan";
 ::Const.Strings.ProfessionName.LegendConvincingProposals <- "Convincing Proposals";
 ::Const.Strings.ProfessionName.LegendCooking <- "Cooking";
+::Const.Strings.ProfessionName.LegendCrafting <- "Crafting";
 ::Const.Strings.ProfessionName.LegendCutToTheChase <- "Cut To The Chase";
 ::Const.Strings.ProfessionName.LegendDiplomacy <- "Diplomacy";
 ::Const.Strings.ProfessionName.LegendDogBreeder <- "Dog Breeder";
@@ -26,11 +27,13 @@
 ::Const.Strings.ProfessionName.LegendEyeForTalent <- "Eye For Talent";
 ::Const.Strings.ProfessionName.LegendFerretItOut <- "Ferret It Out";
 ::Const.Strings.ProfessionName.LegendFieldSurgery <- "Field Surgery";
+::Const.Strings.ProfessionName.LegendFletching <- "Fletching";
 ::Const.Strings.ProfessionName.LegendFoodPreservation <- "Food Preservation";
 ::Const.Strings.ProfessionName.LegendFriendsInRightPlaces <- "Friends in Right Places";
 ::Const.Strings.ProfessionName.LegendGathering <- "Gathering";
 ::Const.Strings.ProfessionName.LegendGreasedPalms <- "Greased Palms";
 ::Const.Strings.ProfessionName.LegendHammerThemOut <- "Hammer Them Out";
+::Const.Strings.ProfessionName.LegendHealing <- "Healing";
 ::Const.Strings.ProfessionName.LegendHerbcraft <- "Herbcraft";
 ::Const.Strings.ProfessionName.LegendHighwayman <- "Highwayman";
 ::Const.Strings.ProfessionName.LegendHippology <- "Hippology";
@@ -50,8 +53,11 @@
 ::Const.Strings.ProfessionName.LegendPetardry <- "Petardry";
 ::Const.Strings.ProfessionName.LegendProsthetics <- "Prosthetics";
 ::Const.Strings.ProfessionName.LegendRationing <- "Rationing";
+::Const.Strings.ProfessionName.LegendRepairing <- "Repairing";
 ::Const.Strings.ProfessionName.LegendReserveBundles <- "Reserve Bundles";
 ::Const.Strings.ProfessionName.LegendScholar <- "Scholar";
+::Const.Strings.ProfessionName.LegendScouting <- "Scouting";
+::Const.Strings.ProfessionName.LegendScrapping <- "Scrapping";
 ::Const.Strings.ProfessionName.LegendShadyDeals <- "Shady Deals";
 ::Const.Strings.ProfessionName.LegendSilverTongued <- "Silver Tongued";
 ::Const.Strings.ProfessionName.LegendSizeThemUp <- "Size Them Up";
@@ -221,6 +227,13 @@ Taking gristle, bone, and whatever else the dog dragged in, and confidently call
 • Increases the speed at which meals are prepared.
 ";
 
+::Const.Strings.ProfessionDescription.LegendCrafting <- @"
+Weave and spin, smith and seam, hammer and cut. The art of crafting.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which items are crafted.
+";
+
 ::Const.Strings.ProfessionDescription.LegendCutToTheChase <- @"
 Time is money, and pleasantries can cost the company a drink.
 
@@ -294,6 +307,13 @@ Sew up the holes, saw off the rot, and pour boiling wine over whatever is left.
 • Increases the chance of a brother surviving with a permanent injury when struck down.
 ";
 
+::Const.Strings.ProfessionDescription.LegendFletching <- @"
+Replenish what was used before they come again. And again. And again.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which ammunition is created.
+";
+
 ::Const.Strings.ProfessionDescription.LegendFoodPreservation <- @"
 Salt, smoke, and careful packing ensure the food doesn't spoil prematurely.
 
@@ -312,7 +332,7 @@ The best wares are always kept in the back room, reserved for the very best clie
 Knowledge of the landscape and vegetation provides a wealth of opportunities for those willing to take advantage.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Improves the results of gathering while camping.
+• Improves the speed at which supplies are gathered.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendGreasedPalms <- @"
@@ -327,6 +347,13 @@ A shrewd mercenary learns to patch the holes in their gear swiftly whenever oppo
 
 [color=%passive%][u]Passive:[/u][/color]
 • Increases repair speed.
+";
+
+::Const.Strings.ProfessionDescription.LegendHealing <- @"
+When armor gives out, it is flesh that needs tending as much as the steel.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which wounds are healed.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendHerbcraft <- @"
@@ -490,6 +517,13 @@ Discipline is what keeps the larder from emptying too soon.
 • Lowers the food consumption rate in the company.
 ";
 
+::Const.Strings.ProfessionDescription.LegendRepairing <- @"
+Dented and damaged steel is no good at softening blows. Nor it is at dealing them.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which items are repaired.
+";
+
 ::Const.Strings.ProfessionDescription.LegendReserveBundles <- @"
 For when they simply don't stop coming.
 
@@ -506,6 +540,20 @@ Broadening one's perspective by reading at times gives better results than pract
 • Increases the rate at which the character learns new professions.
 
 • Adds an extra profession point (when?).
+";
+
+::Const.Strings.ProfessionDescription.LegendScrapping <- @"
+The new quickly becomes the old, but even then it has its uses.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which items are scrapped.
+";
+
+::Const.Strings.ProfessionDescription.LegendScouting <- @"
+Sharp wits, keen eyes and acute ears. Three hallmarks of a mercenary who doesn't lie down to die.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the speed at which area is scouted.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendShadyDeals <- @"
