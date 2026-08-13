@@ -885,7 +885,7 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/slave_background",
     Const = "Slave",
     Name = "Slave",
-    HiringCost =    th.rand(19, 22) * 10,
+    HiringCost = ::Math.rand(19, 22) * 10,
     DailyCost = 0,
 });
 
@@ -895,7 +895,7 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/slave_barbarian_background",
     Const = "SlaveBarbarian",
     Name = "Slave",
-    HiringCost =    th.rand(19, 22) * 10,
+    HiringCost = ::Math.rand(19, 22) * 10,
     DailyCost = 0,
 });
 
@@ -905,7 +905,7 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/slave_southern_background",
     Const = "SlaveSouthern",
     Name = "Slave",
-    HiringCost =    th.rand(19, 22) * 10,
+    HiringCost = ::Math.rand(19, 22) * 10,
     DailyCost = 0,
 });
 
@@ -1574,8 +1574,8 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHouseGuard <- null;
 backgroundDefs.push({
-    ID = "background.legend_houseguard",
-    Script = "scripts/skills/backgrounds/legend_houseguard_background",
+    ID = "background.legend_house_guard",
+    Script = "scripts/skills/backgrounds/legend_house_guard_background",
     Const = "LegendHouseGuard",
     Name = "House Guard",
     HiringCost = 500,

@@ -611,15 +611,15 @@ if (!("BackgroundsStats" in ::Legends)) {
 ::Legends.BackgroundsStats.PacifiedFlagellant <- clone ::Legends.BackgroundsStats.Flagellant;
 
 ::Legends.BackgroundsStats.Paladin <- [{
-	Hitpoints = [6, 10],
-	Bravery = [13, 16],
-	Stamina = [-4, 0],
-	MeleeSkill = [10, 13],
-	RangedSkill = [-2, -3],
-	MeleeDefense = [4, 5],
-	RangedDefense = [-10, -5],
-	Initiative = [12, 13]
-}];
+	Hitpoints = [8, 10],
+	Bravery = [14, 18],
+	Stamina = [9, 16],
+	MeleeSkill = [9, 13],
+	RangedSkill = [0, 0],
+	MeleeDefense = [8, 12],
+	RangedDefense = [-4, 1],
+	Initiative = [-15, -6]
+}];;
 
 ::Legends.BackgroundsStats.PaladinOld <- clone ::Legends.BackgroundsStats.Paladin;
 
@@ -814,6 +814,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [0, 5]
 }];
 
+::Legends.BackgroundsStats.TailorSouthern <- clone ::Legends.BackgroundsStats.Tailor;
+
 ::Legends.BackgroundsStats.Thief <- [{
 	Hitpoints = [0, 0],
 	Bravery = [0, 5],
@@ -824,6 +826,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	RangedDefense = [5, 8],
 	Initiative = [10, 12]
 }];
+
+::Legends.BackgroundsStats.ThiefSouthern <- clone ::Legends.BackgroundsStats.Thief;
 
 ::Legends.BackgroundsStats.Vagabond <- [{
 	Hitpoints = [-5, 10],

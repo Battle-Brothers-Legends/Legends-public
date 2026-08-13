@@ -1,4 +1,4 @@
-::mods_hookExactClass("items/accessory/berserker_mushroom_item", function (o) {
+::mods_hookExactClass("items/accessory/berserker_mushrooms_item", function (o) {
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function () {
 		local ret = getTooltip();

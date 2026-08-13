@@ -4,7 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Bastard);
-		this.m.Name = "Bastard";
 		this.m.Icon = "ui/backgrounds/background_37.png";
 		this.m.BackgroundDescription = "Bastards often have profited from some training in melee fighting and know the weaknesses of noble armies.";
 		this.m.GoodEnding = "{%name%, the bastard son of a familially inconsiderate nobleman, departed the %companyname% to try to carve out his own family lineage. The last you heard, he\'d managed to acquire himself a good plot of land and a modest stone castle rests on it. While successful, he still harbors resentment for his family. | A bastard son of a nobleman, %name% couldn\'t help but always have that lingering feeling he just didn\'t belong in this world. But the %companyname% gave him a brotherhood to call family. As far as you know, he still fights with the company to this day.}";

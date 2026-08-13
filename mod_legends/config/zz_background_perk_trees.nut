@@ -1,13 +1,6 @@
 if (!("BackgroundPerkTrees" in ::Legends)) {
-::Legends.BackgroundPerkTrees <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-};
+	::Legends.BackgroundPerkTrees <- {};
+}
 
 ::Legends.BackgroundPerkTrees.AdventurousNoble <- {
 	Weapon = [
@@ -1969,7 +1962,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [],
-	Magic = [];
+	Magic = []
+};
 
 ::Legends.BackgroundPerkTrees.Wildman <- {
 	Weapon = [
@@ -2110,9 +2104,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.AssassinMagicTree,
 		::Const.Perks.AssassinLeftoverTree
 	]
-
-
-};;
+};
 
 ::Legends.BackgroundPerkTrees.LegendBattleSister <- {
 	Weapon = [
@@ -2238,7 +2230,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = [
 		::Const.Perks.BerserkerMagicTree
 	]
-};;
+};
 
 ::Legends.BackgroundPerkTrees.LegendBlacksmith <- {
 	Weapon = [
@@ -3735,7 +3727,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ValaTranceMagicTree,
 		::Const.Perks.ValaSpiritMagicTree
 	]
-};;
+};
 
 ::Legends.BackgroundPerkTrees.LegendWarlock <- {
 	Weapon = [

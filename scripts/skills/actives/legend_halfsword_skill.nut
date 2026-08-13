@@ -24,24 +24,15 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 		this.skill.setItem(_item);
 	}
 
-	function getTooltip () {
-		local ret = this.slash.getTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/damage_dealt.png",
-			text = "[color=%positive%]15%[/color] extra damage done against enemies armed with polearms or melee weapons that can strike over a distance"
-		});
-		return ret;
-	}
-
 	function onAfterUpdate( _properties ) {
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.IsHidden = !this.canDoubleGrip() && !this.m.Item.isItemType(this.Const.Items.ItemType.TwoHanded);
 	}
 
 	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
-		this.slash.onAnySkillUsed( _skill, _targetEntity, _properties );
+		this.puncture.onAnySkillUsed( _skill, _targetEntity, _properties );
 		if (_skill == this) {
 			_properties.DamageTotalMult *= 0.5;
+		}
 	}
 });
