@@ -125,7 +125,7 @@
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
-		]))
+		]));
 	}
 
 	o.onSerialize <- function ( _out )

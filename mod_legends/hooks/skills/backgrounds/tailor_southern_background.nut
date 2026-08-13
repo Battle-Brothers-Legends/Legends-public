@@ -62,7 +62,7 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
-		]))
+		]));
 	}
 
 });

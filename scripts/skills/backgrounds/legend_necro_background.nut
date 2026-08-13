@@ -4,7 +4,6 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNecro);
-		local r = this.Math.rand(0, 3);
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
@@ -143,6 +142,5 @@ this.legend_necro_background <- this.inherit("scripts/skills/backgrounds/charact
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_grisly_scythe"));
-		local stash = this.World.Assets.getStash()
 	}
 });

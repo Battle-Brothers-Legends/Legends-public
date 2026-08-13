@@ -106,10 +106,8 @@
 		return ::Legends.Backgrounds.getStats(::Legends.Background.Crusader);
 	}
 
-	o.onAdded = function ()
-	{
+	o.onAdded = function ()	{
 		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
 	}
 
 	o.onAddEquipment = function ()

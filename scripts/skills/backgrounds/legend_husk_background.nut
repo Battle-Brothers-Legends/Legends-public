@@ -82,7 +82,7 @@ this.legend_husk_background <- this.inherit("scripts/skills/backgrounds/characte
 				text = "Will never be sacrificed to Davkul"
 			}
 		);
-		return ret
+		return ret;
 	}
 
 	

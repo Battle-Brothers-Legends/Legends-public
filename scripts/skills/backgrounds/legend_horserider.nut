@@ -115,18 +115,18 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		{
 			if (!rider.hasSprite(s))
 			{
-				continue
+				continue;
 			}
 			local brush = rider.getSprite(s).getBrush();
 			if (brush == null)
 			{
-				continue
+				continue;
 			}
 			if (!actor.hasSprite(s))
 			{
-				actor.addSprite(s)
+				actor.addSprite(s);
 			}
-			actor.getSprite(s).setBrush(brush.Name)
+			actor.getSprite(s).setBrush(brush.Name);
 		}
 
 		local offset = this.createVec(-20, 0);

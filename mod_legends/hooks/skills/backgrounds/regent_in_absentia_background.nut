@@ -101,6 +101,6 @@
 			[1, ::Legends.Helmet.Standard.legend_noble_crown],
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[2, ::Legends.Helmet.None]
-		]))
+		]));
 	}
 });

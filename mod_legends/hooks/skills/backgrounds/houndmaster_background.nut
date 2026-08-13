@@ -69,22 +69,16 @@
 		this.character_background.onAdded();
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		if (this.Math.rand(1, 100) >= 50)
-		{
+		if (::Math.rand(1, 100) >= 50) {
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
-		if (this.Math.rand(1, 100) >= 50)
-		{
-			items.equip(this.new("scripts/items/accessory/legend_wardog_item"))
-		}
-		else
-		{
-			items.equip(this.new("scripts/items/accessory/legend_warhound_item"))
+		if (::Math.rand(1, 100) >= 50) {
+			items.equip(this.new("scripts/items/accessory/legend_wardog_item"));
+		} else {
+			items.equip(this.new("scripts/items/accessory/legend_warhound_item"));
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([

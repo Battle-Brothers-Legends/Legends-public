@@ -76,7 +76,7 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 				text = "Will never be sacrificed to Davkul"
 			}
 		);
-		return ret
+		return ret;
 	}
 
 	function onChangeAttributes()

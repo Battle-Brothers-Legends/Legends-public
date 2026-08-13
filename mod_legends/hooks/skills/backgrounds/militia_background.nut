@@ -51,7 +51,6 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
 		local weapons = [
 			"weapons/hooked_blade",
 			"weapons/bludgeon",

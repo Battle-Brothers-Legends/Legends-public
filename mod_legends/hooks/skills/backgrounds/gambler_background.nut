@@ -70,8 +70,6 @@
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.None]
-		]))
-
+		]));
 	}
-
 });

@@ -119,6 +119,6 @@
 			// [1, ::Legends.Helmet.Standard.hunters_hat],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.None]
-		]))
+		]));
 	}
 })

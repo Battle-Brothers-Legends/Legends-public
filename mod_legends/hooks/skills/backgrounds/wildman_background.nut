@@ -62,7 +62,7 @@
 				text = "[color=%negative%]-15%[/color] Experience Gain"
 			}
 		);
-		return ret
+		return ret;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -167,6 +167,6 @@
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.legend_rabble_fur]
-		]))
+		]));
 	}
 });

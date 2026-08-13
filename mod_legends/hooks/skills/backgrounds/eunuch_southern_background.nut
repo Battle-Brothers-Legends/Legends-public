@@ -35,6 +35,6 @@
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.padded_vest]
-		]))
+		]));
 	}
 });

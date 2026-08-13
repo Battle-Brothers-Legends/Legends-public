@@ -68,7 +68,7 @@
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth]
-		]))
+		]));
 	}
 });
 

@@ -50,9 +50,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBattleSister);
 	}
 
-	function onSetAppearance()
-	{
-		local actor = this.getContainer().getActor();
+	function onSetAppearance() {
 		this.updateAppearance();
 	}
 

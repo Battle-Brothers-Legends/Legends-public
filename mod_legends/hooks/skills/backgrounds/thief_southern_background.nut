@@ -56,10 +56,8 @@
 		}
 	}
 
-	o.onAddEquipment = function ()
-	{
+	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
-		local r;
 		items.equip(this.new("scripts/items/weapons/knife"));
 
 		items.equip(this.Const.World.Common.pickArmor([

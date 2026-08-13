@@ -99,7 +99,6 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
 		local weapons = [
 			"weapons/legend_staff",
 			"weapons/legend_tipstaff"

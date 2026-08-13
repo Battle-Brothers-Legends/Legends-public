@@ -52,7 +52,6 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 	function onAddEquipment() // NO TWO HANDED WEAPONS OR OFFHANDS HERE - 'missing hand' will unequip the item and cause errors if you add them.
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r;
 		local weapons = [
 			"weapons/arming_sword",
 			"weapons/bludgeon",
@@ -81,7 +80,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[3, ::Legends.Helmet.Standard.full_leather_cap]
 		]));
 		local rng = this.Math.rand(0, this.Const.Injury.Permanent.len()-1);
-		this.m.Container.add(this.new("scripts/skills/" + this.Const.Injury.Permanent[rng].Script)) //adds random injury
+		this.m.Container.add(this.new("scripts/skills/" + this.Const.Injury.Permanent[rng].Script)); //adds random injury
 	}
 });
 

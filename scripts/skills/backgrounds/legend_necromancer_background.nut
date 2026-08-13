@@ -69,6 +69,5 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_grisly_scythe"));
-		local stash = this.World.Assets.getStash()
 	}
 });

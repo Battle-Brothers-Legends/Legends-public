@@ -186,7 +186,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 
 		foreach (item in this.Const.World.Common.pickOutfit(outfits))
 		{
-			items.equip(item)
+			items.equip(item);
 		}
 	}
 

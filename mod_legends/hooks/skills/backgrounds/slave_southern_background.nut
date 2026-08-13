@@ -19,7 +19,7 @@
 			"the Obedient",
 			"the Shackled",
 			"the Bound"
-		]
+		];
 	}
 
 	o.onBuildDescription <- function ()

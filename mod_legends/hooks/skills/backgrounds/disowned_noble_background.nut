@@ -23,7 +23,7 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
 		this.m.Level = this.Math.rand(1, 3);
-		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Thick})
+		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Thick});
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Outlaw;
 	}
 

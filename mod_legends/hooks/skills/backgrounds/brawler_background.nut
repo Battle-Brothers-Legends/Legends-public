@@ -81,7 +81,7 @@
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
-		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"))
+		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
 	}
 
 	o.onAnySkillUsed = function( _skill, _targetEntity, _properties )

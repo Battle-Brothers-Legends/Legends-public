@@ -124,7 +124,7 @@
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
-		]))
+		]));
 	}
 
 	o.onSerialize = function ( _out )

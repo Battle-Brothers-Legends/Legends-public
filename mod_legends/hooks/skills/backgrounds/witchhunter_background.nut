@@ -131,7 +131,7 @@
 
 		items.equip(this.Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.witchhunter_hat]
-		]))
+		]));
 
 	}
 

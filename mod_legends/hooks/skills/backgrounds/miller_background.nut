@@ -73,7 +73,7 @@
 
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, "linen_tunic", this.Math.rand(6, 7)]
-		]))
+		]));
 
 	}
 });

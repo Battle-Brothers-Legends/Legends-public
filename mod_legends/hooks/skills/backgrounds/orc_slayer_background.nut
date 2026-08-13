@@ -112,7 +112,6 @@
 		items.equip(this.new("scripts/items/weapons/two_handed_hammer"));
 		items.equip(this.Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk]
-		]))
+		]));
 	}
-
 });

@@ -66,6 +66,5 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/ancient/khopesh"));
-		local stash = this.World.Assets.getStash()
 	}
 });
