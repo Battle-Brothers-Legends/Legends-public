@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Squire);
-		this.m.Name = "Squire";
-		this.m.Icon = "ui/backgrounds/background_03.png";
 		this.m.BackgroundDescription = "Squires usually have received some training in warfare, and often have a high resolve to excel in what they do.";
 		this.m.GoodEnding = "%name% the squire eventually left the %companyname%. You\'ve heard that %they're% since been knighted. No doubt %they% is sitting happy as a plum wherever %they% is.";
 		this.m.BadEnding = "The squire, %name%, eventually departed the %companyname%. %They% intended to return home and become knighted, fulfilling %their% lifelong dream. Cruel politics got in the way and not only was %they% not knighted, %they% was stripped of %their% squire duties. Word has it %they% hanged %themselves% from a barn\'s rafters.";

@@ -5,8 +5,6 @@
 	o.create = function () {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.HedgeKnight);
-		this.m.Name = "Hedge Knight";
-		this.m.Icon = "ui/backgrounds/background_33.png";
 		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
 		this.m.GoodEnding = "A %person% like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on %their% own. Unlike many other mercenaries, %they% did not spend %their% crowns on land or ladders with which to climb the noble life. Instead, %they% bought %themselves% the finest war horses and the talents of armorers. The behemoth of a %person% rode from one jousting tournament to the next, winning them all with ease. %They're% still at it to this day, and you think %they% won\'t stop until %they're% dead. The hedge knight simply knows no other life.";
 		this.m.BadEnding = "%name% the hedge knight eventually left the company. %They% traveled the lands, returning to %their% favorite pastime of jousting, which was really a cover for %their% real favorite pastime of lancing men off horses in a shower of splinters and glory. At some point, %they% was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove %their% lance through the man\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to %their% home and only half returned alive.";

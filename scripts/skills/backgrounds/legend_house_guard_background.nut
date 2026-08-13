@@ -3,7 +3,6 @@ this.legend_house_guard_background <- this.inherit("scripts/skills/backgrounds/c
 	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHouseGuard);
-		this.m.Icon = "ui/backgrounds/background_noble2h.png";
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

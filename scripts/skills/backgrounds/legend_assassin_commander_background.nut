@@ -6,11 +6,9 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderAssassin);
-		this.m.Name = "Assassin";
 		this.m.BackgroundDescription = "This character\'s history is a secret";
 		this.m.GoodEnding = "After leaving %companyname%, %name% was never heard from again. %name%\'s calling card has been found near a few accidents, so you believe the assassin is doing well.";
 		this.m.BadEnding = "After leaving %companyname%, %name% was never heard from again. There are rumours that a rival assassin was hunting %name%, but no one has heard anything from either of them.";
-		this.m.Icon = "ui/backgrounds/background_53.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),

@@ -3,8 +3,6 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendFootSoldier);
-		this.m.Name = "Foot Soldier";
-		this.m.Icon = "ui/backgrounds/background_nobleshield.png";
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.DisownedNoble);
-		this.m.Name = "Disowned Noble";
-		this.m.Icon = "ui/backgrounds/background_08.png";
 		this.m.BackgroundDescription = "Disowned nobles often have profited from some training in melee fighting at court and know the weaknesses of noble armies.";
 		this.m.GoodEnding = "A noble at heart, the disowned %noble% %name% returned to %their% family. Word has it %they% kicked in the doors and demanded a royal seat. An usurper challenged %them% in combat and, well, %name% learned a lot in %their% days with the %companyname% and %they% now sits on a very, very comfortable throne.";
 		this.m.BadEnding = "A %person% of nobility at heart, %name% the disowned noble returned to %their% family home. Word has it an usurper arrested %them% at the gates. %Their% head currently rests on a pike with crows for a crown.";

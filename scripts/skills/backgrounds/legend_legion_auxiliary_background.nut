@@ -4,8 +4,6 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionAuxiliary);
-		this.m.Name = "Auxiliary";
-		this.m.Icon = "ui/backgrounds/background_legion_auxiliary.png";
 		this.m.BackgroundDescription = "Pressed onto service by some means or another, the Auxiliary serves their masters in exchange for a promise of a better life.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";

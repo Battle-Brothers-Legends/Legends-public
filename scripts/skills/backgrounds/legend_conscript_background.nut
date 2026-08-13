@@ -4,8 +4,6 @@ this.legend_conscript_background <- this.inherit("scripts/skills/backgrounds/cha
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendConscript);
-		this.m.Name = "Conscript";
-		this.m.Icon = "ui/backgrounds/background_conscript.png";
 		this.m.BackgroundDescription = "Better trained and equipped than northern militia, conscripts are the rank and file of the southern military.";
 		this.m.GoodEnding = "The nomad %name% left the %companyname% a few months after yourself. He apparently traveled south and now leads what they\'re calling the \'City on Legs,\' a huge band of peoples that roam the deserts. It is apparently so rich and successful a society that the Viziers worry their own people will flock to it.";
 		this.m.BadEnding = "You learned that %name% the nomad departed the company with the hope of finding new plains to roam. Apparently, he got the idea in his head that he would travel far to the north and land cozily with the barbarians there. To his credit, the barbarians and nomads share a similar lifestyle, culture, language, religion, laws, struggles, conflicts, and general appearances aside. The nomad was butchered almost instantly upon entrance to a barbarian encampment and his remains eaten in a warrior ritual.";

@@ -4,8 +4,6 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBladedancer);
-		this.m.Name = "Bladedancer";
-		this.m.Icon = "ui/backgrounds/background_bladedancer.png";
 		this.m.BackgroundDescription = "A skilled nomadic fighter of the south who prefers speed and reach over raw power.";
 		this.m.GoodEnding = "%name% found %themselves% in the possession of more crowns than %their% family had accumulated across six generations. Despite this, the bladedancer returned to the desert and used %their% wealth to train the next generation of bladedancers as %their% tutor did before %them%.";
 		this.m.BadEnding = "The pride and glory went to the head of %name% after you left. Last you heard %they% broke from the company and traveled alone challenging champions in crownling companies to single combat. You never heard from %them% ever again.";

@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Slave);
-		this.m.Name = "Indebted";
-		this.m.Icon = "ui/backgrounds/background_60.png";
 		this.m.BackgroundDescription = "The indebted are a caste of de-facto slaves in the city states, and as such are not hired, but bought, and receive no daily wage.";
 		this.m.GoodEnding = "%name% the indebted has had a rough life and you\'ve both contributed to that and helped alleviate it in some way. You found %them% as a slave in the south, far from family and home. You \'hired\' %them% essentially for free and worked %them% as an enslaved sellsword. After you left the %companyname%, %their% name was removed from the ledger of indebted and %they% was for all intents and purposes a free %person%. %They% stayed with the company and has been rising through its ranks ever since. You stand at an odd relation to the %person%. He\'s never thanked you, nor has %they% expressed ill.";
 		this.m.BadEnding = "With your retiring from the unsuccessful %companyname%, %name% the indebted from the north carried on with the company for a time. You got wind that the mercenary band ran into financial troubles and was selling off \'%person% and material\' to make ends meet. It seems %name%\'s time with the company presumably ended sometime there, and %their% time as a slave started again.";

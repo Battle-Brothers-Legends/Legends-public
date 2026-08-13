@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Ratcatcher);
-		this.m.Name = "Ratcatcher";
-		this.m.Icon = "ui/backgrounds/background_41.png";
 		this.m.BackgroundDescription = "Ratcatchers need to have quick reflexes to catch their prey.";
 		this.m.GoodEnding = "%name% the ratcatcher came from stranger stocks, and to stranger stocks %they% returned. After retiring from the %companyname%, %they% started a ratcatching company. %They% was doing wonderful business until it came out that %they% hadn\'t been killing any of the rats, but instead stowing thousands of them in a storehouse just outside town. Last you heard, the %person% was quite content with %their% new and numerous friends.";
 		this.m.BadEnding = "You didn\'t think %name% would fit in with sellswords, but %they% proved %themselves% capable. Unfortunately, the %companyname% fell apart and %they% returned to ratcatching. You got word that %their% body was found in a sewer utterly covered in nibbling rats. It\'s said that %they% had a smile on %their% face.";

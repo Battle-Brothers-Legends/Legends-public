@@ -4,8 +4,6 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderBeggar);
-		this.m.Name = "Framed Beggar";
-		this.m.Icon = "ui/backgrounds/background_18.png";
 		this.m.BackgroundDescription = "Beggars aren\'t the most determined persons, and living on the street tends to be detrimental to their health.";
 		this.m.GoodEnding = "Having enough of all the fighting, %name% the once-beggar retired from the %companyname%. You know the %person% made a pretty crown in %their% time with the mercenary company, yet the other day you saw %them% out begging again. You asked if %they%\'d wasted all %their% money and %they% laughed. %They% said %they%\'d purchased land and was doing just fine. Then %they% held out %their% little tin and asked for a crown. You gave %them% two.";
 		this.m.BadEnding = "The fighting life is a rough one, and %name% the once-beggar saw fit to retire from it before it became a deadly one. Unfortunately, %they% went back to beggaring. Word has it that a nobleman cleaned a city of riff-raff and sent them marching north despite it being winter. Cold and hungry, %name% died on the side of a road, a tin cup frozen to %their% finger.";

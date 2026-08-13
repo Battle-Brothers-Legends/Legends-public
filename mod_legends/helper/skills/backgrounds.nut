@@ -125,6 +125,7 @@ if (!("Backgrounds" in ::Legends)) {
 	_target.m.HiringCost = defs.HiringCost;
 	_target.m.DailyCost = defs.DailyCost;
 	_target.m.PerkTreeDynamic = ::Legends.Backgrounds.getPerkTrees(defs.Const);
+	_target.m.Icon = defs.Icon;
 }
 
 ::Legends.Backgrounds.getPerkTrees <- function(_name) {

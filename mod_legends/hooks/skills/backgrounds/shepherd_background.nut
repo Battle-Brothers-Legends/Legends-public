@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Shepherd);
-		this.m.Name = "Shepherd";
-		this.m.Icon = "ui/backgrounds/background_44.png";
 		this.m.BackgroundDescription = "Shepherds are used to physical labor and known to keep the occasional wolf at bay with a sling.";
 		this.m.GoodEnding = "It was unusual that a shepherd such as %name% ever found %their% way into a company of sellswords, but %they% did prove himself an able warrior. With injuries mounting, %they% eventually retired, returning to a meadow, staff in hand, and herding sheep until %their% final, peaceful days.";
 		this.m.BadEnding = "You\'d think a shepherd would have no place in the company of sellsword and, eventually, %name% agreed. %They% left the %companyname% not long after you and last you heard %they% was back to tending his sheep. While most men left the company in poor spirits, %name%\'s injuries did not bring down %their% docile lifestyle of staring at fluffy white critters about as dangerous as a bad dream.";

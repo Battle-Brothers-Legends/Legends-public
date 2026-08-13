@@ -3,7 +3,6 @@ this.legend_belly_dancer_background <- this.inherit("scripts/skills/backgrounds/
 	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBellyDancer);
-		this.m.Icon = "ui/backgrounds/background_64.png";
 		this.m.BackgroundDescription = "The bellydancer is a slave, seductive and knowledgeable.";
 		this.m.GoodEnding = "%name% took what they had learned from their time in the company and headed north with the intention of getting as far away from the south as possible. They found good work and few questions awaiting them at a northern settlement in the tundra where they quickly rose the ranks of the local militia to become captain.";
 		this.m.BadEnding = "With the commander gone %name%\'s future was uncertain, but her old masters were not. Manhunters came for %name% a few nights after the commander leaving. Without your guidance the remaining mercenaries did not attempt to stop the manhunters. What became of %name% is a mystery, she was last seen on a slave caravan heading south, but after that is anyone\'s guess.";

@@ -4,8 +4,6 @@ this.legend_master_archer_background <- this.inherit("scripts/skills/backgrounds
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMasterArcher);
-		this.m.Name = "Master Archer";
-		this.m.Icon = "ui/backgrounds/background_master_archer.png";
 		this.m.BackgroundDescription = "Master Archers have spent years honing their craft in hunting, sport and war.";
 		this.m.GoodEnding = "While the %companyname% continued on with great success, %name% the master archer eventually saw fit to leave it all behind. %They% returned to the life of an archer, working for whoever paid the best. %They% rarely showed the grim reality of hunting humans, but you have to imagine they\'d just rather stop doing it. As far as you know, %they% is doing well these days. %They% purchased a bit of land and helps guide nobles on pricey hunting trips.";
 		this.m.BadEnding = "With the decline of the %companyname% readily obvious, %name% the master archer departed from the company and returned to archery contests. Unfortunately, a shoot off went awry while shooting apples off each other\'s heads. %They% was the better shot, but being better does not help if you\'re dead.";

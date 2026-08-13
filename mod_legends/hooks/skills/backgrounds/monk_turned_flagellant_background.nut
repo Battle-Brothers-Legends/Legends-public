@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.MonkTurnedFlagellant);
-		this.m.Name = "Monk turned Flagellant";
-		this.m.Icon = "ui/backgrounds/background_26.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Tough),

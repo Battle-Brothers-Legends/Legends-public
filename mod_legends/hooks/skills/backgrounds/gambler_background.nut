@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gambler);
-		this.m.Name = "Gambler";
-		this.m.Icon = "ui/backgrounds/background_20.png";
 		this.m.BackgroundDescription = "Gamblers tend to have quick reflexes and a higher resolve than their opponents at the card table.";
 		this.m.GoodEnding = "It was perhaps a risk to take a gambler like %name% into your ranks. Now, many days later it\'s obvious you made the right choice. Last you heard, %they% was still with the company and uses %their% earnings to enrich %their% habits. Rumor has it that, through all %their% winnings, %they%\'s secretly become one of the richest men in all the land. You think it\'s a bunch of hogwash, but a surprising number of mayors have become suddenly lax on gaming...";
 		this.m.BadEnding = "%name% the gambler retired from the declining company and returned to %their% gambling ways. %They% quickly acquired great debts %they% could not pay. You saw %them% begging on a street corner with one of %their% hands missing and gaps in %their% teeth. You dropped a few crowns into %their% tin and said a few words, but %they% did not recognize you.";

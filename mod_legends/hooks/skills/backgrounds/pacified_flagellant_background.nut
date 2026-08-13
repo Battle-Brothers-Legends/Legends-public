@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PacifiedFlagellant);
-		this.m.Name = "Pacified Flagellant";
-		this.m.Icon = "ui/backgrounds/background_13.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Tough),

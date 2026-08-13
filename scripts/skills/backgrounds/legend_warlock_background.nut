@@ -4,8 +4,6 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendWarlock);
-		this.m.Icon = "ui/backgrounds/warlock_02.png";
-		this.m.Name = "Warlock";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

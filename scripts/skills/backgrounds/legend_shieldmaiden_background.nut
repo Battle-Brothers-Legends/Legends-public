@@ -4,8 +4,6 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendShieldmaiden);
-		this.m.Name = "Shieldmaiden";
-		this.m.Icon = "ui/backgrounds/legend_shieldmaiden.png";
 		this.m.BackgroundDescription = "Shieldmaidens are fierce female warriors from the northern settlements.";
 		this.m.GoodEnding = "The shieldmaiden, %name% stayed with %companyname% a little longer after your departure, netting herself a small horde of crowns. Nobody truly knew what happened to her next, but she was last seen hiring other women as fighters not far from where you picked her up so long ago.";
 		this.m.BadEnding = "As %companyname% declined in strength, %name% was one of the first to take charge. Her defensive nature led to inaction and ended up with most of the company being whittled down by goblin arrows in a swamp, many with their shields still clutched in their hands under the never-ending rain of projectiles.";

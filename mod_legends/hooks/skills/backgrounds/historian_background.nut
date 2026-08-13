@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Historian);
-		this.m.Name = "Historian";
-		this.m.Icon = "ui/backgrounds/background_47.png";
 		this.m.BackgroundDescription = "Historians are studious individuals with vast amounts of knowledge, none of it any use on the battlefield.";
 		this.m.GoodEnding = "You did not expect the historian, %name%, to stay in the company forever. He eventually left and it is said he took with him a large trove of scrolls. As it turns out, he was compiling a list of the %companyname%\'s achievements. He created a codex of all its accomplishments, enshrining the name of all the mercenaries into the history books for future generations to see. You hope they learn something from your doings.";
 		this.m.BadEnding = "The %companyname% continued its decline and many non-fighters such as %name% the historian saw this as a good time to leave. You tried to keep up with these men, but the historian was particularly easy to find: he left a paper trail. You sought the man out, asking scribes if they had heard of him. They said he was a mere little man writing a tome about how dark, violent, and pointless the life of a sellsword is.";

@@ -4,8 +4,6 @@ this.legend_arbalester_background <- this.inherit("scripts/skills/backgrounds/ch
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendArbalester);
-		this.m.Name = "Arbalester";
-		this.m.Icon = "ui/backgrounds/background_nobleranged.png";
 		this.m.DailyCostMult = 1.0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),

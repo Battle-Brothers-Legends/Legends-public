@@ -5,8 +5,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gladiator);
-		this.m.Name = "Gladiator";
-		this.m.Icon = "ui/backgrounds/background_61.png";
 		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters. Always a show off, gladiators fight better if there are no allies nearby.";
 		this.m.GoodEnding = "You thought that %name% the gladiator would return to the arenas as you thought %they% might. However, news from the south speaks of an uprising of indebted and gladiators alike. Unlike previous revolts, this one has viziers swinging from rooftops and slavers being lynched in the streets. The general upheaval is apparently about to sit the once-ringfighter as a legitimate powerbroker in the region.";
 		this.m.BadEnding = "The call of the crowd was too loud for the gladiator %name%. After your quick retirement from the unsuccessful %companyname%, the fighter returned to the southern kingdoms\' fighting arenas. Unfortunately, the wear and tear of %their% time with mercenaries slowed %them% a step and %they% was mortally slain by a half-starved slave wielding a pitchfork and a net.";

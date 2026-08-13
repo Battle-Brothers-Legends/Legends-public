@@ -4,8 +4,6 @@ this.legend_necromancer_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNecromancer);
-		this.m.Icon = "ui/backgrounds/background_necromancer_4.png";
-		this.m.Name = "Necromancer";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

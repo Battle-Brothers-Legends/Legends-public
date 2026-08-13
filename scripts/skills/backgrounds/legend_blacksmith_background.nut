@@ -3,8 +3,6 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBlacksmith);
-		this.m.Name = "Blacksmith";
-		this.m.Icon = "ui/backgrounds/background_blacksmith.png";
 		this.m.BackgroundDescription = "Blacksmiths tend to be strong and are skilled at repairing equipment.";
 		this.m.GoodEnding = "Perhaps one of the strongest %people% you\'ve ever met, %name% the blacksmith was a vital asset in the %companyname%, repairing both %their% own equipment and that of %their% comrades with practiced hands. With plenty of crowns stored, %they% retired from fighting and blacksmithing both. Last you heard %they% was living out %their% years comfortably on the coast.";
 		this.m.BadEnding = "%name% the blacksmith was a strong and capable sellsword in the %companyname%. %They% held out until the bitter end, sticking with the company as it lurched from one disaster to the next. Perhaps, had %they% been born in a different time %they% would have gone on to do great things, making legendary weapons for regal kings. Instead, many wars, invasions, and plagues spreading across the land ultimately ensured %name% and many other talented %people% went to total waste.";

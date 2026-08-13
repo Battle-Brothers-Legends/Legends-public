@@ -4,8 +4,6 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 	{
 		this.legend_horse.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorseCourser);
-		this.m.Name = "Courser";
-		this.m.Icon = "ui/backgrounds/legend_horse.png";
 		this.m.BackgroundDescription = "Coursers are swift and strong horses well-suited for war, hunting and transportation.";
 		this.m.GoodEnding = "%name% the Courser was sold to a Lady of a Noble House as her coming-of-age present. Though its fighting skill dulled with age, it was well-loved and enjoyed the luxurious life of a Noble's steed.";
 		this.m.BadEnding = "%name% the Courser didn't wear its warwounds with as much pride and dignity one could have hoped, and one time when the horse encountered a knight in the city, it went wild and started bucking. When the knight himself was unhorsed in the commotion, there was no mercy. %name% was put down.";

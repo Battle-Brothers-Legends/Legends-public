@@ -4,7 +4,6 @@ this.legend_disowned_lady_background <- this.inherit("scripts/skills/backgrounds
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDisownedLady);
 		this.m.BackgroundType = this.m.BackgroundType | this.Const.BackgroundType.Female;
 		this.setBodyCharacteristics(1)
-		this.m.Icon = "ui/backgrounds/background_08.png";
 		this.m.BackgroundDescription = "Disowned Ladies often have profited from some training in ranged warfare at court and know the weaknesses of noble armies.";
 	}
 

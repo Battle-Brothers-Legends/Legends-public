@@ -3,8 +3,6 @@
 	o.create = function () {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.CaravanHand);
-		this.m.Name = "Caravan Hand";
-		this.m.Icon = "ui/backgrounds/background_12.png";
 		this.m.BackgroundDescription = "Caravan hands are used to long and exhausting travels.";
 		this.m.GoodEnding = "%name% the once-caravan hand retired from fighting. %They% used %their% mercenary money to start a trade-guarding business that specializes in transporting goods through dangerous lands.";
 		this.m.BadEnding = "%name% the caravan hand retired back into guarding trade wagons. %They% died when defending against a brigand ambush. They took %their% shirt and left %their% body in a ditch.";

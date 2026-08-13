@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Cripple);
-		this.m.Name = "Cripple";
-		this.m.Icon = "ui/backgrounds/background_51.png";
 		this.m.BackgroundDescription = "The only thing swift about a cripple is their expected demise in a real battle.";
 		this.m.GoodEnding = "It\'s shocking that a %person% of %name%\'s stature survived at all, but the cripple did retire from the %companyname% with a sizeable stack of crowns. %They% runs an orphanage these days, spending %their% crowns to help the world\'s broken and abandoned children. That, or it\'s just a front for cheap labor. Can\'t be too sure these days.";
 		this.m.BadEnding = "When you left the %companyname%, there was one thing you were almost certain of: that damned cripple, %name%, wouldn\'t last long. Despite all odds, %they% did survive. Long enough in fact to retire %themselves%, albeit departing with about as many crowns as %they% had when %they% joined up. You\'ve no idea what became of %them%, but surely %they're% dead by now. Surely, right?";

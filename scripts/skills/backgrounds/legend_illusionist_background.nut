@@ -3,8 +3,6 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendIllusionist);
-		this.m.Icon = "ui/backgrounds/background_wizard.png";
-		this.m.Name = "Illusionist";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

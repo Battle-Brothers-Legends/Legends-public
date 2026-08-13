@@ -415,6 +415,8 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 8]
 }];
 
+::Legends.BackgroundsStats.HistorianSouthern <- clone ::Legends.BackgroundsStats.Historian;
+
 ::Legends.BackgroundsStats.Houndmaster <- [{
 	Hitpoints = [0, 5],
 	Bravery = [5, 5],

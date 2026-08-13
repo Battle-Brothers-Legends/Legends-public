@@ -3,8 +3,6 @@
 	o.create = function () {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Executioner);
-		this.m.Name = "Executioner";
-		this.m.Icon = "ui/backgrounds/background_72.png";
 		this.m.BackgroundDescription = "Executioners are dour and used to violence, although they have little experience in true warfare.";
 		this.m.GoodEnding = "%name% eventually retired from the company and once again found %themselves% plying the executioner\'s trade. %Their% considerable decapitation skills only honed further by sellswording, the %person% has apparently gained such notoriety in %their% field that the local nobility frequently get into feuds over who may keep %them% on retainer.";
 		this.m.BadEnding = "%Their% skill with the headsman\'s blade sharpened further by combat, %name% left the company and resumed work as an executioner. The townsfolk found little spectacle in %their% efficiency, however, and %they% was soon replaced with a more crowd-pleasing amateur. Left destitute, it wasn\'t long before the %person% was found hanging from a tree outside of town.";

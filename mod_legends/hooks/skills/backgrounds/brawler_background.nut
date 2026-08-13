@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Brawler);
-		this.m.Name = "Brawler";
-		this.m.Icon = "ui/backgrounds/background_27.png";
 		this.m.BackgroundDescription = "Brawlers are unmatched in unarmed combat, and physical exercise tends to leave them in good shape.";
 		this.m.GoodEnding = "A brawler like %name% is dangerous with just %their% fists, and proved %themselves% similarly savage with weapons. Before you left the %companyname%, you talked to the fighter about whether or not %they%\'d stay in the band. %They% said %they% had no desire to return to prizefighting, shook your hand, and thanked you for giving %them% the opportunity. Last you heard, the company chose %them% for a one-on-one, winner take all fight to settle compensation differences with a competing mercenary band. %They% won in the first round.";
 		this.m.BadEnding = "%name% the brawler left the company when it became clear it would soon dissolve and probably end up killing everyone who stayed onboard. %They% returned to prizefighting, grinding out the following years in brutal, weekly bouts. As %they% got older, %their% chin disappeared, as did %their% speed and power. %They% was left jobbing, intentionally taking falls and losing badly when %they% didn\'t. Eventually, no one would give %them% a fight. A nobleman offered %them% a large sum to wrestle a bear and the desperate %name% took %them% up on it. When the \'fight\' was over, the brawler lay dead, mangled beyond recognition, being dragged around the mud by a ferocious beast as drunken highborn cheered and clapped.";

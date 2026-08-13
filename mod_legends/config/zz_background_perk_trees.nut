@@ -942,6 +942,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	]
 };
 
+::Legends.BackgroundPerkTrees.HistorianSouthern <- clone ::Legends.BackgroundPerkTrees.Historian;
+
 ::Legends.BackgroundPerkTrees.Houndmaster <- {
 	Weapon = [
 		::Const.Perks.ThrowingTree,

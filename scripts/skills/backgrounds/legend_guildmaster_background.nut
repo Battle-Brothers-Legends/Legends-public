@@ -5,7 +5,6 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendGuildmaster);
 		this.m.Name = "Guild Master";
-		this.m.Icon = "ui/backgrounds/background_guildmaster.png";
 		this.m.BackgroundDescription = "An aging master slayer of a local guild, time has taken their youth but their skills still surpass those they train.";
 		this.m.GoodEnding = "%name% retired from the company and bought the deed to an abandoned castle. There %they% commands a troop of fellow beast slayers who journey the land protecting it from monsters. Last you spoke to %them% %they% had a raven-haired lady friend who did not take kindly to your presence, nor the presence of anyone else for that matter. You\'re sure %they're% happy.";
 		this.m.BadEnding = "After leaving the %companyname%, %name% retired from beast slaying altogether and last you heard %they% fathered an albino daughter. Unfortunately, rumors spread quickly about the girl having supernatural powers and her mother was executed by fire. The father and child were never caught nor seen again.";

@@ -4,8 +4,6 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBattleSister);
-		this.m.Name = "Battle Sister";
-		this.m.Icon = "ui/backgrounds/background_26.png";
 		this.m.BackgroundDescription = "Battle Sisters are warrior women trained by the inquisition to fight and destroy evil.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";

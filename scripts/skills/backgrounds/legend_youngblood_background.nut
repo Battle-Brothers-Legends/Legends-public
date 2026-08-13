@@ -4,8 +4,6 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendYoungblood);
-		this.m.Name = "Youngblood";
-		this.m.Icon = "ui/backgrounds/background_youngblood.png";
 		this.m.BackgroundDescription = "Youngbloods are students who have yet to prove themselves as capable witchhunters.";
 		this.m.GoodEnding = "The time %name% spent in %companyname% was not something %they% was prepared for - for years %they% had learnt about the hidden horrors of the world in great detail, but seeing them come off the page and jump at %them% firsthand was an entirely new experience. Regardless, %they% thrived in %their% new practical studies and made a name for %themselves%, eventually retiring to a nameless hamlet of only a dozen people where %they% would take the occasional small contract to keep %their% skills sharp.";
 		this.m.BadEnding = "%name% was a quick learner, but the divergence from theory to practice posed great difficulty. Although %they% did not now it, %they% struggled keeping pace with %companyname% and left shortly after you did. On %their% first night %they% found shelter from the elements in what %they% thought was an old cave - only to find out too late that it was a safe haven for hemovores.";

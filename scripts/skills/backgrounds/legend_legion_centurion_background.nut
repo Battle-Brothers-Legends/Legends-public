@@ -4,8 +4,6 @@ this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionCenturion);
-		this.m.Name = "Centurion";
-		this.m.Icon = "ui/backgrounds/background_legion_centurion.png";
 		this.m.BackgroundDescription = "A leader of many, a slave to a few.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";

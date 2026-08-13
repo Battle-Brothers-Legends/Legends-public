@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Raider);
-		this.m.Name = "Raider";
-		this.m.Icon = "ui/backgrounds/background_49.png";
 		this.m.BackgroundDescription = "Any raider that survived so far will have some expertise in fighting.";
 		this.m.GoodEnding = "A former raider, %name% fit in well with the %companyname% and proved %themselves% an excellent fighter. Having saved a veritable mountain of crowns, %they% retired from the company and returned from whence %they% came. %They% was last seen sailing a riverboat toward a small village.";
 		this.m.BadEnding = "As the %companyname% speedily declined, %name% the raider departed from the company and went on %their% own way again. %They% returned to raiding, taking %their% greedy violence along the shorelines of river villages. You\'re not sure if it\'s true, but word has it that %they% was impaled with a pitchfork by a stable boy. Word has it that the town hoisted %their% body parts along the outer walls as a warning to future would-be raiders.";

@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Manhunter);
-		this.m.Name = "Manhunter";
-		this.m.Icon = "ui/backgrounds/background_62.png";
 		this.m.BackgroundDescription = "Manhunters are used to hunting down people in the rough environment of the south.";
 		this.m.GoodEnding = "%name% the manhunter stuck with the %companyname% for a long while after you left it. You haven\'t gotten much word other than %name%\'s found far more income in the world of sellswords than that of hunting down the indebted.";
 		this.m.BadEnding = "Upset with how time in the company of the %companyname% has gone, %name% the manhunter deserted and returned south. It\'s hard to say what became of the slaver, but the business of tracking and hunting human prey carries endless dangers. The only news you haveis ancillary to the vocation: that of numerous indebted uprisings with many manhunters being buried alive or fed to a variety of desert-borne creatures.";

@@ -4,8 +4,6 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendWarlockSummoner);
-		this.m.Name = "Summoner";
-		this.m.Icon = "ui/backgrounds/background_necromancer_4.png";
 		this.m.BackgroundDescription = "Summoners practice raising the dead from the earth, what they do after that is anyone's guess...";
 		this.m.GoodEnding = "%name% continued to look for a cure to their ailments after you left the company. A few years later they would wander into the woods and meet a witch who was more than happy to help at the cost of some protection. %name% and the witch lived out most of their lives away from prying eyes, surrounded by ever shifting rings of undead patrolling the perimiter.";
 		this.m.BadEnding = "Seeing their affliction as a permament problem that wouldn\'t go away, %name% split from the company shorting after your departure. They took a differant approach and looked for cures closer to the grave, allowing a puppet of their own correction to bite them. Upon taking their own life shortly after, %name% did not rise as co herant as they intended - instead as a spectator to their own body's actions. They remained trapped and decaying until a mercenary company cut them down outside of a nameless hamlet.";

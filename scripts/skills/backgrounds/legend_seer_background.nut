@@ -3,9 +3,7 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 	function create()
 	{
 		this.character_background.create();
-		this.m.Name = "Seer";
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendSeer);
-		this.m.Icon = "ui/backgrounds/background_seer.png";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),

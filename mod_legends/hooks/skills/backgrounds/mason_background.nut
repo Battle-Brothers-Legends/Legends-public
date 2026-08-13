@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Mason);
-		this.m.Name = "Mason";
-		this.m.Icon = "ui/backgrounds/background_17.png";
 		this.m.BackgroundDescription = "A good mason is used to physical labor and studying to improve his craft.";
 		this.m.GoodEnding = "Masonry has its own call, notably a call perfectly cut stones and impossible towers that defy the eye\'s ability to even shape them against the skies. %name% the mason returned to his old trade and, with all the money he\'d made with the %companyname%, he started a reputable business renowned for its ability to construct stone rooms that held the heat during winters and the cool during summers.";
 		this.m.BadEnding = "The %companyname% continued to suffer losses long after you\'d left. More and more of the brothers departed the company, a good lot of them returning to old trades. %name% the mason was no different. Sadly, all the time spent fighting had destroyed any steadiness he had left. With hands that wouldn\'t stop shaking, he could no longer shape stones like he used to. Last you heard, he was hauling rocks as a daytaler instead of shaping them as a mason.";

@@ -4,8 +4,6 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendInventor);
-		this.m.Name = "Inventor";
-		this.m.Icon = "ui/backgrounds/background_inventor.png";
 		this.m.BackgroundDescription = "Inventors are trenchant problem solvers, fueled by a burning passion for knowledge.";
 		this.m.GoodEnding = "%name% initially did not fit in well with %companyname%, but given time everyone saw %their% value in setting both weapons and joints back together. %They% took their small fortune and set up a workshop to call %their% own, accidentally creating a mortar that did not fire up in the air, but rather directly at the enemy.";
 		this.m.BadEnding = "%name% was a misfit from the start, %their% lack of skill on the battlefield held %them% back compared to %their% stronger mercenary counterparts. %Their% journey ironically ended not on the battlefield but instead in %their% workshop, which now stands only a charred ruin.";

@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Vagabond);
-		this.m.Name = "Vagabond";
-		this.m.Icon = "ui/backgrounds/background_32.png";
 		this.m.BackgroundDescription = "Vagabonds are used to long travels, but don\'t excel in anything in particular.";
 		this.m.GoodEnding = "Some %people% were just intended to wander. While %their% time with the %companyname% went well, %name% the vagabond eventually departed with the company and set off on the roads once more. You\'ve no idea where %they're% gone, you just know all %they're% interested in is going.";
 		this.m.BadEnding = "As the company fell apart, it\'s little surprise that a vagabond like %name% chose to leave it behind and return to the roads. Unfortunately, with the world in such a dire state, it did not take long for %them% to find trouble. %Their% body was found hanging outside a small farming village. A sign nailed to his chest read: \'No Free Rangers\'.";

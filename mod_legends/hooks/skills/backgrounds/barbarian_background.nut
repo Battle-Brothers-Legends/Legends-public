@@ -7,8 +7,6 @@
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Barbarian);
-		this.m.Name = "Barbarian";
-		this.m.Icon = "ui/backgrounds/background_58.png";
 		this.m.BackgroundDescription = "";
 		this.m.GoodEnding = "%name% the barbarian took all the coin %they% earned with the company and ventured north. With %their% money, %they% gathered a band of warriors and conquered so many tribes that, last you heard, %they% had been ordained \'king of the north\'.";
 		this.m.BadEnding = "With things the way they were, %name% departed. Last you heard %they% was traveling north. Penniless with little to %their% name but an axe, and not looking anything like the natives or speaking their tongue, you figure the barbarian did not get far. Based upon what you\'ve seen happen to %their% ilk, %they're% either been killed already or captured as a slave.";

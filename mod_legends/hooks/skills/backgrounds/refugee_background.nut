@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Refugee);
-		this.m.Name = "Refugee";
-		this.m.Icon = "ui/backgrounds/background_38.png";
 		this.m.BackgroundDescription = "Refugees lack the conviction to fight for their homes, but they are used to long and exhausting travel by now.";
 		this.m.GoodEnding = "%name% the refugee showed %themselves% to be a natural fighter, but %they% eventually retired from the %companyname%. Word has it %they% returned to %their% home and is currently using all %their% crowns to help rebuild it.";
 		this.m.BadEnding = "With the downfall of the %companyname% written plainly on the wall, %name% the refugee split with the company. %They% used what scant crowns %they% had left to purchase a set of shoes and returned to %their% destroyed home to try and rebuild it. While walking home, an illiterate wildman murdered %them% and ate the shoes.";

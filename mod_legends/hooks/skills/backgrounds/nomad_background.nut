@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Nomad);
-		this.m.Name = "Nomad";
-		this.m.Icon = "ui/backgrounds/background_63.png";
 		this.m.BackgroundDescription = "Any nomad that survived out in the desert will have some expertise in fighting.";
 		this.m.GoodEnding = "The nomad %name% left the %companyname% a few months after yourself. %they% apparently traveled south and now leads what they\'re calling the \'City on Legs,\' a huge band of peoples that roam the deserts. It is apparently so rich and successful a society that the Viziers worry their own people will flock to it.";
 		this.m.BadEnding = "You learned that %name% the nomad departed the company with the hope of finding new plains to roam. Apparently, %they% got the idea in %their% head that %they% would travel far to the north and land cozily with the barbarians there. To %their% credit, the barbarians and nomads share a similar lifestyle, culture, language, religion, laws, struggles, conflicts, and general appearances aside. The nomad was butchered almost instantly upon entrance to a barbarian encampment and %their% remains eaten in a warrior ritual.";

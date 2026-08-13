@@ -3,8 +3,6 @@
 	o.create = function () {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Fisherman);
-		this.m.Name = "Fisher";
-		this.m.Icon = "ui/backgrounds/background_15.png";
 		this.m.BackgroundDescription = "Fishers are used to physical labor.";
 		this.m.GoodEnding = "%name% retired from fighting and returned to %their% fishing ventures. A huge storm ran up the shores, destroying every skiff and drifter - except that wily fisher\'s! The only boat afloat, %name%\'s business boomed. %They% lives a comfortable life waking up to a nice beachfront view every morning.";
 		this.m.BadEnding = "With the fighting career going so poorly, %name% decided to retire from the field and return to fishing. %They% went missing at sea after an enormous storm wrecked the shorelines.";

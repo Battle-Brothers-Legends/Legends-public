@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Deserter);
-		this.m.Name = "Deserter";
-		this.m.Icon = "ui/backgrounds/background_07.png";
 		this.m.BackgroundDescription = "Deserters have received some martial training, but usually aren\'t eager to put it to use.";
 		this.m.GoodEnding = "%name% the deserter continued fighting for the %companyname%, ever striving to redeem %their% name. Word has it that during a brutal fight with orcs, %they% dove headfirst into a crowd of greenskins, surfing across the top of their shocked heads. %Their% heroism rallied the men to an incredible victory and %they% lives out %their% days getting toasted in every bar %they% enters.";
 		this.m.BadEnding = "You heard %name% the deserter actually renewed %their% title and fled a battle the %companyname% had with some greenskins. Goblins caught %them% out in the woods and turned %their% head into a goblet for an orc warlord.";

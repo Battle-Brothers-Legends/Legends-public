@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Monk);
-		this.m.Name = "Monk";
-		this.m.Icon = "ui/backgrounds/background_13.png";
 		this.m.BackgroundDescription = "Monks tend to have a high resolve in what they do, but are not used to hard physical labor or warfare.";
 		this.m.GoodEnding = "%name% the monk retired back into calmer spiritual duties. He is currently out in a mountain monastery, enjoying the quiet while reflecting on his time in the mercenary company. The other monks hate him for fighting and killing, but he\'s penning a world-changing tome on the balance between peace and violence.";
 		this.m.BadEnding = "After having a spiritual breakdown, %name% retired from fighting and found home in a monastery. All his fellow brothers and abbots ostracized him for taking part in such a violent venture. Word has it he was eventually exiled when a sexton caught him stealing an offertory.";

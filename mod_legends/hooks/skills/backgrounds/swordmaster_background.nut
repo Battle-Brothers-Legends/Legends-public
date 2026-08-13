@@ -3,8 +3,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Swordmaster);
-		this.m.Name = "Swordmaster";
-		this.m.Icon = "ui/backgrounds/background_30.png";
 		this.m.BackgroundDescription = "A swordmaster excels in melee combat like no other, but may be vulnerable at range. Age may have taken a toll on %their% physical attributes and may continue to do so. Swordmasters fight smart and conserve their strength which allows them to have a reduced impact on initiative due to fatigue.";
 		this.m.GoodEnding = "The finest swordsman you\'d ever seen, %name% the old swordmaster was a natural addition to the %companyname%. But a %person% can\'t fight forever. Despite the company\'s growing success, it was becoming readily obvious that the swordmaster just could not physically do it anymore. %They% retired to a nice plot of land and is enjoying some time to %themselves%. Or so you thought. You went out to go see the %person% and found %them% secretly training a nobleman\'s daughter. You promised to keep it a secret.";
 		this.m.BadEnding = "A shame that %name% the swordmaster had to spend %their% twilight years in a declining mercenary company. %They% retired, stating %they% just could not physically do it anymore. You think %they% was just letting the %companyname% down easy, because a week later %they% slew ten would-be brigands on the side of a road without breaking a sweat. Last you heard, %they% was training ungrateful princes in the art of swordfighting.";

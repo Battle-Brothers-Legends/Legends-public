@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Companion);
-		this.m.Name = "Companion";
-		this.m.Icon = "ui/traits/trait_icon_32.png";
 		this.m.DailyCostMult = 1.0; //basically never increases in daily wage hikes.
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious),

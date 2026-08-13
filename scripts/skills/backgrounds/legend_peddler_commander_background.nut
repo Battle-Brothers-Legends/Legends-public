@@ -4,8 +4,6 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderPeddler);
-		this.m.Name = "Merchant";
-		this.m.Icon = "ui/backgrounds/background_19.png"; //needs new
 		//gender neutral description
 		this.m.BackgroundDescription = "Merchants were held in high regard and powerful people, they could bankroll armies or buy entire estates if they had the reason to do so.";
 		this.m.GoodEnding = "";

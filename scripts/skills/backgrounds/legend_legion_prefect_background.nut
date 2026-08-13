@@ -4,8 +4,6 @@ this.legend_legion_prefect_background <- this.inherit("scripts/skills/background
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendLegionPrefect);
-		this.m.Name = "Prefect";
-		this.m.Icon = "ui/backgrounds/background_legion_prefect.png"; 
 		this.m.BackgroundDescription = "An official or administrator with some standing to someone who\'s name and title is unknown to you.";
 		this.m.GoodEnding = ""; //to do
 		this.m.BadEnding = ""; //to do

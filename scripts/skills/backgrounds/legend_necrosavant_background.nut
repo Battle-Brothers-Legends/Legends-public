@@ -4,8 +4,6 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendNecrosavant);
-		this.m.Icon = "ui/backgrounds/background_vampire.png";
-		this.m.Name = "Necrosavant";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),

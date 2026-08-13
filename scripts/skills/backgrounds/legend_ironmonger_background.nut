@@ -5,8 +5,6 @@ this.legend_ironmonger_background <- this.inherit("scripts/skills/backgrounds/ch
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendIronmonger);
-		this.m.Name = "Ironmonger";
-		this.m.Icon = "ui/backgrounds/background_ironmonger.png";
 		this.m.BackgroundDescription = "Ironmongers are stronger than average and good at maintaining equipment.";
 		this.m.GoodEnding = "A more reliable sellsword than most, %name%\'s background as an ironmonger helped %them% to keep the %companyname%\'s equipment functioning. Having saved more than enough crowns, %name% retired and returned to blacksmithing, learning from a true master and becoming a paragon of the craft. Last you heard of %them% %they% was living in luxury, making custom weapons and armor for nobles.";
 		this.m.BadEnding = "%name% the ironmonger stayed with the %companyname% for some time after your departure, but after a particularly nasty stretch of bad luck %they% saw the rot for what it was and jumped ship. Bad luck seemed to follow %them%, however, and %they% never managed to settle down. He burned through his leftover crowns in a few years. He died in poverty one winter, freezing overnight.";

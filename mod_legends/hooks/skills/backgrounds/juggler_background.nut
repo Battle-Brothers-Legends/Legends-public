@@ -4,8 +4,6 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Juggler);
-		this.m.Name = "Juggler";
-		this.m.Icon = "ui/backgrounds/background_14.png";
 		this.m.BackgroundDescription = "Jugglers need to have good reflexes and hand-eye-coordination for their profession.";
 		this.m.GoodEnding = "%name% the juggler took all %their% mercenary money and started a traveling troupe of performers. Last you heard, %they% started an entire theater and puts on a new play a month!";
 		this.m.BadEnding = "%name% the juggler retired from fighting. %They% was performing for a gaudy nobleman in the {south | north | east | west} when an act went horribly wrong. Word has it %they% was thrown off a tower for %their% mistake, but you prefer to not believe that.";

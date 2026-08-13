@@ -4,8 +4,6 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAlchemist);
-		this.m.Name = "Alchemist";
-		this.m.Icon = "ui/backgrounds/background_alchemist.png";
 		this.m.BackgroundDescription = "The alchemist creates potions and gunpowder accessories, for a price.";
 		this.m.GoodEnding = "Although weak with a sword and not an enjoyer of combat, %name% left the company soon after the commander\'s departure and focused themselves on the curing of disease and sickness they had seen much of across the land. Their knowledge of alchemy was of great value in the north, earning more crowns than they thought possible. %name% set up a shop in a border town with the southern realms, selling remedies to those who needed them for far below normal prices. They died content and of old age, without a regret in their mind.";
 		this.m.BadEnding = "The subject of death terrified %name% to look for remedies and concoctions to prolong their own life by using the crowns they had accumulated from their time with the company. %name% travelled the known world in search of all the reagents they could find until they were killed in a wildman raid, never knowing the cure to their short existence.";
