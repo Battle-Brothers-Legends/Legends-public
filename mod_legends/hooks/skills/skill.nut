@@ -14,7 +14,7 @@
 
 	local onShieldHit = o.onShieldHit;
 	o.onShieldHit = function ( _info ) {
-		onShieldHit();
+		onShieldHit(_info);
 		_info.TargetEntity.m.Skills.onShieldHitSkills(this, _info.TargetEntity, _info.Shield);
 	}
 
@@ -1705,10 +1705,10 @@
 					Shield = shield
 				};
 				this.onShieldHit(info);
-				_info.TargetEntity.onMissed(_user, this, true);
+				_info.TargetEntity.onMissed(_info.User, this, true);
 			}
 			else {
-				_info.TargetEntity.onMissed(_user, this, false);
+				_info.TargetEntity.onMissed(_info.User, this, false);
 			}
 			this.m.Container.onTargetMissed(this, _info.TargetEntity);
 			this.m.IsExecutingOffhand = false;
