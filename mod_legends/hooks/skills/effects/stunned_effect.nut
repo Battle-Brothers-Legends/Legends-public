@@ -41,42 +41,37 @@
 
 	o.onAdded = function () {
 		// Legends Stun immunity logic here (Composure, Immovable Object, Steel Brow)
+		local actor = this.getContainer().getActor();
 		local composure = ::Legends.Perks.get(this, ::Legends.Perk.LegendComposure);
-		local immovableObject = ::Legends.Perks.get(this, ::Legends.Perk.LegendImmovableObject);
-		local steelBrow = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
-		if (composure != null || (immovableObject != null && immovableObject.m.isGrantingStunImmunity)) {
-    		if (this.getContainer().getActor().getTile().IsVisibleForPlayer) {
-        		local sourceOfImmunity = composure != null ? composure.getName() : immovableObject.getName();
-        		this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is immune to Stun due to " + sourceOfImmunity + ".");
+		if (composure != null) {
+    		if (actor.getTile().IsVisibleForPlayer) {		
+        		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + composure.getName() + ".");
     		}
     		this.removeSelf();
     		return;
 		}
 
-		if (steelBrow != null) {
-    		if (this.getContainer().getActor().getTile().IsVisibleForPlayer) {
-        		this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is immune to Stun due to " + steelBrow.getName() + " and is Dazed instead.");
+		local immovableObject = ::Legends.Perks.get(this, ::Legends.Perk.LegendImmovableObject);
+		local steelBrow = ::Legends.Perks.get(this, ::Legends.Perk.SteelBrow);
+		if (steelBrow != null || (immovableObject != null && immovableObject.m.isGrantingStunImmunity)) {
+    		if (actor.getTile().IsVisibleForPlayer) {
+				local sourceOfImmunity = steelBrow != null ? steelBrow.getName() : immovableObject.getName();
+        		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + " is immune to Stun due to " + sourceOfImmunity + " and is Dazed instead.");
     		}
     		this.removeSelf();
     		::Legends.Effects.grant(this, ::Legends.Effect.Dazed);
 			return;
 		}
 		// End of Stun immunity logic
-		local statusResisted = this.getContainer().getActor().getCurrentProperties().IsResistantToAnyStatuses
-			? this.Math.rand(1, 100) <= 50
-			: false;
-		statusResisted = statusResisted
-			|| this.getContainer().getActor().getCurrentProperties().IsResistantToPhysicalStatuses
-			? this.Math.rand(1, 100) <= 33
-			: false;
+		local statusResisted = (actor.getCurrentProperties().IsResistantToAnyStatuses ? ::Math.rand(1, 100) <= 50 : false) || (actor.getCurrentProperties().IsResistantToPhysicalStatuses ? ::Math.rand(1, 100) <= 33 : false);
 
 		if (statusResisted) {
-			if (!this.getContainer().getActor().isHiddenToPlayer()) {
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " shook off being stunned thanks to unnatural physiology.");
+			if (!actor.isHiddenToPlayer()) {
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being stunned thanks to unnatural physiology.");
 			}
 
 			this.removeSelf();
-		} else if (!this.m.Container.getActor().getCurrentProperties().IsImmuneToStun) {
+		} else if (!actor.getCurrentProperties().IsImmuneToStun) {
 			::Legends.Effects.remove(this, ::Legends.Effect.Shieldwall);
 			::Legends.Effects.remove(this, ::Legends.Effect.Spearwall);
 			::Legends.Effects.remove(this, ::Legends.Effect.Riposte);
