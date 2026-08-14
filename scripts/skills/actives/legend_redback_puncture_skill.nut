@@ -120,7 +120,7 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 
 		if (_skill != this)
 		{
-			return
+			return;
 		}
 
 		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints <= this.Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
@@ -175,12 +175,12 @@ this.legend_redback_puncture_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill != this)
 		{
-			return
+			return;
 		}
 		local chance = this.getHitChance(_targetEntity);
 		if (_properties.IsSpecializedInDaggers)
 		{
-			chance += 15
+			chance += 15;
 		}
 		_properties.MeleeSkill += chance;
 		_properties.DamageArmorMult *= 0.0;

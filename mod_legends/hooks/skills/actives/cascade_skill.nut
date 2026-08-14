@@ -25,12 +25,12 @@
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
 			::Time.scheduleEvent(::TimeUnit.Virtual, 50, function (_skill) {
-				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null) {
+				if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user)) {
 					_skill.attackEntity(_user, target);
 				}
 			}.bindenv(this), this);
 			::Time.scheduleEvent(::TimeUnit.Virtual, 100, function (_skill) {
-				if (!::Legends.S.isEntityNullOrDead(target) && _skill.getContainer() != null) {
+				if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user)) {
 					_skill.attackEntity(_user, target);
 				}
 
@@ -39,11 +39,11 @@
 			}.bindenv(this), this);
 			return true;
 		} else {
-			if (!::Legends.S.isEntityNullOrDead(target)) {
+			if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user)) {
 				ret = this.attackEntity(_user, target) || ret;
 			}
 
-			if (!::Legends.S.isEntityNullOrDead(target)) {
+			if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(_user)) {
 				ret = this.attackEntity(_user, target) || ret;
 			}
 

@@ -11,10 +11,10 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/chop_hit_03.wav"
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulClaws);
-		this.m.Description = "Tear into flesh across multiple opponents and leave them bleading with very long, sharp claws.";
+		this.m.Description = "Tear into flesh across multiple opponents and leave them bleeding with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
 		this.m.Icon = "skills/active_21.png";
 		this.m.IconDisabled = "skills/active_21_sw.png";
@@ -27,8 +27,8 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			"sounds/enemies/ghoul_claws_05.wav",
 			"sounds/enemies/ghoul_claws_06.wav"
 		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -48,8 +48,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceSmash = 0;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local p = this.getContainer().getActor().getCurrentProperties();
 		return [
 			{
@@ -76,8 +75,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function onUpdate( _properties )
-	{
+	function onUpdate(_properties) {
 
 		local size = this.getContainer().getActor().getSize();
 		_properties.DamageRegularMin += 5 * size;
@@ -87,8 +85,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDisembowel = 25 * size;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectClaws);
 		local ret = false;
 		local myTile = _user.getTile();
@@ -106,29 +103,23 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		this.Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
-
-		if (!_user.isAlive() || _user.isDying())
-		{
+		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return;
 		}
 
-		for( local i = 0; i != result.Tiles.len(); i = ++i )
-		{
-			if (result.Tiles[i].ID == _targetTile.ID)
-			{
+		for (local i = 0; i != result.Tiles.len(); i = ++i) {
+			if (result.Tiles[i].ID == _targetTile.ID) {
 				tiles.push(result.Tiles[i]);
 				local idx = i - 1;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
 				idx = i - 2;
 
-				if (idx < 0)
-				{
+				if (idx < 0) {
 					idx = idx + result.Tiles.len();
 				}
 
@@ -137,49 +128,37 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		foreach( t in tiles )
-		{
-			if (!t.IsVisibleForEntity)
-			{
+		foreach (t in tiles) {
+			if (!t.IsVisibleForEntity) {
 				continue;
 			}
 
-			if (this.Math.abs(t.Level - myTile.Level) > 1 || this.Math.abs(t.Level - _targetTile.Level) > 1)
-			{
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1) {
 				continue;
 			}
 
-			if (!t.IsEmpty && t.getEntity().isAttackable())
-			{
+			if (!t.IsEmpty && t.getEntity().isAttackable()) {
 				ret = this.attackEntity(_user, t.getEntity()) || ret;
-				if (!target.isAlive() || target.isDying())
-				{
-					if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding)
-					{
-						this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				if (::Legends.S.isEntityNullOrDead(_user)) {
+					if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding)	{
+						::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+					} else {
+						::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 					}
-					else
-					{
-						this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-					}
-				}
-				else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding )
-				{
-					::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-						if (_user.getFaction() == this.Const.Faction.Player )
+				} else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding) {
+					::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function (_effect) {
+						if (_user.getFaction() == this.Const.Faction.Player) {
 							_effect.setActor(this.getContainer().getActor());
+						}
 						_effect.setDamage(5 * size);
 					}.bindenv(this));
-					this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-				}
-				else
-				{
-					this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+					::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
+				} else {
+					::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				}
 			}
 
-			if (!_user.isAlive() || _user.isDying())
-			{
+			if (::Legends.S.isEntityNullOrDead(_user)) {
 				break;
 			}
 		}
@@ -187,13 +166,11 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onQueryTilesHit( _tile, _result )
-	{
+	function onQueryTilesHit(_tile, _result) {
 		_result.Tiles.push(_tile);
 	}
 
-	function onTargetSelected( _targetTile )
-	{
+	function onTargetSelected(_targetTile) {
 		local myTile = this.m.Container.getActor().getTile();
 		local d = myTile.getDistanceTo(_targetTile);
 		local result = {
@@ -202,27 +179,23 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			TargetTile = _targetTile,
 			Num = 0
 		};
-		this.Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
+		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
-		for( local i = 0; i != result.Tiles.len(); i = ++i )
-		{
-			if (result.Tiles[i].ID == _targetTile.ID)
-			{
+		for (local i = 0; i != result.Tiles.len(); i = ++i) {
+			if (result.Tiles[i].ID == _targetTile.ID) {
 				tiles.push(result.Tiles[i]);
 				local idx = i - 1;
 
-				if (idx < 0)
-				{
-					idx = idx + result.Tiles.len();
+				if (idx < 0) {
+					idx += result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
 				idx = i - 2;
 
-				if (idx < 0)
-				{
-					idx = idx + result.Tiles.len();
+				if (idx < 0) {
+					idx += result.Tiles.len();
 				}
 
 				tiles.push(result.Tiles[idx]);
@@ -230,24 +203,19 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		foreach( t in tiles )
-		{
-			if (!t.IsVisibleForEntity)
-			{
+		foreach (t in tiles) {
+			if (!t.IsVisibleForEntity) {
 				continue;
 			}
 
-			if (this.Math.abs(t.Level - myTile.Level) > 1 || this.Math.abs(t.Level - _targetTile.Level) > 1)
-			{
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1) {
 				continue;
 			}
 
-			if (!t.IsEmpty && t.getEntity().isAttackable())
-			{
+			if (!t.IsEmpty && t.getEntity().isAttackable()) {
 				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
 			}
 		}
 	}
 
 });
-

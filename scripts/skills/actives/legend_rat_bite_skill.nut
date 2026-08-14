@@ -66,7 +66,7 @@ this.legend_rat_bite_skill <- this.inherit("scripts/skills/skill", {
 
 function onDamageDealt( _target, _skill, _hitInfo )
 	{
-		if (!target.getCurrentProperties().IsImmuneToPoison)
+		if (!_target.getCurrentProperties().IsImmuneToPoison)
 		{
 			this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 

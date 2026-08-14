@@ -1,5 +1,6 @@
 this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGut);
 		this.m.Description = "A series of thrusts to the body made in quick succession meant to gut them like a fish. Depending on how many injuries the opponent has suffered the attacks will increase.";
@@ -60,29 +61,31 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectStab);
 		local target = _targetTile.getEntity();
-		local injuryCount = target.getSkills().getAllSkillsOfType(this.Const.SkillType.TemporaryInjury).len();
+		local injuryCount = target.getSkills().getAllSkillsOfType(::Const.SkillType.TemporaryInjury).len();
 		local ret = this.attackEntity(_user, target);
 		local timeDelay = 200;
 
-		if ((this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID()) && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
+		if ((::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID())
+			&& (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer))
+		{
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 150, this.onAdditionalAttack, {
+			::Time.scheduleEvent(::TimeUnit.Virtual, 150, this.onAdditionalAttack, {
 				User = _user,
 				Skill = this,
 				Target = target,
 				IsLast = injuryCount < 1
 			});
 
-			for( local i = 0; i < injuryCount; i = ++i ) {
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, timeDelay + this.Math.rand(0, 55), this.onAdditionalAttack, {
+			for (local i = 0; i < injuryCount; i = ++i) {
+				::Time.scheduleEvent(::TimeUnit.Virtual, timeDelay + ::Math.rand(0, 55), this.onAdditionalAttack, {
 					User = _user,
 					Skill = this,
 					Target = target,
@@ -92,10 +95,9 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			return true;
-		}
-		else {
+		} else {
 			if (target.isAlive()) {
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				ret = this.attackEntity(_user, target) || ret;
 			}
 
@@ -103,30 +105,27 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
 		_properties.HitChanceMult[this.Const.BodyPart.Body] = 1.0;
 	}
 
-	function onAdditionalAttack( _tag ) {
+	function onAdditionalAttack(_tag) {
 		local user = _tag.User;
 		local skill = _tag.Skill;
 		local target = _tag.Target;
 		local isLast = _tag.IsLast;
 
-		if (!::Legends.S.isEntityNullOrDead(target) && skill.getContainer() != null)
-		{
+		if (!::Legends.S.isEntityNullOrDead(target) && !::Legends.S.isEntityNullOrDead(user)) {
 			skill.spawnAttackEffect(target.getTile(), this.Const.Tactical.AttackEffectStab);
-			this.Sound.play(skill.m.SoundOnUse[this.Math.rand(0, skill.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, user.getPos());
+			::Sound.play(skill.m.SoundOnUse[this.Math.rand(0, skill.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, user.getPos());
 			skill.attackEntity(user, target);
 		}
 
-		if (isLast)
-		{
+		if (isLast) {
 			skill.m.IsDoingAttackMove = true;
 			skill.getContainer().setBusy(false);
 		}
 	}
 
 });
-
