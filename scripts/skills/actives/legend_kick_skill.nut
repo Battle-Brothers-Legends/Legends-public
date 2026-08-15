@@ -4,8 +4,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		HasLeg = false,
 		FatigueDamage = 5
 	},
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendKick);
 		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
 		this.m.Icon = "skills/kick_square.png";
@@ -36,13 +35,11 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 1;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local p = this.getContainer().getActor().getCurrentProperties();
 		local ret = ::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
-		ret.extend([
-			{
+		ret.extend([{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
@@ -52,20 +49,21 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]" + this.m.DazeChance + "[/color] chance to daze on a hit"
+				text = "Has a [color=%positive%]%_dazeChance%[/color] chance to daze on a hit",
+				param = [["_dazeChance", this.m.DazeChance]]
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]" + this.m.FatigueDamage + "[/color] fatigue on hit"
+				text = "Inflicts [color=%damage%]%_fatigueDamage%[/color] fatigue on hit",
+				param = [["_fatigueDamage", this.m.FatigueDamage]]
 			}
 		]);
 		return ret;
 	}
 
-	function isUsable()
-	{
+	function isUsable() {
 		if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 			return true;
 		}
