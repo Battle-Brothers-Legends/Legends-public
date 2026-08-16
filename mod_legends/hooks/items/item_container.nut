@@ -230,10 +230,10 @@
 			&& oh.isItemType(::Const.Items.ItemType.Weapon)
 			&& this.canDualWield(actor, mh)
 			&& this.canDualWield(actor, oh);
-		if (dw) {
+		/* if (dw) { used to have applicable items but now unnecessary?
 			local ambidextrous = ::Legends.Perks.get(actor, ::Legends.Perk.LegendAmbidextrous);
-			dw = ambidextrous == null;
-		}
+			dw = ambidextrous == null; // || ambidextrous.m.ApplicableItems.find(oh.getID()) == null;
+		}*/
 		if (dw) {
 			::Legends.Effects.grant(actor, ::Legends.Effect.LegendDualWield);
 			::Legends.Actives.grant(actor, ::Legends.Active.LegendDoubleSwing);
