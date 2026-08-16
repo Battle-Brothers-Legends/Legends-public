@@ -68,7 +68,7 @@ for( local i = 1; i < 88; i = ++i )
 	"helmet_vanity_2",
 ]);
 ::Const.CharacterProperties.DailyWageMult = 1.0; //Is not serialised in vanilla. But I have serialised it today because Scenarios were not keeping their wage multiplier modifiers between save/load cycles - Luft 29/12/22
-::Const.CharacterProperties.DailyMedicineMult <- 0.0;
+::Const.CharacterProperties.DailyMedicine <- 0.0;
 
 ::Const.CharacterProperties.getMeleeDefense = function ()
 {

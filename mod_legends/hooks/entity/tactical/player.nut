@@ -75,9 +75,8 @@
 		return ::Math.maxf(0.0, food);
 	}
 		//for zombies
-	o.getDailyMedicine = function () {
-		local Medicine = ::Math.maxf(0.0, this.m.CurrentProperties.DailyMedicine);
-		return ::Math.maxf(0.0, medicine);
+	o.getDailyMedicine <- function () {
+		return ::Math.maxf(0.0, this.m.CurrentProperties.DailyMedicine);
 	}
 
 	o.isLeveled <- function () {
