@@ -137,8 +137,10 @@
 ## Necro Trio & Solo Origins
 - Shuffled possible backgrounds that could spawn as undead for the purposes of several events
 - Most, if not all, necromancer events now decrease relationships with potential employers if the player accepts the rewards of said event(s)
-- Summoner loses 1 melee defence talent, gets 2 hitpoint defence talents. 
-- Starting puppet now starts at level 2 as opposed to 1.
+- Summoner loses 1 melee defence talent, gets 2 hitpoint defence talents.
+- Puppets shifted in behavior, now require 1 medicine per day to maintain and no food.
+> Not maintaining your puppets (and by extension, all zombies in your roster) with medicine will cause them to take 5-20 nonlethal damage per day until medicine is replenished. This alert will show up in their mood tooltip.
+- Starting puppet in necro trio now starts at level 2 as opposed to level 1.
 
 ## Nomads Origin
 - You now earn 0.1 relationship with the nomad faction per day per southern fighter under your command
@@ -380,6 +382,7 @@
 - added a visual to display the number of books and scrolls read/available
 - books/scrolls will now show a tooltip in shops and other screens based on last selected bro (with name)
 - Lone wolf equipment will now self-equip on game start as opposed to being in the stash
+- Tooltip of rotten flesh made more to the point
 
 
 ## Camping changes
@@ -403,15 +406,15 @@
 - added a new town encounter during drought
 - added a new event requiring a well read person
 - Added an event involving a sighthound
-- Added an event involving a northen warhound
+- Added an event involving a northern warhound
 - Removed moral rep. hit from children crusade event
 - Two brave and/or fearless trait bros can now cure another bro of their fear of the dark trait
 - Added puppet interacting with anatomist
 - Added an event to necro both origins to convert a cultist to a puppet
 - Added event between anatomist and alchemist
 - Added an event between surgeon and anatomist
-- Ressurect stronger varient of undead (cyclical) - necro origins only
-- Ressurect a knight as undead (semi-unique, rare) - necro origins only
+- Resurrect stronger variant of undead (cyclical) - necro origins only
+- Resurrect a knight as undead (semi-unique, rare) - necro origins only
 - Puppets in a town cause trouble - necro origins only
 - Necromancer(s) run into a witchhunter patrol - necro origins only
 - Visit nomad tents location(s) with detailed interactions - Nomads origin only

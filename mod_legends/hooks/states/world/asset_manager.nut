@@ -536,6 +536,16 @@
 						bro.worsenMood(this.Const.MoodChange.NotPaid, "Did not get paid");
 					}
 				}
+					// for zombies
+				if (bro.getDailyMedicine() > 0)
+				{
+					if (bro.getSkills().hasTrait(::Legends.Trait.LegendRottenFlesh))
+					{
+						bro.addLightInjury();
+						bro.MoodChanges = [];
+						bro.improveMood(0.0, "A lack of medicine has caused me to deteriorate");
+					}
+				}
 
 				// if (bro.getSkills().hasSkill("perk.legend_pacifist"))
 				// {

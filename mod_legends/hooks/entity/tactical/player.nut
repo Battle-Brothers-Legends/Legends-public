@@ -74,6 +74,11 @@
 		}
 		return ::Math.maxf(0.0, food);
 	}
+		//for zombies
+	o.getDailyMedicine = function () {
+		local Medicine = ::Math.maxf(0.0, this.m.CurrentProperties.DailyMedicine);
+		return ::Math.maxf(0.0, medicine);
+	}
 
 	o.isLeveled <- function () {
 		return (this.m.PerkPoints != 0 || this.m.ProfessionPoints != 0 || this.m.LevelUps != 0) && !this.m.IsGuest;
@@ -1313,7 +1318,7 @@
 		local background = typeof r == "integer" ? ::Legends.Backgrounds.new(r) : this.new("scripts/skills/backgrounds/" + r);
 
 		background.setGender(_gender);
-		
+
 		this.m.Skills.add(background);
 
 		/*Skill onAdded sets these values

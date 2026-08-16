@@ -27,31 +27,31 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 				id = 7,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "Movement costs +1 Action Points per tile. Recovers hitpoints at only 10% of the normal rate. Requires 3 provisions a day."
+				text = "Recovers hitpoints at only 10% of the normal rate and requires 1 medicine per day to maintain. Is immune to most types of injuries including bleeding and poison."
 			},
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/damage_received.png",
-				text = "Immune to bleeding, poison and most types of injuries."
+				icon = "ui/icons/days_wounded.png",
+				text = "Movement costs +1 Action Point per tile"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Not effected by fatigue, but needs fatigue to equip items."
+				text = "Movement costs +1 Action Point per tile and is not effected by fatigue buildup"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/morale.png",
-				text = "Not affected by morale or allies fleeing and dying. Requires no pay."
+				text = "Not affected by morale or mood and requires no pay"
 			},
 			{
 				id = 7,
 				type = "text",
-				icon = "ui/icons/kills.png",
-				text = "Not affected by mood. Experience is gained at 75% normal rate."
+				icon = "ui/icons/special.png",
+				text = "Experience is gained at 75% normal rate"
 			}
 		];
 	}
@@ -147,7 +147,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		_properties.MovementFatigueCostMult *= 0.0;
 		_properties.XPGainMult *= 0.75;
 		_properties.DailyWageMult *= 0;
-		_properties.DailyFood += 1;
+		_properties.DailyMedicine += 1;
 		_properties.MovementAPCostAdditional += 1;
 	}
 
