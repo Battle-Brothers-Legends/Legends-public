@@ -93,7 +93,7 @@
 
 		_properties.DamageRegularMin = 5;
 		_properties.DamageRegularMax = 10;
-		_properties.DamageArmorMult = 0.5;
+		_properties.DamageArmorMult -= 0.5;
 
 		local actor = this.getContainer().getActor();
 		_properties.FatigueDealtPerHitMult += 1.0; // Increase fatigue damage from 5 to 10
@@ -117,6 +117,7 @@
 			_properties.DamageRegularMin += accessory.m.RegularDamage;
 			_properties.DamageRegularMax += accessory.m.RegularDamageMax;
 			_properties.DamageArmorMult += accessory.m.ArmorDamageMult;
+			_properties.DamageDirectAdd += accessory.m.DirectDamageMult;
 		}
 	}
 });
