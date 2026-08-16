@@ -141,6 +141,10 @@
 - Puppets shifted in behavior, now require 1 medicine per day to maintain and no food.
 > Not maintaining your puppets (and by extension, all zombies in your roster) with medicine will cause them to take 5-20 nonlethal damage per day until medicine is replenished. This alert will show up in their mood tooltip.
 - Starting puppet in necro trio now starts at level 2 as opposed to level 1.
+- Solo necromancer: +20% additional recruit/upkeep cost on most recruits removed.
+- Solo necromancer: relationship with nobles, peasant and city state factions increased from -50 to -20 on start.
+> Partly a quick solution until we get more camp contracts made to fill in that early game isolation phase.
+- Necro trio: +50% additional recruit/upkeep cost on most recruits lowered to +20%.
 
 ## Nomads Origin
 - You now earn 0.1 relationship with the nomad faction per day per southern fighter under your command

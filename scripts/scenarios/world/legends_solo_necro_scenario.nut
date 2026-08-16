@@ -3,7 +3,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 	function create() {
 		this.m.ID = "scenario.legends_solo_necro";
 		this.m.Name = "Master Necromancer";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_29.png[/img][/p][p] What is there to do when you have reached the top? Perhaps more dangers and intrigue await? \n\n[color=#bcad8c]Dark sway:[/color] Start with a master necromancer, two puppets and three mortals.\n[color=#bcad8c]Not a fighter:[/color] The master necromancer gains martial perks later into their development, but gains experience faster. If the master necromancer dies, the binds are broken and the journey ends. Puppets under your control gain bonuses to health, while mortals wither away from sickness. There is a chance mortals in your party will be risen again as undead if killed.\n[color=#bcad8c]Dark company:[/color] Cultists, Gravediggers, Graverobbers and Anatomists will flock to join you and gain the \'Siphon\' skill. Most other backgrounds cost 20% more to recruit and maintain. Cannot hire pious backgrounds.\n[color=#bcad8c]A terrible reputation:[/color] Recruits cannot hate the undead, relationships are poor with all factions and degrade slowly each day. Undead are passive towards you, and will steadily gain in relationship over time if attacked.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_29.png[/img][/p][p] What is there to do when you have reached the top? Perhaps more dangers and intrigue await? \n\n[color=#bcad8c]Dark Sway:[/color] Start with a master necromancer, two undead and three mortals. The master necromancer gains experience faster, but the story ends if he dies. Puppets under your control gain bonus health..\n[color=#bcad8c]Morbid Company:[/color] Cultists, Gravediggers, Graverobbers and Anatomists will flock to join you and gain the \'Siphon\' skill. Cannot hire pious backgrounds and other mortals will get sick under your command.There is a chance mortals in your party will be risen again as undead if killed.\n[color=#bcad8c]A Terrible Reputation:[/color] Recruits cannot hate undead, relationships are poor with all factions and degrade slowly each day. Undead are passive towards you, and will steadily gain in relationship over time if betrayed.[/p]";
 		this.m.Difficulty = 4;
 		this.m.Order = 311;
 		this.m.IsFixedLook = true;
@@ -175,19 +175,19 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
 		foreach( n in nobles )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local unwashedPeasants = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
 		foreach( n in unwashedPeasants )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 		foreach( n in oriental )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
@@ -272,8 +272,8 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendPuppet)) {
 			_bro.getBaseProperties().Hitpoints += 12;
 		} else {
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.2); //1.0 = default
-			_bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.0); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
 			_bro.getSkills().update();
 		}
 	}
