@@ -984,69 +984,52 @@
 
 	local general_onEquipBagItem = o.general_onEquipBagItem;
 	o.general_onEquipBagItem = function (_data) {
-		local entity = this.Tactical.getEntityByID(_data[0]);
-		if (entity == null || !entity.isPlayerControlled()) {
+		local data = this.helper_queryEntityItemData(_data);
+
+		if ("error" in data) {
+			return data;
+		}
+
+		if (data.entity == null || !data.entity.isPlayerControlled() || data.inventory == null || data.sourceItem == null || !data.sourceItem.isInBag()) {
 			return general_onEquipBagItem(_data);
 		}
 
-		local inventory = entity.getItems();
-		if (inventory == null) {
+		// Change logic only for 1h (Mainhand) weapon
+		if (data.sourceItem.getSlotType() != ::Const.ItemSlot.Mainhand || data.sourceItem.getBlockedSlotType() != null) {
 			return general_onEquipBagItem(_data);
 		}
 
-		local sourceItem = inventory.getItemByInstanceID(_data[1]);
-		if (sourceItem == null) {
-			return general_onEquipBagItem(_data);
+		return this.onEquipDualWieldBagItem(_data, data);
+	}
+
+	o.onEquipDualWieldBagItem <- function (_data, _entityItemData) {
+		local result;
+		local oh = _entityItemData.inventory.getItemAtSlot(::Const.ItemSlot.Offhand);
+		local equipOH = (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") && !_entityItemData.inventory.hasBlockedSlot(::Const.ItemSlot.Offhand)	&& _entityItemData.inventory.canDualWield(_entityItemData.entity, _entityItemData.sourceItem);
+		local equipMH = oh != null && oh.getSlotType() == ::Const.ItemSlot.Mainhand;
+
+		if (equipOH) {
+			local originalSlotType = _entityItemData.sourceItem.m.SlotType;
+			_entityItemData.sourceItem.m.SlotType = ::Const.ItemSlot.Offhand;
+			result = general_onEquipBagItem(_data);
+			_entityItemData.sourceItem.m.SlotType = originalSlotType;
+		} else if (equipMH) {
+			result = general_onEquipBagItem(_data);
 		}
 
-		// Reject if the item is not actually in the bag (stale UI after a previous equip)
-		if (!sourceItem.isInBag()) {
-			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
-		}
+		if(equipOH || equipMH) {
+			if (typeof result == "table" && "error" in result) {
+				return result;
+			}
 
-		// Proceed only if this is a 1h main hand weapon
-		if (sourceItem.getSlotType() != this.Const.ItemSlot.Mainhand
-			|| sourceItem.getBlockedSlotType() != null)
-		{
-			return general_onEquipBagItem(_data);
-		}
+			this.dualWieldRefresh(_entityItemData.entity, equipOH ? ::Const.ItemSlot.Offhand : ::Const.ItemSlot.Mainhand);
+			_entityItemData.entity.getSkills().update();
 
-		local mh = inventory.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local ohBlocked = inventory.hasBlockedSlot(this.Const.ItemSlot.Offhand);
-
-		local targetSlot = null;
-		if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") {
-			targetSlot = this.Const.ItemSlot.Offhand;
-		}
-
-		// Equipping to offhand
-		if (targetSlot == this.Const.ItemSlot.Offhand
-			&& !ohBlocked
-			&& inventory.canDualWield(entity, sourceItem))
-		{
-
-			local originalSlotType = sourceItem.m.SlotType;
-			sourceItem.m.SlotType = this.Const.ItemSlot.Offhand;
-
-			general_onEquipBagItem(_data);
-			sourceItem.m.SlotType = originalSlotType;
-
-			this.dualWieldRefresh(entity, this.Const.ItemSlot.Offhand);
-
-			entity.getSkills().update();
-			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
-		}
-
-		// Equipping to mainhand while offhand has a dw weapon
-		if (oh != null && oh.getSlotType() == this.Const.ItemSlot.Mainhand) {
-
-			general_onEquipBagItem(_data);
-
-			this.dualWieldRefresh(entity, this.Const.ItemSlot.Mainhand);
-
-			entity.getSkills().update();
-			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+			if (::Tactical.isActive()) {
+				return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.TurnSequenceBar.getActiveEntity(), true, this.m.InventoryFilter);
+			} else {
+				return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, null, true, this.m.InventoryFilter);
+			}
 		}
 
 		return general_onEquipBagItem(_data);

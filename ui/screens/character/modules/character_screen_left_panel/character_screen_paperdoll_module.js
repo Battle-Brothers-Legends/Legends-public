@@ -625,11 +625,7 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 			_event[KeyModiferConstants.ShiftKey] === true;
 
 
-		if (
-			isEmpty === false &&
-			itemId !== null &&
-			entityId !== null
-		) {
+		if (isEmpty === false && itemId !== null &&	entityId !== null) {
 			// equip or drop into inventory
 			if (repairItem === true) {
 				self.mDataSource.toggleInventoryItem(itemId, entityId, function (ret) {
@@ -641,8 +637,7 @@ CharacterScreenPaperdollModule.prototype.createBagSlot = function (
 			} else if (dropIntoInventory === true) {
 				//console.info('drop item into inventory: ' + itemId);
 				self.mDataSource.dropPaperdollItem(entityId, itemId, null);
-			}
-			else {
+			} else {
 				//console.info('equip item: ' + itemId);
 				var targetSlot = (shift && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) ? CharacterScreenIdentifier.ItemSlot.Offhand : null;
 				if(sourceSlotType != "free") {
