@@ -37,7 +37,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_ammo_up.png",
-				text = "Produces [color=%positive%]" + mod.Craft / 2.0 + "[/color] units of ammo per hour."
+				text = "Produces " + ::Legends.S.colorizeAndPluralize(mod.Craft / 2.0, "positive", "unit") + " of ammo per hour."
 			}
 		];
 		local id = 6;
@@ -46,7 +46,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] / 2.0 + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.S.colorizeAndPluralize(bro[0] / 2.0, "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -72,15 +72,15 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			res.push({
 				id = id,
 				icon = "ui/buttons/asset_ammo_up.png",
-				text = "You created " + this.Math.floor(this.m.AmmoAdded) + " units of ammo"
+				text = "You created " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.AmmoAdded), "positiveEvent", "unit") + " of ammunition."
 			});
 			++id;
 		}
-		foreach (b in this.m.Items) {
+		foreach (item in this.m.Items) {
 			res.push({
 				id = id,
-				icon = "ui/items/" + b.getIcon(),
-				text = "You gained " + b.getName()
+				icon = "ui/items/" + item.getIcon(),
+				text = "You gained " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent", "unit") + "."
 			});
 			++id;
 		}
@@ -100,7 +100,7 @@ this.fletcher_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			this.m.AmmoAdded = ::Math.min(::World.Assets.getMaxAmmo(), (::Math.floor(this.m.Craft * this.m.Camp.getElapsedHours()) / 2.0));
 		}
 
-		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " ammo";
+		return "Fletched ... " + ::Math.floor(this.m.AmmoAdded) + " " + ::Legends.S.pluralize(::Math.floor(this.m.AmmoAdded), "unit") + " of ammunition";
 	}
 
 	function completed() {

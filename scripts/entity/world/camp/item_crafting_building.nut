@@ -31,10 +31,43 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 	}
 
 	function getTitle() {
-		if (this.getUpgraded()) {
-			return this.m.Name + " *Upgraded*";
+		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
+	}
+
+	function getModifierTooltip() {
+		this.init();
+		local mod = this.getModifiers();
+		local ret = [
+			{
+				id = 3,
+				type = "text",
+				icon = "ui/icons/plus.png",
+				text = "There are " + ::Legends.S.colorizeAndPluralize(this.m.Queue.len(), "positive", "item") + " in the queue."
+			},
+			{
+				id = 4,
+				type = "text",
+				icon = "ui/buttons/icon_time.png",
+				text = "It will take " + ::Legends.S.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to finish."
+			},
+			{
+				id = 5,
+				type = "text",
+				icon = "ui/icons/repair_item.png",
+				text = "Total " + this.m.ActivityName.tolower() + "ing modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
+			}
+		];
+		local id = 6;
+		foreach (bro in mod.Modifiers) {
+			ret.push({
+				id = id,
+				type = "hint",
+				icon = "ui/icons/special.png",
+				text = ::Legends.S.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
+			});
+			++id;
 		}
-		return this.m.Name + " *Not Upgraded*";
+		return ret;
 	}
 
 	function getResults() {
@@ -44,7 +77,7 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 			res.push({
 				id = id,
 				icon = "ui/items/" + b.getIcon(),
-				text = "Crafting completed: " + b.getName()
+				text = "Crafting completed: " + ::Legends.S.colorizeAndPluralize(b.getName(), "positiveEvent") + "."
 			});
 			++id;
 		}
@@ -52,9 +85,7 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 	}
 
 	function getLevel() {
-		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0
-			? "full"
-			: "empty");
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function getUpdateText() {

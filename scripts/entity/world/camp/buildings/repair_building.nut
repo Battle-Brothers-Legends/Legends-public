@@ -37,8 +37,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		return "Repair damaged items in selected order. Equipped items are added automatically to the front of the queue at the end of the battle.\n\nRepair speed increases considerably when encamped. Default repair speed is based on game combat difficulty.";
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		this.init();
 		local nonNullEntries = this.m.Repairs.filter(@(_, _item) (_item != null)).len();
 		local mod = this.getModifiers();
@@ -47,19 +46,19 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are [color=%positive%]" + nonNullEntries + "[/color] items in the repair queue."
+				text = "There are " + ::Legends.S.colorizeAndPluralize(nonNullEntries, "positive", "item") + " in the repair queue."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=%positive%]" + this.getRequiredTime() + "[/color] hours to repair all items in the queue."
+				text = "It will take " + ::Legends.S.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to repair all items in the queue."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/icons/repair_item.png",
-				text = "Total repair modifier is [color=%positive%]" + mod.Craft + "[/color] units per hour."
+				text = "Total repair modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft, "positive", "unit") + " per hour."
 			}
 		];
 		local id = 6;
@@ -69,7 +68,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.S.colorizeAndPluralize(bro[0], "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -135,7 +134,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			{
 				id = 10,
 				icon = "ui/icons/asset_supplies.png",
-				text = "You used [color=%negative%]" + ::Math.floor(this.m.ToolsUsed) + "[/color] units of tools and repaired [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.m.ItemsRepaired + "[/color] pieces of equipment."
+				text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.ToolsUsed), "negativeEvent", "unit") + " of tools and repaired " + ::Legends.S.colorizeAndPluralize(this.m.ItemsRepaired, "positiveEvent", "piece") + " of equipment."
 			}
 		];
 	}

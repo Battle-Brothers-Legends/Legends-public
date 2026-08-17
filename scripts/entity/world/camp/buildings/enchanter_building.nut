@@ -23,43 +23,6 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 		return "Inscribe runes in selected order when encamped. Partial progress is kept. Only the Vala can work here.";
 	}
 
-	function getModifierTooltip() {
-		this.init();
-		local mod = this.getModifiers();
-		local ret = [
-			{
-				id = 3,
-				type = "text",
-				icon = "ui/icons/plus.png",
-				text = "There are [color=%positive%]" + this.m.Queue.len() + "[/color] rune inscriptions in the queue."
-			},
-			{
-				id = 4,
-				type = "text",
-				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=%positive%]" + this.getRequiredTime() + "[/color] hours to inscribe all runes."
-			},
-			{
-				id = 5,
-				type = "text",
-				icon = "ui/icons/repair_item.png",
-				text = "Total enchanting modifier is [color=%positive%]" + mod.Craft + "[/color] units per hour."
-			}
-		];
-		local id = 6;
-		foreach (bro in mod.Modifiers)
-		{
-			ret.push({
-				id = id,
-				type = "hint",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
-			});
-			++id;
-		}
-		return ret;
-	}
-
 	function getModifiers()	{
 		local ret =	{
 			Craft = 0.0,

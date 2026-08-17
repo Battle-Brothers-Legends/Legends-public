@@ -29,6 +29,30 @@
 	return this.regexp(pattern).search(text);
 };
 
+::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
+	if (_value != 1) {
+		if (_irregular.len() > 0) {
+			_text = _irregular;
+		} else {
+			local last = _text.slice(-1).tolower();
+			
+			if (last == "y") {
+				local secondLast = _text.slice(-2, -1).tolower();
+				_text = (secondLast != "a" && secondLast != "e" && secondLast != "i"	&& secondLast != "o" && secondLast != "u") ? (_text.slice(0, -1) + "ies") : (_text + "s");
+			} else {
+				local lastTwo = _text.slice(-2).tolower();
+				_text += (last == "s" || last == "x" || last == "z" || lastTwo == "sh"	|| lastTwo == "ch") ? "es" : "s";
+			}
+		}
+	}
+
+	return _text;
+}
+
+::Legends.S.colorizeAndPluralize <- function (_value, _color, _text = "", _percent = false, _irregular = "") {
+	return "[color=%"+ _color + "%]" + _value + (_percent ? "%" : "") + "[/color]" + (_text.len() > 0 ? " " + ::Legends.S.pluralize(_value, _text, _irregular) : "");
+}
+
 ::Legends.S.randomizeFractionToInt <- function(_value) {
 	return ((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
 }

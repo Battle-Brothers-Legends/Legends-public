@@ -285,25 +285,26 @@ this.camp_building <- {
 		return {};
 	}
 
-	function isRecovering(_bro) {
+	function isRecovering(_bro, _addToResults = false) {
 		if(!this.m.RequiresHealthyBros) {
 			return false;
 		}
 		local skills = _bro.getSkills();
-		if (skills.hasSkillOfType(::Const.SkillType.TemporaryInjury)) {
-			this.getBreak(_bro, "recovering from an injury");
-			return true;
-		} else if(skills.hasSkillOfType(::Const.SkillType.SemiInjury)) {
-			this.getBreak(_bro, skills.getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
+		local injuries = skills.hasSkillOfType(::Const.SkillType.TemporaryInjury);
+		local semiInjuries = skills.hasSkillOfType(::Const.SkillType.SemiInjury);
+		if (injuries || semiInjuries) {
+			if (_addToResults) {
+				this.addRecoveryReasonToResults(_bro, injuries ? "recovering from an injury" : skills.getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
+			}
 			return true;
 		}
 		return false;
 	}
 
-	function getBreak( _bro, cause ) {
+	function addRecoveryReasonToResults( _bro, cause ) {
 		this.m.Results.push({
 			Icon = "ui/icons/days_wounded.png",
-			Text = _bro.getName() + " was " + cause + " and has forgone" + this.m.ActivityName + "."
+			Text = _bro.getName() + " was " + cause + " and has forgone " + this.m.ActivityName + "."
 		});
 	}
 

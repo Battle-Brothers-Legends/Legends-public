@@ -2,7 +2,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	m = {
 		Results = [],
 		NumBros = 0,
-		UnTrained = 0,
+		Untrained = 0,
 		BaseCraft = 0.15, // was 1.0, changed tp 0.4 6/11/21 - Luft - dropped to 0.15 by poss 7/3/2023
 		TrainingDescriptors = {
 			M = ["Short Guard ", "Upper Snake Guard ", "Bastard Cross ", "The Middle Iron Door ", "thrusts ", "trips ", "grapples ", "foot passing ", "striking ", "vambrace traps ", "a pommel bash ", "half sword ", "The Thumb Scissor ", "jabs ", "hand to hand combat "],
@@ -42,7 +42,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = 6,
 				type = "text",
 				icon = "ui/buttons/asset_vision_up.png",
-				text = "Total training modifier is [color=%positive%]" + mod.Craft * 100.0 + "%[/color]."
+				text = "Total training modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true)
 			}
 		];
 
@@ -52,7 +52,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 				id = ++id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")" + (bro[3] ? " [color=%negative%]Training fulfilled[/color]" : "")
+				text = ::Legends.S.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")" + (bro[3] ? " [color=%negative%]Training fulfilled[/color]" : "")
 			});
 		}
 
@@ -67,7 +67,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Results = [];
 		this.m.NumBros = this.getAssignedBros();
 		local self = this;
-		this.m.UnTrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID).len();	
+		this.m.Untrained = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();	
 	}
 
 	function getModifiers()	{
@@ -174,7 +174,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Results.push({
 			Icon = "ui/icons/xp_received.png",
-			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains [color=%positive%]" + (bro.m.XP - originalXP) + "[/color] XP."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains " + ::Legends.S.colorizeAndPluralize(bro.m.XP - originalXP, "positiveEvent") + " XP."
 		});
 		return true;
 	}
@@ -196,7 +196,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Results.push({
 			Icon = effect.getIcon(),
-			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains a [color=%positive%]10%[/color] xp increase for the next battle."
+			Text = this.getDescriptors(bro, extraTrainingDescriptors) + " and gains a [color=%positiveEvent%]10%[/color] XP increase for the next battle."
 		});
 		return true;
 	}
@@ -294,12 +294,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			inTraining.finishedTraining(traitConst);
 			this.m.Results.push({
 				Icon = "ui/icons/level.png",
-				Text = bro.getName() + " completed the training course and gains [color=%positive%]1[/color] " + text + ", Perk Point and " + ::Legends.Traits.get(bro, traitConst).getName()
+				Text = bro.getName() + " completed the training course and gained [color=%positiveEvent%]1[/color] " + text + ", Perk Point and " + ::Legends.S.colorizeAndPluralize(::Legends.Traits.get(bro, traitConst).getName(), "positiveEvent")
 			});
 		} else {
 			this.m.Results.push({
 				Icon = icon,
-				Text = bro.getName() + " had a breakthrough training session and gains [color=%positive%]1[/color] " + text
+				Text = bro.getName() + " had a breakthrough training session and gains [color=%positiveEvent%]1[/color] " + text
 			});
 		}
 	}
@@ -313,14 +313,14 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return null;
 		}
 
-		return "Training ... " + (this.getUpgraded() ? this.m.NumBros : (this.m.UnTrained + " / " + this.m.NumBros) ) + " brothers";
+		return "Training ... " + (this.getUpgraded() ? this.m.NumBros : (this.m.Untrained + " / " + this.m.NumBros) ) + " brothers";
 	}
 
 	function completed() {
 		local campHours = this.m.Camp.getCampTimeHours();
 		local mod = this.getUpgraded() ? this.getModifiers() : null;
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
 		foreach(bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 

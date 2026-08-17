@@ -172,7 +172,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_food_up.png",
-				text = "Successful hunt will take approximately [color=%positive%]" + ::Math.floor(estimateHuntTime) + "[/color] hours.",
+				text = "Successful hunt will take approximately " + ::Legends.S.colorizeAndPluralize(::Math.floor(estimateHuntTime), "positive", "hour")
 			}
 		];
 		local id = 6;
@@ -461,7 +461,7 @@
 		res.push({
 			id = 81,
 			icon = "ui/icons/asset_food.png"
-			text = "Your hunting party brought back " + ::Const.UI.getColorized(this.m.FoodAmount, ::Const.UI.Color.PositiveEventValue) + " Food with the following:",
+			text = "Your hunting party brought back " + ::Legends.S.colorizeAndPluralize(this.m.FoodAmount, "positiveEvent") + " food with the following:",
 			divider = "top"
 		});
 

@@ -1,20 +1,21 @@
 this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	m = {
+		Results = [],
 		Items = [],
 		MedsAdded = 0,
 		NumBros = 0,
 		Craft = 0,
 		ActivityName = "Gathering"
 	},
-	function create()
-	{
+
+	function create() {
 		this.camp_building.create();
 		this.m.ID = ::Legends.Camp.CampBuildings.Gatherer;
 		this.m.ModName = "Gathering";
 		this.m.BaseCraft = 0.5;
 		this.m.Slot = "gather";
 		this.m.Name = "Supply Tent";
-		this.m.Description = "Send people out to gather supplies like medicinal herbs, plants, wood and stones.";
+		this.m.Description = "Send mercenaries out to gather supplies - meat, herbs, plants, skins, wood and ore.";
 		this.m.BannerImage = "ui/buttons/banner_gather.png";
 		local sounds = this.getCampSounds(4, "gatherer");
 		this.m.Sounds = sounds;
@@ -27,51 +28,38 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.m.Name + (this.getUpgraded() ? " *Upgraded*" : " *Not Upgraded*");
 	}
 
-	function getDescription()
-	{
-		local desc = "";
-		desc = desc + "People assigned to this task will go out get supplies, like herbs and plants of medicinal quality. The more people assigned, the more is gathered. ";
-		desc = desc + "The more people assigned, the more medicine is gathered. Skilled backgrounds increase the amount further.";
-		desc = desc + "\n\n";
-		desc = desc + "Assigning Woodsmen with the Woodsman\'s Cuts perk can return wood for trade, while Miners with the Ore Hunter perk can find gems. ";
-		desc = desc + "Assigning skilled apocatheries like Herbalists, Vala, Alchemists and Druids can return more advanced medicines and bandages.";
-		desc = desc + "\n\n";
-		return desc + "Scrounging for supplies carries a risk of exhaustion and injury.";
+	function getDescription() {
+		return "Hunt for supplies - meat, herbs, plants, skins, wood and ore. Scrounging for supplies carries a risk of exhaustion and injury.";
 	}
 
-	function getModifierTooltip()
-	{
+	function getModifierTooltip() {
 		local mod = this.getModifiers();
 		local ret = [
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_medicine_up.png",
-				text = "Produces [color=%positive%]" + mod.Craft / 3.0 + "[/color] units of medicine per hour."
+				text = "Produces " + ::Legends.S.colorizeAndPluralize(mod.Craft / 3.0, "positive", "unit") + " of medicine per hour."
 			}
 		];
 		local id = 6;
-
-		foreach( bro in mod.Modifiers )
-		{
+		foreach (bro in mod.Modifiers) {
 			ret.push({
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] / 3.0 + "[/color] units/hour " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.S.colorizeAndPluralize(bro[0] / 3.0, "positive", "unit") + " / hour " + bro[1] + " (" + bro[2] + ")"
 			});
 			id = ++id;
 		}
-
 		return ret;
 	}
 
-	function getLevel()	{
+	function getLevel() {
 		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
-	function init()
-	{
+	function init() {
 		this.m.MedsAdded = 0;
 		this.m.Items = [];
 		local mod = this.getModifiers();
@@ -79,56 +67,54 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Craft = mod.Craft;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		local res = [];
 		local id = 60;
 
-		if (this.m.MedsAdded > 0)
-		{
+		if (this.m.MedsAdded > 0) {
 			res.push({
 				id = id,
 				icon = "ui/buttons/asset_medicine_up.png",
-				text = "You gathered " + this.Math.floor(this.m.MedsAdded) + " units of medicine"
+				text = "You gathered " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsAdded), "positiveEvent", "unit") + " of medicine."
 			});
 			id = ++id;
 		}
 
-		foreach( b in this.m.Items )
-		{
-			if (b == null)
-			{
+		foreach (item in this.m.Items) {
+			if (item == null) {
 				this.logWarning("Null item attempted in gatherer building, the length of items arr is " + this.m.Items.len());
 				continue;
 			}
 
 			res.push({
 				id = id,
-				icon = "ui/items/" + b.getIcon(),
-				text = "You gained " + b.getName()
+				icon = "ui/items/" + item.getIcon(),
+				text = "You gained " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent") + "."
 			});
 			id = ++id;
+		}
+
+		foreach (b in this.m.Results) {
+			res.push({
+				id = id++,
+				icon = b.Icon,
+				text = b.Text
+			});
 		}
 
 		return res;
 	}
 
-	function getAssignedBros()
-	{
+	function getAssignedBros() {
 		local mod = this.getModifiers();
 		return mod.Assigned;
 	}
 
-	function getUpdateText()
-	{
-		if (this.World.Assets.getMedicine() + this.m.MedsAdded >= this.World.Assets.getMaxMedicine())
-		{
-			return "Gathered ... " + this.Math.floor(this.m.MedsAdded) + " meds and " + this.m.Items.len() + " items";
+	function getUpdateText() {
+		if (::World.Assets.getMedicine() + this.m.MedsAdded < ::World.Assets.getMaxMedicine()) {
+			this.m.MedsAdded = ::Math.min(::World.Assets.getMaxMedicine(), ::Math.floor(this.m.Craft * this.m.Camp.getElapsedHours()) / 3.0);
 		}
-
-		local points = this.Math.floor(this.m.Craft * this.m.Camp.getElapsedHours());
-		this.m.MedsAdded = this.Math.min(this.World.Assets.getMaxMedicine(), points / 3.0);
-		return "Gathered ... " + this.Math.floor(this.m.MedsAdded) + " meds and " + this.m.Items.len() + " items";
+		return "Gathered ... " + ::Math.floor(this.m.MedsAdded) + " " + ::Legends.S.pluralize(::Math.floor(this.m.MedsAdded), "unit") + " of medicine and " + this.m.Items.len() + " items";
 	}
 
 	function update() {
@@ -136,7 +122,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			return null;
 		}
 
-		if (this.Stash.getNumberOfEmptySlots() == 0) {
+		if (::Stash.getNumberOfEmptySlots() == 0) {
 			return this.getUpdateText();
 		}
 
@@ -161,8 +147,8 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 					local item = ::new(loot.script);
 					this.m.Items.push(item);
-					this.Stash.add(item);
-					return this.Stash.getNumberOfEmptySlots() == 0;
+					::Stash.add(item);
+					return ::Stash.getNumberOfEmptySlots() == 0;
 				}
 			}
 
@@ -180,7 +166,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			if (gatherItem(-3.0 / (this.m.Craft + 0.4) + 7.5, lootTable)) {
 				return this.getUpdateText();
 			}
-        }
+		}
 
 		if (levels.Woodsman > 0) {
 			lootTable = [
@@ -255,9 +241,9 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
                         lootTable.extend([
 							{ script = "scripts/items/misc/potion_of_knowledge_item", chance = 1 }
 						]);
-                    }
-                }
-            }
+					}
+				}
+			}
 
 			if (gatherItem(-600.0 / (levels.Apothecary + levels.Brewer + 60) + 10, lootTable)) {
 				return this.getUpdateText();
@@ -267,8 +253,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		return this.getUpdateText();
 	}
 
-	function getAllLevels()
-	{
+	function getAllLevels() {
 		local map = {
 			Brewer = 0,
 			Woodsman = 0,
@@ -277,30 +262,24 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		};
 		local roster = this.World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
-			{
+		foreach (bro in roster) {
+			if (bro.getCampAssignment() != this.m.ID) {
 				continue;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPotionBrewer))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPotionBrewer)) {
 				map.Brewer += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendWoodworking))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendWoodworking)) {
 				map.Woodsman += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendOreHunter))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendOreHunter)) {
 				map.Miner += bro.getLevel();
 			}
 
-			switch(bro.getBackground().getID())
-			{
+			switch (bro.getBackground().getID()) {
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendVala):
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendHerbalist):
 				case ::Legends.Backgrounds.getID(::Legends.Background.LegendAlchemist):
@@ -308,8 +287,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					map.Apothecary += bro.getLevel();
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendGatherer))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendGatherer)) {
 				map.Apothecary += bro.getLevel();
 			}
 		}
@@ -319,27 +297,14 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function completed() {
 		if (this.m.MedsAdded > 0) {
-			this.World.Assets.addMedicine(this.Math.floor(this.m.MedsAdded));
+			::World.Assets.addMedicine(::Math.floor(this.m.MedsAdded));
 		}
 
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
-		foreach(bro in assignedBros) {
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID	&& !self.isRecovering(_bro, true)));
+		foreach (bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 		}
 	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });
-
-

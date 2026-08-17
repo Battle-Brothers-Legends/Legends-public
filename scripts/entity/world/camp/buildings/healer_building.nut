@@ -48,25 +48,25 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = 3,
 				type = "text",
 				icon = "ui/icons/plus.png",
-				text = "There are [color=%positive%]" + this.m.Queue.len() + "[/color] injuries queued to be treated."
+				text = "There are " + ::Legends.S.colorizeAndPluralize(this.m.Queue.len(), "positive", "injury") + " queued to be treated."
 			},
 			{
 				id = 4,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=%positive%]" + this.getRequiredTime() + "[/color] hours to treat all queued injuries."
+				text = "It will take " + ::Legends.S.colorizeAndPluralize(this.getRequiredTime(), "positive", "hour") + " to treat all queued injuries."
 			},
 			{
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/icon_time.png",
-				text = "It will take [color=%positive%]" + this.Math.ceil(this.m.PointsNeeded / this.getRate()) + "[/color] hours to heal all healthpoints."
+				text = "It will take " + ::Legends.S.colorizeAndPluralize(::Math.ceil(this.m.PointsNeeded / this.getRate()), "positive", "hour") + " to heal all HP."
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/buttons/asset_medicine_up.png",
-				text = "Total healing modifier is [color=%positive%]" + this.m.Rate * 100.0 + "%[/color]."
+				text = "Total healing modifier is " + ::Legends.S.colorizeAndPluralize(this.m.Rate * 100.0, "positive", "", true) + "."
 			}
 		];
 		local id = 7;
@@ -75,7 +75,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = id++,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.S.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")"
 			});
 		}
 		return ret;
@@ -148,14 +148,14 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				res.push({
 					id = id++,
 					icon = "ui/buttons/asset_medicine_down.png",
-					text = "You used [color=%negative%]" + ::Math.floor(this.m.MedsUsedInjury) + "[/color] units of medicine and treated [color=%positive%]" + this.m.InjuriesHealed.len() + "[/color] injuries."
+					text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsUsedInjury), "negativeEvent", "unit") + " of medicine and treated " + ::Legends.S.colorizeAndPluralize(this.m.InjuriesHealed.len(), "positiveEvent", "injury") +  "."
 				});
 			}
 			if (this.m.IntensiveHPHealed > 0) {
             	res.push({
 					id = id++,
 					icon = "ui/buttons/asset_medicine_down.png",
-					text = "You used [color=%negative%]" + ::Math.floor(this.m.MedsUsedHP) + "[/color] units of medicine and healed [color=%positive%]" + ::Math.floor(this.m.IntensiveHPHealed) + "[/color] HP."
+					text = "You used " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.MedsUsedHP), "negativeEvent", "unit") + " of medicine and healed " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.IntensiveHPHealed), "positiveEvent") + "."
 				});
         	}
 		}
@@ -174,7 +174,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			res.push({
 				id = id++,
 				icon = "ui/icons/health.png",
-				text = bro.getName() + " healed [color=%positive%]" + ::Math.floor(bro.getCampHealing()) + "[/color] points."
+				text = bro.getName() + " healed " + ::Legends.S.colorizeAndPluralize(::Math.floor(bro.getCampHealing()), "positiveEvent", "point") + "."
 			});
 		}
 		return res;

@@ -36,16 +36,15 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			id = 6,
 			type = "text",
 			icon = "ui/buttons/asset_vision_up.png",
-			text = "Total patrol modifier is [color=%positive%]" + mod.Craft * 100.0 + "%[/color]."
+			text = "Total patrol modifier is " + ::Legends.S.colorizeAndPluralize(mod.Craft * 100.0, "positive", "", true) + "."
 		}];
 		local id = 7;
-		foreach (bro in mod.Modifiers)
-		{
+		foreach (bro in mod.Modifiers) {
 			ret.push({
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + bro[0] * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+				text = ::Legends.S.colorizeAndPluralize(bro[0] * 100.0, "positive", "", true) + " " + bro[1] + " (" + bro[2] + ")"
 			});
 			++id;
 		}
@@ -120,7 +119,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
-		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
 		foreach(bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 		}
