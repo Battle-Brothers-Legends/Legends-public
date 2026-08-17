@@ -2780,8 +2780,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_recuperation",
 	Name = ::Const.Strings.PerkName.LegendRecuperation,
 	Tooltip = ::Const.Strings.PerkDescription.LegendRecuperation,
-	Icon = "ui/perks/recuperation_circle.png",
-	IconDisabled = "ui/perks/recuperation_circle_bw.png",
+	Icon = "ui/perks/recuperation.png",
+	IconDisabled = "ui/perks/recuperation_bw.png",
 	Const = "LegendRecuperation"
 });
 

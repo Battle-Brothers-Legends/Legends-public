@@ -124,6 +124,13 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			this.addNegativeSideEffects(bro, campHours);
 		}
 
+		if (campHours > 0){
+			this.m.Results.push({
+				Icon = "ui/icons/vision.png",
+				Text = "Scouts covered the radius of " + ::Legends.S.colorizeAndPluralize(::Math.floor(this.m.Radius), "positiveEvent") + " around the camp."
+			});
+		}
+
 		local playerTile = ::World.State.getPlayer().getTile();
 		local locations = [];
 		local scoutableLocations = ::World.EntityManager.getLocations().filter(@(_, _location) !_location.isAlliedWithPlayer());
@@ -176,7 +183,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 				if (location != null) {
 					this.m.Results.push({
 						Icon = "ui/icons/vision.png",
-						Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + location.getName() + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
+						Text = "While on patrol, " + mod.Modifiers[::Math.rand(0, mod.Modifiers.len() - 1)][1] + " came across some " + tracks + " tracks and followed them towards the " + ::Legends.S.colorizeAndPluralize(location.getName(), "negativeEvent") + ". It is " + (::Const.Strings.Distance[::Math.min(::Const.Strings.Distance.len() - 1, playerTile.getDistanceTo(location.getTile()) / 30.0 * (::Const.Strings.Distance.len() - 1))]) + " to the " + ::Const.Strings.Direction8[playerTile.getDirection8To(location.getTile())] + "."
 					});
 				}
 			}
