@@ -855,8 +855,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_athlete",
 	Name = ::Const.Strings.PerkName.LegendAthlete,
 	Tooltip = ::Const.Strings.PerkDescription.LegendAthlete,
-	Icon = "ui/perks/climb_circle.png",
-	IconDisabled = "ui/perks/climb_circle_bw.png",
+	Icon = "ui/perks/athlete.png",
+	IconDisabled = "ui/perks/athlete_bw.png",
 	Const = "LegendAthlete"
 });
 
@@ -2791,8 +2791,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_climb",
 	Name = ::Const.Strings.PerkName.LegendClimb,
 	Tooltip = ::Const.Strings.PerkDescription.LegendClimb,
-	Icon = "ui/perks/climb_circle.png",
-	IconDisabled = "ui/perks/climb_circle_bw.png",
+	Icon = "ui/perks/climb.png",
+	IconDisabled = "ui/perks/climb_bw.png",
 	Const = "LegendClimb"
 });
 
@@ -4089,8 +4089,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_swagger",
 	Name = ::Const.Strings.PerkName.LegendSwagger,
 	Tooltip = ::Const.Strings.PerkDescription.LegendSwagger,
-	Icon = "ui/perks/meek.png",
-	IconDisabled = "ui/perks/meek_bw.png",
+	Icon = "ui/perks/swagger.png",
+	IconDisabled = "ui/perks/swagger_bw.png",
 	Const = "LegendSwagger",
 	HasUnactivatedPerkTooltipHints = true
 });
