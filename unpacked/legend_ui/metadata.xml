@@ -115,7 +115,7 @@
 	<sprite id="drums_of_war_circle" ic="FF23165B" img="skills\drums_of_war_circle.png" />
 	<sprite id="martial_march_square" ic="FF23165B" img="skills\martial_march_square.png" />
 	<sprite id="martial_march_circle" ic="FF23165B" img="skills\martial_march_circle.png" />
-	<sprite id="climb_square" ic="FF23165B" img="skills\climb_square.png" />
+	<sprite id="active_climb" ic="FF23165B" img="skills\active_climb.png" />
 	<sprite id="prayer_purple" ic="FF23165B" img="skills\prayer_purple.png" />
 	<sprite id="prayer_green" ic="FF23165B" img="skills\prayer_green.png" />
 	<sprite id="prayer_blue" ic="FF23165B" img="skills\prayer_green.png" />

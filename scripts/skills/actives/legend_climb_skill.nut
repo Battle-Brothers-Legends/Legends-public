@@ -4,9 +4,9 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendClimb);
 		this.m.Description = "Allows you to move up or down levels. Does not trigger attacks of opportunity. Can not be used on flat ground.";
-		this.m.Icon = "skills/climb_square.png";
-		this.m.IconDisabled = "skills/climb_square_bw.png";
-		this.m.Overlay = "climb_square";
+		this.m.Icon = "skills/active_climb.png";
+		this.m.IconDisabled = "skills/active_climb_bw.png";
+		this.m.Overlay = "active_climb";
 		this.m.SoundOnUse = [
 			"sounds/combat/footwork_01.wav"
 		];
