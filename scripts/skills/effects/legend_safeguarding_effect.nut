@@ -4,8 +4,8 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "effects.legend_safeguarding";
 		this.m.Name = "Safeguarding";
 		this.m.Description = "This character neglects their own defense while safeguarding someone else";
-		this.m.Icon = "ui/perks/safegaurd_circle.png";
-		this.m.IconMini = "mini_safegaurd_circle";
+		this.m.Icon = "ui/perks/safeguard_circle.png";
+		this.m.IconMini = "mini_safeguard_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

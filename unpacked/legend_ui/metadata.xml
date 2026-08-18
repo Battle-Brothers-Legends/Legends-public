@@ -138,7 +138,7 @@
 	<sprite id="boneplating_effect" ic="FF23165B" img="skills\boneplating_effect.png" />
 	<sprite id="trait_invictus" ic="FF23165B" img="skills\trait_invictus.png" />
 	<sprite id="mini_boneplating_effect" offsetY="35" ic="FF344955" img="skills\mini\mini_boneplating_effect.png" />
-	<sprite id="mini_safegaurd_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_safegaurd_circle.png" />
+	<sprite id="mini_safeguard_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_safeguard_circle.png" />
 	<sprite id="mini_shimmering_visage_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_shimmering_visage_circle.png" />
 	<sprite id="mini_fortified_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_fortified_circle.png" />
 	<sprite id="parried_circle" offsetY="35" ic="FF344955" img="skills\parried_circle.png" />
