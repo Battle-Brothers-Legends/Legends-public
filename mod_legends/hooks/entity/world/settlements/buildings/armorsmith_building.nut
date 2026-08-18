@@ -33,8 +33,8 @@
 			item(80, 1.0, "helmets/scale_helm"),
 			item(80, 1.0, "helmets/rondel_helm"),
 			item(80, 1.0, "helmets/rondel_helm"),
-			item(80, 1.0, "helmets/rondel_helm"),
-			item(80, 1.0, "helmets/rondel_helm")
+			item(80, 1.0, "helmets/legend_frogmouth_helm_crested"),
+			item(80, 1.0, "helmets/legend_frogmouth_helm")
 		]);
 		list.extend([
 			item(80, 1.0, "legend_armor/armor_upgrades/legend_armor_skull_chain_upgrade"),
