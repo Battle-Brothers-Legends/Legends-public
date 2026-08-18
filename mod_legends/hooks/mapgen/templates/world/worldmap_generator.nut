@@ -1,60 +1,28 @@
-::mods_hookNewObjectOnce("mapgen/templates/world/worldmap_generator", function ( o )
-{
-	o.isWorldAcceptable = function (_rect)
-	{
-		local ocean = 0;
-		local nonOcean = 0;
-
-		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
-		{
-			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
-			{
-				local tile = this.World.getTileSquare(x, y);
-
-				if (tile.Type == this.Const.World.TerrainType.Ocean)
-				{
-					ocean = ++ocean;
-				}
-				else
-				{
-					nonOcean = ++nonOcean;
-				}
-			}
-		}
-		local ratio = nonOcean * 1.0 / (ocean * 1.0);
-		this.logInfo("Land Ocean ratio" + ratio + " >= " +  this.Const.World.Settings.MinLandToWaterRatio + " :: Land :" + nonOcean + " Ocean:" + ocean);
-		return nonOcean * 1.0 / (ocean * 1.0) >= this.Const.World.Settings.MinLandToWaterRatio;
+::mods_hookNewObjectOnce("mapgen/templates/world/worldmap_generator", function (o) {
+	o.isWorldAcceptable = function (_rect) {
+		local ocean = ::World.getNumOfTilesWithType([::Const.World.TerrainType.Ocean]);
+		local nonOcean = _rect.W * _rect.H - ocean * 1.0;
+    	local ratio = nonOcean / (ocean * 1.0);
+    	this.logInfo("Land/Ocean ratio: " + ::Const.World.Settings.MaxLandToWaterRatio + " >= " + ratio + " >= " + ::Const.World.Settings.MinLandToWaterRatio + " :: Land: " + nonOcean + " Ocean: " + ocean);
+		return (ratio >= ::Const.World.Settings.MinLandToWaterRatio) && (ratio <= ::Const.World.Settings.MaxLandToWaterRatio);
 	}
 
-	o.isDesertAcceptable = function ( _rect )
-	{
-		local desert = 0;
-
-		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
-		{
-			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
-			{
-				local tile = this.World.getTileSquare(x, y);
-
-				if (tile.Type == this.Const.World.TerrainType.Desert || tile.Type == this.Const.World.TerrainType.Oasis || tile.TacticalType == this.Const.World.TerrainTacticalType.DesertHills)
-				{
-					desert = ++desert;
-				}
-			}
-		}
-
-		this.logInfo("Desert tiles " + desert + " >= " +  this.Const.World.Settings.MinDesertTiles);
-		return desert >= this.Const.World.Settings.MinDesertTiles;
+	o.isDesertAcceptable = function (_rect) {
+		local desert = ::World.getNumOfTilesWithType([
+			::Const.World.TerrainType.Desert,
+			::Const.World.TerrainType.Oasis,
+			::Const.World.TerrainTacticalType.DesertHills
+		]);
+		this.logInfo("Desert tiles: " + desert + " >= " + ::Const.World.Settings.MinDesertTiles);
+		return desert >= ::Const.World.Settings.MinDesertTiles;
 	}
 
 	local fill = o.fill;
-	o.fill = function ( _rect, _properties, _pass = 1 )
-	{
+	o.fill = function (_rect, _properties, _pass = 1) {
 		if (::Legends.IsStartingNewCampaign) {
 			::Const.World.settingsUpdate(); //
 			::logInfo("Generating world with following settings...");
-			foreach (k,v in ::Const.World.Settings)
-			{
+			foreach (k, v in ::Const.World.Settings) {
 				::logInfo(k + " : " + v);
 			}
 			_properties = ::World.State.m.CampaignSettings;

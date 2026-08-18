@@ -52,11 +52,18 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 ::Const.World.Buildings.Stables <- 0;
 ::Const.World.Buildings.Blackmarket <- 0;
 
-::Const.World.settingsUpdate <- function ()
-{
-	this.Const.World.Settings.LandMassMult = 1.0 + (::Legends.Mod.ModSettings.getSetting("LandRatio").getValue() / 100.0);
-	this.Const.World.Settings.WaterConnectivity = ::Legends.Mod.ModSettings.getSetting("Water").getValue();
-	this.Const.World.Settings.Snowline = ::Legends.Mod.ModSettings.getSetting("Snowline").getValue() / 100.0;
+::Const.World.Settings.MinWaterSetting <- 35;
+::Const.World.Settings.MaxWaterSetting <- 65;
+::Const.World.Settings.MaxLandToWaterRatio <- 4.8;
+::Const.World.settingsUpdate <- function () {
+    local water = ::Legends.Mod.ModSettings.getSetting("Water").getValue() / 100.0;
+	local waterRange = water - (::Const.World.Settings.MinWaterSetting / 100.0);
+	::Const.World.Settings.MinDesertTiles = (2400.0 * (1.0 - (waterRange * 2))).tointeger();
+    ::Const.World.Settings.LandMassMult = 2.0 - (water * 1.0);
+    ::Const.World.Settings.MinLandToWaterRatio = 2.0 * (1.3 - water);
+	::Const.World.Settings.MaxLandToWaterRatio = 4.8 - (waterRange * 10.0);
+	::Const.World.Settings.WaterConnectivity = (28.0 + (waterRange * 14.0 / ((::Const.World.Settings.MaxWaterSetting - ::Const.World.Settings.MinWaterSetting) / 100.0))).tointeger();
+	::Const.World.Settings.Snowline = ::Legends.Mod.ModSettings.getSetting("Snowline").getValue() / 100.0;
 };
 
 
@@ -100,7 +107,7 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 	},
 	{
 		Ratio = 0.50,
-		Types = Const.World.Settlements.Legends_villages,
+		Types = ::Const.World.Settlements.Legends_villages,
 		Sizes = [
 			{
 				Ratio = 5,
@@ -121,7 +128,7 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 	},
 	{
 		Ratio = 0.30,
-		Types = Const.World.Settlements.Legends_fortifications,
+		Types = ::Const.World.Settlements.Legends_fortifications,
 		Sizes = [
 			{
 				Ratio = 5,
@@ -142,7 +149,7 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 	},
 	{
 		Ratio = 0.0,
-		Types = Const.World.Settlements.Legends_citystates,
+		Types = ::Const.World.Settlements.Legends_citystates,
 		IgnoreSide = true,
 		AdditionalSpace = 13,
 		Sizes = [
