@@ -1017,7 +1017,7 @@
 			result = general_onEquipBagItem(_data);
 		}
 
-		if(equipOH || equipMH) {
+		if (equipOH || equipMH) {
 			if (typeof result == "table" && "error" in result) {
 				return result;
 			}
@@ -1025,11 +1025,7 @@
 			this.dualWieldRefresh(_entityItemData.entity, equipOH ? ::Const.ItemSlot.Offhand : ::Const.ItemSlot.Mainhand);
 			_entityItemData.entity.getSkills().update();
 
-			if (::Tactical.isActive()) {
-				return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.TurnSequenceBar.getActiveEntity(), true, this.m.InventoryFilter);
-			} else {
-				return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, null, true, this.m.InventoryFilter);
-			}
+			return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.isActive ? ::Tactical.TurnSequenceBar.getActiveEntity() : null, true, this.m.InventoryFilter);
 		}
 
 		return general_onEquipBagItem(_data);

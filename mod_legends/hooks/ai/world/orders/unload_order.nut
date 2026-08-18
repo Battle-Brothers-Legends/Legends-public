@@ -1,8 +1,6 @@
-::mods_hookExactClass("ai/world/orders/unload_order", function(o)
-{
+::mods_hookExactClass("ai/world/orders/unload_order", function(o) {
 	local onExecute = o.onExecute;
-	o.onExecute = function ( _entity, _hasChanged )
-	{
+	o.onExecute = function ( _entity, _hasChanged )	{
 		if (!::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
 			return onExecute(_entity, _hasChanged);
 
@@ -42,7 +40,7 @@
 		local marketplace = settlement.getBuilding("building.marketplace");
 		// if there already too many items in storage, the excess one will be pushed to the marketplace immediately
 		// in order to keep the storage at a certain size
-		// this also lets the settlement to continue shipping these items to another place :)
+		// this also lets the settlement to continue shipping these items to another place
 		if (marketplace != null && storage.len() > ::Const.World.Common.WorldEconomy.Trade.ImportedGoodsInventorySizeMax) {
 			local different = storage.len() - ::Const.World.Common.WorldEconomy.Trade.ImportedGoodsInventorySizeMax;
 			local newStorage = [];
@@ -57,7 +55,7 @@
 		}
 
 		_entity.clearInventory();
-		getController().popOrder();
+		this.getController().popOrder();
 		return true;
 	}
 });

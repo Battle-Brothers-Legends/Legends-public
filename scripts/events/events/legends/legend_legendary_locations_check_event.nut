@@ -43,7 +43,7 @@ this.legend_legendary_locations_check_event <- this.inherit("scripts/events/even
                         txt = txt + "\n" + location.Name;
                     }
                     txt = txt + "\n\nIf you're not concerned about them, you can continue playing.";
-                    this.Text = txt
+                    this.Text = txt;
                 }
             }
         });
