@@ -245,6 +245,7 @@
 - Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
 - Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
 - `Fortify` - removed
+- `Safeguard` - now transfers your block value to an ally until the start of your next turn
 - `Buckler Effect` - now grants 5% of Initiative as Defense and Block
 
 ### Regular Shields
@@ -291,6 +292,10 @@
 - Named Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
 - Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 25 Block, 15-30 Damage
 - Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 30 Block, 10-25 Damage
+
+### Named Shield Changes
+- shields can now roll damage and block
+- because the amount of rollable attributes has been increased, named shields now always roll fatigue
 
 ### Consumables
 - `Berserker Mushrooms` - if the character has berserker rage it'll grant 5 points of rage at turn start

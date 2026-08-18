@@ -18,7 +18,8 @@
 	Choke					= [110, 130],
 	ArmorDamageMultGloves   = [5, 15],
 	DirectDamageMultGloves	= [5, 15],
-	StaminaModifierGloves	= [40, 80]
+	StaminaModifierGloves	= [40, 80],
+	Block 					= [130, 180],
 };
 
 ::Legends.Items.Named.HighlightNamedRoll <- {

@@ -62,7 +62,7 @@
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		if (this.m.ConditionMax > 1)
-		{															//Vanilla = 90, 140. I think this is bullshit. - Luft
+		{
 			this.m.Condition = ::Math.round(this.m.Condition * ::Math.rand(ranges.Condition[0], ranges.Condition[1]) * 0.01) * 1.0;
 			this.m.ConditionMax = this.m.Condition;
 		}

@@ -38,14 +38,18 @@
 			this.m.BaseProperties.RangedDefense <- this.m.RangedDefense;
 			this.m.BaseProperties.StaminaModifier <- this.m.StaminaModifier;
 			this.m.BaseProperties.FatigueOnSkillUse <- this.m.FatigueOnSkillUse;
+			this.m.BaseProperties.RegularDamage <- this.m.RegularDamage;
+			this.m.BaseProperties.RegularDamageMax <- this.m.RegularDamageMax;
+			this.m.BaseProperties.Block <- this.m.Block;
 		}
 
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
+		if (this.m.StaminaModifier < -1) {
+			this.m.StaminaModifier = this.Math.round(this.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
+		}
+
 		local available = [];
-		available.push(function(_i) {
-			_i.m.StaminaModifier = this.Math.round(_i.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
-		});
 		available.push(function(_i) {
 			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
 		});
@@ -58,6 +62,14 @@
 		available.push(function(_i) {
 			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
+		});
+		available.push(function ( _i ) {
+			local f = ::Math.rand(ranges.RegularDamage[0], ranges.RegularDamage[1]) * 0.01;
+			_i.m.RegularDamage = ::Math.round(_i.m.RegularDamage * f);
+			_i.m.RegularDamageMax = ::Math.round(_i.m.RegularDamageMax * f);
+		});
+		available.push(function(_i) {
+			_i.m.Block = this.Math.round(_i.m.Block * this.Math.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
 		});
 
 		for( local n = 2; n != 0 && available.len() != 0; n = --n )
