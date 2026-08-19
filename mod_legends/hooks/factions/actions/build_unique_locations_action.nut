@@ -22,7 +22,7 @@
 
 	// lower min distances from other locations for legendary locations on maps with less lands
     o.getTileToSpawnLocation <- function( _maxTries = 10, _notOnTerrain = [], _minDistToSettlements = 7, _maxDistToSettlements = 1000, _maxDistanceToAllies = 1000, _minDistToEnemyLocations = 7, _minDistToAlliedLocations = 7, _nearTile = null, _minY = 0.0, _maxY = 1.0 ) {
-        local distanceScale = 1.0 - (((::Legends.Mod.ModSettings.getSetting("Water").getValue() - ::Const.World.Settings.MinWaterSetting) / 100.0));
+        local distanceScale = 1.0 - (((::Legends.Mod.ModSettings.getSetting("Water").getValue() - ::Const.World.Settings.MinWaterSetting) * 1.2 / 100.0));
         return this.faction_action.getTileToSpawnLocation(_maxTries, _notOnTerrain, ::Math.round(_minDistToSettlements * distanceScale), _maxDistToSettlements, _maxDistanceToAllies, ::Math.round(_minDistToEnemyLocations * distanceScale), ::Math.round(_minDistToAlliedLocations * distanceScale), _nearTile, _minY, _maxY);
     }
 
