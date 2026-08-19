@@ -38,6 +38,33 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 			icon = "ui/icons/special.png",
 			text = "Consume to grant the user [color=%positive%]+2[/color] bag slots"
 		});
+		local actor = ::World.State.m.CharacterScreen.getSelectedActor();
+		if (actor != null) {
+			if (actor.isStabled()) {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/cancel.png",
+					text = "It doesn't fit on an animal"
+				});
+			}
+			local bagSlots = actor.getItems().getUnlockedBagSlots();
+			if (bagSlots == 2) {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/unlocked_small.png",
+					text = actor.getName() + " can use this item"
+				});
+			} else if (bagSlots == 4) {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/cancel.png",
+					text = "Cannot be used as " + actor.getName() + " already has a rucksack"
+				});
+			}
+		}
 
 		return result;
 	}

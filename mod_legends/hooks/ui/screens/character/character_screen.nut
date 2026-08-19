@@ -17,7 +17,6 @@
 	o.onApplyArmorFilter <- function (_filter) {
 		// used by armor filter
 		this.m.InventoryFilter = ::Const.Items.ItemFilter.Armor;
-		::Sound.play("sounds/coins_02.wav", ::Const.Sound.Volume.Actor);
 
 		if (this.m.JSDataSourceHandle == null) {
 			return;

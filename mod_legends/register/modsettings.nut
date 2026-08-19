@@ -11,7 +11,7 @@ function addNCSetting( _page, _setting ) {
 local map = ::Legends.Mod.ModSettings.addPage("Map Options");
 
 //Setting, Default, Min, Max, ?, Name, Description
-addNCSetting(map, ::MSU.Class.RangeSetting("Water", 55, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. 0 creates massive connected continents, 100 creates scattered island archipelagos."));
+addNCSetting(map, ::MSU.Class.RangeSetting("Water", 55, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. 35 creates a single continent, 65  scattered islands."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Snowline", 85, 75, 95, 1, "Snowline", "Determines where the snowline is generated. Default is 85. This value is inverted. A value of 10 would mean the top 90% of the map is snow."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Settlements", 19, 19, 27, 1, "Settlements", "Maximum number of settlements. Depending on map size, this will try to add the number of settlements on the slider. It will keep the same ratio of settlement types as default Battle Brothers maps. Minimum distance between settlements is 12 tiles. Vanilla default is 19."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Factions", 3, 2, 6, 1, "Factions", "Maximum number of Factions to try and generate. Depending on map size, this may not add all the factions on the slider."));

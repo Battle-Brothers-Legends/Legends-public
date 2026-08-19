@@ -128,7 +128,7 @@ this.camp_manager <- {
 			{
 				id = 9000,
 				icon = "ui/buttons/icon_time.png",
-				text = "You were encamped for " + this.Math.floor(this.getElapsedHours()) + " hours " + biomeText,
+				text = "You were encamped for " + this.Math.floor(this.getElapsedHours()) + " hours " + biomeText + ".",
 			}
 		];
 
@@ -498,7 +498,7 @@ this.camp_manager <- {
 		local mood = terrain.Mood;
 		local result = {
 			Title = ::World.Assets.getName() + " Camp",
-			SubTitle = "No camp tasks have been scheduled...",
+			SubTitle = "Give various camp tasks to your mercenaries while taking a break from marching.",
 			HeaderImagePath = null,
 			Background = background != null ? background + (night ? "_night" : "") + ".jpg" : null,
 			Mood = mood != null ? mood + ".png" : null,
