@@ -353,53 +353,78 @@
 		return settlementTiles;
 	}
 
-	o.buildSettlements = function ( _rect )
-	{
-
-		local _properties = this.World.State.m.CampaignSettings;
-		this.LoadingScreen.updateProgress("Building Settlements ...");
-		this.logInfo("Building settlements...");
-		local isLeft = this.Math.rand(0, 1);
+	o.buildSettlements = function ( _rect )	{
+		::LoadingScreen.updateProgress("Building Settlements ...");
+		::logInfo("Building settlements...");
+		local isLeft = ::Math.rand(0, 1);
 		local settlementTiles = [];
 
-		foreach( list in this.Const.World.Settlements.LegendsWorldMaster )
-		{
-			local num = Math.ceil(::Legends.Mod.ModSettings.getSetting("Settlements").getValue() * list.Ratio);
-			//Add at least one of each
+		local settlementsToCreate = [];
+    	local weightedFractions = [];
+		local fractionSum = 0;
+    	local settlementsAllocated = 0;
 
+		foreach (list in ::Const.World.Settlements.LegendsWorldMaster) {
+			local part = ::Legends.Mod.ModSettings.getSetting("Settlements").getValue() * list.Ratio;
+			local number = part.tointeger();
+			
+			settlementsToCreate.push(number);
+			weightedFractions.push(((part - number) * 10000).tointeger());
+			settlementsAllocated += number;
+			fractionSum += ((part - number) * 10000).tointeger();
+		}
+
+		local remainingSettlements = ::Legends.Mod.ModSettings.getSetting("Settlements").getValue() - settlementsAllocated;
+
+		while (remainingSettlements > 0) {
+			local pick = ::Math.rand(0, fractionSum);
+
+			for (local i = 0; i < weightedFractions.len(); i++) {
+				local score = weightedFractions[i];
+				if (score <= 0) continue;
+
+				if (pick <= score) {
+					settlementsToCreate[i]++;
+					weightedFractions[i] = 0;
+					fractionSum -= score;
+					remainingSettlements--;
+					break;
+				}
+
+				pick -= score;     
+        	}
+		}
+
+		foreach(i, list in ::Const.World.Settlements.LegendsWorldMaster)	{
+			local num = settlementsToCreate[i];
 			local additionalSpace = 0;
-			if ("AdditionalSpace" in list)
-			{
+
+			if ("AdditionalSpace" in list) {
 				additionalSpace = list.AdditionalSpace;
 			}
-			foreach (s in list.Sizes)
-			{
-				for (local i = 0; i < s.MinAmount; i = ++i)
-				{
+			foreach (s in list.Sizes) {
+				for (local i = 0; i < s.MinAmount; i++)	{
 					settlementTiles = this.addSettlement(_rect, isLeft, list.Types, s.Size, settlementTiles, additionalSpace, "IgnoreSide" in list);
-					num = --num;
+					num--;
 				}
 			}
 
-			while (num > 0)
-			{
-				local r = this.Math.rand(1, 10);
+			while (num > 0)	{
+				local r = ::Math.rand(1, 10);
 				local total = 0;
-				foreach (s in list.Sizes)
-				{
+				foreach (s in list.Sizes) {
 					total += s.Ratio;
-					if (r > total)
-					{
+					if (r > total) {
 						continue;
 					}
 					settlementTiles = this.addSettlement(_rect, isLeft, list.Types, s.Size, settlementTiles, additionalSpace, "IgnoreSide" in list);
 					break;
 				}
-				num = --num;
+				num--;
 			}
 		}
 
-		this.logInfo("Created " + settlementTiles.len() + " settlements.");
+		::logInfo("Created " + settlementTiles.len() + " settlements.");
 		return settlementTiles.len() >= 19;
 	}
 
