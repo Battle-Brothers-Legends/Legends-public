@@ -212,36 +212,15 @@
 		}
 	}
 
-	o.addSettlement <- function (_rect, isLeft, settlementList, settlementSize, settlementTiles, additionalSpace, ignoreSide)
-	{
+	o.addSettlement <- function (_rect, isLeft, settlementList, settlementSize, settlementTiles, additionalSpace, ignoreSide) {
 		local tries = 0;
 
-		while (tries++ < 3000)
-		{
-			local x;
-			local y;
-
-			if (!ignoreSide)
-			{
-				if (isLeft)
-				{
-					x = this.Math.rand(5, _rect.W * 0.6);
-				}
-				else
-				{
-					x = this.Math.rand(_rect.W * 0.4, _rect.W - 6);
-				}
-			}
-			else
-			{
-				x = this.Math.rand(5, _rect.W - 6);
-			}
-
-			y = this.Math.rand(5, _rect.H * 0.95);
+		while (tries++ < 3000) {
+			local x = ignoreSide ? ::Math.rand(5, _rect.W - 6) : (isLeft ? ::Math.rand(5, _rect.W * 0.6) : ::Math.rand(_rect.W * 0.4, _rect.W - 6));
+			local y = ::Math.rand(5, _rect.H * 0.95);
 			local tile = this.World.getTileSquare(x, y);
 
-			if (settlementTiles.find(tile.ID) != null)
-			{
+			if (settlementTiles.find(tile.ID) != null) {
 				continue;
 			}
 
@@ -254,92 +233,73 @@
 			// 	distance -= 8;
 			// }
 
-			foreach( settlement in settlementTiles )
-			{
-				if (tile.getDistanceTo(settlement) < distance)
-				{
+			foreach (settlement in settlementTiles) {
+				if (tile.getDistanceTo(settlement) < distance) {
 					next = true;
 					break;
 				}
 			}
 
-			if (next)
-			{
+			if (next) {
 				continue;
 			}
 
 			local terrain = this.getTerrainInRegion(tile);
 
-			if (terrain.Adjacent[this.Const.World.TerrainType.Ocean] >= 3 || terrain.Adjacent[this.Const.World.TerrainType.Shore] >= 3)
-			{
+			if (terrain.Adjacent[::Const.World.TerrainType.Ocean] >= 3 || terrain.Adjacent[::Const.World.TerrainType.Shore] >= 3)	{
 				continue;
 			}
 
 			local candidates = [];
 
-			foreach( settlement in settlementList )
-			{
-				if (settlement.isSuitable(terrain))
-				{
+			foreach (settlement in settlementList) {
+				if (settlement.isSuitable(terrain)) {
 					candidates.push(settlement);
 				}
 			}
 
-			if (candidates.len() == 0)
-			{
+			if (candidates.len() == 0) {
 				continue;
 			}
 
-			local type = candidates[this.Math.rand(0, candidates.len() - 1)];
+			local type = candidates[::Math.rand(0, candidates.len() - 1)];
 
-			if ((terrain.Region[this.Const.World.TerrainType.Ocean] >= 3 || terrain.Region[this.Const.World.TerrainType.Shore] >= 3) && !("IsCoastal" in type) && !("IsFlexible" in type))
-			{
+			if ((terrain.Region[::Const.World.TerrainType.Ocean] >= 3 || terrain.Region[::Const.World.TerrainType.Shore] >= 3) && !("IsCoastal" in type) && !("IsFlexible" in type)) {
 				continue;
 			}
 
-			if (!("IsCoastal" in type))
-			{
+			if (!("IsCoastal" in type)) {
 				local skip = settlementTiles.len() != 0;
-				local navSettings = this.World.getNavigator().createSettings();
+				local navSettings = ::World.getNavigator().createSettings();
 
-				for( local i = settlementTiles.len() - 1; i >= 0; i = --i )
-				{
-					local settlement = settlementTiles[i];
-					navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost;
-					local path = this.World.getNavigator().findPath(tile, settlement, navSettings, 0);
+				for (local i = settlementTiles.len() - 1; i >= 0; i = --i) {
+					navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost;
+					local path = ::World.getNavigator().findPath(tile, settlementTiles[i], navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						skip = false;
 						break;
 					}
 				}
 
-				if (skip)
-				{
+				if (skip) {
 					continue;
 				}
-			}
-			else if (settlementTiles.len() >= 1 && tries < 500)
-			{
+			} else if (settlementTiles.len() >= 1 && tries < 500) {
 				local hasConnection = false;
 
-				for( local i = settlementTiles.len() - 1; i >= 0; i = --i )
-				{
-					local settlement = settlementTiles[i];
-					local navSettings = this.World.getNavigator().createSettings();
+				for (local i = settlementTiles.len() - 1; i >= 0; i--) {
+					local navSettings = ::World.getNavigator().createSettings();
 					navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
-					local path = this.World.getNavigator().findPath(tile, settlement, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, settlementTiles[i], navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						hasConnection = true;
 						break;
 					}
 				}
 
-				if (!hasConnection)
-				{
+				if (!hasConnection) {
 					continue;
 				}
 			}
