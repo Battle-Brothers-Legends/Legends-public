@@ -58,9 +58,10 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 ::Const.World.settingsUpdate <- function () {
     local water = ::Legends.Mod.ModSettings.getSetting("Water").getValue() / 100.0;
 	local waterRange = water - (::Const.World.Settings.MinWaterSetting / 100.0);
+	::Const.World.Settings.MinDesertTiles = (3000.0 * (1.0 - (::Math.pow(waterRange, 0.125))/3.5)).tointeger();
     ::Const.World.Settings.LandMassMult = 1.7 - (waterRange * 0.5);
     ::Const.World.Settings.MinLandToWaterRatio = 3.0 * (1.3 - water);
-	::Const.World.Settings.MaxLandToWaterRatio = 5.3 - (waterRange * 12.0);
+	::Const.World.Settings.MaxLandToWaterRatio = 14.1 - (::Math.pow(waterRange, 1.0/6)*15.0);
 	::Const.World.Settings.WaterConnectivity = (28.0 + (waterRange * 14.0 / ((::Const.World.Settings.MaxWaterSetting - ::Const.World.Settings.MinWaterSetting) / 100.0))).tointeger();
 	::Const.World.Settings.Snowline = ::Legends.Mod.ModSettings.getSetting("Snowline").getValue() / 100.0;
 };
