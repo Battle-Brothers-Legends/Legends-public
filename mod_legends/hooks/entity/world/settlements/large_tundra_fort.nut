@@ -9,7 +9,7 @@
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendHouseGuard,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

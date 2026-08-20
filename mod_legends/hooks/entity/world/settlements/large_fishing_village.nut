@@ -6,8 +6,8 @@
 			::Legends.Background.Butcher,
 			::Legends.Background.Butcher,
 			::Legends.Background.LegendInventor,
-			::Legends.Background.LegendAdventurousLady,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 		this.m.HousesMin = 4;
 		this.m.HousesMax = 6;

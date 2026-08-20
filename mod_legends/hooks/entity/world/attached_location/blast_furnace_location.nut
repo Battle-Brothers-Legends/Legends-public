@@ -7,7 +7,7 @@
 			return;
 		}
 
-		_list.push(::Legends.Background.LegendDisownedLady);
+		_list.push(::Legends.Background.LegendDisownedNobleRanged);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;

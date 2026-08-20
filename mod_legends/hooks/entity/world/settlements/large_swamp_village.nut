@@ -4,8 +4,8 @@
 		create();
 		this.m.DraftList.extend([
 			::Legends.Background.LegendInventor,
-			::Legends.Background.LegendAdventurousLady,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 	}
 

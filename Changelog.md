@@ -119,6 +119,9 @@
 ### Vala:
 - can no longer roll ranged skill stars
 
+### Adventurous Noble & Disowned Noble
+- both backgrounds now has a ranged and melee version which can be both male and female
+
 ## Perks
 
 ### New Perks

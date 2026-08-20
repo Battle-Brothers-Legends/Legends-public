@@ -864,7 +864,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 12]
 }];
 
-::Legends.BackgroundsStats.LegendAdventurousLady <- [{
+::Legends.BackgroundsStats.LegendAdventurousNobleRanged <- [{
 	Hitpoints = [-1, 4],
 	Bravery = [15, 20],
 	Stamina = [0, 5],
@@ -1042,7 +1042,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [-20, -20]
 }];
 
-::Legends.BackgroundsStats.LegendDisownedLady <- [{
+::Legends.BackgroundsStats.LegendDisownedNobleRanged <- [{
 	Hitpoints = [-2, 3],
 	Bravery = [-6, -1],
 	Stamina = [-10, -5],

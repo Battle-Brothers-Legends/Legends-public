@@ -2019,7 +2019,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendAdventurousLady <- {
+::Legends.BackgroundPerkTrees.LegendAdventurousNobleRanged <- {
 	Weapon = [
 		::Const.Perks.BowTree,
 		::Const.Perks.PolearmTree,
@@ -2492,7 +2492,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendDisownedLady <- {
+::Legends.BackgroundPerkTrees.LegendDisownedNobleRanged <- {
 	Weapon = [
 		::Const.Perks.CrossbowTree,
 		::Const.Perks.SwordTree,

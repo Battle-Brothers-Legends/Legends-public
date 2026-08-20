@@ -135,7 +135,7 @@
 // Background-specific text
 ::Legends.Obituary.FateText.BackgroundMessages <- {
     [::Legends.Backgrounds.getID(::Legends.Background.AdventurousNoble)]               = { pos = "Set off on a new adventure",					neg = "" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendAdventurousLady)]          = { pos = "Set off on a new adventure",					neg = "" },
+    [::Legends.Backgrounds.getID(::Legends.Background.LegendAdventurousNobleRanged)]          = { pos = "Set off on a new adventure",					neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Anatomist)]                      = { pos = "Resumed their forbidden studies",             	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Apprentice)]                     = { pos = "Sought a new master",                         	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Assassin)]                       = { pos = "Returned to the underworld",                  	neg = "" },
@@ -159,7 +159,7 @@
     [::Legends.Backgrounds.getID(::Legends.Background.Daytaler)]                       = { pos = "Earned their daily coin and moved on",        	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Deserter)]                       = { pos = "Kept hiding from banners and drums",          	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.DisownedNoble)]                  = { pos = "Continued their exile in comfort",            	neg = "Left in a rage, swearing revenge" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendDisownedLady)]             = { pos = "Continued their exile in comfort",            	neg = "Left in a rage, swearing revenge" },    
+    [::Legends.Backgrounds.getID(::Legends.Background.LegendDisownedNobleRanged)]             = { pos = "Continued their exile in comfort",            	neg = "Left in a rage, swearing revenge" },    
     [::Legends.Backgrounds.getID(::Legends.Background.Eunuch)]                         = { pos = "Found quiet employment where needed",         	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Farmhand)]                       = { pos = "Returned to the plow",                        	neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.Fisherman)]                      = { pos = "Headed for familiar waters",                  	neg = "" },

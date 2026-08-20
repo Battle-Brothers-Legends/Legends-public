@@ -5,7 +5,7 @@
 		create();
 		this.m.FemaleDraftList = [
 			::Legends.Background.LegendBellyDancer,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendDisownedNobleRanged,
 		];
 		this.m.DraftList.extend([
 			::Legends.Background.JugglerSouthern,

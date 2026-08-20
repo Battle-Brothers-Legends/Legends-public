@@ -65,9 +65,9 @@
 
 			if ((::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.AdventurousNoble,
-				::Legends.Background.LegendAdventurousLady,
+				::Legends.Background.LegendAdventurousNobleRanged,
 				::Legends.Background.DisownedNoble,
-				::Legends.Background.LegendDisownedLady,
+				::Legends.Background.LegendDisownedNobleRanged,
 				::Legends.Background.Bastard,
 				::Legends.Background.HedgeKnight)
 			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))

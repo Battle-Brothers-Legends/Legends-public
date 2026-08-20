@@ -3,8 +3,8 @@
 	o.create = function() {
 		create();
 		this.m.DraftList.extend([
-			::Legends.Background.LegendAdventurousLady,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

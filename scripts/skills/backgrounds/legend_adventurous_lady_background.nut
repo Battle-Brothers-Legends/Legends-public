@@ -1,15 +1,12 @@
 this.legend_adventurous_lady_background <- this.inherit("scripts/skills/backgrounds/adventurous_noble_background", {
 	function create () {
 		this.adventurous_noble_background.create();
-		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousLady);
-		this.m.BackgroundType = this.m.BackgroundType | this.Const.BackgroundType.Female;
-		this.m.BackgroundDescription = "Adventurous Ladies tend to have high resolve and ranged skills, but often neglect melee defense.";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousNobleRanged);
 		this.m.Names = this.Const.Strings.LadyNames;
-		this.setBodyCharacteristics(1, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young});
 	}
 
 	function onChangeAttributes () {
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAdventurousLady);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAdventurousNobleRanged);
 	}
 
 	function onAddEquipment() {

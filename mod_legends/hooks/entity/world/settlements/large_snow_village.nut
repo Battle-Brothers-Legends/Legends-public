@@ -6,9 +6,9 @@
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendShieldmaiden,
 			::Legends.Background.LegendInventor,
-			::Legends.Background.LegendAdventurousLady,
-			::Legends.Background.LegendDisownedLady,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 	}
 

@@ -6,8 +6,8 @@
 			::Legends.Background.LegendIronmonger,
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.Assassin,
-			::Legends.Background.LegendAdventurousLady,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 		this.m.StablesList = [
 			::Legends.Background.LegendDonkey,

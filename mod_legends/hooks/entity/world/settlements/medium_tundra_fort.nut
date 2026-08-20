@@ -3,7 +3,7 @@
 	o.create = function() {
 		create();
 		this.m.DraftList.extend([
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 	}
 

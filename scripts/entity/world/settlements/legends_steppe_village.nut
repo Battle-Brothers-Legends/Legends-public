@@ -130,7 +130,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 			::Legends.Background.Thief,
 			::Legends.Background.Vagabond,
 			::Legends.Background.AdventurousNoble,
-			::Legends.Background.LegendAdventurousLady,
+			::Legends.Background.LegendAdventurousNobleRanged,
 			::Legends.Background.Cripple,
 			::Legends.Background.Poacher,
 			::Legends.Background.Apprentice,

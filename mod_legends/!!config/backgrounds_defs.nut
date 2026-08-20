@@ -1106,11 +1106,11 @@ backgroundDefs.push({
     Icon = "ui/backgrounds/background_23.png",
 });
 
-::Legends.Background.LegendAdventurousLady <- null;
+::Legends.Background.LegendAdventurousNobleRanged <- null;
 backgroundDefs.push({
     ID = "background.legend_adventurous_lady",
     Script = "scripts/skills/backgrounds/legend_adventurous_lady_background",
-    Const = "LegendAdventurousLady",
+    Const = "LegendAdventurousNobleRanged",
     Name = "Adventurous Lady",
     HiringCost = 300,
     DailyCost = 35,
@@ -1359,11 +1359,11 @@ backgroundDefs.push({
     Icon = "ui/backgrounds/background_dervish.png",
 });
 
-::Legends.Background.LegendDisownedLady <- null;
+::Legends.Background.LegendDisownedNobleRanged <- null;
 backgroundDefs.push({
     ID = "background.legend_disowned_lady",
     Script = "scripts/skills/backgrounds/legend_disowned_lady_background",
-    Const = "LegendDisownedLady",
+    Const = "LegendDisownedNobleRanged",
     Name = "Disowned Lady",
     HiringCost = 135,
     DailyCost = 17,

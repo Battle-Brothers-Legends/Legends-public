@@ -4,7 +4,7 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.AdventurousNoble);
-		this.m.BackgroundDescription = "Adventurous Nobles tend to have high resolve and melee skills, but often neglect ranged defense.";
+		this.m.BackgroundDescription = "Adventurous Nobles tend to have high resolve and are martially trained, but tend to not be particularly aware of dangers.";
 		this.m.GoodEnding = "Adventurousness never leaves the soul of a %person% like %name%. {Instead of returning to %their% noble family, %they% left the %companyname% and headed east in search of rare beasts. Word has it %they% returned to town with the head of what looked like a giant lizard, but you don\'t believe such fantastical tripe. | %They% departed the %companyname% and ventured west, sailing across the oceans to unseen lands. There\'s no telling where %they% is these days, but you\'ve little doubt that %they%\'ll be coming back with stories to tell. | %They% retired from the %companyname% and, instead of returning to %their% noble family, headed south. Word has it %they% fought in a great noble civil war, killed an orc warlord, climbed the highest mountain in the land, and is currently writing an epic about %their% travels. | The %noble% left the %companyname% and, preferring the life of adventure to noble boredom, %they% headed north. Word has it that %they%\'s currently marching a troop of explorers to the furthest reaches of the world.}";
 		this.m.BadEnding = "%name% departed the %companyname% and continued %their% adventuring elsewhere. {%They% headed east, hoping to discover the source of the greenskins, but the %noble% has not been heard from since. | %They% headed north into the snowy wastes. Word has it %they% was seen a week ago, marching south this time, looking rather pale and shuffling moreso than walking. | %They% headed south into brutal marshlands. Word has it that a mysterious flame appeared in the fog and %they% walked toward it. The men who saw this said %they% disappeared into the mist and never returned. | %They% headed west and sailed the open sea. Despite having no experience at sea, %they% saw fit to make %themselves% captain of the boat. They say pieces of %their% ship and dead sailors kept washing ashore for weeks.}";
 		this.m.Excluded = [
@@ -29,11 +29,20 @@
 		this.m.Names = this.Const.Strings.KnightNames;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Noble;
-		this.setBodyCharacteristics(0, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
 	}
 
 	o.getTooltip = function () {
 		return this.character_background.getTooltip();
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
+		
+		if (_gender != 1) return;
+		this.m.Name = "Adventurous Lady";
+		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
+		this.m.Names = this.Const.Strings.LadyNames;
 	}
 
 	o.onBuildDescription <- function () {

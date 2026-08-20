@@ -8,7 +8,7 @@
 			::Legends.Background.LegendArbalester,
 			::Legends.Background.LegendArbalester,
 			::Legends.Background.LegendBlacksmith,
-			::Legends.Background.LegendDisownedLady,
+			::Legends.Background.LegendDisownedNobleRanged,
 
 		]);
 		this.m.StablesList = [
