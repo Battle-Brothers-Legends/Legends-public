@@ -10,10 +10,10 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 			"sounds/combat/electricity_04.wav"
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSummonStorm);
-		this.m.Description = "Summons rain to the battlefield. Anyone caught in the rain will have their vision reduced by 1 and their ranged skill and ranged defense reduces by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
+		this.m.Description = "Summons rain to the battlefield. Anyone caught in the rain will have their vision and ranged skill reduced by 1 and 10% respectively and their ranged defense increased by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
 		this.m.Icon = "skills/rain_square.png";
 		this.m.IconDisabled = "skills/rain_square_bw.png";
 		this.m.Overlay = "active_12";
@@ -30,9 +30,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -52,32 +50,25 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-
-	  function isHidden()
-	{
+	function isHidden() {
 		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand);
 	}
 
-
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local weather = this.Tactical.getWeather();
 		local rain = weather.createRainSettings();
 
-		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
-		{
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain)) {
 
-			if (this.m.SoundOnLightning.len() != 0)
-			{
+			if (this.m.SoundOnLightning.len() != 0) {
 				this.Sound.play(this.m.SoundOnLightning[this.Math.rand(0, this.m.SoundOnLightning.len() - 1)], this.Const.Sound.Volume.Skill * 2.0, _user.getPos());
 			}
-			if (!this.m.Container.hasEffect(::Legends.Effect.LionheartPotion))
-			{
+			if (!this.m.Container.hasEffect(::Legends.Effect.LionheartPotion)) {
 				::Legends.Effects.grant(this, ::Legends.Effect.LionheartPotion);
 			}
 
-			weather.setAmbientLightingColor(this.createColor(this.Const.Tactical.AmbientLightingColor.Storm));
-			weather.setAmbientLightingSaturation(this.Const.Tactical.AmbientLightingSaturation.Storm);
+			weather.setAmbientLightingColor(this.createColor(::Const.Tactical.AmbientLightingColor.Storm));
+			weather.setAmbientLightingSaturation(::Const.Tactical.AmbientLightingSaturation.Storm);
 			local clouds = weather.createCloudSettings();
 			clouds.Type = this.getconsttable().CloudType.StaticFog;
 			clouds.MinClouds = 12;
@@ -98,23 +89,17 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 			rain.MinScale = 0.75;
 			rain.MaxScale = 1.0;
 			weather.buildRain(rain);
-			this.Sound.setAmbience(0, this.Const.SoundAmbience.Rain, this.Const.Sound.Volume.Ambience, 0);
-		}
-		else
-		{
-			local everyone = this.Tactical.Entities.getAllInstances();
-			foreach (ever in everyone)
-			{
-				foreach (e in ever)
-				{
-					if (e.getBaseProperties().IsAffectedByRain)
-					{
+			this.Sound.setAmbience(0, ::Const.SoundAmbience.Rain, ::Const.Sound.Volume.Ambience, 0);
+		} else {
+			foreach (ever in ::Tactical.Entities.getAllInstances()) {
+				foreach (e in ever) {
+					if (e.getBaseProperties().IsAffectedByRain) {
 						::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 					}
 				}
 			}
-			weather.setAmbientLightingColor(this.createColor(this.Const.Tactical.AmbientLightingColor.LightRain));
-			weather.setAmbientLightingSaturation(this.Const.Tactical.AmbientLightingSaturation.LightRain);
+			weather.setAmbientLightingColor(this.createColor(::Const.Tactical.AmbientLightingColor.LightRain));
+			weather.setAmbientLightingSaturation(::Const.Tactical.AmbientLightingSaturation.LightRain);
 			rain.MinDrops = 20;
 			rain.MaxDrops = 60;
 			rain.NumSplats = 30;
@@ -126,12 +111,8 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 			rain.MinScale = 0.6;
 			rain.MaxScale = 1.1;
 			weather.buildRain(rain);
-			this.Sound.setAmbience(0, this.Const.SoundAmbience.RainLight, this.Const.Sound.Volume.Ambience, 0);
+			::Sound.setAmbience(0, ::Const.SoundAmbience.RainLight, ::Const.Sound.Volume.Ambience, 0);
 		}
 	}
 
-
-
-
 });
-

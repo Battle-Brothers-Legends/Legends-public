@@ -1,12 +1,12 @@
 ::mods_hookBaseClass("ambitions/ambition", function (o) {
 	o.buildText <- function (_text) {
-		local brothers = this.World.getPlayerRoster().getAll();
-		local brother1 = this.Math.rand(0, brothers.len() - 1);
-		local brother2 = this.Math.rand(0, brothers.len() - 1);
+		local brothers = ::World.getPlayerRoster().getAll();
+		local brother1 = ::Math.rand(0, brothers.len() - 1);
+		local brother2 = ::Math.rand(0, brothers.len() - 1);
 
 		if (brothers.len() >= 2) {
 			while (brother1 == brother2) {
-				brother2 = this.Math.rand(0, brothers.len() - 1);
+				brother2 = ::Math.rand(0, brothers.len() - 1);
 			}
 		}
 
@@ -43,12 +43,18 @@
 		::Const.LegendMod.extendVarsWithPronouns(vars, brothers[brother2], "randombrother2");
 
 		local veteran = brothers[0];
+		local lowestHP = brothers[0];
 		foreach (bro in brothers) {
 			if (bro.getHireTime() < veteran.getHireTime()) {
 				veteran = bro;
 			}
+
+			if (bro.getHitpoints() < lowestHP.getHitpoints()) {
+				lowestHP = bro;
+			}
 		}
 		::Const.LegendMod.extendVarsWithPronouns(vars, veteran, "veteranbrother");
+		::Const.LegendMod.extendVarsWithPronouns(vars, lowestHP, "lowesthp");
 
 		foreach (key, value in this.m) {
 			if (::MSU.isKindOf(value, "actor")) {
