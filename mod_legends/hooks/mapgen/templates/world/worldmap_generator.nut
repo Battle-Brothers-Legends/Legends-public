@@ -1,4 +1,7 @@
 ::mods_hookNewObjectOnce("mapgen/templates/world/worldmap_generator", function (o) {
+	o.m.BridgeWideningChance <- 45; // change this if you want bridges to be more regularly wider
+	o.m.BridgeMinIslandSize <- 50; // minimum island size to create a bridge to
+
 	o.isWorldAcceptable = function (_rect) {
 		local ocean = ::World.getNumOfTilesWithType([::Const.World.TerrainType.Ocean]);
 		local nonOcean = _rect.W * _rect.H - ocean * 1.0;
@@ -179,8 +182,141 @@
 	//	 return true;
 	// }
 
-	o.refineSettlements = function ( _rect )
-	{
+	o.buildBridges <- function (_rect) {
+		this.logInfo("Bridging disconnected continents...");
+		local checked = {};
+		local islands = [];
+
+		// use BFS to get the map's islands and their sizes
+		for (local x = _rect.X; x < _rect.X + _rect.W; x++) {
+			for (local y = _rect.Y; y < _rect.Y + _rect.H; y++) {
+				local tile = this.m.WorldTiles[x][y];
+				if (tile.Type == ::Const.World.TerrainType.Ocean) {
+					continue;
+				}
+
+				local key = x * 1000 + y;
+				if (key in checked) {
+					continue;
+				}
+
+				local island = [];
+				local q = [tile];
+				checked[key] <- true;
+				local head = 0;
+
+				while (head < q.len()) {
+					local currentHead = q[head];
+					head++;
+					island.push(currentHead);
+
+					for (local i = 0; i < 6; i++) {
+						if (currentHead.hasNextTile(i)) {
+							local nextTile = currentHead.getNextTile(i);
+							if (nextTile.Type != ::Const.World.TerrainType.Ocean) {
+								local neighbourKey = nextTile.SquareCoords.X * 1000 + nextTile.SquareCoords.Y;
+								if (!(neighbourKey in checked)) {
+									checked[neighbourKey] <- true;
+									q.push(nextTile);
+								}
+							}
+						}
+					}
+				}
+				//::logDebug("Island size: " + island.len());
+				islands.push(island);
+			}
+		}
+
+		islands.sort(@(a, b) b.len() <=> a.len());
+		local mainland = islands[0];
+
+		// find the best place to connect the islands to mainland
+		for (local i = 1; i < islands.len(); i = ++i) {
+			local island = islands[i];
+			if (island.len() >= this.m.BridgeMinIslandSize) {
+				local bestDist = 999999;
+				local startTile = null;
+				local endTile = null;
+
+				for (local k = 0; k < island.len(); k += 5) {
+					local islandTile = island[k];
+					for (local m = 0; m < mainland.len(); m += 10) {
+						local mainlandTile = mainland[m];
+
+						local dist = ::Math.abs(islandTile.SquareCoords.X - mainlandTile.SquareCoords.X) + ::Math.abs(islandTile.SquareCoords.Y - mainlandTile.SquareCoords.Y);
+						if (dist < bestDist) {
+							bestDist = dist;
+							startTile = islandTile;
+							endTile = mainlandTile;
+						}
+					}
+				}
+
+				// calculate and paint the tiles on the way
+				if (startTile != null && endTile != null) {
+					local steps = ::Math.max(1, bestDist * 2);
+					local bridgeTiles = [];
+					for (local step = 0; step <= steps; step++) {
+						local x = ::Math.round(startTile.SquareCoords.X + (endTile.SquareCoords.X - startTile.SquareCoords.X) * (step.tofloat() / steps));
+						local y = ::Math.round(startTile.SquareCoords.Y + (endTile.SquareCoords.Y - startTile.SquareCoords.Y) * (step.tofloat() / steps));
+
+						if (x >= _rect.X && x < _rect.X + _rect.W && y >= _rect.Y && y < _rect.Y + _rect.H)	{
+							local bridgeTile = this.m.WorldTiles[x][y];
+							this.paintBridges(bridgeTile);
+							bridgeTiles.push(bridgeTile);
+
+							for (local j = 0; j < 6; j++) {
+								if (::Math.rand(1, 100) <= this.m.BridgeWideningChance) {
+									if (bridgeTile.hasNextTile(j)) {
+										local nextTile = bridgeTile.getNextTile(j);
+										this.paintBridges(nextTile);
+										bridgeTiles.push(nextTile);
+									}
+								}
+							}
+						}
+					}
+					mainland.extend(island); // it could be better not to do it for the contracts' sake - then the bridges will only be added from the mainland which should be where all towns are
+            		mainland.extend(bridgeTiles); 
+				}
+			}
+		}
+	}
+
+	o.paintBridges <- function(_tile) {
+		if (_tile.Type == ::Const.World.TerrainType.Ocean) {
+    		local targetBiome = ::Const.World.TerrainType.Plains;
+    
+			for (local j = 0; j < 6; j++) {
+				if (_tile.hasNextTile(j)) {
+					local neighbourType = _tile.getNextTile(j).Type;
+					if (neighbourType != ::Const.World.TerrainType.Ocean && neighbourType != ::Const.World.TerrainType.Shore)
+						targetBiome = neighbourType;
+				}
+			}
+
+			_tile.clear();
+			_tile.Type = 0; 
+		
+			local tileRect = {
+				X = _tile.SquareCoords.X,
+				Y = _tile.SquareCoords.Y,
+				W = 1,
+				H = 1,
+				IsEmpty = true
+			};
+
+			this.m.Tiles[targetBiome].fill(tileRect, null);
+		}
+	}
+
+	local buildElevation = o.buildElevation;
+	o.buildElevation = function (_rect) {
+		this.removeStraits(_rect);
+		this.buildBridges(_rect);
+		buildElevation(_rect);
+	}
 		local _properties = this.World.State.m.CampaignSettings;
 
 		local settlements = this.World.EntityManager.getSettlements();
