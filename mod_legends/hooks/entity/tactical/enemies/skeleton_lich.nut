@@ -12,7 +12,9 @@
 		this.addSprite("armor_layer_cloak");
 		this.addSprite("armor_upgrade_back");
 		foreach (a in ::Const.CharacterSprites.Helmets) {
-			this.addSprite(a);
+			if (!this.hasSprite(a)) {
+				this.addSprite(a);
+			}
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);

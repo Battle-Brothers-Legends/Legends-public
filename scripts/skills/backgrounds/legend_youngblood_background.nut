@@ -112,7 +112,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],
 			[2, ::Legends.Helmet.None]
-		]))
+		]));
 	}
 
 	function onUpdate( _properties )
