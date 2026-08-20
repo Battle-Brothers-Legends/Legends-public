@@ -108,6 +108,9 @@
 > RangedDefense -6 - -1
 > Initiative 65 - 75
 
+### Adventurous Noble & Disowned Noble
+- both backgrounds now has a ranged and melee version which can be both male and female
+
 ### Cannibal:
 - Abridged some of the cannibal recruitment event
 - New blueprint for sausages - 3 strange meat and 1 cooking spice
@@ -118,9 +121,6 @@
 
 ### Vala:
 - can no longer roll ranged skill stars
-
-### Adventurous Noble & Disowned Noble
-- both backgrounds now has a ranged and melee version which can be both male and female
 
 ## Perks
 
@@ -483,6 +483,7 @@
 - fixed gauntlets penetration stat not being used
 - fixed hand to hand not being modified by armor damage perks
 - fixed a few issues with moving weapons in and out of bags in combat
+- fixed Lorekeeper's headpiece
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

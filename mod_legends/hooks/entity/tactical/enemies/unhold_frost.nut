@@ -4,7 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
-		local b = m.BaseProperties;
+		local b = this.m.BaseProperties;
 		local body = this.getSprite("body");
 		local head = this.getSprite("head");
 		if (this.Math.rand(1, 100) < 10)

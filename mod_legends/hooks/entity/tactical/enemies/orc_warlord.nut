@@ -65,7 +65,7 @@
 		injury.setBrush("bust_orc_04_head_injured");
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 8;
