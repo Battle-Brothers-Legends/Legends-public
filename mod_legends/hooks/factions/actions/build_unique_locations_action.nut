@@ -44,7 +44,7 @@
 			}
 		}
 
-		if (missingLocations.len() == 0) {
+		if (missingLocations.len() == 0 || _retries == 0) {
 			this.m.CooldownUntil = 1000000000.0;
 			this.m.IsRunOnNewCampaign = false;
 			return;
