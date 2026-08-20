@@ -1,123 +1,10 @@
 # 19.5.0 - Name Pending
 
 ## Blazing Desert Plus
-- added patch for BD+ by Sato
+- added a patch for BD+ by Sato
 
-## Global Changes
-- Implemented a game-wide check that prohibits donkeys, undead ('untalkables') and skeletons ('origin-locked') from interacting in events unless SPECIFICALLY mentioned.
-- Fixes the spawning mechanism (dogs, bears, zombies, etc.) to always be 'animals' for the purposes of preserving lone wolf activation and not absorbing xp in battle.
-
-## Ambitions
-- New ambition: make city states aware (triggers at 800 renown or more).
-- Updated the 'make nobles aware' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.
-- Updated 'roster of six' ambition to give an item payout of food supplies to ease that sharp shift more difficult origins experience from this milestone expansion.
-
-
-
-## Backgrounds
-
-### Background stats
-- Randomization has been restored
-- Regular Brothers roll between:
-> Hitpoints 50 - 60
-> Bravery 30 - 40
-> Stamina 90 - 100
-> MeleeSkill 47 - 57
-> RangedSkill 32 - 42
-> MeleeDefense 0 - 5
-> RangedDefense 0 - 5
-> Initiative 100 - 110
-- Legion brothers roll between:
-> Hitpoints 40 - 50
-> Bravery 90 - 100
-> Stamina 30 - 40
-> MeleeSkill 47 - 57
-> RangedSkill 32 - 42
-> MeleeDefense 3 - 8
-> RangedDefense 5 - 10
-> Initiative 95 - 105
-- Puppet brothers roll between
-> Hitpoints 65 - 75
-> Bravery 90 - 100
-> Stamina 90 - 100
-> MeleeSkill 47 - 57
-> RangedSkill 20 - 30
-> MeleeDefense -5 - 0
-> RangedDefense -6 - -1
-> Initiative 65 - 75
-
-## Shield Changes
-- Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
-- Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
-
-### Regular Shield Item Changes
-- Shields in general no longer reduce ranged Damage Taken
-- Auxiliary Shield - now has 15 Block, 10-25 Damage
-- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 25 Block, 10-25 Damage
-> additionally reduces ranged Damage taken by 15%
-- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 30 Block, 10-25 Damage
-- Buckler Shield - now has 10 Block, 5-10 Damage
-- Heater Shield - now has 20 Block, 15-30 Damage
-- Kite Shield - now has 20 Block, 10-25 Damage
-> additionally reduces ranged Damage taken by 30%
-- Tower Shield - now has 20 Weight, 30 Block, 10-25 Damage
-- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
-> classified as a bucker and gains buckler skills and effects
-- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
-> classified as a bucker and gains buckler skills and effects
-- Orc Light Shield - now has 15 Block, 10-25 Damage, 24 Condition
-> additionally reduces ranged Damage taken by 15%
-- Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
-- Sipar - now has 30 Block, 10-25 Damage
-- Adarga - now has 15 Block, 10-25 Damage
-> additionally reduces ranged Damage taken by 15%
-- Wooden Shield - now has 20 Block, 10-25 Damage
-- Old Wooden Shield - now has 20 Block, 10-25 Damage
-- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 25 Block, 10-25 Damage
-> additionally reduces ranged Damage taken by 30%
-- Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
-- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 25 Block, 10-25 Damage
-> once per battle regrow itself to full upon destruction
-- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 25 Block, 10-25 Damage
-> twice per battle regrow itself to full upon destruction
-
-### Special Shield Item Changes
-- Gilder's Embrace - now has 50 block and 15-30 Damage
-- Named Bandit Heater/Named Undead Heater - now has 20 block, 15-30 Damage
-- Named Bandit Kite/Named Dragon Shield/Named Undead Kite - now has 20 Block, 10-25 Damage
-> additionally reduces ranged Damage taken by 30%
-- Named Buckler - now has 10 Block, 5-10 Damage
-- Named Fullmetal Heater - now has 25 Block, 20-35 Damage
-- Named Golden Round shield/Named Sipar - now has 30 Block, 10-25 Damage
-- Named Lindwurm Shield - now has 25 Mdef, 25 Rdef, 25 Block, 10-25 Damage
-> on enemy striking the shield will apply lindwurm acid to attacker
-- Named Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
-- Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 25 Block, 15-30 Damage
-- Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 30 Block, 10-25 Damage
-
-### Shield Ability Changes
-- `Fortify` - deleted
-- `Buckler Effect` - now grants 5% of Initiative as Defense and Block
-
-## Noble House Changes
-- introduced 40 new traits into the noble house trait system
-- expanded the number of mottos available to noble houses
-- added noble house traits to units and towns belonging to noble houses
-- modified the faction window to include traits
-- added short description to noble house traits available upon mouseover in faction window
-
-## Profession system
-- introduced a new system connecting camping system to brothers - profession tree
-- the tree is accessible via character screen, next to the perk tree
-- uses separate points, independent to regular perks and conveys bonuses for the whole company
-
-## Retinue
-- removed all current retinues
-- purchasable camp upgrades became the new retinues with gorgeous art
-- no renown requirements anymore, just a bunch of gold
-
-# Scenarios
-## Legion Origin
+## Origins
+### Legion
 - Removed camera pan to monolith at the start of a legion run after the opening event
 - Legate now has background text
 - Legion now all have background art, thanks to the squishy and cute Narkh
@@ -134,7 +21,7 @@
 - Siege: nobles (very hard)
 - Sack & destroy (hard-very hard)
 
-## Necro Trio & Solo Origins
+### Necro Trio & Solo
 - Shuffled possible backgrounds that could spawn as undead for the purposes of several events
 - Most, if not all, necromancer events now decrease relationships with potential employers if the player accepts the rewards of said event(s)
 - Summoner loses 1 melee defence talent, gets 2 hitpoint defence talents.
@@ -146,7 +33,7 @@
 > Partly a quick solution until we get more camp contracts made to fill in that early game isolation phase.
 - Necro trio: +50% additional recruit/upkeep cost on most recruits lowered to +20%.
 
-## Nomads Origin
+### Nomads
 - You now earn 0.1 relationship with the nomad faction per day per southern fighter under your command
 - Nomads can no longer get the following ambitions: make city states aware, win x arena fights, defeat holy war.
 - Indebted are now factored into the southern roster for this origin, and earn the 'anchor' perk for free
@@ -189,6 +76,49 @@
 - Hiring cost dropped from 350 to 295 (as legends armour layers were massively inflating their recruit cost).
 - Scenario unchanged
 
+## Backgrounds
+
+### Background stats
+- Randomization has been restored
+- Regular Brothers roll between:
+> Hitpoints 50 - 60
+> Bravery 30 - 40
+> Stamina 90 - 100
+> MeleeSkill 47 - 57
+> RangedSkill 32 - 42
+> MeleeDefense 0 - 5
+> RangedDefense 0 - 5
+> Initiative 100 - 110
+- Legion brothers roll between:
+> Hitpoints 40 - 50
+> Bravery 90 - 100
+> Stamina 30 - 40
+> MeleeSkill 47 - 57
+> RangedSkill 32 - 42
+> MeleeDefense 3 - 8
+> RangedDefense 5 - 10
+> Initiative 95 - 105
+- Puppet brothers roll between
+> Hitpoints 65 - 75
+> Bravery 90 - 100
+> Stamina 90 - 100
+> MeleeSkill 47 - 57
+> RangedSkill 20 - 30
+> MeleeDefense -5 - 0
+> RangedDefense -6 - -1
+> Initiative 65 - 75
+
+### Cannibal:
+- Abridged some of the cannibal recruitment event
+- New blueprint for sausages - 3 strange meat and 1 cooking spice
+- Tweaked cannibal eats part of brother event to be much more forgiving
+
+### Donkey
+- donkey appetite and donkey body integrated into the background (no functional changes)
+
+### Vala:
+- can no longer roll ranged skill stars
+
 ## Perks
 
 ### New Perks
@@ -216,21 +146,16 @@
 - `Rebound` - moved to tier 6
 - `Overwhelm` - moved to tier 3
 
-### Trait Changes
+## Professions
+- introduced a new system connecting the camping system to brothers - profession tree
+- the tree is accessible via character screen, next to the perk tree
+- uses separate points, independent to regular perks and conveys bonuses for the whole company
+
+## Traits
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
-- poisons are now refillable and use the ammo system
-- added redback poison vials and blueprints
-
-### Miscellaneous
-- `Berserker Mushrooms` - if the character has berserker rage it'll grant 5 points of rage at turn start
-
-### Runes
-- rune effect values were redone slightly, so they all follow the same rules now
-- this means that upgraded tent produces up to 1.5 more powerful effects than not upgraded uniformly (rounded)
-- affected runes are: endurance, radiance, durability, blazing (slight changes)
 
 ### Armors
 - added Segmented Breastplate
@@ -240,7 +165,7 @@
 - plate_full_greaves_named and plate_full_greaves_painted merged into a single item
 - Vala Cloak changed into L4, Vala now always starts with Vala Dress and Vala Cloak equipped
 
-### Weapon
+### Weapons
 
 **Backup throwing skills**
 - now separated from throw javelin/throw axe in the code to avoid errors when dual wielding thrown weapon and item of the same type
@@ -316,12 +241,76 @@
 - `Knock Out`
 - `Return Favor`
 
+### Shields
+- Shields now have an innate new block system which works as follows: After damage calculations on attacker side (ie Killing Frenzy) and before damage calculations on defender side (Battleforged, Nimble, Lithe) subtract the damage done based on the block value of the shield, relevant perks, effects and items.
+- Shields now also have an innate minimum and maximum value which is applied to skills like `Buckler Bash` and `Knock Back`
+- `Fortify` - removed
+- `Buckler Effect` - now grants 5% of Initiative as Defense and Block
+
+### Regular Shields
+- Shields in general no longer reduce ranged Damage Taken
+- Auxiliary Shield - now has 15 Block, 10-25 Damage
+- Coffin Shield - now has 15 Mdef, 20 Rdef, 36 condition, 25 Block, 10-25 Damage
+> additionally reduces ranged Damage taken by 15%
+- Ancient Tower Shield - now has 25 Mdef, 20 Rdef, 48 condition, 30 Block, 10-25 Damage
+- Buckler Shield - now has 10 Block, 5-10 Damage
+- Heater Shield - now has 20 Block, 15-30 Damage
+- Kite Shield - now has 20 Block, 10-25 Damage
+> additionally reduces ranged Damage taken by 30%
+- Tower Shield - now has 20 Weight, 30 Block, 10-25 Damage
+- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
+> classified as a bucker and gains buckler skills and effects
+- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
+> classified as a bucker and gains buckler skills and effects
+- Orc Light Shield - now has 15 Block, 10-25 Damage, 24 Condition
+> additionally reduces ranged Damage taken by 15%
+- Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
+- Sipar - now has 30 Block, 10-25 Damage
+- Adarga - now has 15 Block, 10-25 Damage
+> additionally reduces ranged Damage taken by 15%
+- Wooden Shield - now has 20 Block, 10-25 Damage
+- Old Wooden Shield - now has 20 Block, 10-25 Damage
+- Ancient Southern Tower (Mummy) Shield - now has 20 Weight, 25 Block, 10-25 Damage
+> additionally reduces ranged Damage taken by 30%
+- Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
+- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 25 Block, 10-25 Damage
+> once per battle regrow itself to full upon destruction
+- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 25 Block, 10-25 Damage
+> twice per battle regrow itself to full upon destruction
+
+### Special Shields
+- Gilder's Embrace - now has 50 block and 15-30 Damage
+- Named Bandit Heater/Named Undead Heater - now has 20 block, 15-30 Damage
+- Named Bandit Kite/Named Dragon Shield/Named Undead Kite - now has 20 Block, 10-25 Damage
+> additionally reduces ranged Damage taken by 30%
+- Named Buckler - now has 10 Block, 5-10 Damage
+- Named Fullmetal Heater - now has 25 Block, 20-35 Damage
+- Named Golden Round shield/Named Sipar - now has 30 Block, 10-25 Damage
+- Named Lindwurm Shield - now has 25 Mdef, 25 Rdef, 25 Block, 10-25 Damage
+> on enemy striking the shield will apply lindwurm acid to attacker
+- Named Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
+- Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 25 Block, 15-30 Damage
+- Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 30 Block, 10-25 Damage
+
+### Consumables
+- `Berserker Mushrooms` - if the character has berserker rage it'll grant 5 points of rage at turn start
+- poisons are now refillable and use the ammo system
+- added redback poison vials and blueprints
+
+### Runes
+- rune effect values were redone slightly, so they all follow the same rules now
+- this means that upgraded tent produces up to 1.5 more powerful effects than not upgraded uniformly (rounded)
+- affected runes are: endurance, radiance, durability, blazing (slight changes)
+
 ### Blueprints
 - new `Sipar Shield` blueprint from 1 iron ingot
 - `Tower Shield` blueprint now costs 2 quality wood and 1 iron ingot
 
 ### Misc
 - `Balanced Rucksack` - usable item sold around marketplaces which adds 2 extra bag slots to a mercenary
+- Masterwork tools cost from 750 to 1250.
+- Masterwork metal cost from 1450 to 2900.
+- Masterwork fabric cost from 950 to 1140.
 
 ## Enemies
 - Estoc removed from robber barons and bandit leaders
@@ -347,6 +336,76 @@
 
 ### City States
 - `Gladiators` - gain `Net Casting`, `Net Mastery`, additionally gain `Alert` and `Lone Wolf` on Legendary
+
+## Ambitions
+- New ambition: make city states aware (triggers at 800 renown or more).
+- Updated the 'allied nobles' ambition to give the player a randomly chosen named weapon (11 possibilities) upon ambition completion.
+- Updated 'roster of six' ambition to give an item payout of food supplies to ease that sharp shift more difficult origins experience from this milestone expansion.
+
+## Events
+- Implemented a game-wide check that prohibits donkeys, undead ('untalkables') and skeletons ('origin-locked') from interacting in events unless SPECIFICALLY mentioned.
+- added a new town encounter during drought
+- added a new event requiring a well read person
+- Added an event involving a sighthound
+- Added an event involving a northern warhound
+- Removed moral rep. hit from children crusade event
+- Two brave and/or fearless trait bros can now cure another bro of their fear of the dark trait
+- Added puppet interacting with anatomist
+- Added an event to necro both origins to convert a cultist to a puppet
+- Added event between anatomist and alchemist
+- Added an event between surgeon and anatomist
+- Resurrect stronger variant of undead (cyclical) - necro origins only
+- Resurrect a knight as undead (semi-unique, rare) - necro origins only
+- Puppets in a town cause trouble - necro origins only
+- Necromancer(s) run into a witchhunter patrol - necro origins only
+- Visit nomad tents location(s) with detailed interactions - Nomads origin only
+- Deathspiral (generic) - legion only
+- Trenches (generic) - legion only
+- Training (cyclical) - legion only
+- Crypt (unique) - legion only
+
+## Retinue
+- removed all current retinues
+- purchasable camp upgrades became the new retinues with gorgeous art by Misha
+- no renown requirements anymore, just a bunch of gold
+
+## Camping
+- made most dialogs shorter
+- hunters tent removed
+- crafting system has been overhauled
+- cooking tent (station) added
+- cleaned up cooking and enchanting ui
+- cooking and enchanting now work similarly to regular crafting (allows crafting forever and preselecting recipes)
+- all crafting and cooking recipes now require professions
+- professions affect the crafting process
+- crafted item types reassigned in some cases to make it more intuitive
+- small visual reorganization to make the stations easier to click
+- right click tents to open the correct list in commander's tent
+- painter tent allows painting the shoulder layer
+- upgraded scouting has been improved and allows the party to scout for locations while camping
+- gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
+- healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
+- scout tent now always produces a scouting message
+
+## New Campaign
+- changed the labels so the functions are easier to understand
+- replaced the water connectivity and landmass settings with a unified water slider
+- generated maps should be more consistent with the chosen setting and generate much quicker
+- added a bridging function to map generation to ensure connections between bigger islands and continents and the mainland
+
+## Gender settings and changes
+- added a mod setting allowing the player to choose the gender of the commander avatar
+- added a mod setting allowing the player to choose % of female characters
+- added a mod setting allowing the player to choose % of enemy female characters
+- some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler, Widow, Caravan Hand, Miner, Servant (southern), Juggler
+- fixed a bunch of remaining gender issues
+
+## Noble Houses
+- introduced 40 new traits into the noble house trait system
+- expanded the number of mottos available to noble houses
+- added noble house traits to units and towns belonging to noble houses
+- modified the faction window to include traits
+- added short description to noble house traits available upon mouseover in faction window
 
 ## Quality of life
 - added speed settings to combat and world expanding on vanilla systems
@@ -386,68 +445,8 @@
 - added a visual to display the number of books and scrolls read/available
 - books/scrolls will now show a tooltip in shops and other screens based on last selected bro (with name)
 - Lone wolf equipment will now self-equip on game start as opposed to being in the stash
-- Tooltip of rotten flesh made more to the point
-
-
-## Camping changes
-- made most dialogs shorter
-- hunters tent removed
-- crafting system has been overhauled
-- cooking tent (station) added
-- cleaned up cooking and enchanting ui
-- cooking and enchanting work similarly to regular crafting now (allows crafting forever and preselecting recipes)
-- all crafting and cooking recipes require professions now
-- professions affect the crafting process
-- crafted items types reassigned in some cases to make it more intuitive
-- small visual reorganization to make the stations easier to click
-- right click tents to open the correct list in commander's tent
-- painter tent allows painting the shoulder layer
-- upgraded scouting has been improved and allows the party to scout for locations while camping
-- gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
-- healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
-
-## Events
-- added a new town encounter during drought
-- added a new event requiring a well read person
-- Added an event involving a sighthound
-- Added an event involving a northern warhound
-- Removed moral rep. hit from children crusade event
-- Two brave and/or fearless trait bros can now cure another bro of their fear of the dark trait
-- Added puppet interacting with anatomist
-- Added an event to necro both origins to convert a cultist to a puppet
-- Added event between anatomist and alchemist
-- Added an event between surgeon and anatomist
-- Resurrect stronger variant of undead (cyclical) - necro origins only
-- Resurrect a knight as undead (semi-unique, rare) - necro origins only
-- Puppets in a town cause trouble - necro origins only
-- Necromancer(s) run into a witchhunter patrol - necro origins only
-- Visit nomad tents location(s) with detailed interactions - Nomads origin only
-- Deathspiral (generic) - legion only
-- Trenches (generic) - legion only
-- Training (cyclical) - legion only
-- Crypt (unique) - legion only
-
-## Gender settings and changes
-- added a mod setting allowing the player to choose the gender of the commander avatar
-- added a mod setting allowing the player to choose % of female characters
-- added a mod setting allowing the player to choose % of enemy female characters
-- some backgrounds received female counterparts: Fisher, Shepherd, Vagabond, Inventor, Brawler, Widow, Caravan Hand, Miner, Servant (southern), Juggler
-- fixed a bunch of remaining gender issues
-
-## Other
-- donkey appetite and donkey body integrated into the background
-- Added some clarifications and cleanup to tools usage tooltip.
-- Vala can no longer roll ranged skill stars
-
-### Cannibal background:
-- Abridged some of the cannibal recruitment event
-- New blueprint for sausages - 3 strange meat and 1 cooking spice
-- Tweaked cannibal eats part of brother event to be much more forgiving
-
-## Masterwork Tools
-- Masterwork tools cost from 750 to 1250.
-- Masterwork metal cost from 1450 to 2900.
-- Masterwork fabric cost from 950 to 1140.
+- clarified rotten flesh tooltip
+- clarified the tools usage tooltip.
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -472,6 +471,10 @@
 - fixed hurt brothers being counted towards training modifier
 - fixed encounters in towns sometimes being inconsistent
 - Meistersanger now states it needs an instrument equipped to use in the perk desc
+- fixed the spawning mechanism (dogs, bears, zombies, etc.) to always be 'animals' for the purposes of preserving lone wolf activation and not absorbing xp in battle.
+- fixed gauntlets penetration stat not being used
+- fixed hand to hand not being modified by armor damage perks
+- fixed a few issues with moving weapons in and out of bags in combat
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
