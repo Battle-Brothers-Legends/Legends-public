@@ -15,7 +15,7 @@
 		{
 			s = "legend_" + this.m.Sprite;
 		}
-		return s
+		return s;
 	}
 
 	o.getSpriteDestroyedName <- function ()

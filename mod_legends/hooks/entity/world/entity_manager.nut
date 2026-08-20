@@ -144,7 +144,7 @@
 					{
 						if (troop.ID == uo.Type)
 						{
-							troop.Outfits <- clone uo.Outfits
+							troop.Outfits <- clone uo.Outfits;
 						}
 					}
 					// if ("Outfits" in troop.m)
@@ -371,8 +371,6 @@
 
 			for( local i = 0; i < 2; i = ++i )
 			{
-				local r = this.Math.rand(1, 13);
-
 				local loot = [
 					"supplies/bread_item",
 					"supplies/mead_item",

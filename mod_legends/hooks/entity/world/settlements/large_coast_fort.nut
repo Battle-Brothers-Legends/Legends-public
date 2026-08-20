@@ -8,7 +8,7 @@
 			::Legends.Background.LegendTaxidermist,
 			::Legends.Background.LegendBlacksmith,
 			::Legends.Background.LegendArbalester,
-			::Legends.Background.LegendAdventurousLady
+			::Legends.Background.LegendAdventurousLady,
 			::Legends.Background.LegendAdventurousLady,
 		]);
 		this.m.StablesList = [

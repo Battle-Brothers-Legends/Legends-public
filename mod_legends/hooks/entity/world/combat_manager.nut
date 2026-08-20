@@ -91,14 +91,14 @@
 		{
 			_combat.Combatants = [];
 			_combat.IsResolved = true;
-			return
+			return;
 		}
 
 		if (_combat.Factions == null || _combat.Factions.len() == 0)
 		{
 			_combat.Factions = [];
 			_combat.IsResolved = true;
-			return
+			return;
 		}
 
 		for( local i = 0; i < _combat.Combatants.len(); i = ++i )
@@ -117,7 +117,7 @@
 				local lFaction = _combat.Factions[f];
 				if (lFaction == null || lFaction.len() == 0)
 				{
-					continue
+					continue;
 				}
 
 				if (combatant.Party.getFaction() != f && !this.World.FactionManager.isAllied(combatant.Party.getFaction(), f))

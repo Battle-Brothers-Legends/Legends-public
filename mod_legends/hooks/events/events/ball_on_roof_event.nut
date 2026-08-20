@@ -4,7 +4,7 @@
 		create();
 		// %otherbrother% refers to this.m.Other. For %otherbrother%-related pronouns, use %they_other%. Thank Vanilla code for this confusion
 		::Legends.Screens.hook(this, "Good", function (_screen) {
-			_screen.Text = "[img]gfx/ui/events/event_97.png[/img]You send %otherbrother% to try and retrieve the ball. Using %otherother% as a stepstool, %they_other% launches himself onto the roof and gets the toy. The boy is ecstatic and the smile on his face warms even the most cynical of your mercenaries.";
+			_screen.Text = "[img]gfx/ui/events/event_97.png[/img]You send %otherbrother% to try and retrieve the ball. Using %otherother% as a stepstool, %they_other% launches %themselves_other% onto the roof and gets the toy. The boy is ecstatic and the smile on his face warms even the most cynical of your mercenaries.";
 			local start = _screen.start;
 			_screen.start = function (_event) {
 				start(_event);

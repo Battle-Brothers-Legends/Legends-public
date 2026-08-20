@@ -5,7 +5,7 @@
 	o.m.Resources <- 0;
 
 	o.getDefenderCount <- function () {
-		return this.m.Troops.len()
+		return this.m.Troops.len();
 	}
 
 	o.getTroopComposition = function ()
@@ -75,7 +75,7 @@
 						id = 20,
 						type = "text",
 						icon = "ui/orientation/" + this.Const.EntityIcon[i] + ".png",
-						text = getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i]
+						text = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i]
 					});
 				}
 			}
@@ -115,9 +115,9 @@
 		_out.writeU8(numTroops);
 
 		// CRITICAL SAVE CORRUPTION BUG: Do not serialize more troops than numTroops !!!!
-		// DONT DO THIS ----> foreach( t in this.m.Troops ) { <---- DONT DO THIS
+		// DONT DO THIS ----> foreach( t in this.m.Troops ) <---- DONT DO THIS
 		for (local i = 0; i < numTroops; i = ++i) {
-			::Const.World.Common.serializeTroop(_out, this.m.Troops[i])
+			::Const.World.Common.serializeTroop(_out, this.m.Troops[i]);
 		}
 
 		_out.writeI32(this.m.CombatID);

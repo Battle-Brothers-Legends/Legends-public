@@ -246,7 +246,7 @@
 
 			local terrain = this.getTerrainInRegion(tile);
 
-			if (terrain.Adjacent[::Const.World.TerrainType.Ocean] >= 3 || terrain.Adjacent[::Const.World.TerrainType.Shore] >= 3)	{
+			if (terrain.Adjacent[::Const.World.TerrainType.Ocean] >= 3 || terrain.Adjacent[::Const.World.TerrainType.Shore] >= 3) {
 				continue;
 			}
 
@@ -313,16 +313,16 @@
 		return settlementTiles;
 	}
 
-	o.buildSettlements = function ( _rect )	{
+	o.buildSettlements = function (_rect) {
 		::LoadingScreen.updateProgress("Building Settlements ...");
 		::logInfo("Building settlements...");
 		local isLeft = ::Math.rand(0, 1);
 		local settlementTiles = [];
 
 		local settlementsToCreate = [];
-    	local weightedFractions = [];
+		local weightedFractions = [];
 		local fractionSum = 0;
-    	local settlementsAllocated = 0;
+		local settlementsAllocated = 0;
 
 		foreach (list in ::Const.World.Settlements.LegendsWorldMaster) {
 			local part = ::Legends.Mod.ModSettings.getSetting("Settlements").getValue() * list.Ratio;
@@ -341,7 +341,9 @@
 
 			for (local i = 0; i < weightedFractions.len(); i++) {
 				local score = weightedFractions[i];
-				if (score <= 0) continue;
+				if (score <= 0) {
+					continue;
+				}
 
 				if (pick <= score) {
 					settlementsToCreate[i]++;
@@ -351,11 +353,11 @@
 					break;
 				}
 
-				pick -= score;     
-        	}
+				pick -= score;
+			}
 		}
 
-		foreach(i, list in ::Const.World.Settlements.LegendsWorldMaster)	{
+		foreach (i, list in ::Const.World.Settlements.LegendsWorldMaster) {
 			local num = settlementsToCreate[i];
 			local additionalSpace = 0;
 
@@ -363,13 +365,13 @@
 				additionalSpace = list.AdditionalSpace;
 			}
 			foreach (s in list.Sizes) {
-				for (local i = 0; i < s.MinAmount; i++)	{
+				for (local i = 0; i < s.MinAmount; i++) {
 					settlementTiles = this.addSettlement(_rect, isLeft, list.Types, s.Size, settlementTiles, additionalSpace, "IgnoreSide" in list);
 					num--;
 				}
 			}
 
-			while (num > 0)	{
+			while (num > 0) {
 				local r = ::Math.rand(1, 10);
 				local total = 0;
 				foreach (s in list.Sizes) {
@@ -388,162 +390,136 @@
 		return settlementTiles.len() >= 19;
 	}
 
-	o.guaranteeAllBuildingsInSettlements = function ()
-	{
+	o.guaranteeAllBuildingsInSettlements = function () {
 
 		local settlements = this.World.EntityManager.getSettlements();
 
-		if (this.Const.World.Buildings.Fletchers < 2)
-		{
+		if (this.Const.World.Buildings.Fletchers < 2) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
-				if (s.getSize() >= 2 && s.hasFreeBuildingSlot() && !s.hasBuilding("building.fletcher"))
-				{
+			foreach (s in settlements) {
+				if (s.getSize() >= 2 && s.hasFreeBuildingSlot()	&& !s.hasBuilding("building.fletcher"))	{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Fletchers; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Fletchers; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
 		}
 
-		if (this.Const.World.Buildings.Temples < 2)
-		{
+		if (this.Const.World.Buildings.Temples < 2) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
+			foreach (s in settlements) {
 				if (s.getSize() >= 2 && s.hasFreeBuildingSlot() && !s.hasBuilding("building.temple"))
 				{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Temples; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Temples; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
 		}
 
-		if (this.Const.World.Buildings.Blackmarket < 2)
-		{
+		if (this.Const.World.Buildings.Blackmarket < 2) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
-				if (s.getSize() >= 2 && !s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.blackmarket"))
+			foreach (s in settlements) {
+				if (s.getSize() >= 2 && !s.isMilitary()	&& s.hasFreeBuildingSlot() && !s.hasBuilding("building.blackmarket"))
 				{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Blackmarket; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Blackmarket; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
 		}
 
-		if (this.Const.World.Buildings.Kennels < 2)
-		{
+		if (this.Const.World.Buildings.Kennels < 2) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
+			foreach (s in settlements) {
 				if (s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.kennel"))
 				{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Kennels; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Kennels; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
 		}
 
-		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists < 2)
-		{
+		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists < 2) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
-				if (!s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.taxidermist"))
+			foreach (s in settlements) {
+				if (!s.isMilitary()	&& s.hasFreeBuildingSlot() && !s.hasBuilding("building.taxidermist"))
 				{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Taxidermists; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Taxidermists; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
 		}
 
-		if (this.Const.World.Buildings.Stables < 1)
-		{
+		if (this.Const.World.Buildings.Stables < 1) {
 			local candidates = [];
 
-			foreach( s in settlements )
-			{
-				if (s.isMilitary() && s.hasFreeBuildingSlot() && !s.hasBuilding("building.stables"))
+			foreach (s in settlements) {
+				if (s.isMilitary()	&& s.hasFreeBuildingSlot()	&& !s.hasBuilding("building.stables"))
 				{
 					candidates.push(s);
 				}
 			}
 
-			for( local i = this.Const.World.Buildings.Stables; i <= 2; i = ++i )
-			{
+			for (local i = this.Const.World.Buildings.Stables; i <= 2; i = ++i) {
 				local r = this.Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 
-				if (candidates.len() == 0)
-				{
+				if (candidates.len() == 0) {
 					break;
 				}
 			}
@@ -552,17 +528,14 @@
 	}
 
 	local buildAdditionalRoads = o.buildAdditionalRoads;
-	o.buildAdditionalRoads = function (_rect, _properties)
-	{
-		if (::Legends.Mod.ModSettings.getSetting("AllTradeLocations").getValue())
-		{
+	o.buildAdditionalRoads = function (_rect, _properties) {
+		if (::Legends.Mod.ModSettings.getSetting("AllTradeLocations").getValue()) {
 			this.guaranteeAllLocations();
 		}
 		buildAdditionalRoads(_rect, _properties);
 	}
 
-	o.guaranteeAllLocations <- function()
-	{
+	o.guaranteeAllLocations <- function () {
 		local locs = {}
 		locs["attached_location.amber_collector"] <- {
 			Amount = 0,
@@ -666,22 +639,17 @@
 		};
 
 		local settlements = this.World.EntityManager.getSettlements();
-		foreach( s in settlements )
-		{
-			foreach (a in s.getAttachedLocations())
-			{
-				if (a.getTypeID() in locs)
-				{
+		foreach (s in settlements) {
+			foreach (a in s.getAttachedLocations()) {
+				if (a.getTypeID() in locs) {
 					locs[a.getTypeID()].Amount += 1;
 				}
 			}
 		}
 
-		foreach (k,v in locs)
-		{
+		foreach (k, v in locs) {
 
-			if (v.Amount > 0)
-			{
+			if (v.Amount > 0) {
 				continue;
 			}
 
@@ -697,8 +665,7 @@
 				this.Const.World.TerrainType.LeaveForest
 			];
 			local tries = 0;
-			while (tries++ < 1000)
-			{
+			while (tries++ < 1000) {
 				local index = this.Math.rand(0, settlements.len() - 1);
 				settlements[index].buildAttachedLocation(1, v.Script, ALL, [], 2, false, true, true);
 				if (settlements[index].hasAttachedLocation(k)) {
