@@ -5,8 +5,8 @@
 	o.isWorldAcceptable = function (_rect) {
 		local ocean = ::World.getNumOfTilesWithType([::Const.World.TerrainType.Ocean]);
 		local nonOcean = _rect.W * _rect.H - ocean * 1.0;
-    	local ratio = nonOcean / (ocean * 1.0);
-    	this.logInfo("Land/Ocean ratio: " + ::Const.World.Settings.MaxLandToWaterRatio + " >= " + ratio + " >= " + ::Const.World.Settings.MinLandToWaterRatio + " :: Land: " + nonOcean + " Ocean: " + ocean);
+		local ratio = nonOcean / (ocean * 1.0);
+		this.logInfo("Land/Ocean ratio: " + ::Const.World.Settings.MaxLandToWaterRatio + " >= " + ratio + " >= " + ::Const.World.Settings.MinLandToWaterRatio + " :: Land: " + nonOcean + " Ocean: " + ocean);
 		return (ratio >= ::Const.World.Settings.MinLandToWaterRatio) && (ratio <= ::Const.World.Settings.MaxLandToWaterRatio);
 	}
 
@@ -317,28 +317,25 @@
 		this.buildBridges(_rect);
 		buildElevation(_rect);
 	}
+
+	o.refineSettlements = function (_rect) {
 		local _properties = this.World.State.m.CampaignSettings;
 
 		local settlements = this.World.EntityManager.getSettlements();
 
-		foreach( s in settlements )
-		{
+		foreach (s in settlements) {
 			s.updateProperties();
 			s.build(_properties);
 		}
 
-		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
-		{
-			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
-			{
+		for (local x = _rect.X; x < _rect.X + _rect.W; x = ++x) {
+			for (local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y) {
 				local tile = this.World.getTileSquare(x, y);
 
-				foreach( s in settlements )
-				{
+				foreach (s in settlements) {
 					local d = s.getTile().getDistanceTo(tile);
 
-					if (d > 6)
-					{
+					if (d > 6) {
 						continue;
 					}
 

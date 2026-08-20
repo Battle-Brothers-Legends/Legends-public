@@ -339,6 +339,30 @@ WorldCampfireScreenMainDialogModule.prototype.createSlot = function (_data, _i, 
 		//slot.attr('src', Path.GFX + _data.Image + '.png');
 		slot_placeholder.addClass('opacity-almost-none');
 	});
+
+	// added solely because repair overshadows workshop and makes it hard to hover
+    if (_i === 6) {
+		slot.addClass('no-pointer-events');
+		var cbAnvil = $('<div class="slot6-clickbox slot6-anvil"></div>');
+		var cbArmor = $('<div class="slot6-clickbox slot6-armor"></div>');
+		_content.append(cbAnvil).append(cbArmor);
+
+		var clickbox = cbAnvil.add(cbArmor);
+
+		clickbox.on('mouseenter', function () {
+			slot.trigger('mouseenter');
+			slot.trigger('mouseover');
+		});
+
+		clickbox.on('mouseleave', function () {
+			slot.trigger('mouseleave');
+			slot.trigger('mouseout');
+		});
+
+		clickbox.click(function () {
+			slot.trigger('click');
+		});
+	}
 }
 
 WorldCampfireScreenMainDialogModule.prototype.updateAssets = function (_data) {

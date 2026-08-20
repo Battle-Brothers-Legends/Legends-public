@@ -147,8 +147,9 @@
 
 .world-campfire-screen > .l-main-dialog-container .slot3 { /* gatherer */
 	position: absolute;
-	left: 11.0rem;
-	bottom: -5.0rem;
+	left: 49.0rem;
+	bottom: -0.5rem;
+	z-index: 105 !important;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot4 { /* healer */
@@ -167,8 +168,29 @@
 
 .world-campfire-screen > .l-main-dialog-container .slot6 { /* repair */
 	position: absolute;
-	left: 9.0rem;
-	bottom: 2.0rem;
+	left: 49.7rem;
+	bottom: 14.7rem;
+	z-index: 104 !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot6-clickbox {
+    position: absolute;
+    z-index: 104 !important;
+    pointer-events: auto !important;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot6-anvil {
+    left: 49.5rem;
+    bottom: 15.0rem;
+    width: 15.0rem;
+    height: 13.0rem;
+}
+
+.world-campfire-screen > .l-main-dialog-container .slot6-armor {
+    left: 59.0rem;
+    bottom: 22.0rem;
+    width: 11.0rem;
+    height: 18.0rem;
 }
 
 .world-campfire-screen > .l-main-dialog-container .slot7 { /* scout */
@@ -187,7 +209,7 @@
 
 .world-campfire-screen > .l-main-dialog-container .slot9 { /* workshop */
 	position: absolute;
-	left: 44.0rem;
+	left: 43.7rem;
 	bottom: 20.0rem;
 	z-index: 103 !important;
 }
