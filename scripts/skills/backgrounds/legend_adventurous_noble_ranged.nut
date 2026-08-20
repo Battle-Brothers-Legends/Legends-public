@@ -1,4 +1,4 @@
-this.legend_adventurous_lady_background <- this.inherit("scripts/skills/backgrounds/adventurous_noble_background", {
+this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/backgrounds/adventurous_noble_background", {
 	function create () {
 		this.adventurous_noble_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousNobleRanged);

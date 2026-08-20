@@ -14,4 +14,29 @@
 			}
 		}
 	}
+
+	o.onUpdateScore = function () {
+		local brothers = this.World.getPlayerRoster().getAll();
+
+		if (brothers.len() < 2) {
+			return;
+		}
+
+		local candidates = [];
+
+		foreach( bro in brothers ) {
+			if (bro.getLevel() >= 5 && ::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.LegendDisownedNobleRanged,
+				::Legends.Background.DisownedNoble)) {
+				candidates.push(bro);
+			}
+		}
+
+		if (candidates.len() == 0) {
+			return;
+		}
+
+		this.m.Disowned = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Score = candidates.len() * 5;
+	}
 });

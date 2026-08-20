@@ -1,4 +1,4 @@
-this.legend_disowned_lady_background <- this.inherit("scripts/skills/backgrounds/disowned_noble_background", {
+this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/backgrounds/disowned_noble_background", {
 	function create () {
 		this.disowned_noble_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDisownedNobleRanged);

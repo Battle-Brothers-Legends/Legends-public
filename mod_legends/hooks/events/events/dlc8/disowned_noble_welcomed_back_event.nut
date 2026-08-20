@@ -93,4 +93,42 @@
 			}
 		}
 	}
+
+	o.onUpdateScore = function () {
+		local towns = this.World.EntityManager.getSettlements();
+		local nearTown = false;
+		local town;
+		local playerTile = this.World.State.getPlayer().getTile();
+
+		foreach( t in towns ) {
+			if (t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
+				nearTown = true;
+				town = t;
+				break;
+			}
+		}
+
+		if (!nearTown) {
+			return;
+		}
+
+		local brothers = this.World.getPlayerRoster().getAll();
+		local disowned_candidates = [];
+
+		foreach( bro in brothers ) {
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.DisownedNoble,
+				::Legends.Background.LegendDisownedNobleRanged) && bro.getLevel() >= 6) {
+				disowned_candidates.push(bro);
+			}
+		}
+
+		if (disowned_candidates.len() == 0) {
+			return;
+		}
+
+		this.m.Disowned = disowned_candidates[this.Math.rand(0, disowned_candidates.len() - 1)];
+		this.m.Town = town;
+		this.m.Score = 4 * disowned_candidates.len();
+	}
 })

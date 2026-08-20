@@ -298,7 +298,7 @@ s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" hei
 <sprite id="bust_demon_hound_spirit_01" offsetY="35" ic="FF192432" img="entity\undead\bust_demon_hound_spirit_01.png" left="-65" right="65" top="-53" bottom="52" />
 <sprite id="bust_demon_hound_injury" offsetY="35" offsetX="-10" ic="FF192432" width="106" height="99" img="entity\undead\bust_demon_hound_injury.png" left="-55" right="51" top="-54" bottom="45" />
 <sprite id="bust_demon_hound_dead" offsetY="12" f="64FF" ic="FF465E6A" img="entity\undead\bust_demon_hound_dead.png" left="-58" right="59" />
-<sprite id="bust_demon_hound_head_dead" offsetY="12" f="64F6" ic="FF465E6A" img="entity\undead\bust_demon_hound_head_dead.png" left="-58" right="59" />
+<sprite id="bust_demon_hound_head_dead" offsetY="35" ic="FF465E6A" img="entity\undead\bust_demon_hound_head_dead.png" left="-58" right="-2" top="-35" bottom="5" />
 <sprite id="bust_demon_hound_essence" offsetY="0" offsetX="0" ic="FF192432" width="34" height="93" img="entity\undead\bust_demon_hound_essence.png" left="0" right="34" top="0" bottom="93" />
 
 
