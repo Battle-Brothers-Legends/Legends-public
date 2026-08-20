@@ -205,192 +205,70 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		if (!_entity.isHiddenToPlayer())
 		{
-			local effect1 = {
+			local effect = {
 				Delay = 0,
-				Quantity = 4,
-				LifeTimeQuantity = 4,
+				Quantity = 12,
+				LifeTimeQuantity = 12,
 				SpawnRate = 100,
 				Brushes = [
-					"bust_demon_hound_essence"
+					"explosion_01",
+					"explosion_02",
+					"explosion_03"
 				],
 				Stages = [
 					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff5f"),
-						ColorMax = this.createColor("ffffff5f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
+						LifeTimeMin = 1.0,
+						LifeTimeMax = 1.0,
+						ColorMin = this.createColor("0001BF5f"),
+						ColorMax = this.createColor("0001BF5f"),
+						ScaleMin = 0.5,
+						ScaleMax = 0.5,
 						RotationMin = 0,
 						RotationMax = 0,
 						VelocityMin = 80,
 						VelocityMax = 100,
-						DirectionMin = this.createVec(0.0, -1.0),
-						DirectionMax = this.createVec(0.0, -1.0),
-						SpawnOffsetMin = this.createVec(-10, 40),
-						SpawnOffsetMax = this.createVec(10, 50),
+						DirectionMin = this.createVec(-1.0, -1.0),
+						DirectionMax = this.createVec(1.0, 1.0),
+						SpawnOffsetMin = this.createVec(-10, -10),
+						SpawnOffsetMax = this.createVec(10, 10),
 						ForceMin = this.createVec(0, 0),
 						ForceMax = this.createVec(0, 0)
 					},
 					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff2f"),
-						ColorMax = this.createColor("ffffff2f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
+						LifeTimeMin = 1.0,
+						LifeTimeMax = 1.0,
+						ColorMin = this.createColor("0000912f"),
+						ColorMax = this.createColor("0000912f"),
+						ScaleMin = 0.3,
+						ScaleMax = 0.3,
 						RotationMin = 0,
 						RotationMax = 0,
 						VelocityMin = 80,
 						VelocityMax = 100,
-						DirectionMin = this.createVec(0.0, -1.0),
-						DirectionMax = this.createVec(0.0, -1.0),
+						DirectionMin = this.createVec(-1.0, -1.0),
+						DirectionMax = this.createVec(1.0, 1.0),
 						ForceMin = this.createVec(0, 0),
 						ForceMax = this.createVec(0, 0)
 					},
 					{
 						LifeTimeMin = 0.1,
 						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("ffffff00"),
-						ColorMax = this.createColor("ffffff00"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
+						ColorMin = this.createColor("09099400"),
+						ColorMax = this.createColor("09099400"),
+						ScaleMin = 0.1,
+						ScaleMax = 0.1,
 						RotationMin = 0,
 						RotationMax = 0,
 						VelocityMin = 80,
 						VelocityMax = 100,
-						DirectionMin = this.createVec(0.0, -1.0),
-						DirectionMax = this.createVec(0.0, -1.0),
+						DirectionMin = this.createVec(-1.0, -1.0),
+						DirectionMax = this.createVec(1.0, 1.0),
 						ForceMin = this.createVec(0, 0),
 						ForceMax = this.createVec(0, 0)
 					}
 				]
 			};
-			local effect2 = {
-				Delay = 0,
-				Quantity = 4,
-				LifeTimeQuantity = 4,
-				SpawnRate = 100,
-				Brushes = [
-					"bust_demon_hound_essence"
-				],
-				Stages = [
-					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff5f"),
-						ColorMax = this.createColor("ffffff5f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(1.0, 0.0),
-						DirectionMax = this.createVec(1.0, 0.0),
-						SpawnOffsetMin = this.createVec(-40, -10),
-						SpawnOffsetMax = this.createVec(-50, 10),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff2f"),
-						ColorMax = this.createColor("ffffff2f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(1.0, 0.0),
-						DirectionMax = this.createVec(1.0, 0.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.1,
-						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("ffffff00"),
-						ColorMax = this.createColor("ffffff00"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(1.0, 0.0),
-						DirectionMax = this.createVec(1.0, 0.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					}
-				]
-			};
-			local effect3 = {
-				Delay = 0,
-				Quantity = 4,
-				LifeTimeQuantity = 4,
-				SpawnRate = 100,
-				Brushes = [
-					"bust_demon_hound_essence"
-				],
-				Stages = [
-					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff5f"),
-						ColorMax = this.createColor("ffffff5f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, 0.0),
-						DirectionMax = this.createVec(-1.0, 0.0),
-						SpawnOffsetMin = this.createVec(40, 10),
-						SpawnOffsetMax = this.createVec(50, 10),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.4,
-						LifeTimeMax = 0.4,
-						ColorMin = this.createColor("ffffff2f"),
-						ColorMax = this.createColor("ffffff2f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, 0.0),
-						DirectionMax = this.createVec(-1.0, 0.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.1,
-						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("ffffff00"),
-						ColorMax = this.createColor("ffffff00"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, 0.0),
-						DirectionMax = this.createVec(-1.0, 0.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					}
-				]
-			};
-			this.Tactical.spawnParticleEffect(false, effect1.Brushes, _entity.getTile(), effect1.Delay, effect1.Quantity, effect1.LifeTimeQuantity, effect1.SpawnRate, effect1.Stages, this.createVec(0, 40));
-			this.Tactical.spawnParticleEffect(false, effect2.Brushes, _entity.getTile(), effect2.Delay, effect2.Quantity, effect2.LifeTimeQuantity, effect2.SpawnRate, effect2.Stages, this.createVec(0, 40));
-			this.Tactical.spawnParticleEffect(false, effect3.Brushes, _entity.getTile(), effect3.Delay, effect3.Quantity, effect3.LifeTimeQuantity, effect3.SpawnRate, effect3.Stages, this.createVec(0, 40));
+			this.Tactical.spawnParticleEffect(false, effect.Brushes, _entity.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, _tag.OnFadeIn, _tag);
 		}
 		else
@@ -438,14 +316,16 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 				LifeTimeQuantity = 12,
 				SpawnRate = 100,
 				Brushes = [
-					"bust_demon_hound_essence"
+					"explosion_01",
+					"explosion_02",
+					"explosion_03"
 				],
 				Stages = [
 					{
 						LifeTimeMin = 1.0,
 						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("ffffff5f"),
-						ColorMax = this.createColor("ffffff5f"),
+						ColorMin = this.createColor("0001BF5f"),
+						ColorMax = this.createColor("0001BF5f"),
 						ScaleMin = 1.0,
 						ScaleMax = 1.0,
 						RotationMin = 0,
@@ -462,8 +342,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 					{
 						LifeTimeMin = 1.0,
 						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("ffffff2f"),
-						ColorMax = this.createColor("ffffff2f"),
+						ColorMin = this.createColor("0000912f"),
+						ColorMax = this.createColor("0000912f"),
 						ScaleMin = 0.9,
 						ScaleMax = 0.9,
 						RotationMin = 0,
@@ -478,8 +358,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 					{
 						LifeTimeMin = 0.1,
 						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("ffffff00"),
-						ColorMax = this.createColor("ffffff00"),
+						ColorMin = this.createColor("09099400"),
+						ColorMax = this.createColor("09099400"),
 						ScaleMin = 0.1,
 						ScaleMax = 0.1,
 						RotationMin = 0,
@@ -498,6 +378,24 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			local decal = _tile.spawnDetail("bust_demon_hound_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false);
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
+
+			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			{
+				decal = _tile.spawnDetail("bust_demon_hound_head_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal.Scale = 0.9;
+				decal.setBrightness(0.9);
+			}
+			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			{
+				local layers = [
+					"bust_demon_hound_head_dead"
+				];
+
+				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				decap[0].Scale = 0.9;
+				decap[0].setHorizontalFlipping(true);
+			}
+
 			this.spawnTerrainDropdownEffect(_tile);
 		}
 
@@ -516,17 +414,18 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse( _tile, _fatalityType, _killer ) {
 		local corpse = clone this.Const.Corpse;
 		corpse.Faction = this.getFaction();
 		corpse.CorpseName = "A " + this.getName();
 		corpse.Armor = this.m.BaseProperties.Armor;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = false;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
 		corpse.IsConsumable = false;
 		corpse.IsResurrectable = false;
-		corpse.Tile = _tile;
+		if (_tile != null) {
+			corpse.Tile = _tile;
+		}
 		return corpse;
 	}
 
@@ -562,14 +461,12 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 
-		local _body = this.Math.rand(1,3);
-		local _spirit = this.Math.rand(1,3);
-		this.m.Items.getAppearance().Body = "bust_demon_hound_0" + _body;
+		this.m.Items.getAppearance().Body = "bust_demon_hound_01";
 		this.addSprite("socket").setBrush("bust_base_undead");
-		//this.addSprite("fog").setBrush("bust_ghost_fog_02");
+		this.addSprite("fog").setBrush("bust_ghost_fog_02");
 
 		local body = this.addSprite("body");
-		body.setBrush("bust_demon_hound_0" + _body);
+		body.setBrush("bust_demon_hound_0" + this.Math.rand(1, 2));
 		// body.Saturation = 1.0;
 		// body.setBrightness(0.7);
 		// body.varySaturation(0.25);
@@ -580,21 +477,18 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		injury.Visible = false;
 		injury.setBrush("bust_demon_hound_injury");
 
-		local head = this.addSprite("head");
-		head.setBrush("bust_demon_hound_spirit_0" + _spirit);
-		//head.setBrightness(1.0)
-		head.varySaturation(0.25);
-		head.varyColor(0.2, 0.2, 0.2);
 		local blur_1 = this.addSprite("blur_1");
-		//blur_1.setBrightness(1.0)
-		blur_1.setBrush("bust_demon_hound_spirit_0" + _spirit);
+		blur_1.setBrush("bust_demon_hound_spirit_01");
 		blur_1.varySaturation(0.25);
 		blur_1.varyColor(0.2, 0.2, 0.2);
 		local blur_2 = this.addSprite("blur_2");
-		//blur_2.setBrightness(1.0)
-		blur_2.setBrush("bust_demon_hound_spirit_0" + _spirit);
+		blur_2.setBrush("bust_demon_hound_spirit_01");
 		blur_2.varySaturation(0.25);
 		blur_2.varyColor(0.2, 0.2, 0.2);
+		local blur_3 = this.addSprite("blur_3");
+		blur_3.setBrush("bust_demon_hound_spirit_01");
+		blur_3.varySaturation(0.25);
+		blur_3.varyColor(0.2, 0.2, 0.2);
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
@@ -621,7 +515,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA))
+		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA))
 		{
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
@@ -634,7 +528,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB))
+		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB))
 		{
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
@@ -647,7 +541,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC))
+		if (this.moveSpriteOffset("blur_3", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC))
 		{
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
@@ -659,10 +553,11 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onFactionChanged();
 		local flip = isAlliedWithPlayer();
 		getSprite("body").setHorizontalFlipping(flip);
-		getSprite("head").setHorizontalFlipping(flip);
 		getSprite("injury").setHorizontalFlipping(flip);
+		getSprite("fog").setHorizontalFlipping(flip);
 		getSprite("blur_1").setHorizontalFlipping(flip);
 		getSprite("blur_2").setHorizontalFlipping(flip);
+		getSprite("blur_3").setHorizontalFlipping(flip);
 	}
 
 });

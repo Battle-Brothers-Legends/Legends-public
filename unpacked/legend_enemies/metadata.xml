@@ -293,12 +293,9 @@ s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" hei
 <sprite id="bust_vampire_lady_detail_01" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_detail_01.png" left="-51" right="29" top="-46" bottom="14" />
 <sprite id="bust_vampire_lady_detail_02" offsetY="35" ic="FF5B6878" width="104" height="142" img="entity\undead\bust_vampire_lady_detail_02.png" left="-34" right="31" top="-45" bottom="-4" />
 
-<sprite id="bust_demon_hound_01" offsetY="35" offsetX="-10" ic="FF192432" width="106" height="99" img="entity\undead\bust_demon_hound_01.png" left="-55" right="51" top="-54" bottom="45" />
-<sprite id="bust_demon_hound_02" offsetY="35" offsetX="-10" ic="FF192432" width="106" height="99" img="entity\undead\bust_demon_hound_02.png" left="-55" right="51" top="-54" bottom="45" />
-<sprite id="bust_demon_hound_03" offsetY="35" offsetX="-10" ic="FF192432" width="106" height="99" img="entity\undead\bust_demon_hound_03.png" left="-55" right="51" top="-54" bottom="45" />
-<sprite id="bust_demon_hound_spirit_01" offsetY="35" offsetX="-1" ic="FF192432" width="109" height="110" img="entity\undead\bust_demon_hound_spirit_01.png" left="-51" right="59" top="-60" bottom="51" />
-<sprite id="bust_demon_hound_spirit_02" offsetY="36" offsetX="-10" ic="FF192432" width="109" height="110" img="entity\undead\bust_demon_hound_spirit_02.png" left="-51" right="59" top="-49" bottom="61" />
-<sprite id="bust_demon_hound_spirit_03" offsetY="36" offsetX="-6" ic="FF192432" width="109" height="110" img="entity\undead\bust_demon_hound_spirit_03.png" left="-51" right="59" top="-49" bottom="61" />
+<sprite id="bust_demon_hound_01" offsetY="35" ic="FF192432" img="entity\undead\bust_demon_hound_01.png" left="-65" right="65" top="-53" bottom="52" />
+<sprite id="bust_demon_hound_02" offsetY="35" ic="FF192432" img="entity\undead\bust_demon_hound_02.png" left="-65" right="65" top="-53" bottom="52" />
+<sprite id="bust_demon_hound_spirit_01" offsetY="35" ic="FF192432" img="entity\undead\bust_demon_hound_spirit_01.png" left="-65" right="65" top="-53" bottom="52" />
 <sprite id="bust_demon_hound_injury" offsetY="35" offsetX="-10" ic="FF192432" width="106" height="99" img="entity\undead\bust_demon_hound_injury.png" left="-55" right="51" top="-54" bottom="45" />
 <sprite id="bust_demon_hound_dead" offsetY="12" f="64FF" ic="FF465E6A" img="entity\undead\bust_demon_hound_dead.png" left="-58" right="59" />
 <sprite id="bust_demon_hound_head_dead" offsetY="12" f="64F6" ic="FF465E6A" img="entity\undead\bust_demon_hound_head_dead.png" left="-58" right="59" />

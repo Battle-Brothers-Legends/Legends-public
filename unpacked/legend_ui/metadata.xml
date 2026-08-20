@@ -152,9 +152,8 @@
 	<sprite id="mini_catapult_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_catapult_circle.png" />
 	<sprite id="mini_incoming_circle" ic="FF23165B" img="skills\mini\mini_incoming_circle.png" />
 	<sprite id="mini_omens_circle" ic="FF23165B" img="skills\mini\mini_omens_circle.png" />
-	<sprite id="demon_hound_flame_01" ic="FF23165B" img="skills\demon_hound_flame_01.png" />
 	<sprite id="demon_hound_bite" ic="FF23165B" img="skills\demon_hound_bite.png" />
-	<sprite id="demon_hound_bite_effect" ic="FF23165B" img="skills\demon_hound_bite_effect.png" />
+	<sprite id="demon_hound_bite_effect" ic="FF23165B" img="effects\demon_hound_bite_effect.png" />
 	<sprite id="mini_graze_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_graze_circle.png" />
 	<sprite id="mini_bleed_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_bleed_circle.png" />
 	<sprite id="mini_food_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_food_circle.png" />
