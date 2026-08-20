@@ -16,7 +16,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	}
 
 	function isHidden() {
-		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getBackground().getModifiers().Enchanting > 0).len() != 0;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getBackground().getModifiers().Enchanting > 0).len() == 0;
 	}
 
 	function getDescription() {
