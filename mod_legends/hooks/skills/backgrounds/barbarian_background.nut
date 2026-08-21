@@ -40,6 +40,10 @@
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.ExpertHunter;
 	}
 
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
+
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 		_gender ? this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.WildMale}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Faces = ::Const.Faces.WildMale, Hairs = ::Const.Hair.WildMale, Beards = ::Const.Beards.WildExtended});

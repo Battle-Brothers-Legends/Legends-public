@@ -39,6 +39,10 @@
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 	}
 
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
+
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
 			

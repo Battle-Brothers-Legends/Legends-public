@@ -32,6 +32,10 @@
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 	}
+
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
 	
 	o.setGender <- function (_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
