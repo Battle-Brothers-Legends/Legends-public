@@ -510,6 +510,7 @@
 - `LegendExtendendAura` -> `LegendExtendedAura`
 - `LegendTattos` -> `LegendTattoos`
 - `LegendFortify` -> deleted
+- `LegendDoubleStrike` -> `LegendFlux`
 - `legend_fortify_skill` -> deleted
 - `legend_fortify_effect` -> deleted
 - `legend_ancient_summoner_background` -> deleted
@@ -544,3 +545,4 @@
 - `legend_noble_ranged` renamed to `legend_arbalester_background`
 - `legend_noble_shield` renamed to `legend_foot_soldier_background`
 - `legend_noble_2h` renamed to `legend_house_guard_background`
+- `perk_legend_double_strike` renamed to `perk_legend_flux`
