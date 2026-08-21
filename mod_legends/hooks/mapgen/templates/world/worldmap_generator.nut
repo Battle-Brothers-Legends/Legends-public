@@ -459,7 +459,8 @@
 
 		foreach (list in ::Const.World.Settlements.LegendsWorldMaster) {
 			local part = ::Legends.Mod.ModSettings.getSetting("Settlements").getValue() * list.Ratio;
-			local number = part.tointeger();
+			// ensure that there is at least 1 fortification per faction (edge case 19 settlements - 6 factions)
+			local number = list.Types != ::Const.World.Settlements.Legends_fortifications ? part.tointeger() : ::Math.max(::Legends.Mod.ModSettings.getSetting("Factions").getValue(), part.tointeger());
 			
 			settlementsToCreate.push(number);
 			weightedFractions.push(((part - number) * 10000).tointeger());

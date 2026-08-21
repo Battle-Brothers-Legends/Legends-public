@@ -58,20 +58,18 @@
 	}
 
 	local createFactions = o.createFactions;
-	o.createFactions = function ()
-	{
-		m.IsCreatingFactions = true;
+	o.createFactions = function () {
+		this.m.IsCreatingFactions = true;
 		createFactions();
-		m.IsCreatingFactions = false;
+		this.m.IsCreatingFactions = false;
 	}
 
 	local createAlliances = o.createAlliances;
-	o.createAlliances = function()
-	{
+	o.createAlliances = function() {
 		if (this.m.IsCreatingFactions) {
-			createFreeCompany();
-			createDummyFaction();
-			local dummy = getDummyFaction();
+			this.createFreeCompany();
+			this.createDummyFaction();
+			local dummy = this.getDummyFaction();
 			// Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
 			dummy.setMimicValues(dummy.getMimicID());
 		}
@@ -438,8 +436,7 @@
 		}
 	}
 
-	o.makeRandomSettlementFriendlyToPlayer <- function ()
-	{
+	o.makeRandomSettlementFriendlyToPlayer <- function () {
 		local settlements = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
 		local randomSettlementID = settlements[this.Math.rand(0, settlements.len() - 1)].getID();
 		this.World.FactionManager.getFaction(randomSettlementID).setPlayerRelation(50.0);
@@ -447,7 +444,7 @@
 		local settlements = this.World.EntityManager.getSettlements();
 		foreach( s in settlements )
 		{
-		if (s.getOwner() != null && s.getOwner().getID() == randomHsettlementID)
+		if (s.getOwner() != null && s.getOwner().getID() == this.randomHsettlementID)
 			{
 			s.setDiscovered(true);
 			this.World.uncoverFogOfWar(s.getTile().Pos, 500.0);
@@ -456,10 +453,9 @@
 	}
 
 	local onDeserialize = o.onDeserialize;
-	o.onDeserialize = function ( _in )
-	{
+	o.onDeserialize = function ( _in ) {
 		onDeserialize(_in);
-		local dummy = getDummyFaction();
+		local dummy = this.getDummyFaction();
 		if (dummy != null)
 			dummy.setMimicValues(dummy.getMimicID()); // Setup the dummy faction's mimic behaviour after all possible factions have been deserialized
 	}

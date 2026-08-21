@@ -12,17 +12,9 @@ this.camp_completed_event <- this.inherit("scripts/events/event", {
 			List = [],
 			Characters = [],
 			Options = [],
-			function onSortByID(_a, _b) {
-				if (_a.id > _b.id) {
-					return -1;
-				} else if (_a.id < _b.id) {
-					return 1;
-				}
-				return 0;
-			},
 			function start(_event) {
 				if (::World.getPlayerRoster().getAll().len() == 1) {
-					this.Text = "[img]gfx/ui/events/event_39.png[/img]Afer a well deserved rest, here's the report of the camp's activities.";
+					this.Text = "[img]gfx/ui/events/event_39.png[/img]Afer a well deserved rest, here's the report of your camping activities.";
 				}
 				::Music.setTrackList(::Const.Music.VictoryTracks, ::Const.Music.CrossFadeTime);
 				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
@@ -43,7 +35,7 @@ this.camp_completed_event <- this.inherit("scripts/events/event", {
 					}
 				}];
 				this.List = ::World.Camp.getResults();
-				this.List.sort(this.onSortByID);
+				this.List.sort(@(_a, _b) (_a.id > _b.id ? -1 : (_a.id < _b.id ? 1 : 0)));
 			}
 		});
 	}

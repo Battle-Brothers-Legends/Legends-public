@@ -29,11 +29,9 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 			Assigned = 0,
 			Modifiers = []
 		}
-		foreach(bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getCampAssignment() != this.m.ID) {
-				continue;
-			}
-
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
+		foreach (bro in assignedBros) {
 			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Enchanting;
 			if (bro.getLevel() >= 12) {
 				rm *= 1.3;

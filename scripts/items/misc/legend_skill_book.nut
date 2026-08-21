@@ -104,8 +104,10 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 
 		local actor = ::World.State.m.CharacterScreen.getSelectedActor();
 		if (actor != null) {
+			local self = this;
 			local injury = ::Legends.Effects.get(actor, ::Legends.Effect.LegendHeadache);
 			local effect = ::Legends.Effects.get(actor, ::Legends.Effect.LegendIrritable);
+			local tree = this.m.PerkGroups.filter(@(_,_perkGroup) (_perkGroup.Name == self.m.PerkGroupSelection));
 			if (this.m.ID.find("ancient_scroll") != null && (actor.getSkills().hasTrait(::Legends.Trait.Bright) && actor.getFlags().getAsInt("LegendsScrollCount") > 2 || actor.getFlags().getAsInt("LegendsScrollCount"))) {
 				result.push({
 					id = 10,
@@ -134,11 +136,18 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 					icon = "ui/icons/cancel.png",
 					text = actor.getName() + " is irritable and won't read for now. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color])"
 				});
-			} else {
+			} else if (tree.len() > 0 && actor.getBackground().hasPerkGroup(tree[0])) {
 				result.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/unlocked_small.png",
+					text = actor.getName() + " already knows this perk tree"
+				});
+			} else {
+				result.push({
+					id = 10,
+					type = "text",
+					icon = "ui/icons/plus_green.png",
 					text = actor.getName() + " can use this item"
 				});
 			}
@@ -192,13 +201,13 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		}
 
 		if (_actor.getBackground().hasPerkGroup(tree)) {
-			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("[color=%negative%]No possible new perk group can be added to this character.[/color]"));
+			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("[color=%negativeEvent%]This character already knows this tree.[/color]"));
 			return false;
 		}
 
 		_actor.getBackground().addPerkGroup(tree.Tree);
 
-		::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("The [color=%negative%]%group%[/color] perk group has been added to this character.", [["group", this.m.PerkGroupSelection]]));
+		::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip("The [color=%positiveEvent%]%group%[/color] perk group has been added to this character.", [["group", this.m.PerkGroupSelection]]));
 		::Sound.play("sounds/scribble.wav", ::Const.Sound.Volume.Inventory);
 
 		this.addScrollCounter(_actor);

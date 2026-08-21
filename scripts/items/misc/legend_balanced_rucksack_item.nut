@@ -53,14 +53,14 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 				result.push({
 					id = 10,
 					type = "text",
-					icon = "ui/icons/unlocked_small.png",
+					icon = "ui/icons/plus_green.png",
 					text = actor.getName() + " can use this item"
 				});
 			} else if (bagSlots == 4) {
 				result.push({
 					id = 10,
 					type = "text",
-					icon = "ui/icons/cancel.png",
+					icon = "ui/icons/unlocked_small.png",
 					text = "Cannot be used as " + actor.getName() + " already has a rucksack"
 				});
 			}

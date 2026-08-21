@@ -12,7 +12,7 @@ if (!("Trait" in ::Legends))
 		if (obj[0] == _obj.ID)
 			return;
 	}
-	::Const.CharacterTraits.push([_obj.ID, _obj.Script])
+	::Const.CharacterTraits.push([_obj.ID, _obj.Script]);
 }
 
 ::Legends.Traits.addTraitDefObjects <- function( _traitDefObjects )
