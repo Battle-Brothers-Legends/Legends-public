@@ -21,6 +21,7 @@ this.camp_manager <- {
 		LastCampingUpdateText = [],
 		CampEncountersCooldownUntil = 0.0,
 		CampEncounters = [],
+		PendingCombat = null
 	},
 
 	function create()
@@ -608,5 +609,25 @@ this.camp_manager <- {
 		}
 	}
 
+	function onCampAttacked () {
+		this.m.IsCamping = false;
+		::World.State.getPlayer().setCamping(false);
+
+		this.m.StopTime = ::Time.getVirtualTimeF();
+
+		foreach (b in this.m.Tents)	{
+			if (b.Camping()) {
+				b.completed();
+			}
+		}
+
+		this.m.LastCampTime = this.m.StopTime;
+		::World.Assets.consumeItems();
+		::World.Assets.refillAmmo();
+		::World.Assets.updateAchievements();
+		::World.Assets.checkAmbitionItems();
+		::World.State.getPlayer().updateStrength();
+		::World.Events.fire("event.legends_camp_attacked");
+	}
 };
 

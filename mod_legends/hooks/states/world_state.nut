@@ -1443,8 +1443,21 @@
 		return true;
 	}
 
-	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )
-	{
+	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null ) {
+		// finish camping before every combat while camping
+		if (::World.Camp.isCamping()) {
+			::World.Camp.m.PendingCombat = {
+				IsPlayerInitiated = _isPlayerInitiated,
+				IsCombatantsVisible = _isCombatantsVisible,
+				AllowFormationPicking = _allowFormationPicking,
+				Properties = _properties,
+				Pos = _pos,
+			};
+
+			::World.Camp.onCampAttacked();
+			return;
+		}
+
 		// fix guest roster positions before every battle
 		local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 		foreach(bro in ::World.getGuestRoster().getAll()) {
