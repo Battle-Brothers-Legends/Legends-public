@@ -168,6 +168,9 @@
 - plate_full_greaves_named and plate_full_greaves_painted merged into a single item
 - Vala Cloak changed into L4, Vala now always starts with Vala Dress and Vala Cloak equipped
 
+### Helmets
+- added 5 more variations of Face Mask, art by Ivan
+
 ### Weapons
 
 **Backup throwing skills**

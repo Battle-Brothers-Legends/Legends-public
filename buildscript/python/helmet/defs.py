@@ -887,7 +887,7 @@ class Defs:
  "desc" :  "A crudely forged, heavy plate of iron designed to shield the throat and the jaw.",
  "adesc" : "Includes a crudely forged metal bevor."
  },
-{"name" : "facemask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 6, "value" : 150, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
+{"name" : "facemask"                     , "layer" : "top", "lower": True, "min" : 1, "max" : 11, "value" : 150, "con" : 20, "stam" : -1, "vis" : -1, "hair" : "false", "beard" : "true", "impactSound" : "plate", "invSound" : "plate",
  "title" :  "Face Mask",
  "desc" :  "A metal faceplate in the shape of a human face.",
   "adesc" : "Includes a metal anthropomorphic faceplate."
