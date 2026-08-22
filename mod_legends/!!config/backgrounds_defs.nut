@@ -228,7 +228,7 @@ backgroundDefs.push({
     Name = "Companion",
     HiringCost = 0,
     DailyCost = 10,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.Companion2h <- null;
@@ -240,7 +240,7 @@ backgroundDefs.push({
     // WikiName = "Companion Twohanded",
     HiringCost = 0,
     DailyCost = 12,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.CompanionRanged <- null;
@@ -252,7 +252,7 @@ backgroundDefs.push({
     // WikiName = "Companion Ranged",
     HiringCost = 0,
     DailyCost = 11,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.CompanionSouthern <- null;
@@ -264,7 +264,7 @@ backgroundDefs.push({
     // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 10,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.CompanionSouthern2h <- null;
@@ -276,7 +276,7 @@ backgroundDefs.push({
     // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 12,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.CompanionSouthernRanged <- null;
@@ -288,7 +288,7 @@ backgroundDefs.push({
     // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 11,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.ConvertedCultist <- null;
@@ -1332,7 +1332,7 @@ backgroundDefs.push({
     // WikiName = "Lonewolf Companion",
     HiringCost = 0,
     DailyCost = 0,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.LegendCompanionRanged <- null;
@@ -1345,7 +1345,7 @@ backgroundDefs.push({
     // WikiName = "",
     HiringCost = 0,
     DailyCost = 0,
-    Icon = "ui/traits/trait_icon_32.png",
+    Icon = "ui/backgrounds/background_companion.png",
 });
 
 ::Legends.Background.LegendConscript <- null;
