@@ -85,8 +85,7 @@
 
 	o.onChangeAttributes = function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-			return ::Legends.Backgrounds.getStats(::Legends.Background.Wildman);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Wildman);
 	}
 
 	o.onSetAppearance = function ()
