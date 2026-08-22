@@ -330,9 +330,6 @@
 ::Const.Strings.PerkName.LegendBecomeBerserker <- "Become Berserker"; //converts a background to a berserker, unknown use.
 ::Const.Strings.PerkName.LegendPreparedForAnything <- "Prepare For Anything"; //gives bags and belts for some reason...?
 ::Const.Strings.PerkName.LegendStrictSermons <- "Strict Sermons"; //gives fortified mind for crusader origin. Can probably be removed.
-::Const.Strings.PerkName.LegendCitrinitas <- "Citrinitas (Trance)"; //alchemist skill, currently not working/implemented
-::Const.Strings.PerkName.LegendAlbedo <- "Albedo"; //alchemist skill, currently not working/implemented
-::Const.Strings.PerkName.LegendNigredo <- "Nigredo"; //alchemist skill, currently not working/implemented
 ::Const.Strings.PerkName.LegendSummonCatapult <- "Summon Catapult"; //pulled due to issues with deployment, could work in the future.
 
 ::Const.Strings.PerkDescription.LegendAnchor <- @"
@@ -3032,20 +3029,6 @@ Put your all into your studies.
 • Stacks with itself and effects of a similar nature. Does not need to be in combat for this perk to work.
 ";
 //Masons, Inventors and Historians and do not need this perk unless they have the dumb trait for scrolls.
-::Const.Strings.PerkDescription.LegendCitrinitas <- @"
-[color=%active%][u]Active:[/u][/color]
-• A powerful cocktail of ingredients provides a trance like state, granting the banner effect, and drums of war effects to everyone in the company at the end of the user's turn.
-";
-
-::Const.Strings.PerkDescription.LegendAlbedo <- @"
-[color=%active%][u]Active:[/u][/color]
-• A concoction of secret materials that allows the user to restore up to 25 armor to a target.
-";
-
-::Const.Strings.PerkDescription.LegendNigredo <- @"
-[color=%active%][u]Active:[/u][/color]
-• An alchemical mixture of acidic vapours, encased in flasks that can be thrown at the enemy to dissolves their armor.
-";
 
 ::Const.Strings.PerkDescription.LegendHerbcraft <- @"
 Knowledge of the properties of various roots and herbs lets you construct medicines from base ingredients.

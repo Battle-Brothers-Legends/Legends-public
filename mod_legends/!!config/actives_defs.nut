@@ -1894,14 +1894,6 @@ activesDefs.push({
 	Name = "Burrow Tail",
 });
 
-::Legends.Active.LegendCitrinitasTrance <- null;
-activesDefs.push({
-	ID = "actives.legend_citrinitas_trance",
-	Script = "scripts/skills/actives/legend_citrinitas_trance_skill",
-	Const = "LegendCitrinitasTrance",
-	Name = "Citrinitas (Trance)",
-});
-
 ::Legends.Active.LegendMarkTarget <- null;
 activesDefs.push({
 	ID = "actives.legend_mark_target",
@@ -1980,14 +1972,6 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_vala_warden_wail_skill",
 	Const = "LegendValaWardenWail",
 	Name = "Wail",
-});
-
-::Legends.Active.LegendAlbedo <- null;
-activesDefs.push({
-	ID = "actives.legend_albedo",
-	Script = "scripts/skills/actives/legend_albedo_skill",
-	Const = "LegendAlbedo",
-	Name = "Albedo",
 });
 
 ::Legends.Active.LegendApothecaryMushrooms <- null;
@@ -2636,14 +2620,6 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_nightvision_skill",
 	Const = "LegendNightvision",
 	Name = "Nightvision",
-});
-
-::Legends.Active.LegendNigredo <- null;
-activesDefs.push({
-	ID = "actives.legend_nigredo",
-	Script = "scripts/skills/actives/legend_nigredo_skill",
-	Const = "LegendNigredo",
-	Name = "Nigredo",
 });
 
 ::Legends.Active.LegendOmsAmphora <- null;

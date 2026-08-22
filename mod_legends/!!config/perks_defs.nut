@@ -3511,39 +3511,6 @@ perkDefObjects.push({
 	Const = "LegendScholar"
 });
 
-::Legends.Perk.LegendCitrinitas <- null;
-perkDefObjects.push({
-	ID = "perk.legend_citrinitas",
-	Script = "scripts/skills/perks/perk_legend_citrinitas",
-	Name = ::Const.Strings.PerkName.LegendCitrinitas,
-	Tooltip = ::Const.Strings.PerkName.LegendCitrinitas,
-	Icon = "ui/perks/perk_34.png", //todo: add icon
-	IconDisabled = "ui/perks/perk_34_sw.png",
-	Const = "LegendCitrinitas"
-});
-
-::Legends.Perk.LegendAlbedo <- null;
-perkDefObjects.push({
-	ID = "perk.legend_albedo",
-	Script = "scripts/skills/perks/perk_legend_albedo",
-	Name = ::Const.Strings.PerkName.LegendAlbedo,
-	Tooltip = ::Const.Strings.PerkName.LegendAlbedo,
-	Icon = "ui/perks/MaxToolsT1.png", //todo icons
-	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
-	Const = "LegendAlbedo"
-});
-
-::Legends.Perk.LegendNigredo <- null;
-perkDefObjects.push({
-	ID = "perk.legend_nigredo",
-	Script = "scripts/skills/perks/perk_legend_nigredo",
-	Name = ::Const.Strings.PerkName.LegendNigredo,
-	Tooltip = ::Const.Strings.PerkName.LegendNigredo,
-	Icon = "ui/perks/MaxToolsT1.png",
-	IconDisabled = "ui/perks/MaxToolsT1_bw.png",
-	Const = "LegendNigredo"
-});
-
 ::Legends.Perk.LegendHerbcraft <- null;
 perkDefObjects.push({
 	ID = "perk.legend_herbcraft",

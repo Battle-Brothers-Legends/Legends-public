@@ -652,26 +652,6 @@ if (!("Perks" in ::Const))
 	]
 }
 
-::Const.Perks.AlchemyMagicTree <- {
-	ID = "AlchemyMagicTree"
-	Name = "Alchemy",
-	Icon = "ui/perks/perk_34.png",
-	Descriptions = [
-		"alchemy"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendCitrinitas],
-		[
-		::Legends.Perk.LegendAlbedo,
-		::Legends.Perk.LegendNigredo
-		],
-		[]
-	]
-}
-
 ::Const.Perks.TherianthropyMagicTree <- {
 	ID = "TherianthropyMagicTree",
 	Name = "Therianthropy",
@@ -713,7 +693,6 @@ if (!("Perks" in ::Const))
 		::Const.Perks.TransmutationMagicTree,
 		::Const.Perks.EvocationMagicTree,
 		// ::Const.Perks.PremonitionMagicTree,
-		// ::Const.Perks.AlchemyMagicTree,
 		// ::Const.Perks.TherianthropyMagicTree,
 		::Const.Perks.PhilosophyMagicTree,
 		::Const.Perks.AssassinMagicTree,
