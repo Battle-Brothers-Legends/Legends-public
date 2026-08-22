@@ -19,7 +19,7 @@
 		local count = 9;
 		if(::Legends.isLegendaryDifficulty())
 			count += 3;
-		for( local i = 0; i < 9; i = ++i )
+		for( local i = 0; i < count; i = ++i )
 		{
 			this.Const.World.Common.addTroop(this, {
 				Type = this.Const.World.Spawn.Troops.ZombieBetrayer

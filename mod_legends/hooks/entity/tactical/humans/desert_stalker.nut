@@ -28,7 +28,8 @@
 		local weapons = [
 			"weapons/dagger",
 			"weapons/oriental/nomad_mace",
-			"weapons/oriental/qatal_dagger"
+			"weapons/oriental/qatal_dagger",
+			"weapons/legend_katar"
 		];
 		this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 

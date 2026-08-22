@@ -41,6 +41,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			::Legends.Traits.getID(::Legends.Trait.Loyal),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands),
+			::Legends.Traits.getID(::Legends.Trait.LegendPredictable),
 		];
 		this.m.Titles = [
 			"the Savage",
@@ -95,16 +96,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 
 	function onBuildDescription()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "{For some, the wild is a refuge. | It is said that woman is born with the wilderness in her, and that she does wrong by turning her back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where she hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason she seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about her body. When asked why she wishes to join a band of mercenaries, she hoots and, with a crooked finger, replicates one of her fleshen arts across the sky. | Wounds, old and fresh, dot her already mottled body. And they are not superficial - this woman had been fighting something fierce in the wild. | One has to wonder if the calamities which chased her into the forests have come to chase her back out. | Judging by her wild grunting, it\'s doubtful she\'s here to rejoin civilization. | Years as a recluse haven\'t made the woman forget what a few crowns can get you. The question is, why did she come back? | She has the strength to wrestle a boar - and her many scars makes you wonder if perhaps she did.}";
-		}
-		else
-		{
-			return "{For some, the wild is a refuge. | It is said that man is born with the wilderness in him, and that he does wrong by turning his back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where he hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason he seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about his body. When asked why he wishes to join a band of mercenaries, he hoots and, with a crooked finger, replicates one of his fleshen arts across the sky. | Wounds, old and fresh, dot his already mottled body. And they are not superficial - this man had been fighting something fierce in the wild. | One has to wonder if the calamities which chased him into the forests have come to chase him back out. | Judging by his wild grunting, it\'s doubtful he\'s here to rejoin civilization. | Years as a recluse haven\'t made the man forget what a few crowns can get you. The question is, why did he come back? | He has the strength to wrestle a boar - and his many scars makes you wonder if perhaps he did.}";
-		}
-
-
+		return "{For some, the wild is a refuge. | It is said that %person% is born with the wilderness in %them%, and that %they% does wrong by turning %them% back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where %they% hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the berserker, but for some reason %they% seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about %them% body. When asked why %they% wishes to join a band of mercenaries, %they% hoots and, with a crooked finger, replicates one of %them% fleshen arts across the sky. | Wounds, old and fresh, dot %them% already mottled body. And they are not superficial - this woman had been fighting something fierce in the wild. | One has to wonder if the calamities which chased %them% into the forests have come to chase %them% back out. | Judging by %them% wild grunting, it\'s doubtful %they%\'s here to rejoin civilization. | Years as a recluse haven\'t made the woman forget what a few crowns can get you. The question is, why did %they% come back? | She has the strength to wrestle a boar - and %them% many scars makes you wonder if perhaps %they% did.}";
 	}
 
 	function onChangeAttributes()
@@ -184,33 +176,19 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
-		local r = this.Math.rand(0, 5);
+		local weapons = [
+			"weapons/barbarians/crude_axe",
+			"weapons/barbarians/blunt_cleaver",
+			"weapons/barbarians/antler_cleaver",
+			"weapons/barbarians/claw_club",
+			"weapons/barbarians/axehammer",
+			"weapons/woodcutters_axe",
+			"weapons/hatchet"
+		];
 
-		if (r == 0)
-		{
-			items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
-		}
-		else if (r == 1)
-		{
-			items.equip(this.new("scripts/items/weapons/legend_chain"));
-		}
-		else if (r == 2)
-		{
-			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
-		}
-
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/throwing_axe"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 5)
-		{
-			items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		}
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
+		items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 	}
 
 	function onSerialize( _out )

@@ -1,14 +1,13 @@
 ::mods_hookExactClass("skills/actives/split", function(o)
 {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.IsTargetingActor = false;
+		this.m.HitChanceBonus = -5;
 	}
 
-	o.getTooltip = function ()
-	{
+	o.getTooltip = function () {
 		local tooltip = this.getDefaultTooltip();
 		tooltip.push({
 			id = 10,
@@ -17,8 +16,7 @@
 			text = "Can hit up to 2 targets"
 		});
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-		{
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -26,8 +24,7 @@
 				text = "Has [color=%negative%]-5%[/color] chance to hit"
 			});
 		}
-		else
-		{
+		else {
 			tooltip.push({
 				id = 6,
 				type = "text",
@@ -39,8 +36,7 @@
 		return tooltip;
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onUse = function ( _user, _targetTile ) {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
 
 		local ret = false;
@@ -49,19 +45,16 @@
 		}
 
 		local ownTile = _user.getTile();
-		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1)
-		{
+		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1) {
 			ret = this.attackEntity(_user, _targetTile.getEntity());
 		}
 
 		local dir = ownTile.getDirectionTo(_targetTile);
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local forwardTile = _targetTile.getNextTile(dir);
 
-			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
-			{
+			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
 				ret = this.attackEntity(_user, forwardTile.getEntity()) || ret;
 			}
 		}
@@ -69,22 +62,18 @@
 		return ret;
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
+	o.onAfterUpdate = function ( _properties ) {
 		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-			{
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords) {
 				_properties.MeleeSkill -= 5;
 			}
-			else
-			{
+			else {
 				_properties.MeleeSkill += 5;
+				this.m.HitChanceBonus += 10;
 			}
 		}
 	}

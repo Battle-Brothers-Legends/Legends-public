@@ -13,6 +13,7 @@
 				local weapon = _skill.getItem();
 				if (!(weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon))) {
 					_properties.DamageReceivedRegularMult *= 0.2;
+					break;
 				}
 				if (weapon.isWeaponType(::Const.Items.WeaponType.Bow)) {
 					_properties.DamageReceivedRegularMult *= 0.1;

@@ -31,13 +31,11 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		local bonus = calculateBonus(distance);
 
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-		];
+		local ret = [ {
+			id = 1,
+			type = "title",
+			text = this.getName()
+		}];
 
 		ret.push({
 			id = 10,
@@ -48,6 +46,9 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	}
 
 	function onUpdate(_properties) {
+		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
+			return;
+		}
 		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
 		if (!this.checkEntities()) {
 			this.updateEffect(false);
@@ -82,7 +83,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	}
 
 	function onMovementFinished() {
-		if (this.getContainer().getActor() == null) {
+		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
 		}
 

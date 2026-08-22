@@ -1442,10 +1442,10 @@
         				}
 						local tumbleDefense = _targetEntity.getTumbleDefense(_user, this, defenderProperties);
 						local tumbleToHit = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, toHit + defense - tumbleDefense));
-						
+
 						r = ::Math.rand(1, 100);
 						isHit = r <= tumbleToHit;
-						
+
 						if (!isHit) {
 							tumble.validateTeleport();
 							::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " uses " + this.getName() + " and is about to hit (Chance: " + ::Math.min(maximumHitChance, ::Math.max(minimumHitChance, toHit)) + ", Rolled: " + rolled + "), but " + ::Const.UI.getColorizedEntityName(_targetEntity) + " tumbles away! (Chance: " + tumbleToHit + ", Rolled: " + r + ")");
@@ -1464,7 +1464,7 @@
 			}
 		}
 
-			
+
 
 		if (isHit && ::Math.rand(1, 100) <= defenderProperties.RerollDefenseChance) {
 			r = ::Math.rand(1, 100);
@@ -1475,7 +1475,7 @@
 				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_targetEntity) + " wasn\'t lucky enough.");
 			}
 		}
-		
+
 
 		if (isHit)
 		{

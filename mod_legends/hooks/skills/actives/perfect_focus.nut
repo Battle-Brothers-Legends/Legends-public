@@ -1,5 +1,6 @@
 ::mods_hookExactClass("skills/actives/perfect_focus", function(o)
 {
+	o.m.Counter <- 0;
 	local create = o.create;
 	o.create = function () {
 		create();
@@ -43,14 +44,25 @@
 		return this.getContainer().getActor().getFlags().has("undead");
 	}
 
-	// o.isUsable = function () {
-	// 	if (!this.getContainer().getActor().getFlags().has("undead"))
-	// 		return this.skill.isUsable();
-
-	// 	return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.PerfectFocus);
-	// }
+	o.onUpdateProperties <- function (_properties ) {
+		local multiplier = this.m.Counter * 0.5;
+		this.m.FatigueCostMult *= 1.0 + multiplier;
+	}
 
 	o.onUse = function ( _user, _targetTile ) {
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendPerfectFocus);
+		this.m.Counter += 1;
+	}
+
+	o.onTurnStart <- function () {
+		this.m.Counter = this.Math.max(0, this.m.Counter - 1);
+	}
+ 
+	o.onCombatStarted <- function() {
+		this.m.Counter = 0;
+	}
+
+	o.onCombatFinished <- function() {
+		this.m.Counter = 0;
 	}
 });

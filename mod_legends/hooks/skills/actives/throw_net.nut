@@ -78,7 +78,7 @@
 
 						if (next.IsOccupiedByActor && this.Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
 						{
-							if (this.Math.rand(1, 100) < this.Math.floor(chance / successes + 1.0))
+							if (this.Math.rand(1, 100) < this.Math.floor(chance / (successes + 1.0)))
 							{
 								newRet = onUse(_user, next);
 								if (newRet != false)

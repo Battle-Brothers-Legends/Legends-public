@@ -43,8 +43,12 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		]);
 
 		r = this.Math.rand(1, 5);
-		if (r <= 1)
+		if (r <= 1) {
 			items.equip(this.new("scripts/items/weapons/oriental/qatal_dagger"));
+		}
+		else if (r == 2) {
+			items.equip(this.new("scripts/items/weapons/legend_katar"));
+		}
 		r = this.Math.rand(1, 5);
 		if (r <= 1)
 			items.equip(this.new("scripts/items/tools/throwing_net"));

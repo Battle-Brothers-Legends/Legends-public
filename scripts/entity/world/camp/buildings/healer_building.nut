@@ -291,7 +291,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 		local brothersToHeal = ::World.getPlayerRoster().getAll().filter(@(_, _b) (_b.getHitpointsMax() - _b.getHitpoints() > 0));
 		foreach (bro in brothersToHeal) {
-			local rate = this.getRate();	
+			local rate = this.getRate();
 			local missing = bro.getHitpointsMax().tofloat() - bro.getHitpoints();
 			if (missing > rate && this.getUpgraded() && (this.m.AutoIntensiveHealing || bro.getFlags().get("CampIntensiveCare")) && ::World.Assets.getMedicine() > 0) {
 				local medCost = this.getIntensiveCost() * ::Math.minf(missing - rate, rate * (this.getIntensiveRate() - 1.0));
@@ -463,11 +463,11 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	}
 
 	function getIntensiveRate() {
-		return this.m.IntensiveRate; 
+		return this.m.IntensiveRate;
 	}
 
 	function getIntensiveCost() {
-    	return this.m.IntensiveCost; 
+    	return this.m.IntensiveCost;
 	}
 
 	function onPopupButtonClicked(_data) {
