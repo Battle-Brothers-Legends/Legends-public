@@ -144,7 +144,7 @@ if (!("Backgrounds" in ::Legends)) {
 	return ::Legends.BackgroundPerkTrees[_name];
 }
 
-::Legends.Backgrounds.getStats <- function(_def, _isFemale = false) {
+::Legends.Backgrounds.getStats <- function(_def) {
 	local name = ::Legends.Backgrounds.BackgroundDefObjects[_def].Const;
 	if (!(name in ::Legends.BackgroundsStats)) {
 		::logError(name + " missing in ::Legends.BackgroundsStats, using default");
@@ -159,6 +159,5 @@ if (!("Backgrounds" in ::Legends)) {
 			Initiative = [0, 0]
 		};
 	}
-	local stats = ::Legends.BackgroundsStats[name];
-	return _isFemale ? stats.top() : stats[0];
+	return ::Legends.BackgroundPerkTrees[name];
 }
