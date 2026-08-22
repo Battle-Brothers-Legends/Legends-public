@@ -546,3 +546,10 @@
 - `legend_noble_shield` renamed to `legend_foot_soldier_background`
 - `legend_noble_2h` renamed to `legend_house_guard_background`
 - `perk_legend_double_strike` renamed to `perk_legend_flux`
+- `perk_legend_albedo` -> deleted
+- `perk_legend_nigredo` -> deleted
+- `perk_legend_citrinitas` -> deleted
+- `perk_legend_boondock_blade` -> deleted
+- `legend_nigredo_skill` -> deleted
+- `legend_albedo_skill` -> deleted
+- `legend_citrinitas_trance_skill` -> deleted
