@@ -244,7 +244,6 @@
 // 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 // 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 // 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-// 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBoondockBlade);
 // 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 // 		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
 // 	}

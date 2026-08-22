@@ -3874,17 +3874,6 @@ perkDefObjects.push({
 	Const = "LegendMagicMissileMastery"
 });
 
-::Legends.Perk.LegendBoondockBlade <- null;
-perkDefObjects.push({
-	ID = "perk.legend_boondock_blade",
-	Script = "scripts/skills/perks/perk_legend_boondock_blade",
-	Name = ::Const.Strings.PerkName.LegendBoondockBlade,
-	Tooltip = ::Const.Strings.PerkDescription.LegendBoondockBlade,
-	Icon = "ui/perks/boondock_01.png", //TODO
-	IconDisabled = "ui/perks/boondock_01_bw.png",
-	Const = "LegendBoondockBlade"
-});
-
 ::Legends.Perk.LegendThrowSand <- null;
 perkDefObjects.push({
 	ID = "perk.legend_throw_sand",

@@ -22,7 +22,6 @@
 ::Const.Strings.PerkName.LegendRebound <- "Rebound";
 ::Const.Strings.PerkName.LegendFeint <- "Feint";
 ::Const.Strings.PerkName.LegendLookout <- "Lookout";
-::Const.Strings.PerkName.LegendBoondockBlade <- "Boondock Blade";
 ::Const.Strings.PerkName.LegendVengeance <- "Vengeance";
 ::Const.Strings.PerkName.LegendFlux <- "Flux";
 ::Const.Strings.PerkName.LegendImmovableObject <- "Immovable Object";
@@ -546,13 +545,6 @@ Learn to find your enemies before they find you.
 • Unlocks the [color=%skill%]Mark Target[/color] skill which afflicts your target with [color=%status%]Marked[/color], reducing their Melee and Ranged defense by [color=%negative%]10[/color] and increasing Damage Received from all sources by up to [color=%negative%]20%[/color] depending on the targets max Hitpoints.
 
 • Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendBoondockBlade <- @"
-Catch your enemies by surprise.
-
-[color=%passive%][u]Passive:[/u][/color]
-• When in a hiding place, such as high grass, gain a bonus of [color=%positive%]+10[/color] to Melee Skill, Ranged Skill, and Melee and Ranged Defense.
 ";
 
 ::Const.Strings.PerkDescription.LegendArtfulDodger <- @"
