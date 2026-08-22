@@ -18,6 +18,9 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
+		this.m.Titles = [
+			"the Alchemist"
+		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.MeleeSkill,
 			this.Const.Attributes.Fatigue
@@ -31,21 +34,12 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.BackgroundType = this.Const.BackgroundType.Educated;
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAlchemist);
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% is heard before %they% is seen, a rattle and clink of tools, flasks and other equipment strapped to %their% belt makes %them% stand out among the crowds. | %Their% mind is constantly deconstructing and reconstructing materials as %they% inspects them with a scrutinising gaze, intellectually picking apart objects for %their% own uses.} {While %name% appears more skinny and diminutive than others you have seen, %their% ability to create things out of sparse materials using nothing but a campfire and tongs is a testament to southern ingenuity. | %They% assures you it is not magic, but to those around %them% it might as well be.} {The sickly smell of sulphur surrounds %name% like a natural musk. | In a profession where mistakes are common and often fatal, %name% seems to be one of the few men you have with all eyes, fingers, toes and everything else accounted for. | How long this will persist as a mercenary is anyone\'s guess. } {Minor burns, chars and singes are like pock marks across %name%\'s body, their frequency increasing around the face and fingertips of the alchemist. | %name% says there is nothing to fear and that %their% methods are \'perfectly safe\'. | But every now and again you see %them% wince and grit their teeth on combining two mixtures together.}";
-	}
-
-	function onAdded()
-	{
-		this.character_background.onAdded();
-		local actor = this.getContainer().getActor();
-		actor.setTitle("the Alchemist");
 	}
 
 	function onAddEquipment()
