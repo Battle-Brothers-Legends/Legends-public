@@ -45,26 +45,18 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			type = "text",
 			text = this.getCostString()
 		}];
-		if (!this.World.Flags.get("Item Identified"))
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "You aren\'t sure what it does. You\'ve heard of an ancient witch living in a hut in the forest and an Oracle somewhere in the south who might know more about this"
-			});
-			return result;
-		}
-		else
-		{
+
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle"
 			});
-			return result;
 		}
+		return result;
 	}
 
 	function isUsable()

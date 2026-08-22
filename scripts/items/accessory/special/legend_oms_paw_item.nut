@@ -54,17 +54,9 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 			});
 		}
 
-		if (!this.World.Flags.get("Item Identified"))
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "You aren\'t sure what it does. You\'ve heard of an ancient Witch living in a hut in the forest and an Oracle somewhere in the south who might know more about this"
-			});
-		}
-		else
-		{
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
