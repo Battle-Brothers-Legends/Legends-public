@@ -73,11 +73,11 @@ backgroundDefs.push({
 
 ::Legends.Background.AssassinSouthern <- null;
 backgroundDefs.push({
+    // @wiki_name "Southern Assassin",
     ID = "background.assassin_southern",
     Script = "scripts/skills/backgrounds/assassin_southern_background",
     Const = "AssassinSouthern",
     Name = "Assassin",
-    // WikiName = "Southern Assassin",
     HiringCost = 800,
     DailyCost = 25,
     Icon = "ui/backgrounds/background_53.png",
@@ -130,11 +130,11 @@ backgroundDefs.push({
 
 ::Legends.Background.BeggarSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.beggar",
     Script = "scripts/skills/backgrounds/beggar_southern_background",
     Const = "BeggarSouthern",
     Name = "Beggar",
-    // WikiSkip = true,
     HiringCost = 30,
     DailyCost = 3,
     Icon = "ui/backgrounds/background_18.png",
@@ -146,7 +146,7 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/belly_dancer_background",
     Const = "BellyDancer",
     Name = "Belly Dancer",
-    // WikiName = "Belly Dancer Event",
+    // @wiki_name "Belly Dancer Event",
     HiringCost = 500,
     DailyCost = 20,
     Icon = "ui/backgrounds/background_64.png",
@@ -187,11 +187,11 @@ backgroundDefs.push({
 
 ::Legends.Background.ButcherSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.butcher",
     Script = "scripts/skills/backgrounds/butcher_southern_background",
     Const = "ButcherSouthern",
     Name = "Butcher",
-    // WikiSkip = true,
     HiringCost = 80,
     DailyCost = 9,
     Icon = "ui/backgrounds/background_43.png",
@@ -210,11 +210,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CaravanHandSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.caravan_hand",
     Script = "scripts/skills/backgrounds/caravan_hand_southern_background",
     Const = "CaravanHandSouthern",
     Name = "Caravan Hand",
-    // WikiSkip = true,
     HiringCost = 75,
     DailyCost = 8,
     Icon = "ui/backgrounds/background_12.png",
@@ -233,11 +233,11 @@ backgroundDefs.push({
 
 ::Legends.Background.Companion2h <- null;
 backgroundDefs.push({
+    // @wiki_name "Companion Twohanded",
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_2h_background",
     Const = "Companion2h",
     Name = "Companion",
-    // WikiName = "Companion Twohanded",
     HiringCost = 0,
     DailyCost = 12,
     Icon = "ui/backgrounds/background_companion.png",
@@ -245,11 +245,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CompanionRanged <- null;
 backgroundDefs.push({
+    // @wiki_name "Companion Ranged",
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_ranged_background",
     Const = "CompanionRanged",
     Name = "Companion",
-    // WikiName = "Companion Ranged",
     HiringCost = 0,
     DailyCost = 11,
     Icon = "ui/backgrounds/background_companion.png",
@@ -257,11 +257,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CompanionSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_1h_southern_background",
     Const = "CompanionSouthern",
     Name = "Companion",
-    // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 10,
     Icon = "ui/backgrounds/background_companion.png",
@@ -269,11 +269,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CompanionSouthern2h <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_2h_southern_background",
     Const = "CompanionSouthern2h",
     Name = "Companion",
-    // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 12,
     Icon = "ui/backgrounds/background_companion.png",
@@ -281,11 +281,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CompanionSouthernRanged <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.companion",
     Script = "scripts/skills/backgrounds/companion_ranged_southern_background",
     Const = "CompanionSouthernRanged",
     Name = "Companion",
-    // WikiSkip = true,
     HiringCost = 0,
     DailyCost = 11,
     Icon = "ui/backgrounds/background_companion.png",
@@ -315,11 +315,11 @@ backgroundDefs.push({
 
 ::Legends.Background.CrippleSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.cripple",
     Script = "scripts/skills/backgrounds/cripple_southern_background",
     Const = "CrippleSouthern",
     Name = "Cripple",
-    // WikiSkip = true,
     HiringCost = 30,
     DailyCost = 2,
     Icon = "ui/backgrounds/background_51.png",
@@ -371,11 +371,11 @@ backgroundDefs.push({
 
 ::Legends.Background.DaytalerSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.daytaler",
     Script = "scripts/skills/backgrounds/daytaler_southern_background",
     Const = "DaytalerSouthern",
     Name = "Daytaler",
-    // WikiSkip = true,
     HiringCost = 60,
     DailyCost = 6,
     Icon = "ui/backgrounds/background_36.png",
@@ -416,11 +416,11 @@ backgroundDefs.push({
 
 ::Legends.Background.EunuchSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.eunuch",
     Script = "scripts/skills/backgrounds/eunuch_southern_background",
     Const = "EunuchSouthern",
     Name = "Eunuch",
-    // WikiSkip = true,
     HiringCost = 60,
     DailyCost = 8,
     Icon = "ui/backgrounds/background_52.png",
@@ -439,11 +439,11 @@ backgroundDefs.push({
 
 ::Legends.Background.ExecutionerSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.executioner",
     Script = "scripts/skills/backgrounds/executioner_southern_background",
     Const = "ExecutionerSouthern",
     Name = "Executioner",
-    // WikiSkip = true,
     HiringCost = 100,
     DailyCost = 12,
     Icon = "ui/backgrounds/background_72.png",
@@ -473,11 +473,11 @@ backgroundDefs.push({
 
 ::Legends.Background.FishermanSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.fisherman",
     Script = "scripts/skills/backgrounds/fisherman_southern_background",
     Const = "FishermanSouthern",
     Name = "Fisherman",
-    // WikiSkip = true,
     HiringCost = 78,
     DailyCost = 9,
     Icon = "ui/backgrounds/background_15.png",
@@ -507,11 +507,11 @@ backgroundDefs.push({
 
 ::Legends.Background.GamblerSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.gambler",
     Script = "scripts/skills/backgrounds/gambler_southern_background",
     Const = "GamblerSouthern",
     Name = "Gambler",
-    // WikiSkip = true,
     HiringCost = 60,
     DailyCost = 6,
     Icon = "ui/backgrounds/background_20.png",
@@ -530,11 +530,11 @@ backgroundDefs.push({
 
 ::Legends.Background.GladiatorOrigin <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.gladiator",
     Script = "scripts/skills/backgrounds/gladiator_origin_background",
     Const = "GladiatorOrigin",
     Name = "Gladiator",
-    // WikiSkip = true,
     HiringCost = 200,
     DailyCost = 50,
     Icon = "ui/backgrounds/background_61.png",
@@ -586,11 +586,11 @@ backgroundDefs.push({
 
 ::Legends.Background.HistorianSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.historian",
     Script = "scripts/skills/backgrounds/historian_southern_background",
     Const = "HistorianSouthern",
     Name = "Historian",
-    // WikiSkip = true,
     HiringCost = 100,
     DailyCost = 7,
     Icon = "ui/backgrounds/background_47.png",
@@ -631,11 +631,11 @@ backgroundDefs.push({
 
 ::Legends.Background.JugglerSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.juggler",
     Script = "scripts/skills/backgrounds/juggler_southern_background",
     Const = "JugglerSouthern",
     Name = "Juggler",
-    // WikiSkip = true,
     HiringCost = 100,
     DailyCost = 8,
     Icon = "ui/backgrounds/background_14.png",
@@ -748,7 +748,7 @@ backgroundDefs.push({
     Name = "Miner",
     HiringCost = 75,
     DailyCost = 10,
-    Icon = "ui/backgrounds/background_45.png",     
+    Icon = "ui/backgrounds/background_45.png",
 });
 
 ::Legends.Background.Minstrel <- null;
@@ -797,11 +797,11 @@ backgroundDefs.push({
 
 ::Legends.Background.NomadRanged <- null;
 backgroundDefs.push({
+    // @wiki_name "Nomad Ranged",
     ID = "background.nomad",
     Script = "scripts/skills/backgrounds/nomad_ranged_background",
     Const = "NomadRanged",
     Name = "Nomad",
-    // WikiName = "Nomad Ranged",
     HiringCost = 300,
     DailyCost = 28,
     Icon = "ui/backgrounds/background_63.png",
@@ -864,11 +864,11 @@ backgroundDefs.push({
 
 ::Legends.Background.PeddlerSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.peddler",
     Script = "scripts/skills/backgrounds/peddler_southern_background",
     Const = "PeddlerSouthern",
     Name = "Peddler",
-    // WikiSkip = true,
     HiringCost = 60,
     DailyCost = 6,
     Icon = "ui/backgrounds/background_19.png",
@@ -931,11 +931,11 @@ backgroundDefs.push({
 
 ::Legends.Background.RegentInAbsentia <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.regent_in_absentia",
     Script = "scripts/skills/backgrounds/regent_in_absentia_background",
     Const = "RegentInAbsentia",
     Name = "Regent In Absentia",
-    // WikiSkip = true,
     HiringCost = 135,
     DailyCost = 30,
     Icon = "ui/backgrounds/background_06.png",
@@ -987,11 +987,11 @@ backgroundDefs.push({
 
 ::Legends.Background.ShepherdSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.shepherd",
     Script = "scripts/skills/backgrounds/shepherd_southern_background",
     Const = "ShepherdSouthern",
     Name = "Shepherd",
-    // WikiSkip = true,
     HiringCost = 80,
     DailyCost = 8,
     Icon = "ui/backgrounds/background_44.png",
@@ -1003,29 +1003,31 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/slave_background",
     Const = "Slave",
     Name = "Slave",
-    HiringCost = ::Math.rand(19, 22) * 10,
+    HiringCost = @() ::Math.rand(19, 22) * 10,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_60.png",
 });
 
 ::Legends.Background.SlaveBarbarian <- null;
 backgroundDefs.push({
+    //@wiki_skip
     ID = "background.slave",
     Script = "scripts/skills/backgrounds/slave_barbarian_background",
     Const = "SlaveBarbarian",
     Name = "Slave",
-    HiringCost = ::Math.rand(19, 22) * 10,
+    HiringCost = @() ::Math.rand(19, 22) * 10,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_60.png",
 });
 
 ::Legends.Background.SlaveSouthern <- null;
 backgroundDefs.push({
+    //@wiki_skip
     ID = "background.slave",
     Script = "scripts/skills/backgrounds/slave_southern_background",
     Const = "SlaveSouthern",
     Name = "Slave",
-    HiringCost = ::Math.rand(19, 22) * 10,
+    HiringCost = @() ::Math.rand(19, 22) * 10,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_60.png",
 });
@@ -1065,11 +1067,11 @@ backgroundDefs.push({
 
 ::Legends.Background.TailorSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.tailor",
     Script = "scripts/skills/backgrounds/tailor_southern_background",
     Const = "TailorSouthern",
     Name = "Tailor",
-    // WikiSkip = true,
     HiringCost = 50,
     DailyCost = 5,
     Icon = "ui/backgrounds/background_48.png",
@@ -1088,11 +1090,11 @@ backgroundDefs.push({
 
 ::Legends.Background.ThiefSouthern <- null;
 backgroundDefs.push({
+    // @wiki_skip
     ID = "background.thief",
     Script = "scripts/skills/backgrounds/thief_southern_background",
     Const = "ThiefSouthern",
     Name = "Thief",
-    // WikiSkip = true,
     HiringCost = 95,
     DailyCost = 10,
     Icon = "ui/backgrounds/background_11.png",
@@ -1133,11 +1135,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendAdventurousNobleRanged <- null;
 backgroundDefs.push({
+    // @wiki_name "Adventurous Noble Ranged",
     ID = "background.legend_adventurous_noble_ranged",
     Script = "scripts/skills/backgrounds/legend_adventurous_noble_ranged_background",
     Const = "LegendAdventurousNobleRanged",
     Name = "Adventurous Noble",
-    // WikiName = "Adventurous Noble Ranged",
     HiringCost = 300,
     DailyCost = 35,
     Icon = "ui/backgrounds/background_06.png",
@@ -1233,11 +1235,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderAssassin <- null;
 backgroundDefs.push({
+    // @wiki_name "Assassin Commander",
     ID = "background.legend_commander_assassin",
     Script = "scripts/skills/backgrounds/legend_assassin_commander_background",
     Const = "LegendCommanderAssassin",
     Name = "Assassin",
-    // WikiName = "Assassin Commander",
     HiringCost = 10000,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_53.png",
@@ -1256,11 +1258,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderBeggarScaling <- null;
 backgroundDefs.push({
+    // @wiki_name "Framed Beggar Pending Deletion",
     ID = "background.legend_beggar_commander_op",
     Script = "scripts/skills/backgrounds/legend_beggar_commander_op_background",
     Const = "LegendCommanderBeggarScaling",
     Name = "Framed Beggar",
-    // WikiName = "Framed Beggar Pending Deletion",
     HiringCost = 30,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_18.png",
@@ -1268,11 +1270,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderBerserker <- null;
 backgroundDefs.push({
+    // @wiki_name "Berserker Commander",
     ID = "background.legend_commander_berserker",
     Script = "scripts/skills/backgrounds/legend_berserker_commander_background",
     Const = "LegendCommanderBerserker",
     Name = "Berserker",
-    // WikiName = "Berserker Commander",
     HiringCost = 10000,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_berserker.png",
@@ -1313,11 +1315,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderRanger <- null;
 backgroundDefs.push({
+    // @wiki_name "Ranger Commander",
     ID = "background.legend_commander_ranger",
     Script = "scripts/skills/backgrounds/legend_ranger_commander_background",
     Const = "LegendCommanderRanger",
     Name = "Ranger",
-    // WikiName = "Ranger Commander",
     HiringCost = 12000,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_ranger.png",
@@ -1325,11 +1327,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCompanionMelee <- null;
 backgroundDefs.push({
+    // @wiki_name "Lonewolf Companion",
     ID = "background.legend_companion_melee",
     Script = "scripts/skills/backgrounds/legend_companion_melee_background",
     Const = "LegendCompanionMelee",
     Name = "Companion",
-    // WikiName = "Lonewolf Companion",
     HiringCost = 0,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_companion.png",
@@ -1337,12 +1339,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCompanionRanged <- null;
 backgroundDefs.push({
+    // @wiki_name "Lonewolf Companion Ranged",
     ID = "background.legend_companion_ranged",
     Script = "scripts/skills/backgrounds/legend_companion_ranged_background",
     Const = "LegendCompanionRanged",
     Name = "Companion",
-    // WikiName = "Lonewolf Companion Ranged",
-    // WikiName = "",
     HiringCost = 0,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_companion.png",
@@ -1394,11 +1395,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendDisownedNobleRanged <- null;
 backgroundDefs.push({
+    // @wiki_name "Adventurous Noble Ranged",
     ID = "background.legend_disowned_noble_ranged",
     Script = "scripts/skills/backgrounds/legend_disowned_noble_ranged_background",
     Const = "LegendDisownedNobleRanged",
     Name = "Disowned Noble",
-    // WikiName = "Adventurous Noble Ranged",
     HiringCost = 135,
     DailyCost = 17,
     Icon = "ui/backgrounds/background_08.png",
@@ -1472,7 +1473,7 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHorse <- null;
 backgroundDefs.push({
-    // WikiSkip = true,
+    // @wiki_skip
     ID = "background.legend_horse",
     Script = "scripts/skills/backgrounds/legend_horse",
     Const = "LegendHorse",
@@ -1484,7 +1485,7 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHorserider <- null;
 backgroundDefs.push({
-    // WikiSkip = true,
+    // @wiki_skip
     ID = "background.legend_horserider",
     Script = "scripts/skills/backgrounds/legend_horserider",
     Const = "LegendHorserider",
@@ -1496,7 +1497,7 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHorseCourser <- null;
 backgroundDefs.push({
-    // WikiSkip = true,
+    // @wiki_skip
     ID = "background.legend_horse_courser",
     Script = "scripts/skills/backgrounds/legend_horse_courser",
     Const = "LegendHorseCourser",
@@ -1508,7 +1509,7 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHorseDestrier <- null;
 backgroundDefs.push({
-    // WikiSkip = true,
+    // @wiki_skip
     ID = "background.legend_horse_destrier",
     Script = "scripts/skills/backgrounds/legend_horse_destrier",
     Const = "LegendHorseDestrier",
@@ -1520,7 +1521,7 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendHorseRouncey <- null;
 backgroundDefs.push({
-    // WikiSkip = true,
+    // @wiki_skip
     ID = "background.legend_horse_rouncey",
     Script = "scripts/skills/backgrounds/legend_horse_rouncey",
     Const = "LegendHorseRouncey",
@@ -1620,11 +1621,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendLegionGladiator <- null;
 backgroundDefs.push({
+    // @wiki_name "Gladiator Legion",
     ID = "background.legend_legion_gladiator",
     Script = "scripts/skills/backgrounds/legend_legion_gladiator_background",
     Const = "LegendLegionGladiator",
     Name = "Gladiator",
-    // WikiName = "Gladiator Legion",
     HiringCost = 0,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_legion_gladiator.png",
@@ -1671,7 +1672,7 @@ backgroundDefs.push({
     Name = "Prefect",
     HiringCost = 0,
     DailyCost = 0,
-    Icon = "ui/backgrounds/background_legion_prefect.png", 
+    Icon = "ui/backgrounds/background_legion_prefect.png",
 });
 
 ::Legends.Background.LegendLegionSlave <- null;
@@ -1775,11 +1776,11 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendNecro <- null;
 backgroundDefs.push({
+    // @wiki_name "Necro Warlock",
     ID = "background.legend_necro",
     Script = "scripts/skills/backgrounds/legend_necro_background",
     Const = "LegendNecro",
     Name = "Warlock",
-    // WikiName = "Necro Warlock",
     HiringCost = 20000,
     DailyCost = 50,
     Icon = "ui/backgrounds/warlock_02.png",

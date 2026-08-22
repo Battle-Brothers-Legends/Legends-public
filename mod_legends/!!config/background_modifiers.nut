@@ -200,7 +200,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.Companion <- {
 	ArmorParts = 8,
-	ArmorParts = 8,
 	Stash = 8,
 	Injury = 0.03,
 	Training = 0.1,
