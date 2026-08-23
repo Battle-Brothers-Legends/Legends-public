@@ -14,5 +14,6 @@
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendFullDraw);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendVolley);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMarkTarget);
 	}
 });

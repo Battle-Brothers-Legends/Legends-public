@@ -21,7 +21,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendLookout);
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

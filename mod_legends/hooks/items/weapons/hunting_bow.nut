@@ -25,5 +25,6 @@
 	{
 		onEquip();
 		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendFullDraw);
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMarkTarget);
 	}
 });

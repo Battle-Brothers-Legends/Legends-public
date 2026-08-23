@@ -53,7 +53,7 @@ if (!("Perks" in ::Const)) {
 	Icon = "ui/perks/lookout_circle.png",
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.LegendLookout, ::Legends.Perk.Pathfinder],
+		[::Legends.Perk.Pathfinder],
 		[::Legends.Perk.Anticipation],
 		[],
 		[],

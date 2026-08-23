@@ -173,7 +173,7 @@
 
 ### Weapons
 **War Bow, Named War Bow, Hunting Bow**
-- gain `Full Draw`
+- gain `Full Draw` and `Mark Target`
 > Full draw has a base 50% armor penetration, 9 range, an extra 20% damage but costs 9 ap without mastery and 8 with mastery
 - art adjustments for war bow because the vanilla one was too small
 
@@ -184,7 +184,7 @@
 
 **Masterwork Bow**
 - now has 8 range
-- gains `Volley` and `Full Draw`
+- gains `Volley`, `Full Draw` and `Mark Target`
 
 
 **Backup throwing skills**

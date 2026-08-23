@@ -339,29 +339,11 @@
 		this.world_entity.onCombatLost();
 	}
 
-	o.onDiscovered = function ()
-	{
+	o.onDiscovered = function () {
 		this.world_entity.onDiscovered();
-		// temporarily removed until we figure out what's going on with the caravan hunter retinue - Breaky 23.10.2024
-		// local playerRoster = this.World.getPlayerRoster().getAll();
-		// local lookout = 0;
-
-		 if(::Legends.Mod.ModSettings.getSetting("PauseOnEnemySighted").getValue() && !::World.State.isPaused() && this.isAttackable() && this.getFaction() != 0 && !this.isAlliedWithPlayer() && this.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 12) {
-		// 	foreach( bro in playerRoster )
-		// 	{
-		// 		if (bro.getCampAssignment() != ::Legends.Camp.CampBuildings.Scout)
-		// 			{
-		// 				if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout)
-		// 					{
-		// 					lookout += 1;
-		// 					}
-		// 			}
-		// 	}
-		// 	if (lookout > 0)
-		// 	{
-		 		::World.State.setPause(true);
-		// 	}
-		 }
+		if(::Legends.Mod.ModSettings.getSetting("PauseOnEnemySighted").getValue() && !::World.State.isPaused() && this.isAttackable() && this.getFaction() != 0 && !this.isAlliedWithPlayer() && this.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 12) {
+			::World.State.setPause(true);
+		}
 	}
 
 	o.addToInventory <- function ( _i )

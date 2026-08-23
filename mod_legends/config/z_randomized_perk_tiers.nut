@@ -563,7 +563,6 @@
     ],
     GuaranteedPerks = [
 		::Legends.Perk.LegendBallistics,
-		::Legends.Perk.LegendLookout,
 		::Legends.Perk.Rotation
     ],
     LegendaryPerks = [

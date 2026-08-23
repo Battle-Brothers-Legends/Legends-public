@@ -74,32 +74,13 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-
-//::Const.Perks.HelmetTree <- {
-//ID = "HelmetTree",
-//Descriptions = [
-//	"helmets"
-//],
-//Tree = [
-//	[::Legends.Perk.LegendLookout],
-//	[::Legends.Perk.SteelBrow],
-//	[],//::Legends.Perk.
-//	[],
-//	[],
-//	[],
-//	[]
-//]
-//};
-
 ::Const.Perks.DefenseTrees <- {
 	GroupsCategory = "Defense",
 	Tree = [
-		//::Const.Perks.ShieldTree,
 		::Const.Perks.HeavyArmorTree,
 		::Const.Perks.MediumArmorTree,
 		::Const.Perks.LightArmorTree,
 		::Const.Perks.ClothArmorTree
-		//::Const.Perks.HelmetTree
 	],
 	function getRandom(_exclude) {
 		local L = [];
