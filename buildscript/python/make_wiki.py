@@ -1,8 +1,11 @@
-from wiki.background_generator import BackgroundGenerator
 from pathlib import Path
 
 import argparse
 import os
+
+from wiki.background_generator import BackgroundGenerator
+from wiki.perk_tree_generator import PerkTreeGenerator
+
 
 def process_file(file_path: Path, transformer, output_path: Path | None = None) -> str | None:
 	try:
@@ -31,4 +34,5 @@ def process_file(file_path: Path, transformer, output_path: Path | None = None) 
 if __name__ == "__main__":
 	ROOT_DIR = Path(__file__).resolve().parent.parent.parent
 
+	PerkTreeGenerator(ROOT_DIR, "wiki").process()
 	BackgroundGenerator(ROOT_DIR, "wiki").process()

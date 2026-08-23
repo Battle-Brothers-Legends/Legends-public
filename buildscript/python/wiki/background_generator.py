@@ -12,9 +12,6 @@ from wiki.generator import Generator
 
 # noinspection method-may-be-static
 class BackgroundGenerator(Generator):
-	TABLE_START = "<table><tbody>"
-	TABLE_END = "</tbody></table>\n"
-
 	DETAILS_START = "<tr><td colspan=\"9\"><details><summary>{title}</summary>\n"
 	DETAILS_END = "</details></td></tr>\n"
 
@@ -67,37 +64,37 @@ class BackgroundGenerator(Generator):
 		base = self._get_base() or {}
 		stats = self._get_stats() or {}
 		defs = self._get_defs() or {}
-		markdown_lines = [f"## Base stats"]
+		output = [f"## Base stats"]
 
 		for const in  sorted(base.keys()):
-			markdown_lines.append(f"### {self._convert_const(const)}")
-			markdown_lines.append(self.TABLE_START)
-			markdown_lines.append(self.TEMPLATE_STAT_ROW)
-			markdown_lines.append(self._format(self.TEMPLATE_ATTR_RANGE, self._mock_bg_def(const), base[const].stats, title="Attribute Range"))
-			markdown_lines.append(self.TABLE_END)
+			output.append(f"### {self._convert_const(const)}")
+			output.append(self.TABLE_START)
+			output.append(self.TEMPLATE_STAT_ROW)
+			output.append(self._format(self.TEMPLATE_ATTR_RANGE, self._mock_bg_def(const), base[const].stats, title="Attribute Range"))
+			output.append(self.TABLE_END)
 
-		markdown_lines.append(f"## Backgrounds")
+		output.append(f"## Backgrounds")
 
 		for const in sorted(defs.keys()):
 			entry = defs[const]
 			stat = stats[const]
 			bstat = base["Default"]
-			markdown_lines.append(f"#### {self._convert_const(const)}")
-			markdown_lines.append(self.TABLE_START)
-			markdown_lines.append(self._format(self.TEMPLATE_BG, entry, stat))
-			markdown_lines.append(self.TEMPLATE_STAT_ROW)
-			markdown_lines.append(self._format(self.TEMPLATE_ATTR_RANGE, entry, stat, title="Attribute Range"))
-			markdown_lines.append(self.DETAILS_START.format(title="Click to expand for more details"))
-			markdown_lines.append(self.TABLE_START)
-			markdown_lines.append(self.TEMPLATE_STAT_ROW)
-			markdown_lines.append(self._format(self.TEMPLATE_ATTR_RANGE, entry, bstat.add_stats(stat), title="Full Attribute Range"))
-			markdown_lines.append(self.TABLE_END)
-			markdown_lines.append(self.DETAILS_END)
-			markdown_lines.append(self.TABLE_END)
+			output.append(f"#### {self._convert_const(const)}")
+			output.append(self.TABLE_START)
+			output.append(self._format(self.TEMPLATE_BG, entry, stat))
+			output.append(self.TEMPLATE_STAT_ROW)
+			output.append(self._format(self.TEMPLATE_ATTR_RANGE, entry, stat, title="Attribute Range"))
+			output.append(self.DETAILS_START.format(title="Click to expand for more details"))
+			output.append(self.TABLE_START)
+			output.append(self.TEMPLATE_STAT_ROW)
+			output.append(self._format(self.TEMPLATE_ATTR_RANGE, entry, bstat.add_stats(stat), title="Full Attribute Range"))
+			output.append(self.TABLE_END)
+			output.append(self.DETAILS_END)
+			output.append(self.TABLE_END)
 
 		os.makedirs(self.root / self.output_path, exist_ok=True)
 		with open((self.root / self.output_path / "Backgrounds.md").resolve(), "w", encoding="utf-8") as f:
-			f.write("\n".join(markdown_lines))
+			f.write("\n".join(output))
 
 	def _format(self, template, entry, stat, title=""):
 		def get_stat_val(stat_dict, stat_type, attr):

@@ -2,6 +2,9 @@ from abc import abstractmethod, ABC
 
 
 class Generator(ABC):
+	TABLE_START = "<table><tbody>"
+	TABLE_END = "</tbody></table>\n"
+
 	@abstractmethod
 	def process(self):
 		pass
