@@ -24,6 +24,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
+		this.m.PerkTreeDynamicMins.Weapon = 9;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;

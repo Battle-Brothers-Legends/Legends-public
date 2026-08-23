@@ -50,7 +50,7 @@
 
 		];
 		this.m.Level = this.Math.rand(1, 3);
-		this.m.PerkTreeDynamicMins.Defense = 3;
+		this.m.PerkTreeDynamicMins.Weapon = 9;
 		this.m.IsCombatBackground = true;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;

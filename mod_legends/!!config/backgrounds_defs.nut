@@ -836,7 +836,7 @@ backgroundDefs.push({
     Const = "Paladin",
     Name = "Paladin",
     HiringCost = 150,
-    DailyCost = 22,
+    DailyCost = 25,
     Icon = "ui/backgrounds/background_69.png",
 });
 
@@ -847,7 +847,7 @@ backgroundDefs.push({
     Const = "PaladinOld",
     Name = "Paladin",
     HiringCost = 150,
-    DailyCost = 22,
+    DailyCost = 25,
     Icon = "ui/backgrounds/background_69.png",
 });
 

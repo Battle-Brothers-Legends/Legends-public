@@ -1457,7 +1457,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [
 		::Const.Perks.NinetailsClassTree,
 		::Const.Perks.FaithClassTree
-		],
+	],
 	Profession = [
 		::Const.Perks.HealerProfessionTree,
 	],
@@ -1470,16 +1470,17 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.ShieldTree,
 		::Const.Perks.MaceTree,
 		::Const.Perks.HammerTree,
-		::Const.Perks.SwordTree
+		::Const.Perks.SwordTree,
+		::Const.Perks.CrossbowTree
 	],
 	Defense = [
 		::Const.Perks.MediumArmorTree
 	],
 	Traits = [
 		::Const.Perks.TrainedTree,
-		::Const.Perks.IndestructibleTree,
 		::Const.Perks.MartyrTree,
-		::Const.Perks.FitTree
+		::Const.Perks.InspirationalTree,
+		::Const.Perks.IntelligentTree
 	],
 	Enemy = [
 		::Const.Perks.UndeadTree
@@ -1491,31 +1492,29 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 
 ::Legends.BackgroundPerkTrees.PaladinOld <- {
 	Weapon = [
-		::Const.Perks.AxeTree,
+		::Const.Perks.PolearmTree,
 		::Const.Perks.ShieldTree,
 		::Const.Perks.MaceTree,
-		::Const.Perks.FlailTree,
 		::Const.Perks.HammerTree,
-		::Const.Perks.PolearmTree,
+		::Const.Perks.SwordTree,
 		::Const.Perks.CrossbowTree
 	],
 	Defense = [
-		::Const.Perks.HeavyArmorTree,
+		::Const.Perks.MediumArmorTree,
 		::Const.Perks.LightArmorTree
 	],
 	Traits = [
 		::Const.Perks.TrainedTree,
-		::Const.Perks.LargeTree,
 		::Const.Perks.MartyrTree,
-		::Const.Perks.FitTree,
-		::Const.Perks.SturdyTree,
 		::Const.Perks.InspirationalTree,
 		::Const.Perks.IntelligentTree
 	],
 	Enemy = [
 		::Const.Perks.UndeadTree
 	],
-	Class = [],
+	Class = [
+		::Const.Perks.FaithClassTree
+	],
 	Profession = [],
 	Magic = []
 };

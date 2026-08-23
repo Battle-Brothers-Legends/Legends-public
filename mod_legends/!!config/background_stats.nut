@@ -613,14 +613,14 @@ if (!("BackgroundsStats" in ::Legends)) {
 ::Legends.BackgroundsStats.PacifiedFlagellant <- clone ::Legends.BackgroundsStats.Flagellant;
 
 ::Legends.BackgroundsStats.Paladin <- {
-	Hitpoints = [8, 10],
-	Bravery = [14, 18],
-	Stamina = [9, 16],
-	MeleeSkill = [9, 13],
-	RangedSkill = [0, 0],
-	MeleeDefense = [8, 12],
-	RangedDefense = [-4, 1],
-	Initiative = [-15, -6]
+	Hitpoints = [6, 10],
+	Bravery = [13, 16],
+	Stamina = [-4, 0],
+	MeleeSkill = [10, 13],
+	RangedSkill = [-3, -2],
+	MeleeDefense = [4, 5],
+	RangedDefense = [-10, -5],
+	Initiative = [15, 18]
 };
 
 ::Legends.BackgroundsStats.PaladinOld <- clone ::Legends.BackgroundsStats.Paladin;

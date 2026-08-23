@@ -62,18 +62,7 @@
 - new white direwolf potion
 
 - Anatomists can no longer be scared of the dark
-- gives anatomists one tier of skill in gathering (ref: herbalist has 3) at camp as most of their perktree was predisposed towards it
 - Anatomist origin has an additional chance of finding anatomists (~1 in 4 chance per refresh)
-
-### Oathtakers
-- oathtakers get flail tree
-- oathtakers get medium armour tree
-- Oathtaker stats now more on par with hedge knights except for two areas; Resolve (higher) and ranged defence (lower)
-- all other stats identical to hedge knights or just 1-3 lower or higher.
-- Oathtakers can now roll hitpoints talents, but not ranged skill
-- Oathtakers can now roll paranoid and tough traits
-- Hiring cost dropped from 350 to 295 (as legends armour layers were massively inflating their recruit cost).
-- Scenario unchanged
 
 ## Backgrounds
 
@@ -106,6 +95,19 @@
 > MeleeDefense -5 - 0
 > RangedDefense -6 - -1
 > Initiative 65 - 75
+
+### Oathtakers
+- oathtakers stats aligned with vanilla with a bumped up initiative
+- cannot roll hitpoints and ranged skill
+- oathtakers get medium armour tree
+- oathtakers can have up to 9 weapon trees
+- gain Polearm, Shield, Mace, Hammer, Sword, Crossbow trees
+- Hiring cost dropped from 350 to 150 in line with vanilla
+- old oathtaker gets faith class tree
+
+### Sellswords
+- sellswords stats aligned with vanilla
+- sellswords can have up to 9 weapon trees
 
 ### Adventurous Noble & Disowned Noble
 - both backgrounds now has a ranged and melee version which can be both male and female
