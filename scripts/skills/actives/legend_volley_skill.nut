@@ -1,10 +1,11 @@
-this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
+this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		AdditionalAccuracy = 0,
-		AdditionalHitChance = -4
+		AdditionalHitChance = -4,
+		InitiativeAdditionalDamage = 0.05
 	},
 	function create() {
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCascade);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVolley);
 		this.m.Description = "Let loose a cascade of three striking shots on your opponent.";
 		this.m.KilledString = "Pin cushioned";
 		this.m.Icon = "skills/triplestrike_square.png";
@@ -62,7 +63,8 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Has [color=%positive%]" + ammo + "[/color] arrows left"
+				text = "Has [color=%positive%]%_ammo%[/color] arrows left",
+				param = [["_ammo", ammo]]
 			});
 		}
 		else {
@@ -82,7 +84,6 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
-
 		ret.extend([{
 				id = 7,
 				type = "text",
@@ -93,7 +94,14 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 				id = 8,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "Increases damage by [color=%negative%]+10%[/color] of the Initiative difference between you and the target"
+				text = "Increases damage by [color=%negative%]%_initiativeDamage%[/color] of the Initiative difference between you and the target",
+				param = [["_initiativeDamage", this.m.InitiativeAdditionalDamage]]
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "The penalty to hitchance when shooting at a target you have no clear line of fire to is increased by [color=%positive%]50%[/color]",
 			}
 		]);
 		return ret;
@@ -135,6 +143,7 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
 		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
 		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.InitiativeAdditionalDamage = _properties.IsSpecializedInBows ? 0.1 : 0.05;
 	}
 
 	function onUse( _user, _targetTile ) {
@@ -157,6 +166,17 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 			_skill.m.IsDoingAttackMove = true;
 			_skill.getContainer().setBusy(false);
 		}.bindenv(this), this);
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendBarrage)) {
+			return;
+		}
+		this.Time.scheduleEvent(this.TimeUnit.Virtual, 300, function ( _skill ) {
+			if (target.isAlive()) {
+				_skill.attackEntity(_user, target);
+			}
+
+			_skill.m.IsDoingAttackMove = true;
+			_skill.getContainer().setBusy(false);
+		}.bindenv(this), this);
 		return true;
 	}
 
@@ -166,13 +186,17 @@ this.legend_cascade_skill <- this.inherit("scripts/skills/skill", {
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.DamageTotalMult *= 0.33333334;
 			_properties.DamageTooltipMaxMult *= 3.0;
+			_properties.RangedAttackBlockedChanceMult *= 1.5;
+			if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics)) {
+				_properties.DamageTooltipMaxMult *= 4.0;
+			}
 			if (_targetEntity != null) {
 				local defenderCurrentInitiative = _targetEntity.getInitiative();
 				local attackerCurrentInitiative = this.getContainer().getActor().getInitiative();
 				local diff = defenderCurrentInitiative - attackerCurrentInitiative;
 				if (diff > 0) {
-					_properties.DamageRegularMin += this.Math.floor(0.1 * diff);
-					_properties.DamageRegularMin += this.Math.floor(0.1 * diff); 
+					_properties.DamageRegularMin += this.Math.floor(this.m.InitiativeAdditionalDamage * diff);
+					_properties.DamageRegularMax += this.Math.floor(this.m.InitiativeAdditionalDamage * diff); 
 				}
 			}
 		}

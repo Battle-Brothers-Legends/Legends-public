@@ -278,6 +278,14 @@ activesDefs.push({
 	Name = "Flowing Slash",
 });
 
+::Legends.Active.LegendFullDraw <- null;
+activesDefs.push({
+	ID = "actives.legend_full_draw",
+	Script = "scripts/skills/actives/legend_full_draw_skill",
+	Const = "LegendFullDraw",
+	Name = "Full Draw",
+});
+
 ::Legends.Active.SlashLightning <- null;
 activesDefs.push({
 	ID = "actives.slash_lightning",
@@ -1718,14 +1726,6 @@ activesDefs.push({
 	Name = "Lash",
 });
 
-::Legends.Active.LegendPunctureParryDagger <- null;
-activesDefs.push({
-	ID = "actives.legend_puncture_parry_dagger",
-	Script = "scripts/skills/actives/legend_puncture_parry_dagger_skill",
-	Const = "LegendPunctureParryDagger",
-	Name = "Offhand Puncture",
-});
-
 ::Legends.Active.LegendChoke <- null;
 activesDefs.push({
 	ID = "actives.legend_choke",
@@ -2022,12 +2022,12 @@ activesDefs.push({
 	Name = "Call Lightning",
 });
 
-::Legends.Active.LegendCascade <- null;
+::Legends.Active.LegendVolley <- null;
 activesDefs.push({
-	ID = "actives.legend_cascade",
-	Script = "scripts/skills/actives/legend_cascade_skill",
-	Const = "LegendCascade",
-	Name = "Cascade Strike",
+	ID = "actives.legend_volley",
+	Script = "scripts/skills/actives/legend_volley_skill",
+	Const = "LegendVolley",
+	Name = "Volley",
 });
 
 ::Legends.Active.LegendChainLightning <- null;

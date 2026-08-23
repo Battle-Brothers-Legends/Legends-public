@@ -115,6 +115,10 @@ Master the art of archery and pelting your opponents with arrows from afar.
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
 • View range and maximum firing range with bows is increased by [color=%positive%]+1[/color].
+
+• [color=%skill%]Cascade[/color] now deals an additional [color=%positive%]10%[/color] damage from the Initiative difference between you and your target.
+
+• [color=%skill%]Full Draw[/color] now requires [color=%negative%]8[/color] Action Points.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecBow].Tooltip = ::Const.Strings.PerkDescription.SpecBow;
 ::Const.Strings.PerkDescription.SpecCrossbow <- @"

@@ -10,15 +10,15 @@
 
 	o.updateVariant <- function() {
 		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
-		this.m.Icon = "weapons/ranged/composite_bow_01" + v + "_70x70.png";
-		this.m.IconLarge = "weapons/ranged/composite_bow_01" + v + ".png";
-		this.m.ArmamentIcon = "icon_composite_bow_01" + v;
+		this.m.Icon = "weapons/ranged/composite_bow_0" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/composite_bow_0" + v + ".png";
+		this.m.ArmamentIcon = "icon_composite_bow_0" + v;
 	}
 
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendCascade);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVolley);
 	}
 });

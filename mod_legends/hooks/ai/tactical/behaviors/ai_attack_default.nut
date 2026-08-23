@@ -26,5 +26,7 @@
 		::Legends.Actives.getID(::Legends.Active.LegendSlingstaffBash),
 		// ::Legends.Actives.getID(::Legends.Active.LegendHaftstrike), // this bad boy makes the enemies attack with weak attacks for no reason
 		::Legends.Actives.getID(::Legends.Active.LegendHew),
+		::Legends.Actives.getID(::Legends.Active.LegendBreach),
+		::Legends.Actives.getID(::Legends.Active.LegendFlowingSlash),
 	]);
 });

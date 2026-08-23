@@ -1416,6 +1416,8 @@ Lets hope your enemies like fighting in the shade.
 
 • [color=%skill%]Sling Heavy Stone[/color] will stun on headshots.
 
+• [color=%skill%]Volley[/color] will fire an additional shot.
+
 • [color=%skill%]Shoot Bolt[/color], [color=%skill%]Piercing Bolt[/color] and [color=%skill%]Shoot Stake[/color] headshots reduces the cost of [color=%skill%]Reload Bolt[/color] to [color=%negative%]0[/color] AP and [color=%negative%]10[/color] Fatigue.
 ";
 

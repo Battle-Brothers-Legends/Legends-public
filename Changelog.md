@@ -172,6 +172,20 @@
 - added 5 more variations of Face Mask, art by Ivan
 
 ### Weapons
+**War Bow, Named War Bow, Hunting Bow**
+- gain `Full Draw`
+> Full draw has a base 50% armor penetration, 9 range, an extra 20% damage but costs 9 ap without mastery and 8 with mastery
+- art adjustments for war bow because the vanilla one was too small
+
+**Wonky Bow, Composite Bow, Short Bow**
+- are now 6 range weapons
+- they gain `Volley` in their toolkit
+- art adjustments for composite bow because the vanilla one was too big
+
+**Masterwork Bow**
+- now has 8 range
+- gains `Volley` and `Full Draw`
+
 
 **Backup throwing skills**
 - now separated from throw javelin/throw axe in the code to avoid errors when dual wielding thrown weapon and item of the same type
@@ -577,3 +591,5 @@
 - `legend_nigredo_skill` -> deleted
 - `legend_albedo_skill` -> deleted
 - `legend_citrinitas_trance_skill` -> deleted
+- `legend_cascade_skill` -> `legend_volley_skill`
+- `legend_puncture_parry_dagger_skill` -> deleted

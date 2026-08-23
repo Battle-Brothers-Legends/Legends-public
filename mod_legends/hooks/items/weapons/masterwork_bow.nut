@@ -4,12 +4,15 @@
 	{
 		create();
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
+		this.m.MaxRange = 8;
+		this.m.RangeIdeal = 8;
 	}
 
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendCascade);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFullDraw);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVolley);
 	}
 });

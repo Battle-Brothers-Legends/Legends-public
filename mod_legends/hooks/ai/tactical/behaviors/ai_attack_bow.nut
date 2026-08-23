@@ -10,6 +10,7 @@
 		::Legends.Actives.getID(::Legends.Active.LegendCatapultBoulder),
 		::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone),
 		::Legends.Actives.getID(::Legends.Active.LegendShootDart),
-		::Legends.Actives.getID(::Legends.Active.LegendCascade),
+		::Legends.Actives.getID(::Legends.Active.LegendVolley),
+		::Legends.Actives.getID(::Legends.Active.LegendFullDraw),
 	]);
 });

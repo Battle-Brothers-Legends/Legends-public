@@ -10,15 +10,15 @@
 
 	o.updateVariant <- function() {
 		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
-		this.m.Icon = "weapons/ranged/bow_05" + v + "_70x70.png";
-		this.m.IconLarge = "weapons/ranged/bow_05" + v + ".png";
-		this.m.ArmamentIcon = "icon_war_bow" + v;
+		this.m.Icon = "weapons/ranged/war_bow_0" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/war_bow_0" + v + ".png";
+		this.m.ArmamentIcon = "icon_war_bow_0" + v;
 	}
 
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
 		onEquip();
-		// ::Legends.Actives.grant(this, ::Legends.Active.LegendCascade);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendFullDraw);
 	}
 });

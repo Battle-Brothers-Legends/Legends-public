@@ -6,6 +6,8 @@
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Shortbow;
 		this.m.Variants = [0, 1, 2];
 		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.RangeIdeal = 6;
+		this.m.RangeMax = 6;
 	}
 
 	o.updateVariant <- function() {
@@ -19,7 +21,7 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendCascade);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVolley);
 	}
 
 });

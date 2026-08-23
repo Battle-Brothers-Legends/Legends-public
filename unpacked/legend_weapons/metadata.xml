@@ -85,8 +85,9 @@
   <sprite id="icon_club_01_1" offsetY="35" ic="FF2C425B" width="104" height="142" img="icons\icon_club_01_1.png" left="0" right="38" top="-56" bottom="-2" />
   <sprite id="icon_club_01_2_bloodied" offsetY="35" ic="FF243554" width="104" height="142" img="icons\icon_club_01_2_bloodied.png" left="0" right="38" top="-56" bottom="-2" />
   <sprite id="icon_club_01_2" offsetY="35" ic="FF2C425B" width="104" height="142" img="icons\icon_club_01_2.png" left="0" right="38" top="-56" bottom="-2" />
-  <sprite id="icon_composite_bow_01_1" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_01_1.png" left="2" right="56" top="-66" bottom="6" />
-  <sprite id="icon_composite_bow_01_2" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_01_2.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_composite_bow_01" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_01.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_composite_bow_02" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_02.png" left="2" right="56" top="-66" bottom="6" />
+  <sprite id="icon_composite_bow_03" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_composite_bow_03.png" left="2" right="56" top="-66" bottom="6" />
   <sprite id="icon_bow_ancient_01" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_01.png" left="2" right="56" top="-66" bottom="6" />
   <sprite id="icon_bow_ancient_02" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_02.png" left="2" right="56" top="-66" bottom="6" />
   <sprite id="icon_bow_ancient_03" offsetY="35" ic="FF313F54" width="130" height="142" img="icons\icon_bow_ancient_03.png" left="2" right="56" top="-66" bottom="6" />
@@ -653,8 +654,9 @@
   <sprite id="icon_two_handed_scimitar_01_1" offsetY="35" ic="FF636D7A" width="160" height="142" img="icons\icon_two_handed_scimitar_01_1.png" left="-75" right="13" top="-61" bottom="45" />
   <sprite id="icon_two_handed_scimitar_01_2_bloodied" offsetY="35" ic="FF5A6474" width="160" height="142" img="icons\icon_two_handed_scimitar_01_2_bloodied.png" left="-75" right="13" top="-61" bottom="45" />
   <sprite id="icon_two_handed_scimitar_01_2" offsetY="35" ic="FF636D7A" width="160" height="142" img="icons\icon_two_handed_scimitar_01_2.png" left="-75" right="13" top="-61" bottom="45" />
-  <sprite id="icon_war_bow_1" offsetY="35" ic="FF384757" width="130" height="142" img="icons\icon_war_bow_1.png" left="-3" right="53" top="-70" bottom="10" />
-  <sprite id="icon_war_bow_2" offsetY="35" ic="FF384757" width="130" height="142" img="icons\icon_war_bow_2.png" left="-3" right="53" top="-70" bottom="10" />
+  <sprite id="icon_war_bow_01" offsetY="35" ic="FF384757" width="130" height="142" img="icons\icon_war_bow_01.png" left="-3" right="53" top="-70" bottom="10" />
+  <sprite id="icon_war_bow_02" offsetY="35" ic="FF384757" width="130" height="142" img="icons\icon_war_bow_02.png" left="-3" right="53" top="-70" bottom="10" />
+  <sprite id="icon_war_bow_03" offsetY="35" ic="FF384757" width="130" height="142" img="icons\icon_war_bow_03.png" left="-3" right="53" top="-70" bottom="10" />
   <sprite id="icon_warfork_01_1_bloodied" offsetY="35" f1="-10" f2="-50" ic="FF4E5562" width="140" height="152" img="icons\icon_warfork_01_1_bloodied.png" left="-70" right="2" top="-56" bottom="72" />
   <sprite id="icon_warfork_01_1" offsetY="35" f1="-10" f2="-50" ic="FF535A62" width="140" height="152" img="icons\icon_warfork_01_1.png" left="-70" right="2" top="-56" bottom="72" />
   <sprite id="icon_warfork_01_2_bloodied" offsetY="35" f1="-10" f2="-50" ic="FF4E5562" width="140" height="152" img="icons\icon_warfork_01_2_bloodied.png" left="-70" right="2" top="-56" bottom="72" />
