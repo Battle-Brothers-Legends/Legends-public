@@ -1,5 +1,4 @@
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
@@ -11,28 +10,13 @@ if (!("Perks" in ::Const))
 		"entertaining"
 	],
 	Tree = [
-		[
-			::Legends.Perk.LegendCheerOn,
-			::Legends.Perk.LegendSpecialistMusician
-		],
-		[
-			::Legends.Perk.LegendDaze
-		],
-		[
-			::Legends.Perk.LegendEntice
-		],
-		[
-			::Legends.Perk.LegendMasteryMusic
-		],
-		[
-			::Legends.Perk.LegendPush
-		],
-		[
-			::Legends.Perk.LegendMinnesanger
-		],
-		[
-			::Legends.Perk.LegendMeistersanger
-		]
+		[::Legends.Perk.LegendCheerOn, ::Legends.Perk.LegendSpecialistMusician],
+		[::Legends.Perk.LegendDaze],
+		[::Legends.Perk.LegendEntice],
+		[::Legends.Perk.LegendMasteryMusic],
+		[::Legends.Perk.LegendPush],
+		[::Legends.Perk.LegendMinnesanger],
+		[::Legends.Perk.LegendMeistersanger]
 	]
 };
 
@@ -66,10 +50,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendLionheart,
-			::Legends.Perk.LegendBattleheart
-		],
+		[::Legends.Perk.LegendLionheart, ::Legends.Perk.LegendBattleheart],
 		[],
 		[]
 	]
@@ -89,10 +70,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendValaChantMastery],
 		[::Legends.Perk.LegendValaChantDisharmony],
 		[::Legends.Perk.LegendHerbcraft],
-		[
-			::Legends.Perk.LegendPotionBrewer,
-			::Legends.Perk.LegendValaChantFury
-		]
+		[::Legends.Perk.LegendPotionBrewer, ::Legends.Perk.LegendValaChantFury]
 	]
 };
 
@@ -176,26 +154,13 @@ if (!("Perks" in ::Const))
 		"hunting big game"
 	],
 	Tree = [
-		[
-			::Legends.Perk.LegendSummonHound
-		],
-		[
-			::Legends.Perk.LegendNightvision
-		],
-		[
-			::Legends.Perk.LegendSummonFalcon,
-			::Legends.Perk.DevastatingStrikes
-		],
-		[
-			::Legends.Perk.LegendSpecPoison
-		],
-		[
-			::Legends.Perk.LegendSummonWolf
-		],
+		[::Legends.Perk.LegendSummonHound],
+		[::Legends.Perk.LegendNightvision],
+		[::Legends.Perk.LegendSummonFalcon, ::Legends.Perk.DevastatingStrikes],
+		[::Legends.Perk.LegendSpecPoison],
+		[::Legends.Perk.LegendSummonWolf],
 		[],
-		[
-			::Legends.Perk.LegendBigGameHunter,
-		]
+		[::Legends.Perk.LegendBigGameHunter,]
 	]
 };
 
@@ -209,18 +174,10 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[
-			::Legends.Perk.LegendAmmoBinding
-		],
-		[
-			::Legends.Perk.LegendIncoming
-		],
-		[
-			::Legends.Perk.LegendAmmoBundles
-		],
-		[
-			::Legends.Perk.LegendCoordinatedVolleys
-		],
+		[::Legends.Perk.LegendAmmoBinding],
+		[::Legends.Perk.LegendIncoming],
+		[::Legends.Perk.LegendAmmoBundles],
+		[::Legends.Perk.LegendCoordinatedVolleys],
 		[]
 	]
 };
@@ -233,23 +190,13 @@ if (!("Perks" in ::Const))
 		"archery"
 	],
 	Tree = [
-		[
-			::Legends.Perk.LegendBlendIn,
-			::Legends.Perk.CoupDeGrace
-		],
-		[
-			::Legends.Perk.BagsAndBelts,
-		],
+		[::Legends.Perk.LegendBlendIn, ::Legends.Perk.CoupDeGrace],
+		[::Legends.Perk.BagsAndBelts,],
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendEvasion
-		],
-		[
-			::Legends.Perk.KillingFrenzy,
-			::Legends.Perk.LegendPerfectFocus
-		]
+		[::Legends.Perk.LegendEvasion],
+		[::Legends.Perk.KillingFrenzy, ::Legends.Perk.LegendPerfectFocus]
 	]
 };
 
@@ -261,25 +208,13 @@ if (!("Perks" in ::Const))
 		"Sneaky"
 	],
 	Tree = [
-		[
-			::Legends.Perk.Pathfinder,
-			::Legends.Perk.BagsAndBelts,
-			::Legends.Perk.DevastatingStrikes
-		],
+		[::Legends.Perk.Pathfinder, ::Legends.Perk.BagsAndBelts, ::Legends.Perk.DevastatingStrikes],
 		[],
-		[
-			::Legends.Perk.HoldOut,
-			::Legends.Perk.LegendFavouredEnemyOutlaw
-		],
+		[::Legends.Perk.HoldOut, ::Legends.Perk.LegendFavouredEnemyOutlaw],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendWindReader
-		],
-		[
-			::Legends.Perk.KillingFrenzy,
-			::Legends.Perk.LegendFavouredEnemySwordmaster
-		]
+		[::Legends.Perk.LegendWindReader],
+		[::Legends.Perk.KillingFrenzy, ::Legends.Perk.LegendFavouredEnemySwordmaster]
 	]
 };
 
@@ -346,16 +281,14 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[
-		::Legends.Perk.LegendSpawnZombieLow,
+			::Legends.Perk.LegendSpawnZombieLow,
 		],
 		[],
 		[::Legends.Perk.LegendExtendedAura],
-		[::Legends.Perk.LegendSpawnZombieMed,],
+		[::Legends.Perk.LegendSpawnZombieMed],
 		[::Legends.Perk.LegendReclamation],
-		[::Legends.Perk.LegendViolentDecomposition,],
-		[
-		::Legends.Perk.LegendSpawnZombieHigh,
-		]
+		[::Legends.Perk.LegendViolentDecomposition],
+		[::Legends.Perk.LegendSpawnZombieHigh]
 	]
 };
 
@@ -372,10 +305,7 @@ if (!("Perks" in ::Const))
 		[],
 		[::Legends.Perk.LegendSpawnSkeletonMed],
 		[::Legends.Perk.LegendConservation,],
-		[
-		::Legends.Perk.LegendChanneledPower,
-		::Legends.Perk.LegendPossession
-		],
+		[::Legends.Perk.LegendChanneledPower, ::Legends.Perk.LegendPossession],
 		[::Legends.Perk.LegendSpawnSkeletonHigh]
 	]
 };
@@ -394,10 +324,7 @@ if (!("Perks" in ::Const))
 		[],
 		[::Legends.Perk.LegendMuscularity],
 		[::Legends.Perk.Berserk],
-		[
-		::Legends.Perk.LegendBerserkerRage,
-		::Legends.Perk.LegendUberNimble
-		]
+		[::Legends.Perk.LegendBerserkerRage, ::Legends.Perk.LegendUberNimble]
 	]
 };
 
@@ -410,9 +337,7 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[::Legends.Perk.LegendBackToBasics],
-		[
-			// ::Legends.Perk.LegendComposure
-		],
+		[],
 		[::Legends.Perk.InspiringPresence],
 		[::Legends.Perk.LegendShieldsUp],
 		[::Legends.Perk.LegendHoldTheLine],
@@ -432,10 +357,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendPush],
 		[::Legends.Perk.LegendMagicDaze],
 		[::Legends.Perk.LegendEntice],
-		[
-			::Legends.Perk.LegendHorrify,
-			::Legends.Perk.LegendStun
-		],
+		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendStun],
 		[::Legends.Perk.LegendTerrifyingVisage],
 		[],
 		[]
@@ -541,30 +463,16 @@ if (!("Perks" in ::Const))
 		"evocation"
 	],
 	Tree = [
+		[::Legends.Perk.LegendMagicMissile],
+		//[ ::Legends.Perk.LegendMagicBurningHands ],
+//		[::Legends.Perk.LegendMagicHailstone],
+		[::Legends.Perk.LegendMagicMissileFocus],
+		[::Legends.Perk.LegendChainLightning, /*::Legends.Perk.LegendMasteryBurningHands*/],
 		[
-		::Legends.Perk.LegendMagicMissile
+			//::Legends.Perk.LegendMagicPsybeam,
+			//::Legends.Perk.LegendMasteryHailstone
 		],
-		[
-		//::Legends.Perk.LegendMagicBurningHands
-		],
-		[
-		//::Legends.Perk.LegendMagicHailstone
-		],
-		[
-		::Legends.Perk.LegendMagicMissileFocus
-		],
-		[
-		::Legends.Perk.LegendChainLightning,
-		//::Legends.Perk.LegendMasteryBurningHands
-		],
-		[
-		//::Legends.Perk.LegendMagicPsybeam,
-		//::Legends.Perk.LegendMasteryHailstone
-		],
-		[
-		::Legends.Perk.LegendMagicMissileMastery,
-		::Legends.Perk.LegendFirefield
-		]
+		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
 	]
 };
 
@@ -576,26 +484,13 @@ if (!("Perks" in ::Const))
 		"seer"
 	],
 	Tree = [
-		[
-			::Legends.Perk.LegendMagicMissile
-		],
+		[::Legends.Perk.LegendMagicMissile],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendMagicMissileFocus
-		],
-		[
-			::Legends.Perk.LegendChainLightning,
-			::Legends.Perk.LegendMagicSleep
-		],
-		[
-			::Legends.Perk.LegendLevitate,
-			::Legends.Perk.LegendScry
-		],
-		[
-			::Legends.Perk.LegendMagicMissileMastery,
-			::Legends.Perk.LegendFirefield
-		]
+		[::Legends.Perk.LegendMagicMissileFocus],
+		[::Legends.Perk.LegendChainLightning, ::Legends.Perk.LegendMagicSleep],
+		[::Legends.Perk.LegendLevitate, ::Legends.Perk.LegendScry],
+		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
 	]
 };
 
@@ -700,13 +595,10 @@ if (!("Perks" in ::Const))
 		::Const.Perks.StavesMagicTree
 
 	],
-	function getRandom(_exclude)
-	{
+	function getRandom(_exclude) {
 		local L = [];
-		foreach (i, t in this.Tree)
-		{
-			if (_exclude != null && _exclude.find(t.ID))
-			{
+		foreach (i, t in this.Tree) {
+			if (_exclude != null && _exclude.find(t.ID)) {
 				continue;
 			}
 			L.push(i);
@@ -717,14 +609,11 @@ if (!("Perks" in ::Const))
 	}
 
 
-	function getRandomPerk()
-	{
+	function getRandomPerk() {
 		local tree = this.getRandom(null);
 		local L = [];
-		foreach (row in tree.Tree)
-		{
-			foreach (p in row)
-			{
+		foreach (row in tree.Tree) {
+			foreach (p in row) {
 				L.push(p);
 			}
 		}

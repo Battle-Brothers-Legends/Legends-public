@@ -1347,40 +1347,7 @@
 
 	o.buildPerkTree <- function ()
 	{
-		local a = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
+		local a = clone ::Legends.Backgrounds.EmptyAttr;
 
 		if (this.m.PerkTree != null)
 		{
@@ -1819,7 +1786,7 @@
 			this.m.BeardChance = 0;
 			this.addBackgroundType(::Const.BackgroundType.Female);
 		}
-		
+
 		if (_beardChanceForce != null) {
 			this.m.BeardChance = _beardChanceForce;
 		}

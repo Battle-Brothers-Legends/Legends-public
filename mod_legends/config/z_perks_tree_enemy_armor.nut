@@ -1,60 +1,21 @@
 local gt = this.getroottable();
 
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
 ::Const.Perks.ForcefulTree <- {
 	ID = "ForcefulTree",
-	Name =  "Forceful",
+	Name = "Forceful",
 	Icon = "ui/perks/fullforce_circle.png",
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[],
 		[],
 		[],
 		[],
-		[
-            ::Legends.Perk.BattleForged
-        ],
-		[
-            ::Legends.Perk.LegendMuscularity,
-            ::Legends.Perk.LegendImmovableObject
-        ]
+		[::Legends.Perk.BattleForged],
+		[::Legends.Perk.LegendMuscularity, ::Legends.Perk.LegendImmovableObject]
 	]
 };

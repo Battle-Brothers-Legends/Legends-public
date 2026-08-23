@@ -1,5 +1,4 @@
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
@@ -56,7 +55,7 @@ local category = "Enemy";
 		[],
 		[],
 		[
-		::Legends.Perk.LegendFavouredEnemyUndead
+			::Legends.Perk.LegendFavouredEnemyUndead
 		],
 		[],
 		[]
@@ -131,10 +130,7 @@ local category = "Enemy";
 	Tree = [
 		[],
 		[],
-		[
-			::Legends.Perk.Steadfast,
-			::Legends.Perk.LegendSmackdown
-		],
+		[::Legends.Perk.Steadfast, ::Legends.Perk.LegendSmackdown],
 		[],
 		[],
 		[::Legends.Perk.LegendFavouredEnemySwordmaster],
@@ -153,13 +149,10 @@ local category = "Enemy";
 		::Const.Perks.OutlawTree,
 		::Const.Perks.SwordmastersTree,
 	],
-	function getRandom(_exclude)
-	{
+	function getRandom(_exclude) {
 		local L = [];
-		foreach (i, t in this.Tree)
-		{
-			if (_exclude != null && _exclude.find(t.ID))
-			{
+		foreach (i, t in this.Tree) {
+			if (_exclude != null && _exclude.find(t.ID)) {
 				continue;
 			}
 			L.push(i);
@@ -170,14 +163,11 @@ local category = "Enemy";
 	}
 
 
-	function getRandomPerk()
-	{
+	function getRandomPerk() {
 		local tree = this.getRandom(null);
 		local L = [];
-		foreach (row in tree.Tree)
-		{
-			foreach (p in row)
-			{
+		foreach (row in tree.Tree) {
+			foreach (p in row) {
 				L.push(p);
 			}
 		}

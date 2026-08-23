@@ -1,5 +1,4 @@
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
@@ -30,20 +29,12 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[
-			::Legends.Perk.LegendBalance
-		],
-		[
-			::Legends.Perk.LegendPerfectFit
-		],
+		[::Legends.Perk.LegendBalance],
+		[::Legends.Perk.LegendPerfectFit],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendLithe
-		],
-		[
-			::Legends.Perk.LegendSwagger
-		]
+		[::Legends.Perk.LegendLithe],
+		[::Legends.Perk.LegendSwagger]
 	]
 };
 
@@ -56,18 +47,11 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[
-			::Legends.Perk.Dodge
-		],
-		[
-			::Legends.Perk.Relentless,
-			::Legends.Perk.SteelBrow
-		],
+		[::Legends.Perk.Dodge],
+		[::Legends.Perk.Relentless, ::Legends.Perk.SteelBrow],
 		[],
 		[],
-		[
-			::Legends.Perk.Nimble
-		],
+		[::Legends.Perk.Nimble],
 		[]
 	]
 };
@@ -81,37 +65,30 @@ if (!("Perks" in ::Const))
 	],
 	Tree = [
 		[],
-		[
-			::Legends.Perk.LegendHimshaw,
-			::Legends.Perk.LegendRecuperation
-		],
-		[
-			::Legends.Perk.LegendEvasion
-		],
+		[::Legends.Perk.LegendHimshaw, ::Legends.Perk.LegendRecuperation],
+		[::Legends.Perk.LegendEvasion],
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendFreedomOfMovement
-		]
+		[::Legends.Perk.LegendFreedomOfMovement]
 	]
 };
 
 
 //::Const.Perks.HelmetTree <- {
-	//ID = "HelmetTree",
-	//Descriptions = [
-	//	"helmets"
-	//],
-	//Tree = [
-	//	[::Legends.Perk.LegendLookout],
-	//	[::Legends.Perk.SteelBrow],
-	//	[],//::Legends.Perk.
-	//	[],
-	//	[],
-	//	[],
-	//	[]
-	//]
+//ID = "HelmetTree",
+//Descriptions = [
+//	"helmets"
+//],
+//Tree = [
+//	[::Legends.Perk.LegendLookout],
+//	[::Legends.Perk.SteelBrow],
+//	[],//::Legends.Perk.
+//	[],
+//	[],
+//	[],
+//	[]
+//]
 //};
 
 ::Const.Perks.DefenseTrees <- {
@@ -124,13 +101,10 @@ if (!("Perks" in ::Const))
 		::Const.Perks.ClothArmorTree
 		//::Const.Perks.HelmetTree
 	],
-	function getRandom(_exclude)
-	{
+	function getRandom(_exclude) {
 		local L = [];
-		foreach (i, t in this.Tree)
-		{
-			if (_exclude != null && _exclude.find(t.ID) != null)
-			{
+		foreach (i, t in this.Tree) {
+			if (_exclude != null && _exclude.find(t.ID) != null) {
 				continue;
 			}
 			L.push(i);
@@ -141,14 +115,11 @@ if (!("Perks" in ::Const))
 	}
 
 
-	function getRandomPerk()
-	{
+	function getRandomPerk() {
 		local tree = this.getRandom(null);
 		local L = [];
-		foreach (row in tree.Tree)
-		{
-			foreach (p in row)
-			{
+		foreach (row in tree.Tree) {
+			foreach (p in row) {
 				L.push(p);
 			}
 		}

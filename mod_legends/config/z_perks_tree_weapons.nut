@@ -9,40 +9,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"maces"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[],
@@ -61,40 +28,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"flails"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[],
@@ -113,40 +47,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"hammers"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	// Combined the two hammer perks and potentially looking to add another later.
 	Tree = [
 		[],
@@ -166,40 +67,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"axes"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.LegendSmashingShields],
@@ -218,40 +86,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"cleavers"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[],
@@ -270,40 +105,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"swords"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.LegendFeint],
@@ -322,40 +124,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"daggers"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendHammerTheGap],
 		[],
@@ -373,40 +142,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"polearms"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendSpecStaffStun],
 		[::Legends.Perk.CoupDeGrace],
@@ -425,40 +161,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"spears"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendStrengthInNumbers],
 		[::Legends.Perk.LegendSpecSpearWall],
@@ -477,40 +180,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"crossbows"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[],
@@ -529,40 +199,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"bows"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.Bullseye, ::Legends.Perk.LegendAnchor],
@@ -581,40 +218,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"throwing weapons"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.QuickHands],
@@ -633,40 +237,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"slings"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.LegendLookout],
@@ -685,40 +256,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"shields"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
 		[::Legends.Perk.ShieldBash],
@@ -737,40 +275,7 @@ if (!("Perks" in ::Const)) {
 	Descriptions = [
 		"unarmed combat"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[
 			::Legends.Perk.LegendAmbidextrous,

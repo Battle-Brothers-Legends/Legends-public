@@ -1,5 +1,4 @@
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
@@ -67,21 +66,11 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[
-			::Legends.Perk.LegendBarterConvincing
-		],
+		[::Legends.Perk.LegendBarterConvincing],
 		[],
-		[
-			::Legends.Perk.LegendBarterTrustworthy
-		],
-		[
-			::Legends.Perk.LegendDangerPay,
-			::Legends.Perk.LegendPaymaster
-		],
-		[
-			::Legends.Perk.LegendOffBookDeal,
-			::Legends.Perk.LegendBarterGreed
-		]
+		[::Legends.Perk.LegendBarterTrustworthy],
+		[::Legends.Perk.LegendDangerPay, ::Legends.Perk.LegendPaymaster],
+		[::Legends.Perk.LegendOffBookDeal, ::Legends.Perk.LegendBarterGreed]
 	]
 };
 
@@ -149,17 +138,10 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[
-			::Legends.Perk.LegendEfficientPacking
-		],
+		[::Legends.Perk.LegendEfficientPacking],
 		[],
-		[
-			::Legends.Perk.LegendHippology,
-			::Legends.Perk.LegendSkillfulStacking
-		],
-		[
-			::Legends.Perk.LegendWheelMaintenance
-		],
+		[::Legends.Perk.LegendHippology, ::Legends.Perk.LegendSkillfulStacking],
+		[::Legends.Perk.LegendWheelMaintenance],
 		[]
 	]
 };
@@ -196,10 +178,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendMasterTrainer,
-			::Legends.Perk.LegendWhipThemInShape
-		]
+		[::Legends.Perk.LegendMasterTrainer, ::Legends.Perk.LegendWhipThemInShape]
 	]
 };
 
@@ -217,13 +196,10 @@ if (!("Perks" in ::Const))
 		::Const.Perks.RepairProfessionTree,
 		::Const.Perks.WoodworkingProfessionTree,
 	],
-	function getRandom(_exclude)
-	{
+	function getRandom(_exclude) {
 		local L = [];
-		foreach (i, t in this.Tree)
-		{
-			if (_exclude != null && _exclude.find(t.ID))
-			{
+		foreach (i, t in this.Tree) {
+			if (_exclude != null && _exclude.find(t.ID)) {
 				continue;
 			}
 			L.push(i);
@@ -233,14 +209,11 @@ if (!("Perks" in ::Const))
 		return this.Tree[L[r]];
 	}
 
-	function getRandomPerk()
-	{
+	function getRandomPerk() {
 		local tree = this.getRandom(null);
 		local L = [];
-		foreach (row in tree.Tree)
-		{
-			foreach (p in row)
-			{
+		foreach (row in tree.Tree) {
+			foreach (p in row) {
 				L.push(p);
 			}
 		}

@@ -33,7 +33,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendNetRepair, ::Legends.Perk.QuickHands],
 		[::Legends.Perk.LegendNetCasting],
 		[::Legends.Perk.LegendMasteryNets],
-		[], // As of 18.2.0, LegendEscapeArtist is no longer a player perk; LegendMasteryNets achieves the same effects
+		[],
 		[],
 		[]
 	]

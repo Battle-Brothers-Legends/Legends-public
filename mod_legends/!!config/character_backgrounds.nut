@@ -5,6 +5,18 @@ if (!("Backgrounds" in ::Legends)) {
 	Skeleton = "skeleton",
 	Zombie = "zombie"
 }
+
+::Legends.Backgrounds.EmptyAttr <- {
+	Hitpoints = [0, 0],
+	Bravery = [0, 0],
+	Stamina = [0, 0],
+	MeleeSkill = [0, 0],
+	RangedSkill = [0, 0],
+	MeleeDefense = [0, 0],
+	RangedDefense = [0, 0],
+	Initiative = [0, 0]
+}
+
 ::Legends.Backgrounds.BaseAttr <- {
 	Female = { // Female characters trade HP for Fatigue compared to male characters
 		Hitpoints = [-10, -10],
