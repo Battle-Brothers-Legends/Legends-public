@@ -29,8 +29,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 ::Legends.BackgroundPerkTrees.Anatomist <- {
 	Weapon = [
 		::Const.Perks.CleaverTree,
-		::Const.Perks.SwordTree,
-		::Const.Perks.SpearTree,
 		::Const.Perks.CrossbowTree,
 		::Const.Perks.DaggerTree,
 		::Const.Perks.PolearmTree
@@ -508,7 +506,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FlailTree,
 		::Const.Perks.HammerTree,
 		::Const.Perks.MaceTree,
-		::Const.Perks.CrossbowTree
 	],
 	Defense = [
 		::Const.Perks.HeavyArmorTree
@@ -1136,7 +1133,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.MaceTree,
 		::Const.Perks.PolearmTree,
 		::Const.Perks.CleaverTree,
-		::Const.Perks.SwordTree,
 		::Const.Perks.BowTree,
 		::Const.Perks.ThrowingTree
 	],

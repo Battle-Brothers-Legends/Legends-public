@@ -62,7 +62,6 @@
 - new white direwolf potion
 
 - Anatomists can no longer be scared of the dark
-- Anatomists now have the dagger perktree
 - gives anatomists one tier of skill in gathering (ref: herbalist has 3) at camp as most of their perktree was predisposed towards it
 - Anatomist origin has an additional chance of finding anatomists (~1 in 4 chance per refresh)
 
@@ -148,6 +147,8 @@
 - `Versatile` - now grants stacks which will increase damage by 10% damage for the opposite attack type, up to 3 stacks that can gradually be reduced
 - `Rebound` - moved to tier 6
 - `Overwhelm` - moved to tier 3
+- `Lookout` - removed from Slings tree
+- `Anchor` - moved to Slings from Bow to replace `Lookout`
 
 ## Professions
 - introduced a new system connecting the camping system to brothers - profession tree
