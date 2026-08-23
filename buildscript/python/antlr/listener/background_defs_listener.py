@@ -79,7 +79,7 @@ class BackgroundDefsListener(SquirrelParserListener):
 					id=str(self._current_table.get("ID", "")),
 					script=str(self._current_table.get("Script", "")),
 					const=str(self._current_table.get("Const", "")),
-					name=final_name,
+					name=final_name.replace("\\'", "'"),
 					hiring_cost=str(self._current_table.get("HiringCost", "0")),
 					daily_cost=str(self._current_table.get("DailyCost", "0")),
 					icon=str(self._current_table.get("Icon", "")),
