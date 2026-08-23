@@ -1913,6 +1913,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
+::Legends.BackgroundPerkTrees.TailorSouthern <- clone ::Legends.BackgroundPerkTrees.Tailor;
+
 ::Legends.BackgroundPerkTrees.Thief <- {
 	Weapon = [
 		::Const.Perks.SwordTree,
@@ -1939,6 +1941,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Profession = [],
 	Magic = []
 };
+
+::Legends.BackgroundPerkTrees.ThiefSouthern <- clone ::Legends.BackgroundPerkTrees.Thief;
 
 ::Legends.BackgroundPerkTrees.Vagabond <- {
 	Weapon = [

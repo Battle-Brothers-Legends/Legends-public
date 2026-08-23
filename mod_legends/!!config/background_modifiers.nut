@@ -874,54 +874,87 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.Swordmaster <- {
-			ArmorParts = 8,
-		Repair = 0.10,
-		Training = 0.3,
+	ArmorParts = 8,
+	Repair = 0.10,
+	Training = 0.3,
 };
 
 ::Legends.BackgroundModifiers.Tailor <- {
-			ArmorParts = 8,
-		Repair = 0.30,
-		Salvage = 0.30,
-		Crafting = 0.75,
-		Haggle = 0.005,
-		ToolConsumption = 0.01,
+	ArmorParts = 8,
+	Repair = 0.30,
+	Salvage = 0.30,
+	Crafting = 0.75,
+	Haggle = 0.005,
+	ToolConsumption = 0.01,
 };
+
+::Legends.BackgroundModifiers.TailorSouthern <- clone ::Legends.BackgroundModifiers.Tailor;
 
 ::Legends.BackgroundModifiers.Thief <- {
-			Stash = 5,
-		Haggle = 0.005,
-		Scout = 0.2,
+	Stash = 5,
+	Haggle = 0.005,
+	Scout = 0.2,
 };
 
+::Legends.BackgroundModifiers.ThiefSouthern <- clone ::Legends.BackgroundModifiers.Thief;
+
 ::Legends.BackgroundModifiers.Vagabond <- {
-			Stash = 5,
+		Stash = 5,
 		Scout = 0.1,
 		Gathering = 0.30,
 };
 
 ::Legends.BackgroundModifiers.Wildman <- {
-			MedConsumption = 0.05,
-		Hunting = 0.2,
-		Scout = 0.1,
-		Gathering = 1.0,
-		Training = 0.1,
-		Terrain = [
+	MedConsumption = 0.05,
+	Hunting = 0.2,
+	Scout = 0.1,
+	Gathering = 1.0,
+	Training = 0.1,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.0,//plains
+		0.025, //swamp
+		0.025, //hills
+		0.0, //forest
+		0.0, //forest
+		0.0, //forest_leaves
+		0.0, //autumn_forest
+		0.025, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.025, // snow
+		0.025, // badlands
+		0.025, //highlands
+		0.0, //steppes
+		0.0, //ocean
+		0.0, //desert
+		0.0 //oasis
+	],
+};
+
+::Legends.BackgroundModifiers.Witchhunter <- {
+	Crafting = 0.75,
+	Hunting = 0.1,
+	Fletching = 0.1,
+	Gathering = 0.50,
+	Training = 0.1,
+	Terrain = [
 			0.0, // ?
 			0.0, //ocean
 			0.0,//plains
 			0.025, //swamp
-			0.025, //hills
+			0.0, //hills
 			0.0, //forest
 			0.0, //forest
 			0.0, //forest_leaves
 			0.0, //autumn_forest
-			0.025, //mountains
+			0.0, //mountains
 			0.0, // ?
 			0.0, //farmland
-			0.025, // snow
-			0.025, // badlands
-			0.025, //highlands
+			0.0, // snow
+			0.0, // badlands
+			0.0, //highlands
 			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
@@ -929,57 +962,28 @@ if (!("BackgroundModifiers" in ::Legends)) {
 		],
 };
 
-::Legends.BackgroundModifiers.Witchhunter <- {
-			Crafting = 0.75,
-		Hunting = 0.1,
-		Fletching = 0.1,
-		Gathering = 0.50,
-		Training = 0.1,
-		Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0,//plains
-				0.025, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.0, //steppes
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			],
-};
-
 ::Legends.BackgroundModifiers.LegendAlchemist <- {
-			Haggle = 0.01,
-		Healing = 0.10,
-		Injury = 0.03,
-		Crafting = 1.00,
+	Haggle = 0.01,
+	Healing = 0.10,
+	Injury = 0.03,
+	Crafting = 1.00,
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderAssassin <- {
-			Scout = 0.3,
-		Training = 0.1,
+	Scout = 0.3,
+	Training = 0.1,
 };
 
 ::Legends.BackgroundModifiers.LegendBattleSister <- {
-			Healing = 0.10,
-		Injury = 0.03,
-		ArmorParts = 8,
-		Training = 0.1,
+	Healing = 0.10,
+	Injury = 0.03,
+	ArmorParts = 8,
+	Training = 0.1,
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderBeggar <- {
-			Gathering = 0.50,
-		Haggle = 0.02,
+	Gathering = 0.50,
+	Haggle = 0.02,
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundModifiers.LegendCommanderBeggar;
@@ -991,173 +995,174 @@ if (!("BackgroundModifiers" in ::Legends)) {
 };
 
 ::Legends.BackgroundModifiers.LegendBerserker <- {
-			Stash = 5,
-		Hunting = 0.2,
-		Scout = 0.2,
-		Gathering = 0.30,
-		Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0,//plains
-			0.025, //swamp
-			0.025, //hills
-			0.0, //forest
-			0.0, //forest
-			0.0, //forest_leaves
-			0.0, //autumn_forest
-			0.025, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.025, // snow
-			0.025, // badlands
-			0.025, //highlands
-			0.0, //steppes
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		],
+	Stash = 5,
+	Hunting = 0.2,
+	Scout = 0.2,
+	Gathering = 0.30,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.0,//plains
+		0.025, //swamp
+		0.025, //hills
+		0.0, //forest
+		0.0, //forest
+		0.0, //forest_leaves
+		0.0, //autumn_forest
+		0.025, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.025, // snow
+		0.025, // badlands
+		0.025, //highlands
+		0.0, //steppes
+		0.0, //ocean
+		0.0, //desert
+		0.0 //oasis
+	],
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderBerserker <- {
-			Stash = 8,
-		Hunting = 0.2,
-		Scout = 0.2,
-		Gathering = 0.30,
-		Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0,//plains
-			0.025, //swamp
-			0.025, //hills
-			0.0, //forest
-			0.0, //forest
-			0.0, //forest_leaves
-			0.0, //autumn_forest
-			0.025, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.025, // snow
-			0.025, // badlands
-			0.025, //highlands
-			0.0, //steppes
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		],
+	Stash = 8,
+	Hunting = 0.2,
+	Scout = 0.2,
+	Gathering = 0.30,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.0,//plains
+		0.025, //swamp
+		0.025, //hills
+		0.0, //forest
+		0.0, //forest
+		0.0, //forest_leaves
+		0.0, //autumn_forest
+		0.025, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.025, // snow
+		0.025, // badlands
+		0.025, //highlands
+		0.0, //steppes
+		0.0, //ocean
+		0.0, //desert
+		0.0 //oasis
+	],
 };
 
 ::Legends.BackgroundModifiers.LegendBlacksmith <- {
-			ArmorParts = 21,
-		Meds = 13,
-		Stash = 8,
-		Repair = 0.50,
-		Salvage = 0.50,
-		Crafting = 0.75,
-		Haggle = 0.005,
-		ToolConsumption = 0.05,
+	ArmorParts = 21,
+	Meds = 13,
+	Stash = 8,
+	Repair = 0.50,
+	Salvage = 0.50,
+	Crafting = 0.75,
+	Haggle = 0.005,
+	ToolConsumption = 0.05,
 };
 
 ::Legends.BackgroundModifiers.LegendBladedancer <- {
-			Scout = 0.2,
-		Training = 0.3,
+	Scout = 0.2,
+	Training = 0.3,
 };
 
 ::Legends.BackgroundModifiers.LegendBountyHunter <- {
-			Haggle = 0.005,
-		Stash = 5,
-		Injury = 0.03,
-		Training = 0.1,
-		Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.01, //plains
-			0.02, //swamp
-			0.01, //hills
-			0.02, //forest
-			0.02, //forest
-			0.02, //forest_leaves
-			0.02, //autumn_forest
-			0.0, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.0, // snow
-			0.02, // badlands
-			0.02, //highlands
-			0.05, //steppes
-			0.0, //ocean
-			0.05, //desert
-			0.05 //oasis
-		],
+	Haggle = 0.005,
+	Stash = 5,
+	Injury = 0.03,
+	Training = 0.1,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.01, //plains
+		0.02, //swamp
+		0.01, //hills
+		0.02, //forest
+		0.02, //forest
+		0.02, //forest_leaves
+		0.02, //autumn_forest
+		0.0, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.0, // snow
+		0.02, // badlands
+		0.02, //highlands
+		0.05, //steppes
+		0.0, //ocean
+		0.05, //desert
+		0.05 //oasis
+	],
 };
 
 ::Legends.BackgroundModifiers.LegendCompanionMelee <- {
-			Scout = 0.1,
-		Repair = 0.10,
-		Salvage = 0.10,
-		Healing = 0.10,
-		Injury = 0.03,
-		Crafting = 0.50,
-		Gathering = 0.30,
-		Training = 0.1,
-		Fletching = 0.1,
-		Hunting = 0.1,
+	Scout = 0.1,
+	Repair = 0.10,
+	Salvage = 0.10,
+	Healing = 0.10,
+	Injury = 0.03,
+	Crafting = 0.50,
+	Gathering = 0.30,
+	Training = 0.1,
+	Fletching = 0.1,
+	Hunting = 0.1,
 };
 
 ::Legends.BackgroundModifiers.LegendCompanionRanged <- {
-			Scout = 0.1,
-		Repair = 0.10,
-		Salvage = 0.10,
-		Healing = 0.10,
-		Injury = 0.03,
-		Crafting = 0.50,
-		Gathering = 0.30,
-		Training = 0.1,
-		Fletching = 0.1,
-		Hunting = 0.1,
+	Scout = 0.1,
+	Repair = 0.10,
+	Salvage = 0.10,
+	Healing = 0.10,
+	Injury = 0.03,
+	Crafting = 0.50,
+	Gathering = 0.30,
+	Training = 0.1,
+	Fletching = 0.1,
+	Hunting = 0.1,
 };
 
 ::Legends.BackgroundModifiers.LegendConscript <- {
-		Stash = 5,
-		Training = 0.2,
-		Scout = 0.1,
-		Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.05, //plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.1, //steppes
-				0.0, //ocean
-				0.1, //desert
-				0.2 //oasis
-			],};
+	Stash = 5,
+	Training = 0.2,
+	Scout = 0.1,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.05, //plains
+		0.0, //swamp
+		0.0, //hills
+		0.0, //forest
+		0.0, //forest
+		0.0, //forest_leaves
+		0.0, //autumn_forest
+		0.0, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.0, // snow
+		0.0, // badlands
+		0.0, //highlands
+		0.1, //steppes
+		0.0, //ocean
+		0.1, //desert
+		0.2 //oasis
+	],
+};
 
 ::Legends.BackgroundModifiers.LegendConscriptRanged <- clone ::Legends.BackgroundModifiers.LegendConscript;
 
 ::Legends.BackgroundModifiers.LegendCrusader <- {
-			Healing = 0.10,
-		Salvage = 0.10,
-		Repair = 0.30,
-		ArmorParts = 13,
-		Stash = 8,
-		ToolConsumption = 0.03,
-		Training = 0.2,
+	Healing = 0.10,
+	Salvage = 0.10,
+	Repair = 0.30,
+	ArmorParts = 13,
+	Stash = 8,
+	ToolConsumption = 0.03,
+	Training = 0.2,
 };
 
 ::Legends.BackgroundModifiers.LegendDervish <- {
-			Meds = 13,
-		Healing = 0.30,
-		Injury = 0.10,
+	Meds = 13,
+	Healing = 0.30,
+	Injury = 0.10,
 };
 
 ::Legends.BackgroundModifiers.LegendDonkey <- {
