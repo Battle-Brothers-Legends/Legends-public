@@ -181,7 +181,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (_fatalityType == this.Const.FatalityType.Disemboweled)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_guts", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_guts", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
@@ -193,13 +193,13 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 			}
 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}

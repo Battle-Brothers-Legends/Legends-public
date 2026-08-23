@@ -341,11 +341,11 @@
 - Masterwork fabric cost from 950 to 1140.
 
 ## Enemies
-- Estoc removed from robber barons and bandit leaders
-- Added dagger mastery to swordmasters and fencers for the purposes of vanilla estoc compatibility
-
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
+
+### Beasts
+- revamped art for `Demon Alp` from Misha
 
 ### Bandits
 - `Bandit Executioner` - new enemy that will appear in bandit comps, dressed to impress and armed with cleavers - including the new executioner sword
@@ -357,6 +357,8 @@
 - `Peasant Poacher` - removed from comps
 - `Peasant Squire` - removed from comps
 - `Peasant Witchhunter` - removed from comps
+- Estoc removed from `Robber Barron` and `Bandit Leader`
+- Added dagger mastery to `Sswordmasters` and `Fencers` for the purposes of vanilla estoc compatibility
 
 ### Nomads
 - `Escaped Gladiator` - new enemy that will appear in nomad comps, more or less will feel familiar to regular Gladiators you meet in arena, but they aren't dressed like they're putting on a show

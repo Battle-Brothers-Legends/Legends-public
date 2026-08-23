@@ -372,16 +372,6 @@ enemies = r"""
 <sprite id="bust_spider_cluster_body_01_wounded" offsetY="35" ic="FF212E38" width="174" height="214" img="entity\beasts\bust_spider_cluster_body_01_wounded.png" left="-54" right="58" top="-65" bottom="31" />
 <sprite id="bust_spider_cluster_body_01_dead" offsetY="30" f="64FF" ic="FF1A262B" width="169" height="139" img="entity\beasts\bust_spider_cluster_body_01_dead.png" left="-71" right="81" top="-64" bottom="50" />
 
-<sprite id="bust_demonalp_head_01" offsetY="35" ic="FF6E819D" width="174" height="214" img="entity\beasts\bust_demonalp_head_01.png" left="-51" right="53" top="-22" bottom="58" />
-<sprite id="bust_demonalp_head_01_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF61718A" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead.png" left="-17" right="59" top="-58" bottom="6" />
-<sprite id="bust_demonalp_head_01_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead_bloodpool.png" left="-3" right="59" top="-66" bottom="0" />
-<sprite id="bust_demonalp_head_02" offsetY="35" ic="FF7284A0" width="174" height="214" img="entity\beasts\bust_demonalp_head_02.png" left="-44" right="24" top="-30" bottom="52" />
-<sprite id="bust_demonalp_head_02_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF677792" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead.png" left="-4" right="60" top="-68" bottom="14" />
-<sprite id="bust_demonalp_head_02_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead_bloodpool.png" left="-2" right="58" top="-60" bottom="18" />
-<sprite id="bust_demonalp_head_03" offsetY="35" ic="FF788BA4" width="174" height="214" img="entity\beasts\bust_demonalp_head_03.png" left="-49" right="21" top="-24" bottom="44" />
-<sprite id="bust_demonalp_head_03_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF6D7D95" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead.png" left="-21" right="67" top="-61" bottom="13" />
-<sprite id="bust_demonalp_head_03_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead_bloodpool.png" left="-9" right="63" top="-66" bottom="10" />
-
 <sprite id="bust_alp_human_body_01" offsetY="35" ic="FF4D719A" width="104" height="142" img="entity\beasts\bust_alp_human_body_01.png" top="-48" bottom="10" />
 <sprite id="bust_alp_human_body_02" offsetY="35" ic="FF4D719B" width="104" height="142" img="entity\beasts\bust_alp_human_body_02.png" left="-42" right="40" top="-50" bottom="10" />
 <sprite id="bust_alp_human_head_01" offsetY="35" ic="FF5B7CAD" width="104" height="142" img="entity\beasts\bust_alp_human_head_01.png" left="-21" right="29" top="-21" bottom="47" />
@@ -403,23 +393,18 @@ enemies = r"""
 <sprite id="bust_alp_direwolf_03_body" offsetY="35" ic="FF191B1F" width="104" height="142" img="entity\beasts\bust_alp_direwolf_03_body.png" top="-62" bottom="40" />
 <sprite id="bust_alp_direwolf_03_head" offsetY="35" ic="FF2A333D" width="104" height="142" img="entity\beasts\bust_alp_direwolf_03_head.png" left="-52" right="20" top="-33" bottom="43" />
 
-<sprite id="bust_demonalp_01_injured" offsetY="35" ic="FF242636" width="174" height="214" img="entity\beasts\bust_demonalp_01_injured.png" left="-39" right="53" top="-45" bottom="51" />
-<sprite id="bust_demonalp_body_01" offsetY="35" ic="FF697792" width="174" height="214" img="entity\beasts\bust_demonalp_body_01.png" left="-50" right="48" top="-55" bottom="23" />
-<sprite id="bust_demonalp_body_01_dead" offsetY="20" f="64FF" ic="FF515C75" width="169" height="139" img="entity\beasts\bust_demonalp_body_01_dead.png" left="-72" right="80" top="-61" bottom="39" />
-<sprite id="bust_demonalp_body_01_dead_arrows" offsetY="20" f="64FB" ic="FF40484C" width="169" height="139" img="entity\beasts\bust_demonalp_body_01_dead_arrows.png" left="-30" right="26" top="-15" bottom="37" />
-<sprite id="bust_demonalp_body_01_dead_javelin" offsetY="20" f="64FB" ic="FF151C29" width="169" height="139" img="entity\beasts\bust_demonalp_body_01_dead_javelin.png" left="7" right="35" top="-10" bottom="48" />
-<sprite id="bust_demonalp_guts" offsetY="18" f="6402" ic="FF4C546D" width="169" height="139" img="entity\beasts\bust_demonalp_guts.png" left="-30" right="32" top="-27" bottom="29" />
-<sprite id="bust_demonalp_head_01_dead" offsetY="20" f="64F6" f1="30" f2="-25" ic="FF61718A" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead.png" left="-17" right="59" top="-58" bottom="6" />
-<sprite id="bust_demonalp_head_01_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_01_dead_bloodpool.png" left="-3" right="59" top="-66" bottom="0" />
-<sprite id="bust_demonalp_head_02" offsetY="35" ic="FF7284A0" width="174" height="214" img="entity\beasts\bust_demonalp_head_02.png" left="-44" right="24" top="-30" bottom="52" />
-<sprite id="bust_demonalp_head_02_dead" offsetY="20" f="64F6" f1="30" f2="-25" ic="FF677792" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead.png" left="-4" right="60" top="-68" bottom="14" />
-<sprite id="bust_demonalp_head_02_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_02_dead_bloodpool.png" left="-2" right="58" top="-60" bottom="18" />
-<sprite id="bust_demonalp_head_03" offsetY="35" ic="FF788BA4" width="174" height="214" img="entity\beasts\bust_demonalp_head_03.png" left="-49" right="21" top="-24" bottom="44" />
-<sprite id="bust_demonalp_head_03_dead" offsetY="20" f="64F6" f1="30" f2="-25" ic="FF6D7D95" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead.png" left="-21" right="67" top="-61" bottom="13" />
-<sprite id="bust_demonalp_head_03_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" width="169" height="139" img="entity\beasts\bust_demonalp_head_03_dead_bloodpool.png" left="-9" right="63" top="-66" bottom="10" />
-s<sprite id="bust_demonalp_shadow_01" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_01.png" left="-51" right="53" top="-55" bottom="59" />
-<sprite id="bust_demonalp_shadow_02" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_02.png" left="-50" right="48" top="-55" bottom="51" />
-<sprite id="bust_demonalp_shadow_03" offsetY="35" ic="FF000000" width="174" height="214" img="entity\beasts\bust_demonalp_shadow_03.png" left="-50" right="48" top="-55" bottom="43" />
+<sprite id="bust_demonalp_01_injured" offsetY="35" ic="FF242636" img="entity\beasts\bust_demonalp_01_injured.png" left="-56" right="56" top="-61" bottom="62" />
+<sprite id="bust_demonalp_body_01" offsetY="35" ic="FF697792" img="entity\beasts\bust_demonalp_body_01.png" left="-58" right="58" top="-70" bottom="70" />
+<sprite id="bust_demonalp_body_01_dead" offsetY="20" f="64FF" ic="FF515C75" img="entity\beasts\bust_demonalp_body_01_dead.png" left="-72" right="80" top="-61" bottom="39" />
+<sprite id="bust_demonalp_head_01" offsetY="35" ic="FF6E819D" img="entity\beasts\bust_demonalp_head_01.png" left="-58" right="58" top="-70" bottom="70" />
+<sprite id="bust_demonalp_head_01_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF61718A" img="entity\beasts\bust_demonalp_head_01_dead.png" left="-17" right="59" top="-58" bottom="6" />
+<sprite id="bust_demonalp_head_01_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" img="entity\beasts\bust_demonalp_head_01_dead_bloodpool.png" left="-3" right="59" top="-66" bottom="0" />
+<sprite id="bust_demonalp_head_02" offsetY="35" ic="FF7284A0" img="entity\beasts\bust_demonalp_head_02.png" left="-58" right="58" top="-70" bottom="70" />
+<sprite id="bust_demonalp_head_02_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF677792" img="entity\beasts\bust_demonalp_head_02_dead.png" left="-4" right="60" top="-68" bottom="14" />
+<sprite id="bust_demonalp_head_02_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" img="entity\beasts\bust_demonalp_head_02_dead_bloodpool.png" left="-2" right="58" top="-60" bottom="18" />
+<sprite id="bust_demonalp_head_03" offsetY="35" ic="FF788BA4" img="entity\beasts\bust_demonalp_head_03.png" left="-58" right="58" top="-70" bottom="70" />
+<sprite id="bust_demonalp_head_03_dead" offsetY="20" f="6401" f1="30" f2="-25" ic="FF6D7D95" img="entity\beasts\bust_demonalp_head_03_dead.png" left="-21" right="67" top="-61" bottom="13" />
+<sprite id="bust_demonalp_head_03_bloodpool" offsetY="20" f="6420" f1="30" f2="-25" img="entity\beasts\bust_demonalp_head_03_dead_bloodpool.png" left="-9" right="63" top="-66" bottom="10" />
 
 <sprite id="bust_hexenleader_head_01" offsetY="35" ic="FF566984" width="140" height="248" img="entity\beasts\bust_hexenleader_head_01.png" left="-42" right="14" top="-28" bottom="40" />
 <sprite id="bust_hexenleader_head_01_dead" offsetX="-6" offsetY="6" f="64F6" f1="-5" f2="-10" ic="FF52627F" width="179" height="154" img="entity\beasts\bust_hexenleader_head_01_dead.png" left="-42" right="26" top="-33" bottom="27" />
