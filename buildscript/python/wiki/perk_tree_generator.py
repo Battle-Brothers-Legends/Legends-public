@@ -46,7 +46,10 @@ class PerkTreeGenerator(Generator):
 	def process(self):
 		trees: list[PerkTreeDefAST] = [tree for f in self.PERK_FILES for tree in self._get_trees(f)]
 
-		output = [f"## Perk trees"]
+		output = [
+			"# WIP",
+			f"## Perk trees"
+		]
 		for tree in  sorted(trees, key=lambda tree: tree.name):
 			output.append(f"### {tree.name}\n")
 			output.append(self.TABLE_START)
