@@ -46,6 +46,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	}
 
 	function onUpdate(_properties) {
+		local actor = this.getContainer().getActor();
 		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
 		}
