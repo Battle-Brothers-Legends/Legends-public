@@ -2,6 +2,15 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 	m = {
 		IsGreatHalfsword = false
 	}
+
+	function setItem (_item) {
+		if (this.m.IsGreatHalfsword) {
+			this.m.ActionPointCost = 6;
+			this.m.FatigueCost = 35;
+		}
+		this.skill.setItem(_item);
+	}
+
 	function create() {
 		this.puncture.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalfsword);
@@ -14,14 +23,6 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsHidden = true;
 		this.m.HitChanceBonus = -80;
-	}
-
-	function setItem (_item) {
-		if (this.m.IsGreatHalfsword) {
-			this.m.ActionPointCost = 6;
-			this.m.FatigueCost = 35;
-		}
-		this.skill.setItem(_item);
 	}
 
 	function onAfterUpdate( _properties ) {
