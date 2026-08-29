@@ -20,6 +20,10 @@
 		}
 	}
 
+	o.getTooltip = function () {
+		return this.getDefaultTooltip();
+	}
+
 	o.onAfterUpdate = function( _properties ) {
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
