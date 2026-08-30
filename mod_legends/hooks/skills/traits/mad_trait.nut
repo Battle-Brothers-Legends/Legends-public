@@ -47,7 +47,7 @@
 		local actor = this.getContainer().getActor();
 		local morale = actor.getMoraleState();
 
-		local rand = this.Math.rand(1, 2) == 1 ? -1 ; 1;
+		local rand = this.Math.rand(1, 2) == 1 ? -1 : 1;
 		if (morale == this.Const.MoraleState.Fleeing || morale == this.Const.MoraleState.Breaking) {
 			a.checkMorale(1, this.Math.rand(-15, 15), this.Const.MoraleCheckType.Default);
 		}
