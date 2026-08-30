@@ -45,8 +45,8 @@
 ::Const.World.Spawn.Troops.LegendGoblinHarrier <- {
 	ID = this.Const.EntityType.LegendGoblinHarrier,
 	Variant = 1,
-	Strength = 50,
-	Cost = 50,
+	Strength = 40,
+	Cost = 40,
 	Row = 0,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_harrier",
 	NameList = this.Const.Strings.GoblinNames,
@@ -56,8 +56,8 @@
 ::Const.World.Spawn.Troops.LegendGoblinWitchDoctor <- {
 	ID = this.Const.EntityType.LegendGoblinWitchDoctor,
 	Variant = 1,
-	Strength = 50,
-	Cost = 50,
+	Strength = 40,
+	Cost = 40,
 	Row = 2,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_witch_doctor",
 	NameList = this.Const.Strings.GoblinNames,
@@ -67,8 +67,8 @@
 ::Const.World.Spawn.Troops.LegendGoblinDirewolfRider <- {
 	ID = this.Const.EntityType.LegendGoblinDirewolfRider,
 	Variant = 1,
-	Strength = 60,
-	Cost = 60,
+	Strength = 50,
+	Cost = 50,
 	Row = 1,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_direwolf_rider",
 	NameList = this.Const.Strings.GoblinNames,
@@ -78,8 +78,8 @@
 ::Const.World.Spawn.Troops.LegendGoblinWhiteDirewolfRider <- {
 	ID = this.Const.EntityType.LegendGoblinWhiteDirewolfRider,
 	Variant = 1,
-	Strength = 70,
-	Cost = 70,
+	Strength = 60,
+	Cost = 60,
 	Row = 1,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_white_direwolf_rider",
 	NameList = this.Const.Strings.GoblinNames,
