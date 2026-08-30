@@ -755,10 +755,10 @@
 		{
 			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 10 : -10);
 		}
-		else if (this.m.Skills.hasTrait(::Legends.Trait.Mad))
-		{
-			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 15 : -15);
-		}
+		// else if (this.m.Skills.hasTrait(::Legends.Trait.Mad))
+		// {
+		// 	_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 15 : -15);
+		// }
 		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasTrait(::Legends.Trait.Superstitious))
 		{
 			_difficulty = _difficulty - 10;

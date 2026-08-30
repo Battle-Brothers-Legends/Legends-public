@@ -159,6 +159,7 @@
 
 ## Traits
 - `Lucky` - now additionally gives 10% chance to reroll a missed attack
+- `Mad` - now has a chance to shift his morale up or down at the start of each turn in combat, cannot become fleeing from this effect but can rally from fleeing
 
 ## Items
 - weight and maximum fatigue uniformly renamed as "Fatigue Weight Penalty" across different wearable items; no functional changes
