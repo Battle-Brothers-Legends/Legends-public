@@ -834,7 +834,7 @@ backgroundDefs.push({
     ID = "background.paladin",
     Script = "scripts/skills/backgrounds/paladin_background",
     Const = "Paladin",
-    Name = "Paladin",
+    Name = "Oathtaker",
     HiringCost = 150,
     DailyCost = 25,
     Icon = "ui/backgrounds/background_69.png",
@@ -842,10 +842,11 @@ backgroundDefs.push({
 
 ::Legends.Background.PaladinOld <- null;
 backgroundDefs.push({
+    // @wiki_name "Old Oathtaker",
     ID = "background.paladin",
     Script = "scripts/skills/backgrounds/old_paladin_background",
     Const = "PaladinOld",
-    Name = "Paladin",
+    Name = "Oathtaker",
     HiringCost = 150,
     DailyCost = 25,
     Icon = "ui/backgrounds/background_69.png",
