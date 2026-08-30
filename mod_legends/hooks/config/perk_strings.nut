@@ -118,7 +118,7 @@ Master the art of archery and pelting your opponents with arrows from afar.
 
 • [color=%skill%]Cascade[/color] now deals an additional [color=%positive%]10%[/color] damage from the Initiative difference between you and your target.
 
-• [color=%skill%]Full Draw[/color] now requires [color=%negative%]8[/color] Action Points.
+• [color=%skill%]Full Draw[/color] now requires [color=%negative%]8[/color] Action Points and will execute after on resuming your turn after using the [color=%skill%]Wait[/color] command.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecBow].Tooltip = ::Const.Strings.PerkDescription.SpecBow;
 ::Const.Strings.PerkDescription.SpecCrossbow <- @"
