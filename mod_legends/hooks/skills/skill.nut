@@ -1684,8 +1684,8 @@
 		hitInfo.Tile = _info.TargetEntity.getTile();
 		_info.Container.onBeforeTargetHit(_info.Skill, _info.TargetEntity, hitInfo);
 
-		hitInfo.DamageRegular = this.Math.max(hitInfo.DamageRegular - _info.TargetEntity.getBlock(), 0);
-		hitInfo.DamageArmor = this.Math.max(hitInfo.DamageArmor - _info.TargetEntity.getBlock(), 0);
+		hitInfo.DamageRegular = this.Math.max(this.Math.round(hitInfo.DamageRegular) - _info.TargetEntity.getBlock(), 0);
+		hitInfo.DamageArmor = this.Math.max(this.Math.round(hitInfo.DamageArmor) - _info.TargetEntity.getBlock(), 0);
 
 		// I'm kind of sure there will be errors so here's an explanation: block works after calculating damage on attacker side and before damage on defender, any further damage is substracted
 		// if the entire damage is substracted it'll count as a shield hit but i'm also envisioning that you can gain block without a shield so there's a check below
