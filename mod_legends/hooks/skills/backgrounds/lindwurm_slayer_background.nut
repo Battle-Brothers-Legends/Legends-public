@@ -34,7 +34,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
-		this.m.Level = this.Math.rand(2, 4);
+		this.m.Level = this.Math.rand(4, 6);
+		this.m.PerkTreeDynamicMins.Traits = 8;
+		this.m.PerkTreeDynamicMins.Armor = 3;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;

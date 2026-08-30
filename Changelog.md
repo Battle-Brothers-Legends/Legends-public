@@ -105,6 +105,12 @@
 - Hiring cost dropped from 350 to 150 in line with vanilla
 - old oathtaker gets faith class tree
 
+### Lindwurm Slayer
+- stats aligned with vanilla with the exception of higher matk and ratk
+- can roll up to 8 trait trees
+- can roll up to 3 defensive trees
+
+
 ### Sellswords
 - sellswords stats aligned with vanilla
 - sellswords can have up to 9 weapon trees

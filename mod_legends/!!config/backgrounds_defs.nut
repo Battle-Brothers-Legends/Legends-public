@@ -669,7 +669,7 @@ backgroundDefs.push({
     Script = "scripts/skills/backgrounds/lindwurm_slayer_background",
     Const = "LindwurmSlayer",
     Name = "Lindwurm Slayer",
-    DailyCost = 31,
+    DailyCost = 28,
     HiringCost = 0,
     Icon = "ui/backgrounds/background_71.png",
 });
