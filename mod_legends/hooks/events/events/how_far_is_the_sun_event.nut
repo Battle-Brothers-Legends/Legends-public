@@ -53,6 +53,7 @@
 				}
 			}
 			if (s.ID == "Monk") {
+				s.Text = "[img]gfx/ui/events/event_05.png[/img]%monk% the cleric starts in on the conversation.%SPEECH_ON%The sun is neither far nor close. It is the eye of many of the gods, the scope through which they use to watch over us.%SPEECH_OFF%%otherbrother% nods, but then, curious, asks about the moon. The holy %person_monk% smiles confidently.%SPEECH_ON%Do you think the gods would shine upon us for all hours? Of course they dim the lights a bit, to give us mortals a nice night to sleep in.%SPEECH_OFF%You nod. Truly the old gods are always looking out for us.";
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Monk.getImagePath());
 					local brothers = this.World.getPlayerRoster().getAll();
