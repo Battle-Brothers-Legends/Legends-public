@@ -43,7 +43,7 @@
 		}];
 	}
 
-	o.onTurnStart() {
+	o.onTurnStart <- function () {
 		local actor = this.getContainer().getActor();
 		local morale = actor.getMoraleState();
 
