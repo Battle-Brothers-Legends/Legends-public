@@ -1829,17 +1829,6 @@ perkDefObjects.push({
 	Const = "LegendSecondWind"
 });
 
-::Legends.Perk.LegendMarkTarget <- null;
-perkDefObjects.push({
-	ID = "perk.legend_mark_target",
-	Script = "scripts/skills/perks/perk_legend_mark_target",
-	Name = ::Const.Strings.PerkName.LegendMarkTarget,
-	Tooltip = ::Const.Strings.PerkDescription.LegendMarkTarget,
-	Icon = "ui/perks/MarkTargetPerk.png",
-	IconDisabled = "ui/perks/MarkTargetPerk_bw.png",
-	Const = "LegendMarkTarget"
-});
-
 ::Legends.Perk.LegendFieldTriage <- null;
 perkDefObjects.push({
 	ID = "perk.legend_field_triage",

@@ -49,7 +49,6 @@
 ::Const.Strings.PerkName.LegendAssuredConquest <- "Assured Conquest";
 ::Const.Strings.PerkName.LegendBigGameHunter <- "Big Game Hunter";
 ::Const.Strings.PerkName.LegendSecondWind <- "Second Wind";
-::Const.Strings.PerkName.LegendMarkTarget <- "Mark Target";
 ::Const.Strings.PerkName.LegendFieldTriage <- "Field Triage";
 ::Const.Strings.PerkName.LegendFieldRepairs <- "Field Repairs";
 ::Const.Strings.PerkName.LegendDangerPay <- "Danger Pay";
@@ -1746,17 +1745,6 @@ Even the fiercest battles can't keep you down.
 • Unlocks the [color=%skill%]Second Wind[/color] skill with the same effects as the passive.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]0[/color] Fatigue. Can only be used once per combat when accumulated fatigue is more than 50% of maximum. If the passive effect activates the active can't be used.
-";
-
-::Const.Strings.PerkDescription.LegendMarkTarget <- @"
-'The ugly one, right there! Take him out!'
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Mark Target[/color] skill which marks any target within nine tiles and reduces their Melee and Ranged Defenses by [color=%negative%]-10[/color] for three turns.
-
-• Provides increased damage against the target up to 20%.
-
-• Costs [color=%negative%]2[/color] AP and [color=%negative%]10[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendFieldTriage <- @"
