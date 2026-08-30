@@ -7,7 +7,7 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "%terrainImage%{While on the march, you find a drunken nobleman tottering side to side on the path. Mussy is the name of his hair, leaves and grass and what looks like birdshit swept up in it like someone stirred the ingredients to a prank. But his clothes sweep about with the finest of silks and his fingers glisten with jewelry. He has a bottle in each hand and he swings them around as he sings gibberish pub songs.\n\nHe is in all regards the greatest magnet for a mugging you\'ve ever seen. %randombrother% purses lips and looks like a wolf staring at a fat sheep.%SPEECH_ON%I\'m not saying nothing, sir, I\'m just. I\'m just seeing it. That\'s a lot of juice. A lot of juice limping down the road. But again I ain\'t saying nothing.%SPEECH_OFF%You know what the sellsword\'s talking about.}";
+				s.Text = "%terrainImage%{While on the march, you find a drunken nobleman tottering side to side on the path. Mussy is the name of his hair, leaves and grass and what looks like birdshit swept up in it like someone stirred the ingredients to a prank. But his clothes sweep about with the finest of silks and his fingers glisten with jewelry. He has a bottle in each hand and he swings them around as he sings gibberish pub songs.\n\nHe is in all regards the greatest magnet for a mugging you\'ve ever seen. %randombrother% purses %their_randombrother% lips and %they_randombrother% looks like a wolf staring at a fat sheep.%SPEECH_ON%I\'m not saying nothing, sir, I\'m just. I\'m just seeing it. That\'s a lot of juice. A lot of juice limping down the road. But again I ain\'t saying nothing.%SPEECH_OFF%You know what %they_randombrother%\'s talking about.}";
 				s.start <- function ( _event ) {
 					if (_event.m.Servant != null) {
 						this.Options.push({
@@ -45,7 +45,7 @@
 				}
 			}
 			if (s.ID == "B") {
-				s.Text = "%terrainImage%{You walk up to the man and help him sit down. He grins as one of his bottles clanks off the path and rolls away.%SPEECH_ON%Thankiicup, sir, jast, no, well, ya.%SPEECH_OFF%Nodding, you hold his hand out and spit on his fingers, then roll the jewelry off and pocket them. He merely watches as though you were a physician treating a malady. The rest of your mercenaries strip him down and throw a goatskin tarp over him and then leave him there. As you walk away he asks if you know about the drink.%SPEECH_ON%Not, not sayin\' away the secret, but, sirs, drinks are good.%SPEECH_OFF%Yes, are they ever. Unfortunately, as you rejoin the company %randombrother% reports that a kid saw everything and scampered off. You ask why the mercenary didn\'t chase after him, the bemused sellsword looks at you shrewdly.%SPEECH_ON%I\'m not the scampering sort, sir.%SPEECH_OFF%}";
+				s.Text = "%terrainImage%{You walk up to the man and help him sit down. He grins as one of his bottles clanks off the path and rolls away.%SPEECH_ON%Thankiicup, sir, jast, no, well, ya.%SPEECH_OFF%Nodding, you hold his hand out and spit on his fingers, then roll the jewelry off and pocket them. He merely watches as though you were a physician treating a malady. The rest of your mercenaries strip him down and throw a goatskin tarp over him and then leave him there. As you walk away he asks if you know about the drink.%SPEECH_ON%Not, not sayin\' away the secret, but, sirs, drinks are good.%SPEECH_OFF%Yes, are they ever. Unfortunately, as you rejoin the company %randombrother% reports that a kid saw everything and scampered off. You ask why %they_randombrother% didn\'t chase after him. %They_randombrother% looks at you shrewdly.%SPEECH_ON%I\'m not the scampering sort, sir.%SPEECH_OFF%}";
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
@@ -53,7 +53,7 @@
 				}
 			}
 			if (s.ID == "F") {
-				s.Text = "%terrainImage%{You look back at the company, then unsheathe your sword as you turn around. You swing it up and clip the crossbow and the man shoots it just over your shoulder. You drive the blade down the slat of wood and cut the cords of the weapon and stab the steel into the man\'s chest. He goes down easy and you hear men shout in the distance, but they\'re scared and scampering away. Thieves like this know not to fight with sellswords. Unfortunately, the crossbow bolt that went over your shoulder struck %hurtbro%. Who\'ll survive, but it is a garish wound.}";
+				s.Text = "%terrainImage%{You look back at the company, then unsheathe your sword as you turn around. You swing it up and clip the crossbow and the man shoots it just over your shoulder. You drive the blade down the slat of wood and cut the cords of the weapon and stab the steel into the man\'s chest. He goes down easy and you hear men shout in the distance, but they\'re scared and scampering away. Thieves like this know not to fight with sellswords. Unfortunately, the crossbow bolt that went over your shoulder struck %hurtbro%, who will survive, but it is a garish wound.}";
 			}
 			if (s.ID == "H") {
 				s.Text = "%terrainImage%As you approach the drunkard, a sharp whistle cracks across the path. You and the drunkard both look to see %thief% the thief standing there with a weapon to the back of another man.%SPEECH_ON%That feller\'s no nobleman, and probably ain't no drunk neither. They\'re working together to either ambush travelers or threaten them with blackmail. They\'re robbers, sir.%SPEECH_OFF%You look back to see the man smiling nervously. He explains with suddenly sharpened clarity.%SPEECH_ON%We\'d no interest in robbing sellswords, sir, I-I-I swear I was about to explain myself soon as I saw yer swords.%SPEECH_OFF%%thief% yells out, asking where the cache is. You look back at the man and tell him to hand over everything he\'s stolen. He nods and asks if you\'ll gut him if he refuses. You nod and tell him the gutting will come last, and by that point it\'ll be a relief. The man puts a little pep in his step.%SPEECH_ON%Yessir gotcha sir, right this way.%SPEECH_OFF%";
@@ -62,7 +62,7 @@
 
 		this.m.Screens.push({
 			ID = "I",
-			Text = "%terrainImage%As you approach the drunkard, he immediately recognizes %noble% and runs up sobbing. %SPEECH_ON%Cousin! Oh my gentile and cultured cousin, my favorite second cousin, you would not believe the outrageous injustice perpetrated against one\'s self!%SPEECH_OFF%You look on skeptically as the obviously drunken and slightly bedraggled nobleman continues.%SPEECH_ON%I was due to be wed you see, to the love of my life. It was to the richest, wealthiest, prosperous, bountiful, most affluent, most.. well endowed..%SPEECH_OFF% The noble\'s mind wanders off, as if in fantasy. You prompt again and the speech continues somewhat more deflated.%SPEECH_ON%Alas it was not to be, they discovered that {I am not a marquess from the border lands but only a viscount heir | My winnings at the table were not as grand as perhaps I had let on | my horrible father disowned me for having too much fun with wine and women}. They turned me out on the road, perhaps I could come on a travelling adventure with you? %SPEECH_OFF%",
+			Text = "%terrainImage%As you approach the drunkard, he immediately recognizes %noble% and runs up sobbing. %SPEECH_ON%Cousin! Oh my refined and cultured cousin, my favorite second cousin, you would not believe the outrageous injustice perpetrated against one\'s self!%SPEECH_OFF%You look on skeptically as the obviously drunken and slightly bedraggled nobleman continues.%SPEECH_ON%I was due to be wed you see, to the love of my life. It was to the richest, wealthiest, prosperous, bountiful, most affluent, most.. well endowed..%SPEECH_OFF% The noble\'s mind wanders off, as if in fantasy. You prompt again and the speech continues somewhat more deflated.%SPEECH_ON%Alas it was not to be, she discovered that {I am not a marquess from the border lands but only a viscount heir | My winnings at the table were not as grand as perhaps I had let on | my horrible father disowned me for having too much fun with wine and women}. They turned me out on the road, perhaps I could come on a travelling adventure with you? %SPEECH_OFF%",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -106,7 +106,7 @@
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.2)
+		if (currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.2)
 			return;
 
 		if (!this.World.Assets.getStash().hasEmptySlot())
