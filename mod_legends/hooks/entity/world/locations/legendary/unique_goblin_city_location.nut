@@ -2,7 +2,7 @@
 {
 	o.m.MeleeEnemies <- [
 		[75, this.Const.World.Spawn.Troops.LegendGoblinHarrier],
-		[35, this.Const.World.Spawn.Troops.LegendGoblinBerserker]
+		[35, this.Const.World.Spawn.Troops.LegendGoblinFiend]
 	];
 	o.m.RiderEnemies <- [
 		[75, this.Const.World.Spawn.Troops.LegendGoblinWhiteDirewolfRider],

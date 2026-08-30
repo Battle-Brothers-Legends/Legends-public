@@ -344,6 +344,9 @@
 ### Dynamic Troops Day To Skip
 - `Dynamic Troops Day To Skip` in the start campaign settings has now been disabled, enemies of varying difficulty will naturally appear as your company becomes stronger
 
+### Goblins
+- `Goblin Berserkers` are now called `Goblin Fiends` and have new art from Ivan
+
 ### Beasts
 - revamped art for `Demon Alp` from Misha
 
@@ -598,3 +601,5 @@
 - `legend_citrinitas_trance_skill` -> deleted
 - `legend_cascade_skill` -> `legend_volley_skill`
 - `legend_puncture_parry_dagger_skill` -> deleted
+- `legend_goblin_berserker` -> `legend_goblin_fiend
+- `LegendGoblinBerserker` -> `LegendGoblinFiend`

@@ -913,15 +913,15 @@
 	Script = "scripts/entity/tactical/legend_enraged_hyena"
 };
 
-::Const.World.Spawn.Troops.LegendGoblinBerserker <- {
-	ID = ::Const.EntityType.LegendGoblinBerserker,
+::Const.World.Spawn.Troops.LegendGoblinFiend <- {
+	ID = ::Const.EntityType.LegendGoblinFiend,
 	Variant = 2,
 	Strength = 50,
 	Cost = 50,
 	Row = -1,
 	NameList = ::Const.Strings.GoblinNames,
 	TitleList = ::Const.Strings.GoblinTitles,
-	Script = "scripts/entity/tactical/enemies/legend_goblin_berserker"
+	Script = "scripts/entity/tactical/enemies/legend_goblin_fiend"
 };
 
 ::Const.World.Spawn.Troops.LegendGoblinTribeDefender <- {

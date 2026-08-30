@@ -99,7 +99,7 @@
 	FatigueRecoveryRate = 20
 };
 
-::Const.Tactical.Actor.LegendGoblinBerserker <- {
+::Const.Tactical.Actor.LegendGoblinFiend <- {
 	XP = 600,
 	ActionPoints = 12,
 	Hitpoints = 120,

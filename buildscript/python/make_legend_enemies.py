@@ -182,6 +182,19 @@ brush_only_layers = [
 
 enemies = r"""
 
+<sprite id="bust_goblin_04_head_01" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_01.png" left="-42" right="40" top="-25" bottom="39" />
+<sprite id="bust_goblin_04_head_02" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_02.png" left="-42" right="40" top="-25" bottom="39" />
+<sprite id="bust_goblin_04_head_03" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_03.png" left="-42" right="40" top="-25" bottom="39" />
+<sprite id="bust_goblin_02_body_01" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_01.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_02_body_02" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_02.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_02_body_03" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_03.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_02_body_01_body_injured" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_01_body_injured.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_02_body_02_body_injured" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_02_body_injured.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_02_body_03_body_injured" offsetY="35" ic="FF3C5049" width="104" height="142" img="entity\goblins\bust_goblin_02_body_03_body_injured.png" left="-33" right="35" top="-46" bottom="20" />
+<sprite id="bust_goblin_04_head_01_head_injured" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_01_head_injured.png" left="-42" right="40" top="-25" bottom="39" />
+<sprite id="bust_goblin_04_head_02_head_injured" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_02_head_injured.png" left="-42" right="40" top="-25" bottom="39" />
+<sprite id="bust_goblin_04_head_03_head_injured" offsetY="35" ic="FF4D5F5E" width="104" height="142" img="entity\goblins\bust_goblin_04_head_03_head_injured.png" left="-42" right="40" top="-25" bottom="39" />
+
 <sprite id="legend_orc_behemoth_body_01" offsetX="-5" offsetY="35" ic="FF555758" width="174" height="214" img="entity\orcs\legend_orc_behemoth_body_01.png" left="-68" right="82" top="-81" bottom="90" />
 <sprite id="legend_orc_behemoth_body_01_bloodied" offsetX="-5" offsetY="35" ic="FF171844" width="174" height="214" img="entity\orcs\legend_orc_behemoth_body_01_bloodied.png" left="-68" right="82" top="-81" bottom="90" />
 <sprite id="legend_orc_behemoth_body_01_dead" offsetY="30" f="64FF" ic="FF3F4149" width="169" height="139" img="entity\orcs\legend_orc_behemoth_body_01_dead.png" left="-84" right="85" top="-70" bottom="62" />

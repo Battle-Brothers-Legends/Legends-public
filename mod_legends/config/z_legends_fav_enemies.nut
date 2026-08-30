@@ -79,7 +79,7 @@ if (!("LegendMod" in ::Const))
 ::Const.LegendMod.FavoriteGreenSkins <- [
 	::Const.EntityType.GoblinFighter,
 	::Const.EntityType.LegendGoblinHarrier, // these 2 inherit from the goblin fighter but just in case?
-	::Const.EntityType.LegendGoblinBerserker,
+	::Const.EntityType.LegendGoblinFiend,
 	::Const.EntityType.GoblinAmbusher,
 	::Const.EntityType.LegendGoblinTribeDefender,
 	::Const.EntityType.GoblinLeader,
@@ -385,7 +385,7 @@ if (!("LegendMod" in ::Const))
 	case ::Const.EntityType.GoblinAmbusher :
 		return 8;
 
-	case ::Const.EntityType.LegendGoblinBerserker :
+	case ::Const.EntityType.LegendGoblinFiend :
 	case ::Const.EntityType.LegendGoblinTribeDefender :
 		return 4;
 

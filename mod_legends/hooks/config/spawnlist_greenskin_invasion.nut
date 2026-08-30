@@ -130,7 +130,7 @@
 					Cost = 25
 				},
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				},

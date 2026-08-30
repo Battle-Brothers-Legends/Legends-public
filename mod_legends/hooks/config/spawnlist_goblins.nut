@@ -56,7 +56,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				}
@@ -162,7 +162,7 @@
 			Weight = 3,
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				}
@@ -249,7 +249,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				}
@@ -361,7 +361,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				}
@@ -480,7 +480,7 @@
 			Weight = 25,
 			Types = [
 				{
-					Type = ::Const.World.Spawn.Troops.LegendGoblinBerserker,
+					Type = ::Const.World.Spawn.Troops.LegendGoblinFiend,
 					MinR = 900,
 					Cost = 50
 				}
