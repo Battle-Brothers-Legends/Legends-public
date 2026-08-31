@@ -487,6 +487,7 @@
 - fixed hand to hand not being modified by armor damage perks
 - fixed a few issues with moving weapons in and out of bags in combat
 - fixed Lorekeeper's headpiece
+- Swapped graveyard & crypts to mass graves and sunken castles for legion 'defend x' camp contracts as crypts & graveyards could shuffle zombies in which caused the player to get attacked by a sally or scout force
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

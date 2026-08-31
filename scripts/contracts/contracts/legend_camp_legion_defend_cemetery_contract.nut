@@ -66,7 +66,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 		if (this.m.Destination == null || this.m.Destination.isNull()) {
 			local playerTile = ::World.State.getPlayer().getTile();
 			local locations = ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements()
-				.filter(@(_, _loc) ::Legends.S.oneOf(_loc.getTypeID(), "location.undead_graveyard", "location.undead_crypt"));
+				.filter(@(_, _loc) ::Legends.S.oneOf(_loc.getTypeID(), "location.undead_mass_grave", "location.undead_buried_castle"));
 			locations.sort(@(a, b) playerTile.getDistanceTo(b.getTile()) <=> playerTile.getDistanceTo(a.getTile()));
 			this.m.Destination = ::WeakTableRef(locations.top());
 		}
