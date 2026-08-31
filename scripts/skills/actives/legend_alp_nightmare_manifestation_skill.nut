@@ -4,9 +4,6 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpNightmareManifestation);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_160.png";
-		this.m.IconDisabled = "skills/active_160.png";
-		this.m.Overlay = "active_160";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",

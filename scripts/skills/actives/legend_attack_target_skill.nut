@@ -8,9 +8,6 @@ this.legend_attack_target_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAttackTarget);
 		this.m.Description = "Orders your pet to prioritize attacking a specific target.";
-		this.m.Icon = "skills/houndattack.png";
-		this.m.IconDisabled = "skills/houndattack_bw.png";
-		this.m.Overlay = "perk_38_active";
 		this.m.SoundOnUse = [
 			"sounds/enemies/wardog_charge_00.wav",
 			"sounds/enemies/wardog_charge_01.wav",

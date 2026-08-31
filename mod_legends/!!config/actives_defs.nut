@@ -22,20 +22,772 @@ if (!("Active" in ::Legends)) {
 
 local activesDefs = [];
 
-::Legends.Active.Split <- null;
+::Legends.Active.Adrenaline <- null;
 activesDefs.push({
-	ID = "actives.split",
-	Script = "scripts/skills/actives/split",
-	Const = "Split",
-	Name = "Split",
+	ID = "actives.adrenaline",
+	Script = "scripts/skills/actives/adrenaline_skill",
+	Const = "Adrenaline",
+	Name = "Adrenaline",
+	this.m.Icon = "ui/perks/perk_37_active.png";
+	this.m.IconDisabled = "ui/perks/perk_37_active_sw.png";
+	this.m.Overlay = "perk_37_active";
 });
 
-::Legends.Active.SplitAxe <- null;
+::Legends.Active.AimedShot <- null;
 activesDefs.push({
-	ID = "actives.split_axe",
-	Script = "scripts/skills/actives/split_axe",
-	Const = "SplitAxe",
+	ID = "actives.aimed_shot",
+	Script = "scripts/skills/actives/aimed_shot",
+	Const = "AimedShot",
+	Name = "Aimed Shot",
+	this.m.Icon = "skills/active_18.png";
+	this.m.IconDisabled = "skills/active_18_sw.png";
+	this.m.Overlay = "active_18";
+});
+
+::Legends.Active.AlpTeleport <- null;
+activesDefs.push({
+	ID = "actives.alp_teleport",
+	Script = "scripts/skills/actives/alp_teleport_skill",
+	Const = "AlpTeleport",
+	Name = "Fade",
+	this.m.Icon = "";
+	this.m.IconDisabled = "";
+	this.m.Overlay = "";
+});
+
+::Legends.Active.Assault <- null;
+activesDefs.push({
+	ID = "actives.assault",
+	Script = "scripts/skills/actives/assault_skill",
+	Const = "Assault",
+	Name = "Assault",
+	this.m.Icon = "skills/active_240.png";
+	this.m.IconDisabled = "skills/active_240_sw.png";
+	this.m.Overlay = "active_240";
+});
+
+::Legends.Active.BandageAlly <- null;
+activesDefs.push({
+	ID = "actives.bandage_ally",
+	Script = "scripts/skills/actives/bandage_ally_skill",
+	Const = "BandageAlly",
+	Name = "Use Bandages",
+	this.m.Icon = "skills/active_105.png";
+	this.m.IconDisabled = "skills/active_105_sw.png";
+	this.m.Overlay = "active_105";
+});
+
+::Legends.Active.BarbarianFury <- null;
+activesDefs.push({
+	ID = "actives.barbarian_fury",
+	Script = "scripts/skills/actives/barbarian_fury_skill",
+	Const = "BarbarianFury",
+	Name = "Barbarian Fury",
+		this.m.Icon = "ui/skills/active_175.png";
+		this.m.IconDisabled = "ui/skills/active_175.png";
+		this.m.Overlay = "active_175";
+});
+
+::Legends.Active.Bash <- null;
+activesDefs.push({
+	ID = "actives.bash",
+	Script = "scripts/skills/actives/bash",
+	Const = "Bash",
+	Name = "Bash",
+	this.m.Icon = "skills/active_02.png";
+	this.m.IconDisabled = "skills/active_02_sw.png";
+	this.m.Overlay = "active_02";
+});
+
+::Legends.Active.Batter <- null;
+activesDefs.push({
+	ID = "actives.batter",
+	Script = "scripts/skills/actives/batter_skill",
+	Const = "Batter",
+	Name = "Batter",
+	this.m.Icon = "skills/active_136.png";
+	this.m.IconDisabled = "skills/active_136_sw.png";
+	this.m.Overlay = "active_136";
+});
+
+::Legends.Active.BerserkerMushrooms <- null;
+activesDefs.push({
+	ID = "actives.berserker_mushrooms",
+	Script = "scripts/skills/actives/berserker_mushrooms_skill",
+	Const = "BerserkerMushrooms",
+	Name = "Eat or Give Strange Mushrooms",
+	this.m.Icon = "skills/active_98.png";
+	this.m.IconDisabled = "skills/active_98_sw.png";
+	this.m.Overlay = "active_98";
+});
+
+::Legends.Active.BreakAllyFree <- null;
+activesDefs.push({
+	ID = "actives.break_ally_free",
+	Script = "scripts/skills/actives/break_ally_free_skill",
+	Const = "BreakAllyFree",
+	Name = "Free Ally",
+	this.m.Icon = "skills/active_151.png";
+	this.m.IconDisabled = "skills/active_151_sw.png";
+	this.m.Overlay = "active_151";
+});
+
+::Legends.Active.BreakFree <- null;
+activesDefs.push({
+	ID = "actives.break_free",
+	Script = "scripts/skills/actives/break_free_skill",
+	Const = "BreakFree",
+	Name = "Break Free",
+	this.m.Icon = "skills/active_15.png";
+	this.m.IconDisabled = "skills/active_15_sw.png";
+	this.m.Overlay = "active_15";
+});
+
+::Legends.Active.Cascade <- null;
+activesDefs.push({
+	ID = "actives.cascade",
+	Script = "scripts/skills/actives/cascade_skill",
+	Const = "Cascade",
+	Name = "Cascade",
+	this.m.Icon = "skills/active_125.png";
+	this.m.IconDisabled = "skills/active_125_sw.png";
+	this.m.Overlay = "active_125";
+});
+
+::Legends.Active.CenserCastigate <- null;
+activesDefs.push({
+	ID = "actives.censer_castigate",
+	Script = "scripts/skills/actives/censer_castigate_skill",
+	Const = "CenserCastigate",
+	Name = "Castigate",
+	this.m.Icon = "skills/active_231.png";
+	this.m.IconDisabled = "skills/active_231_sw.png";
+	this.m.Overlay = "active_231";
+});
+
+::Legends.Active.CenserStrike <- null;
+activesDefs.push({
+	ID = "actives.censer_strike",
+	Script = "scripts/skills/actives/censer_strike",
+	Const = "CenserStrike",
+	Name = "Censer Strike",
+	this.m.Icon = "skills/active_228.png";
+	this.m.IconDisabled = "skills/active_228_sw.png";
+	this.m.Overlay = "active_228";
+});
+
+::Legends.Active.Charge <- null;
+activesDefs.push({
+	ID = "actives.charge",
+	Script = "scripts/skills/actives/charge",
+	Const = "Charge",
+	Name = "Charge",
+	this.m.Icon = "skills/active_52.png";
+	this.m.IconDisabled = "skills/active_52_sw.png";
+	this.m.Overlay = "active_52";
+});
+
+::Legends.Active.Charm <- null;
+activesDefs.push({
+	ID = "actives.charm",
+	Script = "scripts/skills/actives/charm_skill",
+	Const = "Charm",
+	Name = "Charm",
+	this.m.Icon = "skills/active_120.png";
+	this.m.IconDisabled = "skills/active_120.png";
+	this.m.Overlay = "active_120";
+});
+
+::Legends.Active.Chop <- null;
+activesDefs.push({
+	ID = "actives.chop",
+	Script = "scripts/skills/actives/chop",
+	Const = "Chop",
+	Name = "Chop",
+	this.m.Icon = "skills/active_25.png";
+	this.m.IconDisabled = "skills/active_25_sw.png";
+	this.m.Overlay = "active_25";
+});
+
+::Legends.Active.Cleave <- null;
+activesDefs.push({
+	ID = "actives.cleave",
+	Script = "scripts/skills/actives/cleave",
+	Const = "Cleave",
+	Name = "Cleave",
+	this.m.Icon = "skills/active_19.png";
+	this.m.IconDisabled = "skills/active_19_sw.png";
+	this.m.Overlay = "active_19";
+});
+
+::Legends.Active.CoatWithPoison <- null;
+activesDefs.push({
+	ID = "actives.coat_with_poison",
+	Script = "scripts/skills/actives/coat_with_poison_skill",
+	Const = "CoatWithPoison",
+	Name = "Use Poison",
+	this.m.Icon = "skills/active_95.png";
+	this.m.IconDisabled = "skills/active_95_sw.png";
+	this.m.Overlay = "active_95";
+});
+
+::Legends.Active.CoatWithSpiderPoison <- null;
+activesDefs.push({
+	ID = "actives.coat_with_spider_poison",
+	Script = "scripts/skills/actives/coat_with_spider_poison_skill",
+	Const = "CoatWithSpiderPoison",
+	Name = "Use Poisoned Oil",
+	this.m.Icon = "skills/active_139.png";
+	this.m.IconDisabled = "skills/active_139_sw.png";
+	this.m.Overlay = "active_139";
+});
+
+::Legends.Active.CorpseExplosion <- null;
+activesDefs.push({
+	ID = "actives.corpse_explosion",
+	Script = "scripts/skills/actives/corpse_explosion_skill",
+	Const = "CorpseExplosion",
+	Name = "Corpse Explosion",
+	this.m.Icon = "skills/active_234.png";
+	this.m.IconDisabled = "skills/active_234.png";
+	this.m.Overlay = "active_234";
+});
+
+::Legends.Active.CorpseHurl <- null;
+activesDefs.push({
+	ID = "actives.corpse_hurl_skill",
+	Script = "scripts/skills/actives/corpse_hurl_skill",
+	Const = "CorpseHurl",
+	Name = "Corpse Hurl",
+	this.m.Icon = "skills/active_233.png";
+	this.m.IconDisabled = "skills/active_233.png";
+	this.m.Overlay = "active_233";
+});
+
+::Legends.Active.CrackTheWhip <- null;
+activesDefs.push({
+	ID = "actives.crack_the_whip",
+	Script = "scripts/skills/actives/crack_the_whip_skill",
+	Const = "CrackTheWhip",
+	Name = "Crack the Whip",
+	this.m.Icon = "skills/active_162.png";
+	this.m.IconDisabled = "skills/active_162.png";
+	this.m.Overlay = "active_162";
+});
+
+::Legends.Active.Crumble <- null;
+activesDefs.push({
+	ID = "actives.crumble",
+	Script = "scripts/skills/actives/crumble_skill",
+	Const = "Crumble",
+	Name = "Crumble",
+	this.m.Icon = "skills/active_205.png";
+	this.m.IconDisabled = "skills/active_205_sw.png";
+	this.m.Overlay = "active_205";
+});
+
+::Legends.Active.CrushArmor <- null;
+activesDefs.push({
+	ID = "actives.crush_armor",
+	Script = "scripts/skills/actives/crush_armor",
+	Const = "CrushArmor",
+	Name = "Destroy Armor",
+	this.m.Icon = "skills/active_36.png";
+	this.m.IconDisabled = "skills/active_36_sw.png";
+	this.m.Overlay = "active_36";
+});
+
+::Legends.Active.Cudgel <- null;
+activesDefs.push({
+	ID = "actives.cudgel",
+	Script = "scripts/skills/actives/cudgel_skill",
+	Const = "Cudgel",
+	Name = "Cudgel",
+	this.m.Icon = "skills/active_133.png";
+	this.m.IconDisabled = "skills/active_133_sw.png";
+	this.m.Overlay = "active_133";
+});
+
+::Legends.Active.Darkflight <- null;
+activesDefs.push({
+	ID = "actives.darkflight",
+	Script = "scripts/skills/actives/darkflight",
+	Const = "Darkflight",
+	Name = "Darkflight",
+	this.m.Icon = "skills/active_28.png";
+	this.m.IconDisabled = "skills/active_28_sw.png";
+	this.m.Overlay = "active_28";
+});
+
+::Legends.Active.Deathblow <- null;
+activesDefs.push({
+	ID = "actives.deathblow",
+	Script = "scripts/skills/actives/deathblow_skill",
+	Const = "Deathblow",
+	Name = "Deathblow",
+	this.m.Icon = "skills/active_199.png";
+	this.m.IconDisabled = "skills/active_199_sw.png";
+	this.m.Overlay = "active_199";
+});
+
+::Legends.Active.Debilitate <- null; // vanilla implementation - activate and next strike debilitates / shelved
+activesDefs.push({
+	ID = "actives.debilitate",
+	Script = "scripts/skills/actives/debilitate",
+	Const = "Debilitate",
+	Name = "Debilitate",
+	this.m.Icon = "ui/perks/perk_34_active.png";
+	this.m.IconDisabled = "ui/perks/perk_34_active_sw.png";
+	this.m.Overlay = "perk_34_active";
+});
+
+::Legends.Active.Decapitate <- null;
+activesDefs.push({
+	ID = "actives.decapitate",
+	Script = "scripts/skills/actives/decapitate",
+	Const = "Decapitate",
+	Name = "Decapitate",
+	this.m.Icon = "skills/active_34.png";
+	this.m.IconDisabled = "skills/active_34_sw.png";
+	this.m.Overlay = "active_34";
+});
+
+::Legends.Active.DemolishArmor <- null;
+activesDefs.push({
+	ID = "actives.demolish_armor",
+	Script = "scripts/skills/actives/demolish_armor_skill",
+	Const = "DemolishArmor",
+	Name = "Demolish Armor",
+	this.m.Icon = "skills/active_137.png";
+	this.m.IconDisabled = "skills/active_137_sw.png";
+	this.m.Overlay = "active_137";
+});
+
+::Legends.Active.Disarm <- null;
+activesDefs.push({
+	ID = "actives.disarm",
+	Script = "scripts/skills/actives/disarm_skill",
+	Const = "Disarm",
+	Name = "Disarm",
+	this.m.Icon = "skills/active_170.png";
+	this.m.IconDisabled = "skills/active_170_sw.png";
+	this.m.Overlay = "active_170";
+});
+
+::Legends.Active.DrinkAntidote <- null;
+activesDefs.push({
+	ID = "actives.drink_antidote",
+	Script = "scripts/skills/actives/drink_antidote_skill",
+	Const = "DrinkAntidote",
+	Name = "Drink or Give Antidote",
+	this.m.Icon = "skills/active_96.png";
+	this.m.IconDisabled = "skills/active_96_sw.png";
+	this.m.Overlay = "active_96";
+});
+
+::Legends.Active.DrumsOfWar <- null;
+activesDefs.push({
+	ID = "actives.drums_of_war",
+	Script = "scripts/skills/actives/drums_of_war_skill",
+	Const = "DrumsOfWar",
+	Name = "Drums of War",
+	this.m.Icon = "skills/active_163.png";
+	this.m.IconDisabled = "skills/active_163.png";
+	this.m.Overlay = "active_163";
+});
+
+::Legends.Active.EstocStab <- null;
+activesDefs.push({
+	ID = "actives.estoc_stab",
+	Script = "scripts/skills/actives/estoc_stab_skill",
+	Const = "EstocStab",
+	Name = "Stab",
+	this.m.Icon = "skills/active_236.png";
+	this.m.IconDisabled = "skills/active_236_sw.png";
+	this.m.Overlay = "active_236";
+});
+
+::Legends.Active.Execute <- null;
+activesDefs.push({
+	ID = "actives.execute",
+	Script = "scripts/skills/actives/execute_skill",
+	Const = "Execute",
+	Name = "Execute",
+	this.m.Icon = "skills/active_239.png";
+	this.m.IconDisabled = "skills/active_239_sw.png";
+	this.m.Overlay = "active_239";
+});
+
+::Legends.Active.ExeSwordDecapitate <- null;
+activesDefs.push({
+	ID = "actives.exesword_decapitate",
+	Script = "scripts/skills/actives/exesword_decapitate",
+	Const = "ExeSwordDecapitate",
+	Name = "Decapitate",
+	this.m.Icon = "skills/active_34.png";
+	this.m.IconDisabled = "skills/active_34_sw.png";
+	this.m.Overlay = "active_34";
+});
+
+::Legends.Active.Explode <- null;
+activesDefs.push({
+	ID = "actives.explode",
+	Script = "scripts/skills/actives/explode_skill",
+	Const = "Explode",
+	Name = "Explode",
+	this.m.Icon = "skills/active_221.png";
+	this.m.IconDisabled = "skills/active_221.png";
+	this.m.Overlay = "active_221";
+});
+
+::Legends.Active.FakeDrinkNightVision <- null;
+activesDefs.push({
+	ID = "actives.fake_drink_night_vision",
+	Script = "scripts/skills/actives/fake_drink_night_vision_skill",
+	Const = "FakeDrinkNightVision",
+	Name = "Drink Night Owl Elixir",
+	this.m.Icon = "skills/active_142.png";
+	this.m.IconDisabled = "skills/active_142_sw.png";
+	this.m.Overlay = "active_142";
+});
+
+::Legends.Active.FireHandgonne <- null;
+activesDefs.push({
+	ID = "actives.fire_handgonne",
+	Script = "scripts/skills/actives/fire_handgonne_skill",
+	Const = "FireHandgonne",
+	Name = "Fire Handgonne",
+	this.m.Icon = "skills/active_203.png";
+	this.m.IconDisabled = "skills/active_203_sw.png";
+	this.m.Overlay = "active_203";
+});
+
+::Legends.Active.FireMortar <- null;
+activesDefs.push({
+	ID = "actives.fire_mortar",
+	Script = "scripts/skills/actives/fire_mortar_skill",
+	Const = "FireMortar",
+	Name = "Fire Mortar",
+		this.m.Icon = "skills/active_211.png";
+		this.m.IconDisabled = "skills/active_211.png";
+		this.m.Overlay = "active_211";
+});
+
+::Legends.Active.FirstAid <- null;
+activesDefs.push({
+	ID = "actives.first_aid",
+	Script = "scripts/skills/actives/first_aid_skill",
+	Const = "FirstAid",
+	Name = "First Aid",
+		this.m.Icon = "ui/perks/perk_55_active.png";
+		this.m.IconDisabled = "ui/perks/perk_55_active_sw.png";
+		this.m.Overlay = "perk_55_active";
+});
+
+::Legends.Active.Flail <- null;
+activesDefs.push({
+	ID = "actives.flail",
+	Script = "scripts/skills/actives/flail_skill",
+	Const = "Flail",
+	Name = "Flail",
+	this.m.Icon = "skills/active_39.png";
+	this.m.IconDisabled = "skills/active_39_sw.png";
+	this.m.Overlay = "active_39";
+});
+
+::Legends.Active.FleshPull <- null;
+activesDefs.push({
+	ID = "actives.flesh_pull",
+	Script = "scripts/skills/actives/flesh_pull_skill",
+	Const = "FleshPull",
+	Name = "Flesh Pull",
+	this.m.Icon = "skills/active_235.png";
+	this.m.IconDisabled = "skills/active_235.png";
+	this.m.Overlay = "active_235";
+});
+
+::Legends.Active.FlingBack <- null;
+activesDefs.push({
+	ID = "actives.fling_back",
+	Script = "scripts/skills/actives/fling_back_skill",
+	Const = "FlingBack",
+	Name = "Fling Back",
+	this.m.Icon = "skills/active_111.png";
+	this.m.IconDisabled = "skills/active_111.png";
+	this.m.Overlay = "active_111";
+});
+
+::Legends.Active.Flurry <- null;
+activesDefs.push({
+	ID = "actives.flurry_skill",
+	Script = "scripts/skills/actives/flurry_skill",
+	Const = "Flurry",
+	Name = "Flurry",
+	this.m.Icon = "skills/active_229.png";
+	this.m.IconDisabled = "skills/active_229.png";
+	this.m.Overlay = "active_229";
+});
+
+::Legends.Active.Footwork <- null;
+activesDefs.push({
+	ID = "actives.footwork",
+	Script = "scripts/skills/actives/footwork",
+	Const = "Footwork",
+	Name = "Footwork",
+	this.m.Icon = "ui/perks/perk_25_active.png";
+	this.m.IconDisabled = "ui/perks/perk_25_active_sw.png";
+	this.m.Overlay = "perk_25_active";
+});
+
+::Legends.Active.Gash <- null;
+activesDefs.push({
+	ID = "actives.gash",
+	Script = "scripts/skills/actives/gash_skill",
+	Const = "Gash",
+	Name = "Gash",
+	this.m.Icon = "skills/active_189.png";
+	this.m.IconDisabled = "skills/active_189_sw.png";
+	this.m.Overlay = "active_189";
+});
+
+::Legends.Active.GeomancyOnce <- null;
+activesDefs.push({
+	ID = "actives.geomancy_once",
+	Script = "scripts/skills/actives/geomancy_once_skill",
+	Const = "GeomancyOnce",
+	Name = "Geomancy",
+	this.m.Icon = "skills/active_220.png";
+	this.m.IconDisabled = "skills/active_220.png";
+	this.m.Overlay = "active_220";
+});
+
+::Legends.Active.Geomancy <- null;
+activesDefs.push({
+	ID = "actives.geomancy",
+	Script = "scripts/skills/actives/geomancy_skill",
+	Const = "Geomancy",
+	Name = "Geomancy",
+	this.m.Icon = "skills/active_220.png";
+	this.m.IconDisabled = "skills/active_220.png";
+	this.m.Overlay = "active_220";
+});
+
+::Legends.Active.GhastlyTouch <- null;
+activesDefs.push({
+	ID = "actives.ghastly_touch",
+	Script = "scripts/skills/actives/ghastly_touch",
+	Const = "GhastlyTouch",
+	Name = "Ghastly Touch",
+	this.m.Icon = "skills/active_42.png";
+	this.m.IconDisabled = "skills/active_42.png";
+	this.m.Overlay = "active_42";
+});
+
+::Legends.Active.GhostOverheadStrike <- null;
+activesDefs.push({
+	ID = "actives.ghost_overhead_strike",
+	Script = "scripts/skills/actives/ghost_overhead_strike",
+	Const = "GhostOverheadStrike",
+	Name = "Overhead Strike",
+	this.m.Icon = "skills/active_152.png";
+	this.m.IconDisabled = "skills/active_152.png";
+	this.m.Overlay = "active_152";
+});
+
+::Legends.Active.GhostSplit <- null;
+activesDefs.push({
+	ID = "actives.ghost_split",
+	Script = "scripts/skills/actives/ghost_split_skill",
+	Const = "GhostSplit",
 	Name = "Split",
+	this.m.Icon = "skills/active_153.png";
+	this.m.IconDisabled = "skills/active_153.png";
+	this.m.Overlay = "active_153";
+});
+
+::Legends.Active.GhostSwing <- null;
+activesDefs.push({
+	ID = "actives.ghost_swing",
+	Script = "scripts/skills/actives/ghost_swing_skill",
+	Const = "GhostSwing",
+	Name = "Swing",
+	this.m.Icon = "skills/active_154.png";
+	this.m.IconDisabled = "skills/active_154_sw.png";
+	this.m.Overlay = "active_154";
+});
+
+::Legends.Active.GhoulClaws <- null;
+activesDefs.push({
+	ID = "actives.ghoul_claws",
+	Script = "scripts/skills/actives/ghoul_claws",
+	Const = "GhoulClaws",
+	Name = "Ghoul Claws",
+	this.m.Icon = "skills/active_21.png";
+	this.m.IconDisabled = "skills/active_21_sw.png";
+	this.m.Overlay = "active_21";
+});
+
+::Legends.Active.GoblinWhip <- null;
+activesDefs.push({
+	ID = "actives.goblin_whip",
+	Script = "scripts/skills/actives/goblin_whip",
+	Const = "GoblinWhip",
+	Name = "Whip",
+	this.m.Icon = "skills/active_72.png";
+	this.m.IconDisabled = "skills/active_72_sw.png";
+	this.m.Overlay = "active_72";
+});
+
+::Legends.Active.GolemGrapple <- null;
+activesDefs.push({
+	ID = "actives.golem_grapple",
+	Script = "scripts/skills/actives/golem_grapple_skill",
+	Const = "GolemGrapple",
+	Name = "Grapple",
+	this.m.Icon = "skills/active_232.png";
+	this.m.IconDisabled = "skills/active_232.png";
+	this.m.Overlay = "active_232";
+});
+
+::Legends.Active.Gore <- null;
+activesDefs.push({
+	ID = "actives.gore",
+	Script = "scripts/skills/actives/gore_skill",
+	Const = "Gore",
+	Name = "Gore",
+	this.m.Icon = "skills/active_166.png";
+	this.m.IconDisabled = "skills/active_166.png";
+	this.m.Overlay = "active_166";
+});
+
+::Legends.Active.Gorge <- null;
+activesDefs.push({
+	ID = "actives.gorge",
+	Script = "scripts/skills/actives/gorge_skill",
+	Const = "Gorge",
+	Name = "Gorge",
+	this.m.Icon = "skills/active_107.png";
+	this.m.IconDisabled = "skills/active_107.png";
+	this.m.Overlay = "active_107";
+});
+
+::Legends.Active.GrantNightVision <- null;
+activesDefs.push({
+	ID = "actives.grant_night_vision",
+	Script = "scripts/skills/actives/grant_night_vision_skill",
+	Const = "GrantNightVision",
+	Name = "Grant Night Vision",
+	this.m.Icon = "skills/active_156.png";
+	this.m.IconDisabled = "skills/active_156.png";
+	this.m.Overlay = "active_156";
+});
+
+::Legends.Active.GreaterFleshGolemAttack <- null;
+activesDefs.push({
+	ID = "actives.greater_flesh_golem_attack",
+	Script = "scripts/skills/actives/greater_flesh_golem_attack_skill",
+	Const = "GreaterFleshGolemAttack",
+	Name = "Clout",
+	this.m.Icon = "skills/active_227.png";
+	this.m.IconDisabled = "skills/active_227.png";
+	this.m.Overlay = "active_227";
+});
+
+::Legends.Active.GrowShield <- null;
+activesDefs.push({
+	ID = "actives.grow_shield",
+	Script = "scripts/skills/actives/grow_shield_skill",
+	Const = "GrowShield",
+	Name = "Grow Shield",
+	this.m.Icon = "skills/active_121.png";
+	this.m.IconDisabled = "skills/active_121.png";
+	this.m.Overlay = "active_121";
+});
+
+::Legends.Active.GruesomeFeast <- null;
+activesDefs.push({
+	ID = "actives.gruesome_feast",
+	Script = "scripts/skills/actives/gruesome_feast",
+	Const = "GruesomeFeast",
+	Name = "Gruesome Feast",
+	this.m.Icon = "skills/active_40.png";
+	this.m.IconDisabled = "skills/active_40.png";
+	this.m.Overlay = "active_40";
+});
+
+::Legends.Active.Hail <- null;
+activesDefs.push({
+	ID = "actives.hail",
+	Script = "scripts/skills/actives/hail_skill",
+	Const = "Hail",
+	Name = "Hail",
+});
+
+::Legends.Active.Hammer <- null;
+activesDefs.push({
+	ID = "actives.hammer",
+	Script = "scripts/skills/actives/hammer",
+	Const = "Hammer",
+	Name = "Batter",
+	this.m.Icon = "skills/active_35.png";
+	this.m.IconDisabled = "skills/active_35_sw.png";
+	this.m.Overlay = "active_35";
+});
+
+::Legends.Active.HandToHand <- null;
+activesDefs.push({
+	ID = "actives.hand_to_hand",
+	Script = "scripts/skills/actives/hand_to_hand",
+	Const = "HandToHand",
+	Name = "Hand-to-Hand Attack",
+});
+
+::Legends.Active.Headbutt <- null;
+activesDefs.push({
+	ID = "actives.headbutt",
+	Script = "scripts/skills/actives/headbutt_skill",
+	Const = "Headbutt",
+	Name = "Headbutt",
+});
+
+::Legends.Active.Hex <- null;
+activesDefs.push({
+	ID = "actives.hex",
+	Script = "scripts/skills/actives/hex_skill",
+	Const = "Hex",
+	Name = "Hex",
+});
+
+::Legends.Active.Hook <- null;
+activesDefs.push({
+	ID = "actives.hook",
+	Script = "scripts/skills/actives/hook",
+	Const = "Hook",
+	Name = "Hook",
+});
+
+::Legends.Active.HorrificScream <- null;
+activesDefs.push({
+	ID = "actives.horrific_scream",
+	Script = "scripts/skills/actives/horrific_scream",
+	Const = "HorrificScream",
+	Name = "Horrific Scream",
+});
+
+::Legends.Active.Horror <- null;
+activesDefs.push({
+	ID = "actives.horror",
+	Script = "scripts/skills/actives/horror_skill",
+	Const = "Horror",
+	Name = "Horror",
+});
+
+::Legends.Active.HyenaBite <- null;
+activesDefs.push({
+	ID = "actives.hyena_bite",
+	Script = "scripts/skills/actives/hyena_bite_skill",
+	Const = "HyenaBite",
+	Name = "Hyena Bite",
 });
 
 ::Legends.Active.IgniteFirelance <- null;
@@ -46,20 +798,44 @@ activesDefs.push({
 	Name = "Ignite",
 });
 
+::Legends.Active.Impale <- null;
+activesDefs.push({
+	ID = "actives.impale",
+	Script = "scripts/skills/actives/impale",
+	Const = "Impale",
+	Name = "Impale",
+});
+
+::Legends.Active.Indomitable <- null;
+activesDefs.push({
+	ID = "actives.indomitable",
+	Script = "scripts/skills/actives/indomitable",
+	Const = "Indomitable",
+	Name = "Indomitable",
+});
+
+::Legends.Active.Insects <- null;
+activesDefs.push({
+	ID = "actives.insects",
+	Script = "scripts/skills/actives/insects_skill",
+	Const = "Insects",
+	Name = "Swarm of Insects",
+});
+
+::Legends.Active.KnockBack <- null;
+activesDefs.push({
+	ID = "actives.knock_back",
+	Script = "scripts/skills/actives/knock_back",
+	Const = "KnockBack",
+	Name = "Knock Back",
+});
+
 ::Legends.Active.KnockOut <- null;
 activesDefs.push({
 	ID = "actives.knock_out",
 	Script = "scripts/skills/actives/knock_out",
 	Const = "KnockOut",
 	Name = "Knock Out",
-});
-
-::Legends.Active.StrikeDown <- null;
-activesDefs.push({
-	ID = "actives.strike_down",
-	Script = "scripts/skills/actives/strike_down_skill",
-	Const = "StrikeDown",
-	Name = "Strike Down",
 });
 
 ::Legends.Active.KnockOver <- null;
@@ -70,52 +846,76 @@ activesDefs.push({
 	Name = "Knock Over",
 });
 
-::Legends.Active.Charge <- null;
+::Legends.Active.KrakenBite <- null;
 activesDefs.push({
-	ID = "actives.charge",
-	Script = "scripts/skills/actives/charge",
-	Const = "Charge",
-	Name = "Charge",
+	ID = "actives.kraken_bite",
+	Script = "scripts/skills/actives/kraken_bite_skill",
+	Const = "KrakenBite",
+	Name = "Bite",
 });
 
-::Legends.Active.Disarm <- null;
+::Legends.Active.KrakenDevour <- null;
 activesDefs.push({
-	ID = "actives.disarm",
-	Script = "scripts/skills/actives/disarm_skill",
-	Const = "Disarm",
-	Name = "Disarm",
+	ID = "actives.kraken_devour",
+	Script = "scripts/skills/actives/kraken_devour_skill",
+	Const = "KrakenDevour",
+	Name = "Devour",
 });
 
-::Legends.Active.ThrowGolem <- null;
+::Legends.Active.KrakenEnsnare <- null;
 activesDefs.push({
-	ID = "actives.throw_golem",
-	Script = "scripts/skills/actives/throw_golem_skill",
-	Const = "ThrowGolem",
-	Name = "Throw Living Sand",
+	ID = "actives.kraken_ensnare",
+	Script = "scripts/skills/actives/kraken_ensnare_skill",
+	Const = "KrakenEnsnare",
+	Name = "Ensnare",
 });
 
-::Legends.Active.Adrenaline <- null;
+::Legends.Active.KrakenMoveEnsnared <- null;
 activesDefs.push({
-	ID = "actives.adrenaline",
-	Script = "scripts/skills/actives/adrenaline_skill",
-	Const = "Adrenaline",
-	Name = "Adrenaline",
+	ID = "actives.kraken_move_ensnared",
+	Script = "scripts/skills/actives/kraken_move_ensnared_skill",
+	Const = "KrakenMoveEnsnared",
+	Name = "Drag",
 });
 
-::Legends.Active.AlpTeleport <- null;
+::Legends.Active.KrakenMove <- null;
 activesDefs.push({
-	ID = "actives.alp_teleport",
-	Script = "scripts/skills/actives/alp_teleport_skill",
-	Const = "AlpTeleport",
-	Name = "Fade",
+	ID = "actives.kraken_move",
+	Script = "scripts/skills/actives/kraken_move_skill",
+	Const = "KrakenMove",
+	Name = "Move Tentacle",
 });
 
-::Legends.Active.CrackTheWhip <- null;
+::Legends.Active.Lash <- null;
 activesDefs.push({
-	ID = "actives.crack_the_whip",
-	Script = "scripts/skills/actives/crack_the_whip_skill",
-	Const = "CrackTheWhip",
-	Name = "Crack the Whip",
+	ID = "actives.lash",
+	Script = "scripts/skills/actives/lash_skill",
+	Const = "Lash",
+	Name = "Lash",
+});
+
+::Legends.Active.LesserFleshGolemAttack <- null;
+activesDefs.push({
+	ID = "actives.lesser_flesh_golem_attack",
+	Script = "scripts/skills/actives/lesser_flesh_golem_attack_skill",
+	Const = "LesserFleshGolemAttack",
+	Name = "Smack",
+});
+
+::Legends.Active.LightningStorm <- null;
+activesDefs.push({
+	ID = "actives.lightning_storm",
+	Script = "scripts/skills/actives/lightning_storm_skill",
+	Const = "LightningStorm",
+	Name = "Lightning Strike",
+});
+
+::Legends.Active.LineBreaker <- null;
+activesDefs.push({
+	ID = "actives.line_breaker",
+	Script = "scripts/skills/actives/line_breaker",
+	Const = "LineBreaker",
+	Name = "Line Breaker",
 });
 
 ::Legends.Active.LoadMortar <- null;
@@ -126,20 +926,109 @@ activesDefs.push({
 	Name = "Load Mortar",
 });
 
-::Legends.Active.Explode <- null;
+::Legends.Active.Lunge <- null;
 activesDefs.push({
-	ID = "actives.explode",
-	Script = "scripts/skills/actives/explode_skill",
-	Const = "Explode",
-	Name = "Explode",
+	ID = "actives.lunge",
+	Script = "scripts/skills/actives/lunge_skill",
+	Const = "Lunge",
+	Name = "Lunge",
 });
 
-::Legends.Active.Geomancy <- null;
+::Legends.Active.MergeGolem <- null;
 activesDefs.push({
-	ID = "actives.geomancy",
-	Script = "scripts/skills/actives/geomancy_skill",
-	Const = "Geomancy",
-	Name = "Geomancy",
+	ID = "actives.merge_golem",
+	Script = "scripts/skills/actives/merge_golem_skill",
+	Const = "MergeGolem",
+	Name = "Merge Living Sands",
+});
+
+::Legends.Active.Miasma <- null;
+activesDefs.push({
+	ID = "actives.miasma",
+	Script = "scripts/skills/actives/miasma_skill",
+	Const = "Miasma",
+	Name = "Miasma",
+});
+
+::Legends.Active.MoveTail <- null;
+activesDefs.push({
+	ID = "actives.move_tail",
+	Script = "scripts/skills/actives/move_tail_skill",
+	Const = "MoveTail",
+	Name = "Move Tail",
+});
+
+::Legends.Active.Nightmare <- null;
+activesDefs.push({
+	ID = "actives.nightmare",
+	Script = "scripts/skills/actives/nightmare_skill",
+	Const = "Nightmare",
+	Name = "Nightmare",
+});
+
+::Legends.Active.OverheadStrike <- null;
+activesDefs.push({
+	ID = "actives.overhead_strike",
+	Script = "scripts/skills/actives/overhead_strike",
+	Const = "OverheadStrike",
+	Name = "Overhead Strike",
+});
+
+::Legends.Active.PerfectFocus <- null;
+activesDefs.push({
+	ID = "actives.perfect_focus",
+	Script = "scripts/skills/actives/perfect_focus",
+	Const = "PerfectFocus",
+	Name = "Perfect Focus",
+});
+
+::Legends.Active.Perforate <- null;
+activesDefs.push({
+	ID = "actives.perforate",
+	Script = "scripts/skills/actives/perforate_skill",
+	Const = "Perforate",
+	Name = "Perforate",
+});
+
+::Legends.Active.PossessUndead <- null;
+activesDefs.push({
+	ID = "actives.possess_undead",
+	Script = "scripts/skills/actives/possess_undead_skill",
+	Const = "PossessUndead",
+	Name = "Possess Undead",
+});
+
+::Legends.Active.Pound <- null;
+activesDefs.push({
+	ID = "actives.pound",
+	Script = "scripts/skills/actives/pound",
+	Const = "Pound",
+	Name = "Pound",
+});
+
+::Legends.Active.Prong <- null;
+activesDefs.push({
+	ID = "actives.prong",
+	Script = "scripts/skills/actives/prong_skill",
+	Const = "Prong",
+	Name = "Prong",
+});
+
+::Legends.Active.Puncture <- null;
+activesDefs.push({
+	ID = "actives.puncture",
+	Script = "scripts/skills/actives/puncture",
+	Const = "Puncture",
+	Name = "Puncture",
+});
+
+
+::Legends.Active.QuickShot <- null;
+activesDefs.push({
+	ID = "actives.quick_shot",
+	Script = "scripts/skills/actives/quick_shot",
+	Const = "QuickShot",
+	Name = "Quick Shot",
 });
 
 ::Legends.Active.RaiseAllUndead <- null;
@@ -150,28 +1039,148 @@ activesDefs.push({
 	Name = "The Black Book",
 });
 
-::Legends.Active.GeomancyOnce <- null;
+::Legends.Active.RaiseUndead <- null;
 activesDefs.push({
-	ID = "actives.geomancy_once",
-	Script = "scripts/skills/actives/geomancy_once_skill",
-	Const = "GeomancyOnce",
-	Name = "Geomancy",
+	ID = "actives.raise_undead",
+	Script = "scripts/skills/actives/raise_undead",
+	Const = "RaiseUndead",
+	Name = "Raise Undead",
 });
 
-::Legends.Active.QuickShot <- null;
+::Legends.Active.RallyTheTroops <- null;
 activesDefs.push({
-	ID = "actives.quick_shot",
-	Script = "scripts/skills/actives/quick_shot",
-	Const = "QuickShot",
-	Name = "Quick Shot",
+	ID = "actives.rally_the_troops",
+	Script = "scripts/skills/actives/rally_the_troops",
+	Const = "RallyTheTroops",
+	Name = "Rally",
 });
 
-::Legends.Active.AimedShot <- null;
+::Legends.Active.Reap <- null;
 activesDefs.push({
-	ID = "actives.aimed_shot",
-	Script = "scripts/skills/actives/aimed_shot",
-	Const = "AimedShot",
-	Name = "Aimed Shot",
+	ID = "actives.reap",
+	Script = "scripts/skills/actives/reap_skill",
+	Const = "Reap",
+	Name = "Reap",
+});
+
+::Legends.Active.Recover <- null;
+activesDefs.push({
+	ID = "actives.recover",
+	Script = "scripts/skills/actives/recover_skill",
+	Const = "Recover",
+	Name = "Recover",
+});
+
+::Legends.Active.ReleaseFalcon <- null;
+activesDefs.push({
+	ID = "actives.release_falcon",
+	Script = "scripts/skills/actives/release_falcon_skill",
+	Const = "ReleaseFalcon",
+	Name = "Release Falcon",
+});
+
+::Legends.Active.ReloadBolt <- null;
+activesDefs.push({
+	ID = "actives.reload_bolt",
+	Script = "scripts/skills/actives/reload_bolt",
+	Const = "ReloadBolt",
+	Name = "Reload",
+});
+
+::Legends.Active.ReloadHandgonne <- null;
+activesDefs.push({
+	ID = "actives.reload_handgonne",
+	Script = "scripts/skills/actives/reload_handgonne_skill",
+	Const = "ReloadHandgonne",
+	Name = "Reload",
+});
+
+::Legends.Active.Repel <- null;
+activesDefs.push({
+	ID = "actives.repel",
+	Script = "scripts/skills/actives/repel",
+	Const = "Repel",
+	Name = "Repel",
+});
+
+::Legends.Active.ReturnFavor <- null;
+activesDefs.push({
+	ID = "actives.return_favor",
+	Script = "scripts/skills/actives/return_favor",
+	Const = "ReturnFavor",
+	Name = "Return Favor",
+});
+
+::Legends.Active.Riposte <- null;
+activesDefs.push({
+	ID = "actives.riposte",
+	Script = "scripts/skills/actives/riposte",
+	Const = "Riposte",
+	Name = "Riposte",
+});
+
+::Legends.Active.Root <- null;
+activesDefs.push({
+	ID = "actives.root",
+	Script = "scripts/skills/actives/root_skill",
+	Const = "Root",
+	Name = "Root",
+});
+
+::Legends.Active.Rotation <- null;
+activesDefs.push({
+	ID = "actives.rotation",
+	Script = "scripts/skills/actives/rotation",
+	Const = "Rotation",
+	Name = "Rotation",
+});
+
+::Legends.Active.RoundSwing <- null;
+activesDefs.push({
+	ID = "actives.round_swing",
+	Script = "scripts/skills/actives/round_swing",
+	Const = "RoundSwing",
+	Name = "Round Swing",
+});
+
+::Legends.Active.Rupture <- null;
+activesDefs.push({
+	ID = "actives.rupture",
+	Script = "scripts/skills/actives/rupture",
+	Const = "Rupture",
+	Name = "Rupture",
+});
+
+::Legends.Active.SerpentBite <- null;
+activesDefs.push({
+	ID = "actives.serpent_bite",
+	Script = "scripts/skills/actives/serpent_bite_skill",
+	Const = "SerpentBite",
+	Name = "Serpent Bite",
+});
+
+::Legends.Active.SerpentHook <- null;
+activesDefs.push({
+	ID = "actives.serpent_hook",
+	Script = "scripts/skills/actives/serpent_hook_skill",
+	Const = "SerpentHook",
+	Name = "Drag",
+});
+
+::Legends.Active.Shatter <- null;
+activesDefs.push({
+	ID = "actives.shatter",
+	Script = "scripts/skills/actives/shatter_skill",
+	Const = "Shatter",
+	Name = "Shatter",
+});
+
+::Legends.Active.Shieldwall <- null;
+activesDefs.push({
+	ID = "actives.shieldwall",
+	Script = "scripts/skills/actives/shieldwall",
+	Const = "Shieldwall",
+	Name = "Shieldwall",
 });
 
 ::Legends.Active.ShootBolt <- null;
@@ -190,60 +1199,12 @@ activesDefs.push({
 	Name = "Shoot Heavy Bolt",
 });
 
-::Legends.Active.SlingStone <- null;
+::Legends.Active.Skewer <- null;
 activesDefs.push({
-	ID = "actives.sling_stone",
-	Script = "scripts/skills/actives/sling_stone_skill",
-	Const = "SlingStone",
-	Name = "Sling Stone",
-});
-
-::Legends.Active.CrushArmor <- null;
-activesDefs.push({
-	ID = "actives.crush_armor",
-	Script = "scripts/skills/actives/crush_armor",
-	Const = "CrushArmor",
-	Name = "Destroy Armor",
-});
-
-::Legends.Active.DemolishArmor <- null;
-activesDefs.push({
-	ID = "actives.demolish_armor",
-	Script = "scripts/skills/actives/demolish_armor_skill",
-	Const = "DemolishArmor",
-	Name = "Demolish Armor",
-});
-
-::Legends.Active.Deathblow <- null;
-activesDefs.push({
-	ID = "actives.deathblow",
-	Script = "scripts/skills/actives/deathblow_skill",
-	Const = "Deathblow",
-	Name = "Deathblow",
-});
-
-::Legends.Active.Decapitate <- null;
-activesDefs.push({
-	ID = "actives.decapitate",
-	Script = "scripts/skills/actives/decapitate",
-	Const = "Decapitate",
-	Name = "Decapitate",
-});
-
-::Legends.Active.HandToHand <- null;
-activesDefs.push({
-	ID = "actives.hand_to_hand",
-	Script = "scripts/skills/actives/hand_to_hand",
-	Const = "HandToHand",
-	Name = "Hand-to-Hand Attack",
-});
-
-::Legends.Active.Chop <- null;
-activesDefs.push({
-	ID = "actives.chop",
-	Script = "scripts/skills/actives/chop",
-	Const = "Chop",
-	Name = "Chop",
+	ID = "actives.skewer",
+	Script = "scripts/skills/actives/skewer_skill",
+	Const = "Skewer",
+	Name = "Skewer",
 });
 
 ::Legends.Active.Slash <- null;
@@ -253,6 +1214,489 @@ activesDefs.push({
 	Const = "Slash",
 	Name = "Slash",
 });
+
+::Legends.Active.SlashLightning <- null;
+activesDefs.push({
+	ID = "actives.slash_lightning",
+	Script = "scripts/skills/actives/slash_lightning",
+	Const = "SlashLightning",
+	Name = "Lightbringer",
+});
+
+::Legends.Active.Sleep <- null;
+activesDefs.push({
+	ID = "actives.sleep",
+	Script = "scripts/skills/actives/sleep_skill",
+	Const = "Sleep",
+	Name = "Sleep",
+});
+
+::Legends.Active.SlingStone <- null;
+activesDefs.push({
+	ID = "actives.sling_stone",
+	Script = "scripts/skills/actives/sling_stone_skill",
+	Const = "SlingStone",
+	Name = "Sling Stone",
+});
+
+::Legends.Active.Smite <- null;
+activesDefs.push({
+	ID = "actives.smite",
+	Script = "scripts/skills/actives/smite_skill",
+	Const = "Smite",
+	Name = "Smite",
+});
+
+::Legends.Active.Spearwall <- null;
+activesDefs.push({
+	ID = "actives.spearwall",
+	Script = "scripts/skills/actives/spearwall",
+	Const = "Spearwall",
+	Name = "Spearwall",
+});
+
+::Legends.Active.SpiderBite <- null;
+activesDefs.push({
+	ID = "actives.spider_bite",
+	Script = "scripts/skills/actives/spider_bite_skill",
+	Const = "SpiderBite",
+	Name = "Webknecht Bite",
+});
+
+::Legends.Active.Spike <- null;
+activesDefs.push({
+	ID = "actives.spike_skill",
+	Script = "scripts/skills/actives/spike_skill",
+	Const = "Spike",
+	Name = "Spike",
+});
+
+::Legends.Active.Split <- null;
+activesDefs.push({
+	ID = "actives.split",
+	Script = "scripts/skills/actives/split",
+	Const = "Split",
+	Name = "Split",
+});
+
+::Legends.Active.SplitAxe <- null;
+activesDefs.push({
+	ID = "actives.split_axe",
+	Script = "scripts/skills/actives/split_axe",
+	Const = "SplitAxe",
+	Name = "Split",
+});
+
+::Legends.Active.SplitMan <- null;
+activesDefs.push({
+	ID = "actives.split_man",
+	Script = "scripts/skills/actives/split_man",
+	Const = "SplitMan",
+	Name = "Split Man",
+});
+
+::Legends.Active.SplitShield <- null;
+activesDefs.push({
+	ID = "actives.split_shield",
+	Script = "scripts/skills/actives/split_shield",
+	Const = "SplitShield",
+	Name = "Split Shield",
+});
+
+::Legends.Active.Stab <- null;
+activesDefs.push({
+	ID = "actives.stab",
+	Script = "scripts/skills/actives/stab",
+	Const = "Stab",
+	Name = "Stab",
+	this.m.Icon = "skills/active_03.png";
+	this.m.IconDisabled = "skills/active_03_sw.png";
+	this.m.Overlay = "active_03";
+});
+
+::Legends.Active.Stealth <- null;
+activesDefs.push({
+	ID = "actives.stealth",
+	Script = "scripts/skills/actives/stealth_skill",
+	Const = "Stealth",
+	Name = "Stealth",
+});
+
+::Legends.Active.StrikeDown <- null;
+activesDefs.push({
+	ID = "actives.strike_down",
+	Script = "scripts/skills/actives/strike_down_skill",
+	Const = "StrikeDown",
+	Name = "Strike Down",
+});
+
+::Legends.Active.Strike <- null;
+activesDefs.push({
+	ID = "actives.strike",
+	Script = "scripts/skills/actives/strike_skill",
+	Const = "Strike",
+	Name = "Strike",
+});
+
+::Legends.Active.SummonFlyingSkulls <- null;
+activesDefs.push({
+	ID = "actives.flying_skulls",
+	Script = "scripts/skills/actives/summon_flying_skulls_skill",
+	Const = "SummonFlyingSkulls",
+	Name = "Raise Screaming Skulls",
+});
+
+::Legends.Active.SummonMirrorImage <- null;
+activesDefs.push({
+	ID = "actives.mirror_image",
+	Script = "scripts/skills/actives/summon_mirror_image_skill",
+	Const = "SummonMirrorImage",
+	Name = "Mirror Image",
+});
+
+::Legends.Active.SwallowWhole <- null;
+activesDefs.push({
+	ID = "actives.swallow_whole",
+	Script = "scripts/skills/actives/swallow_whole_skill",
+	Const = "SwallowWhole",
+	Name = "Swallow Whole",
+});
+
+::Legends.Active.Sweep <- null;
+activesDefs.push({
+	ID = "actives.sweep",
+	Script = "scripts/skills/actives/sweep_skill",
+	Const = "Sweep",
+	Name = "Sweeping Strike",
+});
+
+::Legends.Active.SweepZoc <- null;
+activesDefs.push({
+	ID = "actives.sweep_zoc",
+	Script = "scripts/skills/actives/sweep_zoc_skill",
+	Const = "SweepZoc",
+	Name = "Sweeping Strike",
+});
+
+::Legends.Active.Swing <- null;
+activesDefs.push({
+	ID = "actives.swing",
+	Script = "scripts/skills/actives/swing",
+	Const = "Swing",
+	Name = "Swing",
+});
+
+::Legends.Active.TailSlamBig <- null;
+activesDefs.push({
+	ID = "actives.tail_slam_big",
+	Script = "scripts/skills/actives/tail_slam_big_skill",
+	Const = "TailSlamBig",
+	Name = "Tail Slam",
+});
+
+::Legends.Active.TailSlam <- null;
+activesDefs.push({
+	ID = "actives.tail_slam",
+	Script = "scripts/skills/actives/tail_slam_skill",
+	Const = "TailSlam",
+	Name = "Tail Slam",
+});
+
+::Legends.Active.TailSlamSplit <- null;
+activesDefs.push({
+	ID = "actives.tail_slam_split",
+	Script = "scripts/skills/actives/tail_slam_split_skill",
+	Const = "TailSlamSplit",
+	Name = "Tail Slam",
+});
+
+::Legends.Active.TailSlamZoc <- null;
+activesDefs.push({
+	ID = "actives.tail_slam_zoc",
+	Script = "scripts/skills/actives/tail_slam_zoc_skill",
+	Const = "TailSlamZoc",
+	Name = "Tail Slam",
+});
+
+::Legends.Active.Taunt <- null;
+activesDefs.push({
+	ID = "actives.taunt",
+	Script = "scripts/skills/actives/taunt",
+	Const = "Taunt",
+	Name = "Taunt",
+});
+
+::Legends.Active.Teleport <- null;
+activesDefs.push({
+	ID = "actives.teleport",
+	Script = "scripts/skills/actives/teleport_skill",
+	Const = "Teleport",
+	Name = "Spirit Walk",
+});
+
+::Legends.Active.Thresh <- null;
+activesDefs.push({
+	ID = "actives.thresh",
+	Script = "scripts/skills/actives/thresh",
+	Const = "Thresh",
+	Name = "Thresh",
+});
+
+::Legends.Active.ThrowAcidFlask <- null;
+activesDefs.push({
+	ID = "actives.throw_acid_flask",
+	Script = "scripts/skills/actives/throw_acid_flask",
+	Const = "ThrowAcidFlask",
+	Name = "Throw Acid Flask",
+});
+
+::Legends.Active.ThrowAxe <- null;
+activesDefs.push({
+	ID = "actives.throw_axe",
+	Script = "scripts/skills/actives/throw_axe",
+	Const = "ThrowAxe",
+	Name = "Throw Axe",
+});
+
+::Legends.Active.ThrowBalls <- null;
+activesDefs.push({
+	ID = "actives.throw_balls",
+	Script = "scripts/skills/actives/throw_balls",
+	Const = "ThrowBalls",
+	Name = "Throw Bola",
+});
+
+::Legends.Active.ThrowDirt <- null;
+activesDefs.push({
+	ID = "actives.throw_dirt",
+	Script = "scripts/skills/actives/throw_dirt_skill",
+	Const = "ThrowDirt",
+	Name = "Throw Dirt",
+});
+
+::Legends.Active.ThrowDazeBomb <- null;
+activesDefs.push({
+	ID = "actives.throw_daze_bomb",
+	Script = "scripts/skills/actives/throw_daze_bomb_skill",
+	Const = "ThrowDazeBomb",
+	Name = "Throw Flash Pot",
+});
+
+::Legends.Active.ThrowFireBomb <- null;
+activesDefs.push({
+	ID = "actives.throw_fire_bomb",
+	Script = "scripts/skills/actives/throw_fire_bomb_skill",
+	Const = "ThrowFireBomb",
+	Name = "Throw Fire Pot",
+});
+
+::Legends.Active.ThrowGolem <- null;
+activesDefs.push({
+	ID = "actives.throw_golem",
+	Script = "scripts/skills/actives/throw_golem_skill",
+	Const = "ThrowGolem",
+	Name = "Throw Living Sand",
+});
+
+::Legends.Active.ThrowHolyWater <- null;
+activesDefs.push({
+	ID = "actives.throw_holy_water",
+	Script = "scripts/skills/actives/throw_holy_water",
+	Const = "ThrowHolyWater",
+	Name = "Throw Blessed Water",
+});
+
+::Legends.Active.ThrowJavelin <- null;
+activesDefs.push({
+	ID = "actives.throw_javelin",
+	Script = "scripts/skills/actives/throw_javelin",
+	Const = "ThrowJavelin",
+	Name = "Throw Javelin",
+});
+
+::Legends.Active.ThrowNet <- null;
+activesDefs.push({
+	ID = "actives.throw_net",
+	Script = "scripts/skills/actives/throw_net",
+	Const = "ThrowNet",
+	Name = "Throw Net",
+});
+
+::Legends.Active.ThrowSmokeBomb <- null;
+activesDefs.push({
+	ID = "actives.throw_smoke_bomb",
+	Script = "scripts/skills/actives/throw_smoke_bomb_skill",
+	Const = "ThrowSmokeBomb",
+	Name = "Throw Smoke Pot",
+});
+
+::Legends.Active.ThrowSpear <- null;
+activesDefs.push({
+	ID = "actives.throw_spear",
+	Script = "scripts/skills/actives/throw_spear_skill",
+	Const = "ThrowSpear",
+	Name = "Throw Spear",
+});
+
+::Legends.Active.Thrust <- null;
+activesDefs.push({
+	ID = "actives.thrust",
+	Script = "scripts/skills/actives/thrust",
+	Const = "Thrust",
+	Name = "Thrust",
+});
+
+::Legends.Active.UnleashWardog <- null;
+activesDefs.push({
+	ID = "actives.unleash_wardog",
+	Script = "scripts/skills/actives/unleash_wardog",
+	Const = "UnleashWardog",
+	Name = "Unleash Wardog",
+});
+
+::Legends.Active.UnleashWolf <- null;
+activesDefs.push({
+	ID = "actives.unleash_wolf",
+	Script = "scripts/skills/actives/unleash_wolf",
+	Const = "UnleashWolf",
+	Name = "Unleash Wardog",
+});
+
+::Legends.Active.Uproot <- null;
+activesDefs.push({
+	ID = "actives.uproot",
+	Script = "scripts/skills/actives/uproot_skill",
+	Const = "Uproot",
+	Name = "Uproot",
+});
+
+::Legends.Active.UprootSmall <- null;
+activesDefs.push({
+	ID = "actives.uproot_small",
+	Script = "scripts/skills/actives/uproot_small_skill",
+	Const = "UprootSmall",
+	Name = "Uproot",
+});
+
+::Legends.Active.UprootSmallZoc <- null;
+activesDefs.push({
+	ID = "actives.uproot_small_zoc",
+	Script = "scripts/skills/actives/uproot_small_zoc_skill",
+	Const = "UprootSmallZoc",
+	Name = "Uproot",
+});
+
+::Legends.Active.UprootZoc <- null;
+activesDefs.push({
+	ID = "actives.uproot_zoc",
+	Script = "scripts/skills/actives/uproot_zoc_skill",
+	Const = "UprootZoc",
+	Name = "Uproot",
+});
+
+::Legends.Active.VoiceOfDavkul <- null;
+activesDefs.push({
+	ID = "actives.voice_of_davkul",
+	Script = "scripts/skills/actives/voice_of_davkul_skill",
+	Const = "VoiceOfDavkul",
+	Name = "Voice of Davkul",
+});
+
+::Legends.Active.WakeAlly <- null;
+activesDefs.push({
+	ID = "actives.wake_ally",
+	Script = "scripts/skills/actives/wake_ally_skill",
+	Const = "WakeAlly",
+	Name = "Wake Ally",
+});
+
+::Legends.Active.Warcry <- null;
+activesDefs.push({
+	ID = "actives.warcry",
+	Script = "scripts/skills/actives/warcry",
+	Const = "Warcry",
+	Name = "Warcry",
+});
+
+::Legends.Active.WardogBite <- null;
+activesDefs.push({
+	ID = "actives.wardog_bite",
+	Script = "scripts/skills/actives/wardog_bite",
+	Const = "WardogBite",
+	Name = "Bite",
+});
+
+::Legends.Active.WarhoundBite <- null;
+activesDefs.push({
+	ID = "actives.warhound_bite",
+	Script = "scripts/skills/actives/warhound_bite",
+	Const = "WarhoundBite",
+	Name = "Bite",
+});
+
+::Legends.Active.Web <- null;
+activesDefs.push({
+	ID = "actives.web",
+	Script = "scripts/skills/actives/web_skill",
+	Const = "Web",
+	Name = "Weave Web",
+});
+
+::Legends.Active.WerewolfBite <- null;
+activesDefs.push({
+	ID = "actives.werewolf_bite",
+	Script = "scripts/skills/actives/werewolf_bite",
+	Const = "WerewolfBite",
+	Name = "Direwolf Bite",
+});
+
+::Legends.Active.Whip <- null;
+activesDefs.push({
+	ID = "actives.whip",
+	Script = "scripts/skills/actives/whip_skill",
+	Const = "Whip",
+	Name = "Whip",
+});
+
+::Legends.Active.WhipSlave <- null;
+activesDefs.push({
+	ID = "actives.whip_slave",
+	Script = "scripts/skills/actives/whip_slave_skill",
+	Const = "WhipSlave",
+	Name = "Crack the Whip",
+});
+
+::Legends.Active.Wither <- null;
+activesDefs.push({
+	ID = "actives.wither",
+	Script = "scripts/skills/actives/wither_skill",
+	Const = "Wither",
+	Name = "Wither",
+});
+
+::Legends.Active.WolfBite <- null;
+activesDefs.push({
+	ID = "actives.wolf_bite",
+	Script = "scripts/skills/actives/wolf_bite",
+	Const = "WolfBite",
+	Name = "Bite",
+});
+
+::Legends.Active.ZombieBite <- null;
+activesDefs.push({
+	ID = "actives.zombie_bite",
+	Script = "scripts/skills/actives/zombie_bite",
+	Const = "ZombieBite",
+	Name = "Bite",
+});
+
+
+
+
+
+
+
+
 
 ::Legends.Active.LegendBreach <- null;
 activesDefs.push({
@@ -286,69 +1730,19 @@ activesDefs.push({
 	Name = "Full Draw",
 });
 
-::Legends.Active.SlashLightning <- null;
-activesDefs.push({
-	ID = "actives.slash_lightning",
-	Script = "scripts/skills/actives/slash_lightning",
-	Const = "SlashLightning",
-	Name = "Lightbringer",
-});
 
-::Legends.Active.Thrust <- null;
-activesDefs.push({
-	ID = "actives.thrust",
-	Script = "scripts/skills/actives/thrust",
-	Const = "Thrust",
-	Name = "Thrust",
-});
 
-::Legends.Active.Impale <- null;
-activesDefs.push({
-	ID = "actives.impale",
-	Script = "scripts/skills/actives/impale",
-	Const = "Impale",
-	Name = "Impale",
-});
 
-::Legends.Active.Strike <- null;
-activesDefs.push({
-	ID = "actives.strike",
-	Script = "scripts/skills/actives/strike_skill",
-	Const = "Strike",
-	Name = "Strike",
-});
 
-::Legends.Active.Rupture <- null;
-activesDefs.push({
-	ID = "actives.rupture",
-	Script = "scripts/skills/actives/rupture",
-	Const = "Rupture",
-	Name = "Rupture",
-});
 
-::Legends.Active.Crumble <- null;
-activesDefs.push({
-	ID = "actives.crumble",
-	Script = "scripts/skills/actives/crumble_skill",
-	Const = "Crumble",
-	Name = "Crumble",
-});
 
-::Legends.Active.Prong <- null;
-activesDefs.push({
-	ID = "actives.prong",
-	Script = "scripts/skills/actives/prong_skill",
-	Const = "Prong",
-	Name = "Prong",
-});
 
-::Legends.Active.Stab <- null;
-activesDefs.push({
-	ID = "actives.stab",
-	Script = "scripts/skills/actives/stab",
-	Const = "Stab",
-	Name = "Stab",
-});
+
+
+
+
+
+
 
 ::Legends.Active.LegendBackstab <- null;
 activesDefs.push({
@@ -358,37 +1752,7 @@ activesDefs.push({
 	Name = "Backstab",
 });
 
-::Legends.Active.Bash <- null;
-activesDefs.push({
-	ID = "actives.bash",
-	Script = "scripts/skills/actives/bash",
-	Const = "Bash",
-	Name = "Bash",
-});
 
-::Legends.Active.Cleave <- null;
-activesDefs.push({
-	ID = "actives.cleave",
-	Script = "scripts/skills/actives/cleave",
-	Const = "Cleave",
-	Name = "Cleave",
-});
-
-::Legends.Active.Hammer <- null;
-activesDefs.push({
-	ID = "actives.hammer",
-	Script = "scripts/skills/actives/hammer",
-	Const = "Hammer",
-	Name = "Batter",
-});
-
-::Legends.Active.OverheadStrike <- null;
-activesDefs.push({
-	ID = "actives.overhead_strike",
-	Script = "scripts/skills/actives/overhead_strike",
-	Const = "OverheadStrike",
-	Name = "Overhead Strike",
-});
 
 ::Legends.Active.LegendHew <- null;
 activesDefs.push({
@@ -398,13 +1762,7 @@ activesDefs.push({
 	Name = "Hew",
 });
 
-::Legends.Active.Smite <- null;
-activesDefs.push({
-	ID = "actives.smite",
-	Script = "scripts/skills/actives/smite_skill",
-	Const = "Smite",
-	Name = "Smite",
-});
+
 
 ::Legends.Active.LegendObliterate <- null;
 activesDefs.push({
@@ -414,117 +1772,13 @@ activesDefs.push({
 	Name = "Obliterate",
 });
 
-::Legends.Active.Cudgel <- null;
-activesDefs.push({
-	ID = "actives.cudgel",
-	Script = "scripts/skills/actives/cudgel_skill",
-	Const = "Cudgel",
-	Name = "Cudgel",
-});
 
-::Legends.Active.Whip <- null;
-activesDefs.push({
-	ID = "actives.whip",
-	Script = "scripts/skills/actives/whip_skill",
-	Const = "Whip",
-	Name = "Whip",
-});
 
-::Legends.Active.ZombieBite <- null;
-activesDefs.push({
-	ID = "actives.zombie_bite",
-	Script = "scripts/skills/actives/zombie_bite",
-	Const = "ZombieBite",
-	Name = "Bite",
-});
 
-::Legends.Active.HyenaBite <- null;
-activesDefs.push({
-	ID = "actives.hyena_bite",
-	Script = "scripts/skills/actives/hyena_bite_skill",
-	Const = "HyenaBite",
-	Name = "Hyena Bite",
-});
 
-::Legends.Active.WerewolfBite <- null;
-activesDefs.push({
-	ID = "actives.werewolf_bite",
-	Script = "scripts/skills/actives/werewolf_bite",
-	Const = "WerewolfBite",
-	Name = "Direwolf Bite",
-});
 
-::Legends.Active.GhoulClaws <- null;
-activesDefs.push({
-	ID = "actives.ghoul_claws",
-	Script = "scripts/skills/actives/ghoul_claws",
-	Const = "GhoulClaws",
-	Name = "Ghoul Claws",
-});
 
-::Legends.Active.GhastlyTouch <- null;
-activesDefs.push({
-	ID = "actives.ghastly_touch",
-	Script = "scripts/skills/actives/ghastly_touch",
-	Const = "GhastlyTouch",
-	Name = "Ghastly Touch",
-});
 
-::Legends.Active.Nightmare <- null;
-activesDefs.push({
-	ID = "actives.nightmare",
-	Script = "scripts/skills/actives/nightmare_skill",
-	Const = "Nightmare",
-	Name = "Nightmare",
-});
-
-::Legends.Active.Flail <- null;
-activesDefs.push({
-	ID = "actives.flail",
-	Script = "scripts/skills/actives/flail_skill",
-	Const = "Flail",
-	Name = "Flail",
-});
-
-::Legends.Active.Pound <- null;
-activesDefs.push({
-	ID = "actives.pound",
-	Script = "scripts/skills/actives/pound",
-	Const = "Pound",
-	Name = "Pound",
-});
-
-::Legends.Active.Cascade <- null;
-activesDefs.push({
-	ID = "actives.cascade",
-	Script = "scripts/skills/actives/cascade_skill",
-	Const = "Cascade",
-	Name = "Cascade",
-});
-
-::Legends.Active.SplitMan <- null;
-activesDefs.push({
-	ID = "actives.split_man",
-	Script = "scripts/skills/actives/split_man",
-	Const = "SplitMan",
-	Name = "Split Man",
-});
-
-::Legends.Active.Batter <- null;
-activesDefs.push({
-	ID = "actives.batter",
-	Script = "scripts/skills/actives/batter_skill",
-	Const = "Batter",
-	Name = "Batter",
-});
-
-::Legends.Active.ThrowJavelin <- null;
-activesDefs.push({
-	ID = "actives.throw_javelin",
-	Script = "scripts/skills/actives/throw_javelin",
-	Const = "ThrowJavelin",
-	Name = "Throw Javelin",
-});
 
 ::Legends.Active.LegendThrowBackupSpear <- null;
 activesDefs.push({
@@ -534,13 +1788,7 @@ activesDefs.push({
 	Name = "Throw Backup Spear",
 });
 
-::Legends.Active.ThrowAxe <- null;
-activesDefs.push({
-	ID = "actives.throw_axe",
-	Script = "scripts/skills/actives/throw_axe",
-	Const = "ThrowAxe",
-	Name = "Throw Axe",
-});
+
 
 ::Legends.Active.LegendThrowBackupAxe <- null;
 activesDefs.push({
@@ -550,205 +1798,34 @@ activesDefs.push({
 	Name = "Throw Backup Axe",
 });
 
-::Legends.Active.ThrowBalls <- null;
-activesDefs.push({
-	ID = "actives.throw_balls",
-	Script = "scripts/skills/actives/throw_balls",
-	Const = "ThrowBalls",
-	Name = "Throw Bola",
-});
 
-::Legends.Active.ThrowSpear <- null;
-activesDefs.push({
-	ID = "actives.throw_spear",
-	Script = "scripts/skills/actives/throw_spear_skill",
-	Const = "ThrowSpear",
-	Name = "Throw Spear",
-});
 
-::Legends.Active.WardogBite <- null;
-activesDefs.push({
-	ID = "actives.wardog_bite",
-	Script = "scripts/skills/actives/wardog_bite",
-	Const = "WardogBite",
-	Name = "Bite",
-});
 
-::Legends.Active.WarhoundBite <- null;
-activesDefs.push({
-	ID = "actives.warhound_bite",
-	Script = "scripts/skills/actives/warhound_bite",
-	Const = "WarhoundBite",
-	Name = "Bite",
-});
 
-::Legends.Active.WolfBite <- null;
-activesDefs.push({
-	ID = "actives.wolf_bite",
-	Script = "scripts/skills/actives/wolf_bite",
-	Const = "WolfBite",
-	Name = "Bite",
-});
 
-::Legends.Active.Gorge <- null;
-activesDefs.push({
-	ID = "actives.gorge",
-	Script = "scripts/skills/actives/gorge_skill",
-	Const = "Gorge",
-	Name = "Gorge",
-});
 
-::Legends.Active.SpiderBite <- null;
-activesDefs.push({
-	ID = "actives.spider_bite",
-	Script = "scripts/skills/actives/spider_bite_skill",
-	Const = "SpiderBite",
-	Name = "Webknecht Bite",
-});
 
-::Legends.Active.UprootSmall <- null;
-activesDefs.push({
-	ID = "actives.uproot_small",
-	Script = "scripts/skills/actives/uproot_small_skill",
-	Const = "UprootSmall",
-	Name = "Uproot",
-});
 
-::Legends.Active.KrakenBite <- null;
-activesDefs.push({
-	ID = "actives.kraken_bite",
-	Script = "scripts/skills/actives/kraken_bite_skill",
-	Const = "KrakenBite",
-	Name = "Bite",
-});
 
-::Legends.Active.KrakenDevour <- null;
-activesDefs.push({
-	ID = "actives.kraken_devour",
-	Script = "scripts/skills/actives/kraken_devour_skill",
-	Const = "KrakenDevour",
-	Name = "Devour",
-});
 
-::Legends.Active.GhostOverheadStrike <- null;
-activesDefs.push({
-	ID = "actives.ghost_overhead_strike",
-	Script = "scripts/skills/actives/ghost_overhead_strike",
-	Const = "GhostOverheadStrike",
-	Name = "Overhead Strike",
-});
 
-::Legends.Active.Headbutt <- null;
-activesDefs.push({
-	ID = "actives.headbutt",
-	Script = "scripts/skills/actives/headbutt_skill",
-	Const = "Headbutt",
-	Name = "Headbutt",
-});
 
-::Legends.Active.SerpentBite <- null;
-activesDefs.push({
-	ID = "actives.serpent_bite",
-	Script = "scripts/skills/actives/serpent_bite_skill",
-	Const = "SerpentBite",
-	Name = "Serpent Bite",
-});
 
-::Legends.Active.Gash <- null;
-activesDefs.push({
-	ID = "actives.gash",
-	Script = "scripts/skills/actives/gash_skill",
-	Const = "Gash",
-	Name = "Gash",
-});
 
-::Legends.Active.FireHandgonne <- null;
-activesDefs.push({
-	ID = "actives.fire_handgonne",
-	Script = "scripts/skills/actives/fire_handgonne_skill",
-	Const = "FireHandgonne",
-	Name = "Fire Handgonne",
-});
 
-::Legends.Active.Lash <- null;
-activesDefs.push({
-	ID = "actives.lash",
-	Script = "scripts/skills/actives/lash_skill",
-	Const = "Lash",
-	Name = "Lash",
-});
 
-::Legends.Active.Hail <- null;
-activesDefs.push({
-	ID = "actives.hail",
-	Script = "scripts/skills/actives/hail_skill",
-	Const = "Hail",
-	Name = "Hail",
-});
 
-::Legends.Active.Puncture <- null;
-activesDefs.push({
-	ID = "actives.puncture",
-	Script = "scripts/skills/actives/puncture",
-	Const = "Puncture",
-	Name = "Puncture",
-});
 
-::Legends.Active.Reap <- null;
-activesDefs.push({
-	ID = "actives.reap",
-	Script = "scripts/skills/actives/reap_skill",
-	Const = "Reap",
-	Name = "Reap",
-});
 
-::Legends.Active.TailSlamSplit <- null;
-activesDefs.push({
-	ID = "actives.tail_slam_split",
-	Script = "scripts/skills/actives/tail_slam_split_skill",
-	Const = "TailSlamSplit",
-	Name = "Tail Slam",
-});
 
-::Legends.Active.Uproot <- null;
-activesDefs.push({
-	ID = "actives.uproot",
-	Script = "scripts/skills/actives/uproot_skill",
-	Const = "Uproot",
-	Name = "Uproot",
-});
 
-::Legends.Active.GhostSplit <- null;
-activesDefs.push({
-	ID = "actives.ghost_split",
-	Script = "scripts/skills/actives/ghost_split_skill",
-	Const = "GhostSplit",
-	Name = "Split",
-});
 
-::Legends.Active.SplitShield <- null;
-activesDefs.push({
-	ID = "actives.split_shield",
-	Script = "scripts/skills/actives/split_shield",
-	Const = "SplitShield",
-	Name = "Split Shield",
-});
 
-::Legends.Active.SwallowWhole <- null;
-activesDefs.push({
-	ID = "actives.swallow_whole",
-	Script = "scripts/skills/actives/swallow_whole_skill",
-	Const = "SwallowWhole",
-	Name = "Swallow Whole",
-});
 
-::Legends.Active.Swing <- null;
-activesDefs.push({
-	ID = "actives.swing",
-	Script = "scripts/skills/actives/swing",
-	Const = "Swing",
-	Name = "Swing",
-});
+
+
+
+
 
 ::Legends.Active.LegendHarvest <- null;
 activesDefs.push({
@@ -758,117 +1835,22 @@ activesDefs.push({
 	Name = "Harvest",
 });
 
-::Legends.Active.Shatter <- null;
-activesDefs.push({
-	ID = "actives.shatter",
-	Script = "scripts/skills/actives/shatter_skill",
-	Const = "Shatter",
-	Name = "Shatter",
-});
 
-::Legends.Active.TailSlam <- null;
-activesDefs.push({
-	ID = "actives.tail_slam",
-	Script = "scripts/skills/actives/tail_slam_skill",
-	Const = "TailSlam",
-	Name = "Tail Slam",
-});
 
-::Legends.Active.Sweep <- null;
-activesDefs.push({
-	ID = "actives.sweep",
-	Script = "scripts/skills/actives/sweep_skill",
-	Const = "Sweep",
-	Name = "Sweeping Strike",
-});
 
-::Legends.Active.GhostSwing <- null;
-activesDefs.push({
-	ID = "actives.ghost_swing",
-	Script = "scripts/skills/actives/ghost_swing_skill",
-	Const = "GhostSwing",
-	Name = "Swing",
-});
 
-::Legends.Active.HorrificScream <- null;
-activesDefs.push({
-	ID = "actives.horrific_scream",
-	Script = "scripts/skills/actives/horrific_scream",
-	Const = "HorrificScream",
-	Name = "Horrific Scream",
-});
 
-::Legends.Active.Thresh <- null;
-activesDefs.push({
-	ID = "actives.thresh",
-	Script = "scripts/skills/actives/thresh",
-	Const = "Thresh",
-	Name = "Thresh",
-});
 
-::Legends.Active.RoundSwing <- null;
-activesDefs.push({
-	ID = "actives.round_swing",
-	Script = "scripts/skills/actives/round_swing",
-	Const = "RoundSwing",
-	Name = "Round Swing",
-});
 
-::Legends.Active.TailSlamBig <- null;
-activesDefs.push({
-	ID = "actives.tail_slam_big",
-	Script = "scripts/skills/actives/tail_slam_big_skill",
-	Const = "TailSlamBig",
-	Name = "Tail Slam",
-});
 
-::Legends.Active.ThrowNet <- null;
-activesDefs.push({
-	ID = "actives.throw_net",
-	Script = "scripts/skills/actives/throw_net",
-	Const = "ThrowNet",
-	Name = "Throw Net",
-});
 
-::Legends.Active.Web <- null;
-activesDefs.push({
-	ID = "actives.web",
-	Script = "scripts/skills/actives/web_skill",
-	Const = "Web",
-	Name = "Weave Web",
-});
 
-::Legends.Active.KrakenEnsnare <- null;
-activesDefs.push({
-	ID = "actives.kraken_ensnare",
-	Script = "scripts/skills/actives/kraken_ensnare_skill",
-	Const = "KrakenEnsnare",
-	Name = "Ensnare",
-});
 
-::Legends.Active.GoblinWhip <- null;
-activesDefs.push({
-	ID = "actives.goblin_whip",
-	Script = "scripts/skills/actives/goblin_whip",
-	Const = "GoblinWhip",
-	Name = "Whip",
-});
 
-::Legends.Active.DrumsOfWar <- null;
-activesDefs.push({
-	ID = "actives.drums_of_war",
-	Script = "scripts/skills/actives/drums_of_war_skill",
-	Const = "DrumsOfWar",
-	Name = "Drums of War",
-});
 
-::Legends.Active.BreakFree <- null;
-activesDefs.push({
-	ID = "actives.break_free",
-	Script = "scripts/skills/actives/break_free_skill",
-	Const = "BreakFree",
-	Name = "Break Free",
-});
+
+
+
 
 ::Legends.Active.UnstoppableCharge <- null;
 activesDefs.push({
@@ -878,453 +1860,15 @@ activesDefs.push({
 	Name = "Unstoppable Charge",
 });
 
-::Legends.Active.Charm <- null;
-activesDefs.push({
-	ID = "actives.charm",
-	Script = "scripts/skills/actives/charm_skill",
-	Const = "Charm",
-	Name = "Charm",
-});
 
-::Legends.Active.Darkflight <- null;
-activesDefs.push({
-	ID = "actives.darkflight",
-	Script = "scripts/skills/actives/darkflight",
-	Const = "Darkflight",
-	Name = "Darkflight",
-});
 
-::Legends.Active.KnockBack <- null;
-activesDefs.push({
-	ID = "actives.knock_back",
-	Script = "scripts/skills/actives/knock_back",
-	Const = "KnockBack",
-	Name = "Knock Back",
-});
 
-::Legends.Active.Repel <- null;
-activesDefs.push({
-	ID = "actives.repel",
-	Script = "scripts/skills/actives/repel",
-	Const = "Repel",
-	Name = "Repel",
-});
 
-::Legends.Active.Hook <- null;
-activesDefs.push({
-	ID = "actives.hook",
-	Script = "scripts/skills/actives/hook",
-	Const = "Hook",
-	Name = "Hook",
-});
 
-::Legends.Active.SerpentHook <- null;
-activesDefs.push({
-	ID = "actives.serpent_hook",
-	Script = "scripts/skills/actives/serpent_hook_skill",
-	Const = "SerpentHook",
-	Name = "Drag",
-});
 
-::Legends.Active.Lunge <- null;
-activesDefs.push({
-	ID = "actives.lunge",
-	Script = "scripts/skills/actives/lunge_skill",
-	Const = "Lunge",
-	Name = "Lunge",
-});
 
-::Legends.Active.Riposte <- null;
-activesDefs.push({
-	ID = "actives.riposte",
-	Script = "scripts/skills/actives/riposte",
-	Const = "Riposte",
-	Name = "Riposte",
-});
 
-::Legends.Active.ReturnFavor <- null;
-activesDefs.push({
-	ID = "actives.return_favor",
-	Script = "scripts/skills/actives/return_favor",
-	Const = "ReturnFavor",
-	Name = "Return Favor",
-});
 
-::Legends.Active.Rotation <- null;
-activesDefs.push({
-	ID = "actives.rotation",
-	Script = "scripts/skills/actives/rotation",
-	Const = "Rotation",
-	Name = "Rotation",
-});
-
-::Legends.Active.BarbarianFury <- null;
-activesDefs.push({
-	ID = "actives.barbarian_fury",
-	Script = "scripts/skills/actives/barbarian_fury_skill",
-	Const = "BarbarianFury",
-	Name = "Barbarian Fury",
-});
-
-::Legends.Active.Shieldwall <- null;
-activesDefs.push({
-	ID = "actives.shieldwall",
-	Script = "scripts/skills/actives/shieldwall",
-	Const = "Shieldwall",
-	Name = "Shieldwall",
-});
-
-::Legends.Active.GrowShield <- null;
-activesDefs.push({
-	ID = "actives.grow_shield",
-	Script = "scripts/skills/actives/grow_shield_skill",
-	Const = "GrowShield",
-	Name = "Grow Shield",
-});
-
-::Legends.Active.Spearwall <- null;
-activesDefs.push({
-	ID = "actives.spearwall",
-	Script = "scripts/skills/actives/spearwall",
-	Const = "Spearwall",
-	Name = "Spearwall",
-});
-
-::Legends.Active.Footwork <- null;
-activesDefs.push({
-	ID = "actives.footwork",
-	Script = "scripts/skills/actives/footwork",
-	Const = "Footwork",
-	Name = "Footwork",
-});
-
-::Legends.Active.ThrowDirt <- null;
-activesDefs.push({
-	ID = "actives.throw_dirt",
-	Script = "scripts/skills/actives/throw_dirt_skill",
-	Const = "ThrowDirt",
-	Name = "Throw Dirt",
-});
-
-::Legends.Active.Taunt <- null;
-activesDefs.push({
-	ID = "actives.taunt",
-	Script = "scripts/skills/actives/taunt",
-	Const = "Taunt",
-	Name = "Taunt",
-});
-
-::Legends.Active.KrakenMoveEnsnared <- null;
-activesDefs.push({
-	ID = "actives.kraken_move_ensnared",
-	Script = "scripts/skills/actives/kraken_move_ensnared_skill",
-	Const = "KrakenMoveEnsnared",
-	Name = "Drag",
-});
-
-::Legends.Active.Gore <- null;
-activesDefs.push({
-	ID = "actives.gore",
-	Script = "scripts/skills/actives/gore_skill",
-	Const = "Gore",
-	Name = "Gore",
-});
-
-::Legends.Active.Miasma <- null;
-activesDefs.push({
-	ID = "actives.miasma",
-	Script = "scripts/skills/actives/miasma_skill",
-	Const = "Miasma",
-	Name = "Miasma",
-});
-
-::Legends.Active.Horror <- null;
-activesDefs.push({
-	ID = "actives.horror",
-	Script = "scripts/skills/actives/horror_skill",
-	Const = "Horror",
-	Name = "Horror",
-});
-
-::Legends.Active.Root <- null;
-activesDefs.push({
-	ID = "actives.root",
-	Script = "scripts/skills/actives/root_skill",
-	Const = "Root",
-	Name = "Root",
-});
-
-::Legends.Active.Insects <- null;
-activesDefs.push({
-	ID = "actives.insects",
-	Script = "scripts/skills/actives/insects_skill",
-	Const = "Insects",
-	Name = "Swarm of Insects",
-});
-
-::Legends.Active.RaiseUndead <- null;
-activesDefs.push({
-	ID = "actives.raise_undead",
-	Script = "scripts/skills/actives/raise_undead",
-	Const = "RaiseUndead",
-	Name = "Raise Undead",
-});
-
-::Legends.Active.FlyingSkulls <- null;
-activesDefs.push({
-	ID = "actives.flying_skulls",
-	Script = "scripts/skills/actives/summon_flying_skulls_skill",
-	Const = "FlyingSkulls",
-	Name = "Raise Screaming Skulls",
-});
-
-::Legends.Active.GrantNightVision <- null;
-activesDefs.push({
-	ID = "actives.grant_night_vision",
-	Script = "scripts/skills/actives/grant_night_vision_skill",
-	Const = "GrantNightVision",
-	Name = "Grant Night Vision",
-});
-
-::Legends.Active.GruesomeFeast <- null;
-activesDefs.push({
-	ID = "actives.gruesome_feast",
-	Script = "scripts/skills/actives/gruesome_feast",
-	Const = "GruesomeFeast",
-	Name = "Gruesome Feast",
-});
-
-::Legends.Active.Hex <- null;
-activesDefs.push({
-	ID = "actives.hex",
-	Script = "scripts/skills/actives/hex_skill",
-	Const = "Hex",
-	Name = "Hex",
-});
-
-::Legends.Active.Indomitable <- null;
-activesDefs.push({
-	ID = "actives.indomitable",
-	Script = "scripts/skills/actives/indomitable",
-	Const = "Indomitable",
-	Name = "Indomitable",
-});
-
-::Legends.Active.LightningStorm <- null;
-activesDefs.push({
-	ID = "actives.lightning_storm",
-	Script = "scripts/skills/actives/lightning_storm_skill",
-	Const = "LightningStorm",
-	Name = "Lightning Strike",
-});
-
-::Legends.Active.LineBreaker <- null;
-activesDefs.push({
-	ID = "actives.line_breaker",
-	Script = "scripts/skills/actives/line_breaker",
-	Const = "LineBreaker",
-	Name = "Line Breaker",
-});
-
-::Legends.Active.FlingBack <- null;
-activesDefs.push({
-	ID = "actives.fling_back",
-	Script = "scripts/skills/actives/fling_back_skill",
-	Const = "FlingBack",
-	Name = "Fling Back",
-});
-
-::Legends.Active.MergeGolem <- null;
-activesDefs.push({
-	ID = "actives.merge_golem",
-	Script = "scripts/skills/actives/merge_golem_skill",
-	Const = "MergeGolem",
-	Name = "Merge Living Sands",
-});
-
-::Legends.Active.MirrorImage <- null;
-activesDefs.push({
-	ID = "actives.mirror_image",
-	Script = "scripts/skills/actives/summon_mirror_image_skill",
-	Const = "MirrorImage",
-	Name = "Mirror Image",
-});
-
-::Legends.Active.FireMortar <- null;
-activesDefs.push({
-	ID = "actives.fire_mortar",
-	Script = "scripts/skills/actives/fire_mortar_skill",
-	Const = "FireMortar",
-	Name = "Fire Mortar",
-});
-
-::Legends.Active.MoveTail <- null;
-activesDefs.push({
-	ID = "actives.move_tail",
-	Script = "scripts/skills/actives/move_tail_skill",
-	Const = "MoveTail",
-	Name = "Move Tail",
-});
-
-::Legends.Active.KrakenMove <- null;
-activesDefs.push({
-	ID = "actives.kraken_move",
-	Script = "scripts/skills/actives/kraken_move_skill",
-	Const = "KrakenMove",
-	Name = "Move Tentacle",
-});
-
-::Legends.Active.PossessUndead <- null;
-activesDefs.push({
-	ID = "actives.possess_undead",
-	Script = "scripts/skills/actives/possess_undead_skill",
-	Const = "PossessUndead",
-	Name = "Possess Undead",
-});
-
-::Legends.Active.RallyTheTroops <- null;
-activesDefs.push({
-	ID = "actives.rally_the_troops",
-	Script = "scripts/skills/actives/rally_the_troops",
-	Const = "RallyTheTroops",
-	Name = "Rally",
-});
-
-::Legends.Active.Recover <- null;
-activesDefs.push({
-	ID = "actives.recover",
-	Script = "scripts/skills/actives/recover_skill",
-	Const = "Recover",
-	Name = "Recover",
-});
-
-::Legends.Active.ReloadBolt <- null;
-activesDefs.push({
-	ID = "actives.reload_bolt",
-	Script = "scripts/skills/actives/reload_bolt",
-	Const = "ReloadBolt",
-	Name = "Reload",
-});
-
-::Legends.Active.ReloadHandgonne <- null;
-activesDefs.push({
-	ID = "actives.reload_handgonne",
-	Script = "scripts/skills/actives/reload_handgonne_skill",
-	Const = "ReloadHandgonne",
-	Name = "Reload",
-});
-
-::Legends.Active.Sleep <- null;
-activesDefs.push({
-	ID = "actives.sleep",
-	Script = "scripts/skills/actives/sleep_skill",
-	Const = "Sleep",
-	Name = "Sleep",
-});
-
-::Legends.Active.Teleport <- null;
-activesDefs.push({
-	ID = "actives.teleport",
-	Script = "scripts/skills/actives/teleport_skill",
-	Const = "Teleport",
-	Name = "Spirit Walk",
-});
-
-::Legends.Active.ThrowDazeBomb <- null;
-activesDefs.push({
-	ID = "actives.throw_daze_bomb",
-	Script = "scripts/skills/actives/throw_daze_bomb_skill",
-	Const = "ThrowDazeBomb",
-	Name = "Throw Flash Pot",
-});
-
-::Legends.Active.ThrowFireBomb <- null;
-activesDefs.push({
-	ID = "actives.throw_fire_bomb",
-	Script = "scripts/skills/actives/throw_fire_bomb_skill",
-	Const = "ThrowFireBomb",
-	Name = "Throw Fire Pot",
-});
-
-::Legends.Active.ThrowSmokeBomb <- null;
-activesDefs.push({
-	ID = "actives.throw_smoke_bomb",
-	Script = "scripts/skills/actives/throw_smoke_bomb_skill",
-	Const = "ThrowSmokeBomb",
-	Name = "Throw Smoke Pot",
-});
-
-::Legends.Active.FakeDrinkNightVision <- null;
-activesDefs.push({
-	ID = "actives.fake_drink_night_vision",
-	Script = "scripts/skills/actives/fake_drink_night_vision_skill",
-	Const = "FakeDrinkNightVision",
-	Name = "Drink Night Owl Elixir",
-});
-
-::Legends.Active.WakeAlly <- null;
-activesDefs.push({
-	ID = "actives.wake_ally",
-	Script = "scripts/skills/actives/wake_ally_skill",
-	Const = "WakeAlly",
-	Name = "Wake Ally",
-});
-
-::Legends.Active.Warcry <- null;
-activesDefs.push({
-	ID = "actives.warcry",
-	Script = "scripts/skills/actives/warcry",
-	Const = "Warcry",
-	Name = "Warcry",
-});
-
-::Legends.Active.Wither <- null;
-activesDefs.push({
-	ID = "actives.wither",
-	Script = "scripts/skills/actives/wither_skill",
-	Const = "Wither",
-	Name = "Wither",
-});
-
-::Legends.Active.BandageAlly <- null;
-activesDefs.push({
-	ID = "actives.bandage_ally",
-	Script = "scripts/skills/actives/bandage_ally_skill",
-	Const = "BandageAlly",
-	Name = "Use Bandages",
-});
-
-::Legends.Active.BerserkerMushrooms <- null;
-activesDefs.push({
-	ID = "actives.berserker_mushrooms",
-	Script = "scripts/skills/actives/berserker_mushrooms_skill",
-	Const = "BerserkerMushrooms",
-	Name = "Eat or Give Strange Mushrooms",
-});
-
-::Legends.Active.BreakAllyFree <- null;
-activesDefs.push({
-	ID = "actives.break_ally_free",
-	Script = "scripts/skills/actives/break_ally_free_skill",
-	Const = "BreakAllyFree",
-	Name = "Free Ally",
-});
-
-::Legends.Active.CoatWithPoison <- null;
-activesDefs.push({
-	ID = "actives.coat_with_poison",
-	Script = "scripts/skills/actives/coat_with_poison_skill",
-	Const = "CoatWithPoison",
-	Name = "Use Poison",
-});
-
-::Legends.Active.CoatWithSpiderPoison <- null;
-activesDefs.push({
-	ID = "actives.coat_with_spider_poison",
-	Script = "scripts/skills/actives/coat_with_spider_poison_skill",
-	Const = "CoatWithSpiderPoison",
-	Name = "Use Poisoned Oil",
-});
 
 ::Legends.Active.LegendCoatWithRedbackPoison <- null;
 activesDefs.push({
@@ -1334,20 +1878,15 @@ activesDefs.push({
 	Name = "Use Redback Poison",
 });
 
-::Legends.Active.Debilitate <- null; // vanilla implementation - activate and next strike debilitates / shelved
-activesDefs.push({
-	ID = "actives.debilitate",
-	Script = "scripts/skills/actives/debilitate",
-	Const = "Debilitate",
-	Name = "Debilitate",
-});
-
 ::Legends.Active.LegendDebilitate <- null; // active debilitate
 activesDefs.push({
 	ID = "actives.legend_debilitate",
 	Script = "scripts/skills/actives/legend_debilitate_skill", 
 	Const = "LegendDebilitate",
 	Name = "Debilitate",
+		this.m.Icon = "ui/perks/perk_34_active.png";
+		this.m.IconDisabled = "ui/perks/perk_34_active_sw.png";
+		this.m.Overlay = "perk_34_active";
 });
 
 ::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
@@ -1356,127 +1895,15 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
 	Const = "LegendWhipDebilitate",
 	Name = "Debilitate",
+		this.m.Icon = "ui/perks/perk_34_active.png";
+		this.m.IconDisabled = "ui/perks/perk_34_active_sw.png";
+		this.m.Overlay = "perk_34_active";
 });
 
-::Legends.Active.DrinkAntidote <- null;
-activesDefs.push({
-	ID = "actives.drink_antidote",
-	Script = "scripts/skills/actives/drink_antidote_skill",
-	Const = "DrinkAntidote",
-	Name = "Drink or Give Antidote",
-});
 
-::Legends.Active.FirstAid <- null;
-activesDefs.push({
-	ID = "actives.first_aid",
-	Script = "scripts/skills/actives/first_aid_skill",
-	Const = "FirstAid",
-	Name = "First Aid",
-});
 
-::Legends.Active.PerfectFocus <- null;
-activesDefs.push({
-	ID = "actives.perfect_focus",
-	Script = "scripts/skills/actives/perfect_focus",
-	Const = "PerfectFocus",
-	Name = "Perfect Focus",
-});
 
-::Legends.Active.ReleaseFalcon <- null;
-activesDefs.push({
-	ID = "actives.release_falcon",
-	Script = "scripts/skills/actives/release_falcon_skill",
-	Const = "ReleaseFalcon",
-	Name = "Release Falcon",
-});
 
-::Legends.Active.Stealth <- null;
-activesDefs.push({
-	ID = "actives.stealth",
-	Script = "scripts/skills/actives/stealth_skill",
-	Const = "Stealth",
-	Name = "Stealth",
-});
-
-::Legends.Active.SweepZoc <- null;
-activesDefs.push({
-	ID = "actives.sweep_zoc",
-	Script = "scripts/skills/actives/sweep_zoc_skill",
-	Const = "SweepZoc",
-	Name = "Sweeping Strike",
-});
-
-::Legends.Active.TailSlamZoc <- null;
-activesDefs.push({
-	ID = "actives.tail_slam_zoc",
-	Script = "scripts/skills/actives/tail_slam_zoc_skill",
-	Const = "TailSlamZoc",
-	Name = "Tail Slam",
-});
-
-::Legends.Active.ThrowAcidFlask <- null;
-activesDefs.push({
-	ID = "actives.throw_acid_flask",
-	Script = "scripts/skills/actives/throw_acid_flask",
-	Const = "ThrowAcidFlask",
-	Name = "Throw Acid Flask",
-});
-
-::Legends.Active.ThrowHolyWater <- null;
-activesDefs.push({
-	ID = "actives.throw_holy_water",
-	Script = "scripts/skills/actives/throw_holy_water",
-	Const = "ThrowHolyWater",
-	Name = "Throw Blessed Water",
-});
-
-::Legends.Active.UnleashWardog <- null;
-activesDefs.push({
-	ID = "actives.unleash_wardog",
-	Script = "scripts/skills/actives/unleash_wardog",
-	Const = "UnleashWardog",
-	Name = "Unleash Wardog",
-});
-
-::Legends.Active.UnleashWolf <- null;
-activesDefs.push({
-	ID = "actives.unleash_wolf",
-	Script = "scripts/skills/actives/unleash_wolf",
-	Const = "UnleashWolf",
-	Name = "Unleash Wardog",
-});
-
-::Legends.Active.UprootSmallZoc <- null;
-activesDefs.push({
-	ID = "actives.uproot_small_zoc",
-	Script = "scripts/skills/actives/uproot_small_zoc_skill",
-	Const = "UprootSmallZoc",
-	Name = "Uproot",
-});
-
-::Legends.Active.UprootZoc <- null;
-activesDefs.push({
-	ID = "actives.uproot_zoc",
-	Script = "scripts/skills/actives/uproot_zoc_skill",
-	Const = "UprootZoc",
-	Name = "Uproot",
-});
-
-::Legends.Active.VoiceOfDavkul <- null;
-activesDefs.push({
-	ID = "actives.voice_of_davkul",
-	Script = "scripts/skills/actives/voice_of_davkul_skill",
-	Const = "VoiceOfDavkul",
-	Name = "Voice of Davkul",
-});
-
-::Legends.Active.WhipSlave <- null;
-activesDefs.push({
-	ID = "actives.whip_slave",
-	Script = "scripts/skills/actives/whip_slave_skill",
-	Const = "WhipSlave",
-	Name = "Crack the Whip",
-});
 
 ::Legends.Active.LegendTransformIntoBear <- null;
 activesDefs.push({
@@ -1780,6 +2207,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drums_of_war_skill",
 	Const = "LegendDrumsOfWar",
 	Name = "War Chant",
+		this.m.Icon = "skills/active_163.png";
+		this.m.IconDisabled = "skills/active_163.png";
+		this.m.Overlay = "active_163";
 });
 
 ::Legends.Active.LegendPushForward <- null;
@@ -1916,6 +2346,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_alp_summon_nightmare_skill",
 	Const = "LegendAlpSummonNightmare",
 	Name = "Conjure Nightmare",
+	this.m.Icon = "skills/active_160.png";
+	this.m.IconDisabled = "skills/active_160.png";
+	this.m.Overlay = "active_160";
 });
 
 ::Legends.Active.LegendAlpNightmareManifestation <- null;
@@ -1924,6 +2357,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_alp_nightmare_manifestation_skill",
 	Const = "LegendAlpNightmareManifestation",
 	Name = "Conjure Nightmare",
+	this.m.Icon = "skills/active_160.png";
+	this.m.IconDisabled = "skills/active_160.png";
+	this.m.Overlay = "active_160";
 });
 
 ::Legends.Active.LegendAlpRealmOfShadow <- null;
@@ -1932,6 +2368,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_alp_realm_of_shadow_skill",
 	Const = "LegendAlpRealmOfShadow",
 	Name = "Shadow Mist",
+	this.m.Icon = "skills/nightvision_square.png";
+	this.m.IconDisabled = "skills/nightvision_square.png";
+	this.m.Overlay = "bust_nightmare";
 });
 
 ::Legends.Active.LegendWerewolfHowl <- null;
@@ -1980,6 +2419,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_apothecary_mushrooms_skill",
 	Const = "LegendApothecaryMushrooms",
 	Name = "Eat or Give Strange Mushrooms",
+	this.m.Icon = "skills/active_98.png";
+	this.m.IconDisabled = "skills/active_98_sw.png";
+	this.m.Overlay = "active_98";
 });
 
 ::Legends.Active.LegendAttackTarget <- null;
@@ -1988,6 +2430,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_attack_target_skill",
 	Const = "LegendAttackTarget",
 	Name = "Chopper sick balls!",
+		this.m.Icon = "skills/houndattack.png";
+		this.m.IconDisabled = "skills/houndattack_bw.png";
+		this.m.Overlay = "perk_38_active";
 });
 
 ::Legends.Active.LegendProtectTarget <- null;
@@ -2421,6 +2866,8 @@ activesDefs.push({
 	Const = "LegendHolyflame",
 	Name = "Holy Flame",
 });
+
+
 
 ::Legends.Active.LegendHorrify <- null;
 activesDefs.push({
@@ -3158,22 +3605,6 @@ activesDefs.push({
 	Name = "Second Wind",
 });
 
-::Legends.Active.CenserCastigate <- null;
-activesDefs.push({
-	ID = "actives.censer_castigate",
-	Script = "scripts/skills/actives/censer_castigate_skill",
-	Const = "CenserCastigate",
-	Name = "Castigate",
-});
-
-::Legends.Active.CenserStrike <- null;
-activesDefs.push({
-	ID = "actives.censer_strike",
-	Script = "scripts/skills/actives/censer_strike",
-	Const = "CenserStrike",
-	Name = "Censer Strike",
-});
-
 ::Legends.Active.LegendSighthoundBite <- null;
 activesDefs.push({
 	ID = "actives.legend_sighthound_bite",
@@ -3238,53 +3669,12 @@ activesDefs.push({
 	Name = "Enraged Hyena Bite",
 });
 
-::Legends.Active.GreaterFleshGolemAttack <- null;
-activesDefs.push({
-	ID = "actives.greater_flesh_golem_attack",
-	Script = "scripts/skills/actives/greater_flesh_golem_attack_skill",
-	Const = "GreaterFleshGolemAttack",
-	Name = "Clout",
-});
 
-::Legends.Active.Flurry <- null;
-activesDefs.push({
-	ID = "actives.flurry_skill",
-	Script = "scripts/skills/actives/flurry_skill",
-	Const = "Flurry",
-	Name = "Flurry",
-});
 
-::Legends.Active.Spike <- null;
-activesDefs.push({
-	ID = "actives.spike_skill",
-	Script = "scripts/skills/actives/spike_skill",
-	Const = "Spike",
-	Name = "Spike",
-});
 
-::Legends.Active.CorpseHurl <- null;
-activesDefs.push({
-	ID = "actives.corpse_hurl_skill",
-	Script = "scripts/skills/actives/corpse_hurl_skill",
-	Const = "CorpseHurl",
-	Name = "Corpse Hurl",
-});
 
-::Legends.Active.FleshPull <- null;
-activesDefs.push({
-	ID = "actives.flesh_pull",
-	Script = "scripts/skills/actives/flesh_pull_skill",
-	Const = "FleshPull",
-	Name = "Flesh Pull",
-});
 
-::Legends.Active.CorpseExplosion <- null;
-activesDefs.push({
-	ID = "actives.corpse_explosion",
-	Script = "scripts/skills/actives/corpse_explosion_skill",
-	Const = "CorpseExplosion",
-	Name = "Corpse Explosion",
-});
+
 
 ::Legends.Active.LegendDoubleSwing <- null;
 activesDefs.push({
@@ -3302,60 +3692,6 @@ activesDefs.push({
 	Name = "Line Them Up",
 });
 
-::Legends.Active.LesserFleshGolemAttack <- null;
-activesDefs.push({
-	ID = "actives.lesser_flesh_golem_attack",
-	Script = "scripts/skills/actives/lesser_flesh_golem_attack_skill",
-	Const = "LesserFleshGolemAttack",
-	Name = "Smack",
-});
 
-::Legends.Active.Assault <- null;
-activesDefs.push({
-	ID = "actives.assault",
-	Script = "scripts/skills/actives/assault_skill",
-	Const = "Assault",
-	Name = "Assault",
-});
-
-::Legends.Active.EstocStab <- null;
-activesDefs.push({
-	ID = "actives.estoc_stab",
-	Script = "scripts/skills/actives/estoc_stab_skill",
-	Const = "EstocStab",
-	Name = "Stab",
-});
-
-::Legends.Active.Execute <- null;
-activesDefs.push({
-	ID = "actives.execute",
-	Script = "scripts/skills/actives/execute_skill",
-	Const = "Execute",
-	Name = "Execute",
-});
-
-::Legends.Active.ExeSwordDecapitate <- null;
-activesDefs.push({
-	ID = "actives.exesword_decapitate",
-	Script = "scripts/skills/actives/exesword_decapitate",
-	Const = "ExeSwordDecapitate",
-	Name = "Decapitate",
-});
-
-::Legends.Active.Perforate <- null;
-activesDefs.push({
-	ID = "actives.perforate",
-	Script = "scripts/skills/actives/perforate_skill",
-	Const = "Perforate",
-	Name = "Perforate",
-});
-
-::Legends.Active.Skewer <- null;
-activesDefs.push({
-	ID = "actives.skewer",
-	Script = "scripts/skills/actives/skewer_skill",
-	Const = "Skewer",
-	Name = "Skewer",
-});
 
 ::Legends.Actives.addActiveDefObjects(activesDefs);

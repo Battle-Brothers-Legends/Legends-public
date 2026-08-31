@@ -4,9 +4,6 @@ this.legend_alp_realm_of_shadow_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpRealmOfShadow);
 		this.m.Description = "";
-		this.m.Icon = "skills/nightvision_square.png";
-		this.m.IconDisabled = "skills/nightvision_square.png";
-		this.m.Overlay = "bust_nightmare";
 		this.m.SoundOnUse = [
 			"sounds/enemies/miasma_spell_01.wav",
 			"sounds/enemies/miasma_spell_02.wav",

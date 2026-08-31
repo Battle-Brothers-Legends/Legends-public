@@ -112,4 +112,7 @@ if (!("Actives" in ::Legends)) {
 	local defs = ::Legends.Actives.ActiveDefObjects[_def];
 	_target.m.ID = defs.ID;
 	_target.m.Name = defs.Name;
+	_target.m.Icon = defs.Icon;
+	_target.m.IconDisabled = defs.IconDisabled;
+	_target.m.Overlay = defs.Overlay;
 }
