@@ -22,29 +22,6 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	function getAttacker()
-	{
-		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (::MSU.isNull(this.m.Actor))
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID())
-		{
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap())
-			{
-				return this.m.Actor;
-			}
-		}
-
-		return this.getContainer().getActor();
-	}
-
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
@@ -95,7 +72,7 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " is burnt by holy flames");
-		actor.onDamageReceived(this.getAttacker(), this, hitInfo);
+		actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 	}
 
 	function onTurnEnd()

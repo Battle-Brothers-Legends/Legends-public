@@ -106,7 +106,7 @@
 				}
 			}
 
-			local damage = calculateDamage(target);
+			local damage = this.calculateDamage(target);
 
 			local conditionBefore = shield.getCondition();
 			shield.applyShieldDamage(damage);

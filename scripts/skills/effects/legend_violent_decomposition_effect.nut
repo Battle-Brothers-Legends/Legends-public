@@ -11,7 +11,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 	function setActorID( _id )
 	{
-		this.m.ActorID = _id
+		this.m.ActorID = _id;
 	}
 
 	function getAttacker()

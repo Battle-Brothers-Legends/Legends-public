@@ -11,29 +11,6 @@
 		this.m.Actor = ::MSU.asWeakTableRef(_a);
 	}
 
-	o.getAttacker <- function ()
-	{
-		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (::MSU.isNull(this.m.Actor))
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID())
-		{
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap())
-			{
-				return this.m.Actor;
-			}
-		}
-
-		return this.getContainer().getActor();
-	}
-
 	o.applyDamage = function ()
 	{
 		if (this.m.LastRoundApplied != this.Time.getRound())
@@ -47,7 +24,7 @@
 			hitInfo.BodyPart = this.Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
-			actor.onDamageReceived(this.getAttacker(), this, hitInfo);
+			actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 
 			if (--this.m.TurnsLeft <= 0)
 			{

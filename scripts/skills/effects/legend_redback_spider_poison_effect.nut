@@ -36,34 +36,10 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		this.m.IsRemovedAfterBattle = true;
 	}
 
-	function getAttacker()
-	{
-		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (::MSU.isNull(this.m.Actor))
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID())
-		{
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap())
-			{
-				return this.m.Actor;
-			}
-		}
-
-		return this.getContainer().getActor();
-	}
-
 	function getDescription()
 	{
 		local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-		if (::Legends.isLegendaryDifficulty() && !this.getAttacker().isPlayerControlled())
-		{
+		if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
 			timeDamage *= 2;
 		}
 		return "This character has a vicious poison running through their veins and will lose [color=%negative%]" + timeDamage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
@@ -99,8 +75,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			local hitInfo = clone this.Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = timeDamage;
 
-			if (::Legends.isLegendaryDifficulty() && !this.getAttacker().isPlayerControlled())
-			{
+			if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
 				local timeDamage = (this.m.Damage * this.m.TurnsLeft);
 				hitInfo.DamageRegular = 2 * timeDamage;
 			}
@@ -109,7 +84,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			hitInfo.BodyPart = this.Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
-			actor.onDamageReceived(this.getAttacker(), this, hitInfo);
+			actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 		}
 	}
 

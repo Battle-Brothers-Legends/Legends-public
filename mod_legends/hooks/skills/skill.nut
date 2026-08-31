@@ -1769,6 +1769,10 @@
 			this.m.IsSerialized = false;
 	}
 
+	o.getEffectOwner <- function () {
+		return ((!::Legends.S.isEntityNullOrDead(this.m.Actor) && this.m.Actor.isPlacedOnMap()) ? this.m.Actor : this.getContainer().getActor());
+	}
+
 	o.onDeserialize = function( _in )
 	{
 		this.m.IsNew = _in.readBool();

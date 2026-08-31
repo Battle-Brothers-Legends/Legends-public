@@ -32,22 +32,6 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		return "This character is bleeding profusely from a recently received wound and will lose [color=%negative%]" + this.m.Damage + "[/color] hitpoints each turn for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
-	function getAttacker() {
-		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-			return this.getContainer().getActor();
-
-		if (::MSU.isNull(this.m.Actor))
-			return this.getContainer().getActor();
-
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID()) {
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap()) {
-				return this.m.Actor;
-			}
-		}
-
-		return this.getContainer().getActor();
-	}
-
 	function applyDamage() {
 		if (this.m.LastRoundApplied != this.Time.getRound()) {
 			this.m.LastRoundApplied = this.Time.getRound();
@@ -58,7 +42,7 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 			hitInfo.BodyPart = this.Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
-			this.getContainer().getActor().onDamageReceived(this.getAttacker(), this, hitInfo);
+			this.getContainer().getActor().onDamageReceived(this.getEffectOwner(), this, hitInfo);
 
 
 			if (--this.m.TurnsLeft <= 0) {

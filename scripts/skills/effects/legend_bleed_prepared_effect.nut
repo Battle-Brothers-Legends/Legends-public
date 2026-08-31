@@ -45,36 +45,22 @@ this.legend_bleed_prepared_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		this.m.Stacks -= 1;
+
+		if (!::Legends.S.isEntityNullOrDead(_targetEntity) && _damageInflictedHitpoints > ::Const.Combat.MinDamageToApplyBleeding && _targetEntity.getHitpoints() > 0) {
+			if (!_targetEntity.isHiddenToPlayer() && this.m.SoundOnUse.len() != 0) {
+				::Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
+				::Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding");
+			}
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Bleeding, function (_effect) {
+				_effect.setActor(this.getContainer().getActor());
+				_effect.setDamage(5);
+			}.bindenv(this));
+		}
 
 		if (this.m.Stacks <= 0) {
 			this.removeSelf();
 		}
-
-		if (!::Legends.S.isEntityNullOrDead(_targetEntity)) {
-			return;
-		}
-
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison
-			|| _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding
-			|| _targetEntity.getHitpoints() <= 0)
-		{
-			return;
-		}
-
-		if (!_targetEntity.isHiddenToPlayer()) {
-			if (this.m.SoundOnUse.len() != 0) {
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
-			}
-
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding");
-		}
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Bleeding, function (_effect) {
-			if (this.getContainer().getActor().getFaction() == this.Const.Faction.Player) {
-				_effect.setActor(this.getContainer().getActor());
-			}
-			_effect.setDamage(5);
-		}.bindenv(this));
-		this.m.Stacks -= 1;
 	}
 
 	function onTargetMissed(_skill, _targetEntity) {

@@ -55,26 +55,21 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison
-			|| _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding
-			|| _targetEntity.getHitpoints() <= 0) {
-			return;
-		}
-
-		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding || _targetEntity.getHitpoints() <= 0)
+		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints <= ::Const.Combat.MinDamageToApplyBleeding || _targetEntity.getHitpoints() <= 0)
 			return;
 
-		if (!_targetEntity.isHiddenToPlayer())
-		{
+		if (!_targetEntity.isHiddenToPlayer()) {
 			if (this.m.SoundOnUse.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
+			::Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
 		}
 
-		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect, function (_effect) {
+			_effect.setActor(this.getContainer().getActor());
+		}.bindenv(this));
 	}
 
 	function onTargetMissed( _skill, _targetEntity )
