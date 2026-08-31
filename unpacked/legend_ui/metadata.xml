@@ -218,6 +218,7 @@
 	<sprite id="legend_flourish_effect_mini" ic="FF1B293C" img="skills\mini\legend_flourish_effect_mini.png" />
 	<sprite id="legend_double_swing" ic="FF1B293C" img="skills\legend_double_swing.png" />
 	<sprite id="sentry_inject" ic="FF1B293C" img="skills\sentry_inject.png" />
+	<sprite id="sentry_fowleye" ic="FF1B293C" img="skills\sentry_fowleye.png" />
 	<sprite id="active_legend_coat_with_redback_poison" ic="FF1B293C" img="skills\active_legend_coat_with_redback_poison.png" />
 	<sprite id="status_effect_legend_redback_poison_coat_mini" ic="FF1B293C" img="skills\mini\status_effect_legend_redback_poison_coat_mini.png" />
 	<!-- Orientation below -->

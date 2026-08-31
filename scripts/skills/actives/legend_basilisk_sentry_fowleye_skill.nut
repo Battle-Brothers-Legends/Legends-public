@@ -8,7 +8,7 @@ this.legend_basilisk_sentry_fowleye_skill <- this.inherit("scripts/skills/skill"
 		this.m.Description = "no look at birb";
 		this.m.Icon = "skills/sentry_fowleye.png";
 		this.m.IconDisabled = "sentry_fowleye.png";
-		this.m.Overlay = "active_102"; ///investigate - porobably in actives metadata file
+		this.m.Overlay = "sentry_fowleye";
 		this.m.SoundOnUse = [
 			"sounds/enemies/horror_spell_01.wav",
 			"sounds/enemies/horror_spell_02.wav",
