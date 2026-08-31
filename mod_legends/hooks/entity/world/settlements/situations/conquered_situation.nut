@@ -1,33 +1,19 @@
-::mods_hookExactClass("entity/world/settlements/situations/conquered_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/conquered_situation", function (o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.20);
-		}
-		onAdded( _settlement );
+	o.onAdded = function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 0.8);
+		onAdded(_settlement);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList )
-	{
-		_draftList.push(::Legends.Background.Refugee);
-		_draftList.push(::Legends.Background.Refugee);
-		_draftList.push(::Legends.Background.Cripple);
-		_draftList.push(::Legends.Background.Cripple);
+	o.onUpdateDraftList <- function (_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Refugee, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Cripple, 2);
 		_draftList.push(::Legends.Background.Vagabond);
-		_draftList.push(::Legends.Background.Gravedigger);
-		_draftList.push(::Legends.Background.Gravedigger);
-		_draftList.push(::Legends.Background.Beggar);
-		_draftList.push(::Legends.Background.Beggar);
-		_draftList.push(::Legends.Background.Beggar);
+		::Legends.S.extend(_draftList, ::Legends.Background.Gravedigger, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Beggar, 3);
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
-			_draftList.push(::Legends.Background.LegendPuppet);
-			_draftList.push(::Legends.Background.LegendPuppet);
-			_draftList.push(::Legends.Background.LegendPuppet);
-			_draftList.push(::Legends.Background.LegendPuppet);
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 4);
 		}
 
 	}

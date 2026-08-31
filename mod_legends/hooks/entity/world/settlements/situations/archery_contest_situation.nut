@@ -3,9 +3,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _draftList )
 	{
-		_draftList.push(::Legends.Background.LegendMasterArcher);
-		_draftList.push(::Legends.Background.LegendMasterArcher);
-		_draftList.push(::Legends.Background.LegendMasterArcher);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 3);
 		onUpdateDraftList(_draftList);
 	}
 });

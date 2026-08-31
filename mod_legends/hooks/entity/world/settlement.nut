@@ -254,7 +254,7 @@
 				text = "Generating Resources: " + this.getNewResources()
 			});
 
-		if (this.Const.LegendMod.DebugMode || this.m.IsVisited && ::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+		if (this.Const.LegendMod.DebugMode || this.m.IsVisited)
 			ret.extend([
 				{
 					id = 6,
@@ -304,21 +304,8 @@
 	}
 
 
-	o.getSpriteName <- function ()
-	{
-		local s = this.m.Sprite;
-
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			s = "legend_" + this.m.Sprite;
-		}
-
-		if (this.isUpgrading())
-		{
-			s = s + "_upgrade";
-		}
-
-		return s;
+	o.getSpriteName <- function () {
+		return "legend_" + this.m.Sprite + (this.isUpgrading() ? "_upgrade" : "");
 	}
 
 	local getUIContractInformation = o.getUIContractInformation;
@@ -827,8 +814,7 @@
 			if (item.isBought() && !item.isSold()) {
 				if (item.isItemType(this.Const.Items.ItemType.TradeGood)) {
 					this.World.Statistics.getFlags().increment("TradeGoodsBought");
-					if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-						this.setResources(this.getResources() + item.getResourceValue());
+					this.setResources(this.getResources() + item.getResourceValue());
 				}
 			}
 			item.setBought(false);
@@ -855,10 +841,7 @@
 						if (item.isItemType(::Const.Items.ItemType.TradeGood)) {
 							::World.Statistics.getFlags().increment("TradeGoodsSold");
 							::World.Assets.addBusinessReputation(::World.Assets.m.ProfessionEffect.LegendTradesman * item.getValue() * 0.01);
-
-							if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) {
-								this.setResources(this.getResources() + item.getResourceValue());
-							}
+							this.setResources(this.getResources() + item.getResourceValue());
 						}
 					}
 					item.setSold(false);

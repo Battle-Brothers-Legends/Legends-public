@@ -1,25 +1,17 @@
-::mods_hookExactClass("entity/world/settlements/situations/moving_sands_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/moving_sands_situation", function (o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.025);
-		
-		onAdded( _settlement );
+	o.onAdded = function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 0.975);
+		onAdded(_settlement);
 	}
 
-	o.onResolved <- function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.125);
+	o.onResolved <- function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 1.125);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList )
-	{
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
-			_draftList.push(::Legends.Background.LegendPuppet);
-			_draftList.push(::Legends.Background.LegendPuppet);
+	o.onUpdateDraftList <- function (_draftList) {
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 2);
 		}
 	}
 });

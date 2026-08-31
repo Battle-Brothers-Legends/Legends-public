@@ -52,7 +52,7 @@
 			}
 		}
 
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && ::World.Assets.m.ProfessionEffect.LegendGreasedPalms > 0 && this.m.Flags.get("IsCaravan"))
+		if (::World.Assets.m.ProfessionEffect.LegendGreasedPalms > 0 && this.m.Flags.get("IsCaravan"))
 		{
 			local inv = this.getStashInventory().getItems();
 
@@ -316,7 +316,7 @@
 	o.onCombatLost = function ()
 	{
 		// World Economy: Track caravan destroyed
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.getFlags().has("CaravanInvestment"))
+		if (this.getFlags().has("CaravanInvestment"))
 		{
 			local origin = this.getOrigin();
 			if (!::MSU.isNull(origin))

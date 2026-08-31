@@ -458,6 +458,8 @@
 - Lone wolf equipment will now self-equip on game start as opposed to being in the stash
 - clarified rotten flesh tooltip
 - clarified the tools usage tooltip.
+- background details can now be found in the projects github wiki (https://github.com/Battle-Brothers-Legends/Legends-public/wiki/Backgrounds)
+- world economy campaign option is now always on; removed from new campaign settings
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -488,6 +490,7 @@
 - fixed a few issues with moving weapons in and out of bags in combat
 - fixed Lorekeeper's headpiece
 - Swapped graveyard & crypts to mass graves and sunken castles for legion 'defend x' camp contracts as crypts & graveyards could shuffle zombies in which caused the player to get attacked by a sally or scout force
+- fixed holy flame sometimes not awarding kills properly
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

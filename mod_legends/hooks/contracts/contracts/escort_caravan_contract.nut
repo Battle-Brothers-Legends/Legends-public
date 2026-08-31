@@ -379,14 +379,10 @@
 
 						this.World.Contracts.finishActiveContract();
 
-						if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-						{
-							local origin = this.Contract.getOrigin();
-							if (origin != null)
-							{
-								local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
-								origin.setResources(origin.getResources() + v);
-							}
+						local origin = this.Contract.getOrigin();
+						if (origin != null) {
+							local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
+							origin.setResources(origin.getResources() + v);
 						}
 
 						return 0;
@@ -418,15 +414,11 @@
 						}
 
 						//moved from up above when we actually call this screen -> supposedly this is the issue where it makes it fail the contract but here it shouldn't
-						if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-						{
-							this.Contract.m.Caravan.setResources(this.Math.round(this.Contract.m.Caravan.getResources() / 2));
-							local L = this.Contract.m.Caravan.getInventory();
-							this.Contract.m.Caravan.clearInventory();
-							for (local i = 0; i < (L.len() - 1) / 2; i = ++i)
-							{
-								this.Contract.m.Caravan.addToInventory(L[i]);
-							}
+						this.Contract.m.Caravan.setResources(this.Math.round(this.Contract.m.Caravan.getResources() / 2));
+						local L = this.Contract.m.Caravan.getInventory();
+						this.Contract.m.Caravan.clearInventory();
+						for (local i = 0; i < (L.len() - 1) / 2; i++) {
+							this.Contract.m.Caravan.addToInventory(L[i]);
 						}
 
 						this.World.Contracts.finishActiveContract();
@@ -468,25 +460,7 @@
 		party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 0.6);
 		party.setLeaveFootprints(false);
 
-		// yes world economy
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Home, this.m.Destination);
-		}
-		// no world economy
-		else
-		{
-			if (this.m.Home.getProduce().len() != 0)
-			{
-				local produce = 3;
-				local L = this.m.Home.getProduce();
-
-				for( local j = 0; j < produce; j = ++j )
-				{
-					party.addToInventory(::MSU.Array.rand(L));
-				}
-			}
-		}
+		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Home, this.m.Destination);
 
 		party.getLoot().Money = this.Math.rand(0, 100);
 

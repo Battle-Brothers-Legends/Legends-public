@@ -289,16 +289,8 @@
 		local s = _settlement.getSituationByInstance(_situationInstance);
 		local ret = _situationInstance;
 
-		if (s != null)
-		{
-			if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			{
-				ret = _settlement.resolveSituationByInstance(_situationInstance);
-			}
-			else
-			{
-				ret = _settlement.removeSituationByInstance(_situationInstance);
-			}
+		if (s != null) {
+			ret = _settlement.resolveSituationByInstance(_situationInstance);
 		}
 
 		if (_list != null && s != null && !_settlement.hasSituation(s.getID()))

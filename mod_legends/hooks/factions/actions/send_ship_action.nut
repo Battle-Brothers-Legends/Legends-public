@@ -7,8 +7,8 @@
 	{
 		onUpdate(_faction);
 
-		if (m.Settlement == null || m.Settlement.numShips() > 1)
-			m.Score = 0;
+		if (this.m.Settlement == null || this.m.Settlement.numShips() > 1)
+			this.m.Score = 0;
 	}
 
 	local onExecute = o.onExecute;
@@ -17,13 +17,13 @@
 		local beforeNum = _faction.getUnits().len();
 		local result = onExecute(_faction);
 
-		if (_faction.getUnits().len() <= beforeNum || !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+		if (_faction.getUnits().len() <= beforeNum)
 			return result;
 
 		local destination = null;
 		local best = 9999;
 		local party = _faction.getUnits().top();
-		party.setDescription(format("A ship from %s transporting goods and passengers.", m.Settlement.getName()));
+		party.setDescription(format("A ship from %s transporting goods and passengers.", this.m.Settlement.getName()));
 		party.getFlags().set("IsCaravan", true);
 		local c = party.getController();
 		local swim = c.getOrder(::Const.World.AI.Behavior.ID.Swim);
@@ -31,9 +31,9 @@
 		if (swim == null || swim.m.TargetTile == null)
 			return result;
 
-		foreach (settlement in World.EntityManager.getSettlements())
+		foreach (settlement in ::World.EntityManager.getSettlements())
 		{
-			if (settlement.getID() == m.Settlement.getID()) continue;
+			if (settlement.getID() == this.m.Settlement.getID()) continue;
 
 			local distance = settlement.getTile().getDistanceTo(swim.m.TargetTile);
 
@@ -46,7 +46,7 @@
 		if (destination == null)
 			return result;
 		// set up trade
-		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, m.Settlement, destination);
+		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Settlement, destination);
 		// insert new order
 		local dock = ::new("scripts/ai/world/orders/unload_order");
 		dock.setController(c);

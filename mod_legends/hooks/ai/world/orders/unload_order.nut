@@ -1,16 +1,13 @@
 ::mods_hookExactClass("ai/world/orders/unload_order", function(o) {
 	local onExecute = o.onExecute;
 	o.onExecute = function ( _entity, _hasChanged )	{
-		if (!::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-			return onExecute(_entity, _hasChanged);
-
 		if (!_entity.getFlags().has("CaravanDestinationID"))
 			return onExecute(_entity, _hasChanged);
 
 		local settlement = ::World.getEntityByID(_entity.getFlags().get("CaravanDestinationID"));
 
 		if (settlement == null || !settlement.isLocation() || !settlement.isLocationType(::Const.World.LocationType.Settlement)) {
-			::logError("Error: Can not unloading caravan stash. Reason: Desitnation settlement is missing or not a valid settlement.");
+			::logError("Error: Can not unloading caravan stash. Reason: Destination settlement is missing or not a valid settlement.");
 			this.getController().popOrder();
 			return true;
 		}
@@ -26,7 +23,7 @@
 			origin.updateCaravanSentHistory(caravanHistoryData);
 			settlement.updateCaravanReceivedHistory(caravanHistoryData);
 			origin.addWorldEconomyResources(_entity.getFlags().getAsInt("CaravanInvestment") + _entity.getFlags().getAsInt("CaravanProfit"));
-			//this.logWarning("Unloading caravan with " + inv.len() + " items at " + settlement.getName() + ", the origin town " + origin.getName() + " receives their investment of " + investment + " resources along wiht a profit of " + profit + ", now have " + origin.getResources() + " resources in total");
+			//this.logWarning("Unloading caravan with " + inv.len() + " items at " + settlement.getName() + ", the origin town " + origin.getName() + " receives their investment of " + investment + " resources along with a profit of " + profit + ", now have " + origin.getResources() + " resources in total");
 		}
 
 		// unload all items to the marketplace

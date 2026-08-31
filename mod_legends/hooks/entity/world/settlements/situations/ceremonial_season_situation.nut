@@ -1,35 +1,21 @@
-::mods_hookExactClass("entity/world/settlements/situations/ceremonial_season_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/ceremonial_season_situation", function (o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.01);
-		}
-		onAdded( _settlement );
+	o.onAdded = function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 0.99);
+		onAdded(_settlement);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList )
-	{
-		_draftList.push(::Legends.Background.Monk);
-		_draftList.push(::Legends.Background.Monk);
+	o.onUpdateDraftList <- function (_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Monk, 2);
 		_draftList.push(::Legends.Background.Cultist);
 		_draftList.push(::Legends.Background.Flagellant);
 
-		if ( this.World.Assets.getOrigin().getID() == "scenario.cultists") {
-			_draftList.push(::Legends.Background.LegendHusk);
-			_draftList.push(::Legends.Background.LegendHusk);
-			_draftList.push(::Legends.Background.LegendLurker);
-			_draftList.push(::Legends.Background.LegendLurker);
-			_draftList.push(::Legends.Background.LegendLurker);
+		if (this.World.Assets.getOrigin().getID() == "scenario.cultists") {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendHusk, 2);
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendLurker, 3);
 			_draftList.push(::Legends.Background.LegendMagister);
-		}
-		else if ( this.World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
-			for (local i = 0; i < 17; ++i)
-			{
-				_draftList.push(::Legends.Background.LegendPilgrim);
-			}
+		} else if (::World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendPilgrim, 17);
 		}
 	}
 });

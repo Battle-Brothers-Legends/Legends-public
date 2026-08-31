@@ -96,9 +96,7 @@
 						}
 						it.setPriceMult(i.P * _priceMult);
 						it.m.IsOffBookDeal = _offBookDeal;
-						if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue()) {
-							it.setOriginSettlement(this.getSettlement());
-						}
+						it.setOriginSettlement(this.getSettlement());
 						_stash.add(it);
 					}
 				}

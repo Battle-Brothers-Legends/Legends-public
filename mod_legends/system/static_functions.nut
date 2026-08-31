@@ -460,3 +460,5 @@
         return false;
     return true;
 }
+
+::Legends.S.extend <- @(_array, _item, _count = 1) _array.extend(array(_count, _item));

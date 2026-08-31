@@ -44,31 +44,12 @@ this.legends_fort <- this.inherit("scripts/entity/world/settlement", {
 		}
 	}
 
-	function getLighting()
-	{
-		local prefix = "";
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			prefix ="legend_";
-		}
-		local s = prefix + "world_stronghold_0" + this.m.Size + "_light";
-		return s;
+	function getLighting() {
+		return "legend_world_stronghold_0" + this.m.Size + "_light";
 	}
 
-	function getSpriteName()
-	{
-		local prefix = "";
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			prefix ="legend_";
-		}
-		local s = prefix + "world_stronghold_0" + this.m.Size;
-
-		if (this.isUpgrading())
-		{
-			s += "_upgrade";
-		}
-		return s;
+	function getSpriteName() {
+		return "legend_world_stronghold_0" + this.m.Size + (this.isUpgrading() ? "_upgrade" : "");
 	}
 
 	//UISprite
