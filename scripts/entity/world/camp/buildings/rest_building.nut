@@ -65,9 +65,9 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local self = this;
 		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay)));
 		foreach (bro in restingBros) {
-				this.getRested(bro);
-				bro.improveMood(mood, "Was able to rest in camp");
-				bro.setLastCampTime(this.m.Camp.getStopTime());
+			this.getRested(bro);
+			bro.improveMood(mood, "Was able to rest in camp");
+			bro.setLastCampTime(this.m.Camp.getStopTime());
 		}
 	}
 
@@ -124,8 +124,8 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		}
 		this.m.Results.push({
 			id = 150,
-			Icon = this.Const.MoodStateIcon[bro.getMoodState()],
-			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[bro.getMoodState()]
+			icon = ::Const.MoodStateIcon[bro.getMoodState()],
+			text = activities[::Math.rand(0, activities.len() - 1)] + " and " + ::Const.MoodStateEvent[bro.getMoodState()]
 		});
 
 		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
