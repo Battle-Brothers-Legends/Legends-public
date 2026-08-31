@@ -3001,14 +3001,6 @@ activesDefs.push({
 	Name = "Drink or Give Stollwurm Blood",
 });
 
-::Legends.Active.LegendDrinkTherianthropyPotion <- null;
-activesDefs.push({
-	ID = "actives.legend_drink_therianthropy_potion",
-	Script = "scripts/skills/actives/legend_drink_therianthropy_potion_skill",
-	Const = "LegendDrinkTherianthropyPotion",
-	Name = "Drink or Give Therianthropic Potion",
-});
-
 ::Legends.Active.LegendDrinkWine <- null;
 activesDefs.push({
 	ID = "actives.legend_drink_wine",

@@ -155,8 +155,6 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		];
 
 		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-
-		this.getContainer().getActor().TherianthropeInfectionRandom();
 	}
 
 	function onSerialize( _out )
