@@ -130,7 +130,7 @@
 		this.m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
 		::Legends.IsStartingNewCampaign = true;
 		startNewCampaign();
-		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
+		//::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
 		::World.Crafting.resetAllBlueprints(); //
 		this.onCalculatePlayerPartyModifiers();
 		::Legends.IsStartingNewCampaign = false;
