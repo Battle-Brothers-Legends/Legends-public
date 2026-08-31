@@ -401,8 +401,9 @@
 ## New Campaign
 - changed the labels so the functions are easier to understand
 - replaced the water connectivity and landmass settings with a unified water slider
-- generated maps should be more consistent with the chosen setting and generate much quicker
+- generated maps should be more consistent with the chosen setting and generate much quicker in some cases
 - added a bridging function to map generation to ensure connections between bigger islands and continents and the mainland
+- cleaned up the option dialogs
 
 ## Gender settings and changes
 - added a mod setting allowing the player to choose the gender of the commander avatar
@@ -494,6 +495,8 @@
 - fixed holy flame sometimes not awarding kills properly
 - fixed prepare to bleed bugs
 - fixed grazes not awarding kills for kills properly
+- fixed rounding errors making too many settlements appear on the map under certain campaign settings
+- getting attacked while camping now shows the finished camping dialog before combat
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

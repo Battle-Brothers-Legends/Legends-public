@@ -11,7 +11,7 @@ function addNCSetting( _page, _setting ) {
 local map = ::Legends.Mod.ModSettings.addPage("Map Options");
 
 //Setting, Default, Min, Max, ?, Name, Description
-addNCSetting(map, ::MSU.Class.RangeSetting("Water", 55, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. Default is 55."));
+addNCSetting(map, ::MSU.Class.RangeSetting("WaterLevel", 50, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. Default is 50."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Snowline", 85, 75, 95, 1, "Snowline", "Determines where the snowline is generated. Default is 85. This value is inverted. A value of 10 would mean the top 90% of the map is snow."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Settlements", 19, 19, 27, 1, "Settlements", "Maximum number of settlements. Depending on map size, this will try to add the number of settlements on the slider. It will keep the same ratio of settlement types as default Battle Brothers maps. Minimum distance between settlements is 12 tiles. Vanilla default is 19."));
 addNCSetting(map, ::MSU.Class.RangeSetting("Factions", 3, 2, 6, 1, "Factions", "Maximum number of Factions to try and generate. Depending on map size, this may not add all the factions on the slider."));
@@ -36,8 +36,6 @@ addNCSetting(config, ::MSU.Class.SettingsDivider("ConfigDivider1"));
 addNCSetting(config, ::MSU.Class.BooleanSetting("DistanceScaling", true, "Distance Scaling", "If enabled, enemies will be stronger the further they spawn from civilization. \n\n Detail: Begins at 14 tiles from the nearest town, enemies spawned at 28 tiles will be twice as strong. \n\n This is in addition to other difficulty settings."));
 addNCSetting(config, ::MSU.Class.BooleanSetting("SkipCamp", true, "Skip Camp Tutorial", "If disabled, you will gradually unlock camping activities by visiting towns. Useful for first playthroughs. \n\n Detail: skips the camp unlock events and ambition, you still need to buy upgrades."));
 addNCSetting(config, ::MSU.Class.BooleanSetting("RecruitScaling", true, "Recruit Scaling", "If enabled, new recruits will gain levels based on the levels in your party and your renown in the world. \n\n  Details: The maximum level of recruits is increased by half the average level of mercs in your company, averaged with your reputation divided by 1,000. \n\n For example: if your company were all level 10, and your renown was 10,000, new recruits could gain up to 7 levels rounded down. \n\n This in addition to normal recruit level variance."));
-
-addNCSetting(config, ::MSU.Class.SettingsDivider("ConfigDivider2"));
 
 local general = ::Legends.Mod.ModSettings.addPage("General");
 general.addTitle("Gameplay", "Gameplay");
