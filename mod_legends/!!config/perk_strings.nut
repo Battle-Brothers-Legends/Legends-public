@@ -2928,11 +2928,6 @@ Years of practice throwing things at apples above heads have granted a magnetic 
 • Grants [color=%positive%]+30%[/color] chance to hit the head.
 ";
 
-::Const.Strings.PerkDescription.LegendBearform <- @"
-[color=%active%][u]Active:[/u][/color]
-• Transform into a powerful bear, doubles your Hitpoints. Requires free hands.
-";
-
 ::Const.Strings.PerkDescription.LegendRoots <- @"
 Summon roots and vines to entangle your enemies.
 
@@ -2944,16 +2939,6 @@ Summon roots and vines to entangle your enemies.
 • If affected by rain AP cost is reduced by [color=%negative%]1[/color] and Fatigue cost is reduced by [color=%negative%]10[/color].
 
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendWolfform <- @"
-[color=%active%][u]Active:[/u][/color]
-• Transform into a nimble wolf, decreasing movement costs. Requires free hands.
-";
-
-::Const.Strings.PerkDescription.LegendTrueForm <- @"
-[color=%passive%][u]Passive:[/u][/color]
-• Increases the length of your transformations to six turns.
 ";
 
 ::Const.Strings.PerkDescription.LegendSummonStorm <- @"
@@ -3033,21 +3018,6 @@ The ability to cut and shape wood is a craft few master.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Allows this character to mine for minerals while assigned to the Supply Tent in camp.
-";
-
-::Const.Strings.PerkDescription.LegendSurpressUrges <- @"
-[color=%passive%][u]Passive:[/u][/color]
-• Allows this character to control shapeshifting to some extent, no longer deliberately striking allies and foes alike while transformed.
-";
-
-::Const.Strings.PerkDescription.LegendControlInstincts <- @"
-[color=%passive%][u]Passive:[/u][/color]
-• Gives character self control while transformed.
-";
-
-::Const.Strings.PerkDescription.LegendMasterAnger <- @"
-[color=%passive%][u]Passive:[/u][/color]
-• Allows the character to transform at will, no longer randomly transforming during battle.
 ";
 
 ::Const.Strings.PerkDescription.LegendMagicBurningHands <- @"

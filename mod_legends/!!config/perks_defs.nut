@@ -3379,17 +3379,6 @@ perkDefObjects.push({
 	Const = "LegendHairSplitter"
 });
 
-::Legends.Perk.LegendBearform <- null;
-perkDefObjects.push({
-	ID = "perk.legend_bearform",
-	Script = "scripts/skills/perks/perk_legend_bearform",
-	Name = ::Const.Strings.PerkName.LegendBearform,
-	Tooltip = ::Const.Strings.PerkDescription.LegendBearform,
-	Icon = "ui/perks/bear2_circle.png",
-	IconDisabled = "ui/perks/bear2_circle_bw.png",
-	Const = "LegendBearform"
-});
-
 ::Legends.Perk.LegendRoots <- null;
 perkDefObjects.push({
 	ID = "perk.legend_roots",
@@ -3399,28 +3388,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/roots_circle.png",
 	IconDisabled = "ui/perks/roots_circle_bw.png",
 	Const = "LegendRoots"
-});
-
-::Legends.Perk.LegendWolfform <- null;
-perkDefObjects.push({
-	ID = "perk.legend_wolfform",
-	Script = "scripts/skills/perks/perk_legend_wolfform",
-	Name = ::Const.Strings.PerkName.LegendWolfform,
-	Tooltip = ::Const.Strings.PerkDescription.LegendWolfform,
-	Icon = "ui/perks/wolf2_circle.png",
-	IconDisabled = "ui/perks/wolf2_circle_bw.png",
-	Const = "LegendWolfform"
-});
-
-::Legends.Perk.LegendTrueForm <- null;
-perkDefObjects.push({
-	ID = "perk.legend_true_form",
-	Script = "scripts/skills/perks/perk_legend_true_form",
-	Name = ::Const.Strings.PerkName.LegendTrueForm,
-	Tooltip = ::Const.Strings.PerkDescription.LegendTrueForm,
-	Icon = "ui/perks/true_form_circle.png",
-	IconDisabled = "ui/perks/true_form_circle_bw.png",
-	Const = "LegendTrueForm"
 });
 
 ::Legends.Perk.LegendSummonStorm <- null;
@@ -3531,39 +3498,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/pickaxe_02.png",
 	IconDisabled = "ui/perks/pickaxe_bw.png",
 	Const = "LegendOreHunter"
-});
-
-::Legends.Perk.LegendSurpressUrges <- null;
-perkDefObjects.push({
-	ID = "perk.legend_surpress_urges",
-	Script = "scripts/skills/perks/perk_legend_surpress_urges",
-	Name = ::Const.Strings.PerkName.LegendSurpressUrges,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSurpressUrges,
-	Icon = "ui/perks/surpress_urges.png",
-	IconDisabled = "ui/perks/surpress_urges_bw.png",
-	Const = "LegendSurpressUrges"
-});
-
-::Legends.Perk.LegendControlInstincts <- null;
-perkDefObjects.push({
-	ID = "perk.legend_control_instincts",
-	Script = "scripts/skills/perks/perk_legend_control_instincts",
-	Name = ::Const.Strings.PerkName.LegendControlInstincts,
-	Tooltip = ::Const.Strings.PerkDescription.LegendControlInstincts,
-	Icon = "ui/perks/control_instincts.png",
-	IconDisabled = "ui/perks/control_instincts_bw.png",
-	Const = "LegendControlInstincts"
-});
-
-::Legends.Perk.LegendMasterAnger <- null;
-perkDefObjects.push({
-	ID = "perk.legend_master_anger",
-	Script = "scripts/skills/perks/perk_legend_master_anger",
-	Name = ::Const.Strings.PerkName.LegendMasterAnger,
-	Tooltip = ::Const.Strings.PerkDescription.LegendMasterAnger,
-	Icon = "ui/perks/master_anger.png",
-	IconDisabled = "ui/perks/master_anger_bw.png",
-	Const = "LegendMasterAnger"
 });
 
 ::Legends.Perk.LegendMagicBurningHands <- null;
