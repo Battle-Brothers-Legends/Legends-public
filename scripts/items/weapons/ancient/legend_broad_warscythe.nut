@@ -37,7 +37,10 @@ this.legend_broad_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendScytheCleave);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill)
+			{
+				_skill.m.IsScytheCleave = true;
+			}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Reap);
 	}
 

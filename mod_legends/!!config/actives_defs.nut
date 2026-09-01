@@ -3376,14 +3376,6 @@ activesDefs.push({
 	Name = "Redback Webknecht Bite",
 });
 
-::Legends.Active.LegendScytheCleave <- null;
-activesDefs.push({
-	ID = "actives.legend_scythe_cleave",
-	Script = "scripts/skills/actives/legend_scythe_cleave_skill",
-	Const = "LegendScytheCleave",
-	Name = "Cleave",
-});
-
 
 
 
