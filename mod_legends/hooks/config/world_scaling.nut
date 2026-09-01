@@ -21,7 +21,7 @@
 ::Const.World.Scaling.Beasts.LegendsSpiderDamageIncreaseDay <- 30;
 ::Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2 <- 190;
 ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay <- 170;
-::Const.World.Scaling.Beasts.getDistanceScaling <- @(_action, _tile, _multiplier = 1.0) ::Math.maxf(0.7, ::Math.minf(1.5, 1.0 * _action.getDistanceToSettlements(_tile) / 14.0));
+::Const.World.Scaling.Beasts.getDistanceScaling <- @(_action, _tile, _multiplier = 1.0) ::Math.maxf(0.7, ::Math.minf(1.5, _multiplier * _action.getDistanceToSettlements(_tile) / 14.0)); // legends beasts set multiplier to 2.0
 
 ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay <- 40; // do they even spawn then?
 ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay <- 40;
