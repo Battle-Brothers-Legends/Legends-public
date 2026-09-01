@@ -221,6 +221,10 @@
 	<sprite id="sentry_fowleye" ic="FF1B293C" img="skills\sentry_fowleye.png" />
 	<sprite id="active_legend_coat_with_redback_poison" ic="FF1B293C" img="skills\active_legend_coat_with_redback_poison.png" />
 	<sprite id="status_effect_legend_redback_poison_coat_mini" ic="FF1B293C" img="skills\mini\status_effect_legend_redback_poison_coat_mini.png" />
+	<sprite id="cheered_on_square" ic="FF1B293C" img="skills\cheered_on_square.png" />
+	<sprite id="storm_square" ic="FF1B293C" img="skills\storm_square.png" />
+	<sprite id="legend_full_draw" ic="FF1B293C" img="skills\legend_full_draw.png" />
+	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
 	<!-- Orientation below -->
 
 
