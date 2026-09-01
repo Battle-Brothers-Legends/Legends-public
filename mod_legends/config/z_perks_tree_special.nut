@@ -124,19 +124,6 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendRelax, 3, "Relax", function( _player, _chance ) {
-
-	local talents = _player.getTalents();
-	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Bravery];
-	if (tl == 0)
-	{
-		return 0;
-	}
-	_chance *= this.Math.pow(2, tl);
-
-	return _chance;
-});
-
 ::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendSpecPoison, 4, "Poison Mastery", function( _player, _chance ) {
 
 	local talents = _player.getTalents();

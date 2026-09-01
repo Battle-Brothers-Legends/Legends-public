@@ -200,7 +200,7 @@
 	<sprite id="active_legend_pry_armor_warhammer" ic="FF1B293C" img="skills\legend_active_pry_armor_warhammer.png" />
 	<sprite id="active_legend_pry_armor_polehammer" ic="FF1B293C" img="skills\legend_active_pry_armor_polehammer.png" />
 	<sprite id="active_throw_knife" ic="FF1B293C" img="skills\active_throw_knife.png" />
-	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
+4	<sprite id="legend_enraged_hyena_bite_effect" ic="FF1B293C" img="skills\legend_enraged_hyena_bite_effect.png" />
 	<sprite id="legend_enraged_hyena_bite_effect_mini" ic="FF1B293C" img="skills\mini\legend_enraged_hyena_bite_effect_mini.png" />
 	<sprite id="feint" ic="FF1B293C" img="skills\feint.png" />
 	<sprite id="active_halfsword" ic="FF1B293C" img="skills\active_halfsword.png" />
@@ -229,6 +229,8 @@
 	<sprite id="leap" ic="FF1B293C" img="skills\leap.png" />
 	<sprite id="ninetails_disarm" ic="FF1B293C" img="skills\ninetails_disarm.png" />
 	<sprite id="possession" ic="FF1B293C" img="skills\possession.png" />
+	<sprite id="safeguard" ic="FF1B293C" img="skills\safeguard.png" />
+	<sprite id="staff_bash" ic="FF1B293C" img="skills\staff_bash.png" />
 	<!-- Orientation below -->
 
 

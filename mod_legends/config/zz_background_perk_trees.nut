@@ -3218,16 +3218,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendNecro <- {
-	Weapon = [],
-	Defense = [],
-	Traits = [],
-	Enemy = [],
-	Class = [],
-	Profession = [],
-	Magic = []
-};
-
 ::Legends.BackgroundPerkTrees.LegendCommanderNecro <- {
 	Weapon = [],
 	Defense = [],

@@ -7,9 +7,6 @@ this.legend_scry_trance_skill <- this.inherit("scripts/skills/actives/legend_tra
 	{
 		this.legend_trance_abstract_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendScryTrance);
-		this.m.Icon = "skills/scry_skill.png";
-		this.m.IconDisabled = "skills/scry_skill_bw.png";
-		this.m.Overlay = "active_104";
 		this.m.SoundOnUse = [
 			"sounds/combat/hawk_01.wav",
 			"sounds/combat/hawk_02.wav"

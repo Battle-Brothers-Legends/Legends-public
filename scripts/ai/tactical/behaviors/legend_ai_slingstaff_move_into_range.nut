@@ -2,7 +2,7 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 	m = {
 		TargetTile = null,
 		PossibleSkills = [
-			::Legends.Actives.getID(::Legends.Active.LegendSlingstaffBash),
+			::Legends.Actives.getID(::Legends.Active.Bash),
 			::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone)
 		],
 		Slingstaffs = [

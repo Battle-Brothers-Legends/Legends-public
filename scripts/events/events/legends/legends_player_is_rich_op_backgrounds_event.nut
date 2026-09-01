@@ -169,7 +169,6 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				::Legends.Background.Assassin,
 				::Legends.Background.LegendCrusader,
 				::Legends.Background.LegendBerserker,
-				::Legends.Background.LegendNecro,
 				::Legends.Background.LegendRanger,
 				::Legends.Background.RegentInAbsentia
 			)) {

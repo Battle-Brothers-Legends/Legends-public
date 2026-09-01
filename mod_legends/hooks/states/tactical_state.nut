@@ -573,10 +573,6 @@
 			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendSpawnZombieLow, ::Legends.Perk.LegendSpawnZombieMed, ::Legends.Perk.LegendSpawnZombieHigh)) {
 				zombieLoot = true;
 			}
-
-			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendSpawnSkeletonLow, ::Legends.Perk.LegendSpawnSkeletonMed, ::Legends.Perk.LegendSpawnSkeletonHigh)) {
-				skeletonLoot = true;
-			}
 		}
 
 		local loot = [];

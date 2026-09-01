@@ -4,9 +4,6 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_safeguard";
 		this.m.Name = "Safeguard";
 		this.m.Description = "Use your shield to protect an ally, leaving yourself exposed";
-		this.m.Icon = "skills/safeguard_square.png";
-		this.m.IconDisabled = "skills/safeguard_square_bw.png";
-		this.m.Overlay = "active_32";
 		this.m.SoundOnUse = [
 			"sounds/combat/stab_01.wav",
 			"sounds/combat/stab_02.wav",

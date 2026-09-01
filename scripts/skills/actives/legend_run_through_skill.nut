@@ -5,9 +5,6 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRunThrough);
 		this.m.Description = "A full forced thrust attack meant to pierce two targets in a straight line.";
 		this.m.KilledString = "Impaled";
-		this.m.Icon = "skills/active_55.png";
-		this.m.IconDisabled = "skills/active_55_sw.png";
-		this.m.Overlay = "active_55";
 		this.m.SoundOnUse = [
 			"sounds/combat/impale_01.wav",
 			"sounds/combat/impale_02.wav",

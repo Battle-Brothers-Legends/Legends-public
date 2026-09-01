@@ -4,9 +4,6 @@ this.legend_second_wind_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSecondWind);
 		this.m.Description = "\'I\'m not out yet\'. Fully refresh your Fatigue, and grant [color=%positive%]+5[/color] Fatigue Recovery for 3 turns. Additionally, remove any [color=#731f39]Stun[/color], [color=#731f39]Daze[/color], [color=#731f39]Stagger[/color], [color=#731f39]Baffle[/color], [color=#731f39]Charmed[/color] or [color=#731f39]Sleeping[/color] status. Can only be used once per combat and is only usable if accumulated fatigue is more than 50% of the maximum.";
-		this.m.Icon = "skills/SecondWindSkill.png";
-		this.m.IconDisabled = "skills/SecondWindSkill_bw.png";
-		this.m.Overlay = "perk_54_active";
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

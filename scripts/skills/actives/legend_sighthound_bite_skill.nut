@@ -5,9 +5,6 @@ this.legend_sighthound_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSighthoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Mangled";
-		this.m.Icon = "skills/dawg_bite.png";
-		this.m.IconDisabled = "skills/dawg_bite_sw.png";
-		this.m.Overlay = "dawg_bite";
 		this.m.SoundOnUse = [
 			"sounds/enemies/wardog_bite_00.wav",
 			"sounds/enemies/wardog_bite_01.wav",

@@ -7,9 +7,6 @@ this.legend_read_omens_trance_skill <- this.inherit("scripts/skills/actives/lege
 	{
 		this.legend_trance_abstract_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendReadOmensTrance);
-		this.m.Icon = "skills/omen_active.png";
-		this.m.IconDisabled = "skills/omen_active_sw.png";
-		this.m.Overlay = "omen_active";
 		/*this.m.SoundOnUse = [
 			"sounds/combat/hawk_01.wav",
 			"sounds/combat/hawk_02.wav"

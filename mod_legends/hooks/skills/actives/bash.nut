@@ -3,6 +3,7 @@
 	o.m.IsLuteBash <- false;
 	o.m.IsDrumBash <- false;
 	o.m.IsStaffBash <- false;
+	o.m.IsSlingBash <- false;
 
 	o.setItem <- function (_item) {
 		if (this.m.IsDrumBash)
@@ -27,6 +28,7 @@
 			this.m.Name = "Staff Bash";
 			this.m.Icon = "skills/staff_bash.png";
 			this.m.IconDisabled = "skills/staff_bash_bw.png";
+			this.m.Overlay = "staff_bash";
 			this.m.MaxRange = 2;
 		}
 		this.skill.setItem(_item);
@@ -67,29 +69,19 @@
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties )
 	{
-		if (this.m.IsLuteBash)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInMaces ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		}
-		else if (this.m.IsDrumBash || this.m.IsStaffBash)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		}
-		else
-		{
-			onAfterUpdate( _properties );
-		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this && this.m.IsDrumBash)
-		{
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this && this.m.IsDrumBash) {
 			_properties.FatigueDealtPerHitMult += 1.0;
 		}
-		else
-		{
+		else if (this.m.IsSlingBash) {
+			_properties.DamageArmorMult *= 0.5;
+			_properties.DamageRegularMult *= 0.75;
+		}
+		else {
 			onAnySkillUsed( _skill, _targetEntity, _properties );
 		}
 	}

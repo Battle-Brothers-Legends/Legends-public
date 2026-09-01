@@ -4,9 +4,6 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPushForward);
 		this.m.Description = "Advance as one, increasing melee effectiveness of allies nearby.";
-		this.m.Icon = "skills/spears_square.png";
-		this.m.IconDisabled = "skills/spears_square_bw.png";
-		this.m.Overlay = "spears_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/rally_the_troops_01.wav"
 		];

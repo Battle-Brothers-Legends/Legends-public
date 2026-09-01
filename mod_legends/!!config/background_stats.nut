@@ -1383,17 +1383,6 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [10, 15]
 }
 
-::Legends.BackgroundsStats.LegendNecro <- {
-	Hitpoints = [15, 20],
-	Bravery = [-10, -5],
-	Stamina = [5, 5],
-	MeleeSkill = [5, 10],
-	RangedSkill = [-5, -5],
-	MeleeDefense = [-5, -5],
-	RangedDefense = [-10, -5],
-	Initiative = [10, 10]
-}
-
 ::Legends.BackgroundsStats.LegendCommanderNecro <- {
 	Hitpoints = [20, 25],
 	Bravery = [15, 20],

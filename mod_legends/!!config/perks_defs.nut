@@ -783,17 +783,6 @@ perkDefObjects.push({
 	Const = "LegendFirefield"
 });
 
-::Legends.Perk.LegendSleep <- null;
-perkDefObjects.push({
-	ID = "perk.legend_sleep",
-	Script = "scripts/skills/perks/perk_legend_sleep",
-	Name = ::Const.Strings.PerkName.LegendSleep,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSleep,
-	Icon = "ui/perks/sleep_56.png",
-	IconDisabled = "ui/perks/sleep_56_bw.png",
-	Const = "LegendSleep"
-});
-
 ::Legends.Perk.LegendImmovableObject <- null;
 perkDefObjects.push({
 	ID = "perk.legend_immovable_object",
@@ -1047,17 +1036,6 @@ perkDefObjects.push({
 	Const = "LegendLastStand"
 });
 
-::Legends.Perk.LegendRaiseUndead <- null;
-perkDefObjects.push({
-	ID = "perk.legend_raise_undead",
-	Script = "scripts/skills/perks/perk_legend_raise_undead",
-	Name = ::Const.Strings.PerkName.LegendRaiseUndead,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRaiseUndead,
-	Icon = "ui/perks/raisedead2_circle.png",
-	IconDisabled = "ui/perks/raisedead2_circle_bw.png",
-	Const = "LegendRaiseUndead"
-});
-
 ::Legends.Perk.LegendWither <- null;
 perkDefObjects.push({
 	ID = "perk.legend_wither",
@@ -1166,17 +1144,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/perk_music_mastery.png",
 	IconDisabled = "ui/perks/perk_music_mastery_bw.png",
 	Const = "LegendMasteryMusic"
-});
-
-::Legends.Perk.LegendRelax <- null;
-perkDefObjects.push({
-	ID = "perk.legend_relax",
-	Script = "scripts/skills/perks/perk_legend_relax",
-	Name = ::Const.Strings.PerkName.LegendRelax,
-	Tooltip = ::Const.Strings.PerkDescription.LegendRelax,
-	Icon = "ui/perks/relax_circle.png",
-	IconDisabled = "ui/perks/relax_circle_bw.png",
-	Const = "LegendRelax"
 });
 
 ::Legends.Perk.LegendGruesomeFeast <- null;
@@ -1288,39 +1255,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/remake_man_circle.png",
 	IconDisabled = "ui/perks/remake_man_circle_bw.png",
 	Const = "LegendSpawnZombieHigh"
-});
-
-::Legends.Perk.LegendSpawnSkeletonLow <- null;
-perkDefObjects.push({
-	ID = "perk.legend_spawn_skeleton_low",
-	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_low",
-	Name = ::Const.Strings.PerkName.LegendSpawnSkeletonLow,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpawnSkeletonLow,
-	Icon = "ui/perks/arrange_bones_circle.png",
-	IconDisabled = "ui/perks/arrange_bones_circle_bw.png",
-	Const = "LegendSpawnSkeletonLow"
-});
-
-::Legends.Perk.LegendSpawnSkeletonMed <- null;
-perkDefObjects.push({
-	ID = "perk.legend_spawn_skeleton_med",
-	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_med",
-	Name = ::Const.Strings.PerkName.LegendSpawnSkeletonMed,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpawnSkeletonMed,
-	Icon = "ui/perks/align_joints_circle.png",
-	IconDisabled = "ui/perks/align_joints_circle_bw.png",
-	Const = "LegendSpawnSkeletonMed"
-});
-
-::Legends.Perk.LegendSpawnSkeletonHigh <- null;
-perkDefObjects.push({
-	ID = "perk.legend_spawn_skeleton_high",
-	Script = "scripts/skills/perks/perk_legend_spawn_skeleton_high",
-	Name = ::Const.Strings.PerkName.LegendSpawnSkeletonHigh,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpawnSkeletonHigh,
-	Icon = "ui/perks/rebuild_skeleton_circle.png",
-	IconDisabled = "ui/perks/rebuild_skeleton_circle_bw.png",
-	Const = "LegendSpawnSkeletonHigh"
 });
 
 ::Legends.Perk.LegendExtendedAura <- null;

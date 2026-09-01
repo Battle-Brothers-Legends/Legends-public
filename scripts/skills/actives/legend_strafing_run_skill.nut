@@ -3,9 +3,6 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStrafingRun);
 		this.m.Description = "Quickly reposition and fire if your crossbow is loaded. Can only fire at a target that is at most 4 tiles away from the reposition location";
-		this.m.Icon = "skills/active_strafing_run.png";
-		this.m.IconDisabled = "skills/active_strafing_run_bw.png";
-		this.m.Overlay = "active_strafing_run";
 		this.m.SoundOnUse = [];
 		this.m.ShotSounds <- [
 			"sounds/combat/bolt_shot_01.wav",

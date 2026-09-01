@@ -4,9 +4,6 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRoot);
 		this.m.Description = "Unleash roots from the ground to ensnare your target to prevent them from moving or defending themself effectively. Will always hit if the enemy isn\'t immune. This spell is easier to cast when it\'s raining.";
-		this.m.Icon = "skills/roots_square.png";
-		this.m.IconDisabled = "skills/roots_square_bw.png";
-		this.m.Overlay = "active_70";
 		this.m.SoundOnUse = [
 			"sounds/enemies/goblin_roots_01.wav",
 			"sounds/enemies/goblin_roots_02.wav"

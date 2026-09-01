@@ -6,9 +6,6 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
-		this.m.Icon = "skills/unarmed_lunge_square.png";
-		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
-		this.m.Overlay = "perk_25_active";
 		this.m.SoundOnUse = [
 			"sounds/combat/footwork_01.wav"
 		];

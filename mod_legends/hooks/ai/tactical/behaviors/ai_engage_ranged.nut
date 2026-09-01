@@ -4,7 +4,6 @@
 		::Legends.Actives.getID(::Legends.Active.LegendChainLightning),
 		::Legends.Actives.getID(::Legends.Active.LegendCatapultBoulder),
 		::Legends.Actives.getID(::Legends.Active.LegendSlingHeavyStone),
-		::Legends.Actives.getID(::Legends.Active.LegendShootDart),
 		::Legends.Actives.getID(::Legends.Active.LegendShootStone),
 		::Legends.Actives.getID(::Legends.Active.LegendShootPreciseStone),
 		::Legends.Actives.getID(::Legends.Active.LegendPiercingJavelin),

@@ -8,9 +8,6 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootPreciseStone);
 		this.m.Description = "Make an effort to aim for the head with a singluar, precise shot. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
-		this.m.Icon = "skills/stone_aim_square.png";
-		this.m.IconDisabled = "skills/stone_aim_square_sw.png";
-		this.m.Overlay = "stone_aim_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/aimed_shot_01.wav",
 			"sounds/combat/aimed_shot_02.wav",

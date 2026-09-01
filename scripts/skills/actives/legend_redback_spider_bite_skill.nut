@@ -5,8 +5,6 @@ this.legend_redback_spider_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRedbackSpiderBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_115.png";
-		this.m.Overlay = "active_115";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/giant_spider_attack_01.wav",
 			"sounds/enemies/dlc2/giant_spider_attack_02.wav",

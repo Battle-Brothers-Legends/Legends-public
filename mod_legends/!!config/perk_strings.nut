@@ -37,7 +37,6 @@
 ::Const.Strings.PerkName.LegendForwardPush <- "Push Forward";
 ::Const.Strings.PerkName.LegendComposure <- "Composure";
 ::Const.Strings.PerkName.LegendNightvision <- "Nightvision";
-::Const.Strings.PerkName.LegendRelax <- "Relax";
 ::Const.Strings.PerkName.LegendUberNimble <- "Nudist";
 ::Const.Strings.PerkName.LegendMuscularity <- "Muscularity";
 ::Const.Strings.PerkName.LegendBattleheart <- "Battleheart";
@@ -238,19 +237,14 @@
 ::Const.Strings.PerkName.LegendMagicStun <- "Stun";
 ::Const.Strings.PerkName.LegendHorrify <- "Horrify";
 ::Const.Strings.PerkName.LegendManipulative <- "Manipulative";
-::Const.Strings.PerkName.LegendSleep <- "Sleep";
 ::Const.Strings.PerkName.LegendFirefield <- "Firefield";
 ::Const.Strings.PerkName.LegendPossessUndead <- "Possess Undead";
 ::Const.Strings.PerkName.LegendInsects <- "Insect Swarm";
 ::Const.Strings.PerkName.LegendChainLightning <- "Chain Lightning";
-::Const.Strings.PerkName.LegendRaiseUndead <- "Raise the Dead";
 ::Const.Strings.PerkName.LegendSummonCat <- "Summon Familiar";
 ::Const.Strings.PerkName.LegendSpawnZombieLow <- "Mold Carrion";
 ::Const.Strings.PerkName.LegendSpawnZombieMed <- "Fashion Body";
 ::Const.Strings.PerkName.LegendSpawnZombieHigh <- "Remake Man";
-::Const.Strings.PerkName.LegendSpawnSkeletonLow <- "Arrange Bones";
-::Const.Strings.PerkName.LegendSpawnSkeletonMed <- "Align Joints";
-::Const.Strings.PerkName.LegendSpawnSkeletonHigh <- "Rebuild Skeleton";
 ::Const.Strings.PerkName.LegendExtendedAura <- "Extended Aura";
 ::Const.Strings.PerkName.LegendChanneledPower <- "Channeled Power";
 ::Const.Strings.PerkName.LegendReclamation <- "Reclamation";
@@ -697,15 +691,6 @@ Show an ankle, flash some teeth to entice your enemies or show something so repu
 • Costs [color=%negative%]3[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendSleep <- @"
-Enshroud the area with thick smoke that draws the vigor out of your foes. Those that breathe in too much are forced into a light sleep.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Sleep[/color] skill.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]5[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendFirefield <- @"
 Unleash a raging inferno at the target location that explodes and then sets the ground alight.
 
@@ -755,15 +740,6 @@ Master the art of bandaging mid battle using any cloth available.
 
 [color=%active%][u]Active:[/u][/color]
 • Grants the [color=%skill%]Coordinated Volleys[/color] skill which grants[color=%positive%]+10[/color] ranged attack to all allies within [color=%positive%]4[/color] tiles for one turn.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendRaiseUndead <- @"
-Raise the dead, and turn them into your own personal army.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Unlocks [color=%skill%]Conduct Seance[/color] skill which allows you to summon zombies from dead enemies.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
@@ -850,15 +826,6 @@ Taste of the forbidden flesh.
 • Costs [color=%negative%]7[/color] AP and [color=%negative%]40[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendRelax <- @"
-Sooth an ally, halving their Fatigue.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Relax[/color] skill which reduces accumulated Fatigue by [color=%negative%]50%[/color] for any ally within three tiles.
-
-• Costs [color=%negative%]9[/color] AP and [color=%negative%]30[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendUberNimble <- @"
 Real berserkers don't need pants.
 
@@ -940,33 +907,6 @@ Stitch the body together with such precision so that, once raised, it could pass
 • Requires [color=%negative%]30[/color] Hitpoints to summon and [color=%negative%]1[/color] human carrion.
 
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]25[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendSpawnSkeletonLow <- @"
-Raise a ramshackle thrall from some bones only barely ordered. Though lacking in strength or bodily integrity, it shall obey.
-
-[color=%active%][u]Active:[/u][/color]
-• Requires a small flesh sacrifice to perform the ritual.
-
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendSpawnSkeletonMed <- @"
-Place the bones where they belong before you raise them so that it's less liable to fall apart. Sturdier in both form and function.
-
-[color=%active%][u]Active:[/u][/color]
-• Requires a minor flesh sacrifice to perform the ritual.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendSpawnSkeletonHigh <- @"
-Painstakingly reorganize each bone such that, once raised, no tarsus is out of place. A magnum opus of bone, unsurpassed in power.
-
-[color=%active%][u]Active:[/u][/color]
-• Requires a moderate flesh sacrifice to perform the ritual.
-
-• Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendExtendedAura <- @"

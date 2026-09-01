@@ -523,7 +523,7 @@
 - Meistersanger now states it needs an instrument equipped to use in the perk desc
 - fixed the spawning mechanism (dogs, bears, zombies, etc.) to always be 'animals' for the purposes of preserving lone wolf activation and not absorbing xp in battle.
 - fixed gauntlets penetration stat not being used
-- fixed hand to hand not being modified by armor damage perks
+- fixed hand to hand not being  modified by damage
 - fixed a few issues with moving weapons in and out of bags in combat
 - fixed Lorekeeper's headpiece
 - Swapped graveyard & crypts to mass graves and sunken castles for legion 'defend x' camp contracts as crypts & graveyards could shuffle zombies in which caused the player to get attacked by a sally or scout force
@@ -678,3 +678,31 @@
 - `legend_prepare_bleed_skill` -> deleted
 - `legend_ranged_lash_skill` -> deleted
 - `legend_ranged_flail_skill` -> deleted
+- `legend_blowgun` -> deleted
+- `legend_attack_target_skill` -> deleted
+- `legend_protect_target_skill` -> deleted
+- `legend_raise_undead_skill` -> deleted
+- `legend_redback_puncture_skill` -> deleted
+- `legend_relax_skill` -> deleted
+- `legend_ritual_abstract_skill` -> deleted
+- `legend_shadow_alp_teleport_skill` -> deleted
+- `legend_shadows_skill` -> deleted
+- `legend_shoot_dart_skill` -> deleted
+- `legend_sleep_skill` -> deleted
+- `legend_slingstaff_bash_skill` -> deleted
+- `legend_spawn_skeleton_high_archer_skill` -> deleted
+- `legend_spawn_skeleton_high_skill` -> deleted
+- `legend_spawn_skeleton_low_archer_skill` -> deleted
+- `legend_spawn_skeleton_low_skill` -> deleted
+- `legend_spawn_skeleton_med_archer_skill` -> deleted
+- `legend_spawn_skeleton_med_skill` -> deleted
+- `legend_sprint_skill` -> deleted
+- `legend_sprint_skill_4` -> deleted
+- `legend_sprint_skill_5` -> deleted
+- `legend_necro_background` -> deleted
+- `perk_legend_raise_undead` -> deleted
+- `perk_legend_relax` -> deleted
+- `perk_legend_sleep` -> deleted
+- `perk_legend_spawn_skeleton_high` -> deleted
+- `perk_legend_spawn_skeleton_low` -> deleted
+- `perk_legend_spawn_skeleton_med` -> deleted

@@ -241,7 +241,6 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendInventor,
 	::Legends.Background.LegendIronmonger,
 	::Legends.Background.LegendTaxidermist,
-	// ::Legends.Background.LegendNecro,
 	::Legends.Background.Lumberjack,
 	::Legends.Background.Mason,
 	::Legends.Background.Messenger,

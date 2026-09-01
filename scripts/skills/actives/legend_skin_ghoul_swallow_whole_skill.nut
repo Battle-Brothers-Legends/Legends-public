@@ -1,67 +1,7 @@
-this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		SwallowedEntity = null
-	},
-	function getSwallowedEntity()
-	{
-		return this.m.SwallowedEntity;
-	}
-
-	function create()
-	{
+this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/actives/swallow_whole_skill", {
+	function create() {
+		this.swallow_whole_skill.onCreate();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
-		this.m.Description = "";
-		this.m.Icon = "skills/active_103.png";
-		this.m.IconDisabled = "skills/active_103.png";
-		this.m.Overlay = "active_103";
-		this.m.SoundOnHit = [
-			"sounds/enemies/swallow_whole_01.wav",
-			"sounds/enemies/swallow_whole_02.wav",
-			"sounds/enemies/swallow_whole_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/enemies/swallow_whole_miss_01.wav",
-			"sounds/enemies/swallow_whole_miss_02.wav",
-			"sounds/enemies/swallow_whole_miss_03.wav"
-		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
-		this.m.IsSerialized = false;
-		this.m.IsActive = true;
-		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = true;
-		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 9;
-		this.m.FatigueCost = 25;
-		this.m.MinRange = 1;
-		this.m.MaxRange = 1;
-	}
-
-	function isUsable()
-	{
-		return this.skill.isUsable() && this.m.SwallowedEntity == null && this.getContainer().getActor().getSize() == 3;
-	}
-
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-		if (brothers.len() == 1)
-		{
-			return false;
-		}
-
-		local target = _targetTile.getEntity();
-		if (target == null)
-		{
-			return false;
-		}
-		if (target.getFlags().has("IsSummoned"))
-		{
-			return false;
-		}
-
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.getEntity().isPlayerControlled() && !_targetTile.getEntity().getCurrentProperties().IsImmuneToKnockBackAndGrab;
 	}
 
 	function onUse( _user, _targetTile )

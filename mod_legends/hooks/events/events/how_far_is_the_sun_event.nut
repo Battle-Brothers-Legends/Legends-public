@@ -68,7 +68,6 @@
 							::Legends.Background.Historian,
 							::Legends.Background.LegendInventor,
 							::Legends.Background.LegendSeer,
-							::Legends.Background.LegendNecro,
 							::Legends.Background.LegendCommanderNecro
 						))
 							continue;

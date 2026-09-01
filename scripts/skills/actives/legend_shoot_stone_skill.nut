@@ -8,9 +8,6 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootStone);
 		this.m.Description = "Pull back and loose a stone at a target. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
-		this.m.Icon = "skills/stone_square.png";
-		this.m.IconDisabled = "skills/stone_square_sw.png";
-		this.m.Overlay = "stone_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/aimed_shot_01.wav",
 			"sounds/combat/aimed_shot_02.wav",

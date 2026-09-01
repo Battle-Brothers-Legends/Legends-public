@@ -7,8 +7,6 @@
 	{
 		create();
 		this.m.Description = "Unleash roots from the ground to ensnare your targets to prevent them from moving or defending themselves effectively. Will always hit if the enemy isn\'t immune. This spell is easier to cast when it\'s raining.";
-		this.m.Icon = "skills/roots_square.png";
-		this.m.IconDisabled = "skills/roots_square_bw.png"
 	}
 
 	o.getTooltip <- function ()

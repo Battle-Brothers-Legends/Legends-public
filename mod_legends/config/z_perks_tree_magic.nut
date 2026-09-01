@@ -218,24 +218,6 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-::Const.Perks.BasicNecroMagicTree <- {
-	ID = "BasicNecroMagicTree",
-	Name = "Necromancy",
-	Icon = "ui/perks/raisedead2_circle.png",
-	Descriptions = [
-		"necromancy"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendRaiseUndead]
-	]
-};
-
 ::Const.Perks.WarlockMagicTree <- {
 	ID = "WarlockMagicTree",
 	Name = "Sorcery",
@@ -289,24 +271,6 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendReclamation],
 		[::Legends.Perk.LegendViolentDecomposition],
 		[::Legends.Perk.LegendSpawnZombieHigh]
-	]
-};
-
-::Const.Perks.SkeletonMagicTree <- {
-	ID = "SkeletonMagicTree",
-	Name = "Skeleton",
-	Icon = "ui/perks/rebuild_skeleton_circle.png",
-	Descriptions = [
-		"ancient undead"
-	],
-	Tree = [
-		[::Legends.Perk.LegendSpawnSkeletonLow],
-		[],
-		[],
-		[::Legends.Perk.LegendSpawnSkeletonMed],
-		[::Legends.Perk.LegendConservation,],
-		[::Legends.Perk.LegendChanneledPower, ::Legends.Perk.LegendPossession],
-		[::Legends.Perk.LegendSpawnSkeletonHigh]
 	]
 };
 
@@ -556,7 +520,6 @@ if (!("Perks" in ::Const)) {
 		::Const.Perks.WarlockMagicTree,
 		::Const.Perks.VampireMagicTree,
 		::Const.Perks.ZombieMagicTree,
-		// ::Const.Perks.SkeletonMagicTree,
 		::Const.Perks.BerserkerMagicTree,
 		::Const.Perks.DruidMagicTree,
 		// ::Const.Perks.DruidTransformTree,

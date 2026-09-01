@@ -254,7 +254,6 @@
     [::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi)]                  = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendNecromancer)]             = { pos = "Sought unimaginable power", 					neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendNecrosavant)]             = { pos = "Left for a forbidden place", 					neg = "" },
-    [::Legends.Backgrounds.getID(::Legends.Background.LegendNecro)]                   = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro)]         = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendNightwatch)]              = { pos = "", 											neg = "" },
     [::Legends.Backgrounds.getID(::Legends.Background.LegendHouseGuard)]                = { pos = "", 											neg = "" },

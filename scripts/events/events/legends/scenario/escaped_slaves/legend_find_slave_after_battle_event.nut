@@ -386,10 +386,6 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.FearUndead);
 						}
 
-						if (r == 5) {
-							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendRaiseUndead);
-						}
-
 						if (r == 6) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.HateUndead);
 						}
@@ -397,11 +393,6 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 						if (r == 7) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.CultistFanatic);
 						}
-
-						// if (r == 8)
-						// {
-						// 	_event.m.Dude.getSkills().add(this.new("scripts/skills/traits/legend_deathly_spectre_trait"));
-						// }
 
 						if (r == 8) {
 							::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Paranoid);

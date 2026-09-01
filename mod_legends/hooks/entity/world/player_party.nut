@@ -86,14 +86,6 @@
 			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow)) {
 				zombieSummonLevel = 2;
 			}
-
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh)) {
-				skeletonSummonLevel = 7;
-			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed)) {
-				skeletonSummonLevel = 5;
-			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow)) {
-				skeletonSummonLevel = 2;
-			}
 		}
 
 		if  (zombieSummonLevel == 0 && skeletonSummonLevel == 0) {

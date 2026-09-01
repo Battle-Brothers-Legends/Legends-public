@@ -1775,18 +1775,6 @@ backgroundDefs.push({
     Icon = "ui/backgrounds/background_vampire.png",
 });
 
-::Legends.Background.LegendNecro <- null;
-backgroundDefs.push({
-    // @wiki_name "Necro Warlock",
-    ID = "background.legend_necro",
-    Script = "scripts/skills/backgrounds/legend_necro_background",
-    Const = "LegendNecro",
-    Name = "Warlock",
-    HiringCost = 20000,
-    DailyCost = 50,
-    Icon = "ui/backgrounds/warlock_02.png",
-});
-
 ::Legends.Background.LegendNightwatch <- null;
 backgroundDefs.push({
     ID = "background.legend_nightwatch",

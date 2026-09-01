@@ -39,7 +39,6 @@
 						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) ||
 							::Legends.Backgrounds.hasAny(bro,
 								::Legends.Background.LegendCommanderNecro,
-								::Legends.Background.LegendNecro,
 								::Legends.Background.LegendVala,
 								::Legends.Background.LegendSeer,
 								::Legends.Background.LegendDonkey
