@@ -29,18 +29,6 @@
 				continue;
 			}
 
-			local citrin = ::Legends.Actives.get(ally, ::Legends.Active.LegendCitrinitasTrance);
-			if (citrin != null)
-			{
-				if (citrin.m.IsInTrance)
-				{
-					if (ally.getBravery() > bestBravery)
-					{
-						bestBravery = ally.getBravery();
-					}
-				}
-			}
-
 			if (ally.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null && ally.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.player_banner")
 			{
 				if (ally.getBravery() > bestBravery)
