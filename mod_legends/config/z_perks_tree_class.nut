@@ -451,7 +451,7 @@ if (!("Perks" in ::Const))
 		[],
 		[::Legends.Perk.LegendDogHandling],
 		[::Legends.Perk.LegendPackleader],
-		[::Legends.Perk.LegendDogMaster]
+		[]
 	]
 };
 

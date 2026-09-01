@@ -6,9 +6,6 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCurseofyears);
 		this.m.Description = "This curse gives the victim a glimpse of their own mortality, briefly aging them. Imagining itself with an infirm body of advanced age, the afflicted believes it is no longer capable of youthful exertions.";
-		this.m.Icon = "skills/active_117.png";
-		this.m.IconDisabled = "skills/active_117_sw.png";
-		this.m.Overlay = "active_117";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",

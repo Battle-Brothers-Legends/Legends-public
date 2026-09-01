@@ -5,8 +5,6 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDemonHoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Drained of life";
-		this.m.Icon = "skills/demon_hound_bite.png";
-		this.m.Overlay = "demon_hound_bite";
 		this.m.SoundOnUse = [
 			"sounds/enemies/hollen_attack_01.wav",
 			"sounds/enemies/hollen_attack_02.wav",

@@ -5,9 +5,6 @@ this.legend_bear_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearBite);
 		this.m.Description = "Tear into an opponent with your teeth";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_71.png";
-		this.m.IconDisabled = "skills/active_71_bw.png";
-		this.m.Overlay = "active_71";
 		this.m.SoundOnUse = [
 			"sounds/enemies/bear_attack1.wav",
 			"sounds/enemies/bear_attack1.wav"

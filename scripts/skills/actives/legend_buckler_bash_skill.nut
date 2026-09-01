@@ -5,9 +5,6 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBucklerBash);
 		this.m.Description = "A quick punch forward with a solid buckler. Anyone hit with a blow like this will be dazed and gasping for air, unable to put full force behind their blows for two turns.";
 		this.m.KilledString = "Bashed to death";
-		this.m.Icon = "skills/buckler_bash_square.png";
-		this.m.IconDisabled = "skills/buckler_bash_square_bw.png";
-		this.m.Overlay = "active_133";
 		this.m.SoundOnUse = [
 			"sounds/combat/cudgel_01.wav",
 			"sounds/combat/cudgel_02.wav",

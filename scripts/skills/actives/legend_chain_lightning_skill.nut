@@ -18,9 +18,6 @@ this.legend_chain_lightning_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChainLightning);
 		this.m.Description = "Unleash an arcing barrage that strikes an opponent, sending sparks from opponent to opponent. Fatigue and action costs from staff mastery. ";
 		this.m.KilledString = "Electrocuted";
-		this.m.Icon = "skills/lightning_square.png";
-		this.m.IconDisabled = "skills/lightning_square_bw.png";
-		this.m.Overlay = "lightning_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/lightning_01.wav",
 			"sounds/combat/lightning_02.wav",

@@ -7,9 +7,6 @@ this.legend_bribe_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBribe);
 		this.m.Description = "Throw coins at an enemy to bribe them away from battle. Only works on humans, more powerful enemies cost more.";
-		this.m.Icon = "skills/coins_square.png";
-		this.m.IconDisabled = "skills/coins_square_bw.png";
-		this.m.Overlay = "active_41";
 		this.m.SoundOnUse = [
 			"sounds/coins_01.wav",
 			"sounds/coins_02.wav",

@@ -4,9 +4,6 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBansheeScream);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_41.png";
-		this.m.IconDisabled = "skills/active_41.png";
-		this.m.Overlay = "active_41";
 		this.m.SoundOnUse = [
 			"sounds/enemies/banshee_attack_01.wav",
 			"sounds/enemies/banshee_attack_02.wav",

@@ -8,9 +8,6 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCatapultBoulder);
 		this.m.Description = "Hurl a boulder towards a target with your catapult. Hard to aim and very unwieldy, but boulders are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Crushed";
-		this.m.Icon = "skills/active_12.png";
-		this.m.IconDisabled = "skills/active_12_sw.png";
-		this.m.Overlay = "active_12";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/sling_use_01.wav",
 			"sounds/combat/dlc4/sling_use_02.wav",

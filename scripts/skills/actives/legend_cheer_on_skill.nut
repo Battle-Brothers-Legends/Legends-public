@@ -4,9 +4,6 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCheerOn);
 		this.m.Description = "Give it your all! Put your support behind an ally, granting them two Actions Points. Targets can only be inspired once per turn and you must be adjacent.";
-		this.m.Icon = "skills/cheered_on_square.png";
-		this.m.IconDisabled = "skills/cheered_on_square_bw.png";
-		this.m.Overlay = "perk_28_active";
 		this.m.SoundOnUse = [
 			"sounds/combat/inspire_01.wav",
 			"sounds/combat/inspire_02.wav"

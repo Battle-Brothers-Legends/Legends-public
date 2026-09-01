@@ -3203,17 +3203,6 @@ perkDefObjects.push({
 	Const = "LegendDogHandling"
 });
 
-::Legends.Perk.LegendDogMaster <- null;
-perkDefObjects.push({
-	ID = "perk.legend_dogmaster",
-	Script = "scripts/skills/perks/perk_legend_dogmaster",
-	Name = ::Const.Strings.PerkName.LegendDogMaster,
-	Tooltip = ::Const.Strings.PerkDescription.LegendDogMaster,
-	Icon = "ui/perks/dog_handling.png",
-	IconDisabled = "ui/perks/dog_handling_bw.png",
-	Const = "LegendDogMaster"
-});
-
 ::Legends.Perk.LegendHeightenedReflexes <- null;
 perkDefObjects.push({
 	ID = "perk.legend_heightened_reflexes",

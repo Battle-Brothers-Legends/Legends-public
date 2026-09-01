@@ -5,9 +5,6 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 		this.legend_drink_potion_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkHeartwoodSap);
 		this.m.Description = "Give to an adjacent ally or drink yourself a flask of heartwood sap that promises to render someone indomitable for three turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/heartwood_sap_potion_square.png";
-		this.m.IconDisabled = "skills/blood_potion_square_bw.png";
-		this.m.Overlay = "active_144";
 		this.m.StatusEffect = "status_effect_93";
 		this.m.Effects = ["legend_greenwood_sap_effect"];
 	}

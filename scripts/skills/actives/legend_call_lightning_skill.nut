@@ -4,9 +4,6 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCallLightning);
 		this.m.Description = "Call down bolts of lightning randomly within four tiles.";
-		this.m.Icon = "skills/storm_square.png";
-		this.m.IconDisabled = "skills/storm_square_bw.png";
-		this.m.Overlay = "coordinated_volleys_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/lightning_01.wav",
 			"sounds/combat/lightning_02.wav",

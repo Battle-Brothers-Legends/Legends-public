@@ -5,9 +5,6 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 		this.legend_drink_potion_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrinkHexeIchorPotion);
 		this.m.Description = "Give to an adjacent ally or drink yourself a dubious hexen brew, granting health and fatigue, but poisoning you. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/ichor_potion_square.png";
-		this.m.IconDisabled = "skills/ichor_potion_square_bw.png";
-		this.m.Overlay = "active_140";
 		this.m.StatusEffect = "status_effect_89";
 		this.m.Effects = ["legend_hexe_ichor_potion_effect", "goblin_poison_effect"];
 	}

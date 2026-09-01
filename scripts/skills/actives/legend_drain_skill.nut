@@ -5,9 +5,6 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrain);
 		this.m.Description = "Pull the essence from your foe, and draw it into yourself.";
 		this.m.KilledString = "Drained";
-		this.m.Icon = "skills/blooddrop_square.png";
-		this.m.IconDisabled = "skills/blooddrop_square_bw.png";
-		this.m.Overlay = "blooddrop_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/drain_01.wav",
 			"sounds/combat/drain_02.wav",

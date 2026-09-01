@@ -7,10 +7,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryInject);
 		this.m.Description = "no touch poison birb";
-		this.m.KilledString = "Pecked to death"; //check
-		this.m.Icon = "skills/sentry_inject.png";
-		this.m.IconDisabled = "skills/sentry_inject.png";
-		this.m.Overlay = "sentry_inject";
+		this.m.KilledString = "Pecked to death";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc6/snake_attack_01.wav",
 			"sounds/enemies/dlc6/snake_attack_02.wav",

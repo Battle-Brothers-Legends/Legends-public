@@ -8,9 +8,6 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDoubleSwing);
 		this.m.Description = "Swing both weapons in a wide arc. The right tile is hit by the main hand, the left tile by the off hand, and the middle tile by both weapons.";
-		this.m.Icon = "skills/legend_double_swing.png";
-		this.m.IconDisabled = "skills/legend_double_swing_sw.png";
-		this.m.Overlay = "legend_double_swing";
 		this.m.SoundOnUse = [
 			"sounds/combat/swing_01.wav",
 			"sounds/combat/swing_02.wav",

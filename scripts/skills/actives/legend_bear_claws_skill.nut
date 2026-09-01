@@ -16,9 +16,6 @@ this.legend_bear_claws_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearClaws);
 		this.m.Description = "Tear into flesh across multiple opponents and leave them bleading with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_21.png";
-		this.m.IconDisabled = "skills/active_21_bw.png";
-		this.m.Overlay = "active_21";
 		this.m.SoundOnUse = [
 			"sounds/enemies/ghoul_claws_01.wav",
 			"sounds/enemies/ghoul_claws_02.wav",

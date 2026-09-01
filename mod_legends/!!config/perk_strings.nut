@@ -101,7 +101,6 @@
 ::Const.Strings.PerkName.LegendDogWhisperer <- "Dog Whisperer";
 ::Const.Strings.PerkName.LegendDogBreeder <- "Dog Breeder";
 ::Const.Strings.PerkName.LegendDogHandling <- "Dog Handling";
-::Const.Strings.PerkName.LegendDogMaster <- "Dog Master";
 ::Const.Strings.PerkName.LegendHeightenedReflexes <- "Heightened Reflexes";
 ::Const.Strings.PerkName.LegendWindReader <- "Wind Reader";
 ::Const.Strings.PerkName.LegendPaymaster <- "Paymaster";
@@ -2754,17 +2753,6 @@ You have mastered the art of training dogs.
 • In the heat of battle your hounds will respond and react to your commands, order them to attack or defend allies.
 
 • Costs [color=%negative%]3[/color] AP and [color=%negative%]0[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendDogMaster <- @"
-Your way with animals extends so far as turning those dogs that would do you harm.
-
-[color=%active%][u]Active:[/u][/color]
-• By spending [color=%negative%]1[/color] item of food you can make a dog flee from battle.
-
-• The food item is chosen at random and the perk does not work if you have less than 25 food.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]0[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendHeightenedReflexes <- @"

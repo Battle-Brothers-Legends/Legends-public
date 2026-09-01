@@ -7,9 +7,6 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskPeck);
 		this.m.Description = "no touch birb";
 		this.m.KilledString = "Pecked to death";
-		this.m.Icon = "skills/basilisk_peck.png";
-		this.m.IconDisabled = "skills/basilisk_peck.png";
-		this.m.Overlay = "basilisk_peck";
 		this.m.SoundOnUse = [
 			"sounds/combat/hammer_strike_01.wav",
 			"sounds/combat/hammer_strike_02.wav",
