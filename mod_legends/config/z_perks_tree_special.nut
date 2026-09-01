@@ -150,19 +150,6 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendGuideSteps, 5, "Guide Steps", function( _player, _chance ) {
-
-	local talents = _player.getTalents();
-	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Fatigue];
-	if (tl == 0)
-	{
-		return 0;
-	}
-	_chance *= this.Math.pow(2, tl);
-
-	return _chance;
-});
-
 ::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendIronside, 7, "Ironside", function( _player, _chance ) {
 
 	local talents = _player.getTalents();

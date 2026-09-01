@@ -5,9 +5,6 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlogging);
 		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed.";
 		this.m.KilledString = "Flogged";
-		this.m.Icon = "skills/bleed_square.png";
-		this.m.IconDisabled = "skills/bleed_square_bw.png";
-		this.m.Overlay = "bleed";
 		this.m.SoundOnUse = [
 			"sounds/combat/rupture_blood_01.wav",
 			"sounds/combat/rupture_blood_02.wav",

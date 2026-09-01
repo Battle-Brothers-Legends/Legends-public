@@ -4,9 +4,6 @@ this.legend_flowing_slash_skill <- this.inherit("scripts/skills/actives/slash", 
 		this.slash.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlowingSlash);
 		this.m.Description = "A skillful slash that easily flows into another attack.";
-		this.m.Icon = "skills/active_172.png";
-		this.m.IconDisabled = "skills/active_172_sw.png";
-		this.m.Overlay = "active_172";
 	}
 
 	function getTooltip () {

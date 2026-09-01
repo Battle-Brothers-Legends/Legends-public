@@ -2,6 +2,5 @@
 {
 	o.m.PossibleSkills.extend([
 		::Legends.Actives.getID(::Legends.Active.LegendBansheeScream),
-		::Legends.Actives.getID(::Legends.Active.LegendHorrificScream)
 	]);
 });

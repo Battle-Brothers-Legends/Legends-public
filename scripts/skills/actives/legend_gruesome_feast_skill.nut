@@ -4,9 +4,6 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGruesomeFeast);
 		this.m.Description = "Feast on a corpse to regain health and cure injuries. Will daze and disgust any ally within four tiles.";
-		this.m.Icon = "skills/gruesome_square.png";
-		this.m.IconDisabled = "skills/gruesome_square_bw.png";
-		this.m.Overlay = "gruesome_square";
 		this.m.SoundOnUse = [
 			"sounds/enemies/gruesome_feast_01.wav",
 			"sounds/enemies/gruesome_feast_02.wav",

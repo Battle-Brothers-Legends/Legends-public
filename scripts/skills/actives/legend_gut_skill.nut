@@ -5,9 +5,6 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGut);
 		this.m.Description = "A series of thrusts to the body made in quick succession meant to gut them like a fish. Depending on how many injuries the opponent has suffered the attacks will increase.";
 		this.m.KilledString = "Spilled their guts";
-		this.m.Icon = "skills/active_237.png";
-		this.m.IconDisabled = "skills/active_237_sw.png";
-		this.m.Overlay = "active_237";
 		this.m.SoundOnUse = [
 			"sounds/combat/impale_01.wav",
 			"sounds/combat/impale_02.wav",

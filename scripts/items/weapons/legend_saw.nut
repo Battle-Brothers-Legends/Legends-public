@@ -37,7 +37,6 @@ this.legend_saw <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.Overlay = "active_68";
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
-		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestTree);
 	}
 
 });

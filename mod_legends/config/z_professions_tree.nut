@@ -35,7 +35,7 @@ if (!("Professions" in ::Const))
 		[],
 		[],
 		[::Legends.Profession.LegendQuartermaster],
-		[::Legends.Profession.LegendFieldTreats]
+		[]
 	]
 };
 
@@ -53,7 +53,7 @@ if (!("Professions" in ::Const))
 		[],
 		[],
 		[],
-		[::Legends.Profession.LegendFieldRepairs]
+		[]
 	]
 };
 
@@ -75,7 +75,6 @@ if (!("Professions" in ::Const))
 			::Legends.Profession.LegendBarterTrustworthy
 		],
 		[
-			::Legends.Profession.LegendDangerPay,
 			::Legends.Profession.LegendPaymaster
 		],
 		[

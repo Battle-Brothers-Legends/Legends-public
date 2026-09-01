@@ -279,7 +279,7 @@ this.legend_bandit_army_contract <- this.inherit("scripts/contracts/contract", {
 							::Legends.Backgrounds.getID(::Legends.Background.Thief),
 							::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin),
 							::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler)
-						) || bro.getSkills().hasPerk(::Legends.Perk.LegendBribe)) {
+						)) {
 							candidates.push(bro);
 						}
 					}

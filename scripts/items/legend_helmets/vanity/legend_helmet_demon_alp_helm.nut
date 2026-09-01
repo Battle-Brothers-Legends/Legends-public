@@ -1,8 +1,7 @@
 
 this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgrade", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_helmet_demon_alp_helm";
 		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
@@ -22,19 +21,9 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
-		// this.m.NameList = [
-		// 	"Nightmare visage",
-		// 	"Helm of the demon",
-		// 	"Demon Crown",
-		// 	"Nightmare Helm",
-		// 	"Nightmare Crown",
-		// 	"Sleepless Crown"
-		// ];
-		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
 	}
 
-	function updateVariant()
-	{
+	function updateVariant() {
 		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
 		this.m.Sprite = "legendhelms_demon_alp_helm_" + variant;
 		this.m.SpriteDamaged = "legendhelms_demon_alp_helm_" + variant + "_damaged";
@@ -45,14 +34,12 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = this.legend_helmet_upgrade.getTooltip();
 		return this.onArmorTooltip(result);
 	}
 
-	function onArmorTooltip( result )
-	{
+	function onArmorTooltip( result ) {
 		result.push({
 			id = 6,
 			type = "text",
@@ -63,12 +50,22 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		return result;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.legend_helmet_upgrade.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendHorrify))
+		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendHorrify)) {
+			::Legends.Actives.grant(this, ::Legends.Effect.HorrificScream, function(_skill) {
+				_skill.m.ActionPointCost = 6;
+				_skill.m.FatigueCost = 30;
+				_skill.m.MaxRange = 4;
+			}.bindenv(this));
+		}
+	}
+
+	function onUnequip() {
+		this.legend_helmet_upgrade.onUnequip();
+		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendHorrify))
 		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendHorrificScream)
+			::Legends.Actives.grant(this, ::Legends.Active.HorrificScream);
 		}
 	}
 });

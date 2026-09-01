@@ -3,9 +3,6 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEntice);
 		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you.";
-		this.m.Icon = "skills/entice.png";
-		this.m.IconDisabled = "skills/entice_bw.png";
-		this.m.Overlay = "entice";
 		this.m.SoundOnUse = [
 			"sounds/combat/hook_01.wav",
 			"sounds/combat/hook_02.wav",

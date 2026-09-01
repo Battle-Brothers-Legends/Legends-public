@@ -6,9 +6,6 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFirefield);
 		this.m.Description = "Unleash a raging inferno at the target location that burns all beings, damaging them twice.";
-		this.m.Icon = "skills/fire_square.png";
-		this.m.IconDisabled = "skills/fire_square_bw.png";
-		this.m.Overlay = "fire_circle";
 		this.m.SoundOnUse = [
 			"sounds/combat/fire_01.wav",
 			"sounds/combat/fire_02.wav",

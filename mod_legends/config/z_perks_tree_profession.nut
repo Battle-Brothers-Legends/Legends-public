@@ -34,7 +34,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[::Legends.Perk.LegendQuartermaster],
-		[::Legends.Perk.LegendFieldTreats]
+		[]
 	]
 };
 
@@ -52,7 +52,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[],
-		[::Legends.Perk.LegendFieldRepairs]
+		[]
 	]
 };
 
@@ -69,7 +69,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendBarterConvincing],
 		[],
 		[::Legends.Perk.LegendBarterTrustworthy],
-		[::Legends.Perk.LegendDangerPay, ::Legends.Perk.LegendPaymaster],
+		[::Legends.Perk.LegendPaymaster],
 		[::Legends.Perk.LegendOffBookDeal, ::Legends.Perk.LegendBarterGreed]
 	]
 };

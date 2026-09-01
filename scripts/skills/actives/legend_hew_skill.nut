@@ -16,9 +16,6 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHew);
 		this.m.Description = "An overhead strike that bears the full force on the targets entire body.";
 		this.m.KilledString = "Hewed";
-		this.m.Icon = "skills/active_210.png";
-		this.m.IconDisabled = "skills/active_210_sw.png";
-		this.m.Overlay = "active_210";
 		this.m.SoundOnUse = [
 			"sounds/combat/overhead_strike_01.wav",
 			"sounds/combat/overhead_strike_02.wav",

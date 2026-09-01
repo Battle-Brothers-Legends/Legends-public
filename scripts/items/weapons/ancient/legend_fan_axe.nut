@@ -41,7 +41,6 @@ this.legend_fan_axe <- this.inherit("scripts/items/weapons/weapon", {
 		::Legends.Actives.grant(this, ::Legends.Active.RoundSwing);
 		::Legends.Actives.grant(this, ::Legends.Active.SplitMan);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
-		//::Legends.Actives.grant(this, ::Legends.Active.LegendHarvestTree);
 	}
 
 });

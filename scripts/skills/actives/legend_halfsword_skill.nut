@@ -15,9 +15,6 @@ this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
 		this.puncture.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalfsword);
 		this.m.Description = "A calculated attack with one hand firmly on the blade aiming in gaps of the armor. Ignores all armor but is harder to hit with and can not land critical hits for additional damage.";
-		this.m.Icon = "skills/active_halfsword.png";
-		this.m.IconDisabled = "skills/active_halfsword_bw.png";
-		this.m.Overlay = "active_halfsword";
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 25;
 		this.m.IsIgnoredAsAOO = true;

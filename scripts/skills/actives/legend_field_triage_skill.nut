@@ -7,9 +7,6 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFieldTriage);
 		this.m.Description = "Heal a unit at a rate of 1 medicine for every 2 hitpoints. Heals up to 20 hitpoints per use.";
-		this.m.Icon = "skills/triage_square.png";
-		this.m.IconDisabled = "skills/triage_square_bw.png";
-		this.m.Overlay = "active_41";
 		this.m.SoundOnUse = [
 		"sounds/combat/first_aid_01.wav",
 		"sounds/combat/first_aid_02.wav"

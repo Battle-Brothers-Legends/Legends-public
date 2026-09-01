@@ -4,9 +4,6 @@ this.legend_flourish_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlourish);
 		this.m.Description = "Prepare to show your enemies a dazzling display of swordsmanship.";
-		this.m.Icon = "ui/perks/perk_41_active.png";
-		this.m.IconDisabled = "ui/perks/perk_41_active_sw.png";
-		this.m.Overlay = "perk_41_active";
 		this.m.SoundOnUse = [
 			"sounds/combat/legend_parried_01.wav",
 			"sounds/combat/legend_parried_08.wav",

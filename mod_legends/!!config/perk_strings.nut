@@ -17,7 +17,6 @@
 ::Const.Strings.PerkName.LegendToolsSpares <- "Spare Parts";
 ::Const.Strings.PerkName.LegendBarterConvincing <- "Convincing Proposals";
 ::Const.Strings.PerkName.LegendBarterTrustworthy <- "Trustworthy Demeanour";
-::Const.Strings.PerkName.LegendBribe <- "Bribe";
 ::Const.Strings.PerkName.LegendOffBookDeal <- "Off-Book Deal";
 ::Const.Strings.PerkName.LegendRebound <- "Rebound";
 ::Const.Strings.PerkName.LegendFeint <- "Feint";
@@ -50,8 +49,6 @@
 ::Const.Strings.PerkName.LegendBigGameHunter <- "Big Game Hunter";
 ::Const.Strings.PerkName.LegendSecondWind <- "Second Wind";
 ::Const.Strings.PerkName.LegendFieldTriage <- "Field Triage";
-::Const.Strings.PerkName.LegendFieldRepairs <- "Field Repairs";
-::Const.Strings.PerkName.LegendDangerPay <- "Danger Pay";
 ::Const.Strings.PerkName.LegendTeacher <- "Teacher";
 ::Const.Strings.PerkName.LegendForcefulSwing <- "Forceful Swing";
 ::Const.Strings.PerkName.LegendSpecSpearWall <- "Spearwaller";
@@ -60,7 +57,6 @@
 ::Const.Strings.PerkName.LegendPerfectFit <- "Perfect Fit";
 ::Const.Strings.PerkName.LegendLithe <- "Lithe";
 ::Const.Strings.PerkName.LegendInTheZone <- "In the Zone";
-::Const.Strings.PerkName.LegendHidden <- "Camouflage";
 ::Const.Strings.PerkName.LegendBlendIn <- "Blend in";
 ::Const.Strings.PerkName.LegendDrumsOfWar <- "War Chant";
 ::Const.Strings.PerkName.LegendSpecStaffStun <- "Staff Spins";
@@ -68,7 +64,6 @@
 ::Const.Strings.PerkName.LegendGrappler <- "Grappler";
 ::Const.Strings.PerkName.LegendAmbidextrous <- "Ambidextrous";
 ::Const.Strings.PerkName.LegendPummelIntoSubmission <- "Pummel into Submission";
-::Const.Strings.PerkName.LegendFieldTreats <- "Field Treats";
 ::Const.Strings.PerkName.LegendSmashingShields <- "Smashing Shields";
 ::Const.Strings.PerkName.LegendSmackdown <- "Smackdown";
 ::Const.Strings.PerkName.LegendBoneBreaker <- "Bone Breaker";
@@ -125,7 +120,6 @@
 ::Const.Strings.PerkName.LegendOreHunter <- "Ore Hunter";
 ::Const.Strings.PerkName.LegendThrowSand <- "Throw Sand";
 ::Const.Strings.PerkName.LegendLastStand <- "Last Stand";
-::Const.Strings.PerkName.LegendGuideSteps <- "Guide Steps";
 ::Const.Strings.PerkName.LegendTasteThePain <- "Taste the Pain";
 ::Const.Strings.PerkName.LegendOpportunist <- "Opportunist";
 ::Const.Strings.PerkName.LegendPrepared <- "Prepared";
@@ -250,14 +244,12 @@
 ::Const.Strings.PerkName.LegendRust <- "Rust";
 ::Const.Strings.PerkName.LegendWither <- "Wither";
 ::Const.Strings.PerkName.LegendDeathtouch <- "Death Touch";
-::Const.Strings.PerkName.LegendHex <- "Hex";
 ::Const.Strings.PerkName.LegendMiasma <- "Miasma";
 ::Const.Strings.PerkName.LegendDarkflight <- "Darkflight";
 ::Const.Strings.PerkName.LegendDaze <- "Stupefy";
 ::Const.Strings.PerkName.LegendStun <- "Stun";
 ::Const.Strings.PerkName.LegendHorrify <- "Horrify";
-::Const.Strings.PerkName.LegendPush <- "Revolt";
-::Const.Strings.PerkName.LegendEntice <- "Entice";
+::Const.Strings.PerkName.LegendManipulative <- "Manipulative";
 ::Const.Strings.PerkName.LegendSleep <- "Sleep";
 ::Const.Strings.PerkName.LegendFirefield <- "Firefield";
 ::Const.Strings.PerkName.LegendPossessUndead <- "Possess Undead";
@@ -275,7 +267,6 @@
 ::Const.Strings.PerkName.LegendChanneledPower <- "Channeled Power";
 ::Const.Strings.PerkName.LegendReclamation <- "Reclamation";
 ::Const.Strings.PerkName.LegendConservation <- "Conservation";
-::Const.Strings.PerkName.LegendEnthrall <- "Enthrall";
 ::Const.Strings.PerkName.LegendViolentDecomposition <- "Violent Decomposition";
 ::Const.Strings.PerkName.LegendPossession <- "Possession";
 ::Const.Strings.PerkName.LegendSiphon <- "Siphon";
@@ -645,14 +636,6 @@ Your fingers turn ghostly and pass through steel and flesh, tearing at the soul 
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendHex <- @"
-You tie your soul to your enemy, your pain becomes their pain.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Hex[/color] skill
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue
-";
-
 ::Const.Strings.PerkDescription.LegendMiasma <- @"
 Release a cloud of noxious gasses that are harmful to any living being.
 
@@ -708,19 +691,8 @@ Blare out a piercing, unworldly sound that is more than likely to distress anyon
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]15[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendPush <- @"
-Concoct a mixture of smells so fetid and noxious, you force your target to retreat just so they can breathe.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Revolt[/color] skill which knocks the target back a tile and inflicts [color=%positive%]10[/color] Fatigue.
-
-• Chance to hit is based on Ranged Skill and has a range of six tiles.
-
-• Costs [color=%negative%]3[/color] AP and [color=%negative%]30[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendEntice <- @"
-With a trick of the light, captivate your target in such a way that they can't help but approach you.
+::Const.Strings.PerkDescription.LegendManipulative <- @"
+Show an ankle, flash some teeth to entice your enemies or show something so repulsive that your enemy cannot help, but be revolted.
 
 [color=%active%][u]Active:[/u][/color]
 • Unlocks the [color=%skill%]Entice[/color] skill which pulls your target one tile towards you with a [color=%positive%]100%[/color] chance to [color=%status%]Stagger[/color] on hit.
@@ -728,6 +700,13 @@ With a trick of the light, captivate your target in such a way that they can't h
 • Chance to hit is based on Ranged Skill and has a range of nine tiles.
 
 • Costs [color=%negative%]6[/color] AP and [color=%negative%]10[/color] Fatigue.
+
+[color=%active%][u]Active:[/u][/color]
+• Unlocks the [color=%skill%]Revolt[/color] skill which knocks the target back a tile and inflicts [color=%positive%]10[/color] Fatigue.
+
+• Chance to hit is based on Ranged Skill and has a range of six tiles.
+
+• Costs [color=%negative%]3[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendSleep <- @"
@@ -1030,15 +1009,6 @@ Conduct profane rituals meant to stave off the passage of time, further preservi
 • Reduces the daily medicine cost of maintaining Human Corpses, Bones, and other Carrion by [color=%negative%]50%[/color].
 ";
 
-::Const.Strings.PerkDescription.LegendEnthrall <- @"
-Pull at the strings of a single creation, compelling them to linger among you as an obedient guardian.
-
-[color=%active%][u]Active:[/u][/color]
-• Enthralled dead act defensively and attempt to protect you from threats.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendViolentDecomposition <- @"
 Corrupt the force sustaining one of your fashioned thralls
 
@@ -1257,10 +1227,6 @@ Through extensive study of the human form, you learn how to fashion replacement 
 • Unlocks the creation of prosthetic body parts in the crafting tent to help your mercenaries resolve their permanent [color=%status%]Injuries[/color].
 ";
 
-::Const.Strings.PerkDescription.LegendGuideSteps <- @"
-Unlocks the [color=%skill%]Guide Steps[/color] skill, that grants pathfinder to all allies within [color=%positive%]4[/color] tiles.
-";
-
 ::Const.Strings.PerkDescription.LegendBerserkerRage <- @"
 Gain rage stacks over the course of a battle.
 
@@ -1375,15 +1341,6 @@ This character's body language makes people believe them, leading to more favour
 • Grants [color=%positive%]+2%[/color] barter skill.
 
 • Barter skill begins falling off at higher total rates.
-";
-
-::Const.Strings.PerkDescription.LegendBribe <- @"
-You've never met a problem that money couldn't solve.
-
-[color=%active%][u]Active:[/u][/color]
-• Throw coins at your enemies to bribe them away from battle, only works on humans. The cost is the XP that would be granted by killing the enemy, to the power of 1.3.
-
-• Costs [color=%negative%]variable[/color] AP and [color=%negative%]variable[/color] Fatigue based on the XP.
 ";
 
 ::Const.Strings.PerkDescription.LegendOffBookDeal <- @"
@@ -1757,30 +1714,6 @@ Spend medicine to heal a unit on the battlefield.
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]16[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendFieldRepairs <- @"
-Spend armor parts to repair armor on the battlefield.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Field Repairs[/color] skill which repairs up to [color=%positive%]20[/color] armor durability for any adjacent ally.
-
-• Uses [color=%negative%]1[/color] tool per [color=%positive%]5[/color] durability repaired.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]16[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendDangerPay <- @"
-Every person has their price.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Danger Pay[/color] skill which allows you to target any ally that is paid a wage within three tiles and Spend [color=%positive%]10[/color] times the unit's daily wage to set them at [color=%status%]Confident[/color] morale.
-
-• Upon receiving extra payment, the recipient becomes [color=%status%]Motivated[/color] for three turns.
-
-• [color=%status%]Motivated[/color] grants [color=%positive%]10%[/color] more damage, [color=%positive%]5%[/color] more Ranged and Melee Skill, and [color=%positive%]15%[/color] more Resolve.
-
-• Costs [color=%negative%]2[/color] AP and [color=%negative%]4[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendPreparedForAnything <- @"
 Instruct your mercenaries how to secret additional supplies about their person during battle.
 
@@ -2151,15 +2084,6 @@ Use your armor's blend of protection and mobility to punish your foes' mistakes!
 • If your Initiative is higher than twice your armor's weight (penalty to Maximum Fatigue), you start the battle with stacks equal to your armor's weight above 15.
 ";
 
-::Const.Strings.PerkDescription.LegendHidden <- @"
-Master the art of concealment.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Camoflauge[/color] skill which allows you to blend in with your surroundings and remain [color=%status%]Hidden[/color] from the enemy for three turns, or until your next attack.
-
-• Costs [color=%negative%]8[/color] AP and [color=%negative%]40[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendSpecStaffStun <- @"
 Master the movements required to spin your staff in a great flourish that lands with additional force.
 
@@ -2247,17 +2171,6 @@ Strike while they're down!
 • Attacks deal an additional [color=%positive%]5%[/color] of the enemy's maximum fatigue per hit.
 
 • Each point of fatigue damage over the target's maximum fatigue will be translated to additional damage done.
-";
-
-::Const.Strings.PerkDescription.LegendFieldTreats <- @"
-Make liberal use of alcohol and food to motivate your mercenaries.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Field Treats[/color] skill which allows you to spend [color=%negative%]20[/color] food to improve an adjacent allies morale from [color=%status%]Wavering[/color] to [color=%status%]Steady[/color].
-
-• Cannot be applied to someone who has already been rallied.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]16[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendSmashingShields <- @"

@@ -1,4 +1,4 @@
-# 19.5.0 - Name Pending
+ 19.5.0 - Name Pending
 
 ## Blazing Desert Plus
 - added a patch for BD+ by Sato
@@ -132,6 +132,7 @@
 ## Perks
 
 ### New Perks
+- `Manipulative` - grants `Entice` and `Revolt`, replaces the perks as a single one
 - `Near Death Experience` - Martyr Trait Tree
 > Confers an experience point bonus based on Hitpoints lost and Injuries gained during combat. Gain 1 XP per Hitpoint and 10 per Injuries. Experience gain is reduced by 90% at level 12 and above.
 > Hitpoint damage taken is reduced by 5% and Resolve is increased by 3 for each Injury you have up to a maximum of 30% and [color=%positive%]15 achieved at 6 Injuries. Counts both regular and permanent Injuries.
@@ -629,3 +630,28 @@
 - `perk_legend_control_instincts` -> deleted
 - `legend_demon_shadows_skill` -> deleted
 - `legend_dog_handling_skill` -> deleted
+- `legend_dog_master_skill` -> deleted
+- `legend_drink_cat_skill` -> deleted
+- `legend_drink_ironwill_skill` -> deleted
+- `legend_drink_lionheart_skill` -> deleted
+- `legend_drink_night_vision_skill` -> deleted
+- `legend_drink_recovery_potion_skill` -> deleted
+- `perk_legend_enthrall` -> deleted
+- `legend_enthrall_skill` -> deleted
+- `perk_legend_entice` -> deleted
+- `perk_legend_revolt` -> deleted
+- `legend_field_repairs_skill` -> deleted
+- `perk_legend_field_repairs` -> deleted
+- `perk_legend_bribe` -> deleted
+- `perk_legend_danger_pay` -> deleted
+- `perk_legend_field_treats` -> deleted
+- `legend_field_treats_skill` -> deleted
+- `legend_bribe_skill` -> deleted
+- `legend_danger_pay_skill` -> deleted
+- `legend_harvest_tree_skill` -> deleted
+- `legend_harvest_rock_skill` -> deleted
+- `legend_harvest_bush_skill` -> deleted
+- `legend_hex_skill` -> deleted
+- `perk_legend_hex` -> deleted
+- `legend_horrific_scream` -> deleted
+- `legend_horrify_old_skill` -> deleted

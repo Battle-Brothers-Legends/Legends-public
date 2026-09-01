@@ -5,9 +5,6 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalberdSmite);
 		this.m.Description = "A slow overhead strike performed with full force to smash a target to bits.";
 		this.m.KilledString = "Chopped";
-		this.m.Icon = "skills/legend_halberd_smite.png";
-		this.m.IconDisabled = "skills/legend_halberd_smite_bw.png";
-		this.m.Overlay = "legend_halberd_smite";
 		this.m.SoundOnUse = [
 			"sounds/combat/strike_01.wav",
 			"sounds/combat/strike_02.wav",

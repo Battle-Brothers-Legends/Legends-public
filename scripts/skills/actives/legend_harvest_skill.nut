@@ -15,9 +15,6 @@ this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHarvest);
 		this.m.Description = "Swinging the weapon in an arc that hits two adjacent tiles in counter-clockwise order. Be careful around your own men unless you want to relieve your payroll!";
-		this.m.Icon = "skills/active_06.png";
-		this.m.IconDisabled = "skills/active_06_sw.png";
-		this.m.Overlay = "active_06";
 		this.m.SoundOnUse = [
 			"sounds/combat/swing_01.wav",
 			"sounds/combat/swing_02.wav",

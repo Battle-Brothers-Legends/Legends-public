@@ -1734,14 +1734,6 @@ effectsDefs.push({
 	Const = "LegendSecondWind"
 });
 
-::Legends.Effect.LegendHidden <- null;
-effectsDefs.push({
-	ID = "effects.legend_hidden",
-	Script = "scripts/skills/effects/legend_hidden_effect",
-	Name = "Hidden",
-	Const = "LegendHidden"
-});
-
 ::Legends.Effect.LegendSkinGhoulBlood <- null;
 effectsDefs.push({
 	ID = "effects.legend_skin_ghoul_blood",
@@ -1894,7 +1886,7 @@ effectsDefs.push({
 	Const = "LegendVeteranLevels"
 });
 
-::Legends.Effect.LegendHiddenKobold <- null;
+::Legends.Effect.LegendHiddenKobold <- null; // purposefully leaving because kobolds are dead but the effect is cool
 effectsDefs.push({
 	ID = "effects.legend_hidden_kobold",
 	Script = "scripts/skills/effects/legend_hidden_kobold_effect",

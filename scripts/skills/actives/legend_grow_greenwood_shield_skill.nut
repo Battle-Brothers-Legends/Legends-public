@@ -6,9 +6,6 @@ this.legend_grow_greenwood_shield_skill <- this.inherit("scripts/skills/skill", 
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrowGreenwoodShield);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_121.png";
-		this.m.IconDisabled = "skills/active_121.png";
-		this.m.Overlay = "active_121";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/schrat_regrowth_01.wav",
 			"sounds/enemies/dlc2/schrat_regrowth_02.wav",

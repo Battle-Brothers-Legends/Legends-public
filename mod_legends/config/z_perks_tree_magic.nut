@@ -12,9 +12,9 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[::Legends.Perk.LegendCheerOn, ::Legends.Perk.LegendSpecialistMusician],
 		[::Legends.Perk.LegendDaze],
-		[::Legends.Perk.LegendEntice],
+		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendMasteryMusic],
-		[::Legends.Perk.LegendPush],
+		[],
 		[::Legends.Perk.LegendMinnesanger],
 		[::Legends.Perk.LegendMeistersanger]
 	]
@@ -354,9 +354,9 @@ if (!("Perks" in ::Const)) {
 		"illusion"
 	],
 	Tree = [
-		[::Legends.Perk.LegendPush],
+		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendMagicDaze],
-		[::Legends.Perk.LegendEntice],
+		[],
 		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendStun],
 		[::Legends.Perk.LegendTerrifyingVisage],
 		[],
@@ -372,10 +372,10 @@ if (!("Perks" in ::Const)) {
 		"divination"
 	],
 	Tree = [
-		[::Legends.Perk.LegendPush],
+		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendMagicDaze],
 		[::Legends.Perk.LegendScry],
-		[::Legends.Perk.LegendEntice],
+		[],
 		[::Legends.Perk.LegendMagicWebBolt],
 		[::Legends.Perk.LegendMagicPsybeam],
 		[::Legends.Perk.LegendMagicSleep]

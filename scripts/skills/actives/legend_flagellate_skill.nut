@@ -17,9 +17,6 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlagellate);
 		this.m.Description = "Lash out to apply three stacks of bleeding damage at once. Quite ineffective against armor.";
 		this.m.KilledString = "Flaggelated to death";
-		this.m.Icon = "skills/flaggelate_square.png";
-		this.m.IconDisabled = "skills/flaggelate_square_bw.png";
-		this.m.Overlay = "active_161";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/whip_01.wav",
 			"sounds/combat/dlc4/whip_02.wav",
