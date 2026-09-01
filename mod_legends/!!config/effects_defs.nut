@@ -1550,14 +1550,6 @@ effectsDefs.push({
 	Const = "LegendLwRelationship"
 });
 
-::Legends.Effect.LegendMagicCircleOfProtectionEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_magic_circle_of_protection_effect",
-	Script = "scripts/skills/effects/legend_magic_circle_of_protection_effect",
-	Name = "Protected",
-	Const = "LegendMagicCircleOfProtectionEffect"
-});
-
 ::Legends.Effect.LegendMarked <- null;
 effectsDefs.push({
 	ID = "effects.legend_marked_target",

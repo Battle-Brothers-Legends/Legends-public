@@ -7,9 +7,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendKick);
 		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
-		this.m.Icon = "skills/kick_square.png";
-		this.m.IconDisabled = "skills/kick_square_bw.png";
-		this.m.Overlay = "active_kick";
 		this.m.SoundOnUse = [
 			"sounds/combat/knockback_01.wav",
 			"sounds/combat/knockback_02.wav",

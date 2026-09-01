@@ -1,4 +1,4 @@
-this.legend_magic_daze_skill <- this.inherit("scripts/skills/actives/legend_magic_skill", {
+this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {

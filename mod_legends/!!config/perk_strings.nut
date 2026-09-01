@@ -212,14 +212,8 @@
 ::Const.Strings.PerkName.LegendFavouredEnemySwordmaster <- "Favoured Enemy - Sword Master";
 
 //MAGIC - skills that have a magical or mystical element to them.
-::Const.Strings.PerkName.LegendMagicBurningHands <- "Burning Hands";
 ::Const.Strings.PerkName.LegendMagicChainLightning <- "Chain Lightning";
-::Const.Strings.PerkName.LegendMagicCircleOfProtection <- "Circle of Protection";
 ::Const.Strings.PerkName.LegendMagicDaze <- "Stupefy";
-::Const.Strings.PerkName.LegendMagicHailstone <- "Hailstone";
-::Const.Strings.PerkName.LegendMagicHealingWind <- "Healing Wind";
-::Const.Strings.PerkName.LegendMagicImbue <- "Imbue";
-::Const.Strings.PerkName.LegendMagicLevitate <- "Levitate";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
 ::Const.Strings.PerkName.LegendMagicPsybeam <- "Psybeam";
 ::Const.Strings.PerkName.LegendMagicSleep <- "Sleep";
@@ -2921,19 +2915,9 @@ The ability to cut and shape wood is a craft few master.
 • Allows this character to mine for minerals while assigned to the Supply Tent in camp.
 ";
 
-::Const.Strings.PerkDescription.LegendMagicBurningHands <- @"
-[color=%active%][u]Active:[/u][/color]
-• Unleash a cone of blistering heat from your palms, can hit up to 9 targets for 10-15 damage.
-";
-
 ::Const.Strings.PerkDescription.LegendMagicChainLightning <- @"
 [color=%active%][u]Active:[/u][/color]
 • Fire a bolt of lightning at an enemy that can arc to two adjacent enemies.
-";
-
-::Const.Strings.PerkDescription.LegendMagicCircleOfProtection <- @"
-[color=%active%][u]Active:[/u][/color]
-• A magic circle that protects all allies within casting. Leaving the circle breaks the protection.
 ";
 
 ::Const.Strings.PerkDescription.LegendMagicDaze <- @"
@@ -2941,26 +2925,6 @@ The ability to cut and shape wood is a craft few master.
 • Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too [color=%status%]Bewildered[/color] to fight effectively.
 
  Does no damage.
-";
-
-::Const.Strings.PerkDescription.LegendMagicHailstone <- @"
-[color=%active%][u]Active:[/u][/color]
-• Conjure a heavy ball of ice to crush your enemies.
-";
-
-::Const.Strings.PerkDescription.LegendMagicHealingWind <- @"
-[color=%active%][u]Active:[/u][/color]
-• Restore the Hitpoints of all allies within 4 tiles. Must be holding a magic staff to use.
-";
-
-::Const.Strings.PerkDescription.LegendMagicImbue <- @"
-[color=%active%][u]Active:[/u][/color]
-• Imbue someone with magical power, temporarily increasing accuracy and damage.
-";
-
-::Const.Strings.PerkDescription.LegendMagicLevitate <- @"
-[color=%active%][u]Active:[/u][/color]
-• Levitate someone off the ground, granting them the ability to move freely across all terrain for a short duration.
 ";
 
 ::Const.Strings.PerkDescription.LegendMagicMissile <- @"

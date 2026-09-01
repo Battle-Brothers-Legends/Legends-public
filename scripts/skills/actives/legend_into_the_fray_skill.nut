@@ -11,9 +11,6 @@ this.legend_into_the_fray_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntoTheFray);
 		this.m.Description = "Charge at an enemy up to 2 tiles away, attacking them in the process.";
-		this.m.Icon = "skills/unarmed_lunge_square.png";
-		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
-		this.m.Overlay = "unarmed_lunge_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc2/lunge_move_01.wav",
 			"sounds/combat/dlc2/lunge_move_02.wav",

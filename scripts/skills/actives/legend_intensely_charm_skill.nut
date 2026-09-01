@@ -26,9 +26,6 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntenselyCharm);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_120.png";
-		this.m.IconDisabled = "skills/active_120.png";
-		this.m.Overlay = "active_120";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/hexe_charm_kiss_01.wav",
 			"sounds/enemies/dlc2/hexe_charm_kiss_02.wav",

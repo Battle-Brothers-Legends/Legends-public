@@ -2802,6 +2802,193 @@ activesDefs.push({
 	this.m.Overlay = "active_210";
 });
 
+::Legends.Active.LegendHoldTheLine <- null;
+activesDefs.push({
+	ID = "actives.legend_hold_the_line",
+	Script = "scripts/skills/actives/legend_hold_the_line",
+	Const = "LegendHoldTheLine",
+	Name = "Hold the line",
+	this.m.Icon = "skills/holdtheline_square.png";
+	this.m.IconDisabled = "skills/holdtheline_square_bw.png";
+	this.m.Overlay = "holdtheline_square";
+});
+
+::Legends.Active.LegendHolyflame <- null;
+activesDefs.push({
+	ID = "actives.legend_holyflame",
+	Script = "scripts/skills/actives/legend_holyflame_skill",
+	Const = "LegendHolyflame",
+	Name = "Holy Flame",
+	this.m.Icon = "skills/holybluefire_square.png";
+	this.m.IconDisabled = "skills/holyfire_square_bw.png";
+	this.m.Overlay = "holybluefire_square";
+});
+
+::Legends.Active.LegendHorseCharge <- null;
+activesDefs.push({
+	ID = "actives.legend_horse_charge",
+	Script = "scripts/skills/actives/legend_horse_charge_skill",
+	Const = "LegendHorseCharge",
+	Name = "Horse Charge",
+	this.m.Icon = "skills/horse_charge.png";
+	this.m.IconDisabled = "skills/horse_charge_bw.png";
+	this.m.Overlay = "horse_charge";
+});
+
+::Legends.Active.LegendHorseKick <- null;
+activesDefs.push({
+	ID = "actives.legend_horse_kick",
+	Script = "scripts/skills/actives/legend_horse_kick_skill",
+	Const = "LegendHorseKick",
+	Name = "Horse Kick",
+	this.m.Icon = "skills/horse_kick.png";
+	this.m.IconDisabled = "skills/horse_kick_bw.png";
+	this.m.Overlay = "horse_kick";
+});
+
+::Legends.Active.LegendHorsePirouette <- null;
+activesDefs.push({
+	ID = "actives.legend_horse_pirouette",
+	Script = "scripts/skills/actives/legend_horse_pirouette_skill",
+	Const = "LegendHorsePirouette",
+	Name = "Pirouette",
+	this.m.Icon = "skills/horse_pirouette.png";
+	this.m.IconDisabled = "skills/horse_pirouette_bw.png";
+	this.m.Overlay = "horse_pirouette";
+});
+
+::Legends.Active.LegendIncoming <- null;
+activesDefs.push({
+	ID = "actives.legend_incoming",
+	Script = "scripts/skills/actives/legend_incoming_skill",
+	Const = "LegendIncoming",
+	Name = "Incoming!",
+	this.m.Icon = "skills/incoming_square.png";
+	this.m.IconDisabled = "skills/incoming_square_bw.png";
+	this.m.Overlay = "incoming_circle";
+});
+
+::Legends.Active.LegendInspire <- null;
+activesDefs.push({
+	ID = "actives.legend_inspire",
+	Script = "scripts/skills/actives/legend_inspire_skill",
+	Const = "LegendInspire",
+	Name = "Inspire",
+	this.m.Icon = "skills/inspire.png";
+	this.m.IconDisabled = "skills/inspire_bw.png";
+	this.m.Overlay = "perk_28_active";
+});
+
+::Legends.Active.LegendIntenselyCharm <- null;
+activesDefs.push({
+	ID = "actives.legend_intensely_charm",
+	Script = "scripts/skills/actives/legend_intensely_charm_skill",
+	Const = "LegendIntenselyCharm",
+	Name = "Infatuate",
+	this.m.Icon = "skills/active_120.png";
+	this.m.IconDisabled = "skills/active_120.png";
+	this.m.Overlay = "active_120";
+});
+
+::Legends.Active.LegendIntoTheFray <- null;
+activesDefs.push({
+	ID = "actives.legend_into_the_fray",
+	Script = "scripts/skills/actives/legend_into_the_fray_skill",
+	Const = "LegendIntoTheFray",
+	Name = "Into The Fray",
+	this.m.Icon = "skills/unarmed_lunge_square.png";
+	this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
+	this.m.Overlay = "unarmed_lunge_square";
+});
+
+::Legends.Active.LegendKick <- null;
+activesDefs.push({
+	ID = "actives.legend_kick",
+	Script = "scripts/skills/actives/legend_kick_skill",
+	Const = "LegendKick",
+	Name = "Kick",
+	this.m.Icon = "skills/kick_square.png";
+	this.m.IconDisabled = "skills/kick_square_bw.png";
+	this.m.Overlay = "active_kick";
+});
+
+::Legends.Active.LegendLaunchAcidFlask <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_acid_flask",
+	Script = "scripts/skills/actives/legend_launch_acid_flask_skill",
+	Const = "LegendLaunchAcidFlask",
+	Name = "Launch Acid Flask",
+	Icon = "skills/active_106.png",
+	IconDisabled = "skills/active_106_sw.png",
+	Overlay = "active_106",
+});
+
+::Legends.Active.LegendLaunchDazeBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_daze_bomb",
+	Script = "scripts/skills/actives/legend_launch_daze_bomb_skill",
+	Const = "LegendLaunchDazeBomb",
+	Name = "Launch Daze Bomb",
+	Icon = "skills/active_207.png",
+	IconDisabled = "skills/active_207_sw.png",
+	Overlay = "active_207",
+});
+
+::Legends.Active.LegendLaunchFireBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_fire_bomb",
+	Script = "scripts/skills/actives/legend_launch_fire_bomb_skill",
+	Const = "LegendLaunchFireBomb",
+	Name = "Launch Fire Bomb",
+	Icon = "skills/active_209.png",
+	IconDisabled = "skills/active_209_sw.png",
+	Overlay = "active_209",
+});
+
+::Legends.Active.LegendLaunchHolyWater <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_holy_water",
+	Script = "scripts/skills/actives/legend_launch_holy_water_skill",
+	Const = "LegendLaunchHolyWater",
+	Name = "Launch Blessed Water",
+	Icon = "skills/active_97.png",
+	IconDisabled = "skills/active_97_sw.png",
+	Overlay = "active_97",
+});
+
+::Legends.Active.LegendLaunchSmokeBomb <- null;
+activesDefs.push({
+	ID = "actives.legend_launch_smoke_bomb",
+	Script = "scripts/skills/actives/legend_launch_smoke_bomb_skill",
+	Const = "LegendLaunchSmokeBomb",
+	Name = "Launch Smoke Bomb",
+	Icon = "skills/active_208.png",
+	IconDisabled = "skills/active_208_sw.png",
+	Overlay = "active_208",
+});
+
+::Legends.Active.LegendLeap <- null;
+activesDefs.push({
+	ID = "actives.legend_leap",
+	Script = "scripts/skills/actives/legend_leap_skill",
+	Const = "LegendLeap",
+	Name = "Leap",
+	this.m.Icon = "skills/leap_square.png";
+	this.m.IconDisabled = "skills/leap_square_bw.png";
+	this.m.Overlay = "horse_pirouette";
+});
+
+::Legends.Active.LegendLineThemUp <- null;
+activesDefs.push({
+	ID = "actives.legend_line_them_up",
+	Script = "scripts/skills/actives/legend_line_them_up_skill",
+	Const = "LegendLineThemUp",
+	Name = "Line Them Up",
+	this.m.Icon = "skills/active_203.png";
+	this.m.IconDisabled = "skills/active_203_sw.png";
+	this.m.Overlay = "active_203";
+});
+
 // insert here
 
 
@@ -2957,13 +3144,7 @@ activesDefs.push({
 	Name = "Cleave",
 });
 
-::Legends.Active.LegendHorseKick <- null;
-activesDefs.push({
-	ID = "actives.legend_horse_kick",
-	Script = "scripts/skills/actives/legend_horse_kick_skill",
-	Const = "LegendHorseKick",
-	Name = "Horse Kick",
-});
+
 
 
 
@@ -3019,22 +3200,6 @@ activesDefs.push({
 
 
 
-::Legends.Active.LegendHorseCharge <- null;
-activesDefs.push({
-	ID = "actives.legend_horse_charge",
-	Script = "scripts/skills/actives/legend_horse_charge_skill",
-	Const = "LegendHorseCharge",
-	Name = "Horse Charge",
-});
-
-::Legends.Active.LegendIntenselyCharm <- null;
-activesDefs.push({
-	ID = "actives.legend_intensely_charm",
-	Script = "scripts/skills/actives/legend_intensely_charm_skill",
-	Const = "LegendIntenselyCharm",
-	Name = "Infatuate",
-});
-
 ::Legends.Active.LegendTeleport <- null;
 activesDefs.push({
 	ID = "actives.legend_teleport",
@@ -3067,13 +3232,6 @@ activesDefs.push({
 	Name = "Riposte",
 });
 
-::Legends.Active.LegendHorsePirouette <- null;
-activesDefs.push({
-	ID = "actives.legend_horse_pirouette",
-	Script = "scripts/skills/actives/legend_horse_pirouette_skill",
-	Const = "LegendHorsePirouette",
-	Name = "Pirouette",
-});
 
 ::Legends.Active.LegendMagicMissile <- null;
 activesDefs.push({
@@ -3187,126 +3345,12 @@ activesDefs.push({
 	Name = "Volley",
 });
 
-
-
-::Legends.Active.LegendHolyflame <- null;
-activesDefs.push({
-	ID = "actives.legend_holyflame",
-	Script = "scripts/skills/actives/legend_holyflame_skill",
-	Const = "LegendHolyflame",
-	Name = "Holy Flame",
-});
-
-::Legends.Active.LegendHoldTheLine <- null;
-activesDefs.push({
-	ID = "actives.legend_hold_the_line",
-	Script = "scripts/skills/actives/legend_hold_the_line",
-	Const = "LegendHoldTheLine",
-	Name = "Hold the line",
-});
-
-::Legends.Active.LegendIncoming <- null;
-activesDefs.push({
-	ID = "actives.legend_incoming",
-	Script = "scripts/skills/actives/legend_incoming_skill",
-	Const = "LegendIncoming",
-	Name = "Incoming!",
-});
-
-::Legends.Active.LegendInspire <- null;
-activesDefs.push({
-	ID = "actives.legend_inspire",
-	Script = "scripts/skills/actives/legend_inspire_skill",
-	Const = "LegendInspire",
-	Name = "Inspire",
-});
-
-::Legends.Active.LegendKick <- null;
-activesDefs.push({
-	ID = "actives.legend_kick",
-	Script = "scripts/skills/actives/legend_kick_skill",
-	Const = "LegendKick",
-	Name = "Kick",
-});
-
-::Legends.Active.LegendLeap <- null;
-activesDefs.push({
-	ID = "actives.legend_leap",
-	Script = "scripts/skills/actives/legend_leap_skill",
-	Const = "LegendLeap",
-	Name = "Leap",
-});
-
-::Legends.Active.LegendLevitatePerson <- null;
-activesDefs.push({
-	ID = "actives.legend_levitate_person",
-	Script = "scripts/skills/actives/legend_levitate_person_skill",
-	Const = "LegendLevitatePerson",
-	Name = "Levitate Person",
-});
-
-::Legends.Active.LegendMagicBurningHands <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_burning_hands",
-	Script = "scripts/skills/actives/legend_magic_burning_hands",
-	Const = "LegendMagicBurningHands",
-	Name = "Burning Hands",
-});
-
-::Legends.Active.LegendMagicChainLightning <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_chain_lightning",
-	Script = "scripts/skills/actives/legend_magic_chain_lightning_skill",
-	Const = "LegendMagicChainLightning",
-	Name = "Chain Lightning",
-});
-
-::Legends.Active.LegendMagicCircleOfProtection <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_circle_of_protection",
-	Script = "scripts/skills/actives/legend_magic_circle_of_protection_skill",
-	Const = "LegendMagicCircleOfProtection",
-	Name = "Magic Circle of Protection",
-});
-
 ::Legends.Active.LegendMagicDaze <- null;
 activesDefs.push({
 	ID = "actives.legend_magic_daze",
 	Script = "scripts/skills/actives/legend_magic_daze_skill",
 	Const = "LegendMagicDaze",
 	Name = "Stupefy",
-});
-
-::Legends.Active.LegendMagicHailstone <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_hailstone",
-	Script = "scripts/skills/actives/legend_magic_hailstone_skill",
-	Const = "LegendMagicHailstone",
-	Name = "Hailstone",
-});
-
-::Legends.Active.LegendMagicHealingWind <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_healing_wind",
-	Script = "scripts/skills/actives/legend_magic_healing_wind_skill",
-	Const = "LegendMagicHealingWind",
-	Name = "Healing Mist",
-});
-
-::Legends.Active.LegendMagicImbue <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_imbue",
-	Script = "scripts/skills/actives/legend_magic_imbue_skill",
-	Const = "LegendMagicImbue",
-	Name = "Imbue",
-});
-
-::Legends.Active.LegendMagicLevitate <- null;
-activesDefs.push({
-	ID = "actives.legend_magic_levitate",
-	Script = "scripts/skills/actives/legend_magic_levitate_skill",
-	Const = "LegendMagicLevitate",
-	Name = "Levitate Person",
 });
 
 ::Legends.Active.LegendMagicPsybeam <- null;
@@ -3757,13 +3801,7 @@ activesDefs.push({
 	Name = "Transform into Wolf",
 });
 
-::Legends.Active.LegendIntoTheFray <- null;
-activesDefs.push({
-	ID = "actives.legend_into_the_fray",
-	Script = "scripts/skills/actives/legend_into_the_fray_skill",
-	Const = "LegendIntoTheFray",
-	Name = "Into The Fray",
-});
+
 
 
 
@@ -3871,45 +3909,7 @@ activesDefs.push({
 	Name = "Stab with Wooden Stake",
 });
 
-::Legends.Active.LegendLaunchAcidFlask <- null;
-activesDefs.push({
-	ID = "actives.legend_launch_acid_flask",
-	Script = "scripts/skills/actives/legend_launch_acid_flask_skill",
-	Const = "LegendLaunchAcidFlask",
-	Name = "Launch Acid Flask",
-});
 
-::Legends.Active.LegendLaunchDazeBomb <- null;
-activesDefs.push({
-	ID = "actives.legend_launch_daze_bomb",
-	Script = "scripts/skills/actives/legend_launch_daze_bomb_skill",
-	Const = "LegendLaunchDazeBomb",
-	Name = "Launch Daze Bomb",
-});
-
-::Legends.Active.LegendLaunchFireBomb <- null;
-activesDefs.push({
-	ID = "actives.legend_launch_fire_bomb",
-	Script = "scripts/skills/actives/legend_launch_fire_bomb_skill",
-	Const = "LegendLaunchFireBomb",
-	Name = "Launch Fire Bomb",
-});
-
-::Legends.Active.LegendLaunchHolyWater <- null;
-activesDefs.push({
-	ID = "actives.legend_launch_holy_water",
-	Script = "scripts/skills/actives/legend_launch_holy_water_skill",
-	Const = "LegendLaunchHolyWater",
-	Name = "Launch Blessed Water",
-});
-
-::Legends.Active.LegendLaunchSmokeBomb <- null;
-activesDefs.push({
-	ID = "actives.legend_launch_smoke_bomb",
-	Script = "scripts/skills/actives/legend_launch_smoke_bomb_skill",
-	Const = "LegendLaunchSmokeBomb",
-	Name = "Launch Smoke Bomb",
-});
 
 ::Legends.Active.LegendMartialMarch <- null;
 activesDefs.push({
@@ -3972,14 +3972,6 @@ activesDefs.push({
 
 
 
-
-::Legends.Active.LegendLineThemUp <- null;
-activesDefs.push({
-	ID = "actives.legend_line_them_up",
-	Script = "scripts/skills/actives/legend_line_them_up_skill",
-	Const = "LegendLineThemUp",
-	Name = "Line Them Up",
-});
 
 
 

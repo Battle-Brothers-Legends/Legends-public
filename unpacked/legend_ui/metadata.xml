@@ -226,6 +226,7 @@
 	<sprite id="legend_full_draw" ic="FF1B293C" img="skills\legend_full_draw.png" />
 	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
 	<sprite id="flagellate" ic="FF1B293C" img="skills\flagellate.png" />
+	<sprite id="leap" ic="FF1B293C" img="skills\leap.png" />
 	<!-- Orientation below -->
 
 

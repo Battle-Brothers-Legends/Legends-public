@@ -464,13 +464,9 @@ if (!("Perks" in ::Const)) {
 	],
 	Tree = [
 		[::Legends.Perk.LegendMagicMissile],
-		//[ ::Legends.Perk.LegendMagicBurningHands ],
-//		[::Legends.Perk.LegendMagicHailstone],
 		[::Legends.Perk.LegendMagicMissileFocus],
-		[::Legends.Perk.LegendChainLightning, /*::Legends.Perk.LegendMasteryBurningHands*/],
+		[::Legends.Perk.LegendChainLightning],
 		[
-			//::Legends.Perk.LegendMagicPsybeam,
-			//::Legends.Perk.LegendMasteryHailstone
 		],
 		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
 	]

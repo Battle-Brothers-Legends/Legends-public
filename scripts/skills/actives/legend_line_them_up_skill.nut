@@ -8,9 +8,6 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLineThemUp);
 		this.m.Description = "Limit the recoil and shoot in a straight line with your handgonne.";
-		this.m.Icon = "skills/active_203.png";
-		this.m.IconDisabled = "skills/active_203_sw.png";
-		this.m.Overlay = "active_203";
 		this.m.SoundOnFire = [
 			"sounds/combat/dlc6/fire_gonne_01.wav",
 			"sounds/combat/dlc6/fire_gonne_02.wav",

@@ -3,9 +3,6 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseCharge);
 		this.m.Description = "Push your mount forward with speed, ending in an impact that stuns an enemy.";
-		this.m.Icon = "skills/horse_charge.png";
-		this.m.IconDisabled = "skills/horse_charge_bw.png";
-		this.m.Overlay = "horse_charge";
 		this.m.SoundOnUse = [
 			"sounds/combat/gallop.wav"
 		];
