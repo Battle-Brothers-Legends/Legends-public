@@ -1563,7 +1563,8 @@
 		this.onSetAppearance();
 	}
 
-	o.calculateAdditionalRecruitmentLevels <- function ()
+	// old recruit scaling feature, removed with the introduction of professions
+	/*o.calculateAdditionalRecruitmentLevels <- function ()
 	{
 		if (::Legends.Mod.ModSettings.getSetting("RecruitScaling").getValue())
 		{
@@ -1589,7 +1590,7 @@
 		{
 			return 0;
 		}
-	}
+	}*/
 
 	o.onAdded = function()
 	{
@@ -1662,7 +1663,7 @@
 			actor.setName(names[this.Math.rand(0, names.len() - 1)]);
 		}
 
-		this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels();
+		//this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels(); old recruit scaling option
 
 		if (this.m.Level != 1)
 		{

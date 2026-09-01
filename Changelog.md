@@ -464,6 +464,7 @@
 - damage over time effects now always give xp on kills; option removed from new campaign settings
 - distance scaling is now always on; option removed from new campaign settings
 - distance scaling now affects aggressive groups in a reduced manner in early game (defender groups remain unchanged)
+- recruit scaling now always off; option removed from new campaign settings - recruitment progression now reflected in professions
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
