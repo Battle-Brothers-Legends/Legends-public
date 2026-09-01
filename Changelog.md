@@ -462,6 +462,8 @@
 - background details can now be found in the projects github wiki (https://github.com/Battle-Brothers-Legends/Legends-public/wiki/Backgrounds)
 - world economy campaign option is now always on; option removed from new campaign settings
 - damage over time effects now always give xp on kills; option removed from new campaign settings
+- distance scaling is now always on; option removed from new campaign settings
+- distance scaling now affects aggressive groups in a reduced manner in early game (defender groups remain unchanged)
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -497,6 +499,14 @@
 - fixed grazes not awarding kills for kills properly
 - fixed rounding errors making too many settlements appear on the map under certain campaign settings
 - getting attacked while camping now shows the finished camping dialog before combat
+- white wolves can now sometimes roam the steppes
+- stollwurms can now sometimes roam the plains
+- greenwood schrats can now sometimes roam the farmland
+- fixed a bug with undead ambushers and roamers clogging actions in the inquisition scenario
+- fixed distance scaling erroneously not affecting orc defender parties
+- fixed distance scaling erroneously not affecting undead roamer parties
+- fixed serpents erroneously preferring snowy areas 
+- fixed goblin ambushers not getting the sufficient boost during greenskin invasion on legendary difficulty
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
