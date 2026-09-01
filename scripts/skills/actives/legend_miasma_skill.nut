@@ -4,9 +4,6 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMiasma);
 		this.m.Description = "Release a cloud of noxious gasses that affect living beings.";
-		this.m.Icon = "skills/miasma_square.png";
-		this.m.IconDisabled = "skills/miasma_square_bw.png";
-		this.m.Overlay = "miasma_square";
 		this.m.SoundOnUse = [
 			"sounds/enemies/miasma_spell_01.wav",
 			"sounds/enemies/miasma_spell_02.wav",

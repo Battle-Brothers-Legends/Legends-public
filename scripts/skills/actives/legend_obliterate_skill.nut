@@ -5,9 +5,6 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendObliterate);
 		this.m.Description = "Wind up your hammer and strike with full force against an enemy. Exceptionally slow and prone to missing, can only be reliable against targets that can't move. Will apply [color=%status%]Staggered[/color] on hit and if the target is already [color=%status%]Staggered[/color] it will apply [color=%status%]Stunned[/color].";
 		this.m.KilledString = "Obliterated";
-		this.m.Icon = "skills/active_89.png";
-		this.m.IconDisabled = "skills/active_89_sw.png";
-		this.m.Overlay = "active_89";
 		this.m.SoundOnUse = [
 			"sounds/combat/smash_01.wav",
 			"sounds/combat/smash_02.wav",

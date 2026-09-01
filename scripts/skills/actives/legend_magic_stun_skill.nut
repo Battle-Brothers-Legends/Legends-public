@@ -2,12 +2,9 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStun);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicStun);
 		this.m.Description = "Unleash a brilliant flash of white light aimed directly at the eyes of your target in an attempt to blind and incapacitate.";
 		this.m.KilledString = "Stunned";
-		this.m.Icon = "skills/stun56.png";
-		this.m.IconDisabled = "skills/stun56_bw.png";
-		this.m.Overlay = "stun56";
 		this.m.SoundOnUse = [
 			"sounds/combat/cudgel_01.wav",
 			"sounds/combat/cudgel_02.wav",

@@ -59,9 +59,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.FortifiedMind,
 				::Legends.Perk.Gifted,
 				::Legends.Perk.LegendPerfectFit,
-				::Legends.Perk.LegendTrueBeliever,
-				::Legends.Perk.LegendPrepareBleed,
-				::Legends.Perk.LegendPrepareGraze
+				::Legends.Perk.LegendTrueBeliever
 			],
 			[
 				::Legends.Perk.Backstabber,

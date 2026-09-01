@@ -143,6 +143,7 @@
 
 ### Perk Changes
 > the bonus is now additive multiplier
+- `Carnage` - no longer grants `Prepare Graze` and `Prepare Bleed`
 - `Heightened Reflexes` - the damage bonus is an additive multiplier
 - `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
 - `Backswing` - new gfx to differentiate from feint
@@ -671,3 +672,9 @@
 - `perk_legend_magic_imbue` -> deleted
 - `legend_magic_levitate_skill` -> deleted
 - `perk_legend_magic_levitate` -> deleted
+- `perk_legend_prepare_bleed` -> deleted
+- `perk_legend_prepare_graze` -> deleted
+- `legend_prepare_bleed_skill` -> deleted
+- `legend_prepare_bleed_skill` -> deleted
+- `legend_ranged_lash_skill` -> deleted
+- `legend_ranged_flail_skill` -> deleted

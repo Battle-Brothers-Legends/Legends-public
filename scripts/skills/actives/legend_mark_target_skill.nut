@@ -5,9 +5,6 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMarkTarget);
 		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the target's Defense by 10 and increasing Damage Taken from all sources by 1% of their total Hitpoints for 2 turns.";
 		this.m.KilledString = "Marked";
-		this.m.Icon = "skills/MarkTargetSkill.png";
-		this.m.IconDisabled = "skills/MarkTargetSkill_bw.png";
-		this.m.Overlay = "mark_target";
 		this.m.SoundOnUse = [
 			"sounds/combat/puncture_01.wav",
 			"sounds/combat/puncture_02.wav",

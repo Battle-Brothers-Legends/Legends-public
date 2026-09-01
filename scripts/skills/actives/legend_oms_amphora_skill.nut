@@ -4,9 +4,6 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendOmsAmphora);
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
-		this.m.Icon = "skills/amphora_active.png";
-		this.m.IconDisabled = "skills/amphora_active_bw.png";
-		this.m.Overlay = "amphora_active.png";
 		this.m.SoundOnUse = [
 			"sounds/combat/drink_01.wav",
 			"sounds/combat/drink_02.wav",

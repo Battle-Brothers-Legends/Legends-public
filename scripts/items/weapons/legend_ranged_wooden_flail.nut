@@ -36,8 +36,12 @@ this.legend_ranged_wooden_flail <- this.inherit("scripts/items/weapons/weapon", 
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash);
+		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Lash, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

@@ -55,18 +55,12 @@ this.legend_named_ranged_flail <- this.inherit("scripts/items/weapons/named/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash);
-//		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedFlail, function (_skill) {
-//			_skill.m.Icon = "skills/active_65.png";
-//			_skill.m.IconDisabled = "skills/active_65_sw.png";
-//			_skill.m.Overlay = "active_65";
-//		}.bindenv(this));
-//		::Legends.Actives.grant(this, ::Legends.Active.LegendRangedLash, function (_skill) {
-//			_skill.m.Icon = "skills/active_92.png";
-//			_skill.m.IconDisabled = "skills/active_92_sw.png";
-//			_skill.m.Overlay = "active_92";
-//		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Lash, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
 	}
 
 });

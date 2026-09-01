@@ -59,9 +59,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.FortifiedMind,
 			::Legends.Perk.Gifted,
 			::Legends.Perk.Bullseye,
-			::Legends.Perk.LegendGatherer,
-			::Legends.Perk.LegendPrepareBleed,
-			::Legends.Perk.LegendPrepareGraze
+			::Legends.Perk.LegendGatherer
 		],
 		[
 			::Legends.Perk.Backstabber,

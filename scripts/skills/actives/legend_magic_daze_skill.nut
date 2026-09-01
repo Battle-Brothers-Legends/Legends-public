@@ -5,9 +5,6 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicDaze);
 		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage. Requires a staff.";
 		this.m.KilledString = "Dazed";
-		this.m.Icon = "skills/daze_square.png";
-		this.m.IconDisabled = "skills/daze_square_bw.png";
-		this.m.Overlay = "daze_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/stupefy_01.wav",
 			"sounds/combat/stupefy_02.wav",

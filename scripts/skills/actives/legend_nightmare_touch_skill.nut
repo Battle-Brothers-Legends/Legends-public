@@ -5,9 +5,6 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightmareTouch);
 		this.m.Description = "";
 		this.m.KilledString = "Died of terror";
-		this.m.Icon = "skills/active_117.png";
-		this.m.IconDisabled = "skills/active_117_sw.png";
-		this.m.Overlay = "active_117";
 		this.m.SoundOnUse = [
 			"sounds/enemies/dlc2/alp_nightmare_01.wav",
 			"sounds/enemies/dlc2/alp_nightmare_02.wav",

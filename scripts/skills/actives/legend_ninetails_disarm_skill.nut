@@ -4,9 +4,6 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNinetailsDisarm);
 		this.m.Description = "Use the cat o ninetails to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
-		this.m.Icon = "skills/ninetails_disarm_square.png";
-		this.m.IconDisabled = "skills/ninetails_disarm_square_bw.png";
-		this.m.Overlay = "active_170";
 		this.m.SoundOnUse = [
 			"sounds/combat/dlc4/whip_01.wav",
 			"sounds/combat/dlc4/whip_02.wav",

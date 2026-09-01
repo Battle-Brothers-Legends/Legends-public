@@ -357,28 +357,10 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendMagicDaze],
 		[],
-		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendStun],
+		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendMagicStun],
 		[::Legends.Perk.LegendTerrifyingVisage],
 		[],
 		[]
-	]
-};
-
-::Const.Perks.DivinationMagicTree <- {
-	ID = "DivinationMagicTree",
-	Name = "Divination",
-	Icon = "ui/perks/scry_perk.png",
-	Descriptions = [
-		"divination"
-	],
-	Tree = [
-		[::Legends.Perk.LegendManipulative],
-		[::Legends.Perk.LegendMagicDaze],
-		[::Legends.Perk.LegendScry],
-		[],
-		[::Legends.Perk.LegendMagicWebBolt],
-		[::Legends.Perk.LegendMagicPsybeam],
-		[::Legends.Perk.LegendMagicSleep]
 	]
 };
 

@@ -11,9 +11,6 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPoisonWeapon);
 		this.m.Description = "Coat your weapons and arrowtips with poison. Can not be used while engaged in melee. Costs 0 Action Points during the first round of combat.";
-		this.m.Icon = "skills/active_95.png";
-		this.m.IconDisabled = "skills/active_95_sw.png";
-		this.m.Overlay = "active_95";
 		this.m.SoundOnUse = [
 			"sounds/combat/poison_applied_01.wav",
 			"sounds/combat/poison_applied_02.wav"

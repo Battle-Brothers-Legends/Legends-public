@@ -16,27 +16,4 @@ this.perk_legend_carnage <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax *= 1.2;
 		}
 	}
-
-	function onAdded()
-	{
-		if (!this.getContainer().getActor().isPlayerControlled())
-		{
-			return;
-		}
-		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareBleed))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareBleed);
-		}
-		if (!this.getContainer().hasActive(::Legends.Active.LegendPrepareGraze))
-		{
-			::Legends.Actives.grant(this, ::Legends.Active.LegendPrepareGraze);
-		}
-	}
-
-	function onRemoved()
-	{
-		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareBleed);
-		::Legends.Actives.remove(this, ::Legends.Active.LegendPrepareGraze);
-	}
-
 });

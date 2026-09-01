@@ -4,9 +4,6 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrayerOfFaith);
 		this.m.Description = "Grant defense to your allies with your chant of holy scripture, granting +20% of your resolve as melee and ranged defense. Adjacent undead and cultists are Baffled.";
-		this.m.Icon = "skills/prayer_purple_square.png";
-		this.m.IconDisabled = "skills/prayer_purple_square_bw.png";
-		this.m.Overlay = "prayer_purple";
 		this.m.SoundOnUse = [
 			"sounds/ambience/buildings/temple_prayer_00.wav",
 			"sounds/ambience/buildings/temple_prayer_01.wav",

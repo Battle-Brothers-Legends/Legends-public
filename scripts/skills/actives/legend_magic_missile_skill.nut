@@ -12,9 +12,6 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicMissile);
 		this.m.Description = "A burst of force, leaping forward into a foe.";
 		this.m.KilledString = "Shot";
-		this.m.Icon = "skills/missile_square.png";
-		this.m.IconDisabled = "skills/missile_square_bw.png";
-		this.m.Overlay = "missile_square";
 		this.m.SoundOnUse = [
 			"sounds/combat/magic_missile_01.wav",
 			"sounds/combat/magic_missile_02.wav"

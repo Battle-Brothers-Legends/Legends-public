@@ -9,9 +9,6 @@ this.legend_piercing_javelin_skill <- ::inherit("scripts/skills/actives/throw_ja
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingJavelin);
 		this.m.Description = "A throw with so much force that it passes straight through the target to whoever is behind them.";
 		this.m.KilledString = "Pierced";
-		this.m.Icon = "skills/PiercingBoltSkill.png";
-		this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-		this.m.Overlay = "piercing_bolt";
 		this.m.SoundOnHit = [
 			"sounds/combat/split_hit_01.wav",
 			"sounds/combat/split_hit_02.wav",

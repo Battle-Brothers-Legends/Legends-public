@@ -78,8 +78,6 @@
 ::Const.Strings.PerkName.LegendEscapeArtist <- "Escape Artist";
 ::Const.Strings.PerkName.LegendGatherer <- "Gatherer";
 ::Const.Strings.PerkName.LegendPotionBrewer <- "Potion Brewer";
-::Const.Strings.PerkName.LegendPrepareBleed <- "Exsanguination";
-::Const.Strings.PerkName.LegendPrepareGraze <- "Evisceration";
 ::Const.Strings.PerkName.LegendCarnage <- "Carnage";
 ::Const.Strings.PerkName.LegendUntouchable <- "Untouchable";
 ::Const.Strings.PerkName.LegendAssassinate <- "Assassinate";
@@ -215,11 +213,7 @@
 ::Const.Strings.PerkName.LegendMagicChainLightning <- "Chain Lightning";
 ::Const.Strings.PerkName.LegendMagicDaze <- "Stupefy";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
-::Const.Strings.PerkName.LegendMagicPsybeam <- "Psybeam";
 ::Const.Strings.PerkName.LegendMagicSleep <- "Sleep";
-::Const.Strings.PerkName.LegendMagicSoothingWind <- "Soothing Wind";
-::Const.Strings.PerkName.LegendMagicTeleport <- "Teleport";
-::Const.Strings.PerkName.LegendMagicWebBolt <- "Web Bolt";
 ::Const.Strings.PerkName.LegendMasteryBurningHands <- "Intense Flames";
 ::Const.Strings.PerkName.LegendMasteryChainLightning <- "Polarized";
 ::Const.Strings.PerkName.LegendMasteryHailstone <- "Dense Ice";
@@ -241,7 +235,7 @@
 ::Const.Strings.PerkName.LegendMiasma <- "Miasma";
 ::Const.Strings.PerkName.LegendDarkflight <- "Darkflight";
 ::Const.Strings.PerkName.LegendDaze <- "Stupefy";
-::Const.Strings.PerkName.LegendStun <- "Stun";
+::Const.Strings.PerkName.LegendMagicStun <- "Stun";
 ::Const.Strings.PerkName.LegendHorrify <- "Horrify";
 ::Const.Strings.PerkName.LegendManipulative <- "Manipulative";
 ::Const.Strings.PerkName.LegendSleep <- "Sleep";
@@ -665,7 +659,7 @@ Assault the senses of your target with a flurry of colorful movement and sounds.
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendStun <- @"
+::Const.Strings.PerkDescription.LegendMagicStun <- @"
 Unleash a brilliant flash of white light aimed directly at the eyes of your target in an attempt to blind and incapacitate.
 
 [color=%active%][u]Active:[/u][/color]
@@ -2339,26 +2333,6 @@ Only in suffering can we know truth.
 • Unlocks a crafting recipe to make cultist robes.
 ";
 
-::Const.Strings.PerkDescription.LegendPrepareBleed <- @"
-Time spent assessing an enemy, finding the arteries, will pay off in blood shed on the field.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Prepare to Bleed[/color] skill which primes your next strike to inflict [color=%damage%]5[/color] [color=%status%]Bleed[/color] damage for the next two turns.
-
-• Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
-
-• When [color=%status%]Dual Wielding[/color] cleavers or whips, both attacks apply [color=%status%]Bleed[/color].
-";
-
-::Const.Strings.PerkDescription.LegendPrepareGraze <- @"
-Long, slow, deep rending scratches that leave many bleeding grazes.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Prepare to Graze[/color] skill which primes your next strike to inflict [color=%damage%]2[/color] [color=%status%]Bleed[/color] damage for the next five turns.
-
-• Costs [color=%negative%]2[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendCarnage <- @"
 If it bleeds, we can kill it.
 
@@ -2932,29 +2906,9 @@ The ability to cut and shape wood is a craft few master.
 • A burst of force, leaping forward into a foe.
 ";
 
-::Const.Strings.PerkDescription.LegendMagicPsybeam <- @"
-[color=%active%][u]Active:[/u][/color]
-• Launch a mental attack in the form of a ray at an enemy to [color=%status%]Stun[/color] or [color=%status%]Daze[/color] them. Does no damage.
-";
-
 ::Const.Strings.PerkDescription.LegendMagicSleep <- @"
 [color=%active%][u]Active:[/u][/color]
 • Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the Resolves of the user and target.
-";
-
-::Const.Strings.PerkDescription.LegendMagicSoothingWind <- @"
-[color=%active%][u]Active:[/u][/color]
-• Restore the Fatigue of all allies within 4 tiles. Must be holding a magic staff to use.
-";
-
-::Const.Strings.PerkDescription.LegendMagicTeleport <- @"
-[color=%active%][u]Active:[/u][/color]
-• Teleport a short distance away.
-";
-
-::Const.Strings.PerkDescription.LegendMagicWebBolt <- @"
-[color=%active%][u]Active:[/u][/color]
-• Send a web of silk out to ensnare an opponent, rooting them in place halving their damage, defenses and Initiative.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryBurningHands <- @"

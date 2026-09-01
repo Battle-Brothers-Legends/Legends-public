@@ -5,9 +5,6 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_prayer_of_life";
 		this.m.Name = "Prayer of Hope";
 		this.m.Description = "Push allies on with your chant of holy scripture, restoring the health of all allies within 1 tile by 20% of your resolve. Does not work on cultists. Inflicts a disintegrating ailment on each adjacent undead.";
-		this.m.Icon = "skills/prayer_green_square.png";
-		this.m.IconDisabled = "skills/prayer_green_square_bw.png";
-		this.m.Overlay = "prayer_green";
 		this.m.SoundOnUse = [
 			"sounds/ambience/buildings/temple_prayer_00.wav",
 			"sounds/ambience/buildings/temple_prayer_01.wav",

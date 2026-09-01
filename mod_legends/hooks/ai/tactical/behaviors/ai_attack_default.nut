@@ -4,7 +4,6 @@
 		::Legends.Actives.getID(::Legends.Active.LegendWhiteWolfBite),
 		::Legends.Actives.getID(::Legends.Active.LegendRedbackSpiderBite),
 		::Legends.Actives.getID(::Legends.Active.LegendDemonHoundBite),
-		::Legends.Actives.getID(::Legends.Active.LegendRangedFlail),
 		::Legends.Actives.getID(::Legends.Active.LegendHorseKick),
 		::Legends.Actives.getID(::Legends.Active.LegendDonkeyKick),
 		::Legends.Actives.getID(::Legends.Active.LegendBearBite),

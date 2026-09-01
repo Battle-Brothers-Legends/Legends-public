@@ -227,6 +227,8 @@
 	<sprite id="legend_volley" ic="FF1B293C" img="skills\legend_volley.png" />
 	<sprite id="flagellate" ic="FF1B293C" img="skills\flagellate.png" />
 	<sprite id="leap" ic="FF1B293C" img="skills\leap.png" />
+	<sprite id="ninetails_disarm" ic="FF1B293C" img="skills\ninetails_disarm.png" />
+	<sprite id="possession" ic="FF1B293C" img="skills\possession.png" />
 	<!-- Orientation below -->
 
 

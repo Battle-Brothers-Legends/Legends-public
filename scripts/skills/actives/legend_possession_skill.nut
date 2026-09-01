@@ -4,9 +4,6 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
 		this.m.Description = "";
-		this.m.Icon = "skills/possession.png";
-		this.m.IconDisabled = "skills/possession_bw.png";
-		this.m.Overlay = "active_26";
 		this.m.SoundOnHit = [
 			"sounds/enemies/necromancer_01.wav",
 			"sounds/enemies/necromancer_02.wav",
