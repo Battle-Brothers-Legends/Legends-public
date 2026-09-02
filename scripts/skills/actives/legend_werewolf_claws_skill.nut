@@ -4,9 +4,6 @@ this.legend_werewolf_claws_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWerewolfClaws);
 		this.m.Description = "Tear into flesh with long, sharp claws.";
-		this.m.Icon = "skills/active_21.png";
-		this.m.IconDisabled = "skills/active_21_bw.png";
-		this.m.Overlay = "active_21";
 		this.m.SoundOnUse = [
 			"sounds/enemies/werewolf_claw_01.wav",
 			"sounds/enemies/werewolf_claw_02.wav",

@@ -50,9 +50,6 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashSighthound);
 		this.m.Description = "Summon a faithful sighthound. Needs a free tile adjacent. Can only summon one per combat.";
-		this.m.Icon = "skills/unleash_dawg.png";
-		this.m.IconDisabled = "skills/unleash_dawg_sw.png";
-		this.m.Overlay = "unleash_dawg";
 		this.m.SoundOnUse = [
 			"sounds/combat/unleash_wardog_01.wav",
 			"sounds/combat/unleash_wardog_02.wav",

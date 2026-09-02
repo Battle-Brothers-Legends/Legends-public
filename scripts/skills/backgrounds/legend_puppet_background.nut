@@ -25,7 +25,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function setGender(_gender = -1) {
 		if (_gender == -1) _gender = this.randomizeHumanGender();
-		_gender ? this.setBodyCharacteristics(_gender, ::Const.Bodies.Muscular) : this.setBodyCharacteristics(_gender, ::Const.Bodies.Muscular, null, ::Const.Hair.CommonMale, null, ::Const.Beards.Tidy);
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.CommonMale, Beards = ::Const.Beards.Tidy});
 	}
 
 	function onBuildDescription() {

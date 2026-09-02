@@ -13,9 +13,6 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCatapult);
 		this.m.Description = "Summon a catapult. Needs a free tile adjacent.";
-		this.m.Icon = "skills/catapult_square.png";
-		this.m.IconDisabled = "skills/catapult_square_bw.png";
-		this.m.Overlay = "active_165";
 		this.m.SoundOnUse = [
 			"sounds/enemies/unhold_idle_01.wav"
 		];

@@ -5,10 +5,7 @@ this.legend_spawn_zombie_high_skill <- this.inherit("scripts/skills/actives/lege
 		this.legend_spawn_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnZombieHigh);
 		this.m.Description = "Summon a fallen knight and send them charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/remake_man.png";
-		this.m.IconDisabled = "skills/remake_man_bw.png";
-		this.m.Overlay = "remake_man";
-		 this.m.SoundOnUse = [
+		this.m.SoundOnUse = [
 		 	"sounds/combat/meat_01.wav",
 		 	"sounds/combat/meat_02.wav",
 		 	"sounds/combat/meat_03.wav",

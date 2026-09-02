@@ -41,9 +41,6 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWhiteWolf);
 		this.m.Description = "Unleash your white wolf and send him charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/unleash_white_wolf.png";
-		this.m.IconDisabled = "skills/unleash_white_wolf_bw.png";
-		this.m.Overlay = "active_83";
 		this.m.SoundOnUse = [
 			"sounds/enemies/wolf_idle_00.wav",
 			"sounds/enemies/wolf_idle_01.wav",

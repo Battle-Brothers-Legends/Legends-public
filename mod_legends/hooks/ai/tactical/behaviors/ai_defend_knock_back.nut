@@ -2,7 +2,6 @@
 {
 	o.m.PossibleSkills.extend([
 		::Legends.Actives.getID(::Legends.Active.LegendRevolt),
-		::Legends.Actives.getID(::Legends.Active.LegendPush),
 		::Legends.Actives.getID(::Legends.Active.LegendEntice)
 	]);
 });

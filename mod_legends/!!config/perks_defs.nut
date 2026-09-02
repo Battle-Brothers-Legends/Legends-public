@@ -1851,17 +1851,6 @@ perkDefObjects.push({
 	Const = "LegendStrictSermons"
 });
 
-::Legends.Perk.LegendInfectiousRage <- null;
-perkDefObjects.push({
-	ID = "perk.legend_infectious_rage",
-	Script = "scripts/skills/perks/perk_legend_infectious_rage",
-	Name = ::Const.Strings.PerkName.LegendInfectiousRage,
-	Tooltip = ::Const.Strings.PerkDescription.LegendInfectiousRage,
-	Icon = "ui/perks/perk_35.png",
-	IconDisabled = "ui/perks/perk_35_sw.png",
-	Const = "LegendInfectiousRage"
-});
-
 ::Legends.Perk.LegendTeacher <- null;
 perkDefObjects.push({
 	ID = "perk.legend_teacher",
@@ -1904,17 +1893,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/levitate.png",
 	IconDisabled = "ui/perks/levitate_bw.png",
 	Const = "LegendLevitate"
-});
-
-::Legends.Perk.LegendTeleport <- null;
-perkDefObjects.push({
-	ID = "perk.legend_teleport",
-	Script = "scripts/skills/perks/perk_legend_teleport",
-	Name = ::Const.Strings.PerkName.LegendTeleport,
-	Tooltip = ::Const.Strings.PerkDescription.LegendTeleport,
-	Icon = "ui/perks/teleport_perk.png",
-	IconDisabled = "ui/perks/teleport_perk_bw.png",
-	Const = "LegendTeleport"
 });
 
 ::Legends.Perk.LegendSpecialistShieldSkill <- null;
@@ -2576,6 +2554,17 @@ perkDefObjects.push({
 	HasUnactivatedPerkTooltipHints = true // Inform general_queryUIPerkTooltipData() in tooltip_events.nut that the Perk has additional hints from getUnactivatedPerkTooltipHints()
 });
 
+::Legends.Perk.LegendRaiseUndead <- null;
+perkDefObjects.push({
+	ID = "perk.legend_raise_undead",
+	Script = "scripts/skills/perks/perk_legend_raise_undead",
+	Name = ::Const.Strings.PerkName.LegendRaiseUndead,
+	Tooltip = ::Const.Strings.PerkDescription.LegendRaiseUndead,
+	Icon = "ui/perks/raisedead2_circle.png",
+	IconDisabled = "ui/perks/raisedead2_circle_bw.png",
+	Const = "LegendRaiseUndead"
+});
+
 ::Legends.Perk.LegendRecuperation <- null;
 perkDefObjects.push({
 	ID = "perk.legend_recuperation",
@@ -3214,28 +3203,6 @@ perkDefObjects.push({
 	Const = "LegendCallLightning"
 });
 
-::Legends.Perk.LegendScryTrance <- null;
-perkDefObjects.push({
-	ID = "perk.legend_scry_trance",
-	Script = "scripts/skills/perks/perk_legend_scry_trance",
-	Name = ::Const.Strings.PerkName.LegendScryTrance,
-	Tooltip = ::Const.Strings.PerkDescription.LegendScryTrance,
-	Icon = "ui/perks/scry_trance_circle.png",
-	IconDisabled = "ui/perks/scry_trance_circle_bw.png",
-	Const = "LegendScryTrance"
-});
-
-::Legends.Perk.LegendReadOmensTrance <- null;
-perkDefObjects.push({
-	ID = "perk.legend_read_omens_trance",
-	Script = "scripts/skills/perks/perk_legend_read_omens_trance",
-	Name = ::Const.Strings.PerkName.LegendReadOmensTrance,
-	Tooltip = ::Const.Strings.PerkDescription.LegendReadOmensTrance,
-	Icon = "ui/perks/omens_circle.png",
-	IconDisabled = "ui/perks/omens_circle_bw.png",
-	Const = "LegendReadOmensTrance"
-});
-
 ::Legends.Perk.LegendDistantVisions <- null;
 perkDefObjects.push({
 	ID = "perk.legend_distant_visions",
@@ -3335,17 +3302,6 @@ perkDefObjects.push({
 	Const = "LegendChainLightning"
 });
 
-::Legends.Perk.LegendMagicCircleOfProtection <- null;
-perkDefObjects.push({
-	ID = "perk.legend_magic_circle_of_protection",
-	Script = "scripts/skills/perks/perk_legend_magic_circle_of_protection",
-	Name = ::Const.Strings.PerkName.LegendMagicCircleOfProtection,
-	Tooltip = ::Const.Strings.PerkDescription.LegendMagicCircleOfProtection,
-	Icon = "ui/perks/mage_legend_magic_circle_of_protection_circle.png",
-	IconDisabled = "ui/perks/mage_legend_magic_circle_of_protection_circle_bw.png",
-	Const = "LegendMagicCircleOfProtection"
-});
-
 ::Legends.Perk.LegendMagicMissile <- null;
 perkDefObjects.push({
 	ID = "perk.legend_magic_missile",
@@ -3366,17 +3322,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/sleep_56.png",
 	IconDisabled = "ui/perks/sleep_56_bw.png",
 	Const = "LegendMagicSleep"
-});
-
-::Legends.Perk.LegendMasteryBurningHands <- null;
-perkDefObjects.push({
-	ID = "perk.legend_mastery_burning_hands",
-	Script = "scripts/skills/perks/perk_legend_mastery_burning_hands",
-	Name = ::Const.Strings.PerkName.LegendMasteryBurningHands,
-	Tooltip = ::Const.Strings.PerkDescription.LegendMasteryBurningHands,
-	Icon = "ui/perks/burning_hands_circle_02.png",
-	IconDisabled = "ui/perks/burning_hands_circle_02_bw.png",
-	Const = "LegendMasteryBurningHands"
 });
 
 ::Legends.Perk.LegendMasteryChainLightning <- null;

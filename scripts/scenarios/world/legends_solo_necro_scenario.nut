@@ -44,6 +44,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPossession);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendSpawnZombieLow);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendRaiseUndead);
 
 		bros[1].setStartValuesEx([::Legends.Background.LegendPuppet]); //ur a wizard, Harold
 		bros[1].setPlaceInFormation(5);

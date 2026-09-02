@@ -28,8 +28,9 @@
 - Puppets shifted in behavior, now require 1 medicine per day to maintain and no food.
 > Not maintaining your puppets (and by extension, all zombies in your roster) with medicine will cause them to take 5-20 nonlethal damage per day until medicine is replenished. This alert will show up in their mood tooltip.
 - Starting puppet in necro trio now starts at level 2 as opposed to level 1.
-- Solo necromancer: +20% additional recruit/upkeep cost on most recruits removed.
-- Solo necromancer: relationship with nobles, peasant and city state factions increased from -50 to -20 on start.
+- Master necromancer: +20% additional recruit/upkeep cost on most recruits removed.
+- Master necromancer: relationship with nobles, peasant and city state factions increased from -50 to -20 on start.
+- Master necromancer: starts with `Raise Undead`
 > Partly a quick solution until we get more camp contracts made to fill in that early game isolation phase.
 - Necro trio: +50% additional recruit/upkeep cost on most recruits lowered to +20%.
 
@@ -700,9 +701,28 @@
 - `legend_sprint_skill_4` -> deleted
 - `legend_sprint_skill_5` -> deleted
 - `legend_necro_background` -> deleted
-- `perk_legend_raise_undead` -> deleted
 - `perk_legend_relax` -> deleted
 - `perk_legend_sleep` -> deleted
 - `perk_legend_spawn_skeleton_high` -> deleted
 - `perk_legend_spawn_skeleton_low` -> deleted
 - `perk_legend_spawn_skeleton_med` -> deleted
+- `legends_skeleton_high`
+- `legends_skeleton_high_archer`
+- `legends_skeleton_low`
+- `legends_skeleton_low_archer`
+- `legends_skeleton_med`
+- `legends_skeleton_med_archer`
+- `legend_read_omens_trance_skill`
+- `legend_scry_trance_skill`
+- `legend_spawn_skill`
+- `legend_staff_riposte_skill`
+- `legend_stealth_skill`
+- `legend_teleport_skill`
+- `legend_trance_abstract_skill`
+- `legend_wake_ally_aoe_skill`
+- `legend_wither_skill`
+- `legend_wooden_stake_stab_skill`
+- `perk_legend_infectious_rage`
+- `perk_legend_read_omens_trance`
+- `perk_legend_scry_trance`
+- `perk_legend_teleport`

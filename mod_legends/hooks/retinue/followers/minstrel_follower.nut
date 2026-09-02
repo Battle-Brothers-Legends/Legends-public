@@ -13,7 +13,7 @@
 		];
 
 		this.addSkillRequirement("Have someone with the Entice perk. Guaranteed on Minstrels and Troubadours", [
-			::Legends.Perks.getID(::Legends.Perk.LegendEntice),
+			::Legends.Perks.getID(::Legends.Perk.LegendManipulative),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged)
 		]);

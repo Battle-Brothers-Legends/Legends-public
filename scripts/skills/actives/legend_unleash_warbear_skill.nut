@@ -36,9 +36,6 @@ this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWarbear);
 		this.m.Description = "Unleash your warbear and send it charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/bear_square.png";
-		this.m.IconDisabled = "skills/bear_square_bw.png";
-		this.m.Overlay = "active_165";
 		this.m.SoundOnUse = [
 			"sounds/enemies/bear_idle1.wav",
 			"sounds/enemies/bear_idle2.wav",

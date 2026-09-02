@@ -4,8 +4,6 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStollwurmMove);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_149.png";
-		this.m.Overlay = "active_149";
 		this.m.SoundOnUse = [
 			"sounds/enemies/digging_01.wav",
 			"sounds/enemies/digging_02.wav",

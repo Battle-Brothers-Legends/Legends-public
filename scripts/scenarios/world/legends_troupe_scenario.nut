@@ -31,7 +31,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[0].m.Level = 3;
 		bros[0].setPlaceInFormation(13);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPush);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendManipulative);
 		bros[0].m.PerkPointsSpent += 1;
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
@@ -72,7 +72,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[3].m.LevelUps = 1;
 		bros[3].m.Level = 2;
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendPush);
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendManipulative);
 		bros[3].m.PerkPointsSpent += 1;
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));

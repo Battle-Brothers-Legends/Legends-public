@@ -268,10 +268,9 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendIntenselyCharm);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Actives.grant(this, ::Legends.Active.Hex);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
+		::Legends.Actives.grant(this, ::Legends.Active.Wither);
 		::Legends.Actives.grant(this, ::Legends.Active.Sleep);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendTeleport);
 		::Legends.Actives.grant(this, ::Legends.Active.FakeDrinkNightVision);
 
 

@@ -1,10 +1,37 @@
-::mods_hookExactClass("skills/actives/raise_undead", function(o)
-{
+::mods_hookExactClass("skills/actives/raise_undead", function(o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
+		this.m.Description = "Chant a forbidden ritual and add a fresh corpse to do your bidding."
+		this.m.Icon = "skills/raisedead2.png",
+		this.m.IconDisabled = "skills/raisedead2_bw.png",
 		this.m.Order = this.Const.SkillOrder.Any;
+	}
+
+	o.getTooltip <- function ()
+	{
+		local p = this.getContainer().getActor().getCurrentProperties();
+		return [{
+			id = 1,
+			type = "title",
+			text = this.getName()
+		},
+		{
+			id = 2,
+			type = "description",
+			text = this.getDescription()
+		},
+		{
+			id = 3,
+			type = "text",
+			text = this.getCostString()
+		},
+		{
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Raise a corpse to fight for you"
+		}];
 	}
 
 	o.onVerifyTarget = function ( _originTile, _targetTile )

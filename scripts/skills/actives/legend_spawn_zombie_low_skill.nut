@@ -5,10 +5,7 @@ this.legend_spawn_zombie_low_skill <- this.inherit("scripts/skills/actives/legen
 		this.legend_spawn_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnZombieLow);
 		this.m.Description = "Summon a fallen peasant and send it charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/mold_carrion.png";
-		this.m.IconDisabled = "skills/mold_carrion_bw.png";
-		this.m.Overlay = "mold_carrion";
-		 this.m.SoundOnUse = [
+		this.m.SoundOnUse = [
 		 	"sounds/combat/meat_01.wav",
 		 	"sounds/combat/meat_02.wav",
 		 	"sounds/combat/meat_03.wav",

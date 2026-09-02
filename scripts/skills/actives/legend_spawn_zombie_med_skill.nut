@@ -5,10 +5,7 @@ this.legend_spawn_zombie_med_skill <- this.inherit("scripts/skills/actives/legen
 		this.legend_spawn_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnZombieMed);
 		this.m.Description = "Summon a fallen yeoman and send it charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/fashion_body.png";
-		this.m.IconDisabled = "skills/fashion_body_bw.png";
-		this.m.Overlay = "fashion_body";
-		 this.m.SoundOnUse = [
+		this.m.SoundOnUse = [
 		 	"sounds/combat/meat_01.wav",
 		 	"sounds/combat/meat_02.wav",
 		 	"sounds/combat/meat_03.wav",

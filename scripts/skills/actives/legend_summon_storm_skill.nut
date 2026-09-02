@@ -14,9 +14,6 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSummonStorm);
 		this.m.Description = "Summons rain to the battlefield. Anyone caught in the rain will have their vision and ranged skill reduced by 1 and 10% respectively and their ranged defense increased by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
-		this.m.Icon = "skills/rain_square.png";
-		this.m.IconDisabled = "skills/rain_square_bw.png";
-		this.m.Overlay = "active_12";
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;

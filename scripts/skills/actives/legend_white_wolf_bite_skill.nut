@@ -12,8 +12,6 @@ this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_71.png";
-		this.m.Overlay = "active_71";
 		this.m.SoundOnUse = [
 			"sounds/enemies/wolf_bite_01.wav",
 			"sounds/enemies/wolf_bite_02.wav",

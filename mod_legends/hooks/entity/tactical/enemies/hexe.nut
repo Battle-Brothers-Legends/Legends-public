@@ -27,7 +27,7 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		::Legends.Actives.grant(this, ::Legends.Active.LegendWither);
+		::Legends.Actives.grant(this, ::Legends.Active.Wither);
 
 		if(::Legends.isLegendaryDifficulty())
 		{

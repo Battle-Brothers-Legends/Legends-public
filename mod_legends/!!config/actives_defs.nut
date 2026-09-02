@@ -1161,8 +1161,8 @@ activesDefs.push({
 	Script = "scripts/skills/actives/raise_undead",
 	Const = "RaiseUndead",
 	Name = "Raise Undead",
-	Icon = "skills/active_26.png",
-	IconDisabled = "skills/active_01_sw.png",
+	Icon = "skills/raisedead2.png",
+	IconDisabled = "skills/raisedead2_bw.png",
 	Overlay = "active_26",
 });
 
@@ -1271,8 +1271,8 @@ activesDefs.push({
 	Script = "scripts/skills/actives/root_skill",
 	Const = "Root",
 	Name = "Root",
-	this.m.Icon = "skills/roots_square.png";
-	this.m.IconDisabled = "skills/roots_square_bw.png"
+	Icon = "skills/roots_square.png",
+	IconDisabled = "skills/roots_square_bw.png"
 	Overlay = "active_70",
 });
 
@@ -1873,9 +1873,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/unstoppable_charge_skill",
 	Const = "UnstoppableCharge",
 	Name = "Unstoppable Charge",
-	this.m.Icon = "skills/active_110.png";
-	this.m.IconDisabled = "skills/active_110.png";
-	this.m.Overlay = "active_110";
+	Icon = "skills/active_110.png",
+	IconDisabled = "skills/active_110.png",
+	Overlay = "active_110",
 });
 
 ::Legends.Active.Uproot <- null;
@@ -2027,9 +2027,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/wither_skill",
 	Const = "Wither",
 	Name = "Wither",
-	Icon = "skills/active_217.png",
-	IconDisabled = "skills/active_217_sw.png",
-	Overlay = "active_217",
+	Icon = "skills/wither56_skill.png",
+	IconDisabled = "skills/wither56_skill_bw.png",
+	Overlay = "wither",
 });
 
 ::Legends.Active.WolfBite <- null;
@@ -2084,7 +2084,7 @@ activesDefs.push({
 	Name = "Shadow Mist",
 	Icon = "skills/nightvision_square.png",
 	IconDisabled = "skills/nightvision_square.png",
-	Overlay = "bust_nightmare";
+	Overlay = "bust_nightmare",
 });
 
 ::Legends.Active.LegendApothecaryMushrooms <- null;
@@ -2115,9 +2115,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_bandage_skill",
 	Const = "LegendBandage",
 	Name = "Use Bandages",
-	this.m.Icon = "skills/active_105.png";
-	this.m.IconDisabled = "skills/active_105_sw.png";
-	this.m.Overlay = "active_105";
+	Icon = "skills/active_105.png",
+	IconDisabled = "skills/active_105_sw.png",
+	Overlay = "active_105",
 });
 
 ::Legends.Active.LegendBansheeScream <- null;
@@ -2126,9 +2126,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_banshee_scream",
 	Const = "LegendBansheeScream",
 	Name = "Banshee Scream",
-	this.m.Icon = "skills/active_41.png";
-	this.m.IconDisabled = "skills/active_41.png";
-	this.m.Overlay = "active_41";
+	Icon = "skills/active_41.png",
+	IconDisabled = "skills/active_41.png",
+	Overlay = "active_41",
 });
 
 ::Legends.Active.LegendBasiliskPeck <- null;
@@ -2137,9 +2137,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_basilisk_peck_skill",
 	Const = "LegendBasiliskPeck",
 	Name = "Peck",
-	this.m.Icon = "skills/basilisk_peck.png";
-	this.m.IconDisabled = "skills/basilisk_peck.png";
-	this.m.Overlay = "basilisk_peck";
+	Icon = "skills/basilisk_peck.png",
+	IconDisabled = "skills/basilisk_peck.png",
+	Overlay = "basilisk_peck",
 });
 
 ::Legends.Active.LegendBasiliskSentryFowleye <- null;
@@ -2148,9 +2148,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_basilisk_sentry_fowleye_skill",
 	Const = "LegendBasiliskSentryFowleye",
 	Name = "Fowl Eye",
-	this.m.Icon = "skills/sentry_fowleye.png";
-	this.m.IconDisabled = "sentry_fowleye.png";
-	this.m.Overlay = "sentry_fowleye";
+	Icon = "skills/sentry_fowleye.png",
+	IconDisabled = "sentry_fowleye.png",
+	Overlay = "sentry_fowleye",
 });
 
 ::Legends.Active.LegendBasiliskSentryInject <- null;
@@ -2159,9 +2159,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_basilisk_sentry_inject_skill",
 	Const = "LegendBasiliskSentryInject",
 	Name = "Inject",
-	this.m.Icon = "skills/sentry_inject.png";
-	this.m.IconDisabled = "skills/sentry_inject.png";
-	this.m.Overlay = "sentry_inject";
+	Icon = "skills/sentry_inject.png",
+	IconDisabled = "skills/sentry_inject.png",
+	Overlay = "sentry_inject",
 });
 
 ::Legends.Active.LegendBearBite <- null;
@@ -2170,9 +2170,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_bear_bite_skill",
 	Const = "LegendBearBite",
 	Name = "Bear Bite",
-	this.m.Icon = "skills/active_71.png";
-	this.m.IconDisabled = "skills/active_71_bw.png";
-	this.m.Overlay = "active_71";
+	Icon = "skills/active_71.png",
+	IconDisabled = "skills/active_71_bw.png",
+	Overlay = "active_71",
 });
 
 ::Legends.Active.LegendBearClaws <- null;
@@ -2181,9 +2181,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_bear_claws_skill",
 	Const = "LegendBearClaws",
 	Name = "Bear Claws",
-	this.m.Icon = "skills/active_21.png";
-	this.m.IconDisabled = "skills/active_21_bw.png";
-	this.m.Overlay = "active_21";
+	Icon = "skills/active_21.png",
+	IconDisabled = "skills/active_21_bw.png",
+	Overlay = "active_21",
 });
 
 ::Legends.Active.LegendBreach <- null;
@@ -2203,9 +2203,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_buckler_bash_skill",
 	Const = "LegendBucklerBash",
 	Name = "Buckler Bash",
-	this.m.Icon = "skills/buckler_bash_square.png";
-	this.m.IconDisabled = "skills/buckler_bash_square_bw.png";
-	this.m.Overlay = "active_133";
+	Icon = "skills/buckler_bash_square.png",
+	IconDisabled = "skills/buckler_bash_square_bw.png",
+	Overlay = "active_133",
 });
 
 ::Legends.Active.LegendCallLightning <- null;
@@ -2214,9 +2214,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_call_lightning_skill",
 	Const = "LegendCallLightning",
 	Name = "Call Lightning",
-	this.m.Icon = "skills/storm_square.png";
-	this.m.IconDisabled = "skills/storm_square_bw.png";
-	this.m.Overlay = "storm_square";
+	Icon = "skills/storm_square.png",
+	IconDisabled = "skills/storm_square_bw.png",
+	Overlay = "storm_square",
 });
 
 ::Legends.Active.LegendCatBite <- null;
@@ -2225,9 +2225,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_cat_bite_skill",
 	Const = "LegendCatBite",
 	Name = "Cat Bite",
-	this.m.Icon = "skills/cat_bite.png";
-	this.m.IconDisabled = "skills/cat_bite_sw.png";
-	this.m.Overlay = "cat_bite";
+	Icon = "skills/cat_bite.png",
+	IconDisabled = "skills/cat_bite_sw.png",
+	Overlay = "cat_bite",
 });
 
 ::Legends.Active.LegendCatapultBoulder <- null;
@@ -2236,9 +2236,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_catapult_boulder_skill",
 	Const = "LegendCatapultBoulder",
 	Name = "Catapult Boulder",
-	this.m.Icon = "skills/active_12.png";
-	this.m.IconDisabled = "skills/active_12_sw.png";
-	this.m.Overlay = "active_12";
+	Icon = "skills/active_12.png",
+	IconDisabled = "skills/active_12_sw.png",
+	Overlay = "active_12",
 });
 
 ::Legends.Active.LegendChainLightning <- null;
@@ -2247,9 +2247,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_chain_lightning_skill",
 	Const = "LegendChainLightning",
 	Name = "Chain Lightning",
-	this.m.Icon = "skills/lightning_square.png";
-	this.m.IconDisabled = "skills/lightning_square_bw.png";
-	this.m.Overlay = "lightning_square";
+	Icon = "skills/lightning_square.png",
+	IconDisabled = "skills/lightning_square_bw.png",
+	Overlay = "lightning_square",
 });
 
 ::Legends.Active.LegendCheerOn <- null;
@@ -2258,9 +2258,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_cheer_on_skill",
 	Const = "LegendCheerOn",
 	Name = "Cheer On",
-	this.m.Icon = "skills/cheered_on_square.png";
-	this.m.IconDisabled = "skills/cheered_on_square_bw.png";
-	this.m.Overlay = "cheered_on_square";
+	Icon = "skills/cheered_on_square.png",
+	IconDisabled = "skills/cheered_on_square_bw.png",
+	Overlay = "cheered_on_square",
 });
 
 ::Legends.Active.LegendChoke <- null;
@@ -2269,9 +2269,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_choke_skill",
 	Const = "LegendChoke",
 	Name = "Choke",
-	this.m.Icon = "skills/choke_square.png";
-	this.m.IconDisabled = "skills/choke_square_bw.png";
-	this.m.Overlay = "active_choke";
+	Icon = "skills/choke_square.png",
+	IconDisabled = "skills/choke_square_bw.png",
+	Overlay = "active_choke",
 });
 
 ::Legends.Active.LegendClimb <- null;
@@ -2280,9 +2280,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_climb_skill",
 	Const = "LegendClimb",
 	Name = "Climb",
-	this.m.Icon = "skills/active_climb.png";
-	this.m.IconDisabled = "skills/active_climb_bw.png";
-	this.m.Overlay = "active_climb";
+	Icon = "skills/active_climb.png",
+	IconDisabled = "skills/active_climb_bw.png",
+	Overlay = "active_climb",
 });
 
 ::Legends.Active.LegendCoatWithRedbackPoison <- null;
@@ -2291,9 +2291,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_coat_with_redback_poison_skill",
 	Const = "LegendCoatWithRedbackPoison",
 	Name = "Use Redback Poison",
-	this.m.Icon = "skills/active_legend_coat_with_redback_poison.png";
-	this.m.IconDisabled = "skills/active_legend_coat_with_redback_poison_bw.png";
-	this.m.Overlay = "active_legend_coat_with_redback_poison";
+	Icon = "skills/active_legend_coat_with_redback_poison.png",
+	IconDisabled = "skills/active_legend_coat_with_redback_poison_bw.png",
+	Overlay = "active_legend_coat_with_redback_poison",
 });
 
 ::Legends.Active.LegendCommandLegion <- null;
@@ -2302,9 +2302,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_command_legion_skill",
 	Const = "LegendCommandLegion",
 	Name = "Command Legionary",
-	this.m.Icon = "skills/legend_legion_command_square.png";
-	this.m.IconDisabled = "skills/legend_legion_command_square_bw.png";
-	this.m.Overlay = "legend_legion_command_square";
+	Icon = "skills/legend_legion_command_square.png",
+	IconDisabled = "skills/legend_legion_command_square_bw.png",
+	Overlay = "legend_legion_command_square",
 });
 
 ::Legends.Active.LegendCoordinatedVolleys <- null;
@@ -2313,9 +2313,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_coordinated_volleys_skill",
 	Const = "LegendCoordinatedVolleys",
 	Name = "Coordinated Volleys",
-	this.m.Icon = "skills/coordinated_volleys_square.png";
-	this.m.IconDisabled = "skills/coordinated_volleys_square_bw.png";
-	this.m.Overlay = "coordinated_volleys_square";
+	Icon = "skills/coordinated_volleys_square.png",
+	IconDisabled = "skills/coordinated_volleys_square_bw.png",
+	Overlay = "coordinated_volleys_square",
 });
 
 ::Legends.Active.LegendCurseofyears <- null;
@@ -2324,9 +2324,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_curseofyears_skill",
 	Const = "LegendCurseofyears",
 	Name = "Decrepify",
-	this.m.Icon = "skills/active_117.png";
-	this.m.IconDisabled = "skills/active_117_sw.png";
-	this.m.Overlay = "active_117";
+	Icon = "skills/active_117.png",
+	IconDisabled = "skills/active_117_sw.png",
+	Overlay = "active_117",
 });
 
 ::Legends.Active.LegendDaze <- null;
@@ -2335,9 +2335,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_daze_skill",
 	Const = "LegendDaze",
 	Name = "Stupefy",
-	this.m.Icon = "skills/daze_square.png";
-	this.m.IconDisabled = "skills/daze_square_bw.png";
-	this.m.Overlay = "daze_square";
+	Icon = "skills/daze_square.png",
+	IconDisabled = "skills/daze_square_bw.png",
+	Overlay = "daze_square",
 });
 
 ::Legends.Active.LegendDeathtouch <- null;
@@ -2346,9 +2346,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_deathtouch_skill",
 	Const = "LegendDeathtouch",
 	Name = "Death Touch",
-	this.m.Icon = "skills/deathtouch_square.png";
-	this.m.IconDisabled = "skills/deathtouch_square_bw.png";
-	this.m.Overlay = "deathtouch_square";
+	Icon = "skills/deathtouch_square.png",
+	IconDisabled = "skills/deathtouch_square_bw.png",
+	Overlay = "deathtouch_square",
 });
 
 ::Legends.Active.LegendDebilitate <- null; // active debilitate
@@ -2368,9 +2368,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_demon_hound_bite_skill",
 	Const = "LegendDemonHoundBite",
 	Name = "Höllenhund Bite",
-	this.m.Icon = "skills/demon_hound_bite.png";
-	this.m.IconDisabled = "skills/demon_hound_bite_bw.png";
-	this.m.Overlay = "demon_hound_bite";
+	Icon = "skills/demon_hound_bite.png",
+	IconDisabled = "skills/demon_hound_bite_bw.png",
+	Overlay = "demon_hound_bite",
 });
 
 ::Legends.Active.LegendDonkeyKick <- null;
@@ -2379,9 +2379,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_donkey_kick_skill",
 	Const = "LegendDonkeyKick",
 	Name = "Donkey Kick",
-	this.m.Icon = "skills/horse_kick.png";
-	this.m.IconDisabled = "skills/horse_kick_bw.png";
-	this.m.Overlay = "horse_kick";
+	Icon = "skills/horse_kick.png",
+	IconDisabled = "skills/horse_kick_bw.png",
+	Overlay = "horse_kick",
 });
 
 ::Legends.Active.LegendDoubleSwing <- null;
@@ -2390,9 +2390,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_double_swing_skill",
 	Const = "LegendDoubleSwing",
 	Name = "Double Swing",
-	this.m.Icon = "skills/legend_double_swing.png";
-	this.m.IconDisabled = "skills/legend_double_swing_sw.png";
-	this.m.Overlay = "legend_double_swing";
+	Icon = "skills/legend_double_swing.png",
+	IconDisabled = "skills/legend_double_swing_sw.png",
+	Overlay = "legend_double_swing",
 });
 
 ::Legends.Active.LegendDrain <- null;
@@ -2401,9 +2401,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drain_skill",
 	Const = "LegendDrain",
 	Name = "Drain Life",
-	this.m.Icon = "skills/blooddrop_square.png";
-	this.m.IconDisabled = "skills/blooddrop_square_bw.png";
-	this.m.Overlay = "blooddrop_square";
+	Icon = "skills/blooddrop_square.png",
+	IconDisabled = "skills/blooddrop_square_bw.png",
+	Overlay = "blooddrop_square",
 });
 
 ::Legends.Active.LegendDrinkBeer <- null;
@@ -2412,9 +2412,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_beer_skill",
 	Const = "LegendDrinkBeer",
 	Name = "Drink or Give Beer",
-	this.m.Icon = "skills/beer_square.png";
-	this.m.IconDisabled = "skills/beer_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/beer_square.png",
+	IconDisabled = "skills/beer_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkHeartwoodSap <- null;
@@ -2423,9 +2423,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_heartwood_sap_skill",
 	Const = "LegendDrinkHeartwoodSap",
 	Name = "Drink or Give Heartwood Sap",
-	this.m.Icon = "skills/heartwood_sap_potion_square.png";
-	this.m.IconDisabled = "skills/blood_potion_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/heartwood_sap_potion_square.png",
+	IconDisabled = "skills/blood_potion_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkHexeIchorPotion <- null;
@@ -2434,9 +2434,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_hexe_ichor_potion_skill",
 	Const = "LegendDrinkHexeIchorPotion",
 	Name = "Drink or Give Hexe Ichor Potion",
-	this.m.Icon = "skills/ichor_potion_square.png";
-	this.m.IconDisabled = "skills/ichor_potion_square_bw.png";
-	this.m.Overlay = "active_140";
+	Icon = "skills/ichor_potion_square.png",
+	IconDisabled = "skills/ichor_potion_square_bw.png",
+	Overlay = "active_140",
 });
 
 ::Legends.Active.LegendDrinkLiquor <- null;
@@ -2445,9 +2445,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_liquor_skill",
 	Const = "LegendDrinkLiquor",
 	Name = "Drink or Give Liquor",
-	this.m.Icon = "skills/mead_square.png";
-	this.m.IconDisabled = "skills/mead_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/mead_square.png",
+	IconDisabled = "skills/mead_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkMead <- null;
@@ -2456,9 +2456,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_mead_skill",
 	Const = "LegendDrinkMead",
 	Name = "Drink or Give Mead",
-	this.m.Icon = "skills/mead_square.png";
-	this.m.IconDisabled = "skills/mead_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/mead_square.png",
+	IconDisabled = "skills/mead_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkSkinGhoulBlood <- null;
@@ -2467,9 +2467,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_skin_ghoul_blood_skill",
 	Const = "LegendDrinkSkinGhoulBlood",
 	Name = "Drink or Give Skin Ghoul Blood",
-	this.m.Icon = "skills/blooddrop_square.png";
-	this.m.IconDisabled = "skills/blooddrop_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/blooddrop_square.png",
+	IconDisabled = "skills/blooddrop_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkStollwurmBlood <- null;
@@ -2478,9 +2478,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_stollwurm_blood_skill",
 	Const = "LegendDrinkStollwurmBlood",
 	Name = "Drink or Give Stollwurm Blood",
-	this.m.Icon = "skills/stollwurm_blood_potion_square.png";
-	this.m.IconDisabled = "skills/blood_potion_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/stollwurm_blood_potion_square.png",
+	IconDisabled = "skills/blood_potion_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrinkWine <- null;
@@ -2489,9 +2489,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drink_wine_skill",
 	Const = "LegendDrinkWine",
 	Name = "Drink or Give Wine",
-	this.m.Icon = "skills/wine_square.png";
-	this.m.IconDisabled = "skills/wine_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/wine_square.png",
+	IconDisabled = "skills/wine_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendDrumsOfLife <- null;
@@ -2500,9 +2500,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drums_of_life_skill",
 	Const = "LegendDrumsOfLife",
 	Name = "Song of Life",
-	this.m.Icon = "skills/drums_of_life_square.png";
-	this.m.IconDisabled = "skills/drums_of_life_square_bw.png";
-	this.m.Overlay = "drums_of_life_square";
+	Icon = "skills/drums_of_life_square.png",
+	IconDisabled = "skills/drums_of_life_square_bw.png",
+	Overlay = "drums_of_life_square",
 });
 
 ::Legends.Active.LegendDrumsOfWar <- null;
@@ -2511,9 +2511,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_drums_of_war_skill",
 	Const = "LegendDrumsOfWar",
 	Name = "War Chant",
-	this.m.Icon = "skills/drums_of_war_square.png";
-	this.m.IconDisabled = "skills/drums_of_war_square_bw.png";
-	this.m.Overlay = "drums_of_war_square";
+	Icon = "skills/drums_of_war_square.png",
+	IconDisabled = "skills/drums_of_war_square_bw.png",
+	Overlay = "drums_of_war_square",
 });
 
 ::Legends.Active.LegendEatPie <- null;
@@ -2522,9 +2522,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_eat_pie_skill",
 	Const = "LegendEatPie",
 	Name = "Eat or Give Pie",
-	this.m.Icon = "skills/pie_square.png";
-	this.m.IconDisabled = "skills/pie_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/pie_square.png",
+	IconDisabled = "skills/pie_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendEatPorridge <- null;
@@ -2533,9 +2533,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_eat_porridge_skill",
 	Const = "LegendEatPorridge",
 	Name = "Eat or Give Porridge",
-	this.m.Icon = "skills/porridge_square.png";
-	this.m.IconDisabled = "skills/porridge_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/porridge_square.png",
+	IconDisabled = "skills/porridge_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendEatPudding <- null;
@@ -2544,9 +2544,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_eat_pudding_skill",
 	Const = "LegendEatPudding",
 	Name = "Eat or Give Pudding",
-	this.m.Icon = "skills/pudding_square.png";
-	this.m.IconDisabled = "skills/pudding_square_bw.png";
-	this.m.Overlay = "active_144";
+	Icon = "skills/pudding_square.png",
+	IconDisabled = "skills/pudding_square_bw.png",
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendEatRations <- null;
@@ -2555,9 +2555,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_eat_rations_skill",
 	Const = "LegendEatRations",
 	Name = "Eat or Give Food",
-	this.m.Icon = "skills/rations_square.png";
-	this.m.IconDisabled = "skills/rations_square_bw.png";	
-	this.m.Overlay = "active_144";
+	Icon = "skills/rations_square.png",
+	IconDisabled = "skills/rations_square_bw.png",	
+	Overlay = "active_144",
 });
 
 ::Legends.Active.LegendEnragedHyenaBite <- null;
@@ -2566,9 +2566,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_enraged_hyena_bite_skill",
 	Const = "LegendEnragedHyenaBite",
 	Name = "Enraged Hyena Bite",
-	this.m.Icon = "skills/active_197.png";
-	this.m.IconDisabled = "skills/active_197_sw.png";
-	this.m.Overlay = "active_197";
+	Icon = "skills/active_197.png",
+	IconDisabled = "skills/active_197_sw.png",
+	Overlay = "active_197",
 });
 
 ::Legends.Active.LegendEntice <- null;
@@ -2577,9 +2577,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_entice_skill",
 	Const = "LegendEntice",
 	Name = "Entice",
-	this.m.Icon = "skills/entice.png";
-	this.m.IconDisabled = "skills/entice_bw.png";
-	this.m.Overlay = "entice";
+	Icon = "skills/entice.png",
+	IconDisabled = "skills/entice_bw.png",
+	Overlay = "entice",
 });
 
 ::Legends.Active.LegendEvasion <- null;
@@ -2588,9 +2588,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_evasion_skill",
 	Const = "LegendEvasion",
 	Name = "Evasion",
-	this.m.Icon = "skills/evasion.png";
-	this.m.IconDisabled = "skills/evasion_bw.png";
-	this.m.Overlay = "evasion";
+	Icon = "skills/evasion.png",
+	IconDisabled = "skills/evasion_bw.png",
+	Overlay = "evasion",
 });
 
 ::Legends.Active.LegendFalcon <- null;
@@ -2599,9 +2599,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_falcon_skill",
 	Const = "LegendFalcon",
 	Name = "Unleash Falcon",
-	this.m.Icon = "skills/active_104.png";
-	this.m.IconDisabled = "skills/active_104_sw.png";
-	this.m.Overlay = "active_104";
+	Icon = "skills/active_104.png",
+	IconDisabled = "skills/active_104_sw.png",
+	Overlay = "active_104",
 });
 
 ::Legends.Active.LegendFieldTriage <- null;
@@ -2610,9 +2610,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_field_triage_skill",
 	Const = "LegendFieldTriage",
 	Name = "Field Triage",
-	this.m.Icon = "skills/triage_square.png";
-	this.m.IconDisabled = "skills/triage_square_bw.png";
-	this.m.Overlay = "active_41";
+	Icon = "skills/triage_square.png",
+	IconDisabled = "skills/triage_square_bw.png",
+	Overlay = "active_41",
 });
 
 ::Legends.Active.LegendFirefield <- null;
@@ -2621,9 +2621,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_firefield_skill",
 	Const = "LegendFirefield",
 	Name = "Fire Pot",
-	this.m.Icon = "skills/fire_square.png";
-	this.m.IconDisabled = "skills/fire_square_bw.png";
-	this.m.Overlay = "fire_circle";
+	Icon = "skills/fire_square.png",
+	IconDisabled = "skills/fire_square_bw.png",
+	Overlay = "fire_circle",
 });
 
 ::Legends.Active.LegendFlagellate <- null;
@@ -2632,9 +2632,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_flagellate_skill",
 	Const = "LegendFlagellate",
 	Name = "Flagellate",
-	this.m.Icon = "skills/flagellate.png";
-	this.m.IconDisabled = "skills/flagellate.png";
-	this.m.Overlay = "flagellate";
+	Icon = "skills/flagellate.png",
+	IconDisabled = "skills/flagellate.png",
+	Overlay = "flagellate",
 });
 
 ::Legends.Active.LegendFlogging <- null;
@@ -2643,9 +2643,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_flogging_skill",
 	Const = "LegendFlogging",
 	Name = "Flogging",
-	this.m.Icon = "skills/bleed_square.png";
-	this.m.IconDisabled = "skills/bleed_square_bw.png";
-	this.m.Overlay = "bleed";
+	Icon = "skills/bleed_square.png",
+	IconDisabled = "skills/bleed_square_bw.png",
+	Overlay = "bleed",
 });
 
 ::Legends.Active.LegendFlourish <- null;
@@ -2654,9 +2654,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_flourish_skill",
 	Const = "LegendFlourish",
 	Name = "Flourish",
-	this.m.Icon = "ui/perks/perk_41_active.png";
-	this.m.IconDisabled = "ui/perks/perk_41_active_sw.png";
-	this.m.Overlay = "perk_41_active";
+	Icon = "ui/perks/perk_41_active.png",
+	IconDisabled = "ui/perks/perk_41_active_sw.png",
+	Overlay = "perk_41_active",
 });
 
 ::Legends.Active.LegendFlowingSlash <- null;
@@ -2665,9 +2665,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_flowing_slash_skill",
 	Const = "LegendFlowingSlash",
 	Name = "Flowing Slash",
-	this.m.Icon = "skills/active_172.png";
-	this.m.IconDisabled = "skills/active_172_sw.png";
-	this.m.Overlay = "active_172";
+	Icon = "skills/active_172.png",
+	IconDisabled = "skills/active_172_sw.png",
+	Overlay = "active_172",
 });
 
 ::Legends.Active.LegendFullDraw <- null;
@@ -2676,9 +2676,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_full_draw_skill",
 	Const = "LegendFullDraw",
 	Name = "Full Draw",
-	this.m.Icon = "skills/legend_full_draw.png";
-	this.m.IconDisabled = "skills/legend_full_draw_bw.png";
-	this.m.Overlay = "legend_full_draw";
+	Icon = "skills/legend_full_draw.png",
+	IconDisabled = "skills/legend_full_draw_bw.png",
+	Overlay = "legend_full_draw",
 });
 
 ::Legends.Active.LegendGrapple <- null;
@@ -2687,9 +2687,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_grapple_skill",
 	Const = "LegendGrapple",
 	Name = "Grapple",
-	this.m.Icon = "skills/grapple_square.png";
-	this.m.IconDisabled = "skills/grapple_square_bw.png";
-	this.m.Overlay = "active_grapple";
+	Icon = "skills/grapple_square.png",
+	IconDisabled = "skills/grapple_square_bw.png",
+	Overlay = "active_grapple",
 });
 
 ::Legends.Active.LegendGrowGreenwoodShield <- null;
@@ -2698,9 +2698,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_grow_greenwood_shield_skill",
 	Const = "LegendGrowGreenwoodShield",
 	Name = "Grow Greenwood Shield",
-	this.m.Icon = "skills/active_121.png";
-	this.m.IconDisabled = "skills/active_121.png";
-	this.m.Overlay = "active_121";
+	Icon = "skills/active_121.png",
+	IconDisabled = "skills/active_121.png",
+	Overlay = "active_121",
 });
 
 ::Legends.Active.LegendGruesomeFeast <- null;
@@ -2709,9 +2709,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_gruesome_feast_skill",
 	Const = "LegendGruesomeFeast",
 	Name = "Gruesome Feast",
-	this.m.Icon = "skills/gruesome_square.png";
-	this.m.IconDisabled = "skills/gruesome_square_bw.png";
-	this.m.Overlay = "gruesome_square";
+	Icon = "skills/gruesome_square.png",
+	IconDisabled = "skills/gruesome_square_bw.png",
+	Overlay = "gruesome_square",
 });
 
 ::Legends.Active.LegendGut <- null;
@@ -2720,9 +2720,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_gut_skill",
 	Const = "LegendGut",
 	Name = "Gut",
-	this.m.Icon = "skills/active_237.png";
-	this.m.IconDisabled = "skills/active_237_sw.png";
-	this.m.Overlay = "active_237";
+	Icon = "skills/active_237.png",
+	IconDisabled = "skills/active_237_sw.png",
+	Overlay = "active_237",
 });
 
 ::Legends.Active.LegendHaftstrike <- null;
@@ -2731,9 +2731,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_haftstrike",
 	Const = "LegendHaftstrike",
 	Name = "Haftstrike",
-	this.m.Icon = "skills/active_haftstrike.png";
-	this.m.IconDisabled = "skills/active_haftstrike_bw.png";
-	this.m.Overlay = "active_haftstrike";
+	Icon = "skills/active_haftstrike.png",
+	IconDisabled = "skills/active_haftstrike_bw.png",
+	Overlay = "active_haftstrike",
 });
 
 ::Legends.Active.LegendHalberdSmite <- null;
@@ -2742,9 +2742,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_halberd_smite_skill",
 	Const = "LegendHalberdSmite",
 	Name = "Smite",
-	this.m.Icon = "skills/legend_halberd_smite.png";
-	this.m.IconDisabled = "skills/legend_halberd_smite_bw.png";
-	this.m.Overlay = "legend_halberd_smite";
+	Icon = "skills/legend_halberd_smite.png",
+	IconDisabled = "skills/legend_halberd_smite_bw.png",
+	Overlay = "legend_halberd_smite",
 });
 
 ::Legends.Active.LegendHalfsword <- null;
@@ -2753,9 +2753,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_halfsword_skill",
 	Const = "LegendHalfsword",
 	Name = "Halfsword",
-	this.m.Icon = "skills/active_halfsword.png";
-	this.m.IconDisabled = "skills/active_halfsword_bw.png";
-	this.m.Overlay = "active_halfsword";
+	Icon = "skills/active_halfsword.png",
+	IconDisabled = "skills/active_halfsword_bw.png",
+	Overlay = "active_halfsword",
 });
 
 ::Legends.Active.LegendHarvest <- null;
@@ -2764,9 +2764,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_harvest_skill",
 	Const = "LegendHarvest",
 	Name = "Harvest",
-	this.m.Icon = "skills/active_06.png";
-	this.m.IconDisabled = "skills/active_06_sw.png";
-	this.m.Overlay = "active_06";
+	Icon = "skills/active_06.png",
+	IconDisabled = "skills/active_06_sw.png",
+	Overlay = "active_06",
 });
 
 ::Legends.Active.LegendHeartseeker <- null;
@@ -2775,9 +2775,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_heartseeker_skill",
 	Const = "LegendHeartseeker",
 	Name = "Heartseeker",
-	this.m.Icon = "skills/active_legend_heartseeker.png";
-	this.m.IconDisabled = "skills/active_legend_heartseeker_bw.png";
-	this.m.Overlay = "active_legend_heartseeker";
+	Icon = "skills/active_legend_heartseeker.png",
+	IconDisabled = "skills/active_legend_heartseeker_bw.png",
+	Overlay = "active_legend_heartseeker",
 });
 
 ::Legends.Active.LegendHew <- null;
@@ -2786,9 +2786,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_hew_skill",
 	Const = "LegendHew",
 	Name = "Hew",
-	this.m.Icon = "skills/active_210.png";
-	this.m.IconDisabled = "skills/active_210_sw.png";
-	this.m.Overlay = "active_210";
+	Icon = "skills/active_210.png",
+	IconDisabled = "skills/active_210_sw.png",
+	Overlay = "active_210",
 });
 
 ::Legends.Active.LegendHoldTheLine <- null;
@@ -2797,9 +2797,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_hold_the_line",
 	Const = "LegendHoldTheLine",
 	Name = "Hold the line",
-	this.m.Icon = "skills/holdtheline_square.png";
-	this.m.IconDisabled = "skills/holdtheline_square_bw.png";
-	this.m.Overlay = "holdtheline_square";
+	Icon = "skills/holdtheline_square.png",
+	IconDisabled = "skills/holdtheline_square_bw.png",
+	Overlay = "holdtheline_square",
 });
 
 ::Legends.Active.LegendHolyflame <- null;
@@ -2808,9 +2808,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_holyflame_skill",
 	Const = "LegendHolyflame",
 	Name = "Holy Flame",
-	this.m.Icon = "skills/holybluefire_square.png";
-	this.m.IconDisabled = "skills/holyfire_square_bw.png";
-	this.m.Overlay = "holybluefire_square";
+	Icon = "skills/holybluefire_square.png",
+	IconDisabled = "skills/holyfire_square_bw.png",
+	Overlay = "holybluefire_square",
 });
 
 ::Legends.Active.LegendHorseCharge <- null;
@@ -2819,9 +2819,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_horse_charge_skill",
 	Const = "LegendHorseCharge",
 	Name = "Horse Charge",
-	this.m.Icon = "skills/horse_charge.png";
-	this.m.IconDisabled = "skills/horse_charge_bw.png";
-	this.m.Overlay = "horse_charge";
+	Icon = "skills/horse_charge.png",
+	IconDisabled = "skills/horse_charge_bw.png",
+	Overlay = "horse_charge",
 });
 
 ::Legends.Active.LegendHorseKick <- null;
@@ -2830,9 +2830,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_horse_kick_skill",
 	Const = "LegendHorseKick",
 	Name = "Horse Kick",
-	this.m.Icon = "skills/horse_kick.png";
-	this.m.IconDisabled = "skills/horse_kick_bw.png";
-	this.m.Overlay = "horse_kick";
+	Icon = "skills/horse_kick.png",
+	IconDisabled = "skills/horse_kick_bw.png",
+	Overlay = "horse_kick",
 });
 
 ::Legends.Active.LegendHorsePirouette <- null;
@@ -2841,9 +2841,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_horse_pirouette_skill",
 	Const = "LegendHorsePirouette",
 	Name = "Pirouette",
-	this.m.Icon = "skills/horse_pirouette.png";
-	this.m.IconDisabled = "skills/horse_pirouette_bw.png";
-	this.m.Overlay = "horse_pirouette";
+	Icon = "skills/horse_pirouette.png",
+	IconDisabled = "skills/horse_pirouette_bw.png",
+	Overlay = "horse_pirouette",
 });
 
 ::Legends.Active.LegendIncoming <- null;
@@ -2852,9 +2852,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_incoming_skill",
 	Const = "LegendIncoming",
 	Name = "Incoming!",
-	this.m.Icon = "skills/incoming_square.png";
-	this.m.IconDisabled = "skills/incoming_square_bw.png";
-	this.m.Overlay = "incoming_circle";
+	Icon = "skills/incoming_square.png",
+	IconDisabled = "skills/incoming_square_bw.png",
+	Overlay = "incoming_circle",
 });
 
 ::Legends.Active.LegendInspire <- null;
@@ -2863,9 +2863,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_inspire_skill",
 	Const = "LegendInspire",
 	Name = "Inspire",
-	this.m.Icon = "skills/inspire.png";
-	this.m.IconDisabled = "skills/inspire_bw.png";
-	this.m.Overlay = "perk_28_active";
+	Icon = "skills/inspire.png",
+	IconDisabled = "skills/inspire_bw.png",
+	Overlay = "perk_28_active",
 });
 
 ::Legends.Active.LegendIntenselyCharm <- null;
@@ -2874,9 +2874,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_intensely_charm_skill",
 	Const = "LegendIntenselyCharm",
 	Name = "Infatuate",
-	this.m.Icon = "skills/active_120.png";
-	this.m.IconDisabled = "skills/active_120.png";
-	this.m.Overlay = "active_120";
+	Icon = "skills/active_120.png",
+	IconDisabled = "skills/active_120.png",
+	Overlay = "active_120",
 });
 
 ::Legends.Active.LegendIntoTheFray <- null;
@@ -2885,9 +2885,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_into_the_fray_skill",
 	Const = "LegendIntoTheFray",
 	Name = "Into The Fray",
-	this.m.Icon = "skills/unarmed_lunge_square.png";
-	this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
-	this.m.Overlay = "unarmed_lunge_square";
+	Icon = "skills/unarmed_lunge_square.png",
+	IconDisabled = "skills/unarmed_lunge_square_bw.png",
+	Overlay = "unarmed_lunge_square",
 });
 
 ::Legends.Active.LegendKick <- null;
@@ -2896,9 +2896,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_kick_skill",
 	Const = "LegendKick",
 	Name = "Kick",
-	this.m.Icon = "skills/kick_square.png";
-	this.m.IconDisabled = "skills/kick_square_bw.png";
-	this.m.Overlay = "active_kick";
+	Icon = "skills/kick_square.png",
+	IconDisabled = "skills/kick_square_bw.png",
+	Overlay = "active_kick",
 });
 
 ::Legends.Active.LegendLaunchAcidFlask <- null;
@@ -2962,9 +2962,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_leap_skill",
 	Const = "LegendLeap",
 	Name = "Leap",
-	this.m.Icon = "skills/leap_square.png";
-	this.m.IconDisabled = "skills/leap_square_bw.png";
-	this.m.Overlay = "horse_pirouette";
+	Icon = "skills/leap_square.png",
+	IconDisabled = "skills/leap_square_bw.png",
+	Overlay = "horse_pirouette",
 });
 
 ::Legends.Active.LegendLineThemUp <- null;
@@ -2973,9 +2973,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_line_them_up_skill",
 	Const = "LegendLineThemUp",
 	Name = "Line Them Up",
-	this.m.Icon = "skills/active_203.png";
-	this.m.IconDisabled = "skills/active_203_sw.png";
-	this.m.Overlay = "active_203";
+	Icon = "skills/active_203.png",
+	IconDisabled = "skills/active_203_sw.png",
+	Overlay = "active_203",
 });
 
 ::Legends.Active.LegendMagicDaze <- null;
@@ -2984,9 +2984,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_magic_daze_skill",
 	Const = "LegendMagicDaze",
 	Name = "Stupefy",
-	this.m.Icon = "skills/daze_square.png";
-	this.m.IconDisabled = "skills/daze_square_bw.png";
-	this.m.Overlay = "daze_square";
+	Icon = "skills/daze_square.png",
+	IconDisabled = "skills/daze_square_bw.png",
+	Overlay = "daze_square",
 });
 
 ::Legends.Active.LegendMagicMissile <- null;
@@ -2995,9 +2995,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_magic_missile_skill",
 	Const = "LegendMagicMissile",
 	Name = "Missile",
-	this.m.Icon = "skills/missile_square.png";
-	this.m.IconDisabled = "skills/missile_square_bw.png";
-	this.m.Overlay = "missile_square";
+	Icon = "skills/missile_square.png",
+	IconDisabled = "skills/missile_square_bw.png",
+	Overlay = "missile_square",
 });
 
 ::Legends.Active.LegendMagicSleep <- null;
@@ -3006,9 +3006,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_magic_sleep_skill",
 	Const = "LegendMagicSleep",
 	Name = "Sleep",
-	this.m.Icon = "skills/active_116.png";
-	this.m.IconDisabled = "skills/active_116_bw.png";
-	this.m.Overlay = "active_116";
+	Icon = "skills/active_116.png",
+	IconDisabled = "skills/active_116_bw.png",
+	Overlay = "active_116",
 });
 
 ::Legends.Active.LegendMagicStun <- null;
@@ -3017,9 +3017,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_magic_stun_skill",
 	Const = "LegendMagicStun",
 	Name = "Stun",
-	this.m.Icon = "skills/stun56.png";
-	this.m.IconDisabled = "skills/stun56_bw.png";
-	this.m.Overlay = "stun56";
+	Icon = "skills/stun56.png",
+	IconDisabled = "skills/stun56_bw.png",
+	Overlay = "stun56",
 });
 
 ::Legends.Active.LegendMarkTarget <- null;
@@ -3028,9 +3028,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_mark_target_skill",
 	Const = "LegendMarkTarget",
 	Name = "Mark Target",
-	this.m.Icon = "skills/MarkTargetSkill.png";
-	this.m.IconDisabled = "skills/MarkTargetSkill_bw.png";
-	this.m.Overlay = "mark_target";
+	Icon = "skills/MarkTargetSkill.png",
+	IconDisabled = "skills/MarkTargetSkill_bw.png",
+	Overlay = "mark_target",
 });
 
 ::Legends.Active.LegendMartialMarch <- null;
@@ -3039,9 +3039,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_martial_march_skill",
 	Const = "LegendMartialMarch",
 	Name = "Martial March",
-	this.m.Icon = "skills/martial_march_square.png";
-	this.m.IconDisabled = "skills/martial_march_square_bw.png";
-	this.m.Overlay = "martial_march_square";
+	Icon = "skills/martial_march_square.png",
+	IconDisabled = "skills/martial_march_square_bw.png",
+	Overlay = "martial_march_square",
 });
 
 ::Legends.Active.LegendMiasma <- null;
@@ -3050,9 +3050,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_miasma_skill",
 	Const = "LegendMiasma",
 	Name = "Miasma",
-	this.m.Icon = "skills/miasma_square.png";
-	this.m.IconDisabled = "skills/miasma_square_bw.png";
-	this.m.Overlay = "miasma_square";
+	Icon = "skills/miasma_square.png",
+	IconDisabled = "skills/miasma_square_bw.png",
+	Overlay = "miasma_square",
 });
 
 ::Legends.Active.LegendNightmareTouch <- null;
@@ -3061,9 +3061,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_nightmare_touch_skill",
 	Const = "LegendNightmareTouch",
 	Name = "Terror",
-	this.m.Icon = "skills/active_117.png";
-	this.m.IconDisabled = "skills/active_117_sw.png";
-	this.m.Overlay = "active_117";
+	Icon = "skills/active_117.png",
+	IconDisabled = "skills/active_117_sw.png",
+	Overlay = "active_117",
 });
 
 ::Legends.Active.LegendNightmareTouchZoc <- null;
@@ -3072,9 +3072,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_nightmare_touch_zoc_skill",
 	Const = "LegendNightmareTouchZoc",
 	Name = "Terror",
-	this.m.Icon = "skills/active_117.png";
-	this.m.IconDisabled = "skills/active_117_sw.png";
-	this.m.Overlay = "active_117";
+	Icon = "skills/active_117.png",
+	IconDisabled = "skills/active_117_sw.png",
+	Overlay = "active_117",
 });
 
 ::Legends.Active.LegendNightvision <- null;
@@ -3083,9 +3083,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_nightvision_skill",
 	Const = "LegendNightvision",
 	Name = "Nightvision",
-	this.m.Icon = "skills/nightvision_square.png";
-	this.m.IconDisabled = "skills/nightvision_square_bw.png";
-	this.m.Overlay = "nightvision_square";
+	Icon = "skills/nightvision_square.png",
+	IconDisabled = "skills/nightvision_square_bw.png",
+	Overlay = "nightvision_square",
 });
 
 ::Legends.Active.LegendNinetailsDisarm <- null;
@@ -3094,9 +3094,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_ninetails_disarm_skill",
 	Const = "LegendNinetailsDisarm",
 	Name = "Disarm",
-	this.m.Icon = "skills/ninetails_disarm.png";
-	this.m.IconDisabled = "skills/ninetails_disarm_bw.png";
-	this.m.Overlay = "ninetails_disarm";
+	Icon = "skills/ninetails_disarm.png",
+	IconDisabled = "skills/ninetails_disarm_bw.png",
+	Overlay = "ninetails_disarm",
 });
 
 ::Legends.Active.LegendObliterate <- null;
@@ -3105,9 +3105,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_obliterate_skill",
 	Const = "LegendObliterate",
 	Name = "Obliterate",
-	this.m.Icon = "skills/active_89.png";
-	this.m.IconDisabled = "skills/active_89_sw.png";
-	this.m.Overlay = "active_89";
+	Icon = "skills/active_89.png",
+	IconDisabled = "skills/active_89_sw.png",
+	Overlay = "active_89",
 });
 
 ::Legends.Active.LegendOmsAmphora <- null;
@@ -3116,9 +3116,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_oms_amphora_skill",
 	Const = "LegendOmsAmphora",
 	Name = "Drink from Amphora",
-	this.m.Icon = "skills/amphora_active.png";
-	this.m.IconDisabled = "skills/amphora_active_bw.png";
-	this.m.Overlay = "amphora_active.png";
+	Icon = "skills/amphora_active.png",
+	IconDisabled = "skills/amphora_active_bw.png",
+	Overlay = "amphora_active.png",
 });
 
 ::Legends.Active.LegendPass <- null;
@@ -3127,9 +3127,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_pass_skill",
 	Const = "LegendPass",
 	Name = "Pass Item",
-	this.m.Icon = "skills/pass.png";
-	this.m.IconDisabled = "skills/pass_bw.png";
-	this.m.Overlay = "active_pass";
+	Icon = "skills/pass.png",
+	IconDisabled = "skills/pass_bw.png",
+	Overlay = "active_pass",
 });
 
 ::Legends.Active.LegendPiercingBolt <- null;
@@ -3138,9 +3138,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_piercing_bolt_skill",
 	Const = "LegendPiercingBolt",
 	Name = "Piercing Bolt",
-	this.m.Icon = "skills/PiercingBoltSkill.png";
-	this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-	this.m.Overlay = "piercing_bolt";
+	Icon = "skills/PiercingBoltSkill.png",
+	IconDisabled = "skills/PiercingBoltSkill_bw.png",
+	Overlay = "piercing_bolt",
 });
 
 ::Legends.Active.LegendPiercingJavelin <- null;
@@ -3149,9 +3149,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_piercing_javelin_skill",
 	Const = "LegendPiercingJavelin",
 	Name = "Piercing Javelin",
-	this.m.Icon = "skills/PiercingBoltSkill.png";
-	this.m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-	this.m.Overlay = "piercing_bolt";
+	Icon = "skills/PiercingBoltSkill.png",
+	IconDisabled = "skills/PiercingBoltSkill_bw.png",
+	Overlay = "piercing_bolt",
 });
 
 ::Legends.Active.LegendPoisonWeapon <- null;
@@ -3160,9 +3160,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_poison_weapon_skill",
 	Const = "LegendPoisonWeapon",
 	Name = "Use Poison",
-	this.m.Icon = "skills/active_95.png";
-	this.m.IconDisabled = "skills/active_95_sw.png";
-	this.m.Overlay = "active_95";
+	Icon = "skills/active_95.png",
+	IconDisabled = "skills/active_95_sw.png",
+	Overlay = "active_95",
 });
 
 ::Legends.Active.LegendPossession <- null;
@@ -3171,9 +3171,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_possession_skill",
 	Const = "LegendPossession",
 	Name = "Possess Undead",
-	this.m.Icon = "skills/possession.png";
-	this.m.IconDisabled = "skills/possession_bw.png";
-	this.m.Overlay = "possession";
+	Icon = "skills/possession.png",
+	IconDisabled = "skills/possession_bw.png",
+	Overlay = "possession",
 });
 
 ::Legends.Active.LegendPrayerOfFaith <- null;
@@ -3182,9 +3182,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_prayer_of_faith_skill",
 	Const = "LegendPrayerOfFaith",
 	Name = "Prayer of Faith",
-	this.m.Icon = "skills/prayer_purple_square.png";
-	this.m.IconDisabled = "skills/prayer_purple_square_bw.png";
-	this.m.Overlay = "prayer_purple";
+	Icon = "skills/prayer_purple_square.png",
+	IconDisabled = "skills/prayer_purple_square_bw.png",
+	Overlay = "prayer_purple",
 });
 
 ::Legends.Active.LegendPrayerOfLife <- null;
@@ -3193,9 +3193,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_prayer_of_life_skill",
 	Const = "LegendPrayerOfLife",
 	Name = "Prayer of Hope",
-	this.m.Icon = "skills/prayer_green_square.png";
-	this.m.IconDisabled = "skills/prayer_green_square_bw.png";
-	this.m.Overlay = "prayer_green";
+	Icon = "skills/prayer_green_square.png",
+	IconDisabled = "skills/prayer_green_square_bw.png",
+	Overlay = "prayer_green",
 });
 
 ::Legends.Active.LegendPryArmor <- null;
@@ -3204,9 +3204,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_pry_armor_skill",
 	Const = "LegendPryArmor",
 	Name = "Pry Armor",
-	this.m.Icon = "skills/legend_active_pry_armor_warhammer.png";
-	this.m.IconDisabled = "skills/legend_active_pry_armor_warhammer_bw.png";
-	this.m.Overlay = "active_legend_pry_armor_warhammer";
+	Icon = "skills/legend_active_pry_armor_warhammer.png",
+	IconDisabled = "skills/legend_active_pry_armor_warhammer_bw.png",
+	Overlay = "active_legend_pry_armor_warhammer",
 });
 
 ::Legends.Active.LegendPushForward <- null;
@@ -3215,9 +3215,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_push_forward_skill",
 	Const = "LegendPushForward",
 	Name = "Push Forward",
-	this.m.Icon = "skills/spears_square.png";
-	this.m.IconDisabled = "skills/spears_square_bw.png";
-	this.m.Overlay = "spears_square";
+	Icon = "skills/spears_square.png",
+	IconDisabled = "skills/spears_square_bw.png",
+	Overlay = "spears_square",
 });
 
 ::Legends.Active.LegendQuickStep <- null;
@@ -3226,20 +3226,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_quick_step_skill",
 	Const = "LegendQuickStep",
 	Name = "Quick Step",
-	this.m.Icon = "skills/unarmed_lunge_square.png";
-	this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
-	this.m.Overlay = "unarmed_lunge_square";
-});
-
-::Legends.Active.LegendReadOmensTrance <- null;
-activesDefs.push({
-	ID = "actives.legend_read_omens_trance",
-	Script = "scripts/skills/actives/legend_read_omens_trance_skill",
-	Const = "LegendReadOmensTrance",
-	Name = "Read Omens (Trance)",
-	this.m.Icon = "skills/omen_active.png";
-	this.m.IconDisabled = "skills/omen_active_sw.png";
-	this.m.Overlay = "omen_active";
+	Icon = "skills/unarmed_lunge_square.png",
+	IconDisabled = "skills/unarmed_lunge_square_bw.png",
+	Overlay = "unarmed_lunge_square",
 });
 
 ::Legends.Active.LegendRedbackSpiderBite <- null;
@@ -3248,9 +3237,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_redback_spider_bite_skill",
 	Const = "LegendRedbackSpiderBite",
 	Name = "Redback Webknecht Bite",
-	this.m.Icon = "skills/active_115.png";
-	this.m.IconDisabled = "skills/active_115.png";
-	this.m.Overlay = "active_115";
+	Icon = "skills/active_115.png",
+	IconDisabled = "skills/active_115.png",
+	Overlay = "active_115",
 });
 
 ::Legends.Active.LegendRevolt <- null;
@@ -3259,9 +3248,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_revolt_skill",
 	Const = "LegendRevolt",
 	Name = "Revolt",
-	this.m.Icon = "skills/revolt_square.png";
-	this.m.IconDisabled = "skills/revolt_square_bw.png";
-	this.m.Overlay = "revolt_square";
+	Icon = "skills/revolt_square.png",
+	IconDisabled = "skills/revolt_square_bw.png",
+	Overlay = "revolt_square",
 });
 
 ::Legends.Active.LegendRoot <- null;
@@ -3270,9 +3259,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_root_skill",
 	Const = "LegendRoot",
 	Name = "Root",
-	this.m.Icon = "skills/roots_square.png";
-	this.m.IconDisabled = "skills/roots_square_bw.png";
-	this.m.Overlay = "active_70";
+	Icon = "skills/roots_square.png",
+	IconDisabled = "skills/roots_square_bw.png",
+	Overlay = "active_70",
 });
 
 ::Legends.Active.LegendRunThrough <- null;
@@ -3281,9 +3270,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_run_through_skill",
 	Const = "LegendRunThrough",
 	Name = "Run Through",
-	this.m.Icon = "skills/active_55.png";
-	this.m.IconDisabled = "skills/active_55_sw.png";
-	this.m.Overlay = "active_55";
+	Icon = "skills/active_55.png",
+	IconDisabled = "skills/active_55_sw.png",
+	Overlay = "active_55",
 });
 
 ::Legends.Active.LegendRust <- null;
@@ -3292,9 +3281,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_rust_skill",
 	Const = "LegendRust",
 	Name = "Rust",
-	this.m.Icon = "skills/rust56.png";
-	this.m.IconDisabled = "skills/rust56_bw.png";
-	this.m.Overlay = "rust";
+	Icon = "skills/rust56.png",
+	IconDisabled = "skills/rust56_bw.png",
+	Overlay = "rust",
 });
 
 ::Legends.Active.LegendSafeguard <- null;
@@ -3303,9 +3292,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_safeguard_skill",
 	Const = "LegendSafeguard",
 	Name = "Safeguard",
-	this.m.Icon = "skills/safeguard_square.png";
-	this.m.IconDisabled = "skills/safeguard_square_bw.png";
-	this.m.Overlay = "safeguard";
+	Icon = "skills/safeguard_square.png",
+	IconDisabled = "skills/safeguard_square_bw.png",
+	Overlay = "safeguard",
 });
 
 ::Legends.Active.LegendScry <- null;
@@ -3314,9 +3303,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_scry_skill",
 	Const = "LegendScry",
 	Name = "Scry",
-	this.m.Icon = "skills/scry_skill.png";
-	this.m.IconDisabled = "skills/scry_skill_bw.png";
-	this.m.Overlay = "scry";
+	Icon = "skills/scry_skill.png",
+	IconDisabled = "skills/scry_skill_bw.png",
+	Overlay = "scry",
 });
 
 ::Legends.Active.LegendScryTrance <- null;
@@ -3325,9 +3314,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_scry_trance_skill",
 	Const = "LegendScryTrance",
 	Name = "Scry Area (Trance)",
-	this.m.Icon = "skills/scry_skill.png";
-	this.m.IconDisabled = "skills/scry_skill_bw.png";
-	this.m.Overlay = "scry";
+	Icon = "skills/scry_skill.png",
+	IconDisabled = "skills/scry_skill_bw.png",
+	Overlay = "scry",
 });
 
 ::Legends.Active.LegendSecondWind <- null;
@@ -3336,9 +3325,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_second_wind_skill",
 	Const = "LegendSecondWind",
 	Name = "Second Wind",
-	this.m.Icon = "skills/SecondWindSkill.png";
-	this.m.IconDisabled = "skills/SecondWindSkill_bw.png";
-	this.m.Overlay = "perk_54_active";
+	Icon = "skills/SecondWindSkill.png",
+	IconDisabled = "skills/SecondWindSkill_bw.png",
+	Overlay = "perk_54_active",
 });
 
 ::Legends.Active.LegendShootPreciseStone <- null;
@@ -3347,9 +3336,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_shoot_precise_stone_skill",
 	Const = "LegendShootPreciseStone",
 	Name = "Precise Shot",
-	this.m.Icon = "skills/stone_aim_square.png";
-	this.m.IconDisabled = "skills/stone_aim_square_sw.png";
-	this.m.Overlay = "stone_aim_square";
+	Icon = "skills/stone_aim_square.png",
+	IconDisabled = "skills/stone_aim_square_sw.png",
+	Overlay = "stone_aim_square",
 });
 
 ::Legends.Active.LegendShootStone <- null;
@@ -3358,9 +3347,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_shoot_stone_skill",
 	Const = "LegendShootStone",
 	Name = "Loose Stone",
-	this.m.Icon = "skills/stone_square.png";
-	this.m.IconDisabled = "skills/stone_square_sw.png";
-	this.m.Overlay = "stone_square";
+	Icon = "skills/stone_square.png",
+	IconDisabled = "skills/stone_square_sw.png",
+	Overlay = "stone_square",
 });
 
 ::Legends.Active.LegendSighthoundBite <- null;
@@ -3369,9 +3358,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_sighthound_bite_skill",
 	Const = "LegendSighthoundBite",
 	Name = "Sighthound Bite",
-	this.m.Icon = "skills/dawg_bite.png";
-	this.m.IconDisabled = "skills/dawg_bite_sw.png";
-	this.m.Overlay = "dawg_bite";
+	Icon = "skills/dawg_bite.png",
+	IconDisabled = "skills/dawg_bite_sw.png",
+	Overlay = "dawg_bite",
 });
 
 ::Legends.Active.LegendSiphon <- null;
@@ -3380,9 +3369,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_siphon_skill",
 	Const = "LegendSiphon",
 	Name = "Life Siphon",
-	this.m.Icon = "skills/siphon_square.png";
-	this.m.IconDisabled = "skills/siphon_square_bw.png";
-	this.m.Overlay = "siphon_square";
+	Icon = "skills/siphon_square.png",
+	IconDisabled = "skills/siphon_square_bw.png",
+	Overlay = "siphon_square",
 });
 
 ::Legends.Active.LegendSkinGhoulClaws <- null;
@@ -3391,9 +3380,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_skin_ghoul_claws",
 	Const = "LegendSkinGhoulClaws",
 	Name = "Skin Ghoul Claws",
-	this.m.Icon = "skills/active_21.png";
-	this.m.IconDisabled = "skills/active_21_sw.png";
-	this.m.Overlay = "active_21";
+	Icon = "skills/active_21.png",
+	IconDisabled = "skills/active_21_sw.png",
+	Overlay = "active_21",
 });
 
 ::Legends.Active.LegendSkinGhoulSwallowWhole <- null;
@@ -3402,9 +3391,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_skin_ghoul_swallow_whole_skill",
 	Const = "LegendSkinGhoulSwallowWhole",
 	Name = "Swallow Whole",
-	this.m.Icon = "skills/active_103.png";
-	this.m.IconDisabled = "skills/active_103.png";
-	this.m.Overlay = "active_103";
+	Icon = "skills/active_103.png",
+	IconDisabled = "skills/active_103.png",
+	Overlay = "active_103",
 });
 
 ::Legends.Active.LegendSlingHeavyStone <- null;
@@ -3413,202 +3402,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_sling_heavy_stone_skill",
 	Const = "LegendSlingHeavyStone",
 	Name = "Sling Heavy Stone",
-});
-
-
-// insert here
-
-
-
-
-
-
-
-
-::Legends.Active.LegendThrowBackupSpear <- null;
-activesDefs.push({
-	ID = "actives.legend_throw_backup_spear",
-	Script = "scripts/skills/actives/legend_throw_backup_spear_skill",
-	Const = "LegendThrowBackupSpear",
-	Name = "Throw Backup Spear",
-});
-
-
-
-::Legends.Active.LegendThrowBackupAxe <- null;
-activesDefs.push({
-	ID = "actives.legend_throw_backup_axe",
-	Script = "scripts/skills/actives/legend_throw_backup_axe_skill",
-	Const = "LegendThrowBackupAxe",
-	Name = "Throw Backup Axe",
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
-activesDefs.push({
-	ID = "actives.legend_debilitate",
-	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
-	Const = "LegendWhipDebilitate",
-	Name = "Debilitate",
-		Icon = "ui/perks/perk_34_active.png",
-		IconDisabled = "ui/perks/perk_34_active_sw.png",
-		Overlay = "perk_34_active",
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-::Legends.Active.LegendWhiteWolfBite <- null;
-activesDefs.push({
-	ID = "actives.legend_white_wolf_bite",
-	Script = "scripts/skills/actives/legend_white_wolf_bite_skill",
-	Const = "LegendWhiteWolfBite",
-	Name = "White Direwolf Bite",
-});
-
-
-
-
-
-
-
-
-
-
-
-::Legends.Active.LegendTeleport <- null;
-activesDefs.push({
-	ID = "actives.legend_teleport",
-	Script = "scripts/skills/actives/legend_teleport_skill",
-	Const = "LegendTeleport",
-	Name = "Teleport",
-});
-
-
-
-::Legends.Active.LegendStaffRiposte <- null;
-activesDefs.push({
-	ID = "actives.legend_staff_riposte",
-	Script = "scripts/skills/actives/legend_staff_riposte_skill",
-	Const = "LegendStaffRiposte",
-	Name = "Riposte",
-});
-
-
-
-
-
-
-
-
-::Legends.Active.LegendStollwurmMoveTail <- null;
-activesDefs.push({
-	ID = "actives.legend_stollwurm_move_tail",
-	Script = "scripts/skills/actives/legend_stollwurm_move_tail_skill",
-	Const = "LegendStollwurmMoveTail",
-	Name = "Burrow Tail",
-});
-
-
-
-::Legends.Active.LegendThrowKnife <- null;
-activesDefs.push({
-	ID = "actives.legend_throw_knife",
-	Script = "scripts/skills/actives/legend_throw_knife_skill",
-	Const = "LegendThrowKnife",
-	Name = "Throw Knife",
-});
-
-::Legends.Active.LegendWerewolfHowl <- null;
-activesDefs.push({
-	ID = "actives.legend_werewolf_howl",
-	Script = "scripts/skills/actives/legend_werewolf_howl_skill",
-	Const = "LegendWerewolfHowl",
-	Name = "Howl",
-});
-
-::Legends.Active.LegendWhiteWolfHowl <- null;
-activesDefs.push({
-	ID = "actives.legend_white_wolf_howl",
-	Script = "scripts/skills/actives/legend_white_wolf_howl_skill",
-	Const = "LegendWhiteWolfHowl",
-	Name = "White Wolf Howl",
-});
-
-
-
-
-::Legends.Active.LegendValaWardenPaleTouch <- null;
-activesDefs.push({
-	ID = "actives.legend_vala_warden_pale_touch",
-	Script = "scripts/skills/actives/legend_vala_warden_pale_touch_skill",
-	Const = "LegendValaWardenPaleTouch",
-	Name = "Pale Touch",
-});
-
-::Legends.Active.LegendValaWardenWail <- null;
-activesDefs.push({
-	ID = "actives.legend_vala_warden_wail",
-	Script = "scripts/skills/actives/legend_vala_warden_wail_skill",
-	Const = "LegendValaWardenWail",
-	Name = "Wail",
-});
-
-::Legends.Active.LegendVolley <- null;
-activesDefs.push({
-	ID = "actives.legend_volley",
-	Script = "scripts/skills/actives/legend_volley_skill",
-	Const = "LegendVolley",
-	Name = "Volley",
-});
-
-::Legends.Active.LegendWindUp <- null;
-activesDefs.push({
-	ID = "actives.legend_wind_up",
-	Script = "scripts/skills/actives/legend_wind_up_skill",
-	Const = "LegendWindUp",
-	Name = "Wind Up",
+	Icon = "skills/active_12.png",
+	IconDisabled = "skills/active_12_sw.png",
+	Overlay = "active_12",
 });
 
 ::Legends.Active.LegendSpawnZombieHigh <- null;
@@ -3617,6 +3413,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_high_skill",
 	Const = "LegendSpawnZombieHigh",
 	Name = "Summon Heavy Zombie",
+	Icon = "skills/remake_man.png",
+	IconDisabled = "skills/remake_man_bw.png",
+	Overlay = "remake_man",
 });
 
 ::Legends.Active.LegendSpawnZombieHighXbow <- null;
@@ -3625,6 +3424,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_high_xbow_skill",
 	Const = "LegendSpawnZombieHighXbow",
 	Name = "Summon Heavy Xbow Zombie",
+	Icon = "skills/zombie_archer_03_square.png",
+	IconDisabled = "skills/zombie_archer_03_square_bw.png",
+	Overlay = "zombie_archer_03_square",
 });
 
 ::Legends.Active.LegendSpawnZombieLow <- null;
@@ -3633,6 +3435,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_low_skill",
 	Const = "LegendSpawnZombieLow",
 	Name = "Summon Light Zombie",
+	Icon = "skills/mold_carrion.png",
+	IconDisabled = "skills/mold_carrion_bw.png",
+	Overlay = "mold_carrion",
 });
 
 ::Legends.Active.LegendSpawnZombieLowXbow <- null;
@@ -3641,6 +3446,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_low_xbow_skill",
 	Const = "LegendSpawnZombieLowXbow",
 	Name = "Summon Light Xbow Zombie",
+	Icon = "skills/zombie_archer_01_square.png",
+	IconDisabled = "skills/zombie_archer_01_square_bw.png",
+	Overlay = "zombie_archer_01_square",
 });
 
 ::Legends.Active.LegendSpawnZombieMed <- null;
@@ -3649,6 +3457,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_med_skill",
 	Const = "LegendSpawnZombieMed",
 	Name = "Summon Medium Zombie",
+	Icon = "skills/fashion_body.png",
+	IconDisabled = "skills/fashion_body_bw.png",
+	Overlay = "fashion_body",
 });
 
 ::Legends.Active.LegendSpawnZombieMedXbow <- null;
@@ -3657,25 +3468,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_spawn_zombie_med_xbow_skill",
 	Const = "LegendSpawnZombieMedXbow",
 	Name = "Summon Medium Xbow Zombie",
-});
-
-::Legends.Active.LegendStrafingRun <- null;
-activesDefs.push({
-	ID = "actives.legend_strafing_run",
-	Script = "scripts/skills/actives/legend_strafing_run_skill",
-	Const = "LegendStrafingRun",
-	Name = "Strafing Run",
-	this.m.Icon = "skills/active_strafing_run.png";
-	this.m.IconDisabled = "skills/active_strafing_run_bw.png";
-	this.m.Overlay = "active_strafing_run";
-});
-
-::Legends.Active.LegendStealth <- null;
-activesDefs.push({
-	ID = "actives.legend_stealth",
-	Script = "scripts/skills/actives/legend_stealth_skill",
-	Const = "LegendStealth",
-	Name = "Stealth",
+	Icon = "skills/zombie_archer_02_square.png",
+	IconDisabled = "skills/zombie_archer_02_square_bw.png",
+	Overlay = "zombie_archer_02_square",
 });
 
 ::Legends.Active.LegendStollwurmMove <- null;
@@ -3684,6 +3479,31 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_stollwurm_move_skill",
 	Const = "LegendStollwurmMove",
 	Name = "Burrow",
+	Icon = "skills/active_109.png",
+	IconDisabled = "skills/active_109.png",
+	Overlay = "active_109",
+});
+
+::Legends.Active.LegendStollwurmMoveTail <- null;
+activesDefs.push({
+	ID = "actives.legend_stollwurm_move_tail",
+	Script = "scripts/skills/actives/legend_stollwurm_move_tail_skill",
+	Const = "LegendStollwurmMoveTail",
+	Name = "Burrow Tail",
+	Icon = "skills/active_109.png",
+	IconDisabled = "skills/active_109.png",
+	Overlay = "active_109",
+});
+
+::Legends.Active.LegendStrafingRun <- null;
+activesDefs.push({
+	ID = "actives.legend_strafing_run",
+	Script = "scripts/skills/actives/legend_strafing_run_skill",
+	Const = "LegendStrafingRun",
+	Name = "Strafing Run",
+	Icon = "skills/active_strafing_run.png",
+	IconDisabled = "skills/active_strafing_run_bw.png",
+	Overlay = "active_strafing_run",
 });
 
 ::Legends.Active.LegendSummonStorm <- null;
@@ -3692,6 +3512,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_summon_storm_skill",
 	Const = "LegendSummonStorm",
 	Name = "Summon Storm",
+	Icon = "skills/rain_square.png",
+	IconDisabled = "skills/rain_square_bw.png",
+	Overlay = "rain",
 });
 
 ::Legends.Active.LegendTackle <- null;
@@ -3700,43 +3523,43 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_tackle_skill",
 	Const = "LegendTackle",
 	Name = "Tackle",
+	Icon = "skills/tackle_square.png",
+	IconDisabled = "skills/tackle_square_bw.png",
+	Overlay = "tackle",
 });
 
-::Legends.Active.LegendTransformIntoBoar <- null;
+::Legends.Active.LegendThrowKnife <- null;
 activesDefs.push({
-	ID = "actives.legend_transform_into_boar",
-	Script = "scripts/skills/actives/legend_transform_into_boar_skill",
-	Const = "LegendTransformIntoBoar",
-	Name = "Transform into Boar",
+	ID = "actives.legend_throw_knife",
+	Script = "scripts/skills/actives/legend_throw_knife_skill",
+	Const = "LegendThrowKnife",
+	Name = "Throw Knife",
+	Icon = "skills/active_throw_knife.png",
+	IconDisabled = "skills/active_throw_knife_bw.png",
+	Overlay = "active_throw_knife",
 });
 
-::Legends.Active.LegendTransformIntoRat <- null;
+::Legends.Active.LegendThrowBackupAxe <- null;
 activesDefs.push({
-	ID = "actives.legend_transform_into_rat",
-	Script = "scripts/skills/actives/legend_transform_into_rat_skill",
-	Const = "LegendTransformIntoRat",
-	Name = "Transform into Rat",
+	ID = "actives.legend_throw_backup_axe",
+	Script = "scripts/skills/actives/legend_throw_backup_axe_skill",
+	Const = "LegendThrowBackupAxe",
+	Name = "Throw Backup Axe",
+	Icon = "skills/active_87.png",
+	IconDisabled = "skills/active_87_sw.png",
+	Overlay = "active_87",
 });
 
-::Legends.Active.LegendTransformIntoTree <- null;
+::Legends.Active.LegendThrowBackupSpear <- null;
 activesDefs.push({
-	ID = "actives.legend_transform_into_tree",
-	Script = "scripts/skills/actives/legend_transform_into_tree_skill",
-	Const = "LegendTransformIntoTree",
-	Name = "Transform into Schrat",
+	ID = "actives.legend_throw_backup_spear",
+	Script = "scripts/skills/actives/legend_throw_backup_spear_skill",
+	Const = "LegendThrowBackupSpear",
+	Name = "Throw Backup Spear",
+	Icon = "skills/active_43.png",
+	IconDisabled = "skills/active_43_sw.png",
+	Overlay = "active_43",
 });
-
-::Legends.Active.LegendTransformIntoWolf <- null;
-activesDefs.push({
-	ID = "actives.legend_transform_into_wolf",
-	Script = "scripts/skills/actives/legend_transform_into_wolf_skill",
-	Const = "LegendTransformIntoWolf",
-	Name = "Transform into Wolf",
-});
-
-
-
-
 
 ::Legends.Active.LegendUnleashBear <- null;
 activesDefs.push({
@@ -3744,14 +3567,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_bear_skill",
 	Const = "LegendUnleashBear",
 	Name = "Summon Bear",
-});
-
-::Legends.Active.LegendUnleashCatapult <- null;
-activesDefs.push({
-	ID = "actives.legend_unleash_catapult",
-	Script = "scripts/skills/actives/legend_unleash_catapult_skill",
-	Const = "LegendUnleashCatapult",
-	Name = "Summon Catapult",
+	Icon = "skills/bear_square.png",
+	IconDisabled = "skills/bear_square_bw.png",
+	Overlay = "active_165",
 });
 
 ::Legends.Active.LegendUnleashCat <- null;
@@ -3760,6 +3578,20 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_cat_skill",
 	Const = "LegendUnleashCat",
 	Name = "Summon Cat",
+	Icon = "skills/cat_square.png",
+	IconDisabled = "skills/cat_square_bw.png",
+	Overlay = "cat_square",
+});
+
+::Legends.Active.LegendUnleashCatapult <- null;
+activesDefs.push({
+	ID = "actives.legend_unleash_catapult",
+	Script = "scripts/skills/actives/legend_unleash_catapult_skill",
+	Const = "LegendUnleashCatapult",
+	Name = "Summon Catapult",
+	Icon = "skills/catapult_square.png",
+	IconDisabled = "skills/catapult_square_bw.png",
+	Overlay = "active_165",
 });
 
 ::Legends.Active.LegendUnleashHound <- null;
@@ -3768,6 +3600,20 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_hound_skill",
 	Const = "LegendUnleashHound",
 	Name = "Summon Hound",
+	Icon = "skills/active_165.png",
+	IconDisabled = "skills/active_165_sw.png",
+	Overlay = "active_165",
+});
+
+::Legends.Active.LegendUnleashSighthound <- null;
+activesDefs.push({
+	ID = "actives.legend_unleash_sighthound",
+	Script = "scripts/skills/actives/legend_unleash_sighthound_skill",
+	Const = "LegendUnleashSighthound",
+	Name = "Legend Unleash Sighthound",
+	Icon = "skills/unleash_dawg.png",
+	IconDisabled = "skills/unleash_dawg_sw.png",
+	Overlay = "unleash_dawg",
 });
 
 ::Legends.Active.LegendUnleashWarbear <- null;
@@ -3776,6 +3622,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_warbear_skill",
 	Const = "LegendUnleashWarbear",
 	Name = "Unleash Warbear",
+	Icon = "skills/bear_square.png",
+	IconDisabled = "skills/bear_square_bw.png",
+	Overlay = "active_165",
 });
 
 ::Legends.Active.LegendUnleashWhiteWolf <- null;
@@ -3784,6 +3633,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_white_wolf_skill",
 	Const = "LegendUnleashWhiteWolf",
 	Name = "Unleash White Wolf",
+	Icon = "skills/unleash_white_wolf.png",
+	IconDisabled = "skills/unleash_white_wolf_bw.png",
+	Overlay = "active_83",
 });
 
 ::Legends.Active.LegendUnleashWolf <- null;
@@ -3792,6 +3644,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_unleash_wolf_skill",
 	Const = "LegendUnleashWolf",
 	Name = "Summon Wolf",
+	Icon = "skills/wolf2_square.png",
+	IconDisabled = "skills/wolf2_square_bw.png",
+	Overlay = "active_165",
 });
 
 ::Legends.Active.LegendUseCatapult <- null;
@@ -3800,6 +3655,31 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_use_catapult_skill",
 	Const = "LegendUseCatapult",
 	Name = "Catapult Boulder",
+	Icon = "skills/active_12.png",
+	IconDisabled = "skills/active_12_sw.png",
+	Overlay = "active_12",
+});
+
+::Legends.Active.LegendValaWardenPaleTouch <- null;
+activesDefs.push({
+	ID = "actives.legend_vala_warden_pale_touch",
+	Script = "scripts/skills/actives/legend_vala_warden_pale_touch_skill",
+	Const = "LegendValaWardenPaleTouch",
+	Name = "Pale Touch",
+	Icon = "skills/active_42.png",
+	IconDisabled = "skills/active_42.png",
+	Overlay = "active_42",
+});
+
+::Legends.Active.LegendValaWardenWail <- null;
+activesDefs.push({
+	ID = "actives.legend_vala_warden_wail",
+	Script = "scripts/skills/actives/legend_vala_warden_wail_skill",
+	Const = "LegendValaWardenWail",
+	Name = "Wail",
+	Icon = "skills/active_41.png",
+	IconDisabled = "skills/active_41.png",
+	Overlay = "active_41",
 });
 
 ::Legends.Active.LegendViolentDecomposition <- null;
@@ -3808,14 +3688,31 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_violent_decomposition_skill",
 	Const = "LegendViolentDecomposition",
 	Name = "Violent Decomposition",
+	Icon = "skills/violent_decomposition.png",
+	IconDisabled = "skills/violent_decomposition_bw.png",
+	Overlay = "violent_decomposition",
 });
 
-::Legends.Active.LegendWakeAllyAoe <- null;
+::Legends.Active.LegendVolley <- null;
 activesDefs.push({
-	ID = "actives.legend_wake_ally_aoe",
-	Script = "scripts/skills/actives/legend_wake_ally_aoe_skill",
-	Const = "LegendWakeAllyAoe",
-	Name = "Wake Allies",
+	ID = "actives.legend_volley",
+	Script = "scripts/skills/actives/legend_volley_skill",
+	Const = "LegendVolley",
+	Name = "Volley",
+	Icon = "skills/triplestrike_square.png",
+	IconDisabled = "skills/triplestrike_square_bw.png",
+	Overlay = "triplestrike_square",
+});
+
+::Legends.Active.LegendWarforkDisarm <- null;
+activesDefs.push({
+	ID = "actives.legend_warfork_disarm",
+	Script = "scripts/skills/actives/legend_warfork_disarm_skill",
+	Const = "LegendWarforkDisarm",
+	Name = "Disarm",
+	Icon = "skills/active_legend_warfork_disarm.png",
+	IconDisabled = "skills/active_legend_warfork_disarm_bw.png",
+	Overlay = "active_legend_warfork_disarm",
 });
 
 ::Legends.Active.LegendWerewolfClaws <- null;
@@ -3824,62 +3721,64 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_werewolf_claws_skill",
 	Const = "LegendWerewolfClaws",
 	Name = "Direwolf Claws",
+	Icon = "skills/active_21.png",
+	IconDisabled = "skills/active_21_bw.png",
+	Overlay = "active_21",
 });
 
-::Legends.Active.LegendWither <- null;
+::Legends.Active.LegendWerewolfHowl <- null;
 activesDefs.push({
-	ID = "actives.legend_wither",
-	Script = "scripts/skills/actives/legend_wither_skill",
-	Const = "LegendWither",
-	Name = "Wither",
+	ID = "actives.legend_werewolf_howl",
+	Script = "scripts/skills/actives/legend_werewolf_howl_skill",
+	Const = "LegendWerewolfHowl",
+	Name = "Howl",
+	Icon = "skills/active_22.png",
+	IconDisabled = "skills/active_22_sw.png",
+	Overlay = "active_22",
 });
 
-::Legends.Active.LegendWoodenStakeStab <- null;
+::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
 activesDefs.push({
-	ID = "actives.legend_wooden_stake_stab",
-	Script = "scripts/skills/actives/legend_wooden_stake_stab_skill",
-	Const = "LegendWoodenStakeStab",
-	Name = "Stab with Wooden Stake",
+	ID = "actives.legend_debilitate",
+	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
+	Const = "LegendWhipDebilitate",
+	Name = "Debilitate",
+	Icon = "ui/perks/perk_34_active.png",
+	IconDisabled = "ui/perks/perk_34_active_sw.png",
+	Overlay = "perk_34_active",
 });
 
-
-
-
-
-
-
-::Legends.Active.LegendUnleashSighthound <- null;
+::Legends.Active.LegendWhiteWolfBite <- null;
 activesDefs.push({
-	ID = "actives.legend_unleash_sighthound",
-	Script = "scripts/skills/actives/legend_unleash_sighthound_skill",
-	Const = "LegendUnleashSighthound",
-	Name = "Legend Unleash Sighthound",
+	ID = "actives.legend_white_wolf_bite",
+	Script = "scripts/skills/actives/legend_white_wolf_bite_skill",
+	Const = "LegendWhiteWolfBite",
+	Name = "White Direwolf Bite",
+	Icon = "skills/active_71.png",
+	IconDisabled = "skills/active_71.png",
+	Overlay = "active_71",
 });
 
-
-
-
-::Legends.Active.LegendWarforkDisarm <- null;
+::Legends.Active.LegendWhiteWolfHowl <- null;
 activesDefs.push({
-	ID = "actives.legend_warfork_disarm",
-	Script = "scripts/skills/actives/legend_warfork_disarm_skill",
-	Const = "LegendWarforkDisarm",
-	Name = "Disarm",
+	ID = "actives.legend_white_wolf_howl",
+	Script = "scripts/skills/actives/legend_white_wolf_howl_skill",
+	Const = "LegendWhiteWolfHowl",
+	Name = "White Wolf Howl",
+	Icon = "skills/active_22.png",
+	IconDisabled = "skills/active_22_sw.png",
+	Overlay = "active_22",
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+::Legends.Active.LegendWindUp <- null;
+activesDefs.push({
+	ID = "actives.legend_wind_up",
+	Script = "scripts/skills/actives/legend_wind_up_skill",
+	Const = "LegendWindUp",
+	Name = "Wind Up",
+	Icon = "skills/active_10.png",
+	IconDisabled = "skills/active_10_sw.png",
+	Overlay = "mini_smackdown_circle",
+});
 
 ::Legends.Actives.addActiveDefObjects(activesDefs);

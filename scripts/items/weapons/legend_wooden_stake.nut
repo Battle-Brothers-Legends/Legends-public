@@ -17,8 +17,8 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_wooden_stake_01";
 		this.m.Value = 10;
-		this.m.Condition = 16;
-		this.m.ConditionMax = 16;
+		this.m.Condition = 2;
+		this.m.ConditionMax = 2;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamageMax = 15;
 		this.m.ArmorDamageMult = 0.1;
@@ -26,11 +26,33 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.DirectDamageAdd = -0.05;
 	}
 
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		local item = _skill.getItem();
+
+		if (!_skill.isAttack())
+			return;
+
+		if (!_skill.isRanged())
+			return;
+
+		if (item == null)
+			return;
+
+		if (item.getID() != this.getID())
+			return;
+
+		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		{
+			_properties.DamageRegularMin += 100;
+			_properties.DamageRegularMax += 105;
+		}
+	}
+
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendWoodenStakeStab);
-		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
+		::Legends.Actives.grant(this, ::Legends.Active.Stab);
 	}
 
 	function onUpdateProperties( _properties )

@@ -8,9 +8,6 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenWail);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
-		this.m.Icon = "skills/active_41.png";
-		this.m.IconDisabled = "skills/active_41.png";
-		this.m.Overlay = "active_41";
 		this.m.SoundOnUse = [
 			"sounds/combat/legend_vala_warden_wail.wav"
 		];

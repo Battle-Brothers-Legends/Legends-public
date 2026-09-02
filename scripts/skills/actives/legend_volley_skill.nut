@@ -8,9 +8,6 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVolley);
 		this.m.Description = "Let loose a cascade of three striking shots on your opponent.";
 		this.m.KilledString = "Pin cushioned";
-		this.m.Icon = "skills/triplestrike_square.png";
-		this.m.IconDisabled = "skills/triplestrike_square_bw.png";
-		this.m.Overlay = "active_05";
 		this.m.SoundOnUse = [
 			"sounds/combat/tripleshot_01.wav",
 			"sounds/combat/tripleshot_02.wav",

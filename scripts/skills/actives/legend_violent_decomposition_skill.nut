@@ -8,9 +8,6 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendViolentDecomposition);
-		this.m.Icon = "skills/violent_decomposition.png";
-		this.m.IconDisabled = "skills/violent_decomposition_bw.png";
-		this.m.Overlay = "violent_decomposition";
 		this.m.SoundOnUse = [
 		 	"sounds/combat/violent_decomposition.wav"
 		];

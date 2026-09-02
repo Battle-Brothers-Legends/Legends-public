@@ -4,9 +4,6 @@ this.legend_white_wolf_howl_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfHowl);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_22.png";
-		this.m.IconDisabled = "skills/active_22_sw.png";
-		this.m.Overlay = "active_22";
 		this.m.SoundOnUse = [
 			"sounds/enemies/werewolf_howl.wav"
 		];

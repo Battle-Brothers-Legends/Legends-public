@@ -51,9 +51,6 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashHound);
 		this.m.Description = "Summon a faithful hound. Needs a free tile adjacent. Can only summon one per combat.";
-		this.m.Icon = "skills/active_165.png";
-		this.m.IconDisabled = "skills/active_165_sw.png";
-		this.m.Overlay = "active_165";
 		this.m.SoundOnUse = [
 			"sounds/combat/unleash_wardog_01.wav",
 			"sounds/combat/unleash_wardog_02.wav",

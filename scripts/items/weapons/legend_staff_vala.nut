@@ -45,6 +45,8 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IconDisabled = "skills/staff_knock_out_vala_bw.png";
 			_skill.m.IsStaffKnockOut = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this, ::Legends.Active.LegendStaffRiposte);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Riposte, function (_skill) {
+			_skill.m.IsStaff = true;
+		}.bindenv(this));
 	}
 });

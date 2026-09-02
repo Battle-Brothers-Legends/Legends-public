@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/perks/perk_shield_bash", function(o) {
 	o.m.PossibleSkills <- [
 		::Legends.Actives.getID(::Legends.Active.KnockBack),
-		::Legends.Actives.getID(::Legends.Active.LegendPush),
+		::Legends.Actives.getID(::Legends.Active.LegendRevolt),
 	];
 
 	local create = o.create;

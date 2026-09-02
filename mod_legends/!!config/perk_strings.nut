@@ -213,7 +213,6 @@
 ::Const.Strings.PerkName.LegendMagicDaze <- "Stupefy";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
 ::Const.Strings.PerkName.LegendMagicSleep <- "Sleep";
-::Const.Strings.PerkName.LegendMasteryBurningHands <- "Intense Flames";
 ::Const.Strings.PerkName.LegendMasteryChainLightning <- "Polarized";
 ::Const.Strings.PerkName.LegendMasteryHailstone <- "Dense Ice";
 ::Const.Strings.PerkName.LegendMagicMissileFocus <- "Magic Missile Focus";
@@ -221,13 +220,12 @@
 ::Const.Strings.PerkName.LegendRoots <- "Roots";
 ::Const.Strings.PerkName.LegendSummonStorm <- "Summon Storm";
 ::Const.Strings.PerkName.LegendCallLightning <- "Call Lightning";
-::Const.Strings.PerkName.LegendScryTrance <- "Scry Area (Trance)";
-::Const.Strings.PerkName.LegendReadOmensTrance <- "Read Omens (Trance)";
 ::Const.Strings.PerkName.LegendDistantVisions <- "Distant Visions";
 ::Const.Strings.PerkName.LegendSummonHound <- "Summon Hound";
 ::Const.Strings.PerkName.LegendSummonWolf <- "Summon Wolf";
 ::Const.Strings.PerkName.LegendSummonFalcon <- "Summon Falcon";
 ::Const.Strings.PerkName.LegendSummonBear <- "Bear Taming";
+::Const.Strings.PerkName.LegendRaiseUndead <- "Raise the Dead";
 ::Const.Strings.PerkName.LegendRust <- "Rust";
 ::Const.Strings.PerkName.LegendWither <- "Wither";
 ::Const.Strings.PerkName.LegendDeathtouch <- "Death Touch";
@@ -256,19 +254,9 @@
 ::Const.Strings.PerkName.LegendResurrectionist <- "Resurrectionist";
 ::Const.Strings.PerkName.LegendScry <- "Scry";
 ::Const.Strings.PerkName.LegendLevitate <- "Levitate";
-::Const.Strings.PerkName.LegendTeleport <- "Teleport";
 ::Const.Strings.PerkName.LegendTerrifyingVisage <- "Terrifying Visage";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
 ::Const.Strings.PerkName.LegendBrinkOfDeath <- "Brink of Death"; //66% chance to return a fallen bro as a zombie, needs functionality check.
-
-//ANIMAL FORMS - animal forms from older builds. Mostly defunct.
-::Const.Strings.PerkName.LegendSurpressUrges <- "Suppress Urges";
-::Const.Strings.PerkName.LegendControlInstincts <- "Control Instincts";
-::Const.Strings.PerkName.LegendMasterAnger <- "Master Anger";
-::Const.Strings.PerkName.LegendWolfform <- "Wolf Form";
-::Const.Strings.PerkName.LegendTrueForm <- "True Form";
-::Const.Strings.PerkName.LegendBearform <- "Bear Form";
-::Const.Strings.PerkName.LegendInfectiousRage <- "Infectious Rage";
 
 //HORSES - skills for horses, currently unused and/or missing files
 ::Const.Strings.PerkName.LegendHorseCharge <- "Mounted Charge";
@@ -1663,13 +1651,6 @@ Endlessly repeating the lessons of the old gods to your mercenaries will imbue t
 • Grants the 'Fortified Mind' perk to anyone you fight with.
 ";
 
-::Const.Strings.PerkDescription.LegendInfectiousRage <- @"
-The frenzy of the berserker rage is aided with clouds of herbs and ritual dances. These can be spread to your allies.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Grants the 'Berserk' perk to anyone you fight with.
-";
-
 ::Const.Strings.PerkDescription.LegendTeacher <- @"
 The techniques you have mastered are inspirational and inspire curiosity in those who behold.
 
@@ -1700,15 +1681,6 @@ Levitate a person above the ground, making movement across any terrain cost less
 • Movement across any terrain cost [color=%negative%]1[/color] AP and [color=%negative%]2[/color] Fatigue per tile.
 
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendTeleport <- @"
-Step through the world, disappearing from one place and reappearing in another place immediately.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks [color=%skill%]Teleport[/color] skill which allows you to teleport up to eight tiles.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]40[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistShieldSkill <- @"
@@ -2483,6 +2455,15 @@ Endless communion with the animals has won you the trust of the bears.
 • Unlocks an event to tame bears in the woods.
 ";
 
+::Const.Strings.PerkDescription.LegendRaiseUndead <- @"
+Raise the dead, and turn them into your own personal army.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Unlocks [color=%skill%]Conduct Seance[/color] skill which allows you to summon zombies from dead enemies.
+
+• Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
+";
+
 ::Const.Strings.PerkDescription.LegendSummonCatapult <- @"
 Put to use your skill in the creation and maintenance of siege weapons.
 
@@ -2768,16 +2749,6 @@ Control the elements, calling down the rain.
 • Call down lightning upon your enemies. Grants a 10% chance to unleash lightning on each unit within 4 tiles. Must have empty hands and it must be raining.
 ";
 
-::Const.Strings.PerkDescription.LegendScryTrance <- @"
-[color=%active%][u]Active:[/u][/color]
-• Scries an area of 12 tiles around the user. The user will be unable to move or act during the trance until cancelled. Minimum of one turn channel.
-";
-
-::Const.Strings.PerkDescription.LegendReadOmensTrance <- @"
-[color=%active%][u]Active:[/u][/color]
-• The user enters a trance, telling all allies of their future. Grants [color=%positive%]10%[/color] chance to have any attacker require two successful attack rolls in order to hit.
-";
-
 ::Const.Strings.PerkDescription.LegendDistantVisions <- @"
 [color=%passive%][u]Passive:[/u][/color]
 • This character spends a lot of time alone outside camp, staring into the distance and smoking strange bark. Allows the user to have distant visions of towns.  Each morning this character is in reserves grants you insight into a specific town's current events and buildings.
@@ -2849,11 +2820,6 @@ The ability to cut and shape wood is a craft few master.
 ::Const.Strings.PerkDescription.LegendMagicSleep <- @"
 [color=%active%][u]Active:[/u][/color]
 • Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the Resolves of the user and target.
-";
-
-::Const.Strings.PerkDescription.LegendMasteryBurningHands <- @"
-[color=%active%][u]Active:[/u][/color]
-• Increases the intensity of your heat, doubles the damage of burning hands.
 ";
 
 ::Const.Strings.PerkDescription.LegendMasteryChainLightning <- @"

@@ -4,9 +4,6 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_warfork_disarm";
 		this.m.Name = "Disarm";
 		this.m.Description = "Use the warfork\'s particular shape to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
-		this.m.Icon = "skills/active_legend_warfork_disarm.png";
-		this.m.IconDisabled = "skills/active_legend_warfork_disarm_bw.png";
-		this.m.Overlay = "active_legend_warfork_disarm";
 		this.m.SoundOnHit = [
 			"sounds/combat/repel_hit_01.wav",
 			"sounds/combat/repel_hit_02.wav",

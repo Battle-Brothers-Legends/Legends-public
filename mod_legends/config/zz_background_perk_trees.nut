@@ -2741,7 +2741,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Profession = [],
 	Magic = [
 		::Const.Perks.IllusionistMagicTree,
-		::Const.Perks.PremonitionMagicTree,
 		::Const.Perks.StavesMagicTree
 	]
 };
@@ -3248,7 +3247,6 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Class = [],
 	Profession = [],
 	Magic = [
-		::Const.Perks.BasicNecroMagicTree,
 		::Const.Perks.StavesMagicTree
 	]
 };

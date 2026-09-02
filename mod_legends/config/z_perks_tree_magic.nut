@@ -244,7 +244,7 @@ if (!("Perks" in ::Const)) {
 		"undeath"
 	],
 	Tree = [
-		[::Legends.Perk.LegendPrepareBleed],
+		[],
 		[::Legends.Perk.LegendDebilitate],
 		[],
 		[::Legends.Perk.LegendBloodbath],
@@ -364,43 +364,6 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-::Const.Perks.DruidTransformTree <- {
-	ID = "DruidTransformTree",
-	Name = "Druidic transformation",
-	Icon = "ui/perks/bear2_circle.png",
-	Descriptions = [
-		"druidic transformation"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendWolfform],
-		[::Legends.Perk.LegendBearform],
-		[],
-		[::Legends.Perk.LegendTrueForm]
-	]
-};
-
-
-::Const.Perks.TransmutationMagicTree <- {
-	ID = "TransmutationMagicTree",
-	Name = "Transmutation",
-	Icon = "ui/perks/potion_circle.png",
-	Descriptions = [
-		"transmutation"
-	],
-	Tree = [
-		[],
-		[::Legends.Perk.LegendGatherer],
-		[],
-		[],
-		[::Legends.Perk.LegendPotionBrewer],
-		[::Legends.Perk.LegendRoots],
-		[::Legends.Perk.LegendTeleport]
-	]
-};
-
 ::Const.Perks.EvocationMagicTree <- {
 	ID = "EvocationMagicTree",
 	Name = "Evocation",
@@ -454,24 +417,6 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-::Const.Perks.PremonitionMagicTree <- {
-	ID = "PremonitionMagicTree",
-	Name = "Premonition",
-	Icon = "ui/perks/scry_trance_circle.png",
-	Descriptions = [
-		"premonition"
-	],
-	Tree = [
-		[],
-		[::Legends.Perk.LegendScryTrance],
-		[],
-		[],
-		[::Legends.Perk.LegendReadOmensTrance],
-		[::Legends.Perk.LegendDistantVisions],
-		[]
-	]
-}
-
 ::Const.Perks.PhilosophyMagicTree <- {
 	ID = "PhilosophyMagicTree",
 	Name = "Philosophy",
@@ -489,47 +434,21 @@ if (!("Perks" in ::Const)) {
 	]
 }
 
-::Const.Perks.TherianthropyMagicTree <- {
-	ID = "TherianthropyMagicTree",
-	Name = "Therianthropy",
-	Icon = "ui/perks/true_form_circle.png",
-	Descriptions = [
-		"therianthropy"
-	],
-	Tree = [
-		[::Legends.Perk.LegendTrueForm],
-		[],
-		[::Legends.Perk.LegendSurpressUrges],
-		[],
-		[::Legends.Perk.LegendControlInstincts],
-		[],
-		[::Legends.Perk.LegendMasterAnger]
-	]
-};
-
 ::Const.Perks.MagicTrees <- {
 	GroupsCategory = "Magic",
 	Tree = [
 		::Const.Perks.ValaChantMagicTree,
 		::Const.Perks.ValaTranceMagicTree,
-		//::Const.Perks.HealerMagicTree,
-		//::Const.Perks.ValaRuneMagicTree,
-		// ::Const.Perks.ValaSpiritMagicTree,
 		::Const.Perks.RangerHuntMagicTree,
-		::Const.Perks.BasicNecroMagicTree,
 		::Const.Perks.WarlockMagicTree,
 		::Const.Perks.VampireMagicTree,
 		::Const.Perks.ZombieMagicTree,
 		::Const.Perks.BerserkerMagicTree,
 		::Const.Perks.DruidMagicTree,
-		// ::Const.Perks.DruidTransformTree,
 		::Const.Perks.CaptainMagicTree,
 		::Const.Perks.IllusionistMagicTree,
 		::Const.Perks.ConjurationMagicTree,
-		::Const.Perks.TransmutationMagicTree,
 		::Const.Perks.EvocationMagicTree,
-		// ::Const.Perks.PremonitionMagicTree,
-		// ::Const.Perks.TherianthropyMagicTree,
 		::Const.Perks.PhilosophyMagicTree,
 		::Const.Perks.AssassinMagicTree,
 		::Const.Perks.BardMagicTree,
