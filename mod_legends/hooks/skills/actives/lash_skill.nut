@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/actives/lash_skill", function (o) {
-	o.m.IsRanged <- false
+	o.m.IsRanged <- false;
 
 	o.setItem <- function (_item) {
 		if (this.m.IsRanged) {
@@ -51,7 +51,7 @@
 			return;
 		}
 		_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
-		if (this.m.isRanged && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+		if (this.m.IsRanged && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			this.m.HitChanceBonus += -15;
 			_properties.MeleeSkill += -15;
 		}
