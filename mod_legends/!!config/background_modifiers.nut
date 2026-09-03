@@ -1749,14 +1749,6 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	],
 };
 
-::Legends.BackgroundModifiers.LegendNecro <- {
-	Meds = 34,
-	Stash = 5,
-	Healing = 0.30,
-	Injury = 0.06,
-	MedConsumption = 0.20,
-};
-
 ::Legends.BackgroundModifiers.LegendCommanderNecro <- {
 	Meds = 34,
 	Stash = 5,

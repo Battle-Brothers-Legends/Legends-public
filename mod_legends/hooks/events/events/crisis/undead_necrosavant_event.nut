@@ -7,11 +7,11 @@
 		});
 	}
 
-	local onClear = o.onClear;
-	o.onClear = function () {
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function () {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return;
 		}
-		onClear();
+		onUpdateScore();
 	}
 })
