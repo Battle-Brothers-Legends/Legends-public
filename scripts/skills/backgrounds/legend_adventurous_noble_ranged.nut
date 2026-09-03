@@ -9,6 +9,10 @@ this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendAdventurousNobleRanged);
 	}
 
+	function setGender(_gender = -1) {
+		this.adventurous_noble_background.setGender(_gender);
+	}
+
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;

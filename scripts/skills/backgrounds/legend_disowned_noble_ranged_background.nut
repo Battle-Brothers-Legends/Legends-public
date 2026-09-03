@@ -10,6 +10,10 @@ this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/bac
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDisownedNobleRanged);
 	}
 
+	function setGender(_gender = -1) {
+		this.adventurous_noble_background.setGender(_gender);
+	}
+
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
