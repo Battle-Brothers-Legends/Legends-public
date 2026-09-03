@@ -1906,17 +1906,6 @@ perkDefObjects.push({
 	Const = "LegendSpecialistShieldSkill"
 });
 
-::Legends.Perk.LegendSpecialistShieldPush <- null;
-perkDefObjects.push({
-	ID = "perk.legend_specialist_shield_push",
-	Script = "scripts/skills/perks/perk_legend_specialist_shield_push",
-	Name = ::Const.Strings.PerkName.LegendSpecialistShieldPush,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistShieldPush,
-	Icon = "ui/perks/perk_22.png",
-	IconDisabled = "ui/perks/perk_22_sw.png",
-	Const = "LegendSpecialistShieldPush"
-});
-
 ::Legends.Perk.LegendMasteryNets <- null;
 perkDefObjects.push({
 	ID = "perk.legend_mastery_nets",

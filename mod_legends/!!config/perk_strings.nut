@@ -1645,13 +1645,6 @@ Learn to keep your shield up.
 • Gain [color=%positive%]10%[/color] damage reduction while using a shield.
 ";
 
-::Const.Strings.PerkDescription.LegendSpecialistShieldPush <- @"
-Learn to use your shield without wasted movement.
-
-[color=%passive%][u]Passive:[/u][/color]
-• The [color=%skill%]Knock Back[/color] skill costs [color=%positive%]25%[/color] less Fatigue and Action Points.
-";
-
 ::Const.Strings.PerkDescription.LegendMasteryNets <- @"
 Master the ability to ensnare others and to disentangle yourself.
 

@@ -196,7 +196,6 @@
 ::Const.CharacterProperties.IsAffectedByRain <- true;
 ::Const.CharacterProperties.SurvivesAsUndead <- false;
 ::Const.CharacterProperties.IsAffectedByMovementMorale <- true;
-::Const.CharacterProperties.IsSpecializedInShieldPush <- false;
 ::Const.CharacterProperties.IsSpecializedInNets <- false;
 ::Const.CharacterProperties.IsSpecializedInNetCasting <- false;
 ::Const.CharacterProperties.IsSpecializedInFists <- false;

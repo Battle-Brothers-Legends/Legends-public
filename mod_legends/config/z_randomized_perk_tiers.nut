@@ -152,7 +152,6 @@
     ],
     LegendaryPerks = [
 		::Legends.Perk.LegendSpecialistShieldSkill,
-		::Legends.Perk.LegendSpecialistShieldPush,
 		::Legends.Perk.ShieldBash,
 		::Legends.Perk.HoldOut,
 		::Legends.Perk.Underdog,
@@ -608,7 +607,6 @@
 		::Legends.Perk.Rotation,
 		::Legends.Perk.SteelBrow,
 		::Legends.Perk.LegendSpecialistShieldSkill,
-		::Legends.Perk.LegendSpecialistShieldPush,
 		::Legends.Perk.ShieldBash
     ],
     LegendaryPerks = [

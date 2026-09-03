@@ -713,23 +713,24 @@
 - `perk_legend_spawn_skeleton_high` -> deleted
 - `perk_legend_spawn_skeleton_low` -> deleted
 - `perk_legend_spawn_skeleton_med` -> deleted
-- `legends_skeleton_high`
-- `legends_skeleton_high_archer`
-- `legends_skeleton_low`
-- `legends_skeleton_low_archer`
-- `legends_skeleton_med`
-- `legends_skeleton_med_archer`
-- `legend_read_omens_trance_skill`
-- `legend_scry_trance_skill`
-- `legend_spawn_skill`
-- `legend_staff_riposte_skill`
-- `legend_stealth_skill`
-- `legend_teleport_skill`
-- `legend_trance_abstract_skill`
-- `legend_wake_ally_aoe_skill`
-- `legend_wither_skill`
-- `legend_wooden_stake_stab_skill`
-- `perk_legend_infectious_rage`
-- `perk_legend_read_omens_trance`
-- `perk_legend_scry_trance`
-- `perk_legend_teleport`
+- `legends_skeleton_high` -> deleted
+- `legends_skeleton_high_archer` -> deleted
+- `legends_skeleton_low` -> deleted
+- `legends_skeleton_low_archer` -> deleted
+- `legends_skeleton_med` -> deleted
+- `legends_skeleton_med_archer` -> deleted
+- `legend_read_omens_trance_skill` -> deleted
+- `legend_scry_trance_skill` -> deleted
+- `legend_spawn_skill` -> deleted
+- `legend_staff_riposte_skill` -> deleted
+- `legend_stealth_skill` -> deleted
+- `legend_teleport_skill` -> deleted
+- `legend_trance_abstract_skill` -> deleted
+- `legend_wake_ally_aoe_skill` -> deleted
+- `legend_wither_skill` -> deleted
+- `legend_wooden_stake_stab_skill` -> deleted
+- `perk_legend_infectious_rage` -> deleted
+- `perk_legend_read_omens_trance` -> deleted
+- `perk_legend_scry_trance` -> deleted
+- `perk_legend_teleport` -> deleted
+- `perk_legend_specialist_shield_push` -> deleted
