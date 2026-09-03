@@ -15,49 +15,48 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		]
 	},
 
-	function create()
-	{
-		this.m.Type = this.Const.EntityType.LegendDemonHound;
-		this.m.BloodType = this.Const.BloodType.Bones;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
-		this.m.XP = this.Const.Tactical.Actor.LegendDemonHound.XP;
+	function create() {
+		this.m.Type = ::Const.EntityType.LegendDemonHound;
+		this.m.BloodType = ::Const.BloodType.Bones;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
+		this.m.XP = ::Const.Tactical.Actor.LegendDemonHound.XP;
 		this.m.IsEmittingMovementSounds = true;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/hollen_hurt_01.wav",
 			"sounds/enemies/hollen_hurt_02.wav",
 			"sounds/enemies/hollen_hurt_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/hollen_death_01.wav",
 			"sounds/enemies/hollen_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/hollen_idle_01.wav",
 			"sounds/enemies/hollen_idle_02.wav",
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/hollen_charge_01.wav",
 			"sounds/enemies/hollen_charge_02.wav",
 			"sounds/enemies/hollen_charge_03.wav",
 			"sounds/enemies/hollen_charge_04.wav",
 			"sounds/enemies/hollen_charge_05.wav"
 		];
-		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
+		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.getFlags().add("skeleton");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/wardog_agent");
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_demon_hound_bones_item"]
 			]);
 		}
 	}
 
-	function onDamageReceived( _attacker, _skill, _hitInfo ) {
+	function onDamageReceived(_attacker, _skill, _hitInfo) {
 		local ret = this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 
 		if (!::Legends.S.isEntityNullOrDead(this)) {
@@ -67,9 +66,10 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		return ret;
 	}
 
-	function teleport( _retries = 0 ) {
-		if (::Legends.S.isEntityNullOrDead(this) || ::Legends.S.isEntityMovementDisabled(this))
+	function teleport(_retries = 0) {
+		if (::Legends.S.isEntityNullOrDead(this) || ::Legends.S.isEntityMovementDisabled(this)) {
 			return;
+		}
 
 		if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
 			if (_retries > 20) {
@@ -88,11 +88,11 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		};
 		::Tactical.queryTilesInRange(this.getTile(), 2, 6, false, [], this.onQueryTiles, result);
 
-		if (result.Destinations.len() == 0)	{
+		if (result.Destinations.len() == 0) {
 			return;
 		}
 
-		local targetTile = result.Destinations[this.Math.rand(0, result.Destinations.len() - 1)];
+		local targetTile = result.Destinations[::Math.rand(0, result.Destinations.len() - 1)];
 		local tag = {
 			User = this,
 			TargetTile = targetTile,
@@ -100,11 +100,11 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 			OnFadeIn = this.onFadeIn,
 			OnFadeDone = this.onFadeDone,
 			OnTeleportStart = this.onTeleportStart,
+			SpawnFogEffect = this.spawnFogEffect,
 			IgnoreColors = false
 		};
 
-		if (this.getTile().IsVisibleForPlayer)
-		{
+		if (this.getTile().IsVisibleForPlayer) {
 			local effect = {
 				Delay = 0,
 				Quantity = 12,
@@ -166,232 +166,84 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 					}
 				]
 			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, this.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+			::Tactical.spawnParticleEffect(false, effect.Brushes, this.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 			this.storeSpriteColors();
 			this.fadeTo(this.createColor("ffffff00"), 0);
 			this.onTeleportStart(tag);
-		}
-		else if (targetTile.IsVisibleForPlayer)
-		{
+		} else if (targetTile.IsVisibleForPlayer) {
 			this.storeSpriteColors();
 			this.fadeTo(this.createColor("ffffff00"), 0);
 			this.onTeleportStart(tag);
-		}
-		else
-		{
+		} else {
 			tag.IgnoreColors = true;
 			this.onTeleportStart(tag);
 		}
 	}
 
-	function onQueryTiles( _tile, _tag )
-	{
-		if (!_tile.IsEmpty)
-		{
+	function onQueryTiles(_tile, _tag) {
+		if (!_tile.IsEmpty) {
 			return;
 		}
 
 		_tag.Destinations.push(_tile);
 	}
 
-	function onTeleportStart( _tag )
-	{
-		if (::Legends.S.isEntityNullOrDead(_tag.User))
+	function onTeleportStart(_tag) {
+		if (::Legends.S.isEntityNullOrDead(_tag.User)) {
 			return;
-		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 0.0);
+		}
+		::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 0.0);
 	}
 
-	function onTeleportDone( _entity, _tag )
-	{
-		if (!_entity.isHiddenToPlayer())
-		{
-			local effect = {
-				Delay = 0,
-				Quantity = 12,
-				LifeTimeQuantity = 12,
-				SpawnRate = 100,
-				Brushes = [
-					"explosion_01",
-					"explosion_02",
-					"explosion_03"
-				],
-				Stages = [
-					{
-						LifeTimeMin = 1.0,
-						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("0001BF5f"),
-						ColorMax = this.createColor("0001BF5f"),
-						ScaleMin = 0.5,
-						ScaleMax = 0.5,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						SpawnOffsetMin = this.createVec(-10, -10),
-						SpawnOffsetMax = this.createVec(10, 10),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 1.0,
-						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("0000912f"),
-						ColorMax = this.createColor("0000912f"),
-						ScaleMin = 0.3,
-						ScaleMax = 0.3,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.1,
-						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("09099400"),
-						ColorMax = this.createColor("09099400"),
-						ScaleMin = 0.1,
-						ScaleMax = 0.1,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					}
-				]
-			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, _entity.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, _tag.OnFadeIn, _tag);
-		}
-		else
-		{
+	function onTeleportDone(_entity, _tag) {
+		if (!_entity.isHiddenToPlayer()) {
+			_tag.SpawnFogEffect(_entity.getTile());
+			::Time.scheduleEvent(::TimeUnit.Virtual, 400, _tag.OnFadeIn, _tag);
+		} else {
 			_tag.OnFadeIn(_tag);
 		}
 	}
 
-	function onFadeIn( _tag )
-	{
-		if (!_tag.IgnoreColors)
-		{
-			if (_tag.User.isHiddenToPlayer())
-			{
+	function onFadeIn(_tag) {
+		if (!_tag.IgnoreColors) {
+			if (_tag.User.isHiddenToPlayer()) {
 				_tag.User.restoreSpriteColors();
-			}
-			else
-			{
+			} else {
 				_tag.User.fadeToStoredColors(300);
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, 300, _tag.OnFadeDone, _tag);
 			}
 		}
 	}
 
-	function onFadeDone( _tag )
-	{
+	function onFadeDone(_tag) {
 		_tag.User.restoreSpriteColors();
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
 
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		this.m.IsCorpseFlipped = flip;
 
-		if (_tile != null)
-		{
-			local effect = {
-				Delay = 0,
-				Quantity = 12,
-				LifeTimeQuantity = 12,
-				SpawnRate = 100,
-				Brushes = [
-					"explosion_01",
-					"explosion_02",
-					"explosion_03"
-				],
-				Stages = [
-					{
-						LifeTimeMin = 1.0,
-						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("0001BF5f"),
-						ColorMax = this.createColor("0001BF5f"),
-						ScaleMin = 1.0,
-						ScaleMax = 1.0,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						SpawnOffsetMin = this.createVec(-10, -10),
-						SpawnOffsetMax = this.createVec(10, 10),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 1.0,
-						LifeTimeMax = 1.0,
-						ColorMin = this.createColor("0000912f"),
-						ColorMax = this.createColor("0000912f"),
-						ScaleMin = 0.9,
-						ScaleMax = 0.9,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					},
-					{
-						LifeTimeMin = 0.1,
-						LifeTimeMax = 0.1,
-						ColorMin = this.createColor("09099400"),
-						ColorMax = this.createColor("09099400"),
-						ScaleMin = 0.1,
-						ScaleMax = 0.1,
-						RotationMin = 0,
-						RotationMax = 0,
-						VelocityMin = 80,
-						VelocityMax = 100,
-						DirectionMin = this.createVec(-1.0, -1.0),
-						DirectionMax = this.createVec(1.0, 1.0),
-						ForceMin = this.createVec(0, 0),
-						ForceMax = this.createVec(0, 0)
-					}
-				]
-			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+		if (_tile != null) {
+			this.spawnFogEffect(_tile, true);
 
-			local decal = _tile.spawnDetail("bust_demon_hound_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false);
+			local decal = _tile.spawnDetail("bust_demon_hound_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false);
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
-				decal = _tile.spawnDetail("bust_demon_hound_head_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
+				decal = _tile.spawnDetail("bust_demon_hound_head_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					"bust_demon_hound_head_dead"
 				];
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
 				decap[0].Scale = 0.9;
 				decap[0].setHorizontalFlipping(true);
 			}
@@ -405,16 +257,16 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer ) {
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone this.Const.Corpse;
 		corpse.Faction = this.getFaction();
 		corpse.CorpseName = "A " + this.getName();
@@ -445,12 +297,11 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 
 	// }
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendDemonHound);
+		b.setValues(::Const.Tactical.Actor.LegendDemonHound);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
@@ -466,7 +317,7 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.addSprite("fog").setBrush("bust_ghost_fog_02");
 
 		local body = this.addSprite("body");
-		body.setBrush("bust_demon_hound_0" + this.Math.rand(1, 2));
+		body.setBrush("bust_demon_hound_0" + ::Math.rand(1, 2));
 		// body.Saturation = 1.0;
 		// body.setBrightness(0.7);
 		// body.varySaturation(0.25);
@@ -498,54 +349,46 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		 if (::Legends.isLegendaryDifficulty())
-		 {
-		 	::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
-		 }
+		if (::Legends.isLegendaryDifficulty()) {
+			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
+		}
 
 	}
 
-	function onRender()
-	{
+	function onRender() {
 		this.actor.onRender();
 
-		if (this.m.DistortTargetA == null)
-		{
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+		if (this.m.DistortTargetA == null) {
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA))
-		{
+		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA)) {
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
-		if (this.m.DistortTargetB == null)
-		{
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+		if (this.m.DistortTargetB == null) {
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB))
-		{
+		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB)) {
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
-		if (this.m.DistortTargetC == null)
-		{
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+		if (this.m.DistortTargetC == null) {
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 		}
 
-		if (this.moveSpriteOffset("blur_3", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC))
-		{
+		if (this.moveSpriteOffset("blur_3", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC)) {
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 	}
 
@@ -560,4 +403,70 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		getSprite("blur_3").setHorizontalFlipping(flip);
 	}
 
+	function spawnFogEffect(_tile, _isBigger = false) {
+		local effect = {
+			Delay = 0,
+			Quantity = 12,
+			LifeTimeQuantity = 12,
+			SpawnRate = 100,
+			Brushes = [
+				"explosion_01",
+				"explosion_02",
+				"explosion_03"
+			],
+			Stages = [
+				{
+					LifeTimeMin = 1.0,
+					LifeTimeMax = 1.0,
+					ColorMin = this.createColor("5a8ba95f"),
+					ColorMax = this.createColor("5a8ba95f"),
+					ScaleMin = _isBigger ? 1.0: 0.5,
+					ScaleMax = _isBigger ? 1.0: 0.5,
+					RotationMin = 0,
+					RotationMax = 0,
+					VelocityMin = 80,
+					VelocityMax = 100,
+					DirectionMin = this.createVec(-1.0, -1.0),
+					DirectionMax = this.createVec(1.0, 1.0),
+					SpawnOffsetMin = this.createVec(-10, -10),
+					SpawnOffsetMax = this.createVec(10, 10),
+					ForceMin = this.createVec(0, 0),
+					ForceMax = this.createVec(0, 0)
+				},
+				{
+					LifeTimeMin = 1.0,
+					LifeTimeMax = 1.0,
+					ColorMin = this.createColor("5a8ba92f"),
+					ColorMax = this.createColor("5a8ba92f"),
+					ScaleMin = _isBigger ? 0.9: 0.3,
+					ScaleMax = _isBigger ? 0.9: 0.3,
+					RotationMin = 0,
+					RotationMax = 0,
+					VelocityMin = 80,
+					VelocityMax = 100,
+					DirectionMin = this.createVec(-1.0, -1.0),
+					DirectionMax = this.createVec(1.0, 1.0),
+					ForceMin = this.createVec(0, 0),
+					ForceMax = this.createVec(0, 0)
+				},
+				{
+					LifeTimeMin = 0.1,
+					LifeTimeMax = 0.1,
+					ColorMin = this.createColor("ffffff00"),
+					ColorMax = this.createColor("ffffff00"),
+					ScaleMin = 0.1,
+					ScaleMax = 0.1,
+					RotationMin = 0,
+					RotationMax = 0,
+					VelocityMin = 80,
+					VelocityMax = 100,
+					DirectionMin = this.createVec(-1.0, -1.0),
+					DirectionMax = this.createVec(1.0, 1.0),
+					ForceMin = this.createVec(0, 0),
+					ForceMax = this.createVec(0, 0)
+				}
+			]
+		};
+		::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+	}
 });
