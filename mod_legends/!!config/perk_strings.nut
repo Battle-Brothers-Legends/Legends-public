@@ -188,7 +188,6 @@
 ::Const.Strings.PerkName.LegendSpecialistReaper <- "Harvest Swathes";
 ::Const.Strings.PerkName.LegendSpecialistSelfdefense <- "Stick Fighting";
 ::Const.Strings.PerkName.LegendSpecialistShieldSkill <- "Born With a Board";
-::Const.Strings.PerkName.LegendSpecialistShieldPush <- "Push it";
 ::Const.Strings.PerkName.LegendSpecialistInventor <- "Inventor\'s Armaments";
 ::Const.Strings.PerkName.LegendSpecialistBodyguard <- "Schwertkampfer";
 ::Const.Strings.PerkName.LegendSpecialistInquisition <- "Trial for Witchcraft";
