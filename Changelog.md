@@ -296,13 +296,16 @@
 > additionally reduces ranged Damage taken by 30%
 - Auxiliary Shield - now has 15 Block, 10-25 Damage
 - Buckler Shield - now has 10 Block, 5-10 Damage
+- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
+> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
+> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+- Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
+> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+
 - Heater Shield - now has 20 Block, 15-30 Damage
 - Kite Shield - now has 20 Block, 10-25 Damage
 > additionally reduces ranged Damage taken by 30%
-- Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
-> classified as a bucker and gains buckler skills and effects
-- Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
-> classified as a bucker and gains buckler skills and effects
 - Orc Light Shield - now has 15 Block, 10-25 Damage, 24 Condition
 > additionally reduces ranged Damage taken by 15%
 - Orc Heavy Shield - now has 30 Block, 100 Condition and 15-30 damage
@@ -311,11 +314,6 @@
 > additionally reduces ranged Damage taken by 15%
 - Wooden Shield - now has 20 Block, 10-25 Damage
 - Old Wooden Shield - now has 20 Block, 10-25 Damage
-- Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
-- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 25 Block, 10-25 Damage
-> once per battle regrow itself to full upon destruction
-- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 25 Block, 10-25 Damage
-> twice per battle regrow itself to full upon destruction
 
 ### Special Shields
 - Gilder's Embrace - now has 50 block and 15-30 Damage
@@ -331,6 +329,10 @@
 - Named Wing Shield/Named Rider on Horse Shield - now has 50 Condition, 25 Block, 15-30 Damage
 - Named Pavise Shield - now has 25 Mdef, 25 Rdef, 20 weight, 96 Condition, 30 Block, 10-25 Damage
 > classified as a tower shield and gains `Shieldwall` and `Safeguard`
+- Schrat Shield - now has 20 Mdef, 17 Rdef, 8 Weight, 48 Condition, 25 Block, 10-25 Damage
+> once per battle regrow itself to full upon destruction
+- Greenwood Schrat Shield - now has 30 Mdef, 25 Rdef, 10 Weight, 72 Condition, 25 Block, 10-25 Damage
+> twice per battle regrow itself to full upon destruction
 
 ### Named Shield Changes
 - shields can now roll damage and block
