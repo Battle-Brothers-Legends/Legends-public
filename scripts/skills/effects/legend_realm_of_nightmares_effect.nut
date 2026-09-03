@@ -33,7 +33,7 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 		if (myTile.Properties.Effect == null || !("Timeout" in myTile.Properties.Effect) || !("Type" in myTile.Properties.Effect))
 			return true;
 
-		if (myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "shadows")
+		if (myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "legend_shadow_mist")
 			return true;
 
 		return false;

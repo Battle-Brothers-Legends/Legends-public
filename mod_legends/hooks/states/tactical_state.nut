@@ -901,4 +901,140 @@
 			}
 		}
 	}
+
+	o.spawnEffectOnTile = function( _tile, _effectType, _effect, _particles ) {
+		if (_tile.Properties.Effect != null && _tile.Properties.Effect.Type == _effectType)	{
+			_tile.Properties.Effect.Timeout = _effect.Timeout;
+		} else {
+			if (_tile.Properties.Effect != null) {
+				::Tactical.Entities.removeTileEffect(_tile);
+			}
+
+			_tile.Properties.Effect = clone _effect;
+			local spawnedParticles = [];
+
+			foreach( particleInfo in _particles ) {
+				spawnedParticles.push(::Tactical.spawnParticleEffect(particleInfo.Entity, particleInfo.Brushes, particleInfo.Tile, particleInfo.Delay, particleInfo.Quantity, particleInfo.Lifetime, particleInfo.Rate, particleInfo.Stages));
+			}
+
+			::Tactical.Entities.addTileEffect(_tile, _tile.Properties.Effect, spawnedParticles);
+		}
+	}
+
+	o.createEffectParticles <- function (_tile, _particles, _entity = true) {
+		local particles = [];
+
+		for (local i = 0; i < _particles.len(); i++) {
+			particles.push({
+				Entity = _entity,
+				Brushes = _particles[i].Brushes,
+				Tile = _tile,
+				Delay = _particles[i].Delay,
+				Quantity = _particles[i].Quantity,
+				Lifetime = _particles[i].LifeTimeQuantity,
+				Rate = _particles[i].SpawnRate,
+				Stages = _particles[i].Stages
+			});
+		}
+
+		return particles;
+	}
+
+	o.spawnHolyFlameOnTile <- function (_tile, _user = null, _playerApplied = true, _applyImmediately = true, _timeout = ::Const.Combat.LegendHolyFlameTimeout) {
+		local effect = {
+			Type = "legend_holyflame",
+			Tooltip = "This is hallowed ground.\n\nAllies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage.\n\nUndead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing any immunity to injuries, bleeding, and being poisoned.\n\nAdditionally, Undead are unable to resurrect in the area while the flame is active.",
+			IsPositive = false,
+			IsAppliedAtRoundStart = false,
+			IsAppliedAtTurnEnd = true,
+			IsAppliedOnMovement = false,
+			IsAppliedOnEnter = true,
+			IsByPlayer = _user != null ? _user.isPlayerControlled() : false,
+			Timeout = ::Time.getRound() + _timeout,
+			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyHolyFlame(_tile, _entity, _user),
+			Applicable = @(_a) true
+		};
+
+		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.HolyFlameParticles));
+
+		if (_applyImmediately && _tile.IsOccupiedByActor) {
+			effect.Callback(_tile, _tile.getEntity());
+		}
+	}
+
+	o.spawnShadowMistOnTile <- function (_tile, _user = null, _playerApplied = false, _applyImmediately = true, _timeout = ::Const.Combat.LegendShadowMistTimeout) {
+		local effect = {
+			Type = "legend_shadow_mist",
+			Tooltip = "A pitch black mist lingers here, emanating bone chilling air from within.",
+			IsPositive = true,
+			IsAppliedAtRoundStart = false,
+			IsAppliedAtTurnEnd = true,
+			IsAppliedOnMovement = false,
+			IsAppliedOnEnter = true,
+			IsByPlayer = false,
+			Timeout = ::Time.getRound() + _timeout,
+			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyShadowMist(_tile, _entity),
+			Applicable = @(_a) _a.getFlags().has("alp") || _a.getMoraleState != ::Const.MoraleState.Ignore
+		};
+
+		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.ShadowParticles));
+
+		if (_applyImmediately && _tile.IsOccupiedByActor) {
+			effect.Callback(_tile, _tile.getEntity());
+		}
+	}
+
+	o.spawnFireRSWBlazingOnTile <- function (_tile, _effect = null, _playerApplied = false, _applyImmediately = true, _timeout = null) {
+		local effect = {
+			Type = "fire_legend_rsw_blazing",
+			Tooltip = "Fire rages here, melting armor and flesh alike.",
+			IsPositive = false,
+			IsAppliedAtRoundStart = false,
+			IsAppliedAtTurnEnd = true,
+			IsAppliedOnMovement = false,
+			IsAppliedOnEnter = false,
+			IsByPlayer = _effect != null ? _effect.getContainer().getActor().isPlayerControlled() : false,
+			Timeout = ::Time.getRound() + _effect.getItem().getRuneBonus2()
+			Damage = _effect.getItem().getRuneBonus1(),
+			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyFireRune(_tile, _entity),
+			Applicable = @(_a) true
+		};
+
+		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.FireParticles));
+		_tile.Properties.Effect.Damage = _effect.Damage;
+		_tile.clear(::Const.Tactical.DetailFlag.Scorchmark);
+		_tile.spawnDetail("impact_decal", ::Const.Tactical.DetailFlag.Scorchmark, false, true);
+
+		if (_applyImmediately && _tile.IsOccupiedByActor) {
+			effect.Callback(_tile, _tile.getEntity());
+		}
+	}
+
+	o.spawnFireFirefieldOnTile <- function (_tile, _user = null, _playerApplied = false, _applyImmediately = true, _timeout = 3) {
+		local effect = {
+			Type = "fire_legend_firefield",
+			Tooltip = "Fire rages here, melting armor and flesh alike.",
+			IsPositive = false,
+			IsAppliedAtRoundStart = false,
+			IsAppliedAtTurnEnd = true,
+			IsAppliedOnMovement = false,
+			IsAppliedOnEnter = false,
+			IsByPlayer = _user != null ? _user.isPlayerControlled() : false,
+			Timeout = ::Time.getRound() + _timeout,
+			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyFire(_tile, _entity),
+			Applicable = @(_a) true
+		};
+
+		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.FireParticles));
+
+		if (_applyImmediately && _tile.IsOccupiedByActor) {
+			local entity = _tile.getEntity();
+
+			for (local i = 0; i < 2; ++i) {
+				if (!::Legends.S.isEntityNullOrDead(entity)) {
+					effect.Callback(_tile, _tile.getEntity());
+				}
+			}
+		}
+	}
 });

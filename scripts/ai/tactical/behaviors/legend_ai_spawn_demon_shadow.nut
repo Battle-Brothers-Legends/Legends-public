@@ -43,7 +43,7 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 			{
 				local tile = this.Tactical.getTileSquare(x, y);
 
-				if (!tile.IsEmpty || tile.Properties.Effect == null || tile.Properties.Effect.Type != "shadows")
+				if (!tile.IsEmpty || tile.Properties.Effect == null || tile.Properties.Effect.Type != "legend_shadow_mist")
 				{
 				}
 				else

@@ -84,6 +84,20 @@
 	}
 };
 
+::Const.Tactical.Common.onApplyShadowMist <- function (_tile, _entity) {
+	if (!_entity.getFlags().has("alp") && _entity.getMoraleState == ::Const.MoraleState.Ignore) {
+		return;
+	}
+
+	if (_entity.getSkills().hasEffect(::Legends.Effect.LegendAlpRealmOfShadow)) {
+		return;
+	}
+
+	::Sound.play(::MSU.Array.rand(::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6)), ::Const.Sound.Volume.Actor, _entity.getPos());
+
+	::Legends.Effects.grant(_entity, ::Legends.Effect.LegendAlpRealmOfShadow);
+}
+
 local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
 ::Const.Tactical.Common.onApplyFire = function (_tile, _entity) {
 	if (_entity.getCurrentProperties().IsImmuneToFire)

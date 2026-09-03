@@ -4,14 +4,7 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHolyflame);
 		this.m.Description = "Bless an area and apply hallowed ground over a 1-tile radius for " + ::Const.UI.getColorized("2", ::Const.UI.Color.PositiveValue) + " turns. The holy shall be sanctified when entering, the damned shall be consecrated.";
-		this.m.SoundOnUse = [
-			"sounds/combat/fire_01.wav",
-			"sounds/combat/fire_02.wav",
-			"sounds/combat/fire_03.wav",
-			"sounds/combat/fire_04.wav",
-			"sounds/combat/fire_05.wav",
-			"sounds/combat/fire_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/fire", 6);
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 0;
@@ -79,53 +72,11 @@ this.legend_holyflame_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUse(_user, _targetTile) {
-		local targets = [];
-		targets.push(_targetTile);
-
-		for (local i = 0; i < 6; i++) {
-			if (_targetTile.hasNextTile(i)) {
-				targets.push(_targetTile.getNextTile(i));
-			}
-		}
-
-		local p = {
-			Type = "legend_holyflame",
-			Tooltip = "This is hallowed ground.\n\nAllies gain the Sanctified effect, becoming immune to injuries, bleeding, poison, and morale checks when taking damage.\n\nUndead and Cultists gain the Consecrated effect, dealing damage to them each turn and removing any immunity to injuries, bleeding, and being poisoned.\n\nAdditionally, Undead are unable to resurrect in the area while the flame is active.",
-			IsPositive = false,
-			IsAppliedAtRoundStart = false,
-			IsAppliedAtTurnEnd = true,
-			IsAppliedOnMovement = false,
-			IsAppliedOnEnter = true,
-			IsByPlayer = _user.isPlayerControlled(),
-			Timeout = ::Time.getRound() + 2,
-			Callback = function(_tile, _entity) {
-    			::Const.Tactical.Common.onApplyHolyFlame(_tile, _entity, _user);
-			},
-			function Applicable(_a) {
-				return true;
-			}
-		};
+		local targets = [_targetTile];
+		targets.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction) _targetTile.hasNextTile(_direction)).map(@(_direction) _targetTile.getNextTile(_direction)));
 
 		foreach (tile in targets) {
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_holyflame") { // TODO: override if the tile has another effect?
-				tile.Properties.Effect.Timeout = ::Time.getRound() + 2;
-			} else {
-				if (tile.Properties.Effect != null) {
-					::Tactical.Entities.removeTileEffect(tile);
-				}
-
-				tile.Properties.Effect = clone p;
-				local particles = [];
-
-				for (local i = 0; i < ::Const.Tactical.HolyFlameParticles.len(); i++) {
-					particles.push(::Tactical.spawnParticleEffect(true, this.Const.Tactical.HolyFlameParticles[i].Brushes, tile, ::Const.Tactical.HolyFlameParticles[i].Delay, ::Const.Tactical.HolyFlameParticles[i].Quantity, ::Const.Tactical.HolyFlameParticles[i].LifeTimeQuantity, ::Const.Tactical.HolyFlameParticles[i].SpawnRate, ::Const.Tactical.HolyFlameParticles[i].Stages));
-				}
-
-				::Tactical.Entities.addTileEffect(tile, tile.Properties.Effect, particles);
-				if (tile.IsOccupiedByActor) {
-					::Const.Tactical.Common.onApplyHolyFlame(tile, tile.getEntity(), _user);
-				}
-			}
+			::Tactical.State.spawnHolyFlameOnTile(tile, _user);
 		}
 
 		return true;

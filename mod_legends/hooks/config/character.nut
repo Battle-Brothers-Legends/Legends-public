@@ -34,6 +34,8 @@ for( local i = 1; i < 88; i = ++i )
 ::Const.Combat.BloodPoolsAtDeathMin = 2;
 ::Const.Combat.BloodiedBustCount = 2;
 ::Const.Combat.ResurrectAnimationTime = 0.5;
+::Const.Combat.LegendHolyFlameTimeout <- 2;
+::Const.Combat.LegendShadowMistTimeout <- 3;
 
 ::Const.ShakeCharacterLayers[0].extend([
 	"armor_layer_chain",

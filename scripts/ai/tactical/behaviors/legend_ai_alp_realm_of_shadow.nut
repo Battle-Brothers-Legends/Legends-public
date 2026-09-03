@@ -170,7 +170,7 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 
 				target_score *= target.getCurrentProperties().TargetAttractionMult;
 
-				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "shadows" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
+				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "legend_shadow_mist" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
 					target_score *= this.Const.AI.Behavior.MiasmaOneTurnLeftMult;
 
 				if (!::Legends.S.isEntityMovementDisabled(target) && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
