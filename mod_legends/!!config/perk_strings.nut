@@ -960,53 +960,6 @@ Siphon their lifeforce into yourself!
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]10[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendValaInscriptionMastery <- @"
-The Vala becomes is a master at the intricate and lost art of inscribing signs and sigils.
-
-[color=%passive%][u]Passive:[/u][/color]
-• When taking [color=%perk%]Polearm Mastery[/color], the Vala will become able to inscribe shields and weapons.
-
-• When taking [color=%perk%]Nimble[/color] or [color=%perk%]Lithe[/color], the Vala will become able to inscribe Armor and Helmets.
-
-• When she achieves level 11, she will also increase the speed at which she can craft runes by [color=%positive%]30%[/color].
-";
-
-::Const.Strings.PerkDescription.LegendValaInscribeWeapon <- @"
-Learn to inscribe rune sigils for weapons.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Allows the Vala to inscribe rocks with weapon specific rune sigils while encamped to create powerful rune stones.
-
-• Possibilities: accuracy, bleeding, feeding, poison, power.
-";
-
-::Const.Strings.PerkDescription.LegendValaInscribeHelmet <- @"
-Learn to inscribe rune sigils for helmets.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Allows the Vala to inscribe rocks with helmet specific rune sigils while encamped to create powerful rune stones.
-
-• Possibilities: bravery, clarity, luck.
-";
-
-::Const.Strings.PerkDescription.LegendValaInscribeArmor <- @"
-Learn to inscribe rune sigils for armor.
-
-[color=%passive%][u]Passive:[/u][/color]
-• Allows the Vala to inscribe rocks with armor specific rune sigils while encamped to create powerful rune stones.
-
-• Possibilities: endurance, resilience, safety.
-";
-
-::Const.Strings.PerkDescription.LegendValaInscribeShield <- @"
-Learn to inscribe rune sigils for shields
-
-[color=%passive%][u]Passive:[/u][/color]
-• Allows the Vala to inscribe rocks with shield specific rune sigils while encamped to create powerful rune stones.
-
-• Possibilities: defense, radiance.
-";
-
 ::Const.Strings.PerkDescription.LegendValaChantMastery <- @"
 Obtain mastery over chants.
 
