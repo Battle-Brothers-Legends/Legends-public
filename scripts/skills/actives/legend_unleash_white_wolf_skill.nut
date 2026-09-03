@@ -86,9 +86,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile ) {
 		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 

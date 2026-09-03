@@ -106,9 +106,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile )	{
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 

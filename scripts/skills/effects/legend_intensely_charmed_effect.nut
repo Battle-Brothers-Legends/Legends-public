@@ -142,12 +142,8 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 		this.onRemoved();
 	}
 
-	function onTurnEnd()
-	{
-		local actor = this.getContainer().getActor();
-
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}

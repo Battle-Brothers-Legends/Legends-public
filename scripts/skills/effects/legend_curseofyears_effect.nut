@@ -100,12 +100,9 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onTurnStart()
-	{
-		local actor = this.getContainer().getActor();
-		if (this.m.SoundOnUse.len() != 0)
-		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
+	function onTurnStart() {
+		if (this.m.SoundOnUse.len() != 0) {
+			::Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
 		}
 	}
 

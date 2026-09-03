@@ -165,7 +165,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 
 		if (_targetEntity != null && (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendGrappled) || _targetEntity.getSkills().hasEffect(::Legends.Effect.LegendChoked)))
 		{
-			_properties.DamageRegularMult *= 1.5
+			_properties.DamageRegularMult *= 1.5;
 		}
 
 		_properties.HitChance[this.Const.BodyPart.Head] += 100.0;

@@ -191,7 +191,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			local heal = maxHP / 10;
 			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
 		}
-		return res
+		return res;
 
 
 	}

@@ -89,9 +89,7 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	}
 
 	function onVerifyTarget(_originTile, _targetTile) {
-		local actor = this.getContainer().getActor();
-		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile)
-			&& _targetTile.IsEmpty;
+		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
 	function onUse(_user, _targetTile) {
