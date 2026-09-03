@@ -44,7 +44,7 @@
 		return this.getContainer().getActor().getFlags().has("undead");
 	}
 
-	o.onUpdateProperties <- function (_properties ) {
+	o.onAfterUpdate <- function (_properties ) {
 		local multiplier = this.m.Counter * 0.5;
 		this.m.FatigueCostMult *= 1.0 + multiplier;
 	}

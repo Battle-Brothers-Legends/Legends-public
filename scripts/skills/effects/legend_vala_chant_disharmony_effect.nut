@@ -46,6 +46,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	}
 
 	function onUpdate(_properties) {
+		local actor = this.getContainer().getActor();
 		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
 		}
@@ -61,20 +62,19 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 		}
 
 		local bonus = calculateBonus(distance);
-		_properties.InitiativeMult *= 1.0 - 0.01 * this.Math.round(bonus);
+		_properties.InitiativeMult *= 1.0 - 0.01 * ::Math.round(bonus);
 
 		this.updateEffect(true);
 	}
 
 	function updateEffect(_v) {
-		local actor = this.getContainer().getActor();
 		if (_v) {
 			this.m.Name = "Disharmony";
 			this.m.Icon = "skills/status_effect_65.png";
 			this.m.IconMini = "status_effect_65_mini";
 			this.m.Overlay = "status_effect_65";
 		} else {
-			actor.m.IsUsingZoneOfControl = true;
+			this.getContainer().getActor().m.IsUsingZoneOfControl = true;
 			this.m.Name = "";
 			this.m.Icon = "";
 			this.m.IconMini = "";
@@ -83,11 +83,12 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 	}
 
 	function onMovementFinished() {
+		local actor = this.getContainer().getActor();
 		if (::Legends.S.isEntityNullOrDead(actor) || !actor.isPlacedOnMap()) {
 			return;
 		}
 
-		local distance = this.getContainer().getActor().getTile().getDistanceTo(this.m.Vala.getTile());
+		//local distance = actor.getTile().getDistanceTo(this.m.Vala.getTile());
 		if (!this.checkEntities()) {
 			this.updateEffect(false);
 			return;
@@ -98,7 +99,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 			return;
 		}
 
-		this.spawnIcon("status_effect_65", this.getContainer().getActor().getTile());
+		this.spawnIcon("status_effect_65", actor.getTile());
 		this.updateEffect(true);
 	}
 });
