@@ -19,11 +19,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 		this.legend_specialist_abstract.create();
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistPoacher);
 		this.m.IconMini = "perk_spec_shortbow_mini";
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		];
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

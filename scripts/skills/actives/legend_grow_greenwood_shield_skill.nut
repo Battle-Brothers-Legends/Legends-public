@@ -6,12 +6,7 @@ this.legend_grow_greenwood_shield_skill <- this.inherit("scripts/skills/skill", 
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrowGreenwoodShield);
 		this.m.Description = "";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/schrat_regrowth_01.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_02.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_03.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/schrat_regrowth", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

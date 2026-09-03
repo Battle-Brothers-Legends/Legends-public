@@ -8,16 +8,8 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.DamageInitiativeMax = 45;
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRust);
 		this.m.Description = "Tarnish leather and metal with rapid age, thereby undermining the solidity of the armor worn by your target. Damaged done is based off current initiative.\nHitchance is determined by Ranged Skill.";
-		this.m.SoundOnUse = [
-			"sounds/combat/crush_armor_01.wav",
-			"sounds/combat/crush_armor_02.wav",
-			"sounds/combat/crush_armor_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/crush_armor_hit_01.wav",
-			"sounds/combat/crush_armor_hit_02.wav",
-			"sounds/combat/crush_armor_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/crush_armor", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/crush_armor_hit", 3);
 		this.m.SoundVolume = 1.1;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

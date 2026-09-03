@@ -1,31 +1,15 @@
 this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		ApplyHead = false,
-		SoundsA = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		]
+		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3)
 	},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHew);
 		this.m.Description = "An overhead strike that bears the full force on the targets entire body.";
 		this.m.KilledString = "Hewed";
-		this.m.SoundOnUse = [
-			"sounds/combat/overhead_strike_01.wav",
-			"sounds/combat/overhead_strike_02.wav",
-			"sounds/combat/overhead_strike_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/execute_hit_01.wav",
-			"sounds/combat/execute_hit_02.wav",
-			"sounds/combat/execute_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/overhead_strike", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/execute_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

@@ -463,7 +463,7 @@
 
 ::Legends.S.extend <- @(_array, _item, _count = 1) _array.extend(array(_count, _item));
 
-::Legends.S.setSounds <- function (_prefix, _count = 1, _suffix = ".wav") {
-	local i = 1;
+::Legends.S.setSounds <- function (_prefix, _count = 1, _startIndex = 1, _suffix = ".wav") {
+	local i = _startIndex;
 	return array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, i++));
 }

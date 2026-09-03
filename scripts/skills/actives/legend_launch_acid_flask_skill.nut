@@ -5,12 +5,7 @@ this.legend_launch_acid_flask_skill <- this.inherit("scripts/skills/actives/thro
 		this.throw_acid_flask.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchAcidFlask);
 		this.m.Description = "Launch a flask of acid, with your slingstaff, towards a target, where it will shatter and spray its contents. The acid will slowly corrode away any armor of those hit - friend and foe alike.";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/sling_use_01.wav",
-			"sounds/combat/dlc4/sling_use_02.wav",
-			"sounds/combat/dlc4/sling_use_03.wav",
-			"sounds/combat/dlc4/sling_use_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/sling_use", 4);
 		this.m.Delay = 750;
 		this.m.IsOffensiveToolSkill = false;
 		this.m.IsRanged = true;

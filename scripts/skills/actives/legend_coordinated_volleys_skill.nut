@@ -4,9 +4,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCoordinatedVolleys);
 		this.m.Description = "Time and call the shots for archers, increasing their chance to hit.";
-		this.m.SoundOnUse = [
-			"sounds/combat/coordinated_volleys.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/coordinated_volleys.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -21,9 +19,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,

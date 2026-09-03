@@ -14,16 +14,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/nightmare_01.wav",
-			"sounds/enemies/dlc2/nightmare_02.wav",
-			"sounds/enemies/dlc2/nightmare_03.wav",
-			"sounds/enemies/dlc2/nightmare_04.wav",
-			"sounds/enemies/dlc2/nightmare_05.wav",
-			"sounds/enemies/dlc2/nightmare_06.wav",
-			"sounds/enemies/dlc2/nightmare_07.wav",
-			"sounds/enemies/dlc2/nightmare_08.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

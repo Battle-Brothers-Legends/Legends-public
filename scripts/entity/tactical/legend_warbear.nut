@@ -32,20 +32,9 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/bear_dead.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/unhold_flee_01.wav",
-			"sounds/enemies/unhold_flee_02.wav",
-			"sounds/enemies/unhold_flee_03.wav",
-			"sounds/enemies/unhold_flee_04.wav"
-		];
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/bear_hit1.wav",
-			"sounds/enemies/bear_hit2.wav"
-		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		];
+		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
+		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
+		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
 		this.m.Sound[this.Const.Sound.ActorEvent.Move] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 0.7;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/wardog_agent");

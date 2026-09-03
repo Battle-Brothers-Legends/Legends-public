@@ -5,12 +5,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSiphon);
 		this.m.Description = "Siphon the life force from your foe to yourself - replenishing your health and diminishing theirs.\n\nIt will never kill your victim and you can\'t draw more health than you are missing. Damage drops off over distance and uses Melee Skill to hit.";
 		this.m.KilledString = "Frightened to death";
-		this.m.SoundOnUse = [
-			"sounds/combat/drain_01.wav",
-			"sounds/combat/drain_02.wav",
-			"sounds/combat/drain_03.wav",
-			"sounds/combat/drain_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drain", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsIgnoredAsAOO = true;

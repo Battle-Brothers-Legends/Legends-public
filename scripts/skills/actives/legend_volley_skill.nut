@@ -8,21 +8,9 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendVolley);
 		this.m.Description = "Let loose a cascade of three striking shots on your opponent.";
 		this.m.KilledString = "Pin cushioned";
-		this.m.SoundOnUse = [
-			"sounds/combat/tripleshot_01.wav",
-			"sounds/combat/tripleshot_02.wav",
-			"sounds/combat/tripleshot_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/tripleshot_hit_01.wav",
-			"sounds/combat/tripleshot_hit_02.wav",
-			"sounds/combat/tripleshot_hit_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/arrow_miss_01.wav",
-			"sounds/combat/arrow_miss_02.wav",
-			"sounds/combat/arrow_miss_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/tripleshot", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/tripleshot_hit", 3);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/arrow_miss", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 250;

@@ -1,27 +1,14 @@
 this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		SoundsA = [
-			"sounds/combat/dlc4/whip_bleed_01.wav",
-			"sounds/combat/dlc4/whip_bleed_02.wav",
-			"sounds/combat/dlc4/whip_bleed_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/dlc4/whip_hit_01.wav",
-			"sounds/combat/dlc4/whip_hit_02.wav",
-			"sounds/combat/dlc4/whip_hit_03.wav",
-			"sounds/combat/dlc4/whip_hit_04.wav"
-		]
+		SoundsA = ::Legends.S.setSounds("sounds/combat/dlc4/whip_bleed", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/dlc4/whip_hit", 4)
 	},
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlagellate);
 		this.m.Description = "Lash out to apply three stacks of bleeding damage at once. Quite ineffective against armor.";
 		this.m.KilledString = "Flaggelated to death";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/whip_01.wav",
-			"sounds/combat/dlc4/whip_02.wav",
-			"sounds/combat/dlc4/whip_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/whip", 3);
 		this.m.SoundOnHit = [];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

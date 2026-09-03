@@ -5,12 +5,7 @@ this.legend_launch_daze_bomb_skill <- this.inherit("scripts/skills/actives/throw
 		this.throw_daze_bomb_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchDazeBomb);
 		this.m.Description = "Launch a pot, with your slingstaff, filled with mysterious powders that react violently on impact to create a bright flash and loud bang, and will daze anyone close by - friend and foe alike";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/sling_use_01.wav",
-			"sounds/combat/dlc4/sling_use_02.wav",
-			"sounds/combat/dlc4/sling_use_03.wav",
-			"sounds/combat/dlc4/sling_use_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/sling_use", 4);
 		this.m.Delay = 750;
 		this.m.IsOffensiveToolSkill = false;
 		this.m.IsRanged = true;

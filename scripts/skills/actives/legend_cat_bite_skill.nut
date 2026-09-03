@@ -5,13 +5,7 @@ this.legend_cat_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCatBite);
 		this.m.Description = "";
 		this.m.KilledString = "Mangled";
-		this.m.SoundOnUse = [
-			"sounds/enemies/cat_attack_01.wav",
-			"sounds/enemies/cat_attack_02.wav",
-			"sounds/enemies/cat_attack_03.wav",
-			"sounds/enemies/cat_attack_04.wav",
-			"sounds/enemies/cat_attack_05.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/cat_attack", 5);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

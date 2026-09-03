@@ -3,16 +3,8 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRevolt);
 		this.m.Description = "Concoct a mixture of smells so fetid and noxious, you force your target to retreat just so they can breathe. Targets hit will receive fatigue and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back. A rooted target can not be knocked back. Uses Ranged Skill.";
-		this.m.SoundOnHit = [
-			"sounds/combat/knockback_hit_01.wav",
-			"sounds/combat/knockback_hit_02.wav",
-			"sounds/combat/knockback_hit_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/impale_01.wav",
-			"sounds/combat/impale_02.wav",
-			"sounds/combat/impale_03.wav"
-		];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/knockback_hit", 3);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/impale", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;

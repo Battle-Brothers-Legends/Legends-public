@@ -6,9 +6,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
-		this.m.SoundOnUse = [
-			"sounds/combat/footwork_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/footwork_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

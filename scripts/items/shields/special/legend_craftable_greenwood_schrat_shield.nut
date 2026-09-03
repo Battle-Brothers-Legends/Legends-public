@@ -58,7 +58,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 
 	function onCombatFinished()
 	{
-		this.setCondition(shield.getConditionMax());	// To discourage the player stalling battles to fully repair this shield
+		this.setCondition(this.shield.getConditionMax());	// To discourage the player stalling battles to fully repair this shield
 	}
 
 	function applyShieldDamage( _damage, _playHitSound = true ) {
@@ -106,7 +106,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 			return;
 		}
 
-		this.setCondition(shield.getCondition() + shieldAdded);
+		this.setCondition(this.shield.getCondition() + shieldAdded);
 		local actor = this.getContainer().getActor();
 		actor.setDirty(true);
 

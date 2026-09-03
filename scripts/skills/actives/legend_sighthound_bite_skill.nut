@@ -5,15 +5,7 @@ this.legend_sighthound_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSighthoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Mangled";
-		this.m.SoundOnUse = [
-			"sounds/enemies/wardog_bite_00.wav",
-			"sounds/enemies/wardog_bite_01.wav",
-			"sounds/enemies/wardog_bite_02.wav",
-			"sounds/enemies/wardog_bite_03.wav",
-			"sounds/enemies/wardog_bite_04.wav",
-			"sounds/enemies/wardog_bite_05.wav",
-			"sounds/enemies/wardog_bite_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wardog_bite", 7, 0);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

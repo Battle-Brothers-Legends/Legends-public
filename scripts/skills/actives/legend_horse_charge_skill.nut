@@ -3,14 +3,8 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseCharge);
 		this.m.Description = "Push your mount forward with speed, ending in an impact that stuns an enemy.";
-		this.m.SoundOnUse = [
-			"sounds/combat/gallop.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/knockback_hit_01.wav",
-			"sounds/combat/knockback_hit_02.wav",
-			"sounds/combat/knockback_hit_03.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/gallop.wav"];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/knockback_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;

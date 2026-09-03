@@ -4,9 +4,7 @@ this.legend_white_wolf_howl_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfHowl);
 		this.m.Description = "";
-		this.m.SoundOnUse = [
-			"sounds/enemies/werewolf_howl.wav"
-		];
+		this.m.SoundOnUse = ["sounds/enemies/werewolf_howl.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -21,9 +19,7 @@ this.legend_white_wolf_howl_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,

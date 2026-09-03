@@ -5,12 +5,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		this.throw_holy_water.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLaunchHolyWater);
 		this.m.Description = "Launch a flask of blessed water, with your slingstaff, towards a target, where it will shatter and spray its contents. The blessed water will burn the undead, but will not affect other targets.";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/sling_use_01.wav",
-			"sounds/combat/dlc4/sling_use_02.wav",
-			"sounds/combat/dlc4/sling_use_03.wav",
-			"sounds/combat/dlc4/sling_use_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/sling_use", 4);
 		this.m.Delay = 750;
 		this.m.IsRanged = true;
 		this.m.IsWeaponSkill = true;

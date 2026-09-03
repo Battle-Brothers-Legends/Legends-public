@@ -7,16 +7,8 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendThrowKnife);
 		this.m.Description = "Throw one of your backup daggers for each free hand. Grants a chance to distract the enemy on head hits. Cannot be used while engaged in melee.";
-		this.m.SoundOnUse = [
-			"sounds/combat/throw_axe_01.wav",
-			"sounds/combat/throw_axe_02.wav",
-			"sounds/combat/throw_axe_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/throw_axe_hit_01.wav",
-			"sounds/combat/throw_axe_hit_02.wav",
-			"sounds/combat/throw_axe_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/throw_axe", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/throw_axe_hit", 3);
 		this.m.SoundOnHitDelay = -150;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;

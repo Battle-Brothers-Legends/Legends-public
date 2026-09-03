@@ -26,10 +26,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		this.m.KilledString = "Died from redback poison";
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/giant_spider_poison_01.wav",
-			"sounds/enemies/dlc2/giant_spider_poison_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
 		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;

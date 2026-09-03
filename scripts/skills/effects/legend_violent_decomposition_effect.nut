@@ -29,17 +29,12 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		return this.getContainer().getActor();
 	}
 
-	function create()
-	{
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecompositionEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.SoundOnUse = [
-			"sounds/enemies/ghoul_death_fullbelly_01.wav",
-			"sounds/enemies/ghoul_death_fullbelly_02.wav",
-			"sounds/enemies/ghoul_death_fullbelly_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/ghoul_death_fullbelly", 3);
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -68,17 +63,10 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onAdded()
-	{
-		if (this.getContainer().getActor().getFlags().has("skeleton"))
-		{
+	function onAdded() {
+		if (this.getContainer().getActor().getFlags().has("skeleton")) {
 			// change explosion sound for skeleton minion
-			this.m.SoundOnUse = [
-				"sounds/enemies/dlc6/skull_bang_01.wav",
-				"sounds/enemies/dlc6/skull_bang_02.wav",
-				"sounds/enemies/dlc6/skull_bang_03.wav",
-				"sounds/enemies/dlc6/skull_bang_04.wav"
-			];
+			this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/skull_bang", 4);
 		}
 
 		this.m.TurnsLeft = 1;

@@ -7,16 +7,8 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrapple);
 		this.m.Description = "Grab, hold, and restrain a target, reducing their melee defense by 12 and initiative by 30% for 2 turns. A particularly lucky or skilled maneuver may disarm the opponent. One hand must be free to use.";
-		this.m.SoundOnUse = [
-			"sounds/combat/hand_01.wav",
-			"sounds/combat/hand_02.wav",
-			"sounds/combat/hand_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hand_hit_01.wav",
-			"sounds/combat/hand_hit_02.wav",
-			"sounds/combat/hand_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+5;
 		this.m.IsSerialized = false;
@@ -39,9 +31,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,

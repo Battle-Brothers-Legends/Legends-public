@@ -74,12 +74,12 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 
 	function onCombatFinished()
 	{
-		this.setCondition(shield.getConditionMax());	// To discourage the player stalling battles to fully repair this shield
+		this.setCondition(this.shield.getConditionMax());	// To discourage the player stalling battles to fully repair this shield
 	}
 
 	function applyShieldDamage( _damage, _playHitSound = true ) {
 		if (!this.m.Stack) {
-			return this.shield.applyShieldDamage(_damage, _playHitSound)
+			return this.shield.applyShieldDamage(_damage, _playHitSound);
 		}
 		if (this.m.Condition == 0) {
 			return;
@@ -120,7 +120,7 @@ this.legend_craftable_schrat_shield <- this.inherit("scripts/items/shields/named
 			return;
 		}
 
-		this.setCondition(shield.getCondition() + shieldAdded);
+		this.setCondition(this.shield.getCondition() + shieldAdded);
 		local actor = this.getContainer().getActor();
 		actor.setDirty(true);
 

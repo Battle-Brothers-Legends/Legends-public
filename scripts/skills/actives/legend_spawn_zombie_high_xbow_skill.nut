@@ -5,17 +5,8 @@ this.legend_spawn_zombie_high_xbow_skill <- this.inherit("scripts/skills/actives
 		this.legend_spawn_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSpawnZombieHighXbow);
 		this.m.Description = "Unleash your zombie and send him charging into the enemy. Needs a free tile adjacent.";
-		this.m.SoundOnUse = [
-			"sounds/combat/meat_01.wav",
-			"sounds/combat/meat_02.wav",
-			"sounds/combat/meat_03.wav",
-			"sounds/combat/meat_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/necromancer_01.wav",
-			"sounds/enemies/necromancer_02.wav",
-			"sounds/enemies/necromancer_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/meat", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
 		this.m.SpawnItem =  "spawns.zombie";
 		this.m.Script = "scripts/entity/tactical/legends_zombie_high_xbow";
 		this.m.ActionPointCost = 5;
@@ -24,8 +15,5 @@ this.legend_spawn_zombie_high_xbow_skill <- this.inherit("scripts/skills/actives
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 10;
 		this.m.HPCost = 30;
 		this.m.APStartMult = 0.0;
-
 	}
-
-
 });

@@ -9,11 +9,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingBolt);
 		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
 		this.m.KilledString = "Pierced";
-		this.m.SoundOnHit = [
-			"sounds/combat/split_hit_01.wav",
-			"sounds/combat/split_hit_02.wav",
-			"sounds/combat/split_hit_03.wav"
-		];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/split_hit", 3);
 		this.m.IsAOE = true;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;

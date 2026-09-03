@@ -33,9 +33,7 @@ this.legend_rabble_racial <- this.inherit("scripts/skills/skill", {
 		return bandits;
 	}
 
-	function onUpdate( _properties )
-	{	
-		local user = this.getContainer();
+	function onUpdate( _properties ) {	
 		local bandits = this.getBandits();
 		local bonus = 2 * bandits;
 

@@ -1,39 +1,12 @@
 this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/legend_unleash_animal_skill", {
 	m = {
 		Item = null,
-		Sounds0 = [
-			"sounds/enemies/wolf_death_00.wav",
-			"sounds/enemies/wolf_death_01.wav",
-			"sounds/enemies/wolf_death_02.wav",
-			"sounds/enemies/wolf_death_03.wav",
-			"sounds/enemies/wolf_death_04.wav",
-			"sounds/enemies/wolf_death_05.wav"
-		],
-		Sounds1 = [
-			"sounds/enemies/wolf_flee_00.wav",
-			"sounds/enemies/wolf_flee_01.wav",
-			"sounds/enemies/wolf_flee_02.wav"
-		],
-		Sounds2 = [
-			"sounds/enemies/wolf_hurt_00.wav",
-			"sounds/enemies/wolf_hurt_01.wav",
-			"sounds/enemies/wolf_hurt_02.wav",
-			"sounds/enemies/wolf_hurt_03.wav"
-		],
-		Sounds3 = [
-			"sounds/enemies/wolf_idle_00.wav",
-			"sounds/enemies/wolf_idle_01.wav",
-			"sounds/enemies/wolf_idle_02.wav",
-			"sounds/enemies/wolf_idle_03.wav",
-			"sounds/enemies/wolf_idle_04.wav",
-			"sounds/enemies/wolf_idle_06.wav",
-			"sounds/enemies/wolf_idle_07.wav",
-			"sounds/enemies/wolf_idle_08.wav",
-			"sounds/enemies/wolf_idle_09.wav"
-		]
+		Sounds0 = ::Legends.S.setSounds("sounds/enemies/wolf_death", 6, 0),
+		Sounds1 = ::Legends.S.setSounds("sounds/enemies/wolf_flee", 3, 0),
+		Sounds2 = ::Legends.S.setSounds("sounds/enemies/wolf_hurt", 4, 0),
+		Sounds3 = ::Legends.S.setSounds("sounds/enemies/wolf_idle", 10, 0)
 	},
-	function setItem( _i )
-	{
+	function setItem( _i ) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
@@ -41,17 +14,7 @@ this.legend_unleash_white_wolf_skill <- this.inherit("scripts/skills/actives/leg
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWhiteWolf);
 		this.m.Description = "Unleash your white wolf and send him charging into the enemy. Needs a free tile adjacent.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/wolf_idle_00.wav",
-			"sounds/enemies/wolf_idle_01.wav",
-			"sounds/enemies/wolf_idle_02.wav",
-			"sounds/enemies/wolf_idle_03.wav",
-			"sounds/enemies/wolf_idle_04.wav",
-			"sounds/enemies/wolf_idle_06.wav",
-			"sounds/enemies/wolf_idle_07.wav",
-			"sounds/enemies/wolf_idle_08.wav",
-			"sounds/enemies/wolf_idle_09.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wolf_idle", 10, 0);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;

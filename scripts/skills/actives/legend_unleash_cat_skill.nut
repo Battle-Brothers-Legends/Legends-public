@@ -3,45 +3,12 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		Entity = null,
 		EntityName = "Cleo",
 		Script = "scripts/entity/tactical/legend_cat",
-		Sounds0 = [
-			"sounds/enemies/cat_hurt_01.wav",
-			"sounds/enemies/cat_hurt_02.wav",
-			"sounds/enemies/cat_hurt_03.wav",
-			"sounds/enemies/cat_hurt_04.wav",
-			"sounds/enemies/cat_hurt_05.wav",
-			"sounds/enemies/cat_hurt_06.wav",
-			"sounds/enemies/cat_hurt_07.wav"
-		],
-		Sounds1 = [
-			"sounds/enemies/cat_death_01.wav",
-			"sounds/enemies/cat_death_02.wav",
-			"sounds/enemies/cat_death_03.wav",
-			"sounds/enemies/cat_death_04.wav",
-			"sounds/enemies/cat_death_05.wav"
-		],
-		Sounds2 = [
-			"sounds/enemies/cat_flee_01.wav",
-			"sounds/enemies/cat_flee_02.wav",
-			"sounds/enemies/cat_flee_03.wav"
-		],
-		Sounds3 = [
-			"sounds/enemies/cat_idle_01.wav",
-			"sounds/enemies/cat_idle_02.wav",
-			"sounds/enemies/cat_idle_03.wav"
-		],
-		Sounds4 = [
-			"sounds/enemies/cat_attack_01.wav",
-			"sounds/enemies/cat_attack_02.wav",
-			"sounds/enemies/cat_attack_03.wav",
-			"sounds/enemies/cat_attack_04.wav"
-		],
-		Sounds5 = [
-			"sounds/enemies/cat_attack_01.wav",
-			"sounds/enemies/cat_attack_02.wav",
-			"sounds/enemies/cat_attack_03.wav",
-			"sounds/enemies/cat_attack_04.wav",
-			"sounds/enemies/cat_attack_05.wav"
-		]
+		Sounds0 = ::Legends.S.setSounds("sounds/enemies/cat_hurt", 7),
+		Sounds1 = ::Legends.S.setSounds("sounds/enemies/cat_death", 5),
+		Sounds2 = ::Legends.S.setSounds("sounds/enemies/cat_flee", 3),
+		Sounds3 = ::Legends.S.setSounds("sounds/enemies/cat_idle", 3),
+		Sounds4 = ::Legends.S.setSounds("sounds/enemies/cat_attack", 4),
+		Sounds5 = ::Legends.S.setSounds("sounds/enemies/cat_attack", 5)
 	},
 	function setItem( _i )
 	{
@@ -52,10 +19,7 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCat);
 		this.m.Description = "Summon your cat. Hopefully it won\'t just run away. Needs a free tile adjacent.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/cat_purr_01.wav",
-			"sounds/enemies/cat_purr_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/cat_purr", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
@@ -137,9 +101,7 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile )	{
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 

@@ -4,9 +4,7 @@ this.legend_scry_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendScry);
 		this.m.Description = "Gain vision of the surrounding 12 tiles for the duration of the current round.";
-		this.m.SoundOnUse = [
-			"sounds/combat/scry_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/scry_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 5;
 		this.m.IsSerialized = false;

@@ -6,10 +6,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFalcon);
 		this.m.Description = "Use your falcon to gain vision of the surrounding 12 tiles for the duration of the current round. Can be used once per battle.";
-		this.m.SoundOnUse = [
-			"sounds/combat/hawk_01.wav",
-			"sounds/combat/hawk_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hawk", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 5;
 		this.m.IsSerialized = false;

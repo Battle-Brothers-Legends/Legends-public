@@ -7,16 +7,8 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskPeck);
 		this.m.Description = "no touch birb";
 		this.m.KilledString = "Pecked to death";
-		this.m.SoundOnUse = [
-			"sounds/combat/hammer_strike_01.wav",
-			"sounds/combat/hammer_strike_02.wav",
-			"sounds/combat/hammer_strike_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hammer_strike_hit_01.wav",
-			"sounds/combat/hammer_strike_hit_02.wav",
-			"sounds/combat/hammer_strike_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hammer_strike", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hammer_strike_hit", 3);
 		this.m.SoundVolume = 1.1;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

@@ -4,11 +4,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
 		this.m.Description = "";
-		this.m.SoundOnHit = [
-			"sounds/enemies/necromancer_01.wav",
-			"sounds/enemies/necromancer_02.wav",
-			"sounds/enemies/necromancer_03.wav"
-		];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 27;
 		this.m.IsSerialized = false;
@@ -25,9 +21,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 4;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,

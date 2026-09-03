@@ -9,11 +9,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWindUp);
 		this.m.Description = "Evaluate your enemy, preparing your next attack to push them back.";
-		this.m.SoundOnUse = [
-			"sounds/combat/rupture_blood_01.wav",
-			"sounds/combat/rupture_blood_02.wav",
-			"sounds/combat/rupture_blood_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rupture_blood", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

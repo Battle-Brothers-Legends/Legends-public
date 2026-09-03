@@ -5,16 +5,8 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRunThrough);
 		this.m.Description = "A full forced thrust attack meant to pierce two targets in a straight line.";
 		this.m.KilledString = "Impaled";
-		this.m.SoundOnUse = [
-			"sounds/combat/impale_01.wav",
-			"sounds/combat/impale_02.wav",
-			"sounds/combat/impale_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/impale_hit_01.wav",
-			"sounds/combat/impale_hit_02.wav",
-			"sounds/combat/impale_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/impale", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/impale_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

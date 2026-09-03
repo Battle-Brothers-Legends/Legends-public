@@ -4,14 +4,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpNightmareManifestation);
 		this.m.Description = "";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/alp_nightmare_01.wav",
-			"sounds/enemies/dlc2/alp_nightmare_02.wav",
-			"sounds/enemies/dlc2/alp_nightmare_03.wav",
-			"sounds/enemies/dlc2/alp_nightmare_04.wav",
-			"sounds/enemies/dlc2/alp_nightmare_05.wav",
-			"sounds/enemies/dlc2/alp_nightmare_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;

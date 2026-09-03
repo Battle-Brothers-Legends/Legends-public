@@ -5,11 +5,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_prayer_of_life";
 		this.m.Name = "Prayer of Hope";
 		this.m.Description = "Push allies on with your chant of holy scripture, restoring the health of all allies within 1 tile by 20% of your resolve. Does not work on cultists. Inflicts a disintegrating ailment on each adjacent undead.";
-		this.m.SoundOnUse = [
-			"sounds/ambience/buildings/temple_prayer_00.wav",
-			"sounds/ambience/buildings/temple_prayer_01.wav",
-			"sounds/ambience/buildings/temple_prayer_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;

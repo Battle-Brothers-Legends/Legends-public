@@ -7,9 +7,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/leap_square.png";
 		this.m.IconDisabled = "skills/leap_square_bw.png";
 		this.m.Overlay = "leap";
-		this.m.SoundOnUse = [
-			"sounds/combat/jump_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/jump_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

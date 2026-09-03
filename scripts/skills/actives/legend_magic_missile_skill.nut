@@ -12,25 +12,10 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicMissile);
 		this.m.Description = "A burst of force, leaping forward into a foe.";
 		this.m.KilledString = "Shot";
-		this.m.SoundOnUse = [
-			"sounds/combat/magic_missile_01.wav",
-			"sounds/combat/magic_missile_02.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/arrow_hit_01.wav",
-			"sounds/combat/arrow_hit_02.wav",
-			"sounds/combat/arrow_hit_03.wav"
-		];
-		this.m.SoundOnHitShield = [
-			"sounds/combat/shield_hit_arrow_01.wav",
-			"sounds/combat/shield_hit_arrow_02.wav",
-			"sounds/combat/shield_hit_arrow_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/arrow_miss_01.wav",
-			"sounds/combat/arrow_miss_02.wav",
-			"sounds/combat/arrow_miss_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/magic_missile", 2);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/arrow_hit", 3);
+		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/shield_hit_arrow", 3);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/arrow_miss", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 1000;

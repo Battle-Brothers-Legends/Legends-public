@@ -7,16 +7,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendKick);
 		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
-		this.m.SoundOnUse = [
-			"sounds/combat/knockback_01.wav",
-			"sounds/combat/knockback_02.wav",
-			"sounds/combat/knockback_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hand_hit_01.wav",
-			"sounds/combat/hand_hit_02.wav",
-			"sounds/combat/hand_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/knockback", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
@@ -33,8 +25,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local actor = this.getContainer().getActor();
-		local p = this.getContainer().getActor().getCurrentProperties();
 		local ret = ::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist) ? this.getDefaultTooltip() : this.getDefaultUtilityTooltip();
 		ret.extend([{
 				id = 7,
@@ -101,7 +91,6 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local skills = target.getSkills();
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
@@ -153,9 +142,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 				this.m.HitChanceBonus += 15;
 			}
 
-			if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist))
-			{
-				local actor = this.getContainer().getActor();
+			if (::Legends.Perks.has(this, ::Legends.Perk.LegendPugilist)) {
 				_properties.DamageRegularMin = 10;
 				_properties.DamageRegularMax = 15;
 				_properties.DamageArmorMult = 0.6;

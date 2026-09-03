@@ -8,32 +8,10 @@ this.legend_shoot_stone_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootStone);
 		this.m.Description = "Pull back and loose a stone at a target. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
-		this.m.SoundOnUse = [
-			"sounds/combat/aimed_shot_01.wav",
-			"sounds/combat/aimed_shot_02.wav",
-			"sounds/combat/aimed_shot_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc4/sling_hit_01.wav",
-			"sounds/combat/dlc4/sling_hit_02.wav",
-			"sounds/combat/dlc4/sling_hit_03.wav",
-			"sounds/combat/dlc4/sling_hit_04.wav"
-		];
-		this.m.SoundOnHitShield = [
-			"sounds/combat/dlc4/sling_shield_hit_01.wav",
-			"sounds/combat/dlc4/sling_shield_hit_02.wav",
-			"sounds/combat/dlc4/sling_shield_hit_03.wav",
-			"sounds/combat/dlc4/sling_shield_hit_04.wav",
-			"sounds/combat/dlc4/sling_shield_hit_05.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/dlc4/sling_miss_01.wav",
-			"sounds/combat/dlc4/sling_miss_02.wav",
-			"sounds/combat/dlc4/sling_miss_03.wav",
-			"sounds/combat/dlc4/sling_miss_04.wav",
-			"sounds/combat/dlc4/sling_miss_05.wav",
-			"sounds/combat/dlc4/sling_miss_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/aimed_shot", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc4/sling_hit", 4);
+		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
 		this.m.SoundOnHitDelay = -150;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

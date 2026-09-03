@@ -4,11 +4,7 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStrafingRun);
 		this.m.Description = "Quickly reposition and fire if your crossbow is loaded. Can only fire at a target that is at most 4 tiles away from the reposition location";
 		this.m.SoundOnUse = [];
-		this.m.ShotSounds <- [
-			"sounds/combat/bolt_shot_01.wav",
-			"sounds/combat/bolt_shot_02.wav",
-			"sounds/combat/bolt_shot_03.wav"
-		];
+		this.m.ShotSounds <- ::Legends.S.setSounds("sounds/combat/bolt_shot", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+1;
 		this.m.IsSerialized = false;
@@ -28,7 +24,6 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local p = this.getContainer().getActor().getCurrentProperties();
 		local ret = [ {
 				id = 1,
 				type = "title",

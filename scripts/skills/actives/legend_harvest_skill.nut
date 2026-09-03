@@ -1,30 +1,14 @@
 this.legend_harvest_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		SoundsA = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		],
+		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3),
 		TilesLeft = 1
 	},
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHarvest);
 		this.m.Description = "Swinging the weapon in an arc that hits two adjacent tiles in counter-clockwise order. Be careful around your own men unless you want to relieve your payroll!";
-		this.m.SoundOnUse = [
-			"sounds/combat/swing_01.wav",
-			"sounds/combat/swing_02.wav",
-			"sounds/combat/swing_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/swing_hit_01.wav",
-			"sounds/combat/swing_hit_02.wav",
-			"sounds/combat/swing_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/swing", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/swing_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

@@ -7,16 +7,8 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPryArmor);
 		this.m.Description = "Tear a weak spot in your opponent\'s armor to reveal a weakspot. Will apply Compromised Armor on every successful hit, which increases damage ignoring armor and armor damage by 20%.";
 		this.m.KilledString = "Torn Apart";
-		this.m.SoundOnUse = [
-			"sounds/combat/crush_armor_01.wav",
-			"sounds/combat/crush_armor_02.wav",
-			"sounds/combat/crush_armor_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/crush_armor_hit_01.wav",
-			"sounds/combat/crush_armor_hit_02.wav",
-			"sounds/combat/crush_armor_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/crush_armor", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/crush_armor_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

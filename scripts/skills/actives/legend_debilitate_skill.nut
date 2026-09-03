@@ -4,11 +4,7 @@ this.legend_debilitate_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDebilitate);
 		this.m.Description = "A weak attack which aims to weaken your opponent.";
 		this.m.KilledString = "Cleaved";
-		this.m.SoundOnUse = [
-			"sounds/combat/cleave_01.wav",
-			"sounds/combat/cleave_02.wav",
-			"sounds/combat/cleave_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cleave", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

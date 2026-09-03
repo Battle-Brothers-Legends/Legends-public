@@ -5,9 +5,7 @@ this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill",
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenPaleTouch);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
-		this.m.SoundOnUse = [
-			"sounds/combat/legend_vala_warden_pale_touch.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/legend_vala_warden_pale_touch.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

@@ -6,11 +6,7 @@ this.legend_rock_unhold_racial <- this.inherit("scripts/skills/skill", {
 		this.m.Name = "Rock Unhold Passive";
 		this.m.Description = "TODO";
 		this.m.Icon = "skills/status_effect_79.png";
-		this.m.SoundOnUse = [
-			"sounds/enemies/unhold_regenerate_01.wav",
-			"sounds/enemies/unhold_regenerate_02.wav",
-			"sounds/enemies/unhold_regenerate_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/unhold_regenerate", 3);
 		this.m.Type = this.Const.SkillType.Racial;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;

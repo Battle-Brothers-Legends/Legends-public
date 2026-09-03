@@ -13,9 +13,7 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCatapult);
 		this.m.Description = "Summon a catapult. Needs a free tile adjacent.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/unhold_idle_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/enemies/unhold_idle_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
@@ -79,9 +77,7 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = this.m.Item.isUnleashed();
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile ) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 

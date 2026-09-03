@@ -4,10 +4,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorsePirouette);
 		this.m.Description = "Learning to turn quickly allows the rapid changes in direction required to leave a Zone of Control without triggering free attacks.";
-		this.m.SoundOnUse = [
-			"sounds/combat/rearing_01.wav",
-			"sounds/combat/rearing_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rearing", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

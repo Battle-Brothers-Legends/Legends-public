@@ -1,15 +1,7 @@
 ::mods_hookExactClass("skills/actives/reap_skill", function(o)
 {
-	o.m.SoundsA <- [
-		"sounds/combat/cleave_hit_hitpoints_01.wav",
-		"sounds/combat/cleave_hit_hitpoints_02.wav",
-		"sounds/combat/cleave_hit_hitpoints_03.wav"
-	];
-	o.m.SoundsB <- [
-		"sounds/combat/chop_hit_01.wav",
-		"sounds/combat/chop_hit_02.wav",
-		"sounds/combat/chop_hit_03.wav"
-	];
+	o.m.SoundsA <- ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3);
+	o.m.SoundsB <- ::Legends.S.setSounds("sounds/combat/chop_hit", 3);
 
 	local create = o.create;
 	o.create = function()

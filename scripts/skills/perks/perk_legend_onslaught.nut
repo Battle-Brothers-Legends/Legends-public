@@ -3,16 +3,8 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOnslaught);
-		this.m.SoundOnUse = [
-			"sounds/combat/bash_01.wav",
-			"sounds/combat/bash_02.wav",
-			"sounds/combat/bash_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/bash_hit_01.wav",
-			"sounds/combat/bash_hit_02.wav",
-			"sounds/combat/bash_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/bash", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/bash_hit", 3);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 	}
 
@@ -40,7 +32,7 @@ this.perk_legend_onslaught <- this.inherit("scripts/skills/skill", {
 	function getBonus()
 	{
 		local actor = this.getContainer().getActor();
-		return 0.02 * (actor.getArmor(Const.BodyPart.Head) + actor.getArmor(Const.BodyPart.Body));
+		return 0.02 * (actor.getArmor(::Const.BodyPart.Head) + actor.getArmor(::Const.BodyPart.Body));
 	}
 
 	function onUpdate( _properties )

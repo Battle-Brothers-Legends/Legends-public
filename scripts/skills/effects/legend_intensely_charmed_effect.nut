@@ -23,12 +23,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_85.png";
 		this.m.IconMini = "status_effect_85_mini";
 		this.m.Overlay = "status_effect_85";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/hexe_charm_chimes_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;

@@ -1,16 +1,8 @@
 this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_weapon", {
 	m = {
 		StunChance = 0,
-		SoundsA = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		]
+		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3)
 	},
 
 	function create() {

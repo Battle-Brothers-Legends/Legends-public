@@ -26,18 +26,8 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntenselyCharm);
 		this.m.Description = "";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/hexe_charm_kiss_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/dlc2/hexe_charm_chimes_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_kiss", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 500;

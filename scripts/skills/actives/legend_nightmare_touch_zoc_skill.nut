@@ -5,14 +5,7 @@ this.legend_nightmare_touch_zoc_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightmareTouchZoc);
 		this.m.Description = "";
 		this.m.KilledString = "Died of terror";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/alp_nightmare_01.wav",
-			"sounds/enemies/dlc2/alp_nightmare_02.wav",
-			"sounds/enemies/dlc2/alp_nightmare_03.wav",
-			"sounds/enemies/dlc2/alp_nightmare_04.wav",
-			"sounds/enemies/dlc2/alp_nightmare_05.wav",
-			"sounds/enemies/dlc2/alp_nightmare_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

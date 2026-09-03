@@ -8,14 +8,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/berserker_rage_circle.png";
 		this.m.IconMini = "status_effect_34_mini";
 		this.m.Overlay = "status_effect_34";
-		this.m.SoundOnUse = [
-			"sounds/enemies/orc_rage_01.wav",
-			"sounds/enemies/orc_rage_02.wav",
-			"sounds/enemies/orc_rage_03.wav",
-			"sounds/enemies/orc_rage_04.wav",
-			"sounds/enemies/orc_rage_05.wav",
-			"sounds/enemies/orc_rage_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/orc_rage", 6);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsSerialized = false;
 		this.m.IsActive = false;

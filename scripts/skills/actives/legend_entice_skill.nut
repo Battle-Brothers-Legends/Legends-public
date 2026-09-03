@@ -3,16 +3,8 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEntice);
 		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you.";
-		this.m.SoundOnUse = [
-			"sounds/combat/hook_01.wav",
-			"sounds/combat/hook_02.wav",
-			"sounds/combat/hook_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hook_hit_01.wav",
-			"sounds/combat/hook_hit_02.wav",
-			"sounds/combat/hook_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hook", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hook_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;

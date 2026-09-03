@@ -6,10 +6,7 @@ this.legend_redback_spider_racial <- this.inherit("scripts/skills/skill", {
 		this.m.Name = "Redback Poison";
 		this.m.Description = "TODO";
 		this.m.Icon = "";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/giant_spider_poison_01.wav",
-			"sounds/enemies/dlc2/giant_spider_poison_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
 		this.m.Type = this.Const.SkillType.Racial | this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;

@@ -8,18 +8,8 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryInject);
 		this.m.Description = "no touch poison birb";
 		this.m.KilledString = "Pecked to death";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc6/snake_attack_01.wav",
-			"sounds/enemies/dlc6/snake_attack_02.wav",
-			"sounds/enemies/dlc6/snake_attack_03.wav",
-			"sounds/enemies/dlc6/snake_attack_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/dlc6/snake_attack_hit_01.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_02.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_03.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_attack", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_attack_hit", 3);
 		this.m.SoundVolume = 1.1;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

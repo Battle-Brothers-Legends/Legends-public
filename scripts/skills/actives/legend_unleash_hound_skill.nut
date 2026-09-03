@@ -3,44 +3,12 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 		Entity = null,
 		EntityName = "Hound",
 		Script = "scripts/entity/tactical/warhound",
-		Sounds0 = [
-			"sounds/enemies/wardog_hurt_00.wav",
-			"sounds/enemies/wardog_hurt_01.wav",
-			"sounds/enemies/wardog_hurt_02.wav",
-			"sounds/enemies/wardog_hurt_03.wav",
-			"sounds/enemies/wardog_hurt_04.wav",
-			"sounds/enemies/wardog_hurt_05.wav"
-		],
-		Sounds1 = [
-			"sounds/enemies/wardog_death_00.wav",
-			"sounds/enemies/wardog_death_01.wav",
-			"sounds/enemies/wardog_death_02.wav",
-			"sounds/enemies/wardog_death_03.wav"
-		],
-		Sounds2 = [
-			"sounds/enemies/wardog_flee_00.wav",
-			"sounds/enemies/wardog_flee_01.wav",
-			"sounds/enemies/wardog_flee_02.wav",
-			"sounds/enemies/wardog_flee_03.wav",
-			"sounds/enemies/wardog_flee_04.wav"
-		],
-		Sounds3 = [
-			"sounds/enemies/wardog_idle_01.wav",
-			"sounds/enemies/wardog_idle_02.wav",
-			"sounds/enemies/wardog_idle_03.wav",
-			"sounds/enemies/wardog_idle_04.wav",
-			"sounds/enemies/wardog_idle_05.wav"
-		],
-		Sounds4 = [
-			"sounds/enemies/wardog_charge_00.wav",
-			"sounds/enemies/wardog_charge_01.wav",
-			"sounds/enemies/wardog_charge_02.wav"
-		],
-		Sounds5 = [
-			"sounds/enemies/wardog_charge_00.wav",
-			"sounds/enemies/wardog_charge_01.wav",
-			"sounds/enemies/wardog_charge_02.wav"
-		]
+		Sounds0 = ::Legends.S.setSounds("sounds/enemies/wardog_hurt", 6, 0),
+		Sounds1 = ::Legends.S.setSounds("sounds/enemies/wardog_death", 4, 0),
+		Sounds2 = ::Legends.S.setSounds("sounds/enemies/wardog_flee", 5, 0),
+		Sounds3 = ::Legends.S.setSounds("sounds/enemies/wardog_idle", 5),
+		Sounds4 = ::Legends.S.setSounds("sounds/enemies/wardog_charge", 3, 0),
+		Sounds5 = ::Legends.S.setSounds("sounds/enemies/wardog_charge", 3, 0),
 	},
 	function setItem( _i )
 	{
@@ -51,12 +19,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashHound);
 		this.m.Description = "Summon a faithful hound. Needs a free tile adjacent. Can only summon one per combat.";
-		this.m.SoundOnUse = [
-			"sounds/combat/unleash_wardog_01.wav",
-			"sounds/combat/unleash_wardog_02.wav",
-			"sounds/combat/unleash_wardog_03.wav",
-			"sounds/combat/unleash_wardog_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/unleash_wardog", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
@@ -144,9 +107,7 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile ) {
 		return this.legend_unleash_animal_skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 

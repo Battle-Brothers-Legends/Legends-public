@@ -4,11 +4,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendOmsAmphora);
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
-		this.m.SoundOnUse = [
-			"sounds/combat/drink_01.wav",
-			"sounds/combat/drink_02.wav",
-			"sounds/combat/drink_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

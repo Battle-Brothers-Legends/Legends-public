@@ -4,10 +4,7 @@ this.legend_command_legion_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCommandLegion);
 		this.m.Description = "Command a fighter of Centurion rank or lower to do your bidding. Targets can only be inspired once per turn. Does not work on Legates.";
-		this.m.SoundOnUse = [ //new sounds would be good
-			"sounds/combat/inspire_01.wav",
-			"sounds/combat/inspire_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2); //new sounds would be good
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

@@ -1,6 +1,4 @@
-::mods_hookExactClass("skills/actives/whip_skill", function(o)
-{
-	local onAfterUpdate = o.onAfterUpdate;
+::mods_hookExactClass("skills/actives/whip_skill", function(o) {
 	o.onAfterUpdate = function ( _properties ) {
 		this.m.ActionPointCost = _properties.IsSpecializedInCleavers ? 3 : 4;
 	}

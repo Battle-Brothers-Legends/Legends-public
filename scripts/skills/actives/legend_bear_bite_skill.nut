@@ -5,15 +5,8 @@ this.legend_bear_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearBite);
 		this.m.Description = "Tear into an opponent with your teeth";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.SoundOnUse = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack1.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_attack", 1);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

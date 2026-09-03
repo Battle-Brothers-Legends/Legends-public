@@ -6,11 +6,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMartialMarch);
 		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc4/wardrums_01.wav",
-			"sounds/enemies/dlc4/wardrums_02.wav",
-			"sounds/enemies/dlc4/wardrums_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;

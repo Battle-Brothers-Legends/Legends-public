@@ -5,17 +5,8 @@ this.legend_gut_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGut);
 		this.m.Description = "A series of thrusts to the body made in quick succession meant to gut them like a fish. Depending on how many injuries the opponent has suffered the attacks will increase.";
 		this.m.KilledString = "Spilled their guts";
-		this.m.SoundOnUse = [
-			"sounds/combat/impale_01.wav",
-			"sounds/combat/impale_02.wav",
-			"sounds/combat/impale_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc2/lunge_attack_hit_01.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_02.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_03.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/impale", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc2/lunge_attack_hit", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

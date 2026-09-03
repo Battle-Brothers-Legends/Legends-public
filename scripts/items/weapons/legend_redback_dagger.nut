@@ -3,16 +3,8 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function create()
 	{
 		this.weapon.create();
-		this.m.SoundOnUse <- [
-			"sounds/combat/puncture_01.wav",
-			"sounds/combat/puncture_02.wav",
-			"sounds/combat/puncture_03.wav"
-		];
-		this.m.SoundOnHit <- [
-			"sounds/combat/puncture_hit_01.wav",
-			"sounds/combat/puncture_hit_02.wav",
-			"sounds/combat/puncture_hit_03.wav"
-		];
+		this.m.SoundOnUse <- ::Legends.S.setSounds("sounds/combat/puncture", 3);
+		this.m.SoundOnHit <- ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
 		this.m.ID = "weapon.legend_redback_dagger";
 		this.m.Name = "Redback Dagger";
 		this.m.Description = "A dagger made from the fang and poison gland of a redback spider, it can inject redback poison into a target";

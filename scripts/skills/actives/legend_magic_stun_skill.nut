@@ -5,17 +5,8 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicStun);
 		this.m.Description = "Unleash a brilliant flash of white light aimed directly at the eyes of your target in an attempt to blind and incapacitate.";
 		this.m.KilledString = "Stunned";
-		this.m.SoundOnUse = [
-			"sounds/combat/cudgel_01.wav",
-			"sounds/combat/cudgel_02.wav",
-			"sounds/combat/cudgel_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/cudgel_hit_01.wav",
-			"sounds/combat/cudgel_hit_02.wav",
-			"sounds/combat/cudgel_hit_03.wav",
-			"sounds/combat/cudgel_hit_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cudgel", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/cudgel_hit", 4);
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;

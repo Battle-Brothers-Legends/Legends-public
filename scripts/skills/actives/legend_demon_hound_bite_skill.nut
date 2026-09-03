@@ -5,11 +5,7 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDemonHoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Drained of life";
-		this.m.SoundOnUse = [
-			"sounds/enemies/hollen_attack_01.wav",
-			"sounds/enemies/hollen_attack_02.wav",
-			"sounds/enemies/hollen_attack_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/hollen_attack", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

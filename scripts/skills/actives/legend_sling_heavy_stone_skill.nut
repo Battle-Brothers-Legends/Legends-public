@@ -8,33 +8,10 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSlingHeavyStone);
 		this.m.Description = "Hurl a stone towards a target with your sling. Hard to aim and very unwieldy, but stones are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/sling_use_01.wav",
-			"sounds/combat/dlc4/sling_use_02.wav",
-			"sounds/combat/dlc4/sling_use_03.wav",
-			"sounds/combat/dlc4/sling_use_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc4/sling_hit_01.wav",
-			"sounds/combat/dlc4/sling_hit_02.wav",
-			"sounds/combat/dlc4/sling_hit_03.wav",
-			"sounds/combat/dlc4/sling_hit_04.wav"
-		];
-		this.m.SoundOnHitShield = [
-			"sounds/combat/dlc4/sling_shield_hit_01.wav",
-			"sounds/combat/dlc4/sling_shield_hit_02.wav",
-			"sounds/combat/dlc4/sling_shield_hit_03.wav",
-			"sounds/combat/dlc4/sling_shield_hit_04.wav",
-			"sounds/combat/dlc4/sling_shield_hit_05.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/dlc4/sling_miss_01.wav",
-			"sounds/combat/dlc4/sling_miss_02.wav",
-			"sounds/combat/dlc4/sling_miss_03.wav",
-			"sounds/combat/dlc4/sling_miss_04.wav",
-			"sounds/combat/dlc4/sling_miss_05.wav",
-			"sounds/combat/dlc4/sling_miss_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/sling_use", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc4/sling_hit", 4);
+		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 750;

@@ -4,10 +4,7 @@ this.legend_coat_with_redback_poison_skill <- this.inherit("scripts/skills/skill
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCoatWithRedbackPoison);
 		this.m.Description = "Coat your weapons and arrowtips with poison. Can not be used while engaged in melee. Costs 0 Action Points during the first round of combat.";
-		this.m.SoundOnUse = [
-			"sounds/combat/poison_applied_01.wav",
-			"sounds/combat/poison_applied_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/poison_applied", 2);
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

@@ -5,14 +5,8 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlogging);
 		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed.";
 		this.m.KilledString = "Flogged";
-		this.m.SoundOnUse = [
-			"sounds/combat/rupture_blood_01.wav",
-			"sounds/combat/rupture_blood_02.wav",
-			"sounds/combat/rupture_blood_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/humans/0/human_fatigue_01.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rupture_blood", 3);
+		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;

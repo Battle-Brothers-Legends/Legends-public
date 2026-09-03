@@ -3,11 +3,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLacerate);
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		];
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3);
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {

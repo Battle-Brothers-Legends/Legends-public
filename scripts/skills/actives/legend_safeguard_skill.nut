@@ -4,14 +4,8 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_safeguard";
 		this.m.Name = "Safeguard";
 		this.m.Description = "Use your shield to protect an ally, leaving yourself exposed";
-		this.m.SoundOnUse = [
-			"sounds/combat/stab_01.wav",
-			"sounds/combat/stab_02.wav",
-			"sounds/combat/stab_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/weapon_break_01.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stab", 3);
+		this.m.SoundOnHit = ["sounds/combat/weapon_break_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

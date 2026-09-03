@@ -4,9 +4,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);
 		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free main hand, off hand or bag slot.";
-		this.m.SoundOnUse = [
-			"sounds/cloth_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/cloth_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

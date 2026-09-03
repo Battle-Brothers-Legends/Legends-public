@@ -6,16 +6,8 @@ this.legend_haftstrike <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHaftstrike);
 		this.m.Description = "A swift strike with the weapon\'s haft. Not particularly effective, but offers versatility on heavy weapons. Becomes easier to use after successful hits from other skills in the same turn.";
 		this.m.KilledString = "Bashed";
-		this.m.SoundOnUse = [
-			"sounds/combat/thrust_01.wav",
-			"sounds/combat/thrust_02.wav",
-			"sounds/combat/thrust_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/thrust_hit_01.wav",
-			"sounds/combat/thrust_hit_02.wav",
-			"sounds/combat/thrust_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/thrust", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/thrust_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

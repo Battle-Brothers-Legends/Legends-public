@@ -11,11 +11,7 @@ this.legend_drink_potion_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		this.m.StatusEffect = "status_effect_93";
-		this.m.SoundOnUse = [
-			"sounds/combat/drink_01.wav",
-			"sounds/combat/drink_02.wav",
-			"sounds/combat/drink_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

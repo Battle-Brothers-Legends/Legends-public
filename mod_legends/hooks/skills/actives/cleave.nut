@@ -48,7 +48,6 @@
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties ) {
 		if (this.m.IsScytheCleave && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;

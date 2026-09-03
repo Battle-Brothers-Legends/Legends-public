@@ -4,9 +4,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIncoming);
 		this.m.Description = "This mercenary has received clear instructions to keep their head down, and is coordinating accordingly.";
-		this.m.SoundOnUse = [
-			"sounds/combat/rally_the_troops_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/rally_the_troops_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -21,9 +19,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,

@@ -12,17 +12,8 @@ this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.SoundOnUse = [
-			"sounds/enemies/wolf_bite_01.wav",
-			"sounds/enemies/wolf_bite_02.wav",
-			"sounds/enemies/wolf_bite_03.wav",
-			"sounds/enemies/wolf_bite_04.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wolf_bite", 4);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

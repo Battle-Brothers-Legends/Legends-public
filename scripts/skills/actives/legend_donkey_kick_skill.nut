@@ -5,16 +5,8 @@ this.legend_donkey_kick_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDonkeyKick);
 		this.m.Description = "The main attack of a donkey, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
-		this.m.SoundOnUse = [
-			"sounds/combat/hand_01.wav",
-			"sounds/combat/hand_02.wav",
-			"sounds/combat/hand_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hand_hit_01.wav",
-			"sounds/combat/hand_hit_02.wav",
-			"sounds/combat/hand_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

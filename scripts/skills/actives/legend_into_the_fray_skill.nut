@@ -11,18 +11,8 @@ this.legend_into_the_fray_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntoTheFray);
 		this.m.Description = "Charge at an enemy up to 2 tiles away, attacking them in the process.";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc2/lunge_move_01.wav",
-			"sounds/combat/dlc2/lunge_move_02.wav",
-			"sounds/combat/dlc2/lunge_move_03.wav",
-			"sounds/combat/dlc2/lunge_move_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc2/lunge_attack_hit_01.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_02.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_03.wav",
-			"sounds/combat/dlc2/lunge_attack_hit_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc2/lunge_move", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc2/lunge_attack_hit", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

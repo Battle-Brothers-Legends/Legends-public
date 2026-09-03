@@ -4,16 +4,8 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSmackdown);
-		this.m.SoundOnUse = [
-			"sounds/combat/shatter_01.wav",
-			"sounds/combat/shatter_02.wav",
-			"sounds/combat/shatter_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/shatter_hit_01.wav",
-			"sounds/combat/shatter_hit_02.wav",
-			"sounds/combat/shatter_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/shatter", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/shatter_hit", 3);
 	}
 
 	function onAdded() {

@@ -1,15 +1,7 @@
 this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
-		SoundsA = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		],
+		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3),
 		SpecialistWeaponIds = [
 			"weapon.butchers_cleaver"
 		],

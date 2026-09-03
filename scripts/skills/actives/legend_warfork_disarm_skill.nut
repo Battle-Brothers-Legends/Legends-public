@@ -4,16 +4,8 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_warfork_disarm";
 		this.m.Name = "Disarm";
 		this.m.Description = "Use the warfork\'s particular shape to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
-		this.m.SoundOnHit = [
-			"sounds/combat/repel_hit_01.wav",
-			"sounds/combat/repel_hit_02.wav",
-			"sounds/combat/repel_hit_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/impale_01.wav",
-			"sounds/combat/impale_02.wav",
-			"sounds/combat/impale_03.wav"
-		];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/repel_hit", 3);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/impale", 3);
 		this.m.SoundOnHit = [];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;

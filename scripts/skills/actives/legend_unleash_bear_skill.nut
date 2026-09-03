@@ -3,31 +3,12 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 		Entity = null,
 		EntityName = "Bear",
 		Script = "scripts/entity/tactical/legend_warbear",
-		Sounds0 = [
-			"sounds/enemies/bear_hit1.wav",
-			"sounds/enemies/bear_hit2.wav"
-		],
-		Sounds1 = [
-			"sounds/enemies/bear_dead.wav"
-		],
-		Sounds2 = [
-			"sounds/enemies/unhold_flee_01.wav",
-			"sounds/enemies/unhold_flee_02.wav",
-			"sounds/enemies/unhold_flee_03.wav",
-			"sounds/enemies/unhold_flee_04.wav"
-		],
-		Sounds3 = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		],
-		Sounds4 = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack2.wav"
-		],
-		Sounds5 = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack2.wav"
-		]
+		Sounds0 = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2),
+		Sounds1 = ["sounds/enemies/bear_dead.wav"],
+		Sounds2 = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4),
+		Sounds3 = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2),
+		Sounds4 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2),
+		Sounds5 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2)
 	},
 	function setItem( _i )
 	{
@@ -38,10 +19,7 @@ this.legend_unleash_bear_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashBear);
 		this.m.Description = "Summon a faithful bear. Needs a free tile adjacent. Only one per battle.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;

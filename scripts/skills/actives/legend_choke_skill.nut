@@ -6,16 +6,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendChoke);
 		this.m.Description = "A well-placed attack at an opponent\'s neck. Ignores all armor but is harder to hit with. Hit chance is based on target's fatigue. Damage is based on the difference in fatigue. Deals additional damage against grappled or choked enemies. Hit chance is increased against grappled, stunned, netted, dazed, parried or sleeping enemies. Requires both hands to be free.";
 		this.m.KilledString = "Choked";
-		this.m.SoundOnUse = [
-			"sounds/combat/puncture_01.wav",
-			"sounds/combat/puncture_02.wav",
-			"sounds/combat/puncture_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/puncture_hit_01.wav",
-			"sounds/combat/puncture_hit_02.wav",
-			"sounds/combat/puncture_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+3;
 		this.m.IsSerialized = false;

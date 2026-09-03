@@ -1,12 +1,7 @@
 ::mods_hookExactClass("skills/effects/rooted_effect", function(o) {
 	o.m.DamageMin <- 0;
 	o.m.DamageMax <- 0;
-	o.m.SoundOnHitHitpoints <- [
-		"sounds/combat/break_free_roots_00.wav",
-		"sounds/combat/break_free_roots_01.wav",
-		"sounds/combat/break_free_roots_02.wav",
-		"sounds/combat/break_free_roots_03.wav"
-	];
+	o.m.SoundOnHitHitpoints <- ::Legends.S.setSounds("sounds/combat/break_free_roots", 4, 0);
 
 	o.setDamage <- function(_damageMin, _damageMax)
 	{

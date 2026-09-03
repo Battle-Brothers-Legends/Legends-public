@@ -1,29 +1,14 @@
 this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 	m = {
-		SoundsA = [
-			"sounds/combat/cleave_hit_hitpoints_01.wav",
-			"sounds/combat/cleave_hit_hitpoints_02.wav",
-			"sounds/combat/cleave_hit_hitpoints_03.wav"
-		],
-		SoundsB = [
-			"sounds/combat/chop_hit_01.wav",
-			"sounds/combat/chop_hit_02.wav",
-			"sounds/combat/chop_hit_03.wav"
-		]
+		SoundsA = ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3),
+		SoundsB = ::Legends.S.setSounds("sounds/combat/chop_hit", 3)
 	},
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulClaws);
 		this.m.Description = "Tear into flesh across multiple opponents and leave them bleeding with very long, sharp claws.";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.SoundOnUse = [
-			"sounds/enemies/ghoul_claws_01.wav",
-			"sounds/enemies/ghoul_claws_02.wav",
-			"sounds/enemies/ghoul_claws_03.wav",
-			"sounds/enemies/ghoul_claws_04.wav",
-			"sounds/enemies/ghoul_claws_05.wav",
-			"sounds/enemies/ghoul_claws_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/ghoul_claws", 6);
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

@@ -5,16 +5,8 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalberdSmite);
 		this.m.Description = "A slow overhead strike performed with full force to smash a target to bits.";
 		this.m.KilledString = "Chopped";
-		this.m.SoundOnUse = [
-			"sounds/combat/strike_01.wav",
-			"sounds/combat/strike_02.wav",
-			"sounds/combat/strike_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/strike_hit_01.wav",
-			"sounds/combat/strike_hit_02.wav",
-			"sounds/combat/strike_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/strike", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/strike_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

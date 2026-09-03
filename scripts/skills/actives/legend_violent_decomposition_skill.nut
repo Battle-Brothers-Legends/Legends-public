@@ -8,15 +8,8 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 	function create()
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendViolentDecomposition);
-		this.m.SoundOnUse = [
-		 	"sounds/combat/violent_decomposition.wav"
-		];
-
-		this.m.SoundOnHit = [
-			"sounds/enemies/necromancer_01.wav",
-			"sounds/enemies/necromancer_02.wav",
-			"sounds/enemies/necromancer_03.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/violent_decomposition.wav"];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 105;
 		this.m.IsSerialized = false;
@@ -36,7 +29,7 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 
 	function getDescription()
 	{
-		return "Corrupt the force sustaining one of your thralls, causing them to detonate destructively after the corruption has time to build. Affected dead explode at the end of their turn next round, dealing damage in a 1 tile radius. The less HP they have, the more damage the explosion inflicts. If they are killed before they explode, the effect no longer triggers."
+		return "Corrupt the force sustaining one of your thralls, causing them to detonate destructively after the corruption has time to build. Affected dead explode at the end of their turn next round, dealing damage in a 1 tile radius. The less HP they have, the more damage the explosion inflicts. If they are killed before they explode, the effect no longer triggers.";
 	}
 
 	function getTooltip()

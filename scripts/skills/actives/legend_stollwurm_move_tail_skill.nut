@@ -3,16 +3,8 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/mo
 	function create() {
 		this.move_tail_skill.onCreate();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStollwurmMoveTail);
-		this.m.SoundOnUse = [
-			"sounds/enemies/digging_01.wav",
-			"sounds/enemies/digging_02.wav",
-			"sounds/enemies/digging_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/digging_01.wav",
-			"sounds/enemies/digging_02.wav",
-			"sounds/enemies/digging_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/digging", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/digging", 3);
 		this.m.SoundVolume = 1.1;
 	}
 

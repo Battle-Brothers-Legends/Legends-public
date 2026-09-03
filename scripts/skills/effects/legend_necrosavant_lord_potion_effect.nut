@@ -6,11 +6,7 @@ this.legend_necrosavant_lord_potion_effect <- this.inherit("scripts/skills/skill
 		this.m.Icon = "skills/status_effect_133.png";
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_133";
-		this.m.SoundOnUse = [
-			"sounds/enemies/vampire_life_drain_01.wav",
-			"sounds/enemies/vampire_life_drain_02.wav",
-			"sounds/enemies/vampire_life_drain_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/vampire_life_drain", 3);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
 		this.m.IsActive = false;

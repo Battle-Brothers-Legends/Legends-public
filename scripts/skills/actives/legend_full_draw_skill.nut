@@ -2,21 +2,13 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 	m = {
 		Prepared = false,
 		TargetTile = null,
-		SoundResumeOnUse = [
-			"sounds/combat/quick_shot_01.wav",
-			"sounds/combat/quick_shot_02.wav",
-			"sounds/combat/quick_shot_03.wav"
-		]
+		SoundResumeOnUse = ::Legends.S.setSounds("sounds/combat/quick_shot", 3)
 	}
 	function create() {
 		this.aimed_shot.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFullDraw);
 		this.m.Description = "Take full advantage of the draw weight of your bow to deliver a devastating and accurate shot. Can not be used while engaged in melee.";
-		this.m.SoundOnUse = [
-			"sounds/combat/aimed_01.wav",
-			"sounds/combat/aimed_02.wav",
-			"sounds/combat/aimed_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/aimed", 3);
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 3;
 		this.m.ActionPointCost = 9;

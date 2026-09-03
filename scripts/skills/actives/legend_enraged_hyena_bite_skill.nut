@@ -5,17 +5,8 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEnragedHyenaBite);
 		this.m.Description = "A vicious leaping bite usable up to two tiles between the hyena and its prey. The hyena leaps into the gap to bite; on a hit it instantly retreats to its original position while dragging the victim, locking them adjacent and immobilized until the hyena is struck in melee.";
 		this.m.KilledString = "Mauled to death";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc6/hyena_bite_01.wav",
-			"sounds/enemies/dlc6/hyena_bite_02.wav",
-			"sounds/enemies/dlc6/hyena_bite_03.wav",
-			"sounds/enemies/dlc6/hyena_bite_04.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/hyena_bite", 4);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

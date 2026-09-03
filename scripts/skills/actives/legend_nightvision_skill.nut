@@ -4,11 +4,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightvision);
 		this.m.Description = "Use your superior vision to pick out enemies in the dark and point them out to your mercenaries.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/shaman_skill_nightvision_01.wav",
-			"sounds/enemies/shaman_skill_nightvision_02.wav",
-			"sounds/enemies/shaman_skill_nightvision_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/shaman_skill_nightvision", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;

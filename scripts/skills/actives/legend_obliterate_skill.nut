@@ -5,16 +5,8 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendObliterate);
 		this.m.Description = "Wind up your hammer and strike with full force against an enemy. Exceptionally slow and prone to missing, can only be reliable against targets that can't move. Will apply [color=%status%]Staggered[/color] on hit and if the target is already [color=%status%]Staggered[/color] it will apply [color=%status%]Stunned[/color].";
 		this.m.KilledString = "Obliterated";
-		this.m.SoundOnUse = [
-			"sounds/combat/smash_01.wav",
-			"sounds/combat/smash_02.wav",
-			"sounds/combat/smash_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/smash_hit_01.wav",
-			"sounds/combat/smash_hit_02.wav",
-			"sounds/combat/smash_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/smash", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/smash_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -49,12 +41,11 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInHammers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInHammers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile ) {
-		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

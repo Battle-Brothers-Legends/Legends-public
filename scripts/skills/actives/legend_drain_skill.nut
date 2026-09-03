@@ -5,12 +5,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrain);
 		this.m.Description = "Pull the essence from your foe, and draw it into yourself.";
 		this.m.KilledString = "Drained";
-		this.m.SoundOnUse = [
-			"sounds/combat/drain_01.wav",
-			"sounds/combat/drain_02.wav",
-			"sounds/combat/drain_03.wav",
-			"sounds/combat/drain_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drain", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Item +10;
 		this.m.IsSerialized = false;

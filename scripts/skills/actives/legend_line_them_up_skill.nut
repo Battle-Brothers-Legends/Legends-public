@@ -8,18 +8,8 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLineThemUp);
 		this.m.Description = "Limit the recoil and shoot in a straight line with your handgonne.";
-		this.m.SoundOnFire = [
-			"sounds/combat/dlc6/fire_gonne_01.wav",
-			"sounds/combat/dlc6/fire_gonne_02.wav",
-			"sounds/combat/dlc6/fire_gonne_03.wav",
-			"sounds/combat/dlc6/fire_gonne_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc6/fire_gonne_hit_01.wav",
-			"sounds/combat/dlc6/fire_gonne_hit_02.wav",
-			"sounds/combat/dlc6/fire_gonne_hit_03.wav",
-			"sounds/combat/dlc6/fire_gonne_hit_04.wav"
-		];
+		this.m.SoundOnFire = ::Legends.S.setSounds("sounds/combat/dlc6/fire_gonne", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc6/fire_gonne_hit", 4);
 		this.m.SoundOnHitDelay = 0;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -146,7 +136,6 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local user = _tag.User;
 		local targets = _tag.Targets;
-		local attackSkill = user.getCurrentProperties().getRangedSkill();
 
 		foreach( t in targets )
 		{
@@ -198,7 +187,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
-				ret.push(forwardTile)
+				ret.push(forwardTile);
 			}
 		}
 
@@ -208,7 +197,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
-				ret.push(forwardTile)
+				ret.push(forwardTile);
 			}
 		}
 
@@ -221,7 +210,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
-				ret.push(forwardTile)
+				ret.push(forwardTile);
 			}
 		}
 
@@ -251,7 +240,6 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 		local user = _tag.User;
 		local targetTile = _tag.TargetTile;
 		local myTile = user.getTile();
-		local dir = myTile.getDirectionTo(targetTile);
 
 		if (myTile.IsVisibleForPlayer)
 		{

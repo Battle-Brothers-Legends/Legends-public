@@ -8,16 +8,8 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDoubleSwing);
 		this.m.Description = "Swing both weapons in a wide arc. The right tile is hit by the main hand, the left tile by the off hand, and the middle tile by both weapons.";
-		this.m.SoundOnUse = [
-			"sounds/combat/swing_01.wav",
-			"sounds/combat/swing_02.wav",
-			"sounds/combat/swing_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/combat/swing_hit_01.wav",
-			"sounds/combat/swing_hit_02.wav",
-			"sounds/combat/swing_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/swing", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/swing_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;

@@ -4,11 +4,7 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfLife);
 		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc4/wardrums_01.wav",
-			"sounds/enemies/dlc4/wardrums_02.wav",
-			"sounds/enemies/dlc4/wardrums_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
