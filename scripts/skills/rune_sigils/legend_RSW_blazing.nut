@@ -35,7 +35,7 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 			return;
 
 		local p = {
-			Type = "fire",
+			Type = "fire_legend_rsw_blazing",
 			Tooltip = "Fire rages here, melting armor and flesh alike",
 			IsPositive = false,
 			IsAppliedAtRoundStart = false,
@@ -59,7 +59,7 @@ this.legend_RSW_blazing <- this.inherit("scripts/skills/skill", {
 			tile.Type != ::Const.Tactical.TerrainType.ShallowWater &&
 			tile.Type != ::Const.Tactical.TerrainType.DeepWater)
 		{
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire") {
+			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire_legend_rsw_blazing") {
 				tile.Properties.Effect.Timeout = ::Time.getRound() + this.getItem().getRuneBonus2();
 				tile.Properties.Effect.Damage = this.getItem().getRuneBonus1();
 			} else {

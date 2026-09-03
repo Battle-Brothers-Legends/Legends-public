@@ -133,7 +133,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local p = {
-			Type = "fire",
+			Type = "fire_legend_firefield",
 			Tooltip = "Fire rages here, melting armor and flesh alike",
 			IsPositive = false,
 			IsAppliedAtRoundStart = false,
@@ -151,7 +151,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( tile in targets )
 		{
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_firefield")
+			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "fire_legend_firefield")
 			{
 				tile.Properties.Effect.Timeout = this.Time.getRound() + m.LastForTurns;
 			}
