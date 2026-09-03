@@ -34,4 +34,13 @@
 		this.shield.onUpdateProperties(_properties);
 		_properties.DamageReceivedRangedMult *= 0.85;
 	}
+
+	o.onEquip = function () {
+		this.shield.onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall, function (_skill) {
+			_skill.m.Icon = "skills/fortify_square.png";
+			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
+	}
 });

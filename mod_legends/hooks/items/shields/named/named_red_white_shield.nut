@@ -12,4 +12,13 @@
 		this.m.Value = 1400;
 		this.named_shield.randomizeValues();
 	}
+
+	o.onEquip = function () {
+		this.named_shield.onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall, function (_skill) {
+			_skill.m.Icon = "skills/fortify_square.png";
+			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
+	}
 });
