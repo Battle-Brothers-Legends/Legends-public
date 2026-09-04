@@ -1,0 +1,14 @@
+::mods_hookExactClass("events/events/dlc8/anatomist_demonology_book_event", function (o) {
+	local create = o.create;
+	o.create = function () {
+		create();
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_184.png[/img]{You find %anatomist% scouring a red book. %They_anatomist% closes the book and sighs.%SPEECH_ON%As an anatomist, I am compelled to think that monsters, as you laymen would call them, do not merely appear for the sake of appearance. Instead, everything has a purpose. In a sense, and through the old gods, we can trust that these elements have in actuality a divine purpose. Yet, some of my peers have found bones of creatures that have not once been seen in the flesh. It appears that these entities have disappeared entirely. It begs the question: does such evidence entail that we, ourselves, will one day disappear? An affirmative on that front suggests, then, that the divinities above are not actually weighing their visions in our favor. We walk under the gaze of mere happenstance. A terrible thought, indeed.%SPEECH_OFF%Curious, you ask what these mysterious monsters looked like. The anatomist opens the red book and shows you a drawing.%SPEECH_ON%They are quite similar to humans, but larger with implied bulkiness around the neck and shoulders. The skulls carry these notches, similar to that of horns, and the spinal columns have extra vertebrae with three of them near the top broadening out, as if they were holding onto something, something that would extend far from the body. See? Here? The back is almost like a bony mantle.%SPEECH_OFF%Interesting. You ask the anatomist if %they're_anatomist% seen one of these skeletons for %themselves_anatomist%, and %they_anatomist% says no. %They_anatomist% says %they're_anatomist% only seen it in the text. You ask if %they_anatomist% paid for this text and %they_anatomist% says %they_anatomist% did. You ask %them_anatomist% if perhaps the notion of old, bizarre monsters was but a mere sales pitch to get %them_anatomist% to buy a book of bullshit. The anatomist ponders for a time. %They_anatomist% nods and agrees that it is likely that %they_anatomist% has purchased a spoof. %They_anatomist% grows angrier by the second and suddenly throws the tome into the campfire, pledging %themselves_anatomist% to more earthly studies going forward. %They_anatomist% thanks you for your ability to cut through the nonsense and eminence fronts this world puts on.}";
+			_screen.start = function (_event) {
+				this.Characters.push(_event.m.Anatomist.getImagePath());
+				::Legends.EventList.changeMood(_event.m.Anatomist, -0.5, "Wasted time reading a sham demonology book");
+				::Legends.EventList.changeMood(_event.m.Anatomist, 1.0, "You helped %them% realize %their% demonology book was a farce");
+			}
+		});
+	}
+});
