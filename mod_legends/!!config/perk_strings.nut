@@ -2070,7 +2070,7 @@ Pay close attention at all times, surveying the surroundings and assessing every
 Take joy in the suffering of others.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Gain Melee Skill, Ranged Skill, Fatigue Recovery and Resolve for each character that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field. Double the bonus if you're adjacent to bleeding enemies.
+• Gain Melee Skill, Ranged Skill, Fatigue Recovery and Resolve for each enemy that is [color=%status%]Bleeding[/color] or has a temporary [color=%status%]Injury[/color] on the field. Double the bonus if you're adjacent to bleeding enemies.
 
 • The fatigue recovery bonus cannot exceed 5.
 ";

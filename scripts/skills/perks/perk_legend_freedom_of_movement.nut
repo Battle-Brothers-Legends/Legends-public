@@ -11,12 +11,13 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 			::Legends.Actives.getID(::Legends.Active.LegendEvasion)
 		]
 	},
+
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFreedomOfMovement);
 	}
 
 	function onUpdate(_properties) {
-		foreach(skill in this.m.Skills) {
+		foreach (skill in this.m.Skills) {
 			_properties.SkillCostAdjustments.push({
 				ID = skill,
 				FatigueMultAdjust = 0.5
@@ -24,52 +25,43 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onAfterUpdate(_properties)
-	{
-		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
-		foreach (skill in skills)
-		{
-			if (this.m.Skills.find(skill.getID()) != null)
-			{
-				if (skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendLeap) || skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendEvasion) || skill.getID() == ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))
-				{
+	function onAfterUpdate(_properties) {
+		local skills = this.getContainer().getAllSkillsOfType(::Const.SkillType.Active);
+		foreach (skill in skills) {
+			if (this.m.Skills.find(skill.getID()) != null) {
+				if (::Legends.S.oneOf(skill.getID(), ::Legends.Actives.getID(::Legends.Active.LegendEvasion), ::Legends.Actives.getID(::Legends.Active.LegendLeap))) {
 					skill.m.ActionPointCost /= 2;
-				}
-				else if (skill.getID() != ::Legends.Actives.getID(::Legends.Active.Lunge) && skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))
-				{
-					skill.m.ActionPointCost -= 1; //For Footwork, Tumble, and Rotation
+				} else if (!::Legends.S.oneOf(skill.getID(), ::Legends.Actives.getID(::Legends.Active.Lunge), ::Legends.Actives.getID(::Legends.Active.LegendQuickStep))) {
+					skill.m.ActionPointCost -= 1; //LegendClimb, Footwork, Rotation, LegendHorsePirouette
 				}
 			}
 		}
 	}
 
-	function onAdded()
-	{
-		if (!this.m.IsNew)
+	function onAdded() {
+		if (!this.m.IsNew) {
 			return;
+		}
 
-		local addPerk = function ( _perk, _row = 0 )
-		{
+		local addPerk = function (_perk, _row = 0) {
 			local actor = this.getContainer().getActor();
-			if (!actor.isPlayerControlled())
+			if (!actor.isPlayerControlled()) {
 				return;
+			}
 
 			local bg = actor.getBackground();
 			local hasRow = false;
 			local direction = -1;
 			local row = _row;
-			while (row >= 0 && row <= 6)
-			{
-				if (bg.m.CustomPerkTree[row].len() < 13)
-				{
+			while (row >= 0 && row <= 6) {
+				if (bg.m.CustomPerkTree[row].len() < 13) {
 					hasRow = true;
 					break;
 				}
 
 				row += direction;
 
-				if (row == -1)
-				{
+				if (row == -1) {
 					row = _row;
 					direction = 1;
 				}
@@ -79,10 +71,11 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 			bg.addPerk(_perk, row);
 		}
 
-		if (!this.getContainer().hasPerk(::Legends.Perk.LegendTacticalManeuvers))
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendTacticalManeuvers)) {
 			addPerk(::Const.Perks.PerkDefs.LegendTacticalManeuvers, 5);
-		if (!this.getContainer().hasPerk(::Legends.Perk.LegendQuickStep))
+		}
+		if (!this.getContainer().hasPerk(::Legends.Perk.LegendQuickStep)) {
 			addPerk(::Const.Perks.PerkDefs.LegendQuickStep, 2);
+		}
 	}
 });
-
