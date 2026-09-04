@@ -1,16 +1,15 @@
-::mods_hookExactClass("skills/actives/split_axe", function(o)
-{
+::mods_hookExactClass("skills/actives/split_axe", function (o) {
 	local create = o.create;
 	o.create = function () {
 		create();
 		this.m.IsTargetingActor = false;
 	}
 
-	o.onUse = function ( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
+	o.onUse = function (_user, _targetTile) {
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplit);
 
 		local ret = false;
-		if (::Legends.S.skillEntityAliveCheck(_user)) {
+		if (::Legends.S.isEntityNullOrDead(_user)) {
 			return ret;
 		}
 
