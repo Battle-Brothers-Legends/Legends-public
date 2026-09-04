@@ -1,5 +1,4 @@
 this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
-
 	m = {
 		Item = null,
 		Name = "Sighthound"
@@ -7,9 +6,9 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 
 	function create() {
 		this.wardog.create();
-		this.m.Type = this.Const.EntityType.LegendSighthound;
-		this.m.XP = this.Const.Tactical.Actor.LegendSighthound.XP;
-		this.m.SoundPitch = this.Math.rand(85, 105) * 0.01;
+		this.m.Type = ::Const.EntityType.LegendSighthound;
+		this.m.XP = ::Const.Tactical.Actor.LegendSighthound.XP;
+		this.m.SoundPitch = ::Math.rand(85, 105) * 0.01;
 	}
 
 	function setVariant(_variant) {
@@ -24,7 +23,7 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		this.actor.onInit();
 
 		// stats
-		local b = m.BaseProperties;
+		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendSighthound);
 		b.TargetAttractionMult = 0.1;
 		b.IsAffectedByInjuries = false;
@@ -34,10 +33,10 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		m.Hitpoints = b.Hitpoints;
 		m.CurrentProperties = clone b;
 
-		m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
-		local variant = this.Math.rand(1, 2);
+		local variant = ::Math.rand(1, 2);
 
 		// inventory
 		this.m.Items.getAppearance().Body = "bust_dawg_01_body_0" + variant;
@@ -76,5 +75,4 @@ this.legend_sighthound <- this.inherit("scripts/entity/tactical/wardog", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 	}
-
 })

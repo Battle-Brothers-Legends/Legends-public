@@ -1,21 +1,18 @@
-::mods_hookExactClass("skills/actives/knock_out", function(o) {
+::mods_hookExactClass("skills/actives/knock_out", function (o) {
 	o.m.IsStaffKnockOut <- false;
 	o.m.IsRangedKnockOut <- false;
 
-	o.isHidden <- function() {
+	o.isHidden <- function () {
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
-		if (item != null
-			&& (item.getID() == "weapon.legend_shovel")
-			&& !this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger))
-		{
+		if (item != null && (item.getID() == "weapon.legend_shovel") && !this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistGravedigger)) {
 			return true;
 		}
 
 		return this.skill.isHidden();
 	}
 
-	o.setItem <- function(_item) {
+	o.setItem <- function (_item) {
 		if (this.m.IsStaffKnockOut) {
 			this.m.Name = "Staff Daze";
 			this.m.Description = "A heavy blow intended to daze anyone unlucky enough to be hit for one turn, but not to do the most damage. Dazed targets have their damage, initiative and stamina reduced by 35%";
@@ -31,7 +28,7 @@
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function() {
+	o.getTooltip = function () {
 		if (!this.m.IsStaffKnockOut && !this.m.IsRangedKnockOut) {
 			return getTooltip();
 		}
@@ -39,15 +36,13 @@
 		local ret = this.skill.getDefaultTooltip();
 
 		if (this.m.IsRangedKnockOut) {
-			local fatExtra = 2 * this.Const.Combat.FatigueReceivedPerHit;
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=%damage%]" + fatExtra + "[/color] extra fatigue"
+				text = "Inflicts [color=%damage%]" + 2 * ::Const.Combat.FatigueReceivedPerHit + "[/color] extra fatigue"
 			});
-		}
-		else {
+		} else {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -57,81 +52,73 @@
 		}
 
 		local properties = this.getContainer().getActor().getCurrentProperties();
-		local effects = properties.IsSpecializedInStaffStun ? "daze, stagger and stun" : "daze";
 		if (this.m.IsRangedKnockOut) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]100%[/color] chance to daze and stagger on a hit, and stun if hitting the head"
+				text = "Dazes and staggers on a hit, and stuns on hitting the head"
 			});
-		} 
-		else if (properties.IsSpecializedInPolearms) {
+		} else if (properties.IsSpecializedInPolearms) {
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to " + effects + " on a hit"
+				text = "Has a [color=%positive%]" + this.m.StunChance + "%[/color] chance to " + (properties.IsSpecializedInStaffStun ? "daze, stagger and stun" : "daze") + " on a hit"
 			});
 		}
 
 		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function(_properties) {
+	o.onAfterUpdate = function (_properties) {
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		if (this.m.IsStaffKnockOut) {
-			this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-			this.m.StunChance = _properties.IsSpecializedInStaffStun ? 100 : 75;
-		} else {
-			onAfterUpdate(_properties);
-			this.m.StunChance = _properties.IsSpecializedInStaffStun ? 100 : 75;
+			this.m.StunChance = _properties.IsSpecializedInPolearms ? 100 : 75;
 		}
 	}
 
-	o.onUse = function(_user, _targetTile) {
-
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-		local success = this.attackEntity(_user, _targetTile.getEntity());
+	o.onUse = function (_user, _targetTile) {
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
+		local target = _targetTile.getEntity();
+		local success = this.attackEntity(_user, target);
 		if (this.m.IsRangedKnockOut) {
 			return success;
 		}
 
-		if (::Legends.S.isEntityNullOrDead(_user)) {
-			return success;
-		}
-
-		if (::Legends.S.isEntityNullOrDead(_targetTile.getEntity())) {
+		if (::Legends.S.isEntityNullOrDead(_user) || ::Legends.S.isEntityNullOrDead(target)) {
 			return success;
 		}
 
 		if (success && _targetTile.IsOccupiedByActor) {
-			local target = _targetTile.getEntity();
-
-			local stun = this.Math.rand(1, 100) <= this.m.StunChance;
+			local stun = ::Math.rand(1, 100) <= this.m.StunChance;
 			local canStun = !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned);
 			if (this.m.IsStaffKnockOut && stun) {
+				local appliedEffects = [];
 				if (!target.getCurrentProperties().IsImmuneToDaze) {
 					::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
+					appliedEffects.push("dazed");
 				}
 
 				if (_user.getCurrentProperties().IsSpecializedInStaffStun) {
 					::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
+					appliedEffects.push("staggered");
 
 					if (canStun) {
 						::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
+						appliedEffects.push("stunned");
 					}
 				}
 
-				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has dazed " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer && appliedEffects.len() > 0) {
+					local effect = (appliedEffects.len() == 1 ? appliedEffects[0] : (appliedEffects.len() == 2 ? appliedEffects[0] + " and " + appliedEffects[1] : appliedEffects[0] + ", " + appliedEffects[1] + ", and " + appliedEffects[2]));
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has " + effect + " " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 				}
-			} 
-			else if (!this.m.IsStaffKnockOut && (_user.getCurrentProperties().IsSpecializedInMaces || stun) && canStun) {
+			} else if (!this.m.IsStaffKnockOut && (_user.getCurrentProperties().IsSpecializedInMaces || stun) && canStun) {
 				::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has stunned " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 				}
 
 				if (this.m.IsFromLute && _user.isPlayerControlled()) {
@@ -144,7 +131,7 @@
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
-	o.onAnySkillUsed = function(_skill, _targetEntity, _properties) {
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
 		if (this.m.IsRangedKnockOut && _skill == this) {
 			_properties.DamageTotalMult *= 0.25;
 			_properties.FatigueDealtPerHitMult += 2.0;
@@ -153,12 +140,8 @@
 		}
 	}
 
-	o.onTargetHit <- function(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		if (!this.m.IsRangedKnockOut) {
-			return;
-		}
-
-		if (_skill != this) {
+	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (!this.m.IsRangedKnockOut || _skill != this) {
 			return;
 		}
 
