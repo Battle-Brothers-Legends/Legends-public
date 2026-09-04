@@ -114,7 +114,7 @@ class Defs:
  "desc" :  "A hood made of chain mail with a leather brim. Offers good protection and while leaving the face unobstructed.",
  "adesc" : "Includes a chain mail hood."
  },
- {"name" : "chain_hood_masked"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 400, "con" : 80, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
+ {"name" : "chain_hood_masked"                     , "layer" : "hood", "min" : 1, "max" : 3, "base" : True, "value" : 400, "con" : 80, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "chain", "invSound" : "chain",
  "title" :  "Masked Chain Mail Hood",
  "desc" :  "A hood made of chain mail with a leather brim and a cloth mask. Keeps the wearer's face obstructed while being surprisingly comfortable to wear.",
  "adesc" : "Includes a masked chain mail hood."
