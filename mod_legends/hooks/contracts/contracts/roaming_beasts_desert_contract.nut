@@ -41,7 +41,7 @@
 		local candidates_bro1 = brothers.filter(@(_,_bro) (!_bro.getSkills().hasTrait(::Legends.Trait.Player)));
 		local helpful = candidates_helpful.len() != 0 ? candidates_helpful[::Math.rand(0, candidates_helpful.len() - 1)] : brothers[::Math.rand(0, brothers.len() - 1)];
 		local bro1 = candidates_bro1.len() != 0 ? candidates_bro1[::Math.rand(0, candidates_bro1.len() - 1)] : brothers[::Math.rand(0, brothers.len() - 1)];
-		local candidates_bro2 = brothers.filter(@(_,_bro) (!_bro.getSkills().hasTrait(::Legends.Trait.Player) && !_bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) && _bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat) && _bro.getID() != bro1.getID()));
+		local candidates_bro2 = candidates_bro1.filter(@(_, _bro) (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) && _bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) && _bro.getID() != bro1.getID());
 		local brothersWithoutBro1 = brothers.filter(@(_,_bro) (_bro.getID() != bro1.getID()));
 		local bro2 = candidates_bro2.len() > 1 ? candidates_bro2[::Math.rand(0, candidates_bro2.len() - 1)] : (brothers.len() > 1 ? brothersWithoutBro1[::Math.rand(0, brothersWithoutBro1.len() - 1)] : bro1);
 
