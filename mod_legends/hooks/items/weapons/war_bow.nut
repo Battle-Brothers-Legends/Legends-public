@@ -4,15 +4,14 @@
 	o.create = function() {
 		create();
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
-		this.m.Variants = [0, 1, 2];
+		this.m.Variants = [1, 2, 3];
 		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
-		local v = this.getVariant() == 0 ? "" : this.getVariant();
-		this.m.Icon = "weapons/ranged/war_bow_0" + v + "_70x70.png";
-		this.m.IconLarge = "weapons/ranged/war_bow_0" + v + ".png";
-		this.m.ArmamentIcon = "icon_war_bow_0" + v;
+		this.m.Icon = "weapons/ranged/war_bow_0" + this.getVariant() + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/war_bow_0" + this.getVariant() + ".png";
+		this.m.ArmamentIcon = "icon_war_bow_0" + this.getVariant();
 	}
 
 	local onEquip = o.onEquip;
