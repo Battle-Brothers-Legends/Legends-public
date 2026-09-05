@@ -536,6 +536,7 @@
 - fixed Lorekeeper's headpiece
 - Swapped graveyard & crypts to mass graves and sunken castles for legion 'defend x' camp contracts as crypts & graveyards could shuffle zombies in which caused the player to get attacked by a sally or scout force
 - fixed holy flame sometimes not awarding kills properly
+- fixed miasma, fire bombs, firefield, fire rune not awarding kills properly
 - fixed prepare to bleed bugs
 - fixed grazes not awarding kills for kills properly
 - fixed rounding errors making too many settlements appear on the map under certain campaign settings

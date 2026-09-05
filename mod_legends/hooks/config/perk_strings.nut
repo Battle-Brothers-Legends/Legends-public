@@ -222,9 +222,9 @@ Master polearms and keeping the enemy at bay.
 [color=%passive%][u]Passive:[/u][/color]
 • Skills build up [color=%negative%]25%[/color] less Fatigue.
 
-• [color=%skill%]Rupture[/color] increases [color=%status%]Bleeding[/color] damage inflicted to [color=%positive%]10[/color].
+• [color=%skill%]Rupture[/color] deals [color=%positive%]10[/color] [color=%status%]Bleeding[/color] damage.
 
-• Increases [color=%status%]Daze[/color] chance when using [color=%skill%]Staff Daze[/color] to [color=%positive%]100%[/color] and increase the range of [color=%skill%]Leap[/color] by [color=%positive%]1[/color] when using a staff.
+• Increases [color=%status%]Daze[/color] chance of [color=%skill%]Staff Daze[/color] to [color=%positive%]100%[/color] and the range of [color=%skill%]Leap[/color] by [color=%positive%]1[/color] while using a staff.
 
 • Other polearm skills have their Action Point cost reduced by [color=%negative%]1[/color] and no longer have a penalty for attacking targets directly adjacent.
 

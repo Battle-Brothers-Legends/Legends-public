@@ -1,6 +1,5 @@
 ::mods_hookExactClass("scenarios/world/paladins_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.paladins";
 		this.m.Name = "Oathtakers";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_180.png[/img][/p][p]Oathtakers are knightly warriors beholden not to liege lords, but to the ideals and teachings of their founder, Young Anselm. The order now finds itself in dire straits, and they\'ve turned to you to reverse their fortunes. Can you teach these zealots to become successful mercenaries?\n\n[color=#bcad8c]Paladins:[/color] Start with two battle-hardened warriors and good equipment.\n[color=#bcad8c]Oathtakers:[/color] Sworn to Young Anselm\'s teachings, you must take oaths that confer various advantages and disadvantages until fulfilled.[/p]";
@@ -9,13 +8,10 @@
 		this.m.IsFixedLook = true;
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = this.World.getPlayerRoster();
-		local names = [];
 
-		for( local i = 0; i < 2; i = ++i )
-		{
+		for (local i = 0; i < 2; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
@@ -55,7 +51,6 @@
 		armor.setUpgrade(attach);
 		items.equip(armor);
 
-
 		items.equip(this.new("scripts/items/accessory/oathtaker_skull_01_item"));
 		local banner = this.new("scripts/items/tools/player_banner");
 		banner.setVariant(this.World.Assets.getBannerID());
@@ -89,7 +84,7 @@
 		items.equip(hood);
 
 		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_gambeson");
-		armor.setVariant(::Math.rand(1,3));
+		armor.setVariant(::Math.rand(1, 3));
 		local chain = this.new("scripts/items/legend_armor/chain/legend_armor_hauberk");
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_leather_riveted");
 		local cloak = this.new("scripts/items/legend_armor/cloak/legend_armor_relic_hood");
@@ -100,7 +95,6 @@
 		armor.setUpgrade(attach);
 		items.equip(armor);
 
-
 		items.equip(this.new("scripts/items/weapons/arming_sword"));
 		local shield = this.new("scripts/items/shields/heater_shield");
 		shield.onPaintInCompanyColors();
@@ -108,8 +102,7 @@
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		this.World.Assets.addMoralReputation(10.0);
 
-		if (!this.Const.DLC.Desert)
-		{
+		if (!this.Const.DLC.Desert) {
 			this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 27);
 		}
 
@@ -119,16 +112,13 @@
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i < ::World.EntityManager.getSettlements().len(); i++) {
 			randomVillage = this.World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())	{
 				break;
 			}
 		}
@@ -137,136 +127,115 @@
 		local navSettings = this.World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!this.World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = this.World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 1)
-				{
-				}
-				else
-				{
+				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
+				} else {
 					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		this.World.Assets.updateLook(19);
 		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
-		{
+		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function (_tag) {
 			this.Music.setTrackList(this.Const.Music.IntroTracks, this.Const.Music.CrossFadeTime);
 			this.World.Events.fire("event.paladins_scenario_intro");
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.World.Assets.m.BrothersMax = 18;
 	}
 
-	o.onHired = function ( _bro )
-	{
-		if (this.World.Ambitions.hasActiveAmbition())
-		{
-			switch(this.World.Ambitions.getActiveAmbition().getID())
-			{
-			case "ambition.oath_of_humility":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHumility);
-				break;
+	o.onHired = function (_bro) {
+		if (this.World.Ambitions.hasActiveAmbition()) {
+			switch (this.World.Ambitions.getActiveAmbition().getID()) {
+				case "ambition.oath_of_humility":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHumility);
+					break;
 
-			case "ambition.oath_of_valor":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfValor);
-				break;
+				case "ambition.oath_of_valor":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfValor);
+					break;
 
-			case "ambition.oath_of_endurance":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfEndurance);
-				break;
+				case "ambition.oath_of_endurance":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfEndurance);
+					break;
 
-			case "ambition.oath_of_vengeance":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfVengeance);
-				break;
+				case "ambition.oath_of_vengeance":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfVengeance);
+					break;
 
-			case "ambition.oath_of_righteousness":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfRighteousness);
-				break;
+				case "ambition.oath_of_righteousness":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfRighteousness);
+					break;
 
-			case "ambition.oath_of_dominion":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDominion);
-				break;
+				case "ambition.oath_of_dominion":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDominion);
+					break;
 
-			case "ambition.oath_of_wrath":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfWrath);
-				break;
+				case "ambition.oath_of_wrath":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfWrath);
+					break;
 
-			case "ambition.oath_of_honor":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHonor);
-				::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfHonorWarning);
-				break;
+				case "ambition.oath_of_honor":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHonor);
+					::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfHonorWarning);
+					break;
 
-			case "ambition.oath_of_camaraderie":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfCamaderie);
-				break;
+				case "ambition.oath_of_camaraderie":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfCamaderie);
+					break;
 
-			case "ambition.oath_of_sacrifice":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfSacrifice);
-				break;
+				case "ambition.oath_of_sacrifice":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfSacrifice);
+					break;
 
-			case "ambition.oath_of_fortification":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfFortification);
-				::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfFortificationWarning);
-				break;
+				case "ambition.oath_of_fortification":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfFortification);
+					::Legends.Effects.grant(_bro, ::Legends.Effect.OathOfFortificationWarning);
+					break;
 
-			case "ambition.oath_of_distinction":
-				::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDistinction);
-				_bro.getFlags().set("OathtakersDistinctionLevelUps", 0);
-				break;
+				case "ambition.oath_of_distinction":
+					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfDistinction);
+					_bro.getFlags().set("OathtakersDistinctionLevelUps", 0);
+					break;
 			}
 		}
 	}
 
-	o.onUpdateLevel = function ( _bro )
-	{
-		if (!this.World.Ambitions.hasActiveAmbition())
-		{
+	o.onUpdateLevel = function (_bro) {
+		if (!this.World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_distinction")
-		{
+		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_distinction") {
 			_bro.getFlags().increment("OathtakersDistinctionLevelUps");
 		}
 	}
 
-	o.onActorKilled = function ( _actor, _killer, _combatID )
-	{
-		if (!this.World.Ambitions.hasActiveAmbition())
-		{
+	o.onActorKilled = function (_actor, _killer, _combatID) {
+		if (!this.World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (_killer == null || _killer.getFaction() != this.Const.Faction.Player && _killer.getFaction() != this.Const.Faction.PlayerAnimals)
-		{
-			if (_actor.isPlayerControlled() && this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
+		if (_killer == null || _killer.getFaction() != this.Const.Faction.Player && _killer.getFaction() != this.Const.Faction.PlayerAnimals) {
+			if (_actor.isPlayerControlled()
+				&& this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
 			{
 				this.World.Statistics.getFlags().increment("OathtakersBrosDead");
 			}
@@ -274,10 +243,8 @@
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_honor")
-		{
-			if (_actor.getTile().getZoneOfControlCountOtherThan(_actor.getAlliedFactions()) <= 1)
-			{
+		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_honor") {
+			if (_actor.getTile().getZoneOfControlCountOtherThan(_actor.getAlliedFactions()) <= 1) {
 				this.World.Statistics.getFlags().increment("OathtakersSoloKills");
 			}
 
@@ -286,69 +253,51 @@
 
 		local actorFaction = this.Const.EntityType.getDefaultFaction(_actor.getType());
 
-		if (actorFaction == this.Const.FactionType.Zombies || actorFaction == this.Const.FactionType.Undead)
-		{
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_righteousness")
-			{
+		if (actorFaction == this.Const.FactionType.Zombies || actorFaction == this.Const.FactionType.Undead) {
+			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_righteousness") {
 				this.World.Statistics.getFlags().increment("OathtakersUndeadSlain");
 			}
-		}
-		else if (actorFaction == this.Const.FactionType.Goblins || actorFaction == this.Const.FactionType.Orcs)
-		{
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_vengeance")
-			{
+		} else if (actorFaction == this.Const.FactionType.Goblins || actorFaction == this.Const.FactionType.Orcs) {
+			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_vengeance") {
 				this.World.Statistics.getFlags().increment("OathtakersGreenskinsSlain");
 			}
-		}
-		else if (actorFaction == this.Const.FactionType.Beasts || _actor.getType() == this.Const.EntityType.BarbarianUnhold || _actor.getType() == this.Const.EntityType.BarbarianUnholdFrost)
-		{
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_dominion")
-			{
+		} else if (actorFaction == this.Const.FactionType.Beasts || _actor.getType() == this.Const.EntityType.BarbarianUnhold || _actor.getType() == this.Const.EntityType.BarbarianUnholdFrost) {
+			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_dominion") {
 				this.World.Statistics.getFlags().increment("OathtakersBeastsSlain");
 			}
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_wrath")
-		{
+		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_wrath") {
 			this.World.Statistics.getFlags().increment("OathtakersWrathSlain");
 		}
 	}
 
-	o.onBattleWon = function ( _combatLoot )
-	{
-		if (!this.World.Ambitions.hasActiveAmbition())
-		{
+	o.onBattleWon = function (_combatLoot) {
+		if (!this.World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_valor" && this.World.Statistics.getFlags().getAsInt("LastEnemiesDefeatedCount") > this.World.Statistics.getFlags().getAsInt("LastPlayersAtBattleStartCount"))
-		{
+		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_valor" && this.World.Statistics.getFlags().getAsInt("LastEnemiesDefeatedCount") > this.World.Statistics.getFlags().getAsInt("LastPlayersAtBattleStartCount")) {
 			this.World.Statistics.getFlags().increment("OathtakersDefeatedOutnumbering");
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_endurance" && this.World.Statistics.getFlags().getAsInt("LastCombatResult") == 1)
-		{
+		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_endurance" && this.World.Statistics.getFlags().getAsInt("LastCombatResult") == 1) {
 			this.World.Statistics.getFlags().increment("OathtakersBattlesWon");
 		}
 	}
 
-	o.onContractFinished = function ( _contractType, _cancelled )
-	{
-		if (!this.World.Ambitions.hasActiveAmbition())
-		{
+	o.onContractFinished = function (_contractType, _cancelled) {
+		if (!this.World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (_contractType == "contract.arena" || _contractType == "contract.arena_tournament")
-		{
+		if (_contractType == "contract.arena" || _contractType == "contract.arena_tournament") {
 			return;
 		}
 
-		if (!_cancelled && this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_humility")
-		{
+		if (!_cancelled && this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_humility") {
 			this.World.Statistics.getFlags().increment("OathtakersContractsComplete");
 		}
 	}
 
 });
-

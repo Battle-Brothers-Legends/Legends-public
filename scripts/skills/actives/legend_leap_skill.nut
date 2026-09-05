@@ -1,9 +1,9 @@
 this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendLeap);
-		this.m.Description = "Learning to jump extended distances allows escape from usually impossible situations. Fatigue cost is 15 plus the weight of your armor. Range can be increased with the Backflip perk, and by taking Staff Mastery and wielding a staff.";
+		this.m.Description = "Jump over distance or obstacles and unsuspecting enemies to gain tactical advantage.";
 		this.m.Icon = "skills/leap_square.png";
 		this.m.IconDisabled = "skills/leap_square_bw.png";
 		this.m.Overlay = "leap";
@@ -26,85 +26,52 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 2;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item != null)
-		{
-			if (item.isWeaponType(this.Const.Items.WeaponType.Staff) && actor.getCurrentProperties().IsSpecializedInPolearms)
-			{
-				ret.push({
-					id = 6,
-					type = "text",
-					icon = "ui/icons/special.png",
-					text = "Leap range increased by 1 tile while wielding a staff and having staff mastery"
-				});
-			}
-		}
-
-		if (this.getContainer().getActor().getCurrentProperties().IsRooted)
-		{
+		if (this.getContainer().getActor().getCurrentProperties().IsRooted) {
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=%negative%]Can not be used while rooted[/color]"
+				text = "[color=%negative%]Cannot be used while rooted[/color]"
 			});
 		}
 
+		local extraFatigueCost = getModifier();
+		if(extraFatigueCost > 0)
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = "Fatigue cost increased by [color=%negative%]" + extraFatigueCost + "[/color] due to equipped armor's weight"
+			});
 		return ret;
 	}
 
-	function getModifier()
-	{
-		local fat = 0;
-		local body = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local head = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+	function getModifier() {
+		local extraFatigueCost = 0;
+		local actor = this.getContainer().getActor();
+		local armor = [
+			actor.getItems().getItemAtSlot(::Const.ItemSlot.Body),
+			actor.getItems().getItemAtSlot(::Const.ItemSlot.Head)
+		];
 
-		if (body != null)
-		{
-			fat = fat + body.getStaminaModifier();
+		foreach (piece in armor) {
+			extraFatigueCost -= piece != null ? piece.getStaminaModifier() : 0;
 		}
 
-		if (head != null)
-		{
-			fat = fat + head.getStaminaModifier();
-		}
-
-		fat = fat * -1;
-
-		return fat;
+		return extraFatigueCost;
 	}
 
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local fat = this.getModifier();
-		local bonus = 0;
-		if (item != null)
-		{
-			if (item.isWeaponType(this.Const.Items.WeaponType.Staff) && actor.getCurrentProperties().IsSpecializedInPolearms)
-			{
-				bonus += 1;
-			}
-		}
-
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip))
-		{
-			bonus += 1;
-		}
-
-		this.m.MaxRange = 2 + bonus;
-
-		this.m.FatigueCost = 15 + fat;
-
+		this.m.MaxRange = 2 + (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip) ? 1 : 0) + (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff) && actor.getCurrentProperties().IsSpecializedInPolearms ? 1 : 0);
+		this.m.FatigueCost = 15 + this.getModifier();
 	}
 
 	function isUsable() {
-		if (this.Tactical.isActive() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsArenaMode) {
+		if (::Tactical.isActive() && ::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode) {
 			return false;
 		}
 
@@ -115,26 +82,20 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		if (!this.skill.onVerifyTarget(_originTile, _targetTile))
-		{
+	function onVerifyTarget(_originTile, _targetTile) {
+		if (!this.skill.onVerifyTarget(_originTile, _targetTile)) {
 			return false;
 		}
 
-		if (!_targetTile.IsEmpty)
-		{
+		if (!_targetTile.IsEmpty) {
 			return false;
 		}
 
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		this.Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
+	function onUse(_user, _targetTile) {
+		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		return true;
 	}
-
 });
-
