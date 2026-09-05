@@ -1,8 +1,8 @@
-this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
+this.legend_song_of_life_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSongOfLife);
 		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
@@ -106,20 +106,20 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 			if (_user.getID() == a.getID())
 				continue;
 
-			if (a.getSkills().hasEffect(::Legends.Effect.LegendDrumsOfLife))
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendSongOfLife))
 				continue;
 
 			if (a.getTile().getDistanceTo(myTile) > 8)
 				continue;
 
-			::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+			::Legends.Effects.grant(a, ::Legends.Effect.LegendSongOfLife, function(_effect) {
 				_effect.setEffect(this.getBonus());
 			}.bindenv(this));
 
 			affectedActors.push(a.weakref());
 		}
 
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSongOfLife, function(_effect) {
 			_effect.setEffect(this.getBonus());
 			_effect.m.Caster = _user.weakref();
 			_effect.m.AffectedActors = affectedActors;

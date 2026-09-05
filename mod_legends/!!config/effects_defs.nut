@@ -1069,20 +1069,20 @@ effectsDefs.push({
 	Const = "LegendDodgingIncoming"
 });
 
-::Legends.Effect.LegendDrumsOfLife <- null;
+::Legends.Effect.LegendSongOfLife <- null;
 effectsDefs.push({
-	ID = "effects.legend_drums_of_life",
-	Script = "scripts/skills/effects/legend_drums_of_life_effect",
+	ID = "effects.legend_song_of_life",
+	Script = "scripts/skills/effects/legend_song_of_life_effect",
 	Name = "Drums of Life",
-	Const = "LegendDrumsOfLife"
+	Const = "LegendSongOfLife"
 });
 
-::Legends.Effect.LegendDrumsOfWar <- null;
+::Legends.Effect.LegendWarChant <- null;
 effectsDefs.push({
-	ID = "effects.legend_drums_of_war",
-	Script = "scripts/skills/effects/legend_drums_of_war_effect",
+	ID = "effects.legend_war_chant",
+	Script = "scripts/skills/effects/legend_war_chant_effect",
 	Name = "Drums of War",
-	Const = "LegendDrumsOfWar"
+	Const = "LegendWarChant"
 });
 
 

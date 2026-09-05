@@ -1,8 +1,8 @@
 this.perk_legend_minnesanger <- this.inherit("scripts/skills/skill", {
 	m = {
 		SkillsToAdjust = [
-			::Legends.Active.LegendDrumsOfLife,
-			::Legends.Active.LegendDrumsOfWar,
+			::Legends.Active.LegendSongOfLife,
+			::Legends.Active.LegendWarChant,
 			::Legends.Active.LegendMartialMarch
 		]
 	},

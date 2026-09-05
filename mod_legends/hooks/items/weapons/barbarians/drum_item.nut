@@ -32,8 +32,8 @@
 			_skill.m.IsDrumBash = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
-		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWarChant);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSongOfLife);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 		::Legends.Actives.remove(this, ::Legends.Active.DrumsOfWar);
 	}

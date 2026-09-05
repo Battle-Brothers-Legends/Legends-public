@@ -2483,22 +2483,22 @@ activesDefs.push({
 	Overlay = "active_144",
 });
 
-::Legends.Active.LegendDrumsOfLife <- null;
+::Legends.Active.LegendSongOfLife <- null;
 activesDefs.push({
-	ID = "actives.legend_drums_of_life",
-	Script = "scripts/skills/actives/legend_drums_of_life_skill",
-	Const = "LegendDrumsOfLife",
+	ID = "actives.legend_song_of_life",
+	Script = "scripts/skills/actives/legend_song_of_life_skill",
+	Const = "LegendSongOfLife",
 	Name = "Song of Life",
 	Icon = "skills/drums_of_life_square.png",
 	IconDisabled = "skills/drums_of_life_square_bw.png",
 	Overlay = "drums_of_life_square",
 });
 
-::Legends.Active.LegendDrumsOfWar <- null;
+::Legends.Active.LegendWarChant <- null;
 activesDefs.push({
-	ID = "actives.legend_drums_of_war",
-	Script = "scripts/skills/actives/legend_drums_of_war_skill",
-	Const = "LegendDrumsOfWar",
+	ID = "actives.legend_war_chant",
+	Script = "scripts/skills/actives/legend_war_chant_skill",
+	Const = "LegendWarChant",
 	Name = "War Chant",
 	Icon = "skills/drums_of_war_square.png",
 	IconDisabled = "skills/drums_of_war_square_bw.png",

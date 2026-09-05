@@ -57,7 +57,6 @@
 ::Const.Strings.PerkName.LegendLithe <- "Lithe";
 ::Const.Strings.PerkName.LegendInTheZone <- "In the Zone";
 ::Const.Strings.PerkName.LegendBlendIn <- "Blend in";
-::Const.Strings.PerkName.LegendDrumsOfWar <- "War Chant";
 ::Const.Strings.PerkName.LegendSpecStaffStun <- "Staff Spins";
 ::Const.Strings.PerkName.LegendPugilist <- "Pugilist";
 ::Const.Strings.PerkName.LegendGrappler <- "Grappler";
@@ -82,7 +81,6 @@
 ::Const.Strings.PerkName.LegendAssassinate <- "Assassinate";
 ::Const.Strings.PerkName.LegendMealPreperation <- "Meal Preparation";
 ::Const.Strings.PerkName.LegendAlcoholBrewing <- "Alcohol Brewing";
-::Const.Strings.PerkName.LegendDrumsOfLife <- "Song of Life";
 ::Const.Strings.PerkName.LegendLacerate <- "Lacerate";
 ::Const.Strings.PerkName.LegendPeaceful <- "Peaceable";
 ::Const.Strings.PerkName.LegendNetRepair <- "Net Repair";
@@ -1928,17 +1926,6 @@ Master the movements required to spin your staff in a great flourish that lands 
 • Any strike with a staff that would normally [color=%status%]Daze[/color], also [color=%status%]Stuns[/color] and [color=%status%]Staggers[/color].
 ";
 
-::Const.Strings.PerkDescription.LegendDrumsOfWar <- @"
-Learn powerful rhythms that drive your allies on.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]War Chant[/color] skill which restores [color=%positive%]+3[/color] Fatigue to every ally within eight tiles.
-
-• Can only be used with a Drum or Lute equipped.
-
-• Costs [color=%negative%]8[/color] AP and [color=%negative%]30[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendSpecUnarmed <- @"
 Master the martial arts of unarmed combat.
 
@@ -2321,17 +2308,6 @@ Knowledge of an animal's physiology allows for better diet, exercise and care.
 ::Const.Strings.PerkDescription.LegendHorsePassage <- @"
 [color=%passive%][u]Passive:[/u][/color]
 • Training the legs to raise higher and push harder can prepare horses for rough or muddy terrain. Decreases movement costs on rough terrain.
-";
-
-::Const.Strings.PerkDescription.LegendDrumsOfLife <- @"
-Learn powerful rhythms that drive your allies on.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Drums of Life[/color] skill which restores [color=%positive%]+4[/color] Hitpoints to every ally within eight tiles.
-
-• Can only be used with a Drum or Lute equipped.
-
-• Costs [color=%negative%]8[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendLacerate <- @"

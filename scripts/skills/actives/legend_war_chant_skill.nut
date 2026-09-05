@@ -1,8 +1,8 @@
-this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
+this.legend_war_chant_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWarChant);
 		this.m.Description = "Push allies on with your music, lowering the fatigue of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
@@ -106,20 +106,20 @@ this.legend_drums_of_war_skill <- this.inherit("scripts/skills/skill", {
 			if (_user.getID() == a.getID())
 				continue;
 
-			if (a.getSkills().hasEffect(::Legends.Effect.LegendDrumsOfWar))
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendWarChant))
 				continue;
 
 			if (a.getTile().getDistanceTo(myTile) > 8)
 				continue;
 
-			::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
+			::Legends.Effects.grant(a, ::Legends.Effect.LegendWarChant, function(_effect) {
 				_effect.setEffect(this.getBonus());
 			}.bindenv(this));
 
 			affectedActors.push(a.weakref());
 		}
 
-		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfWar, function(_effect) {
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendWarChant, function(_effect) {
 			_effect.setEffect(this.getBonus());
 			_effect.m.Caster = _user.weakref();
 			_effect.m.AffectedActors = affectedActors;

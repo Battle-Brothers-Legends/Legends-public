@@ -112,7 +112,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			if (::Legends.S.isEntityNullOrDead(actor))
 				continue;
-			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfWar);
+			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendWarChant);
 		}
 		this.m.AffectedActors = [];
 	}

@@ -1,4 +1,4 @@
-this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
+this.legend_song_of_life_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Effect = 0,
 		AffectedActors = [],
@@ -12,7 +12,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDrumsOfLife);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSongOfLife);
 		this.m.Description = "";
 		this.m.Icon = "ui/perks/drums_of_life.png";
 		this.m.Overlay = "drums_of_life_circle";
@@ -54,7 +54,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 		foreach(actor in this.m.AffectedActors) {
 			if (::Legends.S.isEntityNullOrDead(actor))
 				continue;
-			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendDrumsOfLife);
+			::Legends.Effects.remove(actor.getSkills(), ::Legends.Effect.LegendSongOfLife);
 		}
 		this.m.AffectedActors = [];
 		this.m.Caster = null;

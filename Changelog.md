@@ -826,4 +826,11 @@
 - `perk_legend_daze` -> `perk_legend_cacophony`
 - `perk_legend_curseofyears` -> deleted
 - `legend_curseofyears_skill` -> deleted
+<<<<<<< HEAD
 >>>>>>> 97341b687b (rearrange effect defs alphabetically, some effect/actives work)
+=======
+- `legend_drums_of_life_skill` -> `legend_song_of_life_skill`
+- `legend_drums_of_life_effect` -> `legend_song_of_life_effect`
+- `legend_war_chant_skill` -> `legend_war_chant_skill`
+- `legend_war_chant_effect` -> `legend_war_chant_effect`
+>>>>>>> 0c76897b8a (rename songs to proper names)
