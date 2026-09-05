@@ -36,6 +36,9 @@ this.camp_completed_event <- this.inherit("scripts/events/event", {
 				}];
 				this.List = ::World.Camp.getResults();
 				this.List.sort(@(_a, _b) (_a.id > _b.id ? -1 : (_a.id < _b.id ? 1 : 0)));
+				if (!::World.State.isPaused()) {
+					::World.State.setPause(true);
+				}
 			}
 		});
 	}
