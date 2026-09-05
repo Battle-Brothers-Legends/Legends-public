@@ -19,37 +19,6 @@
 	return this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)];
 };
 
-::Const.Tactical.Common.onApplyFirefield <- function(_tile, _entity)
-{
-	this.Tactical.spawnIconEffect("fire_circle", _tile, this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-	local sounds = [
-			"sounds/combat/fire_01.wav",
-			"sounds/combat/fire_02.wav",
-			"sounds/combat/fire_03.wav",
-			"sounds/combat/fire_04.wav",
-			"sounds/combat/fire_05.wav",
-			"sounds/combat/fire_06.wav"
-		];
-
-	this.Sound.play(sounds[this.Math.rand(0, sounds.len() - 1)], this.Const.Sound.Volume.Actor, _entity.getPos());
-	local hitInfo = clone this.Const.Tactical.HitInfo;
-	hitInfo.DamageRegular = this.Math.rand(10, 20);
-	hitInfo.DamageDirect = 1.0;
-	hitInfo.BodyPart = this.Const.BodyPart.Body;
-	hitInfo.BodyDamageMult = 1.0;
-	hitInfo.FatalityChanceMult = 0.0;
-	_tile.getEntity().onDamageReceived(_entity, null, hitInfo);
-};
-
-::Const.Tactical.Common.onApplyDemonShadows <- function(_tile, _entity)
-{
-	if (_entity.getSkills().hasTrait(::Legends.Trait.RacialAlp) || ::MSU.isKindOf(_entity, "legend_alp_shadow"))
-	{
-		return;
-	}
-	this.onApplyFirefield(_tile, _entity);
-};
-
 ::Const.Tactical.Common.onApplyHolyFlame <- function (_tile, _entity, _killer = null) {
 	local sounds = [
 		"sounds/combat/fire_01.wav",
@@ -98,30 +67,42 @@
 	::Legends.Effects.grant(_entity, ::Legends.Effect.LegendAlpRealmOfShadow);
 }
 
-local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
-::Const.Tactical.Common.onApplyFire = function (_tile, _entity) {
-	if (_entity.getCurrentProperties().IsImmuneToFire)
+local onApplyMiasma = ::Const.Tactical.Common.onApplyMiasma;
+::Const.Tactical.Common.onApplyMiasma = function (_tile, _entity, _killer = null) {
+	local onDamageReceived = _entity.onDamageReceived;
+	_entity.onDamageReceived = function (_attacker, _skill, _hitInfo) {
+		return onDamageReceived(_killer != null ? _killer : _attacker, _skill, _hitInfo);
+	};
+
+	onApplyMiasma(_tile, _entity);
+
+	if (::Legends.S.isEntityNullOrDead(_entity)) {
 		return;
+	}
 
-	local __original = _entity.onDamageReceived;
+	_entity.onDamageReceived = onDamageReceived;
+}
 
+local onApplyFire = ::Const.Tactical.Common.onApplyFire;
+::Const.Tactical.Common.onApplyFire = function (_tile, _entity, _killer = null) {
+	local onDamageReceived = _entity.onDamageReceived;
 	_entity.onDamageReceived = function ( _attacker, _skill, _hitInfo ) {
 		local damage = ::Math.rand(15, 30);
 		_hitInfo.DamageRegular = damage * this.getCurrentProperties().DamageReceivedFireMult;
 		_hitInfo.DamageArmor = damage;
-		return __original(_attacker, _skill, _hitInfo);
+		return onDamageReceived(_killer != null ? _killer : _attacker, _skill, _hitInfo);
 	};
 
-	originalOnApplyFire(_tile, _entity);
+	onApplyFire(_tile, _entity);
 
 	if (::Legends.S.isEntityNullOrDead(_entity))
 		return;
 
-	_entity.onDamageReceived = __original;
+	_entity.onDamageReceived = onDamageReceived;
 };
 
 
-::Const.Tactical.Common.onApplyFireRune <- function (_tile, _entity) {
+::Const.Tactical.Common.onApplyFireRune <- function (_tile, _entity, _killer = null) {
 	if (_entity.getCurrentProperties().IsImmuneToFire)
 		return;
 
@@ -152,7 +133,7 @@ local originalOnApplyFire = ::Const.Tactical.Common.onApplyFire;
 	hitInfo.FatalityChanceMult = 0.0;
 	hitInfo.Injuries = ::Const.Injury.Burning;
 	hitInfo.IsPlayingArmorSound = false;
-	_entity.onDamageReceived(_entity, null, hitInfo);
+	_entity.onDamageReceived(_killer != null ? _killer : _entity, null, hitInfo);
 
 	if ((!_entity.isAlive() || _entity.isDying()) && !_entity.isPlayerControlled() && (_tile.Properties.Effect == null || _tile.Properties.Effect.IsByPlayer)) {
 		::updateAchievement("BurnThemAll", 1, 1);

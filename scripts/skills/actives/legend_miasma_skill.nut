@@ -74,30 +74,14 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		local targets = [];
-		targets.push(_targetTile);
+	function onUse(_user, _targetTile) {
+		local targets = [_targetTile];
+		targets.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction) _targetTile.hasNextTile(_direction)).map(@(_direction) _targetTile.getNextTile(_direction)));
 
-		for( local i = 0; i != 6; i = i )
-		{
-			if (!_targetTile.hasNextTile(i))
-			{
-			}
-			else
-			{
-				local tile = _targetTile.getNextTile(i);
-				targets.push(tile);
-			}
-
-			i = ++i;
-		}
-
-		foreach( tile in targets ) {
-			this.Tactical.State.spawnMiasmaOnTile(tile, true);
+		foreach (tile in targets) {
+			::Tactical.State.spawnMiasmaOnTile(tile, _user);
 		}
 
 		return true;
 	}
-
 });

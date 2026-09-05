@@ -1,28 +1,22 @@
-::mods_hookExactClass("skills/actives/throw_fire_bomb_skill", function(o)
-{
+::mods_hookExactClass("skills/actives/throw_fire_bomb_skill", function (o) {
 	o.m.Item <- null;
-	o.setItem <- function( _i )
-	{
+	o.setItem <- function (_i) {
 		this.m.Item = this.WeakTableRef(_i);
 	}
 
 	local getTooltip = o.getTooltip;
-	o.getTooltip = function()
-	{
+	o.getTooltip = function () {
 		local ret = getTooltip();
 		local ammo = this.getAmmo();
 
-		if (ammo > 0)
-		{
+		if (ammo > 0) {
 			ret.push({
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
 				text = "Has [color=%positive%]" + ammo + "[/color] use left"
 			});
-		}
-		else
-		{
+		} else {
 			ret.push({
 				id = 8,
 				type = "text",
@@ -34,33 +28,29 @@
 		return ret;
 	}
 
-	o.isUsable <- function()
-	{
+	o.isUsable <- function () {
 		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 	}
 
-	o.getAmmo <- function()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
+	o.getAmmo <- function () {
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			return this.m.Item.getAmmo();
+		}
 
 		return 0;
 	}
 
-	o.consumeAmmo <- function()
-	{
-		if (this.m.Item != null && !this.m.Item.isNull())
+	o.consumeAmmo <- function () {
+		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.consumeAmmo();
+		}
 	}
 
-	o.onUse = function( _user, _targetTile )
-	{
-		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
-		{
+	o.onUse = function (_user, _targetTile) {
+		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
 
-			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist)
-			{
+			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist) {
 				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
@@ -77,11 +67,22 @@
 		return true;
 	}
 
-	o.onAfterUpdate = function( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}
 		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
+	}
+
+	o.onApply = function (_data) {
+		local targets = [_data.TargetTile];
+		targets.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction) _data.TargetTile.hasNextTile(_direction)).map(@(_direction) _data.TargetTile.getNextTile(_direction)));
+
+		foreach (tile in targets) {
+			::Tactical.State.spawnFireFirebombOnTile(tile, _data.User);
+		}
+
+		::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], 1.0, _data.TargetTile.Pos);
 	}
 });

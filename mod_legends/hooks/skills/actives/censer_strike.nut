@@ -1,63 +1,22 @@
-::mods_hookExactClass("skills/actives/censer_strike", function(o)
-{
+::mods_hookExactClass("skills/actives/censer_strike", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 13;
 	}
 
-	o.getTooltip = function()
-	{
-		local ret = this.getDefaultTooltip();
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
-		});
-
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
-		{
-			ret.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
-			});
-		}
-
-		ret.push({
-			id = 8,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Leaves a cloud of miasma on target tiles"
-		});
-		return ret;
-	}
-
-	o.onAfterUpdate = function ( _properties ) {
+	o.onAfterUpdate = function (_properties) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
-			{
-				_properties.MeleeSkill -= 15;
-				this.m.HitChanceBonus -= 15;
-			}
-
-			if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInFlails)
-			{
-				this.m.IsShieldRelevant = false;
-			}
-		}
+	o.onUse = function (_user, _targetTile) {
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
+		local success = this.attackEntity(_user, _targetTile.getEntity());
+		::Tactical.State.spawnMiasmaOnTile(_targetTile, _user);
+		return success;
 	}
 });

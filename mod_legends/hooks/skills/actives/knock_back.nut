@@ -52,19 +52,19 @@
 			return ret;
 		}
 
-		local success = attackEntity(_user, target);
+		local success = this.attackEntity(_user, target);
 
 		if (!success || !_user.isAlive() || _user.isDying()) return false;
 
 		if (!target.isAlive() || target.isDying()) return success;
 
 		local current = [];
-		current.extend(m.SoundOnUse);
-		m.SoundOnUse = []; // put this to zero so sound on use doesn't get trigger twice
-		m.IsUsingHitchance = false;
+		current.extend(this.m.SoundOnUse);
+		this.m.SoundOnUse = []; // put this to zero so sound on use doesn't get trigger twice
+		this.m.IsUsingHitchance = false;
 		onUse(_user, _targetTile); // let the onUse to handle the knock back
-		m.IsUsingHitchance = true;
-		m.SoundOnUse.extend(current);
+		this.m.IsUsingHitchance = true;
+		this.m.SoundOnUse.extend(current);
 		return success;
 	}
 
@@ -121,9 +121,8 @@
 			skill.onUse(actor, _targetEntity.getTile());
 	}
 
-	o.onTargetSelected <- function ( _targetTile )
-	{
-		local knockToTile = this.findTileToKnockBackTo(getContainer().getActor().getTile(), _targetTile);
+	o.onTargetSelected <- function ( _targetTile ) {
+		local knockToTile = this.findTileToKnockBackTo(this.getContainer().getActor().getTile(), _targetTile);
 
 		if (knockToTile == null)
 			return;
@@ -131,12 +130,11 @@
 		this.Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
 
-	o.getHitchance <- function ( _targetEntity )
-	{
-		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(getContainer().getActor()))
+	o.getHitchance <- function ( _targetEntity ) {
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(this.getContainer().getActor()))
 			return 100;
 
-		if (!isUsingHitchance())
+		if (!this.isUsingHitchance())
 			return 100;
 
 		return this.skill.getHitchance(_targetEntity);

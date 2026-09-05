@@ -97,7 +97,7 @@ this.legend_firefield_skill <- this.inherit("scripts/skills/skill", {
 		targets.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction) _targetTile.hasNextTile(_direction)).map(@(_direction) _targetTile.getNextTile(_direction)));
 
 		foreach (tile in targets) {
-			::Tactical.State.spawnFireFirefieldOnTile(tile, _user, false, true, this.m.FireDuration);
+			::Tactical.State.spawnFireFirefieldOnTile(tile, _user, true, this.m.FireDuration);
 		}
 
 		return true;

@@ -39,7 +39,7 @@
 				id = 5,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "Net Mastery makes this signficantly easier",
+				text = "Net Mastery makes this significantly easier",
 			});
 		}
 
@@ -48,7 +48,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		return getChance();
+		return this.getChance();
 	}
 
 	o.getChance = function ()
