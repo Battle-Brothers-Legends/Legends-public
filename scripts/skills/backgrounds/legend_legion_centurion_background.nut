@@ -1,4 +1,4 @@
-this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_legion_centurion_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create()
 	{

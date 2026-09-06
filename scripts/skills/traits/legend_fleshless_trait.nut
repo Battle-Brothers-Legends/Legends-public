@@ -5,125 +5,126 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 		this.character_trait.create();
 		this.m.ID = ::Legends.Traits.getID(::Legends.Trait.LegendFleshless);
 		this.m.Name = "Fleshless";
-		this.m.Description = "Only bones remain, with all skin rotten or torn away.";
+		this.m.Description = "...";
 		this.m.Icon = "ui/traits/fleshless_trait.png";
+		this.m.IsHidden = true;
 	}
 
-	function getTooltip()
-	{
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/damage_received.png",
-				text = "Immune to Bleeding, poison and most fresh injuries."
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/days_wounded.png",
-				text = "Recovers hitpoints at only 20% of the normal rate. Requires no food and has resistance to piercing type attacks."
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "Effected by fatigue at 10% normal rate."
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/morale.png",
-				text = "Not affected by morale checks or allies fleeing or dying."
-			},
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "Not affected by nighttime penalties"
-			}
-		];
-		return ret;
-	}
+//	function getTooltip()
+//	{
+//		local ret = [
+//			{
+//				id = 1,
+//				type = "title",
+//				text = this.getName()
+//			},
+//			{
+//				id = 2,
+//				type = "description",
+//				text = this.getDescription()
+//			},
+//			{
+//				id = 7,
+//				type = "text",
+//				icon = "ui/icons/damage_received.png",
+//				text = "Immune to Bleeding, poison and most fresh injuries."
+//			},
+//			{
+//				id = 7,
+//				type = "text",
+//				icon = "ui/icons/days_wounded.png",
+//				text = "Recovers hitpoints at only 20% of the normal rate. Requires no food and has resistance to piercing type attacks."
+//			},
+//			{
+//				id = 7,
+//				type = "text",
+//				icon = "ui/icons/fatigue.png",
+//				text = "Effected by fatigue at 10% normal rate."
+//			},
+//			{
+//				id = 7,
+//				type = "text",
+//				icon = "ui/icons/morale.png",
+//				text = "Not affected by morale checks or allies fleeing or dying."
+//			},
+//			{
+//				id = 7,
+//				type = "text",
+//				icon = "ui/icons/vision.png",
+//				text = "Not affected by nighttime penalties"
+//			}
+//		];
+//		return ret;
+//	}
 
-	function onAdded()
-	{
-		local actor = this.getContainer().getActor().get();
+//	function onAdded()
+//	{
+//		local actor = this.getContainer().getActor().get();
+//
+//		if (::MSU.isKindOf(actor, "player"))
+//		{
+//			actor.improveMood = function ( _change, _text = "" )
+//			{
+//			};
+//			actor.worsenMood = function ( _change, _text = "" )
+//			{
+//			};
+//		}
+//
+//		if (this.m.IsNew)
+//		{
+//			this.onApplyAppearance();
+//			actor.m.Flags.add("PlayerSkeleton");
+//			actor.m.Flags.add("skeleton");
+//			actor.m.Flags.add("undead");
+//			::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
+//			this.m.IsNew = false;
+//		}
+//
+//		actor.m.MoraleState = this.Const.MoraleState.Ignore;
+//		actor.m.ExcludedInjuries = [
+//			"injury.collapsed_lung_part",
+//			"injury.cut_artery",
+//			"injury.cut_throat",
+//			"injury.deep_abdominal_cut",
+//			"injury.deep_chest_cut",
+//			"injury.exposed_ribs",
+//			"injury.grazed_kidney",
+//			"injury.grazed_neck",
+//			"injury.infected_wound",
+//			"injury.sickness",
+//			"injury.stabbed_guts",
+//			"injury.broken_nose",
+//			"injury.crushed_windpipe",
+//			"injury.inhaled_flames",
+//			"injury.pierced_chest",
+//			"injury.pierced_lung",
+//			"injury.pierced_side"
+//		];
+//
+//		actor.onFactionChanged();
+//		actor.onUpdateInjuryLayer();
+//	}
 
-		if (::MSU.isKindOf(actor, "player"))
-		{
-			actor.improveMood = function ( _change, _text = "" )
-			{
-			};
-			actor.worsenMood = function ( _change, _text = "" )
-			{
-			};
-		}
-
-		if (this.m.IsNew)
-		{
-			this.onApplyAppearance();
-			actor.m.Flags.add("PlayerSkeleton");
-			actor.m.Flags.add("skeleton");
-			actor.m.Flags.add("undead");
-			::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
-			this.m.IsNew = false;
-		}
-
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
-		actor.m.ExcludedInjuries = [
-			"injury.collapsed_lung_part",
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
-		];
-
-		actor.onFactionChanged();
-		actor.onUpdateInjuryLayer();
-	}
-
-	function onUpdate( _properties )
-	{
-		local actor = this.getContainer().getActor();
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
-		_properties.IsImmuneToBleeding = true;
-		_properties.IsImmuneToPoison = true;
-		_properties.IsAffectedByNight = false;
-		_properties.IsAffectedByFleeingAllies = false;
-		_properties.IsAffectedByDyingAllies = false;
-		_properties.IsAffectedByFreshInjuries = false;
-		_properties.MoraleEffectMult = 0.1;
-		_properties.FatigueEffectMult = 0.1;
-		_properties.HitpointsRecoveryRateMult = 0.2;
-		_properties.MovementFatigueCostMult = 0.1;
-		_properties.DailyWageMult *= 0;
-		_properties.XPGainMult *= 1.0;
-		_properties.DailyFood = 0;
-		// _properties.HitpointsMult *= 0.5; //best decided in bg/summon files from now on - Luft
-	}
+//	function onUpdate( _properties )
+//	{
+//		local actor = this.getContainer().getActor();
+//		actor.m.MoraleState = this.Const.MoraleState.Ignore;
+//		_properties.IsImmuneToBleeding = true;
+//		_properties.IsImmuneToPoison = true;
+//		_properties.IsAffectedByNight = false;
+//		_properties.IsAffectedByFleeingAllies = false;
+//		_properties.IsAffectedByDyingAllies = false;
+//		_properties.IsAffectedByFreshInjuries = false;
+//		_properties.MoraleEffectMult = 0.1;
+//		_properties.FatigueEffectMult = 0.1;
+//		_properties.HitpointsRecoveryRateMult = 0.2;
+//		_properties.MovementFatigueCostMult = 0.1;
+//		_properties.DailyWageMult *= 0;
+//		_properties.XPGainMult *= 1.0;
+//		_properties.DailyFood = 0;
+//		// _properties.HitpointsMult *= 0.5; //best decided in bg/summon files from now on - Luft
+//	}
 
 	function onApplyAppearance()
 	{

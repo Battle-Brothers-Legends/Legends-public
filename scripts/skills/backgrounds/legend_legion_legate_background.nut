@@ -1,4 +1,4 @@
-this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds/legend_legion_background", {
 	m = {},
 	function create()
 	{
@@ -41,7 +41,7 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 	}
 
 	function onBuildDescription() //— \n { TODO | TODO }
-	{ 
+	{
 		return "{%name% was destined for leadership since they were a child — their family marking them out for something greater. | Initially struggling in life, %name% went through several prestigious military schools. | %name% never wished to be in command. A simple legionary in the beginning, they killed their commanding officer and was awarded with their rank after investigations found them to be a traitor. | In the heat of a losing battle, %name% rose to the occasion to become the man of the hour — turning the tide from a crushing defeat into a pyrrhic victory.} {Feeling underwhelmed by their rank, they took to taking a more active role in the field. | Tired with battle reports, meetings and strategy — they frequently absconded from their duties. | Taking the rank in their stride, %name% did what they could to serve the Empire.}";
 	}
 
