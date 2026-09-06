@@ -35,7 +35,6 @@ this.legion_origin_black_monolith_recruitment_event <- this.inherit("scripts/eve
 				_event.m.Dude.getFlags().add("skeleton");
 				_event.m.Dude.setStartValuesEx(this.Const.CharacterLegionBackgroundsHIGH); //see: 'character_backgrounds' file
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				this.Characters.push(_event.m.Dude.getImagePath());
 
 				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);

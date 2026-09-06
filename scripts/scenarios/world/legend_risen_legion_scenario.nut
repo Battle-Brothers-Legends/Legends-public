@@ -40,7 +40,6 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 
 		for(local i = 0; i < 8; i++) {
 			local bro = roster.create("scripts/entity/tactical/player");
-			 ::Legends.Traits.grant(bro, ::Legends.Trait.LegendFleshless);
 			bro.setVeteranPerks(3);
 			bro.getSprite("socket").setBrush("bust_base_undead");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
@@ -266,7 +265,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		if (!_bro.getSkills().hasTrait(::Legends.Trait.RacialSkeleton) && _bro.getFlags().has("skeleton"))
 		{
 			::Legends.Traits.grant(_bro, ::Legends.Trait.RacialSkeleton);
-			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendFleshless);
+			//::Legends.Traits.grant(_bro, ::Legends.Trait.LegendFleshless);
 		}
 	}
 

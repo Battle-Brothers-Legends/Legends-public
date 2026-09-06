@@ -50,26 +50,12 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionLegate);
 	}
 
-	function onAdded()
-	{
-		if (this.m.IsNew) {
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
-		}
-		this.character_background.onAdded();
-
-		if (!this.m.Container.hasActive(::Legends.Active.LegendCommandLegion))
-		{
+	function onAdded() {
+		this.legend_legion_background.onAdded();
+		this.getContainer().getActor().getFlags().remove("legion_can_command");
+		if (!this.m.Container.hasActive(::Legends.Active.LegendCommandLegion)) {
 			::Legends.Actives.grant(this, ::Legends.Active.LegendCommandLegion);
 		}
-
-		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
-	}
-
-	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
-	{
-		local actor = this.getContainer().getActor();
-		actor.m.HiringCost = this.Math.floor(this.m.HiringCost + 500 * this.Math.pow(this.m.Level - 1, 1.5));
 	}
 
 	function onAddEquipment()

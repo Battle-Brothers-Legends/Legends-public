@@ -1,131 +1,9 @@
-this.legend_legion_background <- this.inherit("scripts/skills/skill", {
-	m = {
-		HiringCost = 0,
-		DailyCost = 0,
-		DailyCostMult = 1.0,
-		Excluded = [],
-		ExcludedTalents = [
-			this.Const.Attributes.Fatigue,
-			this.Const.Attributes.Bravery
-		],
-		Faces = null,
-		Hairs = null,
-		HairColors = null,
-		Beards = null,
-		Bodies = this.Const.Bodies.AllMale,
-		Ethnicity = 0,
-		Level = 1,
-		BeardChance = 60,
-		Names = this.Const.Strings.CharacterNames,
-		LastNames = [],
-		Titles = [],
-		RawDescription = "",
-		BackgroundDescription = "",
-		GoodEnding = null,
-		BadEnding = null,
-		IsScenarioOnly = false,
-		IsNew = true,
-		IsUntalented = false,
-		IsOffendedByViolence = false,
-		IsCombatBackground = false,
-		IsNoble = false,
-		IsLowborn = false
-	},
-	function isExcluded( _id )
-	{
-		return this.m.Excluded.find(_id) != null;
-	}
+this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+	m = {},
 
-	function isUntalented()
-	{
-		return this.m.IsUntalented;
-	}
-
-	function setScenarioOnly( _f )
-	{
-		this.m.IsScenarioOnly = _f;
-	}
-
-	function isOffendedByViolence()
-	{
-		return this.m.IsOffendedByViolence;
-	}
-
-	function isCombatBackground()
-	{
-		return this.m.IsCombatBackground;
-	}
-
-	function isNoble()
-	{
-		return this.m.IsNoble;
-	}
-
-	function isLowborn()
-	{
-		return this.m.IsLowborn;
-	}
-
-	function getEthnicity()
-	{
-		return this.m.Ethnicity;
-	}
-
-	function getExcludedTalents()
-	{
-		return this.m.ExcludedTalents;
-	}
-
-	function getGoodEnding()
-	{
-		return this.m.GoodEnding;
-	}
-
-	function getBadEnding()
-	{
-		return this.m.BadEnding;
-	}
-
-	function create()
-	{
-		this.m.Type = this.Const.SkillType.Background | this.Const.SkillType.Trait;
-		this.m.Order = this.Const.SkillOrder.Background;
-		this.m.DailyCostMult = this.Math.rand(90, 110) * 0.01;
-	}
-
-	function isHidden()
-	{
-		return this.skill.isHidden() || this.m.IsScenarioOnly;
-	}
-
-	function getName()
-	{
-		return "Background: " + this.m.Name;
-	}
-
-	function getNameOnly()
-	{
-		return this.m.Name;
-	}
-
-	function getBackgroundDescription()
-	{
-		return this.m.BackgroundDescription;
-	}
-
-	function getTooltip()
-	{
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
+	function getTooltip() {
+		local ret = this.character_background.getTooltip();
+		ret.extend([
 			{
 				id = 7,
 				type = "text",
@@ -162,42 +40,32 @@ this.legend_legion_background <- this.inherit("scripts/skills/skill", {
 				icon = "ui/icons/vision.png",
 				text = "Not affected by nighttime penalties"
 			}
-		];
+		]);
 		return ret;
 	}
 
-	function addEquipment()
-	{
-		this.onAddEquipment();
-		this.adjustHiringCostBasedOnEquipment();
+	function onAdded() {
+		this.character_background.onAdded();
+		local actor = this.getContainer().getActor();
+
+		if (::isKindOf(actor, "player")) {
+			actor.get().improveMood = function (_change, _text = "") {};
+			actor.get().worsenMood = function (_change, _text = "") {};
+		}
+
+		this.onApplyAppearance();
+		actor.getFlags().add("PlayerSkeleton");
+		actor.getFlags().add("skeleton");
+		actor.getFlags().add("undead");
+		actor.getFlags().add("legion_can_command"); //justifies if this background is subject to the Legion command skill
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
+		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
+		actor.onFactionChanged();
+		actor.onUpdateInjuryLayer();
 	}
 
-	function onUpdate( _properties )
-	{
-		if (this.m.DailyCost == 0 || this.getContainer().hasSkill("trait.player"))
-		{
-			_properties.DailyWage = 0;
-		}
-		else
-		{
-			local level = this.getContainer().getActor().getLevel();
-			local wage = this.Math.round(this.m.DailyCost * this.m.DailyCostMult);
-			_properties.DailyWage += wage * this.Math.pow(1.1, this.Math.min(10, level - 1));
-
-			if (level > 11)
-			{
-				local previous = wage * this.Math.pow(1.1, 10);
-				_properties.DailyWage += previous * this.Math.pow(1.03, level - 1 - 10) - previous;
-			}
-		}
-
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != "background.slave")
-		{
-			_properties.XPGainMult *= 0.9;
-		}
-
-		local actor = this.getContainer().getActor();
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
+	function onUpdate(_properties) {
+		this.getContainer().getActor().m.MoraleState = ::Const.MoraleState.Ignore;
 		_properties.IsImmuneToBleeding = true;
 		_properties.IsImmuneToPoison = true;
 		_properties.IsAffectedByNight = false;
@@ -213,176 +81,71 @@ this.legend_legion_background <- this.inherit("scripts/skills/skill", {
 		_properties.DailyFood = 0;
 	}
 
-	function adjustHiringCostBasedOnEquipment()
-	{
-		local actor = this.getContainer().getActor();
-		actor.m.HiringCost = this.Math.floor(this.m.HiringCost + 0 * this.Math.pow(this.m.Level - 1, 1.5));
-		local items = actor.getItems().getAllItems();
-		local cost = 0;
-
-		foreach( i in items )
-		{
-			cost = cost + i.getValue();
-		}
-
-		cost = cost * 0.0;
-		actor.m.HiringCost = actor.m.HiringCost + cost;
-		actor.m.HiringCost *= 0.0;
-		actor.m.HiringCost = this.Math.ceil(actor.m.HiringCost);
-		actor.m.HiringCost *= 0.0;
+	function adjustHiringCostBasedOnEquipment() {
+		this.getContainer().getActor().m.HiringCost = 0.0;
 	}
 
-	function onAdded()
-	{
-		if (this.m.DailyCost > 0)
-		{
-			this.m.DailyCost += 1;
-		}
-
+	function onApplyAppearance() {
 		local actor = this.getContainer().getActor();
-		actor.m.Background = this;
 
-		if (this.m.IsNew && !(("State" in this.Tactical) && this.Tactical.State != null && this.Tactical.State.isScenarioMode()))
-		{
-			this.m.IsNew = false;
+		if (::isKindOf(actor, "player")) {
+			local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
+			local body = actor.getSprite("body");
+			body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
+			body.Saturation = 0.8;
 
-			if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)
-			{
-				actor.setTitle(this.m.LastNames[this.Math.rand(0, this.m.LastNames.len() - 1)]);
+			actor.getSprite("injury_body").setBrush("bust_skeleton_body_injured");
+
+			local head = actor.getSprite("head");
+			head.setBrush("bust_skeleton_head");
+			head.Color = body.Color;
+			head.Saturation = body.Saturation;
+
+			local beard = actor.getSprite("beard");
+			if (beard != null) {
+				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieOnly[::Math.rand(0, ::Const.Beards.ZombieOnly.len() - 1)]);
+				local beard_top = actor.getSprite("beard_top");
+				if (beard.HasBrush && this.doesBrushExist(beard.getBrush().Name + "_top")) {
+					beard_top.setBrush(beard.getBrush().Name + "_top");
+					beard_top.Color = beard.Color;
+				}
 			}
 
-			if (actor.getTitle() == "" && this.m.Titles.len() != 0 && this.Math.rand(0, 3) == 3)
-			{
-				actor.setTitle(this.m.Titles[this.Math.rand(0, this.m.Titles.len() - 1)]);
+			local face = actor.getSprite("scar_head");
+			if (face != null) {
+				face.setBrush("bust_skeleton_face_0" + ::Math.rand(1, 6));
 			}
 
-			if (this.m.Level != 1)
-			{
-				actor.m.PerkPoints = this.m.Level - 1;
-				actor.m.LevelUps = this.m.Level - 1;
-				actor.m.Level = this.m.Level;
-				actor.m.XP = this.Const.LevelXP[this.m.Level - 1];
+			local hair = actor.getSprite("hair");
+			if (hair != null) {
+				hair.Color = beard.Color;
+				hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.ZombieOnly[::Math.rand(0, ::Const.Hair.ZombieOnly.len() - 1)]);
+				actor.setSpriteOffset("hair", this.createVec(0, -3));
+			}
+
+			local injury = actor.getSprite("injury");
+			if (injury != null) {
+				injury.setBrush("bust_skeleton_head_injured");
 			}
 		}
+	}
 
-		local actor = this.getContainer().getActor().get();
-
-		if (::MSU.isKindOf(actor, "player"))
-		{
-			actor.improveMood = function ( _change, _text = "" )
-			{
-			};
-			actor.worsenMood = function ( _change, _text = "" )
-			{
-			};
-		}
-
-		if (this.m.IsNew)
-		{
-			this.onApplyAppearance();
-			actor.m.Flags.add("PlayerSkeleton");
-			actor.m.Flags.add("skeleton");
-			actor.m.Flags.add("undead");
-			::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
-			this.m.IsNew = false;
-		}
-
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
-		actor.m.ExcludedInjuries = [
-			"injury.collapsed_lung_part",
-			"injury.cut_artery",
-			"injury.cut_throat",
-			"injury.deep_abdominal_cut",
-			"injury.deep_chest_cut",
-			"injury.exposed_ribs",
-			"injury.grazed_kidney",
-			"injury.grazed_neck",
-			"injury.infected_wound",
-			"injury.sickness",
-			"injury.stabbed_guts",
-			"injury.broken_nose",
-			"injury.crushed_windpipe",
-			"injury.inhaled_flames",
-			"injury.pierced_chest",
-			"injury.pierced_lung",
-			"injury.pierced_side"
+	function onCombatStarted() {
+		local actor = this.getContainer().getActor();
+		actor.m.MoraleState = ::Const.MoraleState.Ignore;
+		actor.m.BloodType = ::Const.BloodType.Bones;
+		actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = ["sounds/enemies/skeleton_idle_06.wav"];
+		actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
+			"sounds/enemies/skeleton_hurt_01.wav",
+			"sounds/enemies/skeleton_hurt_02.wav",
+			"sounds/enemies/skeleton_hurt_03.wav",
+			"sounds/enemies/skeleton_hurt_04.wav",
+			"sounds/enemies/skeleton_hurt_06.wav"
 		];
-
-		actor.onFactionChanged();
-		actor.onUpdateInjuryLayer();
+		actor.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/skeleton_death_01", 6);
+		actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ["sounds/enemies/skeleton_idle_06.wav"];
+		actor.m.Sound[::Const.Sound.ActorEvent.Flee] = ["sounds/enemies/skeleton_idle_06.wav"];
+		actor.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/skeleton_idle", 5);
+		actor.m.Sound[::Const.Sound.ActorEvent.Move] = ["sounds/enemies/skeleton_idle_06.wav"];
 	}
-
-	function onBuildDescription()
-	{
-		return "";
-	}
-
-	function onChangeAttributes()
-	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
-	}
-
-	function onSerialize( _out )
-	{
-		this.skill.onSerialize(_out);
-		_out.writeString(this.m.Description);
-		_out.writeString(this.m.RawDescription);
-		_out.writeU8(this.m.Level);
-		_out.writeBool(this.m.IsNew);
-		_out.writeF32(this.m.DailyCostMult);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.skill.onDeserialize(_in);
-		this.m.Description = _in.readString();
-		this.m.RawDescription = _in.readString();
-		this.m.Level = _in.readU8();
-		this.m.IsNew = _in.readBool();
-
-		if (_in.getMetaData().getVersion() >= 39)
-		{
-			this.m.DailyCostMult = _in.readF32();
-		}
-		else
-		{
-			this.m.DailyCostMult = 1.0;
-		}
-	}
-
 });
-

@@ -37,24 +37,6 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendLegionHonourGuard);
 	}
 
-	function onAdded()
-	{
-		if (this.m.IsNew) {
-			::Legends.Traits.grant(this, ::Legends.Trait.LegendFleshless);
-		}
-		this.character_background.onAdded();
-
-		local actor = this.getContainer().getActor();
-		actor.m.ExcludedInjuries = ::Legends.Legion.ExcludedInjures;
-		actor.getFlags().add("legion_can_command"); //justifies if this background is subject to the legion command skill
-	}
-
-	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on skeletons to zero for recruiting purposes.
-	{
-		local actor = this.getContainer().getActor();
-		actor.m.HiringCost = this.Math.floor(this.m.HiringCost + 500 * this.Math.pow(this.m.Level - 1, 1.5));
-	}
-
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();

@@ -1,12 +1,12 @@
 this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", {
 	m = {
-		legionary1 = null,
-		legionary2 = null
+		Legionary1 = null,
+		Legionary2 = null
 	},
 	function create() {
 		this.m.ID = "event.legion_origin_raid_farmstead";
 		this.m.Title = "At a farmstead...";
-		this.m.Cooldown = 35.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 35.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//— \n
 			ID = "A",
@@ -49,9 +49,9 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_medicine_small_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_armor_parts_small_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_ammo_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_medicine_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_armor_parts_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_ammo_small_item"));
 
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(4, 308)));
 				this.List.extend(::Legends.EventList.addItems([
@@ -78,11 +78,11 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 			}],
 			function start(_event) {
 				//supplies
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_medicine_small_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_armor_parts_small_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_ammo_small_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_medicine_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_armor_parts_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/legend_ammo_small_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/armor_parts_item"));
+				::World.Assets.getStash().add(::new("scripts/items/supplies/medicine_item"));
 
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(88, 501)));
 				this.List.extend(::Legends.EventList.addItems([
@@ -109,14 +109,14 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 				{
 					Text = "To arms!",
 					function getResult(_event) {
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
-						properties.Music = this.Const.Music.NobleTracks;
+						properties.Music = ::Const.Music.NobleTracks;
 						properties.IsAutoAssigningBases = false;
-						properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
-						properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle; //we have you surrounded, at least from this side
+						properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
+						properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle; //we have you surrounded, at least from this side
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Mercenaries, ::Math.rand(120, 195) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
+						this.Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Mercenaries, ::Math.rand(120, 195) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
 						this.World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
@@ -124,8 +124,8 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 				}
 			],
 			function start(_event) {
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
 
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(302, 906)));
 				this.List.extend(::Legends.EventList.addItems([
@@ -141,49 +141,31 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 	}
 
 	function onUpdateScore() {
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Plains && currentTile.Type != this.Const.World.TerrainType.Farmland) {
+		if(!::Legends.S.oneOf(currentTile.Type, ::Const.World.TerrainType.Plains, ::Const.World.TerrainType.Farmland) || !currentTile.HasRoad) {
 			return;
 		}
 
-		if (!currentTile.HasRoad) {
-			return;
-		}
-
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 8) {
-			//must have 8 or more
 			return;
 		}
 
-		local candidates = [];
-
-		foreach (bro in brothers) {
-			if (bro.getSkills().hasSkill("trait.legend_fleshless")) {
-				candidates.push(bro);
-			}
-		}
+		local candidates = brothers.filter(@(_, _bro) (_bro.getFlags().has("PlayerSkeleton")));
 
 		if (candidates.len() < 2) {
 			return;
 		}
 
-		local x = 0;
-		local y = 0;
-
-		while (x == y) {
-			x = ::Math.rand(0, candidates.len() - 1);
-			y = ::Math.rand(0, candidates.len() - 1);
-		}
-
-		this.m.legionary1 = candidates[x];
-		this.m.legionary2 = candidates[y];
+		this.m.Legionary1 = candidates[::Math.rand(0, candidates.len() - 1)];
+		local candidates2 = candidates.filter(@(_, _bro) (_bro.getID() != this.m.Legionary1.getID()));
+		this.m.Legionary2 = candidates2[::Math.rand(0, candidates2.len() - 1)];
 		this.m.Score = 30;
 	}
 
@@ -192,11 +174,11 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 	function onPrepareVariables(_vars) {
 		_vars.push([
 			"legionary1",
-			this.m.legionary1.getName()
+			this.m.Legionary1.getName()
 		]);
 		_vars.push([
 			"legionary2",
-			this.m.legionary2.getName()
+			this.m.Legionary2.getName()
 		]);
 	}
 
@@ -205,9 +187,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 	}
 
 	function onClear() {
-		this.m.legionary1 = null;
-		this.m.legionary2 = null;
+		this.m.Legionary1 = null;
+		this.m.Legionary2 = null;
 	}
-
 });
-

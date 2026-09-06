@@ -33,7 +33,6 @@ this.legion_origin_buried_castle_event <- this.inherit("scripts/events/event", {
 				_event.m.Dude.getFlags().add("skeleton");
 				_event.m.Dude.setStartValuesEx(this.Const.CharacterLegionBackgrounds); //see: 'character_backgrounds' file
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				this.Characters.push(_event.m.Dude.getImagePath());
 
 				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);

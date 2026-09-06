@@ -53,7 +53,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 		foreach (follower in lostFollowers) {
 			followers += " - ";
 			followers += follower.getLinkedBro() == null ? "Unknown" : follower.getLinkedBro().getName();
-			followers += " (" + follower.getName() + ")\n"
+			followers += " (" + follower.getName() + ")\n";
 		}
 
 		::Const.LegendMod.extendVarsWithPronouns(_vars, lostFollowers.len() == 1 ? (lostFollowers[0].getLinkedBro() == null ? -1 : lostFollowers[0].getLinkedBro().getGender()) : -1);
@@ -61,6 +61,6 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 		_vars.push([
 			"bronames",
 			followers
-		])
+		]);
 	}
 });
