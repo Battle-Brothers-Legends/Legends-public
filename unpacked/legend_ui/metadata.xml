@@ -229,7 +229,7 @@
 	<sprite id="leap" ic="FF1B293C" img="skills\leap.png" />
 	<sprite id="ninetails_disarm" ic="FF1B293C" img="skills\ninetails_disarm.png" />
 	<sprite id="possession" ic="FF1B293C" img="skills\possession.png" />
-	<sprite id="safeguard" ic="FF1B293C" img="skills\safeguard.png" />
+	<sprite id="legend_safeguard" ic="FF1B293C" img="skills\legend_safeguard.png" />
 	<sprite id="staff_bash" ic="FF1B293C" img="skills\staff_bash.png" />
 	<sprite id="rain" ic="FF1B293C" img="skills\rain.png" />
 	<sprite id="tackle" ic="FF1B293C" img="skills\tackle.png" />

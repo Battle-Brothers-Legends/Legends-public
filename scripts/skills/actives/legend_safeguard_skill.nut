@@ -1,8 +1,7 @@
 this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create() {
-		this.m.ID = "actives.legend_safeguard";
-		this.m.Name = "Safeguard";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSafeguard);
 		this.m.Description = "Use your shield to protect an ally, leaving yourself exposed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stab", 3);
 		this.m.SoundOnHit = ["sounds/combat/weapon_break_01.wav"];

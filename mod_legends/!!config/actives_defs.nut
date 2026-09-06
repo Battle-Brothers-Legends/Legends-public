@@ -3292,9 +3292,9 @@ activesDefs.push({
 	Script = "scripts/skills/actives/legend_safeguard_skill",
 	Const = "LegendSafeguard",
 	Name = "Safeguard",
-	Icon = "skills/safeguard_square.png",
-	IconDisabled = "skills/safeguard_square_bw.png",
-	Overlay = "safeguard",
+	Icon = "skills/legend_safeguard.png",
+	IconDisabled = "skills/legend_safeguard_bw.png",
+	Overlay = "legend_safeguard",
 });
 
 ::Legends.Active.LegendScry <- null;
