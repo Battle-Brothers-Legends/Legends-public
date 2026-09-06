@@ -1,4 +1,4 @@
-::mods_hookExactClass("skills/effects/berserker_mushrooms_effect", function(o) {
+::mods_hookExactClass("skills/effects/berserker_mushrooms_effect", function (o) {
 	o.onTurnStart <- function () {
 		local rage = ::Legends.Effects.get(this, ::Legends.Effect.LegendBerserkerRage);
 		if (rage != null) {
@@ -12,11 +12,10 @@
 		local index = ret.len() - 1;
 
 		for (local i = ret.len() - 1; i >= 0; --i) {
-			if (ret[i].id != 13)
-				continue;
-
-			index = i;
-			break;
+			if (ret[i].id == 13) {
+				index = i;
+				break;
+			}
 		}
 
 		if (::Legends.Effects.has(this, ::Legends.Effect.LegendBerserkerRage)) {
@@ -24,8 +23,9 @@
 				id = 14,
 				type = "text",
 				icon = "ui/icons/morale.png",
-				text = "Will add [color=%positive%]5[/color] stacks of [color=%effect%]Rage[/color] at the start of your turn"
+				text = "Adds [color=%positive%]5[/color] stacks of [color=%perk%]Berserker Rage[/color]'s [color=%effect%]Rage[/color] at the start of the character's turn"
 			});
 		}
+		return ret;
 	}
 });

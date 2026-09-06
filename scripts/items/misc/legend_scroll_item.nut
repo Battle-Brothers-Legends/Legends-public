@@ -207,15 +207,13 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 			if (!::MSU.isKindOf(trained, "injury")) {
 				trained.m.Duration += 3;
 				trained.m.XPGainMult = 1.5;
-				trained.m.Description = format("Trained effect (: +50% XP for %i battles", effect.m.Duration);
-			}
-			else {
+				trained.m.Description = format("Trained effect: +50% XP for %i battles", trained.m.Duration);
+			} else {
 				trained.addHealingTime(3);
 			}
-		}
-		else {
+		} else {
 			trained = ::Legends.Effects.new(::Legends.Effect.Trained);
-			trained.m.Description = "Trained effect (: +50% exp for 3 battles"; //todo flavor text
+			trained.m.Description = "Trained effect: +50% exp for 3 battles"; //todo flavor text
 			trained.m.Duration = 3;
 			trained.m.XPGainMult = 1.5;
 		}
