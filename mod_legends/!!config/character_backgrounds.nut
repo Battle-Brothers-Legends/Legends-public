@@ -35,7 +35,7 @@ if (!("Backgrounds" in ::Legends)) {
 	Skeleton = {
 		Hitpoints = [40, 50],
 		Bravery = [90, 100],
-		Stamina = [30, 40],
+		Stamina = [50, 65],
 		MeleeSkill = [47, 57],
 		RangedSkill = [32, 42],
 		MeleeDefense = [3, 8],

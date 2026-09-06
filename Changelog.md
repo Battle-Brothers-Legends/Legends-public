@@ -13,7 +13,8 @@
 - Fixes an issue for the Legate in the legion origin where the 'command' skill was capping AP at 4, rather than giving +4 AP
 - Fixed an issue where if the player interacted or destroyed the black monolith as legion, the game would hang
 - Fixed an issue where the legendary ram hammer for legion had its graphic occasionally apply to random named 2h hammers
- 
+- Legion now spawns in the steppes as opposed to the desert
+
 **New camp contracts for Legion:**
 - Hunt: nobles (medium-hard)
 - Hunt: barbarians (medium-hard)
@@ -81,7 +82,7 @@
 - Legion brothers roll between:
 > Hitpoints 40 - 50
 > Bravery 90 - 100
-> Stamina 30 - 40
+> Stamina 50 - 65
 > MeleeSkill 47 - 57
 > RangedSkill 32 - 42
 > MeleeDefense 3 - 8

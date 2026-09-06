@@ -126,7 +126,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 				if (tile.IsOccupied)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Desert)
+				else if (tile.Type != this.Const.World.TerrainType.Steppe)
 				{
 				}
 				else
