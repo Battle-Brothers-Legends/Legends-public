@@ -153,7 +153,7 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 			"sounds/enemies/skeleton_hurt_04.wav",
 			"sounds/enemies/skeleton_hurt_06.wav"
 		];
-		actor.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/skeleton_death_01", 6);
+		actor.m.Sound[::Const.Sound.ActorEvent.Death] = ::Legends.S.setSounds("sounds/enemies/skeleton_death", 6);
 		actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ["sounds/enemies/skeleton_idle_06.wav"];
 		actor.m.Sound[::Const.Sound.ActorEvent.Flee] = ["sounds/enemies/skeleton_idle_06.wav"];
 		actor.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/skeleton_idle", 5);
