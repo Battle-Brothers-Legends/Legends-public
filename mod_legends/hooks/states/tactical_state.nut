@@ -91,25 +91,23 @@
 			return;
 		}
 
-		this.m.LastTileSelected = this.Tactical.getTile(this.Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
+		this.m.LastTileSelected = ::Tactical.getTile(::Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
 
-		if (!this.m.LastTileSelected.IsDiscovered
-			|| _activeEntity.getCurrentProperties().IsRooted)
-		{
-			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
+		if (!this.m.LastTileSelected.IsDiscovered || _activeEntity.getCurrentProperties().IsRooted)	{
+			this.Cursor.setCursor(::Const.UI.Cursor.Denied);
 			return;
 		}
 
 		if (this.m.LastTileSelected.ID == _activeEntity.getTile().ID) {
 			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
-			this.Tactical.getNavigator().clearVisualisation();
-			this.Tactical.getHighlighter().clear();
-			this.Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
+			::Tactical.getNavigator().clearVisualisation();
+			::Tactical.getHighlighter().clear();
+			::Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
 			this.m.CurrentActionState = null;
 			return;
 		}
 
-		this.m.CurrentActionState = this.Const.Tactical.ActionState.ComputePath;
+		this.m.CurrentActionState = ::Const.Tactical.ActionState.ComputePath;
 		local settings = this.Tactical.getNavigator().createSettings();
 		settings.ActionPointCosts = _activeEntity.getActionPointCosts();
 		local properties = _activeEntity.getCurrentProperties();
@@ -118,7 +116,7 @@
 			realMovementCostsForPreview[i] = ::Math.round(val * properties.FatigueEffectMult);
 		}
 		settings.FatigueCosts = realMovementCostsForPreview; // set preview fat costs so it includes fat reduction/increase effects
-		settings.FatigueCostFactor = this.Const.Movement.FatigueCostFactor;
+		settings.FatigueCostFactor = ::Const.Movement.FatigueCostFactor;
 		settings.ActionPointCostPerLevel = _activeEntity.getLevelActionPointCost();
 		settings.FatigueCostPerLevel = _activeEntity.getLevelFatigueCost();
 		settings.ZoneOfControlCost = 4;
@@ -150,9 +148,9 @@
 
 		if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, settings, 0)) {
 			this.Cursor.setCursor(this.Const.UI.Cursor.Boot);
-			this.Tactical.getNavigator().buildVisualisation(_activeEntity, settings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
-			this.Tactical.getHighlighter().clear();
-			this.Tactical.getHighlighter().highlightZoneOfControl(_activeEntity.getAlliedFactions());
+			::Tactical.getNavigator().buildVisualisation(_activeEntity, settings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+			::Tactical.getHighlighter().clear();
+			::Tactical.getHighlighter().highlightZoneOfControl(_activeEntity.getAlliedFactions());
 			settings.ZoneOfControlCost = 0;
 			local movementCosts = this.Tactical.getNavigator().getCostForPath(_activeEntity, settings, _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
 
@@ -162,10 +160,10 @@
 				this.Tactical.TurnSequenceBar.flashProgressbars(movementCosts.IsMissingActionPoints, movementCosts.IsMissingFatigue);
 			}
 		} else {
-			this.Cursor.setCursor(this.Const.UI.Cursor.Denied);
-			this.Tactical.getNavigator().clearVisualisation();
-			this.Tactical.getHighlighter().clear();
-			this.Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
+			this.Cursor.setCursor(::Const.UI.Cursor.Denied);
+			::Tactical.getNavigator().clearVisualisation();
+			::Tactical.getHighlighter().clear();
+			::Tactical.TurnSequenceBar.resetActiveEntityCostsPreview();
 			this.m.CurrentActionState = null;
 		}
 		settings.FatigueCosts = _activeEntity.getFatigueCosts(); // reset preview fat costs for executeEntityTravel below to use so its not applied twice
@@ -180,12 +178,9 @@
 			return;
 		}
 
-		local tile = this.Tactical.getTile(this.Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
+		local tile = ::Tactical.getTile(this.Tactical.screenToTile(_mouseEvent.getX(), _mouseEvent.getY()));
 
-		if (this.Tactical.getNavigator().HasValidPath
-			&& this.m.LastTileSelected.X == tile.X
-			&& this.m.LastTileSelected.Y == tile.Y)
-		{
+		if (::Tactical.getNavigator().HasValidPath && this.m.LastTileSelected.X == tile.X && this.m.LastTileSelected.Y == tile.Y) {
 			local athletic = {
 				skill = _activeEntity.getSkills().getSkillByID(::Legends.Traits.getID(::Legends.Trait.Athletic)),
 				bonusAP = 0,
@@ -195,12 +190,11 @@
 
 			if (athletic.skill != null && !athletic.skill.m.HasMoved) {
 				local targetTileType = _activeEntity.getTile().Type;
-				if (this.Tactical.getNavigator().findPath(_activeEntity.getTile(), this.m.LastTileSelected, this.Tactical.getNavigator().getLastSettings(), 0)) {
-					targetTileType = this.Tactical.getNavigator().getCostForPath(_activeEntity, this.Tactical.getNavigator().getLastSettings(), 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
-				}
+				targetTileType = ::Tactical.getNavigator().getCostForPath(_activeEntity, ::Tactical.getNavigator().getLastSettings(), 0, 0).First.Type; // mockup movement test only to determine the first tiles' cost
+				
 				local properties = _activeEntity.getCurrentProperties();
-				athletic.bonusAP = this.Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
-				athletic.bonusFat = this.Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
+				athletic.bonusAP = ::Math.max(0, (_activeEntity.getActionPointCosts()[targetTileType] * properties.MovementAPCostMult));
+				athletic.bonusFat = ::Math.max(0, (_activeEntity.getFatigueCosts()[targetTileType] * properties.MovementFatigueCostMult * properties.FatigueEffectMult));
 				if (_activeEntity.getFatigue() - athletic.bonusFat < 0) {
 					athletic.bonusFat += _activeEntity.getFatigue() - athletic.bonusFat; // read the temporary fat reduced if close to 0, so we don't add any when the bro is at less than movement cost
 				}
@@ -209,22 +203,22 @@
 				athletic.buffApplied = true;
 			}
 
-			local movementCosts = this.Tactical.getNavigator().getCostForPath(_activeEntity, this.Tactical.getNavigator().getLastSettings(), _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
+			local movementCosts = ::Tactical.getNavigator().getCostForPath(_activeEntity, ::Tactical.getNavigator().getLastSettings(), _activeEntity.getActionPoints(), _activeEntity.getFatigueMax() - _activeEntity.getFatigue());
 
 			if (movementCosts.Tiles != 0) {
-				this.Cursor.setCursor(this.Const.UI.Cursor.Hourglass);
-				this.m.CurrentActionState = this.Const.Tactical.ActionState.TravelPath;
+				this.Cursor.setCursor(::Const.UI.Cursor.Hourglass);
+				this.m.CurrentActionState = ::Const.Tactical.ActionState.TravelPath;
 				this.m.ActiveEntityNeedsUpdate = true;
-				this.Tactical.getNavigator().clearVisualisation();
-				this.Tactical.getHighlighter().clear();
-				this.Tactical.getShaker().cancel(_activeEntity);
+				::Tactical.getNavigator().clearVisualisation();
+				::Tactical.getHighlighter().clear();
+				::Tactical.getShaker().cancel(_activeEntity);
 
-				if (this.Tactical.getCamera().Level < tile.Level) {
-					this.Tactical.getCamera().Level = tile.Level;
+				if (::Tactical.getCamera().Level < tile.Level) {
+					::Tactical.getCamera().Level = tile.Level;
 				}
 
 				if (athletic.buffApplied) {
-					if (this.m.CurrentActionState == this.Const.Tactical.ActionState.TravelPath) {
+					if (this.m.CurrentActionState == ::Const.Tactical.ActionState.TravelPath) {
 						athletic.skill.m.HasMoved = true;
 					} else {
 						_activeEntity.setActionPoints(_activeEntity.getActionPoints() - athletic.bonusAP); // most likely unnecessary, but just in case the move didn't happen
