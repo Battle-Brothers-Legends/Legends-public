@@ -1,14 +1,14 @@
 this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
-		this.m.ID = "actives.legend_warfork_disarm";
-		this.m.Name = "Disarm";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWarforkDisarm);
 		this.m.Description = "Use the warfork\'s particular shape to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/repel_hit", 3);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/impale", 3);
 		this.m.SoundOnHit = [];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -16,8 +16,8 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.0;
 		this.m.HitChanceBonus = -20;
 		this.m.ActionPointCost = 5;
@@ -28,8 +28,7 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.skill.getDefaultUtilityTooltip();
-		if (this.m.HitChanceBonus != 0)
-		{
+		if (this.m.HitChanceBonus != 0) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -47,18 +46,12 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-
-		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms) {
-			this.m.HitChanceBonus = -10;
-		}
-		else {
-			this.m.HitChanceBonus = -20;
-		}
+	function onAfterUpdate(_properties) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		//this.m.HitChanceBonus = _properties.IsSpecializedInPolearms ? -10 : -20; // already handled by onAnySkillUsed?
 	}
 
-	function onUse( _user, _targetTile ) {
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 		local success = this.attackEntity(_user, target);
 
@@ -67,13 +60,12 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has disarmed " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has disarmed " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 				}
 			}
-		}
-		else {
+		} else {
 			if (this.m.SoundOnMiss.len() != 0) {
-				this.Sound.play(this.m.SoundOnMiss[this.Math.rand(0, this.m.SoundOnMiss.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			_user.getSkills().onTargetMissed(this, target);
@@ -82,22 +74,12 @@ this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
 		return success;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
-			{
-				_properties.MeleeSkill -= 20;
-			}
-			else
-			{
-				_properties.MeleeSkill -= 10;
-				this.m.HitChanceBonus += 10;
-			}
-
+			_properties.MeleeSkill -= _properties.IsSpecializedInPolearms ? 10 : 20;
+			this.m.HitChanceBonus += _properties.IsSpecializedInPolearms ? 10 : 0;
 			_properties.DamageTotalMult = 0.0;
-			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}
 	}
-
 });
-

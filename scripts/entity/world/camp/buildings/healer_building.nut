@@ -160,12 +160,12 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
         	}
 		}
 
-		local injuries = this.m.InjuriesHealed.filter(@(_, _i) (_i != null && _i.getIcon() != null && _i.getName() != null));
+		local injuries = this.m.InjuriesHealed.filter(@(_, _i) (_i.Injury != null && _i.Injury.getIcon() != null && _i.Injury.getName() != null));
 		foreach (i in injuries) {
 			res.push({
 				id = id++,
-				icon = i.getIcon(),
-				text = i.getName()
+				icon = i.Injury.getIcon(),
+				text = i.Bro.getName() + " had " + ::String.replace(i.Injury.getName(), "(Treated)", "treated.")
 			});
 		}
 
@@ -332,7 +332,7 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local table = this.m.Queue[_idx];
 		table.Injury.setTreated(true);
 		table.Injury.setQueue(0);
-		this.m.InjuriesHealed.push(table.Injury);
+		this.m.InjuriesHealed.push(table);
 		local bro = table.Bro;
 		if (bro != null) {
 			if (this.isBroInRoster(bro)) {
@@ -374,6 +374,11 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					points = i.getPoints()
 				});
 			}
+
+			if (!this.getUpgraded() && injuries.len() == 0) {
+				continue;
+			}
+
 
 			local background = b.getBackground();
 			local e = {

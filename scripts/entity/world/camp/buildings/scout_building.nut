@@ -106,10 +106,6 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	}
 
 	function completed() {
-		local mod = this.getModifiers();
-		if (mod.Assigned == 0) {
-			return;
-		}
 		// local r = this.Math.min(75, 10 * this.Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
 
 		// if (this.Math.rand(1, 100) > r)
@@ -120,6 +116,10 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local campHours = this.m.Camp.getCampTimeHours();
 		local self = this;
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true)));
+		local mod = this.getModifiers();
+		if (mod.Assigned == 0) {
+			return;
+		}
 		foreach(bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 		}

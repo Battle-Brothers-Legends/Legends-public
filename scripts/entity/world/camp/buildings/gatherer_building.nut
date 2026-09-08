@@ -62,6 +62,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 	function init() {
 		this.m.MedsAdded = 0;
 		this.m.Items = [];
+		this.m.Results = [];
 		local mod = this.getModifiers();
 		this.m.NumBros = mod.Assigned;
 		this.m.Craft = mod.Craft;
