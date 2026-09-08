@@ -28,7 +28,6 @@
 		Helms = [
 		],
 		Tops = [
-			[1, ""]
 		],
 		Vanity = [
 		]

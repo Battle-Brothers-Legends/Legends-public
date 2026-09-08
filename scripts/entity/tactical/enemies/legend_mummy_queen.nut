@@ -1,46 +1,34 @@
 this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", {
-	m = {},
-	function create()
-	{
-		this.m.Type = this.Const.EntityType.LegendMummyQueen;
-		this.m.XP = this.Const.Tactical.Actor.LegendMummyQueen.XP;
+	m = {
+		Entity = "LegendMummyQueen"
+	},
+
+	function create() {
 		this.m.ResurrectionValue = 5.0;
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/legend_mummy_queen";
 		this.legend_mummy.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_mummy_queen_agent");
 		this.m.AIAgent.setActor(this);
-
 		this.m.OnDeathLootTable.extend([
 			[100, "scripts/items/loot/ancient_gold_coins_item"],
 			[100, "scripts/items/loot/jeweled_crown_item"],
 		]);
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[3, "scripts/items/misc/legend_ancient_scroll_item"]
 			]);
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_mummy.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendMummyQueen);
-		b.IsAffectedByNight = false;
-		b.IsAffectedByInjuries = false;
-		b.IsImmuneToBleeding = true;
 		b.IsImmuneToDisarm = true;
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.UndeadMummies.LegendsMummyPolearmSpecDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.UndeadMummies.LegendsMummyPolearmSpecDay)	{
 			b.IsSpecializedInPolearms = true;
 		}
-
-		this.m.ActionPoints = b.ActionPoints;
-		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -56,14 +44,6 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendCarnage);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
-			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
-			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
-		}
-
 	}
 
 	function assignRandomEquipment() {
@@ -79,6 +59,4 @@ this.legend_mummy_queen <- this.inherit("scripts/entity/tactical/legend_mummy", 
 			[1, ::Legends.Helmet.Ancient.legend_mummy_crown]
 		]));
 	}
-
 });
-
