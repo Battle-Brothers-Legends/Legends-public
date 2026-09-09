@@ -22,8 +22,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Brute),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.setGender <- function (_gender = -1)	{
@@ -38,13 +38,12 @@
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
 
+		local r = ::Math.rand(1, 100);
 		if (r <= 25) {
 			items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
-		}
-		else if (r <= 40) {
+		} else if (r <= 40) {
 			items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
-		}
-		else if (r <= 60) {
+		} else if (r <= 60) {
 			items.equip(this.new("scripts/items/weapons/legend_staff"));
 		}
 
@@ -58,6 +57,4 @@
 		]);
 		items.equip(helm);
 	}
-
 });
-

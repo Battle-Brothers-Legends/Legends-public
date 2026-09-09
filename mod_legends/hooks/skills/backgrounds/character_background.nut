@@ -1615,14 +1615,16 @@
 
 		this.m.IsNew = false;
 
-		if (this.m.LastNames.len() == 0 && this.m.Ethnicity == 1)
-		{
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		if (this.m.LastNames.len() == 0 && this.m.Ethnicity == 1) {
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 
-		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)
-		{
-			actor.setTitle(this.m.LastNames[this.Math.rand(0, this.m.LastNames.len() - 1)]);
+		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)	{
+			local lastName = this.m.LastNames[::Math.rand(0, this.m.LastNames.len() - 1)];
+			if (this.getContainer().getActor().getGender()) {
+				lastName = ::String.replace(lastName, "Ibn ", "Bint "); // changes southern "son of" to "daughter of"
+			}
+			actor.setTitle(lastName);
 		}
 
 		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && this.Math.rand(0, 3) == 3)
