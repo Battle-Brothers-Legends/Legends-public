@@ -24,25 +24,33 @@ runs:
         tag: ${{ inputs.tag_name }}
         fileName: "mod_legends-*.zip"
 
-    - name: Extract Asset Version from This Release
+    - name: Extract Asset Version and Changelog from This Release
       id: versions
       shell: bash
       run: |
         FULL_VERSION=$(echo "$RELEASE_BODY" | grep -o 'mod_legends-assets-[0-9.]*' | sed 's/mod_legends-assets-//' | head -n 1 | sed 's/\.$//')
         BASE_VERSION=$(echo "$FULL_VERSION" | cut -d. -f1,2).0
+        CHANGELOG=$(echo "$RELEASE_BODY" | grep '^[[:space:]]*-' | sed 's/^[[:space:]]*-[[:space:]]*//' || true)
         echo "full=$FULL_VERSION" >> $GITHUB_OUTPUT
         echo "base=$BASE_VERSION" >> $GITHUB_OUTPUT
+        {
+          echo 'changelog<<EOF'
+          echo "$CHANGELOG"
+          echo 'EOF'
+        } >> $GITHUB_OUTPUT
       env:
         RELEASE_BODY: ${{ inputs.release_body }}
 
     - name: Upload Core to Nexus
-      uses: Nexus-Mods/upload-action@v1.0.0-beta.9
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.10
       with:
         api_key: ${{ inputs.api_key }}
         file_id: ${{ inputs.core_id }}
         filename: mod_legends-${{ inputs.tag_name }}.zip
         display_name: mod_legends-${{ inputs.tag_name }}
         version: ${{ inputs.tag_name }}
+        mod_id: "7249904795708"
+        changelog: ${{ steps.versions.outputs.changelog }}
         allow_mod_manager_download: false
         update_mod_version: true
         description: |
@@ -68,7 +76,7 @@ runs:
 
     - name: Upload Assets
       if: steps.check_files.outputs.exists == 'true'
-      uses: Nexus-Mods/upload-action@v1.0.0-beta.9
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.10
       with:
         api_key: ${{ inputs.api_key }}
         file_id: ${{ inputs.assets_id }}
