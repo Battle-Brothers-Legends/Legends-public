@@ -545,9 +545,10 @@ this.camp_manager <- {
 		return result;
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize( _out ) {
 		_out.writeBool(this.m.IsCamping);
+		_out.writeBool(this.m.IsEscorting);
+		_out.writeBool(this.m.StartedWhileEscorting);
 		_out.writeU8(this.m.LastHourUpdated);
 		_out.writeF32(this.m.StartTime);
 		_out.writeF32(this.m.LastCampTime);
@@ -578,9 +579,10 @@ this.camp_manager <- {
 		_out.writeBool(false);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize( _in ) {
 		this.m.IsCamping = _in.readBool();
+		this.m.IsEscorting = _in.readBool();
+		this.m.StartedWhileEscorting = _in.readBool();
 		this.m.LastHourUpdated = _in.readU8();
 		this.m.StartTime = _in.readF32();
 		this.m.LastCampTime = _in.readF32();
