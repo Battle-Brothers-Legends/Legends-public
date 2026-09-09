@@ -551,6 +551,9 @@
 - fixed serpents erroneously preferring snowy areas 
 - fixed goblin ambushers not getting the sufficient boost during greenskin invasion on legendary difficulty
 - fix firefield not applying the same number of fire hits when recasting on the squares that are already aflame
+- female southern backgrounds will use Bint instead of Ibn as last name now
+- fixed mummies head armor showing empty bars and incorrect maximum values
+- fixed athletic sometimes using a different path than the calculated one
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -739,4 +742,4 @@
 - `perk_legend_specialist_shield_push` -> deleted
 - tile effect `shadows` -> `legend_shadow_mist`
 - blazing RSW and firefield now use their own fire effects
-- legend tile effects moved to tactical_state so they can be spawned by other sources more conveniently
+- legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently

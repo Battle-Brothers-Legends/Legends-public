@@ -182,20 +182,16 @@ this.legend_skill_book <- ::inherit("scripts/items/item", {
 		return true;
 	}
 
-	function onUse( _actor, _item = null )
-	{
+	function onUse( _actor, _item = null ) {
 		local result = this.isAbleToUseScroll(_actor);
-		if (typeof result == "string")
-		{
+		if (typeof result == "string") {
 			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", ::Legends.tooltip(result));
 			return false;
 		}
 
 		local tree = null;
-		foreach (perkGroup in this.m.PerkGroups)
-		{
-			if (perkGroup.Name == this.m.PerkGroupSelection)
-			{
+		foreach (perkGroup in this.m.PerkGroups) {
+			if (perkGroup.Name == this.m.PerkGroupSelection) {
 				tree = perkGroup;
 			}
 		}

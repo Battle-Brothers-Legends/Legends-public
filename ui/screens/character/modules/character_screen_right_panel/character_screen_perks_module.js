@@ -33,6 +33,7 @@ var CharacterScreenPerksModule = function(_parent, _dataSource)
         Scrolls: null
     };
 	this.mSelectedBrotherId = null;
+	this.mLastNumberOfPerks = null;
 
     this.registerDatasourceListener();
 };
@@ -294,13 +295,14 @@ CharacterScreenPerksModule.prototype.updatePerkTreeLayout = function (_inventory
 {
 };
 
-CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_brother)
-{
+CharacterScreenPerksModule.prototype.loadPerkTreesWithBrotherData = function (_brother) {
 	var brotherId = _brother[CharacterScreenIdentifier.Entity.Id];
-    var fullSetup = (this.mSelectedBrotherId !== brotherId);
+	var numberOfPerks = _brother[CharacterScreenIdentifier.Perk.Tree].reduce(function(acc, row) { return acc + (row ? row.length : 0); }, 0);
+    var fullSetup = (this.mSelectedBrotherId !== brotherId) || this.mLastNumberOfPerks !== numberOfPerks;
 
 	if (this.mPerkTree === null || fullSetup) {
         this.mSelectedBrotherId = brotherId;
+		this.mLastNumberOfPerks = numberOfPerks;
         this.setupPerkTree(_brother[CharacterScreenIdentifier.Perk.Tree]);
     }
     else {
