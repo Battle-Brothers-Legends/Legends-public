@@ -29,6 +29,7 @@
 ::Const.Strings.ProfessionName.LegendFieldSurgery <- "Field Surgery";
 ::Const.Strings.ProfessionName.LegendFletching <- "Fletching";
 ::Const.Strings.ProfessionName.LegendFoodPreservation <- "Food Preservation";
+::Const.Strings.ProfessionName.LegendForaging <- "Foraging";
 ::Const.Strings.ProfessionName.LegendFriendsInRightPlaces <- "Friends in Right Places";
 ::Const.Strings.ProfessionName.LegendGathering <- "Gathering";
 ::Const.Strings.ProfessionName.LegendGreasedPalms <- "Greased Palms";
@@ -45,6 +46,7 @@
 ::Const.Strings.ProfessionName.LegendMaterialist <- "Materialist";
 ::Const.Strings.ProfessionName.LegendMealPreparation <- "Meal Preparation";
 ::Const.Strings.ProfessionName.LegendMetalworking <- "Metalworking";
+::Const.Strings.ProfessionName.LegendMining <- "Mining";
 ::Const.Strings.ProfessionName.LegendNegotiator <- "Negotiator";
 ::Const.Strings.ProfessionName.LegendOffBookDeal <- "Off Book Deal";
 ::Const.Strings.ProfessionName.LegendOnTheGrapevine <- "On The Grapevine";
@@ -75,6 +77,7 @@
 ::Const.Strings.ProfessionName.LegendVulture <- "Vulture";
 ::Const.Strings.ProfessionName.LegendWheelMaintenance <- "Wheel Maintenance";
 ::Const.Strings.ProfessionName.LegendWhipThemIntoShape <- "Whip Them Into Shape";
+::Const.Strings.ProfessionName.LegendWoodcutting <- "Woodcutting";
 ::Const.Strings.ProfessionName.LegendWoodworking <- "Woodworking";
 
 ::Const.Strings.ProfessionDescription <- {}
@@ -321,6 +324,13 @@ Salt, smoke, and careful packing ensure the food doesn't spoil prematurely.
 • Makes all provisions last longer.
 ";
 
+::Const.Strings.ProfessionDescription.LegendForaging <- @"
+When striding into the unknown wilderness, one needs to be able to tend for oneself.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the effectiveness of Foraging while Gathering.
+";
+
 ::Const.Strings.ProfessionDescription.LegendFriendsInRightPlaces <- @"
 The best wares are always kept in the back room, reserved for the very best clientele.
 
@@ -380,10 +390,10 @@ A good donkey is worth more than a bad mercenary, and it usually smells better, 
 ";
 
 ::Const.Strings.ProfessionDescription.LegendHunting <- @"
-In many cases the art of hunting can be described as killing before it kills you.
+In many cases the art of hunting can be described as killing it before it kills you.
 
 [color=%passive%][u]Passive:[/u][/color]
-• Increases the effectiveness of hunting in camp.
+• Increases the effectiveness of Hunting while Gathering.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendInterpretation <- @"
@@ -447,6 +457,13 @@ A quality armor can save one's life. Even if that life isn't worth the cost of s
 • Craft metal equipment while camping.
 
 • Increases the crafting speed of metal equipment.
+";
+
+::Const.Strings.ProfessionDescription.LegendMining <- @"
+The earth itself carries a wealth of valuables. Rock and stone, ores and gems.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the effectiveness of Mining while Gathering.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendNegotiator <- @"
@@ -683,6 +700,13 @@ There is no quicker school of war than on the battlefield.
 • Kills made by veterans grant experience to non-veterans.
 
 • Veterans are level 12 and above.
+";
+
+::Const.Strings.ProfessionDescription.LegendWoodcutting <- @"
+While any fool can wield an axe, there are certain intricacies to the art of cutting wood.
+
+[color=%passive%][u]Passive:[/u][/color]
+• Increases the effectiveness of Woodcutting while Gathering.
 ";
 
 ::Const.Strings.ProfessionDescription.LegendWoodworking <- @"

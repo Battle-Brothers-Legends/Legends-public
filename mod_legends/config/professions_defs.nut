@@ -262,7 +262,7 @@ professionDefObjects.push({
     Icon = "ui/professions/cooking.png",
     IconDisabled = "ui/professions/cooking_bw.png",
     Const = "LegendCooking",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -275,7 +275,7 @@ professionDefObjects.push({
     Icon = "ui/professions/crafting.png",
     IconDisabled = "ui/professions/crafting_bw.png",
     Const = "LegendCrafting",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -405,7 +405,7 @@ professionDefObjects.push({
     Icon = "ui/professions/fletching.png",
     IconDisabled = "ui/professions/fletching_bw.png",
     Const = "LegendFletching",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -420,6 +420,19 @@ professionDefObjects.push({
     Const = "LegendFoodPreservation",
     ScalingArray = [0, 2], // extra time before food spoils
     ScalingFactor = 0.5
+});
+
+::Legends.Profession.LegendForaging <- null;
+professionDefObjects.push({
+	ID = "profession.legend_foraging",
+	Script = "scripts/skills/professions/profession_legend_foraging",
+	Name = ::Const.Strings.ProfessionName.LegendForaging,
+	Tooltip = ::Const.Strings.ProfessionDescription.LegendForaging,
+	Icon = "ui/professions/foraging.png",
+	IconDisabled = "ui/professions/foraging_bw.png",
+	Const = "LegendForaging",
+    ScalingArray = [0, 1], // personal profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendFriendsInRightPlaces <- null;
@@ -444,7 +457,7 @@ professionDefObjects.push({
     Icon = "ui/professions/gathering.png",
     IconDisabled = "ui/professions/gathering_bw.png",
     Const = "LegendGathering",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -483,7 +496,7 @@ professionDefObjects.push({
     Icon = "ui/professions/healing.png",
     IconDisabled = "ui/professions/healing_bw.png",
     Const = "LegendHealing",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -535,7 +548,7 @@ professionDefObjects.push({
 	Icon = "ui/professions/hunting.png",
 	IconDisabled = "ui/professions/hunting_bw.png",
 	Const = "LegendHunting",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -629,6 +642,19 @@ professionDefObjects.push({
     Const = "LegendMetalworking",
     ScalingArray = [0, 2], // crafting modifier
     ScalingFactor = 0.5
+});
+
+::Legends.Profession.LegendMining <- null;
+professionDefObjects.push({
+	ID = "profession.legend_mining",
+	Script = "scripts/skills/professions/profession_legend_mining",
+	Name = ::Const.Strings.ProfessionName.LegendMining,
+	Tooltip = ::Const.Strings.ProfessionDescription.LegendMining,
+	Icon = "ui/professions/mining.png",
+	IconDisabled = "ui/professions/mining_bw.png",
+	Const = "LegendMining",
+    ScalingArray = [0, 1], // personal profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendNegotiator <- null;
@@ -744,7 +770,7 @@ professionDefObjects.push({
     Icon = "ui/professions/repairing.png",
     IconDisabled = "ui/professions/repairing_bw.png",
     Const = "LegendRepairing",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -781,7 +807,7 @@ professionDefObjects.push({
     Icon = "ui/professions/scouting.png",
     IconDisabled = "ui/professions/scouting_bw.png",
     Const = "LegendScouting",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -794,7 +820,7 @@ professionDefObjects.push({
     Icon = "ui/professions/scrapping.png",
     IconDisabled = "ui/professions/scrapping_bw.png",
     Const = "LegendScrapping",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -963,7 +989,7 @@ professionDefObjects.push({
     Icon = "ui/professions/training.png",
     IconDisabled = "ui/professions/training_bw.png",
     Const = "LegendTraining",
-    ScalingArray = [0, 1], // core profession
+    ScalingArray = [0, 1], // personal profession
     ScalingFactor = 0
 });
 
@@ -1017,6 +1043,19 @@ professionDefObjects.push({
     Const = "LegendWhipThemIntoShape",
     ScalingArray = [0, 0.75, 1.1, 1.3], // extra xp for non veterans on veteran kill
     ScalingFactor = 0.05
+});
+
+::Legends.Profession.LegendWoodcutting <- null;
+professionDefObjects.push({
+	ID = "profession.legend_woodcutting",
+	Script = "scripts/skills/professions/profession_legend_woodcutting",
+	Name = ::Const.Strings.ProfessionName.LegendWoodcutting,
+	Tooltip = ::Const.Strings.ProfessionDescription.LegendWoodcutting,
+	Icon = "ui/professions/woodcutting.png",
+	IconDisabled = "ui/professions/woodcutting_bw.png",
+	Const = "LegendWoodcutting",
+    ScalingArray = [0, 1], // personal profession
+    ScalingFactor = 0
 });
 
 ::Legends.Profession.LegendWoodworking <- null;
