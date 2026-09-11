@@ -445,38 +445,32 @@ CharacterScreenLeftPanelHeaderModule.prototype.createDismissDialogContent = func
 
 	result.append(titleLabel);
 
-	var textLabel = $('<div class="label text-font-medium font-color-description font-style-normal">' + selectedBrother[CharacterScreenIdentifier.Entity.Character.Name] + ' will permanently leave you and place his <br/>current equipment in the stash.</div>');
+	var textLabel = $('<div class="label text-font-medium font-color-description font-style-normal">' + selectedBrother[CharacterScreenIdentifier.Entity.Character.Name] + ' will permanently leave the company. Current equipment will be placed in the stash.</div>');
 	result.append(textLabel);
 
 	// ---
 
-	var retirementPackage = $('<div class="retirement-package"/>');
-	result.append(retirementPackage);
+	if (selectedBrother['daysWithCompany'] >= 1){
+		var retirementPackage = $('<div class="retirement-package"/>');
+		result.append(retirementPackage);
 
-	var checkbox = $('<input type="checkbox" class="compensation-checkbox" id="compensation" name="display"/>');
-	retirementPackage.append(checkbox);
+		var checkbox = $('<input type="checkbox" class="compensation-checkbox" id="compensation" name="display"/>');
+		retirementPackage.append(checkbox);
 
-	var checkboxLabel;
+		var checkboxLabel = $('<label class="blub text-font-medium font-color-subtitle font-style-normal" for="compensation">Pay <img src="' + Path.GFX + Asset.ICON_MONEY_SMALL + '"/>' + (Math.max(1, selectedBrother['daysWithCompany']) * 10) + (selectedBrother['dailyMoneyCost'] == 0 ? ' Reparations' : ' Compensation') + '</label>');
+		retirementPackage.append(checkboxLabel);
+		checkboxLabel.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.DismissPopupDialog.Compensation });
 
-	if (selectedBrother['dailyMoneyCost'] == 0)
-		checkboxLabel = $('<label class="blub text-font-medium font-color-subtitle font-style-normal" for="compensation">Pay <img src="' + Path.GFX + Asset.ICON_MONEY_SMALL + '"/>' + (Math.max(1, selectedBrother['daysWithCompany']) * 10) + ' Reparations</label>');
-	else
-		checkboxLabel = $('<label class="blub text-font-medium font-color-subtitle font-style-normal" for="compensation">Pay <img src="' + Path.GFX + Asset.ICON_MONEY_SMALL + '"/>' + (Math.max(1, selectedBrother['daysWithCompany']) * 10) + ' Compensation</label>');
+		checkbox.iCheck({
+			checkboxClass: 'icheckbox_flat-orange',
+			radioClass: 'iradio_flat-orange',
+			increaseArea: '0%'
+		});
 
-	retirementPackage.append(checkboxLabel);
-
-	checkboxLabel.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.DismissPopupDialog.Compensation });
-
-	checkbox.iCheck({
-		checkboxClass: 'icheckbox_flat-orange',
-		radioClass: 'iradio_flat-orange',
-		increaseArea: '0%'
-	});
-
-	checkbox.on('ifChecked ifUnchecked', null, this, function (_event)
-	{
-		self.mPayDismissalWage = checkbox.prop('checked') === true;
-	});
+		checkbox.on('ifChecked ifUnchecked', null, this, function (_event) {
+			self.mPayDismissalWage = checkbox.prop('checked') === true;
+		});
+	}
 	
 	// --- 
 	

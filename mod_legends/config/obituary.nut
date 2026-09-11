@@ -1,8 +1,8 @@
 ::Legends.addFallen <- function(_bro, _cause) {
 	local fallen = {
 		Name = _bro.getName(),
-		Time = this.World.getTime().Days,
-		TimeWithCompany = this.Math.max(1, _bro.getDaysWithCompany()),
+		Time = ::World.getTime().Days,
+		TimeWithCompany = ::Math.max(1, _bro.getDaysWithCompany()),
 		Kills = _bro.getLifetimeStats().Kills,
 		Battles = _bro.getLifetimeStats().Battles,
 		KilledBy = _cause,

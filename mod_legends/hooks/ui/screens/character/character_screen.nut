@@ -3,12 +3,12 @@
 	o.m.ProfessionTreesLoaded <- null;
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		this.m.ProfessionTreesLoaded = false;
 	}
 
-	o.loadProfessionsTrees <- function() {
+	o.loadProfessionsTrees <- function () {
 		if (this.m.JSDataSourceHandle != null) {
 			this.m.JSDataSourceHandle.asyncCall("loadProfessionTrees", this.onQueryProfessionTrees);
 		}
@@ -54,141 +54,69 @@
 	}
 
 	o.onDismissCharacter = function (_data) {
-		local bro = this.Tactical.getEntityByID(_data[0]);
+		local bro = ::Tactical.getEntityByID(_data[0]);
 		local payCompensation = _data[1];
 
 		if (bro != null) {
 			bro.getSkills().onDismiss();
-			this.World.Statistics.getFlags().increment("BrosDismissed");
+			::World.Statistics.getFlags().increment("BrosDismissed");
 
-			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury)
-				&& (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave) || this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves"))
-			{
-				this.World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
+			if (bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave) || ::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")) {
+				::World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
 			}
 
 			if (payCompensation) {
-				this.World.Assets.addMoney(-10 * this.Math.max(1, bro.getDaysWithCompany()));
+				::World.Assets.addMoney(-10 * this.Math.max(1, bro.getDaysWithCompany()));
 
 				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-					local playerRoster = this.World.getPlayerRoster().getAll();
-
-					foreach (other in playerRoster) {
-						if (bro.getID() == other.getID()) {
-							continue;
-						}
-
-						if (other.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-							other.improveMood(this.Const.MoodChange.SlaveCompensated, "Glad to see " + bro.getName() + " get reparations for his time");
-						}
+					foreach (otherSlave in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID() && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)))){
+						otherSlave.improveMood(::Const.MoodChange.SlaveCompensated, "Glad to see " + bro.getName() + " get reparations for his time");
 					}
 				}
-			} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-			} else if (bro.getLevel() >= 11
-				&& !this.World.Statistics.hasNews("dismiss_legend")
-				&& this.World.getPlayerRoster().getSize() > 1)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_legend", news);
-			} else if (bro.getDaysWithCompany() >= 50
-				&& !this.World.Statistics.hasNews("dismiss_veteran")
-				&& this.World.getPlayerRoster().getSize() > 1
-				&& this.Math.rand(1, 100) <= 33)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_veteran", news);
-			} else if (bro.getLevel() >= 3
-				&& bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury)
-				&& !this.World.Statistics.hasNews("dismiss_injured")
-				&& this.World.getPlayerRoster().getSize() > 1
-				&& this.Math.rand(1, 100) <= 33)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_injured", news);
-			} else if (bro.getDaysWithCompany() >= 7) {
-				local playerRoster = this.World.getPlayerRoster().getAll();
+			} else {
+				local dismissNews = null;
+				if (::World.getPlayerRoster().getSize() > 1) {
+        			if (bro.getLevel() >= 11 && !::World.Statistics.hasNews("dismiss_legend")) {
+            			dismissNews = "dismiss_legend";
+        			} else if (bro.getDaysWithCompany() >= 50 && !::World.Statistics.hasNews("dismiss_veteran") && ::Math.rand(1, 100) <= 33) {
+            			dismissNews = "dismiss_veteran";
+        			} else if (bro.getDaysWithCompany() >= 1 && bro.getLevel() >= 3 && bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && !::World.Statistics.hasNews("dismiss_injured") && ::Math.rand(1, 100) <= 33) {
+            			dismissNews = "dismiss_injured";
+        			}
+   				}
 
-				foreach (other in playerRoster) {
-					if (bro.getID() == other.getID()) {
-						continue;
-					}
-
-					if (bro.getDaysWithCompany() >= 50) {
-						other.worsenMood(this.Const.MoodChange.VeteranDismissed, "Dismissed " + bro.getName());
-					} else {
-						other.worsenMood(this.Const.MoodChange.BrotherDismissed, "Dismissed " + bro.getName());
+				if (dismissNews != null) {
+					local news = ::World.Statistics.createNews();
+        			news.set("Name", bro.getName());
+        			::World.Statistics.addNews(dismissNews, news);
+				} else if (bro.getDaysWithCompany() >= 7) {
+					foreach (otherBro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID()))) {
+						otherBro.worsenMood(bro.getDaysWithCompany() >= 50 ? ::Const.MoodChange.VeteranDismissed : ::Const.MoodChange.BrotherDismissed, "Dismissed " + bro.getName());
 					}
 				}
 			}
 
-			if (("State" in this.World)
-				&& this.World.State != null
-				&& this.World.Assets.getOrigin().getID() == "scenario.manhunters")
-			{
-				local playerRoster = this.World.getPlayerRoster().getAll();
-				local indebted = 0;
-				local nonIndebted = [];
-
-				foreach (bro in playerRoster) {
-					if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
-						indebted++;
-					} else {
-						nonIndebted.push(bro);
-					}
-				}
-
-				this.World.Statistics.getFlags().set("ManhunterIndebted", indebted);
-				this.World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
+			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters") {
+				local numberOfIndebted = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))).len();
+				::World.Statistics.getFlags().set("ManhunterIndebted", numberOfIndebted);
+				::World.Statistics.getFlags().set("ManhunterNonIndebted", ::World.getPlayerRoster().getAll().len() - numberOfIndebted);
 			}
 
-			bro.getItems().transferToStash(this.World.Assets.getStash());
-			this.World.getPlayerRoster().remove(bro);
-			if (this.World.State.getPlayer() != null) {
-				this.World.State.getPlayer().calculateModifiers();
+			bro.getItems().transferToStash(::World.Assets.getStash());
+			::World.getPlayerRoster().remove(bro);
+			if (::World.State.getPlayer() != null) {
+				::World.State.getPlayer().calculateModifiers();
 			}
 			this.loadData();
-			this.World.State.updateTopbarAssets();
+			::World.State.updateTopbarAssets();
 
-			local addToObituary = (_data.len() > 2 && _data[2] != null) ? _data[2] : false;
-
-			local backgroundID = bro.getBackground().getID();
-			if (addToObituary) {
-				// Get Background specific messages from config
-				local backgroundMessages = ::Legends.Obituary.FateText.BackgroundMessages;
-				local positiveMessages = ::Legends.Obituary.FateText.PositiveMessages;
-				local negativeMessages = ::Legends.Obituary.FateText.NegativeMessages;
-				local backgroundspecificchance = ::Legends.Mod.ModSettings.getSetting("Backgroundspecific").getValue();
-
-				local message = null;
-
-				if (payCompensation) {
-					// Use background-specific positive message if it exists and passes the chance roll
-					if ((backgroundID in backgroundMessages)
-						&& (backgroundMessages[backgroundID].pos != "")
-						&& (this.Math.rand(1, 100) < backgroundspecificchance))
-					{
-						message = backgroundMessages[backgroundID].pos;
-					} else {
-						// Fall back to generic positive message
-						message = positiveMessages[this.Math.rand(0, positiveMessages.len() - 1)];
-					}
-				} else {
-					// Use background-specific negative message if it exists and passes the chance roll
-					if ((backgroundID in backgroundMessages)
-						&& (backgroundMessages[backgroundID].neg != "")
-						&& (this.Math.rand(1, 100) < backgroundspecificchance))
-					{
-						message = backgroundMessages[backgroundID].neg;
-					} else {
-						// Fall back to generic negative message
-						message = negativeMessages[this.Math.rand(0, negativeMessages.len() - 1)];
-					}
-				}
-
-				::Legends.addFallen(bro, message);
+			// Get obituary messages based on compensation
+			if (_data.len() > 2 && _data[2] != null) {
+				local type = payCompensation ? "pos" : "neg";
+				local backgroundID = bro.getBackground().getID();
+				local useBackgroundSpecificMessage = (::Math.rand(1, 100) < ::Legends.Mod.ModSettings.getSetting("Backgroundspecific").getValue()) && backgroundID in ::Legends.Obituary.FateText.BackgroundMessages && ::Legends.Obituary.FateText.BackgroundMessages[backgroundID][type] != "";
+				local genericMessages = payCompensation ? ::Legends.Obituary.FateText.PositiveMessages : ::Legends.Obituary.FateText.NegativeMessages;
+				::Legends.addFallen(bro, (useBackgroundSpecificMessage ? (::Legends.Obituary.FateText.BackgroundMessages[backgroundID][type]) : (genericMessages[::Math.rand(0, genericMessages.len() - 1)])));
 			}
 		}
 	}
@@ -206,8 +134,7 @@
 		return this.UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
-	o.queryRosterSizeData <- function (_shake = false)
-	{
+	o.queryRosterSizeData <- function (_shake = false) {
 		local brosInCombat = ("State" in ::World && this.World.State != null) ? ::World.State.getBrothersInFrontline() : 18;
 		local result = {
 			brothersInCombat = brosInCombat,
@@ -275,7 +202,7 @@
 			return data;
 		}
 
-		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem (data);
+		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem(data);
 		if (isErrored != null) {
 			return isErrored;
 		}
@@ -390,8 +317,8 @@
 		}
 
 		foreach (id in targetIDs) {
-        	::World.Flags.set("AutoState_" + id, nextState);
-    	}
+			::World.Flags.set("AutoState_" + id, nextState);
+		}
 
 		::Legends.Inventory.applyAutomationStateEffects(item, itemData.index, nextState);
 
@@ -436,7 +363,7 @@
 				result[id.tostring()] <- {
 					state = ::Legends.Inventory.getCompositeAutomationState(item),
 					repair = item.isToBeRepaired(),
-                	salvage = item.isToBeSalvaged()
+					salvage = item.isToBeSalvaged()
 				}
 			}
 		}
@@ -454,14 +381,14 @@
 		return ::UIDataHelper.convertProfessionToUIData(_data[0], _data[1]);
 	}
 
-	o.general_onUnlockProfession <- function ( _data ) {
+	o.general_onUnlockProfession <- function (_data) {
 		local entity = ::Tactical.getEntityByID(_data[0]);
 
-		if (entity == null || !entity.isPlayerControlled())	{
+		if (entity == null || !entity.isPlayerControlled()) {
 			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToFindEntity);
 		}
 
-		if (!entity.unlockProfession(_data[1]))	{
+		if (!entity.unlockProfession(_data[1])) {
 			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToUnlockPerk);
 		}
 
@@ -493,12 +420,13 @@
 		if (!this.Tactical.isActive() && data.sourceItem.isUsable()) {
 			local targetItem = null;
 
-			if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand" && data.sourceItem.getID().find("inscription") != null) { //for equipping runes on offhand with shift
-        		targetItem = data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
-				if(targetItem != null && ((targetItem.getItemType() & this.Const.Items.ItemType.Weapon) == 0)){
+			if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand" && data.sourceItem.getID().find("inscription") != null) {
+				//for equipping runes on offhand with shift
+				targetItem = data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
+				if (targetItem != null && ((targetItem.getItemType() & this.Const.Items.ItemType.Weapon) == 0)) {
 					targetItem = null;
 				}
-    		}
+			}
 
 			local result = data.sourceItem.onUse(data.inventory.getActor(), targetItem);
 			if (result) {
@@ -730,50 +658,50 @@
 		return null;
 	}
 
-	o.onQueryProfessionTrees <- function() {
+	o.onQueryProfessionTrees <- function () {
 		return this.UIDataHelper.convertProfessionsToUIData();
 	}
 
-	o.onQueryProfessionInformation <- function( _data )	{
+	o.onQueryProfessionInformation <- function (_data) {
 		return this.general_onQueryProfessionInformation(_data);
 	}
 
-	o.onUnlockProfession <- function( _data ) {
+	o.onUnlockProfession <- function (_data) {
 		return this.general_onUnlockProfession(_data);
 	}
 
-	o.onCyclePerkPlan <- function( _data ) {
+	o.onCyclePerkPlan <- function (_data) {
 		local bro = ::Tactical.getEntityByID(_data[0]);
-    	local perkPlan = bro.getPerkPlan();
+		local perkPlan = bro.getPerkPlan();
 
-    	local perkID = _data[1];
-   		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0;
-    	local nextState = (currentState + 1) % 4;
+		local perkID = _data[1];
+		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0;
+		local nextState = (currentState + 1) % 4;
 
-    	if (nextState == 0) {
-        	delete perkPlan[perkID];
-    	} else {
-        	perkPlan[perkID] <- nextState;
-    	}
+		if (nextState == 0) {
+			delete perkPlan[perkID];
+		} else {
+			perkPlan[perkID] <- nextState;
+		}
 
-    	return ::UIDataHelper.convertEntityToUIData(bro, null);
+		return ::UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
-	o.onCycleProfessionPlan <- function( _data ) {
+	o.onCycleProfessionPlan <- function (_data) {
 		local bro = ::Tactical.getEntityByID(_data[0]);
-    	local professionPlan = bro.getProfessionPlan();
+		local professionPlan = bro.getProfessionPlan();
 
-    	local professionID = _data[1];
-   		local currentState = professionID in professionPlan ? professionPlan[professionID] : 0; 
-    	local nextState = (currentState + 1) % 4;
-    
-    	if (nextState == 0) {
-        	delete professionPlan[professionID];
-    	} else {
-        	professionPlan[professionID] <- nextState;
-    	}
-    
-    	return ::UIDataHelper.convertEntityToUIData(bro, null); 
+		local professionID = _data[1];
+		local currentState = professionID in professionPlan ? professionPlan[professionID] : 0;
+		local nextState = (currentState + 1) % 4;
+
+		if (nextState == 0) {
+			delete professionPlan[professionID];
+		} else {
+			professionPlan[professionID] <- nextState;
+		}
+
+		return ::UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
 	o.onFormationChanged <- function (_data) {
@@ -931,8 +859,8 @@
 		local inventory = entity.getItems();
 		local slotType = sourceItem.getSlotType();
 		if (inventory.getUnlockedBagSlots() == 0 && slotType == ::Const.ItemSlot.Bag) {
-        	return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
-    	}
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+		}
 
 		// Proceed only if this is a 1h main hand weapon
 		if (slotType != this.Const.ItemSlot.Mainhand || sourceItem.getBlockedSlotType() != null) {
@@ -1004,7 +932,7 @@
 	o.onEquipDualWieldBagItem <- function (_data, _entityItemData) {
 		local result;
 		local oh = _entityItemData.inventory.getItemAtSlot(::Const.ItemSlot.Offhand);
-		local equipOH = (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") && !_entityItemData.inventory.hasBlockedSlot(::Const.ItemSlot.Offhand)	&& _entityItemData.inventory.canDualWield(_entityItemData.entity, _entityItemData.sourceItem);
+		local equipOH = (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") && !_entityItemData.inventory.hasBlockedSlot(::Const.ItemSlot.Offhand) && _entityItemData.inventory.canDualWield(_entityItemData.entity, _entityItemData.sourceItem);
 		local equipMH = oh != null && oh.getSlotType() == ::Const.ItemSlot.Mainhand;
 
 		if (equipOH) {
@@ -1068,12 +996,12 @@
 	}
 
 	local helper_isActionAllowed = o.helper_isActionAllowed;
-	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags){
+	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags) {
 		local sourceItem = _items[0];
-    	if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
+		if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
 		}
-		if(_items.len() > 1) {
+		if (_items.len() > 1) {
 			local targetItem = _items[1];
 			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.S.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
@@ -1114,10 +1042,11 @@
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
 				}
 
-				if (data.inventory.unequip(data.sourceItem) == false) { // check if unequip was successful and rollback if not
-                    data.inventory.addToBag(targetItem, data.targetItemIdx);
-                    return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
-                }
+				if (data.inventory.unequip(data.sourceItem) == false) {
+					// check if unequip was successful and rollback if not
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
+				}
 
 				if (data.inventory.equip(targetItem) == false) {
 					data.inventory.unequip(targetItem);
@@ -1126,12 +1055,13 @@
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
 				}
 
-				if (data.inventory.addToBag(data.sourceItem, data.targetItemIdx) == false) { // check if addToBag was successful and rollback if not
-                    data.inventory.unequip(targetItem);
-                    data.inventory.equip(data.sourceItem);
-                    data.inventory.addToBag(targetItem, data.targetItemIdx);
-                    return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
-                }
+				if (data.inventory.addToBag(data.sourceItem, data.targetItemIdx) == false) {
+					// check if addToBag was successful and rollback if not
+					data.inventory.unequip(targetItem);
+					data.inventory.equip(data.sourceItem);
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
+				}
 			} else {
 				data.inventory.unequip(data.sourceItem);
 				data.inventory.addToBag(data.sourceItem, data.targetItemIdx);
@@ -1174,7 +1104,9 @@
 		// create pools of bases and upgrades
 		for (local i = 0; i < stash.len(); i++) {
 			local item = stash[i];
-			if (item == null) continue;
+			if (item == null) {
+				continue;
+			}
 
 			if (::Legends.Inventory.isItemLayered(item)) {
 				bases.push({
@@ -1196,11 +1128,19 @@
 			local upgrade = upgrades[i];
 
 			foreach (base_item in bases) {
-				if (base_item.state != upgrade.state) continue;
+				if (base_item.state != upgrade.state) {
+					continue;
+				}
 
-				if (::isKindOf(base_item.item, "legend_armor") && !::isKindOf(upgrade.item, "legend_armor_upgrade")) continue;
-				if (::isKindOf(base_item.item, "legend_helmet") && !::isKindOf(upgrade.item, "legend_helmet_upgrade")) continue;
-				if (base_item.item.m.Blocked[upgrade.item.getType()]) continue;
+				if (::isKindOf(base_item.item, "legend_armor") && !::isKindOf(upgrade.item, "legend_armor_upgrade")) {
+					continue;
+				}
+				if (::isKindOf(base_item.item, "legend_helmet") && !::isKindOf(upgrade.item, "legend_helmet_upgrade")) {
+					continue;
+				}
+				if (base_item.item.m.Blocked[upgrade.item.getType()]) {
+					continue;
+				}
 
 				local layer = upgrade.item.getType();
 				if (::isKindOf(base_item.item, "legend_helmet") && layer == ::Const.Items.HelmetUpgrades.Vanity && base_item.item.m.Upgrades[layer] != null) {
