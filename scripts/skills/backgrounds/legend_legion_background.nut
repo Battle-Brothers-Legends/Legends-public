@@ -82,7 +82,7 @@ this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/charac
 	}
 
 	function adjustHiringCostBasedOnEquipment() {
-		this.getContainer().getActor().m.HiringCost = 0.0;
+		this.getContainer().getActor().m.HiringCost = ::Math.floor(this.m.HiringCost + 500 * ::Math.pow(this.m.Level - 1, 1.5));
 	}
 
 	function onApplyAppearance() {
