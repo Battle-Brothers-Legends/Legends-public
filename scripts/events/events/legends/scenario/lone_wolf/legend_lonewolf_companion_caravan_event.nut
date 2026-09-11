@@ -44,7 +44,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 					this.List.extend(::Legends.EventList.addItems([
 						::new("scripts/items/trade/silk_item"),
 						::new("scripts/items/loot/silverware_item"),
-						::new("scripts/items/trade/legend_gold_nugget_item"),
+						::new("scripts/items/trade/legend_gold_ore_item"),
 						::new("scripts/items/trade/legend_cooking_spices_trade_item")
 					], ::World.Assets.getStash()));
 				} else if (r == 2) {

@@ -47,7 +47,7 @@
 			_list.push({
 				R = 80,
 				P = 1.0,
-				S = "trade/legend_gold_nugget_item"
+				S = "trade/legend_gold_ore_item"
 			});
 			_list.push({
 				R = 85,

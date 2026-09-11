@@ -13,7 +13,7 @@
 			"trade/copper_ingots_item",
 			"trade/legend_iron_ingots_item",
 			"trade/legend_tin_ingots_item",
-			"trade/legend_gold_nugget_item"
+			"trade/legend_gold_ore_item"
 		], _lootTable);
 
 		if (this.Const.DLC.Unhold && this.Math.rand(1, 100) <= 10)

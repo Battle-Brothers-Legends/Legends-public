@@ -15,7 +15,7 @@
 			"trade/amber_shards_item",
 			"trade/legend_iron_ingots_item",
 			"trade/legend_tin_ingots_item",
-			"trade/legend_gold_nugget_item",
+			"trade/legend_gold_ore_item",
 			"loot/silverware_item",
 			"loot/silver_bowl_item",
 			"loot/signet_ring_item"

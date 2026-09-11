@@ -11,7 +11,7 @@
 	{
 		this.attached_location.onUpdateProduce(_list);
 		_list.push("trade/legend_gold_dust_item");
-		_list.push("trade/legend_gold_nugget_item");
+		_list.push("trade/legend_gold_ore_item");
 		_list.push("trade/legend_silver_ingots_item");
 	}
 
@@ -37,7 +37,7 @@
 			_list.push({
 				R = 20,
 				P = 1.0,
-				S = "trade/legend_gold_nugget_item"
+				S = "trade/legend_gold_ore_item"
 			});
 			_list.push({
 				R = 0,

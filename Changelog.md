@@ -744,3 +744,4 @@
 - tile effect `shadows` -> `legend_shadow_mist`
 - blazing RSW and firefield now use their own fire effects
 - legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
+- `legend_gold_nugget_item` -> `legend_gold_ore_item`
