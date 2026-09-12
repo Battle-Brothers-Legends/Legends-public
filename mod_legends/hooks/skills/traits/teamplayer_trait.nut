@@ -5,7 +5,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "This character makes sure to always announce their intentions to his brothers-in-arms. In fact, they\'ll never shut the hell up. At least it reduces the chance of accidents happening and they feel better when near brothers.";
+		this.m.Description = "This character makes sure to always announce their intentions to their companions in battle. In fact, they\'ll never shut the hell up. At least it reduces the chance of accidents happening and they feel better when near their teammates.";
 		this.m.Excluded.extend([
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
