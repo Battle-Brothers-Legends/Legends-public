@@ -1,4 +1,3 @@
-::Legends.GatheringLoot <- {};
 ::Legends.GatheringLoot.TargetDefs <- {};
 // Design document for hunting / foraging: https://docs.google.com/spreadsheets/d/1UHcwQFuL0dFtThlDFAXlAt7Lj4dNgWHKjO1palEq1to/edit?usp=sharing
 ::Legends.GatheringLoot.TargetDefs[::Legends.Profession.LegendForaging] <- {
@@ -26,29 +25,38 @@
 		Name = "Mushrooms",
 		Difficulty = 200,
 		Loot = "scripts/items/supplies/legend_fresh_mushrooms_item",
+		ExtraLoot = [
+			[95, ""],
+			[5, "scripts/items/supplies/legend_medicine_small_item"]
+		]
 	},
 	NutsAndSeeds = {
 		Name = "Nuts and Seeds",
 		Difficulty = 100,
 		Loot = "scripts/items/supplies/legend_nuts_and_seeds_item",
+		ExtraLoot = [
+			[95, ""],
+			[5, "scripts/items/supplies/legend_medicine_small_item"]
+		]
 	},
 	RootsAndBerries = {
 		Name = "Roots and Berries",
 		Difficulty = 150,
 		Loot = "scripts/items/supplies/legend_fresh_roots_and_berries_item",
+		ExtraLoot = [
+			[95, ""],
+			[5, "scripts/items/supplies/legend_medicine_small_item"]
+		]
 	},
-	MedicinalSpores = {
-		Name = "Medicinal Spores",
-		Difficulty = 250,
-		Loot = "scripts/items/supplies/legend_medicine_small_item"
-	}
 	WildHerbs = {
 		Name = "Wild Herbs",
 		Difficulty = 300,
 		Loot = "scripts/items/supplies/legend_fresh_roots_and_berries_item",
 		ExtraLoot = [
-			[9, "scripts/items/misc/legend_mistletoe_item"],
-			[1, "scripts/items/misc/mysterious_herbs_item"]
+			[80, ""],
+			[12, "scripts/items/supplies/legend_medicine_small_item"],
+			[6, "scripts/items/misc/legend_mistletoe_item"],
+			[2, "scripts/items/misc/mysterious_herbs_item"]
 			// add more herbs here?
 		]
 	},
@@ -60,14 +68,20 @@
 	TundraMoss = {
 		Name = "Tundra Moss",
 		Difficulty = 100,
-		Loot = "scripts/item/supplies/legend_edible_moss_item"
+		Loot = "scripts/item/supplies/legend_edible_moss_item",
+		ExtraLoot = [
+			[95, ""],
+			[5, "scripts/items/supplies/legend_medicine_small_item"]
+		]
 	},
 	DryHerbs = {
 		Name = "Dry Herbs",
 		Loot = "scripts/items/supplies/legend_nuts_and_seeds_item",
 		ExtraLoot = [
-			[9, "scripts/items/misc/legend_mistletoe_item"],
-			[1, "scripts/items/misc/mysterious_herbs_item"]
+			[80, ""],
+			[12, "scripts/items/supplies/legend_medicine_small_item"],
+			[6, "scripts/items/misc/legend_mistletoe_item"],
+			[2, "scripts/items/misc/mysterious_herbs_item"]
 			// add more herbs here?
 		]
 	},
@@ -76,8 +90,9 @@
 		Difficulty = 120,
 		Loot = "scripts/items/supplies/legend_clams_item",
 		ExtraLoot = [
-			[19, "scripts/items/trade/legend_seashells_item"],
-			[1, "scripts/items/loot/white_pearls_item"]
+			[80, ""],
+			[15, "scripts/items/trade/legend_seashells_item"],
+			[5, "scripts/items/loot/white_pearls_item"]
 		],
 	},
 	Seaweed = {
@@ -244,7 +259,6 @@
 		],
 		Tier = 0
 	},
-
 	Unhold = {
 		Name = "Unhold",
 		Difficulty = 1500,
@@ -268,7 +282,6 @@
 		],
 		Tier = 3
 	},
-
 	Webknecht = {
 		Name = "Webknecht",
 		Difficulty = 500,
@@ -330,8 +343,9 @@
 		Difficulty = 500,
 		Loot = "scripts/items/trade/legend_hardwood_item",
 		ExtraLoot = [
-			[29, "scripts/items/trade/legend_resin_item"],
-			[1, "scripts/items/trade/glowing_resin_item"]
+			[70, ""],
+			[27, "scripts/items/trade/legend_resin_item"],
+			[3, "scripts/items/trade/glowing_resin_item"]
 		]
 	},
 	Heartwood = {
@@ -356,7 +370,8 @@
 		Difficulty = 150,
 		Loot = "scripts/items/trade/legend_stone_item",
 		ExtraLoot = [
-			[1, "scripts/items/trade/legend_amber_item"]
+			[95, ""],
+			[5, "scripts/items/trade/legend_amber_item"]
 		]
 	},
 	Slate = {
@@ -369,7 +384,8 @@
 		Difficulty = 200,
 		Loot = "scripts/items/trade/legend_stone_item",
 		ExtraLoot = [
-			[2, "scripts/items/trade/legend_amber_item"]
+			[90, ""],
+			[10, "scripts/items/trade/legend_amber_item"]
 		]
 	},
 	Granite = {
@@ -377,8 +393,9 @@
 		Difficulty = 250,
 		Loot = "scripts/items/trade/legend_stone_item",
 		ExtraLoot = [
-			[4, "scripts/items/trade/legend_gem_shards_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[80, ""],
+			[17, "scripts/items/trade/legend_gem_shards_item"],
+			[3, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
 	Peat = {
@@ -401,9 +418,10 @@
 		Difficulty = 300,
 		Loot = "scripts/items/trade/legend_copper_ore_item",
 		ExtraLoot = [
-			[29, "scripts/items/trade/legend_gem_shards_item"],
-			[3, "scripts/items/trade/legend_amber_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[70, ""],
+			[20, "scripts/items/trade/legend_gem_shards_item"],
+			[8, "scripts/items/trade/legend_amber_item"],
+			[2, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
 	BogIron = {
@@ -411,8 +429,9 @@
 		Difficulty = 400,
 		Loot = "scripts/items/trade/legend_iron_ore_item",
 		ExtraLoot = [
-			[5, "scripts/items/trade/legend_gem_shards_item"],
-			[2, "scripts/items/trade/legend_amber_item"]
+			[70, ""],
+			[24, "scripts/items/trade/legend_gem_shards_item"],
+			[6, "scripts/items/trade/legend_amber_item"]
 		]
 	},
 	IronOre = {
@@ -420,9 +439,10 @@
 		Difficulty = 400,
 		Loot = "scripts/items/trade/legend_iron_ore_item",
 		ExtraLoot = [
-			[29, "scripts/items/trade/legend_gem_shards_item"],
-			[2, "scripts/items/trade/legend_amber_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[70, ""],
+			[20, "scripts/items/trade/legend_gem_shards_item"],
+			[8, "scripts/items/trade/legend_amber_item"],
+			[2, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
 	SilverOre = {
@@ -430,8 +450,9 @@
 		Difficulty = 600,
 		Loot = "scripts/items/trade/legend_silver_ore_item",
 		ExtraLoot = [
-			[19, "scripts/items/trade/legend_gem_shards_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[70, ""],
+			[26, "scripts/items/trade/legend_gem_shards_item"],
+			[4, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
 	GoldOre = {
@@ -439,8 +460,9 @@
 		Difficulty = 900,
 		Loot = "scripts/items/trade/legend_gold_ore_item",
 		ExtraLoot = [
-			[9, "scripts/items/trade/legend_gem_shards_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[70, ""],
+			[26, "scripts/items/trade/legend_gem_shards_item"],
+			[4, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
 	Gemstones = {
@@ -448,8 +470,9 @@
 		Difficulty = 1000,
 		Loot = "scripts/items/trade/legend_gem_shards_item",
 		ExtraLoot = [
-			[2, "scripts/items/trade/legend_gem_shards_item"],
-			[1, "scripts/items/trade/uncut_gems_item"]
+			[60, ""],
+			[30, "scripts/items/trade/legend_gem_shards_item"],
+			[10, "scripts/items/trade/uncut_gems_item"]
 		]
 	}
 }
