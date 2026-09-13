@@ -94,15 +94,9 @@
 		}),
 	},
 
-	CampingHealerIntensiveCare = {
-		Manual = ::MSU.Class.BasicTooltip(
-			"Selected",
-			"Toggle which brothers are to receive intensive treatment inside the healer's tent."
-		),
-		Auto = ::MSU.Class.BasicTooltip(
-			"All",
-			"All brothers are treated intensively automatically whenever required."
-		)
+	CampHealerIntensiveCare = {
+		Manual = ::MSU.Class.BasicTooltip("Selected", "Toggle which brothers are to receive intensive treatment inside the healer's tent."),
+		Auto = ::MSU.Class.BasicTooltip("All", "All brothers are treated intensively automatically whenever required.")
 	},
 	CampingHuntingMode = {
 		Default = ::MSU.Class.BasicTooltip("Default Mode","Your hunting party will carry out their activities at the baseline rates."),

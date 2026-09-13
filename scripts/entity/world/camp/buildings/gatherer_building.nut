@@ -21,7 +21,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 		this.m.CanEnter = false;
-		this.m.RequiresHealthyBros = true;
+		this.m.IsWorkDangerous = true;
 	}
 
 	function getTitle() {

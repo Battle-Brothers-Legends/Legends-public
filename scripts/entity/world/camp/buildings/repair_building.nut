@@ -15,7 +15,6 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.ID = ::Legends.Camp.CampBuildings.Repair;
 		this.m.BaseCraft = 10.0;
 		this.m.ModName = "Repair";
-		this.m.Escorting = true;
 		this.m.Slot = "repair";
 		this.m.Name = "Repair Tent";
 		this.m.Description = "Manage the repair of company items";

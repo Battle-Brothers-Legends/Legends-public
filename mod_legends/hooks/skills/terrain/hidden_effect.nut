@@ -177,14 +177,14 @@
 	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		this.getContainer().getActor().setHidden(false);
-		effect();
+		this.effect();
 		this.m.ToRemove = true;
 	}
 
 	o.onTargetMissed <- function ( _skill, _targetEntity )
 	{
 		this.getContainer().getActor().setHidden(false);
-		effect();
+		this.effect();
 		this.m.ToRemove = true;
 	}
 

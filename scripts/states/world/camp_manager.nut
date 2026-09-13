@@ -60,12 +60,9 @@ this.camp_manager <- {
 		this.m.CampEncounters = [];
 	}
 
-	function init()
-	{
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+	function init() {
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				b.init();
 			}
 		}
@@ -85,6 +82,10 @@ this.camp_manager <- {
 		}
 
 		return null;
+	}
+
+	function canBuildingWorkCurrently (_building) {
+		return (this.m.IsCamping && _building.Camping() && !this.m.IsEscorting) || this.m.IsEscorting && !_building.isWorkDangerous();
 	}
 
 	function isCamping()
@@ -167,7 +168,7 @@ this.camp_manager <- {
 
 			foreach( b in this.m.Tents )
 			{
-				if (b.Escorting())
+				if (!b.isWorkDangerous())
 				{
 					b.completed();
 				}
@@ -239,10 +240,8 @@ this.camp_manager <- {
         	this.onEscort(isCurrentlyEscorting);
     	}
 
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				b.updateTick(this.getElapsedHours());
 			}
 		}
@@ -279,10 +278,8 @@ this.camp_manager <- {
 		updates.push("Hours Encamped: " + this.Math.floor(this.getElapsedHours()));
 		updates.push("----------------------------------");
 
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				text = b.update();
 
 				if (text && typeof text == "string")

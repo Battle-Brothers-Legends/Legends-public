@@ -6,7 +6,6 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function create() {
 		this.camp_building.create();
 		this.m.ID = ::Legends.Camp.CampBuildings.Rest;
-		this.m.Escorting = true;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
 		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here.";

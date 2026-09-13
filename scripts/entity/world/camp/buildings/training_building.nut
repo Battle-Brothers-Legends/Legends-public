@@ -24,7 +24,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local sounds = getCampSounds(3, "training");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
-		this.m.RequiresHealthyBros = true;
+		this.m.IsWorkDangerous = true;
 	}
 
 	function getTitle() {

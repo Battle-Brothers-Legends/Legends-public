@@ -18,7 +18,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.Description = "Send out a patrol to keep an eye on the surrounding terrain";
 		this.m.BannerImage = "ui/buttons/banner_scout.png";
 		this.m.CanEnter = false;
-		this.m.RequiresHealthyBros = true;
+		this.m.IsWorkDangerous = true;
 	}
 
 	function getTitle() {

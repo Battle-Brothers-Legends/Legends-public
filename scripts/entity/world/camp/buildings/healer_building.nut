@@ -17,7 +17,6 @@ this.healer_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		this.m.ID = ::Legends.Camp.CampBuildings.Healer;
 		this.m.BaseCraft = 1.0;
 		this.m.ModName = "Healing";
-		this.m.Escorting = true;
 		this.m.Slot = "heal";
 		this.m.Name = "Healing";
 		this.m.Description = "Place brothers in reserves in order to heal from wounds.";

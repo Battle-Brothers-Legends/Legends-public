@@ -20,12 +20,11 @@ this.camp_building <- {
 		HasPopup = false,
 		InCommanderTent = true,
 		Camping = true,
-		Escorting = false
 		ModName = "",
 		ModMod = 1.0,
 		BaseCraft = 0.0,
 		Conversion = 1.0,
-		RequiresHealthyBros = false
+		IsWorkDangerous = false
 	},
 
 	function create() {}
@@ -40,8 +39,8 @@ this.camp_building <- {
 		return this.m.Camping;
 	}
 
-	function Escorting() {
-		return this.m.Escorting;
+	function isWorkDangerous() {
+		return this.m.IsWorkDangerous;
 	}
 
 	function getUpdateText() {
@@ -286,7 +285,7 @@ this.camp_building <- {
 	}
 
 	function isRecovering(_bro, _addToResults = false) {
-		if(!this.m.RequiresHealthyBros) {
+		if(!this.isWorkDangerous()) {
 			return false;
 		}
 		local skills = _bro.getSkills();
