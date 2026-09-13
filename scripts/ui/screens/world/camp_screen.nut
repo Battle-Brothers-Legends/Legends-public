@@ -285,8 +285,8 @@ this.camp_screen <- {
 		return "No camp tasks have been scheduled...";
 	}
 
-	function getUITerrain() {
-		return ::World.Camp.getUITerrain();
+	function getCampingTerrain() {
+		return ::World.Camp.getCampingTerrain();
 	}
 
 	function queryCampInformation()	{

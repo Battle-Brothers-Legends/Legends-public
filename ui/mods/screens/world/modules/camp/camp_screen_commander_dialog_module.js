@@ -1036,7 +1036,7 @@ CampScreenCommanderDialogModule.prototype.showHealerPopupDialog = function (_dat
 			}, '', 1);
 			button.data('ID', ButtonNames[i]);
 			button.data('Func', "setMode");
-			var eid = "CampingHealerIntensiveCare." + ButtonNames[i];
+			var eid = "CampHealerIntensiveCare." + ButtonNames[i];
 			button.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: eid });
 			_dialogButtons.push(button);
 		}

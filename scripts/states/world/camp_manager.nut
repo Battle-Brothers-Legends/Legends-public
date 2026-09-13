@@ -450,7 +450,7 @@ this.camp_manager <- {
 		return result;
 	}
 
-	function getUITerrain () {
+	function getCampingTerrain () {
 		local tile = ::World.State.getPlayer().getTile();
 		local terrain = [];
 		terrain.resize(::Const.World.TerrainType.COUNT, 0);
@@ -462,7 +462,7 @@ this.camp_manager <- {
 				++terrain[tile.getNextTile(i).Type];
 		}
 
-		terrain[::Const.World.TerrainType.Plains] = this.Math.max(0, terrain[::Const.World.TerrainType.Plains] - 2);
+		terrain[::Const.World.TerrainType.Plains] = ::Math.max(0, terrain[::Const.World.TerrainType.Plains] - 2);
 
 		if (terrain[::Const.World.TerrainType.Hills] > 0 || terrain[::Const.World.TerrainType.Mountains] > 0) {
 			if (terrain[::Const.World.TerrainType.Steppe] > 0) {
@@ -489,7 +489,7 @@ this.camp_manager <- {
 
 	function getUIInformation () {
 		local night = !::World.getTime().IsDaytime;
-		local highest = this.getUITerrain();
+		local highest = this.getCampingTerrain();
 		local terrain = ::Legends.Camp.TerrainCampImages[highest];
 		local background = terrain.Background;
 		local foreground = terrain.Foreground;
