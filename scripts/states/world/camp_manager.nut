@@ -195,10 +195,8 @@ this.camp_manager <- {
 		{
 			this.m.StopTime = this.Time.getVirtualTimeF();
 
-			foreach( b in this.m.Tents )
-			{
-				if (b.Camping())
-				{
+			foreach( b in this.m.Tents ) {
+				if (b.Camping() && !b.isWorkDangerous()) {
 					b.completed();
 				}
 			}
