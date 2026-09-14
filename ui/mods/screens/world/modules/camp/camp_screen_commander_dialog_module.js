@@ -855,6 +855,11 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 	result.attr('id', 'slot-index_' + _data[CharacterScreenIdentifier.Entity.Id]);
 	result.data('ID', _data[CharacterScreenIdentifier.Entity.Id]);
 	result.data('idx', _index);
+	if (_data.IsUnableToWork === true) {
+        var warningIcon = $('<img class="unable-to-work-bro-warning-icon" src="' + Path.GFX + 'ui/tooltips/warning.png"/>');
+        warningIcon.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CampScreen.CommanderModule.UnableToWorkWarning});
+        _parentDiv.append(warningIcon);
+    }
 
 	// // drag handler
 	// result.drag("start", function (ev, dd)

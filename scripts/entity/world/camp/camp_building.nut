@@ -264,9 +264,11 @@ this.camp_building <- {
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (self.onBroEnter(_bro)));
 		foreach (b in assignedBros) {
 			local bro = ::UIDataHelper.convertEntityToUIData(b, null);
-			bro.bannerImage <- ::World.Camp.getBuildingByID(b.getCampAssignment()).getBanner(b);
+			local assignedBuilding = ::World.Camp.getBuildingByID(b.getCampAssignment());
+			bro.bannerImage <- assignedBuilding.getBanner(b);
 			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
 			bro.Modifier <- this.m.ModName != "" ? b.getBackground().getModifiers()[this.m.ModName] : 0;
+			bro.IsUnableToWork <- !::World.Camp.canBuildingWorkCurrently(assignedBuilding) || this.isRecovering(b);
 			roster.push(bro);
 		}
 

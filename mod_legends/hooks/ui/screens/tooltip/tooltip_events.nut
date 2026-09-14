@@ -4614,7 +4614,21 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Spare with local swordmasters and use the knowledge of veterans to adjust and perfect your skills. Rerols trait gained during Training. Requires participating in 5 battles to be ready for next training. Cost increases with each reroll."
+					text = "Spare with local swordmasters and use the knowledge of veterans to adjust and perfect your skills. Rerolls trait gained during Training. Requires participating in 5 battles to be ready for next training. Cost increases with each reroll."
+				}
+			];
+
+		case "camp-screen.commander-module.UnableToWorkWarning":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Unable to work"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Selected activity cannot be performed while escorting and/or while Injured."
 				}
 			];
 
