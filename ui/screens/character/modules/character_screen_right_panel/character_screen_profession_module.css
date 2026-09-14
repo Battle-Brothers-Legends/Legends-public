@@ -1,4 +1,5 @@
-.character-screen-container .professions-module {
+.character-screen-container .professions-module,
+.independent-perks-popup-800x720-dialog-content-container .professions-module {
     top: 3.5rem;
     left: 1.0rem;
     right: 1.5rem;
@@ -8,12 +9,14 @@
     overflow: hidden;
 }
 
-.character-screen-container .professions-module .scroll-container {
+.character-screen-container .professions-module .scroll-container,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container {
     margin-top: 0.4rem;
     margin-bottom: 0.4rem;
 }
 
-.character-screen-container .scroll-container .column {
+.character-screen-container .scroll-container .column,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column {
     position: absolute;
 
     top: 2.0rem;
@@ -22,15 +25,19 @@
     right: 0.0rem;
 
     width: 100%;
+    height: 100%;
 }
 
-.character-screen-container .scroll-container .column .row {
+.character-screen-container .scroll-container .column .row,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column .row
+ {
     width: 100%;
     height: 5.0rem;
     position: absolute;
 }
 
-.character-screen-container .scroll-container .column .row .center {
+.character-screen-container .scroll-container .column .row .center,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column .row .center {
     position: absolute;
 
     margin: auto;
@@ -46,14 +53,16 @@
 }
 
 
-.character-screen-container .scroll-container .row .l-profession-container {
+.character-screen-container .scroll-container .row .l-profession-container,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .row .l-profession-container {
     width: 5.0rem;
     height: 5.0rem;
     position: relative;
     float: left;
 }
 
-.character-screen-container .scroll-container .l-profession-container .selection-image-layer {
+.character-screen-container .scroll-container .l-profession-container .selection-image-layer,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .l-profession-container .selection-image-layer  {
     top: 0;
     left: 0;
     right: 0;
@@ -66,7 +75,8 @@
     z-index: 1;
 }
 
-.character-screen-container .scroll-container .l-profession-container .profession-image-layer {
+.character-screen-container .scroll-container .l-profession-container .profession-image-layer,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .l-profession-container .profession-image-layer {
     top: 0;
     left: 0;
     right: 0;

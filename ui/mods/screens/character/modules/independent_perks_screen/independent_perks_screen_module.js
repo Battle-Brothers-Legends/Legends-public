@@ -45,9 +45,8 @@ IndependentPerksScreenModule.prototype.createDIV = function (_parentDiv)
          smoothScroll: false,
 		 verticalBar: 'none',
     });
-    //this.mListContainer = this.mContainer.createList(1.0/*8.85*/);
+    
     this.mListScrollContainer = this.mListContainer.findListScrollContainer();
-	//this.mListContainer.showListScrollbar(false);
 	this.mHorizontalBar = this.mListContainer.find('.aciSb_bar_h:first');
     this.mLeftColumn = $('<div class="column"/>');
     this.mListScrollContainer.append(this.mLeftColumn);
@@ -85,12 +84,11 @@ IndependentPerksScreenModule.prototype.createPerkTreeDIV = function (_perkTree, 
 			widetree = true;
 		}
 	}
-	//console.error('lowestx = ' + lowestx);
 	
 	for (var row = 0; row < _perkTree.length; ++row)
 	{
 		var rowDIV = $('<div class="row"/>');
-		rowDIV.css({ 'left' : 0, 'top': (row * 6.0) + 'rem' }); // css is retarded?
+		rowDIV.css({ 'left' : 0, 'top': (row * 6.0) + 'rem' });
 		_parentDiv.append(rowDIV);
 
 		var centerDIV = $('<div class="center"/>');
@@ -122,14 +120,10 @@ IndependentPerksScreenModule.prototype.createPerkTreeDIV = function (_perkTree, 
 	if (widetree == true)
 	{
 		self.mHorizontalBar.css({ opacity : 1 });
-		//self.mHorizontalBar.css({ 'z-index' : '10' });
 	}
 	else
 	{
 		self.mHorizontalBar.css({ opacity : 0 });
-/* 		var zet = this.mListContainer.find('.aciScrollBar:first');
-		zet.css({ 'z-index' : '-10' }); */
-		//console.error('forbidden lowestx = ' + lowestx);
 	}
 };
 

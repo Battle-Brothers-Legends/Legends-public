@@ -20,3 +20,19 @@
     top: 1rem;
     bottom: 1rem;
 }
+
+.independent-perks-popup-header-module
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 4.3rem;
+}
+
+.independent-perks-popup-header-module .button-container
+{
+    height: 4.3rem;
+    width: 17.5rem;
+    line-height: 3.0rem;
+    padding-top: 0.5rem;
+}
