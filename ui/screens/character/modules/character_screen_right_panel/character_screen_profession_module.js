@@ -26,6 +26,8 @@ var CharacterScreenProfessionModule = function (_parent, _dataSource) {
     };
 	this.mSelectedBrotherId = null;
 
+	this.mIsIndependent = false;
+
 	this.registerDatasourceListener();
 };
 
@@ -55,28 +57,30 @@ CharacterScreenProfessionModule.prototype.createDIV = function (_parentDiv) {
 
 	this.mLeftColumn = $('<div class="column"/>');
 	this.mListScrollContainer.append(this.mLeftColumn);
+	
+	if (!this.mIsIndependent) {
+		this.mStatusBar = $('<div class="profession-plan-status-bar"/>');
+    	this.mContainer.append(this.mStatusBar);
 
-	this.mStatusBar = $('<div class="profession-plan-status-bar"/>');
-    this.mContainer.append(this.mStatusBar);
+	    var createStatusItem = function(_iconPath, _tooltipId) {
+	        var item = $('<div class="status-item"/>');
+	        var img = $('<img/>').attr('src', Path.GFX + _iconPath);
+	        var label = $('<div class="status-label text-font-small font-bold font-color-value"/>');
+	        
+	        item.append(img);
+	        item.append(label);
+	        
+	        item.bindTooltip({ contentType: 'ui-element', elementId: _tooltipId });
 
-    var createStatusItem = function(_iconPath, _tooltipId) {
-        var item = $('<div class="status-item"/>');
-        var img = $('<img/>').attr('src', Path.GFX + _iconPath);
-        var label = $('<div class="status-label text-font-small font-bold font-color-value"/>');
-        
-        item.append(img);
-        item.append(label);
-        
-        item.bindTooltip({ contentType: 'ui-element', elementId: _tooltipId });
+	        return { container: item, label: label, img: img };
+	    };
 
-        return { container: item, label: label, img: img };
-    };
+	    this.mPlanLabels.Planned = createStatusItem(Asset.PLAN_LEVEL_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenPlanned);
+	    this.mPlanLabels.Tentative = createStatusItem(Asset.PLAN_TENTATIVE_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenTentative); 
 
-    this.mPlanLabels.Planned = createStatusItem(Asset.PLAN_LEVEL_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenPlanned);
-    this.mPlanLabels.Tentative = createStatusItem(Asset.PLAN_TENTATIVE_COUNT, TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.ProfessionPlanScreenTentative); 
-
-    this.mStatusBar.append(this.mPlanLabels.Planned.container);
-    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
+	    this.mStatusBar.append(this.mPlanLabels.Planned.container);
+	    this.mStatusBar.append(this.mPlanLabels.Tentative.container);
+	}
 };
 
 CharacterScreenProfessionModule.prototype.destroyDIV = function () {
@@ -135,8 +139,10 @@ CharacterScreenProfessionModule.prototype.createProfessionTreeDIV = function (_p
 			profession.Image.attr('src', Path.GFX + profession.IconDisabled);
 			profession.Container.append(profession.Image);
 
-			profession.PlanImage = $('<img class="plan-image-layer display-none"/>');
-            profession.Container.append(profession.PlanImage);
+			if (!this.mIsIndependent) {
+				profession.PlanImage = $('<img class="plan-image-layer display-none"/>');
+	            profession.Container.append(profession.PlanImage);
+        	}
 		}
 
 		centerDIV.find(".l-profession-container").css({ 'width': '4.0rem' });
@@ -232,9 +238,11 @@ CharacterScreenProfessionModule.prototype.setupProfessionTree = function (_profe
 	this.mProfessionTree = _professionTree;
 	this.createProfessionTreeDIV(this.mProfessionTree, this.mLeftColumn);
 
-	this.setupProfessionsEventHandlers(this.mProfessionTree);
-	for (var row = 0; row < this.mProfessionRows.length; ++row) {
-		this.mProfessionRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
+	if (!this.mIsIndependent) {
+		this.setupProfessionsEventHandlers(this.mProfessionTree);
+		for (var row = 0; row < this.mProfessionRows.length; ++row) {
+			this.mProfessionRows[row].removeClass('is-row-unlocked').addClass('is-row-locked');
+		}
 	}
 };
 
@@ -261,6 +269,11 @@ CharacterScreenProfessionModule.prototype.loadProfessionTreesWithBrotherData = f
 	}
 	
 	this.updateProfessionPlanVisuals(_brother);
+};
+
+CharacterScreenProfessionModule.prototype.loadProfessionTreesWithProfessionTreeAndBrotherID = function (_professionTree, _brotherId) {
+	this.setupProfessionTree(_professionTree);
+	this.setupProfessionTreeTooltips(_professionTree, _brotherId);
 };
 
 CharacterScreenProfessionModule.prototype.isProfessionUnlockable = function (_profession) {
@@ -417,12 +430,14 @@ CharacterScreenProfessionModule.prototype.createProfessionUnlockDialogContent = 
 
 
 CharacterScreenProfessionModule.prototype.registerDatasourceListener = function () {
-	this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Inventory.ModeUpdated, jQuery.proxy(this.onInventoryModeUpdated, this));
+	if (this.mDataSource !== null) {	
+		this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Inventory.ModeUpdated, jQuery.proxy(this.onInventoryModeUpdated, this));
 
-	this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Professions.TreesLoaded, jQuery.proxy(this.onProfessionTreeLoaded, this));
+		this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Professions.TreesLoaded, jQuery.proxy(this.onProfessionTreeLoaded, this));
 
-	this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Brother.Updated, jQuery.proxy(this.onBrotherUpdated, this));
-	this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Brother.Selected, jQuery.proxy(this.onBrotherSelected, this));
+		this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Brother.Updated, jQuery.proxy(this.onBrotherUpdated, this));
+		this.mDataSource.addListener(CharacterScreenDatasourceIdentifier.Brother.Selected, jQuery.proxy(this.onBrotherSelected, this));
+	}
 };
 
 
@@ -435,8 +450,11 @@ CharacterScreenProfessionModule.prototype.destroy = function () {
 };
 
 
-CharacterScreenProfessionModule.prototype.register = function (_parentDiv) {
+CharacterScreenProfessionModule.prototype.register = function (_parentDiv, _isIndependent) {
 	console.log('CharacterScreenProfessionModule::REGISTER');
+	if (_isIndependent !== null) {
+		this.mIsIndependent = _isIndependent;
+	}
 
 	if (this.mContainer !== null) {
 		console.error('ERROR: Failed to register Professions Module. Reason: Module is already initialized.');

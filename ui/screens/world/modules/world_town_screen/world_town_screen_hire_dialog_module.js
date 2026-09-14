@@ -682,6 +682,7 @@ WorldTownScreenHireDialogModule.prototype.showKnownPerksPopupDialog = function()
 	var self = this;
 	var bro = null;
 	var perkTree = null;
+	var professionTree = null;
 
 	if (self.mSelectedEntry !== null)
 	{
@@ -695,6 +696,16 @@ WorldTownScreenHireDialogModule.prototype.showKnownPerksPopupDialog = function()
         	console.error("Unable to open Known Perks popup dialog: no perkTree in selected entry");
         	return;
         }
+
+        if(CharacterScreenIdentifier.Profession.Tree in bro && bro[CharacterScreenIdentifier.Profession.Tree] !== null)
+        {
+            professionTree = bro[CharacterScreenIdentifier.Profession.Tree];
+        }
+        else
+        {
+        	console.error("Unable to open Known Perks popup dialog: no professionTree in selected entry");
+        	return;
+        }
 	}
 	else
 	{
@@ -703,7 +714,7 @@ WorldTownScreenHireDialogModule.prototype.showKnownPerksPopupDialog = function()
 	}
 
 	// console.error("Selected brother ID: " + bro['ID']);
-	this.mKnownPerksPopupModule = new IndependentPerksScreenPopup($('.world-town-screen'), perkTree, bro['ID']);
+	this.mKnownPerksPopupModule = new IndependentPerksScreenPopup($('.world-town-screen'), perkTree, professionTree, bro['ID']);
 	this.mKnownPerksPopupModule.createPopupDialog($('.world-town-screen'),
 		function() {
 			self.notifyBackendPopupDialogIsVisible(true);
