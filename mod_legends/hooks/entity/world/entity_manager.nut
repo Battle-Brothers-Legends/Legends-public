@@ -112,21 +112,21 @@
 			local party = this.World.spawnEntity("scripts/entity/world/party", start.getTile().Coords);
 			party.setPos(this.createVec(party.getPos().X - 50, party.getPos().Y - 50));
 
-			local description = ("Description" in themeTable) ? themeTable.Description : "A free company, out for their own share of crowns."
+			local description = ("Description" in themeTable) ? themeTable.Description : "A free company, out for their own share of crowns.";
 			party.setDescription(description);
 
-			local footprints = ("FootprintsType" in themeTable) ? themeTable.FootprintsType : "Mercenaries"
+			local footprints = ("FootprintsType" in themeTable) ? themeTable.FootprintsType : "Mercenaries";
 			party.setFootprintType(this.Const.World.FootprintsType[footprints]);
 
 			party.getFlags().set("IsFreeCompany", true);
 			party.setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.FreeCompany).getID());
 
 			// local r = this.Math.min(330, 150 + this.World.getTime().Days);
-			local spawntype = ("Spawn" in themeTable) ? themeTable.Spawn : "FreeCompany"
+			local spawntype = ("Spawn" in themeTable) ? themeTable.Spawn : "FreeCompany";
 			local r = this.World.State.getPlayer().getStrength();
 			if (days > 100) r += 50;
-			else if (days > 75) r += 30
-			else if (days > 50) r += 10
+			else if (days > 75) r += 30;
+			else if (days > 50) r += 10;
 
 			local r = this.Math.rand(r * 0.8, r * 1.5);
 			if (days < 25) {
@@ -144,7 +144,7 @@
 					{
 						if (troop.ID == uo.Type)
 						{
-							troop.Outfits <- clone uo.Outfits
+							troop.Outfits <- clone uo.Outfits;
 						}
 					}
 					// if ("Outfits" in troop.m)
@@ -187,7 +187,7 @@
 					break;
 				}
 				local idx = this.Math.rand(0, themeTable.Names.len() - 1);
-				local name = nameList[idx]
+				local name = nameList[idx];
 
 				if (name == this.World.Assets.getName())
 				{
@@ -371,8 +371,6 @@
 
 			for( local i = 0; i < 2; i = ++i )
 			{
-				local r = this.Math.rand(1, 13);
-
 				local loot = [
 					"supplies/bread_item",
 					"supplies/mead_item",
@@ -571,27 +569,22 @@
 			}
 		}
 
-		if (_in.getMetaData().getVersion() >= 70) {
-			local numMercs = _in.readU8();
+		local numMercs = _in.readU8();
 
-			for( local i = 0; i != numMercs; i = ++i )
+		for( local i = 0; i != numMercs; i = ++i )
+		{
+			local merc = this.World.getEntityByID(_in.readU32());
+
+			if (merc != null)
 			{
-				local merc = this.World.getEntityByID(_in.readU32());
-
-				if (merc != null)
-				{
-					this.m.FreeCompanies.push(this.WeakTableRef(merc));
-				}
+				this.m.FreeCompanies.push(this.WeakTableRef(merc));
 			}
 		}
 
-		if (_in.getMetaData().getVersion() >= 72)
+		local numFC = _in.readU8();
+		for (local i = 0; i != numFC; i = ++i)
 		{
-			local numFC = _in.readU8();
-			for (local i = 0; i != numFC; i = ++i)
-			{
-				this.m.NonDefaultFreeCompanies.push(_in.readU8());
-			}
+			this.m.NonDefaultFreeCompanies.push(_in.readU8());
 		}
 
 		this.buildRoadAmbushSpots();

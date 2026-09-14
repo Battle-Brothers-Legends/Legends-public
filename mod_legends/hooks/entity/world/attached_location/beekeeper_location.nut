@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Surrounded by humming bees, these small huts are home to beekeepers. The honey they produce is a precious ingredient to sweeten pastries and other foods. Contributes mead and farmhands to the local town";
+		this.m.Description = "Surrounded by humming bees, these small huts are home to beekeepers. The honey they produce is a precious ingredient to sweeten pastries and other foods. Contributes mead and farmhands to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

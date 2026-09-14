@@ -3,12 +3,12 @@ this.legend_tabard_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		Variants = 0,
 		Variant = 1
 	},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_tabard_blueprint";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_common_tabard");
+		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard");
 		this.m.Variants = this.m.PreviewCraftable.m.Variants.len();
 		this.m.PreviewCraftable.setVariant(this.m.PreviewCraftable.m.Variants[0]);
 		this.m.Cost = 10;
@@ -23,29 +23,16 @@ this.legend_tabard_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
-		local item = this.new("scripts/items/legend_armor/tabard/legend_common_tabard");
-		item.setVariant(item.m.Variants[this.m.Variant-1]);
+	function onCraft(_stash) {
+		local item = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard");
+		item.setVariant(item.m.Variants[this.m.Variant - 1]);
 		_stash.add(item);
 	}
 
-	function setVariant( _variant )
-	{
+	function setVariant(_variant) {
 		this.m.Variant = _variant;
 	}
 });
-

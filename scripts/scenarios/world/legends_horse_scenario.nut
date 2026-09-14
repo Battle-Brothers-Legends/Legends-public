@@ -38,17 +38,11 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"legend_horse"
-		]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendHorse]);
 		bros[0].setPlaceInFormation(3);
-		bros[1].setStartValuesEx([
-			"legend_horserider"
-		]);
+		bros[1].setStartValuesEx([::Legends.Background.LegendHorserider]);
 		bros[1].setPlaceInFormation(3);
-		bros[2].setStartValuesEx([
-			"legend_trader_commander_background"
-		]);
+		bros[2].setStartValuesEx([::Legends.Background.LegendCommanderPeddler]);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Player);
 		bros[2].getFlags().set("IsPlayerCharacter", true);
 		bros[2].setPlaceInFormation(4);
@@ -163,13 +157,13 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			return;
 
 		if (this.Math.rand(0, 1) == 0)
-			_list.push("legend_donkey_background");
+			_list.push(::Legends.Background.LegendDonkey);
 
 		if (this.Math.rand(0, 4) == 0)
-			_list.push("peddler_background");
+			_list.push(::Legends.Background.Peddler);
 
 		if (this.Math.rand(0, 2) == 0)
-			_list.push("caravan_hand_background");
+			_list.push(::Legends.Background.CaravanHand);
 	}
 
 });

@@ -10,7 +10,7 @@ this.legend_masterwork_tools <- this.inherit("scripts/items/item", {
 		this.m.SlotType = this.Const.ItemSlot.None;
 		this.m.ItemType = this.Const.Items.ItemType.Misc | this.Const.Items.ItemType.Crafting;
 		this.m.IsDroppedAsLoot = true;
-		this.m.Value = 750;
+		this.m.Value = 1250;
 	}
 
 	function playInventorySound( _eventType )

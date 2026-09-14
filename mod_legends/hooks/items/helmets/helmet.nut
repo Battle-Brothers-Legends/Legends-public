@@ -1,5 +1,6 @@
 ::mods_hookExactClass("items/helmets/helmet", function(o) {
 	o.m.Variants <- [];
+	o.m.HideHelmetIfDestroyed = false;
 
 	o.getVision <- function () {
 		return this.m.Vision;
@@ -67,7 +68,7 @@
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color]"
+				text = "Maximum Fatigue [color=%negative%]" + this.m.StaminaModifier + "[/color]"
 			});
 		}
 
@@ -77,7 +78,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.Vision + "[/color]"
+				text = "Vision [color=%negative%]" + this.m.Vision + "[/color]"
 			});
 		}
 		else if (this.m.Vision > 0)
@@ -86,7 +87,7 @@
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Vision + "[/color]"
+				text = "Vision [color=%positive%]" + this.m.Vision + "[/color]"
 			});
 		}
 
@@ -113,7 +114,7 @@
 
 		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
 		local isLucky = !this.Tactical.State.isScenarioMode() && !isPlayer && this.World.Assets.getOrigin().isDroppedAsLoot(this);
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && this.World.Assets.m.IsBlacksmithed;
+		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 		if (this.m.Condition > 15 && isPlayer || this.m.Condition > 30 && this.m.Condition / this.m.ConditionMax >= 0.25 && (isLucky || this.Math.rand(1, 100) <= 70) || isBlacksmithed)
 			return true;

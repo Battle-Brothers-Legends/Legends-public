@@ -2,24 +2,19 @@ this.perk_legend_chain_lightning <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendChainLightning);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendChainLightning);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_chain_lightning"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendChainLightning))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_chain_lightning_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendChainLightning);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_chain_lightning");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendChainLightning);
 	}
 
 });

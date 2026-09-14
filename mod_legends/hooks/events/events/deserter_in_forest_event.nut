@@ -16,17 +16,13 @@
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");
 						_event.m.Dude.getFlags().add("skeleton");
-						_event.m.Dude.setStartValuesEx([
-							"legend_cannibal_background"
-						]);
-						_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+						_event.m.Dude.setStartValuesEx([::Legends.Background.Butcher]);
+						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 					}
 					else
 					{
-						_event.m.Dude.setStartValuesEx([
-							"deserter_background"
-						]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.Deserter]);
 					}
 					_event.m.Dude.getBackground().m.RawDescription = "You found %name% the deserter being chased through the forest. Though bounty hunters were hot on the trail, you elected to defend the fugitive and for that swore an oath to you.";
 					_event.m.Dude.getBackground().buildDescription(true);

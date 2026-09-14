@@ -15,16 +15,15 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
-		this.m.IsAgainstShields = true;
-		this.m.IsAoE = true;
+		this.m.IsAoE = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
 		this.m.Value = 5400;
-		this.m.ShieldDamage = 0;
+		this.m.ShieldDamage = 32;
+		this.m.StaminaModifier = -18;
 		this.m.Condition = 90.0;
 		this.m.ConditionMax = 90.0;
-		this.m.StaminaModifier = -18;
 		this.m.RegularDamage = 80;
 		this.m.RegularDamageMax = 110;
 		this.m.ArmorDamageMult = 1.25;
@@ -42,7 +41,7 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stagger Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;
@@ -59,26 +58,19 @@ this.legend_named_military_goedendag <- this.inherit("scripts/items/weapons/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local thrust = this.new("scripts/skills/actives/thrust");
-		thrust.m.Icon = "skills/active_128.png";
-		thrust.m.IconDisabled = "skills/active_128_sw.png";
-		thrust.m.Overlay = "active_128";
-		thrust.setFatigueCost(15);
-		thrust.m.ActionPointCost = 6;
-		this.addSkill(thrust);
-		local skill;
-		skill = this.new("scripts/skills/actives/cudgel_skill");
-		skill.m.Icon = "skills/active_131.png";
-		skill.m.IconDisabled = "skills/active_131_sw.png";
-		skill.m.Overlay = "active_131";
-		this.addSkill(skill);
-		local skill;
-		skill = this.new("scripts/skills/actives/strike_down_skill");
-		skill.m.Icon = "skills/active_132.png";
-		skill.m.IconDisabled = "skills/active_132_sw.png";
-		skill.m.Overlay = "active_132";
-		skill.setFatigueCost(skill.getFatigueCostRaw() + 5);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust, function (_skill) {
+			_skill.m.IsGoedendagThrust = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.StrikeDown, function (_skill) {
+			_skill.m.Icon = "skills/active_132.png";
+			_skill.m.IconDisabled = "skills/active_132_sw.png";
+			_skill.m.Overlay = "active_132";
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.m.IsHammer = true;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

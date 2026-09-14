@@ -106,99 +106,97 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			"Jarlsborg"
 		]];
 		this.m.DraftLists = [[
-			"houndmaster_background",
-			"brawler_background",
-			"cultist_background",
-			"mason_background",
-			"militia_background",
-			"militia_background",
-			"vagabond_background",
-			"wildman_background",
-			"witchhunter_background",
-			"deserter_background",
-			"deserter_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background"
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Mason,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier
 		],[
-			"apprentice_background",
-			"houndmaster_background",
-			"brawler_background",
-			"brawler_background",
-			"cultist_background",
-			"gravedigger_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"miner_background",
-			"monk_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"vagabond_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"witchhunter_background",
-			"deserter_background",
-			"raider_background",
-			"retired_soldier_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Monk,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier
 		],[
-			"apprentice_background",
-			"brawler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"vagabond_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"witchhunter_background",
-			"witchhunter_background",
-			"deserter_background",
-			"deserter_background",
-			"hedge_knight_background",
-			"hedge_knight_background",
-			"raider_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"cripple_background",
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Squire,
+			::Legends.Background.Cripple,
 		]];
 		this.m.FemaleDraftLists = [[
 			// nothing at lvl 1
 		],[
 			// nothing at lvl 2
 		],[
-			"legend_shieldmaiden_background"
+			::Legends.Background.LegendShieldmaiden
 		]];
 
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier",
-			"legend_horse_courser"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier,
+			::Legends.Background.LegendHorseCourser
 		]];
-		if (this.Const.DLC.Unhold)
-		{
-			this.m.DraftLists[0].push("beast_hunter_background");
-			this.m.DraftLists[1].push("beast_hunter_background");
-			this.m.DraftLists[2].push("beast_hunter_background");
-		}
+		this.m.DraftLists[0].push(::Legends.Background.BeastSlayer);
+		this.m.DraftLists[1].push(::Legends.Background.BeastSlayer);
+		this.m.DraftLists[2].push(::Legends.Background.BeastSlayer);
+		this.m.Culture = this.Const.World.Culture.Northern;
 		this.m.Rumors = this.Const.Strings.RumorsSnowSettlement;
 	}
 
@@ -246,7 +244,7 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 			this.Const.World.TerrainType.LeaveForest
 		];
 		local items = [
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -444,10 +442,10 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -570,7 +568,7 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 		], 4, true);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -683,7 +681,7 @@ this.legends_snow_fort <- this.inherit("scripts/entity/world/settlements/legends
 		], [], 1, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

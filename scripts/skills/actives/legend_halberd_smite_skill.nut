@@ -2,23 +2,11 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_halberd_smite";
-		this.m.Name = "Smite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalberdSmite);
 		this.m.Description = "A slow overhead strike performed with full force to smash a target to bits.";
 		this.m.KilledString = "Chopped";
-		this.m.Icon = "skills/legend_halberd_smite.png";
-		this.m.IconDisabled = "skills/legend_halberd_smite_bw.png";
-		this.m.Overlay = "legend_halberd_smite";
-		this.m.SoundOnUse = [
-			"sounds/combat/strike_01.wav",
-			"sounds/combat/strike_02.wav",
-			"sounds/combat/strike_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/strike_hit_01.wav",
-			"sounds/combat/strike_hit_02.wav",
-			"sounds/combat/strike_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/strike", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/strike_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -42,66 +30,39 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local p = this.getContainer().buildPropertiesForUse(this, null);
-		local damage_regular_min = this.Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_regular_max = this.Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_direct_max = this.Math.floor(damage_regular_max * (this.m.DirectDamageMult + p.DamageDirectAdd));
-		local ret = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			},
-			{
-				id = 3,
-				type = "text",
-				text = this.getCostString()
-			}
-		];
-		ret.push({
-			id = 4,
-			type = "text",
-			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage to hitpoints, of which [color=" + this.Const.UI.Color.DamageValue + "]0[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] can ignore armor"
-		});
+		local tooltip = this.getDefaultTooltip();
 
-		if (damage_Armor_max > 0)
-		{
-			ret.push({
-				id = 5,
-				type = "text",
-				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_max + "[/color] damage to armor"
-			});
-		}
-
-		ret.push({
+		tooltip.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2" + "[/color] tiles"
+			text = "Has a range of [color=%positive%]2" + "[/color] tiles"
 		});
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+			});
+		}
 
-		return ret;
+		return tooltip;
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.ActionPointCost -= 1;
+		}
 	}
 
 	function onUse( _user, _targetTile )
 	{
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-		return this.attackEntity(_user, _targetTile.getEntity());		
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -112,16 +73,12 @@ this.legend_halberd_smite_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMax += 20;
 		}
 
-		if (_targetEntity != null && !this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+		if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
 		{
-			this.m.HitChanceBonus = -15;
-		}
-		else
-		{
-			this.m.HitChanceBonus = 0;
+			this.m.HitChanceBonus -= 15;
 		}
 	}
-	
+
 
 });
 

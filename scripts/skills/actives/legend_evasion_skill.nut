@@ -4,12 +4,8 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_evasion";
-		this.m.Name = "Evasion";
-		this.m.Description = "Prepares the character to move safely through any Zone of Control next turn without incurring any free attacks.";
-		this.m.Icon = "skills/evasion.png";
-		this.m.IconDisabled = "skills/evasion_bw.png";
-		this.m.Overlay = "evasion";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEvasion);
+		this.m.Description = "%name% will move safely through any Zone of Control without incurring any free attacks and the first attack done against you will be automatically evaded. Can only be used if your total armor weight is 30 or less.";
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
@@ -18,9 +14,10 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.ActionPointCost = 4;
-		this.m.FatigueCost = 30;
+		this.m.FatigueCost = 20;
 		this.m.MinRange = 0;
 		this.m.MaxRange = 0;
+		this.m.IsHidden = false;
 	}
 
 	function getTooltip()
@@ -45,9 +42,16 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
+	function isHidden()
+	{	
+		if (this.getContainer().getActor().getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]) > 30)
+			return true;
+		return false;
+	}
+
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_evasion");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendEvasion);
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -57,9 +61,9 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		if (!this.getContainer().hasSkill("effects.legend_evasion"))
+		if (!this.getContainer().hasEffect(::Legends.Effect.LegendEvasion))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_evasion_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendEvasion);
 			return true;
 		}
 
@@ -73,7 +77,7 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_evasion");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendEvasion);
 	}
 
 });

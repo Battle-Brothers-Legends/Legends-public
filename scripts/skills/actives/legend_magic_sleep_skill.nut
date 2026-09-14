@@ -1,30 +1,13 @@
-this.legend_magic_sleep_skill <- this.inherit("scripts/skills/actives/legend_magic_skill", {
+this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 	},
 
 	function create()
 	{
-		this.m.ID = "actives.legend_magic_sleep";
-		this.m.Name = "Sleep";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicSleep);
 		this.m.Description = "Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the resolves of the user and target.";
 		this.m.KilledString = "Slept";
-		this.m.Icon = "skills/active_116.png";
-		this.m.IconDisabled = "skills/active_116.png";
-		this.m.Overlay = "active_116";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/alp_sleep_01.wav",
-			"sounds/enemies/dlc2/alp_sleep_02.wav",
-			"sounds/enemies/dlc2/alp_sleep_03.wav",
-			"sounds/enemies/dlc2/alp_sleep_04.wav",
-			"sounds/enemies/dlc2/alp_sleep_05.wav",
-			"sounds/enemies/dlc2/alp_sleep_06.wav",
-			"sounds/enemies/dlc2/alp_sleep_07.wav",
-			"sounds/enemies/dlc2/alp_sleep_08.wav",
-			"sounds/enemies/dlc2/alp_sleep_09.wav",
-			"sounds/enemies/dlc2/alp_sleep_10.wav",
-			"sounds/enemies/dlc2/alp_sleep_11.wav",
-			"sounds/enemies/dlc2/alp_sleep_12.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_sleep", 12);
 		this.m.IsUsingActorPitch = true;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
@@ -156,13 +139,13 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/actives/legend_mag
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to his resolve.");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve.");
 				}
 
 				continue;
 			}
 
-			target.getSkills().add(this.new("scripts/skills/effects/sleeping_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Sleeping);
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{

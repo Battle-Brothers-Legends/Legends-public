@@ -2,24 +2,10 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_call_lightning";
-		this.m.Name = "Call Lightning";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCallLightning);
 		this.m.Description = "Call down bolts of lightning randomly within four tiles.";
-		this.m.Icon = "skills/storm_square.png";
-		this.m.IconDisabled = "skills/storm_square_bw.png";
-		this.m.Overlay = "coordinated_volleys_square";
-		this.m.SoundOnUse = [
-			"sounds/combat/lightning_01.wav",
-			"sounds/combat/lightning_02.wav",
-			"sounds/combat/lightning_03.wav",
-			"sounds/combat/lightning_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/electricity_01.wav",
-			"sounds/combat/electricity_02.wav",
-			"sounds/combat/electricity_03.wav",
-			"sounds/combat/electricity_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/lightning", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/electricity", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -39,9 +25,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -62,8 +46,8 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to call lightning on each unit within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles"
-			}			
+				text =  "[color=%positive%]10%[/color] chance to call lightning on each unit within [color=%positive%]4[/color] tiles"
+			}
 		];
 	}
 

@@ -15,6 +15,6 @@
 			"trade/dies_item",
 			"loot/white_pearls_item"
 		], _lootTable);
-		_lootTable.push(this.Const.World.Common.pickHelmet([[1, "legendary/legend_emperors_countenance"]]));
+		_lootTable.push(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.legend_emperors_countenance]]));
 	}
 });

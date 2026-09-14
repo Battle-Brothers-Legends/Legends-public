@@ -8,7 +8,7 @@
 		this.m.Excluded.extend(
 		[
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy),
-			::Legends.Traits.getID(::Legends.Trait.LegendFirm)
+			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		]);
 	}
 });

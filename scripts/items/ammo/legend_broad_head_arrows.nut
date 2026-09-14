@@ -2,9 +2,10 @@ this.legend_broad_head_arrows <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.arrows";
 		this.m.Name = "Broad Head Arrows";
-		this.m.Description = "A quiver of arrows with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants +10% damage but -10% armor piercing damage while wielding a bow.";
+		this.m.Description = "A quiver of arrows with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants 10% more damage, but 10% less armor piercing damage while wielding a bow.";
 		this.m.Icon = "ammo/quiver_01_light.png";
 		this.m.IconEmpty = "ammo/quiver_01_empty.png";
 		this.m.SlotType = this.Const.ItemSlot.Ammo;
@@ -65,7 +66,7 @@ this.legend_broad_head_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] arrows"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] arrows"
 			});
 		}
 		else
@@ -74,25 +75,20 @@ this.legend_broad_head_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 
 		return result;
 	}
 
-	function onUpdateProperties( _properties )
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		this.ammo.onUpdateProperties(_properties);
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item == null) return;
-
-		if (item.isWeaponType(this.Const.Items.WeaponType.Bow))
+		local item = _skill.getItem();
+		if (_skill.isAttack() && item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.isWeaponType(this.Const.Items.WeaponType.Bow))
 		{
 			_properties.DamageDirectMult *= 0.9;
 			_properties.RangedDamageMult *= 1.1;
 		}
 	}
 });
-

@@ -2,45 +2,25 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 	m = {
 		Blacksmith = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_blacksmith_fix_equipment";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_82.png[/img]While setting for a camp %blacksmith% takes you aside, the staunch musclebound man looking unusually concerned.%SPEECH_ON%Sir, this equipment of ours is in really bad shape! It\'s a disgrace to be seen fighting in this. It is high time we bring it back to working condition!%SPEECH_OFF% The brute of a man rolls up his sleeves and swings around his hammer, seemingly eager to spend a whole night working his anvil.",
+			Text = "[img]gfx/ui/events/event_82.png[/img]While setting up for a camp %blacksmith% takes you aside, the staunch musclebound man looking unusually concerned.%SPEECH_ON%Sir, this equipment of ours is in really bad shape! It\'s a disgrace to be seen fighting in this. It is high time we bring it back to working condition!%SPEECH_OFF% The brute of a man rolls up his sleeves and swings around his hammer, seemingly eager to spend a whole night working his anvil.",
 			Image = "",
 			List = [],
-			Options = [
-				{
-					Text = "Do what you think is best...",
-					function getResult( _event )
-					{
-						if (this.Math.rand(1, 100) <= 70)
-						{
-							return "Good";
-						}
-						else
-						{
-							return "Bad";
-						}
-					}
-
-				},
-				{
-					Text = "I need you fighting fit, sleep instead!.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Do what you think is best...",
+				getResult = @(_event) ::Math.rand(1, 100) <= 70 ? "Good" : "Bad"
+			}, {
+				Text = "I need you fighting fit, sleep instead!.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
+				this.Characters.push(_event.m.Blacksmith.getImagePath());
 			}
-
 		});
 		this.m.Screens.push({
 			ID = "Good",
@@ -48,45 +28,34 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Nice work!",
-					function getResult( _event )
-					{
-						this.World.Assets.addMoralReputation(1);
-						return 0;
-					}
-
+			Options = [{
+				Text = "Nice work!",
+				function getResult(_event) {
+					this.World.Assets.addMoralReputation(1);
+					return 0;
 				}
-			],
-			function start( _event )
-			{
-				_event.m.Blacksmith.worsenMood(0.5, "Stayed up all night working");
-				this.List.push({
-					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
-					text = _event.m.Blacksmith.getName() + this.Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
-				});
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
+
+				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -0.5, "Stayed up all night working"));
+
 				local stash = this.World.Assets.getStash().getItems();
 				local items = 0;
 
-				foreach( item in stash )
-				{
-					if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax())
-					{
+				foreach (item in stash) {
+					if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax()) {
 						item.setCondition(item.getRepairMax());
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
-							text = "Your " + item.getName() + " is repaired"
+							imageOverlayPath = item.getIconOverlay(),
+							text = "Your " + item.makeName() + " is repaired"
 						});
-						items = ++items;
+						items++;
 
 						if (items > 4)
-						{
 							break;
-						}
 					}
 				}
 			}
@@ -98,91 +67,48 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Get him Patched up!",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "Get him Patched up!",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				_event.m.Blacksmith.worsenMood(1.0, "Accidentally injured himself");
-				this.List.push({
-					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
-					text = _event.m.Blacksmith.getName() + this.Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
-				});
-				local injury = _event.m.Blacksmith.addInjury(this.Const.Injury.Helping);
-				this.List.push({
-					id = 10,
-					icon = injury.getIcon(),
-					text = _event.m.Blacksmith.getName() + " suffers " + injury.getNameOnly()
-				});
-				_event.m.Blacksmith.addLightInjury();
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/days_wounded.png",
-					text = _event.m.Blacksmith.getName() + " suffers light wounds"
-				});
+				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -1.0, "Accidentally injured himself"));
+				this.List.push(::Legends.EventList.addInjury(_event.m.Blacksmith, ::Const.Injury.Helping));
+				this.List.push(::Legends.EventList.addLightInjury(_event.m.Blacksmith));
 			}
-
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (this.World.getTime().IsDaytime)
-		{
 			return;
-		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 		local candidates_blacksmith = [];
 
-		foreach( b in brothers )
-		{
-			if (b.getBackground().getID() == "background.legend_blacksmith")
-			{
+		foreach (b in brothers) {
+			if (::Legends.Backgrounds.has(b, ::Legends.Background.LegendBlacksmith)) {
 				candidates_blacksmith.push(b);
 			}
 		}
 
 		if (candidates_blacksmith.len() < 1)
-		{
 			return;
-		}
-		else
-		{
-			this.m.Blacksmith = candidates_blacksmith[this.Math.rand(0, candidates_blacksmith.len() - 1)];
-		}
-
+		this.m.Blacksmith = candidates_blacksmith[::Math.rand(0, candidates_blacksmith.len() - 1)];
 		this.m.Score = 15;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"blacksmith",
 			this.m.Blacksmith.getName()
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		return "A";
-	}
-
-	function onClear()
-	{
+	function onClear() {
 		this.m.Blacksmith = null;
 	}
 

@@ -11,8 +11,7 @@
 "use strict";
 
 
-var WorldScreenTopbarDayTimeModule = function(_dataSource)
-{
+var WorldScreenTopbarDayTimeModule = function (_dataSource) {
 	this.mSQHandle = null;
 	this.mDataSource = _dataSource;
 
@@ -32,18 +31,18 @@ var WorldScreenTopbarDayTimeModule = function(_dataSource)
 	this.mTimePauseButton = null;
 	this.mTimeNormalButton = null;
 	this.mTimeFastButton = null;
+	this.mTimeVeryFastButton = null;
+	this.mTimeSuperFastButton = null;
 
 	this.registerDatasourceListener();
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.isConnected = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.isConnected = function () {
 	return this.mSQHandle !== null;
 };
 
-WorldScreenTopbarDayTimeModule.prototype.onConnection = function (_handle)
-{
+WorldScreenTopbarDayTimeModule.prototype.onConnection = function (_handle) {
 	//if (typeof(_handle) == 'string')
 	{
 		this.mSQHandle = _handle;
@@ -55,8 +54,7 @@ WorldScreenTopbarDayTimeModule.prototype.onConnection = function (_handle)
 	}
 };
 
-WorldScreenTopbarDayTimeModule.prototype.onDisconnection = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.onDisconnection = function () {
 	this.mSQHandle = null;
 
 	// notify listener
@@ -66,8 +64,7 @@ WorldScreenTopbarDayTimeModule.prototype.onDisconnection = function ()
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv)
-{
+WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv) {
 	var self = this;
 
 	// create: containers
@@ -93,35 +90,61 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv)
 
 	var layout = $('<div class="l-pause-button"/>');
 	this.mContainer.append(layout);
-	this.mTimePauseButton = layout.createImageButton(Path.GFX + Asset.BUTTON_PAUSE_DISABLED, function ()
-	{
+	this.mTimePauseButton = layout.createImageButton(Path.GFX + Asset.BUTTON_PAUSE_DISABLED, function () {
 		self.notifyBackendTimePauseButtonPressed();
 
 		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE);
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
 	}, '', 10);
 
 	var layout = $('<div class="l-normal-time-button"/>');
 	this.mContainer.append(layout);
-	this.mTimeNormalButton = layout.createImageButton(Path.GFX + Asset.BUTTON_PLAY_DISABLED, function ()
-	{
+	this.mTimeNormalButton = layout.createImageButton(Path.GFX + Asset.BUTTON_PLAY_DISABLED, function () {
 		self.notifyBackendTimeNormalButtonPressed();
 
 		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE_DISABLED);
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
 	}, '', 10);
 
 	var layout = $('<div class="l-fast-time-button"/>');
 	this.mContainer.append(layout);
-	this.mTimeFastButton = layout.createImageButton(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED, function ()
-	{
+	this.mTimeFastButton = layout.createImageButton(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED, function () {
 		self.notifyBackendTimeFastButtonPressed();
 
 		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE_DISABLED);
 		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
 		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
+	}, '', 10);
+	var layout = $('<div class="l-very-fast-time-button"/>');
+	this.mContainer.append(layout);
+	this.mTimeVeryFastButton = layout.createImageButton(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED, function () {
+		self.notifyBackendTimeVeryFastButtonPressed();
+
+		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE_DISABLED);
+		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
+		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED);
+	}, '', 10);
+
+	var layout = $('<div class="l-super-fast-time-button"/>');
+	this.mContainer.append(layout);
+	this.mTimeSuperFastButton = layout.createImageButton(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED, function () {
+		self.notifyBackendTimeSuperFastButtonPressed();
+
+		self.mTimePauseButton.changeButtonImage(Path.GFX + Asset.BUTTON_PAUSE_DISABLED);
+		self.mTimeNormalButton.changeButtonImage(Path.GFX + Asset.BUTTON_PLAY_DISABLED);
+		self.mTimeFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_FAST_FORWARD_DISABLED);
+		self.mTimeVeryFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_VERY_FAST_FORWARD_DISABLED);
+		self.mTimeSuperFastButton.changeButtonImage(Path.GFX + Asset.BUTTON_SUPER_FAST_FORWARD);
 	}, '', 10);
 
 	this.mPausedDiv = $('<div class="display-none title-font-very-big paused-label font-color-title font-shadow-silhouette">PAUSED</div>');
@@ -130,8 +153,7 @@ WorldScreenTopbarDayTimeModule.prototype.createDIV = function (_parentDiv)
 	_parentDiv.append(this.mPausedSpacebarDiv);
 };
 
-WorldScreenTopbarDayTimeModule.prototype.destroyDIV = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.destroyDIV = function () {
 	// text & image containers
 	this.mDayTimeText.remove();
 	this.mDayTimeText = null;
@@ -149,62 +171,56 @@ WorldScreenTopbarDayTimeModule.prototype.destroyDIV = function ()
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.bindTooltips = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.bindTooltips = function () {
 	this.mTimePauseButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimePauseButton });
 	this.mTimeNormalButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeNormalButton });
 	this.mTimeFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeFastButton });
+	this.mTimeVeryFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeVeryFastButton });
+	this.mTimeSuperFastButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldScreen.Topbar.TimeSuperFastButton });
 };
 
-WorldScreenTopbarDayTimeModule.prototype.unbindTooltips = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.unbindTooltips = function () {
 	this.mTimePauseButton.unbindTooltip();
 	this.mTimeNormalButton.unbindTooltip();
 	this.mTimeFastButton.unbindTooltip();
+	this.mTimeVeryFastButton.unbindTooltip();
+	this.mTimeSuperFastButton.unbindTooltip();
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.registerDatasourceListener = function()
-{
+WorldScreenTopbarDayTimeModule.prototype.registerDatasourceListener = function () {
 	this.mDataSource.addListener(WorldScreenTopbarDatasourceIdentifier.TimeInformation.Updated, jQuery.proxy(this.onTimeInformation, this));
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.create = function(_parentDiv)
-{
+WorldScreenTopbarDayTimeModule.prototype.create = function (_parentDiv) {
 	this.createDIV(_parentDiv);
 	this.bindTooltips();
 };
 
-WorldScreenTopbarDayTimeModule.prototype.destroy = function()
-{
+WorldScreenTopbarDayTimeModule.prototype.destroy = function () {
 	this.unbindTooltips();
 	this.destroyDIV();
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.register = function (_parentDiv)
-{
+WorldScreenTopbarDayTimeModule.prototype.register = function (_parentDiv) {
 	console.log('WorldScreenTopbarDayTimeModule::REGISTER');
 
-	if (this.mContainer !== null)
-	{
+	if (this.mContainer !== null) {
 		console.error('ERROR: Failed to register Day-Time Module. Reason: Day-Time Module is already initialized.');
 		return;
 	}
 
-	if (_parentDiv !== null && typeof(_parentDiv) == 'object')
-	{
+	if (_parentDiv !== null && typeof (_parentDiv) == 'object') {
 		this.create(_parentDiv);
 	}
 };
 
-WorldScreenTopbarDayTimeModule.prototype.unregister = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.unregister = function () {
 	console.log('WorldScreenTopbarDayTimeModule::UNREGISTER');
 
-	if (this.mContainer === null)
-	{
+	if (this.mContainer === null) {
 		console.error('ERROR: Failed to unregister Day-Time Module. Reason: Options Bar Module is not initialized.');
 		return;
 	}
@@ -212,10 +228,8 @@ WorldScreenTopbarDayTimeModule.prototype.unregister = function ()
 	this.destroy();
 };
 
-WorldScreenTopbarDayTimeModule.prototype.isRegistered = function ()
-{
-	if (this.mContainer !== null)
-	{
+WorldScreenTopbarDayTimeModule.prototype.isRegistered = function () {
+	if (this.mContainer !== null) {
 		return this.mContainer.parent().length !== 0;
 	}
 
@@ -223,40 +237,30 @@ WorldScreenTopbarDayTimeModule.prototype.isRegistered = function ()
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.registerEventListener = function(_listener)
-{
+WorldScreenTopbarDayTimeModule.prototype.registerEventListener = function (_listener) {
 	this.mEventListener = _listener;
 };
 
-WorldScreenTopbarDayTimeModule.prototype.showMessage = function(_data)
-{
+WorldScreenTopbarDayTimeModule.prototype.showMessage = function (_data) {
 	this.mPausedDiv.addClass('display-block');
 	this.mPausedSpacebarDiv.addClass('display-block');
 
 	this.mPausedDiv.html(_data.Header)
-	this.mPausedSpacebarDiv.empty()
-	for(var i = 0; i < _data.Subheader.length; ++i)
-	{
-		var text = $('<div>' + _data.Subheader[i] + '</div>')
-		this.mPausedSpacebarDiv.append(text);
-	}
+	this.mPausedSpacebarDiv.html(_data.Subheader);
 }
 
-WorldScreenTopbarDayTimeModule.prototype.hideMessage = function()
-{
+WorldScreenTopbarDayTimeModule.prototype.hideMessage = function () {
 	this.mPausedDiv.removeClass('display-block');
 	this.mPausedSpacebarDiv.removeClass('display-block');
 }
 
 
-WorldScreenTopbarDayTimeModule.prototype.onTimeInformation = function (_datasource, _data)
-{
-	if (_data === undefined || _data === null || typeof(_data) !== "object" ||
-		(!(WorldScreenTopbarIdentifier.TimeInformation.Day in _data) || typeof(_data[WorldScreenTopbarIdentifier.TimeInformation.Day]) !== "number") ||
-		(!(WorldScreenTopbarIdentifier.TimeInformation.Time in _data) || typeof(_data[WorldScreenTopbarIdentifier.TimeInformation.Time]) !== "string") ||
-		(!(WorldScreenTopbarIdentifier.TimeInformation.Degree in _data) || typeof(_data[WorldScreenTopbarIdentifier.TimeInformation.Degree]) !== "number")
-		)
-	{
+WorldScreenTopbarDayTimeModule.prototype.onTimeInformation = function (_datasource, _data) {
+	if (_data === undefined || _data === null || typeof (_data) !== "object" ||
+		(!(WorldScreenTopbarIdentifier.TimeInformation.Day in _data) || typeof (_data[WorldScreenTopbarIdentifier.TimeInformation.Day]) !== "number") ||
+		(!(WorldScreenTopbarIdentifier.TimeInformation.Time in _data) || typeof (_data[WorldScreenTopbarIdentifier.TimeInformation.Time]) !== "string") ||
+		(!(WorldScreenTopbarIdentifier.TimeInformation.Degree in _data) || typeof (_data[WorldScreenTopbarIdentifier.TimeInformation.Degree]) !== "number")
+	) {
 		console.error('ERROR: Failed to query time information data. Reason: Invalid result.');
 		return;
 	}
@@ -266,39 +270,56 @@ WorldScreenTopbarDayTimeModule.prototype.onTimeInformation = function (_datasour
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.updateButtons = function (_state)
-{
+WorldScreenTopbarDayTimeModule.prototype.updateButtons = function (_state) {
 	this.mTimePauseButton.changeButtonImage(Path.GFX + (_state == 0 ? Asset.BUTTON_PAUSE : Asset.BUTTON_PAUSE_DISABLED));
 	this.mTimeNormalButton.changeButtonImage(Path.GFX + (_state == 1 ? Asset.BUTTON_PLAY : Asset.BUTTON_PLAY_DISABLED));
 	this.mTimeFastButton.changeButtonImage(Path.GFX + (_state == 2 ? Asset.BUTTON_FAST_FORWARD : Asset.BUTTON_FAST_FORWARD_DISABLED));
+	this.mTimeVeryFastButton.changeButtonImage(Path.GFX + (_state == 3 ? Asset.BUTTON_VERY_FAST_FORWARD : Asset.BUTTON_VERY_FAST_FORWARD_DISABLED));
+	this.mTimeSuperFastButton.changeButtonImage(Path.GFX + (_state == 4 ? Asset.BUTTON_SUPER_FAST_FORWARD : Asset.BUTTON_SUPER_FAST_FORWARD_DISABLED));
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.enableNormalTimeButton = function (_enabled)
-{
+WorldScreenTopbarDayTimeModule.prototype.enableNormalTimeButton = function (_enabled) {
 	this.mTimeNormalButton.enableButton(_enabled);
 }
 
+WorldScreenTopbarDayTimeModule.prototype.enableFastTimeButton = function (_enabled) {
+	this.mTimeFastButton.enableButton(_enabled);
+}
 
-WorldScreenTopbarDayTimeModule.prototype.notifyBackendPauseButtonPressed = function ()
+WorldScreenTopbarDayTimeModule.prototype.enableVeryFastTimeButton = function (_enabled) {
+	this.mTimeVeryFastButton.enableButton(_enabled);
+}
+
+WorldScreenTopbarDayTimeModule.prototype.enableSuperFastTimeButton = function (_enabled)
 {
+	this.mTimeSuperFastButton.enableButton(_enabled);
+}
+
+
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendPauseButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onPauseButtonPressed');
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimePauseButtonPressed = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimePauseButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onTimePauseButtonPressed');
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeNormalButtonPressed = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeNormalButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onTimeNormalButtonPressed');
 };
 
 
-WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeFastButtonPressed = function ()
-{
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeFastButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onTimeFastButtonPressed');
+};
+
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeVeryFastButtonPressed = function () {
+	SQ.call(this.mSQHandle, 'onTimeVeryFastButtonPressed');
+};
+
+WorldScreenTopbarDayTimeModule.prototype.notifyBackendTimeSuperFastButtonPressed = function () {
+	SQ.call(this.mSQHandle, 'onTimeSuperFastButtonPressed');
 };

@@ -4,12 +4,8 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_apothecary_mushrooms";
-		this.m.Name = "Eat or Give Strange Mushrooms";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendApothecaryMushrooms);
 		this.m.Description = "Give these strange mushrooms to an adjacent ally, or eat them yourself to enter a state of trance-like state with otherworldy dodging and no sense of pain. May result in sickness. The effect will slowly wear off over 4 turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/active_98.png";
-		this.m.IconDisabled = "skills/active_98_sw.png";
-		this.m.Overlay = "active_98";
 	}
 
 	function getTooltip()
@@ -34,19 +30,19 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Grants [color=" + this.Const.UI.Color.NegativeValue + "]-40%[/color] Damage in Melee"
+				text = "Grants [color=%negative%]-40%[/color] Damage in Melee"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] Melee Defense"
+				text = "Grants [color=%positive%]+40%[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "Grants [color=" + this.Const.UI.Color.PositiveValue + "]+40%[/color] Ranged Defense"
+				text = "Grants [color=%positive%]+40%[/color] Ranged Defense"
 			},
 			{
 				id = 10,
@@ -62,7 +58,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -75,7 +71,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 
 		if (_user.getID() == user.getID())
 		{
-			local shrooms = user.getSkills().getSkillByID("effects.legend_apothecary_mushrooms");
+			local shrooms = ::Legends.Effects.get(user, ::Legends.Effect.LegendApothecaryMushrooms);
 
 			if (shrooms != null)
 			{
@@ -83,7 +79,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 			}
 			else
 			{
-				user.getSkills().add(this.new("scripts/skills/effects/legend_apothecary_mushrooms_effect"));
+				::Legends.Effects.grant(user, ::Legends.Effect.LegendApothecaryMushrooms);
 			}
 
 			if (!_user.isHiddenToPlayer())

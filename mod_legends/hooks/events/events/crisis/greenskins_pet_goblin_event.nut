@@ -10,7 +10,7 @@
 						this.List.push({
 							id = 10,
 							icon = "ui/icons/asset_medicine.png",
-							text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]-2[/color] Medical Supplies."
+							text = "You lose [color=%negativeEvent%]-2[/color] Medical Supplies."
 						});
 					}
 
@@ -21,10 +21,10 @@
 					else if (r == 2)
 						item = this.new("scripts/items/weapons/named/named_spear");
 					else if (r == 3)
-						item = this.Const.World.Common.pickHelmet([[1, "named/wolf_helmet"]]);
+						item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]);
 					else if (r == 4) {
 						item = this.Const.World.Common.pickArmor([
-						[1, "named/black_leather_armor"],
+							[1, ::Legends.Armor.Named.black_leather_armor],
 						]);
 					}
 
@@ -33,7 +33,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 				}
 			}

@@ -33,10 +33,14 @@ this.legend_hoe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/chop"));
-		local skillToAdd = this.new("scripts/skills/actives/split_shield");
-		skillToAdd.setApplyAxeMastery(true);
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
+			_skill.m.IsHack = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.m.ActionPointCost = 4;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

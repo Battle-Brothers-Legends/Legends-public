@@ -1,17 +1,17 @@
-this.legend_irritable_effect <- this.inherit("scripts/skills/injury/injury", {
-	m = {},
+this.legend_irritable_effect <- this.inherit("scripts/skills/skill", {
+	m = {
+		HealingTime = 1
+	},
+
 	function create()
 	{
-		this.injury.create();
-		this.m.ID = "effects.legend_irritable";
-		this.m.Name = "Irritable";
-		this.m.Description = "Repeated attempts to study have made this character more than irritable.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendIrritable);
+		this.m.Description = "Repeated attempts to study have made this character more than irritable. The negative effects will disappear by the next day, but this effect is not treatable and prevents the character from reading books and scrolls.";
 		this.m.Icon = "skills/status_effect_62.png";
-		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect | this.Const.SkillType.SemiInjury;
-		this.m.IsHealingMentioned = false;
-		this.m.IsTreatable = false;
-		this.m.HealingTimeMin = 1;
-		this.m.HealingTimeMax = 2;
+		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.IsActive = false;
+		this.m.IsStacking = false;
+		this.m.IsRemovedAfterBattle = false;
 	}
 
 	function getTooltip()
@@ -28,56 +28,37 @@ this.legend_irritable_effect <- this.inherit("scripts/skills/injury/injury", {
 				text = this.getDescription()
 			},
 			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Resolve"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Skill"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Skill"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Melee Defense"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Ranged Defense"
-			},
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Initiative"
+				id = 6,
+				type = "hint",
+				icon = "ui/icons/days_wounded.png",
+				text = "Will recover in " + this.m.HealingTime + " days"
 			}
 		];
-		this.addTooltipHint(ret);
+
 		return ret;
 	}
 
-	function onUpdate( _properties )
+	function onUpdate(_properties)
 	{
-		this.injury.onUpdate(_properties);
-		_properties.BraveryMult *= 0.85;
-		_properties.MeleeSkillMult *= 0.85;
-		_properties.RangedSkillMult *= 0.85;
-		_properties.MeleeDefenseMult *= 0.85;
-		_properties.RangedDefenseMult *= 0.85;
-		_properties.InitiativeMult *= 0.85;
+		if (this.m.HealingTime == 0)
+			this.removeSelf();
 	}
 
+	function onNewDay()
+	{
+		this.m.HealingTime -= 1;
+	}
+
+	function onSerialize( _out )
+	{
+		this.skill.onSerialize(_out);
+		_out.writeU32(this.m.HealingTime);
+	}
+
+	function onDeserialize( _in )
+	{
+		this.skill.onDeserialize(_in);
+		this.m.HealingTime = _in.readU32();
+	}
 });
 

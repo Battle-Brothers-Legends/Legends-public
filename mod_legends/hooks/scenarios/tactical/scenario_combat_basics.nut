@@ -18,7 +18,7 @@
 		entity.setFaction(this.Const.Faction.Player);
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "nasal_helmet"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
 		items.equip(this.new("scripts/items/armor/leather_tunic"));
 		items.equip(this.new("scripts/items/weapons/hand_axe"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -28,8 +28,8 @@
 		entity.setFaction(this.Const.Faction.Player);
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "hood"]]));
-		items.equip(this.new("scripts/items/armor/padded_surcoat"));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/noble_sword"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 		this.Tactical.getTileSquare(19, 16).removeObject();

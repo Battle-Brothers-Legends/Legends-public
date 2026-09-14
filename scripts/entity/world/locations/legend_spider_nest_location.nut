@@ -12,7 +12,7 @@ this.legend_spider_nest_location <- this.inherit("scripts/entity/world/location"
 		this.m.TypeID = "location.spider_nest";
 		this.m.LocationType = ::Const.World.LocationType.Lair | ::Const.World.LocationType.Passive;
 		this.m.IsDespawningDefenders = false;
-		this.m.IsAttackable = true; // No enemies in the location; currently relies on the contract to define it. TODO: make this a naturally spawnable location with spiders?
+		this.m.IsAttackable = false; // No enemies in the location; currently relies on the contract to define it. TODO: make this a naturally spawnable location with spiders?
 		this.m.Resources = 0;
 	}
 

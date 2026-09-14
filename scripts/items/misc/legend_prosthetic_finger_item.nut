@@ -58,13 +58,13 @@ this.legend_prosthetic_finger_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Reduces the penalty of Missing Finger to [color=" + this.Const.UI.Color.NegativeValue + "]-2%[/color] Melee Skill"
+				text = "Reduces the penalty of Missing Finger to [color=%negative%]-2%[/color] Melee Skill"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Reduces the penalty of Missing Finger to [color=" + this.Const.UI.Color.NegativeValue + "]-2%[/color] Ranged Skill"
+				text = "Reduces the penalty of Missing Finger to [color=%negative%]-2%[/color] Ranged Skill"
 			},
 			{
 				id = 65,

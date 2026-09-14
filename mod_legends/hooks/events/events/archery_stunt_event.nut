@@ -30,10 +30,14 @@
 		local clown_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearthed) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
-			if ((bro.getBackground().getID() == "background.minstrel" || bro.getBackground().getID() == "background.juggler" || bro.getBackground().getID() == "background.vagabond") && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Minstrel,
+				::Legends.Background.Juggler,
+				::Legends.Background.Vagabond
+			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
 				clown_candidates.push(bro);
 		}
 
@@ -44,11 +48,18 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesistant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearthed) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
+			if (bro.getSkills().hasTrait(::Legends.Trait.Bright) || bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasTrait(::Legends.Trait.Craven) || bro.getSkills().hasTrait(::Legends.Trait.Fainthearted) || bro.getSkills().hasTrait(::Legends.Trait.Insecure))
 				continue;
 
-			if (bro.getBackground().getID() == "background.hunter" || bro.getBackground().getID() == "background.poacher" || bro.getBackground().getID() == "background.sellsword" || bro.getBackground().getID() == "background.bowyer" || (bro.getBackground().getID() == "background.adventurous_noble" && bro.getGender() == 1) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (::Legends.Backgrounds.hasAny(bro,
+				::Legends.Background.Hunter,
+				::Legends.Background.Poacher,
+				::Legends.Background.Sellsword,
+				::Legends.Background.Bowyer,
+				::Legends.Background.AdventurousNoble
+			) && bro.getGender() == 1 && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))  {
 				archer_candidates.push(bro);
+			}
 		}
 
 		if (archer_candidates.len() == 0)

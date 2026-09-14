@@ -1,4 +1,4 @@
-::mods_hookExactClass("entity/tactical/player_corpse_stub", function(o) 
+::mods_hookExactClass("entity/tactical/player_corpse_stub", function(o)
 {
 	o.m.IsCommander <- false;
 	o.m.Gender <- -1;
@@ -55,11 +55,11 @@
 
 		if (this.m.LifetimeStats.MostPowerfulVanquished != "")
 		{
-					local vanquishedText = "{" + (" The most powerful opponent %they% vanquished was " + this.m.LifetimeStats.MostPowerfulVanquished + ".") + "}";
-					local vars = [];
-					this.Const.LegendMod.extendVarsWithPronouns(vars, this.getGender());
-					vanquishedText = this.buildTextFromTemplate(vanquishedText, vars);
-					text = text + vanquishedText;
+			local vanquishedText = "{" + (" The most powerful opponent %they% vanquished was " + this.m.LifetimeStats.MostPowerfulVanquished + ".") + "}";
+			local vars = [];
+			::Const.LegendMod.extendVarsWithPronouns(vars, this);
+			vanquishedText = this.buildTextFromTemplate(vanquishedText, vars);
+			text = text + vanquishedText;
 		}
 
 		tooltip.push({

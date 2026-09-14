@@ -1,18 +1,18 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_marauder", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/barbarian_marauder", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		// todo delete it - chopeks
-//		if (this.LegendsMod.Configs().LegendTherianthropyEnabled())
-//		{
-//			if(this.Math.rand(1, 20) == 1)
-//			{
-//				this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_aperthropy_injury"));
-//			}
-//		}
-
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
@@ -20,11 +20,11 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.ReaverRelentlessDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		}
@@ -57,35 +57,19 @@
 
 		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 40)
 		{
-			if (this.Const.DLC.Unhold)
-			{
-				r = this.Math.rand(1, 3);
+			r = this.Math.rand(1, 3);
 
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_javelin"));
-				}
-				else if (r == 3)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
-				}
+			if (r == 1)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_throwing_axe"));
 			}
-			else
+			else if (r == 2)
 			{
-				r = this.Math.rand(1, 2);
-
-				if (r == 1)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_throwing_axe"));
-				}
-				else if (r == 2)
-				{
-					this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_javelin"));
-				}
+				this.m.Items.addToBag(this.new("scripts/items/weapons/barbarians/heavy_javelin"));
+			}
+			else if (r == 3)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 			}
 		}
 
@@ -95,21 +79,19 @@
 		}
 
 		local armor = [
-			[33, "barbarians/scrap_metal_armor"],
-			[34, "barbarians/hide_and_bone_armor"],
-			[33, "barbarians/reinforced_animal_hide_armor"]
+			[33, ::Legends.Armor.Barbarian.scrap_metal_armor],
+			[34, ::Legends.Armor.Barbarian.hide_and_bone_armor],
+			[33, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor],
+			[5, ::Legends.Armor.Barbarian.legend_barbarian_southern_armor]
 		];
-		armor.push(
-			[5, "barbarians/legend_barbarian_southern_armor"]
-		);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/bear_headpiece"],
-			[1, "barbarians/leather_helmet"],
-			[1, "barbarians/crude_metal_helmet"],
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
+			[1, ::Legends.Helmet.Barbarian.leather_helmet],
+			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
 			[1, ""]
 		]);
 		if (item != null)

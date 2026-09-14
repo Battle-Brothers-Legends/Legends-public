@@ -17,7 +17,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_hand_crossbow";
 		this.m.Name = "Hand Crossbow";
-		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances and be held in the off hand. The small size reduces damage and it requires almost a full turn to reload.";
+		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces power, but doesn't impede the hands so a melee weapon can be held in both hands. Requires almost a full turn to reload.";
 		this.m.IconLarge = "weapons/ranged/legend_hand_crossbow_01.png";
 		this.m.Icon = "weapons/ranged/legend_hand_crossbow_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Crossbow;
@@ -30,7 +30,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmamentIcon = "icon_legend_hand_crossbow_01";
 		this.m.Value = 1500;
 		this.m.RangeMin = 1;
-		this.m.RangeMax = 5;
+		this.m.RangeMax = 4;
 		this.m.RangeIdeal = 4;
 		this.m.StaminaModifier = -8;
 		this.m.Condition = 30.0;
@@ -56,7 +56,7 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Must be reloaded before firing again[/color]"
+				text = "[color=%negative%]Must be reloaded before firing again[/color]"
 			});
 		}
 
@@ -67,13 +67,13 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 	{
 		this.weapon.onEquip();
 
-		this.addSkill(this.new("scripts/skills/actives/shoot_bolt"));
-		this.addSkill(this.new("scripts/skills/actives/legend_piercing_bolt_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.ShootBolt);
 
 		if (!this.m.IsLoaded)
 		{
-			this.addSkill(this.new("scripts/skills/actives/reload_bolt"));
+			::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 		}
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
 	}
 
 	function onCombatFinished()

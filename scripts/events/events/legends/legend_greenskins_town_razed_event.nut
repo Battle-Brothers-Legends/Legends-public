@@ -2,8 +2,7 @@ this.legend_greenskins_town_razed_event <- this.inherit("scripts/events/event", 
 	m = {
 		News = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.crisis.greenskins_town_razed";
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 7.0 * this.World.getTime().SecondsPerDay;
@@ -14,53 +13,35 @@ this.legend_greenskins_town_razed_event <- this.inherit("scripts/events/event", 
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Are we losing this war?",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "Are we losing this war?",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		if (!this.World.State.getPlayer().getTile().HasRoad)
-		{
 			return;
-		}
-
+		
 		if (this.World.Statistics.hasNews("crisis_greenskins_town_razed"))
-		{
 			this.m.Score = 2000;
-		}
 	}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.News = this.World.Statistics.popNews("crisis_greenskins_town_razed");
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"city",
 			this.m.News.get("City")
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.News = null;
 	}
-
 });
 

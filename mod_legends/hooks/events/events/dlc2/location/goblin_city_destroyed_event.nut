@@ -6,7 +6,7 @@
 			if (s.ID == "B") {
 				s.start <- function ( _event ) {
 					this.World.Assets.getStash().makeEmptySlots(1);
-					local item = this.new("scripts/items/legend_helmets/legendary/legend_emperors_countenance")
+					local item = this.new("scripts/items/legend_helmets/legendary/legend_emperors_countenance");
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,

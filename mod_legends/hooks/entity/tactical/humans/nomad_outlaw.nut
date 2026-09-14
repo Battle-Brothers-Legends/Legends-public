@@ -1,12 +1,20 @@
-::mods_hookExactClass("entity/tactical/humans/nomad_outlaw", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/nomad_outlaw", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsOutlawDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -24,13 +32,11 @@
 			"weapons/oriental/two_handed_saif",
 			"weapons/two_handed_wooden_hammer",
 			"weapons/woodcutters_axe",
-			"weapons/battle_whip"
+			"weapons/battle_whip",
 		];
 
-		if (this.Const.DLC.Unhold)
-		{
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days > 10)
-			{
+		if (::Const.DLC.Unhold) {
+			if (!::Tactical.State.isScenarioMode() && this.World.getTime().Days > this.Const.World.Scaling.Nomads.OutlawThreeHeadedFlailDay) {
 				weapons.push("weapons/three_headed_flail");
 			}
 		}
@@ -47,21 +53,21 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[2, "oriental/stitched_nomad_armor"],
-			[1, "oriental/plated_nomad_mail"],
-			[1, "citrene_nomad_cutthroat_armor_00"],
-			[1, "citrene_nomad_cutthroat_armor_01"],
-			[1, "theamson_nomad_outlaw_armor"],
-			[3, "oriental/leather_nomad_robe"]
+			[2, ::Legends.Armor.Southern.stitched_nomad_armor],
+			[1, ::Legends.Armor.Southern.plated_nomad_mail],
+			[1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_00],
+			[1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_01],
+			[1, ::Legends.Armor.Standard.theamson_nomad_outlaw_armor],
+			[3, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
 		local helmet = [
-			[3, "oriental/nomad_leather_cap"],
-			[2, "oriental/nomad_light_helmet"],
-			[3, "citrene_nomad_cutthroat_helmet_01"],
-			[1, "theamson_nomad_outlaw_helmet"],
-			[2, "oriental/nomad_reinforced_helmet"],
-			[1, "oriental/leather_head_wrap"]
+			[3, ::Legends.Helmet.Southern.nomad_leather_cap],
+			[2, ::Legends.Helmet.Southern.nomad_light_helmet],
+			[3, ::Legends.Helmet.Standard.citrene_nomad_cutthroat_helmet_01],
+			[1, ::Legends.Helmet.Standard.theamson_nomad_outlaw_helmet],
+			[2, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
+			[1, ::Legends.Helmet.Southern.leather_head_wrap]
 		];
 		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 	}

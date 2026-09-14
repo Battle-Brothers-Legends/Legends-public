@@ -8,7 +8,7 @@
 		[
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		]);
 	}
 });

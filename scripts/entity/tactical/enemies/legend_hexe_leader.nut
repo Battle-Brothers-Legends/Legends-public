@@ -1,6 +1,11 @@
 this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
-		IsCharming = false
+		IsCharming = false,
+		DroppableRunes = [
+			::Legends.Rune.LegendRshClarity,
+			::Legends.Rune.LegendRshBravery,
+			::Legends.Rune.LegendRshLuck
+		]
 	},
 	function create()
 	{
@@ -83,6 +88,28 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1] = 2.5;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/hexe_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[20, function () {
+				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local rune = ::new(::Legends.Runes.get(selected).Script);
+				rune.setRuneVariant(selected);
+				rune.setRuneBonus(true);
+				rune.updateRuneSigilToken();
+				return rune;
+			}.bindenv(this)]
+		]);
+		local rolls = ::Legends.S.extraLootChance(2);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_witch_leader_hair_item"],
+				[20, "scripts/items/misc/mysterious_herbs_item"],
+				[30, "scripts/items/misc/poisoned_apple_item"],
+			]);
+		}
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+			this.m.OnDeathLootTable.push([3, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 
 	function playIdleSound()
@@ -101,6 +128,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("BagAHag", 1, 1);
@@ -108,7 +136,6 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -157,71 +184,31 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Hexe";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					local r = this.Math.rand(1, 100);
-					local loot;
-
-					if (r <= 50)
-					{
-						loot = this.new("scripts/items/misc/legend_witch_leader_hair_item");
-					}
-					else if (r <= 70)
-					{
-						loot = this.new("scripts/items/misc/mysterious_herbs_item");
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/poisoned_apple_item");
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 50)
-					{
-						local food = this.new("scripts/items/supplies/black_marsh_stew_item");
-						food.randomizeAmount();
-						food.randomizeBestBefore();
-						food.drop(_tile);
-					}
-				}
-
-				if (this.Math.rand(1, 100) <= 20)
-				{
-					local rune;
-					local selected = this.Math.rand(11,13);
-					switch(selected)
-					{
-						case 11:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_clarity");
-							break;
-
-						case 12:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-							break;
-
-						case 13:
-							rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-							break;
-					}
-					rune.setRuneVariant(selected);
-					rune.setRuneBonus(true);
-					rune.drop(_tile);
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Hexe";
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onFactionChanged()
@@ -242,7 +229,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Hexe);
+		b.setValues(this.Const.Tactical.Actor.LegendHexeLeader);
 		b.TargetAttractionMult = 3.0;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
@@ -262,7 +249,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		charm_armor.setBrush("bust_hexen_charmed_dress_0" + this.Math.rand(1, 3));
 		charm_armor.Visible = false;
 		local head = this.addSprite("head");
-		head.setBrush("bust_hexenleader_head_01");
+		head.setBrush("bust_hexenleader_head_0" + ::Math.rand(1, 3));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local charm_head = this.addSprite("charm_head");
@@ -278,59 +265,26 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_intensely_charm_skill"));
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-		this.m.Skills.add(this.new("scripts/skills/actives/hex_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sleep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_teleport_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fake_drink_night_vision_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendIntenselyCharm);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
+		::Legends.Actives.grant(this, ::Legends.Active.Hex);
+		::Legends.Actives.grant(this, ::Legends.Active.Wither);
+		::Legends.Actives.grant(this, ::Legends.Active.Sleep);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
+		::Legends.Actives.grant(this, ::Legends.Active.FakeDrinkNightVision);
 
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Skills.add(this.new("scripts/skills/racial/schrat_racial"));
+			::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += this.Math.floor(bonus / 2);
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += bonus;
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function onUpdateInjuryLayer()
@@ -365,7 +319,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
-		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		 this.getItems().equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 	}
 
 	function setCharming( _f )
@@ -512,4 +466,3 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

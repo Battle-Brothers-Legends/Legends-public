@@ -9,7 +9,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantSenses);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantSenses);
 		this.m.Icon = "ui/perks/legend_vala_chant_senses_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_chant_senses_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -17,8 +17,6 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
@@ -31,31 +29,22 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.ChantIsActive)
-		{
 			return false;
-		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			return false;
-		}
 
-		if (actor.getMainhandItem() == null)
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
-
-		if (actor.getMainhandItem().getID() != "weapon.legend_staff_vala")
-		{
-			return false;
-		}
 
 		return true;
+	}
+
+	function getDescription() {
+		return "An intriguing chant that stimulates the senses.";
 	}
 
 	function getTooltip()
@@ -66,26 +55,26 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount."
+			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their melee and ranged defenses. Being closer to the Vala increases the bonus amount"
 		});
 
-		if (actor.getMainhandItem() == null || actor.getMainhandItem() != "weapon.legend_staff_vala")
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff.[/color]"
+				text = "[color=%negative%]Requires the Vala\'s staff.[/color]"
 			});
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Already chanting.[/color]"
+				text = "[color=%negative%]Already chanting.[/color]"
 			});
 		}
 
@@ -97,18 +86,18 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 		}
 
 		foreach( tar in targets )
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_chant_senses_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaChantSensesEffect);
 				}
 			}
 		}
@@ -149,12 +138,12 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting") && this.m.ChantIsActive)
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive)
 		{
 			this.Sound.play("sounds/combat/legend_vala_senses.wav");
 		}
@@ -163,7 +152,7 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 				{
 					if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 					{
@@ -187,20 +176,20 @@ this.perk_legend_vala_chant_senses <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local targets = this.Tactical.Entities.getAllInstances();
 
-			if (!actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			{
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_currently_chanting"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 			}
 
 			foreach( tar in targets )
 			{
 				foreach( t in tar )
 				{
-					if (t.isAlliedWith(actor) && !t.getSkills().hasSkill("effects.legend_vala_chant_senses_effect"))
+					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantSensesEffect))
 					{
-						local senses = this.new("scripts/skills/effects/legend_vala_chant_senses_effect");
-						senses.setVala(this.getContainer().getActor());
-						t.getSkills().add(senses);
+						::Legends.Effects.grant(t, ::Legends.Effect.LegendValaChantSensesEffect, function(_effect) {
+							_effect.setVala(this.getContainer().getActor());
+						}.bindenv(this));
 
 						if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 						{

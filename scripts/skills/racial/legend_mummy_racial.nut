@@ -73,7 +73,7 @@ this.legend_mummy_racial <- this.inherit("scripts/skills/skill", {
 	{
 		if (_killer != null)
 		{
-			_killer.getSkills().add(this.new("scripts/skills/effects/legend_mummy_curse_effect"));
+			::Legends.Effects.grant(_killer, ::Legends.Effect.LegendMummyCurse);
 		}
 	}
 });

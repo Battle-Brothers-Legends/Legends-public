@@ -5,14 +5,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ID = "actives.legend_prayer_of_life";
 		this.m.Name = "Prayer of Hope";
 		this.m.Description = "Push allies on with your chant of holy scripture, restoring the health of all allies within 1 tile by 20% of your resolve. Does not work on cultists. Inflicts a disintegrating ailment on each adjacent undead.";
-		this.m.Icon = "skills/prayer_green_square.png";
-		this.m.IconDisabled = "skills/prayer_green_square_bw.png";
-		this.m.Overlay = "prayer_green";
-		this.m.SoundOnUse = [
-			"sounds/ambience/buildings/temple_prayer_00.wav",
-			"sounds/ambience/buildings/temple_prayer_01.wav",
-			"sounds/ambience/buildings/temple_prayer_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
@@ -60,7 +53,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local myTile = _user.getTile();
 		local actors = this.Tactical.Entities.getAllInstancesAsArray();
-
+		local bonus = _user.getCurrentProperties().Bravery * 0.20;
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())
@@ -75,20 +68,15 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 
 			if (a.getFaction() == _user.getFaction())
 			{
-				if (!a.getFlags().has("cultist") && !a.getSkills().hasSkill("effects.legend_prayer_of_life"))
+				if (!a.getFlags().has("cultist") && !::Legends.Effects.has(a, ::Legends.Effect.LegendPrayerOfLife))
 				{
-					local effect = this.new("scripts/skills/effects/legend_prayer_of_life_effect");
-					effect.m.Resolve = this.getContainer().getActor().getBravery();
-					a.getSkills().add(effect);
+					::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfLife, @(_effect) _effect.setHeal(bonus));
 				}
 			}
 
 			if (a.getFlags().has("undead") && !a.getFlags().has("ghoul"))
 			{
-				if (!a.getSkills().hasSkill("effects.disintegrating"))
-				{
-					a.getSkills().add(this.new("scripts/skills/effects/legend_disintegrating_effect"));
-				}
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDisintegrating);
 			}
 		}
 

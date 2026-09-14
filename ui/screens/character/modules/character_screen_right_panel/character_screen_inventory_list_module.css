@@ -64,7 +64,7 @@
 .character-screen-container .inventory-list-module .slot-count-panel .slot-count-container
 {
 	top: 2.2rem;
-	right: 11.7rem;
+	right: 9.7rem;
 	bottom: 0;
 	width: 12.6rem;
 	height: 2.4rem;
@@ -149,6 +149,16 @@
 .character-screen-container .inventory-list-module .filter-panel .l-button.is-mood-filter
 {
 	left: 30.0rem;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers
+{
+	left: 35.0rem;
+}
+
+.character-screen-container .inventory-list-module .filter-panel .l-button.is-organize-layers-strip
+{
+	left: 40.0rem;
 }
 
 

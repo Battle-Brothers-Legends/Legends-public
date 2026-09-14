@@ -5,11 +5,10 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_dazed";
-		this.m.Name = "Stupefied";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDazed);
 		this.m.Icon = "ui/perks/daze56_circle.png";
 		this.m.IconMini = "mini_daze56_circle";
-		this.m.Overlay = "daze56_circle";
+		this.m.Overlay = "status_daze56_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -18,7 +17,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has received so heavy a blow that they are dazed, confused and gasping for air. Will wear off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has been stupefied, left confused and gasping for air. The effect will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -38,19 +37,19 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Damage"
+				text = "[color=%negative%]-50%[/color] Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Max Fatigue"
+				text = "[color=%negative%]-50%[/color] Max Fatigue"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Initiative"
+				text = "[color=%negative%]-50%[/color] Initiative"
 			}
 		];
 	}
@@ -82,7 +81,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").Visible = false;
 		}
@@ -97,7 +96,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 		_properties.InitiativeMult *= 0.5;
 		_properties.StaminaMult *= 0.5;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
 			actor.getSprite("status_stunned").Visible = true;

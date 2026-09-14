@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "This dye maker creates precious dies from all kinds of ingredients. The recipes for these expensive goods are well-kept secrets. Contributes dyes, paints and colourful clothes to the local town";
+		this.m.Description = "This dye maker creates precious dies from all kinds of ingredients. The recipes for these expensive goods are well-kept secrets. Contributes dyes, paints and colourful clothes to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

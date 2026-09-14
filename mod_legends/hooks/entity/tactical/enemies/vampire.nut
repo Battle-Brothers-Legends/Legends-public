@@ -6,10 +6,68 @@
 	o.create = function ()
 	{
 		create();
-		if(this.Math.rand(1, 100) <= 25)
+		this.m.IsLady = this.Math.rand(1, 100) <= 50;
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
 		{
-			this.m.IsLady = true;
+			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 		}
+	}
+
+	o.onUpdateInjuryLayer = function ()
+	{
+		local p = this.getHitpointsPct();
+		local bodyBrush = this.getSprite("body").getBrush().Name;
+		local headBrush = this.getSprite("head").getBrush().Name;
+
+		if (p <= 0.33)
+		{
+			this.getSprite("body").setBrush("bust_skeleton_body_03");
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_03_injured");
+			this.getSprite("head").setBrush("bust_skeleton_head_03");
+			this.getSprite("injury").setBrush("bust_skeleton_head_03_injured");
+		}
+		else if (p <= 0.66)
+		{
+			this.getSprite("body").setBrush("bust_skeleton_body_04");
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_04_injured");
+			this.getSprite("head").setBrush("bust_skeleton_head_04");
+			this.getSprite("injury").setBrush("bust_skeleton_head_04_injured");
+		}
+		else if (this.m.IsLady == true)
+		{
+			this.getSprite("body").setBrush("bust_vampire_lady_body_01");
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
+			this.getSprite("head").setBrush("bust_vampire_lady_head_01");
+			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
+		}
+		else
+		{
+			this.getSprite("body").setBrush("bust_skeleton_body_05");
+			this.getSprite("body_injury").setBrush("bust_skeleton_body_05_injured");
+			this.getSprite("head").setBrush("bust_skeleton_head_05");
+			this.getSprite("injury").setBrush("bust_skeleton_head_05_injured");
+		}
+
+		this.getSprite("body_injury").Visible = this.m.WasInjured;
+		this.getSprite("injury").Visible = this.m.WasInjured;
+
+		if (bodyBrush != this.getSprite("body").getBrush().Name)
+		{
+			local old_body = this.getSprite("old_body");
+			old_body.Visible = true;
+			old_body.Alpha = 255;
+			old_body.setBrush(bodyBrush);
+			old_body.fadeOutAndHide(3000);
+			local old_head = this.getSprite("old_head");
+			old_head.Visible = true;
+			old_head.Alpha = 255;
+			old_head.setBrush(headBrush);
+			old_head.fadeOutAndHide(3000);
+		}
+
+		this.setDirty(true);
 	}
 
 	o.onInit = function ()
@@ -37,7 +95,7 @@
 
 		if (this.Math.rand(1, 100) <= 75)
 		{
-			body_detail.setBrush("bust_skeleton_detail_0" + this.Math.rand(2, 3));
+			this.m.IsLady ? body_detail.setBrush("bust_vampire_lady_detail_0" + this.Math.rand(1, 2)) : body_detail.setBrush("bust_skeleton_detail_0" + this.Math.rand(2, 3));
 		}
 
 		local head = this.addSprite("head");
@@ -51,7 +109,7 @@
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
-			head_detail.setBrush("bust_skeleton_head_detail_01");
+			this.m.IsLady ? head_detail.setBrush("bust_vampire_head_lady_detail_01") : head_detail.setBrush("bust_skeleton_head_detail_01");
 		}
 
 		local beard = this.addSprite("beard");
@@ -60,17 +118,15 @@
 		local hair = this.addSprite("hair");
 		hair.Color = beard.Color;
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (this.Math.rand(1, 100) <= 75 && !this.m.IsLady)
 		{
-			local idx = this.Math.rand(0, this.Const.Hair.Vampire.len());
-			if (idx = this.Const.Hair.Vampire.len())
-			{
-				hair.setBrush("bust_vampire_lord_hair_01")
-			}
-			else
-			{
-				hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Vampire[idx]);
-			}
+			local idx = this.Math.rand(0, this.Const.Hair.Vampire.len() - 1);
+			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Vampire[idx]);
+		}
+		else if (this.Math.rand(1, 100) <= 67 && this.m.IsLady)
+		{
+			local idx = this.Math.rand(0, this.Const.Hair.VampireLady.len() - 1);
+			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.VampireLady[idx]);
 		}
 
 		this.setSpriteOffset("hair", this.createVec(0, -3));
@@ -78,7 +134,7 @@
 		local v2 = 0;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 		this.addSprite("accessory");
@@ -111,10 +167,10 @@
 			beard_top.Alpha = 0;
 		}
 
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/racial/vampire_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/darkflight"));
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialVampire);
+		::Legends.Actives.grant(this, ::Legends.Active.Darkflight);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
@@ -131,27 +187,6 @@
 		}
 	}
 
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-				if (r <= 5)
-				{
-					loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					loot.drop(_tile);
-				}
-			}
-		}
-	}
-
 	o.makeMiniboss <- function ()
 	{
 		if (!this.actor.makeMiniboss())
@@ -160,14 +195,10 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		if (this.Math.rand(1, 100) <= 66)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_khopesh"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/named/named_crypt_cleaver"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/named_khopesh"],
+			[2, "weapons/named/named_crypt_cleaver"]
+		], "scripts/items/"));
 	}
 
 	local onFactionChanged = o.onFactionChanged;

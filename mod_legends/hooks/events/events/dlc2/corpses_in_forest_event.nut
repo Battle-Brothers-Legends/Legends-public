@@ -17,7 +17,7 @@
 					});
 
 					item = this.Const.World.Common.pickArmor([
-						[1, "basic_mail_shirt"],
+						[1, ::Legends.Armor.Standard.basic_mail_shirt],
 					]);
 					item.setCondition(this.Math.rand(0.25 * item.getConditionMax(), 0.60 * item.getConditionMax()) * 1.0);
 
@@ -25,7 +25,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 				}
 			}

@@ -3,16 +3,8 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function create()
 	{
 		this.weapon.create();
-		this.m.SoundOnUse <- [
-			"sounds/combat/puncture_01.wav",
-			"sounds/combat/puncture_02.wav",
-			"sounds/combat/puncture_03.wav"
-		];
-		this.m.SoundOnHit <- [
-			"sounds/combat/puncture_hit_01.wav",
-			"sounds/combat/puncture_hit_02.wav",
-			"sounds/combat/puncture_hit_03.wav"
-		];
+		this.m.SoundOnUse <- ::Legends.S.setSounds("sounds/combat/puncture", 3);
+		this.m.SoundOnHit <- ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
 		this.m.ID = "weapon.legend_redback_dagger";
 		this.m.Name = "Redback Dagger";
 		this.m.Description = "A dagger made from the fang and poison gland of a redback spider, it can inject redback poison into a target";
@@ -29,10 +21,22 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 70.0;
 		this.m.ConditionMax = 70.0;
 		this.m.Value = 3800;
+		this.m.Ammo = 8;
+		this.m.AmmoMax = 8;
+		this.m.AmmoCost = 1;
+		this.m.ItemType = this.m.ItemType;
 		this.m.RegularDamage = 26;
 		this.m.RegularDamageMax = 52;
 		this.m.ArmorDamageMult = 0.7;
-		this.m.DirectDamageMult = 0.36;
+		this.m.DirectDamageMult = 0.2;
+	}
+
+	function getAmmo() {
+		return this.m.Ammo;
+	}
+
+	function getAmmoMax() {
+		return this.m.AmmoMax;
 	}
 
 	function getTooltip()
@@ -42,13 +46,13 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Applies redback poison to the target on any successful attack, dealing 55 damage over 10 turns."
+			text = "Applies redback poison to the target on any successful attack, dealing [color=%damage%]55[/color] damage over [color=%damage%]10[/color] turns."
 		});
 		result.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Puncture damage is increased by [color=" + this.Const.UI.Color.PositiveValue + "]33%[/color] vs rooted targets"
+			text = "Puncture damage is increased by [color=%positive%]33%[/color] vs rooted targets"
 		});
 		return result;
 	}
@@ -57,8 +61,10 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/stab"));
-		this.addSkill(this.new("scripts/skills/actives/puncture"));
+		::Legends.Actives.grant(this, ::Legends.Active.Stab);
+		::Legends.Actives.grant(this, ::Legends.Active.Puncture);
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowKnife);
 	}
 
 	function onUpdateProperties( _properties )
@@ -68,7 +74,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (_skill != null && _skill.getID() == "actives.puncture" && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted)
+		if (_skill != null && _skill.getID() == ::Legends.Actives.getID(::Legends.Active.Puncture) && _targetEntity != null && _targetEntity.getCurrentProperties().IsRooted)
 		{
 			_properties.DamageRegularMult *= 1.33;
 		}
@@ -86,6 +92,7 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 
 	function onDamageDealt( _target, _skill, _hitInfo )
 	{
+		this.weapon.onDamageDealt(_target, _skill, _hitInfo);
 		if (_target.getCurrentProperties().IsImmuneToPoison || _hitInfo.DamageInflictedHitpoints <= this.Const.Combat.PoisonEffectMinDamage || _target.getHitpoints() <= 0)
 			return;
 
@@ -106,23 +113,21 @@ this.legend_redback_dagger <- this.inherit("scripts/items/weapons/weapon", {
 		}
 
 		this.spawnIcon("status_effect_54", _target.getTile());
-		local poison = _target.getSkills().getSkillByID("effects.legend_redback_spider_poison");
+		local poison = ::Legends.Effects.get(_target, ::Legends.Effect.LegendRedbackSpiderPoison);
 		local actor = this.getContainer().getActor();
 
 		if (poison == null)
 		{
-			local effect = this.new("scripts/skills/effects/legend_redback_spider_poison_effect");
-
-			if (actor.getFaction() == this.Const.Faction.Player )
-				effect.setActor(actor);
-
-			_target.getSkills().add(effect);
+			::Legends.Effects.grant(_target, ::Legends.Effect.LegendRedbackSpiderPoison, function(_effect) {
+				if (actor.getFaction() == this.Const.Faction.Player )
+					_effect.setActor(actor);
+			}.bindenv(this));
 		}
 		else
 		{
 			if (actor.getFaction() == this.Const.Faction.Player )
 				poison.setActor(actor);
-			
+
 			poison.resetTime();
 		}
 	}

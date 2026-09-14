@@ -30,7 +30,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 2);
+		local r = this.Math.rand(1, 3);
 
 		if (r == 1)
 		{
@@ -40,6 +40,10 @@
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/warscythe"));
 		}
+		else
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/ancient/legend_royal_lance"));
+		}
 
 		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
 		{
@@ -47,20 +51,50 @@
 		}
 
 		local armor = [
-			[1, "ancient/ancient_plated_scale_hauberk"],
-			[1, "ancient/ancient_scale_coat"],
-			[1, "ancient/ancient_plate_harness"],
-			[1, "ancient/ancient_plated_mail_hauberk"]
+			[1, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
+			[1, ::Legends.Armor.Ancient.ancient_scale_coat],
+			[1, ::Legends.Armor.Ancient.ancient_plate_harness],
+			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_honorguard_helmet"]
+			[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 		]);
 		if (item != null)
 		{
 			this.m.Items.equip(item);
 		}
+	}
+
+	o.makeMiniboss <- function ()
+	{
+		if (!this.actor.makeMiniboss())
+		{
+			return false;
+		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		local weapons = [
+			"legend_named_royal_lance",
+			"named_warscythe",
+			"named_bladed_pike"
+		];
+		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		this.m.Items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Ancient.ancient_heavy_restored_armor]
+		]));
+
+		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Ancient.ancient_heavy_restored_helmet]
+		]));
+
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackswing);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrustMaster);
+		return true;
 	}
 });

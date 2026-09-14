@@ -5,15 +5,30 @@
 		create();
 		this.m.Condition = 95.0;
 		this.m.ConditionMax = 95.0;
-		this.m.RegularDamage = 35;
-		this.m.RegularDamageMax = 50;
+		this.m.RegularDamage = 45;
+		this.m.RegularDamageMax = 60;
 		this.m.ArmorDamageMult = 1.15;
+		this.m.DirectDamageAdd = 0.1;
+	}
+
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBackstab);
+			return;
+		}
+
+		weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
 		onEquip();
-		this.addSkill(this.new("scripts/skills/actives/deathblow_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
+			_skill.m.DeathblowBonus = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
 	}
 });

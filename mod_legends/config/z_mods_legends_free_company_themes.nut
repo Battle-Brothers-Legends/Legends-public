@@ -1,6 +1,6 @@
 ::Const.FreeCompanyDefaultLootTable <- ["trade/amber_shards_item", "trade/furs_item", "trade/legend_tin_ingots_item", "trade/spices_item", "trade/silk_item", "trade/peat_bricks_item", "trade/cloth_rolls_item"];
 
-//Anything custom is technically optional, although you'll mostly want to change the UnitOutfits certainly. 
+//Anything custom is technically optional, although you'll mostly want to change the UnitOutfits certainly.
 //Spawnlist highly doubt you'd want to change unless you're creating your own spawnlist
 //You can get away with having a very simple table such as the following
 /*
@@ -27,7 +27,7 @@
 		UnitOutfits = [															//Unit outfits each need a type and an array of outfits
 			// {
 			//	 Type = this.Const.EntityType.FreeCompanyLeader,
-			//	 Outfits = [ [1, "mercenary_archer_outfit_00"] ]
+			//	 Outfits = [ [1, ::Legends.Outfit.mercenary_archer_outfit_00] ]
 			// }
 		]														   //Leave this for default outfits
 	},
@@ -51,7 +51,7 @@
 	// 		}
 	// 	]
 	// }
-]
+];
 
 ::Const.FreeCompanyOneTimeList <-
 [
@@ -64,7 +64,9 @@
 		UnitOutfits = [
 			{
 				Type = this.Const.EntityType.FreeCompanyLeader,
-				Outfits = [ "mercenary_leader_outfit_gilded_00" ]
+				Outfits = [
+					::Legends.Outfit.mercenary_leader_outfit_gilded_00
+				]
 				// Outfits = this.Const.Outfits.GildedFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
 			}
 		]

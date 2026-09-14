@@ -4,21 +4,17 @@
 	{
 		local potential_origins = [];
 
-		foreach( s in _faction.getSettlements() )
-		{
+		foreach (s in _faction.getSettlements()) {
 			if (s.getLastSpawnTime() + 300.0 > this.Time.getVirtualTimeF())
-			{
 				continue;
-			}
 
 			potential_origins.push({
 				D = s,
-				P = s.getResources()
+				P = ::Math.max(1, s.getResources())
 			});
 		}
 
-		if (potential_origins.len() == 0)
-		{
+		if (potential_origins.len() == 0) {
 			return;
 		}
 
@@ -27,18 +23,16 @@
 		local spawnpoints = [];
 		spawnpoints.push(myTile);
 
-		foreach( a in origin.getAttachedLocations() )
-		{
-			if (a.isActive() && a.isMilitary())
-			{
+		foreach (a in origin.getAttachedLocations()) {
+			if (a.isActive() && a.isMilitary()) {
 				spawnpoints.push(a.getTile());
 			}
 		}
 
 		local sites = [
-		"location.holy_site.oracle",
-		"location.holy_site.meteorite",
-		"location.holy_site.vulcano"
+			"location.holy_site.oracle",
+			"location.holy_site.meteorite",
+			"location.holy_site.vulcano"
 		];
 		local locations = this.World.EntityManager.getLocations();
 		local activeContract = this.World.Contracts.getActiveContract();
@@ -131,7 +125,7 @@
 		_party.getLoot().Ammo = this.Math.rand(10, 40);
 
 		local r = this.Math.rand(1, 4);
-		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"]
+		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"];
 		for(local i = 0; i < this.Math.round(r/2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			_party.addToInventory(arr[r-1])
 	}

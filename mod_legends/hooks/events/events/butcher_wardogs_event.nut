@@ -11,24 +11,14 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.World.Assets.addMoralReputation(-2);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-2));
 				}
 			}
 			if (s.ID == "C") {
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.World.Assets.addMoralReputation(1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1));
 				}
 			}
 		}

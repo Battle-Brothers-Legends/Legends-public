@@ -11,6 +11,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor", {
 		this.updateVariant();
 		this.m.ImpactSound = $impactSound;
 		this.m.InventorySound = $invSound;
+		this.m.BaseInventorySound = $invSound;
 		this.m.Value = $value;
 		this.m.Condition = $condition;
 		this.m.ConditionMax = $condition;
@@ -26,7 +27,7 @@ this.$name <- this.inherit("scripts/items/legend_armor/legend_armor", {
 		this.m.Sprite = "$brush" + "_" + variant;
 		this.m.SpriteDamaged = "$brush" + "_" + variant + "_damaged";
 		this.m.SpriteCorpse = "$brush" + "_" + variant + "_dead";
-		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png"
-		this.m.Icon = "$overlay" + "_" + variant + ".png"
+		this.m.IconLarge ="$overlayLarge" + "_" + variant + ".png";
+		this.m.Icon = "$overlay" + "_" + variant + ".png";
 	}
 });

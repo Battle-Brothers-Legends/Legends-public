@@ -3,7 +3,7 @@ this.legend_tent_gather <- this.inherit("scripts/items/trade/trading_good_item",
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.gather_tent";
+		this.m.ID = ::Legends.Camp.Tent.Gather;
 		this.m.Name = "Gatherer\'s tools";
 		this.m.Description = "A collection of tools for gathering plants, comes with shelves, woven baskets, sickles, drying racks and bags. Having this in your stash upgrades your camp.";
 		this.m.Icon = "tents/tent_gather_70x70.png";

@@ -1,10 +1,19 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_beastmaster", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/barbarian_beastmaster", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.removeByID("effects.dodge");
+		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
@@ -12,11 +21,11 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.BeastmasterDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -27,11 +36,11 @@
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/thorned_whip"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "barbarians/hide_and_bone_armor"]
+				[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
-			[1, "barbarians/beastmasters_headpiece"]
+			[1, ::Legends.Helmet.Barbarian.beastmasters_headpiece]
 		]));
 	}
 });

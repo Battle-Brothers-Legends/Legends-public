@@ -5,7 +5,7 @@
 		create();
 		this.m.Name = "Barbarian Drum";
 		this.m.Description = "A barbarian instrument, can produce inspiring rhythms if you have the skill. The drum sticks make weak maces in a pinch.";
-		this.m.Categories = "Musical, Staff, Two-Handed";
+		this.m.Categories = "Musical Instrument, Two-Handed";
 		this.m.IconLarge = "weapons/melee/wildmen_10.png";
 		this.m.Icon = "weapons/melee/wildmen_10_70x70.png";
 		this.m.BreakingSound = "sounds/combat/bash_hit_03.wav";
@@ -28,10 +28,14 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsDrumBash = true;
-		this.addSkill(s);
-		this.addSkill(this.new("scripts/skills/actives/knock_out"));
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsDrumBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
+		::Legends.Actives.remove(this, ::Legends.Active.DrumsOfWar);
 	}
 
 	o.onUpdateProperties <- function ( _properties )

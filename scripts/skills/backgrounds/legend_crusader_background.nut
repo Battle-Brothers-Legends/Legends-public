@@ -3,14 +3,14 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_crusader";
-		this.m.Name = "Holy Crusader";
-		this.m.Icon = "ui/backgrounds/crusader.png";
-		this.m.HiringCost = 3500;
-		this.m.DailyCost = 35;
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCrusader);
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.Paranoid),
 			::Legends.Traits.getID(::Legends.Trait.NightBlind),
 			::Legends.Traits.getID(::Legends.Trait.Swift),
@@ -22,12 +22,12 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
 			::Legends.Traits.getID(::Legends.Trait.Irrational),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
@@ -42,81 +42,55 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			this.Const.Attributes.RangedSkill,
 			this.Const.Attributes.RangedDefense
 		];
-		this.m.Faces = this.Const.Faces.SmartMale;
-		this.m.Hairs = this.Const.Hair.TidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Level = 1;
+		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Combat | this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Untalented;
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[1];
-		this.m.Modifiers.Repair = this.Const.LegendMod.ResourceModifiers.Repair[2];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[2];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[2];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[2];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.TwoHandedTree,
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.HammerTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.CrossbowTree
+		this.m.CustomPerkTree = [
+			[
+				::Legends.Perk.Student,
+				::Legends.Perk.Pathfinder,
+				::Legends.Perk.BagsAndBelts,
+				// ::Legends.Perk.LegendComposure,
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHolyFlame
 			],
-			Defense = [
-				this.Const.Perks.HeavyArmorTree,
-				this.Const.Perks.LightArmorTree
+			[
+				::Legends.Perk.Dodge,
+				::Legends.Perk.RallyTheTroops,
+				::Legends.Perk.LegendTrueBeliever,
 			],
-			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.FitTree
+			[],
+			[],
+			[
+				::Legends.Perk.LegendTacticalManeuvers,
+				::Legends.Perk.LegendBattleheart,
+				::Legends.Perk.LegendLionheart
 			],
-			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
+			[
+				::Legends.Perk.InspiringPresence,
+				::Legends.Perk.Fearsome,
+
 			],
-			Class = [this.Const.Perks.FaithClassTree],
-			Magic = []
-		}
+			[
+				::Legends.Perk.LegendPerfectFocus
+			],
+			[],
+			[],
+			[],
+			[]
+		];
 
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.PrettyFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.SmartMale, Hairs = ::Const.Hair.TidyMale, Beards = ::Const.Beards.Tidy});
 	}
-
-
 
 	function onBuildDescription()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
-		{
-			return "%name% lives to fight the undead scourge. Little is known about her and she almost never talks save for the occasional grunt while swinging her sword. Her language seems to be codified into one simple structure: killing creatures of evil.";
-		}
-		else
-		{
-			return "%name% lives to fight the undead scourge. Little is known about him and he almost never talks save for the occasional grunt while swinging his sword. His language seems to be codified into one simple structure: killing creatures of evil.";
-		}
+		return "%name% lives to fight the undead scourge. Little is known about %them% and %they% almost never talks save for the occasional grunt while swinging %their% sword. %Their% language seems to be codified into one simple structure: killing creatures of evil.";
 	}
 
 	function onSetAppearance()
@@ -153,52 +127,14 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				10,
-				10
-			],
-			Bravery = [
-				10,
-				10
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				15,
-				15
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-20,
-				-20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCrusader);
 	}
 
 	function onAdded()
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle("the Crusader");
-		::Legends.Traits.grant(this, ::Legends.Trait.Loyal);
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendUndeadKiller);
-		//this.m.Container.add(this.new("scripts/skills/perks/perk_legend_rebound"));
-
+		actor.setTitle("the Holy Avenger");
 	}
 
 function onAddEquipment()
@@ -206,57 +142,26 @@ function onAddEquipment()
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.MeleeDefense] = 3;
+		talents[this.Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		local r;
 
-		r = this.Math.rand(0, 4);
-		if (r <= 2)
-		{
-			items.equip(this.new("scripts/items/weapons/flail"));
-		}
-		else if (r == 3)
-		{
-			items.equip(this.new("scripts/items/weapons/winged_mace"));
-		}
-		else if (r == 4)
-		{
-			items.equip(this.new("scripts/items/weapons/warhammer"));
-		}
-
-		local shield;
-		r = this.Math.rand(0, 4);
-		if (r <= 2)
-		{
-			shield = this.new("scripts/items/shields/legend_tower_shield");
-
-		}
-		else if (r == 3)
-		{
-			shield = this.new("scripts/items/shields/heater_shield");
-		}
-		else if (r == 4)
-		{
-			shield = this.new("scripts/items/shields/kite_shield");
-		}
-		shield.onPaintSpecificColor(23);
-		items.equip(shield);
-
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk"],
-			[1, "basic_mail_shirt"],
-			[1, "scale_armor"],
-			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "nasal_helmet"],
-			[1, "nasal_helmet_with_mail"],
-			[1, "mail_coif"],
-			[1, "bascinet_with_mail"],
-			[1, "closed_flat_top_helmet"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
 		]);
 		if (item != null)
 		{

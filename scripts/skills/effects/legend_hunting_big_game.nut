@@ -2,12 +2,11 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_hunting_big_game";
-		this.m.Name = "Hunting Big Game";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHuntingBigGame);
 		this.m.Icon = "ui/perks/BigGameHunterPerk.png";
 		this.m.IconMini = "mini_big_game_hunter";
 		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Description = "When fighting beasts, gain an additional modifier that deals bonus damage based on the target\'s missing health. When not fighting beasts, gain [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] ranged weapon damage but no additional modifier. Only works with ranged weapons.";
+		this.m.Description = "When fighting beasts, this character gains an additional modifier that deals bonus damage based on the target\'s missing health. When not fighting beasts, they gain [color=%positive%]+10%[/color] ranged weapon damage but no additional modifier. Only works with ranged weapons.";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		// this.m.IsRemovedAfterBattle = false;
@@ -43,10 +42,10 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 		if (fightingBeasts)
 		{
 			_properties.DamageRegularMult += 1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0);
-		} 
+		}
 		else //if no beasts present, just give +10% ranged damage
 		{
-			_properties.RangedDamageMult *= 1.10;		
+			_properties.RangedDamageMult *= 1.10;
 		}
 	}
 

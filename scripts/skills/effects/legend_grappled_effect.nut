@@ -4,8 +4,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_grappled";
-		this.m.Name = "Grappled";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrappled);
 		this.m.Icon = "ui/perks/grapple_circle.png";
 		this.m.IconMini = "mini_grapple";
 		this.m.Overlay = "grapple_circle";
@@ -17,7 +16,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character was grappled to the ground and was exhausted in the clinch, they will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has been grappled to the ground and exhausted in the clinch. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -38,15 +37,15 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				// Changed from fatigue to MD. Surprisingly the original didn't mention MD even though it had a whopping 50% MD debuff.
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-12[/color] melee defense"
+				text = "[color=%negative%]-12[/color] melee defense"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				// Changed from fatigue to init
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-30%[/color] Initiative"
-				//text = "[color=" + this.Const.UI.Color.NegativeValue + "]-50%[/color] Maximum Fatigue"
+				text = "[color=%negative%]-30%[/color] Initiative"
+				//text = "[color=%negative%]-50%[/color] Maximum Fatigue"
 			}
 		];
 	}
@@ -66,7 +65,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").Visible = false;
 		}
@@ -78,14 +77,14 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		// Very different in design document. Flat MD debuff and 30% initiative debuff.
-		_properties.MeleeDefense -=12;
-		_properties.Initiative *=0.7;
+		_properties.MeleeDefense -= 12;
+		_properties.Initiative *= 0.7;
 
 		// _properties.StaminaMult *= 0.5;
 		// _properties.MeleeDefense *= 0.5;
 		// _properties.FatigueRecoveryRate -= 20;
 
-		if (!actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (!actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
 			actor.getSprite("status_stunned").Visible = true;

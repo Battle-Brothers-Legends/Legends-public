@@ -47,6 +47,16 @@ if (!("Spawn" in ::Const.World))
 					Cost = 40
 				}
 			]
+		},
+		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
 		}
 	]
 };
@@ -115,6 +125,16 @@ if (!("Spawn" in ::Const.World))
 			]
 		},
 		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
 			Weight = 20,
 			Types = [
 				{
@@ -125,6 +145,31 @@ if (!("Spawn" in ::Const.World))
 					Type = this.Const.World.Spawn.Troops.Ghoul,
 					MinR = 200,
 					Cost = 19
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.GhoulHIGH,
+					MinR = 600,
+					Cost = 50,
+				}
+			]
+		},
+		{
+			Weight = 20,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulLOW,
+					MinR = 1000,
+					Cost = 50
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulMED,
+					MinR = 1000,
+					Cost = 100
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulHIGH,
+					MinR = 1000,
+					Cost = 200,
 				}
 			]
 		}
@@ -172,6 +217,16 @@ if (!("Spawn" in ::Const.World))
 			]
 		},
 		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
 			Weight = 20,
 			Types = [
 				{
@@ -182,6 +237,31 @@ if (!("Spawn" in ::Const.World))
 					Type = this.Const.World.Spawn.Troops.Ghoul,
 					MinR = 200,
 					Cost = 19
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.GhoulHIGH,
+					MinR = 600,
+					Cost = 50,
+				}
+			]
+		},
+		{
+			Weight = 20,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulLOW,
+					MinR = 1000,
+					Cost = 50
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulMED,
+					MinR = 1000,
+					Cost = 100
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSkinGhoulHIGH,
+					MinR = 1000,
+					Cost = 200,
 				}
 			]
 		}
@@ -232,6 +312,26 @@ if (!("Spawn" in ::Const.World))
 			Weight = 10,
 			Types = [
 				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendWicht,
+					MinR = 450,
+					Cost = 40
+				}
+			]
+		},
+		{
+			Weight = 10,
+			Types = [
+				{
 					Type = this.Const.World.Spawn.Troops.Ghost,
 					Cost = 20
 				}
@@ -243,7 +343,7 @@ if (!("Spawn" in ::Const.World))
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 400,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		},
@@ -304,8 +404,28 @@ if (!("Spawn" in ::Const.World))
 			Weight = 10,
 			Types = [
 				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
+			Weight = 10,
+			Types = [
+				{
 					Type = this.Const.World.Spawn.Troops.Ghost,
 					Cost = 20
+				}
+			]
+		},
+		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendWicht,
+					MinR = 450,
+					Cost = 40
 				}
 			]
 		},
@@ -315,7 +435,7 @@ if (!("Spawn" in ::Const.World))
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 400,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		},
@@ -353,12 +473,22 @@ if (!("Spawn" in ::Const.World))
 			]
 		},
 		{
+			Weight = 40,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendWicht,
+					Cost = 40,
+					MinR = 450,
+				}
+			]
+		},
+		{
 			Weight = 10,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 400,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		},
@@ -399,7 +529,7 @@ if (!("Spawn" in ::Const.World))
 					MaxR = 200,
 					Cost = 6,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -408,7 +538,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 200,
 					Cost = 12,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -417,7 +547,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 400,
 					Cost = 25,
 					function Weight(scale) {
-						local c = 100 - ((1.0 - scale) * 100)
+						local c = 100 - ((1.0 - scale) * 100);
 						return this.Math.min(100, c);
 					}
 				}
@@ -455,6 +585,16 @@ if (!("Spawn" in ::Const.World))
 			]
 		},
 		{
+			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
 			Weight = 5,
 			Types = [
 				{
@@ -469,7 +609,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieYeomanBodyguard,
 							Cost = 12,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -477,7 +617,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieKnightBodyguard,
 							Cost = 25,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}
@@ -498,9 +638,19 @@ if (!("Spawn" in ::Const.World))
 			Weight = 4,
 			Types = [
 				{
+					Type = this.Const.World.Spawn.Troops.LegendWicht,
+					MinR = 450,
+					Cost = 40
+				}
+			]
+		},
+		{
+			Weight = 4,
+			Types = [
+				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 400,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		},
@@ -542,7 +692,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 200,
 					Cost = 6,
 					function Weight(scale) {
-						local c = 100 - (scale * 100)
+						local c = 100 - (scale * 100);
 						return this.Math.max(0, c);
 					}
 				},
@@ -551,7 +701,7 @@ if (!("Spawn" in ::Const.World))
 					MinR = 400,
 					Cost = 24,
 					function Weight(scale) {
-						local c = 100 - ((1.0 - scale) * 100)
+						local c = 100 - ((1.0 - scale) * 100);
 						return this.Math.min(100, c);
 					}
 				}
@@ -601,6 +751,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 5,
 			Types = [
 				{
+					Type = this.Const.World.Spawn.Troops.ZombieBetrayer,
+					MinR = 1200,
+					Cost = 65
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types = [
+				{
 					Type = this.Const.World.Spawn.Troops.Necromancer,
 					Cost = 30,
 					Roll = true
@@ -612,7 +772,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieNomadBodyguard,
 							Cost = 6,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -620,7 +780,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.ZombieKnightBodyguard,
 							Cost = 24,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}

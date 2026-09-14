@@ -7,7 +7,7 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_man_mangler";
 		this.m.Name = "Man Mangler";
-		this.m.Description = "A massive, crudely sharpened shard of metal that makes up for its stunted length through sheer weight. So heavy no average human can use it effectively. Attacks cost +5 fatigue per use";
+		this.m.Description = "A massive, crudely sharpened shard of metal that makes up for its stunted length through sheer weight. So heavy no average human can use it effectively.";
 		this.m.IconLarge = "weapons/melee/legend_man_mangler_01.png";
 		this.m.Icon = "weapons/melee/legend_man_mangler_01_70x70.png";
 		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
@@ -32,34 +32,20 @@ this.legend_man_mangler <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	// function getTooltip()
-	// {
-	// 	local ret = this.weapon.getTooltip();
-	// 	ret.push({
-	// 		id = 18,
-	// 		type = "text",
-	// 		icon = "ui/icons/fatigue.png",
-	// 		text = "Builds up additional [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue with every skill use"
-	// 	});
-	// 	return ret;
-	// }
-
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local overheadStrike = this.new("scripts/skills/actives/overhead_strike");
-		overheadStrike.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Overhead Strike's Direct Damage Mult to Man Mangler's Direct Damage Mult
-		overheadStrike.setStunChance(this.m.StunChance);
-		this.addSkill(overheadStrike);
-
-		local skillToAdd = this.new("scripts/skills/actives/slash");
-		skillToAdd.m.isGreatSlash = true;
-		skillToAdd.m.DirectDamageMult = this.m.DirectDamageMult;
-		this.addSkill(skillToAdd);
-
-		local splitShield = this.new("scripts/skills/actives/split_shield");
-		splitShield.setFatigueCost(splitShield.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
-		this.addSkill(splitShield);
+		::Legends.Actives.grant(this, ::Legends.Active.OverheadStrike, function (_skill) {
+			_skill.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Overhead Strike's Direct Damage Mult to Man Mangler's Direct Damage Mult
+			_skill.setStunChance(this.m.StunChance);
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.IsGreatSlash = true;
+			_skill.m.DirectDamageMult = this.m.DirectDamageMult;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5); // it's just 5 cause FatigueOnSkillUse is applied separately
+		}.bindenv(this));
 	}
 
 });

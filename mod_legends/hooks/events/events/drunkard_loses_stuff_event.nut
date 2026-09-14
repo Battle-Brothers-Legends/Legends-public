@@ -1,4 +1,11 @@
 ::mods_hookExactClass("events/events/drunkard_loses_stuff_event", function(o) {
+	o.m.CultistBackgrounds <- [
+		::Legends.Background.Flagellant,
+		::Legends.Background.Cultist,
+		::Legends.Background.ConvertedCultist,
+		::Legends.Background.MonkTurnedFlagellant
+	];
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -11,7 +18,7 @@
 					function getResult( _event ) {
 						return this.Math.rand(1, 100) <= 25 ? "F" : "G";
 					}
-				})
+				});
 			}
 			if (s.ID == "B") {
 				s.Text = "[img]gfx/ui/events/event_05.png[/img]The drunkard falls on their back, staring aimlessly at the sky. You see tears in their eyes and %drunkard% covers their face, trying to hide the shame. There is something about their past that you do not know, perhaps something that led to the drink in the first place. You can\'t possibly punish someone for what they cannot control.";
@@ -52,7 +59,7 @@
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || bro.getBackground().getID() == "background.flagellant"  || bro.getBackground().getID() == "background.cultist"  || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.monk_turned_flagellant" )
+						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
@@ -91,7 +98,7 @@
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || bro.getBackground().getID() == "background.flagellant"  || bro.getBackground().getID() == "background.cultist"  || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().getID() == "background.monk_turned_flagellant" )
+						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
@@ -125,7 +132,7 @@
 					icon = "ui/traits/trait_icon_29.png",
 					text = _event.m.Drunkard.getName() + " is no longer a drunkard"
 				});
-				_event.m.Drunkard.getSkills().add(this.new("scripts/skills/effects_world/hangover_effect"));
+				::Legends.Effects.grant(_event.m.Drunkard, ::Legends.Effect.Hangover);
 				this.List.push({
 					id = 10,
 					icon = "skills/status_effect_62.png",
@@ -137,7 +144,6 @@
 					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
 					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
-				local brothers = this.World.getPlayerRoster().getAll();
 			}
 		});
 		this.m.Screens.push({
@@ -153,7 +159,7 @@
 				}
 			}],
 			function start( _event ) {
-				_event.m.Drunkard.getSkills().add(this.new("scripts/skills/effects_world/hangover_effect"));
+				::Legends.Effects.grant(_event.m.Drunkard, ::Legends.Effect.Hangover);
 				this.List.push({
 					id = 10,
 					icon = "skills/status_effect_62.png",
@@ -165,8 +171,25 @@
 					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
 					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
-				local brothers = this.World.getPlayerRoster().getAll();
 			}
+		});
+	}
+
+	o.getEligibleItems <- function () {
+		return ::World.Assets.getStash().getItems().filter(function (_, _item) {
+			if (_item == null)
+				return false;
+			if (_item.isNamed() || _item.isIndestructible())
+				return false;
+			if (_item.isItemType(::Const.Items.ItemType.Weapon))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Shield))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Armor))
+				return true;
+			if (_item.isItemType(::Const.Items.ItemType.Helmet))
+				return true;
+			return false;
 		});
 	}
 
@@ -179,29 +202,13 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && bro.getBackground().getID() != "background.legend_commander_noble")
+			if (bro.getSkills().hasTrait(::Legends.Trait.Drunkard) && ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderNoble))
 				candidates.push(bro);
 
 		if (candidates.len() == 0)
 			return;
 
-		local items = this.World.Assets.getStash().getItems();
-		local hasItem = false;
-
-		foreach( item in items ) {
-			if (item == null)
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Legendary))
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield) || item.isItemType(this.Const.Items.ItemType.Armor) || item.isItemType(this.Const.Items.ItemType.Helmet)) {
-				hasItem = true;
-				break;
-			}
-		}
-
-		if (!hasItem)
+		if (this.getEligibleItems().len() == 0)
 			return;
 
 		this.m.Drunkard = candidates[this.Math.rand(0, candidates.len() - 1)];
@@ -219,20 +226,7 @@
 	}
 
 	o.onPrepare = function () {
-		local items = this.World.Assets.getStash().getItems();
-		local candidates = [];
-
-		foreach( item in items ) {
-			if (item == null)
-				continue;
-
-			if (item.isNamed() || item.isIndestructible()) //rap I love you but i do not like how sadistic you can be.
-				continue;
-
-			if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield) || item.isItemType(this.Const.Items.ItemType.Armor) || item.isItemType(this.Const.Items.ItemType.Helmet))
-				candidates.push(item);
-		}
-
+		local candidates = this.getEligibleItems();
 		this.m.Item = candidates[this.Math.rand(0, candidates.len() - 1)];
 		this.World.Assets.getStash().remove(this.m.Item);
 	}

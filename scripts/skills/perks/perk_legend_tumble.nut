@@ -1,39 +1,186 @@
 this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	m = {
-		Skills = [
-			"actives.lunge",
-			"actives.footwork",
-			"actives.rotation",
-			"actives.legend_tumble",
-			"actives.legend_leap",
-			"actives.legend_horse_pirouette"
-		]
+		CanTeleport = true,
+		IsTumbling = false,
+		Frame = 0,
+		HitSkillCounter = 0,
+		EvadeSkillCounter = 0,
+		SequenceHit = false
 	},
-	function create()
-	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendTumble);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Last;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendTumble);
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
-	function onAfterUpdate(_properties)
-	{
-		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
-		foreach (skill in skills)
-		{
-			if (this.m.Skills.find(skill.getID()) != null)
-			{
-				skill.m.FatigueCostMult *= 0.5;
+	function onBeingAttacked(_attacker, _skill, _properties) {
+		this.m.CanTeleport = true;
+		if (::Time.getFrame() != this.m.Frame && ::Const.SkillCounter != this.m.HitSkillCounter) {
+			this.m.Frame = ::Time.getFrame();
+            this.m.HitSkillCounter = ::Const.SkillCounter;
+            this.m.SequenceHit = false;
+        }
 
-				if (skill.getID() == "actives.legend_leap")
-				{
-					skill.m.ActionPointCost /= 2;
+		_properties.IsEvadingAllAttacks = false;
+		if (::Const.SkillCounter == this.m.EvadeSkillCounter) {
+            _properties.IsEvadingAllAttacks = true;
+            this.m.CanTeleport = false;
+            return;
+        }
+
+		local actor = this.getContainer().getActor();
+		if (this.m.IsTumbling || this.m.SequenceHit || ::Legends.S.isEntityNullOrDead(actor) || ::Legends.S.isEntityMovementDisabled(actor) || this.findFreeTile() == null) {
+			this.m.CanTeleport = false;
+			return;
+		}
+	}
+
+	function findFreeTile() {
+		local myTile = this.getContainer().getActor().getTile();
+		local freeTiles = [];
+		for (local i = 0; i < 6; i++) {
+			if (myTile.hasNextTile(i)) {
+				local nextTile = myTile.getNextTile(i);
+
+				if (nextTile.IsEmpty && ::Math.abs(nextTile.Level - myTile.Level) <= 1) {
+					freeTiles.push(nextTile);
 				}
 			}
 		}
+		if (freeTiles.len() > 0) {
+			return freeTiles[::Math.rand(0, freeTiles.len() - 1)];
+		}
+
+		return null; // tile or null
+	}
+
+	function teleport(_user, _targetTile, _retries) {
+		if (::Legends.S.isEntityNullOrDead(_user)) {
+			return;
+		}
+
+		this.m.IsTumbling = true;
+		_targetTile.IsEmpty = false;
+
+		local tag = {
+			Skill = this,
+			User = _user,
+			OldTile = _user.getTile(),
+			TargetTile = _targetTile,
+			OnRepelled = this.onRepelled
+		};
+
+		if (_user.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
+			if (_retries > 20) {
+				_user.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+			} else {
+				::Time.scheduleEvent(::TimeUnit.Virtual, 50, this.teleport.bindenv(this), tag);
+				return;
+			}
+		}
+
+		if (tag.OldTile.IsVisibleForPlayer || _targetTile.IsVisibleForPlayer) {
+			local myPos = _user.getPos();
+			local targetPos = _targetTile.Pos;
+			local distance = tag.OldTile.getDistanceTo(_targetTile);
+			local Dx = (targetPos.X - myPos.X) / distance;
+			local Dy = (targetPos.Y - myPos.Y) / distance;
+
+			// Add an incremental loop to find the tile
+			for (local i = 0; i < distance; i++) {
+				local x = myPos.X + Dx * i;
+				local y = myPos.Y + Dy * i;
+				local tile = ::Tactical.worldToTile(this.createVec(x, y));
+
+				if (::Tactical.isValidTile(tile.X, tile.Y) && ::Const.Tactical.DustParticles.len() != 0) {
+					for (local j = 0; j < ::Const.Tactical.DustParticles.len(); j++) {
+						::Tactical.spawnParticleEffect(false, ::Const.Tactical.DustParticles[j].Brushes, ::Tactical.getTile(tile), ::Const.Tactical.DustParticles[j].Delay, ::Const.Tactical.DustParticles[j].Quantity * 0.5, ::Const.Tactical.DustParticles[j].LifeTimeQuantity * 0.5, ::Const.Tactical.DustParticles[j].SpawnRate, ::Const.Tactical.DustParticles[j].Stages);
+					}
+				}
+			}
+		}
+
+		if (!::Tactical.getNavigator().isTravelling(_user)) {
+			::Tactical.getNavigator().teleport(_user, _targetTile, this.onTeleportDone, tag, false, 2.0 * ::Const.Tactical.Settings.AnimationSpeed);
+		} else {
+			this.m.IsTumbling = false;
+		}
+	}
+
+	function onRepelled(_tag) {
+		if (!::Legends.S.isEntityNullOrDead(_tag.User) && !::Tactical.getNavigator().isTravelling(_tag.User))
+			::Tactical.getNavigator().teleport(_tag.User, _tag.OldTile, null, null, false);
+		_tag.Skill.m.IsTumbling = false;
+	}
+
+	function onTeleportDone(_entity, _tag) {
+		local myTile = _entity.getTile();
+		local ZOC = [];
+
+		for (local i = 0; i < 6; i++) {
+			if (!myTile.hasNextTile(i)) {
+				continue;
+			}
+
+			local tile = myTile.getNextTile(i);
+			if (!tile.IsOccupiedByActor) {
+				continue;
+			}
+
+			local actor = tile.getEntity();
+			if (actor.isAlliedWith(_entity) || actor.getCurrentProperties().IsStunned) {
+				continue;
+			}
+
+			ZOC.push(actor);
+		}
+
+		local zoc_fail = false;
+
+		foreach (actor in ZOC) {
+			if (actor.onMovementInZoneOfControl(_entity, true)) {
+				if (actor.onAttackOfOpportunity(_entity, true)) {
+					zoc_fail = true;
+					if (!::Legends.S.isEntityNullOrDead(_entity)) {
+						::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
+					}
+
+					if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
+						::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " is repelled!");
+					}
+
+					return;
+				}
+			}
+		}
+		_tag.Skill.m.IsTumbling = false;
+	}
+
+	function validateTeleport() {
+		local actor = this.getContainer().getActor();
+		if (::Legends.S.isEntityNullOrDead(actor) || ::Legends.S.isEntityMovementDisabled(actor)) {
+			return;
+		}
+
+		local targetTile = this.findFreeTile();
+		if (targetTile == null) {
+			return;
+		}
+
+		this.m.EvadeSkillCounter = ::Const.SkillCounter;
+		this.teleport(actor, targetTile, 0);
+	}
+
+	function onCombatStarted()	{
+		this.m.Frame = 0;
+		this.m.HitSkillCounter = 0;
+		this.m.EvadeSkillCounter = 0;
+	}
+
+	function onCombatFinished()	{
+		this.skill.onCombatFinished();
+		this.m.Frame = 0;
+		this.m.HitSkillCounter = 0;
+		this.m.EvadeSkillCounter = 0;
 	}
 });
-

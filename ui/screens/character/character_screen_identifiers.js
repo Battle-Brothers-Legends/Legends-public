@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2013 - 2020
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			29.03.2017 / Reworked: 26.11.2017
  *  @Description:	Character Screen Identifiers
@@ -18,7 +18,8 @@ var CharacterScreenIdentifier =
 		PaperdollNamespace: '.paperdoll',
 		BrothersListNamespace: '.brothers-list',
 		InventoryListNamespace: '.inventory-list',
-		PerksModuleNamespace: '.perks-module'
+		PerksModuleNamespace: '.perks-module',
+		ProfessionsModuleNamespace: '.professions-module'
 	},
 
 	Skill:
@@ -34,7 +35,7 @@ var CharacterScreenIdentifier =
 		PassiveSkills: 'passiveSkills',
 		StatusEffects: 'statusEffects'
 	},
-	
+
 	Item:
 	{
 		Id: 'id',
@@ -76,6 +77,7 @@ var CharacterScreenIdentifier =
 	QueryResult:
 	{
 		Perks: 'perks',
+		Professions: 'professions',
 		Brother: 'brother',
 		Brothers: 'brothers',
 		Stash: 'stash'
@@ -99,6 +101,8 @@ var CharacterScreenIdentifier =
 			ImageOffsetY: 'imageOffsetY',
 			PerkPoints: 'perkPoints',
 			PerkPointsSpent: 'perkPointsSpent',
+			ProfessionPoints: 'professionPoints',
+			ProfessionPointsSpent: 'professionPointsSpent',
 			IsPlayerCharacter: 'isPlayerCharacter',
 			Level: 'level',
 			LevelUp: {
@@ -117,7 +121,7 @@ var CharacterScreenIdentifier =
 			DailyMoneyCost: 'dailyMoneyCost',
 			DaysWounded: 'daysWounded',
 			LeveledUp: 'leveledUp'
-			
+
 		},
 		Stats: 'stats',
 		Ground: 'ground'
@@ -131,6 +135,27 @@ var CharacterScreenIdentifier =
 	Perk: {
 		Key: 'perks',
 		Tree: 'perkTree',
+		Type: {
+			Offensive: 'offensive',
+			Defensive: 'defensive',
+			Utility: 'utility'
+		},
+		Tier: {
+			Tier1: 'tier1',
+			Tier2: 'tier2',
+			Tier3: 'tier3'
+		},
+		Id: 'ID',
+		Name: 'Name',
+		Description: 'Description',
+		ImagePath: 'Icon',
+		ImagePathDisabled: 'IconDisabled',
+		Unlocks: 'Unlocks'
+	},
+
+	Profession: {
+		Key: 'professions',
+		Tree: 'professionTree',
 		Type: {
 			Offensive: 'offensive',
 			Defensive: 'defensive',

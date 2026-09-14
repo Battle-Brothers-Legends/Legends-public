@@ -1,18 +1,26 @@
-::mods_hookExactClass("entity/tactical/humans/noble_arbalester", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/noble_arbalester", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -62,16 +70,16 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "padded_surcoat"],
-			[1, "gambeson"]
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
 		local helmet = this.Const.World.Common.pickHelmet([
-				[1, "mail_coif"],
-				[1, "aketon_cap"],
-				[1, "open_leather_cap"],
-				[1, "headscarf"],
-				[1, ""]
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.open_leather_cap],
+			[1, ::Legends.Helmet.Standard.headscarf],
+			[1, ::Legends.Helmet.None]
 		]);
 		if (helmet != null)
 		{

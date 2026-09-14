@@ -4,39 +4,38 @@
 	o.m.EffectBounds <- [ [3, 7] ];
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Variants = [1,2];
+		this.m.Variants = [1, 2, 3];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.WeaponType = this.Const.Items.WeaponType.Hammer | this.Const.Items.WeaponType.Polearm;
+		this.setCategories("Hammer/Polearm, Two-Handed");
 	}
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function () {
 		local result = this.named_weapon.getTooltip();
-		if (this.m.PossibleEffectIdx == 0)
-		{
+		if (this.m.PossibleEffectIdx == 0) {
 			result.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;
 	}
 
-	o.addSkill <- function( _skill )
-	{
-		this.named_weapon.addSkill(_skill);
-
-		if (_skill.getID() != "actives.batter")
-			return;
-
-		local skill = ::new("scripts/skills/actives/impale");
-		skill.m.Icon = "skills/legend_halberd_impale.png";
-		skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
-		skill.m.Overlay = "legend_halberd_impale";
-		skill.m.IsIgnoredAsAOO = true;
-		named_weapon.addSkill(skill);
+	local onEquip = o.onEquip;
+	o.onEquip = function () {
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPryArmor, function (_skill) {
+			_skill.m.IsPolearm = true;
+		});
+		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
+			_skill.m.Icon = "skills/legend_halberd_impale.png";
+			_skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
+			_skill.m.Overlay = "legend_halberd_impale";
+			_skill.m.IsIgnoredAsAOO = true;
+		}.bindenv(this));
 	}
 });

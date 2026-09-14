@@ -1,9 +1,18 @@
-::mods_hookExactClass("entity/tactical/humans/desert_stalker", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/desert_stalker", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
@@ -19,18 +28,19 @@
 		local weapons = [
 			"weapons/dagger",
 			"weapons/oriental/nomad_mace",
-			"weapons/oriental/qatal_dagger"
+			"weapons/oriental/qatal_dagger",
+			"weapons/legend_katar"
 		];
 		this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/plated_nomad_mail"]
+			[1, ::Legends.Armor.Southern.plated_nomad_mail]
 		]));
 
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head) && this.Math.rand(1, 100) <= 75)
 		{
 			local helm =this.Const.World.Common.pickHelmet([
-				[1, "oriental/desert_stalker_head_wrap"]
+				[1, ::Legends.Helmet.Southern.desert_stalker_head_wrap]
 			]);
 			this.m.Items.equip(helm);
 		}
@@ -46,9 +56,6 @@
 				"ammo/quiver_of_arrows"
 			]
 		];
-		local armor = [
-			"armor/named/black_leather_armor"
-		];
 
 		if (this.Math.rand(1, 100) <= 70)
 		{
@@ -62,7 +69,7 @@
 		else
 		{
 			this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "named/black_leather_armor"]
+				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}
 

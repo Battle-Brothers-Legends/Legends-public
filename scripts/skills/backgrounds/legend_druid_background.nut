@@ -5,24 +5,20 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_druid";
-		this.m.Name = "Druid";
-		this.m.Icon = "ui/backgrounds/druid_background.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendDruid);
 		this.m.BackgroundDescription = "Druids are from the wild lands and are ardent defenders of nature.";
 		this.m.GoodEnding = "Eventually, being away from the woods became too much for %name%, they eventually found their way back home with tales from the world outside and beyond the trees. The throws of nature were not healed, but they were mending - which is sometimes all one person can do to make a difference.";
 		this.m.BadEnding = "%name% eventually became disillusioned with the world you brought %them% into - seeking home shortly after your departure from %companyname%, they found themselves terrified by what met them. Something had swept through the forest in their absence and stripped the resources from the land. Animals were burnt in piles and trees had been burnt, destroyed or smashed down. %name% never did find home, or another place like it.";
-		this.m.HiringCost = 2000;
-		this.m.DailyCost = 25;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.Dexterous),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Bright),
@@ -39,7 +35,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 			"the Feral",
 			"the Wild",
 			"the Barbarian",
-			"The Green thumb",
+			"the Green thumb",
 			"Oakheart",
 			"Treebeard",
 			"the flower",
@@ -49,95 +45,15 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 			"the Wolf",
 			"the Sapling"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Wild;
-		this.m.BeardChance = 100;
-		this.m.Bodies = this.Const.Bodies.Muscular;
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger;
 		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-		this.m.Modifiers.Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[2];
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[3];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0, //plains
-			0.05, //swamp
-			0.05, //hills
-			0.1, //forest
-			0.1, //forest
-			0.1, //forest_leaves
-			0.0, //autumn_forest
-			0.05, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.05, // snow
-			0.05, // badlands
-			0.05, //highlands
-			0.05, //stepps
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		];
-	this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.StaffTree,
-				this.Const.Perks.ThrowingTree
-			],
-			Defense = [
-				this.Const.Perks.LightArmorTree
-			],
-			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.LargeTree,
-				this.Const.Perks.FitTree
-			],
-			Enemy = [],
-			Class = [
-				this.Const.Perks.FistsClassTree,
-				this.Const.Perks.HealerClassTree,
-				this.Const.Perks.SickleClassTree
-			],
-			Magic = [
-				this.Const.Perks.DruidMagicTree
-			]
-		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.FemaleMuscular;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
-	}
-
-	function getTooltip()
-	{
-		local ret = this.character_background.getTooltip()
-		ret.push(
-			{
-				id = 12,
-				type = "text",
-				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] Damage when unarmed"
-			}
-		)
-		return ret
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.WildMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Wild}, 100);
 	}
 
 	function onBuildDescription()
@@ -155,41 +71,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				-10,
-				0
-			],
-			RangedSkill = [
-				-10,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendDruid);
 	}
 
 
@@ -222,19 +104,20 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/hide_and_bone_armor"]
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "barbarians/bear_headpiece"]
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_staff"));
-		//this.getContainer().getActor().TherianthropeInfectionRandom();
 	}
 
 	function onSerialize( _out )

@@ -2,16 +2,9 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_inspire";
-		this.m.Name = "Inspire";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendInspire);
 		this.m.Description = "You can do it! Inspire an ally to go to their limit and beyond, granting them additional Action Points. Targets can only be inspired once per turn.";
-		this.m.Icon = "skills/inspire.png";
-		this.m.IconDisabled = "skills/inspire_bw.png";
-		this.m.Overlay = "perk_28_active";
-		this.m.SoundOnUse = [
-			"sounds/combat/inspire_01.wav",
-			"sounds/combat/inspire_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -69,7 +62,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getSkills().hasSkill("effects.legend_inspired"))
+		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendInspired))
 		{
 			return false;
 		}
@@ -80,7 +73,7 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_inspired_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendInspired);
 		return true;
 	}
 

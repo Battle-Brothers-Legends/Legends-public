@@ -1,8 +1,5 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_defend_rotation", function(o)
 {
-	if (::Legends.Mod.ModSettings.getSetting("DisableAiRotation").getValue())
-		o.m.PossibleSkills = [];
-
 	o.onEvaluate = function( _entity )
 	{
 		// Function is a generator.
@@ -33,7 +30,7 @@
 
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
-		if (this.m.Skill == null)
+		if (::Legends.Mod.ModSettings.getSetting("AiRotation").getValue() == "Disabled" || this.m.Skill == null)
 		{
 			return this.Const.AI.Behavior.Score.Zero;
 		}
@@ -48,7 +45,7 @@
 
 		local myTile = _entity.getTile();
 		local zoc = _entity.getTile().getZoneOfOccupationCountOtherThan(_entity.getAlliedFactions());
-		local isOffensive = this.m.Skill.getID() == "actives.barbarian_fury";
+		local isOffensive = this.m.Skill.getID() == ::Legends.Actives.getID(::Legends.Active.BarbarianFury);
 		local hitpointRatio = (_entity.getHitpoints() + _entity.getArmor(this.Const.BodyPart.Body) + _entity.getArmor(this.Const.BodyPart.Head)) / (_entity.getHitpointsMax() + _entity.getArmorMax(this.Const.BodyPart.Body) + _entity.getArmorMax(this.Const.BodyPart.Head));
 		local isEntityWounded = false;
 
@@ -90,6 +87,9 @@
 
 		foreach( opponent in targets )
 		{
+			if (opponent == null || ::Legends.S.isEntityNullOrDead(opponent.Actor) || !opponent.Actor.isPlacedOnMap()) {
+        		continue;
+    		}
 			local dir = myTile.getDirection8To(opponent.Actor.getTile());
 			local mult = this.isRangedUnit(opponent.Actor) ? 2 : 1;
 			mult = mult * (7.0 / myTile.getDistanceTo(opponent.Actor.getTile()));
@@ -145,17 +145,24 @@
 		local bestTile;
 		local bestScore = 1.0;
 
-		foreach( ally in allies )
-		{
-			if (!this.m.Skill.onVerifyTarget(myTile, ally.getTile()))
-			{
+		foreach (ally in allies) {
+			if (::Legends.S.isEntityNullOrDead(ally) || !ally.isPlacedOnMap()) {
 				continue;
 			}
 
-			if (this.isAllottedTimeReached(time))
-			{
+			if (!this.m.Skill.onVerifyTarget(myTile, ally.getTile())) {
+				continue;
+			}
+
+			if (this.isAllottedTimeReached(time)) {
 				yield null;
 				time = this.Time.getExactTime();
+				if (::Legends.S.isEntityNullOrDead(ally) || !ally.isPlacedOnMap()) continue;
+        		if (::Legends.S.isEntityNullOrDead(_entity) || !_entity.isPlacedOnMap()) return this.Const.AI.Behavior.Score.Zero;
+			}
+
+			if (::Legends.S.isEntityNullOrDead(ally)) {
+				continue;
 			}
 
 			local score = 1.0;
@@ -200,8 +207,10 @@
 				0
 			];
 
-			foreach( opponent in targets )
-			{
+			foreach( opponent in targets ) {
+				if (opponent == null || ::Legends.S.isEntityNullOrDead(opponent.Actor) || !opponent.Actor.isPlacedOnMap()) {
+        			continue;
+    			}
 				local dir = allyTile.getDirection8To(opponent.Actor.getTile());
 				local mult = this.isRangedUnit(opponent.Actor) ? 2 : 1;
 				mult = mult * (7.0 / allyTile.getDistanceTo(opponent.Actor.getTile()));
@@ -423,7 +432,7 @@
 		{
 			this.logInfo("* " + _entity.getName() + ": Using Rotation!");
 		}
-		
+
 		if (this.m.TargetTile == null || this.m.Skill == null)
 		{
 			return true;

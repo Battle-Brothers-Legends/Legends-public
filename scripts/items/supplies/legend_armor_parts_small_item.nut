@@ -24,6 +24,7 @@ this.legend_armor_parts_small_item <- this.inherit("scripts/items/item", {
 
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "supplies.legend_armor_parts_small";
 		this.m.Name = "Small Tools and Supplies";
 		this.m.Icon = "supplies/armor_parts_small.png";
@@ -61,7 +62,7 @@ this.legend_armor_parts_small_item <- this.inherit("scripts/items/item", {
 			{
 				id = 2,
 				type = "description",
-				text = "A good [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Amount + "[/color] assorted tools and supplies to repair weapons, armor, helmets and shields with after battle. Will be added to your global stock once you\'re back on the worldmap."
+				text = "A good [color=%positive%]" + this.m.Amount + "[/color] assorted tools and supplies to repair weapons, armor, helmets and shields with after battle. Will be added to your global stock once you\'re back on the worldmap."
 			}
 		];
 

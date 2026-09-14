@@ -13,6 +13,7 @@
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
 		entity.setName(this.m.Item.getName());
+		entity.setVariant(this.m.Item.getVariant());
 		this.m.Item.setEntity(entity);
 
 		if (this.m.Item.getArmorScript() != null)
@@ -21,7 +22,7 @@
 			entity.getItems().equip(item);
 		}
 
-		if (this.getContainer().hasSkill("background.houndmaster"))
+		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
 		{
 			entity.setMoraleState(this.Const.MoraleState.Confident);
 		}
@@ -30,7 +31,7 @@
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			entity.getSkills().add(this.new("scripts/skills/special/night_effect"));
+			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 
 		this.m.IsHidden = true;

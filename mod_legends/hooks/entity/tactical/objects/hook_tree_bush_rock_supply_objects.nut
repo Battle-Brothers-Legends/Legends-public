@@ -69,11 +69,11 @@ local supplies = [
 	"goblin_camp_supplies",
 	"human_camp_supplies",
 	"orc_camp_supplies"
-]
+];
 
 foreach (rock in rocks)
 {
-	::mods_hookExactClass("entity/tactical/objects/" + rock, function(o) 
+	::mods_hookExactClass("entity/tactical/objects/" + rock, function(o)
 	{
 		o.m.isRock <- true;
 	});
@@ -81,7 +81,7 @@ foreach (rock in rocks)
 
 foreach (tree in trees)
 {
-	::mods_hookExactClass("entity/tactical/objects/" + tree, function(o) 
+	::mods_hookExactClass("entity/tactical/objects/" + tree, function(o)
 	{
 		o.m.isTree <- true;
 	});
@@ -89,7 +89,7 @@ foreach (tree in trees)
 
 foreach (bush in bushes)
 {
-	::mods_hookExactClass("entity/tactical/objects/" + bush, function(o) 
+	::mods_hookExactClass("entity/tactical/objects/" + bush, function(o)
 	{
 		o.m.isBush <- true;
 	});
@@ -97,7 +97,7 @@ foreach (bush in bushes)
 
 foreach (supply in supplies)
 {
-	::mods_hookExactClass("entity/tactical/objects/" + supply, function(o) 
+	::mods_hookExactClass("entity/tactical/objects/" + supply, function(o)
 	{
 		o.m.isSupplies <- true;
 	});

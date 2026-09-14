@@ -2,139 +2,114 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	m = {
 		Results = []
 	},
-	function create()
-	{
+
+	function create() {
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Rest;
-		this.m.Escorting = true;		
+		this.m.ID = ::Legends.Camp.CampBuildings.Rest;
 		this.m.Slot = "rest";
 		this.m.Name = "Rest";
-		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here. .";
-		this.m.BannerImage = "ui/buttons/banner_rest.png"
-		this.m.CanEnter = false
-	}
-
-	function getDescription()
-	{
-		local desc = "";
-		desc += "Kicking ass is tough work. Grab a log, kick the shoes off and relax by the camp fire. "
-		desc += "Resting can improve the mood of even the grumpiest mercenary."
-		return desc;
-	}
-
-	function getLevel()
-	{
-		local pro = "dude";
-		local sub = "empty";
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
-	}
-
-	function getAssignedBros()
-	{
-		local mod = this.getModifiers();
-		return mod.Assigned;
-	}
-
-	function getModifiers()
-	{
-		local ret = 
-		{
-			Assigned = 0
-		}
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
+		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here.";
+		this.m.BannerImage = "ui/buttons/banner_rest.png";
+		local sounds = [
 			{
-				continue
+				File = "ambience/camp/camp_rest_campfire.wav",
+				Volume = 1.0,
+				Pitch = 1.0
 			}
-			++ret.Assigned
-		}
-		return ret;
+		];
+		sounds.extend(this.getCampSounds(9, "rest_general"));
+		sounds.extend(this.getCampSounds(3, "rest_laugh"));
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
+		this.m.SoundsAtNight.extend(this.getCampSounds(3, "rest_snore"));
+		this.m.CanEnter = false;
+	}
+
+	function init() {
+		this.m.Results = [];
 	}
 
 
-	function completed()
-	{
-		local roster = this.World.getPlayerRoster().getAll();
+	function isHidden() {
+		return false;
+	}
 
-		if (this.m.Camp.getCampTimeHours() < 8)
-		{
+	function getDescription() {
+		return "Set your mercenaries to rest here. Prolonged rest can improve mood of even the grumpiest mercenary.";
+	}
+
+	function getLevel() {
+		return "dude_" + (this.getAssignedBros() > 0 ? "full" : "empty");
+	}
+
+	function getAssignedBros() {
+		return this.getModifiers().Assigned;
+	}
+
+	function getModifiers() {
+		return {
+			Assigned = this.getNumberAssigned()
+		};
+	}
+
+	function completed() {
+		if (this.m.Camp.getCampTimeHours() < 8) {
 			return;
 		}
 
 		local mood = 0.5;
-		if (this.m.Camp.getCampTimeHours() >= 12)
-		{
+		if (this.m.Camp.getCampTimeHours() >= 12) {
 			mood = 1.0;
 		}
 
-		if (this.m.Camp.getCampTimeHours() >= 16)
-		{
+		if (this.m.Camp.getCampTimeHours() >= 16) {
 			mood = 1.5;
 		}
 
-		foreach( b in roster )
-		{
-			if (b.getCampAssignment() != this.m.ID)
-			{
-				continue
-			}
-
-			if (b.getLastCampTime() == 0 || this.Time.getVirtualTimeF() - b.getLastCampTime() > this.World.getTime().SecondsPerDay)
-			{
-				this.getRested(bro);
-				b.improveMood(mood, "Was able to rest in camp");
-				b.setLastCampTime(this.m.Camp.getStopTime());
-			}
+		local self = this;
+		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay)));
+		foreach (bro in restingBros) {
+			this.getRested(bro);
+			bro.improveMood(mood, "Was able to rest in camp");
+			bro.setLastCampTime(this.m.Camp.getStopTime());
 		}
 	}
 
-	function getRested(bro)
-	{
+	function getRested(bro) {
 		local background = bro.getBackground();
 		local activities = [
 			"While resting at camp, " + bro.getName() + " has a liquid lunch or three",
 			bro.getName() + " makes shadow puppets by the fire",
-			bro.getName() + " naps through the day", // can technically make this for multiple days
+			bro.getName() + " naps through the day",
 			bro.getName() + " yells unconstructive criticism at the rest of the camp",
 			bro.getName() + " frolics through a nearby flower patch",
 			bro.getName() + " draws generously proportioned figures with a stick",
 			bro.getName() + " talks about putting a handgonne on an axe",
 			bro.getName() + " makes a makeshift flail with a stick and some onions"
-			// "Bill and Jill dance a merry jig around camp",
-			// "Bill and Jill take turns kicking a leather ball around",
-			// "Bill and Jill take turns swapping increasingly tall stories",
-			// "Bill and Jill take turns arm wrestling",
-			// "Bill and Jill play dice to wile away the hours"
 		];
 
-		if (background.getID() == "background.monk")
-			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life")
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk))
+			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life");
 
-		if (background.getID() == "background.flagellant")
-			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice")
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Flagellant))
+			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice");
 
-		if (background.getID() == "background.cultist" || background.getID() == "background.converted_cultist")
-			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul")
+		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Cultist), ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)))
+			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul");
 
-		if (background.getID() == "background.gladiator")
-			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles")
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gladiator))
+			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles");
 
-		if (background.getID() == "background.ratcatcher")
-			activities.push(bro.getName() + " plays with a captured rat")
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Ratcatcher))
+			activities.push(bro.getName() + " plays with a captured rat");
 
-		if (background.getID() == "background.nomad" || background.getID() == "background.legend_conscript")
-			activities.push(bro.getName() + " spends their time filling their pockets with sand")
+		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Nomad), ::Legends.Backgrounds.getID(::Legends.Background.LegendConscript)))
+			activities.push(bro.getName() + " spends their time filling their pockets with sand");
 
-		if (background.isBackgroundType(this.Const.BackgroundType.Performing))
-			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp")
+		if (background.isBackgroundType(::Const.BackgroundType.Performing))
+			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp");
 
-		if (bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(this.Const.SkillType.SemiInjury))
-		{
+		if (bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(::Const.SkillType.SemiInjury)) {
 			activities.extend([
 				bro.getName() + " blew some happy powder to take away from the pain",
 				bro.getName() + " lied in a bedroll moaning in pain",
@@ -143,8 +118,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			]);
 		}
 
-		if (background.getID() == "background.assassin" || background.getID() == "background.killer_on_the_run" || background.getID() == "background.assassin_southern" || background.getID() == "background.legend_bounty_hunter")
-		{
+		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Assassin), ::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern), ::Legends.Backgrounds.getID(::Legends.Background.KillerOnTheRun), ::Legends.Backgrounds.getID(::Legends.Background.LegendBountyHunter))) {
 			activities.extend([
 				bro.getName() + " organized a growing poison collection",
 				bro.getName() + " practiced standing menacingly on doorways",
@@ -154,9 +128,9 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		}
 		this.m.Results.push({
 			id = 150,
-			Icon = this.Const.MoodStateIcon[b.getMoodState()],
-			Text = activities[this.Math.rand(0, activities.len() - 1)] + " " + this.Const.MoodStateEvent[b.getMoodState()]
-		})
+			icon = ::Const.MoodStateIcon[bro.getMoodState()],
+			text = activities[::Math.rand(0, activities.len() - 1)] + " and " + ::Const.MoodStateEvent[bro.getMoodState()]
+		});
 
 		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
 		// {
@@ -166,26 +140,8 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		// 	])
 		// } i want to do have this randomly choose a weapon/armor but i'm too lazy rn
 	}
-	
-	function getResults()
-	{
+
+	function getResults() {
 		return this.m.Results;
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showRestDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-	
 });

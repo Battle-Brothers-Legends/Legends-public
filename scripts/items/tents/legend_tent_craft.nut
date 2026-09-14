@@ -3,9 +3,9 @@ this.legend_tent_craft <- this.inherit("scripts/items/trade/trading_good_item", 
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.craft_tent";
+		this.m.ID = ::Legends.Camp.Tent.Craft;
 		this.m.Name = "Craft Tent";
-		this.m.Description = "A tent for storing and processing crafting supplies. Comes with the sewing equipment, bottles and mundane ingedients used in crafting. Having this in your stash upgrades your camp.";
+		this.m.Description = "A tent for storing and processing crafting supplies. Comes with the sewing equipment, bottles and mundane ingredients used in crafting. Having this in your stash upgrades your camp.";
 		this.m.Icon = "tents/tent_craft_70x70.png";
 		this.m.Value = 10000;
 	}

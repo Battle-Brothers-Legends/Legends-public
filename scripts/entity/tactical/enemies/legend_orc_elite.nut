@@ -1,4 +1,4 @@
-this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
+this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 	m = {},
 	function create()
 	{
@@ -91,121 +91,29 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		this.legend_orc.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local flip = this.Math.rand(1, 100) < 50;
-
-		if (_tile != null)
-		{
-			this.m.IsCorpseFlipped = flip;
-			this.spawnBloodPool(_tile, 1);
-			local decal;
-			local appearance = this.getItems().getAppearance();
-			local sprite_body = this.getSprite("body");
-			local sprite_head = this.getSprite("head");
-			decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-			decal.Color = sprite_body.Color;
-			decal.Saturation = sprite_body.Saturation;
-			decal.Scale = 0.9;
-			decal.setBrightness(0.9);
-
-			if (appearance.CorpseArmor != "")
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-				decal.setBrightness(0.9);
-			}
-
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
-				if (!appearance.HideCorpseHead)
-				{
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Color = sprite_head.Color;
-					decal.Saturation = sprite_head.Saturation;
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-
-				if (appearance.HelmetCorpse != "")
-				{
-					decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
-				local layers = [];
-
-				if (!appearance.HideCorpseHead)
-				{
-					layers.push(sprite_head.getBrush().Name + "_dead");
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					layers.push(appearance.HelmetCorpse);
-				}
-
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, "bust_orc_03_head_dead_bloodpool");
-				local idx = 0;
-
-				if (!appearance.HideCorpseHead)
-				{
-					decap[idx].Color = sprite_head.Color;
-					decap[idx].Saturation = sprite_head.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-			}
-
-			if (_fatalityType == this.Const.FatalityType.Disemboweled)
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor + "_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor + "_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor + "_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-			}
-
-			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "An Orc Elite";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
-		}
-
-		this.getItems().dropAll(_tile, _killer, flip);
-		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "An Orc Elite";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onFactionChanged()
 	{
 		this.actor.onFactionChanged();
-		local flip = this.isAlliedWithPlayer()
-		flip = !flip
-
+		local flip = this.isAlliedWithPlayer();
+		flip = !flip;
+		local v = 1;
+		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -213,6 +121,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 
@@ -220,9 +129,9 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcWarrior);
+		b.setValues(this.Const.Tactical.Actor.LegendOrcElite);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.2;
@@ -253,9 +162,13 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		injury.Visible = false;
 		injury.setBrush("bust_orc_03_head_injured");
 
+		this.setAlwaysApplySpriteOffset(true);
+		local v = 1;
+		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
+			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 
 		local body_blood = this.addSprite("body_blood");
@@ -264,9 +177,9 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.6;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
-		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
+		::Legends.Actives.grant(this, ::Legends.Active.HandToHand);
+		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -275,50 +188,21 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPerfectFocus);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 1.5 * b.Hitpoints;
+			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
-
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function onFinish()
@@ -328,96 +212,55 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/actor", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-
-		if (this.Math.rand(1, 100) <= 15)
-		{
-			r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_cleaver"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe"));
-			}
-
-		}
-		else
-		{
-			r = this.Math.rand(1, 4);
-
-			if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skullsmasher"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_axe"));
-			}
-				else if (r == 3)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_cleaver"));
-			}
-					else if (r == 4)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/legend_skin_flayer"));
-			}
+		if (::Math.rand(1, 100) <= 15) {
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/greenskins/orc_cleaver"],
+				[1, "weapons/greenskins/orc_axe"],
+			], "scripts/items/"));
+		} else {
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/greenskins/legend_skullsmasher"],
+				[1, "weapons/greenskins/orc_axe"],
+				[1, "weapons/greenskins/orc_cleaver"],
+				[1, "weapons/greenskins/legend_skin_flayer"]
+			], "scripts/items/"));
 		}
 
-		if (this.Math.rand(1, 100) <= 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/named/named_orc_heavy_shield"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_heavy_shield"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "shields/named/named_orc_heavy_shield"],
+			[49, "shields/greenskins/orc_heavy_shield"]
+		], "scripts/items/"));
 
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Greenskin.legend_orc_elite_heavy_armor]
+		]));
 
-			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/legend_orc_elite_heavy_armor"]
-			]);
-			this.m.Items.equip(item);
-			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/orc_elite_heavy_helmet"]
-			])
-			if (item != null)
-			{
-				this.m.Items.equip(item);
-			}
+		this.getItems().equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Greenskin.orc_elite_heavy_helmet]
+		]));
 	}
 
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss_greenskins");
-		local weapons = [
-			"weapons/named/named_orc_cleaver",
-			"weapons/named/named_orc_axe"
-		];
-		local shields = [
-			"shields/named/named_orc_heavy_shield"
-		];
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		}
-		else
-		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+		if (::Math.rand(1, 100) <= 80) {
+			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/named/named_orc_cleaver"],
+				[1, "weapons/named/named_orc_axe"]
+			], "scripts/items/"));
+		} else {
+			this.getItems().unequip(this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "shields/named/named_orc_heavy_shield"]
+			], "scripts/items/"));
 		}
 
-		if("Assets" in this.World && this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary)
-		{
+		if(::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);

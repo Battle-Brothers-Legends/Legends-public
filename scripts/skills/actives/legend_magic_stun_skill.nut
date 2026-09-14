@@ -2,24 +2,11 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_stun";
-		this.m.Name = "Stun";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicStun);
 		this.m.Description = "Unleash a brilliant flash of white light aimed directly at the eyes of your target in an attempt to blind and incapacitate.";
 		this.m.KilledString = "Stunned";
-		this.m.Icon = "skills/stun56.png";
-		this.m.IconDisabled = "skills/stun56_bw.png";
-		this.m.Overlay = "stun56";
-		this.m.SoundOnUse = [
-			"sounds/combat/cudgel_01.wav",
-			"sounds/combat/cudgel_02.wav",
-			"sounds/combat/cudgel_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/cudgel_hit_01.wav",
-			"sounds/combat/cudgel_hit_02.wav",
-			"sounds/combat/cudgel_hit_03.wav",
-			"sounds/combat/cudgel_hit_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cudgel", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/cudgel_hit", 4);
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
@@ -34,13 +21,17 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MinRange = 1;
 		this.m.MaxRange = 6;
 		this.m.DirectDamageMult = 0;
+		this.m.IsUsingHitchance = false;
+	}
 
+	function getHitchance( _targetEntity ){
+		return 100;
 	}
 
 	function getTooltip()
 	{
 		local p = this.getContainer().getActor().getCurrentProperties();
-		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 3) * this.Const.Combat.FatigueReceivedPerHit;
+		local fatigueDamage = (p.FatigueDealtPerHitMult + 3) * this.Const.Combat.FatigueReceivedPerHit;
 		return [
 			{
 				id = 1,
@@ -61,13 +52,13 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+				text = "Inflicts [color=%damage%]" + fatigueDamage + "[/color] extra fatigue"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stun on a hit"
+				text = "Has a [color=%positive%]100%[/color] chance to stun on a hit"
 			}
 		];
 	}
@@ -75,16 +66,18 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);		
 
-		if (target.isAlive())
-		{
-			target.getSkills().add(this.new("scripts/skills/effects/stunned_effect"));
+		if (!::Legends.S.isEntityNullOrDead(target)) {
+			local p = _user.getCurrentProperties();
+        	local fatigueDamage = (p.FatigueDealtPerHitMult + 3.0) * this.Const.Combat.FatigueReceivedPerHit;
+        	target.setFatigue(this.Math.min(target.getFatigueMax(), target.getFatigue() + fatigueDamage));
 
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " stunned");
+			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
+				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " stunned.");
 			}
+			
+			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 		}
 
 	}

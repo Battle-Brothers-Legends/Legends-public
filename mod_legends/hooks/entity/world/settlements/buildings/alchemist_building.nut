@@ -4,7 +4,7 @@
 	o.onUpdateDraftList = function ( _list)
 	{
 		onUpdateDraftList(_list);
-		_list.push("legend_alchemist_background");
-		_list.push("legend_alchemist_background");
+		_list.push(::Legends.Background.LegendAlchemist);
+		_list.push(::Legends.Background.LegendAlchemist);
 	}
 });

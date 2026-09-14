@@ -1,11 +1,13 @@
 this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_greenwood_schrat_shield";
 		this.m.Type = this.Const.Items.ItemType.Shield;
-		this.m.PreviewCraftable = this.new("scripts/items/shields/special/legend_craftable_greenwood_schrat_shield");
+		local preview = this.new("scripts/items/shields/special/legend_craftable_greenwood_schrat_shield");
+		preview.resetStats();
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 450;
 		local ingredients = [
 			{
@@ -18,22 +20,10 @@ this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
-
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		_stash.add(this.new("scripts/items/shields/special/legend_craftable_greenwood_schrat_shield"));
 	}
-
 });
-

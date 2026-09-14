@@ -602,21 +602,31 @@ WorldTownScreenMainDialogModule.prototype.createSlot = function (_data, _i, _con
 		}
 	}, null, 'slot' + _i);
 
+	// special case for harbor
+	var trigger = slot;
+	if (_data.Image.indexOf('building_09') !== -1) {
+		slot.addClass('no-pointer-events');
+		if (slot_placeholder) slot_placeholder.addClass('no-pointer-events');
+		
+		trigger = $('<div class="slot' + _i + ' harbor-overlay" />');
+		_content.append(trigger);
+	}
+
 	if(isUsable)
 	{
-		slot.bindTooltip({ contentType: 'ui-element', elementId: _data.Tooltip });
-		slot.click(function(_event)
+		trigger.bindTooltip({ contentType: 'ui-element', elementId: _data.Tooltip });
+		trigger.click(function(_event)
 		{
 			self.mParent.notifyBackendSlotClicked(_i);
 		});
-		slot.mouseover(function()
+		trigger.mouseover(function()
 		{
 			this.classList.add('is-highlighted');
 
 			slot.attr('src', Path.GFX + _data.Image + '_b.png');
 			slot_placeholder.removeClass('opacity-almost-none');
 		});
-		slot.mouseout(function()
+		trigger.mouseout(function()
 		{
 			this.classList.remove('is-highlighted');
 

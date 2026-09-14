@@ -9,6 +9,7 @@ this.legend_cooking_spices_trade_item <- this.inherit("scripts/items/trade/tradi
 		this.m.Name = "Cooking Spices";
 		this.m.Description = "Combining salts, dried herbs and roots. Can be combined with other food in the crafting tent to cook recipes";
 		this.m.Icon = "supplies/legend_cooking_spices.png";
+		this.m.Culture = this.Const.World.Culture.Neutral;
 		this.m.Value = 380;
 		this.m.Uses = 8;
 		this.m.ProducingBuildings = [

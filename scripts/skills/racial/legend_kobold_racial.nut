@@ -6,10 +6,7 @@ this.legend_kobold_racial <- this.inherit("scripts/skills/skill", {
 		this.m.Name = "Slippery";
 		this.m.Description = "This character is very hard to spot";
 		this.m.Icon = "";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc6/smoke_bomb_01.wav",
-			"sounds/combat/dlc6/smoke_bomb_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc6/smoke_bomb", 2);
 		this.m.Type = this.Const.SkillType.Racial | this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.Last;
 		this.m.IsActive = false;
@@ -20,11 +17,11 @@ this.legend_kobold_racial <- this.inherit("scripts/skills/skill", {
 	function onTurnEnd()
 	{
 		local actor = this.getContainer().getActor();
-		local slippery = actor.getSkills().getSkillByID("effects.legend_hidden_kobold");
+		local slippery = ::Legends.Effects.get(actor, ::Legends.Effect.LegendHiddenKobold);
 
 		if (slippery == null)
 		{
-			actor.getSkills().add(this.new("scripts/skills/effects/legend_hidden_kobold_effect"));
+			::Legends.Effects.grant(actor, ::Legends.Effect.LegendHiddenKobold);
 		}
 		else
 		{

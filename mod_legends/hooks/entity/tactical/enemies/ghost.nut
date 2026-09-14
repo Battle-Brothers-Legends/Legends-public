@@ -14,27 +14,20 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 		}
 	}
 
-	o.makeMiniboss <- function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
-			return false;
-		}
+	local onDeath = o.onDeath;
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		local flip = this.Math.rand(1, 100) < 50;
 
-		this.getSprite("miniboss").setBrush("bust_miniboss");
-		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
-		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
-		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-		this.m.ActionPoints = 12;
-		this.m.BaseProperties.ActionPoints = 12;
-		this.m.Skills.update();
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
 
-		return true;
+		onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 });

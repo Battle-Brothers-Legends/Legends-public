@@ -1,21 +1,42 @@
 ::mods_hookExactClass("entity/world/player_party", function(o)
 {
-	o.m.BarterMultiplier <- 0.0;
-	o.m.WageMultiplier <- 0.0;
-	o.m.FoodMultiplier <- 0;
+	o.m.HaggleMultiplier <- 0.0;
 	o.m.AmmoMultiplier <- 0;
 	o.m.ArmorPartsMultiplier <- 0;
 	o.m.MedsMultiplier <- 0;
 	o.m.StashMultiplier <- 0;
+	o.m.PauseOnMovementStop <- false;
+
+	local onUpdate = o.onUpdate;
+	o.onUpdate = function () {
+		local wasMoving = this.m.Destination != null || this.hasPath();
+		onUpdate();
+		local isMoving = this.m.Destination != null || this.hasPath();
+		if (wasMoving && !isMoving) {
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnMovementStop").getValue()) {
+				this.m.PauseOnMovementStop = true;
+			}
+		}
+	}
 
 	o.setPath <- function( _path )
 	{
-		party.setPath(::World.Camp.isCamping() ? null : _path);
+		this.party.setPath(::World.Camp.isCamping() ? null : _path);
+
+		if (_path != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
+            if (::World.State.isPaused()) {
+                ::World.State.setPause(false);
+            }
+        }
 	}
 
-	o.setDestination <- function( _destination )
-	{
-		party.setDestination(::World.Camp.isCamping() ? null : _destination);
+	o.setDestination <- function( _destination ) {
+		this.party.setDestination(::World.Camp.isCamping() ? null : _destination);
+		if (_destination != null && ::Legends.Mod.ModSettings.getSetting("ResumeOnMovementStart").getValue()) {
+            if (::World.State.isPaused()) {
+                ::World.State.setPause(false);
+            }
+        }
 	}
 
 	o.updateStrength = function ()
@@ -29,9 +50,8 @@
 		}
 		if (roster.len() < this.World.Assets.getBrothersScaleMin())
 		{
-			this.m.Strength += 10.0 * (this.World.Assets.getBrothersScaleMin() - roster.len());
+			this.m.Strength += 10.0 * roster.len();
 		}
-
 
 		if (this.World.Assets.getOrigin() == null)
 		{
@@ -39,119 +59,37 @@
 			return;
 		}
 
-		local broScale = 1.0
-		if (this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			broScale = 0.66;
-		}
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
-		{
-			broScale = 1.66;
-		}
-
-		local zombieSummonLevel = 0
-		local skeletonSummonLevel = 0
+		local zombieSummonLevel = 0;
+		local skeletonSummonLevel = 0;
 
 		local count = 0;
-		foreach( i, bro in roster )
-		{
-			if (i >= 25)
-			{
+		foreach( i, bro in roster )	{
+			if (i >= 25) {
 				break;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
-			{
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))	{
 				continue;
 			}
 
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh))
-			{
-				zombieSummonLevel = 7;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed))
-			{
-				zombieSummonLevel = 5;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow))
-			{
-				zombieSummonLevel = 2;
-			}
-
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonHigh))
-			{
-				skeletonSummonLevel = 7;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonMed))
-			{
-				skeletonSummonLevel = 5;
-			}
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnSkeletonLow))
-			{
-				skeletonSummonLevel = 2;
-			}
-
-			local brolevel = bro.getLevel();
-
-			if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Easy)
-			{
-				this.m.Strength += (3 + ((brolevel / 4) + (brolevel - 1)) * 1.5) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Normal)
-			{
-				this.m.Strength += (10 + (((3 * brolevel) / 4) + (brolevel - 1)) * 2) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Hard)
-			{
-				this.m.Strength += (6 + (count / 2) + ((brolevel / 2) + (pow(brolevel,1.2)))) * broScale;
-			}
-			else if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Legendary )
-			{
-				this.m.Strength += (count + (brolevel + (pow(brolevel,1.2)))) * broScale;
-			}
-
-			// item scaling
-			local mainhand = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-			local offhand = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-			local body = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-			local head = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-			local mainhandvalue = 0;
-			local offhandvalue = 0;
-			local bodyvalue = 0;
-			local headvalue = 0;
-
-			if (mainhand != null)
-			{
-				mainhandvalue += (mainhand.getSellPrice())  / 1000;
-			}
-
-			if (offhand != null)
-			{
-				offhandvalue += (offhand.getSellPrice()) / 1000;
-			}
-
-			if (body != null)
-			{
-				bodyvalue += (body.getSellPrice()) / 1000;
-			}
-
-			if (head != null)
-			{
-				headvalue += (head.getSellPrice()) / 1000;
-			}
-
-			local gearvalue = mainhandvalue + offhandvalue + bodyvalue + headvalue;
-			this.m.Strength += gearvalue;
-			// item scaling end
-
+			this.m.Strength += ::Legends.Difficulty.BroStrengthScaling(bro.getLevel(), count);
+			this.m.Strength += ::Legends.Difficulty.BroItemScaling(bro.getItems().getAllItems());
 			count++;
 
+			
+			// this is flawed because it sets zombie summon level rather than adding it
+			// if we have a low level bro with SpawnZombieLow he'll override the bro with higher level and summon zombie high
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh)) {
+				zombieSummonLevel = 7;
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed)) {
+				zombieSummonLevel = 5;
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow)) {
+				zombieSummonLevel = 2;
+			}
 		}
 
-		if  (zombieSummonLevel == 0 && skeletonSummonLevel == 0)
-		{
-			return
+		if  (zombieSummonLevel == 0 && skeletonSummonLevel == 0) {
+			return;
 		}
 
 		//  Scaling based on money and stash - was controversial
@@ -177,8 +115,8 @@
 		//When playing a warlock build, we need to account for the summons he can add
 		local stash = this.World.Assets.getStash().getItems();
 
-		local zCount = 0
-		local sCount = 0
+		local zCount = 0;
+		local sCount = 0;
 		foreach (item in stash)
 		{
 			if (item == null)
@@ -191,7 +129,7 @@
 				case "spawns.zombie":
 					if (zombieSummonLevel == 0)
 					{
-						continue
+						continue;
 					}
 					++zCount;
 
@@ -199,7 +137,7 @@
 				case "spawns.skeleton":
 					if (skeletonSummonLevel == 0)
 					{
-						continue
+						continue;
 					}
 					++sCount;
 					break;
@@ -231,10 +169,10 @@
 	}
 
 	local getVisionRadius = o.getVisionRadius;
-	o.getVisionRadius = function ()
-	{
-		if (this.World.Assets.isCamping())
-			return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Scout).getVisionRadius();
+	o.getVisionRadius = function ()	{
+		::World.Assets.m.VisionRadiusMult = 1 + ::World.Assets.m.ProfessionEffect.LegendLookout;
+		if (::World.Assets.isCamping())
+			return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Scout).getVisionRadius();
 		return getVisionRadius();
 	}
 
@@ -314,19 +252,9 @@
 		this.getSprite("body").setBrush(image);
 	}
 
-	o.getBarterMult <- function ()
+	o.getHaggleMult <- function ()
 	{
-		return this.m.BarterMultiplier;
-	}
-
-	o.getWageModifier <- function ()
-	{
-		return this.m.WageMultiplier;
-	}
-
-	o.getFoodModifier <- function ()
-	{
-		return this.m.FoodMultiplier;
+		return this.m.HaggleMultiplier;
 	}
 
 	o.getAmmoModifier <- function ()
@@ -351,11 +279,9 @@
 
 	o.calculateModifiers <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1)	//Leonion's fix
+		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
-			this.calculateBarterMult();
-			this.calculateWageModifier();
-			this.calculateFoodModifier();
+			this.calculateHaggleMult();
 			this.calculateAmmoModifier();
 			this.calculateArmorPartsModifier();
 			this.calculateMedsModifier();
@@ -363,136 +289,69 @@
 		}
 	}
 
-
-	o.calculateFoodModifier <- function ()
+	o.calculateHaggleMult <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
-			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendQuartermaster))
-			{
-				continue;
-			}
-
-			this.m.FoodMultiplier = 1;
-			break;
+		local haggleMult = 0.0;
+		foreach (bro in this.World.getPlayerRoster().getAll()) {
+			haggleMult += bro.getHaggleModifier();
 		}
-	}
-
-	o.calculateWageModifier <- function ()
-	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
-			return;
-		}
-
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendPaymaster))
-			{
-				this.m.WageMultiplier = bro.getBarterModifier();
-				return;
-			}
-		}
-	}
-
-	o.calculateBarterMult <- function ()
-	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
-			return;
-		}
-
-		local barterMult = 0.0;
-		local greed = 1;
-		foreach (bro in this.World.getPlayerRoster().getAll())
-		{
-			barterMult += bro.getBarterModifier();
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
-			{
-				greed += 1;
-			}
-		}
+		haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.trader")
-		{
-			barterMult = barterMult * 1.1;
-		}
+			haggleMult = haggleMult * 1.1;
 
-		this.m.BarterMultiplier = barterMult / greed;
+		this.m.HaggleMultiplier = haggleMult;
 	}
 
 	o.calculateAmmoModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
+		foreach(bro in this.World.getPlayerRoster().getAll())	{
 			s += bro.getAmmoModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendReserveBundles;
 		this.m.AmmoMultiplier = s;
 	}
 
 	o.calculateArmorPartsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
-		{
+		foreach(bro in this.World.getPlayerRoster().getAll())	{
 			s += bro.getArmorPartsModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendToolsDrawers;
 		this.m.ArmorPartsMultiplier = s;
 	}
 
 	o.calculateMedsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 0)
-		{
+		if (this.World.State.m.AppropriateTimeToRecalc != 1)
 			return;
-		}
 
 		local s = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
 			s += bro.getMedsModifier();
 		}
+		s += ::World.Assets.m.ProfessionEffect.LegendBandageBales;
 		this.m.MedsMultiplier = s;
 	}
 
-	o.calculateStashModifier <- function (resize = true)
+	o.calculateStashModifier <- function (_resize = true)
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1)	////Leonion's fix
-		{
-			local s = this.Const.LegendMod.MaxResources[this.World.Assets.getEconomicDifficulty()].Stash
-			s += this.World.Assets.getOrigin().getStashModifier();
-			s += this.World.Retinue.getInventoryUpgrades() * 27;
-
-			foreach( bro in this.World.getPlayerRoster().getAll())
-			{
-				s += bro.getStashModifier();
-			}
-
-			if (resize && s != this.Stash.getCapacity())
-			{
-				this.Stash.resize(s);
-			}
-
-			return s;
+		if (_resize && ::World.State.m.AppropriateTimeToRecalc == 1) {	//Leonion's fix
+			::Legends.Stash.resize();
 		}
-
-		return ::Stash.getCapacity();
+		return ::Legends.Stash.getSize();
 	}
 
 	local onInit = o.onInit;

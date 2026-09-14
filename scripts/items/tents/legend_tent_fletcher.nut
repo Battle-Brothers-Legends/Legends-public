@@ -3,7 +3,7 @@ this.legend_tent_fletcher <- this.inherit("scripts/items/trade/trading_good_item
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.fletcher_tent";
+		this.m.ID = ::Legends.Camp.Tent.Fletcher;
 		this.m.Name = "Fletcher\'s Tent";
 		this.m.Description = "Cloth tent woven from hemp and wood, comes with feathers, shafts, arrow heads and bindings. Having this in your stash upgrades your camp.";
 		this.m.Icon = "tents/tent_fletcher_70x70.png";

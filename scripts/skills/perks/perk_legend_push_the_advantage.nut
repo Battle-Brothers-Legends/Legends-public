@@ -1,65 +1,80 @@
 this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 	m = {
-		EffectsToGiveBonus = [
-			"effects.sleeping",
-			"effects.stunned",
-			"effects.dazed",
-			"effects.legend_dazed",
-			"effects.net",
-			"effects.legend_grappled",
-			"effects.staggered",
-			"effects.web",
-			"effects.legend_baffled",
-			"effects.rooted",
-			"effects.distracted",
-			"effects.debilitated",
-			"effects.insect_swarm",
-			"effects.debilitated"
+		HighBonus = [
+			::Legends.Effect.Debilitated,
+			::Legends.Effect.LegendTackled
+		],
+		LowBonus = [
+			::Legends.Effect.Dazed,
+			::Legends.Effect.Distracted,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.LegendParried,
+			::Legends.Effect.LegendGrappled,
+			::Legends.Effect.Net,
+			::Legends.Effect.Rooted,
+			::Legends.Effect.Shellshocked,
+			::Legends.Effect.Sleeping,
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Stunned,
+			::Legends.Effect.Web,
+			::Legends.Effect.Withered
 		]
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPushTheAdvantage);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPushTheAdvantage);
 		this.m.Icon = "ui/perks/onslaught_circle.png";
 		this.m.IconDisabled = "ui/perks/onslaught_circle_bw.png";
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function isBonusEligible( _targetEntity )
+	function onBeforeTargetHit( _skill, _targetEntity, _hitInfo )
 	{
-		local targetSkills = _targetEntity.getSkills();
-
-		foreach ( effect in this.m.EffectsToGiveBonus )
+		if ( _targetEntity != null && this.calculateBonus(_targetEntity) != 0)
 		{
-			if ( targetSkills.hasSkill(effect) )
+			this.spawnIcon("perk_16", this.getContainer().getActor().getTile());
+		}
+	}
+
+	function calculateBonus ( _targetEntity )
+	{
+
+		local bonus = 0;
+
+		if (_targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+		{
+			bonus += 20;
+		}
+		else
+		{
+			foreach (effect in this.m.HighBonus)
 			{
-				return true;
+				if (_targetEntity.getSkills().hasEffect(effect))
+				{
+					bonus += 20;
+					break;
+				}
 			}
 		}
 
-		return false;
+		foreach (effect in this.m.LowBonus)
+		{
+			if (_targetEntity.getSkills().hasEffect(effect))
+			{
+				bonus += 10;
+				break;
+			}
+		}
+
+		return bonus;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_targetEntity == null)
-		{
 			return;
-		}
 
-		if ( !_targetEntity.isAlliedWith(this.getContainer().getActor()) )
-		{
-			if ( this.isBonusEligible( _targetEntity ) )
-			{
-				_properties.MeleeSkill += 10;
-				_properties.RangedSkill += 10;
-				_properties.HitChance[this.Const.BodyPart.Head] += 20;
-			}
-		}
+		local bonus = this.calculateBonus(_targetEntity);
+		_properties.DamageAgainstMult[this.Const.BodyPart.Head] += 0.01 * bonus;
+		_properties.HitChance[this.Const.BodyPart.Head] += bonus;
 	}
-
 });

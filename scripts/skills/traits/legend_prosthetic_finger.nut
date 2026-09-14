@@ -26,13 +26,13 @@ this.legend_prosthetic_finger <- this.inherit("scripts/skills/traits/character_t
 				id = 7,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-2%[/color] Melee Skill"
+				text = "[color=%negative%]-2%[/color] Melee Skill"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-2%[/color] Ranged Skill"
+				text = "[color=%negative%]-2%[/color] Ranged Skill"
 			}
 		];
 		return ret;

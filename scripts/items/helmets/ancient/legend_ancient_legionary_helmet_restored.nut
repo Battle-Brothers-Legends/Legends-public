@@ -23,9 +23,9 @@ this.legend_ancient_legionary_helmet_restored <- this.inherit("scripts/items/hel
 
 	function updateVariant()
 	{
-		this.m.Sprite = "legend_ancient_legionaire_restored";
-		this.m.SpriteDamaged = "legend_ancient_legionaire_restored_damaged";
-		this.m.SpriteCorpse = "legend_ancient_legionaire_restored_dead";
+		this.m.Sprite = "ancient_legionary_helm_restored";
+		this.m.SpriteDamaged = "ancient_legionary_helm_restored_damaged";
+		this.m.SpriteCorpse = "ancient_legionary_helm_restored_dead";
 		this.m.IconLarge = "";
 		this.m.Icon = "helmets/inventory_ancient_legionary_restored.png";
 	}

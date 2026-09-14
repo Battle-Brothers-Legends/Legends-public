@@ -3,7 +3,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		 _list.push("legend_ironmonger_background");
+		 _list.push(::Legends.Background.LegendIronmonger);
 		onUpdateDraftList(_list);
 	}
 

@@ -1,20 +1,32 @@
 this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	m = {
 		Tail = null,
-		Mode = 0
+		Mode = 0,
+		DroppableRunes = [
+			::Legends.Rune.LegendRsaEndurance,
+			::Legends.Rune.LegendRsaSafety
+		],
+		MovementAPSpent = 0,
+		EffectsSharedWithTail = [
+			::Legends.Effect.Staggered,
+			::Legends.Effect.Dazed,
+			::Legends.Effect.LegendDazed,
+			::Legends.Effect.LegendBaffled,
+			::Legends.Effect.Withered,
+			::Legends.Effect.InsectSwarm
+		],
+		EffectsSharedWithTailLookup = {} 
 	},
-	function getIdealRange()
-	{
+
+	function getIdealRange() {
 		return 2;
 	}
 
-	function getMode()
-	{
+	function getMode() {
 		return this.m.Mode;
 	}
 
-	function setMode( _m )
-	{
+	function setMode( _m ) {
 		this.m.Mode = _m;
 
 		if (this.isPlacedOnMap())
@@ -29,13 +41,11 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function getImageOffsetY()
-	{
+	function getImageOffsetY() {
 		return 20;
 	}
 
-	function create()
-	{
+	function create() {
 		this.m.Type = this.Const.EntityType.LegendStollwurm;
 		this.m.BloodType = this.Const.BloodType.Red;
 		this.m.XP = this.Const.Tactical.Actor.LegendStollwurm.XP;
@@ -87,10 +97,35 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("lindwurm");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_stollwurm_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[90, "scripts/items/loot/lindwurm_hoard_item"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(2);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/misc/legend_stollwurm_scales_item"],
+				[50, "scripts/items/misc/lindwurm_bones_item"],
+				[25, "scripts/items/misc/legend_stollwurm_blood_item"],
+				[25, "scripts/items/misc/legend_stollwurm_scales_item"],
+				[20, "scripts/items/misc/legend_stollwurm_blood_item"],
+				[30,  "scripts/items/misc/lindwurm_bones_item"],
+				[50,  function () {
+					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local rune = ::new(::Legends.Runes.get(selected).Script);
+					rune.setRuneVariant(selected);
+					rune.setRuneBonus(true);
+					rune.updateRuneSigilToken();
+					return rune;
+				}.bindenv(this)],
+			]);
+		}
+		foreach(def in this.m.EffectsSharedWithTail) { // you have id:def mapping here
+			this.m.EffectsSharedWithTailLookup[::Legends.Effects.getID(def)] <- def
+		}
 	}
 
-	function playSound( _type, _volume, _pitch = 0.5 )
-	{
+	function playSound( _type, _volume, _pitch = 0.5 ) {
 		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
 		{
 			return;
@@ -99,11 +134,15 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onTurnStart() {
+		this.actor.onTurnStart();
+		this.m.MovementAPSpent = 0;
+	}
+
+	function onDeath( _killer, _skill, _tile, _fatalityType ) {
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -144,100 +183,42 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Stollwurm";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local tileLoot = this.getLootForTile(_killer, []);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 2 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i++ ) {
-					local r = this.Math.rand(1, 100);
-					local loot;
-					loot = this.new("scripts/items/misc/legend_stollwurm_scales_item");
-					loot.drop(_tile);
-
-					if (r <= 25)
-					{
-						loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
-						loot.drop(_tile);
-					}
-					else if (r <= 50)
-					{
-						loot = this.new("scripts/items/misc/legend_stollwurm_scales_item");
-						loot.drop(_tile);
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/lindwurm_bones_item");
-						loot.drop(_tile);
-					}
-
-					local r = this.Math.rand(1, 100);
-
-					if (r <= 20)
-					{
-						loot = this.new("scripts/items/misc/legend_stollwurm_blood_item");
-						loot.drop(_tile);
-					}
-
-					local r = this.Math.rand(1, 100);
-
-					if (r <= 30)
-					{
-						loot = this.new("scripts/items/misc/lindwurm_bones_item");
-						loot.drop(_tile);
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 50)
-					{
-						local rune;
-						local variant = this.Math.rand(21, 22);
-
-						switch(variant)
-						{
-						case 21:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_endurance");
-							break;
-
-						case 22:
-							rune = this.new("scripts/items/legend_armor/runes/legend_rune_safety");
-							break;
-						}
-
-						rune.setRuneVariant(variant);
-						rune.setRuneBonus(true);
-						rune.setRuneVariant(0);
-						rune.drop(_tile);
-					}
-				}
-
-				if (this.Math.rand(1, 100) <= 90)
-				{
-					local loot = this.new("scripts/items/loot/lindwurm_hoard_item");
-					loot.drop(_tile);
-				}
-			}
 		}
+
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false )
+	function generateCorpse( _tile, _fatalityType, _killer )
 	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Stollwurm";
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		return corpse;
+	}
+
+	function kill( _killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false ) {
 		this.m.IsDying = true;
 
-		if (this.m.Tail != null && !this.m.Tail.isNull() && this.m.Tail.isAlive())
-		{
+		if (!::Legends.S.isEntityNullOrDead(this.m.Tail)) {
 			this.m.Tail.kill(_killer, _skill, _fatalityType, _silent);
 			this.m.Tail = null;
 		}
 
 		this.actor.kill(_killer, _skill, _fatalityType, _silent);
+		::Tactical.TurnSequenceBar.ForceRecheckNextTurnCondition();
 	}
 
 	function updateOverlay()
@@ -260,7 +241,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function checkMorale( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	function checkMorale( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		this.actor.checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 
@@ -293,7 +274,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 170)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;
@@ -332,10 +313,10 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 15));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/actives/gorge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Gorge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/racial/lindwurm_racial"));
+		// ::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLindwurm);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
@@ -343,11 +324,11 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_stollwurm_move_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMove);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
@@ -355,43 +336,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-
-			switch(this.World.Assets.getCombatDifficulty())
-			{
-			case this.Const.Difficulty.Easy:
-				dateToSkip = 250;
-				break;
-
-			case this.Const.Difficulty.Normal:
-				dateToSkip = 200;
-				break;
-
-			case this.Const.Difficulty.Hard:
-				dateToSkip = 150;
-				break;
-
-			case this.Const.Difficulty.Legendary:
-				dateToSkip = 100;
-				break;
-			}
-
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor((this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
 
 		if (this.m.Tail == null)
 		{
@@ -431,9 +376,32 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 				this.m.Tail.getSprite("body").Saturation = body.Saturation;
 			}
 		}
+
+		local skills = this.getSkills();
+		local skills_add = skills.add;
+		skills.add = function( _skill, _order = 0 ) {
+			skills_add(_skill, _order);
+
+			local actor = this.getActor();
+			if (::Legends.S.isEntityNullOrDead(actor.m.Tail))
+				return;
+			if (_skill.getID() in actor.m.EffectsSharedWithTailLookup) {
+				::Legends.Effects.grant(actor.m.Tail, actor.m.EffectsSharedWithTailLookup[_skill.getID()], function(_effect) {
+					_effect.m.IsFromHead <- true;
+				});
+			}
+		}.bindenv(skills);
 	}
 
-	function onMovementFinish( _tile )
+	function onMovementStep( _tile, _levelDifference ) {
+		local result = this.actor.onMovementStep( _tile, _levelDifference );
+		if(result) {
+			this.m.MovementAPSpent += this.Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult) + (_levelDifference != 0 ? this.m.LevelActionPointCost : 0);
+		}
+		return result;
+	}
+
+	function onMovementFinish(_tile)
 	{
 		this.actor.onMovementFinish(_tile);
 
@@ -450,4 +418,3 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

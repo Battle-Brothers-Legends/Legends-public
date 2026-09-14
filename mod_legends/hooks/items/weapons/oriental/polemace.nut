@@ -1,8 +1,20 @@
 ::mods_hookExactClass("items/weapons/oriental/polemace", function(o) {
+
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function() {
 		create();
 		this.m.Value = 1500;
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.WeaponType = this.Const.Items.WeaponType.Mace | this.Const.Items.WeaponType.Polearm;
+		this.setCategories("Mace/Polearm, Two-Handed");
 	}
+
+	o.updateVariant <- function() {
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/polemace_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/polemace_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_polemace_01" + v;
+	}
+
 });

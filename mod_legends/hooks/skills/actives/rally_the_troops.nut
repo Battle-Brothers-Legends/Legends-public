@@ -23,29 +23,29 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Triggers a morale check to rally fleeing allies within 4 tiles distance, with a bonus to Resolve of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bravery + "[/color] based on this character\'s Resolve"
+				text = "Triggers a morale check to rally fleeing allies within 4 tiles distance, with a bonus to Resolve of [color=%positive%]+" + bravery + "[/color] based on this character\'s Resolve"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Triggers a morale check to raise the morale of anyone wavering or worse within 4 tiles distance, with a bonus to Resolve of [color=" + this.Const.UI.Color.PositiveValue + "]+" + bravery + "[/color] based on this character\'s Resolve, but lowered by [color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] per tile distance"
+				text = "Triggers a morale check to raise the morale of anyone wavering or worse within 4 tiles distance, with a bonus to Resolve of [color=%positive%]+" + bravery + "[/color] based on this character\'s Resolve, but lowered by [color=%negative%]-10[/color] per tile distance"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + bravery + "%[/color] chance to remove [color=#731f39]Charmed[/color], [color=#731f39]Sleeping[/color] or [color=#731f39]Infatuated[/color] from affected targets on cast."
+				text = "Has a [color=%positive%]" + bravery + "%[/color] chance to remove [color=#731f39]Charmed[/color], [color=#731f39]Sleeping[/color] or [color=#731f39]Infatuated[/color] from affected targets on cast."
 			}
 		];
 
-		if (this.getContainer().hasSkill("effects.rallied"))
+		if (this.getContainer().hasEffect(::Legends.Effect.Rallied))
 		{
 			tooltip.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not rally others the same turn as being rallied themself[/color]"
+				text = "[color=%negative%]Can not rally others the same turn as being rallied themself[/color]"
 			});
 		}
 
@@ -61,8 +61,8 @@
 	{
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
-		
+		local actors = this.Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
+
 		foreach( a in actors )
 		{
 			if (a.getID() == _user.getID())
@@ -75,10 +75,10 @@
 				continue;
 			}
 
-			local effect = a.getSkills().getSkillByID("effects.charmed");
-			local notCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
-			effect = a.getSkills().getSkillByID("effects.legend_intensely_charmed");
-			local notIntenselyCharmedBro = effect != null && effect.m.OriginalFaction != _user.getFaction();
+			local effect = ::Legends.Effects.get(a, ::Legends.Effect.Charmed);
+			local notCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
+			effect = ::Legends.Effects.get(a, ::Legends.Effect.LegendIntenselyCharmed);
+			local notIntenselyCharmedBro = effect != null && ::MSU.isIn("OriginalFaction", effect.m) && effect.m.OriginalFaction != _user.getFaction();
 			if (a.getFaction() != _user.getFaction() && notCharmedBro && notIntenselyCharmedBro) //Charmed bros belong to a different faction, additional conditions make sure they are not excluded
 			{
 				continue;
@@ -86,23 +86,23 @@
 
 			// Next part was probably added for testing purposes
 			/*	this.logInfo("attempting to rally");
-				if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
+				if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 				{
 					local rand = this.Math.rand(1, 100);
 					if( bravery > rand )
 						{
 						this.logInfo("Removing charms");
-						a.getSkills().removeByID("effects.charmed");
-						a.getSkills().removeByID("effects.sleeping");
-						a.getSkills().removeByID("effects.legend_intensely_charmed");
+						::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
+						::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
+						::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
 						}
 				}
-			
+
 				if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 				{
 					continue;
 				}
-			
+
 				this.logInfo("finding rally difficulty");
 				local difficulty = bravery;
 					this.logInfo("getting distance");
@@ -121,14 +121,14 @@
 					a.checkMorale(1, difficulty - distance, this.Const.MoraleCheckType.Default, "status_effect_56");
 				} */
 
-			if (a.getSkills().hasSkill("effects.charmed") || a.getSkills().hasSkill("effects.legend_intensely_charmed") || a.getSkills().hasSkill("effects.sleeping"))
+			if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			{
 				local rand = this.Math.rand(1, 100);
 				if( bravery > rand )
-				{						
-					a.getSkills().removeByID("effects.charmed");
-					a.getSkills().removeByID("effects.sleeping");
-					a.getSkills().removeByID("effects.legend_intensely_charmed");
+				{
+					::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
+					::Legends.Effects.remove(a, ::Legends.Effect.Sleeping);
+					::Legends.Effects.remove(a, ::Legends.Effect.LegendIntenselyCharmed);
 				}
 			}
 
@@ -137,11 +137,11 @@
 				continue;
 			}
 
-			if (a.getSkills().hasSkill("effects.rallied"))
+			if (a.getSkills().hasEffect(::Legends.Effect.Rallied))
 			{
 				continue;
 			}
-			
+
 			if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
 			{
 				continue;
@@ -162,11 +162,11 @@
 
 			if (morale != a.getMoraleState())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/rallied_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.Rallied);
 			}
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/rallied_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Rallied);
 		return true;
 	}
 });

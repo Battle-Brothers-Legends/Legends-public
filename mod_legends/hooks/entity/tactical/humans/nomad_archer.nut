@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/nomad_archer", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/nomad_archer", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -33,24 +40,24 @@
 
 
 		local armor = [
-			[2, "oriental/nomad_robe"],
-			[2, "oriental/thick_nomad_robe"],
-			[1, "oriental/cloth_sash"],
-			// [1, "citrene_nomad_cutthroat_armor_00"],
-			// [1, "citrene_nomad_cutthroat_armor_01"],
-			[3, "nomad_archer_armor_00"]
-		]
+			[2, ::Legends.Armor.Southern.nomad_robe],
+			[2, ::Legends.Armor.Southern.thick_nomad_robe],
+			[1, ::Legends.Armor.Southern.cloth_sash],
+			// [1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_00],
+			// [1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_01],
+			[3, ::Legends.Armor.Southern.nomad_archer_armor_00]
+		];
 
 		local helmet = [
-			[2, "oriental/nomad_head_wrap"],
-			[3, "oriental/nomad_head_wrap"],
-			[1, "citrene_nomad_ranged_helmet_00"],
-			[3, "oriental/nomad_leather_cap"]
-		]
+			[2, ::Legends.Helmet.Southern.nomad_head_wrap],
+			[3, ::Legends.Helmet.Southern.nomad_head_wrap],
+			[1, ::Legends.Helmet.Standard.citrene_nomad_ranged_helmet_00],
+			[3, ::Legends.Helmet.Southern.nomad_leather_cap]
+		];
 
 		local outfits = [
-			[1, "dark_southern_outfit_00"]
-		]
+			[1, ::Legends.Outfit.dark_southern_outfit_00]
+		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 		{

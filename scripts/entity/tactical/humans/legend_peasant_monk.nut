@@ -13,6 +13,9 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_standard_bearer_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -27,7 +30,7 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecStaffSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSelfdefense);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecStaffStun);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
@@ -35,7 +38,6 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_militia");
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendInspire);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
@@ -46,39 +48,32 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 4);
-
-		if (r <= 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_staff"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_tipstaff"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[3, "weapons/legend_staff"],
+			[1, "weapons/legend_tipstaff"],
+		], "scripts/items/"));
 
 		local armor = [
-			[1, "sackcloth"],
-			[1, "thick_tunic"],
-			[1, "apron"],
-			[1, "tattered_sackcloth"],
-			[6, "linen_tunic"]
-		]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[6, ::Legends.Armor.Standard.linen_tunic]
+		];
 
 		local helmet = [
-			[1, "straw_hat"],
-			[2, "hood"],
-			[1, "headscarf"]
-		]
+			[1, ::Legends.Helmet.Standard.straw_hat],
+			[2, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.headscarf]
+		];
 
 		local outfits = [
-			[1, "brown_monk_outfit_00"]
-		]
+			[1, ::Legends.Outfit.brown_monk_outfit_00]
+		];
 
 		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
 		{
-			this.m.Items.equip(item)
+			this.m.Items.equip(item);
 		}
 	}
 

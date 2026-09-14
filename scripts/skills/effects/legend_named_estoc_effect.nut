@@ -1,11 +1,11 @@
+//// as of 15.2.2 replaced by vanilla version
 this.legend_named_estoc_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		Bonus = 0
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_estoc";
-		this.m.Name = "Named Estoc";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedEstoc);
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";

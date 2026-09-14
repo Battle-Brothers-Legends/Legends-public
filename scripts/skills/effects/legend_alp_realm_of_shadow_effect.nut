@@ -2,21 +2,11 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_alp_realm_of_shadow";
-		this.m.Name = "Engulfed By Darkness";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendAlpRealmOfShadow);
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/nightmare_01.wav",
-			"sounds/enemies/dlc2/nightmare_02.wav",
-			"sounds/enemies/dlc2/nightmare_03.wav",
-			"sounds/enemies/dlc2/nightmare_04.wav",
-			"sounds/enemies/dlc2/nightmare_05.wav",
-			"sounds/enemies/dlc2/nightmare_06.wav",
-			"sounds/enemies/dlc2/nightmare_07.wav",
-			"sounds/enemies/dlc2/nightmare_08.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsStacking = false;
@@ -25,7 +15,7 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is consumed by the unnatural black mist and is showing signs of fear. As the horrors eat away at his sanity, he would soon be broken.";
+		return "This character is consumed by unnatural black mist and is experiencing supernatural terror. The horrors eat away at their sanity and they will soon be broken.";
 	}
 
 	function getTooltip()
@@ -50,19 +40,19 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 					id = 9,
 					type = "text",
 					icon = "ui/icons/bravery.png",
-					text = "[color=" + ::Const.UI.Color.PositiveValue + "]+33%[/color] Resolve"
+					text = "[color=%positive%]+33%[/color] Resolve"
 				},
 				{
 					id = 10,
 					type = "text",
 					icon = "ui/icons/melee_defense.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
+					text = "[color=%positive%]+10[/color] Melee Defense"
 				},
 				{
 					id = 12,
 					type = "text",
 					icon = "ui/icons/ranged_defense.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Ranged Defense"
+					text = "[color=%positive%]+100%[/color] Ranged Defense"
 				},
 				{
 					id = 10,
@@ -79,25 +69,25 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-1[/color] Vision"
+				text = "[color=%negative%]-1[/color] Vision"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-33%[/color] Resolve"
+				text = "[color=%negative%]-33%[/color] Resolve"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
+				text = "[color=%negative%]-10%[/color] Initiative"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Takes [color=" + ::Const.UI.Color.NegativeValue + "]33%[/color] more damage from [color=" + ::Const.UI.Color.NegativeValue + "]Nightmare[/color]"
+				text = "Takes [color=%negative%]33%[/color] more damage from [color=%negative%]Nightmare[/color]"
 			}
 		]);
 
@@ -108,13 +98,14 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	{
 		local myTile = this.getContainer().getActor().getTile();
 
-		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == ::Time.getRound() || myTile.Properties.Effect.Type != "shadows")
+		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == ::Time.getRound() || myTile.Properties.Effect.Type != "legend_shadow_mist")
 			this.removeSelf();
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
-		if (_tile.Properties.Effect == null || _tile.Properties.Effect.Type != "shadows")
+		local tile = this.getContainer().getActor().getTile();
+		if (tile.Properties.Effect == null || tile.Properties.Effect.Type != "legend_shadow_mist")
 			this.removeSelf();
 	}
 
@@ -135,11 +126,11 @@ this.legend_alp_realm_of_shadow_effect <- ::inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
-	{	
+	{
 		if (_attacker == null)
 			return;
 
-		if (_skill == null || _skill.getID != "actives.nightmare")
+		if (_skill == null || _skill.getID() != ::Legends.Actives.getID(::Legends.Active.Nightmare))
 			return;
 
 		_properties.DamageReceivedTotalMult *= 1.33;

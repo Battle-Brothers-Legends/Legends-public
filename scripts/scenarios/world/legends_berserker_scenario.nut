@@ -25,13 +25,17 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 			i = ++i;
 		}
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"legend_berserker_commander_background"
-		]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendCommanderBerserker]);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Berserk);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.Berserk);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setVeteranPerks(2);
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
+		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
+		stash.add(this.new("scripts/items/supplies/roots_and_berries_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money;
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo;
 	}
@@ -194,46 +198,51 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 
 	function onUpdateHiringRoster( _roster )
 	{
-		// this.addBroToRoster(_roster, "wildwoman_background", 8)
-		this.addBroToRoster(_roster, "wildman_background", 10)
-		this.addBroToRoster(_roster, "barbarian_background", 7)
-		this.addBroToRoster(_roster, "legend_berserker_background", 9)
+		this.addBroToRoster(_roster, ::Legends.Background.Barbarian, 7);
+		this.addBroToRoster(_roster, ::Legends.Background.Wildman, 10);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendBerserker, 9);
 	}
 
 	function onGenerateBro(bro)
 	{
+		if (bro.isStabled()) {
+			return;
+		}
 		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) // Added this check for backgrounds like retired soldier
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25) //1.0 = default
+				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 				bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 				bro.getSkills().update();
 			}
 		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			bro.getSkills().update();
 		}
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
-		{
-			bro.worsenMood(1.5, "Disturbed by your wild and erratic nature");
+		if (_bro.isStabled()) {
+			return;
 		}
-		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
 		{
-			bro.improveMood(1.0, "Excited by your lust for battle");
+			_bro.worsenMood(1.5, "Disturbed by your wild and erratic nature");
+		}
+		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		{
+			_bro.improveMood(1.0, "Excited by your lust for battle");
 		}
 
-		bro.improveMood(0.5, "Learned a new skill");
+		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Berserk);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Berserk);
 	}
 
 });

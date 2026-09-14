@@ -1,102 +1,42 @@
-::mods_hookExactClass("entity/world/settlements/medium_tundra_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_tundra_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
-		this.m.DraftList = [
-			"beggar_background",
-			"bowyer_background",
-			"brawler_background",
-			"brawler_background",
-			"butcher_background",
-			"cultist_background",
-			"daytaler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"messenger_background",
-			"militia_background",
-			"minstrel_background",
-			"monk_background",
-			"peddler_background",
-			"poacher_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"wildman_background",
-			"female_beggar_background",
-			"female_bowyer_background",
-			"brawler_background",
-			"brawler_background",
-			"female_butcher_background",
-			"cultist_background",
-			"female_daytaler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"messenger_background",
-			"militia_background",
-			"female_minstrel_background",
-			"monk_background",
-			"peddler_background",
-			"poacher_background",
-			"female_tailor_background",
-			"female_thief_background",
-			"vagabond_background",
-			"wildman_background"
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.LegendDisownedNobleRanged,
+		]);
 	}
 
-	o.onBuild = function ( _settings )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Const.DLC.Unhold)
-		{
+		if (this.Const.DLC.Unhold) {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1 || this.Const.World.Buildings.Taxidermists == 0)
-			{
+			if (r == 1 || this.Const.World.Buildings.Taxidermists == 0) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/barber_building"));
 			}
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r <= 2)
-			{
+			if (r <= 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/barber_building"));
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -109,9 +49,7 @@
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Tundra
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/trapper_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -126,8 +64,7 @@
 			], [], 1);
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
-		{
+		if (this.Math.rand(1, 100) <= 70) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,
@@ -145,9 +82,7 @@
 				this.Const.World.TerrainType.Hills,
 				this.Const.World.TerrainType.Tundra
 			], [], 1, false, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/pig_farm_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Hills,

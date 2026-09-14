@@ -1,16 +1,26 @@
-::mods_hookExactClass("entity/tactical/humans/master_archer", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/master_archer", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 			::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
@@ -44,12 +54,12 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			local armor = [
-				[1, "thick_tunic"],
-				[1, "padded_surcoat"],
-				[1, "leather_lamellar"],
-				[1, "basic_mail_shirt"],
-				[1, "ragged_surcoat"],
-				[1, "basic_mail_shirt"]
+				[1, ::Legends.Armor.Standard.thick_tunic],
+				[1, ::Legends.Armor.Standard.padded_surcoat],
+				[1, ::Legends.Armor.Standard.leather_lamellar],
+				[1, ::Legends.Armor.Standard.basic_mail_shirt],
+				[1, ::Legends.Armor.Standard.ragged_surcoat],
+				[1, ::Legends.Armor.Standard.basic_mail_shirt]
 			];
 			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
 		}

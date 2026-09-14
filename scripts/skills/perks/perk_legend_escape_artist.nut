@@ -2,12 +2,7 @@ this.perk_legend_escape_artist <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendEscapeArtist);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendEscapeArtist);
 	}
 
 	// Note: As of Legends 18.2.0, this perk is no longer purchaseable by players (its effects have been merged into by Net Mastery)
@@ -15,7 +10,7 @@ this.perk_legend_escape_artist <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		local skills = this.getContainer().getSkillsByFunction(@(_skill) _skill.getID() == "actives.break_free" || _skill.getID() == "actives.break_ally_free");
+		local skills = this.getContainer().getSkillsByFunction(@(_skill) _skill.getID() == ::Legends.Actives.getID(::Legends.Active.BreakFree) || _skill.getID() == ::Legends.Actives.getID(::Legends.Active.BreakAllyFree));
 		foreach (s in skills)
 		{
 			s.m.ActionPointCost -= 1;

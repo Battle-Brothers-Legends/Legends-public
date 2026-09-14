@@ -1,10 +1,17 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_drummer", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/barbarian_drummer", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
@@ -13,12 +20,12 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 30)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.DrummerDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -40,14 +47,14 @@
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/drum_item"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "barbarians/thick_furs_armor"],
-				[1, "barbarians/animal_hide_armor"],
-				[1, "barbarians/reinforced_animal_hide_armor"]
+				[1, ::Legends.Armor.Barbarian.thick_furs_armor],
+				[1, ::Legends.Armor.Barbarian.animal_hide_armor],
+				[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/bear_headpiece"]
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]);
 		if (item != null)
 		{

@@ -8,7 +8,7 @@ this.camp_main_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function reload()
 	{
-		this.m.JSHandle.asyncCall("loadFromData", this.m.Parent.queryTownInformation());
+		this.m.JSHandle.asyncCall("loadFromData", this.m.Parent.queryCampInformation());
 	}
 
 	function destroy()

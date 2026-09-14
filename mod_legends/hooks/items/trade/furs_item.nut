@@ -3,6 +3,7 @@
 	o.create = function ()
 	{
 		create();
+		this.m.ProducingBuildings.push("attached_location.hunters_cabin");
 		this.m.ResourceValue = 2;
 	}
 });

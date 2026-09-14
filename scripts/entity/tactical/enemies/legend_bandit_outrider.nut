@@ -107,10 +107,10 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("arms_icon").Rotation = 13.0;
 
 		//change to horse kick later
-		local wolf_bite = this.new("scripts/skills/actives/legend_horse_kick_skill");
-		wolf_bite.setRestrained(true);
-		wolf_bite.m.ActionPointCost = 0;
-		this.m.Skills.add(wolf_bite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick, function (_skill) {
+			_skill.setRestrained(true);
+			_skill.m.ActionPointCost = 0;
+		}.bindenv(this));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseMovement);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);
@@ -314,58 +314,27 @@ this.legend_bandit_outrider <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 2);
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/legend_militia_glaive"],
+			[1, "weapons/militia_spear"],
+		], "scripts/items/"));
 
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
-		}
-
-		local item = this.Const.World.Common.pickArmor([
-			[3, "gambeson"],
-			[1, "padded_surcoat"]
-		])
-		this.m.Items.equip(item);
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[3, ::Legends.Armor.Standard.gambeson],
+			[1, ::Legends.Armor.Standard.padded_surcoat]
+		]));
 
 		if (this.Math.rand(1, 100) <= 75)
 		{
-			local item = this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "open_leather_cap"],
-				[1, "headscarf"],
-				[1, "mouth_piece"],
-				[1, "full_leather_cap"],
-				[1, "aketon_cap"]
-			])
-			if (item != null)
-			{
-				this.m.Items.equip(item);
-			}
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.open_leather_cap],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.mouth_piece],
+				[1, ::Legends.Helmet.Standard.full_leather_cap],
+				[1, ::Legends.Helmet.Standard.aketon_cap]
+			]));
 		}
 	}
-
-	function getHeadNames() {
-		local r = this.Math.rand(0,1);
-
-		//I only see these two, feel free to fix. Just needs to assign "bust_head_xx" for horse to work properly, not from Heads array for some reason
-		if (r == 0) {
-			return "bust_head_5" + this.Math.rand(0,1);
-		}
-		else {
-			local r = this.Math.rand(0,1);
-			if (r == 0) {
-				return "bust_head_female_0" + this.Math.rand(1, 9);
-			}
-			else {
-				return "bust_head_female_1" + this.Math.rand(0,6);
-			}
-		}
-	}
-
 });
 

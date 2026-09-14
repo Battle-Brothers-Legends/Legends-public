@@ -23,40 +23,35 @@
 						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 					item = this.Const.World.Common.pickArmor([
-						[1, "adorned_heavy_mail_hauberk"],
+						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					stash.add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.makeName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					item = this.Const.World.Common.pickHelmet([
-						[1, "adorned_full_helm"],
+						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					stash.add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.makeName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
-					this.World.Assets.addMoney(-9000);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You lose [color=" + this.Const.UI.Color.NegativeEventValue + "]9,000[/color] Crowns"
-					});
+					this.List.push(::Legends.EventList.changeMoney(-9000));
 				}
 			}
 			if (s.ID == "Oathtaker") {
 				s.start <- function (_event) {
 					local roster = this.World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					_event.m.Dude.setStartValuesEx([
-						"paladin_background"
-					]);
+					_event.m.Dude.setStartValuesEx([::Legends.Background.Paladin]);
 					_event.m.Dude.setTitle("the Oathbreaker");
 					_event.m.Dude.getBackground().m.RawDescription = "Like many men, %name% was found in squalor. Ale on his lips, grime in his ears, piss and shit at least somewhere on his person. But he was an Oathtaker at heart, and by the providence of Young Anselm it was certainly no ordinary circumstance which brought him back into the faith. Of course, he\'ll still yet pair beer with belief, but now and again one must allow a man his vices, particularly if said man shares an interest in slaying Oathbringers.";
 					_event.m.Dude.getBackground().buildDescription(true);
@@ -98,12 +93,12 @@
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
 					item = this.Const.World.Common.pickHelmet([
-						[1, "adorned_full_helm"],
+						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
 					item = this.Const.World.Common.pickArmor([
-						[1, "adorned_heavy_mail_hauberk"],
+						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getConditionMax() / 3 - 1);
 					dudeItems.equip(item);

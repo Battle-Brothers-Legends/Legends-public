@@ -3,7 +3,7 @@
  *	@Company:		Overhype Studios
  *
  *	@Copyright:		(c) Overhype Studios | 2015
- * 
+ *
  *  @Author:		Overhype Studios
  *  @Date:			03.03.2015
  *  @Description:	New Campaign Menu Module JS
@@ -21,9 +21,9 @@ var NewCampaignMenuModule = function ()
 	this.mContainer = null;
 	this.mDialogContainer = null;
 
-	this.mFirstPanel = null;
-	this.mSecondPanel = null;
-	this.mThirdPanel = null;
+	this.mOriginSelectionPanel = null;
+	this.mCompanyCrisisSelectionPanel = null;
+	this.mDifficultySelectionPanel = null;
 
 	// controls
 	this.mDifficultyEasyCheckbox = null;
@@ -143,13 +143,13 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 	// create: content
 	var contentContainer = this.mDialogContainer.findDialogContentContainer();
 
-	this.mSecondPanel = $('<div class="display-block"/>');
-	contentContainer.append(this.mSecondPanel);
+	this.mCompanyCrisisSelectionPanel = $('<div class="display-block"/>');
+	contentContainer.append(this.mCompanyCrisisSelectionPanel);
 
 		var leftColumn = $('<div class="column"/>');
-		this.mSecondPanel.append(leftColumn);
+		this.mCompanyCrisisSelectionPanel.append(leftColumn);
 		var rightColumn = $('<div class="column"/>');
-		this.mSecondPanel.append(rightColumn);
+		this.mCompanyCrisisSelectionPanel.append(rightColumn);
 
 		// name
 		var row = $('<div class="row" />');
@@ -162,7 +162,7 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 		this.mCompanyName = inputLayout.createInput('Battle Brothers', 0, 32, 1, function (_input)
 		{
 			if(self.mStartButton !== null) self.mStartButton.enableButton(_input.getInputTextLength() >= 1);
-		}, 'title-font-big font-bold font-color-brother-name'); 
+		}, 'title-font-big font-bold font-color-brother-name');
 		this.mCompanyName.setInputText('Battle Brothers');
 
 		// greater evil
@@ -170,7 +170,7 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 		leftColumn.append(row);
 		var title = $('<div class="title title-font-big font-color-title">Late Game Crisis</div>');
 		row.append(title);
-		
+
 		var evilRandomControl = $('<div class="control"></div>');
 		row.append(evilRandomControl);
 		this.mEvilRandomCheckbox = $('<input type="radio" id="cb-evil-random" name="evil" checked />');
@@ -302,13 +302,13 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 			//_image.centerImageWithinParent();
 		}, null, 'display-none banner-image');
 
-	this.mThirdPanel = $('<div class="display-none"/>');
-	contentContainer.append(this.mThirdPanel);
+	this.mDifficultySelectionPanel = $('<div class="display-none"/>');
+	contentContainer.append(this.mDifficultySelectionPanel);
 
 		var leftColumn = $('<div class="column"/>');
-		this.mThirdPanel.append(leftColumn);
+		this.mDifficultySelectionPanel.append(leftColumn);
 		var rightColumn = $('<div class="column"/>');
-		this.mThirdPanel.append(rightColumn);
+		this.mDifficultySelectionPanel.append(rightColumn);
 
 		// economic difficulty
 		var row = $('<div class="row" />');
@@ -566,13 +566,13 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 		row.append(inputLayout);
 		this.mSeed = inputLayout.createInput('', 0, 10, 1, null, 'title-font-big font-bold font-color-brother-name');
 
-	this.mFirstPanel = $('<div class="display-none"/>');
-	contentContainer.append(this.mFirstPanel);
+	this.mOriginSelectionPanel = $('<div class="display-none"/>');
+	contentContainer.append(this.mOriginSelectionPanel);
 
 		var leftColumn = $('<div class="column2"/>');
-		this.mFirstPanel.append(leftColumn);
+		this.mOriginSelectionPanel.append(leftColumn);
 		var rightColumn = $('<div class="column3"/>');
-		this.mFirstPanel.append(rightColumn);
+		this.mOriginSelectionPanel.append(rightColumn);
 
 		// starting scenario
 		var row = $('<div class="row" />');
@@ -604,48 +604,48 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 	footerButtonBar.append(layout);
 	this.mStartButton = layout.createTextButton("Next", function ()
 	{
-		if(self.mFirstPanel.hasClass('display-block'))
+		if(self.mOriginSelectionPanel.hasClass('display-block'))
 		{
-			self.mFirstPanel.removeClass('display-block').addClass('display-none');
-			self.mSecondPanel.addClass('display-block').removeClass('display-none');
+			self.mOriginSelectionPanel.removeClass('display-block').addClass('display-none');
+			self.mCompanyCrisisSelectionPanel.addClass('display-block').removeClass('display-none');
 			self.mCancelButton.changeButtonText("Previous");
 			self.mStartButton.enableButton(self.mCompanyName.getInputTextLength() >= 1);
 		}
-		else if(self.mSecondPanel.hasClass('display-block'))
+		else if(self.mCompanyCrisisSelectionPanel.hasClass('display-block'))
 		{
-			self.mSecondPanel.removeClass('display-block').addClass('display-none');
-			self.mThirdPanel.addClass('display-block').removeClass('display-none');
+			self.mCompanyCrisisSelectionPanel.removeClass('display-block').addClass('display-none');
+			self.mDifficultySelectionPanel.addClass('display-block').removeClass('display-none');
 			self.mStartButton.changeButtonText("Start");
 		}
 		else
 		{
 			self.notifyBackendStartButtonPressed();
-		}		
+		}
 	}, '', 1);
 
 	layout = $('<div class="l-cancel-button"/>');
 	footerButtonBar.append(layout);
 	this.mCancelButton = layout.createTextButton("Cancel", function ()
 	{
-		if(self.mFirstPanel.hasClass('display-block'))
+		if(self.mOriginSelectionPanel.hasClass('display-block'))
 		{
 			self.notifyBackendCancelButtonPressed();
 		}
-		else if(self.mThirdPanel.hasClass('display-block'))
+		else if(self.mDifficultySelectionPanel.hasClass('display-block'))
 		{
-			self.mSecondPanel.addClass('display-block').removeClass('display-none');
-			self.mThirdPanel.removeClass('display-block').addClass('display-none');
+			self.mCompanyCrisisSelectionPanel.addClass('display-block').removeClass('display-none');
+			self.mDifficultySelectionPanel.removeClass('display-block').addClass('display-none');
 			self.mStartButton.changeButtonText("Next");
 			self.mCancelButton.changeButtonText("Previous");
 		}
 		else
 		{
-			self.mFirstPanel.addClass('display-block').removeClass('display-none');
-			self.mSecondPanel.removeClass('display-block').addClass('display-none');
+			self.mOriginSelectionPanel.addClass('display-block').removeClass('display-none');
+			self.mCompanyCrisisSelectionPanel.removeClass('display-block').addClass('display-none');
 			self.mStartButton.changeButtonText("Next");
 			self.mCancelButton.changeButtonText("Cancel");
 			self.mStartButton.enableButton(true);
-		}		
+		}
 	}, '', 1);
 
 	this.mIsVisible = false;
@@ -689,17 +689,17 @@ NewCampaignMenuModule.prototype.destroyDIV = function ()
 	this.mCancelButton.remove();
 	this.mCancelButton = null;
 
-	this.mFirstPanel.empty();
-	this.mFirstPanel.remove();
-	this.mFirstPanel = null;
+	this.mOriginSelectionPanel.empty();
+	this.mOriginSelectionPanel.remove();
+	this.mOriginSelectionPanel = null;
 
-	this.mSecondPanel.empty();
-	this.mSecondPanel.remove();
-	this.mSecondPanel = null;
+	this.mCompanyCrisisSelectionPanel.empty();
+	this.mCompanyCrisisSelectionPanel.remove();
+	this.mCompanyCrisisSelectionPanel = null;
 
-	this.mThirdPanel.empty();
-	this.mThirdPanel.remove();
-	this.mThirdPanel = null;
+	this.mDifficultySelectionPanel.empty();
+	this.mDifficultySelectionPanel.remove();
+	this.mDifficultySelectionPanel = null;
 
 	this.mDialogContainer.empty();
 	this.mDialogContainer.remove();
@@ -945,9 +945,9 @@ NewCampaignMenuModule.prototype.show = function ()
 	this.mSeed.setInputText(seed);
 
 	// reset panels
-	this.mFirstPanel.addClass('display-block').removeClass('display-none');
-	this.mSecondPanel.removeClass('display-block').addClass('display-none');
-	this.mThirdPanel.removeClass('display-block').addClass('display-none');
+	this.mOriginSelectionPanel.addClass('display-block').removeClass('display-none');
+	this.mCompanyCrisisSelectionPanel.removeClass('display-block').addClass('display-none');
+	this.mDifficultySelectionPanel.removeClass('display-block').addClass('display-none');
 	this.mStartButton.changeButtonText("Next");
 	this.mCancelButton.changeButtonText("Cancel");
 
@@ -1107,7 +1107,7 @@ NewCampaignMenuModule.prototype.updateStartingScenarioDescription = function (_d
 		removeMisalignedTags: false,
 		addInLineBreaks: true
 	});
-									
+
 	this.mScenariosDesc.html(parsedText.html);
 	this.mScenariosDifficulty.attr('src', Path.GFX + 'ui/images/' + _difficulty + '.png');
 };
@@ -1115,27 +1115,22 @@ NewCampaignMenuModule.prototype.updateStartingScenarioDescription = function (_d
 
 NewCampaignMenuModule.prototype.collectSettings = function()
 {
-	var settings = [];
+	var settings = {};
 
-	// company name
-	settings.push(this.mCompanyName.getInputText());
+	settings.companyName			= this.mCompanyName.getInputText();
 
-	// banner
-	settings.push(this.mBanners[this.mCurrentBannerIndex]);
+	settings.banner					= this.mBanners[this.mCurrentBannerIndex];
 
-	// difficulty
-	settings.push(this.mDifficulty);
-	settings.push(this.mEconomicDifficulty);
-	settings.push(this.mBudgetDifficulty);
-	settings.push(this.mIronmanCheckbox.is(':checked'));
-	settings.push(this.mExplorationCheckbox.is(':checked'));
-	settings.push(this.mEvil);
-	settings.push(this.mEvilPermanentDestructionCheckbox.is(':checked'));
-	settings.push(this.mSeed.getInputText());
+	settings.combatDifficulty		= this.mDifficulty;
+	settings.economicDifficulty		= this.mEconomicDifficulty;
+	settings.budgetDifficulty		= this.mBudgetDifficulty;
+	settings.ironman				= this.mIronmanCheckbox.is(':checked');
+	settings.explorationDifficulty	= this.mExplorationCheckbox.is(':checked');
+	settings.lateGameCrisis			= this.mEvil;
+	settings.permanentDestruction	= this.mEvilPermanentDestructionCheckbox.is(':checked');
+	settings.seed					= this.mSeed.getInputText();
 
-	// starting scenario
-	settings.push(this.mScenarios[this.mSelectedScenario].ID);
-
+	settings.origin					= this.mScenarios[this.mSelectedScenario].ID;
 	return settings;
 }
 

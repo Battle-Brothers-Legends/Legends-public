@@ -26,7 +26,7 @@ this.legend_infantry_axe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.25;
-		this.m.DirectDamageMult = 0.35;
+		this.m.DirectDamageMult = 0.4;
 		this.m.ChanceToHitHead = 0;
 	}
 
@@ -34,17 +34,15 @@ this.legend_infantry_axe <- this.inherit("scripts/items/weapons/weapon", {
 	{
 
 		this.weapon.onEquip();
-		local chop = this.new("scripts/skills/actives/chop");
-		chop.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Chop's Direct Damage Mult to Infantry Axes's Direct Damage Mult
-		this.addSkill(chop);
-		local splitman = this.new("scripts/skills/actives/split_man");
-		splitman.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Split Man's Direct Damage Mult to Infantry Axes's Direct Damage Mult
-		this.addSkill(splitman);
-		local skillToAdd = this.new("scripts/skills/actives/split_shield");
-		skillToAdd.setApplyAxeMastery(true);
-		skillToAdd.m.ActionPointCost = 4;
-		skillToAdd.setFatigueCost(skillToAdd.getFatigueCostRaw() + 5);
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
+			_skill.m.IsHack = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.m.ActionPointCost = 4;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
 
 });

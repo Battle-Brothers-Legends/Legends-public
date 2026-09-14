@@ -28,26 +28,11 @@ this.legend_bone_carver <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	// function getTooltip() //Already pulls tooltip below from skill!
-	// {
-	// 	local ret = this.weapon.getTooltip();
-	// 	ret.push({
-	// 		id = 18,
-	// 		type = "text",
-	// 		icon = "ui/icons/fatigue.png",
-	// 		text = "Builds up additional [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue with every skill use"
-	// 	});
-	// 	return ret;
-	// }
-
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/cleave");
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/decapitate");
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate);
 	}
 
 });

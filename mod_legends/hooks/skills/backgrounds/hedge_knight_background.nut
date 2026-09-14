@@ -1,0 +1,220 @@
+::mods_hookExactClass("skills/backgrounds/hedge_knight_background", function (o) {
+	o.m.AlreadyUsed <- false;
+	o.m.ExecutingAttack <- false;
+
+	o.create = function () {
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.HedgeKnight);
+		this.m.BackgroundDescription = "Hedge Knights are competitive individuals that excel in fighting man against man with brute strength and heavy armor, but less so in cooperating with others or in swiftness. Hedge Knights strike with such strength that they might cleave a secondary enemy.";
+		this.m.GoodEnding = "A %person% like %name% would always find a way. The hedge knight eventually, if not inevitably, left the company and set out on %their% own. Unlike many other mercenaries, %they% did not spend %their% crowns on land or ladders with which to climb the noble life. Instead, %they% bought %themselves% the finest war horses and the talents of armorers. The behemoth of a %person% rode from one jousting tournament to the next, winning them all with ease. %They're% still at it to this day, and you think %they% won\'t stop until %they're% dead. The hedge knight simply knows no other life.";
+		this.m.BadEnding = "%name% the hedge knight eventually left the company. %They% traveled the lands, returning to %their% favorite pastime of jousting, which was really a cover for %their% real favorite pastime of lancing men off horses in a shower of splinters and glory. At some point, %they% was ordered to \'throw\' a match against a pitiful and gangly prince to earn the nobleman some prestige. Instead, the hedge knight drove %their% lance through the man\'s skull. Furious, the lord of the land ordered the hedge knight killed. They say over a hundred soldiers took to %their% home and only half returned alive.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
+		];
+		this.m.ExcludedTalents = [
+			this.Const.Attributes.Initiative,
+			this.Const.Attributes.RangedSkill
+		];
+		this.m.Titles = [
+			"the Lone Wolf",
+			"the Wolf",
+			"the Hound",
+			"Steelwielder",
+			"the Slayer",
+			"the Jouster",
+			"the Giant",
+			"the Mountain",
+			"Strongface",
+			"the Defiler",
+			"the Knightslayer",
+			"the Hedge Knight"
+		];
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.Level = this.Math.rand(2, 5);
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
+	}
+
+	o.getTooltip = function () {
+		local ret = this.character_background.getTooltip();
+		ret.push({
+			id = 13,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Once per turn upon killing an enemy execute an attack of opportunity on an enemy on an adjacent tile for [color=%negative%]50%[/color] damage"
+		});
+		return ret;
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, HairColors = ::Const.HairColors.Young});
+	}
+
+	o.onTargetKilled <- function (_targetEntity, _skill) {
+		if (this.m.AlreadyUsed || _skill.isRanged()) {
+			return;
+		}
+
+		this.m.AlreadyUsed = true;
+
+		local executeFollowup;
+		executeFollowup = (function( _retries ) {
+			local actor = this.getContainer().getActor();
+			if (::Legends.S.isEntityNullOrDead(actor) || actor.m.MoraleState == ::Const.MoraleState.Fleeing || actor.getCurrentProperties().IsStunned || !::Tactical.TurnSequenceBar.isActiveEntity(actor)) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
+
+			local tile = actor.getTile();
+			local AOO = this.getContainer().getAttackOfOpportunity();
+			local targetTiles = [];
+
+			if (AOO == null) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
+
+			local targetsAreMovingInvoluntarily = false;
+
+			for (local i = 0; i < 6; i++) {
+				if (tile.hasNextTile(i)) {
+					local next = tile.getNextTile(i);
+
+					if (next.IsOccupiedByActor && ::Math.abs(next.Level - tile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer() && AOO.onVerifyTarget(tile, next)) {
+						local entity = next.getEntity();
+						if (entity.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary || ::Tactical.getNavigator().isTravelling(entity)) {
+							if (_retries > 20) {
+                    			entity.setCurrentMovementType(::Const.Tactical.MovementType.Default); // temporary fix, assume any movement has finished by now
+               				} else {
+								targetsAreMovingInvoluntarily = true;
+								break;
+							}
+						}
+
+						if (AOO.onVerifyTarget(tile, next)) {
+							targetTiles.push(next);
+						}
+					}
+				}
+			}
+
+			if (targetsAreMovingInvoluntarily) {
+            	::Time.scheduleEvent(::TimeUnit.Virtual, 50, executeFollowup, _retries + 1);
+            	return;
+        	}
+
+			if (targetTiles.len() == 0) {
+				this.m.AlreadyUsed = false;
+				return;
+			}
+
+			this.m.ExecutingAttack = true;
+			AOO.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
+			this.m.ExecutingAttack = false;
+		}).bindenv(this);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
+	}
+
+	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
+		if (this.m.ExecutingAttack) {
+			_properties.DamageTotalMult *= 0.5;
+		}
+	}
+
+	o.onTurnStart <- function () {
+		this.m.AlreadyUsed = false;
+	}
+
+	o.onBuildDescription <- function () {
+		return "{Some people are born to be feared. Well over six feet tall, %name%\'s stature alone is a threatening one. | %name%\'s shadow casts over smaller men - and they seem to only further shrink when %they% walks by. | Standing amongst men like a bear in a suit of armor, %name% earns plenty of double-takes. | Years of brutal combat with %their% equally huge brothers left %name% a scarred and scary figure.} {The hedge knight has spent many seasons taking %their% prized horse to jousting tournaments. Unfortunately, a polearm crowned %their% mount, leaving %them% without a ride. | A mercenary in the company of %themselves%, the hedge knight wandered for years, doing battle for those who offered the most crowns. | When %they% cleaved five men with one swing, three of which were on %their% side, the hedge knight was banned from service in every army in the land. | Ordered to kill a lord\'s enemies, the hedge knight kicked in the door of a family and slaughtered them all with %their% bare hands. When the lord refused to pay, %name% killed him, too. | The hedge knight has spent many nights sleeping peacefully beneath a pale moon - and just as many days killing ruthlessly beneath a shining sun.} {Always on the hunt for more crowns, the company of sellswords seemed like a good fit. | Too terrifying to be employed for long, %name% seeks the company of men who will not piss themselves when %they% grabs a weapon. | Tired of killing jousters and lords, as well as women and children, %name% sees mercenary work as something of a vacation. | War has apparently gotten in the way of %name%\'s jousting career. %They% seeks to amend that problem.}";
+
+	}
+
+	o.onSetAppearance = function () {
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+		local tattoo_head = actor.getSprite("tattoo_head");
+
+		if (this.Math.rand(1, 100) <= 25) {
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+			tattoo_body.Visible = true;
+		}
+
+		if (this.Math.rand(1, 100) <= 25) {
+			tattoo_head.setBrush("scar_02_head");
+			tattoo_head.Visible = true;
+		}
+	}
+
+	o.updateAppearance = function () {
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+
+		if (tattoo_body.HasBrush) {
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		}
+	}
+
+	o.onChangeAttributes = function () {
+		return ::Legends.Backgrounds.getStats(::Legends.Background.HedgeKnight);
+	}
+
+	o.onAddEquipment = function () {
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
+
+		local weapons = [
+			"weapons/greataxe",
+			"weapons/longsword",
+			"weapons/legend_zweihander",
+			"weapons/greatsword",
+			"weapons/two_handed_hammer",
+			"weapons/two_handed_flail",
+			"weapons/two_handed_flanged_mace"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
+		]));
+
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.bascinet_with_mail],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet],
+			[1, ::Legends.Helmet.Standard.theamson_barbute_helmet]
+		]));
+	}
+});

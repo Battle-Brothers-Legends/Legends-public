@@ -1,7 +1,7 @@
 this.legend_free_company_crossbow <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_crossbow_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_crossbow_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyCrossbow,
 		PerkPower = 6
@@ -49,31 +49,18 @@ this.legend_free_company_crossbow <- this.inherit("scripts/entity/tactical/legen
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 100);
-		if (r <= 90)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/crossbow"));
-		}
-		else if (r <= 99)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/heavy_crossbow"));
-		}
-
-		r = this.Math.rand(1, 4);
-		if (r == 4)
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/dagger"));
-		}
-		else
-		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[90, "weapons/crossbow"],
+			[9, "weapons/light_crossbow"],
+			[1, "weapons/heavy_crossbow"],
+		], "scripts/items/"));
 
 		this.legend_free_company_abstract.assignRandomEquipment();
+
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/dagger"],
+			[3, "weapons/knife"],
+		], "scripts/items/"));
 	}
 
 });

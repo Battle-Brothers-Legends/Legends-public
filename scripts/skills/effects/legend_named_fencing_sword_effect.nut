@@ -4,15 +4,14 @@ this.legend_named_fencing_sword_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_fencing_sword";
-		this.m.Name = "Named Fencing Sword";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedFencingSword);
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;
         this.m.IsHidden = true;
 	}

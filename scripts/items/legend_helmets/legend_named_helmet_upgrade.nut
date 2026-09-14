@@ -6,7 +6,7 @@ this.legend_named_helmet_upgrade <- this.inherit("scripts/items/legend_helmets/l
 	},
 	function create()
 	{
-		this.legend_helmet_upgrade.create()
+		this.legend_helmet_upgrade.create();
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Named;
 	}
 
@@ -48,6 +48,13 @@ this.legend_named_helmet_upgrade <- this.inherit("scripts/items/legend_helmets/l
 		}
 	}
 
+	function getTooltip(){
+		local result = this.legend_helmet_upgrade.getTooltip();
+		::Legends.Items.Named.ShowArmorPotential(this, result);
+
+    	return result;
+	}
+
 	function onEquip()
 	{
 		this.legend_helmet_upgrade.onEquip();
@@ -78,33 +85,29 @@ this.legend_named_helmet_upgrade <- this.inherit("scripts/items/legend_helmets/l
 		this.m.Name = _prefix + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
 	}
 
-	function randomizeValues()
-	{
-		this.m.StaminaModifier = this.Math.min(-8, this.m.StaminaModifier + this.Math.rand(3, 9));
-		this.m.Condition = this.Math.floor(this.m.Condition * this.Math.rand(120, 135) * 0.01) * 1.0; //was 110, 125 on 26/10/22 - Luft
+	function randomizeValues() {
+		this.m.Vision = ::Math.rand(this.m.Potential.Vision.max, this.m.Potential.Vision.min) * -1;
+		this.m.StaminaModifier = ::Math.rand(this.m.Potential.StaminaModifier.max, this.m.Potential.StaminaModifier.min) * -1;
+		this.m.Condition = ::Math.rand(this.m.Potential.Condition.min, this.m.Potential.Condition.max);
 		this.m.ConditionMax = this.m.Condition;
 	}
-
 	function onSerialize( _out )
 	{
+		this.legend_helmet_upgrade.onSerialize(_out);
 		_out.writeString(this.m.Name);
 		_out.writeF32(this.m.ConditionMax);
 		_out.writeI8(this.m.StaminaModifier);
 		_out.writeI8(this.m.Vision);
 
-		this.legend_helmet_upgrade.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
 	{
+		this.legend_helmet_upgrade.onDeserialize(_in);
 		this.m.Name = _in.readString();
 		this.m.ConditionMax = _in.readF32();
 		this.m.StaminaModifier = _in.readI8();
-		if (_in.getMetaData().getVersion() >= 68)
-		{
-			this.m.Vision = _in.readI8();
-		}
-		this.legend_helmet_upgrade.onDeserialize(_in);
+		this.m.Vision = _in.readI8();
 	}
 
 });

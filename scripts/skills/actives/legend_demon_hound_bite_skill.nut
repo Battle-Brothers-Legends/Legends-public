@@ -2,17 +2,10 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_demon_hound_bite";
-		this.m.Name = "Höllenhund Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDemonHoundBite);
 		this.m.Description = "";
 		this.m.KilledString = "Drained of life";
-		this.m.Icon = "skills/demon_hound_bite.png";
-		this.m.Overlay = "demon_hound_bite";
-		this.m.SoundOnUse = [
-			"sounds/enemies/hollen_attack_01.wav",
-			"sounds/enemies/hollen_attack_02.wav",
-			"sounds/enemies/hollen_attack_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/hollen_attack", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -69,11 +62,11 @@ this.legend_demon_hound_bite_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " spirit is being drained");
 		}
 
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_demon_hound_bite_effect");
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
 
 		if (poison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_demon_hound_bite_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendDemonHoundBiteEffect);
 		}
 		else
 		{

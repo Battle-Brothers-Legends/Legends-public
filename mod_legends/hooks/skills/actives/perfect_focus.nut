@@ -1,18 +1,20 @@
 ::mods_hookExactClass("skills/actives/perfect_focus", function(o)
 {
+	o.m.Counter <- 0;
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Icon = "skills/perfectfocus_square.png";
 		this.m.IconDisabled = "skills/perfectfocus_square_bw.png";
+		this.m.Overlay = "perfectfocus_active";
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.ActionPointCost = 0;
+		this.m.FatigueCost = 30;
 	}
 
 	o.getTooltip = function()
 	{
-		local ret = [
-			{
+		local ret = [ {
 				id = 1,
 				type = "title",
 				text = this.getName()
@@ -31,25 +33,36 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The Action Point cost for using skills is reduced by half for the remainder of this round, but at +75% fatigue cost"
+				text = "Adds a stacking [color=%effect%]Perfect Focus[/color] which increases your Action Points by [color=%positive%]3[/color]"
 			}
 		];
+
 		return ret;
 	}
 
-	o.isUsable = function ()
-	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_perfect_focus");
+	o.isHidden <- function() {
+		return this.getContainer().getActor().getFlags().has("undead");
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
-		if (!this.getContainer().hasSkill("effects.legend_perfect_focus"))
-		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_perfect_focus_effect"));
-			return true;
-		}
+	o.onAfterUpdate <- function (_properties ) {
+		local multiplier = this.m.Counter * 0.5;
+		this.m.FatigueCostMult *= 1.0 + multiplier;
+	}
 
-		return false;
+	o.onUse = function ( _user, _targetTile ) {
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendPerfectFocus);
+		this.m.Counter += 1;
+	}
+
+	o.onTurnStart <- function () {
+		this.m.Counter = this.Math.max(0, this.m.Counter - 1);
+	}
+ 
+	o.onCombatStarted <- function() {
+		this.m.Counter = 0;
+	}
+
+	o.onCombatFinished <- function() {
+		this.m.Counter = 0;
 	}
 });

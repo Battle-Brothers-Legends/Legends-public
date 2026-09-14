@@ -5,40 +5,13 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_catapult_boulder";
-		this.m.Name = "Catapult Boulder";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCatapultBoulder);
 		this.m.Description = "Hurl a boulder towards a target with your catapult. Hard to aim and very unwieldy, but boulders are everywhere so you never run out of ammunition. Can not be used while engaged in melee.";
 		this.m.KilledString = "Crushed";
-		this.m.Icon = "skills/active_12.png";
-		this.m.IconDisabled = "skills/active_12_sw.png";
-		this.m.Overlay = "active_12";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/sling_use_01.wav",
-			"sounds/combat/dlc4/sling_use_02.wav",
-			"sounds/combat/dlc4/sling_use_03.wav",
-			"sounds/combat/dlc4/sling_use_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc4/sling_hit_01.wav",
-			"sounds/combat/dlc4/sling_hit_02.wav",
-			"sounds/combat/dlc4/sling_hit_03.wav",
-			"sounds/combat/dlc4/sling_hit_04.wav"
-		];
-		this.m.SoundOnHitShield = [
-			"sounds/combat/dlc4/sling_shield_hit_01.wav",
-			"sounds/combat/dlc4/sling_shield_hit_02.wav",
-			"sounds/combat/dlc4/sling_shield_hit_03.wav",
-			"sounds/combat/dlc4/sling_shield_hit_04.wav",
-			"sounds/combat/dlc4/sling_shield_hit_05.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/dlc4/sling_miss_01.wav",
-			"sounds/combat/dlc4/sling_miss_02.wav",
-			"sounds/combat/dlc4/sling_miss_03.wav",
-			"sounds/combat/dlc4/sling_miss_04.wav",
-			"sounds/combat/dlc4/sling_miss_05.wav",
-			"sounds/combat/dlc4/sling_miss_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/sling_use", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc4/sling_hit", 4);
+		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 500;
@@ -76,7 +49,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head"
+			text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
 		});
 
 		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
@@ -85,7 +58,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -156,19 +129,24 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying() && !_targetEntity.getCurrentProperties().IsImmuneToStun)
-		{
-			local targetTile = _targetEntity.getTile();
-			local user = this.getContainer().getActor();
+		if (_skill != this)
+			return;
 
-			if (_bodyPart == this.Const.BodyPart.Head)
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+			return;
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToStun)
+			return;
+
+		local targetTile = _targetEntity.getTile();
+		local user = this.getContainer().getActor();
+
+		if (_bodyPart == this.Const.BodyPart.Head) {
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
+
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
-
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
-				}
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}

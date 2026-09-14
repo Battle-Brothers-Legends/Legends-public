@@ -2,15 +2,9 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_incoming";
-		this.m.Name = "Incoming!";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIncoming);
 		this.m.Description = "This mercenary has received clear instructions to keep their head down, and is coordinating accordingly.";
-		this.m.Icon = "skills/incoming_square.png";
-		this.m.IconDisabled = "skills/incoming_square_bw.png";
-		this.m.Overlay = "incoming_circle";
-		this.m.SoundOnUse = [
-			"sounds/combat/rally_the_troops_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/rally_the_troops_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -25,9 +19,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -48,26 +40,26 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] ranged skill to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+5[/color] ranged skill to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] resolve to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+5[/color] resolve to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] ranged defence to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]+10[/color] ranged defence to all allies within [color=%positive%]4[/color] tiles for one turn"
 			}
 		];
 	}
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_dodging_incoming");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendDodgingIncoming);
 	}
 
 	function onUse( _user, _targetTile )
@@ -87,19 +79,16 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_dodging_incoming"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendDodgingIncoming))
 			{
-
-			local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
-
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
-
-		local effect = this.new("scripts/skills/effects/legend_dodging_incoming")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendDodgingIncoming, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

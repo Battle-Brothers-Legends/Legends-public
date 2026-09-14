@@ -9,16 +9,9 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_bandage";
-		this.m.Name = "Use Bandages";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBandage);
 		this.m.Description = "Save yourself or another character from bleeding to death by applying pressure and provisional bandaging to any such wound. Does not heal hitpoints. Neither the character using this skill nor the patient may be engaged in melee, unless the character using this skill has Bandage Mastery.";
-		this.m.Icon = "skills/active_105.png";
-		this.m.IconDisabled = "skills/active_105_sw.png";
-		this.m.Overlay = "active_105";
-		this.m.SoundOnUse = [
-			"sounds/combat/first_aid_01.wav",
-			"sounds/combat/first_aid_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/first_aid", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -94,7 +87,7 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.bleeding") || target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
 			return true;
 		}
@@ -129,14 +122,14 @@ this.legend_bandage_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		this.spawnIcon("perk_55", _targetTile);
 
-		while (target.getSkills().hasSkill("effects.bleeding"))
+		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
 		{
-			target.getSkills().removeByID("effects.bleeding");
+			::Legends.Effects.remove(target, ::Legends.Effect.Bleeding);
 		}
 
-		while (target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
-			target.getSkills().removeByID("effects.legend_grazed_effect");
+			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazedEffect);
 		}
 
 		local skill;

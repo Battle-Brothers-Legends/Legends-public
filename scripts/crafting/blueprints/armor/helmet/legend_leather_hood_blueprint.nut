@@ -14,16 +14,15 @@ this.legend_leather_hood_blueprint <- this.inherit("scripts/crafting/blueprint",
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendSpecCultHood)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Perks.new(::Legends.Perk.LegendSpecCultHood),
+			::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)
+		]);
 	}
 
 	function onCraft( _stash )
 	{
-		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_cult_hood");
-		item.setVariant(this.m.PreviewCraftable.m.Variant);
+		local item = this.new("scripts/items/legend_helmets/top/legend_helmet_cult_hood");
 		_stash.add(item);
 		item = this.new("scripts/items/legend_helmets/top/legend_helmet_cult_hood");
 		_stash.add(item);

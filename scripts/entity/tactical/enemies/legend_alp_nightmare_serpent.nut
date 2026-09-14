@@ -42,14 +42,14 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1)
 		{
 			b.MeleeDefense += 5;
 
-			if (this.World.getTime().Days >= 50)
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 				b.DamageDirectMult += 0.15;
 
-			if (this.World.getTime().Days >= 75)
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4)
 				b.MeleeSkill += 10;
 		}
 
@@ -80,17 +80,17 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.setSpriteOffset("status_rooted", this.createVec(-10, 20));
 		this.setSpriteOffset("status_stunned", this.createVec(-35, 20));
 		this.setSpriteOffset("arrow", this.createVec(0, 20));
-		this.m.Skills.add(this.new("scripts/skills/racial/serpent_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialSerpent);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_serpent_hook_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/serpent_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.SerpentBite);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

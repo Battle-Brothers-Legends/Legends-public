@@ -1,92 +1,16 @@
-::mods_hookExactClass("entity/world/settlements/medium_fishing_village", function(o) 
-{
-	local create = o.create;
-	o.create = function()
-	{
-		create();
-		this.m.DraftList = [
-			"apprentice_background",
-			"beggar_background",
-			"beggar_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"daytaler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"historian_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"messenger_background",
-			"militia_background",
-			"monk_background",
-			"peddler_background",
-			"flagellant_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"servant_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"cripple_background",
-			"eunuch_background",
-			"sellsword_background",
-			"anatomist_background",
-			"apprentice_background",
-			"female_beggar_background",
-			"female_beggar_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"female_daytaler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"female_butcher_background",
-			"female_butcher_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"historian_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"messenger_background",
-			"militia_background",
-			"monk_background",
-			"peddler_background",
-			"flagellant_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"female_servant_background",
-			"female_tailor_background",
-			"female_thief_background",
-			"vagabond_background",
-			"cripple_background",
-			"eunuch_background",
-			"sellsword_background"
-		];
-	}
-
-	o.onBuild = function ( _settings )
-	{
+::mods_hookExactClass("entity/world/settlements/medium_fishing_village", function(o) {
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Math.rand(1, 100) <= 66)
-		{
+		if (this.Math.rand(1, 100) <= 66) {
 			local r = this.Math.rand(1, 2);
 
-			if (r == 1 || this.Const.World.Buildings.Blackmarket == 0)
-			{
+			if (r == 1 || this.Const.World.Buildings.Blackmarket == 0) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
-			}
-			else if (r <= 2)
-			{
+			} else if (r <= 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
 			}
 		}

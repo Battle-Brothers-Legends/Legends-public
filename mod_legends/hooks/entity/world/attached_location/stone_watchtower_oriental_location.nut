@@ -10,14 +10,14 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("nomad_background");
-		_list.push("nomad_background");
+		_list.push(::Legends.Background.Nomad);
+		_list.push(::Legends.Background.Nomad);
 
 		if (this.Math.rand(0, 6) == 1)
-			_list.push("legend_conscript_background");
+			_list.push(::Legends.Background.LegendConscript);
 		
 		if (this.Math.rand(0, 6) == 1)
-			_list.push("legend_conscript_ranged_background");
+			_list.push(::Legends.Background.LegendConscriptRanged);
 		
 		onUpdateDraftList(_list);
 	}
@@ -44,12 +44,12 @@
 			_list.push({
 				R = 35,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_southern_tabard"
+				S = "legend_armor/tabard/legend_armor_southern_tabard"
 			});
 			_list.push({
 				R = 60,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 60,
@@ -64,7 +64,7 @@
 			_list.push({
 				R = 60,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 99,

@@ -3,7 +3,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 	function create()
 	{
 		this.legend_vala_chant.create();
-		this.m.ID = "effects.legend_vala_chant_senses_effect";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantSensesEffect);
 		this.m.Range = 3;
 	}
 
@@ -36,7 +36,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.round(bonus) + "[/color] Melee and Ranged defense."
+				text = "[color=%positive%]+" + this.Math.round(bonus) + "[/color] Melee and Ranged Defense"
 			}
 		];
 	}
@@ -59,7 +59,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 		}
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		if (!this.checkEntities())
 		{

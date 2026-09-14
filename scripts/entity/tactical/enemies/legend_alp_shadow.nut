@@ -53,8 +53,8 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		// basic alp skill
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_shadow_alp_teleport_skill"));
 		// basic racial skill
-		this.m.Skills.add(this.new("scripts/skills/racial/ghost_racial"));
-		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);
 		// basic perks
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
@@ -87,14 +87,14 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 150)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpShadowMDefIncreaseDay)
 			b.MeleeDefense += 5;
 
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
 

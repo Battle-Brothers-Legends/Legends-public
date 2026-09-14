@@ -1,20 +1,21 @@
 ::mods_hookExactClass("events/events/dlc2/fear_beasts_event", function(o) {
 	o.m.excludedBackgrounds <- [
-		"companion",
-		"beast_slayer",
-		"hunter",
-		"witchhunter",
-		"wildman",
-		"wildwoman",
-		"hedge_knight"
+		::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer),
+		::Legends.Backgrounds.getID(::Legends.Background.Companion),
+		::Legends.Backgrounds.getID(::Legends.Background.HedgeKnight),
+		::Legends.Backgrounds.getID(::Legends.Background.Hunter),
+		::Legends.Backgrounds.getID(::Legends.Background.Wildman),
+		::Legends.Backgrounds.getID(::Legends.Background.Witchhunter),
+		::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
+		::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged),
 	];
 	o.m.excludedTraits <- [
-		"fear_beasts",
-		"hate_beasts",
-		"fearless",
-		"brave",
-		"determined",
-		"bloodthirsty"
+		::Legends.Trait.Bloodthirsty,
+		::Legends.Trait.Brave,
+		::Legends.Trait.Determined,
+		::Legends.Trait.Fearless,
+		::Legends.Trait.FearBeasts,
+		::Legends.Trait.HateBeasts
 	];
 
 	local create = o.create;
@@ -29,8 +30,9 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
+		}
 
 		local fallen = this.World.Statistics.getFallen();
 
@@ -55,11 +57,11 @@
 				continue;
 
 			foreach (background in this.m.excludedBackgrounds)
-				if (bro.getBackground().getID() == "background." + background)
+				if (bro.getBackground().getID() == background)
 					continue;
 
 			foreach (trait in this.m.excludedTraits)
-				if (bro.getSkills().hasSkill("trait." + trait))
+				if (bro.getSkills().hasTrait(trait))
 					continue;
 
 			candidates.push(bro);

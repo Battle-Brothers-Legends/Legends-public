@@ -1,29 +1,20 @@
 this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_beggar_scenario_intro";
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",
-			Text =  "[img]gfx/ui/events/event_51.png[/img]Two crowns. A whole week and all you have for it is two crowns.\n\nYou sigh as you amble through the narrow streets, heading toward your alley for the night. You've seen a lot in the square. There, your hand is on the pulse of the town. You can tell when things aren't right, you see it in the way they walk. Have they been walking differently?\n\nYour thoughts are cut short by a sudden commotion.\n\nTwo men are standing right where you usually sleep. One of them is short, youthful, and clothed in red fabric. A noble\'s son. A cloaked man has him cornered against the stone wall. The brat speaks, his voice a panicked quiver all but lost in the gloom. %SPEECH_ON%Wait \'till father hears what you\'ve done!%SPEECH_OFF% The second man responds with a swift motion. The young man cries out, but the scream is cut short by a hand over his mouth. He slumps down to the ground, leaving a crimson stain on the wall.",
+			Text = "[img]gfx/ui/events/event_51.png[/img]Two crowns. A whole week and all you have for it is two crowns.\n\nYou sigh as you amble through the narrow streets, heading toward your alley for the night. You've seen a lot in the square. There, your hand is on the pulse of the town. You can tell when things aren't right, you see it in the way they walk. Have they been walking differently?\n\nYour thoughts are cut short by a sudden commotion.\n\nTwo men are standing right where you usually sleep. One of them is short, youthful, and clothed in red fabric. A noble\'s son. A cloaked man has him cornered against the stone wall. The brat speaks, his voice a panicked quiver all but lost in the gloom. %SPEECH_ON%Wait \'till father hears what you\'ve done!%SPEECH_OFF% The second man responds with a swift motion. The young man cries out, but the scream is cut short by a hand over his mouth. He slumps down to the ground, leaving a crimson stain on the wall.",
 			Image = "",
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "A gruesome sight",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "A gruesome sight",
+				getResult = @(_event) "B"
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "B",
@@ -32,18 +23,11 @@ this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Time to run!",
-					function getResult( _event )
-					{
-						return "C";
-					}
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "Time to run!",
+				getResult = @(_event) "C"
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -52,45 +36,31 @@ this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			Banner = "",
 			List = [],
-			Options = [
-				{
-					Text = "No going back now",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
+			Options = [{
+				Text = "No going back now",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {
 				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
 				//this.World.FactionManager.makeNoblesUnfriendlyToPlayer();
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		return;
-	}
+	function onUpdateScore() {}
 
-	function onPrepare()
-	{
+	function onPrepare() {
 		this.m.Title = "Legend Beggar";
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		local homevillage = this.World.Flags.get("HomeVillage");
 		_vars.push([
 			"home",
 			homevillage
 		]);
-		foreach (s in this.World.EntityManager.getSettlements())
-		{
-			if (s.getName() == homevillage)
-			{
+		foreach (s in this.World.EntityManager.getSettlements()) {
+			if (s.getName() == homevillage) {
 				homevillage = s;
 				break;
 			}
@@ -102,9 +72,7 @@ this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onClear()
-	{
-	}
+	function onClear() {}
 
 });
 

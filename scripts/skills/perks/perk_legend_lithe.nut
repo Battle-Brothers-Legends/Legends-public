@@ -5,13 +5,9 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendLithe);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendLithe);
 		this.m.Description = "Lithe like a lizard! %name% is able to partially deflect attacks at the last moment, turning them into glancing hits.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -21,29 +17,33 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(true);
+		local bonusWithoutDura = this.getBonus(false);
 		local tooltip = this.skill.getTooltip();
 
-		if (bonus > this.m.BonusMin)
-		{
+		if (bonus > this.m.BonusMin) {
 			tooltip.push({
 				id = 6,
 				type = "text",
+				icon = "ui/icons/armor_body.png",
+				text = "Only receive [color=%positive%]" + (100 - bonus) + "%[/color] of any damage to Armor from attacks"
+			});
+			tooltip.push({
+				id = 7,
+				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Only receive [color=" + this.Const.UI.Color.PositiveValue + "]" + (100 - bonus) + "%[/color] of any damage to Hitpoints and Armor from attacks"
+				text = "Only receive [color=%positive%]" + (100 - bonusWithoutDura) + "%[/color] of any damage to Hitpoints from attacks"
 			});
 			return tooltip;
 		}
 
-		if (this.getContainer().getActor().getBodyItem() == null)
-		{
+		if (this.getContainer().getActor().getBodyItem() == null) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
 				text = "This character is not wearing any body armor and hence receives no bonus damage reduction"
 			});
-			return tooltip;
 		}
 
 		return tooltip;
@@ -71,37 +71,35 @@ this.perk_legend_lithe <- this.inherit("scripts/skills/skill", {
 		return mult;
 	}
 
-	function getBonus()
-	{
+	function getBonus(_useDurability = true) {
 		local actor = this.getContainer().getActor();
+		local armor = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 
-		local bodyitem = actor.getBodyItem();
-
-		if (bodyitem == null)
-		{
+		if (armor == null) {
 			return 0;
 		}
 
 		local armorFatMult = this.getArmorFatPenMult(actor.getItems().getStaminaModifier([::Const.ItemSlot.Body, ::Const.ItemSlot.Head]));
+		local bonus = ::Math.maxf(this.m.BonusMin, ::Math.minf(this.m.BonusMax, this.m.BonusMax * armorFatMult));
 
-		local totalArmorDurability = actor.getArmor(this.Const.BodyPart.Head) + actor.getArmor(this.Const.BodyPart.Body);
-		local maxArmorDurability = actor.getArmorMax(this.Const.BodyPart.Head) + actor.getArmorMax(this.Const.BodyPart.Body);
+		if (_useDurability) {
+			local helm = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+			local currentArmorDurability = armor.getArmor() + (helm != null ? helm.getArmor() : 0);
+			local maxArmorDurability = armor.getArmorMax() + (helm != null ? helm.getArmorMax() : 0);
+			bonus *= 0.5 * currentArmorDurability / (maxArmorDurability * 1.0) + 0.5;
+		}
 
-		local bonus = this.Math.maxf(this.m.BonusMin, this.Math.minf(this.m.BonusMax, this.m.BonusMax * armorFatMult));
-		bonus *= 0.5 * totalArmorDurability/(maxArmorDurability * 1.0) + 0.5;
-
-		return this.Math.floor(bonus);
+		return ::Math.floor(bonus);
 	}
 
 	function onBeforeDamageReceived ( _attacker, _skill, _hitInfo, _properties )
 	{
 		if (_attacker == null || _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack())
-		{
 			return;
-		}
 
-		local bonus = this.getBonus();
+		local bonus = this.getBonus(true);
+		local bonusWithoutDura = this.getBonus(false);
 		_properties.DamageReceivedArmorMult *= 1.0 - bonus * 0.01;
-		_properties.DamageReceivedRegularMult *= 1.0 - bonus * 0.01;
+		_properties.DamageReceivedRegularMult *= 1.0 - bonusWithoutDura * 0.01;
 	}
 });

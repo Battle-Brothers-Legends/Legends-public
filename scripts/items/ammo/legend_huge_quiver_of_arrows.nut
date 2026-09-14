@@ -2,6 +2,7 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 	m = {},
 	function create()
 	{
+		this.ammo.create();
 		this.m.ID = "ammo.arrows";
 		this.m.Name = "Huge Quiver of Arrows";
 		this.m.Description = "A huge quiver of arrows, required to use bows of all kinds. Is automatically refilled after each battle if you have enough ammunition.";
@@ -66,7 +67,7 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "Contains [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Ammo + "[/color] arrows"
+				text = "Contains [color=%positive%]" + this.m.Ammo + "[/color] arrows"
 			});
 		}
 		else
@@ -75,7 +76,7 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 				id = 6,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Is empty and useless[/color]"
+				text = "[color=%negative%]Is empty and useless[/color]"
 			});
 		}
 
@@ -84,7 +85,7 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/fatigue.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.StaminaModifier + "[/color] fatigue"
+			text = "[color=%negative%]" + this.m.StaminaModifier + "[/color] fatigue"
 		});
 		return result;
 	}

@@ -20,6 +20,9 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 16.0;
 		this.m.ConditionMax = 16.0;
 		this.m.StaminaModifier = -6;
+		this.m.Ammo = 1;
+		this.m.AmmoMax = 1;
+		this.m.AmmoCost = 5;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamageMax = 25;
 		this.m.ArmorDamageMult = 0.45;
@@ -30,8 +33,10 @@ this.legend_wooden_spear <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupSpear);
 	}
 
 	function onUpdateProperties( _properties )

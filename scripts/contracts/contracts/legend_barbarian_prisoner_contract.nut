@@ -8,8 +8,10 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		BarbRetal = null,
 		IsEscortUpdated = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyBarbarian,
-		ValidTypes = this.Const.LegendMod.FavoriteBarbarian
+		Perk = ::Legends.Perk.LegendFavouredEnemyOutlaw,
+		ValidTypes = this.Const.LegendMod.FavoriteOutlaw,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -23,6 +25,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			"Despite his captivity, the barbarian prisoner remains a formidable threat. Bulging muscles and furious eyes, not to mention the savage kin waiting to ambush you in the forest.",
 			"Wrapped in thick chains, a hulking barbarian prisoner awaits transport. Nobody wants the job, for his savage kin are fiercely loyal and they will come for him."
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
@@ -111,7 +114,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		this.m.Destination = this.WeakTableRef(candidates[this.Math.rand(0, candidates.len() - 1)]);
 		local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), this.m.Destination.getTile());
 		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
-		local modrate = this.World.State.getPlayer().getBarterMult();
+		local modrate = this.World.State.getPlayer().getHaggleMult();
 		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
 		this.m.Payment.Pool = this.Math.max(100, 3 * distance * (4 + modrate) * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult());
 		this.m.Payment.Completion = 0.75;
@@ -392,7 +395,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 						local money = this.Contract.m.Payment.getOnCompletion();
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
 						this.World.Assets.addMoney(money);
-						local xp = money * 0.5;
+						local xp = this.Math.round(money * 0.1 * this.Const.Combat.GlobalXPMult);
 						local playerRoster = this.World.getPlayerRoster().getAll();
 
 						foreach( bro in playerRoster )
@@ -411,7 +414,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			function start()
 			{
 				local money = this.Contract.m.Payment.getOnCompletion();
-				local xpGained = this.Math.round(money * 0.5 * this.Const.Combat.GlobalXPMult);
+				local xpGained = this.Math.round(money * 0.1 * this.Const.Combat.GlobalXPMult);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
@@ -431,7 +434,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			List = [],
 			Options = [
 				{
-					Text = "No. Execution is only solution to the crimes of this savage! (Increase Morals)",
+					Text = "No. Execution is only solution to the crimes of this savage! (Increase Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(5);
@@ -440,7 +443,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				},
 				{
-					Text = "Good idea. Let\'s speak with the prisoner. (Decrease Morals)",
+					Text = "Good idea. Let\'s speak with the prisoner. (Decrease Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(-3);
@@ -459,7 +462,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			List = [],
 			Options = [
 				{
-					Text = "Back to the cage! (Increase Morals)",
+					Text = "Back to the cage! (Increase Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addMoralReputation(2);
@@ -468,7 +471,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				},
 				{
-					Text = "Very well, you have a deal. (Decrease Morals)",
+					Text = "Very well, you have a deal. (Decrease Moral Reputation)",
 					function getResult()
 					{
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
@@ -533,7 +536,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 							foreach( bro in bros )
 							{
-								if (bro.getBackground().getID() == "background.legend_berserker" || bro.getBackground().getID() == "background.legend_berserker_commander")
+								if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker))
 								{
 									candidates.push(bro);
 								}
@@ -585,32 +588,14 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 
 				if (this.Flags.get("BerkFree"))
 				{
-					local r = this.Math.rand(1, 100);
-
-					if (r <= 30)
-					{
-						this.Contract.m.Dude.setStartValuesEx([
-							"legend_berserker_background"
-						]);
-						this.Contract.m.Dude.setTitle("the Beast");
-						this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from execution. You decided that this killing machine is a worthy acquisition, ignoring the fact it is also the most wanted criminal in the north.";
-						this.Contract.m.Dude.getBackground().buildDescription(true);
-					}
-					else
-					{
-						this.Contract.m.Dude.setStartValuesEx([
-							"barbarian_background"
-						]);
-						this.Contract.m.Dude.setTitle("the Barbarian");
-						this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from a death sentence. Recruiting this savage barbarian has put you in bad terms with the nobles of the north.";
-						this.Contract.m.Dude.getBackground().buildDescription(true);
-					}
+					this.Contract.m.Dude.setStartValuesEx([::Legends.Background.LegendBerserker]);
+					this.Contract.m.Dude.setTitle("the Beast");
+					this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from execution. You decided that this killing machine is a worthy acquisition, ignoring the fact it is also the most wanted criminal in the north.";
+					this.Contract.m.Dude.getBackground().buildDescription(true);
 				}
 				else
 				{
-					this.Contract.m.Dude.setStartValuesEx([
-						"barbarian_background"
-					]);
+					this.Contract.m.Dude.setStartValuesEx([::Legends.Background.Barbarian]);
 					this.Contract.m.Dude.setTitle("the Barbarian");
 					this.Contract.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you from a death sentence. Recruiting this savage barbarian has put you in bad terms with the nobles of the north.";
 					this.Contract.m.Dude.getBackground().buildDescription(true);
@@ -638,7 +623,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 	}
 
 	function spawnEnemies() {
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Barbarians).spawnEntity(this.m.BarbCamp.getTile(), "Barbarian Retaliation", false, this.Const.World.Spawn.Barbarians, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush(this.m.BarbCamp.getBanner());
 		party.setAttackableByAI(false);
 		this.m.BarbRetal = this.WeakTableRef(party);
@@ -660,7 +645,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 	function spawnCaravan()
 	{
 		local faction = this.World.FactionManager.getFaction(this.getFaction());
-		local party = faction.spawnEntity(this.m.Home.getTile(), "Escort Caravan", false, this.Const.World.Spawn.Caravan, this.m.Home.getResources() * 0.8);
+		local party = faction.spawnEntity(this.m.Home.getTile(), "Escort Caravan", false, this.Const.World.Spawn.Caravan, this.m.Home.getResources() * 0.8, this.getMinibossModifier());
 		party.getSprite("banner").Visible = false;
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
@@ -751,21 +736,19 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			return false;
 		}
 
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
-		return false;
+
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onIsTileUsed( _tile )
@@ -815,7 +798,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -854,8 +837,8 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 			this.m.Flags.set("Distance", 0);
 		}
 
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

@@ -3,11 +3,7 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_warlock";
-		this.m.Icon = "ui/backgrounds/warlock_02.png";
-		this.m.Name = "Warlock";
-		this.m.HiringCost = 1000;
-		this.m.DailyCost = 20;
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendWarlock);
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Brave),
 			::Legends.Traits.getID(::Legends.Trait.Athletic),
@@ -41,31 +37,6 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[2];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.StaffTree,
-				this.Const.Perks.ThrowingTree,
-				this.Const.Perks.CleaverTree
-			],
-			Defense = [
-				this.Const.Perks.LightArmorTree
-			],
-			Traits = [
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.ViciousTree
-			],
-			Enemy = [],
-			Class = [],
-			Magic = [this.Const.Perks.WarlockMagicTree]
-		}
 	}
 
 
@@ -77,41 +48,7 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				15,
-				20
-			],
-			Bravery = [
-				-10,
-				-5
-			],
-			Stamina = [
-				5,
-				5
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				-5,
-				-5
-			],
-			MeleeDefense = [
-				-5,
-				-5
-			],
-			RangedDefense = [
-				-10,
-				-5
-			],
-			Initiative = [
-				10,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendWarlock);
 	}
 
 
@@ -125,13 +62,13 @@ this.legend_warlock_background <- this.inherit("scripts/skills/backgrounds/chara
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "dark_cowl"],
-			[1, "witchhunter_hat"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.dark_cowl],
+			[1, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 
 		items.equip(this.new("scripts/items/weapons/legend_grisly_scythe"));

@@ -57,14 +57,14 @@ this.legend_basilisk_trophy_item <- this.inherit("scripts/items/accessory/access
 			id = 10,
 			type = "text",
 			icon = "ui/icons/chance_to_hit_head.png",
-			text = "Gain [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit the head"
+			text = "Gain [color=%positive%]+5%[/color] chance to hit the head"
 		});
 
 		result.push({
 			id = 15,
 			type = "text",
 			icon = "ui/icons/damage_dealt.png",
-			text = "Deal [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] more damage when hitting the head with any weapon"
+			text = "Deal [color=%positive%]+20%[/color] more damage when hitting the head with any weapon"
 		});
 		return result;
 	}

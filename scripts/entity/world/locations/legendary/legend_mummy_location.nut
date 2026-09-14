@@ -21,7 +21,7 @@ this.legend_mummy_location <- this.inherit("scripts/entity/world/location", {
 
 	function onSpawned()
 	{
-		this.m.Name = "Ancient Mastaba";
+		this.m.Name = "Ancient Pyramid";
 		this.location.onSpawned();
 	}
 
@@ -35,7 +35,7 @@ this.legend_mummy_location <- this.inherit("scripts/entity/world/location", {
 	{
 		this.location.onInit();
 		local body = this.addSprite("body");
-		body.setBrush("legend_mastaba");
+		body.setBrush("legend_pyramid");
 		local banner = this.addSprite("banner");
 		banner.setOffset(this.createVec(-60, 50));
 	}

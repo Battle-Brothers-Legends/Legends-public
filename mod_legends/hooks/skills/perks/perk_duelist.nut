@@ -2,58 +2,58 @@
 	o.m.AllowedWeapons <-
 	[
 		"_parrying_dagger",
-		"_hand_crossbow",
+		// "_hand_crossbow",
 		"buckler",
+		"legend_mummy_shield"
 	];
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
 		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = this.Const.SkillType.Perk;
 	}
 
-	o.isHidden <- function ()
+	// o.getDescription <- function ()
+	// {
+	// 	return "Become one with your weapon and go for the weak spots!";
+	// }
+
+	// o.getTooltip <- function ()
+	// {
+	// 	local tooltip = this.skill.getTooltip();
+	// 	local bonus = this.getBonus() * 100;
+	// 	if (bonus == 0)
+	// 	{
+	// 		tooltip.push({
+	// 			id = 6,
+	// 			type = "text",
+	// 			icon = "ui/tooltips/warning.png",
+	// 			text = "[color=%negative%]You do not have the right equipment to receive Duelist's effect[/color]"
+	// 		});
+	// 		return tooltip;
+	// 	}
+	// 	tooltip.push({
+	// 		id = 6,
+	// 		type = "text",
+	// 		icon = "ui/icons/direct_damage.png",
+	// 		text = "[color=%positive%]"+ bonus + "%[/color] of any damage ignores armor"
+	// 	});
+
+	// 	return tooltip;
+	// }
+
+	o.onAdded <- function ()
 	{
-		return ::Tactical.isActive();
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFlourish))
+		{
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFlourish);
+		}
 	}
 
-	o.getTooltip <- function ()
+	o.onRemoved <- function ()
 	{
-		local main = getContainer().getActor().getMainhandItem();
-		local off = getContainer().getActor().getOffhandItem();
-		local tooltip = this.skill.getTooltip();
-
-		if (!isValid(main, off))
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
-			});
-		else if (isFullEffect(main, off))
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] of any damage ignores armor"
-			});
-		else if (isPartialEffect(main, off))
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+13%[/color] of any damage ignores armor"
-			});
-		else
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]You do not have the right equipment to receive Duelist's effect[/color]"
-			});
-
-		return tooltip;
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFlourish);
 	}
 
 	o.isValid <- function ( _mainhand, _offhand )
@@ -64,12 +64,7 @@
 		return true;
 	}
 
-	o.isFullEffect <- function ( _mainhand, _offhand )
-	{
-		return getContainer().hasSkill("injury.missing_hand") || _offhand == null && !_mainhand.isItemType(::Const.Items.ItemType.TwoHanded) || _offhand != null && _offhand.isItemType(::Const.Items.ItemType.Tool);
-	}
-
-	o.isPartialEffect <- function ( _mainhand, _offhand )
+	o.isValidOffhand <- function ( _mainhand, _offhand )
 	{
 		if (_offhand == null)
 			return false;
@@ -83,17 +78,28 @@
 		return false;
 	}
 
-	o.onUpdate = function ( _properties )
+	// you can just hook this or isValid/isFullEffect/isPartialEffect and the tooltip will auto calculate without needing to replace anything
+	o.getBonus <- function()
 	{
 		local main = getContainer().getActor().getMainhandItem();
 		local off = getContainer().getActor().getOffhandItem();
-
 		if (!isValid(main, off))
-			return;
+			return 0;
 
-		if (isFullEffect(main, off))
-			_properties.DamageDirectAdd += 0.25;
-		else if (isPartialEffect(main, off))
-			_properties.DamageDirectAdd += 0.13;
+		if (isValidOffhand(main, off))
+			return 0.25;
+
+		return 0;
+	}
+
+	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
+	{
+		if (_skill.isRanged())
+			return;
+		_properties.DamageDirectAdd += this.getBonus();
+	}
+
+	o.onUpdate = function ( _properties )
+	{
 	}
 });

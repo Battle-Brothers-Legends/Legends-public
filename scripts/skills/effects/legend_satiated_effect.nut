@@ -4,8 +4,7 @@ this.legend_satiated_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_satiated_effect";
-		this.m.Name = "Satiated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSatiatedEffect);
 		this.m.Icon = "s";
 		this.m.IconMini = "";
 		this.m.Overlay = "";

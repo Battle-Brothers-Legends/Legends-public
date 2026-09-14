@@ -42,28 +42,56 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 			31,
 			32,
 			33,
-			34,
+			// 34,
 			35,
 			36,
-			37,
+			// 37,
 			38,
 			39,
 			40,
 			41,
-			42
+			// 42,
+			43,
+			44,
+			45,
+			101,
+			102,
+			103,
+			104,
+			105,
+			106
 		];
+		if (this.Const.DLC.UnholdSupporter)
+			this.m.Variants.push(34);
+		if (this.Const.DLC.WildmenSupporter)
+			this.m.Variants.push(37);
+		if (this.Const.DLC.DesertSupporter)
+			this.m.Variants.push(42);
+		this.addVariants();
 		this.m.Variant = this.Math.rand(1, 21); //random one is only 1-21 though
 		this.updateVariant();
 		this.m.Value = 1000;
 		this.m.MeleeDefense = 25;
 		this.m.RangedDefense = 20;
-		this.m.StaminaModifier = -30;
+		this.m.StaminaModifier = -20;
 		this.m.Condition = 96;
 		this.m.ConditionMax = 96;
+		this.m.Block = 30;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
 	}
 
-	function updateVariant()
-	{
+	function addVariants() {
+		local bannerID = 0;
+		foreach (banner in ::Const.PlayerBanners) {
+			bannerID = banner.slice("banner_".len()).tointeger();
+			if (this.m.Variants.find(bannerID) == null)
+				this.m.Variants.push(bannerID);
+		}
+		this.m.Variants.sort();
+	}
+
+	function updateVariant() {
 		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
 		this.m.Sprite = "towershield_" + variant;
 		this.m.SpriteDamaged = "towershield_" + variant + "_damaged";
@@ -72,22 +100,23 @@ this.legend_tower_shield <- this.inherit("scripts/items/shields/shield", {
 		this.m.Icon = "shields/icon_towershield_" + variant + ".png";
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.shield.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_fortify_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_safeguard_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Shieldwall, function (_skill) {
+			_skill.m.Icon = "skills/fortify_square.png";
+			_skill.m.IconDisabled = "skills/fortify_square_bw.png";
+		});
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSafeguard);
 	}
 
-	function onPaintSpecificColor( _color )
-	{
+	function onPaintSpecificColor( _color ) {
 		this.setVariant(_color);
 		this.updateAppearance();
 	}
 
-	function onPaintInCompanyColors()
-	{
-		this.setVariant(this.World.Assets.getBannerID() + 11);
+	function onPaintInCompanyColors() {
+		local bannerID = this.World.Assets.getBannerID() > 100 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		this.setVariant(bannerID);
 		this.updateAppearance();
 	}
 

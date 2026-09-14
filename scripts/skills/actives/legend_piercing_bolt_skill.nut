@@ -6,23 +6,15 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 	function create()
 	{
 		this.shoot_bolt.create();
-		m.ID = "actives.legend_piercing_bolt";
-		m.Name = "Piercing Bolt";
-		m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
-		m.KilledString = "Pierced";
-		m.Icon = "skills/PiercingBoltSkill.png";
-		m.IconDisabled = "skills/PiercingBoltSkill_bw.png";
-		m.Overlay = "piercing_bolt";
-		m.SoundOnHit = [
-			"sounds/combat/split_hit_01.wav",
-			"sounds/combat/split_hit_02.wav",
-			"sounds/combat/split_hit_03.wav"
-		];
-		m.IsAOE = true;
-		m.ActionPointCost = 4;
-		m.FatigueCost = 10;
-		m.ChanceDecapitate = 10;
-		m.ChanceDisembowel = 50;
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPiercingBolt);
+		this.m.Description = "A shot with so much force that it passes straight through the target to whoever is behind them.";
+		this.m.KilledString = "Pierced";
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/split_hit", 3);
+		this.m.IsAOE = true;
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 10;
+		this.m.ChanceDecapitate = 10;
+		this.m.ChanceDisembowel = 50;
 	}
 
 	function getTooltip()
@@ -52,15 +44,10 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		return ret;
 	}
 
-	function isHidden()
-	{
-		return !getContainer().hasPerk(::Legends.Perk.LegendPiercingShot);
-	}
-
 	function onUse( _user, _targetTile )
 	{
-		m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
-		return shoot_bolt.onUse(_user, _targetTile);
+		this.m.OriginalDirection = _user.getTile().getDirectionTo(_targetTile);
+		return this.shoot_bolt.onUse(_user, _targetTile);
 	}
 
 	function onScheduledTargetHit( _info )
@@ -77,7 +64,10 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		// show the effect
 		_info.Skill.onSpawnPiercingEffect(targetTile, _info.Skill.m.OriginalDirection);
 
-		if (forwardTile == null || !forwardTile.IsOccupiedByActor || !forwardTile.getEntity().isAttackable())
+		if (forwardTile.len() == 0) return;
+		else forwardTile = forwardTile[0];
+
+		if (!forwardTile.IsOccupiedByActor || !forwardTile.getEntity().isAttackable())
 			return;
 
 		// change these
@@ -85,10 +75,18 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 		_info.Skill.m.IsDoingPiercingShot = true;
 		_info.Skill.m.IsShowingProjectile = false;
 
-		if (targetTile.IsVisibleForPlayer)
-			::Tactical.EventLog.logEx(format("%s pierces %s and hits %s", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));
+		if (::Legends.Traits.has(forwardTile.getEntity(), ::Legends.Trait.RacialGhost))
+		{
+			if (targetTile.IsVisibleForPlayer)
+				::Tactical.EventLog.logEx(format("%s pierces %s but %s\'s corporeal form is unscathed", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));	
+		}
+		else
+		{
+			if (targetTile.IsVisibleForPlayer)
+				::Tactical.EventLog.logEx(format("%s pierces %s and hits %s", _info.Skill.getName(), targetName, ::Const.UI.getColorizedEntityName(forwardTile.getEntity())));
 
-		_info.Skill.attackEntity(_info.User, forwardTile.getEntity(), false);
+			_info.Skill.attackEntity(_info.User, forwardTile.getEntity(), false);
+		}
 
 		// reset back to normal lol
 		_info.Skill.m.IsUsingHitchance = true;
@@ -119,43 +117,44 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 
 	function onTargetSelected( _targetTile )
 	{
-		local forwardTile = getAffectedTiles(_targetTile);
-		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		this.skill.onTargetSelected(_targetTile);
 
-		if (forwardTile == null)
+		local forwardTile = getAffectedTiles(_targetTile);
+		if (forwardTile.len() == 0)
 			return;
 
-		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, forwardTile[0], forwardTile[0].Pos.X, forwardTile[0].Pos.Y);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.shoot_bolt.onAnySkillUsed(_skill, _targetEntity, _properties);
-
-		if (_skill == this && m.IsDoingPiercingShot)
+		_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+		if (_skill == this && m.IsDoingPiercingShot) {
 			_properties.RangedDamageMult *= 0.5;
+		}
 	}
 
 	function onRemoved()
 	{
-		this.getContainer().removeByID("actives.reload_bolt");
+		::Legends.Actives.remove(this, ::Legends.Active.ReloadBolt);
 	}
 
 	function getAffectedTiles( _targetTile, _direction = null )
 	{
 		if (_direction == null)
-			_direction = getContainer().getActor().getTile().getDirectionTo(_targetTile);
+			_direction = this.getContainer().getActor().getTile().getDirectionTo(_targetTile);
 
 		if (!_targetTile.hasNextTile(_direction))
-			return null;
+			return [];
 
 		local forwardTile = _targetTile.getNextTile(_direction);
 		local diff = _targetTile.Level - forwardTile.Level;
 
 		if (diff < 0 || diff > 1)
-			return null;
+			return [];
 
-		return forwardTile;
+		return [forwardTile];
 	}
 
 });

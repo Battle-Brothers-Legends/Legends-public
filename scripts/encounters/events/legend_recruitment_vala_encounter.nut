@@ -3,9 +3,9 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		Vala = null
     },
     function create() {
-        this.createScreens();
+	    this.encounter.create();
         this.m.Type = "encounter.legend_recruitment_vala_encounter";
-        this.m.Name = "Mysterious woman";
+        this.m.Name = ::Const.Strings.randomCityEncounterName();
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
 	}
 
@@ -40,13 +40,16 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
             function start(_event) {
 				local roster = ::World.getTemporaryRoster();
 				_event.m.Vala = roster.create("scripts/entity/tactical/player");
-				_event.m.Vala.setStartValuesEx(["legend_vala_background"]);
+				_event.m.Vala.setStartValuesEx([::Legends.Background.LegendVala]);
 				this.Characters.push(_event.m.Vala.getImagePath());
             }
         }]);
     }
 
     function isValid(_settlement) {
+	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		    return false;
+
 		if (_settlement.isIsolatedFromRoads())
 			return false;
 
@@ -61,9 +64,7 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		local totalbrothers = 0;
 		local brotherlevels = 0;
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getBackground().getID() == "background.legend_vala")
-				return false;
-			if (bro.getBackground().getID() == "background.legend_commander_vala")
+			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala))
 				return false;
 			totalbrothers += 1;
 			brotherlevels += bro.getLevel();
@@ -72,7 +73,7 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
 		if (totalbrothers < 1 || brotherlevels < 30)
 			return false;
 
-        return true;
+	    return !this.isOnCooldown();
     }
 
 	function onClear() {

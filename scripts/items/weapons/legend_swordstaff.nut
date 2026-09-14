@@ -5,10 +5,10 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_swordstaff";
 		this.m.Name = "Swordstaff";
-		this.m.Description = "A cross between a spear and a sword, making for a good dueling weapon. Used for both keeping the enemy at bay, and the closing the gap.";
+		this.m.Description = "A cross between a spear and a sword, making for a good dueling weapon. Used for attacking at range and closing the gap.";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear | this.Const.Items.WeaponType.Staff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -21,6 +21,9 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 65.0;
 		this.m.ConditionMax = 65.0;
 		this.m.StaminaModifier = -14;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 1;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
 		this.m.ArmorDamageMult = 1.0;
@@ -31,9 +34,14 @@ this.legend_swordstaff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.IsGreatSlash = true;
+			_skill.m.IsStaffSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
+		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
+			_skill.m.IsStaffStrike = true;
+		}.bindenv(this));
 	}
 
 });

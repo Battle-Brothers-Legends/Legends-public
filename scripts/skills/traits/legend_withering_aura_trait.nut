@@ -33,49 +33,49 @@ this.legend_withering_aura_trait <- this.inherit("scripts/skills/traits/characte
 				id = 10,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+25%[/color] less damage received"
+				text = "[color=%positive%]+25%[/color] less damage received"
 			});
 			ret.push({
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Health"
+				text = "[color=%positive%]+10%[/color] Health"
 			});
 			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Resolve"
+				text = "[color=%negative%]-10%[/color] Resolve"
 			});
 			ret.push({
 				id = 13,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Melee Skill"
+				text = "[color=%negative%]-5%[/color] Melee Skill"
 			});
 			ret.push({
 				id = 14,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Ranged Skill"
+				text = "[color=%negative%]-5%[/color] Ranged Skill"
 			});
 			ret.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Defense"
+				text = "[color=%negative%]-10%[/color] Melee Defense"
 			});
 			ret.push({
 				id = 16,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Defense"
+				text = "[color=%negative%]-10%[/color] Ranged Defense"
 			});
 			ret.push({
 				id = 17,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Initiative"
+				text = "[color=%negative%]-5%[/color] Initiative"
 			});
 		}
 

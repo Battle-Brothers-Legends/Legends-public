@@ -1,0 +1,28 @@
+this.legend_gold_ingot_02_blueprint <- this.inherit("scripts/crafting/blueprint", {
+	m = {},
+
+	function create() {
+		this.blueprint.create();
+		this.m.ID = "blueprint.legend_gold_ingot_02";
+		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_gold_ingots_item");
+		this.m.Cost = 3600;
+		local ingredients = [
+			{
+				Script = "scripts/items/loot/ancient_gold_coins_item",
+				Num = 1
+			},
+			{
+				Script = "scripts/items/loot/golden_chalice_item",
+				Num = 1
+			}
+		];
+		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
+	}
+
+	function onCraft(_stash) {
+		_stash.add(this.new("scripts/items/trade/legend_gold_ingots_item"));
+	}
+
+});

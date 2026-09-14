@@ -1,90 +1,89 @@
 ::mods_hookExactClass("skills/actives/rupture", function(o)
 {
-	o.getTooltip = function ()
-	{
-		local tooltip = this.getDefaultTooltip();
-		tooltip.extend([
-			{
-				id = 7,
-				type = "text",
-				icon = "ui/icons/vision.png",
-				text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]2[/color] tiles"
-			},
-			{
-				id = 8,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Inflicts additional [color=" + this.Const.UI.Color.DamageValue + "]" + this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5 + "[/color] bleeding damage over time if not stopped by armor"
-			}
-		]);
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit"
-		});
+	o.m.IsMeleeRupture <- false;
 
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms)
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.HitChanceBonus = 5;
+	}
+
+	o.setItem <- function (_item) {
+		this.skill.setItem(_item);
+		if (this.m.IsMeleeRupture)
 		{
+			this.m.Description = "A thrusting attack that can tear bleeding wounds if not stopped by armor.";
+			this.m.MaxRange = 1;
+			this.m.FatigueCost = 13;
+			this.m.DirectDamageMult = 0.25;
+			this.m.HitChanceBonus = 5;
+			this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
+			this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+			this.m.IsIgnoredAsAOO = true;
+		}
+	}
+
+	o.getTooltip = function () {
+		local tooltip = this.getDefaultTooltip();
+		if (!this.m.IsMeleeRupture)
+		tooltip.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/vision.png",
+			text = "Has a range of [color=%positive%]2[/color] tiles"
+		});
+		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms && !this.m.IsMeleeRupture) {
 			tooltip.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
+				text = "Has [color=%negative%]-15%[/color] chance to hit targets directly adjacent because the weapon is too unwieldy"
 			});
 		}
 		local dmg = this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5;
-		ret.push({
+		tooltip.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts additional stacking [color=" + this.Const.UI.Color.DamageValue + "]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
+			text = "Inflicts additional stacking [color=%damage%]" + dmg + "[/color] bleeding damage per turn, for 2 turns"
 		});
 
 		return tooltip;
 	}
 
-	o.onUse = function ( _user, _targetTile )
-	{
+	o.onAfterUpdate = function(_properties) {
+		if (this.m.IsMeleeRupture) {
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+				this.m.ActionPointCost -= 1;
+			}
+		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
+		if (_skill == this) {
+			_properties.MeleeSkill += 5;
+
+			if (this.m.IsMeleeRupture)
+				return;
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus = -10;
+			}
+		}
+	}
+
+	o.onUse = function ( _user, _targetTile ) {
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectImpale);
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
 		local success = this.attackEntity(_user, _targetTile.getEntity());
-
-		if (!_user.isAlive() || _user.isDying())
-		{
-			return;
-		}
+		local damage = this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5;
+		if (::Legends.S.isEntityNullOrDead(_user))
+			return success;
 
 		if (success)
-		{
-			if (!target.isAlive() || target.isDying())
-			{
-				if (this.isKindOf(target, "lindwurm_tail") || !target.getCurrentProperties().IsImmuneToBleeding)
-				{
-					this.Sound.play(this.m.BleedingSounds[this.Math.rand(0, this.m.BleedingSounds.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-				}
-				else
-				{
-					this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-				}
-			}
-			else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding )
-			{
-				local effect = this.new("scripts/skills/effects/bleeding_effect");
-					if (_user.getFaction() == this.Const.Faction.Player )
-					{
-						effect.setActor(this.getContainer().getActor());
-					}
-				effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInPolearms ? 10 : 5);
-				target.getSkills().add(effect);
-				this.Sound.play(this.m.BleedingSounds[this.Math.rand(0, this.m.BleedingSounds.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-			}
-			else
-			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-			}
-		}
+			::Legends.S.applyBleed(target, _user, hp, this.m.BleedingSounds, this.m.SoundOnHit, damage);
 
 		return success;
 	}

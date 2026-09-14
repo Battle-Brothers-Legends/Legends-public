@@ -3,11 +3,10 @@
 	q.getTooltip = @(__original) function(_targetedWithSkill = null)
 	{
 		local actor = ::Tactical.TurnSequenceBar.getActiveEntity();
-
-		//if (!::MSU.isNull(actor))
-		//{
-		//	actor.getSkills().onOtherActorTooltip(::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill), this);
-		//}
-		return ::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill, this);
+		local tooltip = ::ModJimmysTooltips.modTacticalTooltip(__original(_targetedWithSkill), _targetedWithSkill, this);
+		if (!::MSU.isNull(actor)) {
+			this.getSkills().onOtherActorTooltip(tooltip, actor);
+		}
+		return tooltip;
 	}
 });

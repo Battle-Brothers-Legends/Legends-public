@@ -1,17 +1,14 @@
 this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		AdditionalAccuracy = 0,
+		AdditionalHitChance = 0
+	},
 	function create()
 	{
-		this.m.ID = "actives.legend_vala_warden_wail";
-		this.m.Name = "Wail";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenWail);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
-		this.m.Icon = "skills/active_41.png";
-		this.m.IconDisabled = "skills/active_41.png";
-		this.m.Overlay = "active_41";
-		this.m.SoundOnUse = [
-			"sounds/combat/legend_vala_warden_wail.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/legend_vala_warden_wail.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -52,8 +49,8 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			local scaling = this.getContainer().getActor().getSkills().getSkillByID("special.legend_vala_warden_damage");
-			local fury = this.getContainer().getActor().getSkills().getSkillByID("effects.legend_vala_chant_fury_effect");
+			local scaling = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaWardenDamage);
+			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFuryEffect);
 			local bonus1 = 0;
 			local bonus2 = 0;
 

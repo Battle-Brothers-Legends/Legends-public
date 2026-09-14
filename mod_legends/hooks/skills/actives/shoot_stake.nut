@@ -4,10 +4,10 @@
 	o.m.AdditionalHitChance = -3;
 
 	local create = o.create;
-	o.create = function ()
+	o.create = function()
 	{
 		create();
-		this.m.Description = "A quick pull of the trigger to loose a heavy bolt. Must be reloaded after each shot to be able to fire again. Knocks targets back. Deals +100 damage to vampires";
+		this.m.Description = "A quick pull of the trigger to loose a heavy bolt. Must be reloaded after each shot to be able to fire again. Will stagger on hit.";
 	}
 
 	o.getTooltip = function ()
@@ -22,7 +22,7 @@
 				id = 8,
 				type = "text",
 				icon = "ui/icons/ammo.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]" + ammo + "[/color] bolts left"
+				text = "Has [color=%positive%]" + ammo + "[/color] bolts left"
 			});
 		}
 		else
@@ -31,7 +31,17 @@
 				id = 8,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Needs a non-empty quiver of bolts equipped[/color]"
+				text = "[color=%negative%]Needs a non-empty quiver of bolts equipped[/color]"
+			});
+		}
+
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/direct_damage.png",
+				text = "Up to [color=%positive%]+30%[/color] of any damage ignores armor depending on the distance to the target, with the highest bonus in melee and lowest at maximum range"
 			});
 		}
 
@@ -41,7 +51,7 @@
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Must be reloaded before firing again[/color]"
+				text = "[color=%negative%]Must be reloaded before firing again[/color]"
 			});
 		}
 
@@ -55,108 +65,48 @@
 		this.m.AdditionalAccuracy = 10 + this.m.Item.getAdditionalAccuracy();
 	}
 
-	o.findTileToKnockBackTo = function ( _userTile, _targetTile )
+	local onTargetHit = o.onTargetHit;
+	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		local dir = _userTile.getDirectionTo(_targetTile);
+		if (_skill != this)
+			return;
 
-		if (_targetTile.hasNextTile(dir))
-		{
-			local knockToTile = _targetTile.getNextTile(dir);
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+			return;
 
-			if (knockToTile.IsEmpty && knockToTile.Level - _userTile.Level <= 1)
-			{
-				return knockToTile;
-			}
-		}
+		local actor = this.getContainer().getActor();
+		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
+		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail"))
+			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
+		return onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor );
+	}
 
-		return null;
+	o.onUse = function( _user, _targetTile )
+	{
+		local success = this.attackEntity(_user, _targetTile.getEntity());
+		this.getItem().setLoaded(false);
+		return success;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		if (_skill != this)
-		{
+		if (_skill != this && _skill.getID() != ::Legends.Actives.getID(::Legends.Active.LegendStrafingRun))
 			return;
-		}
 
-		if (_targetEntity == null)
-		{
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
-		}
 
 		_properties.RangedSkill += this.m.AdditionalAccuracy;
 		_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
-
-		if (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord)
-		{
-			_properties.DamageRegularMin += 100;
-			_properties.DamageRegularMax += 105;
-		}
-
 		if (_properties.IsSharpshooter)
 		{
 			_properties.DamageDirectMult += 0.05;
 		}
-	}
 
-	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying())
+		if (_skill == this && this.getContainer().hasPerk(::Legends.Perk.LegendBallistics))
 		{
-			local targetTile = _targetEntity.getTile();
-			local user = this.getContainer().getActor();
-
-			if (_targetEntity.getCurrentProperties().IsImmuneToKnockBackAndGrab || _targetEntity.getCurrentProperties().IsRooted)
-			{
-				return false;
-			}
-
-			local knockToTile = this.findTileToKnockBackTo(user.getTile(), targetTile);
-
-			if (knockToTile == null)
-			{
-				return;
-			}
-
-			if (!user.isHiddenToPlayer() && (targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
-			}
-
-			if (!_targetEntity.getSkills().hasSkill("effects.legend_break_stance"))
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-			if (damage == 0)
-			{
-				this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, null, null, true);
-			}
-			else
-			{
-				local p = this.getContainer().getActor().getCurrentProperties();
-				local tag = {
-					Attacker = user,
-					Skill = this,
-					HitInfo = clone this.Const.Tactical.HitInfo,
-					HitInfoBash = null
-				};
-				tag.HitInfo.DamageRegular = damage;
-				tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-				tag.HitInfo.DamageDirect = 1.0;
-				tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-				tag.HitInfo.BodyDamageMult = 1.0;
-				tag.HitInfo.FatalityChanceMult = 1.0;
-				this.Tactical.getNavigator().teleport(_targetEntity, knockToTile, this.onKnockedDown, tag, true);
-			}
+			local distance = this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile());
+			_properties.DamageDirectAdd += 0.35 - (distance * 0.05);
 		}
 	}
-
-	o.onKnockedDown <- function ( _entity, _tag )
-	{
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
-		}
-	}
-
 });

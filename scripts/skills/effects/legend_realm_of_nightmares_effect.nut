@@ -4,9 +4,8 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_realm_of_nightmares";
-		this.m.Name = "Realm of Nightmares";
-		this.m.Description = "The boundary to the world of dreams is erased where this character stands, and nightmares may manifest here to eat away at his sanity. Nightmares always hit with a mental attack that ignores armor, but the more resolve you have, the less damage they can inflict.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRealmOfNightmares);
+		this.m.Description = "The boundary to the world of dreams is erased where this character stands, and nightmares may manifest here to eat away at their sanity. Nightmares always hit with a mental attack that ignores armor but inflicts less damage against targets with more Resolve.";
 		this.m.Icon = "skills/status_effect_102.png";
 		this.m.IconMini = "status_effect_102_mini";
 		this.m.Overlay = "status_effect_102";
@@ -21,16 +20,21 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!actor.isPlacedOnMap())
-		{
 			return true;
-		}
 
 		local myTile = this.getContainer().getActor().getTile();
 
-		if (myTile.Properties.Effect == null || myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "shadows")
-		{
+		if (myTile == null || !("Properties" in myTile))
 			return true;
-		}
+
+		if (myTile.Properties == null || !("Effect" in myTile.Properties))
+			return true;
+
+		if (myTile.Properties.Effect == null || !("Timeout" in myTile.Properties.Effect) || !("Type" in myTile.Properties.Effect))
+			return true;
+
+		if (myTile.Properties.Effect.Timeout == this.Time.getRound() || myTile.Properties.Effect.Type != "legend_shadow_mist")
+			return true;
 
 		return false;
 	}

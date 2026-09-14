@@ -7,7 +7,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.Options[2].getResult <- function (_event) {
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves" || this.World.Assets.getOrigin().getID() == "scenario.legends_sisterhood")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves" || this.World.Assets.getOrigin().getID() == "scenario.legends_sisterhood")
 						return "E";
 					else
 						return "B";
@@ -50,9 +50,7 @@
 				this.World.Assets.addMoralReputation(2);
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				_event.m.Dude.setStartValuesEx([
-					"female_slave_southern_background"
-				]);
+				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern], true, 1);
 				_event.m.Dude.setTitle("of the dance");
 				_event.m.Dude.getBackground().m.RawDescription = "You rescued %name% from a life in slavery after she was forced into the vizier\'s harem. She seeks revenge on the vizier.";
 				_event.m.Dude.getBackground().buildDescription(true);
@@ -64,8 +62,8 @@
 				talents[this.Const.Attributes.MeleeSkill] = 3;
 				talents[this.Const.Attributes.Bravery] = 3;
 				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.CoupDeGrace);
-				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemySoutherner);
-				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendNatural);
+				::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendFavouredEnemyCivilization);
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendTalented);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendPragmatic);
 				_event.m.Dude.worsenMood(1.0, "Got taken captive by manhunters");
 				_event.m.Dude.improveMood(2.0, "Got saved from a life in slavery");

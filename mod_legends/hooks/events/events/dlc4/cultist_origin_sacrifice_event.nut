@@ -28,15 +28,26 @@
 						}
 					}
 
+					// Keep two separe lists so candle changes can be displayed first
+					local moodChanges = [];
+					local candleChanges = [];
+
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasSkill("special.legend_animated_player_properties"))
+						if (bro.getSkills().hasEffect(::Legends.Effect.LegendAnimatedPlayerProperties))
 							continue;
 
-						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) || bro.getBackground().getID() == "background.legend_commander_necro" || bro.getBackground().getID() == "background.legend_necro" || bro.getBackground().getID() == "background.legend_vala" || bro.getBackground().getID() == "background.legend_vala_commander" || bro.getBackground().getID() == "background.legend_witch" || bro.getBackground().getID() == "background.legend_witch_commander" || bro.getBackground().getID() == "background.legend_cannibal" || bro.getBackground().getID() == "background.legend_donkey")  {
+						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) ||
+							::Legends.Backgrounds.hasAny(bro,
+								::Legends.Background.LegendCommanderNecro,
+								::Legends.Background.LegendVala,
+								::Legends.Background.LegendSeer,
+								::Legends.Background.LegendDonkey
+							)
+						)  {
 							bro.improveMood(3.0, "Appeased Davkul");
 
 							if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
-								this.List.push({
+								moodChanges.push({
 									id = 10,
 									icon = this.Const.MoodStateIcon[bro.getMoodState()],
 									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
@@ -58,32 +69,33 @@
 								hasProphet = true;
 								this.updateAchievement("VoiceOfDavkul", 1, 1);
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistChosen);
-								skill = this.new("scripts/skills/actives/voice_of_davkul_skill");
-								skills.add(skill);
-								this.List.push({
+								::Legends.Actives.grant(bro, ::Legends.Active.VoiceOfDavkul);
+								skill = ::Legends.Actives.get(bro, ::Legends.Active.VoiceOfDavkul);
+								candleChanges.push({
 									id = 10,
 									icon = skill.getIcon(),
 									text = bro.getName() + " has received " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
 								});
+
 								::Legends.Traits.grant(skills, ::Legends.Trait.CultistProphet);
 							} else if (skills.hasTrait(::Legends.Trait.CultistDisciple)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistDisciple);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistChosen);
 							} else if (skills.hasTrait(::Legends.Trait.CultistAcolyte)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistAcolyte);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistDisciple);
 							} else if (skills.hasTrait(::Legends.Trait.CultistZealot)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.CultistZealot);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistAcolyte);
 							} else if (skills.hasTrait(::Legends.Trait.GloriousQuickness)) {
 								::Legends.Traits.remove(skills, ::Legends.Trait.GloriousQuickness);
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistZealot);
 							} else {
-								::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
+								skill = ::Legends.Traits.grant(skills, ::Legends.Trait.CultistFanatic);
 							}
 
 							if (skill != null) {
-								this.List.push({
+								candleChanges.push({
 									id = 10,
 									icon = skill.getIcon(),
 									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
@@ -93,7 +105,7 @@
 							bro.worsenMood(2.5, "Horrified by the sacrifice of " + _event.m.Sacrifice.getName());
 
 							if (bro.getMoodState() < this.Const.MoodState.Neutral) {
-								this.List.push({
+								moodChanges.push({
 									id = 10,
 									icon = this.Const.MoodStateIcon[bro.getMoodState()],
 									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
@@ -101,6 +113,14 @@
 							}
 						}
 					}
+
+					foreach (_, c in candleChanges) {
+						this.List.push(c);
+					}
+					foreach (_, c in moodChanges) {
+						this.List.push(c);
+					}
+
 				}
 			}
 		}
@@ -123,9 +143,8 @@
 
 		local candidates = [];
 		foreach (bro in brothers) {
-			if (bro.getSkills().hasSkill("background.legend_husk") || bro.getSkills().hasSkill("background.legend_magister")) //Will not sacrifice any backgrounds using these IDs
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.LegendHusk, ::Legends.Background.LegendMagister))
 				continue;
-
 			candidates.push(bro);
 		}
 

@@ -25,17 +25,17 @@
 		}
 		else
 		{
-			if (target.getSkills().hasSkill("effects.goblin_poison"))
+			if (target.getSkills().hasEffect(::Legends.Effect.GoblinPoison))
 			{
 				return true;
 			}
 
-			if (target.getSkills().hasSkill("effects.spider_poison"))
+			if (target.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
 			{
 				return true;
 			}
 
-			if (target.getSkills().hasSkill("effects.legend_redback_spider_poison"))
+			if (target.getSkills().hasEffect(::Legends.Effect.LegendRedbackSpiderPoison))
 			{
 				return true;
 			}

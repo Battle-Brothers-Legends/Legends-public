@@ -15,20 +15,20 @@
 		local beforeNum = _faction.getUnits().len();
 		local result = onExecute(_faction);
 
-		if (_faction.getUnits().len() <= beforeNum || !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
+		if (_faction.getUnits().len() <= beforeNum)
 			return result;
 
 		local party = _faction.getUnits().top();
 		local c = party.getController();
 		local start = null;
 		local best = 9999;
-		local curentTile = party.getTile();
+		local currentTile = party.getTile();
 
-		foreach (settlement in World.EntityManager.getSettlements())
+		foreach (settlement in ::World.EntityManager.getSettlements())
 		{
-			if (settlement.getID() == m.Settlement.getID()) continue;
+			if (settlement.getID() == this.m.Settlement.getID()) continue;
 
-			local distance = settlement.getTile().getDistanceTo(curentTile);
+			local distance = settlement.getTile().getDistanceTo(currentTile);
 
 			if (distance > best) continue;
 
@@ -42,7 +42,7 @@
 		party.setDescription(format("A ship from %s transporting goods and passengers.", start.getName()));
 		party.getFlags().set("IsCaravan", true);
 		// set up trade
-		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, start, m.Settlement);
+		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, start, this.m.Settlement);
 		// insert new order
 		local dock = ::new("scripts/ai/world/orders/unload_order");
 		dock.setController(c);

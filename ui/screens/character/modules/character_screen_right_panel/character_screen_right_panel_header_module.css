@@ -1,0 +1,107 @@
+/*
+ *  @Project:		Battle Brothers
+ *	@Company:		Overhype Studios
+ *
+ *	@Copyright:		(c) Overhype Studios | 2013 - 2020
+ * 
+ *  @Author:		Overhype Studios
+ *  @Date:			26.01.2017 / Reworked: 26.11.2017
+ *  @Description:	Character Right Panel Header Module CSS
+ */
+
+.character-screen-container .right-panel-header-module
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	height: 3.5rem;
+	position: absolute;
+
+    /*border-bottom: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.character-screen-container .right-panel-header-module .buttons-container
+{
+	top: 0.8rem;
+	bottom: 0;
+	height: 4.3rem;
+	position: absolute;
+	margin: auto;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container.is-left
+{
+	left: 1.0rem;
+	width: 0.0rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container.is-middle
+{
+	left: 16.0rem;
+	right: 0;
+	width: 200.0rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container.is-right
+{
+	right: 1.0rem;
+	width: 2.8rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button
+{
+	width: 17.4rem;
+	height: 4.3rem;
+	position: absolute;
+
+    line-height: 3.0rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button:last-child
+{
+    margin-right: 0;
+}
+
+/*
+.character-screen-container .right-panel-header-module .buttons-container .l-button img
+{
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	height: 2.2rem;
+	width: 2.2rem;
+	position: absolute;
+	margin: auto;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button.search-button
+{
+	width: 2.8rem;
+	float: left;
+	margin-left: 3.0rem;
+}
+*/
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button.is-inventory
+{
+    left: -8.9rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button.is-perks
+{
+    left: 7.9rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button.is-professions
+{
+    left: 24.9rem;
+}
+
+.character-screen-container .right-panel-header-module .buttons-container .l-button.is-close
+{
+    right: 0;
+    top: 0.2rem;
+    width: 4.5rem;
+	height: 4.1rem;
+}

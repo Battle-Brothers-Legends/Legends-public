@@ -1,0 +1,156 @@
+::mods_hookExactClass("skills/backgrounds/crusader_background", function(o)
+{
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crusader);
+		this.m.Titles = [
+			"the Exalted",
+			"the Crusader",
+			"the Argent",
+			"the Holy Champion",
+			"the Righteous",
+			"the Venerable"
+		];
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Swift),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Dumb),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
+		];
+		this.m.ExcludedTalents = [
+			this.Const.Attributes.RangedSkill,
+			this.Const.Attributes.RangedDefense
+		];
+		this.m.Faces = this.Const.Faces.SmartMale;
+		this.m.Hairs = this.Const.Hair.AllMale;
+		this.m.HairColors = this.Const.HairColors.Old;
+		this.m.Beards = this.Const.Beards.All;
+		this.m.Bodies = this.Const.Bodies.Muscular;
+		this.m.Level = 9;
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+	}
+
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		return "%name% joined your party during the undead scourge. Little is known about him and he almost never talks save for the occasional grunt while swinging his sword. His language seems to be codified into one simple structure: killing creatures of evil.";
+	}
+
+	o.onSetAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+		local tattoo_head = actor.getSprite("tattoo_head");
+
+		if (this.Math.rand(1, 100) <= 25)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+			tattoo_body.Visible = true;
+		}
+
+		if (this.Math.rand(1, 100) <= 25)
+		{
+			tattoo_head.setBrush("scar_02_head");
+			tattoo_head.Visible = true;
+		}
+	}
+
+	o.updateAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+
+		if (tattoo_body.HasBrush)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		}
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Crusader);
+	}
+
+	o.onAdded = function ()	{
+		this.character_background.onAdded();
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
+
+		local weapons = [
+			"weapons/longsword",
+			"weapons/legend_zweihander",
+			"weapons/greatsword",
+			"weapons/two_handed_hammer",
+			"weapons/two_handed_flail",
+			"weapons/two_handed_flanged_mace",
+			"weapons/arming_sword",
+			"weapons/winged_mace",
+			"weapons/warhammer",
+			"weapons/flail",
+			"weapons/three_headed_flail"
+		];
+		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+
+		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			local offhand = [
+				"shields/kite_shield",
+				"shields/heater_shield",
+				"shields/legend_tower_shield",
+			];
+			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.mail_hauberk],
+			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.scale_armor],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
+		]));
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.full_helm],
+			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]
+		]));
+	}
+});

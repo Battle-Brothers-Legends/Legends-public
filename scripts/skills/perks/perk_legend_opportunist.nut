@@ -3,52 +3,62 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendOpportunist);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendOpportunist);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		// must from a skill
-		if (_skill != null)
+		// must be from a skill
+		if (_skill == null)
+			return;
 
-		// the target must still alive
-		if (!_targetEntity.isAlive() || _targetEntity.isDying() || _targetEntity.isAlliedWith(this.getContainer().getActor())) return;
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+			return;
+
+		if (_targetEntity.isAlliedWith(this.getContainer().getActor()))
+			return;
 
 		// don't have resistance
-		if (_targetEntity.getCurrentProperties().IsImmuneToDaze) return;
+		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
+			return;
 
+		local hasEffectOrInjury = false;
 		foreach (id in [
-			// status effects
-			"effects.legend_grazed_effect",
-			"effects.bleeding",
-			"effects.goblin_poison",
-			"effects.spider_poison",
-			"effects.legend_redback_spider_poison",
-			"effects.legend_zombie_poison",
-			"effects.legend_rat_poison",
-
-			// injuries
+			::Legends.Effect.LegendGrazedEffect,
+			::Legends.Effect.Bleeding,
+			::Legends.Effect.GoblinPoison,
+			::Legends.Effect.SpiderPoison,
+			::Legends.Effect.LegendRedbackSpiderPoison,
+			::Legends.Effect.LegendZombiePoison,
+			::Legends.Effect.LegendRatPoison,
+			::Legends.Effect.LegendRswPoisonEffect,
+			::Legends.Effect.LegendRswBleedingEffect,
+		]) {
+			if (!_targetEntity.getSkills().hasEffect(id))
+				continue;
+			hasEffectOrInjury = true;
+			break;
+		}
+		foreach (id in [
 			"injury.cut_artery",
 			"injury.cut_throat",
 			"injury.grazed_neck",
 		])
 		{
-			if (!_targetEntity.getSkills().hasSkill(id)) continue;
-
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			if (!_targetEntity.getSkills().hasSkill(id))
+				continue;
+			hasEffectOrInjury = true;
 			break;
+		}
+		if (hasEffectOrInjury) {
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 		}
 	}
 
 	function onUpdate(_properties)
 	{
 		//local actor = this.getContainer().getActor();
-		if (this.getContainer().hasSkill("effects.smoke"))
+		if (this.getContainer().hasEffect(::Legends.Effect.Smoke))
 		{
 			_properties.RangedSkillMult *= 1.5; //Offsets the -50% from smoke_effect.nut
 			_properties.MeleeSkillMult *= 1.10;

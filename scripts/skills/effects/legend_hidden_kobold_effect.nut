@@ -6,7 +6,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.ID = "effect.legend_hidden_kobold";
 		this.m.Name = "Hidden";
-		this.m.Description = "This character is hidden in terrain and can not be seen by opponents unless directly adjacent or attacking them first.";
+		this.m.Description = "This character is hidden in terrain and can not be seen by opponents. Removed upon attacking opponents or directly adjacent to them.";
 		this.m.Icon = "skills/status_effect_08.png";
 		this.m.IconMini = "status_effect_08_mini";
 		this.m.Type = this.Const.SkillType.Terrain | this.Const.SkillType.StatusEffect;
@@ -27,34 +27,38 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 					id = 11,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Minimum Damage from the Assassinate perk"
+					text = "[color=%positive%]+50%[/color] Minimum Damage from the Assassinate perk"
 				},
 				{
 					id = 12,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Maximum Damage from the Assassinate perk"
+					text = "[color=%positive%]+50%[/color] Maximum Damage from the Assassinate perk"
 				}
 			]);
 
-			if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
 			{
+				ret.extend([
 					{
 						id = 13,
 						type = "text",
 						icon = "ui/icons/regular_damage.png",
-						text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Maximum Damage from being an assassin"
+						text = "[color=%positive%]+50%[/color] Maximum Damage from being an assassin"
 					}
+				]);
 			}
 
-			if (actor.getSkills().hasSkill("bbackground.legend_commander_assassin"))
+			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
 			{
+				ret.extend([
 					{
 						id = 13,
 						type = "text",
 						icon = "ui/icons/regular_damage.png",
-						text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] Maximum Damage from being an assassin"
+						text = "[color=%positive%]+100%[/color] Maximum Damage from being an assassin"
 					}
+				]);
 			}
 		}
 
@@ -68,16 +72,17 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
-		if (_tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		local actor = this.getContainer().getActor();
+		local tile = actor.getTile();
+		if (tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 		{
-			this.getContainer().getActor().setHidden(false);
+			actor.setHidden(false);
 			this.removeSelf();
 			return;
 		}
-
-		this.getContainer().getActor().setHidden(true);
+		actor.setHidden(true);
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
@@ -113,6 +118,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("arms_icon").Visible = false;
 		actor.getSprite("shield_icon").Visible = false;
 		actor.getSprite("injury_body").Visible = false;
+		actor.getSprite("morale").Visible = false;
 		actor.setHidden(true);
 		actor.setDirty(true);
 	}
@@ -128,6 +134,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		actor.getSprite("arms_icon").Visible = true;
 		actor.getSprite("shield_icon").Visible = true;
 		actor.getSprite("injury_body").Visible = true;
+		actor.getSprite("morale").Visible = true;
 		actor.setDirty(true);
 		foreach (i in actor.getItems().getAllItems())
 			i.updateAppearance();
@@ -151,11 +158,11 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMin *= 1.5;
 			_properties.DamageRegularMax *= 1.5;
 
-			if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
 			{
 			_properties.DamageRegularMax *= 1.5;
 			}
-			if (actor.getSkills().hasSkill("bbackground.legend_commander_assassin"))
+			if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
 			{
 			_properties.DamageRegularMax *= 2.0;
 			}

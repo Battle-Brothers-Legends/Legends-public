@@ -1,5 +1,7 @@
 ::mods_hookExactClass("skills/actives/throw_net", function(o)
 {
+	o.m.IsUnholdNet <- false;
+
 	local create = o.create;
 	o.create = function ()
 	{
@@ -8,122 +10,121 @@
 		this.m.IsRanged = true;
 	}
 
-	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
-		local tooltip = getTooltip();
-		tooltip.push({
-			id = 6,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Some targets can never be caught or ensnared"
-		});
+		local tooltip = this.getDefaultUtilityTooltip();
+		if (this.m.IsUnholdNet) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can be used on dazed or baffled unholds only"
+			});
+		} else {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Some targets can never be caught or ensnared"
+			});
+		}
 
 		return tooltip;
 	}
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		if (_properties.IsSpecializedInNets)
-		{
+		this.m.IsHidden = !::MSU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
+
+		if (_properties.IsSpecializedInNets) {
 			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost = 3;
 		}
 
 		if (_properties.IsSpecializedInNetCasting)
-		{
 			this.m.MaxRange = 5;
-		}
+
+		local skill = ::Legends.Perks.get(this, ::Legends.Perk.LegendSpecialistSpearfisher);
+		if (skill != null && skill.m.FreeNet)
+			this.m.ActionPointCost = 0;
 	}
 
+	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		local targetEntity = _targetTile.getEntity();
+		local isPlayer = ::MSU.isKindOf(_user, "player");
+		local net = _user.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		local target = _targetTile.getEntity();
 
-		if (!targetEntity.getCurrentProperties().IsImmuneToRoot)
+		if (this.m.IsUnholdNet)
+			target.isAlliedWithPlayer = @() false;
+
+		this.m.Item.consumeAmmo();
+		local ret = onUse(_user, _targetTile); // this returns `null` or `false`, bruh
+		this.m.Item.drop(_targetTile); // just drop the spent net there
+		if (_user.getCurrentProperties().IsSpecializedInNetCasting && ret != false)
 		{
-			if (this.m.SoundOnHit.len() != 0)
+			local targetTiles = [];
+			local chance = _user.getCurrentProperties().getRangedSkill() + _user.getCurrentProperties().getRangedDefense();
+			local successes = 1.0;
+			local newRet;
+			for( local i = 0; i != 6; i = ++i )
 			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
-			}
-
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " throws a net and hits " + this.Const.UI.getColorizedEntityName(targetEntity));
-			_user.getItems().unequip(_user.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand));
-			local isSpecialized = _user.getCurrentProperties().IsSpecializedInNetCasting;
-			local netted = this.new("scripts/skills/effects/net_effect");
-			local breakFree = this.new("scripts/skills/actives/break_free_skill");
-			breakFree.m.Icon = "skills/active_74.png";
-			breakFree.m.IconDisabled = "skills/active_74_sw.png";
-			breakFree.m.Overlay = "active_74";
-			breakFree.m.SoundOnUse = this.m.SoundOnHitHitpoints;
-
-			if (this.m.IsReinforced)
-			{
-				breakFree.setDecal("net_destroyed_02");
-				breakFree.setChanceBonus(-15);
-
-				if (isSpecialized)
+				for( local i = 0; i != 6; i = ++i )
 				{
-					netted.m.DropNet = true;
-					netted.m.IsReinforced = true;
-					breakFree.m.DropNet = true;
-					breakFree.m.IsReinforcedNet = true;
-				}
-				else
-				{
-					local r = this.Math.rand(1, 2);
-				
-					if (r == 1)
+					if (_targetTile.hasNextTile(i))
 					{
-						this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
-					}
-					else
-					{
-						this.World.Assets.getStash().add(this.new("scripts/items/tools/reinforced_throwing_net"));
+						local next = _targetTile.getNextTile(i);
+
+						if (next.IsOccupiedByActor && this.Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
+						{
+							if (this.Math.rand(1, 100) < this.Math.floor(chance / (successes + 1.0)))
+							{
+								newRet = onUse(_user, next);
+								if (newRet != false)
+								{
+									successes += 1.0;
+								}
+							}
+						}
 					}
 				}
 			}
-			else
-			{
-				breakFree.setDecal("net_destroyed");
-				breakFree.setChanceBonus(0);
-				
-				if (isSpecialized)
-				{
-					netted.m.DropNet = true;
-					breakFree.m.DropNet = true;
-				}
-				else
-				{
-					local chance = this.Math.rand(1, 100);
-
-					if (chance > 25)
-					{
-						this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
-					}
-				}
-			}
-
-			targetEntity.getSkills().add(netted);
-			targetEntity.getSkills().add(breakFree);
-			local effect = this.Tactical.spawnSpriteEffect(this.m.IsReinforced ? "bust_net_02" : "bust_net", this.createColor("#ffffff"), _targetTile, 0, 10, 1.0, targetEntity.getSprite("status_rooted").Scale, 100, 100, 0);
-			local flip = !targetEntity.isAlliedWithPlayer();
-			effect.setHorizontalFlipping(flip);
-			this.Time.scheduleEvent(this.TimeUnit.Real, 200, this.onNetSpawn.bindenv(this), {
-				TargetEntity = targetEntity,
-				IsReinforced = this.m.IsReinforced
-			});
 		}
-		else
-		{
-			if (this.m.SoundOnMiss.len() != 0)
-			{
-				this.Sound.play(this.m.SoundOnMiss[this.Math.rand(0, this.m.SoundOnMiss.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
-			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " throws a net at an immune " + this.Const.UI.getColorizedEntityName(targetEntity) + ", the net falls to the ground ");
-			_user.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).drop();
+		if (this.m.IsUnholdNet && ret != false) {
+			::Legends.Effects.grant(target, ::Legends.Effect.Sleeping);
+			target.setFaction(::Const.Faction.None);
+			target.getAIAgent().removeBehavior(::Const.AI.Behavior.ID.BreakFree);
+			target.m.IsAttackable = false;
+			local contract = ::World.Contracts.getActiveContract();
+			if (contract != null) {
+				contract.m.Flags.increment("CapturedUnholds");
+			}
+			return; // returns null, as original does
+		}
+		return ret;
+	}
+
+	o.makeUnholdNet <- function () {
+		this.m.Description = "Throw a net on [color=%negative%]Dazed[/color], [color=%negative%]Baffled[/color] or with less than [color=%negative%]25%[/color] Healthpoints Unhold to disable them effectively.";
+		this.m.IsUnholdNet = true;
+	}
+
+	local onVerifyTarget = o.onVerifyTarget;
+	o.onVerifyTarget = function (_originTile, _targetTile) {
+		local ret = onVerifyTarget(_originTile, _targetTile);
+		if (this.m.IsUnholdNet && ret) {
+			// special case for contract unhold nets
+			local target = _targetTile.getEntity();
+			if (::isKindOf(target, "unhold") || ::isKindOf(target, "unhold_bog") || ::isKindOf(target, "unhold_frost")) {
+				return target.getHitpoints() <= target.getHitpointsMax() / 4
+					|| target.getSkills().hasEffect(::Legends.Effect.LegendBaffled)
+					|| target.getSkills().hasEffect(::Legends.Effect.LegendDazed)
+					|| target.getSkills().hasEffect(::Legends.Effect.Dazed);
+			}
 			return false;
 		}
+		return ret;
 	}
 });

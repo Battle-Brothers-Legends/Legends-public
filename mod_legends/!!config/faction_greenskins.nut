@@ -8,7 +8,7 @@
 	RangedSkill = 40,
 	MeleeDefense = 10,
 	RangedDefense = -10,
-	Initiative = 120,
+	Initiative = 100,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
@@ -17,6 +17,46 @@
 	],
 	FatigueRecoveryRate = 40,
 	DamageTotalMult = 1.25
+};
+::Const.Tactical.Actor.LegendOrcTyrant <- {
+	XP = 1000,
+	ActionPoints = 10,
+	Hitpoints = 520,
+	Bravery = 150,
+	Stamina = 470,
+	MeleeSkill = 100,
+	RangedSkill = 50,
+	MeleeDefense = 10,
+	RangedDefense = -10,
+	Initiative = 120,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		0
+	],
+	FatigueRecoveryRate = 40,
+	DamageTotalMult = 1.25
+};
+::Const.Tactical.Actor.LegendOrcMadBerserker <- {
+	XP = 700,
+	ActionPoints = 12,
+	Hitpoints = 250,
+	Bravery = 120,
+	Stamina = 360,
+	MeleeSkill = 85,
+	RangedSkill = 40,
+	MeleeDefense = -10,
+	RangedDefense = -10,
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		50
+	],
+	FatigueRecoveryRate = 35,
+	DamageTotalMult = 1.2
 };
 ::Const.Tactical.Actor.LegendOrcBehemoth <- {
 	XP = 400,
@@ -36,18 +76,39 @@
 		0
 	],
 	FatigueRecoveryRate = 30,
-	DamageTotalMult = 1.00
+	DamageTotalMult = 1.1
 };
-::Const.Tactical.Actor.KoboldFighter <- {
-	XP = 150,
-	ActionPoints = 9,
-	Hitpoints = 40,
-	Bravery = 50,
-	Stamina = 100,
-	MeleeSkill = 50,
-	RangedSkill = 70,
+// fighter high
+::Const.Tactical.Actor.LegendGoblinHarrier <- {
+	XP = 400,
+	ActionPoints = 10,
+	Hitpoints = 80,
+	Bravery = 65,
+	Stamina = 140,
+	MeleeSkill = 90,
+	RangedSkill = 65,
+	MeleeDefense = 30,
+	RangedDefense = 15,
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		50
+	],
+	FatigueRecoveryRate = 20
+};
+
+::Const.Tactical.Actor.LegendGoblinFiend <- {
+	XP = 600,
+	ActionPoints = 12,
+	Hitpoints = 120,
+	Bravery = 125,
+	Stamina = 140,
+	MeleeSkill = 80,
+	RangedSkill = 50,
 	MeleeDefense = 5,
-	RangedDefense = 10,
+	RangedDefense = 35,
 	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
@@ -55,24 +116,125 @@
 		0,
 		0
 	],
+	FatigueRecoveryRate = 25
+};
+
+::Const.Tactical.Actor.LegendGoblinTribeDefender <- {
+	XP = 400,
+	ActionPoints = 9,
+	Hitpoints = 65,
+	Bravery = 65,
+	Stamina = 120,
+	MeleeSkill = 60,
+	RangedSkill = 75,
+	MeleeDefense = 5,
+	RangedDefense = 40,
+	Initiative = 70,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		150,
+		60
+	],
+	FatigueRecoveryRate = 15
+};
+
+// fighter medium + direwolf rider
+::Const.Tactical.Actor.LegendGoblinDirewolfRider <- {
+	XP = 250,
+	ActionPoints = 13,
+	Hitpoints = 160,
+	Bravery = 80,
+	Stamina = 140,
+	MeleeSkill = 75,
+	RangedSkill = 50,
+	MeleeDefense = 25,
+	RangedDefense = 15,
+	Initiative = 150,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	FatigueRecoveryRate = 20,
+	Armor = [
+		60,
+		30
+	]
+};
+
+// fighter high + white warwolf
+::Const.Tactical.Actor.LegendGoblinWhiteDirewolfRider <- {
+	XP = 400, // 400 + 600 / 2
+	ActionPoints = 15,
+	Hitpoints = 200,
+	Bravery = 100,
+	Stamina = 150,
+	MeleeSkill = 90,
+	RangedSkill = 50,
+	MeleeDefense = 35,
+	RangedDefense = 20,
+	Initiative = 160,
+	FatigueEffectMult = 1.0,
+	MoraleEffectMult = 1.0,
+	Armor = [
+		100,
+		50
+	],
 	FatigueRecoveryRate = 20
 };
-::Const.Tactical.Actor.KoboldWolfrider <- {
-	XP = 150,
-	ActionPoints = 13,
-	Hitpoints = 40,
-	Bravery = 55,
-	Stamina = 100,
-	MeleeSkill = 55,
+
+::Const.Tactical.Actor.LegendGoblinWitchDoctor <- {
+	XP = 600,
+	ActionPoints = 9,
+	Hitpoints = 110,
+	Bravery = 90,
+	Stamina = 110,
+	MeleeSkill = 80,
 	RangedSkill = 60,
 	MeleeDefense = 15,
-	RangedDefense = 10,
+	RangedDefense = 25,
 	Initiative = 130,
 	FatigueEffectMult = 1.0,
 	MoraleEffectMult = 1.0,
 	Armor = [
-		0,
-		0
+		40,
+		20
 	],
-	FatigueRecoveryRate = 20
+	FatigueRecoveryRate = 15
 };
+// ::Const.Tactical.Actor.KoboldFighter <- {
+// 	XP = 150,
+// 	ActionPoints = 9,
+// 	Hitpoints = 40,
+// 	Bravery = 50,
+// 	Stamina = 100,
+// 	MeleeSkill = 50,
+// 	RangedSkill = 70,
+// 	MeleeDefense = 5,
+// 	RangedDefense = 10,
+// 	Initiative = 130,
+// 	FatigueEffectMult = 1.0,
+// 	MoraleEffectMult = 1.0,
+// 	Armor = [
+// 		0,
+// 		0
+// 	],
+// 	FatigueRecoveryRate = 20
+// };
+// ::Const.Tactical.Actor.KoboldWolfrider <- {
+// 	XP = 150,
+// 	ActionPoints = 13,
+// 	Hitpoints = 40,
+// 	Bravery = 55,
+// 	Stamina = 100,
+// 	MeleeSkill = 55,
+// 	RangedSkill = 60,
+// 	MeleeDefense = 15,
+// 	RangedDefense = 10,
+// 	Initiative = 130,
+// 	FatigueEffectMult = 1.0,
+// 	MoraleEffectMult = 1.0,
+// 	Armor = [
+// 		0,
+// 		0
+// 	],
+// 	FatigueRecoveryRate = 20
+// };

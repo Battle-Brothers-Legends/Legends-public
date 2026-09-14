@@ -39,11 +39,9 @@
 		if (!currentTile.HasRoad)
 			return;
 
-		local towns = this.World.EntityManager.getSettlements();
-
-		foreach( t in towns )
-			if (t.getTile().getDistanceTo(currentTile) <= 5)
-				return;
+		local town = ::Legends.S.getClosestSettlement();
+		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 5)
+			return;
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
@@ -62,14 +60,14 @@
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
 
-			if (bro.getBackground().getID() == "background.tailor")
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Tailor))
 				candidates_tailor.push(bro);
 			else {
 				candidates_other.push(bro);
 
-				if (bro.getBackground().getID() == "background.thief" || bro.getBackground().getID() == "background.legend_commander_assassin")
+				if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Thief, ::Legends.Background.LegendCommanderAssassin))
 					candidates_thief.push(bro);
-				else if (bro.getBackground().getID() == "background.vagabond" || bro.getBackground().getID() == "background.refugee" || bro.getBackground().getID() == "background.messenger")
+				else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Vagabond, ::Legends.Background.Refugee, ::Legends.Background.Messenger))
 					candidates_vagabond.push(bro);
 			}
 		}

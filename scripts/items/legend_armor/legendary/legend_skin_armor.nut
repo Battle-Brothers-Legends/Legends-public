@@ -1,39 +1,58 @@
-this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_armor", {
-	m = {},
+this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
+	m = {
+		Potential = {
+			Condition = { min = 130, max = 130 },
+			StaminaModifier = { min = 14, max = 14 },
+		}
+	},
 	function create()
 	{
-		this.legend_named_armor.create();
+		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.legend_skin_armor";
-		this.m.Description = "This disgusting design is made by nailing metal pieces to layers of flesh taken from skin ghouls. It smells awful, is quite heavy, and feels as if it is healing itself on to your body.";
-		this.m.Name = "Skin Ghoul Armor"
-		this.m.NameList = [
-			"Skin suit",
-			"Naked armor",
-			"Ghoulish bastion",
-			"Flayed Bulwark"
-		];
-		this.m.Variant = 515;
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
+		this.m.Name = "";
+		this.m.Description = "A disgusting design made by nailing metal pieces to layers of flesh taken from skin ghouls. It smells awful, is quite heavy, and feels as if it is healing itself on to your body.";
+		this.m.ArmorDescription = "Includes a disgusting armor fashioned from skin ghoul parts.";
+		this.m.Variants = [1, 2];
+		this.m.Variant = 1;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.Value = 10000;
-		this.m.Condition = 160;
-		this.m.ConditionMax = 160;
-		this.m.StaminaModifier = -16;
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.Value = 5000;
 		this.randomizeValues();
-		this.blockUpgrades();
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Attachment] = false;
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Rune] = false;
+		this.m.NameList = ["Skin Suit","Naked Armor","Ghoulish Bastion","Flayed Bulwark"];
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "skin_armor_" + variant;
+		this.m.SpriteDamagedBack = "skin_armor_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "skin_armor_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_skin_armor_" + variant + ".png";
+		this.m.IconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
+		this.m.OverlayIcon = "legend_armor/icon_skin_armor_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_skin_armor_" + variant + ".png";
+	}
+
+	function onArmorTooltip(_result)
+	{
+		_result.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/health.png",
+			text = "Heals [color=%positive%]10%[/color] of the hitpoints of the wearer each turn"
+		});
 	}
 
 	function getTooltip()
 	{
-		local result = this.legend_named_armor.getTooltip();
+		local result = this.legend_named_armor_upgrade.getTooltip();
 		result.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Heals [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of the hitpoints of the wearer each turn"
+			text = "Heals [color=%positive%]10%[/color] of the hitpoints of the wearer each turn"
 		});
 		return result;
 	}
@@ -41,8 +60,7 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 	function onCombatFinished()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor == null)
-		{
+		if (::Legends.S.isEntityNullOrDead(actor)) {
 			return;
 		}
 
@@ -74,7 +92,5 @@ this.legend_skin_armor <- this.inherit("scripts/items/legend_armor/legend_named_
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
 		}
 	}
-
-
 });
 

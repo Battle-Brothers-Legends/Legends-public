@@ -86,6 +86,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				tile.clear();
 				this.Contract.m.Destination = this.WeakTableRef(this.World.spawnLocation("scripts/entity/world/locations/legend_spider_nest_location", tile.Coords));
 				this.Contract.m.Destination.onSpawned();
+				this.Contract.m.Destination.setAttackable(false);
 				this.Contract.m.Destination.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
 				this.Contract.m.Destination.setBanner(this.World.FactionManager.getFaction(::Const.FactionType.Beasts).getPartyBanner());
 				this.Contract.m.Destination.setDiscovered(true);
@@ -116,6 +117,18 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				// }
 
 				// TODO: Handle "successful retreat" (player rescued the townsfolk and retreated without destroying the nest)
+
+				if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull()) {
+			        if (this.Contract.isPlayerAt(this.Contract.m.Destination)) {
+            			if (!this.TempFlags.get("AlreadyVisited")) {
+                			this.Contract.setScreen("Nest1");
+                			this.World.Contracts.showActiveContract();
+            			}
+        			}
+        			else {
+            			this.TempFlags.set("AlreadyVisited", false);
+        			}
+    			}
 
 				if (::MSU.isNull(this.Contract.m.Destination))
 				{
@@ -155,22 +168,30 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						{
 							if (::Math.rand(1,6) == 1)
 							{
-								unit.getSkills().add(this.new("scripts/skills/effects/legend_web_at_start_effect"));
+								::Legends.Effects.grant(unit, ::Legends.Effect.LegendWebAtStart);
 							}
 						}
 
 						local entities = [];
 						local eggs = [];
 						local abductees = ::Math.rand(3,6);
-						this.Flags.set("NumAbductees",abductees);
+						this.Flags.set("NumAbductees", abductees);
 
-						for (local i=0; i < abductees; i++)
-						{
+						local freeSlots = ::Legends.S.getEmptySlotsInFormation();
+						for (local i=0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
+							local items = villager.getItems();
+							items.equip(this.Const.World.Common.pickArmor([
+								[1, ::Legends.Armor.Standard.linen_tunic]
+							]));
+							items.equip(this.Const.World.Common.pickHelmet([
+								[1, ::Legends.Helmet.Standard.feathered_hat],
+								[2, ::Legends.Helmet.None]
+							]));
 							villager.setName("Abducted Villager");
 							villager.setFaction(1);
-							villager.setPlaceInFormation(19 + i);
-							villager.getSkills().add(this.new("scripts/skills/effects/legend_web_at_start_effect"));
+							villager.setPlaceInFormation(freeSlots.pop());
+							::Legends.Effects.grant(villager, ::Legends.Effect.LegendWebAtStart);
 							villager.getFlags().add("IsSpiderAbductee", true);
 							entities.push(villager);
 						}
@@ -196,12 +217,12 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						::Tactical.Entities.spawnEntitiesAtCenter(eggs);
 
 						// Spawn additional ring of eggs / decorations between center and circle of enemies
-						local limit = ::Math.rand(20,30)
+						local limit = ::Math.rand(20,30);
 						local wc = ::MSU.Class.WeightedContainer([
 							[3,"Egg"],
 							[5,"CrushedEgg"],
 							[2,"BrokenWeb"],
-						])
+						]);
 						for( local i=0; i < limit; i++ )
 						{
 							local x = 0, y = 0;
@@ -259,7 +280,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					this.Contract.setScreen("Nest1");
 					::World.Contracts.showActiveContract();
 				}
+			}
 
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
+				{
+					this.World.getGuestRoster().remove(_actor);
+				}
 			}
 
 			function onEggPlaced( _entity, _tag)
@@ -337,6 +365,13 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
+				{
+					this.World.getGuestRoster().remove(_actor);
+				}
+			}
 		});
 	}
 
@@ -347,7 +382,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Horror In The Woods",
-			Text = "[img]gfx/ui/events/event_62.png[/img]{You enter to find %employer% slumped down in their chair as if the world were crushing down on them. A small spider no bigger than half a crown begins to climb up their cup, only to be detected and sent flying, along with the cup, across the room. The cup bounces off a wall, spilling it\'s contents across the floor as the spider escapes, dazed yet unharmed, from the flood of wine now escaping from the vessel. %employer% locks their gaze with yours, refusing to move any other part of their body except their eyes. You ask about the contract, and are met with a hand wave followed by a grunt. A steward quickly steps in, with rehearsed practice and precision. %SPEECH_ON%You must forgive him, times have been tough with these nightmares scurrying about. I will keep this short for you - there is a nest somewhere nearby. Find it. Destroy it. Then bring anyone there back here ALIVE.%SPEECH_OFF% The steward made a special effort to draw attention to that last part, clearly after making the mistake of not doing so with a previous band of mercenaries... | A steward ushers you into a fine study, where a %employer% sits in an ornate chair facing a crackling fireplace. He doesn/'t seem to notice your arrival, apparently preoccupied with staring vacantly into the flames. You hesitate, unsure whether to approach or not. The steward realises your predicament and pointedly clears his throat. %SPEECH_ON%Ahem! The uhm, sellsword you asked for my Lord?%SPEECH_OFF% %employer% jolts out of his reverie and rises to his feet. As he approaches you recognise an emotion on his face you see far too often with the people you deal with, grief. %SPEECH_ON%A sellsword captain? Yes, yes of course. You are here to deal with the problem. Six... just six days ago sellsword, my precious Imelda was out practice riding her pony when she was taken by the web creatures. We... we never found her and apparently there have been others. Many, many others recently...%SPEECH_OFF% His voice cracks, and he suddenly grabs the front of your shirt. You reflexively reach for your absent sword, which a guard took from you before the meeting. %employer% seems not to notice. %SPEECH_ON%I knew! I knew they were a problem, sellsword! I ignored it... ignored it for far too long, so many other pressing problems you see. Now... this is my punishment.%SPEECH_OFF% A shadow passes over his face and he releases his grip on you. This is just as well as you were thinking of going for the hidden dagger in your boot. He turns away, idly running a hand through his hair to master his emotions. When he faces you once again his eyes and intent are firm. %SPEECH_ON%Find their nest. Burn it. Burn the whole forest for all I care if that\'s what it takes. Return any survivors you find and you will be handsomely rewarded.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_62.png[/img]{You enter to find %employer% slumped down in %their_employer% chair as if the world were crushing down on %them_employer%. A small spider no bigger than half a crown begins to climb up their cup, only to be detected and sent flying, along with the cup, across the room. The cup bounces off a wall, spilling it\'s contents across the floor as the spider escapes, dazed yet unharmed, from the flood of wine now escaping from the vessel. %employer% locks %their_employer% gaze with yours, refusing to move any other part of %their_employer% body except %their_employer% eyes. You ask about the contract, and are met with a hand wave followed by a grunt. A steward quickly steps in, with rehearsed practice and precision. %SPEECH_ON%You must forgive %them_employer%, times have been tough with these nightmares scurrying about. I will keep this short for you - there is a nest somewhere nearby. Find it. Destroy it. Then bring anyone there back here ALIVE.%SPEECH_OFF% The steward made a special effort to draw attention to that last part, clearly after making the mistake of not doing so with a previous band of mercenaries... | A steward ushers you into a fine study, where %employer% sits in an ornate chair facing a crackling fireplace. %They_employer% doesn't seem to notice your arrival, apparently preoccupied with staring vacantly into the flames. You hesitate, unsure whether to approach or not. The steward realises your predicament and pointedly clears his throat. %SPEECH_ON%Ahem! The uhm, sellsword you asked for my Lord?%SPEECH_OFF% %employer% jolts out of %their_employer% reverie and rises to %their_employer% feet. As %they_employer% approaches, you recognise an emotion on %their_employer% face you see far too often with the people you deal with, grief. %SPEECH_ON%A sellsword captain? Yes, yes of course. You are here to deal with the problem. Six... just six days ago sellsword, my precious Imelda was out practice riding her pony when she was taken by the web creatures. We... we never found her and apparently there have been others. Many, many others recently...%SPEECH_OFF% %Their_employer% voice cracks, and %they_employer% suddenly grabs the front of your shirt. You reflexively reach for your absent sword, which a guard took from you before the meeting. %employer% seems not to notice. %SPEECH_ON%I knew! I knew they were a problem, sellsword! I ignored it... ignored it for far too long, so many other pressing problems you see. Now... this is my punishment.%SPEECH_OFF% A shadow passes over %their_employer% face and %they_employer% releases %their_employer% grip on you. This is just as well as you were thinking of going for the hidden dagger in your boot. %They_employer% turns away, idly running a hand through %their_employer% hair to master %their_employer% emotions. When %they_employer% faces you once again %their_employer% eyes and intent are firm. %SPEECH_ON%Find their nest. Burn it. Burn the whole forest for all I care if that\'s what it takes. Return any survivors you find and you will be handsomely rewarded.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			ShowEmployer = true,
@@ -389,6 +424,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					function getResult()
 					{
 						// this.TempFlags.set("IsNestEntered", true);
+						this.TempFlags.set("AlreadyVisited", true);
 						return "Nest2";
 					}
 
@@ -400,6 +436,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					Text = "{We\'ll come back later.}",
 					function getResult()
 					{
+						this.TempFlags.set("AlreadyVisited", true);
 						return 0;
 					}
 				}
@@ -456,7 +493,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "NestDestroyed",
 			Title = "After the battle...",
-			Text = "[img]gfx/ui/events/event_123.png[/img]{As the last little nightmare falls silent, there is a firm calmness over the battlefield. The broken and torn web covering the ground now gently breaks apart and spreads to the winds, succumbing to it\'s wounds the same way as it\'s creators have. A mixture of blood and poison pools under each sticky corpse as crows gather nearby for your departure.\n\n You order the %companyname% to clear out any remaining eggs in the nest, and prepare to bring the survivors back to %townname%}",
+			Text = "[img]gfx/ui/events/event_123.png[/img]{As the last of the skittering nightmares falls silent, a firm calmness takes over the battlefield. The torn web covering the ground gently breaks apart and drifts to the wind, as if succumbing to its wounds just as its spinners did. A mixture of blood and venom pools under each of the sticky corpses as carrion birds gather nearby, patiently awaiting your departure.\n\n You order the %companyname% to clear out any eggs remaining in the nest and prepare to escort the survivors back to %townname%}",
 			Image = "",
 			List = [],
 			Options = [
@@ -479,7 +516,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "Success1",
 			Title = "Upon your return...",
-			Text = "[img]gfx/ui/events/event_43.png[/img]{The townsfolk of %townname% thank you and %employer% expresses no concern. They continue to pace up and down their chambers, dictating in muttered tones to a scribe about some other crisis. The steward pulls you to one side and hands you your payment. No words are exchanged.\n\n Today was one danger, tomorrow will yield another - either way, you can expect to be back here soon with more to say and more to kill.}",
+			Text = "[img]gfx/ui/events/event_43.png[/img]{The townsfolk of %townname% offer their gratitude, but %employer% barely registers your presence. %They_employer% paces the length of %their_employer% chambers, dictating a response to some fresh crisis to a scribe, who dutifully jots it all down on a lengthy roll of parchment. The steward quietly pulls you aside and presses a heavy purse into your hands, with no unnecessary words exchanged.\n\n Today's threat may be dealt with, but tomorrow will yield another. But that's just as well - without monsters to kill there'd be no coin to earn.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -511,11 +548,11 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					id = 10,
 					icon = "ui/icons/relations.png",
 					text = format("You rescued %s out of %s Abducted Townsfolk", ::Const.UI.getColorized(survivorCount, survivorCount == 0 ? ::Const.UI.Color.NegativeEventValue : ::Const.UI.Color.PositiveEventValue), ::Const.UI.getColorized(this.Flags.get("NumAbductees"), ::Const.UI.Color.PositiveEventValue))
-				})
+				});
 				// TODO: scale reward based on the number of survivors who made it back?
 				if (survivorCount == this.Flags.get("NumAbductees"))
 				{
-					this.Text += "{The townsfolk you rescued step forward.%SPEECH_ON%They saved all of us! We thought we were all done for, but they kept us safe.\"\n\n\"And not a single one of us was left behind either!\"\n\n\"All shall hear of the %companyname%!\"\n\n\"Hear, hear!%SPEECH_OFF%}";
+					this.Text += "{\n\nAs you leave the employer's chambers, the townsfolk you rescued gather around.%SPEECH_ON%They saved all of us! We thought we were all done for, but they kept us safe.\"\n\n\"And not a single one of us was left behind either!\"\n\n\"All shall hear of the %companyname%!\"\n\n\"Hear, hear!%SPEECH_OFF%}";
 					this.Contract.addSituation(this.new("scripts/entity/world/settlements/situations/legend_word_of_mouth_situation"), 5, this.Contract.m.Home, this.List);
 				}
 				this.List.push({
@@ -547,7 +584,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (::MSU.isNull(this.Contract.m.Destination))
 				{
-					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}"
+					this.Text += "\n\n{%employer% lets out a sigh.%SPEECH_ON%Fine, I shall pay half of the agreed payment for at least having destroyed the nest.%SPEECH_OFF%}";
 					this.Contract.m.PaymentModifier = 0.5;
 				}
 				else
@@ -560,7 +597,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					id = 10,
 					icon = "ui/icons/relations.png",
 					text = format("You rescued %s out of %s Abducted Townsfolk", ::Const.UI.getColorized(0, ::Const.UI.Color.NegativeEventValue), ::Const.UI.getColorized(this.Flags.get("NumAbductees"), ::Const.UI.Color.PositiveEventValue))
-				})
+				});
 
 				this.List.push({
 					id = 10,
@@ -606,7 +643,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			this.m.Home.getSprite("selection").Visible = false;
 
 			// Instead of calling getGuestRoster().clear(), only remove guest townsfolk for future compatibility with possible other guests
-			local survivors = []
+			local survivors = [];
 			foreach ( g in ::World.getGuestRoster().getAll())
 			{
 				if ( g.getFlags().get("IsSpiderAbductee") )

@@ -3,7 +3,7 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_flail";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedFlail);
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -38,17 +38,26 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if ( _skill == null || _skill.m.IsWeaponSkill == false ) 
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
 			return;
 
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
+		if (!_skill.isAttack())
+			return;
+
+		if (_skill.getItem() == null)
+			return;
+
+		if (_skill.getItem().getID() != this.getItem().getID())
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
 			return;
 
 		local user = this.getContainer().getActor();
 
 		if (_bodyPart == ::Const.BodyPart.Head && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.isHiddenToPlayer())
 			{

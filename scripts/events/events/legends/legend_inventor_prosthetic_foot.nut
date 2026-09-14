@@ -45,10 +45,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Let\'s try it out!",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -75,7 +72,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Nofoot.m.Name + " receives a " + _trait.m.Name
 					});
-				});
+				}.bindenv(this));
 
 				local maimed_foot_bye = this.new("scripts/skills/injury_permanent/maimed_foot_injury");
 				_event.m.Nofoot.getSkills().removeByID("injury.maimed_foot");
@@ -98,10 +95,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Perhaps another time.",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -141,7 +135,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Inventor = inventor_candidates[this.Math.rand(0, inventor_candidates.len() - 1)];
+			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
 
@@ -158,7 +152,7 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Nofoot = nofoot_candidates[this.Math.rand(0, nofoot_candidates.len() - 1)];
+			this.m.Nofoot = nofoot_candidates[::Math.rand(0, nofoot_candidates.len() - 1)];
 		}
 
 
@@ -179,11 +173,6 @@ this.legend_inventor_prosthetic_foot <- this.inherit("scripts/events/event", {
 			"nofoot",
 			this.m.Nofoot.m.Name
 		]);
-	}
-
-	function onDetermineStartScreen()
-	{
-		return "A";
 	}
 
 	function onClear()

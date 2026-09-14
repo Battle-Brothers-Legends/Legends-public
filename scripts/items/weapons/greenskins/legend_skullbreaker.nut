@@ -31,30 +31,15 @@ this.legend_skullbreaker <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	// function getTooltip()
-	// {
-	// 	local ret = this.weapon.getTooltip();
-	// 	ret.push({
-	// 		id = 18,
-	// 		type = "text",
-	// 		icon = "ui/icons/fatigue.png",
-	// 		text = "Builds up additional [color=" + this.Const.UI.Color.NegativeValue + "]5[/color] Fatigue with every skill use"
-	// 	});
-	// 	return ret;
-	// }
-
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skillToAdd = this.new("scripts/skills/actives/smite_skill");
-		this.addSkill(skillToAdd);
-
-		skillToAdd = this.new("scripts/skills/actives/shatter_skill");
-		this.addSkill(skillToAdd);
-		
-		skillToAdd = this.new("scripts/skills/actives/split_shield");
-		skillToAdd.setFatigueCost(skillToAdd.getFatigueCostRaw() + 10); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Smite);
+		::Legends.Actives.grant(this, ::Legends.Active.Shatter);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.m.IsHammer = true;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5); // 10 because 2h weapons should get +5 on split shield (see 2h mace), and then +5 because of being orc weapon.
+		}.bindenv(this));
 	}
 
 });

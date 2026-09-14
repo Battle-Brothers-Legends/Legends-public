@@ -2,8 +2,7 @@ this.legend_wolfsbane_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_wolfsbane";
-		this.m.Name = "Wolfsbane Scent";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWolfsbane);
 		this.m.Icon = "ui/perks/herbs_circle.png";
 		this.m.IconMini = "status_effect_01_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,9 +15,4 @@ this.legend_wolfsbane_effect <- this.inherit("scripts/skills/skill", {
 	{
 		return "This character smells like Wolfsbane and can\'t be transformed into a were-creature.";
 	}
-
-
-
-
 });
-

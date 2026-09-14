@@ -12,15 +12,6 @@ this.legend_build_location_action <- this.inherit("scripts/factions/faction_acti
 
 	function onUpdate( _faction )
 	{
-		if(!::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			return;
-		}
-		// if (this.Math.rand(1, 100) > 10)
-		// {
-		// 	return;
-		// }
-
 		this.m.Settlement = _faction.getSettlements()[this.Math.rand(0, _faction.getSettlements().len() - 1)];
 
 		if (!this.m.Settlement.canBuildLocation())

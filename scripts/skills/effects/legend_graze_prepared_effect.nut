@@ -4,8 +4,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_graze_prepared";
-		this.m.Name = "Prepared to inflict a slow bleed";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrazePrepared);
 		this.m.Icon = "skills/graze_circle.png";
 		this.m.IconMini = "mini_graze_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,7 +15,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict 2 bleed damage for the next five turns";
+		return "This character is preparing an attack to inflict slow bleeding by grazing the flesh. The next hit will infict [color=%negative%]2[/color] bleed damage for the next five turns.";
 	}
 
 	function getTooltip()
@@ -52,24 +51,25 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 		if (this.m.AttacksLeft <= 0)
 			this.removeSelf();
 
-		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints <= this.Const.Combat.MinDamageToApplyBleeding || _targetEntity.getHitpoints() <= 0)
+		if (!::Legends.S.isEntityNullOrDead(_targetEntity)) {
 			return;
-
-		if (!_targetEntity.isAlive())
-			return;
-
-
-		if (!_targetEntity.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnUse.len() != 0)
-			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
-			}
-
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
 		}
 
-		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding || _damageInflictedHitpoints <= ::Const.Combat.MinDamageToApplyBleeding || _targetEntity.getHitpoints() <= 0)
+			return;
+
+		if (!_targetEntity.isHiddenToPlayer()) {
+			if (this.m.SoundOnUse.len() != 0)
+			{
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
+			}
+
+			::Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
+		}
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect, function (_effect) {
+			_effect.setActor(this.getContainer().getActor());
+		}.bindenv(this));
 	}
 
 	function onTargetMissed( _skill, _targetEntity )

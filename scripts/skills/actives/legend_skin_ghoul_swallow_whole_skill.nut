@@ -1,68 +1,7 @@
-this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-		SwallowedEntity = null
-	},
-	function getSwallowedEntity()
-	{
-		return this.m.SwallowedEntity;
-	}
-
-	function create()
-	{
-		this.m.ID = "actives.legend_skin_ghoul_swallow_whole";
-		this.m.Name = "Swallow Whole";
-		this.m.Description = "";
-		this.m.Icon = "skills/active_103.png";
-		this.m.IconDisabled = "skills/active_103.png";
-		this.m.Overlay = "active_103";
-		this.m.SoundOnHit = [
-			"sounds/enemies/swallow_whole_01.wav",
-			"sounds/enemies/swallow_whole_02.wav",
-			"sounds/enemies/swallow_whole_03.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/enemies/swallow_whole_miss_01.wav",
-			"sounds/enemies/swallow_whole_miss_02.wav",
-			"sounds/enemies/swallow_whole_miss_03.wav"
-		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
-		this.m.IsSerialized = false;
-		this.m.IsActive = true;
-		this.m.IsTargeted = true;
-		this.m.IsStacking = false;
-		this.m.IsAttack = true;
-		this.m.IsIgnoredAsAOO = true;
-		this.m.ActionPointCost = 9;
-		this.m.FatigueCost = 25;
-		this.m.MinRange = 1;
-		this.m.MaxRange = 1;
-	}
-
-	function isUsable()
-	{
-		return this.skill.isUsable() && this.m.SwallowedEntity == null && this.getContainer().getActor().getSize() == 3;
-	}
-
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
-		if (brothers.len() == 1)
-		{
-			return false;
-		}
-
-		local target = _targetTile.getEntity();
-		if (target == null)
-		{
-			return false;
-		}
-		if (target.getFlags().has("IsSummoned"))
-		{
-			return false;
-		}
-
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.getEntity().isPlayerControlled() && !_targetTile.getEntity().getCurrentProperties().IsImmuneToKnockBackAndGrab;
+this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/actives/swallow_whole_skill", {
+	function create() {
+		this.swallow_whole_skill.onCreate();
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 	}
 
 	function onUse( _user, _targetTile )
@@ -74,19 +13,10 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " devours " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		local skills = target.getSkills();
-		if (!skills.hasSkill("effects.legend_break_stance"))
-			skills.add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-		skills.removeByID("effects.legend_vala_chant_disharmony_effect");
-		skills.removeByID("effects.legend_vala_chant_fury_effect");
-		skills.removeByID("effects.legend_vala_chant_senses_effect");
-		skills.removeByID("effects.legend_vala_currently_chanting");
-		skills.removeByID("effects.legend_vala_in_trance");
+		::Const.Tactical.Common.removeStances(target, true);
 
 		if (target.getMoraleState() != this.Const.MoraleState.Ignore)
-		{
 			target.setMoraleState(this.Const.MoraleState.Breaking);
-		}
 
 		this.m.SwallowedEntity = target;
 		this.m.SwallowedEntity.getFlags().set("Devoured", true);
@@ -96,9 +26,10 @@ this.legend_skin_ghoul_swallow_whole_skill <- this.inherit("scripts/skills/skill
 		_user.getSprite("injury").setBrush("bust_ghoul_04_injured");
 		_user.getSprite("head").setBrush("bust_ghoulskin_04_head_0" + _user.m.Head);
 		_user.m.Sound[this.Const.Sound.ActorEvent.Death] = _user.m.Sound[this.Const.Sound.ActorEvent.Other2];
-		local effect = this.new("scripts/skills/effects/swallowed_whole_effect");
-		effect.setName(target.getName());
-		_user.getSkills().add(effect);
+
+		::Legends.Effects.grant(_user, ::Legends.Effect.SwallowedWhole, function(_effect) {
+			_effect.setName(target.getName());
+		}.bindenv(this));
 
 		if (this.m.SoundOnHit.len() != 0)
 		{

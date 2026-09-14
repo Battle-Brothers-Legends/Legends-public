@@ -92,9 +92,9 @@
 		local candidates_other = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == "background.houndmaster" || bro.getBackground().getID() == "background.legend_muladi" )
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi) )
 				candidates_houndmaster.push(bro);
-			else if (bro.getBackground().getID() == "background.beast_slayer")
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.BeastSlayer))
 				candidates_beastslayer.push(bro);
 			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player))
 				candidates_other.push(bro);

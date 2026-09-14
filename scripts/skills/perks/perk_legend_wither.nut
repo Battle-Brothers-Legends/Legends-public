@@ -1,25 +1,23 @@
 this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendWither);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendWither);
 	}
 
-	function onAdded()
-	{
-		if (!this.m.Container.hasSkill("actives.legend_wither"))
-		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_wither_skill"));
+	function onAdded() {
+		if (!this.m.Container.hasActive(::Legends.Active.LegendWither)) {
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Wither, function (_skill) {
+				_skill.m.ActionPointCost = 5;
+				_skill.m.FatigueCost = 15;
+				_skill.m.MinRange = 1;
+				_skill.m.MaxRange = 6;
+				_skill.m.MaxLevelDifference = 8;
+			}.bindenv(this));
 		}
 	}
-		function onRemoved()
-	{
-		this.m.Container.removeByID("actives.legend_wither");
+	
+	function onRemoved() {
+		::Legends.Actives.remove(this, ::Legends.Active.Wither);
 	}
 
 });

@@ -67,7 +67,7 @@ if (!("HuntingLoot" in ::Const))
 
 				if("Cook" in targetDef && this.CookLevel > 0 && (::Math.rand(1,5) <= (2 * cookModeBonus) || this.dropLoot(this.CookLevel, isCookMode)))
 				{
-					cook = this.new(targetDef.Cook)
+					cook = this.new(targetDef.Cook);
 				}
 
 				local res = {
@@ -130,10 +130,10 @@ if (!("HuntingLoot" in ::Const))
 			// Forage mode: ignore all Hunt targets
 			if (_mode == ::Const.HuntingLoot.HunterCampMode.Forage && target.Type=="Hunt")
 			{
-				continue
+				continue;
 			}
 
-			generator.Target.addArray([targetContainer])
+			generator.Target.addArray([targetContainer]);
 		}
 
 		generator.Brew.addArray(biomeRewards[1]);

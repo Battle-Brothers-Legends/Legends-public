@@ -114,94 +114,94 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			"Grunhain"
 		]];
 		this.m.DraftLists = [[
-			"beggar_background",
-			"daytaler_background",
-			"daytaler_background",
-			"farmhand_background",
-			"farmhand_background",
-			"farmhand_background",
-			"farmhand_background",
-			"miller_background",
-			"miller_background",
-			"ratcatcher_background",
-			"tailor_background",
-			"vagabond_background",
-			"poacher_background",
-			"ratcatcher_background",
-			"vagabond_background",
-			"poacher_background"
+			::Legends.Background.Beggar,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Miller,
+			::Legends.Background.Miller,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Tailor,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Poacher,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Poacher
 		],[
-			"apprentice_background",
-			"beggar_background",
-			"butcher_background",
-			"gambler_background",
-			"daytaler_background",
-			"daytaler_background",
-			"farmhand_background",
-			"farmhand_background",
-			"farmhand_background",
-			"juggler_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"miller_background",
-			"miller_background",
-			"minstrel_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"servant_background",
-			"tailor_background",
-			"vagabond_background",
-			"retired_soldier_background",
-			"apprentice_background",
-			"butcher_background",
-			"gambler_background",
-			"juggler_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"vagabond_background",
-			"retired_soldier_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Beggar,
+			::Legends.Background.Butcher,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Farmhand,
+			::Legends.Background.Juggler,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Miller,
+			::Legends.Background.Miller,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Servant,
+			::Legends.Background.Tailor,
+			::Legends.Background.Vagabond,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Butcher,
+			::Legends.Background.Gambler,
+			::Legends.Background.Juggler,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.RetiredSoldier
 		],[
-			"swordmaster_background",
-			"apprentice_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"historian_background",
-			"juggler_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"minstrel_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"shepherd_background",
-			"vagabond_background",
-			"bastard_background",
-			"hedge_knight_background",
-			"raider_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"swordmaster_background",
-			"legend_inventor_background"
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Apprentice,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Historian,
+			::Legends.Background.Juggler,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Bastard,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Squire,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.LegendInventor
 		]];
 
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_donkey_background",
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendDonkey,
 		],[
-			"legend_donkey_background",
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		]];
 		this.m.Rumors = this.Const.Strings.RumorsFarmingSettlement;
 	}
@@ -244,9 +244,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 4
+				return 4;
 			default:
 				return 1;
 		}
@@ -259,9 +259,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 6
+				return 6;
 			default:
 				return 1;
 		}
@@ -274,9 +274,9 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 			case 1:
 			 	return 3;
 			case 2:
-				return 4
+				return 4;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}
@@ -343,7 +343,7 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -391,10 +391,10 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -432,7 +432,7 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 		], [], 2, true);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -504,7 +504,7 @@ this.legends_farming_village <- this.inherit("scripts/entity/world/settlements/l
 		], [], 3, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

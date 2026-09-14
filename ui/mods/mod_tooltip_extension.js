@@ -1,7 +1,12 @@
 TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 {
-	if(_targetDIV === undefined)
+	if(_targetDIV === null || _targetDIV === undefined)
 		return;
+
+	var wnd = this.mParent; // $(window);
+	var windowHeight = wnd.height();
+	var maxHeight = Math.floor(windowHeight * 0.85);
+    this.mScrollWrapper.css('max-height', maxHeight + 'px');
 
 	var offsetY = ('yOffset' in _data) ? _data.yOffset : this.mDefaultYOffset;
 	if (offsetY !== null)
@@ -15,8 +20,6 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 			offsetY = 0;
 		}
 	}
-
-	var wnd = this.mParent; // $(window);
 
 	// calculate tooltip position
 	var targetOffset    = _targetDIV.offset();
@@ -43,19 +46,24 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 		posTop = targetOffset.top + elementHeight + offsetY;
 	}
 
-
+	if ((posLeft - (containerWidth / 2) - (elementWidth / 2)) > 10) {
+		posLeft = posLeft - (containerWidth / 2) - (elementWidth / 2);
+	} else {
+		posLeft = posLeft + (containerWidth / 2) + (elementWidth / 2);
+	}	
+	
 	// MOD_TOOLTIP_EXTENSION: attempts to prevent the tooltip from extending outside of the screen
 	var posTopPrimary = targetOffset.top - containerHeight - offsetY;
 	var posTopSecondary = targetOffset.top + elementHeight + offsetY;
-	if (posTopPrimary < 0 && posTopSecondary + containerHeight > wnd.height())
+	if (posTopPrimary < 0 && posTopSecondary + containerHeight > windowHeight)
 	{
-		posTop = (wnd.height() - containerHeight) / 2;
+		posTop = (windowHeight - containerHeight) / 2;
 	}
 	else if (posTopPrimary >= 0)
 	{
 		posTop = posTopPrimary;
 	}
-	else if (posTopSecondary + containerHeight <= wnd.height())
+	else if (posTopSecondary + containerHeight <= windowHeight)
 	{
 		posTop = posTopSecondary;
 	}
@@ -65,11 +73,23 @@ TooltipModule.prototype.setupUITooltip = function(_targetDIV, _data)
 	this.mContainer.removeClass('display-none').addClass('display-block');
 	this.mContainer.css({ left: posLeft, top: posTop });
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0.99 }, { duration: this.mFadeInTime }); // Anti Alias Fix
+
+	var self = this;
+	if (self.mScrollWrapper[0].scrollHeight > self.mScrollWrapper.height()) {
+		self.mScrollHint.removeClass('display-none').addClass('display-block');
+	} else {
+		self.mScrollHint.removeClass('display-block').addClass('display-none');
+	}
 };
 
 TooltipModule.prototype.setupTileTooltip = function()
 {
 	var wnd = this.mParent; // $(window);
+	var windowHeight = wnd.height();
+	var windowWidth = wnd.width();
+
+	var maxHeight = Math.floor(windowHeight * 0.9);
+    this.mScrollWrapper.css('max-height', maxHeight + 'px');
 
 	var containerWidth = this.mContainer.outerWidth(true);
 	var containerHeight = this.mContainer.outerHeight(true);
@@ -82,12 +102,11 @@ TooltipModule.prototype.setupTileTooltip = function()
 		posLeft = 10;
 	}
 
-	if (posLeft + containerWidth > wnd.width())
+	if (posLeft + containerWidth > windowWidth)
 	{
-		posLeft = wnd.width() - containerWidth - 10;
+		posLeft = windowWidth - containerWidth - 10;
 	}
-
-	if ((posTop + containerHeight) > wnd.height())
+	if ((posTop + containerHeight) > windowHeight)
 	{
 		posTop = this.mLastMouseY - (this.mCursorYOffset === 0 ? ((this.mCursorHeight / 2) + containerHeight) : (this.mCursorYOffset + containerHeight));
 	}
@@ -96,11 +115,11 @@ TooltipModule.prototype.setupTileTooltip = function()
 	// MOD_TOOLTIP_EXTENSION: attempts to prevent the tooltip from extending outside of the screen
 	var posTopPrimary = this.mLastMouseY + (this.mCursorYOffset === 0 ? (this.mCursorHeight / 2) : (this.mCursorHeight - ((this.mCursorHeight / 2) - this.mCursorYOffset)));
 	var posTopSecondary = this.mLastMouseY - (this.mCursorYOffset === 0 ? ((this.mCursorHeight / 2) + containerHeight) : (this.mCursorYOffset + containerHeight));
-	if (posTopPrimary + containerHeight > wnd.height() && posTopSecondary < 0)
+	if (posTopPrimary + containerHeight > windowHeight && posTopSecondary < 0)
 	{
-		posTop = (wnd.height() - containerHeight) / 2;
+		posTop = (windowHeight - containerHeight) / 2;
 	}
-	else if (posTopPrimary + containerHeight <= wnd.height())
+	else if (posTopPrimary + containerHeight <= windowHeight)
 	{
 		posTop = posTopPrimary;
 	}
@@ -114,4 +133,11 @@ TooltipModule.prototype.setupTileTooltip = function()
 	this.mContainer.removeClass('display-none').addClass('display-block');
 	this.mContainer.css({ left: posLeft, top: posTop });
 	this.mContainer.velocity("finish", true).velocity({ opacity: 0.99 }, { duration: this.mFadeInTime }); // Anti Alias Fix
+
+	var self = this;
+	if (self.mScrollWrapper[0].scrollHeight > self.mScrollWrapper.height()) {
+		self.mScrollHint.removeClass('display-none').addClass('display-block');
+	} else {
+		self.mScrollHint.removeClass('display-block').addClass('display-none');
+	}
 };

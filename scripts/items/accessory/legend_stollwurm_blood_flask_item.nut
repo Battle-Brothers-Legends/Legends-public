@@ -23,7 +23,7 @@ this.legend_stollwurm_blood_flask_item <- this.inherit("scripts/items/accessory/
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "grants [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] damage reduction, and immunity to stun, grab and knockback for three turns"
+				text = "grants [color=%positive%]50%[/color] damage reduction, and immunity to stun, grab and knockback for three turns"
 		});
 		return result;
 	}
@@ -36,9 +36,9 @@ this.legend_stollwurm_blood_flask_item <- this.inherit("scripts/items/accessory/
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_stollwurm_blood_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkStollwurmBlood, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 	function onPutIntoBag()

@@ -4,16 +4,9 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_falcon";
-		this.m.Name = "Unleash Falcon";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFalcon);
 		this.m.Description = "Use your falcon to gain vision of the surrounding 12 tiles for the duration of the current round. Can be used once per battle.";
-		this.m.Icon = "skills/active_104.png";
-		this.m.IconDisabled = "skills/active_104_sw.png";
-		this.m.Overlay = "active_104";
-		this.m.SoundOnUse = [
-			"sounds/combat/hawk_01.wav",
-			"sounds/combat/hawk_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hawk", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 5;
 		this.m.IsSerialized = false;
@@ -58,7 +51,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 
-		if (this.getContainer().hasSkill("effects.legend_summoned_falcon_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedFalconEffect))
 		{
 			return false;
 		}
@@ -69,7 +62,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		_user.getSkills().add(this.new("scripts/skills/effects/legend_summoned_falcon_effect"));
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedFalconEffect);
 		this.Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
 		return true;
 	}

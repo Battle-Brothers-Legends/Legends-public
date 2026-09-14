@@ -10,9 +10,9 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled"){
-			_list.push("legend_qiyan_background");
-			_list.push("legend_qiyan_background");
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
+			_list.push(::Legends.Background.LegendBellyDancer);
+			_list.push(::Legends.Background.LegendBellyDancer);
 		}
 
 		onUpdateDraftList(_list);

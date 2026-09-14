@@ -6,9 +6,9 @@ this.legend_named_infantry_axe <- this.inherit("scripts/items/weapons/named/name
 		this.m.ID = "weapon.legend_named_infantry_axe";
 		this.m.NameList = this.Const.Strings.LongaxeNames;
 		this.m.Description = "A long, exceptionally well crafted two-handed axe used by footmen in the noble wars";
-		this.m.Variants = [2,3]
+		this.m.Variants = [2,3,4];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
-		this.updateVariant()
+		this.updateVariant();
 		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
@@ -41,17 +41,14 @@ this.legend_named_infantry_axe <- this.inherit("scripts/items/weapons/named/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		local chop = this.new("scripts/skills/actives/chop");
-		chop.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Chop's Direct Damage Mult to Infantry Axes's Direct Damage Mult
-		this.addSkill(chop);
-		local splitman = this.new("scripts/skills/actives/split_man");
-		splitman.m.DirectDamageMult = this.m.DirectDamageMult; //Sets Split Man's Direct Damage Mult to Infantry Axes's Direct Damage Mult
-		this.addSkill(splitman);
-		local skillToAdd = this.new("scripts/skills/actives/split_shield");
-		skillToAdd.setApplyAxeMastery(true);
-		skillToAdd.m.ActionPointCost = 4;
-		skillToAdd.setFatigueCost(skillToAdd.getFatigueCostRaw() + 5);
-		this.addSkill(skillToAdd);
+		::Legends.Actives.grant(this, ::Legends.Active.Chop, function (_skill) {
+			_skill.m.IsHack = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHaftstrike);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
+			_skill.setApplyAxeMastery(true);
+			_skill.m.ActionPointCost = 4;
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+		}.bindenv(this));
 	}
-
 });

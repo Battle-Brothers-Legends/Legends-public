@@ -1,17 +1,32 @@
 ::mods_hookExactClass("items/weapons/crossbow", function(o) {
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
+		this.m.RangeMax = 5;
+		this.m.RangeIdeal = 5;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
 	}
-	
+
+	o.updateVariant <- function() {
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/ranged/crossbow_01" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/ranged/crossbow_01" + v + ".png";
+		this.m.ArmamentIcon = "icon_crossbow_01" + v;
+	}
+
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
 		onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_piercing_bolt_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStrafingRun);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	o.onCombatFinished = function ()

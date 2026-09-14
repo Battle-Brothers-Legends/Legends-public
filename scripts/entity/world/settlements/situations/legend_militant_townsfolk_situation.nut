@@ -27,16 +27,14 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 	function onAdded( _settlement )
 	{
 		// This situation can only occur in Tier 1 and Tier 2 settlements (non-fort and non-city-state)
-		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || ::MSU.isKindOf(_settlement, "city_state"))
+		if ( _settlement.getSize() > 2 || _settlement.isMilitary() || _settlement.isSouthern())
 		{
 			_settlement.removeSituationByID(this.getID());
 			return;
 		}
 
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.addWorldEconomyResources(-5);
-		}
+
+		_settlement.addWorldEconomyResources(-5);
 		_settlement.resetRoster(true);
 		_settlement.resetShop();
 
@@ -96,25 +94,25 @@ this.legend_militant_townsfolk_situation <- this.inherit("scripts/entity/world/s
 	function onUpdateDraftList( _draftList )
 	{
 		// Future improvement: make the backgrounds dynamic based on attached locations or settlement type
-		_draftList.push("farmhand_background");
-		_draftList.push("farmhand_background");
-		_draftList.push("farmhand_background");
-		_draftList.push("farmhand_background");
-		_draftList.push("farmhand_background");
-		_draftList.push("farmhand_background");
-		_draftList.push("miller_background");
-		_draftList.push("miller_background");
-		_draftList.push("miller_background");
-		_draftList.push("butcher_background");
-		_draftList.push("butcher_background");
-		_draftList.push("butcher_background");
-		_draftList.push("shepherd_background");
-		_draftList.push("shepherd_background");
-		_draftList.push("shepherd_background");
-		_draftList.push("tailor_background");
-		_draftList.push("tailor_background");
-		_draftList.push("apprentice_background");
-		_draftList.push("apprentice_background");
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Farmhand);
+		_draftList.push(::Legends.Background.Miller);
+		_draftList.push(::Legends.Background.Miller);
+		_draftList.push(::Legends.Background.Miller);
+		_draftList.push(::Legends.Background.Butcher);
+		_draftList.push(::Legends.Background.Butcher);
+		_draftList.push(::Legends.Background.Butcher);
+		_draftList.push(::Legends.Background.Shepherd);
+		_draftList.push(::Legends.Background.Shepherd);
+		_draftList.push(::Legends.Background.Shepherd);
+		_draftList.push(::Legends.Background.Tailor);
+		_draftList.push(::Legends.Background.Tailor);
+		_draftList.push(::Legends.Background.Apprentice);
+		_draftList.push(::Legends.Background.Apprentice);
 	}
 });
 

@@ -24,6 +24,7 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "supplies.legend_medicine_small";
 		this.m.Name = "Small Medical Supplies";
 		this.m.Icon = "supplies/medicine_small.png";
@@ -61,7 +62,7 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 			{
 				id = 2,
 				type = "description",
-				text = "A good [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.Amount + "[/color] units of herbs, salves, bandages and the like to help your mercenaries recover from injuries sustained in battle. Will be added to your global stock once you\'re back on the worldmap."
+				text = "A good [color=%positive%]" + this.m.Amount + "[/color] units of herbs, salves, bandages and the like to help your mercenaries recover from injuries sustained in battle. Will be added to your global stock once you\'re back on the worldmap."
 			}
 		];
 

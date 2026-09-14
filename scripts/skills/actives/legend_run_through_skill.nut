@@ -1,0 +1,94 @@
+this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
+	m = {},
+	function create()
+	{
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRunThrough);
+		this.m.Description = "A full forced thrust attack meant to pierce two targets in a straight line.";
+		this.m.KilledString = "Impaled";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/impale", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/impale_hit", 3);
+		this.m.Type = this.Const.SkillType.Active;
+		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.IsSerialized = false;
+		this.m.IsActive = true;
+		this.m.IsTargeted = true;
+		this.m.IsTargetingActor = false;
+		this.m.IsStacking = false;
+		this.m.IsAttack = true;
+		this.m.IsIgnoredAsAOO = true;
+		this.m.IsAOE = true;
+		this.m.IsWeaponSkill = true;
+		this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+		this.m.DirectDamageMult = 0.3;
+		this.m.ActionPointCost = 6;
+		this.m.FatigueCost = 30;
+		this.m.MinRange = 1;
+		this.m.MaxRange = 1;
+	}
+
+	function getTooltip()
+	{
+		local ret = this.getDefaultTooltip();
+		ret.push({
+			id = 10,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Can hit up to 2 targets"
+		});
+
+		return ret;
+	}
+
+	function onAfterUpdate( _properties )
+	{
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	}
+
+	function onUse( _user, _targetTile )
+	{
+		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
+
+		local ret = false;
+		if (::Legends.S.isEntityNullOrDead(_user)) {
+			return ret;
+		}
+
+		local ownTile = _user.getTile();
+		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1)
+		{
+			ret = this.attackEntity(_user, _targetTile.getEntity());
+		}
+
+		local dir = ownTile.getDirectionTo(_targetTile);
+
+		if (_targetTile.hasNextTile(dir))
+		{
+			local forwardTile = _targetTile.getNextTile(dir);
+
+			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
+			{
+				ret = this.attackEntity(_user, forwardTile.getEntity()) || ret;
+			}
+		}
+
+		return ret;
+	}
+
+	function onTargetSelected( _targetTile ) {
+		this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		local ownTile = this.m.Container.getActor().getTile();
+		local dir = ownTile.getDirectionTo(_targetTile);
+
+		if (_targetTile.hasNextTile(dir)) {
+			local forwardTile = _targetTile.getNextTile(dir);
+
+			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
+				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
+			}
+		}
+	}
+});

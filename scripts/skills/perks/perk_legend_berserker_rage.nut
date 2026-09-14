@@ -2,25 +2,20 @@ this.perk_legend_berserker_rage <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBerserkerRage);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBerserkerRage);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("effects.legend_berserker_rage"))
+		if (!this.m.Container.hasEffect(::Legends.Effect.LegendBerserkerRage))
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_berserker_rage_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendBerserkerRage);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("effects.legend_berserker_rage");
+		::Legends.Effects.remove(this, ::Legends.Effect.LegendBerserkerRage);
 	}
 
 });

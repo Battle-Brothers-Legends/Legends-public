@@ -1,4 +1,6 @@
 ::mods_hookExactClass("events/events/scenario/lone_wolf_intro_event", function(o) {
+	o.m.Dude <- null;
+
 	local create = o.create;
 	o.create = function() {
 		create();
@@ -88,8 +90,7 @@
 			],
 			function start( _event )
 			{
-				local item = this.new("scripts/items/weapons/legend_longsword");
-				this.World.Assets.getStash().add(item);
+				local item = this.new("scripts/items/weapons/longsword");
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -97,24 +98,38 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "leather_lamellar"]
+					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/longsword"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.leather_lamellar]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
+				]));
 			}
 		});
 
@@ -135,7 +150,7 @@
 			function start( _event )
 			{
 				local item = this.new("scripts/items/weapons/military_pick");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -143,7 +158,7 @@
 				});
 
 				local item = this.new("scripts/items/shields/heater_shield");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -151,24 +166,39 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "patched_mail_shirt"]
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.HammerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.ShieldTree.Tree);
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/military_pick"));
+				_event.m.Dude.getItems().equip(::new("scripts/items/shields/heater_shield"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
+				]));
 			}
 		});
 
@@ -191,7 +221,7 @@
 			function start( _event )
 			{
 				local item = this.new("scripts/items/weapons/fighting_axe");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -199,7 +229,7 @@
 				});
 
 				local item = this.new("scripts/items/shields/buckler_shield");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -207,24 +237,39 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "leather_lamellar"]
+					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "padded_kettle_hat"]
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.SwordTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.AxeTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/fighting_axe"));
+				_event.m.Dude.getItems().equip(::new("scripts/items/shields/buckler_shield"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.leather_lamellar]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
+				]));
 			}
 		});
 
@@ -245,7 +290,7 @@
 			function start( _event )
 			{
 				local item = this.new("scripts/items/weapons/crossbow");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -253,7 +298,7 @@
 				});
 
 				local item = this.new("scripts/items/weapons/arming_sword");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -261,7 +306,6 @@
 				});
 
 				local item = this.new("scripts/items/ammo/quiver_of_bolts");
-				this.World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -269,24 +313,42 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "padded_leather"]
+					[1, ::Legends.Armor.Standard.padded_leather]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "closed_mail_coif"]
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
+				_event.m.Dude.getBaseProperties().RangedSkill += 16;
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/crossbow"));
+				_event.m.Dude.getItems().equip(::new("scripts/items/ammo/quiver_of_bolts"));
+				_event.m.Dude.getItems().addToBag(::new("scripts/items/weapons/arming_sword"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.padded_leather]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
+				]));
 			}
 		});
 
@@ -307,7 +369,7 @@
 			function start( _event )
 			{
 				local item = this.new("scripts/items/weapons/hunting_bow");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -315,7 +377,7 @@
 				});
 
 				local item = this.new("scripts/items/ammo/quiver_of_arrows");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -323,7 +385,7 @@
 				});
 
 				local item = this.new("scripts/items/weapons/rondel_dagger");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -331,24 +393,42 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "patched_mail_shirt"]
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "closed_mail_coif"]
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.BowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.CrossbowTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.DaggerTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.LightArmorTree.Tree);
+				_event.m.Dude.getBaseProperties().RangedSkill += 16;
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/hunting_bow"));
+				_event.m.Dude.getItems().equip(::new("scripts/items/ammo/quiver_of_arrows"));
+				_event.m.Dude.getItems().addToBag(::new("scripts/items/weapons/rondel_dagger"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.patched_mail_shirt]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.closed_mail_coif]
+				]));
 			}
 		});
 
@@ -369,7 +449,7 @@
 			function start( _event )
 			{
 				local item = this.new("scripts/items/weapons/pike");
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -377,25 +457,49 @@
 				});
 
 				item = this.Const.World.Common.pickArmor([
-					[1, "reinforced_mail_hauberk"]
+					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
 
 				item = this.Const.World.Common.pickHelmet([
-					[1, "conic_helmet_with_closed_mail"]
+					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]);
-				this.World.Assets.getStash().add(item);
+
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					imageOverlayPath = item.getIconOverlay(),
+					text = "You gain " + item.makeName()
 				});
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.PolearmTree.Tree);
+				_event.m.Dude.getBackground().addPerkGroup(::Const.Perks.MediumArmorTree.Tree);
+				_event.m.Dude.getBaseProperties().MeleeDefense += 2;
+
+				_event.m.Dude.getItems().equip(::new("scripts/items/weapons/pike"));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
+					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
+				]));
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickHelmet([
+					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
+				]));
 			}
 		});
+	}
+
+	o.onUpdateScore = function ()
+	{
+		this.m.Dude = this.World.getPlayerRoster().getAll()[0];
+		return;
+	}
+
+	o.onClear = function ()
+	{
+		this.m.Dude = null;
 	}
 })

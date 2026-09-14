@@ -1,96 +1,25 @@
-::mods_hookExactClass("entity/world/settlements/large_forest_fort", function(o) 
+::mods_hookExactClass("entity/world/settlements/large_forest_fort", function(o)
 {
 	local create = o.create;
 	o.create = function()
 	{
 		create();
-		this.m.DraftList = [
-		 	"apprentice_background",
-			"female_beggar_background",
-			"female_bowyer_background",
-			"female_bowyer_background",
-			"female_bowyer_background",
-			"brawler_background",
-			"gambler_background",
-			"gravedigger_background",
-			"hunter_background",
-			"hunter_background",
-			"hunter_background",
-			"hunter_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"hedge_knight_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"paladin_background",
-		 	"apprentice_background",
-			"female_beggar_background",
-			"female_bowyer_background",
-			"female_bowyer_background",
-			"female_bowyer_background",
-			"brawler_background",
-			"gambler_background",
-			"gravedigger_background",
-			"hunter_background",
-			"hunter_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"disowned_noble_background",
-			"disowned_noble_background",
-			"hedge_knight_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"legend_noble_ranged",
-			"legend_noble_ranged",
-			"legend_blacksmith_background",
-			"beast_hunter_background",
-			"beast_hunter_background"
-		];
+		this.m.DraftList.extend([		 	
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.LegendDisownedNobleRanged,
+
+		]);
 		this.m.StablesList = [
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier",
-			"legend_horse_courser"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier,
+			::Legends.Background.LegendHorseCourser
 		];
 	}
 
-	o.onBuild = function ( _settings )
+	o.onBuild = function ()
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

@@ -11,22 +11,21 @@
 "use strict";
 
 
-var TacticalScreenTurnSequenceBarModule = function()
-{
-	this.mSQHandle  = null;
-	
+var TacticalScreenTurnSequenceBarModule = function () {
+	this.mSQHandle = null;
+
 	// event listener
 	this.mEventListener = null;
 
 	// container
-	this.mContainer			  = null;
+	this.mContainer = null;
 	this.mStatusEffectsContainer = null;
-	this.mStatsContainer		 = null;
-	this.mSkillsContainer		= null;
-	
+	this.mStatsContainer = null;
+	this.mSkillsContainer = null;
+
 	// stats header
 	this.mStatsHeaderElevationImage = null;
-	this.mStatsHeaderCharacterName  = null;
+	this.mStatsHeaderCharacterName = null;
 
 	// left stats row defines	
 	this.mLeftStatsRows =
@@ -60,7 +59,7 @@ var TacticalScreenTurnSequenceBarModule = function()
 			Progressbar: null,
 			ProgressbarPreview: null,
 			ProgressbarLabel: null,
-		}		
+		}
 	};
 
 	// right stats row defines	
@@ -99,87 +98,81 @@ var TacticalScreenTurnSequenceBarModule = function()
 	};
 
 	// turn sequence bar container
-	this.mEntityContainer				   = null;
-	this.mEntitySliderClippingContainer	 = null;
-	this.mEntitySliderContainer			 = null;
+	this.mEntityContainer = null;
+	this.mEntitySliderClippingContainer = null;
+	this.mEntitySliderContainer = null;
 	this.mFirstSlotNormalSizeEntityTemplate = null;
-	this.mEntitySliderClippingContainer	 = null;
+	this.mEntitySliderClippingContainer = null;
 
 	// entity hover callbacks
 	this.mEntityMouseEnterCallback = null;
 	this.mEntityMouseLeaveCallback = null;
-	this.mEntityClickedCallback	= null;
+	this.mEntityClickedCallback = null;
 
 	// buttons
-	this.mEndTurnButton	   = null;
-	this.mEndTurnAllButton	= null;
-	this.mWaitTurnButton	  = null;
+	this.mEndTurnButton = null;
+	this.mEndTurnAllButton = null;
+	this.mWaitTurnButton = null;
 	this.mOpenInventoryButton = null;
 
-	this.mEndTurnButtonContainer	  = null;
-	this.mEndTurnAllButtonContainer   = null;
-	this.mWaitTurnButtonContainer	 = null;
+	this.mEndTurnButtonContainer = null;
+	this.mEndTurnAllButtonContainer = null;
+	this.mWaitTurnButtonContainer = null;
 
 	this.mIsEndTurnAllVisible = true;
 
 	// timing
-	this.mFadeInDuration								 = 150;
-	this.mFadeOutDuration								= 250;
-	this.mFadeOutDurationIfHiddenToPlayer				= 60;
-	this.mSlideInDuration								= 100;
-	this.mSlideOutDuration							   = 260;
-	this.mSlideOutDurationIfHiddenToPlayer				 = 30;
-	this.mResizeFirstSlotTime							= 180;
+	this.mFadeInDuration = 150;
+	this.mFadeOutDuration = 250;
+	this.mFadeOutDurationIfHiddenToPlayer = 60;
+	this.mSlideInDuration = 100;
+	this.mSlideOutDuration = 260;
+	this.mSlideOutDurationIfHiddenToPlayer = 30;
+	this.mResizeFirstSlotTime = 180;
 
 	this.mResizeFirstSlotTimeIfPreviousWasHiddenToPlayer = 30;
-	this.mResizeFirstSlotImageTime					   = 180;
-	this.mSelectionFadeInDuration						= 100;
-	this.mSelectionFadeOutDuration					   = 100;
-	this.mProgressbarMovementDuration					= 600;
-	this.mSkillPreviewFadeIn							 = 200;
-	this.mSkillPreviewFadeOut							= 200;
-	this.mStatsPanelFadeInTime						   = 150;
-	this.mStatsPanelFadeOutTime						  = 250;
+	this.mResizeFirstSlotImageTime = 180;
+	this.mSelectionFadeInDuration = 100;
+	this.mSelectionFadeOutDuration = 100;
+	this.mProgressbarMovementDuration = 600;
+	this.mSkillPreviewFadeIn = 200;
+	this.mSkillPreviewFadeOut = 200;
+	this.mStatsPanelFadeInTime = 150;
+	this.mStatsPanelFadeOutTime = 250;
 
 	// special timer
-	this.mFirstEntitySelectionTimer					  = null;
-	this.mFirstEntitySelectionTimerInterval			  = 10;
+	this.mFirstEntitySelectionTimer = null;
+	this.mFirstEntitySelectionTimerInterval = 10;
 
 	// constants
-	this.mNormalEntityImageScale						 = 0.66;
+	this.mNormalEntityImageScale = 0.66;
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.isConnected = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.isConnected = function () {
 	return this.mSQHandle !== null;
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.onConnection = function (_handle)
-{
+TacticalScreenTurnSequenceBarModule.prototype.onConnection = function (_handle) {
 	this.mSQHandle = _handle;
 
 	// notify listener
-	if (this.mEventListener !== null && ('onModuleOnConnectionCalled' in this.mEventListener))
-	{
+	if (this.mEventListener !== null && ('onModuleOnConnectionCalled' in this.mEventListener)) {
 		this.mEventListener.onModuleOnConnectionCalled(this);
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.onDisconnection = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.onDisconnection = function () {
 	this.mSQHandle = null;
 
 	// notify listener
-	if (this.mEventListener !== null && ('onModuleOnDisconnectionCalled' in this.mEventListener))
-	{
+	if (this.mEventListener !== null && ('onModuleOnDisconnectionCalled' in this.mEventListener)) {
 		this.mEventListener.onModuleOnDisconnectionCalled(this);
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
-{
+TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv) {
 	var self = this;
 
 	// create: container
@@ -203,7 +196,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	// create: stats container
 	this.mStatsContainer = $('<div class="stats-panel"/>');
 	leftContainer.append(this.mStatsContainer);
-	
+
 	// create: stats header
 	var statsHeader = $('<div class="header"></div>');
 	this.mStatsContainer.append(statsHeader);
@@ -223,8 +216,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	// create: inventory button
 	var layout = $('<div class="l-inventory-button"/>');
 	statsHeader.append(layout);
-	this.mOpenInventoryButton = layout.createImageButton(Path.GFX + Asset.BUTTON_OPEN_INVENTORY, function ()
-	{
+	this.mOpenInventoryButton = layout.createImageButton(Path.GFX + Asset.BUTTON_OPEN_INVENTORY, function () {
 		self.notifyBackendOpenInventoryButtonPressed();
 	}, '', 6);
 
@@ -267,8 +259,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	buttonsContainer.append(buttonBackground);
 	layout = $('<div class="l-button"/>');
 	buttonBackground.append(layout);
-	this.mEndTurnButton = layout.createImageButton(Path.GFX + Asset.BUTTON_END_TURN, function ()
-	{
+	this.mEndTurnButton = layout.createImageButton(Path.GFX + Asset.BUTTON_END_TURN, function () {
 		self.notifyBackendNextTurnButtonPressed();
 	}, '', 6);
 	this.mEndTurnButtonContainer = buttonBackground;
@@ -277,8 +268,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	buttonsContainer.append(buttonBackground);
 	layout = $('<div class="l-button"/>');
 	buttonBackground.append(layout);
-	this.mWaitTurnButton = layout.createImageButton(Path.GFX + Asset.BUTTON_DELAY_TURN, function ()
-	{
+	this.mWaitTurnButton = layout.createImageButton(Path.GFX + Asset.BUTTON_DELAY_TURN, function () {
 		self.notifyBackendWaitTurnButtonPressed();
 	}, '', 6);
 	this.mWaitTurnButtonContainer = buttonBackground;
@@ -287,8 +277,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	buttonsContainer.append(buttonBackground);
 	layout = $('<div class="l-button"/>');
 	buttonBackground.append(layout);
-	this.mEndTurnAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_END_ALL_TURNS, function ()
-	{
+	this.mEndTurnAllButton = layout.createImageButton(Path.GFX + Asset.BUTTON_END_ALL_TURNS, function () {
 		self.notifyBackendEndTurnAllButtonPressed();
 	}, '', 6);
 	this.mEndTurnAllButtonContainer = buttonBackground;
@@ -309,8 +298,7 @@ TacticalScreenTurnSequenceBarModule.prototype.createDIV = function (_parentDiv)
 	this.mEntitySliderClippingContainer.append(this.mFirstSlotFullSizeEntityTemplate);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function () {
 	this.mStatusEffectsContainer.empty();
 	this.mStatusEffectsContainer.remove();
 	this.mStatusEffectsContainer = null;
@@ -335,9 +323,25 @@ TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function ()
 	this.mEndTurnButton.remove();
 	this.mEndTurnButton = null;
 
+	this.mEndTurnButtonContainer.empty();
+	this.mEndTurnButtonContainer.remove();
+	this.mEndTurnButtonContainer = null;
+
+	this.mEndTurnAllButton.empty();
+	this.mEndTurnAllButton.remove();
+	this.mEndTurnAllButton = null;
+
+	this.mEndTurnAllButtonContainer.empty();
+	this.mEndTurnAllButtonContainer.remove();
+	this.mEndTurnAllButtonContainer = null;
+
 	this.mWaitTurnButton.empty();
 	this.mWaitTurnButton.remove();
 	this.mWaitTurnButton = null;
+
+	this.mWaitTurnButtonContainer.empty();
+	this.mWaitTurnButtonContainer.remove();
+	this.mWaitTurnButtonContainer = null;
 
 	this.mSkillsContainer.empty();
 	this.mSkillsContainer.remove();
@@ -366,10 +370,8 @@ TacticalScreenTurnSequenceBarModule.prototype.destroyDIV = function ()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.createStatsRowDIV = function (_definitions, _parentDiv)
-{
-	$.each(_definitions, function (_key, _value)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.createStatsRowDIV = function (_definitions, _parentDiv) {
+	$.each(_definitions, function (_key, _value) {
 		_value.Row = $('<div class="stats-row"></div>');
 		_parentDiv.append(_value.Row);
 		var leftStatsRowLayout = $('<div class="l-stats-row"></div>');
@@ -398,16 +400,14 @@ TacticalScreenTurnSequenceBarModule.prototype.createStatsRowDIV = function (_def
 	});
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.createEntityDIV = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.createEntityDIV = function (_entityId) {
 	var self = this;
 
 	var entity = $('<div class="l-entity"></div>');
 	entity.data('entity', { id: _entityId });
 
 	// add content only to real game entities
-	if(_entityId >= 0)
-	{
+	if (_entityId >= 0) {
 		// create entity container
 		var entityContainer = $('<div class="entity"/>');
 		entity.append(entityContainer);
@@ -427,31 +427,28 @@ TacticalScreenTurnSequenceBarModule.prototype.createEntityDIV = function (_entit
 		entityImage.data('placeholder', placeholder);
 		entityImageLayer.append(placeholder);
 
-		entityImage.load(function ()
-		{
+		entityImage.load(function () {
 			var isFirst = $(this).data('is-first') || false;
-			if(isFirst === false)
-			{
+			if (isFirst === false) {
 				// NOTE: (js) Das Bild per "Hand" um n-% verkleiner und in seinem Parent zentrieren, da es per CSS ned wirklich funktionieren wollte..
-				var offsets = $(this).data('offsets') || { imageOffsetX: 0, imageOffsetY: 0};
+				var offsets = $(this).data('offsets') || { imageOffsetX: 0, imageOffsetY: 0 };
 				var parent = $(this).parent();
 				var newWidth = this.naturalWidth * self.mNormalEntityImageScale;
 				var newHeight = this.naturalHeight * self.mNormalEntityImageScale;
-				var marginLeft = (parent.innerWidth() - newWidth + offsets.imageOffsetX)/2;
-				var marginTop = (/*parent.innerHeight()*/ 130 - newHeight + offsets.imageOffsetY)/2;
+				var marginLeft = (parent.innerWidth() - newWidth + offsets.imageOffsetX) / 2;
+				var marginTop = (/*parent.innerHeight()*/ 130 - newHeight + offsets.imageOffsetY) / 2;
 
 				$(this).css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
 				$(this).data('placeholder').css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
 			}
-			else if($(this).data('is-scaling') !== true)
-			{
+			else if ($(this).data('is-scaling') !== true) {
 				// NOTE: (js) Das Bild per "Hand" um n-% verkleiner und in seinem Parent zentrieren, da es per CSS ned wirklich funktionieren wollte..
-				var offsets = $(this).data('offsets') || { imageOffsetX: 0, imageOffsetY: 0};
+				var offsets = $(this).data('offsets') || { imageOffsetX: 0, imageOffsetY: 0 };
 				var parent = $(this).parent();
 				var newWidth = this.naturalWidth;
 				var newHeight = this.naturalHeight;
-				var marginLeft = (parent.innerWidth() - newWidth + offsets.imageOffsetX)/2;
-				var marginTop = (/*parent.innerHeight()*/ 130 - newHeight + offsets.imageOffsetY)/2;
+				var marginLeft = (parent.innerWidth() - newWidth + offsets.imageOffsetX) / 2;
+				var marginTop = (/*parent.innerHeight()*/ 130 - newHeight + offsets.imageOffsetY) / 2;
 
 				$(this).css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
 				$(this).data('placeholder').css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
@@ -481,13 +478,42 @@ TacticalScreenTurnSequenceBarModule.prototype.createEntityDIV = function (_entit
 	return entity;
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity, _skill, _label)
-{
+TacticalScreenTurnSequenceBarModule.prototype.updateAnimationSpeed = function (_divisor) {
+	if (this.mVanillaTimings === undefined) {
+		this.mVanillaTimings = {
+			mFadeInDuration: this.mFadeInDuration,
+			mFadeOutDuration: this.mFadeOutDuration,
+			mFadeOutDurationIfHiddenToPlayer: this.mFadeOutDurationIfHiddenToPlayer,
+			mSlideInDuration: this.mSlideInDuration,
+			mSlideOutDuration: this.mSlideOutDuration,
+			mSlideOutDurationIfHiddenToPlayer: this.mSlideOutDurationIfHiddenToPlayer,
+			mResizeFirstSlotTime: this.mResizeFirstSlotTime,
+			mResizeFirstSlotImageTime: this.mResizeFirstSlotImageTime,
+			mProgressbarMovementDuration: this.mProgressbarMovementDuration,
+			mStatsPanelFadeInTime: this.mStatsPanelFadeInTime,
+			mStatsPanelFadeOutTime: this.mStatsPanelFadeOutTime
+		};
+	}
+
+	this.mFadeInDuration = this.mVanillaTimings.mFadeInDuration / _divisor;
+	this.mFadeOutDuration = this.mVanillaTimings.mFadeOutDuration / _divisor;
+	this.mFadeOutDurationIfHiddenToPlayer = this.mVanillaTimings.mFadeOutDurationIfHiddenToPlayer / _divisor;
+	this.mSlideInDuration = this.mVanillaTimings.mSlideInDuration / _divisor;
+	this.mSlideOutDuration = this.mVanillaTimings.mSlideOutDuration / _divisor;
+	this.mSlideOutDurationIfHiddenToPlayer = this.mVanillaTimings.mSlideOutDurationIfHiddenToPlayer / _divisor;
+	this.mResizeFirstSlotTime = this.mVanillaTimings.mResizeFirstSlotTime / _divisor;
+	this.mResizeFirstSlotImageTime = this.mVanillaTimings.mResizeFirstSlotImageTime / _divisor;
+	this.mProgressbarMovementDuration = this.mVanillaTimings.mProgressbarMovementDuration / _divisor;
+	this.mStatsPanelFadeInTime = this.mVanillaTimings.mStatsPanelFadeInTime / _divisor;
+	this.mStatsPanelFadeOutTime = this.mVanillaTimings.mStatsPanelFadeOutTime / _divisor;
+};
+
+TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity, _skill, _label) {
 	var bottom = 0.0 + Math.floor((_label - 0) / 8) * 4.7;
 	var left = 11.0 + ((_label - 0) - Math.floor((_label - 0) / 8) * 7) * 4.2;
 
 	var skillContainerLayout = $('<div class="l-skill"></div>');
-	skillContainerLayout.css({ 'left': left + 'rem', 'bottom' : bottom + 'rem' });
+	skillContainerLayout.css({ 'left': left + 'rem', 'bottom': bottom + 'rem' });
 	this.mSkillsContainer.append(skillContainerLayout);
 
 	// bind tooltip
@@ -506,24 +532,21 @@ TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity
 
 	// bind event handler
 	var self = this;
-	skillContainer.click(this, function (_event)
-	{
+	skillContainer.click(this, function (_event) {
 		var self = _event.data;
 		var data = $(this).data('skill');
 		self.notifyBackendEntitySkillClicked(data.entityId, data.skillId);
 	});
-	
-	skillContainer.bind("contextmenu", this, function (_event)
-	{
+
+	skillContainer.bind("contextmenu", this, function (_event) {
 		var self = _event.data;
 		var data = $(this).data('skill');
 		self.notifyBackendEntitySkillCancelClicked(data.entityId, data.skillId);
 		return false;
 	});
-	
+
 	// only add click & hover handler if the skill is usable
-	if (_skill.isUsable)
-	{
+	if (_skill.isUsable) {
 		skillContainer.mouseenter(this, function (_event) {
 			//var self = _event.data;
 			var data = $(this).data('skill');
@@ -531,8 +554,7 @@ TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity
 				$(this).removeClass('is-selected').addClass('is-selected');
 			}
 		});
-		skillContainer.mouseleave(this, function (_event)
-		{
+		skillContainer.mouseleave(this, function (_event) {
 			//var self = _event.data;
 			var data = $(this).data('skill');
 			if (data['selected-by-backend'] === false) {
@@ -540,20 +562,19 @@ TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity
 			}
 		});
 	}
-	
+
 	// create label (numeration)
 	if (_label == 10)
 		_label = 0;
 
-	if (_label < 10)
-	{
+	if (_label < 10) {
 		var textLayer = $('<div class="text-layer"></div>');
 		skillContainer.append(textLayer);
 		var label = $('<div class="numeration-label text-font-very-small font-bold font-color-numeration-label"></div>');
 		label.html(_label);
 		textLayer.append(label);
 	}
-			
+
 	// create overlay & image div
 	var overlayLayer = $('<div class="overlay-layer"></div>');
 	skillContainer.append(overlayLayer);
@@ -563,11 +584,10 @@ TacticalScreenTurnSequenceBarModule.prototype.addSkillToList = function (_entity
 	overlayLayer.append(overlayImage);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.addStatusEffectToList = function (_entity, _statusEffect)
-{
+TacticalScreenTurnSequenceBarModule.prototype.addStatusEffectToList = function (_entity, _statusEffect) {
 	var statusEffectLayout = $('<div class="l-status-effect"></div>');
 	this.mStatusEffectsContainer.append(statusEffectLayout);
-	
+
 	var statusEffect = $('<div class="status-effect"></div>');
 	statusEffectLayout.append(statusEffect);
 	statusEffect.data('status-effect', { entityId: _entity.id, statusEffectId: _statusEffect.id });
@@ -581,25 +601,21 @@ TacticalScreenTurnSequenceBarModule.prototype.addStatusEffectToList = function (
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.createEntityCallbacks = function()
-{
+TacticalScreenTurnSequenceBarModule.prototype.createEntityCallbacks = function () {
 	// store callbacks so we can remove them later
-	this.mEntityMouseEnterCallback = function (_event)
-	{
+	this.mEntityMouseEnterCallback = function (_event) {
 		var self = _event.data;
 		var data = $(this).data('entity');
 		self.notifyBackendEntityMouseEnter(data.id);
 	};
 
-	this.mEntityMouseLeaveCallback = function (_event)
-	{
+	this.mEntityMouseLeaveCallback = function (_event) {
 		var self = _event.data;
 		var data = $(this).data('entity');
 		self.notifyBackendEntityMouseLeave(data.id);
 	};
 
-	this.mEntityClickedCallback = function (_event)
-	{
+	this.mEntityClickedCallback = function (_event) {
 		var self = _event.data;
 		var data = $(this).data('entity');
 		self.notifyBackendEntityClicked(data.id);
@@ -607,64 +623,57 @@ TacticalScreenTurnSequenceBarModule.prototype.createEntityCallbacks = function()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.bindTooltips = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.bindTooltips = function () {
 	this.mEndTurnAllButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.TurnSequenceBarModule.EndTurnAllButton });
 	this.mEndTurnButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.TurnSequenceBarModule.EndTurnButton });
 	this.mWaitTurnButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.TurnSequenceBarModule.WaitTurnButton });
 	this.mOpenInventoryButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.TacticalScreen.TurnSequenceBarModule.OpenInventoryButton });
 
-	$.each(this.mLeftStatsRows, function(_key, _value) {
+	$.each(this.mLeftStatsRows, function (_key, _value) {
 		_value.Row.bindTooltip({ contentType: 'ui-element', elementId: _value.TooltipId });
 	});
-	$.each(this.mRightStatsRows, function(_key, _value) {
+	$.each(this.mRightStatsRows, function (_key, _value) {
 		_value.Row.bindTooltip({ contentType: 'ui-element', elementId: _value.TooltipId });
 	});
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.unbindTooltips = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.unbindTooltips = function () {
 	this.mEndTurnAllButton.unbindTooltip();
 	this.mEndTurnButton.unbindTooltip();
 	this.mWaitTurnButton.unbindTooltip();
 	this.mOpenInventoryButton.unbindTooltip();
 
-	$.each(this.mLeftStatsRows, function(_key, _value) {
+	$.each(this.mLeftStatsRows, function (_key, _value) {
 		_value.Row.unbindTooltip();
 	});
-	$.each(this.mRightStatsRows, function(_key, _value) {
+	$.each(this.mRightStatsRows, function (_key, _value) {
 		_value.Row.unbindTooltip();
 	});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.setupEventHandler = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.setupEventHandler = function () {
 	this.mEndTurnButton.unbind('click');
-	this.mEndTurnButton.click(this, function (_event)
-	{
+	this.mEndTurnButton.click(this, function (_event) {
 		var self = _event.data;
 		self.notifyBackendNextTurnButtonPressed();
 	});
 
 	this.mWaitTurnButton.unbind('click');
-	this.mWaitTurnButton.click(this, function (_event)
-	{
+	this.mWaitTurnButton.click(this, function (_event) {
 		var self = _event.data;
 		self.notifyBackendWaitTurnButtonPressed();
 	});
 
 	this.mOpenInventoryButton.unbind('click');
-	this.mOpenInventoryButton.click(this, function (_event)
-	{
+	this.mOpenInventoryButton.click(this, function (_event) {
 		var self = _event.data;
 		self.notifyBackendOpenInventoryButtonPressed();
 	});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.create = function(_parentDiv)
-{
+TacticalScreenTurnSequenceBarModule.prototype.create = function (_parentDiv) {
 	this.createEntityCallbacks();
 	this.createDIV(_parentDiv);
 	this.bindTooltips();
@@ -673,35 +682,29 @@ TacticalScreenTurnSequenceBarModule.prototype.create = function(_parentDiv)
 	this.showStatsPanel(false, true);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.destroy = function()
-{
+TacticalScreenTurnSequenceBarModule.prototype.destroy = function () {
 	this.unbindTooltips();
 	this.destroyDIV();
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.register = function (_parentDiv)
-{
+TacticalScreenTurnSequenceBarModule.prototype.register = function (_parentDiv) {
 	console.log('TacticalScreenTurnSequenceBarModule::REGISTER');
 
-	if (this.mContainer !== null)
-	{
+	if (this.mContainer !== null) {
 		console.error('ERROR: Failed to register TurnSequenceBar Module. Reason: TurnSequenceBar Module is already initialized.');
 		return;
 	}
 
-	if (_parentDiv !== null && typeof(_parentDiv) == 'object')
-	{
+	if (_parentDiv !== null && typeof (_parentDiv) == 'object') {
 		this.create(_parentDiv);
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.unregister = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.unregister = function () {
 	console.log('TacticalScreenTurnSequenceBarModule::UNREGISTER');
 
-	if (this.mContainer === null)
-	{
+	if (this.mContainer === null) {
 		console.error('ERROR: Failed to unregister TurnSequenceBar Module. Reason: TurnSequenceBar Module is not initialized.');
 		return;
 	}
@@ -709,10 +712,8 @@ TacticalScreenTurnSequenceBarModule.prototype.unregister = function ()
 	this.destroy();
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.isRegistered = function ()
-{
-	if (this.mContainer !== null)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.isRegistered = function () {
+	if (this.mContainer !== null) {
 		return this.mContainer.parent().length !== 0;
 	}
 
@@ -720,41 +721,37 @@ TacticalScreenTurnSequenceBarModule.prototype.isRegistered = function ()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.registerEventListener = function(_listener)
-{
+TacticalScreenTurnSequenceBarModule.prototype.registerEventListener = function (_listener) {
 	this.mEventListener = _listener;
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.show = function(_delay)
-{
+TacticalScreenTurnSequenceBarModule.prototype.show = function (_delay) {
 	var self = this;
 	this.mContainer.removeClass('display-none').addClass('display-block');
 	this.mContainer.velocity("finish", true).velocity({ bottom: '2.6rem' },
-	{
-		duration: _delay,
-		easing: 'swing',
-		begin: function ()
 		{
-			$(this).removeClass('display-none').addClass('display-block');
-		}
-	});
+			duration: _delay,
+			easing: 'swing',
+			begin: function () {
+				$(this).removeClass('display-none').addClass('display-block');
+			}
+		});
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.hide = function(_delay)
-{
+TacticalScreenTurnSequenceBarModule.prototype.hide = function (_delay) {
 	var targetOffset = this.mContainer.offset();
 	var parentHeight = this.mContainer.parent().height();
 	var offset = parentHeight - targetOffset.top;
 
 	this.mContainer.velocity("finish", true).velocity({ bottom: (-offset) + 'px' },
-	{
-		duration: _delay,
-		easing: 'swing',
-		begin: function() {
-			$(this).removeClass('display-block').addClass('display-none');
-		}
-	});
+		{
+			duration: _delay,
+			easing: 'swing',
+			begin: function () {
+				$(this).removeClass('display-block').addClass('display-none');
+			}
+		});
 };
 
 /**
@@ -802,53 +799,43 @@ TacticalScreenTurnSequenceBarModule.prototype.enablePauseTurnButton = function (
 */
 
 
-TacticalScreenTurnSequenceBarModule.prototype.showButton = function (_button, _show)
-{
-	if (_show === true)
-	{
-		if (_button.hasClass('display-none'))
-		{
+TacticalScreenTurnSequenceBarModule.prototype.showButton = function (_button, _show) {
+	if (_show === true) {
+		if (_button.hasClass('display-none')) {
 			//_button.css({opacity: 0});
 			_button.removeClass('display-none').addClass('display-block');
 			_button.velocity("finish", true).velocity({ opacity: 1 },
-			{
-				duration: this.mStatsPanelFadeInTime,
-				easing: 'swing'
-			});
+				{
+					duration: this.mStatsPanelFadeInTime,
+					easing: 'swing'
+				});
 		}
 	}
-	else
-	{
-		if (_button.hasClass('display-block'))
-		{
+	else {
+		if (_button.hasClass('display-block')) {
 			//_button.css({opacity: 1});
 			_button.velocity("finish", true).velocity({ opacity: 0 },
-			{
-				duration: this.mStatsPanelFadeOutTime,
-				easing: 'swing',
-				complete: function ()
 				{
-					$(this).removeClass('display-block').addClass('display-none');
-				}
-			});
+					duration: this.mStatsPanelFadeOutTime,
+					easing: 'swing',
+					complete: function () {
+						$(this).removeClass('display-block').addClass('display-none');
+					}
+				});
 		}
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.findEntityDIV = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.findEntityDIV = function (_entityId) {
 	var result = null;
 
-	this.mEntitySliderContainer.find('.l-entity').each(function (index, element)
-	{
+	this.mEntitySliderContainer.find('.l-entity').each(function (index, element) {
 		var entityDIV = $(element);
 		var entity = entityDIV.data('entity');
-		
-		if (entity !== null && 'id' in entity)
-		{
-			if (entity.id === _entityId)
-			{
+
+		if (entity !== null && 'id' in entity) {
+			if (entity.id === _entityId) {
 				result = { div: entityDIV, index: index };
 				return false;
 			}
@@ -858,19 +845,16 @@ TacticalScreenTurnSequenceBarModule.prototype.findEntityDIV = function (_entityI
 	return result;
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.searchIndexRange = function (_index)
-{
+TacticalScreenTurnSequenceBarModule.prototype.searchIndexRange = function (_index) {
 	var result = { before: null, after: null };
 
-	this.mEntitySliderContainer.find('.l-entity').each(function(index, element) {
+	this.mEntitySliderContainer.find('.l-entity').each(function (index, element) {
 		var entityDIV = $(element);
-		
-		if (entityDIV.length > 0 && (index + 1) === _index)
-		{
+
+		if (entityDIV.length > 0 && (index + 1) === _index) {
 			result.before = entityDIV;
 			result.after = entityDIV.next();
-			if (result.after.length === 0)
-			{
+			if (result.after.length === 0) {
 				result.after = null;
 			}
 			return false;
@@ -880,19 +864,15 @@ TacticalScreenTurnSequenceBarModule.prototype.searchIndexRange = function (_inde
 	return result;
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.searchSkillDIV = function (_skill)
-{
+TacticalScreenTurnSequenceBarModule.prototype.searchSkillDIV = function (_skill) {
 	var result = null;
 
-	this.mSkillsContainer.find('.skill').each(function (index, element)
-	{
+	this.mSkillsContainer.find('.skill').each(function (index, element) {
 		var skillDIV = $(element);
 		var skill = skillDIV.data('skill');
-		
-		if (skill !== null && 'skillId' in skill)
-		{
-			if (skill.skillId === _skill.id)
-			{
+
+		if (skill !== null && 'skillId' in skill) {
+			if (skill.skillId === _skill.id) {
 				result = { div: skillDIV, index: index };
 				return false;
 			}
@@ -902,15 +882,12 @@ TacticalScreenTurnSequenceBarModule.prototype.searchSkillDIV = function (_skill)
 	return result;
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.searchSelectedSkillDIV = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.searchSelectedSkillDIV = function () {
 	var result = null;
 
-	this.mSkillsContainer.find('.skill').each(function (index, element)
-	{
+	this.mSkillsContainer.find('.skill').each(function (index, element) {
 		var skillDIV = $(element);
-		if (skillDIV.length > 0 && skillDIV.hasClass('is-selected'))
-		{
+		if (skillDIV.length > 0 && skillDIV.hasClass('is-selected')) {
 			result = { div: skillDIV, index: index };
 			return false;
 		}
@@ -920,16 +897,23 @@ TacticalScreenTurnSequenceBarModule.prototype.searchSelectedSkillDIV = function 
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_entity, _entityDIV, _previousEntityWasHiddenToPlayer)
-{
+TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_entity, _entityDIV, _previousEntityWasHiddenToPlayer, _retryCount) {
 	// notify sq that a new entity went into the first slot
 	// +  query entity data from sq backend
 	var self = this;
-	this.notifyBackendEntityEntersFirstSlot(_entity.id, function (entityData)
-	{
-		if (entityData === null || entityData === undefined)
-		{
-			console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result.');
+	var retryCount = (_retryCount === undefined) ? 0 : _retryCount;
+	var maxRetries = 10;
+
+	this.notifyBackendEntityEntersFirstSlot(_entity.id, function (entityData) {
+		if (entityData === null || entityData === undefined) {
+			if (retryCount < maxRetries) {
+				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result. Retrying...');
+				setTimeout(function () { self.selectFirstEntity(_entity, _entityDIV, _previousEntityWasHiddenToPlayer, ++retryCount); }, 100);
+			}
+			else {
+				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result. Removing the entity from the sequence bar and moving to the next one...');
+				self.notifyBackendForceRemoveInvalidEntity(_entity.id);
+			}
 			return;
 		}
 
@@ -963,57 +947,69 @@ TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_ent
 		{
 			var resizeFirstSlotTime = (_entityDIV.attr('is-hidden-to-player') === 'true' || _previousEntityWasHiddenToPlayer) ? self.mResizeFirstSlotTimeIfPreviousWasHiddenToPlayer : self.mResizeFirstSlotTime;
 			_entityDIV.velocity({ width: '10.4rem' },
-			{
-				duration: resizeFirstSlotTime,
-				easing: 'swing',
-				complete: function ()
 				{
-					// NOTE: (js) Hier zentrieren wir die Image per "Hand"...
-					var offsets = entityImage.data('offsets') || { imageOffsetX: 0, imageOffsetY: 0 };
-					var newWidth = entityImage[0].naturalWidth;
-					var newHeight = entityImage[0].naturalHeight;
-					var marginLeft = (entityImageLayer.innerWidth() - newWidth + offsets.imageOffsetX) / 2;
-					var marginTop = (entityImageLayer.innerHeight() - newHeight + offsets.imageOffsetY) / 2;
-					//console.info('w: ' + newWidth + ' h: ' + newHeight);
-					//entityImage.css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop});
+					duration: resizeFirstSlotTime,
+					easing: 'swing',
+					complete: function () {
+						// NOTE: (js) Hier zentrieren wir die Image per "Hand"...
 
-					entityImage.data('placeholder').velocity({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop },
-					{
-						duration: self.mResizeFirstSlotImageTime,
-						easing: 'swing',
-						complete: function ()
-						{
-						}
-					});
-
-					entityImage.velocity({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop },
-					{
-						duration: self.mResizeFirstSlotImageTime,
-						easing: 'swing',
-						complete: function ()
-						{
-							entityImage.data('placeholder').css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
-							entityImage.data('is-scaling', false);
-
-							var newImage = entityImage.data('newImage') || false;
-
-							if (newImage !== false)
-							{
-								entityImage.data('placeholder').removeClass('opacity-almost-none');
-								entityImage.attr('src', newImage);
-								entityImage.data('newImage', false);
+						var retries = 0;
+						var checkDataAndAnimate = function () {
+							var offsets = entityImage.data('offsets') || { imageOffsetX: 0, imageOffsetY: 0 };
+							var newWidth = entityImage[0].naturalWidth;
+							var newHeight = entityImage[0].naturalHeight;
+							if (newWidth === 0 && retries < 5) {
+								retries++;
+								setTimeout(checkDataAndAnimate, 10);
+								return;
 							}
+							if (newWidth === 0) newWidth = 120;
+							if (newHeight === 0) newHeight = 120;
+							var marginLeft = (entityImageLayer.innerWidth() - newWidth + offsets.imageOffsetX) / 2;;
+							var marginTop = (entityImageLayer.innerHeight() - newHeight + offsets.imageOffsetY) / 2;
 
-							// notify sq that a new turn image resize animation has ended
-							self.notifyBackendEntityEnteredFirstSlotFully(_entity.id);
-						}
-					});
+							//console.info('w: ' + newWidth + ' h: ' + newHeight);
+							//entityImage.css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop});
 
-					// notify sq that a new turn slot resize animation has ended
-					// Note: (js) we do this here to speed up the process of sliden through AI entities
-					self.notifyBackendEntityEnteredFirstSlot(_entity.id);
-				}
-			});
+							entityImage.data('placeholder').velocity({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop },
+								{
+									duration: self.mResizeFirstSlotImageTime,
+									easing: 'swing',
+									complete: function () {
+									}
+								});
+
+							entityImage.velocity({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop },
+								{
+									duration: self.mResizeFirstSlotImageTime,
+									easing: 'swing',
+									complete: function () {
+										var placeholder = entityImage.data('placeholder');
+										if (placeholder) {
+											entityImage.data('placeholder').css({ 'width': newWidth, 'margin-left': marginLeft, 'margin-top': marginTop });
+										}
+										entityImage.data('is-scaling', false);
+
+										var newImage = entityImage.data('newImage') || false;
+										if (newImage !== false) {
+											if (placeholder) {
+												placeholder.removeClass('opacity-almost-none');
+											}
+											entityImage.attr('src', newImage);
+											entityImage.data('newImage', false);
+										}
+
+										// notify sq that a new turn image resize animation has ended
+										self.notifyBackendEntityEnteredFirstSlotFully(_entity.id);
+									}
+								});
+						};
+						// notify sq that a new turn slot resize animation has ended
+						// Note: (js) we do this here to speed up the process of sliden through AI entities
+						checkDataAndAnimate();
+						self.notifyBackendEntityEnteredFirstSlot(_entity.id);
+					}
+				});
 		}
 		// 	else
 		// 	{
@@ -1024,35 +1020,29 @@ TacticalScreenTurnSequenceBarModule.prototype.selectFirstEntity = function (_ent
 		// 	}
 	});
 };
-		
 
-TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data)
-{
-	if (_data === null || typeof(_data) != 'object')
-	{
+
+TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data) {
+	if (_data === null || typeof (_data) != 'object') {
 		return;
 	}
-	
+
 	// show or hide the stats panel
 	var isEnemy = false;
-	if ('isEnemy' in _data)
-	{
+	if ('isEnemy' in _data) {
 		isEnemy = _data.isEnemy;
 	}
 
 	// only update stats if the entity is NOT an enemy as the panel will not be shown otherwise
 	this.showStatsPanel(!isEnemy);
-	if (!isEnemy)
-	{
+	if (!isEnemy) {
 		// update high level image
-		if ('levelImagePath' in _data && _data.levelImagePath != '')
-		{
+		if ('levelImagePath' in _data && _data.levelImagePath != '') {
 			this.mStatsHeaderElevationImage.attr('src', Path.GFX + _data.levelImagePath);
 		}
 
 		// update name
-		if ('nameOnly' in _data)
-		{
+		if ('nameOnly' in _data) {
 			this.mStatsHeaderCharacterName.html(_data.nameOnly);
 		}
 
@@ -1062,11 +1052,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 
 		// update action points
 		var newWidth = 0;
-		if (ProgressbarValueIdentifier.ActionPoints in _data && ProgressbarValueIdentifier.ActionPointsMax in _data)
-		{
+		if (ProgressbarValueIdentifier.ActionPoints in _data && ProgressbarValueIdentifier.ActionPointsMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.ActionPointsMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.ActionPointsMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.ActionPoints] * 100) / _data[ProgressbarValueIdentifier.ActionPointsMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1079,11 +1067,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update action points preview
-		if (ProgressbarValueIdentifier.ActionPointsPreview in _data && ProgressbarValueIdentifier.ActionPointsMaxPreview in _data)
-		{
+		if (ProgressbarValueIdentifier.ActionPointsPreview in _data && ProgressbarValueIdentifier.ActionPointsMaxPreview in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.ActionPointsMaxPreview] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.ActionPointsMaxPreview] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.ActionPointsPreview] * 100) / _data[ProgressbarValueIdentifier.ActionPointsMaxPreview];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1096,11 +1082,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update morale
-		if (ProgressbarValueIdentifier.Morale in _data && ProgressbarValueIdentifier.MoraleMax in _data)
-		{
+		if (ProgressbarValueIdentifier.Morale in _data && ProgressbarValueIdentifier.MoraleMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.MoraleMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.MoraleMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.Morale] * 100) / _data[ProgressbarValueIdentifier.MoraleMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1114,11 +1098,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update fatigue
-		if (ProgressbarValueIdentifier.Fatigue in _data && ProgressbarValueIdentifier.FatigueMax in _data)
-		{
+		if (ProgressbarValueIdentifier.Fatigue in _data && ProgressbarValueIdentifier.FatigueMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.FatigueMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.FatigueMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.Fatigue] * 100) / _data[ProgressbarValueIdentifier.FatigueMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1132,11 +1114,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update fatigue preview
-		if (ProgressbarValueIdentifier.FatiguePreview in _data && ProgressbarValueIdentifier.FatigueMaxPreview in _data)
-		{
+		if (ProgressbarValueIdentifier.FatiguePreview in _data && ProgressbarValueIdentifier.FatigueMaxPreview in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.FatigueMaxPreview] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.FatigueMaxPreview] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.FatiguePreview] * 100) / _data[ProgressbarValueIdentifier.FatigueMaxPreview];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1153,11 +1133,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		// ************************************************************************************************************************
 
 		// update hit points
-		if (ProgressbarValueIdentifier.Hitpoints in _data && ProgressbarValueIdentifier.HitpointsMax in _data)
-		{
+		if (ProgressbarValueIdentifier.Hitpoints in _data && ProgressbarValueIdentifier.HitpointsMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.HitpointsMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.HitpointsMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.Hitpoints] * 100) / _data[ProgressbarValueIdentifier.HitpointsMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1171,11 +1149,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update armor head
-		if (ProgressbarValueIdentifier.ArmorHead in _data && ProgressbarValueIdentifier.ArmorHeadMax in _data)
-		{
+		if (ProgressbarValueIdentifier.ArmorHead in _data && ProgressbarValueIdentifier.ArmorHeadMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.ArmorHeadMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.ArmorHeadMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.ArmorHead] * 100) / _data[ProgressbarValueIdentifier.ArmorHeadMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 			}
@@ -1189,11 +1165,9 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 		}
 
 		// update armor body
-		if (ProgressbarValueIdentifier.ArmorBody in _data && ProgressbarValueIdentifier.ArmorBodyMax in _data)
-		{
+		if (ProgressbarValueIdentifier.ArmorBody in _data && ProgressbarValueIdentifier.ArmorBodyMax in _data) {
 			newWidth = 0;
-			if (_data[ProgressbarValueIdentifier.ArmorBodyMax] > 0)
-			{
+			if (_data[ProgressbarValueIdentifier.ArmorBodyMax] > 0) {
 				newWidth = (_data[ProgressbarValueIdentifier.ArmorBody] * 100) / _data[ProgressbarValueIdentifier.ArmorBodyMax];
 				newWidth = Math.max(Math.min(newWidth, 100), 0);
 
@@ -1210,27 +1184,22 @@ TacticalScreenTurnSequenceBarModule.prototype.updateStatsPanel = function (_data
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateButtonBar = function (_entityData)
-{
-	if (_entityData === null || typeof(_entityData) !== 'object')
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateButtonBar = function (_entityData) {
+	if (_entityData === null || typeof (_entityData) !== 'object') {
 		return;
 	}
 
-	if ('isWaitActionSpent' in _entityData)
-	{
+	if ('isWaitActionSpent' in _entityData) {
 		//this.showButton(this.mWaitTurnButton, !_entityData.isWaitActionSpent);
 		this.mWaitTurnButton.enableButton(!_entityData.isWaitActionSpent);
-	} 
+	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, _instant)
-{
+TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, _instant) {
 	var showStatusEffectbarContainer = this.mStatusEffectsContainer.children().length > 0 && _show;
 
-	if (_instant !== undefined && typeof(_instant) == 'boolean')
-	{
+	if (_instant !== undefined && typeof (_instant) == 'boolean') {
 		this.mStatsContainer.css({ opacity: _show ? 1 : 0 });
 		//this.mEndTurnButton.css({ opacity: _show ? 1 : 0 });
 		//this.mWaitTurnButton.css({ opacity: _show ? 1 : 0 });
@@ -1258,23 +1227,20 @@ TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, 
 		if (_show) this.mSkillsContainer.removeClass('display-none').addClass('display-block');
 		else this.mSkillsContainer.addClass('display-none').removeClass('display-block');
 	}
-	else
-	{
+	else {
 		this.mStatsContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 
 		/*this.mEndTurnButton.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
 		{
@@ -1289,136 +1255,117 @@ TacticalScreenTurnSequenceBarModule.prototype.showStatsPanel = function (_show, 
 		});*/
 
 		this.mEndTurnButtonContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 
 		this.mEndTurnAllButtonContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 
 		this.mWaitTurnButtonContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 
 		// check if there is any effect within the container
 		this.mStatusEffectsContainer.velocity("finish", true).velocity({ opacity: showStatusEffectbarContainer ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 
 		this.mSkillsContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-		{
-			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-			easing: 'swing',
-			begin: function ()
 			{
-				if (_show)
-					$(this).removeClass('display-none').addClass('display-block');
-			},
-			complete: function ()
-			{
-				if (!_show)
-					$(this).removeClass('display-block').addClass('display-none');
-			}
-		});
+				duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+				easing: 'swing',
+				begin: function () {
+					if (_show)
+						$(this).removeClass('display-none').addClass('display-block');
+				},
+				complete: function () {
+					if (!_show)
+						$(this).removeClass('display-block').addClass('display-none');
+				}
+			});
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkills = function (_entityData)
-{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkills = function (_entityData) {
 	// notify each skill that it is about to get deleted - hide the tooltip
 	this.notifySkillTooltipsToHide();
 
 	// sanity check
-	if (_entityData === null || typeof(_entityData) != 'object' || !('id' in _entityData))
-	{
+	if (_entityData === null || typeof (_entityData) != 'object' || !('id' in _entityData)) {
 		console.error('ERROR: Failed to update entity skills. Reason: Entity has no id.');
 		return;
 	}
-	
+
 	// show or hide the stats panel
 	var isEnemy = false;
-	if ('isEnemy' in _entityData)
-	{
+	if ('isEnemy' in _entityData) {
 		isEnemy = _entityData.isEnemy;
 	}
 
-	if (!isEnemy)
-	{
+	if (!isEnemy) {
 		// query entity skill data from sq backend
 		var self = this;
-		this.notifyBackendQueryEntitySkills(_entityData.id, function (entitySkills)
-		{
-			if (entitySkills === null || !jQuery.isArray(entitySkills) || entitySkills.length === 0)
-			{
+		this.notifyBackendQueryEntitySkills(_entityData.id, function (entitySkills) {
+			if (entitySkills === null || !jQuery.isArray(entitySkills) || entitySkills.length === 0) {
 				self.showEntitySkillbar(false);
 				return;
 			}
 
 			// remove current skills
 			var wasEmpty = self.mSkillsContainer.find('.l-skill').size() === 0;
-			if (entitySkills.length > 0)
-			{
+			if (entitySkills.length > 0) {
 				self.mSkillsContainer.empty();
 			}
 
 			// add new skills
-			for (var i = 0; i < entitySkills.length; ++i)
-			{
+			for (var i = 0; i < entitySkills.length; ++i) {
 				self.addSkillToList(_entityData, entitySkills[i], i + 1);
 			}
 
 			// prepare to fade in
-			if (wasEmpty && entitySkills.length > 0)
-			{
+			if (wasEmpty && entitySkills.length > 0) {
 				self.mSkillsContainer.css({ opacity: 0 });
 			}
 
@@ -1426,40 +1373,33 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkills = function (_en
 			self.showEntitySkillbar(entitySkills.length > 0);
 		});
 	}
-	else
-	{
+	else {
 		// hide skillbar
 		this.showEntitySkillbar(false);
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkillsPreview = function (_entityId)
-{
-	if (_entityId === null)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkillsPreview = function (_entityId) {
+	if (_entityId === null) {
 		// TODO: Es wäre besser, wenn man hier dem Tooltip sagen könnte, dass er seinen Inhalt für den Skill neu laden soll!
 
 		// reset skill preview
 		var self = this;
-		this.mSkillsContainer.find('.skill').each(function(index, element) {
+		this.mSkillsContainer.find('.skill').each(function (index, element) {
 			var skillDIV = $(element);
-			if (skillDIV.length > 0)
-			{
+			if (skillDIV.length > 0) {
 				var skillOverlayDiv = skillDIV.find('.overlay-layer:first');
-				if (skillOverlayDiv.length > 0)
-				{
+				if (skillOverlayDiv.length > 0) {
 					var skillOverlayImgDiv = skillOverlayDiv.children('img:first');
-					if (skillOverlayImgDiv.length > 0)
-					{
+					if (skillOverlayImgDiv.length > 0) {
 						skillOverlayImgDiv.velocity("finish", true).velocity({ opacity: 0 }, { duration: self.mSkillPreviewFadeOut });
 					}
 				}
 			}
 		});
 	}
-	else
-	{
+	else {
 		// TODO: Es wäre besser, wenn man hier dem Tooltip sagen könnte, dass er seinen Inhalt für den Skill neu laden soll!
 
 		// notify each skill that it is about to get deleted - hide the tooltip
@@ -1467,40 +1407,30 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkillsPreview = functi
 
 		// query entity skill data from sq backend
 		var self = this;
-		this.notifyBackendQueryEntitySkills(_entityId, function (entitySkills)
-		{
-			if (entitySkills === null || !jQuery.isArray(entitySkills) || entitySkills.length === 0)
-			{
+		this.notifyBackendQueryEntitySkills(_entityId, function (entitySkills) {
+			if (entitySkills === null || !jQuery.isArray(entitySkills) || entitySkills.length === 0) {
 				console.error('ERROR: Failed to query entity skills data for entity (' + _entityId + '). Reason: Invalid result.');
 				return;
 			}
 
 			// update every skill there is
-			for (var i = 0; i < entitySkills.length; ++i)
-			{
+			for (var i = 0; i < entitySkills.length; ++i) {
 				var foundSkill = self.searchSkillDIV(entitySkills[i]);
-				if (foundSkill !== null)
-				{
+				if (foundSkill !== null) {
 					var isSkillSelected = foundSkill.div.hasClass('is-selected');
 					var skillOverlayDiv = foundSkill.div.find('.overlay-layer:first');
-					if (skillOverlayDiv.length > 0)
-					{
+					if (skillOverlayDiv.length > 0) {
 						var skillOverlayImgDiv = skillOverlayDiv.children('img:first');
-						if (skillOverlayImgDiv.length > 0)
-						{
-							if (entitySkills[i].isUsable)
-							{
-								if (!entitySkills[i].isAffordable && !isSkillSelected)
-								{
+						if (skillOverlayImgDiv.length > 0) {
+							if (entitySkills[i].isUsable) {
+								if (!entitySkills[i].isAffordable && !isSkillSelected) {
 									skillOverlayImgDiv.velocity("finish", true).velocity({ opacity: 1 }, { duration: self.mSkillPreviewFadeIn });
 								}
-								else
-								{
+								else {
 									skillOverlayImgDiv.velocity("finish", true).velocity({ opacity: 0 }, { duration: self.mSkillPreviewFadeOut });
 								}
 							}
-							else
-							{
+							else {
 								skillOverlayImgDiv.velocity("finish", true).velocity({ opacity: 0 }, { duration: self.mSkillPreviewFadeOut });
 							}
 						}
@@ -1512,87 +1442,73 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntitySkillsPreview = functi
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.notifySkillTooltipsToHide = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifySkillTooltipsToHide = function () {
 	// notify each skill that it is about to get deleted - hide the tooltip
-	this.mSkillsContainer.find('.l-skill').each(function(index, element) {
+	this.mSkillsContainer.find('.l-skill').each(function (index, element) {
 		var skill = $(element);
-		if (skill.length > 0)
-		{
+		if (skill.length > 0) {
 			skill.unbindTooltip();
 		}
 	});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.showEntitySkillbar = function (_show)
-{
-	if (!_show)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.showEntitySkillbar = function (_show) {
+	if (!_show) {
 		this.notifySkillTooltipsToHide();
 	}
 
 	var self = this;
 	this.mSkillsContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 },
-	{
-		duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-		complete: function()
 		{
-			/*if (_show === false)
-			{
-				self.mSkillsContainer.empty();
-			}*/
-		}
-	});
+			duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
+			complete: function () {
+				/*if (_show === false)
+				{
+					self.mSkillsContainer.empty();
+				}*/
+			}
+		});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntityStatusEffects = function (_entityData)
-{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntityStatusEffects = function (_entityData) {
 	// notify each status effect that he is about to get deleted - hide the tooltip
 	this.notifyStatusEffectTooltipsToHide();
 
 	// sanity check
-	if (_entityData === null || typeof(_entityData) != 'object' || !('id' in _entityData))
-	{
+	if (_entityData === null || typeof (_entityData) != 'object' || !('id' in _entityData)) {
 		console.error('ERROR: Failed to update entity status effects. Reason: Entity has no id.');
 		return;
 	}
-	
+
 	// show or hide the stats panel
 	var isEnemy = false;
-	if ('isEnemy' in _entityData)
-	{
+	if ('isEnemy' in _entityData) {
 		isEnemy = _entityData.isEnemy;
 	}
 
-	if (!isEnemy)
-	{
+	if (!isEnemy) {
 		// query entity status effects data from sq backend
 		var self = this;
-		this.notifyBackendQueryEntityStatusEffects(_entityData.id, function (entityStatusEffects)
-		{
-			if (entityStatusEffects === null || !jQuery.isArray(entityStatusEffects) || entityStatusEffects.length === 0)
-			{
+		this.notifyBackendQueryEntityStatusEffects(_entityData.id, function (entityStatusEffects) {
+			if (entityStatusEffects === null || !jQuery.isArray(entityStatusEffects) || entityStatusEffects.length === 0) {
 				self.showEntityStatusEffectbar(false);
 				return;
 			}
 
 			// remove current status effects
 			var wasEmpty = self.mStatusEffectsContainer.find('.l-status-effect').size() === 0;
-			if (entityStatusEffects.length > 0)
-			{
+			if (entityStatusEffects.length > 0) {
 				self.mStatusEffectsContainer.empty();
 			}
 
-			for (var i = 0; i < entityStatusEffects.length; ++i)
-			{
+			for (var i = 0; i < entityStatusEffects.length; ++i) {
 				self.addStatusEffectToList(_entityData, entityStatusEffects[i]);
 			}
 
 			// prepare to fade in
-			if (wasEmpty && entityStatusEffects.length > 0)
-			{
+			if (wasEmpty && entityStatusEffects.length > 0) {
 				self.mStatusEffectsContainer.css({ opacity: 0 });
 			}
 
@@ -1600,41 +1516,33 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntityStatusEffects = functi
 			self.showEntityStatusEffectbar(entityStatusEffects.length > 0);
 		});
 	}
-	else
-	{
+	else {
 		this.showEntityStatusEffectbar(false);
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyStatusEffectTooltipsToHide = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyStatusEffectTooltipsToHide = function () {
 	// notify each status effect that he is about to get deleted - hide the tooltip
-	this.mStatusEffectsContainer.find('.l-status-effect').each(function(index, element)
-	{
+	this.mStatusEffectsContainer.find('.l-status-effect').each(function (index, element) {
 		var statusEffect = $(element);
-		if (statusEffect.length > 0)
-		{
+		if (statusEffect.length > 0) {
 			statusEffect.unbindTooltip();
 		}
 	});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.showEntityStatusEffectbar = function (_show)
-{
-	if (!_show)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.showEntityStatusEffectbar = function (_show) {
+	if (!_show) {
 		this.notifyStatusEffectTooltipsToHide();
 	}
 
 	var self = this;
 	this.mStatusEffectsContainer.velocity("finish", true).velocity({ opacity: _show ? 1 : 0 }, {
 		duration: _show ? this.mStatsPanelFadeInTime : this.mStatsPanelFadeOutTime,
-		complete: function()
-		{
-			if (_show === false)
-			{
+		complete: function () {
+			if (_show === false) {
 				self.mStatusEffectsContainer.empty();
 			}
 		}
@@ -1642,35 +1550,27 @@ TacticalScreenTurnSequenceBarModule.prototype.showEntityStatusEffectbar = functi
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.enableFirstEntitySelection = function (_enable)
-{
-	if (!_enable)
-	{
-		if (this.mFirstEntitySelectionTimer !== null)
-		{
+TacticalScreenTurnSequenceBarModule.prototype.enableFirstEntitySelection = function (_enable) {
+	if (!_enable) {
+		if (this.mFirstEntitySelectionTimer !== null) {
 			clearInterval(this.mFirstEntitySelectionTimer);
 			this.mFirstEntitySelectionTimer = null;
 		}
 	}
-	else
-	{
-		if (this.mFirstEntitySelectionTimer === null)
-		{
+	else {
+		if (this.mFirstEntitySelectionTimer === null) {
 			var self = this;
 			var firstSlotNormalSizeWidth = this.mFirstSlotNormalSizeEntityTemplate.outerWidth(true);
 			var firstSlotFullSizeWidth = this.mFirstSlotFullSizeEntityTemplate.outerWidth(true);
 			var firstSlotWidth = firstSlotFullSizeWidth;
 
-			this.mFirstEntitySelectionTimer = setInterval(function()
-			{
+			this.mFirstEntitySelectionTimer = setInterval(function () {
 				var firstEntity = null;
 
 				// find first element which is a candidate for the first slot
-				self.mEntitySliderContainer.find('.l-entity').each(function (index, element)
-				{
+				self.mEntitySliderContainer.find('.l-entity').each(function (index, element) {
 					firstEntity = $(element);
-					if (firstEntity.length > 0 && !firstEntity.is('[in-removal]'))
-					{
+					if (firstEntity.length > 0 && !firstEntity.is('[in-removal]')) {
 						return false;
 					}
 				});
@@ -1680,21 +1580,18 @@ TacticalScreenTurnSequenceBarModule.prototype.enableFirstEntitySelection = funct
 					// check if there is a previous one and if it is hidden to the player as the div is not resized to first slot size
 					var prevEntityWasHiddenToPlayer = false;
 					var prevDiv = firstEntity.prev();
-					if (prevDiv.length > 0 && prevDiv.attr('is-hidden-to-player') === 'true')
-					{
+					if (prevDiv.length > 0 && prevDiv.attr('is-hidden-to-player') === 'true') {
 						firstSlotWidth = firstSlotNormalSizeWidth / 2;
 						prevEntityWasHiddenToPlayer = true;
 					}
 
 					//console.log('Left: ' + firstEntity.position().left + ' firstSlotWidth:' + firstSlotWidth);
-					if (firstEntity.position().left < firstSlotWidth)
-					{
+					if (firstEntity.position().left < firstSlotWidth) {
 						// disable interval
 						clearInterval(self.mFirstEntitySelectionTimer);
 						self.mFirstEntitySelectionTimer = null;
 
-						if (firstEntity.position().left >= 0)
-						{
+						if (firstEntity.position().left >= 0) {
 							//console.log('#4 enableFirstEntitySelection: First Element left: ' + firstEntity.position().left + ' first slot: ' + firstSlotWidth);
 							//console.log(firstEntity);
 
@@ -1705,98 +1602,97 @@ TacticalScreenTurnSequenceBarModule.prototype.enableFirstEntitySelection = funct
 				}
 
 			},
-			this.mFirstEntitySelectionTimerInterval);
+				this.mFirstEntitySelectionTimerInterval);
 		}
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntityImage = function (_entityData, _entityDIV)
-{
-	if (_entityDIV.is('[in-removal]'))
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntityImage = function (_entityData, _entityDIV) {
+	if (_entityDIV.is('[in-removal]')) {
 		return;
 	}
 
 	var entityImageLayer = _entityDIV.find('.image-layer:first');
-	if (entityImageLayer.length === 0)
-	{
+	if (entityImageLayer.length === 0) {
 		console.error('Error: Failed to find entity image object.');
 		return;
 	}
 
 	var entityImage = entityImageLayer.find('img:first');
+	if (entityImage.attr('src') === (Path.PROCEDURAL + _entityData.imagePath)) {
+		return;
+	}
 
 	// offsets ?
-	if ('imageOffsetX' in _entityData && typeof(_entityData.imageOffsetX) === 'number')
-	{
+	if ('imageOffsetX' in _entityData && typeof (_entityData.imageOffsetX) === 'number') {
 		var offsets = entityImage.data('offsets') || {};
 		offsets.imageOffsetX = _entityData.imageOffsetX;
 		entityImage.data('offsets', offsets);
 	}
-	if ('imageOffsetY' in _entityData && typeof(_entityData.imageOffsetY) === 'number')
-	{
+	if ('imageOffsetY' in _entityData && typeof (_entityData.imageOffsetY) === 'number') {
 		var offsets = entityImage.data('offsets') || {};
 		offsets.imageOffsetY = _entityData.imageOffsetY;
 		entityImage.data('offsets', offsets);
 	}
 
-	if(!entityImage.data('is-scaling'))
-	{
+	if (!entityImage.data('is-scaling')) {
 		// update image
-		if('imagePath' in _entityData)
-		{
-			entityImage.data('placeholder').removeClass('opacity-almost-none');
-			entityImage.attr('src', Path.PROCEDURAL + _entityData.imagePath);
+		if ('imagePath' in _entityData) {
+			setTimeout(function () {
+				if (!_entityDIV.is('[in-removal]')) {
+					var placeholder = entityImage.data('placeholder');
+					if (placeholder) {
+						placeholder.removeClass('opacity-almost-none');
+					}
+					entityImage.attr('src', Path.PROCEDURAL + _entityData.imagePath);
+				}
+			}, 10);
 
-		   /* var image = new Image();
-			image.onload = function ()
-			{
-				entityImage.attr('src', Path.PROCEDURAL + _entityData.imagePath);
-			};
-			image.src = Path.PROCEDURAL + _entityData.imagePath;*/
+			/* var image = new Image();
+			 image.onload = function ()
+			 {
+				 entityImage.attr('src', Path.PROCEDURAL + _entityData.imagePath);
+			 };
+			 image.src = Path.PROCEDURAL + _entityData.imagePath;*/
 		}
-		else if('imagePathFoW' in _entityData)
-		{
+		else if ('imagePathFoW' in _entityData) {
 			entityImage.attr('src', Path.GFX + _entityData.imagePathFoW);
 		}
 	}
-	else
-	{
+	else {
 		// update image
-		if('imagePath' in _entityData)
-		{
-			entityImage.data('newImage', Path.PROCEDURAL + _entityData.imagePath);
+		if ('imagePath' in _entityData) {
+			setTimeout(function () {
+				if (!_entityDIV.is('[in-removal]')) {
+					entityImage.data('newImage', Path.PROCEDURAL + _entityData.imagePath);
+				}
+			}, 10);
+
 		}
-		else if('imagePathFoW' in _entityData)
-		{
+		else if ('imagePathFoW' in _entityData) {
 			entityImage.data('newImage', Path.GFX + _entityData.imagePathFoW);
 		}
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntityVisiblity = function (_entityData, _entityDIV)
-{
-	if ('isHiddenToPlayer' in _entityData)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntityVisiblity = function (_entityData, _entityDIV) {
+	if ('isHiddenToPlayer' in _entityData) {
 		_entityDIV.attr('is-hidden-to-player', _entityData.isHiddenToPlayer);
 	}
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.addEntity = function (_entityData)
-{
-	if(_entityData.id === null)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.addEntity = function (_entityData) {
+	if (_entityData.id === null) {
 		console.error('ERROR: Failed to add entity. Reason: Entity has no id.');
 		return;
 	}
 
 	// search entity
 	var entityDIV = this.findEntityDIV(_entityData.id);
-	if(entityDIV !== null && !entityDIV.div.is('[in-removal]'))
-	{
+	if (entityDIV !== null && !entityDIV.div.is('[in-removal]')) {
 		console.error('ERROR: Failed to add entity. Reason: Entity id: ' + _entityData.id + ' already added.');
 		return;
 	}
@@ -1808,21 +1704,18 @@ TacticalScreenTurnSequenceBarModule.prototype.addEntity = function (_entityData)
 	// find last visible entity in the slide bar
 	var lastEntityDIV = this.mEntitySliderContainer.find('.l-entity:last');
 	var willBeFirstSlot = (lastEntityDIV.length === 0);
-	if(!willBeFirstSlot)
-	{
+	if (!willBeFirstSlot) {
 		sliderDIVWidth = sliderDIVWidth - (lastEntityDIV.position().left + lastEntityDIV.outerWidth(true));
 	}
-	
+
 	// notify sq that a new turn animation has started
-	if (willBeFirstSlot)
-	{
+	if (willBeFirstSlot) {
 		this.notifyBackendEntityLeftFirstSlot(null);
 	}
 
 	// create slide div & append it to the bar (temporary)
 	var sliderDIV = null;
-	if (sliderDIVWidth > 0)
-	{
+	if (sliderDIVWidth > 0) {
 		sliderDIV = $('<div class="entity-slider"></div>');
 		sliderDIV.width(sliderDIVWidth + 'px');
 		this.mEntitySliderContainer.append(sliderDIV);
@@ -1835,29 +1728,27 @@ TacticalScreenTurnSequenceBarModule.prototype.addEntity = function (_entityData)
 	this.mEntitySliderContainer.append(entityDIV);
 
 	// query entity data from sq backend
-// 	var entityData = this.notifyBackendQueryEntity(_entityId);
-// 	if (entityData === null || entityData === undefined)
-// 	{
-// 		console.error('ERROR: Failed to query entity data for entity (' + _entityId + '). Reason: Invalid result.');
-// 		return;
-// 	}
+	// 	var entityData = this.notifyBackendQueryEntity(_entityId);
+	// 	if (entityData === null || entityData === undefined)
+	// 	{
+	// 		console.error('ERROR: Failed to query entity data for entity (' + _entityId + '). Reason: Invalid result.');
+	// 		return;
+	// 	}
 
 	// update the visible to player attribute
 	this.updateEntityVisiblity(_entityData, entityDIV);
 
 	// update image
 	this.updateEntityImage(_entityData, entityDIV);
-	
+
 	// adjust entity payload
 	var isEnemy = false;
-	if ('isEnemy' in _entityData)
-	{
+	if ('isEnemy' in _entityData) {
 		isEnemy = _entityData.isEnemy;
 	}
 
 	var entityPayload = entityDIV.data('entity');
-	if (entityPayload !== null && typeof(entityPayload) == 'object')
-	{
+	if (entityPayload !== null && typeof (entityPayload) == 'object') {
 		entityPayload.isEnemy = isEnemy;
 		entityDIV.data('entity', entityPayload);
 	}
@@ -1868,69 +1759,61 @@ TacticalScreenTurnSequenceBarModule.prototype.addEntity = function (_entityData)
 	var maxVisibleEntities = Math.floor(this.mEntityContainer.innerWidth() / entityDIVWidth);
 	var entities = Math.max(0, entitiesInContainer.size() - 1);
 	var slideInMultiplier = Math.max(0, Math.min(maxVisibleEntities, maxVisibleEntities - entities));
-	
+
 	// compute fade in time & fade entity in
 	var fadeInMultiplyer = entitiesInContainer.size() + 1;
 	entityImage.velocity({ opacity: 1 }, { queue: false, easing: 'swing', duration: this.mFadeInDuration * fadeInMultiplyer });
 
 	// animate slider (only if needed)
-	if(sliderDIV !== null)
-	{
+	if (sliderDIV !== null) {
 		var self = this;
 		// slide entity in
 		sliderDIV.velocity({ width: 0 },
-		{
-			duration: this.mSlideInDuration * slideInMultiplier,
-			easing: 'swing',
-			begin: function(_animation)
 			{
-				self.enableFirstEntitySelection(true);
-			},
-			complete: function()
-			{
-				$(this).remove();
-			}
-		});
+				duration: this.mSlideInDuration * slideInMultiplier,
+				easing: 'swing',
+				begin: function (_animation) {
+					self.enableFirstEntitySelection(true);
+				},
+				complete: function () {
+					$(this).remove();
+				}
+			});
 	}
-	else
-	{
+	else {
 		this.enableFirstEntitySelection(true);
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.updateEntity = function (_entityData)
-{
-	if(_entityData.id === null)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateEntity = function (_entityData) {
+	if (_entityData.id === null) {
 		console.error('ERROR: Failed to update entity. Reason: Entity has no id.');
 		return;
 	}
 
 	// search entity
 	var entityDIV = this.findEntityDIV(_entityData.id);
-	if(entityDIV === null || entityDIV.div.is('[in-removal]'))
-	{
+	if (entityDIV === null || entityDIV.div.is('[in-removal]')) {
 		//console.error('ERROR: Failed to update entity. Reason: Entity id: ' + _entityData.id + ' not found.');
 		return;
 	}
 
 	// query entity data from sq backend
-// 	var entityData = this.notifyBackendQueryEntity(_entityId);
-// 	if (entityData === null || entityData === undefined)
-// 	{
-// 		console.error('ERROR: Failed to query entity data for entity (' + _entityData.id + '). Reason: Invalid result.');
-// 		return;
-// 	}
+	// 	var entityData = this.notifyBackendQueryEntity(_entityId);
+	// 	if (entityData === null || entityData === undefined)
+	// 	{
+	// 		console.error('ERROR: Failed to query entity data for entity (' + _entityData.id + '). Reason: Invalid result.');
+	// 		return;
+	// 	}
 
 	// update the visible to player attribute
 	this.updateEntityVisiblity(_entityData, entityDIV.div);
 
 	// update image
 	this.updateEntityImage(_entityData, entityDIV.div);
-	
+
 	// depending on if the entity is the active one we need to update the status panel as well
-	if (entityDIV.index === 0)
-	{
+	if (entityDIV.index === 0) {
 		// update button bar
 		this.updateButtonBar(_entityData);
 
@@ -1945,32 +1828,27 @@ TacticalScreenTurnSequenceBarModule.prototype.updateEntity = function (_entityDa
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity)
-{
-	if (_entity === null || typeof(_entity) != 'object' || !('id' in _entity))
-	{
+TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity) {
+	if (_entity === null || typeof (_entity) != 'object' || !('id' in _entity)) {
 		console.error('ERROR: Failed to insert entity. Reason: Entity has no id.');
 		return;
 	}
 
 	// search entity
 	var entityDIV = this.findEntityDIV(_entity.id);
-	if (entityDIV !== null && !entityDIV.div.is('[in-removal]'))
-	{
+	if (entityDIV !== null && !entityDIV.div.is('[in-removal]')) {
 		console.error('ERROR: Failed to insert entity. Reason: Entity id: ' + _entity.id + ' already added.');
 		return;
 	}
 
 	// check if the entity comes with an index
-	if (!('index' in _entity))
-	{
+	if (!('index' in _entity)) {
 		console.error('ERROR: Failed to insert entity. Reason: Field "index" not defined.');
 		return;
 	}
 
 	// we dont allow to insert into the first slot!
-	if (_entity.index <= 0 && this.mEntitySliderContainer.find('.l-entity').size() > 0)
-	{
+	if (_entity.index <= 0 && this.mEntitySliderContainer.find('.l-entity').size() > 0) {
 		console.error('ERROR: Failed to insert entity. Reason: Entity index "<= 0" is NOT allowed if there is a first slot active.');
 		return;
 	}
@@ -1980,13 +1858,10 @@ TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity)
 
 	// decide which insert case we have
 	if ((insertRange.before === null && insertRange.after === null) ||
-		(insertRange.before !== null && insertRange.after === null))
-	{
+		(insertRange.before !== null && insertRange.after === null)) {
 		var self = this;
-		this.notifyBackendQueryEntity(_entity.id, function (entityData)
-		{
-			if (entityData === null || entityData === undefined)
-			{
+		this.notifyBackendQueryEntity(_entity.id, function (entityData) {
+			if (entityData === null || entityData === undefined) {
 				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result.');
 				return;
 			}
@@ -1995,8 +1870,7 @@ TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity)
 			self.addEntity(entityData);
 		});
 	}
-	else
-	{
+	else {
 		// create entity div & append it to the back of the slider
 		entityDIV = this.createEntityDIV(_entity.id);
 		entityDIV.width(0);
@@ -2006,10 +1880,8 @@ TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity)
 
 		// query entity data from sq backend
 		var self = this;
-		this.notifyBackendQueryEntity(_entity.id, function (entityData)
-		{
-			if (entityData === null || entityData === undefined)
-			{
+		this.notifyBackendQueryEntity(_entity.id, function (entityData) {
+			if (entityData === null || entityData === undefined) {
 				console.error('ERROR: Failed to query entity data for entity (' + _entity.id + '). Reason: Invalid result.');
 				return;
 			}
@@ -2022,53 +1894,45 @@ TacticalScreenTurnSequenceBarModule.prototype.insertEntity = function (_entity)
 
 			// slide the entity in
 			entityDIV.velocity({ width: '8.0rem' },
-			{
-				duration: self.mSlideInDuration,
-				easing: 'swing',
-				complete: function ()
 				{
-					entityImage.velocity({ opacity: 1 }, { easing: 'swing', duration: self.mFadeInDuration });
-				}
-			});
+					duration: self.mSlideInDuration,
+					easing: 'swing',
+					complete: function () {
+						entityImage.velocity({ opacity: 1 }, { easing: 'swing', duration: self.mFadeInDuration });
+					}
+				});
 		});
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.removeEntity = function (_entityId)
-{
-	if(_entityId === null)
-	{
+TacticalScreenTurnSequenceBarModule.prototype.removeEntity = function (_entityId) {
+	if (_entityId === null) {
 		console.error('ERROR: Failed to remove entity. Reason: Entity has no id.');
 		return;
 	}
 
 	// search entity
 	var entityDIV = this.findEntityDIV(_entityId);
-	if(entityDIV === null)
-	{
+	if (entityDIV === null) {
 		//console.error('ERROR: Failed to remove entity. Reason: Entity id: ' + _entityId + ' not found.');
 		return;
 	}
-	
+
 	// sanity check
-	if(entityDIV.div.is('[in-removal]'))
-	{
+	if (entityDIV.div.is('[in-removal]')) {
 		var success = false;
 
-		this.mEntitySliderContainer.find('.l-entity').each(function (_index, _element)
-		{
+		this.mEntitySliderContainer.find('.l-entity').each(function (_index, _element) {
 			var possibleEntityDIV = $(_element);
 			var possibleEntity = possibleEntityDIV.data('entity');
 
-			if(possibleEntity !== null && 'id' in possibleEntity && possibleEntity.id === _entityId && !possibleEntityDIV.is('[in-removal]'))
-			{
+			if (possibleEntity !== null && 'id' in possibleEntity && possibleEntity.id === _entityId && !possibleEntityDIV.is('[in-removal]')) {
 				entityDIV = { div: possibleEntityDIV, index: _index };
 				success = true;
 			}
 		});
 
-		if(!success)
-		{
+		if (!success) {
 			console.error('WARNING: Entity (' + _entityId + ') is about to get removed. Be patient!');
 			return;
 		}
@@ -2084,15 +1948,13 @@ TacticalScreenTurnSequenceBarModule.prototype.removeEntity = function (_entityId
 	var nextEntityIsVisibleToPlayer = false;
 	var hideStatusPanel = true;
 	var nextEntityDIV = entityDIV.div.next();
-	
-	if(nextEntityDIV.length > 0)
-	{
+
+	if (nextEntityDIV.length > 0) {
 		hideStatusPanel = false;
 		nextEntityIsVisibleToPlayer = nextEntityDIV.attr('is-hidden-to-player') !== 'true';
 
 		var entityPlayoad = nextEntityDIV.data('entity');
-		if(entityPlayoad !== null && typeof(entityPlayoad) == 'object')
-		{
+		if (entityPlayoad !== null && typeof (entityPlayoad) == 'object') {
 			hideStatusPanel = entityPlayoad.isEnemy;
 		}
 	}
@@ -2101,14 +1963,12 @@ TacticalScreenTurnSequenceBarModule.prototype.removeEntity = function (_entityId
 	var selectNewFirstEntity = (entityDIV.index === 0);
 	var prevEntityDIV = entityDIV.div.prev();
 	var prevEntityCount = 1;
-	
-	while(prevEntityDIV.length > 0)
-	{
+
+	while (prevEntityDIV.length > 0) {
 		selectNewFirstEntity = prevEntityDIV.is('[in-removal]');
 		prevEntityDIV = prevEntityDIV.prev();
 
-		if (selectNewFirstEntity)
-		{
+		if (selectNewFirstEntity) {
 			++prevEntityCount;
 		}
 	}
@@ -2118,86 +1978,73 @@ TacticalScreenTurnSequenceBarModule.prototype.removeEntity = function (_entityId
 	var isVisibleToPlayer = nextEntityIsVisibleToPlayer ? true : entityDIV.div.attr('is-hidden-to-player') !== 'true';
 	var fadeOutDuration = isVisibleToPlayer ? this.mFadeOutDuration : this.mFadeOutDurationIfHiddenToPlayer;
 	var slideOutDuration = isVisibleToPlayer ? this.mSlideOutDuration : this.mSlideOutDurationIfHiddenToPlayer;
-	
+
 	var self = this;
 	var firstSlotEntered = false;
 	var entityImageLayer = entityDIV.div.find('.image-layer:first');
 	var entityImage = entityImageLayer.find('img:first');
 	entityImage.velocity({ opacity: 0 },
-	{
-		duration: fadeOutDuration,
-		begin: function(_animation)
 		{
-			if (selectNewFirstEntity)
-				self.enableFirstEntitySelection(true);
+			duration: fadeOutDuration,
+			begin: function (_animation) {
+				if (selectNewFirstEntity)
+					self.enableFirstEntitySelection(true);
 
-			// if this is the first entity, hide the skills & status effects
-			if (entityDIV.index === 0)
-			{
-				self.showEntitySkillbar(false);
-				self.showEntityStatusEffectbar(false);
+				// if this is the first entity, hide the skills & status effects
+				if (entityDIV.index === 0) {
+					self.showEntitySkillbar(false);
+					self.showEntityStatusEffectbar(false);
 
-				// if there is no following entity or the entity is an enemy - hide the status panel also
-				if (hideStatusPanel)
-				{
-					self.showStatsPanel(false);
-				}
-			}
-
-			// Note: see tooltip.js
-			entityImageLayer.unbindTooltip();
-		},
-		complete: function()
-		{
-			// slide the entity out and if needed a new in
-			entityDIV.div.velocity({ width: 0 },
-			{
-				duration: slideOutDuration, // * prevEntityCount,
-				easing: 'swing',
-				begin: function(_animation)
-				{
-					// notifiy the sq backend that the first entity is about to get removed
-					if(selectNewFirstEntity)
-					{
-						self.notifyBackendEntityLeftFirstSlot(_entityId);
+					// if there is no following entity or the entity is an enemy - hide the status panel also
+					if (hideStatusPanel) {
+						self.showStatsPanel(false);
 					}
-				},
-				complete: function()
-				{
-					// notify sq that the entity has being removed
-					self.notifyBackendEntityRemoved(_entityId);
-					$(this).remove();
 				}
-			});
-		}
-	});
+
+				// Note: see tooltip.js
+				entityImageLayer.unbindTooltip();
+			},
+			complete: function () {
+				// slide the entity out and if needed a new in
+				entityDIV.div.velocity({ width: 0 },
+					{
+						duration: slideOutDuration, // * prevEntityCount,
+						easing: 'swing',
+						begin: function (_animation) {
+							// notifiy the sq backend that the first entity is about to get removed
+							if (selectNewFirstEntity) {
+								self.notifyBackendEntityLeftFirstSlot(_entityId);
+							}
+						},
+						complete: function () {
+							// notify sq that the entity has being removed
+							self.notifyBackendEntityRemoved(_entityId);
+							$(this).remove();
+						}
+					});
+			}
+		});
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.selectSkill = function (_skill)
-{
-	if (_skill === null || typeof(_skill) != 'object' || !('id' in _skill))
-	{
+TacticalScreenTurnSequenceBarModule.prototype.selectSkill = function (_skill) {
+	if (_skill === null || typeof (_skill) != 'object' || !('id' in _skill)) {
 		console.error('ERROR: Failed to select skill. Reason: Skill has no id.');
 		return;
 	}
 
-	if ('select' in _skill)
-	{
+	if ('select' in _skill) {
 		// first unselect the previous one
 		this.unselectSkills();
 
 		// get the skill div
 		var skillToSelect = this.searchSkillDIV(_skill);
-		if (skillToSelect !== null && skillToSelect.div.length > 0)
-		{
-			if (_skill.select)
-			{
+		if (skillToSelect !== null && skillToSelect.div.length > 0) {
+			if (_skill.select) {
 				skillToSelect.div.data('skill')['selected-by-backend'] = true;
 				skillToSelect.div.addClass('is-selected');
 			}
-			else
-			{
+			else {
 				skillToSelect.div.data('skill')['selected-by-backend'] = false;
 				skillToSelect.div.removeClass('is-selected');
 			}
@@ -2205,12 +2052,10 @@ TacticalScreenTurnSequenceBarModule.prototype.selectSkill = function (_skill)
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.unselectSkills = function ()
-{
-	this.mSkillsContainer.find('.skill').each(function(index, element) {
+TacticalScreenTurnSequenceBarModule.prototype.unselectSkills = function () {
+	this.mSkillsContainer.find('.skill').each(function (index, element) {
 		var skillDIV = $(element);
-		if (skillDIV.length > 0 && skillDIV.hasClass('is-selected'))
-		{
+		if (skillDIV.length > 0 && skillDIV.hasClass('is-selected')) {
 			skillDIV.data('skill')['selected-by-backend'] = false;
 			skillDIV.removeClass('is-selected');
 		}
@@ -2218,29 +2063,24 @@ TacticalScreenTurnSequenceBarModule.prototype.unselectSkills = function ()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.selectEntity = function (_entity)
-{
-	if (_entity === null || typeof(_entity) != 'object' || !('id' in _entity))
-	{
+TacticalScreenTurnSequenceBarModule.prototype.selectEntity = function (_entity) {
+	if (_entity === null || typeof (_entity) != 'object' || !('id' in _entity)) {
 		console.error('ERROR: Failed to select entity. Reason: Entity has no id.');
 		return;
 	}
 
-	if ('select' in _entity)
-	{
+	if ('select' in _entity) {
 		// unselect every entity
 		this.unselectEntities();
 
 		// search entity
 		var entityDIV = this.findEntityDIV(_entity.id);
-		if (entityDIV === null || entityDIV.div.is('[in-removal]') || entityDIV.index === 0)
-		{
+		if (entityDIV === null || entityDIV.div.is('[in-removal]') || entityDIV.index === 0) {
 			//console.log('ERROR: Failed to select entity. Reason: Entity id: ' + _entity.id + ' not found.');
 			return;
 		}
 
-		if (_entity.select)
-		{
+		if (_entity.select) {
 			var selectedContainerDiv = entityDIV.div.find('.selected-layer:first');
 			var imageDiv = selectedContainerDiv.find('img:first');
 			imageDiv.velocity("stop", true).velocity({ opacity: 1 }, { duration: this.mSelectionFadeInDuration });
@@ -2248,11 +2088,9 @@ TacticalScreenTurnSequenceBarModule.prototype.selectEntity = function (_entity)
 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.unselectEntities = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.unselectEntities = function () {
 	var self = this;
-	this.mEntitySliderContainer.find('.l-entity').each(function (index, element)
-	{
+	this.mEntitySliderContainer.find('.l-entity').each(function (index, element) {
 		var entityDIV = $(element);
 		var entitySelectLayer = entityDIV.find('.selected-layer');
 		var imageDiv = entitySelectLayer.find('img:first');
@@ -2261,10 +2099,8 @@ TacticalScreenTurnSequenceBarModule.prototype.unselectEntities = function ()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.updateCostsPreview = function (_previewData)
-{
-	if (_previewData === null || typeof(_previewData) != 'object')
-	{
+TacticalScreenTurnSequenceBarModule.prototype.updateCostsPreview = function (_previewData) {
+	if (_previewData === null || typeof (_previewData) != 'object') {
 		console.error('ERROR: Failed to update preview costs. Reason: Invalid preview data.');
 		return;
 	}
@@ -2274,30 +2110,24 @@ TacticalScreenTurnSequenceBarModule.prototype.updateCostsPreview = function (_pr
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.flashProgressbars = function (_whichBars)
-{
-	if (_whichBars === null || typeof(_whichBars) != 'object')
-	{
+TacticalScreenTurnSequenceBarModule.prototype.flashProgressbars = function (_whichBars) {
+	if (_whichBars === null || typeof (_whichBars) != 'object') {
 		console.error('ERROR: Failed to pulsate progressbars. Reason: Invalid bar data.');
 		return;
 	}
 
 	var parentDiv = null;
-	if ('attackPoints' in _whichBars)
-	{
+	if ('attackPoints' in _whichBars) {
 		parentDiv = this.mLeftStatsRows.ActionPoints.ProgressbarPreview.parent();
-		if (parentDiv.length > 0)
-		{
+		if (parentDiv.length > 0) {
 			//parentDiv.velocity("finish", true).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 }).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 }).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 });
 			parentDiv.stop(true).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 		}
 	}
 
-	if ('fatigue' in _whichBars)
-	{
+	if ('fatigue' in _whichBars) {
 		parentDiv = this.mLeftStatsRows.Fatigue.ProgressbarPreview.parent();
-		if (parentDiv.length > 0)
-		{
+		if (parentDiv.length > 0) {
 			//parentDiv.velocity("finish", true).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 }).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 }).velocity("fadeOut", { duration: 100 }).velocity("fadeIn", { duration: 100 });
 			parentDiv.stop(true).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100).fadeOut(100).fadeIn(100);
 		}
@@ -2305,14 +2135,12 @@ TacticalScreenTurnSequenceBarModule.prototype.flashProgressbars = function (_whi
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.setEndTurnAllButtonVisible = function (_visible)
-{
+TacticalScreenTurnSequenceBarModule.prototype.setEndTurnAllButtonVisible = function (_visible) {
 	this.mEndTurnAllButton.enableButton(_visible);
 }
 
 
-TacticalScreenTurnSequenceBarModule.prototype.clear = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.clear = function () {
 	clearInterval(this.mFirstEntitySelectionTimer);
 	this.mFirstEntitySelectionTimer = null;
 
@@ -2330,93 +2158,80 @@ TacticalScreenTurnSequenceBarModule.prototype.clear = function ()
 };
 
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEndTurnAllButtonPressed = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEndTurnAllButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onEndTurnAllButtonPressed');
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendNextTurnButtonPressed = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendNextTurnButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onNextTurnButtonPressed');
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendWaitTurnButtonPressed = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendWaitTurnButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onWaitTurnButtonPressed');
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendOpenInventoryButtonPressed = function ()
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendOpenInventoryButtonPressed = function () {
 	SQ.call(this.mSQHandle, 'onOpenInventoryButtonPressed');
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityMouseEnter = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityMouseEnter = function (_entityId) {
 	SQ.call(this.mSQHandle, 'onEntityMouseEnter', _entityId);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityMouseLeave = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityMouseLeave = function (_entityId) {
 	SQ.call(this.mSQHandle, 'onEntityMouseLeave', _entityId);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityClicked = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityClicked = function (_entityId) {
 	SQ.call(this.mSQHandle, 'onEntityClicked', _entityId);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntitySkillClicked = function (_entityId, _skillId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntitySkillClicked = function (_entityId, _skillId) {
 	SQ.call(this.mSQHandle, 'onEntitySkillClicked', { entityId: _entityId, skillId: _skillId });
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntitySkillCancelClicked = function (_entityId, _skillId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntitySkillCancelClicked = function (_entityId, _skillId) {
 	SQ.call(this.mSQHandle, 'onEntitySkillCancelClicked', { entityId: _entityId, skillId: _skillId });
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEntersFirstSlot = function (_entityId, _callback)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEntersFirstSlot = function (_entityId, _callback) {
 	SQ.call(this.mSQHandle, 'onEntityEntersFirstSlot', _entityId, _callback);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEnteredFirstSlot = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEnteredFirstSlot = function (_entityId) {
 	SQ.call(this.mSQHandle, 'onEntityEnteredFirstSlot', _entityId);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEnteredFirstSlotFully = function (_entityId)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityEnteredFirstSlotFully = function (_entityId) {
 	SQ.call(this.mSQHandle, 'onEntityEnteredFirstSlotFully', _entityId);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityLeftFirstSlot = function (_entityId)
-{
-// 	if (this.mSQHandle !== null)
-// 	{
-// 		SQ.call(this.mSQHandle, 'onEntityLeftFirstSlot', _entityId);
-// 	}
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityLeftFirstSlot = function (_entityId) {
+	// 	if (this.mSQHandle !== null)
+	// 	{
+	// 		SQ.call(this.mSQHandle, 'onEntityLeftFirstSlot', _entityId);
+	// 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityRemoved = function (_entityId)
-{
-// 	if (this.mSQHandle !== null)
-// 	{
-// 		SQ.call(this.mSQHandle, 'onEntityRemoved', _entityId);
-// 	}
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendEntityRemoved = function (_entityId) {
+	// 	if (this.mSQHandle !== null)
+	// 	{
+	// 		SQ.call(this.mSQHandle, 'onEntityRemoved', _entityId);
+	// 	}
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntitySkills = function (_entityId, _callback)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntitySkills = function (_entityId, _callback) {
 	SQ.call(this.mSQHandle, 'onQueryEntitySkills', _entityId, _callback);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntityStatusEffects = function (_entityId, _callback)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntityStatusEffects = function (_entityId, _callback) {
 	SQ.call(this.mSQHandle, 'onQueryEntityStatusEffects', _entityId, _callback);
 };
 
-TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntity = function (_entityId, _callback)
-{
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendQueryEntity = function (_entityId, _callback) {
 	SQ.call(this.mSQHandle, 'onQueryEntity', _entityId, _callback);
+};
+
+TacticalScreenTurnSequenceBarModule.prototype.notifyBackendForceRemoveInvalidEntity = function (_entityId, _callback) {
+	SQ.call(this.mSQHandle, 'onForceRemoveInvalidEntity', _entityId, _callback);
 };

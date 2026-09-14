@@ -107,8 +107,19 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		onArmorHitSounds[this.Const.BodyPart.Head] = this.Const.Sound.ArmorLeatherImpact;
 		this.getFlags().add("ghoul");
 		this.getFlags().add("undead");
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghoul_agent");
+		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_skin_ghoul_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100,  function () {
+					if (::Const.DLC.Unhold)
+						return ::new("scripts/items/misc/legend_skin_ghoul_skin_item");
+					return ::new("scripts/items/misc/ghoul_teeth_item");
+				}],
+			]);
+		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
@@ -168,42 +179,34 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Value = 2.0;
-			corpse.IsResurrectable = false;
-			corpse.Armor = this.m.BaseProperties.Armor;
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.Math.rand(1, 100) <= 50)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					if (this.Const.DLC.Unhold)
-					{
-
-						local loot;
-
-							loot = this.new("scripts/items/misc/legend_skin_ghoul_skin_item");
-
-
-						loot.drop(_tile);
-					}
-					else
-					{
-						local loot = this.new("scripts/items/misc/ghoul_teeth_item");
-						loot.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A " + this.getName();
+		corpse.Tile = _tile;
+		corpse.Value = 2.0;
+		corpse.IsResurrectable = false;
+		corpse.Armor = this.m.BaseProperties.Armor;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		return corpse;
 	}
 
 	function onAfterDeath( _tile )
@@ -213,7 +216,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			return;
 		}
 
-		local skill = this.getSkills().getSkillByID("actives.legend_skin_ghoul_swallow_whole");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 		if (skill == null)
 		{
 			return;
@@ -272,56 +275,24 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("status_rooted").Scale = 0.45;
 		this.setSpriteOffset("status_rooted", this.createVec(-4, 7));
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_claws"));
-		this.m.Skills.add(this.new("scripts/skills/actives/gruesome_feast"));
-		this.m.Skills.add(this.new("scripts/skills/effects/gruesome_feast_effect"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_skin_ghoul_swallow_whole_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkinGhoulClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.GruesomeFeast);
+		::Legends.Effects.grant(this, ::Legends.Effect.GruesomeFeast);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendSkinGhoulSwallowWhole);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
-
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function grow( _instant = false )
@@ -417,4 +388,3 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

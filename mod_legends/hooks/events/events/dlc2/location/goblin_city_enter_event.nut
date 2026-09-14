@@ -1,0 +1,9 @@
+::mods_hookExactClass("events/events/dlc2/location/goblin_city_enter_event", function(o) {
+	local create = o.create;
+	o.create = function() {
+		create();
+		::Legends.Screens.hook(this, "A", function (_screen) {
+			_screen.Text = "[img]gfx/ui/events/event_119.png[/img]{%randombrother% shakes %their_randombrother% head.%SPEECH_ON%May the old gods have mercy upon us for allowing such a sight.%SPEECH_OFF%The goblin city is sequestered between opposing mountains. Saying the goblins built their city around the mountains is like saying a soldier sheathed his sword in his enemy\'s chest. The gibbering greenskins didn\'t add to the terrain, they desecrated the place whole, putting mines where trees used to be, constructing a maze of rusted shanties and lean-tos, raising cultish totems and digging primitive sacrificial pits, piling unused timber as though the mutilation of the mountain was not truly finished without blatant waste.\n\n But beyond the goblin rubbish does stand a central core of the city, a number of towers unambiguously set apart from the riffraff. These are clearly ancient requisitions, the stonework being unlike anything you\'ve ever seen and surely beyond the greenskin\'s scope of construct. The goblins walking amongst the walls are upright and boastful as though invigorated by being allowed to stride such hallowed grounds. Nestled inside the fortress seem to be of some sort of higher nobility, well dressed goblins with servants mucking about, which means the same thing it does when it comes to humans: there\'s good loot to be had.\n\n A rare sight are the little ones running about. Families, if that\'s what the greenskins truly have, will mean that a fight here will be a vicious one. The little maggots will have more to protect than just their savageness and greed, and that which must extend itself beyond its own vices is also that which has been weakened.}";
+		});
+	}
+});

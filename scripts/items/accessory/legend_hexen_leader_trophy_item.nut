@@ -57,7 +57,7 @@ this.legend_hexen_leader_trophy_item <- this.inherit("scripts/items/accessory/ac
 			id = 10,
 			type = "text",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Resolve"
+			text = "[color=%positive%]+10[/color] Resolve"
 		});
 		return result;
 	}

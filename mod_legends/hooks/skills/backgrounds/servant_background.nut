@@ -1,0 +1,76 @@
+::mods_hookExactClass("skills/backgrounds/servant_background", function (o) {
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Servant);
+		this.m.BackgroundDescription = "Servants are not used to hard labour, but do have good knowledge of more mundane activities.";
+		this.m.GoodEnding = "As it turns out, %name% the servant had been stowing away every last crown he had earned with the %companyname%. When he had enough, he retired and bought himself some land and slowly worked his way up the social ladder. He died in a comfortable bed, surrounded by friends, family, and loyal servants.";
+		this.m.BadEnding = "%name% the servant grew tired of the sellsword life and left the company. He returned to serving nobility. When raiders attacked his liege\'s castle, the nobleman pushed the servant out the door with only a kitchen knife to defend himself with. He was found headless in a pile of broken chairs, a few dead raiders littered around him.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Huge),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.IronJaw),
+			::Legends.Traits.getID(::Legends.Trait.Brute),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Strong),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Brave),
+			::Legends.Traits.getID(::Legends.Trait.Fearless),
+			::Legends.Traits.getID(::Legends.Trait.Optimist),
+			::Legends.Traits.getID(::Legends.Trait.Cocky),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Determined),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.SureFooting),
+			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
+			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
+		];
+		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleSkinny, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Old, Beards = ::Const.Beards.Tidy});
+
+		if (_gender != 1) return;
+		this.m.Name = "Housemaid";
+		this.m.Icon = "ui/backgrounds/background_housemaid.png";
+		this.m.BackgroundDescription = "Housemaids are not used to hard labour, but do have good knowledge of more mundane activities.";
+		this.m.GoodEnding = "As it turns out, %name% the housemaids had been stowing away every last crown she had earned with the %companyname%. When she had enough, she retired and bought herself some land and slowly worked her way up the social ladder. She died in a comfortable bed, surrounded by friends, family, and loyal servants.";
+		this.m.BadEnding = "%name% the servant grew tired of the sellsword life and left the company. She returned to serving nobility. When raiders attacked her liege\'s castle, the nobleman pushed the housemaid out the door with only a kitchen knife to defend herself with. She was found headless in a pile of broken chairs, a few dead raiders littered around her.";
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		{
+			return "{Life is difficult. Moreso for some than others. | Some women can fall from grace. Other women have nowhere to fall to, having been born already on the ground. | If life is a throw of dice, maybe some are fools to be women rather than mice.} %name% {was a servant to a decadent lord. | served an abusive family where the kids played with fire. | was kidnapped by brigands and forced to serve their every. Last. Need. | worked feverishly for mad men who looked far too long at the stars.}  She rarely made a mistake about her place in the world. One day, though, her masters {beat her unconscious. When she awoke, she did so in the bed of a benevolent doctor who refused to return her to her \'employers\'. Instead, %name% was free to go and her masters were told she had died. | set her free, no questions asked. Not one to dally on ceremony, %name% left in earnest. | invited her to a party. Believing she was a guest, she showed up in her finest attire - a shirt with hemmed sleeves and a billowy dress that hid her skeletal frame well. Unfortunately, she was but a show for the party - they gave her a wooden shield and sword, threw her into an arena with a wild boar, and took bets as they watched the horrific spectacle. She barely escaped the \'festivities\'.} {%name% has since sworn to never \'serve\' someone again. | The woman, though now free of her duties, still bears a great deal of humiliation and pain from her long, hard life.}";
+		}
+		else
+		{
+			return "{Life is difficult. Moreso for some than others. | Some men can fall from grace. Other men have nowhere to fall to, having been born already on the ground. | If life is a throw of dice, maybe some are fools to be men rather than mice.} %name% {was a servant to a decadent lord. | served an abusive family where the kids played with fire. | was kidnapped by brigands and forced to serve their every. Last. Need. | worked feverishly for mad men who looked far too long at the stars.}  He rarely made a mistake about his place in the world. One day, though, his masters {beat him unconscious. When he awoke, he did so in the bed of a benevolent doctor who refused to return him to his \'employers\'. Instead, %name% was free to go and his masters were told he had died. | set him free, no questions asked. Not one to dally on ceremony, %name% left in earnest. | invited him to a party. Believing he was a guest, he showed up in his finest attire - a shirt with hemmed sleeves and a billowy set of pantaloons that hid his skeletal frame well. Unfortunately, he was but a show for the party - they gave him a wooden shield and sword, threw him into an arena with a wild boar, and took bets as they watched the horrific spectacle. He barely escaped the \'festivities\'.} {%name% has since sworn to never \'serve\' someone again. | The man, though now free of his duties, still bears a great deal of humiliation and pain from his long, hard life.}";
+		}
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Servant);
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local items = this.getContainer().getActor().getItems();
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.linen_tunic]
+		]));
+	}
+});
+

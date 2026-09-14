@@ -5,8 +5,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_porridge_effect";
-		this.m.Name = "Porridge";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPorridgeEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";
@@ -18,7 +17,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function setAmount( _a )
 	{
-	this.m.Amount = _a;
+		this.m.Amount = _a;
 	}
 
 	function addAmount ( _a)
@@ -44,7 +43,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating a hearty porridge, this character regains health for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Thanks to eating a hearty porridge, this character regains health for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -66,7 +65,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] healing per turn for " + turns + " turns "
+				text = "Heals [color=%positive%]+" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
 			}
 		];
 		return ret;

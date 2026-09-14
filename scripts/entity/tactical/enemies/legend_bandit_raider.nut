@@ -14,6 +14,9 @@ this.legend_bandit_raider <- this.inherit("scripts/entity/tactical/legend_random
 		this.m.Beards = this.Const.Beards.Raider;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -44,7 +47,7 @@ this.legend_bandit_raider <- this.inherit("scripts/entity/tactical/legend_random
 			b.IsSpecializedInSpears = true;
 			b.IsSpecializedInCleavers = true;
 
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.RaiderStatIncreaseDay)
 			{
 				b.MeleeSkill += 5;
 				b.RangedSkill += 5;

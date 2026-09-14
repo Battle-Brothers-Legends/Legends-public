@@ -1,7 +1,7 @@
 this.legend_frogmouth_helm_decorated <- this.inherit("scripts/items/helmets/named/named_helmet", {
 	m = {},
 	function create()
-	{
+	{	//mfdel
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_frogmouth_helm_decorated";
 		this.m.Name = "Decorated Frogmouth Helm";

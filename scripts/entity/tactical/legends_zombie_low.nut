@@ -7,7 +7,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
@@ -36,26 +36,21 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
+			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
 		}
 		else if (r == 4)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/ancient/ancient_spear"));
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
 		}
 		else if (r == 5)
 		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_wooden_spear"));
-		}
-		else if (r == 6)
-		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_sickle"));
 		}
-		else if (r == 7)
+		else if (r == 6)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
 		}
 
-			///---
 		local r = this.Math.rand(1, 2);
 
 		if (r == 1)
@@ -68,29 +63,29 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[4, "leather_tunic"],
-			[4, "linen_tunic"],
-			[3, "sackcloth"],
-			[3, "padded_surcoat"],
-			[2, "leather_wraps"],
-			[2, "monk_robe"],
-			[2, "apron"],
-			[2, "butcher_apron"],
-			[1, "cultist_leather_robe"]
+			[4, ::Legends.Armor.Standard.leather_tunic],
+			[4, ::Legends.Armor.Standard.linen_tunic],
+			[3, ::Legends.Armor.Standard.sackcloth],
+			[3, ::Legends.Armor.Standard.padded_surcoat],
+			[2, ::Legends.Armor.Standard.leather_wraps],
+			[2, ::Legends.Armor.Standard.monk_robe],
+			[2, ::Legends.Armor.Standard.apron],
+			[2, ::Legends.Armor.Standard.butcher_apron],
+			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[67, ""],
-			[7, "hood"],
-			[7, "straw_hat"],
-			[7, "aketon_cap"],
-			[7, "full_aketon_cap"],
-			[7, "open_leather_cap"],
-			[7, "full_leather_cap"],
-			[4, "headscarf"],
-			[4, "cultist_hood"],
-			[4, "witchhunter_hat"],
-			[1, "cultist_leather_hood"]
+			[67, ::Legends.Helmet.None],
+			[7, ::Legends.Helmet.Standard.hood],
+			[7, ::Legends.Helmet.Standard.straw_hat],
+			[7, ::Legends.Helmet.Standard.aketon_cap],
+			[7, ::Legends.Helmet.Standard.full_aketon_cap],
+			[7, ::Legends.Helmet.Standard.open_leather_cap],
+			[7, ::Legends.Helmet.Standard.full_leather_cap],
+			[4, ::Legends.Helmet.Standard.headscarf],
+			[4, ::Legends.Helmet.Standard.cultist_hood],
+			[4, ::Legends.Helmet.Standard.witchhunter_hat],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]);
 
 		if (item != null)

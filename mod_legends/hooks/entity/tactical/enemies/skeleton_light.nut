@@ -36,7 +36,7 @@
 		}
 
 		local armor = [
-			[1, "ancient/ancient_ripped_cloth"]
+			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
@@ -44,8 +44,8 @@
 
 
 		item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_household_helmet"],
-			[34, ""]
+			[66, ::Legends.Helmet.Ancient.ancient_household_helmet],
+			[34, ::Legends.Helmet.None]
 		]);
 		if (item != null)
 		{

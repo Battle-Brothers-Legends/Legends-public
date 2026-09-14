@@ -8,11 +8,7 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 				}
 			}
 			if (s.ID == "ArrowBad") {
@@ -20,12 +16,7 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.World.Assets.addMoralReputation(1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 				}
 			}
 			if (s.ID == "Ratcatcher") {
@@ -33,11 +24,7 @@
 				local start = s.start;
 				s.start <- function (_event) {
 					start(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 				}
 			}
 		}

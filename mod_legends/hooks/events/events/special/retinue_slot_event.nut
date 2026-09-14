@@ -10,4 +10,12 @@
 			}
 		}
 	}
+
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function() {
+		onUpdateScore();
+		if (this.m.Score > 0){
+			this.m.Score = 2000; // set score to 2k+ to make it take prio over <2k events and skip updating the event timer as its not a "real" event
+		}
+	}
 })

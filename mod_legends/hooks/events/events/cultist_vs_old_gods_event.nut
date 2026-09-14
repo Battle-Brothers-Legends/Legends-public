@@ -25,7 +25,7 @@
 		local cultist_candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				cultist_candidates.push(bro);
 
 		if (cultist_candidates.len() == 0)
@@ -34,7 +34,7 @@
 		local oldgods_candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().getID() == "background.monk" || bro.getBackground().getID() == "background.flagellant" || bro.getBackground().getID() == "background.pacified_flagellant" || bro.getBackground().getID() == "background.monk_turned_flagellant")
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Monk, ::Legends.Background.Flagellant, ::Legends.Background.PacifiedFlagellant, ::Legends.Background.MonkTurnedFlagellant))
 				oldgods_candidates.push(bro);
 
 		if (oldgods_candidates.len() == 0)

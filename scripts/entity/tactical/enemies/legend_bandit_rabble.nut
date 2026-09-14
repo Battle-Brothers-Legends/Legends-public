@@ -2,17 +2,18 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.BanditRabble;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.BanditRabble.XP;
+		this.m.Type = ::Const.EntityType.BanditRabble;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.BanditRabble.XP;
 		this.legend_randomized_unit_abstract.create();
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_rabble_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/legend_bandit_rabble_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 10)
+		if (this.randomizeEnemyGender() == 1) 
 		{
 			this.setGender(1);
 		}
@@ -52,7 +53,7 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -78,11 +79,6 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 	function makeMiniboss()
 	{
 		if (!this.actor.makeMiniboss())
-		{
 			return false;
-		}
-		local weapons = ["legend_named_blacksmith_hammer", "legend_named_butchers_cleaver", "legend_named_shovel", "legend_named_sickle" ]
-		this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		this.m.Items.equip(this.new("scripts/items/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 	}
 });

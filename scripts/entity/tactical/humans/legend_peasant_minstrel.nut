@@ -2,18 +2,19 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendPeasantMinstrel;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendPeasantMinstrel.XP;
+		this.m.Type = ::Const.EntityType.LegendPeasantMinstrel;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendPeasantMinstrel.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.getFlags().add("peasant");
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_minstrel_agent");
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/barbarian_drummer_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 50)
+		if (this.randomizeEnemyGender() == 1)
 		{
 			this.setGender(1);
 		}
@@ -31,65 +32,47 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistLuteSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistLuteDamage);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendEntice);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMusician);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendManipulative);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendDaze);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
 		this.getSprite("socket").setBrush("bust_base_militia");
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Taunt);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendDrumsOfLife);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMeistersanger);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(1, 100);
-		if (r == 1)
-		{
-		this.m.Items.equip(this.new("scripts/items/weapons/named/legend_named_lute"));
-		}
-		else
-		{
-		this.m.Items.equip(this.new("scripts/items/weapons/lute"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/named/legend_named_lute"],
+			[25, "weapons/legend_drum"],
+			[74, "weapons/lute"],
+		], "scripts/items/"));
 
-		local r;
-		r = this.Math.rand(1, 4);
-
-
-		if (r >= 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/legend_drum"));
-		}
-
-		local r;
-		r = this.Math.rand(1, 10);
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
-		}
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "tools/throwing_net"],
+			[3, null],
+		], "scripts/items/"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[9, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[9, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
 		if (this.Math.rand(1, 100) <= 66)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[3, "feathered_hat"],
-				[1, "hood"]
-			]))
+				[3, ::Legends.Helmet.Standard.feathered_hat],
+				[1, ::Legends.Helmet.Standard.hood]
+			]));
 		}
 	}
 

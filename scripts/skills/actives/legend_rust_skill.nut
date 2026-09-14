@@ -6,22 +6,10 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
 		this.m.DamageInitiativeMax = 45;
-		this.m.ID = "actives.legend_rust";
-		this.m.Name = "Rust";
-		this.m.Description = "Tarnish leather and metal with rapid age, thereby undermining the solidity of the armor worn by your target. Damaged done is based off current initiative.\nHitchcance is determined by Ranged Skill.";
-		this.m.Icon = "skills/rust56.png";
-		this.m.IconDisabled = "skills/rust56_bw.png";
-		this.m.Overlay = "rust56";
-		this.m.SoundOnUse = [
-			"sounds/combat/crush_armor_01.wav",
-			"sounds/combat/crush_armor_02.wav",
-			"sounds/combat/crush_armor_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/crush_armor_hit_01.wav",
-			"sounds/combat/crush_armor_hit_02.wav",
-			"sounds/combat/crush_armor_hit_03.wav"
-		];
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendRust);
+		this.m.Description = "Tarnish leather and metal with rapid age, thereby undermining the solidity of the armor worn by your target. Damaged done is based off current initiative.\nHitchance is determined by Ranged Skill.";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/crush_armor", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/crush_armor_hit", 3);
 		this.m.SoundVolume = 1.1;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -39,6 +27,7 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 3;
+		this.m.MaxLevelDifference = 3;
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 0;
@@ -55,20 +44,20 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 			id = 5,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_armor_max + "[/color] damage to armor"
+			text = "Inflicts [color=%damage%]" + damage_armor_min + "[/color] - [color=%damage%]" + damage_armor_max + "[/color] damage to armor"
 		});
 
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + 10 + "[/color] damage to hitpoints that ignores armor"
+			text = "Inflicts [color=%damage%]" + 10 + "[/color] damage to hitpoints that ignores armor"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]3[/color] tiles"
+			text = "Has a range of [color=%positive%]3[/color] tiles"
 		});
 
 		// if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInStaves)
@@ -77,7 +66,7 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		// 		id = 6,
 		// 		type = "text",
 		// 		icon = "ui/icons/hitchance.png",
-		// 		text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] chance to spread and hit targets directly adjacent because of the corrosive nature of the spell"
+		// 		text = "Has [color=%negative%]-15%[/color] chance to spread and hit targets directly adjacent because of the corrosive nature of the spell"
 		// 	});
 		// }
 

@@ -6,9 +6,6 @@
 	o.m.MedicinePerDay <- 0;
 	o.m.IsToBeRepairedQueue <- 0;
 	o.m.IsToBeSalvagedQueue <- 0;
-	o.m.RuneVariant <- 0;
-	o.m.RuneBonus1 <- 0;
-	o.m.RuneBonus2 <- 0;
 	o.m.IsToBeSalvaged <- false;
 	o.m.ResourceValue <- 0;
 	o.m.Type <- -1;
@@ -17,6 +14,7 @@
 	o.m.LastTransactionPrice <- null;
 	o.m.IsQueryingSellPrice <- 0;
 	o.m.IsQueryingBuyPrice <- 0;
+	o.m.IsOffBookDeal <- false;
 
 	local setSold = o.setSold;
 	o.setSold = function (_f) {
@@ -28,6 +26,9 @@
 	o.setBought = function (_f) {
 		setBought(_f);
 		this.m.IsBought = _f;
+		if (!_f) {
+            this.m.IsOffBookDeal = false;
+        }
 	}
 
 	o.getOldInstanceID <- function ()
@@ -48,6 +49,24 @@
 	o.getType <- function ()
 	{
 		return this.m.Type;
+	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip <- function () {
+		local result = getTooltip();
+		if (this.m.IsOffBookDeal) {
+			result.push({
+                id = 100,
+                type = "text",
+                icon = "ui/professions/off_book_deal.png"
+                text = "Off Book Deal"
+			});
+		}
+		return result;
+	}
+
+	o.makeName <- function() {
+		return this.getName();
 	}
 
 	o.isDroppedAsLoot = function ()
@@ -107,7 +126,7 @@
 
 	o.canBeSalvaged <- function ()
 	{
-		return ((this.getItemType() & this.Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & this.Const.Items.ItemFilter.Armor) != 0
+		return ((this.getItemType() & this.Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & this.Const.Items.ItemFilter.Armor) != 0;
 	}
 
 	o.getRepair <- function ()
@@ -127,7 +146,7 @@
 
 	o.setArmor <- function ( _a )
 	{
-		this.setCondition( _a)
+		this.setCondition( _a);
 	}
 
 	o.onRepair <- function ( _a)
@@ -188,15 +207,47 @@
 	o.onUnequip = function ()
 	{
 		this.clearSkills();
-		if (this.m.Container != null && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
+		if (this.m.Container != null && "getActor" in this.m.Container && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
+		maybeUpdateParryingDaggerSkills();
+	}
+
+	// Parrying dagger may hide its skills when the main hand weapon is stronger.
+	// So when the main hand is unequipped, we check if we have to re-add the skills.
+	function maybeUpdateParryingDaggerSkills() {
+		// Check we are not a parrying dagger (otherwise this will stack overflow)
+		if (isParryingDagger(this)) {
+			return;
+		}
+		local container = getContainer();
+		if (container == null || !("getActor" in container)) {
+			return;
+		}
+		local actor = container.getActor();
+		if (actor == null || !("getOffhandItem" in actor)) {
+			return;
+		}
+		local offhand = actor.getOffhandItem();
+		if (!isParryingDagger(offhand)) {
+			return;
+		}
+		offhand.onUnequip();
+		offhand.onEquip();
+	}
+
+	function isParryingDagger(_item) {
+		if (_item == null || !("m" in _item)) {
+			return false;
+		}
+		return _item.m.ID == "shield.legend_parrying_dagger"
+			|| _item.m.ID == "shield.legend_named_parrying_dagger";
 	}
 
 	o.onEquip = function ()
 	{
-		if (this.m.Container != null)
-		{
-			if (this.m.Container.getActor() != null) this.m.LastEquippedByFaction = this.m.Container.getActor().getFaction();
-			if ("getSkills" in this.getContainer().getActor()) this.getContainer().getActor().getSkills().update();
+		if (this.m.Container != null && "getActor" in this.m.Container) {
+			local actor = this.m.Container.getActor();
+			if (actor != null) this.m.LastEquippedByFaction = actor.getFaction();
+			if ("getSkills" in actor) actor.getSkills().update();
 		}
 		if (this.isRuned())
 		{
@@ -209,469 +260,81 @@
 		}
 	}
 
+	local onPutIntoBag = o.onPutIntoBag;
+	o.onPutIntoBag = function () {
+		if (this.m.Container != null) {
+			if (this.m.Container.getActor() != null) {
+				this.m.LastEquippedByFaction = this.m.Container.getActor().getFaction();
+			}
+		}
+		onPutIntoBag();
+	}
+
 	o.onEquipRuneSigil <- function ()
 	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_power"));
-				break;
-
-			case 2:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_accuracy"));
-				break;
-
-			case 3:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_feeding"));
-				break;
-
-			case 4:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_poison"));
-				break;
-
-			case 5:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_bleeding"));
-				break;
-
-			case 6:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSW_unbreaking"));
-				break;
-
-			case 11:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_clarity"));
-				break;
-
-			case 12:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_bravery"));
-				break;
-
-			case 13:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSH_luck"));
-				break;
-
-			case 21:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_endurance"));
-				break;
-
-			case 22:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_safety"));
-				break;
-
-			case 23:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSA_resilience"));
-				break;
-
-			case 31:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSS_defense"));
-				break;
-
-			case 32:
-				this.addSkill(this.new("scripts/skills/rune_sigils/legend_RSS_radiance"));
-				break;
-
-			default:
-				break;
-		}
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		if (def == null)
+			return;
+		this.addSkill(::Legends.Effects.new(def.Effect));
 	}
 
 	o.getRuneSigilTooltip <- function ()
 	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				return "This item has the power of the rune sigil of Power:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Damage inflicted.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Max damage.";
-				break;
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		if (def == null)
+			return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug. Variant = " + this.getRuneVariant();
+		return ::Legends.Runes.getTooltip(this, def);
+	}
 
-			case 2:
-				return "This item has the power of the rune sigil of Accuracy:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Melee skill.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Ranged skill.";
-				break;
+	o.setRuneBonus <- function ( _upgraded = false, _crafted = false) {
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		if (def == null)
+			return;
 
-			case 3:
-				return "This item has the power of the rune sigil of Feeding:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "%[/color] of inflicted health damage recovers fatigue.";
-				break;
+		::Legends.Runes.setRuneBonuses(this, def, _upgraded, _crafted);
+	}
 
-			case 4:
-				return "This item has the power of the rune sigil of Poison:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] turn(s) of poison applied, with a strength of [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color]. Lowers action points and initiative.";
-				break;
-
-			case 5:
-				return "This item has the power of the rune sigil of Bleeding:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] bleed damage every turn for [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color] turn(s).";
-				break;
-
-			case 6:
-				return "This item has the power of the rune sigil of Unbreaking:\n[color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus1 + "[/color] to [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.RuneBonus2 + "[/color] durability restored on every kill.";
-				break;
-
-			case 11:
-				return "This item has the power of the rune sigil of Clarity:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Vision.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Experience gain.";
-				break;
-
-			case 12:
-				return "This item has the power of the rune sigil of Bravery:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Resolve.\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "[/color] Resolve at all morale checks.";
-				break;
-
-			case 13:
-				return "This item has the power of the rune sigil of Luck:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] chance to have any attacker require two successful attack rolls in order to hit.";
-				break;
-
-			case 21:
-				return "This item has the power of the rune sigil of Endurance:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "[/color] Fatigue recovery per turn.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Fatigue cost and effects multiplier.";
-				break;
-
-			case 22:
-				return "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received.";
-				break;
-
-			case 23:
-				return "This item has the power of the rune sigil of Resilience:\n[color=" + this.Const.UI.Color.PositiveValue + "]Immune[/color] to stuns, knockbacks and grabs.";
-				break;
-
-			case 31:
-				return "This item has the power of the rune sigil of Defense:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Melee defense.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus2 + "%[/color] Ranged defense.";
-				break;
-
-			case 32:
-				return "This item has the power of the rune sigil of Radiance:\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus1 + "%[/color] to all adjacent enemies\' Melee skill.\n" + "[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] to all adjacent enemies\' Melee defense.";
-				break;
-
-			default:
-				return "This item is inscribed with a rune sigil, even though it shouldn't have been: please report this bug.";
-				break;
+	o.updateRuneSigilToken <- function() {
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		if (def == null) {
+			this.m.Name = "Unknown Rune Sigil: Error";
+			this.m.Description = "An inscribed rock that cannot be attached to a character\'s equipment.";
+			this.m.Icon = "rune_sigils/legend_vala_rune_sigil_blank.png";
+			this.m.IconLarge = "rune_sigils/legend_vala_rune_sigil_blank.png";
+		} else {
+			this.m.Name = def.Name;
+			this.m.Description = def.Description;
+			this.m.Icon = def.Icon;
+			this.m.IconLarge = def.IconLarge;
 		}
 	}
 
-	o.setRuneBonus <- function ( _bonus = false)
-	{
-		local bonus = 0;
-		local bonus2 = 0;
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 2:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 3:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(2, 6);
-				}
-				else
-				{
-					bonus = this.Math.rand(2, 4);
-				}
-				break;
-
-			case 4:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(1, 3);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(1, 2);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				break;
-
-			case 5:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(1, 3);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(1, 2);
-				}
-				break;
-
-			case 6:
-				if (_bonus)
-				{
-					bonus2 = this.Math.rand(3, 9);
-					bonus = this.Math.rand(1, 3);
-				}
-				else
-				{
-					bonus2 = this.Math.rand(3, 6);
-					bonus = this.Math.rand(1, 2);
-				}
-				break;
-
-			case 11:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(0, 2);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(0, 1);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 12:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(1, 5);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(1, 3);
-				}
-				break;
-
-			case 13:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 21:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(0, 3);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(0, 1);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 22:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 23:
-				break;
-
-			case 31:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 6);
-					bonus2 = this.Math.rand(3, 6);
-				}
-				break;
-
-			case 32:
-				if (_bonus)
-				{
-					bonus = this.Math.rand(3, 12);
-					bonus2 = this.Math.rand(3, 12);
-				}
-				else
-				{
-					bonus = this.Math.rand(3, 9);
-					bonus2 = this.Math.rand(3, 9);
-				}
-				break;
-
-			default:
-				break;
-		}
-		this.setRuneBonus1(bonus);
-		this.setRuneBonus2(bonus2);
+	o.setRuneVariant <- function (_rune) {
+		this.getFlags().set("LegendsRuneVariant", _rune);
 	}
 
-	o.updateRuneSigilToken <- function ()
-	{
-		switch (this.m.RuneVariant)
-		{
-			case 1:
-				this.m.Name = "Weapon Rune Sigil: Power";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 2:
-				this.m.Name = "Weapon Rune Sigil: Accuracy";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 3:
-				this.m.Name = "Weapon Rune Sigil: Feeding";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 4:
-				this.m.Name = "Weapon Rune Sigil: Poison";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 5:
-				this.m.Name = "Weapon Rune Sigil: Bleeding";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 6:
-				this.m.Name = "Weapon Rune Sigil: Unbreaking";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s weapon.";
-				this.m.Icon = "rune_sigils/rune_stone_1.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_1.png";
-				break;
-
-			case 11:
-				this.m.Name = "Helmet Rune Sigil: Clarity";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 12:
-				this.m.Name = "Helmet Rune Sigil: Bravery";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 13:
-				this.m.Name = "Helmet Rune Sigil: Luck";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s helmet.";
-				this.m.Icon = "rune_sigils/rune_stone_2.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_2.png";
-				break;
-
-			case 21:
-				this.m.Name = "Armor Rune Sigil: Endurance";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 22:
-				this.m.Name = "Armor Rune Sigil: Safety";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 23:
-				this.m.Name = "Armor Rune Sigil: Resilience";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-				this.m.Icon = "rune_sigils/rune_stone_3.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_3.png";
-				break;
-
-			case 31:
-				this.m.Name = "Shield Rune Sigil: Defense";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s shield.";
-				this.m.Icon = "rune_sigils/rune_stone_4.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_4.png";
-				break;
-
-			case 32:
-				this.m.Name = "Shield Rune Sigil: Radiance";
-				this.m.Description = "An inscribed rock that can be attached to a character\'s shield.";
-				this.m.Icon = "rune_sigils/rune_stone_4.png";
-				this.m.IconLarge = "rune_sigils/rune_stone_4.png";
-				break;
-
-			default:
-				this.m.Name = "Unknown Rune Sigil: Error";
-				this.m.Description = "An inscribed rock that cannot be attached to a character\'s equipment.";
-				this.m.Icon = "rune_sigils/legend_vala_rune_sigil_blank.png";
-				this.m.IconLarge = "rune_sigils/legend_vala_rune_sigil_blank.png";
-				break;
-		}
+	o.getRuneVariant <- function ()	{
+		return this.getFlags().getAsInt("LegendsRuneVariant");
 	}
 
-	o.setRuneVariant <- function (_rune)
-	{
-		this.m.RuneVariant = _rune;
+	o.setRuneBonus1 <- function (_mult)	{
+		this.getFlags().set("LegendsRuneBonus1", _mult);
 	}
 
-	o.getRuneVariant <- function ()
-	{
-		return this.m.RuneVariant;
+	o.getRuneBonus1 <- function () {
+		return this.getFlags().getAsInt("LegendsRuneBonus1");
 	}
 
-	o.setRuneBonus1 <- function (_mult)
-	{
-		this.m.RuneBonus1 = _mult;
+	o.setRuneBonus2 <- function (_mult) {
+		this.getFlags().set("LegendsRuneBonus2", _mult);
 	}
 
-	o.getRuneBonus1 <- function ()
-	{
-		return this.m.RuneBonus1;
+	o.getRuneBonus2 <- function () {
+		return this.getFlags().getAsInt("LegendsRuneBonus2");
 	}
 
-	o.setRuneBonus2 <- function (_mult)
-	{
-		this.m.RuneBonus2 = _mult;
-	}
-
-	o.getRuneBonus2 <- function ()
-	{
-		return this.m.RuneBonus2;
-	}
-
-	o.isRuned <- function ()
-	{
-		if (this.m.RuneVariant > 0)
-		{
-			return true;
-		}
-		else
-		{
-			return false;
-		}
+	o.isRuned <- function () {
+		return this.getRuneVariant() > 0;
 	}
 
 	o.updateRuneSigil <- function ()
@@ -737,16 +400,10 @@
 	o.isNamed <- function ()
 	{
 		if (this.isItemType(this.Const.Items.ItemType.Named))
-		{
 			return true;
-		}
-
 		if (this.isItemType(this.Const.Items.ItemType.Legendary))
-		{
 			return true;
-		}
-
-		return false
+		return false;
 	}
 
 
@@ -771,7 +428,7 @@
 
 	o.getTradeHistorySettlements <- function ()
 	{
-		return this.m.TradeHistorySettlementIDs.map(function(id){return ::World.getEntityByID(id)});
+		return this.m.TradeHistorySettlementIDs.map(function(id){return ::World.getEntityByID(id);});
 	}
 
 	o.setOriginSettlementID <- function ( _id )
@@ -797,19 +454,19 @@
 		this.addSettlementIDToTradeHistory(_settlement.getID());
 	}
 
+	// for items that slings are able to throw
+	o.onSlingUpdateProperties <- function () {}
+
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
 		onSerialize(_out);
 		_out.writeString(this.getInstanceID()); //Need old ID for saved formations
-		_out.writeU8(this.m.RuneVariant);
 		_out.writeBool(this.m.IsToBeSalvaged);
 		_out.writeU16(this.m.IsToBeRepairedQueue);
 		_out.writeU16(this.m.IsToBeSalvagedQueue);
-		_out.writeU8(this.m.RuneBonus1);
-		_out.writeU8(this.m.RuneBonus2);
 		_out.writeI32(this.m.OriginSettlementID);
-		::MSU.Utils.serialize(this.m.TradeHistorySettlementIDs, _out);
+		::MSU.Serialization.serialize(this.m.TradeHistorySettlementIDs, _out);
 	}
 
 	local onDeserialize = o.onDeserialize;
@@ -817,14 +474,11 @@
 	{
 		onDeserialize(_in);
 		this.m.OldID = _in.readString();
-		this.m.RuneVariant = _in.readU8();
 		this.m.IsToBeSalvaged = _in.readBool();
 		this.m.IsToBeRepairedQueue = _in.readU16();
 		this.m.IsToBeSalvagedQueue = _in.readU16();
-		this.m.RuneBonus1 = _in.readU8();
-		this.m.RuneBonus2 = _in.readU8();
 		this.m.OriginSettlementID = _in.readI32();
-		this.m.TradeHistorySettlementIDs = ::MSU.Utils.deserialize(_in);
+		this.m.TradeHistorySettlementIDs = ::MSU.Serialization.deserialize(_in);
 		this.updateVariant();
 	}
 });

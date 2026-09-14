@@ -1,7 +1,7 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_engage_melee", function(o)
 {
 	// todo, renamed because it doesn't work properly, hangs battle... - chopeks
-	o.onEvaluate2 <- function ( _entity )
+	o.onEvaluate <- function ( _entity )
 	{
 		// Function is a generator.
 		local score = 1.0;
@@ -145,8 +145,8 @@
 					}
 				}
 
-				local hasKnockBack = _entity.getSkills().hasSkill("actives.knock_back");
-				local hasFootwork = _entity.getSkills().hasSkill("actives.footwork");
+				local hasKnockBack = _entity.getSkills().hasActive(::Legends.Active.KnockBack);
+				local hasFootwork = _entity.getSkills().hasActive(::Legends.Active.Footwork);
 				score = score * this.Math.maxf(0.0, 1.0 - accumulatedAOO * 0.01 * (1.0 / this.getProperties().EngageWhenAlreadyEngagedMult) * (hasKnockBack ? 2.0 : 1.0) * (hasFootwork ? 2.0 : 1.0));
 			}
 
@@ -385,39 +385,29 @@
 					}
 				}
 
-				if (this.getProperties().IgnoreTargetValueOnEngage)
-				{
+				if (this.getProperties().IgnoreTargetValueOnEngage)	{
 					letOthersGoScore = letOthersGoScore + this.Math.abs(myTile.SquareCoords.Y - targetTile.SquareCoords.Y) * 20.0;
 					local myDistanceToTarget = myTile.getDistanceTo(targetTile);
-					local targets = this.getAgent().getKnownAllies();
 
-					foreach( ally in targets )
-					{
-						if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
+					foreach(ally in this.getAgent().getKnownAllies()) {
+						if (::Legends.S.isEntityNullOrDead(ally) || ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions())) {
 							continue;
 						}
 
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
+						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget) {
 							letOthersGoScore = letOthersGoScore + 2.0;
 						}
 					}
-				}
-				else
-				{
+				} else {
 					local myDistanceToTarget = myTile.getDistanceTo(targetTile);
 					local targets = this.getAgent().getKnownAllies();
 
-					foreach( ally in targets )
-					{
-						if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions()))
-						{
+					foreach( ally in targets ) {
+						if (::Legends.S.isEntityNullOrDead(ally) || ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().RangedSkill > ally.getCurrentProperties().MeleeSkill || ally.getTile().hasZoneOfControlOtherThan(ally.getAlliedFactions())) {
 							continue;
 						}
 
-						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget)
-						{
+						if (ally.getTile().getDistanceTo(targetTile) < myDistanceToTarget) {
 							letOthersGoScore = letOthersGoScore + 0.5;
 						}
 					}
@@ -469,12 +459,11 @@
 							continue;
 						}
 
-						for( ; tile.getDistanceTo(myTile) > 4;  )
-						{
+						if (tile.getDistanceTo(myTile) > 4) {
+							continue;
 						}
-
-						for( ; zocs > inZonesOfControl;  )
-						{
+						if(zocs > inZonesOfControl){
+							continue;
 						}
 
 						if (t.Actor.getID() == bestTarget.getID() && tile.Level <= myTile.Level && tile.IsBadTerrain == myTile.IsBadTerrain && this.hasNegativeTileEffect(tile, _entity) == this.hasNegativeTileEffect(myTile, _entity) && (this.m.Skill == null || !this.m.Skill.isDisengagement()))
@@ -740,9 +729,9 @@
 			time = this.Time.getExactTime();
 		}
 
-		local hasShieldWall = _entity.getSkills().hasSkill("effects.shieldwall");
-		local canUseShieldWall = !hasShieldWall && _entity.getSkills().hasSkill("actives.shieldwall");
-		local hasAdrenaline = _entity.getSkills().hasSkill("actives.adrenaline");
+		local hasShieldWall = _entity.getSkills().hasEffect(::Legends.Effect.Shieldwall);
+		local canUseShieldWall = !hasShieldWall && _entity.getSkills().hasActive(::Legends.Active.Shieldwall);
+		local hasAdrenaline = _entity.getSkills().hasActive(::Legends.Active.Adrenaline);
 		local bestTarget;
 		local bestIntermediateTile;
 		local bestTargetDistance = 0;
@@ -828,6 +817,11 @@
 				{
 					local movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
 
+					if (movementCosts.End == null || typeof movementCosts.End != "instance") {
+						::logDebug("AI_ENGAGE_MELEE: Illegal potential destination.");
+						continue;
+					}
+
 					if (movementCosts.Tiles == 0 || movementCosts.End.ID == myTile.ID)
 					{
 						continue;
@@ -846,6 +840,10 @@
 							navigator.clipPathToDistance(myTile, this.getProperties().EngageTileLimit);
 							waitAfterMove = true;
 							movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+							if (movementCosts.End == null || typeof movementCosts.End != "instance") {
+								::logDebug("AI_ENGAGE_MELEE: Illegal path after clipping.");
+								continue;
+							}
 							movementCosts.IsComplete = false;
 							intermediateTile = movementCosts.End;
 						}
@@ -855,6 +853,10 @@
 						navigator.clipPathToDistance(myTile, this.getProperties().EngageTileLimit - 1);
 						waitAfterMove = true;
 						movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+						if (movementCosts.End == null || typeof movementCosts.End != "instance") {
+							::logDebug("AI_ENGAGE_MELEE: Illegal path after clipping.");
+							continue;
+						}
 						movementCosts.IsComplete = false;
 						intermediateTile = movementCosts.End;
 					}
@@ -869,6 +871,10 @@
 						navigator.clipPathToDistance(myTile, myTile.getDistanceTo(movementCosts.End) - 1);
 						waitAfterMove = true;
 						movementCosts = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
+						if (movementCosts.End == null || typeof movementCosts.End != "instance") {
+							::logDebug("AI_ENGAGE_MELEE: Illegal path after clipping.");
+							continue;
+						}
 						movementCosts.IsComplete = false;
 						intermediateTile = movementCosts.End;
 					}
@@ -886,8 +892,21 @@
 						attackAfterMove = true;
 					}
 
-					local willRunIntoSpearwall = this.querySpearwallValueForTile(_entity, movementCosts.End) != 0;
-					local willRunIntoNegativeTileEffect = this.hasNegativeTileEffect(movementCosts.End, _entity);
+					local willRunIntoSpearwall = false;
+					local willRunIntoNegativeTileEffect = false;
+					if (movementCosts.End != null && typeof movementCosts.End == "instance") {
+						willRunIntoSpearwall = this.querySpearwallValueForTile(_entity, movementCosts.End) != 0;
+						willRunIntoNegativeTileEffect = this.hasNegativeTileEffect(movementCosts.End, _entity);
+					}
+					else {
+						::logDebug("AI_ENGAGE_MELEE: Spearwall hasNextTile Bug");
+						this.logDebug("Entity: " + _entity.getName());
+						this.logDebug("My Tile: " + myTile.X + "," + myTile.Y);
+						this.logDebug("Target Destination Tile: " + t.Tile.X + "," + t.Tile.Y);
+						this.logDebug("MovementCosts.Tiles: " + movementCosts.Tiles);
+						this.logDebug("MovementCosts.End Type: " + typeof movementCosts.End);
+						if (typeof movementCosts.End == "instance") this.logDebug("MovementCosts.End Pos: " + movementCosts.End.X + "," + movementCosts.End.Y);
+					}
 					local currentlyAtNegativeTileEffect = this.hasNegativeTileEffect(myTile, _entity);
 
 					if (inZonesOfControl > 0 && t.IsSkillUsable && this.m.Skill != null && this.m.Skill.isDisengagement())
@@ -899,8 +918,8 @@
 						}
 						else
 						{
-							for( ; inZonesOfControl > 1;  )
-							{
+							if(inZonesOfControl > 1){
+								continue;
 							}
 						}
 					}
@@ -1098,7 +1117,7 @@
 
 							if (this.hasNegativeTileEffect(intermediateTile, _entity))
 							{
-								destinationScore = destinationScore - this.Const.AI.Behavior.EngageBadTerrainPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult;
+								destinationScore = destinationScore - this.Const.AI.Behavior.EngageBadTerrainEffectPenalty * this.getProperties().EngageOnBadTerrainPenaltyMult;
 							}
 						}
 					}
@@ -1161,7 +1180,7 @@
 						continue;
 					}
 
-					if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ally.getCurrentProperties().IsRooted || ally.getCurrentProperties().IsStunned)
+					if (ally.getMoraleState() == this.Const.MoraleState.Fleeing || ::Legends.S.isEntityMovementDisabled(ally))
 					{
 						continue;
 					}
@@ -1345,4 +1364,42 @@
 
 		return this.Const.AI.Behavior.Score.Zero;
 	}
+
+	// The original onExecute builds its path only once, and calls navigator.travel() later. If
+	// the cached path becomes invalid in between (typically the destination tile was taken by
+	// a spawned schrat sapling, but could be anything else) then engine will ctd.
+	// Try to detect that (either actor or tile are invalid) and abort early (same code as vanilla).
+	local onExecute = o.onExecute;
+	o.onExecute = function (_entity) {
+		local onTravel = this.m.TargetTile != null
+			&& !this.m.IsFirstExecuted
+			&& this.m.Skill == null;
+
+		if (onTravel) {
+			local actorGone = this.m.TargetActor != null
+				&& (this.m.TargetActor.isNull() || !this.m.TargetActor.isAlive());
+
+			local tileBlocked = false;
+			if (this.m.TargetTile.IsOccupiedByActor && this.m.TargetActor != null) {
+				local target = this.m.TargetTile.getEntity();
+				local isNotSelf = target.getID() != _entity.getID();
+				local isNotTarget = target.getID() != this.m.TargetActor.getID();
+				tileBlocked = isNotSelf && isNotTarget;
+			}
+
+			if (actorGone || tileBlocked) {
+				if (::Const.AI.VerboseMode) {
+					::logWarning("ai_engage_melee: aborting stale path for " + _entity.getName());
+				}
+				this.m.TargetTile = null;
+				this.m.TargetActor = null;
+				this.m.OriginTile = null;
+				this.m.TargetDistance = 0;
+				return true;
+			}
+		}
+
+		return onExecute(_entity);
+	}
+	
 });

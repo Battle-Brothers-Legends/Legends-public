@@ -87,26 +87,17 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 			});
 		}
 
-		if (!this.World.Flags.get("Item Identified"))
-		{
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot and consumed in battle."
+				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle"
 			});
-			return result;
 		}
-		else
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle."
-			});
-			return result;
-		}
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -117,7 +108,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		this.addSkill(::new("scripts/skills/actives/legend_oms_amphora_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendOmsAmphora);
 	}
 
 	function onCombatFinished()

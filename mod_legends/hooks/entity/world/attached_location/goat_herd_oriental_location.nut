@@ -4,8 +4,8 @@
 	o.onUpdateDraftList = function ( _list )
 	{
 		onUpdateDraftList(_list);
-		_list.push("legend_muladi_background");
-		_list.push("legend_muladi_background");
+		_list.push(::Legends.Background.LegendMuladi);
+		_list.push(::Legends.Background.LegendMuladi);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
@@ -43,11 +43,11 @@
 				P = 1.0,
 				S = "weapons/legend_northern_sling"
 			});
-				_list.push({
+			/*	_list.push({
 				R = 90,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 		}
 	}
 });

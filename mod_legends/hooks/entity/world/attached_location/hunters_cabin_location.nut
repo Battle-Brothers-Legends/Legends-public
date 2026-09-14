@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Hunters take shelter in these small huts while on the hunt. Chopped up game, venison and hides hung up to dry in the sun surround the huts. Contributes meat, furs, bows, poachers and hunters to the local town";
+		this.m.Description = "Hunters take shelter in these small huts while on the hunt. Chopped up game, venison and hides hung up to dry in the sun surround the huts. Contributes meat, furs, bows, poachers and hunters to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
@@ -18,12 +18,12 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("poacher_background");
-		_list.push("poacher_background");
-		_list.push("legend_taxidermist_background");
+		_list.push(::Legends.Background.Poacher);
+		_list.push(::Legends.Background.Poacher);
+		_list.push(::Legends.Background.LegendTaxidermist);
 
 		if (this.Math.rand(0, 9) == 1)
-			_list.push("legend_master_archer_background");
+			_list.push(::Legends.Background.LegendMasterArcher);
 
 		// todo delete it - chopeks
 //		if(this.LegendsMod.Configs().LegendMagicEnabled())
@@ -35,8 +35,8 @@
 //				r = this.Math.rand(0, 9);
 //				if (r == 1)
 //				{
-//				_list.push("legend_master_archer_background");
-//				_list.push("legend_ranger_background");
+//				_list.push(::Legends.Background.LegendMasterArcher);
+//				_list.push(::Legends.Background.LegendRanger);
 //				}
 //			}
 //			else
@@ -44,7 +44,7 @@
 //			r = this.Math.rand(0, 9);
 //				if (r == 1)
 //				{
-//				_list.push("legend_master_archer_background");
+//				_list.push(::Legends.Background.LegendMasterArcher);
 //				}
 //			}
 //
@@ -93,11 +93,11 @@
 				P = 1.0,
 				S = "weapons/knife"
 			});
-			_list.push({
+			/*_list.push({
 				R = 80,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 		}
 	}
 });

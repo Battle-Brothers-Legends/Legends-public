@@ -39,13 +39,13 @@
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			tooltip.push({
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -58,11 +58,13 @@
 			return false;
 
 		local actor = this.getContainer().getActor();
-		if (actor.getBackground().getID() == "background.legend_donkey")
+		if (::Legends.S.isEntityNullOrDead(actor))
+			return false;
+		if (actor.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
 			return false;
 
 		local tile = actor.getTile();
-		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.m.Container.hasPerk(::Legends.Perk.LegendSpecBandage));
+		return this.skill.isUsable() && (!tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()) || this.getContainer().hasPerk(::Legends.Perk.LegendSpecBandage));
 	}
 
 	o.onVerifyTarget = function( _originTile, _targetTile )
@@ -84,7 +86,7 @@
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.bleeding") || target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		if (target.getSkills().hasEffect(::Legends.Effect.Bleeding) || target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
 			return true;
 		}
@@ -119,14 +121,14 @@
 		local target = _targetTile.getEntity();
 		this.spawnIcon("perk_55", _targetTile);
 
-		while (target.getSkills().hasSkill("effects.bleeding"))
+		while (target.getSkills().hasEffect(::Legends.Effect.Bleeding))
 		{
-			target.getSkills().removeByID("effects.bleeding");
+			::Legends.Effects.remove(target, ::Legends.Effect.Bleeding);
 		}
 
-		while (target.getSkills().hasSkill("effects.legend_grazed_effect"))
+		while (target.getSkills().hasEffect(::Legends.Effect.LegendGrazedEffect))
 		{
-			target.getSkills().removeByID("effects.legend_grazed_effect");
+			::Legends.Effects.remove(target, ::Legends.Effect.LegendGrazedEffect);
 		}
 
 		local skill;

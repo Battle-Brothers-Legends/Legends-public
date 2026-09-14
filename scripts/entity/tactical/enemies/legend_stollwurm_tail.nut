@@ -201,12 +201,6 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("lindwurm");
 		this.getFlags().add("tail");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/lindwurm_tail_agent");
-
-		this.logInfo("AIAGENT STOLLWURM TAIL = " + this.m.AIAgent);
-		foreach(k,v in this.m.AIAgent)
-		{
-			this.logInfo("key = " + k + " : " + v)
-		}
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -457,9 +451,8 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (_tile != null)
-		{
-			local flip = this.Math.rand(0, 100) < 50;
+		local flip = this.Math.rand(0, 100) < 50;
+		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -468,9 +461,15 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Stollwurm";
-			corpse.IsHeadAttached = true;
+		}
+
+		local tileLoot = this.getLootForTile(_killer, []);
+		this.dropLoot(_tile, tileLoot, !flip);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
@@ -478,17 +477,25 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Stollwurm";
+		corpse.IsHeadAttached = true;
+		if (_tile != null)
+			corpse.Tile = _tile;
+		return corpse;
+	}
+
 	function checkMorale( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		this.m.Body.checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
-	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false )
-	{
+	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false ) {
 		this.actor.kill(_killer, _skill, _fatalityType, _silent);
 
-		if (this.m.Body != null && !this.m.Body.isNull() && this.m.Body.isAlive() && !this.m.Body.isDying())
-		{
+		if (!::Legends.S.isEntityNullOrDead(this.m.Body)) {
 			this.m.Body.kill(_killer, _skill, _fatalityType, _silent);
 			this.m.Body = null;
 		}
@@ -510,7 +517,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsMovable = false;
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;
@@ -545,20 +552,20 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Racial = this.new("scripts/skills/racial/lindwurm_racial");
-		this.m.Skills.add(this.m.Racial);
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_big_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/tail_slam_split_skill"));
+		this.m.Racial = ::Legends.Traits.grant(this, ::Legends.Trait.RacialLindwurm);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlam);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamBig);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamSplit);
+		::Legends.Actives.grant(this, ::Legends.Active.TailSlamZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_stollwurm_move_tail_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStollwurmMoveTail);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
+			b.Hitpoints *= 1.5;
 			this.m.ActionPoints = b.ActionPoints + 5;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
@@ -566,42 +573,16 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
+
+		local skills = this.getSkills();
+		local skills_add = skills.add;
+		skills.add = function( _skill, _order = 0 )	{
+			if ((_skill.getID() in this.getActor().m.Body.m.EffectsSharedWithTailLookup || _skill.getID() == ::Legends.Effects.getID(::Legends.Effect.LegendChoked)) && (!("IsFromHead" in _skill.m) || !_skill.m.IsFromHead)) {
+				return;
+        	}
+        	skills_add(_skill, _order);
+		}.bindenv(skills);
 	}
-
-
 });
-

@@ -37,13 +37,33 @@
 		return itemsMap;
 	}
 
+	local add = o.add;
+	o.add = function( _item ) {
+		local result = add(_item);
+		if(result != null && _item != null) {
+			::Legends.Inventory.applyAutomationStateEffects(_item, 0, ::Legends.Inventory.getCompositeAutomationState(_item));
+		}
+		return result;
+	}
+
+	local insert = o.insert;
+	o.insert = function( _item, _index ) {
+		local result = insert(_item, _index);
+		if(_item != null) {
+			::Legends.Inventory.applyAutomationStateEffects(_item, _index, ::Legends.Inventory.getCompositeAutomationState(_item));
+		}
+		return result;
+	}
+
 	o.upgrade <- function ( _sourceIndex, _targetIndex )
 	{
 		if (this.isValidSlot(_sourceIndex) && this.isValidSlot(_targetIndex))
 		{
 			local sourceItem = this.m.Items[_sourceIndex];
 			local targetItem = this.m.Items[_targetIndex];
-			return sourceItem.onUse(null, targetItem)
+						
+			if ((sourceItem.SuperName.find("upgrade") != null || sourceItem[sourceItem.SuperName].SuperName.find("upgrade") != null) && targetItem.SuperName.find("upgrade") == null) //prevent trying to equip bases on upgrades or other bases and upgrades on upgrades
+				return sourceItem.onUse(null, targetItem, true);
 		}
 		return false;
 	}
@@ -59,7 +79,7 @@
 
 			if (item.getID() == _id)
 			{
-				return true
+				return true;
 			}
 		}
 		return false;

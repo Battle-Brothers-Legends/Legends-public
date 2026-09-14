@@ -31,15 +31,15 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
 		local aList = [
-			[1, "oriental/stitched_nomad_armor"],
-			[1, "oriental/leather_nomad_robe"],
-			[1, "oriental/nomad_robe"],
-			[1, "oriental/thick_nomad_robe"]
+			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
+			[1, ::Legends.Armor.Southern.leather_nomad_robe],
+			[1, ::Legends.Armor.Southern.nomad_robe],
+			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		];
 		local armor = this.Const.World.Common.pickArmor(aList);
 		this.m.Items.equip(armor);
 		local helmet = [
-			[1, "oriental/nomad_head_wrap"]
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		];
 		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
 	}

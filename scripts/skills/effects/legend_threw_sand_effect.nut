@@ -3,8 +3,7 @@ this.legend_threw_sand_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_threw_sand_effect";
-		this.m.Name = "Threw pocket sand";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendThrewSandEffect);
 		this.m.Icon = "ui/perks/throw_sand_01.png";
 		this.m.IconMini = "mini_throw_sand_circle";
 		this.m.Overlay = "mini_throw_sand_circle"; //needs a big throw sand if players are gonna have it
@@ -15,6 +14,6 @@ this.legend_threw_sand_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has thrown pocket sand and can't do so again this battle";
+		return "This character has thrown sand from their pockets and can't do so again this battle.";
 	}
 });

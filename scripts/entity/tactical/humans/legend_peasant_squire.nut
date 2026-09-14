@@ -13,6 +13,9 @@ this.legend_peasant_squire <- this.inherit("scripts/entity/tactical/human", {
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -47,21 +50,27 @@ this.legend_peasant_squire <- this.inherit("scripts/entity/tactical/human", {
 	function assignRandomEquipment()
 	{
 		if (this.Math.rand(1, 100) <= 66) {
-			this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
-			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/shortsword"],
+			], "scripts/items/"));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "shields/wooden_shield"],
+			], "scripts/items/"));
 		}
 		else
 		{
-			local weapons = [
-				"weapons/legend_ranged_wooden_flail",
-			];
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.getItems().equip(::Const.World.Common.pickItem([
+				[1, "weapons/legend_ranged_wooden_flail"],
+			], "scripts/items/"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([[1, "worn_mail_shirt"]]));
+		this.m.Items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
+		]));
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([[1, "padded_nasal_helmet"]]))
-
+		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.padded_nasal_helmet]
+		]));
 	}
 
 });

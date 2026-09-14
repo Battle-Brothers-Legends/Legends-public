@@ -2,24 +2,19 @@ this.perk_legend_incoming <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendIncoming);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendIncoming);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_incoming"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendIncoming))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_incoming_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendIncoming);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_incoming");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendIncoming);
 	}
 
 });

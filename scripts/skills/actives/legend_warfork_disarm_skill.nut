@@ -1,0 +1,85 @@
+this.legend_warfork_disarm_skill <- this.inherit("scripts/skills/skill", {
+	m = {},
+
+	function create() {
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWarforkDisarm);
+		this.m.Description = "Use the warfork\'s particular shape to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/repel_hit", 3);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/impale", 3);
+		this.m.SoundOnHit = [];
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
+		this.m.IsSerialized = false;
+		this.m.IsActive = true;
+		this.m.IsTargeted = true;
+		this.m.IsStacking = false;
+		this.m.IsAttack = true;
+		this.m.IsIgnoredAsAOO = true;
+		this.m.IsWeaponSkill = true;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
+		this.m.DirectDamageMult = 0.0;
+		this.m.HitChanceBonus = -20;
+		this.m.ActionPointCost = 5;
+		this.m.FatigueCost = 30;
+		this.m.MinRange = 1;
+		this.m.MaxRange = 2;
+	}
+
+	function getTooltip() {
+		local ret = this.skill.getDefaultUtilityTooltip();
+		if (this.m.HitChanceBonus != 0) {
+			ret.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/hitchance.png",
+				text = "Has [color=%negative%]" + this.m.HitChanceBonus + "%[/color] chance to hit"
+			});
+		}
+
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=%positive%]100%[/color] chance to disarm on a hit"
+		});
+		return ret;
+	}
+
+	function onAfterUpdate(_properties) {
+		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
+		//this.m.HitChanceBonus = _properties.IsSpecializedInPolearms ? -10 : -20; // already handled by onAnySkillUsed?
+	}
+
+	function onUse(_user, _targetTile) {
+		local target = _targetTile.getEntity();
+		local success = this.attackEntity(_user, target);
+
+		if (success) {
+			if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsImmuneToDisarm) {
+				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
+
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has disarmed " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
+				}
+			}
+		} else {
+			if (this.m.SoundOnMiss.len() != 0) {
+				::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
+			}
+
+			_user.getSkills().onTargetMissed(this, target);
+		}
+
+		return success;
+	}
+
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
+			_properties.MeleeSkill -= _properties.IsSpecializedInPolearms ? 10 : 20;
+			this.m.HitChanceBonus += _properties.IsSpecializedInPolearms ? 10 : 0;
+			_properties.DamageTotalMult = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
+		}
+	}
+});

@@ -3,24 +3,36 @@ this.legend_helmet_pimp_hat <- this.inherit("scripts/items/legend_helmets/legend
 	function create()
 	{
 		this.legend_helmet_upgrade.create();
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.ID = "armor.head.legend_helmet_pimp_hat";
+		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Pimp\'s hat";
 		this.m.Description = "An exceptionally gaudy piece of headwear that instantly attracts the wrong type of attention.";
-		this.m.ArmorDescription = this.m.Description;
-		this.m.Variants = [1];
+		this.m.ArmorDescription = "Includes a flamboyant hat.";
+		this.m.Variants = [1,2];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Value = 1200;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
 		this.m.StaminaModifier = -1;
 		// this.m.Vision = 1;
-		this.m.IsLowerVanity = false;
+		this.m.Lower = false;
 		this.m.HideHair = false;
 		this.m.HideBeard = false;
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.Sprite = "legendhelms_pimp_hat_" + variant;
+		this.m.SpriteDamaged = "legendhelms_pimp_hat_" + variant + "_damaged";
+		this.m.SpriteCorpse = "legendhelms_pimp_hat_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/inventory_pimp_hat_" + variant + ".png";
+		this.m.IconLarge = this.m.Icon;
+		this.m.OverlayIcon = this.m.Icon;
+		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 
 	function getTooltip()
@@ -46,17 +58,5 @@ this.legend_helmet_pimp_hat <- this.inherit("scripts/items/legend_helmets/legend
 	{
 		this.legend_helmet_upgrade.onUpdateProperties(_properties);
 		_properties.TargetAttractionMult *= 1.4; // 1.0 = normal aggression, 0.1 = minimal aggression
-	}
-
-	function updateVariant()
-	{
-		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
-		this.m.Sprite = "legendhelms_pimp_hat" + "_" + variant;
-		this.m.SpriteDamaged = "legendhelms_pimp_hat" + "_" + variant + "_damaged";
-		this.m.SpriteCorpse = "legendhelms_pimp_hat" + "_" + variant + "_dead";
-		this.m.Icon = "legend_helmets/inventory_pimp_hat" + "_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
-		this.m.OverlayIcon = this.m.Icon;
-		this.m.OverlayIconLarge = this.m.OverlayIcon;
 	}
 });

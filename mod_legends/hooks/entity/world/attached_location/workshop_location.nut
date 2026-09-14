@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "The workshop is proficient in making all kinds of tools and other supplies needed to keep carts and machines working. Contributes armor parts, ironmongers and blacksmiths to the local town";
+		this.m.Description = "The workshop is proficient in making all kinds of tools and other supplies needed to keep carts and machines working. Contributes armor parts, ironmongers and blacksmiths to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
@@ -19,18 +19,17 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("legend_ironmonger_background");
-		_list.push("legend_ironmonger_background");
-		_list.push("legend_ironmonger_background");
-		_list.push("legend_ironmonger_background");
-		_list.push("legend_blacksmith_background");
-		_list.push("legend_blacksmith_background");
+		_list.push(::Legends.Background.LegendIronmonger);
+		_list.push(::Legends.Background.LegendIronmonger);
+		_list.push(::Legends.Background.LegendIronmonger);
+		_list.push(::Legends.Background.LegendIronmonger);
+		_list.push(::Legends.Background.LegendBlacksmith);
+		_list.push(::Legends.Background.LegendBlacksmith);
 		onUpdateDraftList(_list);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function ( _id, _list ) {
 		onUpdateShopList(_id, _list);
 		if (_id == "building.marketplace")
 		{
@@ -60,12 +59,28 @@
 				S = "supplies/armor_parts_item"
 			});
 		}
-		else if (_id == "building.weaponsmith")
-		{
+		else if (_id == "building.armorsmith") {
 			_list.push({
 				R = 95,
-				P = 1.0,
-				S = "weapons/named/legend_named_blacksmith_hammer"
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+		}
+		else if (_id == "building.weaponsmith") {
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_tools"
 			});
 		}
 	}

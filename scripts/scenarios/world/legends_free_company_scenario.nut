@@ -38,79 +38,79 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		bros[0].setPlaceInFormation(2);
 		bros[0].setVeteranPerks(2);
 		bros[0].setStartValuesEx([ //wildcard 1 all possible wildcards
-			"disowned_noble_background",
-			"nomad_background",
-			// "female_disowned_noble_background",
-			"adventurous_noble_background",
-			// "female_adventurous_noble_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"militia_background",
-			"legend_conscript_background",
-			"bastard_background",
-			"beast_hunter_background",
-			"legend_noble_ranged",
-			"legend_noble_shield",
-			"raider_background"
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Bastard,
+			::Legends.Background.BeastSlayer,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.DisownedNoble,
+			::Legends.Background.Militia,
+			::Legends.Background.Nomad,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.LegendConscript,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.LegendFootSoldier
 		]);
-		
+
 		bros[1].setPlaceInFormation(3);
 		bros[1].setVeteranPerks(2);
 		bros[1].setStartValuesEx([ //wildcard 2 all possible wildcards minus noble ranged
-			"disowned_noble_background",
-			"nomad_background",
-			// "female_disowned_noble_background",
-			"adventurous_noble_background",
-			// "female_adventurous_noble_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"militia_background",
-			"legend_conscript_background",
-			"bastard_background",
-			"beast_hunter_background",
-			"legend_noble_shield",
-			"raider_background"
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Bastard,
+			::Legends.Background.BeastSlayer,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.DisownedNoble,
+			::Legends.Background.Militia,
+			::Legends.Background.Nomad,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.LegendConscript,
+			::Legends.Background.LegendFootSoldier
 		]);
 
 		bros[2].setPlaceInFormation(4);
 		bros[2].setVeteranPerks(2);
 		bros[2].setStartValuesEx([ ///elite
-			"swordmaster_background",
-			"legend_master_archer_background",
-			"hedge_knight_background",
-			"legend_noble_2h",
-			"gladiator_background",
-			"assassin_southern_background"
+			::Legends.Background.AssassinSouthern,
+			::Legends.Background.Gladiator,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.LegendHouseGuard,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.LegendMasterArcher
 		]);
 
 		bros[3].setPlaceInFormation(11);
 		bros[3].setVeteranPerks(2);
 		bros[3].setStartValuesEx([ //ranged 1
-			"nomad_ranged_background",
-			"hunter_background",
-			"beast_hunter_background",
-			"poacher_background",
-			"legend_noble_ranged",
-			"legend_conscript_ranged_background"
+			::Legends.Background.BeastSlayer,
+			::Legends.Background.Hunter,
+			::Legends.Background.Poacher,
+			::Legends.Background.LegendConscriptRanged,
+			::Legends.Background.LegendArbalester,
+			::Legends.Background.NomadRanged
 		]);
 
 		bros[4].setPlaceInFormation(12);
-		bros[4].setVeteranPerks(2);	
+		bros[4].setVeteranPerks(2);
 		bros[4].setStartValuesEx([ //non combat 1
-			"monk_background",
-			"bowyer_background",
-			"butcher_background",
-			"minstrel_background",
-			"servant_background",
-			"legend_herbalist_background",
-			"peddler_background",
-			"legend_ironmonger_background",
-			"tailor_background",
-			"juggler_background",
-			"juggler_southern_background",
-			"caravan_hand_background",
-			"caravan_hand_southern_background",
-			"houndmaster_background"
+			::Legends.Background.Bowyer,
+			::Legends.Background.Butcher,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Juggler,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Monk,
+			::Legends.Background.Peddler,
+			::Legends.Background.Servant,
+			::Legends.Background.Tailor,
+			::Legends.Background.LegendHerbalist,
+			::Legends.Background.LegendIronmonger,
+			::Legends.Background.JugglerSouthern,
+			::Legends.Background.CaravanHandSouthern
 		]);
 
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
@@ -184,7 +184,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		}, null);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
 	}
 

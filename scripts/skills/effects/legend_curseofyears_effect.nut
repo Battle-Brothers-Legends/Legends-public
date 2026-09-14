@@ -9,22 +9,12 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_curseofyears";
-		this.m.Name = "Decrepify";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendCurseofyears);
 		this.m.KilledString = "Died over time";
 		this.m.Icon = "skills/status_effect_81.png";
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/nightmare_01.wav",
-			"sounds/enemies/dlc2/nightmare_02.wav",
-			"sounds/enemies/dlc2/nightmare_03.wav",
-			"sounds/enemies/dlc2/nightmare_04.wav",
-			"sounds/enemies/dlc2/nightmare_05.wav",
-			"sounds/enemies/dlc2/nightmare_06.wav",
-			"sounds/enemies/dlc2/nightmare_07.wav",
-			"sounds/enemies/dlc2/nightmare_08.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -32,7 +22,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is consumed by unnatural nightmares and is unable to act. As the horror eats away his sanity, he\'ll take [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getDamage() + "[/color] damage based on his resolve each turn. The character can be forcibly awoken from these nightmares by a nearby ally, but he won\'t wake up on his own.";
+		return "This character is consumed by unnatural nightmares and is unable to act. As horror eats away their sanity, they\'ll take [color=%positive%]" + this.getDamage() + "[/color] damage based on their resolve each turn. The character can be forcibly awoken from these nightmares by a nearby ally, but won\'t wake up on their own.";
 	}
 
 	function getTooltip()
@@ -52,7 +42,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]aging over time[/color] "
+				text = "[color=%negative%]aging over time[/color] "
 			}
 		];
 	}
@@ -110,12 +100,9 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function onTurnStart()
-	{
-		local actor = this.getContainer().getActor();
-		if (this.m.SoundOnUse.len() != 0)
-		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
+	function onTurnStart() {
+		if (this.m.SoundOnUse.len() != 0) {
+			::Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
 		}
 	}
 

@@ -36,9 +36,9 @@
 .character-screen-container .brothers-list-module .frontline-count-container
 {
 	top: -3.0rem;
-	right: 3.0rem;
+	right: 2.0rem;
 	bottom: 0;
-	width: 12.6rem;
+	width: 10.6rem;
 	height: 2.4rem;
 	position: absolute;
 
@@ -75,7 +75,7 @@
 	top: -3.0rem;
 	right: -4.0rem;
 	bottom: 0;
-	width: 12.6rem;
+	width: 10.6rem;
 	height: 2.4rem;
 	position: absolute;
 

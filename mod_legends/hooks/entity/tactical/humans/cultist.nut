@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/cultist", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/cultist", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -13,8 +20,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistNinetailsDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistCultist);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultHood);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultArmor);
 		if(::Legends.isLegendaryDifficulty())
@@ -70,15 +76,15 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[3, "cultist_leather_robe"],
-			[3, "tattered_sackcloth"],
-			[2, "barbarians/animal_hide_armor"],
-			[1, "barbarians/hide_and_bone_armor"]
+			[3, ::Legends.Armor.Standard.cultist_leather_robe],
+			[3, ::Legends.Armor.Standard.tattered_sackcloth],
+			[2, ::Legends.Armor.Barbarian.animal_hide_armor],
+			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[2, "cultist_hood"],
-			[1, "cultist_leather_hood"]
+			[2, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]);
 
 		if (item != null)

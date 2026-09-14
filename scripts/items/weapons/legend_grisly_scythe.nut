@@ -12,7 +12,6 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Pitchfork;
-		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -32,24 +31,14 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local cleave = this.new("scripts/skills/actives/cleave");
-		cleave.m.FatigueCost = 15;
-		this.addSkill(cleave);
-		this.addSkill(this.new("scripts/skills/actives/reap_skill"));
-		// todo delete it - chopeks
-//		if (this.LegendsMod.Configs().LegendMagicEnabled())
-//		{
-//			local actor = this.getContainer().getActor();
-//			if (actor == null || actor.isNull())
-//			{
-//				return;
-//			}
-//			local Skills = actor.getSkills();
-//			if (Skills.hasSkill("background.legend_commander_necro") || Skills.hasSkill("background.legend_necromancer") || Skills.hasSkill("background.legend_warlock"))
-//			{
-//				this.addSkill(this.new("scripts/skills/actives/legend_curseofyears_skill"));
-//			}
-//		}
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill)
+		{
+			_skill.m.IsScytheCleave = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Reap);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsScytheDecapitate = true;
+		}.bindenv(this));
 	}
 
 	function onDamageDealt( _target, _skill, _hitInfo )
@@ -65,7 +54,7 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 
 		local Skills = actor.getSkills();
 
-		if (!Skills.hasSkill("background.legend_commander_necro") && !Skills.hasSkill("background.legend_necromancer") && !Skills.hasSkill("background.legend_ancient_summoner") && !Skills.hasSkill("background.legend_death_summoner"))
+		if (!Skills.hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro)) && !Skills.hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendNecromancer)))
 		{
 			return;
 		}

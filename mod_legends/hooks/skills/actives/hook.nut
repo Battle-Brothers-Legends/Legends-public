@@ -3,9 +3,32 @@
 	o.m.IsChain <- false;
 
 	local create = o.create;
-	o.create = function ()
+	o.create = function()
 	{
 		create();
+		this.m.HitChanceBonus = 10;
+	}
+
+	o.getTooltip = function() {
+		local ret = this.getDefaultUtilityTooltip();
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+		});
+		ret.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/hitchance.png",
+			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
+		});
+		return ret;
+	}
+
+	o.setItem <- function (_item)
+	{
+		this.skill.setItem(_item);
 		if (this.m.IsChain)
 		{
 			this.m.Description = "A target up to 3 tiles away is hooked and pulled close if there is space. Anyone hit will be staggered and lose initiative. A target can not be pulled up a level of height, but may take damage if it is pulled down several levels of height at once. Shieldwall, Spearwall and Riposte will be canceled for a successfully hooked-in target. A rooted target can not be hooked.";
@@ -14,90 +37,35 @@
 		}
 	}
 
+	local onVerifyTarget = o.onVerifyTarget;
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
 		this.m.IsAttack = false; // work around to allow targeting on allies
-		local result = this.skill.onVerifyTarget(_originTile, _targetTile);
+		local result = onVerifyTarget(_originTile, _targetTile);
 		this.m.IsAttack = true;
-
-		if (!result || _targetTile.getEntity().getCurrentProperties().IsRooted)
-			return false;
-
-		return this.getPulledToTile(_originTile, _targetTile) != null;
+		return result;
 	}
 
+	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
 
-		if (this.Math.rand(1, 100) > this.getHitchance(target))
-			return false;
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && target.isAlliedWith(_user))
+			target.getFlags().set("CanNotBeStaggered", true);
 
-		local pullToTile = this.getPulledToTile(_user.getTile(), _targetTile);
+		local ret = onUse(_user, _targetTile);
 
-		if (pullToTile == null)
-			return false;
+		if (!ret)
+			target.getFlags().remove("CanNotBeStaggered");
 
-		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-			return false;
-
-		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer)
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
-
-		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
-			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-
-		if (this.m.SoundOnHit.len() != 0)
-			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
-
-		if (!this.getContainer().hasTrait(::Legends.Trait.Teamplayer) || !target.isAlliedWith(getContainer().getActor()))
-		{
-			target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
-
-			local overwhelm = ::Legends.Perks.get(this, ::Legends.Perk.Overwhelm);
-
-			if (overwhelm != null)
-				overwhelm.onTargetHit(this, target, this.Const.BodyPart.Body, 0, 0);
-		}
-
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(pullToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-		local tag = {
-			Attacker = _user,
-			Skill = this,
-			HitInfo = clone this.Const.Tactical.HitInfo
-		};
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(_targetTile.getEntity(), pullToTile, this.onHookingComplete, tag, true);
-		}
-		else
-		{
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.0;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			this.Tactical.getNavigator().teleport(target, pullToTile, this.onPulledDown, tag, true);
-		}
-
-		return true;
+		return ret;
 	}
 
-	local onAfterUpdate = o.onAfterUpdate;
-	o.onAfterUpdate = function ( _properties )
-	{
-		if (this.m.IsChain)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-			this.m.ActionPointCost = _properties.IsSpecializedInFlails ? 5 : 6;
-		}
-		else
-		{
-			onAfterUpdate( _properties );
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
@@ -113,7 +81,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		if (this.getContainer().hasTrait(::Legends.Trait.Teamplayer) && _targetEntity.isAlliedWith(getContainer().getActor()))
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(getContainer().getActor()))
 			return 100;
 
 		return this.skill.getHitchance(_targetEntity);

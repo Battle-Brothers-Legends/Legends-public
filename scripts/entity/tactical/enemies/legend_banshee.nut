@@ -38,10 +38,19 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghost_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_banshee_essence_item"]
+			]);
+		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(1, 100) < 50;
+
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("OvercomingFear", 1, 1);
@@ -113,27 +122,9 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 			this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 50)
-				{
-					loot = this.new("scripts/items/misc/legend_banshee_essence_item");
-				}
-				else
-				{
-					continue;
-				}
-
-				loot.drop(_tile);
-			}
-		}
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
@@ -152,7 +143,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 140)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -189,20 +180,21 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
-		this.m.Skills.add(this.new("scripts/skills/actives/ghastly_touch"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_banshee_scream"));
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Actives.grant(this, ::Legends.Active.GhastlyTouch);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBansheeScream);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialGhost);
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_skill"));
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_nightmare_touch_zoc_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouch);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouchZoc);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		}
 

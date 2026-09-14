@@ -3,14 +3,10 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 	function create()
 	{
 		this.legend_horse.create();
-		this.m.ID = "background.legend_horse_courser";
-		this.m.Name = "Courser";
-		this.m.Icon = "ui/backgrounds/legend_horse.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorseCourser);
 		this.m.BackgroundDescription = "Coursers are swift and strong horses well-suited for war, hunting and transportation.";
 		this.m.GoodEnding = "%name% the Courser was sold to a Lady of a Noble House as her coming-of-age present. Though its fighting skill dulled with age, it was well-loved and enjoyed the luxurious life of a Noble's steed.";
 		this.m.BadEnding = "%name% the Courser didn't wear its warwounds with as much pride and dignity one could have hoped, and one time when the horse encountered a knight in the city, it went wild and started bucking. When the knight himself was unhorsed in the commotion, there was no mercy. %name% was put down.";
-		this.m.HiringCost = 20000;
-		this.m.DailyCost = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
@@ -23,72 +19,67 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 		];
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[2];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[3];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[3];
 		this.m.CustomPerkTree = [
 				[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.LegendHorseLongeing
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.Recover,
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHorseLongeing
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.LegendHorseLiberty,
-				this.Const.Perks.PerkDefs.LegendHorseBitting,
-				this.Const.Perks.PerkDefs.LegendHorseDesensitization
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.LegendComposure,
+				::Legends.Perk.SteelBrow,
+				::Legends.Perk.LegendHorseLiberty,
+				::Legends.Perk.LegendHorseBitting,
+				::Legends.Perk.LegendHorseDesensitization
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.LegendSprint,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
-				this.Const.Perks.PerkDefs.LegendHorseCollection,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
-				this.Const.Perks.PerkDefs.LegendHorseCharge
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Steadfast,
+				// ::Legends.Perk.LegendSprint,
+				::Legends.Perk.LegendOnslaught,
+				::Legends.Perk.LegendHorseCollection,
+				::Legends.Perk.LegendBackToBasics,
+				::Legends.Perk.LegendHorseCharge
 
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendEfficientPacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBinding,
-				this.Const.Perks.PerkDefs.LegendMedPackages,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers,
-				this.Const.Perks.PerkDefs.LegendHorseImpulsion,
-				this.Const.Perks.PerkDefs.LegendHorseHippology
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers,
+				::Legends.Perk.LegendHorseImpulsion,
+				::Legends.Perk.LegendHippology
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendHorseLegControl,
-				this.Const.Perks.PerkDefs.LegendHorseLeadChange,
-				this.Const.Perks.PerkDefs.LegendHorseParthianShot
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Underdog,
+				::Legends.Perk.LegendHorseLegControl,
+				::Legends.Perk.LegendHorseLeadChange,
+				::Legends.Perk.LegendHorseParthianShot
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.LegendMuscularity,
-				this.Const.Perks.PerkDefs.LegendHorsePiaffe,
-				this.Const.Perks.PerkDefs.LegendHorseTempiChange,
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendTacticalManeuvers,
+				::Legends.Perk.LegendMuscularity,
+				::Legends.Perk.LegendHorsePiaffe,
+				::Legends.Perk.LegendHorseTempiChange,
 			],
 			[
-				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBundles,
-				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares,
-				this.Const.Perks.PerkDefs.LegendHorseFlyingChange,
-				this.Const.Perks.PerkDefs.LegendHorsePirouette,
-				this.Const.Perks.PerkDefs.LegendHorsePassage
+				::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares,
+				::Legends.Perk.LegendHorseFlyingChange,
+				::Legends.Perk.LegendHorsePirouette,
+				::Legends.Perk.LegendHorsePassage
 			],
 			[],
 			[],
@@ -105,41 +96,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				100,
-				120
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				40,
-				50
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorseCourser);
 	}
 
 	function onAddEquipment()

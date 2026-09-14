@@ -3,7 +3,7 @@ this.legend_tent_train <- this.inherit("scripts/items/trade/trading_good_item", 
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.training_tent";
+		this.m.ID = ::Legends.Camp.Tent.Training;
 		this.m.Name = "Training equipment";
 		this.m.Description = "A collection of equipment for training mercenaries, comes with a training dummy, wooden weapons and ring pegs. Having this in your stash upgrades your camp.";
 		this.m.Icon = "tents/tent_training_70x70.png";

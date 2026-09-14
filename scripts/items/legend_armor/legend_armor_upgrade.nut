@@ -15,7 +15,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		InventorySound = this.Const.Sound.ArmorLeatherImpact,
 		IsDestroyedOnRemove = false,
 		Variants = [],
-		Visible = true,
 
 		// Basic stats on armor items
 		Condition = 1.0,
@@ -29,10 +28,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		ThreatModifier = 0,		// Modifies Threat of wearer (The inverse of this is subtracted from Resolve of adjacent enemies)
 		ResolveModifier = 0,		// Modifies Resolve of wearer
 		DamageReceivedArmorMult = 0.0,		// Multiplier to the damage received by the currently worn body armor
-		FatiguePenaltyMultiplier = 0.0		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
+		FatiguePenaltyMultiplier = 0.0,		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
+		Visible = true,
 	},
 	function create()
 	{
+		this.item.create();
 		this.m.SlotType = this.Const.ItemSlot.Body;
 		this.m.ItemType = this.Const.Items.ItemType.Armor;
 		this.m.IsDroppedAsLoot = true;
@@ -107,6 +108,16 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getStaminaModifier()
 	{
+		if (this.getContainer() == null)
+			return this.m.StaminaModifier;
+
+		if (this.getContainer().getActor() == null)
+			return this.m.StaminaModifier;
+
+		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendFashionable);
+		if (perk != null && ::Legends.S.oneOf(this.m.Type, perk.m.FreeSlotTypes))
+			return 0;
+
 		return this.m.StaminaModifier;
 	}
 
@@ -151,15 +162,15 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getIconOverlay()
 	{
-
 		local L = [];
-
-		if (this.isNamed())
-		{
-			L.push("layers/named_icon_glow.png")
+		if (this.isNamed()) {
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
 		}
 
-		L.push(this.m.Icon)
+		L.push(this.m.Icon);
 
 		switch (this.m.Type)
 		{
@@ -169,7 +180,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			case this.Const.Items.ArmorUpgrades.Plate:
 				L.push("layers/layer_2.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Tabbard:
+			case this.Const.Items.ArmorUpgrades.Tabard:
 				L.push("layers/layer_3.png");
 				break;
 			case this.Const.Items.ArmorUpgrades.Cloak:
@@ -181,11 +192,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 
 		if (L.len() == 0)
-		{
-			return [
-				""
-			];
-		}
+			return [""];
 
 		return L;
 	}
@@ -218,11 +225,9 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		local layer = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body).getUpgrade(this.m.Type);
 		this.applyCompareTooltip(result, layer);
 
-
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
-
-		if (this.getOverlayIconLarge() != null)
+		if (this.getOverlayIconLarge() != null && this.m.Type != this.Const.Items.ArmorUpgrades.Rune)
 		{
 			result.push({
 				id = 3,
@@ -241,38 +246,65 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 
 		// Interaction Tooltips
-		result.push({
-			id = 70,
-			type = "hint",
-			icon = "ui/icons/mouse_right_button.png",
-			text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
-		});
-		result.push({
-			id = 71,
-			type = "hint",
-			icon = "ui/icons/mouse_left_button_shift.png",
-			text = "Hold Shift and drag onto an armor in the stash to attach."
-		});
+		if (this.m.Armor == null) {
+			result.push({
+				id = 70,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button.png",
+				text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
+			});
+			result.push({
+				id = 71,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = "Hold Shift and drag onto an armor in the stash to attach."
+			});
+		} else {
+			result.push({
+				id = 1,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
+			});
+			result.push({
+				id = 2,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Unequip layer"
+			});
+		}
 
+		local rune = ::Legends.Runes.get(this.getRuneVariant());
+		if (rune != null) {
+			result.push({
+				id = 77,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Legends.Runes.getTooltip(this, rune)
+			});
+		}
 
 		return result;
-	} 
+	}
 
 	function getArmorTooltip( _result )
 	{
 		_result.push({	// An empty line is put in to improve formatting
 			id = 10,
 			type = "text",
-			icon = "ui/icons/blank.png",
-			text = " "
-		})
-		_result.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/armor_body.png",	// ui/icons/armor_body.png
-			text = "[u]" + this.getName() + "[/u]"
+			text = "&nbsp;"
 		});
-		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+
+		_result.push({
+				id = 10,
+				type = "text",
+				text = "[b][u]%name%[/u][/b]",
+				icon = "ui/items/" + this.m.Icon,
+				param = [["name", this.getName()]],
+				isPartialLayer = true
+			});
+
+		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
 			_result.push({
 				id = 10,
@@ -280,44 +312,55 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				icon = "ui/icons/armor_body.png",
 				text = "Armor: " + this.getConditionMax()
 			});
+
 			if ( this.getStaminaModifier() != 0 ) {
 				_result.push({
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 				});
 			}
 
+			local rune = ::Legends.Runes.get(this.getRuneVariant());
+			if (rune != null) {
+				_result.push({
+					id = 77,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = ::Legends.Runes.getTooltip(this, rune)
+				});
+			}
 		}
 		this.onArmorTooltip(_result);
 	}
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.ImpactSound[0], this.Const.Sound.Volume.Inventory);
+		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
 	}
 
 	function addArmor( _a)
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
+			this.m.Condition += _a;
 			return 0
 		}
 
+		local ret = _a - (this.m.ConditionMax - this.m.Condition);
 		this.m.Condition = this.m.ConditionMax;
-		return _a - (this.m.ConditionMax - this.m.Condition);
+		return ret;
 	}
 
 	function removeArmor( _a)
 	{
 		if (this.m.Condition - _a >= 0)
 		{
-			this.m.Condition -= _a
+			this.m.Condition -= _a;
 			return 0
 		}
-		local delta = _a - this.m.Condition
+		local delta = _a - this.m.Condition;
 		this.m.Condition = 0;
 		return delta;
 	}
@@ -384,18 +427,21 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function isVisible()
 	{
-		return this.m.Visible
+		return this.m.Visible;
 	}
 
 	function updateAppearance( _app )
 	{
 		local frontSprite = "";
 		local backSprite = "";
-
+		local frontSpriteCorpse = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
+		local backSpriteCorpse = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
 		if (this.isVisible() == false)
 		{
 			frontSprite = "";
 			backSprite = "";
+			frontSpriteCorpse = "";
+			backSpriteCorpse = "";
 		}
 		else if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
 		{
@@ -413,42 +459,34 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			return;
 		}
 
-		switch(this.m.Type)
-		{
-		case this.Const.Items.ArmorUpgrades.Chain:
-			_app.ArmorLayerChain = backSprite;
-			_app.CorpseArmorLayerChain = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+		local key = "";
+		local prefix = "ArmorLayer";
+		
+		switch(this.m.Type) {
+			case this.Const.Items.ArmorUpgrades.Chain:      key = "Chain"; break;
+			case this.Const.Items.ArmorUpgrades.Plate:      key = "Plate"; break;
+			case this.Const.Items.ArmorUpgrades.Tabard:    key = "Tabard"; break;
+			case this.Const.Items.ArmorUpgrades.Cloak:      key = "Cloak"; break;
+			case this.Const.Items.ArmorUpgrades.Attachment: key = "Upgrade"; prefix = "Armor"; break; 
+		}
 
-		case this.Const.Items.ArmorUpgrades.Plate:
-			_app.ArmorLayerPlate = backSprite;
-			_app.CorpseArmorLayerPlate = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+		if (key != "") {
+			local hasFrontSprite = (key == "Cloak" || key == "Upgrade");
+			local p = prefix + key;
+			local s = hasFrontSprite ? "Back" : "";
 
-		case this.Const.Items.ArmorUpgrades.Tabbard:
-			_app.ArmorLayerTabbard = backSprite;
-			_app.CorpseArmorLayerTabbard = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
+			if (hasFrontSprite) {
+				_app[p + "Front"] = frontSprite;
+				_app["Corpse" + p + "Front"] = frontSpriteCorpse;
+			}
 
-		case this.Const.Items.ArmorUpgrades.Cloak:
-			_app.ArmorLayerCloakFront = frontSprite;
-			_app.ArmorLayerCloakBack = backSprite;
-			_app.CorpseArmorLayerCloakFront = this.m.SpriteCorpseFront != null ? this.m.SpriteCorpseFront : "";
-			_app.CorpseArmorLayerCloakBack = this.m.SpriteCorpseBack != null ? this.m.SpriteCorpseBack : "";
-			break;
-
-		case this.Const.Items.ArmorUpgrades.Attachment:
-			_app.ArmorUpgradeFront = frontSprite;
-			_app.ArmorUpgradeBack = this.m.SpriteBack != null ? this.m.SpriteBack : "";
-			_app.CorpseArmorUpgradeFront = backSprite;
-			_app.CorpseArmorUpgradeBack = this.m.SpriteCorpseBack ? this.m.SpriteCorpseBack : "";
-			break;
+			_app[p + s] = backSprite;
+			_app["Corpse" + p + s] = backSpriteCorpse;
 		}
 	}
 
 	function onEquip()
 	{
-		this.setVisible(true);
 		this.item.onEquip();
 		this.setCurrentSlotType(this.m.SlotType);
 	}
@@ -456,11 +494,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function onUnequip()
 	{
 		this.item.onUnequip();
-        if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
+		//if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
 		this.setCurrentSlotType(this.Const.ItemSlot.None);
 	}
 
-	function onUse( _actor, _item = null )
+	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
@@ -470,7 +508,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		local success = armor.setUpgrade(this);
 
-		if (success)
+		if (success && _playSound)
 		{
 			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
 		}
@@ -483,7 +521,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (this.getInitiativeModifier() != 0) _properties.Initiative += this.getInitiativeModifier();
 		if (this.getThreatModifier() != 0) _properties.Threat += this.getThreatModifier();
 		if (this.getResolveModifier() != 0) _properties.Bravery += this.getResolveModifier();
-		if (this.getFatiguePenaltyMultiplier() != 0) _properties.Stamina += this.getCurrentFatigueModifier();	// We are adding to the Stamina of the wearer
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
@@ -540,29 +577,27 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 		}
 
-		_tooltipList.push({
-			id = 5,
-			type = "text",
-			icon = "ui/icons/armor_body.png",
-			text = "Maximum Armor: " + this.getConditionMax() + compareTextArmor
-		});
-
-		_tooltipList.push({
-			id = 5,
-			type = "text",
-			icon = "ui/icons/fatigue.png",
-			text = "Weight: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier()) + compareTextWeight
-		});
-
-		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
+		if (this.getStaminaModifier() != 0)
 		{
 			_tooltipList.push({
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = format("(%.1f%s Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())), compareTextArmorPerWeight)
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier()) + compareTextWeight
 			});
 		}
+
+		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )
+		{
+			_tooltipList.push({
+				id = 5,
+				type = "text",
+				icon = "ui/icons/fatigue.png",
+				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())), compareTextArmorPerWeight)
+			});
+		}
+
+
 	}
 
 	function applyEffectTooltips( _tooltipList )
@@ -607,6 +642,14 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + this.Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())
 			});
 		}
+		if ("BraveryMult" in this.m) {
+			_tooltipList.push({
+				id = 15,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Increase the Resolve of the wearer by [color=%positive%]+" + ::Math.round(this.m.BraveryMult * 100.0 - 100) + "%[/color]"
+			});
+		}
 		if (this.getDamageReceivedArmorMult() != 0)
 		{
 			_tooltipList.push({
@@ -633,7 +676,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 17,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getCurrentFatigueModifier()) + this.Math.abs(this.getCurrentFatigueModifier()), this.getCurrentFatigueModifier())
+				text = "Fatigue Weight Penalty " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getCurrentFatigueModifier()) + this.Math.abs(this.getCurrentFatigueModifier()), this.getCurrentFatigueModifier())
 			});
 		}
 	}

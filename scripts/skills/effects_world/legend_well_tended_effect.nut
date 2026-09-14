@@ -3,8 +3,7 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 	function create()
 	{
 		this.injury.create();
-		this.m.ID = "effects.legend_well_tended";
-		this.m.Name = "Well Tended";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWellTended);
 		this.m.Description = "This mercenary has been tended at a temple, and is feeling much more capable thanks to well treated wounds and some rest.";
 		this.m.Icon = "skills/legend_status_effect_well_tended.png";
 		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect;
@@ -32,31 +31,31 @@ this.legend_well_tended_effect <- this.inherit("scripts/skills/injury/injury", {
 				id = 13,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Health"
+				text = "[color=%positive%]+5%[/color] Health"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve"
+				text = "[color=%positive%]+5[/color] Resolve"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3%[/color] Fatigue"
+				text = "[color=%positive%]+3%[/color] Fatigue"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Melee skill"
+				text = "[color=%positive%]+5%[/color] Melee skill"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged skill"
+				text = "[color=%positive%]+5%[/color] Ranged skill"
 			}
 		];
 		this.addTooltipHint(ret);

@@ -2,22 +2,10 @@ this.legend_werewolf_claws_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_werewolf_claws";
-		this.m.Name = "Direwolf Claws";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWerewolfClaws);
 		this.m.Description = "Tear into flesh with long, sharp claws.";
-		this.m.Icon = "skills/active_21.png";
-		this.m.IconDisabled = "skills/active_21_bw.png";
-		this.m.Overlay = "active_21";
-		this.m.SoundOnUse = [
-			"sounds/enemies/werewolf_claw_01.wav",
-			"sounds/enemies/werewolf_claw_02.wav",
-			"sounds/enemies/werewolf_claw_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/werewolf_claw", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -60,7 +48,7 @@ this.legend_werewolf_claws_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", //fix from /ui to ui/, Abyss 6/17/23
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMin + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + p.DamageRegularMax + "[/color] damage"
+				text = "Inflicts [color=%damage%]" + p.DamageRegularMin + "[/color] - [color=%damage%]" + p.DamageRegularMax + "[/color] damage"
 			}
 		];
 	}

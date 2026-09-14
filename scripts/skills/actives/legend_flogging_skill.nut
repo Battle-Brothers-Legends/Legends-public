@@ -2,21 +2,11 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_flogging";
-		this.m.Name = "Flogging";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFlogging);
 		this.m.Description = "Whip the flesh of someone nearby to inflict a slow bleed.";
 		this.m.KilledString = "Flogged";
-		this.m.Icon = "skills/bleed_square.png";
-		this.m.IconDisabled = "skills/bleed_square_bw.png";
-		this.m.Overlay = "bleed";
-		this.m.SoundOnUse = [
-			"sounds/combat/rupture_blood_01.wav",
-			"sounds/combat/rupture_blood_02.wav",
-			"sounds/combat/rupture_blood_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/humans/0/human_fatigue_01.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rupture_blood", 3);
+		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
@@ -36,14 +26,14 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
+		local ret = this.getDefaultUtilityTooltip();
 		ret.push(
 		{
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Flog up to three targets, inflicting a bleed of 2 damage per turn over 5 turns"
-		})
+		});
 		return ret;
 	}
 
@@ -89,7 +79,7 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		local dir = ownTile.getDirectionTo(_targetTile);
 		local target = _targetTile.getEntity();
 
-		target.getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendGrazedEffect);
 		if (!_user.isAlive() || _user.isDying())
 		{
 			return;
@@ -103,7 +93,7 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 
 			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
-				nextTile.getEntity().getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " flogged " + this.Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}
@@ -121,7 +111,7 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 
 			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
-				nextTile.getEntity().getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
+				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " flogged " + this.Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}

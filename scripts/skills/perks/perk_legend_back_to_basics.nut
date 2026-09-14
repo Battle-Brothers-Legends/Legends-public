@@ -4,8 +4,8 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBackToBasics);
-		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress."
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBackToBasics);
+		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Last;
 	}
@@ -19,7 +19,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "Gaining an additional [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.BasicsStacks * 5 + "[/color] melee defense."
+				text = "Gaining an additional [color=%positive%]" + this.m.BasicsStacks * 5 + "[/color] melee defense."
 			});
 		}
 		if (this.getContainer().getActor().getMoraleState() == this.Const.MoraleState.Fleeing)
@@ -53,7 +53,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 		this.m.BasicsStacks += 1;
 
 		local a = this.getContainer().getActor();
-		if (!a.getSkills().hasSkill("effects.rallied"))
+		if (!a.getSkills().hasEffect(::Legends.Effect.Rallied))
 		{
 			local difficulty = this.Math.floor(a.getCurrentProperties().getBravery() * 0.5);
 			local morale = a.getMoraleState();
@@ -65,7 +65,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 
 			if (morale != a.getMoraleState())
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/rallied_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.Rallied);
 			}
 		}
 	}

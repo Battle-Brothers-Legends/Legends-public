@@ -1,5 +1,7 @@
 # Legends
-## [Download here](https://github.com/Battle-Brothers-Legends/Legends-public/releases/latest)
+## [Download Latest Version Here](https://github.com/Battle-Brothers-Legends/Legends-public/releases/latest)
+
+## [New to Legends? Check this to get started](https://github.com/Battle-Brothers-Legends/Legends-public/wiki)
 
 ## Contributors
 
@@ -12,17 +14,21 @@
 - *Mercury* - programing
 - *Luftwaffle* - programming, writing, balance, art
 - *NgGH707* - programming, support
-- *Sato* - programming
+- *Sato* - programming, art
 - *Abysscrane* - programming
 - *WNTR Jimmy* - programming
 - *Emo Used HM01* - programming, art
 - *Koltira* - programming
 - *Breaky* - programming, support
-- *Chopeks* - programming, support
+- *chopeks* - programming, support
 - *Son of Satan* - programming
 - *Olve* - art
 - *Shiro* - art
 - *Evie Nekomancer* ꜀(^. .^꜀ )꜆੭ - art
+- *kamy (Cutethulu)* - art
+- *Thog* - art
+- *Ivan* - art
+- *Boockle* - art
 
 #### Previous Contributors
 - *Hanter* - programming
@@ -63,4 +69,7 @@
 - *Overhype* - for allowing modding, answering our bugs, and for reviewing our design document and giving us the ok to go ahead with all planned features
 
 ## Legends Discord
-If you enjoy chatting about Battle Brothers and the Legends Mod, receive fast bug support and have access to our collection of submods - join the [Official Legends Mod Discord](https://discord.gg/a9MmzEDhE8).
+If you enjoy chatting about Battle Brothers and the Legends Mod, receive fast bug support and have access to our collection of submods - join the [Official Legends Mod Discord](https://discord.gg/yEQEUqsbVX).
+
+## Contributions
+If you'd like to contribute to the project, make sure you read and comply with our [Contributor License Agreement](CLA.md).

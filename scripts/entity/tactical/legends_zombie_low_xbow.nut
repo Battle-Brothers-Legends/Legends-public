@@ -6,8 +6,8 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieLightXbow;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
-		this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_rotten_flesh"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
+		::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.BaseProperties.Hitpoints *= 1.5;
@@ -18,30 +18,28 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 		this.m.Skills.update();
 	}
 
-	function assignRandomEquipment()
-	{
-		local r;
+	function assignRandomEquipment() {
 		this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[2, "linen_tunic"],
-			[1, "sackcloth"],
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"],
-			[1, "apron"],
-			[1, "butcher_apron"],
-			[1, "monk_robe"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[2, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.butcher_apron],
+			[1, ::Legends.Armor.Standard.monk_robe]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[67, ""],
-			[7, "hood"],
-			[7, "aketon_cap"],
-			[7, "full_aketon_cap"],
-			[7, "open_leather_cap"],
-			[7, "full_leather_cap"]
+			[67, ::Legends.Helmet.None],
+			[7, ::Legends.Helmet.Standard.hood],
+			[7, ::Legends.Helmet.Standard.aketon_cap],
+			[7, ::Legends.Helmet.Standard.full_aketon_cap],
+			[7, ::Legends.Helmet.Standard.open_leather_cap],
+			[7, ::Legends.Helmet.Standard.full_leather_cap]
 		]);
 
 		if (item != null)

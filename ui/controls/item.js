@@ -49,6 +49,13 @@ var ListItemIdentifier =
 	repairImage.attr('src', Path.GFX + Asset.ICON_REPAIR_ITEM);
 	repairLayer.append(repairImage);
 
+	// automation layer
+	var automationLayer = $('<div class="automation-layer display-none"/>');
+	result.append(automationLayer);
+	var automationImage = $('<img/>');
+	automationImage.attr('src', Path.GFX + Asset.ICON_AUTOMATION_SELL_ITEM);
+	automationLayer.append(automationImage);
+
 	// amount layer
 	var amountLayer = $('<div class="amount-layer display-block"/>');
 	result.append(amountLayer);
@@ -92,7 +99,7 @@ $.fn.setRepairImageVisible = function(_isVisible, _isSalvage)
 	{
 		if (_isSalvage)
 		{
-			iconLayer.attr('src', Path.GFX + 'ui/icons/salvage_item.png');
+			iconLayer.attr('src', Path.GFX + Asset.ICON_SALVAGE_ITEM);
 		}
 		else
 		{
@@ -109,6 +116,29 @@ $.fn.setRepairImageVisible = function(_isVisible, _isSalvage)
 			imageLayer.removeClass('display-block');
 		}
 		
+	}
+};
+
+$.fn.setAutomationImageVisible = function (_automationState) {
+	var imageLayer = this.find('.automation-layer:first');
+	var iconLayer = this.find('.automation-layer:first > img');
+	if (imageLayer.length > 0) {
+		if (_automationState !== 0) {
+			if (_automationState === 1) {
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_SELL_ITEM);
+			} else if (_automationState === 2) {
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_REPAIR_SELL_ITEM);
+			} else if (_automationState === 3) {
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_REPAIR_ITEM);
+			} else if (_automationState === 4) {
+				iconLayer.attr('src', Path.GFX + Asset.ICON_AUTOMATION_SALVAGE_ITEM);
+			}
+			imageLayer.removeClass('display-none');
+			imageLayer.addClass('display-block');
+		} else {
+			imageLayer.addClass('display-none');
+			imageLayer.removeClass('display-block');
+		}
 	}
 };
 
@@ -140,7 +170,7 @@ $.fn.assignListItemImage = function(_imagePath)
 	}
 };
 
-$.fn.assignListItemOverlayImage = function(_imagePaths)
+$.fn.assignListItemOverlayImage = function(_imagePaths, _item)
 {
 	var itemData = this.data('item');
 	var imageLayer = itemData.imageLayer;
@@ -157,16 +187,25 @@ $.fn.assignListItemOverlayImage = function(_imagePaths)
 		return;
 	}
 
-	_imagePaths.forEach(function (imagePath) {
-		if (imagePath === '') 
-		{
+	var drawOrder = [];
+	if (_item && (_item.slot === "head" || _item.slot === "body") && _item.upgrades[0]) {
+		drawOrder = Helper.getLayerUpgradeDrawOrder(_item.upgrades, _imagePaths, _item.slot, true);
+	}
+	else {
+		for (var i = 0; i < _imagePaths.length; i++)
+			drawOrder.push(i);
+	}
+
+	drawOrder.forEach(function (i) {
+		var imagePath = _imagePaths[i];
+		if (imagePath === '') {
 			return;
 		}
 		var overlayImage = $('<img/>');
 		overlayImage.attr('src', Path.ITEMS + imagePath);
 		overlayImage.addClass('display-block');
 		imageLayer.append(overlayImage);
-		overlays.push(overlayImage)
+		overlays.push(overlayImage);
 	});
 };
 

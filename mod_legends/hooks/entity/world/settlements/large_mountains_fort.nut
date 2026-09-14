@@ -1,66 +1,27 @@
-::mods_hookExactClass("entity/world/settlements/large_mountains_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/large_mountains_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.DraftList.extend([
-			"apprentice_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"juggler_background",
-			"mason_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"ratcatcher_background",
-			"vagabond_background",
-			"witchhunter_background",
-			// "female_adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"disowned_noble_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"sellsword_background",
-			"sellsword_background",
-			"squire_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"hedge_knight_background",
-			"hedge_knight_background",
-			"legend_ironmonger_background",
-			"legend_blacksmith_background",
-			"assassin_background"	
+			::Legends.Background.LegendIronmonger,
+			::Legends.Background.LegendBlacksmith,
+			::Legends.Background.Assassin,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.LegendDisownedNobleRanged,
 		]);
 		this.m.StablesList = [
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier",
-			"legend_horse_courser"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier,
+			::Legends.Background.LegendHorseCourser
 		];
 	}
 
-	o.onBuild = function ( _settings = null)
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 
-		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue())
-		{
+		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue()) {
 			local ALL = [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -93,8 +54,7 @@
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 
-		if (this.Math.rand(1, 100) <= 60)
-		{
+		if (this.Math.rand(1, 100) <= 60) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -107,9 +67,7 @@
 				this.Const.World.TerrainType.Tundra,
 				this.Const.World.TerrainType.Hills
 			], [], 1, true);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -124,8 +82,7 @@
 			], [], 1, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
-		{
+		if (this.Math.rand(1, 100) <= 50) {
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/goat_herd_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,
@@ -136,9 +93,7 @@
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wheat_fields_location", [
 				this.Const.World.TerrainType.Plains
 			], [], 1);
-		}
-		else
-		{
+		} else {
 			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/goat_herd_location", [
 				this.Const.World.TerrainType.Plains,
 				this.Const.World.TerrainType.Steppe,

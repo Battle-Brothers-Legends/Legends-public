@@ -43,10 +43,10 @@ this.legend_wardog_item <- this.inherit("scripts/items/accessory/legend_accessor
 	function onEquip()
 	{
 		this.legend_accessory_dog.onEquip();
-		local unleash = this.new("scripts/skills/actives/unleash_wardog");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.UnleashWardog, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 
 		// local attack = this.new("scripts/skills/actives/legend_doghandling_attack");
 		// attack.setItem(this);

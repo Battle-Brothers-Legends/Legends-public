@@ -100,133 +100,134 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 			"Konigshain"
 		]];
 		this.m.DraftLists = [[
-			"apprentice_background",
-			"bowyer_background",
-			"bowyer_background",
-			"butcher_background",
-			"daytaler_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"wildman_background",
-			"hunter_background",
-			"hunter_background",
-			"tailor_background",
-			"apprentice_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"wildman_background",
-			"hunter_background",
-			"hunter_background",
+			::Legends.Background.Apprentice,
+			::Legends.Background.Bowyer,
+			::Legends.Background.Bowyer,
+			::Legends.Background.Butcher,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Wildman,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
+			::Legends.Background.Tailor,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Wildman,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
 		],[
-			"beggar_background",
-			"bowyer_background",
-			"bowyer_background",
-			"brawler_background",
-			"butcher_background",
-			"daytaler_background",
-			"historian_background",
-			"hunter_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"militia_background",
-			"flagellant_background",
-			"poacher_background",
-			"poacher_background",
-			"tailor_background",
-			"vagabond_background",
-			"wildman_background",
-			"witchhunter_background",
-			"cripple_background",
-			"eunuch_background",
-			"brawler_background",
-			"butcher_background",
-			"historian_background",
-			"hunter_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"militia_background",
-			"flagellant_background",
-			"poacher_background",
-			"poacher_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"witchhunter_background",
-			"cripple_background",
-			"eunuch_background"
+			::Legends.Background.Beggar,
+			::Legends.Background.Bowyer,
+			::Legends.Background.Bowyer,
+			::Legends.Background.Brawler,
+			::Legends.Background.Butcher,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Historian,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Militia,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Tailor,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch,
+			::Legends.Background.Brawler,
+			::Legends.Background.Butcher,
+			::Legends.Background.Historian,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Militia,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch
 		],[
-			"apprentice_background",
-			"beggar_background",
-			"brawler_background",
-			"cultist_background",
-			"daytaler_background",
-			"hunter_background",
-			"hunter_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"lumberjack_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"peddler_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"hedge_knight_background",
-			"retired_soldier_background",
-			"cripple_background",
-			"eunuch_background",
-			"legend_inventor_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Beggar,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
+			::Legends.Background.Hunter,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Peddler,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Tailor,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch,
+			::Legends.Background.LegendInventor
 		]];
 		this.m.FemaleDraftLists = [[
 		// 	nothing at lvl 1
 		 ],[
 		// 	nothing at lvl 1
 		 ],[
-			"legend_shieldmaiden_background",
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
 		]];
 
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		]];
 
 		if (this.Const.DLC.Unhold)
 		{
-			this.m.DraftLists[0].push("beast_hunter_background");
-			this.m.DraftLists[1].push("beast_hunter_background");
-			this.m.DraftLists[2].push("beast_hunter_background");
-			this.m.DraftLists[2].push("beast_hunter_background");
+			this.m.DraftLists[0].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[1].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[2].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[2].push(::Legends.Background.BeastSlayer);
 		}
 
 		this.m.Rumors = this.Const.Strings.RumorsForestSettlement;
@@ -337,9 +338,7 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 				Clear = true,
 				Force = true
 			}],
-
-
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -444,10 +443,10 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -552,7 +551,7 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 2);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -725,7 +724,7 @@ this.legends_lumber_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 1);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

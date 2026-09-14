@@ -3,14 +3,10 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_preserver"; //always female
-		this.m.Name = "Preserver";
-		this.m.Icon = "ui/backgrounds/background_necromancer_2.png";
-		this.m.BackgroundDescription = "Preservers practice the art of anatomy over ressurection - taking a more scientific approach to how dead things work.";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPreserver); //always female
+		this.m.BackgroundDescription = "Preservers practice the art of anatomy over resurrection - taking a more scientific approach to how dead things work.";
 		this.m.GoodEnding = "As time went on, %name% found work not too far from where they once grew up. The local village needed a new herbalist to heal the sick and tend to the wounded coming back from the wars. %name% occasionally recognised some of the casualties that ended up in her hut as a few of those who got away in the past. Thankfully they did not have the same attention to detail.";
 		this.m.BadEnding = "%name% continued to move with the company for some time. As time went on their interest in the sciences around the dead shifted more from the living and further towards the dead. Living in a graveyard with a few puppets for company, %name% was eventually subdued and burnt at the stake by a mercenary company sent to clear the graveyard.";
-		this.m.HiringCost = 1200000000000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
@@ -39,109 +35,77 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Female;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[1];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[1];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[3];
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0,//plains
-				0.0, //swamp
-				0.0, //hills
-				0.10, //forest
-				0.10, //forest
-				0.10, //forest_leaves
-				0.10, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.02, // snow
-				0.02, // badlands
-				0.02, //highlands
-				0.0, //stepps
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
+		
 		this.m.CustomPerkTree = [
 		[
-			this.Const.Perks.PerkDefs.LegendSpecialistSlingSkill,
-			this.Const.Perks.PerkDefs.NineLives,
-			this.Const.Perks.PerkDefs.CripplingStrikes,
-			this.Const.Perks.PerkDefs.BagsAndBelts,
-			this.Const.Perks.PerkDefs.LegendSpecialistScytheSkill,
-			this.Const.Perks.PerkDefs.LegendSpecialistSickleSkill,
-			this.Const.Perks.PerkDefs.Student,
-			this.Const.Perks.PerkDefs.Recover,
-			this.Const.Perks.PerkDefs.LegendMedPackages,
-			this.Const.Perks.PerkDefs.LegendAlert
+			::Legends.Perk.LegendSpecialistShepherd,
+			::Legends.Perk.NineLives,
+			::Legends.Perk.CripplingStrikes,
+			::Legends.Perk.BagsAndBelts,
+			::Legends.Perk.LegendSpecialistReaper,
+			::Legends.Perk.LegendSpecialistHerbalist,
+			::Legends.Perk.Student,
+			::Legends.Perk.Recover,
+			::Legends.Perk.LegendMedPackages,
+			::Legends.Perk.LegendAlert
 		],
 		[
-			this.Const.Perks.PerkDefs.Dodge,
-			this.Const.Perks.PerkDefs.HoldOut,
-			this.Const.Perks.PerkDefs.FortifiedMind,
-			this.Const.Perks.PerkDefs.Gifted,
-			this.Const.Perks.PerkDefs.Bullseye,
-			this.Const.Perks.PerkDefs.LegendGatherer,
-			this.Const.Perks.PerkDefs.LegendPrepareBleed,
-			this.Const.Perks.PerkDefs.LegendPrepareGraze
+			::Legends.Perk.Dodge,
+			::Legends.Perk.HoldOut,
+			::Legends.Perk.FortifiedMind,
+			::Legends.Perk.Gifted,
+			::Legends.Perk.Bullseye,
+			::Legends.Perk.LegendGatherer
 		],
 		[
-			this.Const.Perks.PerkDefs.Backstabber,
-			this.Const.Perks.PerkDefs.LegendDebilitate,
-			this.Const.Perks.PerkDefs.LegendFavouredEnemyCaravan,
-			this.Const.Perks.PerkDefs.LegendLookout,
-			this.Const.Perks.PerkDefs.LegendSpecialistScytheDamage,
-			this.Const.Perks.PerkDefs.RallyTheTroops,
-			this.Const.Perks.PerkDefs.InspiringPresence,
-			this.Const.Perks.PerkDefs.LegendTrueBeliever,
-			this.Const.Perks.PerkDefs.LegendSpecialistSickleDamage,
-			this.Const.Perks.PerkDefs.LegendSpecStaffSkill,
-			this.Const.Perks.PerkDefs.LegendBloodbath
+			::Legends.Perk.Backstabber,
+			::Legends.Perk.LegendDebilitate,
+			::Legends.Perk.LegendFavouredEnemyCivilization,
+			::Legends.Perk.LegendLookout,
+			::Legends.Perk.RallyTheTroops,
+			::Legends.Perk.InspiringPresence,
+			::Legends.Perk.LegendTrueBeliever,
+			::Legends.Perk.LegendSpecialistSelfdefense,
+			::Legends.Perk.LegendBloodbath
 		],
 		[
-			this.Const.Perks.PerkDefs.SpecSword,
-			this.Const.Perks.PerkDefs.SpecCleaver,
-			this.Const.Perks.PerkDefs.LegendSpecialistSlingDamage,
-			this.Const.Perks.PerkDefs.LegendMasteryStaves,
-			this.Const.Perks.PerkDefs.LegendPotionBrewer,
-			this.Const.Perks.PerkDefs.SpecPolearm,
-			this.Const.Perks.PerkDefs.LegendMasterySlings,
-			this.Const.Perks.PerkDefs.LegendSpecPoison,
-			this.Const.Perks.PerkDefs.LegendSpecBandage
+			::Legends.Perk.SpecSword,
+			::Legends.Perk.SpecCleaver,
+			::Legends.Perk.LegendMasteryStaves,
+			::Legends.Perk.LegendPotionBrewer,
+			::Legends.Perk.SpecPolearm,
+			::Legends.Perk.LegendMasterySlings,
+			::Legends.Perk.LegendSpecPoison,
+			::Legends.Perk.LegendSpecBandage
 		],
 		[
-			this.Const.Perks.PerkDefs.Nimble,
-			this.Const.Perks.PerkDefs.LegendSpecStaffStun,
-			this.Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-			this.Const.Perks.PerkDefs.LegendBlendIn,
-			this.Const.Perks.PerkDefs.LegendMindOverBody,
-			this.Const.Perks.PerkDefs.LegendMedIngredients,
-			this.Const.Perks.PerkDefs.LegendConservation,
-			this.Const.Perks.PerkDefs.LegendCarnage
+			::Legends.Perk.Nimble,
+			::Legends.Perk.LegendSpecStaffStun,
+			::Legends.Perk.LegendFavouredEnemyBeast,
+			::Legends.Perk.LegendBlendIn,
+			::Legends.Perk.LegendMindOverBody,
+			::Legends.Perk.LegendMedIngredients,
+			::Legends.Perk.LegendConservation,
+			::Legends.Perk.LegendCarnage
 		],
 		[
-			this.Const.Perks.PerkDefs.LegendClarity,
-			this.Const.Perks.PerkDefs.LegendReclamation,
-			this.Const.Perks.PerkDefs.LegendHerbcraft,
-			this.Const.Perks.PerkDefs.LegendFavouredEnemyHexen,
-			this.Const.Perks.PerkDefs.LegendRebound
+			::Legends.Perk.LegendClarity,
+			::Legends.Perk.LegendReclamation,
+			::Legends.Perk.LegendHerbcraft,
+			::Legends.Perk.LegendFavouredEnemyOccult,
+			::Legends.Perk.LegendRebound
 		],
 		[
-			this.Const.Perks.PerkDefs.Fearsome,
-			this.Const.Perks.PerkDefs.LegendPerfectFocus,
-			this.Const.Perks.PerkDefs.LegendFreedomOfMovement,
-			this.Const.Perks.PerkDefs.LegendBalance,
-			this.Const.Perks.PerkDefs.LegendInspire,
-			this.Const.Perks.PerkDefs.LegendFieldTriage
+			::Legends.Perk.Fearsome,
+			::Legends.Perk.LegendPerfectFocus,
+			::Legends.Perk.LegendFreedomOfMovement,
+			::Legends.Perk.LegendBalance,
+			::Legends.Perk.LegendInspire,
+			::Legends.Perk.LegendFieldTriage
 		],
 		[],
 		[],
@@ -157,41 +121,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				-5
-			],
-			Bravery = [
-				7,
-				13
-			],
-			Stamina = [
-				0,
-				5
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				10,
-				20
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPreserver);
 	}
 
 	function onAddEquipment()
@@ -203,14 +133,14 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.Const.World.Common.pickHelmet([
-			[3, "necromancer_hat"],
-			[2, "dark_cowl"],
-			[1, ""],
-			[4, "witchhunter_hat"]
+			[3, ::Legends.Helmet.Standard.necromancer_hat],
+			[2, ::Legends.Helmet.Standard.dark_cowl],
+			[1, ::Legends.Helmet.None],
+			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		local r;
 		r = this.Math.rand(0, 8);

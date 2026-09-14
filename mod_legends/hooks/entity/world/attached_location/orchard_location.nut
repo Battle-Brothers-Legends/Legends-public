@@ -17,8 +17,8 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("daytaler_background");
-		_list.push("farmhand_background");
+		_list.push(::Legends.Background.Daytaler);
+		_list.push(::Legends.Background.Farmhand);
 		onUpdateDraftList(_list);
 	}
 

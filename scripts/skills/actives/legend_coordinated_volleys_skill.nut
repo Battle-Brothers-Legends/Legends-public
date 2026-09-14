@@ -2,15 +2,9 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_coordinated_volleys";
-		this.m.Name = "Coordinated Volleys";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCoordinatedVolleys);
 		this.m.Description = "Time and call the shots for archers, increasing their chance to hit.";
-		this.m.Icon = "skills/coordinated_volleys_square.png";
-		this.m.IconDisabled = "skills/coordinated_volleys_square_bw.png";
-		this.m.Overlay = "coordinated_volleys_square";
-		this.m.SoundOnUse = [
-			"sounds/combat/coordinated_volleys.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/coordinated_volleys.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -25,9 +19,7 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -48,20 +40,20 @@ this.legend_coordinated_volleys_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]10[/color] ranged attack to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
+				text =  "[color=%positive%]10[/color] ranged attack to all allies within [color=%positive%]4[/color] tiles for one turn"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text =  "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] damage bonus to all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles for one turn"
-			}		
+				text =  "[color=%positive%]5%[/color] damage bonus to all allies within [color=%positive%]4[/color] tiles for one turn"
+			}
 		];
 	}
 
-function isUsable()
+	function isUsable()
 	{
-		return this.skill.isUsable() && !this.getContainer().hasSkill("effects.legend_coordinating_volleys");
+		return this.skill.isUsable() && !this.getContainer().hasEffect(::Legends.Effect.LegendCoordinatingVolleys);
 	}
 
 	function onUse( _user, _targetTile )
@@ -81,17 +73,16 @@ function isUsable()
 				continue;
 			}
 
-			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasSkill("effects.legend_coordinating_volleys"))
+			if (a.getFaction() == _user.getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendCoordinatingVolleys))
 			{
-				local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
-				effect.setCommander(this.getContainer().getActor());
-				a.getSkills().add(effect);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendCoordinatingVolleys, function(_effect) {
+					_effect.setCommander(this.getContainer().getActor());
+				}.bindenv(this));
 			}
 		}
-
-		local effect = this.new("scripts/skills/effects/legend_coordinating_volleys")
-		effect.setCommander(this.getContainer().getActor());
-		this.getContainer().add(effect);
+		::Legends.Effects.grant(this, ::Legends.Effect.LegendCoordinatingVolleys, function(_effect) {
+			_effect.setCommander(this.getContainer().getActor());
+		}.bindenv(this));
 		return true;
 	}
 

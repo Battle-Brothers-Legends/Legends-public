@@ -4,6 +4,7 @@
 	o.onInit = function ()
 	{
 		onInit();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
@@ -19,7 +20,7 @@
 			return;
 		}
 
-		local skill = this.getSkills().getSkillByID("actives.swallow_whole");
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.SwallowWhole);
 
 		if (skill.getSwallowedEntity() == null)
 		{
@@ -31,7 +32,7 @@
 		e.getFlags().set("Devoured", false);
 		if (e.getFlags().has("IsSummoned"))
 		{
-			return
+			return;
 		}
 		local slime = e.getSprite("dirt");
 		slime.setBrush("bust_slime");

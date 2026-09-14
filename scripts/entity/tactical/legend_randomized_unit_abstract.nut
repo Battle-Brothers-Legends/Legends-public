@@ -1,6 +1,6 @@
 this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/human", {
 	// Most of the m table is filled out inthe config file z_randomized_perk_tiers
-	// Outfits  		| [chance to roll, outfit] | outfits are defined in the z_mods_legends_outfits.nut config file
+	// Outfits  		| [chance to roll, outfit] | outfits are defined in the outfits.nut config file
 	// ClassPerkList  	| Virtually always empty, this is for magic
 	// DefensePerkList 	| Defensive perk list | e.g. ClothArmorTree
 	// TraitsPerkList  	| Traits lists, generally very filled out | e.g. FitTree
@@ -20,6 +20,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		Shields = [],
 		GuaranteedPerks = [],
 		LegendaryPerks = [],
+		LegendaryTraits = [],
 		LevelRange = [1, 1],
 		EnemyLevel = 1,
 		PerkPower = this.Const.PerkPurchasePower.Low
@@ -37,9 +38,9 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	function onInit()
 	{
 		this.human.onInit();
-		if (::Math.rand(0, 3) == 0) { this.setFemale(); }
-		else { this.setMale(); }
-		this.setAppearance();
+		//if (this.randomizeEnemyGender() == 1) { this.setFemale(); }
+		//else { this.setMale(); }
+		//this.setAppearance();
 	}
 
 
@@ -78,10 +79,9 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 			this.logWarning("Entity type didnt exist: " + this.m.Type);
 		}
 
-		this.m.EnemyLevel = this.Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] )
+		this.m.EnemyLevel = this.Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] );
 		this.m.XP = this.m.EnemyLevel * 35;
-		if (!("Assets" in this.World) || (this.World.Assets != null && this.World.Assets.getCombatDifficulty() != this.Const.Difficulty.Legendary))
-		{
+		if (!::Legends.isLegendaryDifficulty())	{
 			this.m.PerkPower -= 1;
 		}
 	}
@@ -117,11 +117,11 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		// Possible options would be to set this.m.PerkPower-- to this.m.PerkPower -= i, thus making the cost for later tier perks higher (and similarly updating _purchaseLimit--)
 		for (local i = 0; i <= _cap; i++)
 		{
-			local row = _tree[i]
+			local row = _tree[i];
 			if ( row.len() != 0 && _purchaseLimit >= row.len() && this.m.PerkPower >= row.len() ) {
 				foreach (perkDefNum in row) //Purchases every perk in the row, if there are multiple
 				{
-					local fullDef = clone this.Const.Perks.PerkDefObjects[perkDefNum];
+					local fullDef = clone ::Const.Perks.PerkDefObjects[perkDefNum];
 					local toAdd = this.new(fullDef.Script);
 					if (!this.m.Skills.hasSkill(toAdd.getID()))
 					{
@@ -130,19 +130,6 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 						this.m.PerkPower--;
 					}
 				}
-			}
-		}
-	}
-
-	// Adds all of the possible perks to the unit in any given array
-	function addAll( _arr )
-	{
-		foreach (p in _arr)
-		{
-			local pAdd = this.new("scripts/skills/" + p);
-			if (!this.m.Skills.hasSkill(pAdd.getID()))
-			{
-				this.m.Skills.add(pAdd);
 			}
 		}
 	}
@@ -165,7 +152,6 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 
 		local tabl = _table["Tree"];
 		this.pickPerkFromTree(_purchaseLimit, tabl, _cap);
-
 	}
 
 	// Adds all guaranteed perks
@@ -174,11 +160,16 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Selects random traits lists + runs the buying functions until we run out of power 	| these do have attributes
 	function assignPerks()
 	{
-		this.addAll(this.m.GuaranteedPerks)
+
+		foreach (perk in this.m.GuaranteedPerks)
+			::Legends.Perks.grant(this, perk);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.addAll(this.m.LegendaryPerks);
+			foreach (perk in this.m.LegendaryPerks)
+				::Legends.Perks.grant(this, perk);
+			foreach (trait in this.m.LegendaryTraits)
+				::Legends.Traits.grant(this, trait);
 		}
 
 		local idx = this.Math.rand(0, this.m.DefensePerkList.len() - 1);
@@ -207,30 +198,29 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Adds everything from (technically our index 3) guaranteed Legendary Perks if the enemy rolls that weapon (this should be a table at this point perhaps)
 	function assignWeapon()
 	{
-		local selection = this.Const.GetWeaponAndTree(this.m.WeaponsAndTrees)
-		local weaponScriptAndChances = selection[0]
-		this.m.Items.equip( this.new( "scripts/items/weapons/" + weaponScriptAndChances[0] ) )
+		local selection = this.Const.GetWeaponAndTree(this.m.WeaponsAndTrees);
+		local weaponScriptAndChances = selection[0];
+		this.m.Items.equip( this.new( "scripts/items/weapons/" + weaponScriptAndChances[0] ) );
 		local weapon = this.getMainhandItem();
 		local weaponID = this.getMainhandItem().getID();
 
-		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty())
-		{
-			this.addAll(selection[1]);
+		if (selection.len() > 1 && ::Legends.isLegendaryDifficulty()) {
+			foreach (perk in selection[1])
+				::Legends.Perks.grant(this, perk);
 		}
 
-		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon)
-		weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)]
+		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
+		weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)];
 		if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && this.Math.rand(1, 100) <= weaponScriptAndChances[1])
 		{
 			this.pickPerk( this.m.PerkPower,  weaponPerkTree, this.m.EnemyLevel - 1);
 		}
 
-		local weaponClassTree = this.Const.GetWeaponClassTree(weapon)
+		local weaponClassTree = this.Const.GetWeaponClassTree(weapon);
 		if (weaponClassTree != null && weaponScriptAndChances.len() >= 3 && this.Math.rand(1, 100) <= weaponScriptAndChances[2])
 		{
 			this.pickPerk( this.m.PerkPower,  weaponClassTree, this.m.EnemyLevel - 1, true);
 		}
-
 	}
 
 	function assignShield()

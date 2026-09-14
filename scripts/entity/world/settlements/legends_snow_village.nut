@@ -112,107 +112,108 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 			"Ovarsted"
 		]];
 		this.m.DraftLists = [[
-			"beggar_background",
-			"brawler_background",
-			"brawler_background",
-			"cultist_background",
-			"daytaler_background",
-			"lumberjack_background",
-			"mason_background",
-			"miner_background",
-			"flagellant_background",
-			"poacher_background",
-			"thief_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"brawler_background",
-			"brawler_background",
-			"cultist_background",
-			"lumberjack_background",
-			"mason_background",
-			"miner_background",
-			"flagellant_background",
-			"poacher_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background"
+			::Legends.Background.Beggar,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Mason,
+			::Legends.Background.Miner,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Poacher,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Mason,
+			::Legends.Background.Miner,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Poacher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman
 		],[
-			"apprentice_background",
-			"brawler_background",
-			"brawler_background",
-			"cultist_background",
-			"daytaler_background",
-			"daytaler_background",
-			"gravedigger_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"lumberjack_background",
-			"militia_background",
-			"miner_background",
-			"peddler_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"thief_background",
-			"vagabond_background",
-			"wildman_background",
-			"disowned_noble_background",
-			"cripple_background",
-			"apprentice_background",
-			"brawler_background",
-			"brawler_background",
-			"cultist_background",
-			"gravedigger_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"lumberjack_background",
-			"militia_background",
-			"miner_background",
-			"peddler_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"cripple_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Hunter,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.LegendDisownedNobleRanged,
+			::Legends.Background.DisownedNoble,
+			::Legends.Background.Cripple,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Hunter,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Lumberjack,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Cripple
 		],[
-			"apprentice_background",
-			"brawler_background",
-			"brawler_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"cultist_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"killer_on_the_run_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"peddler_background",
-			"flagellant_background",
-			"poacher_background",
-			"poacher_background",
-			"poacher_background",
-			"ratcatcher_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"raider_background",
-			"raider_background",
-			"sellsword_background",
-			"swordmaster_background",
-			"legend_inventor_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Peddler,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Poacher,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.LegendInventor
 		]];
 		this.m.FemaleDraftLists = [
 		[
@@ -220,7 +221,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 		],[
 			// nothing at lvl 2
 		],[
-			"legend_shieldmaiden_background"
+			::Legends.Background.LegendShieldmaiden
 		]];
 
 
@@ -228,11 +229,12 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 
 		if (this.Const.DLC.Unhold)
 		{
-			this.m.DraftLists[0].push("beast_hunter_background");
-			this.m.DraftLists[1].push("beast_hunter_background");
-			this.m.DraftLists[2].push("beast_hunter_background");
+			this.m.DraftLists[0].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[1].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[2].push(::Legends.Background.BeastSlayer);
 		}
 
+		this.m.Culture = this.Const.World.Culture.Northern;
 		this.m.Rumors = this.Const.Strings.RumorsSnowSettlement;
 	}
 
@@ -334,7 +336,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -403,10 +405,10 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -514,7 +516,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 		], 3, true);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -591,7 +593,7 @@ this.legends_snow_village <- this.inherit("scripts/entity/world/settlements/lege
 		], [], 3, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

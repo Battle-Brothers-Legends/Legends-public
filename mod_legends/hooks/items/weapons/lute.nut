@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Categories = "Musical Instrument, Mace, Two-Handed";
+		this.setCategories("Musical Instrument, Two-Handed");
 		this.m.IsDoubleGrippable = false;
 		this.m.Value = 50;
 		this.m.Condition = 30.0;
@@ -14,9 +14,13 @@
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsLuteBash = true;
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsLuteBash = true;
+		}.bindenv(this));
+
 		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfWar);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrumsOfLife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMartialMarch);
 	}
 });

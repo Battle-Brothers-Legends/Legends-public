@@ -8,6 +8,9 @@
 	o.m.DistantVisionBonus <- false;
 	o.m.AppropriateTimeToRecalc <- 0; //Leonion's fix
 	o.m.Encounters <- null;
+    o.m.LastMorningPauseDay <- -1;
+	o.m.LastNewDayPauseDay <- -1;
+	o.m.LastButtonPress <- 0.0;
 
 	o.getBrothersInReserves <- function ()
 	{
@@ -39,7 +42,7 @@
 
 	o.setCommanderDied <- function ( _v )
 	{
-		this.m.CommanderDied = _v
+		this.m.CommanderDied = _v;
 	}
 
 	local onInit = o.onInit;
@@ -58,12 +61,13 @@
 	o.onInitUI = function()
 	{
 		this.m.CampScreen <- this.new("scripts/ui/screens/world/camp_screen");
-		this.m.CampScreen.setOnBrothersPressedListener(this.camp_screen_main_dialog_module_onBrothersButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnCommanderPressedListener(this.camp_screen_main_dialog_module_onCommanderButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnTentPressedListener(this.camp_screen_main_dialog_module_onTentButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnModuleClosedListener(this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
-		this.m.CampScreen.setOnCampListener(this.onCamp.bindenv(this));
+		this.m.CampScreen.setListener("OnBrothersButtonPressed", this.camp_screen_main_dialog_module_onBrothersButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnCommanderButtonPressed", this.camp_screen_main_dialog_module_onCommanderButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnTentButtonPressed", this.camp_screen_main_dialog_module_onTentButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnModuleClosed", this.town_screen_main_dialog_module_onLeaveButtonClicked.bindenv(this));
+		this.m.CampScreen.setListener("OnCamp", this.onCamp.bindenv(this));
 		onInitUI();
+		this.m.WorldScreen.getTopbarDayTimeModule().setOnTimeSuperFastPressedListener(this.setSuperFastTime.bindenv(this));
 	}
 
 	local onDestroyUI = o.onDestroyUI;
@@ -94,28 +98,41 @@
         ::World.setPlayerVisionRadius(this.getPlayer().getVisionRadius());
 	}
 
+	local onUpdate = o.onUpdate;
+    o.onUpdate = function() {
+        local player = this.getPlayer();
+		if (player.m.PauseOnMovementStop && this.m.AutoAttack == null && this.m.AutoEnterLocation == null) {
+        	player.m.PauseOnMovementStop = false;
+        	this.setPause(true);
+      	}
+        onUpdate(); 
+    }
+
 	local loadCampaign = o.loadCampaign;
 	o.loadCampaign = function( _campaignFileName )
 	{
-		if (::Time.getRealTimeF() - m.CampaignLoadTime < 4.0)
+		if (::Time.getRealTimeF() - this.m.CampaignLoadTime < 4.0)
 			return;
 
-		m.AppropriateTimeToRecalc = 0;
+		this.m.AppropriateTimeToRecalc = 0;
 		loadCampaign(_campaignFileName);
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+	}
+
+	o.onCalculatePlayerPartyModifiers <- function()
+	{
+		this.m.AppropriateTimeToRecalc = 1;
+		this.getPlayer().calculateModifiers(); //Leonion's fix
 	}
 
 	local startNewCampaign = o.startNewCampaign;
 	o.startNewCampaign = function()
 	{
-		m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
+		this.m.AppropriateTimeToRecalc = 0; // set to 0 as you don't want it to update those modifiers
 		::Legends.IsStartingNewCampaign = true;
 		startNewCampaign();
-		::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
+		//::World.setFogOfWar(!::Legends.Mod.ModSettings.getSetting("DebugMap").getValue()); //
 		::World.Crafting.resetAllBlueprints(); //
-		m.AppropriateTimeToRecalc = 1;
-		getPlayer().calculateModifiers(); //Leonion's fix
+		this.onCalculatePlayerPartyModifiers();
 		::Legends.IsStartingNewCampaign = false;
 	}
 
@@ -150,18 +167,69 @@
 			::World.TopbarDayTimeModule.m.IsAutoUpdateTimeButtonState = false;
 	}
 
+	// these set _force = true to work during camp/escort
+	local setNormalTime = o.setNormalTime;
+	o.setNormalTime = function( _force = false ) {
+		setNormalTime(true);
+	}
+
+	local setFastTime = o.setFastTime;
+	o.setFastTime = function( _force = false ) {
+		setFastTime(true);
+	}
+
+	local setVeryFastTime = o.setVeryFastTime;
+	o.setVeryFastTime = function( _force = false ) {
+		setVeryFastTime(true);
+	}
+
+	o.setSuperFastTime <- function (_force = true) {
+		if (!this.m.MenuStack.hasBacksteps()) {
+			if (_force || !::World.Assets.isCamping() && this.m.EscortedEntity == null) {
+				this.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.SuperFastMult;
+			} else if (this.m.MinWorldSpeedMult > ::Const.World.SpeedSettings.SuperFastMult) {
+				this.m.LastWorldSpeedMult = this.m.MinWorldSpeedMult;
+			}
+			this.setPause(false);
+		}
+	}
+
+	o.autosave = function () {
+		if (!this.m.IsAutosaving) {
+			return;
+		}
+
+		local pause = !this.m.IsGameAutoPaused;
+
+		if (pause) {
+			this.setAutoPause(true);
+		}
+
+		if (::World.Assets.isIronman()) {
+			this.saveCampaign(this.World.Assets.getName() + "_" + this.World.Assets.getCampaignID(), this.World.Assets.getName());
+		} else {
+			local slot = ::World.Flags.getAsInt("Legends_AutosaveSlot") != 0 ? ::World.Flags.getAsInt("Legends_AutosaveSlot") : 1;
+			::World.Flags.set("Legends_AutosaveSlot", (slot % ::Legends.Mod.ModSettings.getSetting("AutosaveSlots").getValue()) + 1);
+        	this.saveCampaign("autosave_legends_" + slot);
+		}
+
+		if (pause) {
+			this.setAutoPause(false);
+		}
+	}
+
 	local onCombatFinished = o.onCombatFinished;
 	o.onCombatFinished = function()
 	{
 		local friendlyCaravanParties = [];
 
-		foreach( party in m.PartiesInCombat )
+		foreach( party in this.m.PartiesInCombat )
 		{
 			if (party.getTroops().len() > 0
 				&& party.isAlive()
 				&& party.isAlliedWithPlayer()
 				&& party.getFlags().get("IsCaravan")
-				&& m.EscortedEntity == null
+				&& this.m.EscortedEntity == null
 			) {
 				friendlyCaravanParties.push(party);
 				party.getFlags().set("IsCaravan", false); // set to false so the check in the original 'onCombatFinished' will fail
@@ -184,6 +252,8 @@
 		{
 			party.getFlags().set("IsCaravan", true); // reverse the change
 		}
+
+		::Legends.Maps.cleanUp();
 	}
 
 	o.getLocalCombatProperties = function ( _pos, _ignoreNoEnemies = false )
@@ -207,7 +277,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -232,7 +302,7 @@
 				continue;
 			}
 
-			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+			if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 			{
 				continue;
 			}
@@ -358,7 +428,7 @@
 		if (::World.Camp.isCamping())
 		{
 			this.onCamp();
-			return
+			return;
 		}
 		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), this.Const.Music.CrossFadeTime);
 		this.setPause(true);
@@ -408,12 +478,54 @@
 
 	o.camp_screen_main_dialog_module_onCommanderButtonClicked <- function ()
 	{
-		this.showCommanderScreenFromCamp();
+		this.showTentScreenFromCamp(::Legends.Camp.CampBuildings.Commander);
 	}
 
 	o.camp_screen_main_dialog_module_onTentButtonClicked <- function ( _id )
 	{
 		this.showTentScreenFromCamp( _id );
+	}
+
+	o.updateTopBarButtonState = function () {
+		if (("TopbarDayTimeModule" in ::World) && ::World.TopbarDayTimeModule != null) {
+			if (this.isPaused()) {
+				::World.TopbarDayTimeModule.updateTimeButtons(0);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.NormalMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(1);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.FastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(2);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.VeryFastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(3);
+			} else if (::World.getSpeedMult() == ::Const.World.SpeedSettings.SuperFastMult) {
+				::World.TopbarDayTimeModule.updateTimeButtons(4);
+			}
+		}
+	}
+
+	local updateDayTime = o.updateDayTime;
+	o.updateDayTime = function () {
+		updateDayTime();
+
+		if (!::World.Assets.isCamping() || this.isPaused()) {
+			return;
+		}
+
+		local time = ::World.getTime();
+		local currentDay = time.Days;
+		if (currentDay >= this.m.LastMorningPauseDay && time.Hours >= 22 && time.Minutes >= 38) {
+			this.m.LastMorningPauseDay = currentDay + 1;
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnMorningCamping").getValue()) {
+				this.setPause(true);
+				return;
+			}
+		}
+
+		if (currentDay > this.m.LastNewDayPauseDay) {
+			if (::Legends.Mod.ModSettings.getSetting("PauseOnNewDayCamping").getValue()	&& this.m.LastNewDayPauseDay != -1)	{
+				this.setPause(true);
+			}
+			this.m.LastNewDayPauseDay = currentDay;
+		}
 	}
 
 	o.isInDevScreen <- function ()
@@ -457,7 +569,7 @@
 	o.showTentScreenFromCamp <- function ( _id )
 	{
 		this.m.CampScreen.hideAllDialogs();
-		this.m.CampScreen.showTentBuildingDialog( _id );
+		this.m.CampScreen.showCampBuildingDialog( _id );
 		this.m.MenuStack.push(function ()
 		{
 			this.m.CampScreen.showLastReturnDialog();
@@ -492,6 +604,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(3.0);
 			::World.setSpeedMult(3.0);
 			this.logDebug("World Speed set to x3.0");
 			return true;
@@ -507,6 +620,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(4.0);
 			::World.setSpeedMult(4.0);
 			this.logDebug("World Speed set to x4.0");
 			return true;
@@ -522,6 +636,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(5.0);
 			::World.setSpeedMult(5.0);
 			this.logDebug("World Speed set to x5.0");
 			return true;
@@ -537,6 +652,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(6.0);
 			::World.setSpeedMult(6.0);
 			this.logDebug("World Speed set to x6.0");
 			return true;
@@ -552,6 +668,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(7.0);
 			::World.setSpeedMult(7.0);
 			this.logDebug("World Speed set to x7.0");
 			return true;
@@ -567,6 +684,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(8.0);
 			::World.setSpeedMult(8.0);
 			this.logDebug("World Speed set to x8.0");
 			return true;
@@ -582,6 +700,7 @@
 				break;
 			}
 
+			this.setLastWorldSpeedMult(9.0);
 			::World.setSpeedMult(9.0);
 			this.logDebug("World Speed set to x9.0");
 			return true;
@@ -785,6 +904,22 @@
 			return true;
 		}
 
+		switch(_key.getState() == 0 && _key.getKey()){
+			// stop spam press of CIOTPR buttons
+			case 13:
+			case 19:
+			case 25:
+			case 26:
+			case 28:
+			case 30:
+				local timeOfButtonPress = ::Time.getRealTimeF();
+				if (timeOfButtonPress - this.m.LastButtonPress < 0.5) {
+					return true;
+				}
+				this.m.LastButtonPress = timeOfButtonPress;
+				break;
+			}
+
 		//if (this.isInDevScreen())
 		//{
 		//	switch(_key.getKey())
@@ -900,6 +1035,8 @@
 					// {
 					// 	this.onCamp();
 					// }
+				} else if (this.m.CampScreen.isVisible()) {
+					this.m.CampScreen.onModuleClosed();
 				}
 
 				break;
@@ -945,6 +1082,20 @@
 					break;
 				}
 
+			case 3:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setVeryFastTime();
+					break;
+				}
+
+			case 4:
+				if (!this.m.MenuStack.hasBacksteps())
+				{
+					this.setSuperFastTime();
+					break;
+				}
+
 			case 16:
 				if (!this.m.MenuStack.hasBacksteps())
 				{
@@ -963,17 +1114,20 @@
 				break;
 
 			case 75:
-				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman())
-				{
-					this.saveCampaign("quicksave");
+				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman()) {
+					local slot = ::World.Flags.getAsInt("Legends_QuicksaveSlot") != 0 ? ::World.Flags.getAsInt("Legends_QuicksaveSlot") : 1;
+					::World.Flags.set("Legends_QuicksaveSlot", (slot % ::Legends.Mod.ModSettings.getSetting("QuicksaveSlots").getValue()) + 1);
+        			this.saveCampaign("quicksave_legends_" + slot);
 				}
 
 				break;
 
 			case 79:
-				if (!this.m.MenuStack.hasBacksteps() && !::World.Assets.isIronman() && ::World.canLoad("quicksave"))
-				{
-					this.loadCampaign("quicksave");
+				if (!this.m.MenuStack.hasBacksteps()) {
+					local slot = ::World.Flags.getAsInt("Legends_QuicksaveSlot") > 1 ? (::World.Flags.getAsInt("Legends_QuicksaveSlot") - 1) : (::World.Flags.getAsInt("Legends_QuicksaveSlot") == 1 ? ::Legends.Mod.ModSettings.getSetting("QuicksaveSlots").getValue() : 1);
+					if (!::World.Assets.isIronman() && ::World.canLoad("quicksave_legends_" + slot)) {
+						this.loadCampaign("quicksave_legends_" + slot);
+					}
 				}
 
 				break;
@@ -1140,7 +1294,7 @@
 
 		local val = this.m.IDToRef[_id];
 		if (val == -1) {
-			return null
+			return null;
 		}
 		return val;
 	}
@@ -1174,80 +1328,142 @@
 
 	/**
 	 * Adds convenience method to world state to mimic original
-	 * Shows encouter dialog while in settlement
+	 * Shows encounter dialog while in settlement
 	 */
 	o.showEncounterScreenFromTown <- function (_encounter, _playSound = true) {
-		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
-		{
-			if (::isKindOf(_encounter, "encounter_event")) {
-				::World.State.getMenuStack().popAll(true);
-				local event = _encounter.m.Event;
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
-					::World.State.setPause(true);
-					::World.Events.fire(_tag);
-				}, event);
-				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
-					::World.State.setPause(false);
-				}, null);
-				::World.Encounters.clearActiveEvent();
-			} else {
-				if (_playSound && ::Const.Events.GlobalSound != "")
-					::Sound.play(::Const.Events.GlobalSound, 1.0);
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && ::Const.Events.GlobalSound != "") {
+				::Sound.play(::Const.Events.GlobalSound, 1.0);
+			}
 
-				this.m.WorldTownScreen.hideAllDialogs();
-				this.m.EventScreen.setIsEncounter(true);
-				this.m.EventScreen.show(_encounter);
-				this.m.MenuStack.push(function () {
-					this.m.EventScreen.hide();
-					this.m.WorldTownScreen.showLastActiveDialog();
+			this.m.WorldTownScreen.hideAllDialogs();
+			this.m.EventScreen.setIsEncounter(true);
+			this.m.EventScreen.show(_encounter);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				this.m.WorldTownScreen.showLastActiveDialog();
+				if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+					::World.Encounters.clearActiveEvent();
+					::World.Events.clearActiveEvent();
 					this.m.EventScreen.setIsEncounter(false);
 					this.m.WorldTownScreen.refresh();
-				}, function () {
-					return false;
-				});
-			}
+				} else {
+					this.m.WorldTownScreen.hide();
+				}
+			}, function () {
+				return false;
+			});
 		}
 	}
 
 	/**
 	 * Adds convenience method to world state to mimic original
-	 * Shows encouter dialog while in camp
+	 * Shows encounter dialog while in camp
 	 */
 	o.showEncounterScreenFromCamp <- function (_encounter, _playSound = true) {
-		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating())
-		{
-			if (::isKindOf(_encounter, "encounter_event")) {
-				::World.State.getMenuStack().popAll(true);
-				local event = _encounter.m.Event;
-				::Time.scheduleEvent(::TimeUnit.Virtual, 1, function (_tag) {
-					::World.State.setPause(true);
-					::World.Events.fire(_tag);
-				}, event);
-				::Time.scheduleEvent(::TimeUnit.Real, 500, function ( _tag ) {
-					::World.State.setPause(false);
-				}, null);
-				::World.Encounters.clearActiveEvent();
-			} else {
-				if (_playSound && ::Const.Events.GlobalSound != "")
-					::Sound.play(::Const.Events.GlobalSound, 1.0);
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && ::Const.Events.GlobalSound != "") {
+				::Sound.play(::Const.Events.GlobalSound, 1.0);
+			}
 
-				this.m.CampScreen.hide();
-				this.m.EventScreen.setIsEncounter(true);
-				this.m.EventScreen.show(_encounter);
-				this.m.MenuStack.push(function() {
-					this.m.EventScreen.hide();
+			this.m.CampScreen.hide();
+			this.m.EventScreen.setIsEncounter(true);
+			this.m.EventScreen.show(_encounter);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+					::World.Encounters.clearActiveEvent();
+					::World.Events.clearActiveEvent();
 					this.m.CampScreen.show();
 					this.m.EventScreen.setIsEncounter(false);
-					this.m.WorldTownScreen.refresh();
-				}, function() {
-					return false;
-				});
-			}
+					this.m.CampScreen.refresh();
+				}
+			}, function () {
+				return false;
+			});
 		}
 	}
 
-	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null )
+	/**
+	 * Adds convenience method to world state to mimic original
+	 * Shows event dialog while in camp
+	 */
+	o.showEventScreenFromCamp <- function ( _event, _isContract = false, _playSound = true ) {
+		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
+			if (_playSound && this.Const.Events.GlobalSound != "") {
+				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
+			}
+
+			this.m.CampScreen.hide();
+			this.m.EventScreen.setIsContract(_isContract);
+			this.m.EventScreen.show(_event);
+			this.m.MenuStack.push(function () {
+				this.m.EventScreen.hide();
+				//::World.Encounters.clearActiveEvent(); // most likely unneeded, perhaps restore + the victory screen check if there are some combat camp events? that break
+				//::World.Events.clearActiveEvent();
+				this.m.EventScreen.setIsContract(false);
+				this.m.CampScreen.show();
+				this.m.CampScreen.refresh();
+			}, function () {
+				return false;
+			});
+		}
+	}
+
+	o.showEncounterScreenAfterCombat <- function (_encounter, _playSound = true)
 	{
+		if (this.m.EventScreen.isVisible() || this.m.EventScreen.isAnimating() || this.m.MenuStack.hasBacksteps()) {
+			return false;
+		}
+
+		if (_playSound && ::Const.Events.GlobalSound != "") {
+			::Sound.play(::Const.Events.GlobalSound, 1.0);
+		}
+
+		if (!this.isPaused()) {
+			this.setNormalTime();
+		}
+
+		this.setAutoPause(true);
+		this.m.EventScreen.setIsEncounter(true);
+		this.m.EventScreen.show(_encounter);
+		this.m.WorldScreen.hide();
+		this.Cursor.setCursor(::Const.UI.Cursor.Hand);
+		this.m.MenuStack.push(function () {
+			this.m.EventScreen.setIsEncounter(false);
+			this.m.EventScreen.hide();
+			this.m.WorldScreen.show();
+			this.updateTopbarAssets();
+			::World.Encounters.clearActiveEvent();
+			::World.Events.clearActiveEvent();
+			this.setAutoPause(false);
+		}, function () {
+			return false;
+		});
+		return true;
+	}
+
+	o.showCombatDialog = function ( _isPlayerInitiated = true, _isCombatantsVisible = true, _allowFormationPicking = true, _properties = null, _pos = null ) {
+		// finish camping before every combat while camping
+		if (::World.Camp.isCamping()) {
+			::World.Camp.m.PendingCombat = {
+				IsPlayerInitiated = _isPlayerInitiated,
+				IsCombatantsVisible = _isCombatantsVisible,
+				AllowFormationPicking = _allowFormationPicking,
+				Properties = _properties,
+				Pos = _pos,
+			};
+
+			::World.Camp.onCampAttacked();
+			return;
+		}
+
+		// fix guest roster positions before every battle
+		local freeSlots = ::Legends.S.getEmptySlotsInFormation();
+		foreach(bro in ::World.getGuestRoster().getAll()) {
+			bro.setPlaceInFormation(freeSlots.pop());
+		}
+
 		local entities = [];
 		local allyBanners = [];
 		local enemyBanners = [];
@@ -1307,7 +1523,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}
@@ -1341,7 +1557,7 @@
 					continue;
 				}
 
-				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0)
+				if (!party.isAttackable() || party.getFaction() == 0 || party.getVisibilityMult() == 0.0)
 				{
 					continue;
 				}
@@ -1457,7 +1673,7 @@
 				else
 				{
 					entities.push({
-						Name =  getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
+						Name = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
 						Icon = this.Const.EntityIcon[i],
 						Overlay = null
 					});
@@ -1545,9 +1761,7 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function ( _in )
 	{
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			::World.Encounters.onDeserialize(_in);
-		}
+		::World.Encounters.onDeserialize(_in);
 		onDeserialize(_in);
 		if (this.m.EscortedEntity == null) {
 			::World.State.setCampingAllowed(true);
@@ -1555,8 +1769,11 @@
 			::World.State.getPlayer().setVisible(true);
 			::World.Assets.setUseProvisions(true);
 		}
-
+		o.m.LastMorningPauseDay = -1;
+		o.m.LastNewDayPauseDay = -1;
 		::World.Camp.clear();
 		::World.Camp.onDeserialize(_in);
+		this.onCalculatePlayerPartyModifiers();
+		::Legends.Professions.recalculateAllProfessions();
 	}
 });

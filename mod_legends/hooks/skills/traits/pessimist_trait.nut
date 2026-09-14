@@ -10,7 +10,7 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		]);
 	}

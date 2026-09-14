@@ -1,634 +1,641 @@
 if (!("LegendMod" in ::Const))
-{
 	::Const.LegendMod <- {};
-}
 
-::Const.LegendMod.FavoriteZombies <- [
-	this.Const.EntityType.ZombieYeoman,
-	this.Const.EntityType.Zombie,
-	this.Const.EntityType.ZombieBetrayer,
-	this.Const.EntityType.ZombieBoss,
-	this.Const.EntityType.ZombieKnight,
-	this.Const.EntityType.Necromancer,
-	this.Const.EntityType.ZombieTreasureHunter
-];
-
-::Const.LegendMod.FavoriteAlps <- [
-	this.Const.EntityType.Alp,
-	this.Const.EntityType.AlpShadow,
-	this.Const.EntityType.LegendDemonAlp
-];
-
-::Const.LegendMod.FavoriteDirewolf <- [
-	this.Const.EntityType.Hyena,
-	this.Const.EntityType.Direwolf,
-	// this.Const.EntityType.Wolf,
-	// this.Const.EntityType.GoblinWolfrider,
-	// this.Const.EntityType.KoboldWolfrider, //Not used currently
-	this.Const.EntityType.LegendWhiteDirewolf
-];
-
-::Const.LegendMod.FavoriteGhoul <- [
-	this.Const.EntityType.Ghoul,
-	this.Const.EntityType.LegendSkinGhoul
+::Const.LegendMod.FavoriteUndead <- [
+	::Const.EntityType.ZombieYeoman,
+	::Const.EntityType.Zombie,
+	::Const.EntityType.ZombieBetrayer,
+	::Const.EntityType.ZombieBoss,
+	::Const.EntityType.ZombieKnight,
+	::Const.EntityType.Necromancer,
+	::Const.EntityType.ZombieTreasureHunter,
+	::Const.EntityType.SkeletonLight,
+	::Const.EntityType.SkeletonMedium,
+	::Const.EntityType.SkeletonHeavy,
+	::Const.EntityType.SkeletonBoss,
+	::Const.EntityType.SkeletonPriest,
+	::Const.EntityType.SkeletonLich,
+	::Const.EntityType.SkeletonLichMirrorImage,
+	::Const.EntityType.SkeletonPhylactery,
+	::Const.EntityType.SkeletonGladiator,
+	::Const.EntityType.FlyingSkull,
+	::Const.EntityType.Vampire,
+	::Const.EntityType.LegendVampireLord,
+	::Const.EntityType.LegendMummyLight,
+	::Const.EntityType.LegendMummyMedium,
+	::Const.EntityType.LegendMummyHeavy,
+	::Const.EntityType.LegendMummyQueen,
+	::Const.EntityType.LegendMummyPriest
 ];
 
-::Const.LegendMod.FavoriteGoblin <- [
-	this.Const.EntityType.GoblinFighter,
-	this.Const.EntityType.GoblinAmbusher,
-	this.Const.EntityType.GoblinLeader,
-	this.Const.EntityType.GoblinShaman,
-	this.Const.EntityType.GoblinWolfrider,
-	this.Const.EntityType.KoboldWolfrider, //Not used currently
-	this.Const.EntityType.KoboldFighter //Not used currently
+::Const.LegendMod.FavoriteOccult <- [
+	::Const.EntityType.Alp,
+	::Const.EntityType.AlpShadow,
+	::Const.EntityType.LegendDemonAlp,
+	::Const.EntityType.Hexe,
+	::Const.EntityType.LegendHexeLeader,
+	::Const.EntityType.LegendBanshee,
+	::Const.EntityType.LegendDemonHound,
+	::Const.EntityType.Ghost,
+	::Const.EntityType.SandGolem,
+	::Const.EntityType.Schrat,
+	::Const.EntityType.SchratSmall,
+	::Const.EntityType.LegendGreenwoodSchrat,
+	::Const.EntityType.LegendGreenwoodSchratSmall,
+	::Const.EntityType.LegendWicht,
+	::Const.EntityType.Necromancer,
+	::Const.EntityType.GoblinShaman,
+	::Const.EntityType.LegendGoblinWitchDoctor
 ];
 
-::Const.LegendMod.FavoriteHexe <- [
-	this.Const.EntityType.Hexe,
-	this.Const.EntityType.LegendHexeLeader
+::Const.LegendMod.FavoriteBeast <- [
+	::Const.EntityType.LegendBasiliskDrone,
+	::Const.EntityType.LegendBasiliskSentry,
+	::Const.EntityType.Hyena,
+	::Const.EntityType.LegendEnragedHyena,
+	::Const.EntityType.Direwolf,
+	// ::Const.EntityType.Wolf, // i guess not beast
+	// ::Const.EntityType.KoboldWolfrider, //Not used currently
+	::Const.EntityType.LegendWhiteDirewolf,
+	::Const.EntityType.Ghoul,
+	::Const.EntityType.LegendSkinGhoul,
+	::Const.EntityType.Serpent,
+	::Const.EntityType.Lindwurm,
+	::Const.EntityType.LegendStollwurm,
+	::Const.EntityType.Spider,
+	::Const.EntityType.LegendSpiderCluster,
+	//::Const.EntityType.SpiderBodyguard,
+	::Const.EntityType.SpiderEggs,
+	::Const.EntityType.LegendRedbackSpider,
+	::Const.EntityType.Unhold,
+	::Const.EntityType.UnholdBog,
+	::Const.EntityType.UnholdFrost,
+	::Const.EntityType.BarbarianUnhold,
+	::Const.EntityType.BarbarianUnholdFrost,
+	::Const.EntityType.LegendRockUnhold,
+	::Const.EntityType.LegendBear
 ];
 
-::Const.LegendMod.FavoriteLindwurm <- [
-	this.Const.EntityType.Serpent,
-	this.Const.EntityType.Lindwurm,
-	this.Const.EntityType.LegendStollwurm
+::Const.LegendMod.FavoriteGreenSkins <- [
+	::Const.EntityType.GoblinFighter,
+	::Const.EntityType.LegendGoblinHarrier, // these 2 inherit from the goblin fighter but just in case?
+	::Const.EntityType.LegendGoblinFiend,
+	::Const.EntityType.GoblinAmbusher,
+	::Const.EntityType.LegendGoblinTribeDefender,
+	::Const.EntityType.GoblinLeader,
+	::Const.EntityType.GoblinShaman,
+	::Const.EntityType.LegendGoblinWitchDoctor,
+	::Const.EntityType.GoblinWolfrider,
+	::Const.EntityType.LegendGoblinDirewolfRider,
+	::Const.EntityType.LegendGoblinWhiteDirewolfRider,
+	::Const.EntityType.OrcBerserker,
+	::Const.EntityType.OrcYoung,
+	::Const.EntityType.OrcWarrior,
+	::Const.EntityType.OrcWarlord,
+	::Const.EntityType.LegendOrcBehemoth,
+	::Const.EntityType.LegendOrcElite,
+	::Const.EntityType.LegendOrcMadBerserker,
+	::Const.EntityType.LegendOrcTyrant,
+	//	::Const.EntityType.KoboldWolfrider, //Not used currently
+	//	::Const.EntityType.KoboldFighter //Not used currently
 ];
 
-::Const.LegendMod.FavoriteOrc <- [
-	this.Const.EntityType.OrcBerserker,
-	this.Const.EntityType.OrcYoung,
-	this.Const.EntityType.OrcWarrior,
-	this.Const.EntityType.OrcWarlord,
-	this.Const.EntityType.LegendOrcBehemoth,
-	this.Const.EntityType.LegendOrcElite
-];
-
-::Const.LegendMod.FavoriteSchrat <- [
-	this.Const.EntityType.SandGolem,
-	this.Const.EntityType.Schrat,
-	this.Const.EntityType.SchratSmall,
-	this.Const.EntityType.LegendGreenwoodSchrat,
-	this.Const.EntityType.LegendGreenwoodSchratSmall
-];
-
-::Const.LegendMod.FavoriteSkeleton <- [
-	this.Const.EntityType.SkeletonLight,
-	this.Const.EntityType.SkeletonMedium,
-	this.Const.EntityType.SkeletonHeavy,
-	this.Const.EntityType.SkeletonBoss,
-	this.Const.EntityType.SkeletonPriest,
-	this.Const.EntityType.SkeletonLich,
-	this.Const.EntityType.SkeletonLichMirrorImage,
-	this.Const.EntityType.SkeletonPhylactery,
-	this.Const.EntityType.SkeletonGladiator,
-	this.Const.EntityType.FlyingSkull
-];
-::Const.LegendMod.FavoriteSpider <- [
-	this.Const.EntityType.Spider,
-	//this.Const.EntityType.SpiderBodyguard,
-	this.Const.EntityType.SpiderEggs,
-	this.Const.EntityType.LegendRedbackSpider
-];
-::Const.LegendMod.FavoriteUnhold <- [
-	this.Const.EntityType.Unhold,
-	this.Const.EntityType.UnholdBog,
-	this.Const.EntityType.UnholdFrost,
-	this.Const.EntityType.BarbarianUnhold,
-	this.Const.EntityType.BarbarianUnholdFrost,
-	this.Const.EntityType.LegendRockUnhold
-];
-::Const.LegendMod.FavoriteVampire <- [
-	this.Const.EntityType.Vampire,
-	this.Const.EntityType.Ghost,
-	this.Const.EntityType.LegendDemonHound,
-	this.Const.EntityType.LegendVampireLord,
-	this.Const.EntityType.LegendBanshee,
-	this.Const.EntityType.LegendMummyLight,
-	this.Const.EntityType.LegendMummyMedium,
-	this.Const.EntityType.LegendMummyHeavy,
-	this.Const.EntityType.LegendMummyQueen,
-	this.Const.EntityType.LegendMummyPriest
-];
 ::Const.LegendMod.FavoriteSwordmaster <- [
-	this.Const.EntityType.HedgeKnight,
-	this.Const.EntityType.Knight,
-	this.Const.EntityType.Greatsword,
-	this.Const.EntityType.Swordmaster,
-	this.Const.EntityType.BanditLeader,
-	// this.Const.EntityType.BanditVeteran,
-	this.Const.EntityType.BanditWarlord,
-	this.Const.EntityType.BarbarianChampion, //King
-	this.Const.EntityType.Sergeant,
-	this.Const.EntityType.Officer,
-	this.Const.EntityType.Gladiator,
-	this.Const.EntityType.Assassin,
-	this.Const.EntityType.NomadLeader,
-	this.Const.EntityType.Executioner,
-	this.Const.EntityType.DesertDevil,
-	this.Const.EntityType.LegendFencer
+	::Const.EntityType.HedgeKnight,
+	::Const.EntityType.Knight,
+	::Const.EntityType.Greatsword,
+	::Const.EntityType.Swordmaster,
+	::Const.EntityType.BanditLeader,
+	::Const.EntityType.LegendRobberBaron,
+	::Const.EntityType.LegendBarbarianRunechosen,
+	::Const.EntityType.BarbarianChampion,
+	::Const.EntityType.BarbarianChosen,
+	::Const.EntityType.Sergeant,
+	::Const.EntityType.Officer,
+	::Const.EntityType.Gladiator,
+	::Const.EntityType.Assassin,
+	::Const.EntityType.NomadLeader,
+	::Const.EntityType.Executioner,
+	::Const.EntityType.DesertDevil,
+	::Const.EntityType.DesertStalker,
+	::Const.EntityType.LegendFencer
 ];
-::Const.LegendMod.FavoriteArcher <- [
-	this.Const.EntityType.MasterArcher,
-	this.Const.EntityType.BanditMarksman,
-	this.Const.EntityType.BanditRabblePoacher,
-	this.Const.EntityType.BanditPoacher,
-	this.Const.EntityType.MilitiaRanged,
-	this.Const.EntityType.Arbalester,
-	this.Const.EntityType.LegendSlinger,
-	this.Const.EntityType.GoblinAmbusher,
-	this.Const.EntityType.NomadSlinger,
-	this.Const.EntityType.NomadArcher,
-	this.Const.EntityType.Gunner,
-	this.Const.EntityType.DesertStalker
+
+::Const.LegendMod.FavoriteOutlaw <- [
+	::Const.EntityType.Warhound,
+	::Const.EntityType.BarbarianThrall,
+	::Const.EntityType.BarbarianMarauder, //Reaver
+	::Const.EntityType.BarbarianChampion, //Chosen
+	::Const.EntityType.BarbarianChosen, //King
+	::Const.EntityType.BarbarianDrummer,
+	::Const.EntityType.BarbarianBeastmaster,
+	::Const.EntityType.LegendBarbarianBloodletter,
+	::Const.EntityType.LegendBarbarianPillager,
+	::Const.EntityType.LegendBarbarianRunechosen,
+	::Const.EntityType.BanditRabble,
+	::Const.EntityType.BanditRabblePoacher,
+	::Const.EntityType.BanditThug,
+	::Const.EntityType.BanditPoacher,
+	::Const.EntityType.BanditMarksman,
+	::Const.EntityType.BanditRaider,
+	::Const.EntityType.BanditMarauder,
+	::Const.EntityType.LegendRobberBaron,
+	::Const.EntityType.BanditLeader,
+	::Const.EntityType.Slave,
+	::Const.EntityType.NomadCutthroat,
+	::Const.EntityType.NomadOutlaw,
+	::Const.EntityType.NomadSlinger,
+	::Const.EntityType.NomadArcher,
+	::Const.EntityType.NomadLeader,
+	::Const.EntityType.LegendSighthound,
+	// I see sellswords as more civilized outlaws
+	::Const.EntityType.Mercenary, //Contains LOW varient
+	::Const.EntityType.MercenaryRanged,
+	::Const.EntityType.BountyHunter,
 ];
-::Const.LegendMod.FavoriteBarbarian <- [
-	this.Const.EntityType.Warhound,
-	this.Const.EntityType.BarbarianThrall,
-	this.Const.EntityType.BarbarianMarauder,
-	this.Const.EntityType.BarbarianChampion,
-	this.Const.EntityType.BarbarianChosen,
-	this.Const.EntityType.BarbarianDrummer,
-	this.Const.EntityType.BarbarianBeastmaster
+
+::Const.LegendMod.FavoriteCivilization <- [
+	::Const.EntityType.Peasant,
+	::Const.EntityType.LegendPeasantButcher,
+	::Const.EntityType.LegendPeasantBlacksmith,
+	::Const.EntityType.LegendPeasantMonk,
+	::Const.EntityType.LegendPeasantFarmhand,
+	::Const.EntityType.LegendPeasantMinstrel,
+	::Const.EntityType.LegendPeasantPoacher,
+	::Const.EntityType.LegendPeasantMiner,
+	::Const.EntityType.LegendPeasantSquire,
+	::Const.EntityType.LegendPeasantWoodsman,
+	::Const.EntityType.LegendPeasantWitchHunter,
+	::Const.EntityType.CaravanHand,
+	::Const.EntityType.CaravanGuard,
+	::Const.EntityType.LegendCaravanPolearm,
+	::Const.EntityType.Militia,
+	::Const.EntityType.MilitiaVeteran,
+	::Const.EntityType.MilitiaCaptain,
+	::Const.EntityType.MilitiaRanged,
+	::Const.EntityType.PeasantSouthern,
+	::Const.EntityType.Footman,
+	::Const.EntityType.LegendNobleGuard,
+	::Const.EntityType.LegendManAtArms,
+	::Const.EntityType.Greatsword,
+	::Const.EntityType.Billman,
+	::Const.EntityType.Arbalester,
+	::Const.EntityType.StandardBearer,
+	::Const.EntityType.Sergeant,
+	::Const.EntityType.LegendFencer,
+	::Const.EntityType.LegendHalberdier,
+	::Const.EntityType.LegendSlinger,
+	::Const.EntityType.NobleEliteFootman,
+	::Const.EntityType.NoblePollax,
+	::Const.EntityType.NobleSureshot,
+	::Const.EntityType.Knight,
+	::Const.EntityType.Wardog,
+	::Const.EntityType.ArmoredWardog,
+	::Const.EntityType.Conscript,
+	::Const.EntityType.Gunner,
+	::Const.EntityType.Officer,
+	::Const.EntityType.Engineer,
+	::Const.EntityType.Assassin,
+	::Const.EntityType.LegendManhunter,
+	::Const.EntityType.LegendManhunterRanged,
+	::Const.EntityType.LegendManhunterVeteran,
+	::Const.EntityType.LegendManhunterVeteranRanged
 ];
-::Const.LegendMod.FavoriteBandit <- [
-	this.Const.EntityType.BanditRabble,
-	this.Const.EntityType.BanditRabblePoacher,
-	this.Const.EntityType.BanditThug,
-	this.Const.EntityType.BanditPoacher,
-	this.Const.EntityType.BanditMarksman,
-	this.Const.EntityType.BanditRaider,
-	this.Const.EntityType.BanditVeteran,
-	this.Const.EntityType.BanditWarlord,
-	this.Const.EntityType.BanditLeader
-];
-::Const.LegendMod.FavoriteCaravan <- [
-	this.Const.EntityType.Peasant,
-	this.Const.EntityType.LegendPeasantButcher,
-	this.Const.EntityType.LegendPeasantBlacksmith,
-	this.Const.EntityType.LegendPeasantMonk,
-	this.Const.EntityType.LegendPeasantFarmhand,
-	this.Const.EntityType.LegendPeasantMinstrel,
-	this.Const.EntityType.LegendPeasantPoacher,
-	this.Const.EntityType.LegendPeasantMiner,
-	this.Const.EntityType.LegendPeasantSquire,
-	this.Const.EntityType.LegendPeasantWitchHunter,
-	this.Const.EntityType.CaravanHand,
-	this.Const.EntityType.CaravanGuard,
-	this.Const.EntityType.LegendCaravanPolearm,
-	this.Const.EntityType.Militia,
-	this.Const.EntityType.MilitiaVeteran,
-	this.Const.EntityType.MilitiaCaptain,
-	this.Const.EntityType.MilitiaRanged,
-	// this.Const.EntityType.Slave,
-	// this.Const.EntityType.Engineer,
-	this.Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNoble <- [
-	this.Const.EntityType.Footman,
-	this.Const.EntityType.LegendNobleGuard,
-	this.Const.EntityType.LegendManAtArms,
-	this.Const.EntityType.Greatsword,
-	this.Const.EntityType.Billman,
-	this.Const.EntityType.Arbalester,
-	this.Const.EntityType.StandardBearer,
-	this.Const.EntityType.Sergeant,
-	this.Const.EntityType.LegendFencer,
-	this.Const.EntityType.LegendHalberdier,
-	this.Const.EntityType.LegendSlinger,
-	this.Const.EntityType.NobleEliteFootman,
-	this.Const.EntityType.NoblePollax,
-	this.Const.EntityType.NobleSureshot,
-	this.Const.EntityType.Knight
-];
-::Const.LegendMod.FavoriteMercenary <- [
-	this.Const.EntityType.Wardog,
-	this.Const.EntityType.ArmoredWardog,
-	this.Const.EntityType.Mercenary, //Contains LOW varient
-	this.Const.EntityType.MercenaryRanged,
-	this.Const.EntityType.BountyHunter,
-	// this.Const.EntityType.Swordmaster,
-	// this.Const.EntityType.HedgeKnight,
-	// this.Const.EntityType.MasterArcher,
-	this.Const.EntityType.FreeCompanyArcher, //Not used
-	this.Const.EntityType.FreeCompanyCrossbow, //Not used
-	this.Const.EntityType.FreeCompanyLongbow, //Not used
-	this.Const.EntityType.FreeCompanyBillman, //Not used
-	this.Const.EntityType.FreeCompanyPikeman, //Not used
-	this.Const.EntityType.FreeCompanyInfantry, //Not used
-	this.Const.EntityType.FreeCompanyLeader, //Not used
-	this.Const.EntityType.FreeCompanyLeaderLow //Not used
-];
-::Const.LegendMod.FavoriteSoutherners <- [
-	this.Const.EntityType.Slave,
-	this.Const.EntityType.Conscript,
-	this.Const.EntityType.Gunner,
-	this.Const.EntityType.Officer,
-	this.Const.EntityType.Engineer,
-	this.Const.EntityType.Assassin,
-	this.Const.EntityType.SatoManhunter,
-	this.Const.EntityType.SatoManhunterVeteran
-	// this.Const.EntityType.Gladiator,
-	// this.Const.EntityType.PeasantSouthern
-];
-::Const.LegendMod.FavoriteNomad <- [
-	this.Const.EntityType.Slave,
-	// this.Const.EntityType.Gladiator,
-	this.Const.EntityType.NomadCutthroat,
-	this.Const.EntityType.NomadOutlaw,
-	this.Const.EntityType.NomadSlinger,
-	this.Const.EntityType.NomadArcher,
-	this.Const.EntityType.NomadLeader
-	// this.Const.EntityType.DesertStalker,
-	// this.Const.EntityType.Executioner,
-	// this.Const.EntityType.DesertDevil
-	// this.Const.EntityType.PeasantSouthern
-];
+
 ::Const.LegendMod.GetFavoriteEnemyValue <- function ( _type ) //Number = how many you need to kill to attain 1% towards a fav. enemy multiplier. | EG, 1 = 1%, 4 = 0.25%, etc. | 1 / <return number> = how many needed to gain 1%.
 {
 	switch(_type) //Basically, use anything that is NOT a prime number.
 	{
-	case this.Const.EntityType.Lindwurm :
+	case ::Const.EntityType.Lindwurm :
 		return 1;
 
-	case this.Const.EntityType.Serpent :
+	case ::Const.EntityType.Serpent :
 		return 4;
 
-	case this.Const.EntityType.LegendStollwurm :
+	case ::Const.EntityType.LegendStollwurm :
 		return 0.4;
 
-	case this.Const.EntityType.Alp :
+	case ::Const.EntityType.Alp :
 		return 4;
 
-	case this.Const.EntityType.LegendDemonAlp :
+	case ::Const.EntityType.AlpShadow :
+		return 20;
+
+	case ::Const.EntityType.LegendDemonAlp :
 		return 1;
 
-	case this.Const.EntityType.LegendGreenwoodSchrat :
+	case ::Const.EntityType.LegendGreenwoodSchrat :
 		return 1;
 
-	case this.Const.EntityType.LegendGreenwoodSchratSmall :
+	case ::Const.EntityType.LegendGreenwoodSchratSmall :
 		return 2.5;
 
-	case this.Const.EntityType.SandGolem :
+	case ::Const.EntityType.SandGolem :
 		return 8;
 
-	case this.Const.EntityType.Schrat :
+	case ::Const.EntityType.Schrat :
 		return 1;
 
-	case this.Const.EntityType.SchratSmall :
+	case ::Const.EntityType.SchratSmall :
 		return 5;
 
-	case this.Const.EntityType.LegendRockUnhold :
+	case ::Const.EntityType.LegendRockUnhold :
 		return 0.5;
 
-	case this.Const.EntityType.Unhold :
+	case ::Const.EntityType.Unhold :
 		return 2;
 
-	case this.Const.EntityType.UnholdBog :
+	case ::Const.EntityType.UnholdBog :
 		return 2;
 
-	case this.Const.EntityType.UnholdFrost :
+	case ::Const.EntityType.UnholdFrost :
 		return 2;
 
-	case this.Const.EntityType.Hexe :
+	case ::Const.EntityType.Hexe :
 		return 2;
 
-	case this.Const.EntityType.LegendHexeLeader :
+	case ::Const.EntityType.LegendHexeLeader :
 		return 0.5;
 
-	case this.Const.EntityType.Spider :
+	case ::Const.EntityType.Spider :
 		return 8;
 
-	// case this.Const.EntityType.SpiderBodyguard :
+	case ::Const.EntityType.LegendSpiderCluster :
+		return 8;
+
+	// case ::Const.EntityType.SpiderBodyguard :
 	// 	return 8;
 
-	case this.Const.EntityType.SpiderEggs :
+	case ::Const.EntityType.SpiderEggs :
 		return 2;
 
-	case this.Const.EntityType.LegendRedbackSpider :
+	case ::Const.EntityType.LegendRedbackSpider :
 		return 1;
 
-	case this.Const.EntityType.Ghoul :
+	case ::Const.EntityType.Ghoul :
 		return 6;
 
-	case this.Const.EntityType.LegendSkinGhoul :
+	case ::Const.EntityType.LegendSkinGhoul :
 		return 2;
 
-	case this.Const.EntityType.Hyena :
+	case ::Const.EntityType.LegendBasiliskDrone :
 		return 5;
 
-	case this.Const.EntityType.Direwolf :
+	case ::Const.EntityType.LegendBasiliskSentry :
+		return 4;
+
+	case ::Const.EntityType.Hyena :
 		return 5;
 
-	case this.Const.EntityType.LegendWhiteDirewolf :
+	case ::Const.EntityType.LegendEnragedHyena :
 		return 0.5;
 
-	case this.Const.EntityType.Vampire :
+	case ::Const.EntityType.Direwolf :
+		return 5;
+
+	case ::Const.EntityType.LegendWhiteDirewolf :
+		return 0.5;
+
+	case ::Const.EntityType.Vampire :
 		return 4;
 
-	case this.Const.EntityType.LegendVampireLord :
+	case ::Const.EntityType.LegendVampireLord :
 		return 2;
 
-	case this.Const.EntityType.LegendMummyLight :
+	case ::Const.EntityType.LegendMummyLight :
 		return 4;
 
-	case this.Const.EntityType.LegendMummyMedium :
+	case ::Const.EntityType.LegendMummyMedium :
 		return 2;
 
-	case this.Const.EntityType.LegendMummyHeavy :
+	case ::Const.EntityType.LegendMummyHeavy :
 		return 1;
 
-	case this.Const.EntityType.LegendMummyQueen :
+	case ::Const.EntityType.LegendMummyQueen :
 		return 0.5;
 
-	case this.Const.EntityType.LegendMummyPriest :
+	case ::Const.EntityType.LegendMummyPriest :
 		return 0.8;
 
-	case this.Const.EntityType.SkeletonGladiator :
+	case ::Const.EntityType.SkeletonGladiator :
 		return 2;
 
-	case this.Const.EntityType.SkeletonPriest :
+	case ::Const.EntityType.SkeletonPriest :
 		return 2;
 
-	case this.Const.EntityType.SkeletonHeavy :
+	case ::Const.EntityType.SkeletonHeavy :
 		return 2;
 
-	case this.Const.EntityType.SkeletonMedium :
+	case ::Const.EntityType.SkeletonMedium :
 		return 5;
 
-	case this.Const.EntityType.SkeletonLight :
+	case ::Const.EntityType.SkeletonLight :
 		return 10;
 
-	case this.Const.EntityType.LegendDemonHound :
+	case ::Const.EntityType.LegendDemonHound :
 		return 8;
 
-	case this.Const.EntityType.Ghost :
+	case ::Const.EntityType.Ghost :
 		return 8;
 
-	case this.Const.EntityType.LegendBanshee :
+	case ::Const.EntityType.LegendBanshee :
+		return 2;
+
+	case ::Const.EntityType.LegendWicht :
 		return 4;
 
-	case this.Const.EntityType.ZombieBoss :
+	case ::Const.EntityType.ZombieBoss :
 		return 1;
 
-	case this.Const.EntityType.ZombieBetrayer :
+	case ::Const.EntityType.ZombieBetrayer :
 		return 5;
 
-	case this.Const.EntityType.ZombieKnight :
+	case ::Const.EntityType.ZombieKnight :
 		return 5;
 
-	case this.Const.EntityType.ZombieYeoman :
+	case ::Const.EntityType.ZombieYeoman :
 		return 10;
 
-	case this.Const.EntityType.Zombie :
+	case ::Const.EntityType.Zombie :
 		return 20;
 
-	case this.Const.EntityType.Necromancer :
+	case ::Const.EntityType.Necromancer :
 		return 4;
 
-	case this.Const.EntityType.GoblinWolfrider :
+	case ::Const.EntityType.GoblinWolfrider :
 		return 5;
 
-	case this.Const.EntityType.GoblinShaman :
+	case ::Const.EntityType.LegendGoblinDirewolfRider :
+		return 5;
+
+	case ::Const.EntityType.LegendGoblinWhiteDirewolfRider :
+		return 2;
+
+	case ::Const.EntityType.GoblinShaman :
 		return 4;
 
-	case this.Const.EntityType.GoblinLeader :
+	case ::Const.EntityType.LegendGoblinWitchDoctor :
+		return 2;
+
+	case ::Const.EntityType.GoblinLeader :
 		return 4;
 
-	case this.Const.EntityType.GoblinFighter :
+	case ::Const.EntityType.GoblinFighter :
+	case ::Const.EntityType.LegendGoblinHarrier :
+	case ::Const.EntityType.GoblinAmbusher :
 		return 8;
 
-	case this.Const.EntityType.GoblinAmbusher :
-		return 8;
+	case ::Const.EntityType.LegendGoblinFiend :
+	case ::Const.EntityType.LegendGoblinTribeDefender :
+		return 4;
 
-	case this.Const.EntityType.OrcYoung :
+	case ::Const.EntityType.OrcYoung :
 		return 6;
 
-	case this.Const.EntityType.OrcBerserker :
+	case ::Const.EntityType.OrcBerserker :
 		return 5;
 
-	case this.Const.EntityType.LegendOrcElite :
+	case ::Const.EntityType.LegendOrcElite :
 		return 4;
 
-	case this.Const.EntityType.OrcWarlord :
+	case ::Const.EntityType.LegendOrcMadBerserker :
 		return 1;
 
-	case this.Const.EntityType.LegendOrcBehemoth :
+	case ::Const.EntityType.LegendOrcTyrant :
+		return 1;
+
+	case ::Const.EntityType.OrcWarlord :
+		return 1;
+
+	case ::Const.EntityType.LegendOrcBehemoth :
 		return 2;
 
-	case this.Const.EntityType.OrcWarrior :
+	case ::Const.EntityType.OrcWarrior :
 		return 5;
 
-	case this.Const.EntityType.Militia :
+	case ::Const.EntityType.Militia :
 		return 20;
 
-	case this.Const.EntityType.MilitiaRanged :
+	case ::Const.EntityType.MilitiaRanged :
 		return 20;
 
-	case this.Const.EntityType.MilitiaCaptain :
+	case ::Const.EntityType.MilitiaCaptain :
 		return 4;
 
-	case this.Const.EntityType.MilitiaVeteran :
+	case ::Const.EntityType.MilitiaVeteran :
 		return 5;
 
-	case this.Const.EntityType.BountyHunter :
+	case ::Const.EntityType.BountyHunter :
 		return 4;
 
-	case this.Const.EntityType.LegendPeasantButcher :
-	case this.Const.EntityType.LegendPeasantBlacksmith :
-	case this.Const.EntityType.LegendPeasantMonk :
-	case this.Const.EntityType.LegendPeasantFarmhand :
-	case this.Const.EntityType.LegendPeasantMinstrel :
-	case this.Const.EntityType.LegendPeasantPoacher :
-	case this.Const.EntityType.LegendPeasantMiner :
-	case this.Const.EntityType.LegendPeasantSquire :
-	case this.Const.EntityType.LegendPeasantWitchHunter :
-	case this.Const.EntityType.Peasant :
+	case ::Const.EntityType.LegendPeasantButcher :
+	case ::Const.EntityType.LegendPeasantBlacksmith :
+	case ::Const.EntityType.LegendPeasantMonk :
+	case ::Const.EntityType.LegendPeasantFarmhand :
+	case ::Const.EntityType.LegendPeasantMinstrel :
+	case ::Const.EntityType.LegendPeasantPoacher :
+	case ::Const.EntityType.LegendPeasantMiner :
+	case ::Const.EntityType.LegendPeasantSquire :
+	case ::Const.EntityType.LegendPeasantWoodsman :
+	case ::Const.EntityType.LegendPeasantWitchHunter :
+	case ::Const.EntityType.Peasant :
 		return 25; //Just using this for now, they are all pretty much the same in strength aside from the witchunter and squire anyway.
 
-	case this.Const.EntityType.LegendCaravanPolearm:
-	case this.Const.EntityType.CaravanHand :
+	case ::Const.EntityType.LegendCaravanPolearm:
+	case ::Const.EntityType.CaravanHand :
 		return 10;
 
-	case this.Const.EntityType.CaravanGuard :
+	case ::Const.EntityType.CaravanGuard :
 		return 8;
 
-	case this.Const.EntityType.Wardog :
-	case this.Const.EntityType.ArmoredWardog :
+	case ::Const.EntityType.Wardog :
+	case ::Const.EntityType.ArmoredWardog :
+	case ::Const.EntityType.LegendSighthound :
 		return 16;
 
-	case this.Const.EntityType.Mercenary :
-	case this.Const.EntityType.MercenaryRanged :
+	case ::Const.EntityType.Mercenary :
+	case ::Const.EntityType.MercenaryRanged :
 		return 2;
 
-	case this.Const.EntityType.HedgeKnight :
+	case ::Const.EntityType.HedgeKnight :
 		return 4;
 
-	case this.Const.EntityType.MasterArcher :
+	case ::Const.EntityType.MasterArcher :
 		return 2;
 
-	case this.Const.EntityType.Footman :
-	case this.Const.EntityType.NobleEliteFootman :
-	case this.Const.EntityType.NoblePollax :
-	case this.Const.EntityType.NobleSureshot :
+	case ::Const.EntityType.Footman :
+	case ::Const.EntityType.NobleEliteFootman :
+	case ::Const.EntityType.NoblePollax :
+	case ::Const.EntityType.NobleSureshot :
+	case ::Const.EntityType.LegendNobleGuard :
+	case ::Const.EntityType.LegendManAtArms :
 		return 8;
 
-	case this.Const.EntityType.Greatsword :
+	case ::Const.EntityType.Greatsword :
 		return 4;
 
-	case this.Const.EntityType.Swordmaster :
+	case ::Const.EntityType.Swordmaster :
 		return 2;
 
-	case this.Const.EntityType.Billman :
+	case ::Const.EntityType.Billman :
 		return 8;
 
-	case this.Const.EntityType.Arbalester :
+	case ::Const.EntityType.Arbalester :
 		return 4;
 
-	case this.Const.EntityType.StandardBearer :
+	case ::Const.EntityType.StandardBearer :
 		return 2;
 
-	case this.Const.EntityType.Sergeant :
+	case ::Const.EntityType.Sergeant :
 		return 8;
 
-	case this.Const.EntityType.Knight :
+	case ::Const.EntityType.Knight :
 		return 1;
 
-	case this.Const.EntityType.LegendSlinger :
+	case ::Const.EntityType.LegendSlinger :
 		return 8;
 
-	case this.Const.EntityType.LegendHalberdier :
+	case ::Const.EntityType.LegendHalberdier :
 		return 4;
 
-	case this.Const.EntityType.LegendFencer :
+	case ::Const.EntityType.LegendFencer :
 		return 4;
 
-	case this.Const.EntityType.BanditRabble :
-	case this.Const.EntityType.BanditRabblePoacher :
+	case ::Const.EntityType.BanditRabble :
+	case ::Const.EntityType.BanditRabblePoacher :
 		return 40;
 
-	case this.Const.EntityType.BanditThug :
+	case ::Const.EntityType.BanditThug :
 		return 16;
 
-	case this.Const.EntityType.BanditPoacher :
+	case ::Const.EntityType.BanditPoacher :
 		return 16;
 
-	case this.Const.EntityType.BanditMarksman :
+	case ::Const.EntityType.BanditMarksman :
 		return 8;
 
-	case this.Const.EntityType.BanditRaider :
+	case ::Const.EntityType.BanditRaider :
 		return 8;
 
-	case this.Const.EntityType.BanditVeteran :
+	case ::Const.EntityType.BanditMarauder :
 		return 5;
 
-	case this.Const.EntityType.BanditLeader :
+	case ::Const.EntityType.BanditLeader :
 		return 4;
 
-	case this.Const.EntityType.BanditWarlord :
+	case ::Const.EntityType.LegendRobberBaron :
 		return 1;
 
-	case this.Const.EntityType.Warhound :
+	case ::Const.EntityType.Warhound :
 		return 16;
 
-	case this.Const.EntityType.BarbarianThrall :
+	case ::Const.EntityType.BarbarianThrall :
 		return 10;
 
-	case this.Const.EntityType.BarbarianMarauder :
+	case ::Const.EntityType.BarbarianMarauder :
 		return 8;
 
-	case this.Const.EntityType.BarbarianChampion : //Barbarian King
+	case ::Const.EntityType.LegendBarbarianRunechosen:
+	case ::Const.EntityType.BarbarianChosen: //Barbarian King
 		return 1;
 
-	case this.Const.EntityType.BarbarianChosen :
-		return 4;
-
-	case this.Const.EntityType.BarbarianDrummer :
-		return 4;
-
-	case this.Const.EntityType.BarbarianUnhold :
+	case ::Const.EntityType.LegendBarbarianBloodletter:
+	case ::Const.EntityType.LegendBarbarianPillager:
 		return 2;
 
-	case this.Const.EntityType.BarbarianUnholdFrost :
+	case ::Const.EntityType.BarbarianChampion:
 		return 2;
 
-	case this.Const.EntityType.BarbarianBeastmaster :
+	case ::Const.EntityType.BarbarianDrummer :
 		return 4;
 
-	case this.Const.EntityType.BarbarianMadman :
+	case ::Const.EntityType.BarbarianUnhold :
+		return 2;
+
+	case ::Const.EntityType.BarbarianUnholdFrost :
+		return 2;
+
+	case ::Const.EntityType.LegendBear :
+		return 2;
+
+	case ::Const.EntityType.BarbarianBeastmaster :
+		return 4;
+
+	case ::Const.EntityType.BarbarianMadman :
 		return 1;
 
-	case this.Const.EntityType.Conscript :
+	case ::Const.EntityType.Conscript :
 		return 8;
 
-	case this.Const.EntityType.Gunner :
+	case ::Const.EntityType.Gunner :
 		return 4;
 
-	case this.Const.EntityType.Officer :
+	case ::Const.EntityType.Officer :
 		return 2;
 
-	case this.Const.EntityType.Engineer :
+	case ::Const.EntityType.Engineer :
 		return 1;
 
-	case this.Const.EntityType.Assassin :
+	case ::Const.EntityType.Assassin :
 		return 2;
 
-	case this.Const.EntityType.Slave :
+	case ::Const.EntityType.Slave :
 		return 25;
 
-	case this.Const.EntityType.Gladiator :
+	case ::Const.EntityType.Gladiator :
 		return 2;
 
-	case this.Const.EntityType.NomadCutthroat :
+	case ::Const.EntityType.NomadCutthroat :
 		return 16;
 
-	case this.Const.EntityType.NomadOutlaw :
+	case ::Const.EntityType.NomadOutlaw :
 		return 8;
 
-	case this.Const.EntityType.NomadSlinger :
+	case ::Const.EntityType.NomadSlinger :
 		return 10;
 
-	case this.Const.EntityType.NomadArcher :
+	case ::Const.EntityType.NomadArcher :
 		return 8;
 
-	case this.Const.EntityType.NomadLeader :
+	case ::Const.EntityType.NomadLeader :
 		return 4;
 
-	case this.Const.EntityType.DesertStalker :
+	case ::Const.EntityType.DesertStalker :
 		return 2;
 
-	case this.Const.EntityType.Executioner :
+	case ::Const.EntityType.Executioner :
 		return 2;
 
-	case this.Const.EntityType.DesertDevil :
+	case ::Const.EntityType.DesertDevil :
 		return 2;
 
-	case this.Const.EntityType.PeasantSouthern :
+	case ::Const.EntityType.PeasantSouthern :
 		return 25;
 
-	case this.Const.EntityType.SatoManhunter :
-	case this.Const.EntityType.SatoManhunterRanged : //only for escaped slaves origin. Makes sense they are higher %
+	case ::Const.EntityType.LegendManhunter :
+	case ::Const.EntityType.LegendManhunterRanged : //only for escaped slaves origin. Makes sense they are higher %
 		return 4;
 
-	case this.Const.EntityType.SatoManhunterVeteran :
-	case this.Const.EntityType.SatoManhunterVeteranRanged : //only for escaped slaves origin. Makes sense they are higher %
+	case ::Const.EntityType.LegendManhunterVeteran :
+	case ::Const.EntityType.LegendManhunterVeteranRanged : //only for escaped slaves origin. Makes sense they are higher %
 		return 2;
 
-	case this.Const.EntityType.SkeletonLich :
+	case ::Const.EntityType.SkeletonLich :
 		return 1;
 
-	case this.Const.EntityType.SkeletonLichMirrorImage :
-		return 0.5;
+	case ::Const.EntityType.SkeletonLichMirrorImage :
+		return 5;
 
-	case this.Const.EntityType.SkeletonPhylactery :
+	case ::Const.EntityType.SkeletonPhylactery :
 		return 1;
 
-	case this.Const.EntityType.SkeletonBoss :
+	case ::Const.EntityType.SkeletonBoss :
 		return 0.25;
 
-	case this.Const.EntityType.ZombieTreasureHunter :
+	case ::Const.EntityType.ZombieTreasureHunter :
 		return 5;
 
-	case this.Const.EntityType.FlyingSkull :
+	case ::Const.EntityType.FlyingSkull :
 		return 25;
 
 	default:
@@ -659,11 +666,11 @@ if (!("LegendMod" in ::Const))
 	{
 		local mKills = 0;
 		local favKey = "Enemy" + t;
-		mKills = _actor.getLifetimeStats().Tags.get(favKey)
+		mKills = _actor.getLifetimeStats().Tags.get(favKey);
 		if (mKills && mKills > 0)
 		{
 			kills += mKills;
-			str += (mKills * 1.0 / this.Const.LegendMod.GetFavoriteEnemyValue(t));
+			str += (mKills * 1.0 / ::Const.LegendMod.GetFavoriteEnemyValue(t));
 		}
 	}
 	local hitChance = 5 + this.Math.min(this.Math.floor(str), 20); // base bonus of 5 and cap total at 25
@@ -719,7 +726,7 @@ if (!("LegendMod" in ::Const))
 
 ::Const.LegendMod.GetFavEnemyBossChance <- function (_id)
 {
-	local perks = this.Const.LegendMod.FavEnemyPerkMap.getPerks(_id)
+	local perks = ::Const.LegendMod.FavEnemyPerkMap.getPerks(_id);
 	if( perks.len() == 0)
 	{
 		return 0;
@@ -736,10 +743,10 @@ if (!("LegendMod" in ::Const))
 				continue
 			}
 
-			local P = bro.getSkills().getSkillByID(perk)
+			local P = bro.getSkills().getSkillByID(perk);
 
-			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, P.m.ValidTypes);
-			bonus += this.Math.floor((stats.Kills * 1.0) / 10.0)
+			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, P.m.ValidTypes);
+			bonus += this.Math.floor((stats.Kills * 1.0) / 10.0);
 			break;
 		}
 	}

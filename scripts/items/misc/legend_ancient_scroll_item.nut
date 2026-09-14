@@ -1,212 +1,51 @@
-this.legend_ancient_scroll_item <- ::inherit("scripts/items/item", {
+this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_book", {
 	m = {
-		Selection = null
+		PerkGroups = ::Const.Perks.MagicTrees.Tree,
+		Cooldown = 100,
+		HasToBeIdentified = true,
+		BookName = "Ancient Scroll:"
 	},
 	function create()
 	{
-		m.ID = "misc.ancient_scroll";
-		m.Name = "Ancient Scroll";
-		m.Description = "A torn-up scroll with knowledge unseen for centuries. It can be translated by a character with the interpretation perk in the crafting tent. Highly valuable to some historians, although it is useless to many. They can, however, be studied with effort and a high chance of headache. Every brother may use up to 1 scroll. Being bright increases this to 2 scrolls, and being dumb decreases this to 0 scrolls.";
-		m.Icon = "trade/scroll.png";
-		m.SlotType = ::Const.ItemSlot.None;
-		m.ItemType = ::Const.Items.ItemType.Usable;
-		m.IsDroppedAsLoot = true;
-		m.IsUsable = true;
-		m.Value = 50;
+		this.legend_skill_book.create();
+		this.m.ID = "misc.legend_ancient_scroll";
+		this.m.Name = "Ancient Scroll";
+		this.m.Description = "A torn-up scroll with knowledge unseen for centuries. It can be translated by a character with the interpretation perk in the crafting tent. Highly valuable to some historians, although it is useless to many. They can, however, be studied with effort and a high chance of headache. Every brother may use up to 1 scroll. Being bright increases this to 2 scrolls, and being dumb decreases this to 0 scrolls.";
+		this.m.Icon = "trade/scroll.png";
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
+		this.m.IsDroppedAsLoot = true;
+		this.m.IsUsable = true;
+		this.m.Value = 5000;
+		this.m.PerkGroupSelection = this.m.PerkGroups[this.Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
 	}
 
-	function playInventorySound( _eventType )
-	{
-		::Sound.play("sounds/scribble.wav", ::Const.Sound.Volume.Inventory);
-	}
+	function isAbleToUseScroll( _actor ) {
+		if (_actor.getFlags().getAsInt("LegendsScrollCount") >= 1 && (!_actor.getSkills().hasTrait(::Legends.Trait.Bright) || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2))
+			return _actor.getName() + "has had enough of such scrolls for a lifetime.";
 
-	function getTooltip()
-	{
-		return [
-			{
-				id = 1,
-				type = "title",
-				text = getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = getDescription()
-			},
-			{
-				id = 66,
-				type = "text",
-				text = getValueString()
-			},
-			{
-				id = 3,
-				type = "image",
-				image = getIcon()
-			},
-			{
-				id = 65,
-				type = "text",
-				text = "Right-click to use on a character. Studying may lead to headaches and irritability. What mercenary wants to study?"
-			},
-			{
-				id = 67,
-				type = "text",
-				text = "Every character may use up to 1 scroll. Being bright increases this to 2 scrolls, and being dumb decreases this to 0 scrolls."
-			}
-		];
-	}
-
-	function isAbleToUseScroll( _actor )
-	{
 		if (_actor.getSkills().hasTrait(::Legends.Trait.Dumb))
-			return "Failed to use this scroll as the user has [color=" + ::Const.UI.Color.NegativeValue + "]Dumb[/color] trait.";
+			return _actor.getName() + " is too [color=%negative%]Dumb[/color] to understand this.";
 
 		if (_actor.getSkills().hasSkill("injury.brain_damage"))
-			return "Failed to use this scroll as the user has [color=" + ::Const.UI.Color.NegativeValue + "]Brain Damage[/color] injury.";
+			return _actor.getName() + " looks at you sideways. Reading comes hard to the [color=%negative%]Brain Damaged[/color].";
 
-		if (_actor.getFlags().getAsInt("LegendsScrollCount") <= 0)
-			return true;
+		if (_actor.isStabled())
+			return "Trying to make an animal read? Madness.";
 
-		if (!_actor.getSkills().hasTrait(::Legends.Trait.Bright) || _actor.getFlags().getAsInt("LegendsScrollCount") >= 2)
-			return "This character has already reached their maximum scroll usage limit. Please use this scroll on a different character.";
-
+		local effect = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendIrritable);
+		local injury = ::Legends.Effects.get(_actor, ::Legends.Effect.LegendHeadache);
+		if (injury != null)
+			return _actor.getName() + "'s head still hurts after the previous time. ([color=%negative%]" + injury.m.HealingTimeMin + "-" + injury.m.HealingTimeMax +"[/color] days because of [color=%status%]" + injury.getName() + "[/color]).";
+		if (effect != null)
+			return _actor.getName() + " knocks your hand away, clearly irritated. ([color=%negative%]" + effect.m.HealingTime + "[/color] days because of [color=%status%]" + effect.getName() + "[/color]).";
+		
 		return true;
 	}
 
-	function addScrollCounter( _actor )
-	{
+
+	function addScrollCounter( _actor ) {
 		_actor.getFlags().increment("LegendsScrollCount");
 	}
-
-	function applySideEffect( _actor )
-	{
-		if (::Math.rand(0, 4) > 0)
-			return;
-
-		if (!_actor.getSkills().hasSkill("effect.legend_headache"))
-			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_headache_effect"));
-		else
-			_actor.getSkills().add(::new("scripts/skills/effects_world/legend_irritable_effect")); //dont have to wry about this stacking because u can aat max study twice
-	}
-
-	function applyScrollEffect( _result = null, _actor = null )
-	{
-		if (_result == null)
-			_result = ::Math.rand(1, 5);
-
-		switch (_result)
-		{
-		case 1:
-			return gainGiftedEffect(_actor);
-
-		case 2:
-			return gainTrainingEffect(_actor);
-
-		case 3:
-			return addRandomPerk(_actor);
-
-		case 4:
-			return addRandomPerk(_actor);
-
-		default:
-			return "Nothing happens.";
-		}
-	}
-
-	function gainGiftedEffect( _actor )
-	{
-		_actor.m.LevelUps += 1;
-		_actor.fillAttributeLevelUpValues(1, true);
-		return format("You gain free [color=%s]Gifted[/color] perk worth amount of level-up stats.", ::Const.UI.Color.NegativeValue);
-	}
-
-	function gainTrainingEffect( _actor )
-	{
-		local trained = _actor.getSkills().getSkillByID("effects.trained");
-
-		if (trained != null)
-		{
-			if (!::MSU.isKindOf(trained, "injury"))
-			{
-				trained.m.Duration += 3;
-				trained.m.XPGainMult = 1.5;
-				trained.m.Description = format("Trained effect (: +50% XP for %i battles", effect.m.Duration);
-			}
-			else
-			{
-				trained.addHealingTime(3);
-			}
-		}
-		else
-		{
-			trained = ::new("scripts/skills/effects_world/new_trained_effect");
-			trained.m.Description = "Trained effect (: +50% exp for 3 battles"; //todo flavor text
-			trained.m.Duration = 3;
-			trained.m.XPGainMult = 1.5;
-		}
-
-		_actor.getSkills().add(trained);
-		return format("You gain [color=%s]%s[/color] effect that lasts for at least 3 battles.", ::Const.UI.Color.NegativeValue, trained.getName());
-	}
-
-	function addRandomPerk( _actor )
-	{
-		local r;
-		local r2;
-		local pT = _actor.getBackground().getPerkTree();
-		do
-		{
-			r = ::Math.rand(0, pT.len()-1);
-			r2 = ::Math.rand(0, pT[r].len()-1);
-		}
-		while (_actor.getSkills().hasSkill(pT[r][r2].ID))
-
-		local perkDef = pT[r][r2];
-		_actor.getSkills().add(::new(perkDef.Script));
-		return format("You gain [color=%s]%s[/color] perk for free.", ::Const.UI.Color.NegativeValue, perkDef.Name);
-	}
-
-	function addRandomPerkTree( _actor )
-	{
-		local pool = [], potential = [];
-		pool.extend(::Const.Perks.MagicTrees.Tree);
-		pool.extend(::Const.Perks.EnemyTrees.Tree);
-		pool.extend(::Const.Perks.DefenseTrees.Tree);
-		pool.extend(::Const.Perks.WeaponTrees.Tree);
-		pool.extend(::Const.Perks.TraitsTrees.Tree);
-		pool.extend(::Const.Perks.ClassTrees.Tree);
-
-		foreach (perkGroup in pool)
-		{
-			if (_actor.getBackground().hasPerkGroup(perkGroup))
-				continue;
-
-			potential.push(perkGroup);
-		}
-
-		if (potential.len() == 0)
-			return format("[color=%s]No possible new perk group can be added to this character.[/color].", ::Const.UI.Color.NegativeValue);
-
-		local tree = ::MSU.Array.rand(potential)
-		_actor.getBackground().addPerkGroup(tree.Tree);
-		return format("The [color=%s]%s[/color] perk group has been added to this character.", ::Const.UI.Color.NegativeValue, tree.Name);
-	}
-
-	function onUse( _actor, _item = null )
-	{
-		local result = isAbleToUseScroll(_actor);
-
-		if (typeof result == "string") {
-			::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", result);
-			return false;
-		}
-
-		::World.State.m.CharacterScreen.m.JSHandle.asyncCall("openPopupDialog", applyScrollEffect(m.Selection, _actor));
-		::Sound.play("sounds/scribble.wav", ::Const.Sound.Volume.Inventory);
-		addScrollCounter(_actor);
-		applySideEffect(_actor);
-		return true;
-	}
-
 });
 

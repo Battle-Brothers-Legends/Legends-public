@@ -1,10 +1,9 @@
 ::mods_hookExactClass("skills/traits/addict_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "This character is always pale and sickly, which makes them particularly susceptible to poisons.";
 	}
 
 	o.getTooltip = function ()
@@ -40,31 +39,31 @@
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Resolve"
+				text = "[color=%negative%]-10%[/color] Resolve"
 			});
 			ret.push({
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Melee Skill"
+				text = "[color=%positive%]+10%[/color] Melee Skill"
 			});
 			ret.push({
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill"
+				text = "[color=%negative%]-10%[/color] Ranged Skill"
 			});
 			ret.push({
 				id = 14,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Defense"
+				text = "[color=%negative%]-10%[/color] Melee Defense"
 			});
 			ret.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Defense"
+				text = "[color=%negative%]-10%[/color] Ranged Defense"
 			});
 		}
 		else

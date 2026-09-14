@@ -5,6 +5,52 @@
 		return this.m.IsShowingDefenders || this.World.Assets.getOrigin().getID() == "scenario.rangers" || this.World.Assets.getOrigin().getID() == "scenario.legends_rangers";
 	}
 
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function () {
+		local ret = getTooltip();
+
+		if(this.getFlags().has("RevealedByLayOfTheLand")) {
+			local loot = this.m.Location.getLoot().getItems();
+
+			if (loot.len() == 0) {
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[color=%negative%][u]No extra items in the location[/u][/color]"
+				});
+			} else {
+				local num = ::Math.min(loot.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase));
+				ret.push({
+					id = 51,
+					type = "text",
+					text = "[u]Items:[/u]"
+				});
+				for (local i = 0; i < num; ++i) {
+					ret.push({
+						id = 52 + i,
+						type = "text",
+						icon = "ui/items/" + loot[i].getIcon(),
+						text = loot[i].getName()
+					});
+				}
+				if (loot.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase)) {
+					ret.push({
+						id = 53 + num,
+						type = "text",
+						text = "And " + (loot.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendCutToTheChase)) + " more item(s)"
+					});
+				}
+			}
+		}
+
+		return ret;
+	}
+
+	// named item chances:
+	// 10% shield
+	// 30% weapon
+	// 25% armor
+	// 35% helmet
 	o.onSpawned = function ()
 	{
 		local nearestSettlement = 9000;
@@ -34,7 +80,7 @@
 					num = ++num;
 					local type = this.Math.rand(1, 100);
 
-					if (type <= 40)
+					if (type <= 30)
 					{
 						local weapons = clone this.Const.Items.NamedWeapons;
 
@@ -46,7 +92,7 @@
 
 						this.m.Loot.add(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 					}
-					else if (type <= 50)
+					else if (type <= 40)
 					{
 						local shields = clone this.Const.Items.NamedShields;
 
@@ -58,7 +104,7 @@
 
 						this.m.Loot.add(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
 					}
-					else if (type <= 70)
+					else if (type <= 65)
 					{
 						local helmets = clone this.Const.Items.NamedHelmets;
 
@@ -90,6 +136,39 @@
 		}
 	}
 
+	o.onDiscovered = function () {
+		this.world_entity.onDiscovered();
+		this.getTile().clearAllBut(::Const.World.DetailType.Road | ::Const.World.DetailType.Shore);
+		this.getLabel("name").Visible = ::Const.World.AI.VisualizeNameOfLocations && this.m.IsShowingLabel;
+
+		if (!this.isHiddenToPlayer() && this.getTypeID() != "location.battlefield") {
+			::World.Statistics.getFlags().increment("LocationsDiscovered");
+
+			if (::World.Assets.m.ProfessionEffect.LegendCartographer > 0) {
+				local dist = 9999;
+
+				foreach (s in ::World.EntityManager.getSettlements()) {
+					local d = s.getTile().getDistanceTo(this.getTile());
+					dist = d < dist ? d : dist;
+				}
+
+				local reward = ::Math.min(::World.Assets.m.ProfessionEffect.LegendCartographer * 400, ::Math.max(::World.Assets.m.ProfessionEffect.LegendCartographer * 100, ::World.Assets.m.ProfessionEffect.LegendCartographer * 10 * dist));
+
+				if (this.isLocationType(::Const.World.LocationType.Unique)) {
+					reward = reward * 2;
+				}
+
+				::World.Assets.addMoney(reward);
+			}
+
+			::World.Ambitions.onLocationDiscovered(this);
+		}
+
+		if (this.m.OnDiscovered != null) {
+			::World.Events.fire(this.m.OnDiscovered);
+		}
+	}
+
 	o.createDefenders = function ()
 	{
 		local resources = this.m.Resources;
@@ -115,7 +194,7 @@
 
 		if (this.m.DefenderSpawnList && ("Name" in this.m.DefenderSpawnList))
 		{
-			best = this.Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources)
+			best = this.Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources);
 		}
 		else
 		{
@@ -169,7 +248,7 @@
 
 		if (best == null)
 		{
-			return
+			return;
 		}
 
 		this.m.Troops = [];
@@ -202,6 +281,13 @@
 
 		this.updateStrength();
 	}
+
+	local onCombatLost = o.onCombatLost;
+	o.onCombatLost = function() {
+		::Legends.Maps.cleanUpOnLocationDestroyed(this);
+		onCombatLost();
+	}
+
 
 	local setResources = o.setResources;
 	o.setResources <- function (_v) {

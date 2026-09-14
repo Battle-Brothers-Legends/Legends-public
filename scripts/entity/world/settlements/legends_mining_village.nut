@@ -103,120 +103,120 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 			"Schneefels",
 			"Weissenschacht",
 			"Ellengrube"
-		]]
+		]];
 		this.m.DraftLists = [[
-			"apprentice_background",
-			"beggar_background",
-			"brawler_background",
-			"daytaler_background",
-			"graverobber_background",
-			"mason_background",
-			"messenger_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"thief_background",
-			"poacher_background",
-			"apprentice_background",
-			"brawler_background",
-			"graverobber_background",
-			"mason_background",
-			"messenger_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"poacher_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Beggar,
+			::Legends.Background.Brawler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Thief,
+			::Legends.Background.Poacher,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Poacher
 		],[
-			"apprentice_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"servant_background",
-			"shepherd_background",
-			"thief_background",
-			"vagabond_background",
-			"apprentice_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"shepherd_background",
-			"vagabond_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Juggler,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Servant,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Juggler,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Vagabond
 		],[
-			"apprentice_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"servant_background",
-			"shepherd_background",
-			"thief_background",
-			"vagabond_background",
-			"apprentice_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"juggler_background",
-			"killer_on_the_run_background",
-			"mason_background",
-			"messenger_background",
-			"militia_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"miner_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"shepherd_background",
-			"vagabond_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Juggler,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Servant,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Juggler,
+			::Legends.Background.KillerOnTheRun,
+			::Legends.Background.Mason,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Miner,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Vagabond
 		]];
 		this.m.StablesLists = [[
-			"legend_donkey_background"
+			::Legends.Background.LegendDonkey
 		],[
-			"legend_donkey_background"
+			::Legends.Background.LegendDonkey
 		],[
-			"legend_donkey_background"
+			::Legends.Background.LegendDonkey
 		]];
 		this.m.Rumors = this.Const.Strings.RumorsMiningSettlement;
 		this.m.ProduceString = "ore";
@@ -277,7 +277,7 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -407,10 +407,10 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -480,7 +480,7 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 		]);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -599,7 +599,7 @@ this.legends_mining_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 3, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

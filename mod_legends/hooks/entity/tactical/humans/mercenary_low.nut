@@ -1,16 +1,26 @@
-::mods_hookExactClass("entity/tactical/humans/mercenary_low", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/mercenary_low", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
 		local b = this.m.BaseProperties;
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.remove(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+
 		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = b.Hitpoints * 2;
@@ -43,33 +53,29 @@
 		}
 		else
 		{
-			r = this.Math.rand(1, 7);
+			r = this.Math.rand(1, 6);
 
-			if (r == 2)
+			if (r == 1)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
 			}
-			else if (r == 3)
+			else if (r == 2)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
 			}
-			else if (r == 1)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-			}
-			else if (r == 4)
+			else if (r == 3)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 			}
-			else if (r == 5)
+			else if (r == 4)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
 			}
-			else if (r == 6)
+			else if (r == 5)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
 			}
-			else if (r == 7)
+			else if (r == 6)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
 			}
@@ -112,31 +118,31 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[5, "gambeson"],
-			[2, "werewolf_mail_armor"],
-			[1, "northern_mercenary_armor_00"],
-			[3, "northern_mercenary_armor_01"],
-			[3, "padded_surcoat"],
-			[4, "basic_mail_shirt"],
-			[4, "mail_shirt"],
-			[4, "mail_hauberk"]
+			[5, ::Legends.Armor.Standard.gambeson],
+			[2, ::Legends.Armor.Standard.werewolf_mail_armor],
+			[1, ::Legends.Armor.Standard.northern_mercenary_armor_00],
+			[3, ::Legends.Armor.Standard.northern_mercenary_armor_01],
+			[3, ::Legends.Armor.Standard.padded_surcoat],
+			[4, ::Legends.Armor.Standard.basic_mail_shirt],
+			[4, ::Legends.Armor.Standard.mail_shirt],
+			[4, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
 		if (this.Math.rand(1, 100) <= 90)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "padded_nasal_helmet"],
-				[1, "rondel_helm"],
-				[1, "scale_helm"],
-				[1, "nasal_helmet"],
-				[1, "closed_mail_coif"],
-				[1, "mail_coif"],
-				[1, "headscarf"],
-				[1, "padded_kettle_hat"],
-				[1, "kettle_hat"],
-				[1, "flat_top_helmet"],
-				[1, "padded_flat_top_helmet"],
-				[1, ""]
+				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[1, ::Legends.Helmet.Standard.rondel_helm],
+				[1, ::Legends.Helmet.Standard.scale_helm],
+				[1, ::Legends.Helmet.Standard.nasal_helmet],
+				[1, ::Legends.Helmet.Standard.closed_mail_coif],
+				[1, ::Legends.Helmet.Standard.mail_coif],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat],
+				[1, ::Legends.Helmet.Standard.flat_top_helmet],
+				[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[1, ::Legends.Helmet.None]
 			]))
 		}
 	}

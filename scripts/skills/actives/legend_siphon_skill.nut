@@ -2,19 +2,10 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_siphon";
-		this.m.Name = "Life Siphon";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSiphon);
 		this.m.Description = "Siphon the life force from your foe to yourself - replenishing your health and diminishing theirs.\n\nIt will never kill your victim and you can\'t draw more health than you are missing. Damage drops off over distance and uses Melee Skill to hit.";
 		this.m.KilledString = "Frightened to death";
-		this.m.Icon = "skills/siphon_square.png";
-		this.m.IconDisabled = "skills/siphon_square_bw.png";
-		this.m.Overlay = "siphon_square";
-		this.m.SoundOnUse = [
-			"sounds/combat/drain_01.wav",
-			"sounds/combat/drain_02.wav",
-			"sounds/combat/drain_03.wav",
-			"sounds/combat/drain_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drain", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsIgnoredAsAOO = true;
@@ -23,7 +14,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
-		this.m.IsRanged = false;
+		this.m.IsRanged = true;
 		this.m.IsShowingProjectile = false;
 		this.m.IsUsingHitchance = false;
 		this.m.DirectDamageMult = 1.0;
@@ -31,6 +22,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		this.m.FatigueCost = 10;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 5;
+		this.m.MaxLevelDifference = 5;
 	}
 
 
@@ -56,7 +48,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 				id = 4,
 				type = "text",
 				icon = "ui/icons/health.png", // fix from /ui to ui/, Abyss 6/17/23
-				text = "Siphons up to [color=" + this.Const.UI.Color.DamageValue + "]30%[/color] of targets health to you. Drops by [color=" + this.Const.UI.Color.NegativeValue + "]5%[/color] for each tile distance."
+				text = "Siphons up to [color=%damage%]30%[/color] of targets health to you. Drops by [color=%negative%]5%[/color] for each tile distance."
 			}
 		];
 	}
@@ -111,14 +103,15 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 			return
 		}
 
-		local actor = this.getContainer().getActor()
+		local actor = this.getContainer().getActor();
 		local distance = _targetEntity.getTile().getDistanceTo(actor.getTile());
 		local max = actor.getHitpointsMax() - actor.getHitpoints();
 
 		local p = 0.3 - (0.05 * (distance - 1));
-		local damage = this.Math.min(max, p * _targetEntity.getHitpoints())
+		local damage = this.Math.min(max, p * _targetEntity.getHitpoints());
 
 		_properties.DamageArmorMult *= 0.0;
+		_properties.DamageDirectAdd = 0;
 		_properties.IsIgnoringArmorOnAttack = true;
 		_properties.DamageRegularMin = damage;
 		_properties.DamageRegularMax = damage;

@@ -2,16 +2,9 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_cheer_on";
-		this.m.Name = "Cheer On";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCheerOn);
 		this.m.Description = "Give it your all! Put your support behind an ally, granting them two Actions Points. Targets can only be inspired once per turn and you must be adjacent.";
-		this.m.Icon = "skills/cheered_on_square.png";
-		this.m.IconDisabled = "skills/cheered_on_square_bw.png";
-		this.m.Overlay = "perk_28_active";
-		this.m.SoundOnUse = [
-			"sounds/combat/inspire_01.wav",
-			"sounds/combat/inspire_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -67,7 +60,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -83,7 +76,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_targetTile.getEntity().getSkills().hasSkill("effects.legend_cheered_on"))
+		if (_targetTile.getEntity().getSkills().hasEffect(::Legends.Effect.LegendCheeredOn))
 		{
 			return false;
 		}
@@ -94,7 +87,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		target.getSkills().add(this.new("scripts/skills/effects/legend_cheered_on_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendCheeredOn);
 		return true;
 	}
 

@@ -36,9 +36,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 
 		local bros = roster.getAll();
 
-		bros[0].setStartValuesEx([
-			"legend_beggar_commander_op_background"
-		]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendCommanderBeggarScaling]);
 		bros[0].setVeteranPerks(2);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
@@ -141,12 +139,15 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		return false;
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
 		{
-			bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
-			bro.worsenMood(1.0, "Fell sick after joining you");
+			_bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
+			_bro.worsenMood(1.0, "Fell sick after joining you");
 		}
 	}
 
@@ -155,7 +156,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
 			{

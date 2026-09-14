@@ -2,7 +2,7 @@
 this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Repairs",
-		Description = "Items in the queue will be repaired from left to right, top to bottom. Assign workers to repair items in the commanders tent.",
+		Description = "Repair equipment in order left to right, top to bottom. Assign workers in the commanders tent.",
 		InventoryFilter = this.Const.Items.ItemFilter.All
 	},
 	function create()
@@ -13,7 +13,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function getTent()
 	{
-		return this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 	}
 
 	function destroy()
@@ -37,8 +37,8 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 			Repairs = [],
 			Capacity = this.getTent().getCapacity()
 		};
-		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getRepairs(), result.Repairs, this.Const.UI.ItemOwner.Shop);
-		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getStash(), result.Stash, this.Const.UI.ItemOwner.Stash, this.m.InventoryFilter);
+		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getRepairs(), result.Repairs, ::Const.UI.ItemOwner.Shop);
+		this.UIDataHelper.convertRepairItemsToUIData(this.getTent().getStash(), result.Stash, ::Const.UI.ItemOwner.Stash, this.m.InventoryFilter);
 		return result;
 	}
 
@@ -55,56 +55,44 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function loadStashList()
 	{
-		local result = this.queryLoad()
+		local result = this.queryLoad();
 		this.m.JSHandle.asyncCall("loadFromData", result);
 	}
 
 	function onSortButtonClicked()
 	{
-		if (this.Tactical.isActive())
-		{
-			this.getroottable().Stash.sort();
-		}
-		else
-		{
-			this.World.Assets.getStash().sort();
+		if (::Tactical.isActive()) {
+			::Stash.sort();
+		} else {
+			::World.Assets.getStash().sort();
 		}
 
 		this.getTent().onInit();
 		this.loadStashList();
 	}
 
-	function onFilterAll()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
-			this.loadStashList();
-		}
+	function onFilterAll() {
+		this.onFilter("All");
 	}
 
-	function onFilterWeapons()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
-			this.loadStashList();
-		}
+	function onFilterWeapons() {
+		this.onFilter("Weapons");
 	}
 
-	function onFilterArmor()
-	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
-		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
+	function onFilterArmor() {
+		this.onFilter("Armor");
+	}
+
+	function onFilter(_filter) {
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter[_filter]) {
+			this.m.InventoryFilter = ::Const.Items.ItemFilter[_filter];
 			this.loadStashList();
 		}
 	}
 
 	function onFilterBro()
 	{
-		if (this.m.InventoryFilter != 99)
-		{
+		if (this.m.InventoryFilter != 99) {
 			this.m.InventoryFilter = 99;
 			this.loadStashList();
 		}
@@ -128,7 +116,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		local sourceItemOwner = _data[1];
 		local targetItemIdx = _data[2];
 		local targetItemOwner = _data[3];
-		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx)
+		this.getTent().swapItems(sourceItemOwner, sourceItemIdx, targetItemOwner, targetItemIdx);
 		return this.queryLoad();
 	}
 
@@ -141,6 +129,4 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	{
 		this.m.Parent.onCommanderButtonPressed();
 	}
-
-
 });

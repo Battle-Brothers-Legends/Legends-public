@@ -2,28 +2,14 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "C") {
-				s.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases slightly"
-				});
-			}
-			if (s.ID == "D") {
-				s.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases"
-				});
-			}
-			if (s.ID == "E") {
-				s.List.push({
-					id = 10,
-					icon = "ui/icons/asset_moral_reputation.png",
-					text = "The company\'s moral reputation decreases greatly"
-				});
-			}
-		}
+		::Legends.Screens.hook(this, "C", function(_screen) {
+			_screen.List.push(::Legends.EventList.changeMoralReputation(-1, false));
+		});
+		::Legends.Screens.hook(this, "D", function(_screen) {
+			_screen.List.push(::Legends.EventList.changeMoralReputation(-2, false));
+		});
+		::Legends.Screens.hook(this, "E", function(_screen) {
+			_screen.List.push(::Legends.EventList.changeMoralReputation(-5, false));
+		});
 	}
 })

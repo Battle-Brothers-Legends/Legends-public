@@ -77,6 +77,20 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_white_wolf_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[100, "scripts/items/misc/legend_white_wolf_pelt_item"],
+				[100, "scripts/items/loot/sabertooth_item"],
+				[100, "scripts/items/loot/valuable_furs_item"],
+				[100, "scripts/items/supplies/strange_meat_item"],
+				[33, "scripts/items/loot/sabertooth_item"],
+				[33, "scripts/items/loot/valuable_furs_item"],
+				[33, "scripts/items/supplies/strange_meat_item"],
+				[20, "scripts/items/misc/legend_white_wolf_pelt_item"]
+			]);
+		}
 	}
 
 	function playAttackSound()
@@ -99,9 +113,9 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
-		if (_tile != null)
-		{
-			local flip = this.Math.rand(0, 100) < 50;
+		local flip = this.Math.rand(0, 100) < 50;
+
+		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -112,27 +126,22 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != this.Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					decal = _tile.spawnDetail(head_frenzy.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = 0.95;
 				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
 				local layers = [
-					head.getBrush().Name + "_dead"
+				head.getBrush().Name + "_dead"
 				];
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					layers.push(head_frenzy.getBrush().Name + "_dead");
 				}
 
@@ -141,72 +150,46 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
 
-				if (head_frenzy.HasBrush)
-				{
+				if (head_frenzy.HasBrush) {
 					decap[1].Scale = 0.95;
 				}
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Direwolf";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-
-					local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/loot/sabertooth_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/loot/valuable_furs_item");
-					loot.drop(_tile);
-					local loot = this.new("scripts/items/supplies/strange_meat_item");
-					loot.drop(_tile);
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/loot/sabertooth_item");
-					loot.drop(_tile);
-					}
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/loot/valuable_furs_item");
-					loot.drop(_tile);
-					}
-					if (this.Math.rand(1, 100) <= 33)
-					{
-					local loot = this.new("scripts/items/supplies/strange_meat_item");
-					loot.drop(_tile);
-					}
-
-					if (this.Math.rand(1, 100) <= 20)
-					{
-						local loot = this.new("scripts/items/misc/legend_white_wolf_pelt_item");
-						loot.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Direwolf";
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.Tile = _tile;
+		return corpse;
 	}
 
 	function onInit()
@@ -248,12 +231,12 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.54;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/werewolf_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfBite);
+		::Legends.Actives.grant(this, ::Legends.Active.WerewolfBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfHowl);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
@@ -266,7 +249,7 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTrueBeliever);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
@@ -278,42 +261,8 @@ this.legend_white_direwolf <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
-
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 });
-

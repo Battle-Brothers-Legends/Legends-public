@@ -38,7 +38,7 @@ this.legend_steady_hands_trait <- this.inherit("scripts/skills/traits/character_
 				id = 12,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged Skill"
+				text = "[color=%positive%]+5[/color] Ranged Skill"
 			}
 		];
 	}

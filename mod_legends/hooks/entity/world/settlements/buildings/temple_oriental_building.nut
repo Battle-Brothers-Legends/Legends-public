@@ -3,7 +3,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _draftList )
 	{
-		_draftList.push("legend_dervish_background");
+		_draftList.push(::Legends.Background.LegendDervish);
 		onUpdateDraftList(_draftList);
 	}
 });

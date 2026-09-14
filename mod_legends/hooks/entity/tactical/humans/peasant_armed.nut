@@ -1,5 +1,13 @@
 ::mods_hookExactClass("entity/tactical/humans/peasant_armed", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -7,7 +15,6 @@
 		local b = this.m.BaseProperties;
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = b.Hitpoints * 1.5;
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -36,21 +43,21 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "thick_tunic"],
-			[1, "apron"],
-			[1, "tattered_sackcloth"],
-			[6, "linen_tunic"]
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[1, ::Legends.Armor.Standard.apron],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[6, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
 		if (this.Math.rand(1, 100) <= 33)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "straw_hat"],
-				[1, "hood"],
-				[1, "headscarf"],
-				[1, "feathered_hat"]
-			]))
+				[1, ::Legends.Helmet.Standard.straw_hat],
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.feathered_hat]
+			]));
 		}
 	}
 });

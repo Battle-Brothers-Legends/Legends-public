@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/militia_guest_ranged", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/militia_guest_ranged", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -8,8 +15,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPoacher);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
@@ -43,19 +49,19 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
-			[1, "sackcloth"]
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.sackcloth]
 		]));
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "aketon_cap"],
-				[1, "open_leather_cap"],
-				[1, "full_leather_cap"]
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.open_leather_cap],
+				[1, ::Legends.Helmet.Standard.full_leather_cap]
 			]))
 		}
 	}

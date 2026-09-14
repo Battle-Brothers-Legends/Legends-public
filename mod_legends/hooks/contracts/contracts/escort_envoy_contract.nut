@@ -1,8 +1,6 @@
-::mods_hookExactClass("contracts/contracts/escort_envoy_contract", function(o) 
-{
+::mods_hookExactClass("contracts/contracts/escort_envoy_contract", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
 		this.m.Name = "A Diplomatic Mission";
 		this.m.DescriptionTemplates = [
@@ -17,15 +15,47 @@
 	}
 
 	local createStates = o.createStates;
-	o.createStates = function()
-	{
+	o.createStates = function () {
 		createStates();
-		foreach (s in this.m.States)
-		{
-			if (s.ID == "Task")
-			{
-				s.Title = "A Diplomatic Mission";
+		foreach (s in this.m.States) {
+			if (s.ID == "Offer") {
+				s.end = function () {
+					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = this.Math.rand(1, 100);
+
+					if (r <= 10) {
+						if (this.Contract.getDifficultyMult() >= 1.0) {
+							this.Flags.set("IsShadyDeal", true);
+						}
+					}
+
+					local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
+					local items = envoy.getItems();
+					items.equip(this.Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.linen_tunic]
+					]));
+					items.equip(this.Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Standard.feathered_hat],
+						[2, ::Legends.Helmet.None]
+					]));
+
+					envoy.setName(this.Flags.get("EnvoyName"));
+					envoy.setTitle(this.Flags.get("EnvoyTitle"));
+					envoy.setFaction(1);
+					this.Flags.set("EnvoyID", envoy.getID());
+					this.Contract.setScreen("Overview");
+					this.World.Contracts.setActiveContract(this.Contract);
+				}
 			}
 		}
 	}
+
+	local createScreens = o.createScreens;
+	o.createScreens = function () {
+		createScreens();
+		::Legends.Screens.hook(this, "Task", function (_screen) {
+			_screen.Title = "A Diplomatic Mission";
+		});
+	}
+
 });

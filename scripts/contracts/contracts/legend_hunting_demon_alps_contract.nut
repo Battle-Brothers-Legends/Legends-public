@@ -4,8 +4,10 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		SpawnAtTime = 0.0,
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyAlps,
-		ValidTypes = this.Const.LegendMod.FavoriteAlps
+		Perk = ::Legends.Perk.LegendFavouredEnemyOccult,
+		ValidTypes = this.Const.LegendMod.FavoriteOccult,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 			"Beware these souldrinkers, for they are cunning and elusive, wreathed in the flames of hell.",
 			"Flamewalkers are creatures of darkness and despair, their very touch draining the life force from their victims.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
@@ -333,9 +336,9 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					if (this.Math.rand(1, 100) <= 75)
 					{
 						bro.improveMood(1.0, "Refreshed from having a great night\'s sleep");
-						bro.getSkills().removeByID("effects.exhausted");
-						bro.getSkills().removeByID("effects.drunk");
-						bro.getSkills().removeByID("effects.hangover");
+						::Legends.Effects.remove(bro, ::Legends.Effect.Exhausted);
+						::Legends.Effects.remove(bro, ::Legends.Effect.Drunk);
+						::Legends.Effects.remove(bro, ::Legends.Effect.Hangover);
 
 						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
 						{
@@ -402,22 +405,19 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -430,7 +430,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.m.Flags.set("SpawnAtTime", this.m.SpawnAtTime);
 		this.contract.onSerialize(_out);
 	}
@@ -448,7 +448,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		{
 			this.m.Flags.set("StartTime", 0);
 		}
-
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 
 		if (this.m.Flags.has("SpawnAtTime"))
@@ -458,4 +458,3 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 	}
 
 });
-

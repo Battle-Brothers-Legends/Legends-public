@@ -5,22 +5,10 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_grapple";
-		this.m.Name = "Grapple";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrapple);
 		this.m.Description = "Grab, hold, and restrain a target, reducing their melee defense by 12 and initiative by 30% for 2 turns. A particularly lucky or skilled maneuver may disarm the opponent. One hand must be free to use.";
-		this.m.Icon = "skills/grapple_square.png";
-		this.m.IconDisabled = "skills/grapple_square_bw.png";
-		this.m.Overlay = "active_grapple";
-		this.m.SoundOnUse = [
-			"sounds/combat/hand_01.wav",
-			"sounds/combat/hand_02.wav",
-			"sounds/combat/hand_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hand_hit_01.wav",
-			"sounds/combat/hand_hit_02.wav",
-			"sounds/combat/hand_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+5;
 		this.m.IsSerialized = false;
@@ -29,12 +17,13 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.IsWeaponSkill = true;
+		this.m.IsWeaponSkill = false;
 		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
 		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.4;
 		this.m.ActionPointCost = 5; // Increased from 4. Can only be used once per turn
-		this.m.FatigueCost = 20; // Increased from 10
+		this.m.FatigueCost = 20;
+		this.m.HitChanceBonus = -20;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 		this.m.ChanceDecapitate = 0;
@@ -42,9 +31,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		local ret = [
 			{
 				id = 1,
@@ -64,24 +51,34 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		];
 
 		ret.push({
-				id = 5,
+			id = 5,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Has a [color=%positive%]100%[/color] chance to grapple on a hit"
+		});
+
+		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler))
+		{
+			ret.push({
+				id = 6,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to grapple on a hit"
+				icon = "ui/icons/hitchance.png",
+				text = "Has a [color=%negative%]-20%[/color] chance to hit"
 			});
+		}
 		if (this.m.Container.getActor().getCurrentProperties().IsSpecializedInFists)
 		{
 			ret.push({
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to disarm on a hit due to unarmed mastery"
+				text = "Has a [color=%positive%]100%[/color] chance to disarm on a hit due to unarmed mastery"
 			});
 			ret.push({
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit due to unarmed mastery"
+				text = "Has [color=%positive%]+10%[/color] chance to hit due to unarmed mastery"
 			});
 
 		}
@@ -90,7 +87,7 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color] chance to disarm"
+				text = "Has a [color=%positive%]50%[/color] chance to disarm"
 			});
 		}
 		return ret;
@@ -117,14 +114,14 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetTile.IsOccupiedByActor)
 		{
 			// Now always grapples
-			target.getSkills().add(this.new("scripts/skills/effects/legend_grappled_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendGrappled);
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has grappled " + this.Const.UI.getColorizedEntityName(target) + " for two turns");
 			}
 			if ((this.Math.rand(1, 100) > this.m.DisarmChance || _user.getCurrentProperties().IsSpecializedInFists) && !target.getCurrentProperties().IsImmuneToDisarm)
 			{
-				target.getSkills().add(this.new("scripts/skills/effects/disarmed_effect"));
+				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 			}
 		}
 
@@ -133,26 +130,43 @@ this.legend_grapple_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return ((offhand == null || mainhand == null) || this.getContainer().hasSkill("effects.disarmed")) && this.skill.isUsable();
+		local actor = this.getContainer().getActor();
+		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
+		if (hasNet)
+			return true;
+		return ((offhand == null || mainhand == null) || this.getContainer().hasEffect(::Legends.Effect.Disarmed)) && this.skill.isUsable();
 	}
 
 	function isHidden()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return mainhand != null && offhand != null && !this.getContainer().hasSkill("effects.disarmed") || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || this.m.Container.getActor().isStabled();
+		local actor = this.getContainer().getActor();
+		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
+		if (hasNet)
+			return false;
+
+		return mainhand != null && offhand != null && !this.getContainer().hasEffect(::Legends.Effect.Disarmed) || this.getContainer().getActor().getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand) || this.skill.isHidden() || actor.isStabled();
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		if (_skill == this)
 		{
+			_properties.MeleeSkill -= 20;
 			_properties.DamageTotalMult = 0;
 			if (_properties.IsSpecializedInFists)
 			{
 				_properties.MeleeSkill += 10;
+				this.m.HitChanceBonus += 10;
+			}
+
+			if (::Legends.Perks.has(this, ::Legends.Perk.LegendGrappler))
+			{
+				_properties.MeleeSkill += 20;
+				this.m.HitChanceBonus += 20;
 			}
 		}
 	}

@@ -1,16 +1,17 @@
-::mods_hookExactClass("items/weapons/masterwork_bow", function(o) {
+::mods_hookExactClass("items/weapons/masterwork_bow", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.TwoHanded;
+		this.m.RangeMax = 8;
+		this.m.RangeIdeal = 8;
 	}
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_piercing_shot_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_cascade_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFullDraw);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendVolley);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 	}
 });

@@ -2,17 +2,9 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_ninetails_disarm";
-		this.m.Name = "Disarm";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNinetailsDisarm);
 		this.m.Description = "Use the cat o ninetails to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
-		this.m.Icon = "skills/ninetails_disarm_square.png";
-		this.m.IconDisabled = "skills/ninetails_disarm_square_bw.png";
-		this.m.Overlay = "active_170";
-		this.m.SoundOnUse = [
-			"sounds/combat/dlc4/whip_01.wav",
-			"sounds/combat/dlc4/whip_02.wav",
-			"sounds/combat/dlc4/whip_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/whip", 3);
 		this.m.SoundOnHit = [];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -40,7 +32,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "Has a range of [color=" + this.Const.UI.Color.PositiveValue + "]1" + "[/color] tile"
+			text = "Has a range of [color=%positive%]1" + "[/color] tile"
 		});
 
 		if (this.m.HitChanceBonus != 0)
@@ -49,7 +41,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.HitChanceBonus + "%[/color] chance to hit"
+				text = "Has [color=%negative%]" + this.m.HitChanceBonus + "%[/color] chance to hit"
 			});
 		}
 
@@ -57,7 +49,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to disarm on a hit"
+			text = "Has a [color=%positive%]100%[/color] chance to disarm on a hit"
 		});
 		return ret;
 	}
@@ -68,11 +60,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{
-			this.m.HitChanceBonus = 0;
-		}
-		else
-		{
-			this.m.HitChanceBonus = -15;
+			this.m.HitChanceBonus += 15;
 		}
 	}
 
@@ -86,7 +74,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsImmuneToDisarm)
 			{
-				target.getSkills().add(this.new("scripts/skills/effects/disarmed_effect"));
+				::Legends.Effects.grant(target, ::Legends.Effect.Disarmed);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{

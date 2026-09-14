@@ -25,8 +25,8 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.World.getTime().Days >= 100
-			? this.Const.Tactical.Actor.BanditVeteran
+		b.setValues(this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5
+			? this.Const.Tactical.Actor.BanditMarauder
 			: this.Const.Tactical.Actor.BanditRaider);
 
 		b.IsSpecializedInSwords = true;
@@ -39,7 +39,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		b.IsSpecializedInSpears = true;
 		b.IsSpecializedInCleavers = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -71,14 +71,14 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 
 		if (::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
@@ -188,7 +188,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				}
 				else if (r == 9)
 				{
-					this.m.Items.equip(this.new("scripts/items/weapons/legend_longsword"));
+					this.m.Items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendForcefulSwing);
 
 					if (::Legends.isLegendaryDifficulty())
@@ -231,7 +231,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		}
 		else
 		{
-			r = this.Math.rand(2, 11);
+			r = this.Math.rand(2, 10);
 
 			if (r == 2)
 			{
@@ -255,7 +255,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 				::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 
 				if (::Legends.isLegendaryDifficulty())
-					::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecSpearThrust);
+					::Legends.Perks.grant(this, ::Legends.Perk.LegendThrustMaster);
 			}
 			else if (r == 5)
 			{
@@ -304,14 +304,6 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 
 				if (::Legends.isLegendaryDifficulty())
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
-			}
-			else if (r == 11)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-				::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
-
-				if (::Legends.isLegendaryDifficulty())
-					::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			}
 
 			if (this.Math.rand(1, 100) <= 75)

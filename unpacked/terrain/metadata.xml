@@ -38,11 +38,11 @@
 	<sprite id="tile_swamp_03" b6="1" ic="FF2A4851" img="tactical_tiles\swamp_03.png" />
 	<sprite id="tile_swamp_04" b6="1" ic="FF466161" img="tactical_tiles\swamp_04.png" />
 	<sprite id="tile_swamp_05" b6="1" ic="FF344F56" img="tactical_tiles\swamp_05.png" />
-	<sprite id="tile_swamp_green_01" b6="1" ic="FF26464E" img="tactical_tiles\swamp_01.png" />
-	<sprite id="tile_swamp_green_02" b6="1" ic="FF2B404A" img="tactical_tiles\swamp_02.png" />
-	<sprite id="tile_swamp_green_03" b6="1" ic="FF2A4851" img="tactical_tiles\swamp_03.png" />
-	<sprite id="tile_swamp_green_04" b6="1" ic="FF466161" img="tactical_tiles\swamp_04.png" />
-	<sprite id="tile_swamp_green_05" b6="1" ic="FF344F56" img="tactical_tiles\swamp_05.png" />
+	<sprite id="tile_swamp_green_01" b6="1" ic="FF26464E" img="tactical_tiles\swamp_green_01.png" />
+	<sprite id="tile_swamp_green_02" b6="1" ic="FF2B404A" img="tactical_tiles\swamp_green_02.png" />
+	<sprite id="tile_swamp_green_03" b6="1" ic="FF2A4851" img="tactical_tiles\swamp_green_03.png" />
+	<sprite id="tile_swamp_green_04" b6="1" ic="FF466161" img="tactical_tiles\swamp_green_04.png" />
+	<sprite id="tile_swamp_green_05" b6="1" ic="FF344F56" img="tactical_tiles\swamp_green_05.png" />
 	<sprite id="tile_steppe_04" b6="1" ic="FF4A6576" img="tactical_tiles\steppe_04.png" />
 	<sprite id="tile_stone_02" b6="1" ic="FF38444E" img="tactical_tiles\autumn_05.png" />
 	<sprite id="tile_steppe_05" b6="1" ic="FF4B697A" img="tactical_tiles\steppe_05.png" />

@@ -19,6 +19,7 @@ this.legend_lindwurm_scales_cloak_blueprint <- this.inherit("scripts/crafting/bl
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	function onCraft( _stash )

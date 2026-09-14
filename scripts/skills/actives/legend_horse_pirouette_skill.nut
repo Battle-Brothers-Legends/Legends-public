@@ -2,16 +2,9 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_horse_pirouette";
-		this.m.Name = "Pirouette";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorsePirouette);
 		this.m.Description = "Learning to turn quickly allows the rapid changes in direction required to leave a Zone of Control without triggering free attacks.";
-		this.m.Icon = "skills/horse_pirouette.png";
-		this.m.IconDisabled = "skills/horse_pirouette_bw.png";
-		this.m.Overlay = "horse_pirouette";
-		this.m.SoundOnUse = [
-			"sounds/combat/rearing_01.wav",
-			"sounds/combat/rearing_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rearing", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -56,7 +49,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can only be used when in an opponent\'s Zone of Control[/color]"
+				text = "[color=%negative%]Can only be used when in an opponent\'s Zone of Control[/color]"
 			});
 		}
 
@@ -66,7 +59,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
+				text = "[color=%negative%]Can not be used while rooted[/color]"
 			});
 		}
 

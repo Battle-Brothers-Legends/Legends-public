@@ -3,6 +3,7 @@
 // ::Const.Items.ItemFilter.HorseArmor <- ::Const.Items.ItemType.HorseArmor;
 // ::Const.Items.addNewItemType("HorseHelmet");
 ::Const.Items.addNewItemType("Cultist", "Cultist Item");
+::Const.Items.addNewItemType("Brawler", "Brawler Item");
 ::Const.Items.addNewItemType("Net", "Net Item");
 
 // new item types to associate with class perks

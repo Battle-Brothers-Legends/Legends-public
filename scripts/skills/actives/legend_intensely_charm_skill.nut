@@ -24,24 +24,10 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_intensely_charm";
-		this.m.Name = "Infatuate";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIntenselyCharm);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_120.png";
-		this.m.IconDisabled = "skills/active_120.png";
-		this.m.Overlay = "active_120";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/hexe_charm_kiss_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_kiss_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/dlc2/hexe_charm_chimes_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_kiss", 4);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 500;
@@ -80,12 +66,12 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.charmed"))
+		if (_target.getSkills().hasEffect(::Legends.Effect.Charmed))
 		{
 			return false;
 		}
 
-		if (_target.getSkills().hasSkill("effects.legend_intensely_charmed"))
+		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{
 			return false;
 		}
@@ -115,7 +101,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local bonus = _targetTile.getDistanceTo(_user.getTile()) == 1 ? -5 : 0;
 
-			if (target.getSkills().hasSkill("background.eunuch") || target.getSkills().hasTrait(::Legends.Trait.Player) || target.getSkills().hasTrait(::Legends.Trait.Loyal))
+			if (target.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Eunuch)) || target.getSkills().hasTrait(::Legends.Trait.Player) || target.getSkills().hasTrait(::Legends.Trait.Loyal))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
@@ -129,7 +115,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to his resolve");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
@@ -139,23 +125,23 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to his resolve");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
 			}
 
 			this.m.Slaves.push(target.getID());
-			local charmed = this.new("scripts/skills/effects/legend_intensely_charmed_effect");
-			charmed.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
-			charmed.setMaster(self);
-			target.getSkills().add(charmed);
+
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendIntenselyCharmed, function(_effect) {
+				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMaster(self);
+			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is intensely charmed");
 			}
-
 			_user.setCharming(true);
 		}.bindenv(this), this);
 	}
@@ -168,7 +154,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 
 			if (e != null)
 			{
-				e.getSkills().removeByID("effects.legend_intensely_charmed");
+				::Legends.Effects.remove(e, ::Legends.Effect.LegendIntenselyCharmed);
 			}
 		}
 

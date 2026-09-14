@@ -4,20 +4,9 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_curseofyears";
-		this.m.Name = "Decrepify";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCurseofyears);
 		this.m.Description = "This curse gives the victim a glimpse of their own mortality, briefly aging them. Imagining itself with an infirm body of advanced age, the afflicted believes it is no longer capable of youthful exertions.";
-		this.m.Icon = "skills/active_117.png";
-		this.m.IconDisabled = "skills/active_117_sw.png";
-		this.m.Overlay = "active_117";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/alp_nightmare_01.wav",
-			"sounds/enemies/dlc2/alp_nightmare_02.wav",
-			"sounds/enemies/dlc2/alp_nightmare_03.wav",
-			"sounds/enemies/dlc2/alp_nightmare_04.wav",
-			"sounds/enemies/dlc2/alp_nightmare_05.wav",
-			"sounds/enemies/dlc2/alp_nightmare_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 500;
@@ -61,19 +50,19 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The damage being applied in next turn has a [color=" + this.Const.UI.Color.PositiveValue + "]17%[/color] chance to cause a wound. An additional stack is added in each turn, to a maximum of [color=" + this.Const.UI.Color.PositiveValue + "]83%[/color]. The damage pierces armor."
+				text = "The damage being applied in next turn has a [color=%positive%]17%[/color] chance to cause a wound. An additional stack is added in each turn, to a maximum of [color=%positive%]83%[/color]. The damage pierces armor."
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Before damage is applied, the target has a [color=" + this.Const.UI.Color.DamageValue + "]30%[/color] chance to break the effect."
+				text = "Before damage is applied, the target has a [color=%damage%]30%[/color] chance to break the effect."
 			},
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Decrepify has a cooldown of [color=" + this.Const.UI.Color.DamageValue + "]4[/color] turns."
+				text = "Decrepify has a cooldown of [color=%damage%]4[/color] turns."
 			}
 		];
 		return ret;
@@ -87,7 +76,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( o in opponents )
 		{
-			if (o.Actor.getSkills().hasSkill("effects.legend_curseofyears"))
+			if (o.Actor.getSkills().hasEffect(::Legends.Effect.LegendCurseofyears))
 			{
 				curseofyears = ++curseofyears;
 			}
@@ -137,7 +126,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " Died over time");
 		}
 
-		target.getSkills().add(this.new("scripts/skills/effects/legend_curseofyears_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendCurseofyears);
 		if ("addStacks" in _user)
 		{
 			_user.addStacks(5);

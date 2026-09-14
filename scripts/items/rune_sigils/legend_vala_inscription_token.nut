@@ -1,7 +1,7 @@
 this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 	m = {},
-	function create()
-	{
+	function create() {
+		this.item.create();
 		this.m.ID = "token.legend_vala_inscription";
 		this.m.Name = "";
 		this.m.Description = "";
@@ -15,19 +15,18 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		this.m.Value = 100;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local result = [
-			{
-				id = 1,
-				type = "title",
-				text = this.getName()
-			},
-			{
-				id = 2,
-				type = "description",
-				text = this.getDescription()
-			}
+		{
+			id = 1,
+			type = "title",
+			text = this.getName()
+		},
+		{
+			id = 2,
+			type = "description",
+			text = this.getDescription()
+		}
 		];
 		result.push({
 			id = 3,
@@ -35,104 +34,102 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 			text = this.getValueString()
 		});
 
-		if (this.getIconLarge() != null)
-		{
+		if (this.getIconLarge() != null) {
 			result.push({
 				id = 4,
 				type = "image",
 				image = this.getIconLarge(),
 				isLarge = true
 			});
-		}
-		else
-		{
+		} else {
 			result.push({
 				id = 4,
 				type = "image",
 				image = this.getIcon()
 			});
 		}
-
 		result.push({
 			id = 65,
-			type = "text",
-			text = "Right-click to attach this inscribed rune to the selected character\'s equipment. Weapon and shield runes cannot be detached, this rune gives the following effect(s):"
-		});
-		result.push({
-			id = 66,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = this.getRuneSigilTooltip()
 		});
 
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		local slot = "";
+		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
+    		slot = "Weapon";
+		} else if (def.ItemType == ::Legends.Runes.Target.Shield) {
+    		slot = "Shield";
+		}
+		result.push({
+			id = 66,
+			type = "hint",
+			icon = "ui/icons/mouse_right_button.png",
+			text = "Right-click to attach this inscribed rune to the selected character\'s " + slot + ". It cannot be detached."
+		});
+
+		local offhand = null;
+		local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+		if (broID != null) {
+			offhand = this.Tactical.getEntityByID(broID).getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		}
+		if (offhand != null && ((offhand.getItemType() & this.Const.Items.ItemType.Weapon) != 0)) {
+			result.push({
+				id = 67,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button_shift.png",
+				text = "Shift + Right-click to attach this inscribed rune to the selected character\'s offhand Weapon. It cannot be detached."
+			});
+		}
+
 		return result;
 	}
 
 
-	function onUse( _actor, _item = null )
-	{
+	function onUse(_actor, _item = null, _playSound = true) {
 		local target = null;
-		if (this.m.RuneVariant >= 1 && this.m.RuneVariant <= 10)
-		{
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-
+		local def = ::Legends.Runes.get(this.getRuneVariant());
+		if (def.ItemType == ::Legends.Runes.Target.Weapon) {
+			if (_item == null) {
+				target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+			} else {
+				target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+        	}
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 11 && this.m.RuneVariant <= 20)
-		{
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-
+		} else if (def.ItemType == ::Legends.Runes.Target.Helmet) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 21 && this.m.RuneVariant <= 30)
-		{
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-
+		} else if (def.ItemType == ::Legends.Runes.Target.Armor) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 			if (target == null)
-			{
 				return false;
-			}
-		}
-		else if (this.m.RuneVariant >= 31 && this.m.RuneVariant <= 40)
-		{
-			target = _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-
+		} else if (def.ItemType == ::Legends.Runes.Target.Shield) {
+			target = _actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (target == null)
-			{
 				return false;
-			}
 			if (target.getID().find("shield") == null)
-			{
 				return false;
-			}
-		}
-		else
-		{
+		} else {
 			return false;
 		}
-
-		this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
+		if (_playSound)
+			this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
 		local alreadyRuned = target.isRuned();
-		target.setRuneVariant(this.m.RuneVariant);
-		target.setRuneBonus1(this.m.RuneBonus1);
-		target.setRuneBonus2(this.m.RuneBonus2);
-		if (!alreadyRuned)
-		{
+		target.setRuneVariant(this.getRuneVariant());
+		target.setRuneBonus1(this.getRuneBonus1());
+		target.setRuneBonus2(this.getRuneBonus2());
+		if (!alreadyRuned) {
 			target.updateRuneSigil();
 		}
 		_actor.getItems().unequip(target);
 		_actor.getItems().equip(target);
-		return true;		
+		return true;
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.item.onDeserialize(_in);
 		this.updateRuneSigilToken();
 	}

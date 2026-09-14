@@ -1,54 +1,13 @@
-::mods_hookExactClass("entity/world/settlements/medium_steppe_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_steppe_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
-		this.m.DraftList = [
-			"apprentice_background",
-			"beggar_background",
-			"bowyer_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"daytaler_background",
-			"historian_background",
-			"hunter_background",
-			"mason_background",
-			"militia_background",
-			"minstrel_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"refugee_background",
-			"servant_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"adventurous_noble_background",
-			"cripple_background",
-			"poacher_background",
-			"apprentice_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"historian_background",
-			"hunter_background",
-			"mason_background",
-			"militia_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"refugee_background",
-			"vagabond_background",
-			"disowned_noble_background",
-			"cripple_background",
-			"poacher_background"
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.LegendAdventurousNobleRanged,
+		]);
 	}
 
-	o.onBuild = function ( _settings )
+	o.onBuild = function ( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

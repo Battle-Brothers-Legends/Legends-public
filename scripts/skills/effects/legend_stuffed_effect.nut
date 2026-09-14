@@ -4,8 +4,7 @@ this.legend_stuffed_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_stuffed_effect";
-		this.m.Name = "Stuffed";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStuffedEffect);
 		this.m.Icon = "";
 		this.m.IconMini = "";
 		this.m.Overlay = "";
@@ -16,7 +15,7 @@ this.legend_stuffed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has eaten too much";
+		return "This character has eaten too much.";
 	}
 
 	function onCombatFinished()

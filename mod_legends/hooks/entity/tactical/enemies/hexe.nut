@@ -1,53 +1,25 @@
 ::mods_hookExactClass("entity/tactical/enemies/hexe", function(o)
 {
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
+	o.m.DroppableRunes <- [
+		::Legends.Rune.LegendRshClarity,
+		::Legends.Rune.LegendRshBravery,
+		::Legends.Rune.LegendRshLuck
+	];
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			if (this.Math.rand(1, 100) <= 1)
-			{
-				local rune;
-				local selected = this.Math.rand(11,13);
-				switch(selected)
-				{
-					case 11:
-						rune = this.new("scripts/items/legend_helmets/runes/legend_rune_clarity");
-						break;
-
-					case 12:
-						rune = this.new("scripts/items/legend_helmets/runes/legend_rune_bravery");
-						break;
-
-					case 13:
-						rune = this.new("scripts/items/legend_helmets/runes/legend_rune_luck");
-						break;
-				}
-				rune.setRuneVariant(selected);
-				rune.setRuneBonus(true);
-				// rune.setRuneVariant(0);
-				rune.drop(_tile);
-
-
-				// @Enduriel did the following, but it doesn't have a declaration for the `selected` variable
-				// Hence reverting back to mercury's implementation for now (above).
-
-				// local options = this.new("scripts/mods/script_container");
-				// options.extend([
-				// 	"scripts/items/legend_helmets/runes/legend_rune_clarity",
-				// 	"scripts/items/legend_helmets/runes/legend_rune_bravery",
-				// 	"scripts/items/legend_helmets/runes/legend_rune_luck"
-				// ]);
-				// local rune = this.new(options.roll());
-				// rune.setRuneVariant(selected);
-				// rune.setRuneBonus(true);
-				// // rune.setRuneVariant(0);
-				// rune.drop(_tile);
-
-			}
-		}
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.OnDeathLootTable.push([1, function () {
+			local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
+			local rune = ::new(::Legends.Runes.get(selected).Script);
+			rune.setRuneVariant(selected);
+			rune.setRuneBonus(true);
+			rune.updateRuneSigilToken();
+			return rune;
+		}.bindenv(this)]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+			this.m.OnDeathLootTable.push([0.5, "scripts/items/misc/legend_ancient_scroll_item"]);
 	}
 
 	local onInit = o.onInit;
@@ -55,13 +27,13 @@
 	{
 		onInit();
 		local b = this.m.BaseProperties;
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_wither_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Wither);
 
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
-			this.m.Skills.add(this.new("scripts/skills/actives/legend_magic_missile_skill"));
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicMissile);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 			b.Initiative += 50;
@@ -74,7 +46,7 @@
 	{
 		 if(::Legends.isLegendaryDifficulty())
 		 {
-		 this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
+		 	this.m.Items.equip(this.new("scripts/items/weapons/legend_staff_gnarled"));
 		 }
 	}
 });

@@ -5,6 +5,8 @@
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = -3;
+		local v2 = -3;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -12,6 +14,7 @@
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 
@@ -21,12 +24,10 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcYoung);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 70)
-		{
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungThrowingSpecDay) {
 			b.IsSpecializedInThrowing = true;
 
-			if (this.World.getTime().Days >= 150)
-			{
+			if (this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungStatIncreaseDay) {
 				b.RangedSkill += 5;
 			}
 		}
@@ -55,22 +56,26 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_01_head_injured");
-		local v = -7;
-		local v2 = 0;
+		this.setAlwaysApplySpriteOffset(true);
+		local v = -3;
+		local v2 = -3;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
+
 		}
 		local body_blood = this.addSprite("body_blood");
 		body_blood.setBrush("bust_orc_01_body_bloodied");
 		body_blood.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/charge"));
-
+		::Legends.Actives.grant(this, ::Legends.Active.Charge);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;
@@ -79,13 +84,13 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
+		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+	}
 
-		if (this.Const.DLC.Unhold)
-		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
-		}
-
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
 	}
 
 	o.assignRandomEquipment = function ()
@@ -93,9 +98,18 @@
 		local r;
 		local weapon;
 
-		if (this.Math.rand(1, 100) <= 25)
+		r = this.Math.rand(1, 100);
+		if (r <= 30)
 		{
-			this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+			r = this.Math.rand(1, 2);
+			if (r == 1)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
+			}
+			else if (r == 2)
+			{
+				this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/legend_orc_throwing_spear"));
+			}
 		}
 
 		if (this.Math.rand(1, 100) <= 75)
@@ -167,17 +181,17 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[1, "greenskins/orc_young_light_armor"],
-			[1, "greenskins/orc_young_medium_armor"],
-			[1, "greenskins/orc_young_heavy_armor"],
-			[1, ""]
+			[1, ::Legends.Armor.Greenskin.orc_young_light_armor],
+			[1, ::Legends.Armor.Greenskin.orc_young_medium_armor],
+			[1, ::Legends.Armor.Greenskin.orc_young_heavy_armor],
+			[1, ::Legends.Armor.None]
 		]);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "greenskins/orc_young_light_helmet"],
-			[1, "greenskins/orc_young_medium_helmet"],
-			[1, "greenskins/orc_young_heavy_helmet"]
+			[1, ::Legends.Helmet.Greenskin.orc_young_light_helmet],
+			[1, ::Legends.Helmet.Greenskin.orc_young_medium_helmet],
+			[1, ::Legends.Helmet.Greenskin.orc_young_heavy_helmet]
 		]);
 
 		if (item != null)

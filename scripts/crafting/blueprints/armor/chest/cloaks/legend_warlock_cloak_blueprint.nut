@@ -1,13 +1,13 @@
-this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_warlock_blueprint", {
 	m = {},
-	function create()
-	{
-		this.blueprint.create();
+
+	function create() {
+		this.legend_warlock_blueprint.create();
 		this.m.ID = "blueprint.legend_warlock_cloak";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
-
-
+		local preview = this.new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
+		preview.m.Name = "Warlock Cloak";
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2000;
 		local ingredients = [
 			{
@@ -24,31 +24,18 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/blueprint"
 			}
 		];
 		ingredients.push({
-			Script = "scripts/items/legend_armor/cloth/legend_tunic",
+			Script = "scripts/items/legend_armor/cloth/legend_armor_tunic",
 			Num = 1,
 			LegendsArmor = true
 		});
 		this.init(ingredients);
-		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
-		local item;
-		item = this.new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
+	function onCraft(_stash) {
+		local item = ::new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
 		item.m.Name = "";
 		_stash.add(item);
 	}
 
 });
-

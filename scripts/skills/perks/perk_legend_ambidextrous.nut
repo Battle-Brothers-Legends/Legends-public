@@ -2,54 +2,41 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	m = {
 		offHandSkill = null,
 		HandToHand = null,
-		ApplicableItems = [
-			"shield.legend_named_parrying_dagger",
-			"shield.legend_parrying_dagger",
-			"shield.buckler",
-			"shield.legend_mummy_shield"
-		],
 	},
 
-	// takes a weakTableRef
-	function setOffhandSkill ( _a )
-	{
-		this.m.offHandSkill = ::MSU.asWeakTableRef(_a);
+	function getHandToHandSkill(){
+		local skill = ::Legends.Actives.get(this, ::Legends.Active.LesserFleshGolemAttack);
+    	if (skill != null) return skill;
+    	skill = ::Legends.Actives.get(this, ::Legends.Active.GreaterFleshGolemAttack);
+    	if (skill != null) return skill;
+    	return ::Legends.Actives.get(this, ::Legends.Active.HandToHand);
 	}
 
-	function resetOffhandSkill ()
-	{
-		this.m.offHandSkill = null;
-	}
-
-	function create()
-	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAmbidextrous);
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAmbidextrous);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function isHidden()
-	{
-		if (!::MSU.isNull(m.offHandSkill))
+	function isHidden() {
+		if (!::MSU.isNull(this.m.offHandSkill)) {
 			return false;
+		}
+
+		local actor = this.getContainer().getActor();
 		local items = this.getContainer().getActor().getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
+			&& off != null && off.getID().find("throwing_net") != null;
+
+		if (hasNet) {
+			return false;
+		}
 		return !(off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand));
 	}
 
-	function getDescription()
-	{
-		local skill = !::MSU.isNull(m.offHandSkill) ? this.m.offHandSkill : m.HandToHand;
-		return format("Fluid like water!\n\nThis character will follow up any attack with a [color=" + ::Const.UI.Color.Active + "]%s[/color] from their off hand! If both hands are free, they also gain additional melee skill and melee defense.", skill.getName());
-	}
-
-	function getTooltip()
-	{
-		local items = this.getContainer().getActor().getItems();
+	function getTooltip() {
+		local actor = this.getContainer().getActor();
+		local items = actor.getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
 
@@ -62,98 +49,143 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			{
 				id = 2,
 				type = "description",
-				text = this.getDescription() // Since the passive should have a different name than the perk in this case
+				text = "Fluid like water!\n\nThis character will follow up main hand attacks with an attack from their off hand, if possible."
 			}
 		];
 
-		if ((main == null || this.getContainer().hasSkill("effects.disarmed")) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
+		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+		local blockedOffhand = items.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+		if (ohSkill != null && !blockedOffhand) {
+			if (::Legends.Weapons.isDualWielding(actor)) {
+				ret.push({
+					id = 3,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Follow-up attack: [color=%negative%]Disabled[/color]"
+				});
+			} else {
+				ret.push({
+					id = 3,
+					type = "text",
+					icon = "ui/icons/special.png",
+					text = "Follow-up attack: [color=%positive%]" + ohSkill.getName() + "[/color]"
+				});
+			}
+		}
+
+		// Unarmed bonuses
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))
+			&& off == null
+			&& !blockedOffhand)
 		{
-			ret.push({
-				id = 3,
-				type = "text",
-				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] melee skill"
-			});
 			ret.push({
 				id = 4,
 				type = "text",
+				icon = "ui/icons/melee_skill.png",
+				text = "[color=%positive%]+5[/color] Melee Skill"
+			});
+			ret.push({
+				id = 5,
+				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] melee defense"
+				text = "[color=%positive%]+10[/color] Melee Defense"
 			});
 		}
 
 		return ret;
 	}
 
-	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
-	{
-		if (!_skill.m.IsAttack || (_skill.getID() == "actives.hand_to_hand" && this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null))
-		{
-			// Don't execute a follow up attack if the first skill is not an attack, or if you are using hand to hand while the mainhand is holding a weapon
+	function onAnySkillExecuted(_skill, _targetTile, _targetEntity, _forFree) {
+		local actor = this.getContainer().getActor();
+		if (::Legends.Weapons.isDualWielding(actor)) {
 			return;
 		}
-		local items = this.getContainer().getActor().getItems();
-		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 
-		if (_targetEntity != null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) && (off == null || !::MSU.isNull(m.offHandSkill)))
+		if (!_skill.m.IsAttack) {
+			return; // Don't execute a follow up attack if the first skill is not an attack
+		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.HandToHand)
+			&& actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 		{
-			if (!_forFree)
-			{
-				if (_targetTile == null) // Is this necessary?
+			return; // or if you are using hand to hand while the mainhand is holding a weapon
+		}
+
+		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
+			return;
+		}
+
+		if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > 1) {
+			return; // no gomu gomu h2h attacks
+		}
+
+		local items = actor.getItems();
+		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
+			&& off != null && off.getID().find("throwing_net") != null;
+		// Don't trigger follow-up if the attack came from the offhand
+		if (::Legends.Weapons.isOffHandSkill(actor, _skill)) {
+			return;
+		}
+
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
+			if (!_forFree) {
+				//if (_targetTile == null || actor.getTile() == null) {
+					// Is this necessary?
+				//	return;
+				//}
+				local skillToUse = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
+				if (actor.getTile().getDistanceTo(_targetEntity.getTile()) > skillToUse.getMaxRange()) {
 					return;
-				// i need to somehow do this more dynamically
+				}
+
+				// i need to somehow do this more dynamically (think this is it)
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, function (_skill) {
+					if (::Legends.S.isEntityNullOrDead(_targetEntity) || !_targetEntity.isPlacedOnMap() || _targetEntity.getTile() == null) {
+						return;
+					}
+					::Const.SkillCounter++;
+					_skill.executeFollowUpAttack({
+						TargetTile = _targetEntity.getTile(),
+						Skill = skillToUse
+					});
+				}.bindenv(this), this);
+				/*this.Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
-					Skill = !::MSU.isNull(m.offHandSkill) ? m.offHandSkill : m.HandToHand
-				});
+					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
+					});*/
 			}
 		}
 	}
 
-	function executeFollowUpAttack( _info )
-	{
-		if (!::MSU.isNull(_info.Skill))
-			_info.Skill.useForFree(_info.TargetTile);
+	function executeFollowUpAttack(_info) {
+		local actor = this.getContainer().getActor();
+		local entity = _info.TargetTile.getEntity();
+		if (::Legends.S.isEntityNullOrDead(entity) || ::Legends.S.isEntityNullOrDead(actor)) {
+			return;
+		}
+		if (::MSU.isNull(_info.Skill)) {
+			::logWarning("legend_ambidextrous: offhand skill is null, cannot execute follow-up attack");
+			return;
+		}
+		
+		_info.Skill.m.IsExecutingOffhand = true;
+		_info.Skill.useForFree(_info.TargetTile);
 	}
 
-	function onUpdate( _properties )
-	{
-		local items = this.getContainer().getActor().getItems();
+	function onUpdate(_properties) {
+		local actor = this.getContainer().getActor();
+		local items = actor.getItems();
 		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
 		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-
-		if ((main == null || this.getContainer().hasSkill("effects.disarmed")) && off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand))
+		local hasNet = actor.getCurrentProperties
+			&& off != null && off.getID().find("throwing_net") != null;
+		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))
+			&& (off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) || hasNet))
 		{
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;
-
 		}
 	}
-
-	function onAdded()
-	{
-		m.HandToHand = ::MSU.asWeakTableRef(getContainer().getSkillByID("actives.hand_to_hand"));
-
-		local off = getContainer().getActor().getOffhandItem();
-
-		if (off != null)
-			onEquip(off);
-	}
-
-	function onEquip( _item )
-	{
-		if (m.ApplicableItems.find(_item.getID()) == null)
-			return; // not a right one
-
-		setOffhandSkill(_item.getPrimaryOffhandAttack());
-	}
-
-	function onUnequip( _item )
-	{
-		if (m.ApplicableItems.find(_item.getID()) == null)
-			return;
-
-		resetOffhandSkill();
-	}
-
 });

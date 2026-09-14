@@ -49,13 +49,12 @@
 
 					this.Contract.setScreen("Overview");
 
-					if (this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves")
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
 					{
 						local brothers = this.World.getPlayerRoster().getAll();
 						foreach( bro in brothers )
 						{
-							if (bro.getBackground().getID() == "background.slave")
-							{
+							if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
 								bro.worsenMood(3.0, "You took a contract to put down a slave uprising");
 							}
 						}
@@ -104,7 +103,7 @@
 						}
 
 					}
-				]
+				];
 			}
 			if (s.ID == "Outlaws1")
 			{
@@ -164,7 +163,7 @@
 						}
 
 					}
-				]
+				];
 			}
 			if (s.ID == "Fleeing1")
 			{

@@ -4,7 +4,7 @@ this.legend_prosthetic_finger_blueprint <- this.inherit("scripts/crafting/bluepr
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_prosthetic_finger";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/misc/legend_prosthetic_finger_item");
 		this.m.Cost = 50;
 		local ingredients = [
@@ -14,10 +14,7 @@ this.legend_prosthetic_finger_blueprint <- this.inherit("scripts/crafting/bluepr
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendInventorAnatomy)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendProsthetics)]);
 	}
 
 	function onCraft( _stash )

@@ -1,5 +1,20 @@
 ::mods_hookNewObject("entity/tactical/tactical_entity_manager", function(o)
 {
+	o.m.NetTiles <- {};
+
+	o.addNetTiles <- function( _tile )
+	{
+		if (_tile.ID in this.m.NetTiles) return;
+		else this.m.NetTiles[_tile.ID] <- _tile;
+	}
+
+	local clear_tactical_entity_manager = o.clear;
+	o.clear = function()
+	{
+		clear_tactical_entity_manager();
+		this.m.NetTiles = {};
+	}
+
  	o.spawn = function ( _properties )
 	{
 		if (this.World.State.getCombatSeed() != 0)
@@ -55,7 +70,7 @@
 
 			foreach( item in items )
 			{
-				if ("setLoaded" in item)
+				if ("setLoaded" in item && !f.getSkills().hasPerk(::Legends.Perk.LegendPrepared))
 				{
 					item.setLoaded(false);
 				}
@@ -200,6 +215,10 @@
 
 			break;
 
+		case this.Const.Tactical.DeploymentType.LineCenter:
+			this.placePlayersInFormation(frontline, 3 + shiftX);
+			break;
+
 		case this.Const.Tactical.DeploymentType.LineForward:
 			this.placePlayersInFormation(frontline, 8 + shiftX);
 			break;
@@ -237,7 +256,7 @@
 		local factionsNotAlliedWithPlayer = hasCampDeployment || _properties.InCombatAlready && ai_entities.len() <= 2 ? 1 : 0;
 		local lastFaction = 99;
 
-		foreach( i, f in ai_entities )
+		foreach( _, f in ai_entities )
 		{
 			if ((!f.IsAlliedWithPlayer || _properties.InCombatAlready) && f.DeploymentType != this.Const.Tactical.DeploymentType.Camp && (lastFaction == 99 || !this.World.FactionManager.isAllied(lastFaction, f.Faction)))
 			{
@@ -282,6 +301,10 @@
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
 				}
+				else if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineCenter)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, -10 - shiftX);
@@ -291,6 +314,21 @@
 					this.spawnEntitiesInFormation(f.Entities, n, -10 + shiftX);
 				}
 
+				break;
+
+			case this.Const.Tactical.DeploymentType.LineCenter:
+				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
+				}
+				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 - shiftX);
+				}
+				else
+				{
+					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
+				}
 				break;
 
 			case this.Const.Tactical.DeploymentType.Arena:
@@ -394,34 +432,24 @@
 			local slaves = 0;
 			local nonSlaves = 0;
 
-			foreach( bro in roster )
-			{
+			foreach (bro in roster) {
 				if (!bro.isPlacedOnMap())
-				{
 					continue;
-				}
 
-				if (bro.getBackground().getID() == "background.slave")
-				{
-					slaves = ++slaves;
-				}
-				else
-				{
-					nonSlaves = ++nonSlaves;
+				if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
+					slaves++;
+				} else {
+					nonSlaves++;
 				}
 			}
 
-			if (slaves <= nonSlaves)
-			{
-				foreach( bro in roster )
-				{
-					if (!bro.isPlacedOnMap())
-					{
+			if (slaves <= nonSlaves) {
+				foreach (bro in roster) {
+					if (!bro.isPlacedOnMap()) {
 						continue;
 					}
 
-					if (bro.getBackground().getID() != "background.slave")
-					{
+					if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
 						bro.worsenMood(this.Const.MoodChange.TooFewSlavesInBattle, "Too few indebted in battle");
 					}
 				}
@@ -434,6 +462,47 @@
 		}
 
 		this.Math.seedRandom(this.Time.getRealTime());
+	}
+
+	o.placePlayersAtBorder = function (_players) {
+		for (local x = 9; x <= 23; x = ++x) {
+			for (local y = 2; y <= 4; y = ++y) {
+				this.Tactical.getTile(x, y - x / 2).removeObject();
+			}
+		}
+
+		foreach (e in _players) {
+			local p = e.getPlaceInFormation();
+			local y = 4 - p / 9;
+			local x = 11 + p % 9;
+			local tile = ::Tactical.getTileSquare(x, y);
+
+			if (!tile.IsEmpty) {
+				tile.removeObject();
+			}
+
+			if (this.isTileIsolated(tile)) {
+				local avg = 0;
+
+				for (local n = 0; n < 6; ++n) {
+					if (tile.hasNextTile(n)) {
+						avg += tile.getNextTile(n).Level;
+					}
+				}
+
+				tile.Level = avg / 6;
+			}
+
+			::Tactical.addEntityToMap(e, tile.Coords.X, tile.Coords.Y);
+
+			if (!::World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight) {
+				::Legends.Effects.grant(e, ::Legends.Effect.Night);
+			}
+
+			if (::Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)	{
+				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
+			}
+		}
 	}
 
 	o.placePlayersInFormation = function ( _players, _offsetX = 0, _offsetY = 0 )
@@ -489,15 +558,13 @@
 
 			if (!this.World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
 			{
-				e.getSkills().add(this.new("scripts/skills/special/night_effect"));
+				::Legends.Effects.grant(e, ::Legends.Effect.Night);
 			}
 
 			if (this.Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
 			{
-				e.getSkills().add(this.new("scripts/skills/special/legend_rain_effect"));
+				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
-
-
 		}
 	}
 
@@ -509,7 +576,7 @@
 		{
 			if (!_tile.hasNextTile(i))
 			{
-				continue
+				continue;
 			}
 
 			if (_tile.getNextTile(i).IsEmpty && this.Math.abs(_tile.Level - _tile.getNextTile(i).Level) <= 1)
@@ -559,7 +626,7 @@
 		if (_info.Type == "")
 			return;
 
-		if (!this.MSU.Tile.canResurrectOnTile(_info.Tile, true))
+		if (_info.Tile == null || !this.MSU.Tile.canResurrectOnTile(_info.Tile, true))
 		{
 			return;
 		}
@@ -583,7 +650,7 @@
 	local onResurrect = o.onResurrect;
 	o.onResurrect = function( _info, _force = false )
 	{
-		// holyflame stop the ressurection
+		// holy flame stops the resurrection
 		if (_info.Tile.Properties.Effect != null && _info.Tile.Properties.Effect.Type == "legend_holyflame") {
 			if (_info.Tile.IsVisibleForPlayer)
 				this.Tactical.EventLog.log("The simmering holy flame stops the dead from raising back to life again.");
@@ -594,13 +661,61 @@
 		return onResurrect(_info, _force);
 	}
 
+	o.isAllowedToDualWield <- function (_entity) {
+		local faction = _entity.getFaction();
+		if (faction == ::Const.Faction.Player
+			|| faction == ::Const.Faction.PlayerAnimals
+			|| this.World.FactionManager.isAlliedWithPlayer(faction)) {
+			return false;
+		}
+		local barredEntities = [
+			::Const.EntityType.Zombie,
+			::Const.EntityType.ZombieYeoman,
+			::Const.EntityType.ZombieKnight,
+			::Const.EntityType.ZombieBetrayer,
+			::Const.EntityType.ZombieBoss
+		]; // should move this to a config or smth
+
+		if (::Legends.S.oneOf(_entity.getType(), barredEntities))
+			return false;
+		return true;
+	}
+
 	local setupEntity = o.setupEntity;
 	o.setupEntity = function( _e, _t )
 	{
 		setupEntity( _e, _t );
-		if (("Outfits") in _t) //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
-		{
+		if (("Outfits") in _t) { //this is mostly only used for free companies currently, I'll admit I just can't think of a better way to do these
 			_e.m.Outfits = _t.Outfits;
+		}
+		::Legends.Scaling.scaleEnemy(_e, _t);
+
+		// Small chance for enemies with a 1H weapon and free offhand to dual wield
+		if (!this.isAllowedToDualWield(_e)) {
+			return;
+		}
+
+		if (::Legends.Effects.has(_e, ::Legends.Effect.LegendDualWield)) {
+			return;
+		}
+
+		local items = _e.getItems();
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (mh == null || oh != null) {
+			return;
+		}
+		if (!mh.isItemType(::Const.Items.ItemType.Weapon)) {
+			return;
+		}
+		if (!items.canDualWield(_e, mh)) {
+			return;
+		}
+
+		if (::Math.rand(1, 100) <= 10) {
+			local copy = this.new(::IO.scriptFilenameByHash(mh.ClassNameHash));
+			items.equip(copy);
+			items.updateDualWield();
 		}
 	}
 

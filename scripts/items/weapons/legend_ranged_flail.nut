@@ -8,7 +8,7 @@ this.legend_ranged_flail <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A separate striking head attached to a pole by a chain. A rather unpredictable weapon, but useful to strike over or around shield cover.";
 		this.m.IconLarge = "weapons/melee/legend_flail_ranged_02.png";
 		this.m.Icon = "weapons/melee/legend_flail_ranged_02_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Flail;
+		this.m.WeaponType = this.Const.Items.WeaponType.Flail | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Cultist;
@@ -26,8 +26,8 @@ this.legend_ranged_flail <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RangeMin = 1;
 		this.m.RangeMax = 2;
 		this.m.RangeIdeal = 2;
-		this.m.RegularDamage = 40;
-		this.m.RegularDamageMax = 70;
+		this.m.RegularDamage = 45;
+		this.m.RegularDamageMax = 75;
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ChanceToHitHead = 10;
@@ -36,8 +36,12 @@ this.legend_ranged_flail <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_flail_skill"));
-		this.addSkill(this.new("scripts/skills/actives/legend_ranged_lash_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Flail, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Lash, function (_skill) {
+			_skill.m.IsRanged = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

@@ -1,31 +1,12 @@
 this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 	m = {
 		Item = null,
-		Sounds0 = [
-			"sounds/enemies/bear_hit1.wav",
-			"sounds/enemies/bear_hit2.wav"
-		],
-		Sounds1 = [
-			"sounds/enemies/bear_dead.wav"
-		],
-		Sounds2 = [
-			"sounds/enemies/unhold_flee_01.wav",
-			"sounds/enemies/unhold_flee_02.wav",
-			"sounds/enemies/unhold_flee_03.wav",
-			"sounds/enemies/unhold_flee_04.wav"
-		],
-		Sounds3 = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		],
-		Sounds4 = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack2.wav"
-		],
-		Sounds5 = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack2.wav"
-		]
+		Sounds0 = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2),
+		Sounds1 = ["sounds/enemies/bear_dead.wav"],
+		Sounds2 = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4),
+		Sounds3 = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2),
+		Sounds4 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2),
+		Sounds5 = ::Legends.S.setSounds("sounds/enemies/bear_attack", 2)
 	},
 	function setItem( _i )
 	{
@@ -34,23 +15,9 @@ this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_warbear";
-		this.m.Name = "Unleash Warbear";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWarbear);
 		this.m.Description = "Unleash your warbear and send it charging into the enemy. Needs a free tile adjacent.";
-		this.m.Icon = "skills/bear_square.png";
-		this.m.IconDisabled = "skills/bear_square_bw.png";
-		this.m.Overlay = "active_165";
-		this.m.SoundOnUse = [
-			"sounds/enemies/wolf_idle_00.wav",
-			"sounds/enemies/wolf_idle_01.wav",
-			"sounds/enemies/wolf_idle_02.wav",
-			"sounds/enemies/wolf_idle_03.wav",
-			"sounds/enemies/wolf_idle_04.wav",
-			"sounds/enemies/wolf_idle_06.wav",
-			"sounds/enemies/wolf_idle_07.wav",
-			"sounds/enemies/wolf_idle_08.wav",
-			"sounds/enemies/wolf_idle_09.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
@@ -122,9 +89,7 @@ this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile ) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
@@ -141,14 +106,14 @@ this.legend_unleash_warbear_skill <- this.inherit("scripts/skills/skill", {
 		entity.setName(this.m.Item.getName());
 		this.m.Item.setEntity(entity);
 
-		if (this.getContainer().hasSkill("background.houndmaster"))
+		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
 		{
 			entity.setMoraleState(this.Const.MoraleState.Confident);
 		}
 
 		if (!this.World.getTime().IsDaytime)
 		{
-			entity.getSkills().add(this.new("scripts/skills/special/night_effect"));
+			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 
 		this.m.IsHidden = true;

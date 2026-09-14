@@ -1,9 +1,18 @@
-::mods_hookExactClass("entity/tactical/humans/engineer", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/engineer", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
+		local b = this.m.BaseProperties;
+		b.TargetAttractionMult = 2.0;
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 	}
@@ -27,10 +36,10 @@
 			}
 		}
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/padded_vest"]
+			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
 		local helm =this.Const.World.Common.pickHelmet([
-				[1, "oriental/engineer_hat"]
+			[1, ::Legends.Helmet.Southern.engineer_hat]
 		]);
 		this.m.Items.equip(helm);
 	}

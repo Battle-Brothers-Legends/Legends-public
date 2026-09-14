@@ -5,30 +5,30 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function create()
 	{
 		this.legend_vala_chant.create();
-		this.m.ID = "effects.legend_vala_chant_fury_effect";
-		this.m.Description = "This character has been invigorated by the Vala\'s Chant of Fury!"
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaChantFuryEffect);
+		this.m.Description = "This character has been invigorated by the Vala\'s Chant of Fury!";
 		this.m.Range = 3;
 	}
 	function getWardenDamage()
 	{
-		return (this.m.Vala.getBravery() / 30.0) + ((this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue()) / 30.0);
+		return this.m.Vala.getBravery() * 0.05;
 	}
 
 	function getDamageBonus()
 	{
-		local bonus = (this.m.Vala.getBravery() / 30.0) + ((this.getContainer().getActor().getFatigueMax() - this.getContainer().getActor().getFatigue()) / 30.0);
+		local bonus = this.m.Vala.getBravery() * 0.05;
 		return this.Math.max(0, this.Math.floor(bonus * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
 	function getPayBackChance()
 	{
-		local chance = (this.m.Vala.getBravery() / 4.0) + (this.getContainer().getActor().getHitpoints() / 3.0);
-		return this.Math.min(95, this.Math.max(5, chance * this.getMasteryMult() * this.getDistanceMult()));
+		local chance = this.m.Vala.getBravery() * 0.4;
+		return this.Math.min(100, this.Math.max(0, chance * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
 	function getPayBackDamage()
 	{
-		local damage = (this.m.Vala.getBravery() / 3.0) + (this.getContainer().getActor().getCurrentProperties().getMeleeSkill() / 4.0);
+		local damage = this.m.Vala.getBravery() * 0.3;
 		return this.Math.min(100, damage * this.getMasteryMult() * this.getDistanceMult());
 	}
 
@@ -43,8 +43,12 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 		{
 			return 0.75;
 		}
-
-		return 1.0;
+		else if (distance == 1) {
+			return 1.0;
+		}
+		else{
+			return 0;
+		}
 	}
 
 	function getMasteryMult()
@@ -73,13 +77,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + regulardamage + "%[/color] damage inflicted"
+				text = "[color=%positive%]+" + regulardamage + "%[/color] damage inflicted"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + paybackchance + "%[/color] chance to retaliate against an attacker that hits you in melee range, for [color=" + this.Const.UI.Color.PositiveValue + "]" + paybackdamage + "%[/color] damage"
+				text = "[color=%positive%]" + paybackchance + "%[/color] chance to retaliate against an attacker that hits you in melee range, for [color=%positive%]" + paybackdamage + "%[/color] damage"
 			}
 		];
 	}
@@ -87,13 +91,21 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
+		if (actor == null)
+			return;
 		if (_attacker == null || _attacker.isAlliedWith(actor) || ::Tactical.TurnSequenceBar.isActiveEntity(actor) || actor.getTile().getDistanceTo(_attacker.getTile()) != 1)
 			return;
 
 		if (_damageHitpoints >= actor.getHitpoints())
 			return;
 
-		if (!actor.isAlive() || actor.isDying())
+		if (::Legends.S.isEntityNullOrDead(actor))
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(_attacker))
+			return;
+
+		if (_attacker.getType() == ::Const.EntityType.FlyingSkull)
 			return;
 
 		if (!this.checkEntities() || !this.isInRange())
@@ -112,6 +124,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 					Skill = payback,
 					TargetTile = _attacker.getTile(),
 					Container = this.getContainer(),
+					StartingTile = actor.getTile()
 				};
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
@@ -138,10 +151,15 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function onPerformPaypack(_attackinfo)
 	{
 		_attackinfo.Container.setBusy(false);
+
+		if (_attackinfo.User.getTile().ID != _attackinfo.StartingTile.ID)
+            return;
+
 		this.m.isPerformingPayback = true;
 		if (_attackinfo.User.isAlive() && _attackinfo.TargetTile.getEntity().isAlive())
 		{
-			return _attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
+			_attackinfo.Skill.attackEntity(_attackinfo.User, _attackinfo.TargetTile.getEntity());
+			this.getContainer().getActor().setDirty(true);
 		}
 		this.m.isPerformingPayback = false;
 	}
@@ -165,7 +183,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	}
 
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		if (!this.checkEntities())
 		{

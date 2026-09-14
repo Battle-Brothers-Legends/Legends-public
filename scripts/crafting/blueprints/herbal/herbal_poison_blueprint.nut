@@ -4,7 +4,7 @@ this.herbal_poison_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.herbal_poison";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/poison_item");
 		this.m.Cost = 30;
 		local ingredients = [
@@ -14,10 +14,7 @@ this.herbal_poison_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendHerbcraft)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendHerbcraft)]);
 	}
 
 	function onCraft( _stash )

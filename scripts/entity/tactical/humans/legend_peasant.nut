@@ -14,6 +14,9 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/militia_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -31,7 +34,7 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 		this.getSprite("socket").setBrush("bust_base_militia");
 		// if(::Legends.isLegendaryDifficulty())
 		// 	{
-		// 	this.m.Hitpoints = b.Hitpoints * 1.5;
+		// 	b.Hitpoints *= 1.5;
 		// 	::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		// 	this.m.Skills.add(this.new("scripts/skills/traits/fearless_trait"));
 		// 	}
@@ -107,20 +110,20 @@ this.legend_peasant <- this.inherit("scripts/entity/tactical/legend_randomized_u
 
 
 	// 	this.m.Items.equip(this.Const.World.Common.pickArmor([
-	// 		[1, "sackcloth"],
-	// 		[1, "thick_tunic"],
-	// 		[1, "apron"],
-	// 		[1, "tattered_sackcloth"],
-	// 		[4, "linen_tunic"]
+	// 		[1, ::Legends.Armor.Standard.sackcloth],
+	// 		[1, ::Legends.Armor.Standard.thick_tunic],
+	// 		[1, ::Legends.Armor.Standard.apron],
+	// 		[1, ::Legends.Armor.Standard.tattered_sackcloth],
+	// 		[4, ::Legends.Armor.Standard.linen_tunic]
 	// 	]));
 
 	// 	if (this.Math.rand(1, 100) <= 33)
 	// 	{
 	// 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
-	// 			[1, "straw_hat"],
-	// 			[1, "hood"],
-	// 			[1, "headscarf"],
-	// 			[1, "feathered_hat"]
+	// 			[1, ::Legends.Helmet.Standard.straw_hat],
+	// 			[1, ::Legends.Helmet.Standard.hood],
+	// 			[1, ::Legends.Helmet.Standard.headscarf],
+	// 			[1, ::Legends.Helmet.Standard.feathered_hat]
 	// 		]))
 	// 	}
 	// }

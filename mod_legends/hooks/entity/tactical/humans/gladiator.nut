@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/gladiator", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/gladiator", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -7,6 +14,12 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryNets);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendNetCasting);
+		if (::Legends.isLegendaryDifficulty()) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
+			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
+		}
 	}
 
 	o.assignRandomEquipment = function ()
@@ -53,13 +66,9 @@
 		{
 			local weapons = [
 				"weapons/throwing_axe",
-				"weapons/javelin"
+				"weapons/javelin",
+				"weapons/throwing_spear"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.push("weapons/throwing_spear");
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}
@@ -75,7 +84,7 @@
 
 
 		local armor = this.Const.World.Common.pickArmor([
-			[1, "oriental/gladiator_harness"]
+			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
 		if (this.Math.rand(1,3) <= 2)
@@ -90,8 +99,8 @@
 		this.m.Items.equip(armor);
 
 		local helm = this.Const.World.Common.pickHelmet([
-			[1, "oriental/gladiator_helmet", this.Math.rand(13, 15)],
-			[1, ""]
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
+			[1, ::Legends.Helmet.None]
 		]);
 		this.m.Items.equip(helm);
 	}
@@ -119,9 +128,6 @@
 			{
 				local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;		// Temporary solution to prevent these minibosses from spawning with bad or incombatible weapons
 				::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
-				::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_parrying_dagger");
-				::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_shovel");
-				::MSU.Array.remove(namedWeaponArray, "weapons/named/legend_named_sickle");
 				this.m.Items.equip(this.new("scripts/items/" + ::MSU.Array.rand(namedWeaponArray)));
 			}
 		}

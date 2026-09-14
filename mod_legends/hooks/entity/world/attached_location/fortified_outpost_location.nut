@@ -4,26 +4,26 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Large barracks housing a host of professional soldiers. Contributes military weapons, armor, soldiers and knights to the local town";
+		this.m.Description = "Large barracks housing a host of professional soldiers. Contributes military weapons, armor, soldiers and knights to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("legend_blacksmith_background");
-		_list.push("legend_ironmonger_background");
+		_list.push(::Legends.Background.LegendBlacksmith);
+		_list.push(::Legends.Background.LegendIronmonger);
 
 		if (this.Math.rand(0, 9) == 1)
-			_list.push("legend_master_archer_background");
+			_list.push(::Legends.Background.LegendMasterArcher);
 
 		if (this.Math.rand(0, 9) == 1)
-			_list.push("legend_noble_shield");
+			_list.push(::Legends.Background.LegendFootSoldier);
 		
 		if (this.Math.rand(0, 9) == 1)
-			_list.push("legend_noble_2h");
+			_list.push(::Legends.Background.LegendHouseGuard);
 		
 		if (this.Math.rand(0, 9) == 1)
-			_list.push("legend_noble_ranged");
+			_list.push(::Legends.Background.LegendArbalester);
 		
 		onUpdateDraftList(_list);
 	}
@@ -58,7 +58,7 @@
 			_list.push({
 				R = 50,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 95,
@@ -78,12 +78,12 @@
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 			_list.push({
 				R = 99,

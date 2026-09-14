@@ -3,14 +3,10 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.bladedancer";
-		this.m.Name = "Bladedancer";
-		this.m.Icon = "ui/backgrounds/background_bladedancer.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBladedancer);
 		this.m.BackgroundDescription = "A skilled nomadic fighter of the south who prefers speed and reach over raw power.";
-		this.m.GoodEnding = "%name% found themselves in the possession of more crowns they their family had accumulated across six generations. Despite this, the bladedancer returned to the desert and used their wealth to train the next generation of bladedancers as their tutor did before them.";		
-		this.m.BadEnding = "The pride and glory went to the head of %name% after you left. Last you heard they broke from the company and travelled alone challenging champions in crownling companies to single combat. You never heard from them ever again.";
-		this.m.HiringCost = 850;
-		this.m.DailyCost = 45;
+		this.m.GoodEnding = "%name% found %themselves% in the possession of more crowns than %their% family had accumulated across six generations. Despite this, the bladedancer returned to the desert and used %their% wealth to train the next generation of bladedancers as %their% tutor did before %them%.";
+		this.m.BadEnding = "The pride and glory went to the head of %name% after you left. Last you heard %they% broke from the company and traveled alone challenging champions in crownling companies to single combat. You never heard from %them% ever again.";
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Huge),
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
@@ -25,7 +21,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
@@ -40,79 +36,20 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			"the Chosen One" //if someone gets this ref. i'll be surprised.
 		];
 		this.m.Ethnicity = this.Math.rand(1, 2);
-		if (this.m.Ethnicity == 1)
-		{
-			this.m.Bodies = this.Const.Bodies.SouthernMuscular;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
-		}
-		else
-		{
-			this.m.Bodies = this.Const.Bodies.AfricanMale;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
-		}
-		this.m.Beards = this.Const.Beards.Southern;
-		this.m.BeardChance = 90;
 		this.m.Names = this.Const.Strings.SouthernNames;
 		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
 		this.m.Level = this.Math.rand(2, 4);
 		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger;
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[2];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[3];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.PolearmTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.MaceTree
-			],
-			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.ViciousTree
-			],
-			Enemy = [
-				this.Const.Perks.SwordmastersTree,
-				this.Const.Perks.MercenaryTree
-			],
-			Class = [],
-			Magic = []
-		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-		if (this.m.Ethnicity == 1)
-		{
-			this.m.Faces = this.Const.Faces.SouthernFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.Young;
-			this.m.Bodies = this.Const.Bodies.SouthernFemaleMuscular;
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMuscular, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
 		}
-		else
-		{
-			this.m.Faces = this.Const.Faces.AfricanFemale;
-			this.m.Hairs = this.Const.Hair.SouthernFemale;
-			this.m.HairColors = this.Const.HairColors.African;
-			this.m.Bodies = this.Const.Bodies.AfricanFemaleMuscular;
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 90);
 		}
-		
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
 	}
 
 	function onBuildDescription()
@@ -133,41 +70,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				3,
-				7
-			],
-			Bravery = [
-				7,
-				10
-			],
-			Stamina = [
-				10,
-				15
-			],
-			MeleeSkill = [
-				15,
-				20
-			],
-			RangedSkill = [
-				-10,
-				-10
-			],
-			MeleeDefense = [
-				4,
-				6
-			],
-			RangedDefense = [
-				0,
-				1
-			],
-			Initiative = [
-				15,
-				25
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBountyHunter);
 	}
 
 	function onAddEquipment()
@@ -194,12 +97,12 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "oriental/assassin_robe"],
-			[1, "blade_dancer_armor_00"]
-		]))
+			[1, ::Legends.Armor.Southern.assassin_robe],
+			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
+		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "oriental/blade_dancer_head_wrap"],
-			[1, "blade_dancer_helmet_00"]
+			[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
+			[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 		]));
 
 	}

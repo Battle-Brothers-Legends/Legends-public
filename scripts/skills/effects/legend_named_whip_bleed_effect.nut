@@ -4,7 +4,7 @@ this.legend_named_whip_bleed_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_flail";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedWhipBleed);
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -12,7 +12,7 @@ this.legend_named_whip_bleed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;
         this.m.IsHidden = true;
 	}
@@ -40,31 +40,30 @@ this.legend_named_whip_bleed_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if ( _skill.m.IsWeaponSkill == false ) { return; }
-		
-		local actor = this.getContainer().getActor();
-
-		if (!actor.isAlive() || actor.isDying())
-		{
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
 			return;
-		}
 
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-		{
+		if (!_skill.isAttack())
 			return;
-		}
 
-		if (!_targetEntity.getCurrentProperties().IsImmuneToBleeding)
-		{
-            if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
-			local effect = this.new("scripts/skills/effects/bleeding_effect");
-            if (_skill.getContainer().getActor().getFaction() == this.Const.Faction.Player )
-            {
-                effect.setActor(this.getContainer().getActor());
-            }
-            effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
-            _targetEntity.getSkills().add(effect);
-		}
+		if (_skill.getItem() == null || this.getItem() == null)
+			return;
+
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
+   			return;
+
+		if (_targetEntity.getCurrentProperties().IsImmuneToBleeding)
+			return;
+
+        if (::Math.rand(0, 100) > this.m.Bonus)
+			return;
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Bleeding, function(_effect) {
+			if (_skill.getContainer().getActor().getFaction() == this.Const.Faction.Player )
+				_effect.setActor(this.getContainer().getActor());
+			_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
+		}.bindenv(this));
+
 	}
 
 });

@@ -27,14 +27,15 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			local bodyarmorbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
 			local bodyarmor = null;
 			local bodyarmorfinal = {};
-			if (bodyarmorbase != null)
+			if (bodyarmorbase != null && ::MSU.isKindOf(bodyarmorbase, "legend_armor"))
 			{
 				bodyarmor = {
 					Cloth = bodyarmorbase,
 					Chain = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Chain),
 					Plate = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Plate),
-					Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard),
+					Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard),
 					Cloak = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak)
+					Attachment = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Attachment),
 				};
 				foreach (key, value in bodyarmor)
 				{
@@ -65,13 +66,9 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				};
 			}
 			local helmetbase = b.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-			if (helmetbase != null && helmetbase.getID() == "armor.head.fangshire")
-			{
-				helmetbase = null
-			}
 			local helmet = null;
 			local helmetfinal = {};
-			if (helmetbase != null)
+			if (helmetbase != null && ::MSU.isKindOf(helmetbase, "legend_helmet"))
 			{
 				helmet = {
 					Hood = helmetbase,
@@ -109,6 +106,22 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				};
 			}
 
+			local weapon = {};
+			if (b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
+				local weaponitem = b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+				weapon.Weapon <- {
+					Link = this.IO.scriptFilenameByHash(weaponitem.ClassNameHash),
+					ID = weaponitem.m.ID,
+					Value = this.Math.max(50, weaponitem.m.Value * 0.025),
+					Variant = (weaponitem.m.Variants.find(weaponitem.m.Variant) != null) ? (weaponitem.m.Variants.find(weaponitem.m.Variant) + 1) : 1,
+					Variants = this.Math.max(weaponitem.m.Variants.len(), 1),
+					Icon = weaponitem.m.IconLarge,
+					IconLarge = weaponitem.m.IconLarge
+				};
+			} else {
+				weapon.Weapon <- null;
+			}
+
 			local shield = {};
 			if (b.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
 			{
@@ -129,6 +142,14 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			else
 			{shield.Shield <- null;}
 
+			// add upgrades arrays to check visibility for combined draws
+			if (bodyarmorbase != null) {
+				bodyarmorfinal.Upgrades <- bodyarmorbase.getUpgrades();
+			}
+			if (helmetbase != null) {
+				helmetfinal.Upgrades <- helmetbase.getUpgrades();
+			}
+
 			local e = {
 				ID = b.getID(),
 				Name = b.getName(),
@@ -139,6 +160,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 				BackgroundText = background.getDescription(),
 				BodyArmor = bodyarmorfinal,
 				Helmet = helmetfinal,
+				Weapon = weapon,
 				Shield = shield
 			};
 			roster.push(e);
@@ -146,7 +168,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 
 		return {
 			Title = "Painting Tent",
-			SubTitle = "Customize the appearance of your armor",
+			SubTitle = "Customize the appearance of your equipment",
 			Roster = roster,
 			Assets = this.m.Parent.queryAssetsInformation()
 		};
@@ -175,8 +197,7 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 			else
 			{break;}
 		}
-		if (item.isItemType(this.Const.Items.ItemType.Shield))
-		{
+		if (item.isItemType(this.Const.Items.ItemType.Weapon) || item.isItemType(this.Const.Items.ItemType.Shield)) {
 			return {
 				Icon = item.m.IconLarge,
 				IconLarge = item.m.IconLarge
@@ -207,8 +228,9 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 						Cloth = bodyarmorbase,
 						Chain = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Chain),
 						Plate = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Plate),
-						Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard),
-						Cloak = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak)
+						Tabard = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard),
+						Cloak = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak),
+						Attachment = bodyarmorbase.getUpgrade(this.Const.Items.ArmorUpgrades.Attachment)
 					};
 					foreach(key, value in bodyarmor)
 					{
@@ -248,6 +270,17 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 					helmetbase.updateAppearance();
 				}
 
+				local weapon = b.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+				if (weapon != null) {
+					if (_result.Weapon.Weapon != null) {
+						if (weapon.m.ID == _result.Weapon.Weapon.ID) {
+							weapon.m.Variant = weapon.m.Variants[_result.Weapon.Weapon.Variant - 1];
+							weapon.updateVariant();
+							weapon.updateAppearance();
+						}
+					}
+				}
+
 				local shield = b.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 				if (shield != null)
 				{
@@ -266,11 +299,12 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 							}
 							shield.updateVariant();
 							shield.updateAppearance();
+							this.updateAchievement("AColorfulBand", 1, 1);
 						}
 					}
 				}
 
-				this.World.Assets.addMoney(-_result.Cost);
+				//this.World.Assets.addMoney(-_result.Cost); //remove the painting cost
 				result = this.queryRosterInformation();
 				break;
 			}
@@ -280,4 +314,3 @@ this.camp_painter_dialog_module <- this.inherit("scripts/ui/screens/ui_module", 
 	}
 
 });
-

@@ -1,0 +1,92 @@
+::mods_hookExactClass("skills/backgrounds/adventurous_noble_background", function(o)
+{
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.AdventurousNoble);
+		this.m.BackgroundDescription = "Adventurous Nobles tend to have high resolve and are martially trained, but tend to not be particularly aware of dangers.";
+		this.m.GoodEnding = "Adventurousness never leaves the soul of a %person% like %name%. {Instead of returning to %their% noble family, %they% left the %companyname% and headed east in search of rare beasts. Word has it %they% returned to town with the head of what looked like a giant lizard, but you don\'t believe such fantastical tripe. | %They% departed the %companyname% and ventured west, sailing across the oceans to unseen lands. There\'s no telling where %they% is these days, but you\'ve little doubt that %they%\'ll be coming back with stories to tell. | %They% retired from the %companyname% and, instead of returning to %their% noble family, headed south. Word has it %they% fought in a great noble civil war, killed an orc warlord, climbed the highest mountain in the land, and is currently writing an epic about %their% travels. | The %noble% left the %companyname% and, preferring the life of adventure to noble boredom, %they% headed north. Word has it that %they%\'s currently marching a troop of explorers to the furthest reaches of the world.}";
+		this.m.BadEnding = "%name% departed the %companyname% and continued %their% adventuring elsewhere. {%They% headed east, hoping to discover the source of the greenskins, but the %noble% has not been heard from since. | %They% headed north into the snowy wastes. Word has it %they% was seen a week ago, marching south this time, looking rather pale and shuffling moreso than walking. | %They% headed south into brutal marshlands. Word has it that a mysterious flame appeared in the fog and %they% walked toward it. The men who saw this said %they% disappeared into the mist and never returned. | %They% headed west and sailed the open sea. Despite having no experience at sea, %they% saw fit to make %themselves% captain of the boat. They say pieces of %their% ship and dead sailors kept washing ashore for weeks.}";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Spartan),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
+		];
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Names = this.Const.Strings.KnightNames;
+		this.m.Level = this.Math.rand(1, 3);
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Noble;
+	}
+
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.TidyMale, HairColors = ::Const.HairColors.Young});
+		
+		if (_gender != 1) return;
+		this.m.Name = "Adventurous Lady";
+		this.m.Icon = "ui/backgrounds/background_adventurous_noble_woman.png";
+		this.m.Names = ::Const.Strings.LadyNames;
+	}
+
+	o.onBuildDescription <- function () {
+		return "{A minor noble | As the third in the line of succession | A young and brash %noble% | A skilled swords%person%}, %name%\'s life at court {had grown stale for %them% | was not exciting enough for %them% with endless studying of court etiquette and family lineage | felt like wasting the best time of %their% life | was not half as exciting to %them% as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of %their% brother | To the frustration of %their% mother | Finally making a decision to change things}, %name% rode out to {prove %themselves% | make a name for themselves | earn glory on the battlefield | test %their% skills in battle} and {live life to its fullest as %they% imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn %their% place in the world | be knighted for %their% valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
+	}
+
+	o.onChangeAttributes = function () {
+		return ::Legends.Backgrounds.getStats(::Legends.Background.AdventurousNoble);
+	}
+
+	o.onAddEquipment = function () {
+		local items = this.getContainer().getActor().getItems();
+		local r;
+		r = this.Math.rand(0, 2);
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/weapons/fencing_sword"));
+		}
+		else if (r == 1)
+		{
+			items.equip(this.new("scripts/items/weapons/pike"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/rondel_dagger"));
+			items.equip(this.new("scripts/items/shields/buckler_shield"));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.mail_hauberk]
+		]));
+
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_hat],
+			[1, ::Legends.Helmet.Standard.legend_noble_hood],
+			[1, ::Legends.Helmet.Standard.legend_noble_crown],
+			[2, ::Legends.Helmet.None]
+		]));
+	}
+});

@@ -84,22 +84,31 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				text = this.getDescription()
 			},
 			{
+				id = 16,
+				type = "progressbar",
+				icon = "ui/tooltips/positive.png",
+				value = stats.HitChance,
+				valueMax = 25,
+				text = "" + stats.HitChance + "% / " + "25%",
+				style = "fatigue-slim"
+			},
+			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Melee Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Melee Skill due to being a favored enemy"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Ranged Skill due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Ranged Skill due to being a favored enemy"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + stats.HitChance + "%[/color] Max Damage due to being a favored enemy"
+				text = "[color=%positive%]+" + stats.HitChance + "%[/color] Max Damage due to being a favored enemy"
 			}
 		];
 		if (this.m.BraveryMult > 1)
@@ -108,11 +117,11 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
+				text = "[color=%positive%]+" + this.Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
 			})
 		}
 		resp.push({
-			id = 15,
+			id = 16,
 			type = "hint",
 			icon = "ui/icons/special.png",
 			text = ::Const.UI.getColorized(stats.Kills,::Const.UI.Color.getHighlightLightBackgroundValue()) + " favored enemy kills"
@@ -122,9 +131,9 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	// When the Perk is yet to be activated, show in the Tooltip what the current bonus is
-	function getUnactivatedPerkTooltipHints()
+	function getUnactivatedPerkTooltipHints(_actor = null)
 	{
-		local stats = this.getTotalKillStats();
+		local stats = this.getTotalKillStats(_actor);
 		local killsText = "";
 		if (stats.Kills > 0)
 		{
@@ -145,7 +154,16 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "hint",
 				icon = "ui/tooltips/positive.png"
-				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%",::Const.UI.Color.PositiveValue))
+				text = format("Activating this perk will grant a %s bonus to the relevant stats", ::Const.UI.getColorized("+" + stats.HitChance + "%", ::Const.UI.Color.PositiveValue))
+			},
+			{
+				id = 4,
+				type = "progressbar",
+				icon = "ui/tooltips/positive.png",
+				value = stats.HitChance,
+				valueMax = 25,
+				text = stats.HitChance + "% / " + "25%",
+				style = "fatigue-slim"
 			}
 		];
 
@@ -164,9 +182,9 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		return false;
 	}
 
-	function getTotalKillStats()
-	{
-		return this.Const.LegendMod.GetFavoriteEnemyStats(this.getContainer().getActor(), this.m.ValidTypes);
+	function getTotalKillStats(_actor = null) {
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+		return this.Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

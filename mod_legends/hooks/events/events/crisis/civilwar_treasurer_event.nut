@@ -7,11 +7,7 @@
 				local startB = s.start;
 				s.start <- function (_event) {
 					startB(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 				}
 			}
 		}

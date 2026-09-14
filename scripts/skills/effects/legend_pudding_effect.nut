@@ -6,7 +6,7 @@ this.legend_pudding_effect <- this.inherit("scripts/skills/skill", {
 
 	function setAmount( _a )
 	{
-	this.m.Amount = _a;
+		this.m.Amount = _a;
 	}
 
 	function addAmount ( _a)
@@ -32,8 +32,7 @@ this.legend_pudding_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_pudding_effect";
-		this.m.Name = "Satiated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPuddingEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";
@@ -45,7 +44,7 @@ this.legend_pudding_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating pudding, this character regains Health and Fatigue for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s). ";
+		return "Thanks to eating pudding, this character regains Health and Fatigue for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s). ";
 	}
 
 	function getTooltip()
@@ -68,19 +67,19 @@ this.legend_pudding_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "] +" + healrate + "[/color] Healing per turn for " + turns + " turns"
+				text = "Heals [color=%positive%] +" + healrate + "[/color] Hitpoints per turn for " + turns + " turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "] +" + rate + "[/color] Fatigue loss per turn for " + turns + " turns"
+				text = "[color=%negative%] +" + rate + "[/color] Fatigue loss per turn for " + turns + " turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] to morale checks for " + turns + " turns"
+				text = "[color=%positive%]+20[/color] to morale checks for " + turns + " turns"
 			}
 		];
 		return ret;

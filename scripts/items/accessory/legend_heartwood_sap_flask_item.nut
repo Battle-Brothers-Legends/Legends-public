@@ -36,9 +36,9 @@ this.legend_heartwood_sap_flask_item <- this.inherit("scripts/items/accessory/ac
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_drink_heartwood_sap_skill");
-		skill.setItem(this);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkHeartwoodSap, function (_skill) {
+			_skill.setItem(this);
+		}.bindenv(this));
 	}
 
 	function onPutIntoBag()

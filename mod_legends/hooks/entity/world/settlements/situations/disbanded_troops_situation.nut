@@ -1,64 +1,27 @@
-::mods_hookExactClass("entity/world/settlements/situations/disbanded_troops_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/disbanded_troops_situation", function(o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.035);
-		}
-		onAdded( _settlement );
+	o.onAdded = function(_settlement) {
+		_settlement.setResources(_settlement.getResources() * 1.035);
+		onAdded(_settlement);
 	}
 
-	o.onUpdateDraftList = function ( _draftList )
-	{
-		for (local i = 0; i < 6; ++i)
-		{
-			_draftList.push("deserter_background");
-		}
+	o.onUpdateDraftList = function(_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Deserter, 6);
+		::Legends.S.extend(_draftList, ::Legends.Background.Militia, 9);
+		::Legends.S.extend(_draftList, ::Legends.Background.RetiredSoldier, 8);
+		::Legends.S.extend(_draftList, ::Legends.Background.Squire, 5);
+		::Legends.S.extend(_draftList, ::Legends.Background.Sellsword, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.HedgeKnight, 3);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendHouseGuard, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendArbalester, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendFootSoldier, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 2);
 
-		for (local i = 0; i < 9; ++i)
-		{
-			_draftList.push("militia_background");
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendShieldmaiden, 3);
 		}
-		
-		for (local i = 0; i < 8; ++i)
-		{
-			_draftList.push("retired_soldier_background");
-		}
-
-		for (local i = 0; i < 5; ++i)
-		{
-			_draftList.push("squire_background");
-		}
-		
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("legend_noble_2h");
-		_draftList.push("legend_noble_2h");
-		_draftList.push("legend_noble_ranged");
-		_draftList.push("legend_noble_ranged");
-		_draftList.push("legend_noble_shield");
-		_draftList.push("legend_noble_shield");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("legend_master_archer_background");
-
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled") {
-			_draftList.push("legend_shieldmaiden_background");
-			_draftList.push("legend_shieldmaiden_background");
-			_draftList.push("legend_shieldmaiden_background");
-		}
-
-		if  ( this.World.Assets.getOrigin().getID() == "scenario.militia") {
-			for (local i = 0; i < 6; ++i)
-			{
-				_draftList.push("legend_man_at_arms_background");
-			}
+		if (::World.Assets.getOrigin().getID() == "scenario.militia") {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 6);
 		}
 	}
 });

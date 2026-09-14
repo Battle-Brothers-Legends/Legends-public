@@ -4,7 +4,7 @@ this.legend_named_mace_stagger_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_mace_stagger";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendNamedMaceStagger);
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -38,25 +38,26 @@ this.legend_named_mace_stagger_effect <- this.inherit("scripts/skills/skill", {
         this.m.Bonus = _bonus;
     }
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
-	{
-        if ( _skill.m.IsWeaponSkill == false ) { return; }
-        
-		local actor = this.getContainer().getActor();
-
-		if (!actor.isAlive() || actor.isDying())
-		{
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
 			return;
-		}
 
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-		{
+		if (!_skill.isAttack())
 			return;
-		}
 
-        if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
+		if (_skill.getItem() == null)
+			return;
 
-        _targetEntity.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
+		if (_skill.getItem().getID() != this.getItem().getID())
+			return;
+
+		if (::Legends.S.isEntityNullOrDead(this.getContainer().getActor(), _targetEntity))
+			return;
+
+		if (::Math.rand(0, 100) > this.m.Bonus)
+			return;
+
+		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
 	}
 
 });

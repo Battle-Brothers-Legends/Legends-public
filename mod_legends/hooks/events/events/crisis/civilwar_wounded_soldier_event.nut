@@ -23,13 +23,14 @@
 		r = this.Math.rand(1, 4);
 
 		if (r == 1) {
-			item = this.Const.World.Common.pickHelmet([[1, "faction_helm"]]);
-			item.setVariant(banner);
+//			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.faction_helm]]);
+//			item.setVariant(banner); // doesn't work, no icons
+			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]);
 		} else {
 			item = this.Const.World.Common.pickArmor([
-				[1, "special/heraldic_armor", null, banner],
-				[1, "mail_shirt"],
-				[1, "mail_hauberk", 28],
+				[1, ::Legends.Armor.Standard.heraldic_armor, null, banner],
+				[1, ::Legends.Armor.Standard.mail_shirt],
+				[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 			]);
 		}
 
@@ -38,7 +39,8 @@
 		_list.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			imageOverlayPath = item.getIconOverlay(),
+			text = "You gain " + item.makeName()
 		});
 	}
 })

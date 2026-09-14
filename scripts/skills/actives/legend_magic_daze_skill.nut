@@ -1,29 +1,12 @@
-this.legend_magic_daze_skill <- this.inherit("scripts/skills/actives/legend_magic_skill", {
-	m = {
-	},
+this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
+	m = {},
 
-	function create()
-	{
-		this.m.ID="actives.legend_magic_daze";
-		this.m.Name = "Daze";
-		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage.";
+	function create() {
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicDaze);
+		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage. Requires a staff.";
 		this.m.KilledString = "Dazed";
-		this.m.Icon = "skills/daze_square.png";
-		this.m.IconDisabled = "skills/daze_square_bw.png";
-		this.m.Overlay = "daze_square";
-		this.m.SoundOnUse = [
-			"sounds/combat/stupefy_01.wav",
-			"sounds/combat/stupefy_02.wav",
-			"sounds/combat/stupefy_03.wav",
-			"sounds/combat/stupefy_04.wav",
-			"sounds/combat/stupefy_05.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
+		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
@@ -39,71 +22,48 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/actives/legend_magi
 		this.m.MaxRange = 4;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Leave your opponent bewildered, halving their damage, fatigue and initiative"
+			text = "Leave your opponent stupefied, halving their Damage, Fatigue and Initiative"
 		});
 		ret.push({
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Hit chance based on resolve. (Displayed hit chance probably wrong)."
+			text = "Hit chance based on Resolve"
 		});
 		return ret;
 	}
 
-	// Return true if _target actor would be dazed.
-	function makeDazeCheck(_target)
-	{
-		local targetResolve = _target.getCurrentProperties().getBravery();
-		local chance = this.Math.round(40 + (this.getCurrentResolve() - targetResolve)/2);
-		if (chance > 100)
-		{
-			chance = 100;
-		}
-		if (chance < 0)
-		{
-			chance = 0;
-		}
-		local roll = this.Math.rand(1, 100);
-		local ret = {
-			Roll = roll,
-			Chance = chance,
-			Result = (roll <= chance)
-		}
-		return ret;
+	function getHitchance(_targetEntity) {
+		local chance = this.Math.round(40 + (this.getCurrentResolve() - _targetEntity.getCurrentProperties().getBravery()) / 2);
+		return ::Math.max(0, ::Math.min(100, chance));
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local targetEntity = _targetTile.getEntity();
-		local ret = this.makeDazeCheck(targetEntity);
+		local roll = this.Math.rand(1, 100);
+		local chance = this.getHitchance(targetEntity);
 
-		local logString = this.Const.UI.getColorizedEntityName(_user) + " tries to daze " + this.Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + ret.Chance + ", Rolled: " + ret.Roll +")\n";
+		local logString = this.Const.UI.getColorizedEntityName(_user) + " tries to stupefy " + this.Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + chance + ", Rolled: " + roll + ")\n";
 
-		if (ret.Result)
-		{
+		if (roll <= chance) {
 			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
 
-			if (targetEntity.isAlive())
-			{
-				local newDaze = this.new("scripts/skills/effects/legend_dazed_effect");
-				targetEntity.getSkills().add(newDaze);
-				newDaze.m.TurnsLeft = this.Math.max(1, 1 + newDaze.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+			if (!::Legends.S.isEntityNullOrDead(targetEntity)) {
+				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed, function (_effect) {
+					_effect.m.TurnsLeft = ::Math.max(1, 1 + this.getCurrentProperties().NegativeStatusEffectDuration);
+				}.bindenv(targetEntity));
 
-				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(_user) + " stupefied " + this.Const.UI.getColorizedEntityName(targetEntity) + " leaving them dazed");
+				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
+					this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(_user) + " stupefied " + this.Const.UI.getColorizedEntityName(targetEntity) + ".");
 				}
 			}
-		}
-		else
-		{
+		} else {
 			this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(_user) + " failed to stupefy " + this.Const.UI.getColorizedEntityName(targetEntity));
 		}
 	}

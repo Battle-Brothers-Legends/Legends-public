@@ -10,7 +10,7 @@
 					function getResult( _event ) {
 						local brothers = this.World.getPlayerRoster().getAll();
 						foreach( bro in brothers ) {
-							if ( bro.getBackground().getID() == "background.legend_inventor")
+							if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendInventor))
 								return "BA";
 						}
 						local r = this.Math.rand(1, 100);
@@ -25,12 +25,9 @@
 				s.start = function ( _event )
 				{
 					this.Characters.push(_event.m.Bowyer.getImagePath());
-					this.World.Assets.addMoney(-500);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_money.png",
-						text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-					});
+
+					this.List.push(::Legends.EventList.changeMoney(-500));
+
 					local stash = this.World.Assets.getStash().getItems();
 
 					foreach( i, item in stash )
@@ -71,7 +68,7 @@
 
 		this.m.Screens.push({
 			ID = "BA",
-			Text = "[img]gfx/ui/events/event_05.png[/img]{This isn\'t the bow you expected, but it is an amazing creation. Your bowyer and inventor collaborated to make a minaturised crossbow that can be held in one hand. It is light and easy to carry along side your main weapon, but it has less damage than a regular crossbow. A curious invention that may enable some interesting tactics, and if nothing else will net a fair price in the market. You congratulate the bowyer.}",
+			Text = "[img]gfx/ui/events/event_05.png[/img]{This isn\'t the bow you expected, but it is an amazing creation. Your bowyer and inventor collaborated to make a minaturised crossbow that is attached to the wrist. It is light and easy to carry along side your main weapon without impeding weapon usage, but it has less damage than a regular crossbow. A curious invention that may enable some interesting tactics, and if nothing else will net a fair price in the market. You congratulate the bowyer.}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -83,14 +80,10 @@
 			}],
 			function start( _event ) {
 				this.Characters.push(_event.m.Bowyer.getImagePath());
-				this.World.Assets.addMoney(-500);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]500[/color] Crowns"
-				});
-				local stash = this.World.Assets.getStash().getItems();
 
+				this.List.push(::Legends.EventList.changeMoney(-500));
+
+				local stash = this.World.Assets.getStash().getItems();
 				foreach( i, item in stash ) {
 					if (item != null && item.getID() == "misc.quality_wood") {
 						stash[i] = null;

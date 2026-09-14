@@ -2,28 +2,14 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 	m = {
 		DamageArmorMult = 0.75,
 	},
-	
+
 	function create()
 	{
-		this.m.ID = "actives.legend_basilisk_sentry_inject";
-		this.m.Name = "Inject"; //check
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryInject);
 		this.m.Description = "no touch poison birb";
-		this.m.KilledString = "Pecked to death"; //check
-		this.m.Icon = "skills/sentry_inject.png";
-		this.m.IconDisabled = "skills/sentry_inject.png";
-		this.m.Overlay = "sentry_inject";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc6/snake_attack_01.wav",
-			"sounds/enemies/dlc6/snake_attack_02.wav",
-			"sounds/enemies/dlc6/snake_attack_03.wav",
-			"sounds/enemies/dlc6/snake_attack_04.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/enemies/dlc6/snake_attack_hit_01.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_02.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_03.wav",
-			"sounds/enemies/dlc6/snake_attack_hit_04.wav"
-		];
+		this.m.KilledString = "Pecked to death";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_attack", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc6/snake_attack_hit", 3);
 		this.m.SoundVolume = 1.1;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -70,7 +56,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 			_properties.DamageRegularMin += 50;
 			_properties.DamageRegularMax += 70;
 			_properties.DamageArmorMult *= this.m.DamageArmorMult; //see top
-			
+
 			if (_targetEntity != null && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) //if attacking adjacent enemy, apply this hitchance malus (polearm base logic)
 			{
 				_properties.MeleeSkill += -15;
@@ -112,11 +98,11 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		}
 
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
-		local poison = _targetEntity.getSkills().getSkillByID("effects.legend_basilisk_poison");
+		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
 
 		if (poison == null)
 		{
-			_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_basilisk_poison_effect"));
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
 		}
 		else
 		{

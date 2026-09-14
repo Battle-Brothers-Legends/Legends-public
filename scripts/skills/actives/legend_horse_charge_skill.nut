@@ -1,21 +1,10 @@
 this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
-		this.m.ID = "actives.legend_horse_charge";
-		this.m.Name = "Horse Charge";
+	function create() {
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseCharge);
 		this.m.Description = "Push your mount forward with speed, ending in an impact that stuns an enemy.";
-		this.m.Icon = "skills/horse_charge.png";
-		this.m.IconDisabled = "skills/horse_charge_bw.png";
-		this.m.Overlay = "horse_charge";
-		this.m.SoundOnUse = [
-			"sounds/combat/gallop.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/knockback_hit_01.wav",
-			"sounds/combat/knockback_hit_02.wav",
-			"sounds/combat/knockback_hit_03.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/gallop.wav"];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/knockback_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
@@ -31,40 +20,33 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 3;
 	}
 
-	function findTileToKnockBackTo( _userTile, _targetTile )
-	{
+	function findTileToKnockBackTo(_userTile, _targetTile) {
 		local dir = _userTile.getDirectionTo(_targetTile);
 
-		if (_targetTile.hasNextTile(dir))
-		{
+		if (_targetTile.hasNextTile(dir)) {
 			local knockToTile = _targetTile.getNextTile(dir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
 
 		local altdir = dir - 1 >= 0 ? dir - 1 : 5;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
 
 		altdir = dir + 1 <= 5 ? dir + 1 : 0;
 
-		if (_targetTile.hasNextTile(altdir))
-		{
+		if (_targetTile.hasNextTile(altdir)) {
 			local knockToTile = _targetTile.getNextTile(altdir);
 
-			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1)
-			{
+			if (knockToTile.IsEmpty && this.Math.abs(knockToTile.Level - _userTile.Level) <= 1) {
 				return knockToTile;
 			}
 		}
@@ -72,95 +54,46 @@ this.legend_horse_charge_skill <- this.inherit("scripts/skills/skill", {
 		return null;
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
+	function onVerifyTarget(_originTile, _targetTile) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && !_targetTile.getEntity().getCurrentProperties().IsRooted && this.findTileToKnockBackTo(_originTile, _targetTile) != null;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.m.SoundOnUse.len() != 0)
-		{
+		if (this.m.SoundOnUse.len() != 0) {
 			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		local knockToTile = this.findTileToKnockBackTo(_user.getTile(), _targetTile);
 
-		if (knockToTile == null)
-		{
+		if (knockToTile == null) {
 			return false;
 		}
 
 		this.applyFatigueDamage(target, 10);
 
-		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab)
-		{
+		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
 			return false;
 		}
 
-		if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-		{
+		if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " pushes through " + this.Const.UI.getColorizedEntityName(target));
 		}
 
-		if (!target.getSkills().hasSkill("effects.legend_break_stance"))
-			target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-
-		if (this.m.SoundOnHit.len() != 0)
-		{
+		if (this.m.SoundOnHit.len() != 0) {
 			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-		if (damage == 0)
-		{
-			this.Tactical.getNavigator().teleport(target, knockToTile, null, null, true);
-		}
-
-			local p = this.getContainer().getActor().getCurrentProperties();
-			local tag = {
-				Attacker = _user,
-				Skill = this,
-				HitInfo = clone this.Const.Tactical.HitInfo
-			};
-			tag.HitInfo.DamageRegular = damage;
-			tag.HitInfo.DamageFatigue = this.Const.Combat.FatigueReceivedPerHit;
-			tag.HitInfo.DamageDirect = 1.5;
-			tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-			tag.HitInfo.BodyDamageMult = 1.5;
-			tag.HitInfo.FatalityChanceMult = 1.5;
-			this.Tactical.getNavigator().teleport(target, knockToTile, this.onKnockedDown, tag, true);
-			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
-			return this.attackEntity(_user, _targetTile.getEntity());
-
-		local tag = {
-			TargetTile = _targetTile,
-			Actor = _user
-		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, this.onFollow, tag);
+		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, this.onFollow);
 		return true;
 	}
 
-	function onFollow( _tag )
-	{
-		if (_tag.TargetTile.IsEmpty)
-		{
+	function onFollow(_tag) {
+		if (_tag.TargetTile.IsEmpty) {
 			_tag.Actor.setCurrentMovementType(this.Const.Tactical.MovementType.Default);
 			this.Tactical.getNavigator().teleport(_tag.Actor, _tag.TargetTile, null, null, false);
 		}
 	}
-
-	function onKnockedDown( _entity, _tag )
-	{
-		if (_tag.HitInfo.DamageRegular != 0)
-		{
-			_entity.onDamageReceived(_tag.Attacker, _tag.Skill, _tag.HitInfo);
-		}
-	}
-
 });
 

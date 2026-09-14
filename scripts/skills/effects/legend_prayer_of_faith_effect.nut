@@ -4,9 +4,8 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_prayer_of_faith";
-		this.m.Name = "Prayer of Faith";
-		this.m.Description = "This character is being protected by a holy chant";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfFaith);
+		this.m.Description = "This character is being protected by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_purple.png";
 		this.m.Overlay = "prayer_purple";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -42,16 +41,9 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "Melee and ranged defense increased by [color=" + this.Const.UI.Color.PositiveValue + "]+" + bonus + "[/color]"
+				text = "Melee and Ranged Defense increased by [color=%positive%]+" + bonus + "[/color]"
 			}
 		];
-	}
-
-
-	function onAdded()
-	{
-		local actor = this.getContainer().getActor();
-		this.spawnIcon(this.m.Overlay, actor.getTile());
 	}
 
 	function onTurnEnd()
@@ -64,7 +56,6 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		_properties.MeleeDefense += bonus;
 		_properties.RangedDefense += bonus;
-
 	}
 
 });

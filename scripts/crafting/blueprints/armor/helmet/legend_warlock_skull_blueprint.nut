@@ -1,11 +1,13 @@
-this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/legend_warlock_blueprint", {
 	m = {},
-	function create()
-	{
-		this.blueprint.create();
+
+	function create() {
+		this.legend_warlock_blueprint.create();
 		this.m.ID = "blueprint.legend_warlock_skull";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/helmets/named/legend_named_warlock_hood");
+		local preview = this.new("scripts/items/legend_helmets/named/legend_named_warlock_skull");
+		preview.m.Name = "Warlock Skull Faceplate";
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2000;
 		local ingredients = [
 			{
@@ -22,25 +24,13 @@ this.legend_warlock_skull_blueprint <- this.inherit("scripts/crafting/blueprint"
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			{
-				Scripts = ["scripts/skills/backgrounds/tailor_background"]
-			}
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
 	}
 
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
+	function onCraft(_stash) {
 		local item = this.new("scripts/items/legend_helmets/named/legend_named_warlock_skull");
 		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 	}
 
 });
-

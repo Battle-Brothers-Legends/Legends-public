@@ -4,23 +4,19 @@
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
-				s.Text = "[img]gfx/ui/events/event_35.png[/img]While marching, a stranger crosses paths with the %companyname%. %They% wears light armor while looking aloof and distant at first - as if staring off at something you can\'t see. %SPEECH_ON%Evening, sellswords.%SPEECH_OFF%The warrior waves. There\'s an uncanny air to this character, as though you can barely see %them% while %they% is standing right in front of you. %They% nods and continues speaking.%SPEECH_ON%You seem the greenskin skinnin\' sort, and that\'s the sort of company I\'d be most agreeable to joining.%SPEECH_OFF%%randombrother% exchanges a glance with you and shrugs. %They1% whispers %their1% indifference.%SPEECH_ON%If %they% becomes a problem, we can handle %them%.%SPEECH_OFF%The warrior shakes %their% head.%SPEECH_ON%Oh, I\'ll be no problem. I just want to kill orcs and goblins. What more do you need to know? Shall we get on with killing some greenskins, then?%SPEECH_OFF%";
+				s.Text = "[img]gfx/ui/events/event_35.png[/img]While marching, as stranger crosses paths with the %companyname%. %They_dude% wears light armor while looking aloof and distant at first - as if staring off at something you can\'t see. %SPEECH_ON%Evening, sellswords.%SPEECH_OFF%The warrior waves. There\'s an uncanny air to this character, as though you can barely see %them_dude% while %they_dude% is standing right in front of you. %They_dude% nods and continues speaking.%SPEECH_ON%You seem the greenskin skinnin\' sort, and that\'s the sort of company I\'d be most agreeable to joining.%SPEECH_OFF%%randombrother% exchanges a glance with you and shrugs. %They_randombrother% whispers %Their_randombrother% indifference.%SPEECH_ON%If %they_dude% becomes a problem, we can handle %them_dude%.%SPEECH_OFF%The warrior shakes %their_dude% head.%SPEECH_ON%Oh, I\'ll be no problem. I just want to kill orcs and goblins. What more do you need to know? Shall we get on with killing some greenskins, then?%SPEECH_OFF%";
 				s.start <- function (_event) {
 					local roster = this.World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					if (this.World.Assets.getOrigin().getID() == "scenario.legends_rangers") {
-						_event.m.Dude.setStartValuesEx([
-							"legend_druid_background"
-						]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendDruid]);
 						_event.m.Dude.getBaseProperties().Hitpoints += 5;
 						_event.m.Dude.getBaseProperties().MeleeSkill += 5;
 						_event.m.Dude.getBaseProperties().MeleeDefense += 4;
 						_event.m.Dude.getBackground().m.RawDescription = "The forests scream and wail. Nature has been out of balance for a long time and %name% is one of the few chosen to listen.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					} else {
-						_event.m.Dude.setStartValuesEx([
-							"legend_ranger_background"
-						]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendRanger]);
 						_event.m.Dude.getBackground().m.RawDescription = "Part of an ancient order somewhere in the forests, %name% vowed to maintain balance of nature and all other things, even if violence was necessary.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					}
@@ -43,16 +39,12 @@
 
 		local roster = this.World.getPlayerRoster().getAll();
 		foreach( bro in roster) {
-			if (bro.getBackground().getID() == "background.legend_ranger")
-				return
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendRanger))
+				return;
 
-			if (bro.getBackground().getID() == "background.legend_commander_ranger")
-				return
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderRanger))
+				return;
 		}
 		this.m.Score = 10;
-	}
-
-	o.onPrepareVariables = function (_vars) {
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Dude.getGender());
 	}
 })

@@ -3,39 +3,19 @@
 	o.m.IsNew <- false;
 	o.m.IsAbandoned <- false;
 
-	o.getSpriteName <- function ()
-	{
-		if (this.m.Sprite == "")
-		{
-			return "";
-		}
-
-		local s = this.m.Sprite;
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			s = "legend_" + this.m.Sprite;
-		}
-		return s
+	o.getSpriteName <- function () {
+		return this.m.Sprite == "" ? "" : "legend_" + this.m.Sprite;
 	}
 
-	o.getSpriteDestroyedName <- function ()
-	{
-		if (this.m.IsNew)
-		{
+	o.getSpriteDestroyedName <- function () {
+		if (this.m.IsNew) {
 			//This is normally gated around our WorldEconomy config, but when reloading a saved game,
 			//the sprites on the UI are loaded before the config, so we'll get the wrong sprite
 			//to show -- hackish, but we know that IsNew is only used by the WorldEconomy so
 			//we can assume it is enabled here.
-			local s= "legend_" + this.m.Sprite + "_upgrade";
-			return s;
+			return "legend_" + this.m.Sprite + "_upgrade";
 		}
-
-		local s = this.m.SpriteDestroyed;
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			s = "legend_" + this.m.SpriteDestroyed;
-		}
-		return s;
+		return "legend_" + this.m.SpriteDestroyed;
 	}
 
 	o.isActive = function ()
@@ -107,9 +87,7 @@
 	o.setAbandoned <- function ( _a, _force = false)
 	{
 		if (_a == this.m.IsAbandoned && _force == false)
-		{
 			return;
-		}
 
 		this.m.IsAbandoned = _a;
 		this.setActive( !_a, _force );
@@ -182,10 +160,7 @@
 
 		local active = _in.readBool();
 		this.m.IsNew = _in.readBool();
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("18.2.0-pre-02", _in.getMetaData()))
-		{
-			this.m.IsAbandoned = _in.readBool();
-		}
+		this.m.IsAbandoned = _in.readBool();
 		this.setActive(active, true);
 		this.setAttackable(false);
 		this.getSprite("lighting").Color = this.createColor("ffffff00");

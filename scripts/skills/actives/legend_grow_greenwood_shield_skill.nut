@@ -4,18 +4,9 @@ this.legend_grow_greenwood_shield_skill <- this.inherit("scripts/skills/skill", 
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_grow_greenwood_shield";
-		this.m.Name = "Grow Greenwood Shield";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendGrowGreenwoodShield);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_121.png";
-		this.m.IconDisabled = "skills/active_121.png";
-		this.m.Overlay = "active_121";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/schrat_regrowth_01.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_02.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_03.wav",
-			"sounds/enemies/dlc2/schrat_regrowth_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/schrat_regrowth", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;

@@ -1,5 +1,13 @@
 ::mods_hookExactClass("entity/tactical/humans/standard_bearer", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -17,9 +25,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		local r;
+	o.assignRandomEquipment = function () {
 		local banner = 4;
 
 		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())
@@ -38,9 +44,9 @@
 		this.m.Items.equip(weapon);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "mail_hauberk", 28],
-			[1, "mail_shirt"],
-			[2, "basic_mail_shirt"]
+			[1, ::Legends.Armor.Standard.mail_hauberk, 28],
+			[1, ::Legends.Armor.Standard.mail_shirt],
+			[2, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
 		if (this.Math.rand(1, 100) <= 75)
@@ -50,26 +56,26 @@
 			if (banner <= 4)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "kettle_hat"],
-					[1, "padded_kettle_hat"],
-					[1, "kettle_hat_with_mail"]
-				])
+					[1, ::Legends.Helmet.Standard.kettle_hat],
+					[1, ::Legends.Helmet.Standard.padded_kettle_hat],
+					[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]
+				]);
 			}
 			else if (banner <= 7)
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "flat_top_helmet"],
-					[1, "padded_flat_top_helmet"],
-					[1, "flat_top_with_mail"]
-				])
+					[1, ::Legends.Helmet.Standard.flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+					[1, ::Legends.Helmet.Standard.flat_top_with_mail]
+				]);
 			}
 			else
 			{
 				helmet = this.Const.World.Common.pickHelmet([
-					[1, "nasal_helmet"],
-					[1, "padded_nasal_helmet"],
-					[1, "nasal_helmet_with_mail"]
-				])
+					[1, ::Legends.Helmet.Standard.nasal_helmet],
+					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
+					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]
+				]);
 			}
 
 			if (helmet != null)

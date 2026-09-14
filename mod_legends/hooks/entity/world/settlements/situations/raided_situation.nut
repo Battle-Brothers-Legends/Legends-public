@@ -1,35 +1,21 @@
-::mods_hookExactClass("entity/world/settlements/situations/raided_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/raided_situation", function (o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * -0.15);
-		}
-		onAdded( _settlement );
+	o.onAdded = function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 0.85);
+		onAdded(_settlement);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList )
-	{
-		_draftList.push("refugee_background");
-		_draftList.push("cripple_background");
-		_draftList.push("cripple_background");
-		_draftList.push("vagabond_background");
-		_draftList.push("gravedigger_background");
-		_draftList.push("beggar_background");
+	o.onUpdateDraftList <- function (_draftList) {
+		_draftList.push(::Legends.Background.Refugee);
+		::Legends.S.extend(_draftList, ::Legends.Background.Cripple, 2);
+		_draftList.push(::Legends.Background.Vagabond);
+		_draftList.push(::Legends.Background.Gravedigger);
+		_draftList.push(::Legends.Background.Beggar);
 
-		if  (this.World.Assets.getOrigin().getID() == "scenario.legends_necro" || this.World.Assets.getOrigin().getID() == "scenario.legends_solo_necro") {
-			_draftList.push("legend_puppet_background");
-			_draftList.push("legend_puppet_background");
-			_draftList.push("legend_puppet_background");
-			_draftList.push("legend_puppet_background");
-			_draftList.push("legend_puppet_background");
-		}
-		else if  ( this.World.Assets.getOrigin().getID() == "scenario.militia")
-		{
-			_draftList.push("legend_man_at_arms_background");
-			_draftList.push("legend_man_at_arms_background");
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 5);
+		} else if (::World.Assets.getOrigin().getID() == "scenario.militia") {
+			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 2);
 		}
 	}
 });

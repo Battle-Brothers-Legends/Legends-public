@@ -1,13 +1,10 @@
 this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		ForcedToFight = false
+	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPacifist);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPacifist);
 	}
 
 
@@ -17,6 +14,20 @@ this.perk_legend_pacifist <- this.inherit("scripts/skills/skill", {
 		_properties.BraveryMult *= 1.1;
 	}
 
+	function onAnySkillExecuted( _skill, _targetTile, _targetEntity, _forFree )
+	{
+		if (_skill.isAttack())
+			this.m.ForcedToFight = true;
+	}
 
-
+	function onCombatFinished()
+	{
+		this.skill.onCombatFinished();
+		local actor = this.getContainer().getActor();
+		if (actor != null && this.m.ForcedToFight)
+		{
+			actor.worsenMood(1.5, "Was forced to attack someone against their wishes");
+			this.m.ForcedToFight = false;
+		}
+	}
 });

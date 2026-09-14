@@ -13,6 +13,7 @@ foreach (blueprint in blueprints)
 		{
 			create();
 			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 		}
 	});
 };

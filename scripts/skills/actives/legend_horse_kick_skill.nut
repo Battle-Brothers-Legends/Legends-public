@@ -9,23 +9,11 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 	}
 	function create()
 	{
-		this.m.ID = "actives.legend_horse_kick";
-		this.m.Name = "Horse Kick";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorseKick);
 		this.m.Description = "The main attack of a horse, more for defense than attack. Maximum damage is the average of your hitpoints and initiative minus 90.";
 		this.m.KilledString = "Kicked to death";
-		this.m.Icon = "skills/horse_kick.png";
-		this.m.IconDisabled = "skills/horse_kick_bw.png";
-		this.m.Overlay = "horse_kick";
-		this.m.SoundOnUse = [
-			"sounds/combat/hand_01.wav",
-			"sounds/combat/hand_02.wav",
-			"sounds/combat/hand_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/hand_hit_01.wav",
-			"sounds/combat/hand_hit_02.wav",
-			"sounds/combat/hand_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -109,7 +97,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts damage based on hitpoints and initiative [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage, up to [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] damage can ignore armor"
+			text = "Inflicts damage based on hitpoints and initiative [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage, up to [color=%damage%]" + damage_direct_max + "[/color] damage can ignore armor"
 		});
 
 		if (damage_Armor_max > 0)
@@ -118,7 +106,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_max + "[/color] armor damage"
+				text = "Inflicts [color=%damage%]" + damage_Armor_min + "[/color] - [color=%damage%]" + damage_Armor_max + "[/color] armor damage"
 			});
 		}
 
@@ -126,7 +114,7 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] chance to hit"
+			text = "Has [color=%negative%]-10%[/color] chance to hit"
 		});
 		return ret;
 	}

@@ -3,51 +3,69 @@ if (!("Perks" in ::Const))
 	::Const.Perks <- {};
 }
 
-::Const.Perks.BeastClassTree <- {
-	ID = "BeastClassTree",
-	Name = "Nets",
+::Const.Perks.PoisonClassTree <- {
+	ID = "PoisonClassTree",
+	Name = "Poison",
+	Icon = "ui/perks/mastery_poison.png",
 	Descriptions = [
-		"catching beasts"
+		"poisons"
 	],
 	Tree = [
 		[],
-		[::Legends.Perk.LegendNetRepair],
-		[::Legends.Perk.LegendNetCasting],
-		[::Legends.Perk.LegendMasteryNets],
-		[], // As of 18.2.0, LegendEscapeArtist is no longer a player perk; LegendMasteryNets achieves the same effects
+		[],
+		[],
+		[::Legends.Perk.LegendSpecPoison],
+		[],
 		[],
 		[]
 	]
 };
 
-::Const.Perks.BardClassTree <- {
-	ID = "BardClassTree",
-	Name = "Bard",
+::Const.Perks.BeastClassTree <- {
+	ID = "BeastClassTree",
+	Name = "Nets",
+	Icon = "ui/perks/net_perk.png",
 	Descriptions = [
-		"entertaining"
+		"catching beasts"
 	],
 	Tree = [
-		[
-		::Legends.Perk.LegendCheerOn,
-		::Legends.Perk.LegendSpecialistLuteSkill
-		],
-		[::Legends.Perk.LegendDaze],
-		[::Legends.Perk.LegendSpecialistLuteDamage],
-		[::Legends.Perk.LegendEntice],
-		[::Legends.Perk.LegendPush],
-		[::Legends.Perk.LegendDrumsOfWar],
-		[::Legends.Perk.LegendDrumsOfLife]
+		[],
+		[::Legends.Perk.LegendNetRepair, ::Legends.Perk.QuickHands],
+		[::Legends.Perk.LegendNetCasting],
+		[::Legends.Perk.LegendMasteryNets],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.TailorClassTree <- {
+	ID = "TailorClassTree",
+	Name = "Trendy",
+	Icon = "ui/perks/fashionable.png",
+	Descriptions = [
+		"tailoring"
+	],
+	Tree = [
+		[],
+		[],
+		[],
+		[],
+		[],
+		[::Legends.Perk.LegendFashionable],
+		[]
 	]
 };
 
 ::Const.Perks.HealerClassTree <- {
 	ID = "HealerClassTree",
 	Name = "Healing",
+	Icon = "ui/perks/bandage_circle.png",
 	Descriptions = [
 		"healing"
 	],
 	Tree = [
-		[::Legends.Perk.LegendMedIngredients],
+		[],
 		[],
 		[],
 		[::Legends.Perk.LegendSpecBandage],
@@ -60,6 +78,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.FaithClassTree <- {
 	ID = "FaithClassTree",
 	Name = "Faith",
+	Icon = "ui/perks/prayer_purple.png",
 	Descriptions = [
 		"faith"
 	],
@@ -74,90 +93,17 @@ if (!("Perks" in ::Const))
 	]
 };
 
-::Const.Perks.FistsClassTree <- {
-	ID = "FistsClassTree",
-	Name = "Unarmed",
-	Descriptions = [
-		"unarmed combat"
-	],
-	Tree = [
-		[::Legends.Perk.LegendAmbidextrous],
-		[::Legends.Perk.LegendChoke],
-		[::Legends.Perk.LegendGrapple],
-		[::Legends.Perk.LegendSpecFists],
-		[],
-		[::Legends.Perk.LegendUnarmedTraining],
-		[]
-	]
-};
-
-::Const.Perks.ChefClassTree <- {
-	ID = "ChefClassTree",
-	Name = "Chef",
-	Descriptions = [
-		"cooking"
-	],
-	Tree = [
-		[::Legends.Perk.LegendMealPreperation],
-		[::Legends.Perk.LegendCampCook],
-		[::Legends.Perk.LegendAlcoholBrewing],
-		[],
-		[],
-		[::Legends.Perk.LegendQuartermaster],
-		[::Legends.Perk.LegendFieldTreats]
-	]
-};
-
-::Const.Perks.RepairClassTree <- {
-	ID = "RepairClassTree",
-	Name = "Repair",
-	Descriptions = [
-		"repairs"
-	],
-	Tree = [
-		[],
-		[::Legends.Perk.LegendToolsDrawers],
-		[::Legends.Perk.LegendToolsSpares],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendFieldRepairs]
-	]
-};
-
-::Const.Perks.BarterClassTree <- {
-	ID = "BarterClassTree",
-	Name = "Barter",
-	Descriptions = [
-		"bartering"
-	],
-	Tree = [
-		[],
-		[],
-		[::Legends.Perk.LegendBarterConvincing],
-		[],
-		[::Legends.Perk.LegendBarterTrustworthy],
-		[
-			::Legends.Perk.LegendDangerPay,
-			::Legends.Perk.LegendPaymaster
-		],
-		[
-			::Legends.Perk.LegendOffBookDeal,
-			::Legends.Perk.LegendBarterGreed
-		]
-	]
-};
-
 ::Const.Perks.KnifeClassTree <- {
 	ID = "KnifeClassTree",
 	Name = "Knives",
+	Icon = "ui/perks/perk_spec_dagger.png",
 	Descriptions = [
 		"knives"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistKnifeSkill],
+		[::Legends.Perk.LegendSpecialistPrisoner],
 		[],
-		[::Legends.Perk.LegendSpecialistKnifeDamage],
+		[],
 		[],
 		[],
 		[],
@@ -168,15 +114,16 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ButcherClassTree <- {
 	ID = "ButcherClassTree",
 	Name = "Butcher",
+	Icon = "ui/perks/perk_spec_butcher.png",
 	Descriptions = [
 		"butchery"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistButcherSkill],
+		[::Legends.Perk.LegendSpecialistButcher],
 		[],
-		[::Legends.Perk.LegendSpecialistButcherDamage],
 		[],
-		[::Legends.Perk.LegendCarnage],
+		[],
+		[],
 		[],
 		[]
 	]
@@ -185,16 +132,14 @@ if (!("Perks" in ::Const))
 ::Const.Perks.HammerClassTree <- {
 	ID = "HammerClassTree",
 	Name = "Blacksmith",
+	Icon = "ui/perks/perk_spec_smith.png",
 	Descriptions = [
 		"hammers"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistHammerSkill],
+		[::Legends.Perk.LegendSpecialistBlacksmith],
 		[],
-		[
-			::Legends.Perk.LegendSpecialistHammerDamage,
-			::Legends.Perk.LegendSmackdown
-		],
+		[::Legends.Perk.LegendSmackdown],
 		[],
 		[],
 		[],
@@ -205,13 +150,32 @@ if (!("Perks" in ::Const))
 ::Const.Perks.MilitiaClassTree <- {
 	ID = "MilitiaClassTree",
 	Name = "Militia",
+	Icon = "ui/perks/perk_spec_militia.png",
 	Descriptions = [
 		"militia"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistMilitiaSkill],
+		[::Legends.Perk.LegendSpecialistMilitia],
 		[],
-		[::Legends.Perk.LegendSpecialistMilitiaDamage],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.ConArtistTree <- {
+	ID = "ConArtistTree",
+	Name = "Con Artist",
+	Icon = "ui/perks/sleight_of_hand.png",
+	Descriptions = [
+		"sleight of hand"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSleightOfHand],
+		[],
+		[],
 		[],
 		[],
 		[],
@@ -222,16 +186,14 @@ if (!("Perks" in ::Const))
 ::Const.Perks.PickaxeClassTree <- {
 	ID = "PickaxeClassTree",
 	Name = "Miner",
+	Icon = "ui/perks/perk_spec_pickaxe.png",
 	Descriptions = [
 		"pickaxes"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistPickaxeSkill],
+		[::Legends.Perk.LegendSpecialistMiner],
 		[],
-		[
-			::Legends.Perk.LegendSpecialistPickaxeDamage,
-			::Legends.Perk.LegendSmackdown
-		],
+		[::Legends.Perk.LegendSmackdown],
 		[],
 		[],
 		[],
@@ -242,13 +204,14 @@ if (!("Perks" in ::Const))
 ::Const.Perks.PitchforkClassTree <- {
 	ID = "PitchforkClassTree",
 	Name = "Farmer",
+	Icon = "ui/perks/perk_spec_bitchfork.png",
 	Descriptions = [
 		"pitchforks"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistPitchforkSkill],
+		[::Legends.Perk.LegendSpecialistFarmhand],
 		[],
-		[::Legends.Perk.LegendSpecialistPitchforkDamage],
+		[],
 		[],
 		[],
 		[],
@@ -259,13 +222,14 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ShortbowClassTree <- {
 	ID = "ShortbowClassTree",
 	Name = "Shortbow",
+	Icon = "ui/perks/perk_spec_shortbow.png",
 	Descriptions = [
 		"shortbows"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistShortbowSkill],
+		[::Legends.Perk.LegendSpecialistPoacher],
 		[],
-		[::Legends.Perk.LegendSpecialistShortbowDamage],
+		[],
 		[],
 		[],
 		[],
@@ -276,13 +240,14 @@ if (!("Perks" in ::Const))
 ::Const.Perks.ShovelClassTree <- {
 	ID = "ShovelClassTree",
 	Name = "Gravedigger",
+	Icon = "ui/perks/perk_spec_shovel.png",
 	Descriptions = [
 		"shovels"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistShovelSkill],
+		[::Legends.Perk.LegendSpecialistGravedigger],
 		[],
-		[::Legends.Perk.LegendSpecialistShovelDamage],
+		[],
 		[],
 		[],
 		[],
@@ -292,16 +257,17 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.WoodaxeClassTree <- {
 	ID = "WoodaxeClassTree",
-	Name = "Lumberjack",
+	Name = "Woodsman",
+	Icon = "ui/perks/perk_spec_woodsman.png",
 	Descriptions = [
 		"axes"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistWoodaxeSkill],
+		[::Legends.Perk.LegendSpecialistWoodsman],
 		[],
-		[::Legends.Perk.LegendSpecialistWoodaxeDamage],
 		[],
-		[::Legends.Perk.LegendWoodworking],
+		[],
+		[],
 		[],
 		[]
 	]
@@ -309,31 +275,89 @@ if (!("Perks" in ::Const))
 
 ::Const.Perks.SickleClassTree <- {
 	ID = "SickleClassTree",
-	Name = "Sickle",
+	Name = "Herbalist",
+	Icon = "ui/perks/perk_spec_sickle.png",
 	Descriptions = [
 		"sickles"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistSickleSkill],
+		[::Legends.Perk.LegendSpecialistHerbalist],
 		[],
-		[::Legends.Perk.LegendSpecialistSickleDamage],
 		[],
-		[::Legends.Perk.LegendGatherer],
-		[::Legends.Perk.LegendHerbcraft],
-		[::Legends.Perk.LegendPotionBrewer]
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.SlingClassTree <- {
+	ID = "SlingClassTree",
+	Name = "Sling",
+	Icon = "ui/perks/perk_spec_sling.png",
+	Descriptions = [
+		"slings"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistShepherd],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.StaffClassTree <- {
+	ID = "StaffClassTree",
+	Name = "Staff Defense",
+	Icon = "ui/perks/perk_spec_staff.png",
+	Descriptions = [
+		"staves"
+	],
+	Tree = [
+		[],
+		[],
+		[::Legends.Perk.LegendSpecialistSelfdefense],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.InventorClassTree <- {
+	ID = "InventorClassTree",
+	Name = "Inventor",
+	Icon = "ui/perks/perk_spec_firearm.png",
+	Descriptions = [
+		"firearms"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistInventor],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
 	]
 };
 
 ::Const.Perks.NinetailsClassTree <- {
 	ID = "NinetailsClassTree",
 	Name = "Cat O' Nine Tails",
+	Icon = "ui/perks/perk_spec_cultist.png",
 	Descriptions = [
 		"ninetails"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistNinetailsSkill],
+		[
+			// ::Legends.Perk.LegendSpecialistCultist
+		],
 		[::Legends.Perk.LegendSpecCultHood],
-		[::Legends.Perk.LegendSpecialistNinetailsDamage],
+		[],
 		[],
 		[],
 		[::Legends.Perk.LegendSpecCultArmor],
@@ -341,18 +365,73 @@ if (!("Perks" in ::Const))
 	]
 }
 
+::Const.Perks.LongswordClassTree <- {
+	ID = "LongswordClassTree",
+	Name = "Swordsman",
+	Icon = "ui/perks/perk_spec_2hsword.png",
+	Descriptions = [
+		"swords"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistBodyguard],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.InquisitionClassTree <- {
+	ID = "InquisitionClassTree",
+	Name = "Inquisition",
+	Icon = "ui/perks/perk_spec_xbow.png",
+	Descriptions = [
+		"crossbows"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistInquisition],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.ClubClassTree <- {
+	ID = "ClubClassTree",
+	Name = "Browbeater",
+	Icon = "ui/perks/perk_spec_mace.png",
+	Descriptions = [
+		"clubs"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistClub],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
 ::Const.Perks.JugglerClassTree <- {
 	ID = "JugglerClassTree",
 	Name = "Juggler",
+	Icon = "ui/perks/leap_circle.png",
 	Descriptions = [
 		"acrobatics"
 	],
 	Tree = [
 		[::Legends.Perk.LegendLeap],
 		[::Legends.Perk.LegendHairSplitter],
-		[::Legends.Perk.Rotation],
+		[::Legends.Perk.LegendTacticalManeuvers],
 		[::Legends.Perk.LegendTwirl],
-		[::Legends.Perk.Footwork],
+		[],
 		[::Legends.Perk.LegendBackflip],
 		[::Legends.Perk.LegendTumble]
 	]
@@ -361,6 +440,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.HoundmasterClassTree <- {
 	ID = "HoundmasterClassTree",
 	Name = "Hound Master",
+	Icon = "ui/perks/perk_hound.png",
 	Descriptions = [
 		"training dogs"
 	],
@@ -368,23 +448,78 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[::Legends.Perk.LegendDogWhisperer],
-		[::Legends.Perk.LegendDogBreeder],
+		[],
 		[::Legends.Perk.LegendDogHandling],
 		[::Legends.Perk.LegendPackleader],
-		[::Legends.Perk.LegendDogMaster]
+		[]
 	]
 };
 
 ::Const.Perks.ScytheClassTree <- {
 	ID = "ScytheClassTree",
 	Name = "Scythe",
+	Icon = "ui/perks/perk_spec_scythe.png",
 	Descriptions = [
 		"scythes"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistScytheSkill],
+		[::Legends.Perk.LegendSpecialistReaper],
 		[],
-		[::Legends.Perk.LegendSpecialistScytheDamage],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.SharpshooterClassTree <- {
+	ID = "SharpshooterClassTree",
+	Name = "Sharpshooter",
+	Icon = "ui/perks/perk_spec_longbow.png",
+	Descriptions = [
+		"longbows"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistSharpshooter],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.RaiderClassTree <- {
+	ID = "RaiderClassTree",
+	Name = "Raider",
+	Icon = "ui/perks/perk_spec_raider.png",
+	Descriptions = [
+		"handaxes and throwing axes"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistRaider],
+		[],
+		[],
+		[],
+		[],
+		[],
+		[]
+	]
+};
+
+::Const.Perks.SpearfisherClassTree <- {
+	ID = "SpearfisherClassTree",
+	Name = "Spearfisher",
+	Icon = "ui/perks/perk_spec_javelin.png",
+	Descriptions = [
+		"javelins"
+	],
+	Tree = [
+		[::Legends.Perk.LegendSpecialistSpearfisher],
+		[],
+		[],
 		[],
 		[],
 		[],
@@ -393,28 +528,35 @@ if (!("Perks" in ::Const))
 };
 
 ::Const.Perks.ClassTrees <- {
+	GroupsCategory = "Class",
 	Tree = [
 		::Const.Perks.BeastClassTree,
-		::Const.Perks.BardClassTree,
-		::Const.Perks.HealerClassTree,
 		::Const.Perks.FaithClassTree,
-		::Const.Perks.FistsClassTree,
-		::Const.Perks.ChefClassTree,
-		::Const.Perks.RepairClassTree,
-		::Const.Perks.BarterClassTree,
-		::Const.Perks.KnifeClassTree,
-		::Const.Perks.ButcherClassTree,
-		::Const.Perks.HammerClassTree,
-		::Const.Perks.MilitiaClassTree,
-		::Const.Perks.PickaxeClassTree,
-		::Const.Perks.PitchforkClassTree,
-		::Const.Perks.ShortbowClassTree,
-		::Const.Perks.WoodaxeClassTree,
-		::Const.Perks.SickleClassTree,
 		::Const.Perks.NinetailsClassTree,
 		::Const.Perks.JugglerClassTree,
 		::Const.Perks.HoundmasterClassTree,
-		::Const.Perks.ScytheClassTree,
+		::Const.Perks.PoisonClassTree,
+		::Const.Perks.TailorClassTree
+		// ::Const.Perks.KnifeClassTree,
+		// ::Const.Perks.ButcherClassTree,
+		// ::Const.Perks.HammerClassTree,
+		// ::Const.Perks.MilitiaClassTree,
+		// ::Const.Perks.PickaxeClassTree,
+		// ::Const.Perks.PitchforkClassTree,
+		// ::Const.Perks.ShortbowClassTree,
+		// ::Const.Perks.WoodaxeClassTree,
+		// ::Const.Perks.ClubClassTree,
+		// ::Const.Perks.InquisitionClassTree,
+		// ::Const.Perks.LongswordClassTree,
+		// ::Const.Perks.InventorClassTree,
+		// ::Const.Perks.SickleClassTree,
+		// ::Const.Perks.ScytheClassTree,
+		// ::Const.Perks.SharpshooterClassTree,
+		// ::Const.Perks.ShovelClassTree,
+		// ::Const.Perks.SlingClassTree,
+		// ::Const.Perks.SpearfisherClassTree,
+		// ::Const.Perks.StaffClassTree,
+		// ::Const.Perks.RaiderClassTree,
 	],
 	function getRandom(_exclude)
 	{
@@ -428,7 +570,7 @@ if (!("Perks" in ::Const))
 			L.push(i);
 		}
 
-		local r = this.Math.rand(0, L.len() - 1)
+		local r = this.Math.rand(0, L.len() - 1);
 		return this.Tree[L[r]];
 	}
 

@@ -7,7 +7,23 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2,3]
+		this.m.Variants = [1, 2, 3];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SplitShield))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield, function (_skill)
+			{
+				_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+				_skill.m.IsHammer = true;
+			}.bindenv(this));
+			return;
+		}
+
+		this.weapon.addSkill(_skill);
 	}
 
 	o.getTooltip <- function ()
@@ -19,9 +35,16 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance"
+				text = "[color=%positive%]+" + this.m.EffectChanceOrBonus + "%[/color] Stun Chance" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendObliterate);
 	}
 });

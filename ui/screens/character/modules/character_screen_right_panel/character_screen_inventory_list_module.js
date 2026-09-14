@@ -41,6 +41,8 @@ var CharacterScreenInventoryListModule = function(_parent, _dataSource)
 	this.mFilterArmorButton = null;
 	this.mFilterMiscButton = null;
 	this.mFilterUsableButton = null;
+	this.mOrganizeLayersButton = null;
+	this.mOrganizeLayersStripButton = null;
 
 	this.mCurrentPopupDialog = null;
 
@@ -157,6 +159,17 @@ CharacterScreenInventoryListModule.prototype.createDIV = function (_parentDiv)
 		self.mDataSource.notifyBackendFilterUsableButtonClicked();
 	}, '', 3);
 
+	var layout = $('<div class="l-button is-organize-layers"/>');
+	this.mFilterPanel.append(layout);
+	this.mOrganizeLayersButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS, function ()	{
+		self.mDataSource.notifyBackendOrganizeLayeredItemsClicked(false);
+	}, '', 3);
+
+	var layout = $('<div class="l-button is-organize-layers-strip"/>');
+	this.mFilterPanel.append(layout);
+	this.mOrganizeLayersStripButton = layout.createImageButton(Path.GFX + Asset.BUTTON_ORGANIZE_LAYERS_STRIP, function () {
+		self.mDataSource.notifyBackendOrganizeLayeredItemsClicked(true);
+	}, '', 3);
 };
 
 CharacterScreenInventoryListModule.prototype.destroyDIV = function ()
@@ -522,15 +535,17 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 		var data = _item.data('item');
 
 
-		var isEmpty = (data !== null && 'isEmpty' in data) ? data.isEmpty : ytrue;
+		var isEmpty = (data !== null && 'isEmpty' in data) ? data.isEmpty : true;
 		//var owner = (data !== null && 'owner' in data) ? data.owner : null;
 		var itemId = (data !== null && 'itemId' in data) ? data.itemId : null;
 		var entityId = (data !== null && 'entityId' in data) ? data.entityId : null;
 		var sourceItemIdx = (data !== null && 'index' in data) ? data.index : null;
-		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
-		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true);
-		var removeUpgrades = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true && ("isUsable" in data && data.isUsable === false));
+		var dropIntoBag = (KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true && (!(KeyModiferConstants.AltKey in _event) || _event[KeyModiferConstants.AltKey] === false));
+		var repairItem = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true && (!(KeyModiferConstants.CtrlKey in _event) || _event[KeyModiferConstants.CtrlKey] === false));
+		var altCtrl = (KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true && KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true);
+		var shift = (KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true);
 		var sourceSlotType = (data !== null && 'slotType' in data) ? data.slotType : null;
+		var removeUpgrades = (shift && sourceSlotType !== CharacterScreenIdentifier.ItemSlot.Mainhand && ("isUsable" in data && data.isUsable === false));
 
 		if (isEmpty === false && /*owner !== null &&*/ itemId !== null /*&& itemIdx !== null*/)
 		{
@@ -548,9 +563,33 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 			else if (removeUpgrades === true)
 			{
 				self.mDataSource.notifyBackendRemoveInventoryItemUpgrades(sourceItemIdx);
-			}
-			else
-			{
+			} else if (altCtrl === true) {
+				self.mDataSource.toggleAutomationInventoryItem(itemId, null, function (ret) {
+					if (ret.updatedIDs.length === 0) return;
+					self.mDataSource.getCompositeAutomationDisplayStates(ret.updatedIDs, function(updatedItems) {
+						var stash = self.mDataSource.getStashList();
+						if (stash !== null) {
+							for (var i = 0; i < stash.length; ++i) {
+								var item = stash[i];
+								if (item !== null && CharacterScreenIdentifier.Item.Id in item) {
+									var id = item[CharacterScreenIdentifier.Item.Id].toString();
+									if (id in updatedItems) {
+										itemData = updatedItems[id];
+										item['automationState'] = itemData.state;
+										item['repair'] = itemData.repair && (itemData.state === 2 || itemData.state === 3);
+										item['salvage'] = itemData.salvage && itemData.state === 4;
+										item['updateAutomationOnly'] = true;
+										self.mDataSource.notifyEventListener(
+											CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Key,
+											{ item: item, index: i, flag: CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Updated }
+										);
+									}
+								}
+							}
+						}
+					});
+				});
+			} else {
 				if (repairItem === true)
 				{
 					self.mDataSource.toggleInventoryItem(itemId, null, function(ret)
@@ -563,7 +602,14 @@ CharacterScreenInventoryListModule.prototype.createItemSlot = function (_owner, 
 				}
 				else
 				{
-					self.mDataSource.equipInventoryItem(entityId, itemId, null);
+					var targetSlot = null;
+					if (shift === true && sourceSlotType === CharacterScreenIdentifier.ItemSlot.Mainhand) {
+						targetSlot = CharacterScreenIdentifier.ItemSlot.Offhand;
+					}
+					else if (sourceSlotType === CharacterScreenIdentifier.ItemSlot.None || sourceSlotType === 'none') {
+						targetSlot = shift ? CharacterScreenIdentifier.ItemSlot.Offhand : CharacterScreenIdentifier.ItemSlot.Mainhand;
+					}
+					self.mDataSource.equipInventoryItem(entityId, itemId, null, targetSlot);
 				}
 			}
 		}
@@ -581,7 +627,7 @@ CharacterScreenInventoryListModule.prototype.createItemSlots = function (_owner,
 	}
 };
 
-CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer)
+/*CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer)
 {
 	this.destroyItemSlots(_itemArray, _itemContainer);
 
@@ -602,6 +648,59 @@ CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, 
 
 		this.updateSlotsLabel();
 	}
+};*/
+CharacterScreenInventoryListModule.prototype.assignItems = function (_entityId, _owner, _items, _itemArray, _itemContainer) { 
+    if (_items.length === 0) {
+        this.destroyItemSlots(_itemArray, _itemContainer);
+        return;
+    }
+
+    var self = this;
+    var screen = $('.character-screen');
+    
+    var currentIndex = 0;
+    var chunkSize = 54;
+
+    function processInventoryBatches() {
+        if (currentIndex < _items.length) {
+            for (; currentIndex < Math.min(currentIndex + chunkSize, _items.length); currentIndex++) {
+                var slot;
+                
+                if (currentIndex < _itemArray.length) {
+                    slot = _itemArray[currentIndex];
+                } else {
+                    slot = self.createItemSlot(_owner, currentIndex, _itemContainer, screen);
+                    _itemArray.push(slot);
+                }
+
+                if (_items[currentIndex] !== undefined && _items[currentIndex] !== null) {
+					slot.assignListItemImage();
+                    self.assignItemToSlot(_entityId, _owner, slot, _items[currentIndex]);
+                } else {
+                    self.removeItemFromSlot(slot);
+                }
+            }
+            
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+       if (_itemArray.length > _items.length) {
+            var elementsToRemove = Math.min(chunkSize, _itemArray.length - _items.length);
+            for (var i = 0; i < elementsToRemove; i++) {
+                var surplusSlot = _itemArray.pop();
+                self.removeItemFromSlot(surplusSlot);
+                surplusSlot.unbind();
+                surplusSlot.remove();
+            }
+            setTimeout(processInventoryBatches, 5);
+            return;
+        }
+
+        self.updateSlotsLabel();
+    }
+	
+    processInventoryBatches();
 };
 
 CharacterScreenInventoryListModule.prototype.assignItemToSlot = function(_entityId, _owner, _slot, _item)
@@ -630,12 +729,18 @@ CharacterScreenInventoryListModule.prototype.assignItemToSlot = function(_entity
 		_slot.data('item', itemData);
 
 		// assign image
-		_slot.assignListItemImage(Path.ITEMS + _item[CharacterScreenIdentifier.Item.ImagePath]);
-		_slot.assignListItemOverlayImage(_item['imageOverlayPath']);
+		if(!_item['updateAutomationOnly']) {
+			_slot.assignListItemImage(Path.ITEMS + _item[CharacterScreenIdentifier.Item.ImagePath]);
+			_slot.assignListItemOverlayImage(_item['imageOverlayPath'], _item);
+		} else {
+			_item['updateAutomationOnly'] = undefined;
+		}
 
 		// show repair icon?
+		itemData.automationState = _item['automationState'];
 		itemData.repair = _item['repair'];
 		itemData.salvage = _item['salvage'];
+		_slot.setAutomationImageVisible(_item['automationState']);
 		_slot.setRepairImageVisible(_item['repair'], _item['salvage']);
 
 		// show amount
@@ -663,7 +768,8 @@ CharacterScreenInventoryListModule.prototype.updateSlotItem = function (_entityI
 		case CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Inserted:
 		case CharacterScreenDatasourceIdentifier.Inventory.StashItemUpdated.Flag.Updated:
 		{
-			this.removeItemFromSlot(slot);
+			if(!_item['updateAutomationOnly']) 
+				this.removeItemFromSlot(slot);
 			this.assignItemToSlot(_entityId, _owner, slot, _item);
 			//this.updateItemPriceLabel(slot, _item, _owner === CharacterScreenIdentifier.ItemOwner.Stash);
 
@@ -693,6 +799,7 @@ CharacterScreenInventoryListModule.prototype.removeItemFromSlot = function(_slot
 	// remove item image
 	_slot.assignListItemImage();
 	_slot.assignListItemOverlayImage();
+	_slot.setAutomationImageVisible(0);
 	_slot.setRepairImageVisible(false, false);
 
 	// update item data
@@ -767,6 +874,8 @@ CharacterScreenInventoryListModule.prototype.bindTooltips = function ()
 	this.mFilterMiscButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMiscButton });
 	this.mFilterUsableButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterUsableButton });
 	this.mFilterMoodButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.FilterMoodButton });
+	this.mOrganizeLayersButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersButton });
+	this.mOrganizeLayersStripButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.CharacterScreen.RightPanelHeaderModule.OrganizeLayersStripButton });
 };
 
 CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
@@ -778,6 +887,8 @@ CharacterScreenInventoryListModule.prototype.unbindTooltips = function ()
 	this.mFilterMiscButton.unbindTooltip();
 	this.mFilterUsableButton.unbindTooltip();
 	this.mFilterMoodButton.unbindTooltip();
+	this.mOrganizeLayersButton.unbindTooltip();
+	this.mOrganizeLayersStripButton.unbindTooltip();
 };
 
 CharacterScreenInventoryListModule.prototype.register = function (_parentDiv)

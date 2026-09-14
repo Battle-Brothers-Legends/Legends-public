@@ -1,0 +1,90 @@
+# Action allows editing while retrying upload, so keep it as action.
+# If nexus upload stopped working, go to https://github.com/Nexus-Mods/upload-action/tags and check if there's new update and modify nexus action version in this file, then retry release workflow.
+name: 'Nexus Sync'
+description: 'Uploads files to Nexus'
+    
+inputs:
+  api_key:
+    required: true
+  core_id:
+    required: true
+  assets_id:
+    required: true
+  tag_name:
+    required: true
+  release_body:
+    required: true
+  
+runs:
+  using: "composite"
+  steps:
+    - name: Download Core Zip
+      uses: robinraju/release-downloader@v1
+      with:
+        tag: ${{ inputs.tag_name }}
+        fileName: "mod_legends-*.zip"
+
+    - name: Extract Asset Version and Changelog from This Release
+      id: versions
+      shell: bash
+      run: |
+        FULL_VERSION=$(echo "$RELEASE_BODY" | grep -o 'mod_legends-assets-[0-9.]*' | sed 's/mod_legends-assets-//' | head -n 1 | sed 's/\.$//')
+        BASE_VERSION=$(echo "$FULL_VERSION" | cut -d. -f1,2).0
+        CHANGELOG=$(echo "$RELEASE_BODY" | grep '^[[:space:]]*-' | sed 's/^[[:space:]]*-[[:space:]]*//' || true)
+        echo "full=$FULL_VERSION" >> $GITHUB_OUTPUT
+        echo "base=$BASE_VERSION" >> $GITHUB_OUTPUT
+        {
+          echo 'changelog<<EOF'
+          echo "$CHANGELOG"
+          echo 'EOF'
+        } >> $GITHUB_OUTPUT
+      env:
+        RELEASE_BODY: ${{ inputs.release_body }}
+
+    - name: Upload Core to Nexus
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.10
+      with:
+        api_key: ${{ inputs.api_key }}
+        file_id: ${{ inputs.core_id }}
+        filename: mod_legends-${{ inputs.tag_name }}.zip
+        display_name: mod_legends-${{ inputs.tag_name }}
+        version: ${{ inputs.tag_name }}
+        mod_id: "7249904795708"
+        changelog: ${{ steps.versions.outputs.changelog }}
+        allow_mod_manager_download: false
+        update_mod_version: true
+        description: |
+          REQUIRES VERSION 1.5.2.3+ OF VANILLA GAME
+
+          SAVE COMPATIBLE WITH ${{ steps.versions.outputs.base }}+
+
+          DO NOT UNZIP YOUR MOD FILES
+
+          You need mod_legends-assets-${{ steps.versions.outputs.full }}.zip to play!
+
+          To install: drop into 'data' Battle Brothers folder
+
+    - name: Check Assets
+      id: check_files
+      shell: bash
+      run: |
+        if ls ./mod_legends-assets-${{ inputs.tag_name }}.zip 1> /dev/null 2>&1; then
+          echo "exists=true" >> $GITHUB_OUTPUT
+        else
+          echo "exists=false" >> $GITHUB_OUTPUT
+        fi
+
+    - name: Upload Assets
+      if: steps.check_files.outputs.exists == 'true'
+      uses: Nexus-Mods/upload-action@v1.0.0-beta.10
+      with:
+        api_key: ${{ inputs.api_key }}
+        file_id: ${{ inputs.assets_id }}
+        filename: mod_legends-assets-${{ inputs.tag_name }}.zip
+        display_name: mod_legends-assets-${{ inputs.tag_name }}
+        version: ${{ inputs.tag_name }}
+        allow_mod_manager_download: false
+        description: |
+          This is an asset library required to play the mod.
+
+          It can be installed by just dropping it into data. DO NOT UNZIP.

@@ -1,5 +1,10 @@
 this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		DroppableRunes = [
+			::Legends.Rune.LegendRsaEndurance,
+			::Legends.Rune.LegendRsaSafety
+		]
+	},
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendGreenwoodSchrat;
@@ -68,6 +73,23 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/schrat_agent");
 		this.m.AIAgent.setActor(this);
+
+		local rolls = ::Legends.S.extraLootChance(2);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_ancient_green_wood_item"],
+				[30, "scripts/items/misc/glowing_resin_item"],
+				[20, "scripts/items/misc/heart_of_the_forest_item"],
+				[20,  function () {
+					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local rune = ::new(::Legends.Runes.get(selected).Script);
+					rune.setRuneVariant(selected);
+					rune.setRuneBonus(true);
+					rune.updateRuneSigilToken();
+					return rune;
+				}.bindenv(this)],
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -85,6 +107,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("ChoppingWood", 1, 1);
@@ -92,7 +115,6 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -116,52 +138,32 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Greenwood Schrat";
-			corpse.IsHeadAttached = true;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
-
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals) && this.Math.rand(1, 100) <= 90)
-			{
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-				for( local i = 0; i < n; i = ++i )
-				{
-					local r = this.Math.rand(1, 100);
-					local loot;
-
-					if (r <= 50)
-					{
-						loot = this.new("scripts/items/misc/legend_ancient_green_wood_item");
-					}
-
-					else if (r <= 80)
-					{
-						loot = this.new("scripts/items/misc/glowing_resin_item");
-					}
-					else
-					{
-						loot = this.new("scripts/items/misc/heart_of_the_forest_item");
-					}
-
-					loot.drop(_tile);
-
-					if (this.Math.rand(1, 100) <= 10)
-					{
-						local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-						token.setRuneVariant(this.Math.rand(31, 32));
-						token.setRuneBonus(true);
-						token.updateRuneSigilToken();
-						token.drop(_tile);
-					}
-				}
-			}
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Greenwood Schrat";
+		corpse.IsHeadAttached = true;
+		corpse.Tile = _tile;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		return corpse;
 	}
 
 	function onInit()
@@ -187,7 +189,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 250)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay)
 		{
 			b.MeleeSkill += 5;
 		}
@@ -215,14 +217,14 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(0, 0));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_greenwood_schrat_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendGreenwoodSchrat);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_grow_greenwood_shield_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/uproot_zoc_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGrowGreenwoodShield);
+		::Legends.Actives.grant(this, ::Legends.Active.Uproot);
+		::Legends.Actives.grant(this, ::Legends.Active.UprootZoc);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
@@ -235,44 +237,11 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += this.Math.floor(bonus / 2);
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function assignRandomEquipment()
@@ -281,4 +250,3 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

@@ -1,10 +1,8 @@
 this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_commander_abstract_effect", {
-	m = {
-	},
+	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_holding_the_line";
-		this.m.Name = "Holding the line";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHoldingTheLine);
 		this.m.Description = "You WILL hold! An inspirational leader has encouraged this character to hold their ground.";
 		this.m.Icon = "ui/perks/holdtheline_circle.png";
 		this.m.IconMini = "mini_holdtheline_circle";
@@ -18,22 +16,22 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 		local tooltip = this.skill.getTooltip();
 		tooltip.extend([
 			{
-				id = 6,
+				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Defense"
+				text = "[color=%positive%]+10[/color] Melee Defense"
 			},
 			{
-				id = 6,
+				id = 11,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%positive%]+10[/color] Ranged Defense"
+			},
+			{
+				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "Receive only [color=" + this.Const.UI.Color.PositiveValue + "]90%[/color] of any damage"
-			},
-			{
-				id = 6,
-				type = "text",
-				icon = "ui/icons/locked_small.png",
-				text = "Immune to being knocked back or grabbed"
+				text = "Receive only [color=%positive%]90%[/color] of any damage"
 			}
 		]);
 
@@ -43,7 +41,7 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 	function onUpdate( _properties )
 	{
 		_properties.MeleeDefense += 10;
+		_properties.RangedDefense += 10;
 		_properties.DamageReceivedTotalMult *= 0.9;
-		_properties.IsImmuneToKnockBackAndGrab = true;
 	}
 });

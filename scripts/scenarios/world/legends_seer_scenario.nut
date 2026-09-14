@@ -20,13 +20,11 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		local roster = this.World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
-		bro.setStartValuesEx([
-			"legend_witch_commander_background"
-		]);
+		bro.setStartValuesEx([::Legends.Background.LegendSeer]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendDaze);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Student);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendMagicMissile);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicDaze);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.m.PerkPointsSpent += 3;
 
 		bro.setPlaceInFormation(4);
@@ -34,6 +32,12 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		bro.getFlags().set("IsPlayerCharacter", true);
 		bro.getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
 		bro.m.HireTime = this.Time.getVirtualTimeF();
+
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/supplies/black_marsh_stew_item"));
+		stash.add(this.new("scripts/items/supplies/medicine_item"));
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.m.Ammo = 0;
 	}
@@ -121,53 +125,59 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 	function onUpdateHiringRoster( _roster )
 	{
-		this.addBroToRoster(_roster, "apprentice_background", 4);
+		this.addBroToRoster(_roster, ::Legends.Background.Apprentice, 4);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
 		{
-			bro.improveMood(1.0, "Excited to study from you");
+			_bro.improveMood(1.0, "Excited to study from you");
 		}
 		else
 		{
-			bro.worsenMood(1.0, "Wishes you would stop using big words");
+			_bro.worsenMood(1.0, "Wishes you would stop using big words");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Bright))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.improveMood(0.5, "Keen to learn from a master");
+			_bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
-			bro.worsenMood(0.5, "Thinks you are a boring nerd");
+			_bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
 
-		bro.improveMood(0.5, "Learned a new skill");
+		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Bright))
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9) //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
-			bro.getSkills().update();
+		if (_bro.isStabled()) {
+			return;
 		}
-		else if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.1) //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.9); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
+			_bro.getSkills().update();
+		}
+		else if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		{
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.1); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Student);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Student);
 	}
 });
 

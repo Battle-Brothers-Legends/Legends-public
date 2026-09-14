@@ -2,24 +2,19 @@ this.perk_legend_field_triage <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendFieldTriage);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFieldTriage);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_field_triage"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFieldTriage))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_field_triage_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFieldTriage);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_field_triage");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendFieldTriage);
 	}
 
 });

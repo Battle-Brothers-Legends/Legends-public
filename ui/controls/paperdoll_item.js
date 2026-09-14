@@ -148,8 +148,7 @@ $.fn.assignPaperdollItemImage = function(_imagePath, _imageIsSmall, _isBlocked)
 	}
 };
 
-$.fn.assignPaperdollItemOverlayImage = function(_imagePaths, _imageIsSmall, _isBlocked)
-{
+$.fn.assignPaperdollItemOverlayImage = function (_imagePaths, _imageIsSmall, _isBlocked, _item) {
 	var itemData = this.data('item');
 	var imageLayer = itemData.imageLayer;
 
@@ -165,7 +164,18 @@ $.fn.assignPaperdollItemOverlayImage = function(_imagePaths, _imageIsSmall, _isB
 		return;
 	}
 
-	_imagePaths.forEach(function (imagePath) {
+	var drawOrder = [];
+
+	if (_item && (_item.slot === "head" || _item.slot === "body")) {
+		drawOrder = Helper.getLayerUpgradeDrawOrder(_item.upgrades, _imagePaths, _item.slot);
+	}
+	else {
+		for (var i = 0; i < _imagePaths.length; i++)
+			drawOrder.push(i);
+	}
+
+	drawOrder.forEach(function (i) {
+		var imagePath = _imagePaths[i];
 		if (imagePath === '') {
 			return;
 		}
@@ -182,7 +192,7 @@ $.fn.assignPaperdollItemOverlayImage = function(_imagePaths, _imageIsSmall, _isB
 			overlayImage.removeClass('is-blocked');
 
 		imageLayer.append(overlayImage);
-		overlays.push(overlayImage)
+		overlays.push(overlayImage);
 	})
 };
 

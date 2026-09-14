@@ -2,25 +2,20 @@ this.perk_legend_nightvision <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendNightvision);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNightvision);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_nightvision"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendNightvision))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_nightvision_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendNightvision);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_nightvision");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendNightvision);
 	}
 
 });

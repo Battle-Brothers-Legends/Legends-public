@@ -1,6 +1,6 @@
 this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	m = {
-		Entity = null,			
+		Entity = null,
 		EntityName = "catapult",
 		Script = "scripts/entity/tactical/legend_war_catapult"
 	},
@@ -11,15 +11,9 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "actives.legend_unleash_catapult";
-		this.m.Name = "Summon Catapult";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCatapult);
 		this.m.Description = "Summon a catapult. Needs a free tile adjacent.";
-		this.m.Icon = "skills/catapult_square.png";
-		this.m.IconDisabled = "skills/catapult_square_bw.png";
-		this.m.Overlay = "active_165";
-		this.m.SoundOnUse = [
-			"sounds/enemies/unhold_idle_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/enemies/unhold_idle_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
@@ -65,7 +59,7 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 
-		if (this.getContainer().hasSkill("effects.legend_summoned_catapult_effect"))
+		if (this.getContainer().hasEffect(::Legends.Effect.LegendSummonedCatapultEffect))
 		{
 			return false;
 		}
@@ -83,15 +77,13 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = this.m.Item.isUnleashed();
 	}
 
-	function onVerifyTarget( _originTile, _targetTile )
-	{
-		local actor = this.getContainer().getActor();
+	function onVerifyTarget( _originTile, _targetTile ) {
 		return this.skill.onVerifyTarget(_originTile, _targetTile) && _targetTile.IsEmpty;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		_user.getSkills().add(this.new("scripts/skills/effects/legend_summoned_catapult_effect"));
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedCatapultEffect);
 		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
 		entity.setFaction(this.Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);

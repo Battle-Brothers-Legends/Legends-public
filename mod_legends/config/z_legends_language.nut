@@ -28,6 +28,14 @@ if (!("LegendMod" in ::Const))
 	"sibling",
 	"Sib",
 	"sib",
+	"Child",
+	"child",
+	"Offspring",
+	"offspring",
+	"Partner",
+	"partner",
+	"Viscount",
+	"viscount"
 ];
 
 ::Const.LegendMod.PronounTable <- {
@@ -38,10 +46,14 @@ if (!("LegendMod" in ::Const))
 	themselves = ["themselves", "himself", "herself"],
 	person = ["person", "man", "woman"],
 	people = ["people", "men", "women"],
-	swordsman = ["swordsman", "swordsman", "swordwoman"],
+	swordsman = ["swordsman", "swordsman", "swordswoman"],
 	noble = ["noble", "nobleman", "noblewoman"],
 	sibling = ["sibling", "brother", "sister"],
 	sib = ["sib", "bro", "sis"],
+	child = ["child", "boy", "girl"],
+	offspring = ["child", "son", "daughter"],
+	partner = ["partner", "wife", "husband"],
+	viscount = ["viscount", "viscount", "viscountess"]
 }
 
 // _gender = -1 for neuter, 0 for male, 1 for female
@@ -69,43 +81,47 @@ if (!("LegendMod" in ::Const))
 	["they'll", ["they'll", "he'll", "she'll"]], // technically not needed, but included for consistency
 	["are they", ["are they", "is he", "is she"]],
 	["were they", ["were they", "was he", "was she"]],
-]
+];
 
-::Const.LegendMod.extendVarsWithPronouns <- function( _vars, _gender, _characterIdentitySuffix = "" )
+/**
+* Adds gender pronouns to templates, to be used in onPrepareVariables
+* @param _vars - just pass _vars
+* @param _actor - actor instance, null, or int, deprecated actor.getGender()
+* @param _characterIdentitySuffix - allows for support for multiple characters with possibly different genders
+*   For example, suppose in some event text we have 2 characters, "bro" (male) and "sis" (female)
+*   Calling this function with _characterIdentitySuffix = "bro" and "sis" respectively will result in the following:
+*       The placeholder text "%they_sis%" will be replaced with "she"
+*       The placeholder text "%Their_bro%" will be replaced with "His"
+*/
+::Const.LegendMod.extendVarsWithPronouns <- function( _vars, _actor, _characterIdentitySuffix = "" )
 {
-	// _characterIdentitySuffix allows for support for multiple characters with possibly different genders
-	// For example, suppose in some event text we have 2 characters, "bro" (male) and "sis" (female)
-	// Calling this function with _characterIdentitySuffix = "bro" and "sis" respectively will result in the following:
-	// 		The placeholder text "%they_sis%" will be replaced with "she"
-	//		The placeholder text "%Their_bro%" will be replaced with "His"
-	//		etc.
+	local gender = _actor; // backward compatibility for submods
+	if (typeof _actor != "integer") {
+		if (::Legends.S.isNull(_actor))
+			return; // this will result with %% beind visible instead of crashing
+		gender = _actor.getGender();
+	} else {
+		//::logError("Usage of actor.getGender() with `extendVarsWithPronouns` is deprecated, use actor as 2nd param.")
+	}
+
 	local suffix = (_characterIdentitySuffix == "" || _characterIdentitySuffix == null) ? "" : "_" + _characterIdentitySuffix;
 
-	foreach (pronoun in this.Const.LegendMod.Pronouns)
-	{
-		_vars.push([
-			pronoun + suffix,
-			this.Const.LegendMod.getPronoun(_gender, pronoun)
-		]);
+	foreach (pronoun in ::Const.LegendMod.Pronouns) {
+		_vars.push([pronoun + suffix, ::Const.LegendMod.getPronoun(gender, pronoun)]);
 	}
 
 	// Add handling for pesky English to-be verbs and their corresponding pronouns
-	foreach (pronounToBeVerb in this.Const.LegendMod.ToBeVerbPronouns)
-	{
+	foreach (pronounToBeVerb in ::Const.LegendMod.ToBeVerbPronouns) {
 		local placeholder = pronounToBeVerb[0];
-		local value = pronounToBeVerb[1][_gender + 1];
+		local value = pronounToBeVerb[1][gender + 1];
 
-		_vars.push([
-			placeholder + suffix,
-			value
-		]);
+		_vars.push([placeholder + suffix, value]);
 
 		// Add first-letter-capitalized versions as well
 		_vars.push([
 			placeholder.slice(0,1).toupper() + placeholder.slice(1) + suffix,
 			value.slice(0,1).toupper() + value.slice(1),
 		])
-
 	}
 }
 
@@ -117,29 +133,29 @@ if (!("LegendMod" in ::Const))
 	// ret += ::Const.UI.getColorized(_arr[0],"#5d8ede");
 	if(_highlight)
 	{
-		ret += ::Const.UI.getColorized(_arr[0],_highlight);	
+		ret += ::Const.UI.getColorized(_arr[0],_highlight);
 	}
 	else
 	{
 		ret += _arr[0];
 	}
-	
+
 
 	if (_arr.len() == 1) return ret;
 
 	for (local i = 1; i < _arr.len(); i++ )
 	{
 		local separator = (i == (_arr.len() - 1)) ? " " + _finalSeparator + " " : ", ";
-		
+
 		if(_highlight)
 		{
-			ret += separator + ::Const.UI.getColorized(_arr[i],_highlight);	
+			ret += separator + ::Const.UI.getColorized(_arr[i],_highlight);
 		}
 		else
 		{
 			ret += separator + _arr[i];
 		}
-		
+
 	}
 
 	return ret;

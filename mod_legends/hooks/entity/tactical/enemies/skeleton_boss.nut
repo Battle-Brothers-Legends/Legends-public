@@ -23,7 +23,7 @@
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 		}
@@ -39,16 +39,19 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[1, "legendary/emperors_armor_fake"] //legend_emperors_armor_fake
+			[1, ::Legends.Armor.Legendary.emperors_armor_fake] //legend_emperors_armor_fake
 		]);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_laurels"]
+			[66, ::Legends.Helmet.Ancient.ancient_laurels]
 		]);
 		if (item != null)
 		{
 			this.m.Items.equip(item);
 		}
+		local b = this.m.BaseProperties;	
+		b.Armor[::Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of the conqueror to vanilla levels while respecting the outfit
+		b.ArmorMax[::Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
 });

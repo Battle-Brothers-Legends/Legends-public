@@ -2,23 +2,10 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_miasma";
-		this.m.Name = "Miasma";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMiasma);
 		this.m.Description = "Release a cloud of noxious gasses that affect living beings.";
-		this.m.Icon = "skills/miasma_square.png";
-		this.m.IconDisabled = "skills/miasma_square_bw.png";
-		this.m.Overlay = "miasma_square";
-		this.m.SoundOnUse = [
-			"sounds/enemies/miasma_spell_01.wav",
-			"sounds/enemies/miasma_spell_02.wav",
-			"sounds/enemies/miasma_spell_03.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/humans/human_coughing_01.wav",
-			"sounds/humans/human_coughing_02.wav",
-			"sounds/humans/human_coughing_03.wav",
-			"sounds/humans/human_coughing_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/miasma_spell", 3);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/humans/human_coughing", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 5;
 		this.m.Delay = 0;
@@ -87,65 +74,14 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 		return true;
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		local targets = [];
-		targets.push(_targetTile);
+	function onUse(_user, _targetTile) {
+		local targets = [_targetTile];
+		targets.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction) _targetTile.hasNextTile(_direction)).map(@(_direction) _targetTile.getNextTile(_direction)));
 
-		for( local i = 0; i != 6; i = i )
-		{
-			if (!_targetTile.hasNextTile(i))
-			{
-			}
-			else
-			{
-				local tile = _targetTile.getNextTile(i);
-				targets.push(tile);
-			}
-
-			i = ++i;
-		}
-
-		local p = {
-			Type = "legend_miasma",
-			Tooltip = "Miasma lingers here, harmful to any living being",
-			IsPositive = false,
-			IsAppliedAtRoundStart = false,
-			IsAppliedAtTurnEnd = true,
-			IsAppliedOnMovement = false,
-			IsAppliedOnEnter = false,
-			Timeout = this.Time.getRound() + 3,
-			IsByPlayer = _user.isPlayerControlled(),
-			Callback = this.Const.Tactical.Common.onApplyMiasma,
-			function Applicable( _a )
-			{
-				return !_a.getFlags().has("undead");
-			}
-
-		};
-
-		foreach( tile in targets )
-		{
-			if (tile.Properties.Effect != null && tile.Properties.Effect.Type == "legend_miasma")
-			{
-				tile.Properties.Effect.Timeout = this.Time.getRound() + 2;
-			}
-			else
-			{
-				tile.Properties.Effect = clone p;
-				local particles = [];
-
-				for( local i = 0; i < this.Const.Tactical.MiasmaParticles.len(); i = i )
-				{
-					particles.push(this.Tactical.spawnParticleEffect(true, this.Const.Tactical.MiasmaParticles[i].Brushes, tile, this.Const.Tactical.MiasmaParticles[i].Delay, this.Const.Tactical.MiasmaParticles[i].Quantity, this.Const.Tactical.MiasmaParticles[i].LifeTimeQuantity, this.Const.Tactical.MiasmaParticles[i].SpawnRate, this.Const.Tactical.MiasmaParticles[i].Stages));
-					i = ++i;
-				}
-
-				this.Tactical.Entities.addTileEffect(tile, tile.Properties.Effect, particles);
-			}
+		foreach (tile in targets) {
+			::Tactical.State.spawnMiasmaOnTile(tile, _user);
 		}
 
 		return true;
 	}
-
 });

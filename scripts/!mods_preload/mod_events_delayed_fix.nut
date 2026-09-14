@@ -1,4 +1,4 @@
-local mod = ::EventsFix <- { //added to Legends codebase 23/11/23 by Luft with the permission of the author, Hackflow.
+/*local mod = ::EventsFix <- { //added to Legends codebase 23/11/23 by Luft with the permission of the author, Hackflow. //MFD
     ID = "mod_events_delayed_fix_legends"
     Name = "Events and Ambitions Delayed Fix"
     Version = 0.7
@@ -80,4 +80,4 @@ local mod = ::EventsFix <- { //added to Legends codebase 23/11/23 by Luft with t
             }
         }
     })
-})
+})*/

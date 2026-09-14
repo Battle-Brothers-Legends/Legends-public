@@ -2,8 +2,7 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legion_origin_recruitment";
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 4.0 * this.World.getTime().SecondsPerDay;
@@ -13,35 +12,29 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Yes, join us.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						_event.m.Dude = null;
-						return 0;
-					}
-
+			Options = [{
+				Text = "Yes, join us.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					_event.m.Dude = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.getFlags().add("PlayerSkeleton");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("skeleton");
 				_event.m.Dude.setStartValuesEx(this.Const.CharacterBackgroundsAnimated);
-				_event.m.Dude.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
 
-				foreach( n in nobles )
-				{
+				foreach (n in nobles) {
 					n.addPlayerRelation(-400.0, "You are the undead, to be despised");
 				}
 			}
@@ -49,47 +42,47 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (!this.Const.DLC.Wildmen)
-		{
+	function onUpdateScore() {
+		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion")
-		{
+		local hasSkeleton = false;
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			if (bro.getFlags().has("PlayerSkeleton")) {
+				hasSkeleton = true;
+				break;
+			}
+		}
+
+		if (!hasSkeleton) {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (!currentTile.HasRoad)
-		{
+		if (!currentTile.HasRoad) {
 			return;
 		}
 
 		this.m.Score = 75;
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"joiner",
 			this.m.Dude.getName()
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

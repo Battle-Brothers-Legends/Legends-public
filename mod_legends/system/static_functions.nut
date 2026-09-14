@@ -1,8 +1,9 @@
 ::Legends.S <- {};
 
-::Legends.S.colorize <- function(_valueString, _value)
-{
-    local color = (_value >= 0) ? this.Const.UI.Color.PositiveValue : this.Const.UI.Color.NegativeValue;
+::Legends.S.isNull <- ::MSU.isNull;
+
+::Legends.S.colorize <- function(_valueString, _value, _threshold = 0) {
+    local color = (_value >= _threshold) ? ::Const.UI.Color.PositiveValue : ::Const.UI.Color.NegativeValue;
     return "[color=" + color + "]" + _valueString + "[/color]";
 }
 
@@ -19,6 +20,455 @@
 
 ::Legends.S.getChangingWord <- function( _value )
 {
-    if(_value >= 0) return "increase";
-    return "decrease";
+	if(_value >= 0) return "increase";
+	return "decrease";
+}
+
+::Legends.S.patternIsInText <- function ( pattern, text )
+{
+	if (!pattern || !text)
+	{
+		return false;
+	}
+
+	return this.regexp(pattern).search(text);
+};
+
+::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
+	if (_value != 1) {
+		if (_irregular.len() > 0) {
+			_text = _irregular;
+		} else {
+			local last = _text.slice(-1).tolower();
+			
+			if (last == "y") {
+				local secondLast = _text.slice(-2, -1).tolower();
+				_text = (secondLast != "a" && secondLast != "e" && secondLast != "i"	&& secondLast != "o" && secondLast != "u") ? (_text.slice(0, -1) + "ies") : (_text + "s");
+			} else {
+				local lastTwo = _text.slice(-2).tolower();
+				_text += (last == "s" || last == "x" || last == "z" || lastTwo == "sh"	|| lastTwo == "ch") ? "es" : "s";
+			}
+		}
+	}
+
+	return _text;
+}
+
+::Legends.S.colorizeAndPluralize <- function (_value, _color, _text = "", _percent = false, _irregular = "") {
+	return "[color=%"+ _color + "%]" + _value + (_percent ? "%" : "") + "[/color]" + (_text.len() > 0 ? " " + ::Legends.S.pluralize(_value, _text, _irregular) : "");
+}
+
+::Legends.S.randomizeFractionToInt <- function(_value) {
+	return ((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
+}
+
+::Legends.S.isCharacterWeaponSpecialized <- function( _properties, _weapon )
+{
+	switch (true)
+	{
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe) && _properties.IsSpecializedInAxes:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow) && _properties.IsSpecializedInBows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Cleaver) && _properties.IsSpecializedInCleavers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) && _properties.IsSpecializedInCrossbows:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Firearm) && _properties.IsSpecializedInCrossbows: // handgonne
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Flail) && _properties.IsSpecializedInFlails:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Hammer) && _properties.IsSpecializedInHammers:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Mace) && _properties.IsSpecializedInMaces:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sling) && _properties.IsSpecializedInSlings:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Spear) && _properties.IsSpecializedInSpears:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Sword) && _properties.IsSpecializedInSwords:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Throwing) && _properties.IsSpecializedInThrowing:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Staff) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Polearm) && _properties.IsSpecializedInPolearms:
+			return true;
+		case _weapon.isWeaponType(::Const.Items.WeaponType.Musical) && _properties.IsSpecializedInMusic:
+			return true;
+		default:
+			return false;
+	}
+}
+
+::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
+	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
+}
+
+::Legends.S.getNeighbouringActors <- function (_tile)
+{
+	local actors = [];
+
+	for( local i = 0; i != 6; i = ++i )
+	{
+		if (!_tile.hasNextTile(i))
+		{
+		}
+		else
+		{
+			local next = _tile.getNextTile(i);
+
+			if (next.IsOccupiedByActor && this.Math.abs(next.Level - _tile.Level) <= 1)
+			{
+				actors.push(next.getEntity());
+			}
+		}
+	}
+
+	return actors;
+}
+
+::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor)
+{
+	local firstActorEntities = ::Legends.S.getNeighbouringActors(_actor.getTile());
+	local overlaps = [];
+	foreach (entity in ::Legends.S.getNeighbouringActors(_secondActor.getTile()))
+	{
+		if (firstActorEntities.find(entity) != null);
+		{
+			overlaps.push(entity);
+		}
+	}
+
+	return overlaps;
+}
+
+::Legends.S.isInZocWithActor <- function (_actor, _secondActor)
+{
+	if (::Legends.S.isEntityNullOrDead(_secondActor))
+		return false;
+
+	if (_secondActor.isNonCombatant())
+		return false;
+
+	if (_secondActor.isAlliedWith(_actor))
+		return false;
+
+	if (!_secondActor.m.IsUsingZoneOfControl)
+		return false;
+
+	if (!_secondActor.getCurrentProperties().IsStunned || !_secondActor.isArmedWithRangedWeapon())
+		return false;
+
+	return true;
+}
+
+::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town) true) {
+	local towns = ::World.EntityManager.getSettlements().filter(_predicate);
+	if (towns.len() == 0)
+		return null;
+	local playerTile = ::World.State.getPlayer().getTile();
+	towns.sort(@(a, b) playerTile.getDistanceTo(b.getTile()) <=> playerTile.getDistanceTo(a.getTile()));
+	return towns.top();
+}
+
+::Legends.S.isEntityMovementDisabled <- function (_entity) {
+	local properties = _entity.getCurrentProperties();
+	return properties.IsStunned	|| properties.IsRooted;
+}
+
+::Legends.S.isEntityNullOrDead <- function (_entity, _otherEntity = 0) {
+	if (::Legends.S.isNull(_entity) || !_entity.isAlive() || _entity.isDying())
+		return true;
+	if (_otherEntity == 0)
+		return false;
+	if (::Legends.S.isNull(_otherEntity) || !_otherEntity.isAlive() || _otherEntity.isDying())
+		return true;
+	return false;
+}
+
+::Legends.S.scaleBaseProperties <- function (_properties) {
+	if (this.Tactical.State.isScenarioMode()) {
+		return;
+	}
+	local daysToScale = ::World.getTime().Days - ::Legends.Difficulty.DayScaling[::World.Assets.getCombatDifficulty()];
+	if (daysToScale > 0) {
+		local bonus = this.Math.floor(daysToScale / 20.0);
+		_properties.MeleeSkill += bonus;
+		_properties.RangedSkill += bonus;
+		_properties.MeleeDefense += this.Math.floor(bonus / 2);
+		_properties.RangedDefense += this.Math.floor(bonus / 2);
+		_properties.Hitpoints += this.Math.floor(bonus * 2);
+		_properties.Initiative += this.Math.floor(bonus / 2);
+		_properties.Stamina += bonus;
+		//	b.XP += this.Math.floor(bonus * 4);
+		_properties.Bravery += bonus;
+		_properties.FatigueRecoveryRate += this.Math.floor(bonus / 4);
+	}
+}
+
+::Legends.S.getToolEfficiency <- function () {
+	// Sum combined tool efficiency modifier (eg +4 from Tool Drawers) from all brothers
+	local toolEfficiencyModifier = 0;
+	foreach (bro in ::World.getPlayerRoster().getAll()) {
+		toolEfficiencyModifier += bro.getToolEfficiencyModifier();
+	}
+	toolEfficiencyModifier += ::World.Assets.m.ProfessionEffect.LegendSpareParts;
+	// Repair tent adds ~25% efficiency (yields ~20 dura per tool instead of 15 ie. 33% increase).
+	if (::World.Assets.getStash().hasItem(::Legends.Camp.Tent.Repair)) {
+		toolEfficiencyModifier += 25;
+	}
+	// Cap efficiency at 50%
+	return this.Math.maxf(0.5, (100.0 - toolEfficiencyModifier) / 100.0);
+}
+
+::Legends.S.applyBleed <- function (_target, _actor, _hpBefore, _soundsA, _soundsB, _damage = 0, _effect = ::Legends.Effect.Bleeding, _bypassHitpointsCheck = false) {
+	local damage = 0;
+	if (_damage > 0) {
+		damage = _damage;
+	}
+	else {
+		damage = _actor.getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
+	}
+
+	if (::Legends.S.isEntityNullOrDead(_target)) {
+		if (_target.getFlags().has("tail") || !_target.getCurrentProperties().IsImmuneToBleeding) {
+			this.Sound.play(_soundsA[this.Math.rand(0, _soundsA.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+		}
+		else {
+			this.Sound.play(_soundsB[this.Math.rand(0, _soundsB.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+		}
+	}
+	else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
+		::Legends.Effects.grant(_target, _effect, function(_effect) {
+			if (_actor.getFaction() == this.Const.Faction.Player )
+				_effect.setActor(_actor);
+			_effect.setDamage(damage);
+		}.bindenv(this));
+		this.Sound.play(_soundsA[this.Math.rand(0, _soundsA.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+	}
+	else {
+		this.Sound.play(_soundsB[this.Math.rand(0, _soundsB.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+	}
+}
+
+/*
+	Returns true if AT LEAST ONE element matches the predicate
+	@param _predicate - lambda, anonymous function or reference to function
+*/
+::Legends.S.any <- function (_array, _predicate) {
+	foreach (item in _array) {
+		if (_predicate(item))
+			return true;
+	}
+	return false;
+}
+
+/*
+	Returns true only if EVERY element matches the predicate
+	@param _predicate - lambda, anonymous function or reference to function
+*/
+::Legends.S.all <- function (_array, _predicate) {
+	foreach (item in _array) {
+		if (!_predicate(item))
+			return false;
+	}
+	return true; // empty array will also be true
+}
+
+::Legends.S.oneOf <- function (_value, ...) {
+	if (vargv.len() == 0) {
+		::logError("::Legends.S.oneOf used with empty args, returning false");
+		return false;
+	}
+	local arr = vargv;
+	if (typeof vargv[0] == "array")
+		arr = vargv[0];
+	return ::Legends.S.any(arr, @(_val) _val == _value);
+}
+
+::Legends.S.hasItemFlag <- function (_item, _flag) {
+	if (_item == null)
+		return false;
+	return _item.getFlags().has(_flag);
+}
+
+// it's intended to use with .pop() when filling, so the sort is opposite of what it would normally be
+::Legends.S.getEmptySlotsInFormation <- function () {
+	local formation = ::World.getPlayerRoster().getAll().filter(@(_, _bro) !_bro.isInReserves()).map(@(_bro) _bro.getPlaceInFormation());
+	local ret = [];
+	for(local i = 0; i < 27; i++) {
+		if (formation.find(i) == null)
+			ret.push(i);
+	}
+	ret.sort(function (a, b) {
+		local rowA = a / 9, rowB = b / 9, colA = a % 9, colB = b % 9;
+		if (rowA != rowB) // prefer further rows
+			return rowA - rowB;
+		local distA = ::Math.abs(colA - 4);
+		local distB = ::Math.abs(colB - 4);
+		return distB - distA; // prefer closer to center of row
+	});
+	return ret;
+}
+
+::Legends.S.logArmor <- function (_armor) {
+	if (!_armor.isEquipped())
+		return;
+
+	::logWarning("Armor Layering");
+	::logWarning("--------------");
+	::logWarning("Durability: " + _armor.getArmorMax());
+	::logWarning("StaminaMod: " + _armor.getStaminaModifier());
+
+	local upgrade = _armor.getUpgradeIDs();
+	local upgText = [];
+	local clothText = "\"cloth/" + split(_armor.getID(), ".")[2] + "\", " + _armor.getVariant();
+
+	if (upgrade[0] == null) {
+		upgText.push("\"\"");
+	}
+	else {
+		upgText.push("\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0));
+	}
+	if (upgrade[1] == null) {
+		upgText.push("\"\"");
+	}
+	else {
+		upgText.push("\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1));
+	}
+	if (upgrade[3] == null) {
+		upgText.push("\"\"");
+	}
+	else {
+		upgText.push("\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3));
+	}
+	if (upgrade[2] == null) {
+		upgText.push("\"\"");
+	}
+	else {
+		upgText.push("\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2));
+	}
+	if (upgrade[4] == null) {
+		upgText.push("\"\"");
+	}
+	else {
+		upgText.push("\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4));
+	}
+
+	local toPrint = "{"       +
+					"\n\tID = \"CHANGEME\"," +
+					"\n\tScript = \"\"," +
+					"\n\tSets = [{" +
+					"\n\t\tCloth = [[1, "       + clothText  + "]]," +
+					"\n\t\tChain = [[1, "       + upgText[0] + "]]," +
+					"\n\t\tPlate = [[1, "       + upgText[1] + "]]," +
+					"\n\t\tCloak = [[1, "       + upgText[2] + "]]," +
+					"\n\t\tTabard = [[1, "      + upgText[3] + "]]," +
+					"\n\t\tAttachments = [[1, " + upgText[4] + "]]," +
+					"\n\t}]" +
+					"\n},";
+
+	::logWarning(toPrint);
+}
+
+::Legends.S.logHelmet <- function (_helmet) {
+	if (!_helmet.isEquipped())
+		return;
+
+	::logWarning("Helmet Layering");
+	::logWarning("---------------");
+	::logWarning("Durability: " + _helmet.getArmorMax());
+	::logWarning("StaminaMod: " + _helmet.getStaminaModifier());
+
+	local upgrade = _helmet.getUpgradeIDs();
+	local upgText = [];
+	local hoodText = "\"hood/" + split(_helmet.getID(), ".")[2] + "\", " + _helmet.getVariant();
+
+	if (upgrade[0] == null) { upgText.push("\"\""); }
+		else {upgText.push("\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0));}
+	if (upgrade[1] == null) { upgText.push("\"\""); }
+		else {upgText.push("\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1));}
+	if (upgrade[2] == null) { upgText.push("\"\""); }
+		else {upgText.push("\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2));}
+
+	local toPrint = "{"       +
+					"\n\tID = \"CHANGEME\"," +
+					"\n\tScript = \"\"," +
+					"\n\tSets = [{" +
+					"\n\t\tHoods = [[1, "  + hoodText   + "]]," +
+					"\n\t\tHelms = [[1, "  + upgText[0] + "]]," +
+					"\n\t\tTops = [[1, "   + upgText[1] + "]]," +
+					"\n\t\tVanity = [[1, " + upgText[2] + "]]," +
+					"\n\t}]" +
+					"\n},";
+
+	::logWarning(toPrint);
+}
+
+::Legends.S.getStatPotential <- function (bro, attribute) {
+	if (bro.getLevel() >= 12) {
+		return "";
+	}
+
+	local baseProp = 0;
+	switch (attribute) {
+		case this.Const.Attributes.Hitpoints:
+			baseProp = bro.getBaseProperties().Hitpoints;
+			break;
+		case this.Const.Attributes.Bravery:
+			baseProp = bro.getBaseProperties().Bravery;
+			break;
+		case this.Const.Attributes.Fatigue:
+			baseProp = bro.getBaseProperties().Stamina;
+			break;
+		case this.Const.Attributes.Initiative:
+			baseProp = bro.getBaseProperties().Initiative;
+			break;
+		case this.Const.Attributes.MeleeSkill:
+			baseProp = bro.getBaseProperties().MeleeSkill;
+			break;
+		case this.Const.Attributes.RangedSkill:
+			baseProp = bro.getBaseProperties().RangedSkill;
+			break;
+		case this.Const.Attributes.MeleeDefense:
+			baseProp = bro.getBaseProperties().MeleeDefense;
+			break;
+		case this.Const.Attributes.RangedDefense:
+			baseProp = bro.getBaseProperties().RangedDefense;
+			break;
+	}
+
+	local attributeMin = ::Const.AttributesLevelUp[attribute].Min + ::Math.min(bro.m.Talents[attribute], 2);
+	local attributeMax = ::Const.AttributesLevelUp[attribute].Max;
+	if (bro.m.Talents[attribute] == 3) {
+		attributeMax += 1;
+	}
+	local levelUps = ::Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
+
+	return (baseProp + attributeMin * levelUps) + "-" + (baseProp + attributeMax * levelUps);
+}
+
+::Legends.S.isWarhoundAllowedIntoBags <- function (_item, _entity) {
+	return (_item.getID().find("wardog") == null && _item.getID().find("warhound") == null) || ::Legends.Perks.has(_entity, ::Legends.Perk.LegendPackleader);
+}
+
+::Legends.S.humansOnly <- function (_bro) //excludes the following flags from ALL events unless specified. The reason for this is that none of owners of these flags 'talk' at all or as normal brothers do.
+{
+    if (_bro.getFlags().get("donkey"))
+        return false;
+    if (_bro.getFlags().get("PlayerZombie"))
+        return false;
+    if (_bro.getFlags().get("PlayerSkeleton"))
+        return false;
+    return true;
+}
+
+::Legends.S.extend <- @(_array, _item, _count = 1) _array.extend(array(_count, _item));
+
+::Legends.S.setSounds <- function (_prefix, _count = 1, _startIndex = 1, _suffix = ".wav") {
+	local i = _startIndex;
+	return array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, i++));
 }

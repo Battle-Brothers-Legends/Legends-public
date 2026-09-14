@@ -2,17 +2,9 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_prayer_of_faith";
-		this.m.Name = "Prayer of Faith";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPrayerOfFaith);
 		this.m.Description = "Grant defense to your allies with your chant of holy scripture, granting +20% of your resolve as melee and ranged defense. Adjacent undead and cultists are Baffled.";
-		this.m.Icon = "skills/prayer_purple_square.png";
-		this.m.IconDisabled = "skills/prayer_purple_square_bw.png";
-		this.m.Overlay = "prayer_purple";
-		this.m.SoundOnUse = [
-			"sounds/ambience/buildings/temple_prayer_00.wav",
-			"sounds/ambience/buildings/temple_prayer_01.wav",
-			"sounds/ambience/buildings/temple_prayer_02.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
@@ -76,13 +68,13 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 
 			if ((a.getFlags().has("undead") && !a.getFlags().has("ghoul")) || a.getFlags().has("cultist"))
 			{
-				a.getSkills().add(this.new("scripts/skills/effects/legend_baffled_effect"));
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendBaffled);
 			}
 			else if (a.getFaction() == _user.getFaction())
 			{
-				local effect = this.new("scripts/skills/effects/legend_prayer_of_faith_effect");
-				effect.m.Resolve = this.getContainer().getActor().getBravery();
-				a.getSkills().add(effect);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendPrayerOfFaith, function(_effect) {
+					_effect.m.Resolve = this.getContainer().getActor().getBravery();
+				}.bindenv(this));
 			}
 		}
 

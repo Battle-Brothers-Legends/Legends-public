@@ -10,7 +10,7 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural)
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		]);
 	}
 
@@ -22,7 +22,7 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Ranged Defense"
+			text = "[color=%positive%]+5[/color] Ranged Defense"
 		});
 
 		return ret;

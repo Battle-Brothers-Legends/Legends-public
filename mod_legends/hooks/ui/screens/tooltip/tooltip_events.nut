@@ -1,25 +1,73 @@
-::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function(o) {
+::mods_hookExactClass("ui/screens/tooltip/tooltip_events", function(o) {
+	o.onQueryUIProfessionTooltipData <- function ( _entityId, _professionId )	{
+		return this.TooltipEvents.general_queryUIProfessionTooltipData(_entityId, _professionId);
+	}
 
+	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
+		local player = this.Tactical.getEntityByID(_entityId);
+		local profession = player.getBackground().getProfession(_professionId);
+
+		local vars = [
+			["name", player.getNameOnly()],
+			["fullname", player.getName()],
+			["title", player.getTitle()]
+		];
+		::Const.LegendMod.extendVarsWithPronouns(vars, player);
+		local tooltip = this.buildTextFromTemplate(profession.Tooltip, vars);
+
+		if (profession != null) {
+			local ret = [{
+				id = 1,
+				type = "title",
+				text = profession.Name
+			}, {
+				id = 2,
+				type = "description",
+				text = tooltip
+			}];
+
+			if (!player.hasProfession(_professionId)) {
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, false));
+
+				if (player.getProfessionPointsSpent() >= profession.Unlocks) {
+					if (player.getProfessionPoints() == 0) {
+						ret.push({
+							id = 3,
+							type = "hint",
+							icon = "ui/icons/icon_locked.png",
+							text = "Available, but this character has no profession point to spend"
+						});
+					}
+				} else if (profession.Unlocks - player.getProfessionPointsSpent() > 1) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession points are spent"
+					});
+				} else {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/icon_locked.png",
+						text = "Locked until " + (profession.Unlocks - player.getProfessionPointsSpent()) + " more profession point is spent"
+					});
+				}
+			} else {
+				ret.extend(::new(profession.Script).getDynamicTooltip(profession, true));
+			}
+
+			return ret;
+		}
+
+		return null;
+	}
+});
+
+::mods_hookNewObject("ui/screens/tooltip/tooltip_events", function(o) {
 	o.onQueryFollowerTooltipData = function ( _followerID )
 	{
 		if (typeof _followerID == "integer")
-		{
-			local renown = "\'" + this.Const.Strings.BusinessReputation[this.Const.FollowerSlotRequirements[_followerID]] + "\' (" + this.Const.BusinessReputation[this.Const.FollowerSlotRequirements[_followerID]] + ")";
-			local ret = [
-				{
-					id = 1,
-					type = "title",
-					text = "Insufficient Renown"
-				},
-				{
-					id = 4,
-					type = "description",
-					text = "Your company lacks the renown necessary to accommodate more equipment in your camp. Attain at least " + renown + " renown in order to unlock this space. Gain renown by completing ambitions and contracts, as well as by winning battles."
-				}
-			];
-			return ret;
-		}
-		else if (_followerID == "free")
 		{
 			local ret = [
 				{
@@ -46,6 +94,47 @@
 			local p = this.World.Retinue.getFollower(_followerID);
 			return p.getTooltip();
 		}
+	}
+
+	local _onQuerySkillTooltipData = o.onQuerySkillTooltipData;
+	o.onQuerySkillTooltipData = function ( _entityId, _skillId )
+	{
+		local tooltip = _onQuerySkillTooltipData(_entityId, _skillId);
+
+		if (tooltip == null)
+		{
+			local entity = ::Tactical.getEntityByID(_entityId);
+			local item = entity.getItems().getItemByInstanceID(_skillId);
+
+			if (item != null)
+			{
+				local currentItem = entity.getItems().getItemAtSlot(item.getSlotType());
+				tooltip = [
+					{
+						id = 1,
+						type = "title",
+						text = "Switch to " + item.getName()
+					},
+					{
+						id = 2,
+						type = "description",
+						text = "Quickly switch to another item from your bag"
+					},
+					{
+						id = 3,
+						type = "text",
+						text = "Costs [b][color=%positive%] " + entity.getItems().getActionCost(currentItem != null ? [
+							currentItem,
+							item
+						] : [
+							item
+						]) + "[/color][/b] AP to switch"
+					}
+				];
+			}
+		}
+
+		return tooltip;
 	}
 
 	o.tactical_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
@@ -128,6 +217,12 @@
 			}
 
 			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+
+		case "paperdoll.toggle-accessory-visibility":
+			if (entity == null) {
+				return null;
+			}
+			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;
@@ -192,7 +287,7 @@
 			}
 			else if (_item.getTradeHistorySettlementIDs().len() > 1)
 			{
-				local arr = _item.getTradeHistorySettlements().map(function(s){return s.getName()});
+				local arr = _item.getTradeHistorySettlements().map(function(s){return s.getName();});
 				local slice = arr.slice(0,arr.len() - 1);
 				tooltip.push({
 					id = 50,
@@ -242,7 +337,7 @@
 					id = 1,
 					type = "hint",
 					icon = "ui/tooltips/warning.png",
-					text = "Not enough Action Points to change items ([b][color=" + this.Const.UI.Color.NegativeValue + "]" + _activeEntity.getItems().getActionCost([
+					text = "Not enough Action Points to change items ([b][color=%negative%]" + _activeEntity.getItems().getActionCost([
 						_item
 					]) + "[/color][/b] required)"
 				});
@@ -263,7 +358,7 @@
 							id = 1,
 							type = "hint",
 							icon = "ui/icons/mouse_right_button.png",
-							text = "Equip item ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+							text = "Equip item ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 								_item,
 								_entity.getItems().getItemAtSlot(_item.getSlotType()),
 								_entity.getItems().getItemAtSlot(_item.getBlockedSlotType())
@@ -275,7 +370,7 @@
 						id = 2,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button_ctrl.png",
-						text = "Drop item on ground ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Drop item on ground ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -290,6 +385,20 @@
 							icon = "ui/icons/mouse_right_button.png",
 							text = "Equip item"
 						});
+
+						if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+							&& _item.getBlockedSlotType() == null
+							&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+							&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+							&& _entity.getItems().canDualWield(_entity, _item))
+						{
+							tooltip.push({
+								id = 1,
+								type = "hint",
+								icon = "ui/icons/mouse_right_button_shift.png",
+								text = "Equip item in offhand"
+							});
+						}
 					}
 
 					tooltip.push({
@@ -302,13 +411,13 @@
 			}
 			else if (stashLocked == true)
 			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag)  && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 1,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button.png",
-						text = "Place item in bag ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Place item in bag ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -318,14 +427,14 @@
 					id = 2,
 					type = "hint",
 					icon = "ui/icons/mouse_right_button_ctrl.png",
-					text = "Drop item on ground ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+					text = "Drop item on ground ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 						_item
 					]) + "[/color][/b] AP)"
 				});
 			}
 			else
 			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag())
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 1,
@@ -355,7 +464,7 @@
 						id = 1,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button.png",
-						text = "Equip item ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Equip item ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item,
 							_entity.getItems().getItemAtSlot(_item.getSlotType()),
 							_entity.getItems().getItemAtSlot(_item.getBlockedSlotType())
@@ -363,13 +472,13 @@
 					});
 				}
 
-				if (_item.isAllowedInBag())
+				if (_item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag)  && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 				{
 					tooltip.push({
 						id = 2,
 						type = "hint",
 						icon = "ui/icons/mouse_right_button_ctrl.png",
-						text = "Place item in bag ([b][color=" + this.Const.UI.Color.PositiveValue + "]" + _activeEntity.getItems().getActionCost([
+						text = "Place item in bag ([b][color=%positive%]" + _activeEntity.getItems().getActionCost([
 							_item
 						]) + "[/color][/b] AP)"
 					});
@@ -382,12 +491,14 @@
 		case "character-screen-inventory-list-module.stash":
 			if (_item.isUsable())
 			{
-				tooltip.push({
-					id = 1,
-					type = "hint",
-					icon = "ui/icons/mouse_right_button.png",
-					text = "Use item"
-				});
+				if(_item.getID().find("inscription") == null && !_item.isItemType(::Const.Items.ItemType.Armor) && !_item.isItemType(::Const.Items.ItemType.Helmet) && !_item.isItemType(::Const.Items.ItemType.Named) ) {
+					tooltip.push({
+						id = 1,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button.png",
+						text = "Use item"
+					});
+				}
 			}
 			else if (_item.getSlotType() != this.Const.ItemSlot.None && _item.getSlotType() != this.Const.ItemSlot.Bag)
 			{
@@ -397,9 +508,24 @@
 					icon = "ui/icons/mouse_right_button.png",
 					text = "Equip item"
 				});
+
+				if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+					&& _item.getBlockedSlotType() == null
+					&& _entity != null
+					&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
+					&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+					&& _entity.getItems().canDualWield(_entity, _item))
+				{
+					tooltip.push({
+						id = 1,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_shift.png",
+						text = "Equip item in offhand"
+					});
+				}
 			}
 
-			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag())
+			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 			{
 				tooltip.push({
 					id = 2,
@@ -409,7 +535,8 @@
 				});
 			}
 
-			if (_item.getRepair() >= _item.getRepairMax())
+			local slot = _item.getSlotType();
+			if (_item.getRepair() >= _item.getRepairMax() && ( slot == this.Const.ItemSlot.Body || slot == this.Const.ItemSlot.Head || slot == this.Const.ItemSlot.Mainhand || slot == this.Const.ItemSlot.Offhand ) && !_item.isItemType(::Const.Items.ItemType.Net))
 			{
 				tooltip.push({
 					id = 3,
@@ -436,6 +563,84 @@
 					type = "hint",
 					icon = "ui/icons/mouse_right_button_alt.png",
 					text = text
+				});
+			}
+
+			if (::Legends.Inventory.getCompositeAutomationState(_item) == 4) {
+				tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+					text = "Clear the automation mark"
+				});
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 3) {
+				if(_item.canBeSalvaged()) {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				}
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 2) {
+				if((_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade") && !_item.canBeSalvaged())){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				} else if (!(_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade"))){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autorepair"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				}
+			} else if (::Legends.Inventory.getCompositeAutomationState(_item) == 1) {
+				if((_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade") && !_item.canBeSalvaged())){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Clear the automation mark"
+					});
+				} else if (!(_item.getConditionMax() <= 1 && !::isKindOf(_item, "legend_helmet_upgrade") && !::isKindOf(_item, "legend_armor_upgrade"))){
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autorepair and sale"
+					});
+				} else {
+					tooltip.push({
+						id = 4,
+						type = "hint",
+						icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+						text = "Mark for autosalvage"
+					});
+				}
+			} else {
+				tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_alt_ctrl.png",
+					text = "Mark for sale"
 				});
 			}
 
@@ -538,6 +743,12 @@
 		return tooltip;
 	}
 
+	local strategic_queryTileTooltipData = o.strategic_queryTileTooltipData;
+	strategic_queryTileTooltipData = function() {
+		::World.Assets.m.IsShowingExtendedFootprints = ::World.Assets.m.ProfessionEffect.LegendLookout > 0; // no need to reset as its the only thing determining that
+		return strategic_queryTileTooltipData();
+	}
+
 	o.strategic_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
 	{
 		local entity = _entityId != null ? this.Tactical.getEntityByID(_entityId) : null;
@@ -575,8 +786,16 @@
 		case "character-screen-inventory-list-module.stash":
 			local result = this.Stash.getItemByInstanceID(_itemId);
 
-			if (result != null)
-			{
+			if (result != null) {
+				if (entity == null) {
+					try {
+						local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+						if (broID != null) {
+							entity = this.Tactical.getEntityByID(broID);
+						}
+					} catch (_e) {
+					}
+				}
 				return this.tactical_helper_addHintsToTooltip(null, entity, result.item, _itemOwner);
 			}
 
@@ -631,6 +850,12 @@
 			}
 
 			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+
+		case "paperdoll.toggle-accessory-visibility":
+			if (entity == null) {
+				return null;
+			}
+			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;
@@ -655,7 +880,7 @@
 				player.getTitle()
 			]
 		];
-		this.Const.LegendMod.extendVarsWithPronouns(vars, player.getGender());
+		::Const.LegendMod.extendVarsWithPronouns(vars, player);
 		local tooltip = this.buildTextFromTemplate(perk.Tooltip, vars);
 
 		if (perk != null)
@@ -678,21 +903,14 @@
 				if ( (::World.State.isInCharacterScreen() || (::Tactical.isActive() && ::Tactical.State.isInCharacterScreen())) && "HasUnactivatedPerkTooltipHints" in perk && perk.HasUnactivatedPerkTooltipHints)
 				{
 					// Allow Perks to push Tooltip elements that will be displayed when the user views the Tooltips of unactivated Perks in the Perk screen
-					local tempContainer = this.new("scripts/skills/skill_container");
 					local tempPerk = this.new(perk.Script); // Need to instantiate a dummy perk because the player character's perk tree doesn't hold actual perks
-					local playerClone = clone player;
 					tempPerk.m.IsForPerkTooltip=true; // onAdded() can check for this so it doesn't do anything when the dummy perk is added to the dummy skill container
-					tempContainer.setActor(playerClone); // Associate a clone of the player character to the dummy container so that the dummy perk can read the character's data
-					tempContainer.add(tempPerk);
-					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(); // get the additional hints (these will be capable of using the character's data)
-					if (perkHints != null && perkHints.len()>0)
-					{
+					local perkHints = tempPerk.getUnactivatedPerkTooltipHints(clone player); // get the additional hints (these will be capable of using the character's data)
+					if (perkHints != null && perkHints.len()>0)	{
 						ret.extend(perkHints);
 					}
 					// Clean up
 					tempPerk = null;
-					tempContainer = null;
-					playerClone = null;
 				}
 
 				if (player.getPerkPointsSpent() >= perk.Unlocks)
@@ -792,46 +1010,32 @@
 			return ret;
 
 		case "assets.Money":
-			local money = this.World.Assets.getMoney();
+			local money = ::World.Assets.getMoney();
 			local dailyMoney = 0;
-			local barterMult = 0.0;
+			local haggleMult = 0.0;
 			local brolist = [];
-			local greed = 1;
-
-			foreach(bro in this.World.getPlayerRoster().getAll())
-			{
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterGreed))
-				{
-					greed += 1;
-				}
-			}
-
-			foreach( bro in this.World.getPlayerRoster().getAll() )
-			{
+			haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
+			foreach( bro in ::World.getPlayerRoster().getAll() ) {
 				local L = [];
 				dailyMoney = dailyMoney + bro.getDailyCost();
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendBarterConvincing))
-				{
-					dailyMoney -= (10 + bro.getLevel());
-				}
 
 				local L = [
 					bro.getDailyCost(),
 					bro.getName(),
 					bro.getBackground().getNameOnly()
 				];
-				local bm = this.Math.floor(bro.getBarterModifier() * 10000.0 / greed) / 100;
+				local bm = ::Math.floor(bro.getHaggleModifier() * 10000.0) / 100;
 
 				if (bm > 0)
 				{
-					barterMult = barterMult + bm;
-					L[2] = L[2] + " [color=" + this.Const.UI.Color.PositiveValue + "]" + bm + "%[/color] Barter";
+					haggleMult = haggleMult + bm;
+					L[2] = L[2] + " [color=%positive%]" + bm + "%[/color] Haggling";
 				}
 
 				brolist.push(L);
 			}
 
-			local time = this.Math.floor(money / this.Math.max(1, dailyMoney));
+			local time = ::Math.floor(money / this.Math.max(1, dailyMoney));
 			local ret = [];
 
 			if (dailyMoney == 0)
@@ -860,7 +1064,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily at noon, as well as to hire new people and purchase equipment.\n\nYou pay out [color=" + this.Const.UI.Color.NegativeValue + "]" + dailyMoney + "[/color] crowns per day. Your [color=" + this.Const.UI.Color.PositiveValue + "]" + money + "[/color] crowns will last you for [color=" + this.Const.UI.Color.PositiveValue + "]" + time + "[/color] more days."
+						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily at noon, as well as to hire new people and purchase equipment.\n\nYou pay out [color=%negative%]" + dailyMoney + "[/color] crowns per day. Your [color=%positive%]" + money + "[/color] crowns will last you for [color=%positive%]" + time + "[/color] more days."
 					}
 				];
 			}
@@ -875,7 +1079,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily, as well as to hire new people and purchase equipment.\n\nYou pay out [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyMoney + "[/color] crowns per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You have no more crowns to pay your fighters with! Earn some crowns fast or let some people go before they desert you one by one.[/color]"
+						text = "The amount of coin your mercenary company has. Used to pay every mercenary daily, as well as to hire new people and purchase equipment.\n\nYou pay out [color=%positive%]" + dailyMoney + "[/color] crowns per day.\n\n[color=%negative%]You have no more crowns to pay your fighters with! Earn some crowns fast or let some people go before they desert you one by one.[/color]"
 					}
 				];
 			}
@@ -903,7 +1107,7 @@
 					id = id,
 					type = "hint",
 					icon = "ui/tooltips/money.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%negative%]" + bro[0] + "[/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -912,7 +1116,7 @@
 				id = id,
 				type = "text",
 				icon = "ui/icons/asset_moral_reputation.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + barterMult + "[/color]% Barter Multiplier"
+				text = "[color=%positive%]+" + haggleMult + "[/color]% Haggling Multiplier"
 			});
 			id = ++id;
 			return ret;
@@ -1001,7 +1205,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day. Your [color=" + this.Const.UI.Color.PositiveValue + "]" + food + "[/color] provisions will last you for [color=" + this.Const.UI.Color.PositiveValue + "]" + time + "[/color] more days at most. Keep in mind that individual provisions will eventually turn bad!"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day. Your [color=%positive%]" + food + "[/color] provisions will last you for [color=%positive%]" + time + "[/color] more days at most. Keep in mind that individual provisions will eventually turn bad!"
 					}
 				];
 			}
@@ -1016,7 +1220,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day and more on difficult terrain. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You are almost out of provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day and more on difficult terrain. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day.\n\n[color=%negative%]You are almost out of provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
 					}
 				];
 			}
@@ -1031,7 +1235,7 @@
 					{
 						id = 2,
 						type = "description",
-						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=" + this.Const.UI.Color.PositiveValue + "]" + dailyFood + "[/color] provisions per day.\n\n[color=" + this.Const.UI.Color.NegativeValue + "]You have no more provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
+						text = "The total amount of provisions you carry. The average mercenary requires 2 provisions per day, more on difficult terrain or when in reserve. Your mercenaries will eat the provisions closest to expiring first. Running out of provisions will lower morale and will eventually lead to your people deserting you before dying of starvation.\n\nYou use [color=%positive%]" + dailyFood + "[/color] provisions per day.\n\n[color=%negative%]You have no more provisions to feed your company! Buy new provisions as fast as possible or your mercenaries will desert you one by one before they starve![/color]"
 					}
 				];
 			}
@@ -1059,7 +1263,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/asset_daily_food.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] " + bro[1]
+					text = "[color=%negative%]" + bro[0] + "[/color] " + bro[1]
 				});
 				id = ++id;
 			}
@@ -1095,8 +1299,10 @@
 			];
 
 		case "assets.Supplies":
-			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets and shields in good condition. Running out of supplies may result in weapons breaking in combat and will leave your armor damaged and useless. Items can only be repaired while camping. More tools can be purchased in town or salvaged from equipment while camping.";
-			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
+			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets, and shields in good condition. Running out of supplies may result in weapons breaking during combat and will leave your armor damaged and useless. More tools can be purchased in town or salvaged from equipment while camping.";
+			desc += "\n\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro.";
+			desc += "\n\nYou can carry [color=%positive%]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
+			desc += "\n\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=%negative%]50%[/color].";
 			local ret = [
 				{
 					id = 1,
@@ -1110,44 +1316,38 @@
 				}
 			];
 
-			local dailyTools = 0;
-			local toolsMult = 0.0;
-			local brolist = [];
-			local tools = 1;
-
-			foreach( bro in this.World.getPlayerRoster().getAll() )
-			{
-
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsSpares))
-				{
-					tools = tools - (tools * 0.06); //6%, as it is on this perk above
-					toolsMult += 6;
+			foreach (bro in this.World.getPlayerRoster().getAll()) {
+				local broToolEfficiencyModifier = bro.getToolEfficiencyModifier();
+				if (broToolEfficiencyModifier > 0) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/icons/asset_supplies.png",
+						text = "[color=%positive%]+" + broToolEfficiencyModifier + "%[/color] " + bro.getName()
+					});
 				}
-				if (bro.getSkills().hasPerk(::Legends.Perk.LegendToolsDrawers))
-				{
-					tools = tools - (tools * 0.04); //4%, as it is on this perk above
-					toolsMult += 4;
-				}
-
 			}
 
-				ret.push({
-					id = 3,
-					type = "hint",
-					icon = "ui/icons/asset_supplies.png",
-					text = 	" [color=" + this.Const.UI.Color.PositiveValue + "]" + toolsMult + "%[/color] Reduction Multiplier"
-				});
-				ret.push({
-					id = 4,
-					type = "hint",
-					icon = "ui/icons/asset_supplies.png",
-					text = 	" [color=" + this.Const.UI.Color.PositiveValue + "]" + tools * 100 + "%[/color] Tool usage percent out"
-				});
+			local toolEfficiency = ::Legends.S.getToolEfficiency();
+
+			ret.push({
+				id = 3,
+				type = "hint",
+				icon = "ui/icons/asset_supplies.png",
+				text = "[color=%positive%]"+ this.Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
+			});
+			ret.push({
+				id = 4,
+				type = "hint",
+				icon = "ui/icons/asset_supplies.png",
+				text = "[color=%positive%]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tools Usage"
+			});
 
 			return ret;
 
 		case "repairs.Supplies":
-			local desc = "Number of tools on hand to repair equipment. One tool is required to repair 15 points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
+			local desc = "Number of tools on hand to repair equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
 			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
 			local ret = [
 				{
@@ -1164,8 +1364,8 @@
 			return ret;
 
 		case "repairs.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
-			local desc = "Number of tools required to repair the selected equipment. One point is required to repair " + tent.getConversionRate() + " points of item condition.";
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
+			local desc = "Number of tools required to repair the selected equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition.";
 			local ret = [
 				{
 					id = 1,
@@ -1181,7 +1381,7 @@
 			return ret;
 
 		case "repairs.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Repair);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be repaired.";
 			local ret = [
@@ -1199,7 +1399,7 @@
 					id = 3,
 					type = "text",
 					icon = "ui/icons/repair_item.png",
-					text = "Total repair modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + repair.Craft + " units per hour[/color]"
+					text = "Total repair modifier is [color=%positive%]" + repair.Craft + " units per hour[/color]"
 				}
 			];
 			local id = 4;
@@ -1210,7 +1410,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -1239,26 +1439,26 @@
 
 			if (heal.MedicineMin > 0)
 			{
-				desc = desc + ("\n\nHealing up all your fighters will take between [color=" + this.Const.UI.Color.PositiveValue + "]" + heal.DaysMin + "[/color] and [color=" + this.Const.UI.Color.PositiveValue + "]" + heal.DaysMax + "[/color] days and requires between ");
+				desc = desc + ("\n\nHealing up all your fighters will take between [color=%positive%]" + heal.DaysMin + "[/color] and [color=%positive%]" + heal.DaysMax + "[/color] days and requires between ");
 
 				if (heal.MedicineMin <= this.World.Assets.getMedicine())
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.PositiveValue + "]");
+					desc = desc + ("[color=%positive%]");
 				}
 				else
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.NegativeValue + "]");
+					desc = desc + ("[color=%negative%]");
 				}
 
 				desc = desc + (heal.MedicineMin + "[/color] and ");
 
 				if (heal.MedicineMax <= this.World.Assets.getMedicine())
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.PositiveValue + "]");
+					desc = desc + ("[color=%positive%]");
 				}
 				else
 				{
-					desc = desc + ("[color=" + this.Const.UI.Color.NegativeValue + "]");
+					desc = desc + ("[color=%negative%]");
 				}
 
 				desc = desc + (heal.MedicineMax + "[/color] Medical Supplies.");
@@ -1279,7 +1479,7 @@
 
 			if (meds > 0)
 			{
-				desc = desc + (" You need [color=" + this.Const.UI.Color.NegativeValue + "]" + meds + "[/color] units each day to maintain your supply of flesh and bones for summoning.");
+				desc = desc + (" You need [color=%negative%]" + meds + "[/color] units each day to maintain your supply of flesh and bones for summoning.");
 			}
 
 			desc = desc + ("\n\nYou can carry " + this.World.Assets.getMaxMedicine() + " units at most.");
@@ -1313,7 +1513,7 @@
 					id = id,
 					type = "hint",
 					icon = "ui/icons/days_wounded.png",
-					text = bro[2] + " [color=" + this.Const.UI.Color.NegativeValue + "]" + bro[0] + "[/color] to [color=" + this.Const.UI.Color.NegativeValue + "]" + bro[1] + "[/color] days"
+					text = bro[2] + " [color=%negative%]" + bro[0] + "[/color] to [color=%negative%]" + bro[1] + "[/color] days"
 				});
 				id = ++id;
 			}
@@ -1351,58 +1551,66 @@
 				}
 
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Next Roster Size increase at Renown: " + nextRenown
+					text = ::format("Next Roster Size increase at %d Renown, current: %d", nextRenown, ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 			else
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "description",
-					text = "Maximum Roster Size achieved!"
+					text = ::format("Maximum Roster Size achieved! Current Renown: %d", ::World.Assets.getBusinessReputation())
 				});
-				id = ++id;
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "text",
-				text = "Terrain Movement Modifiers:"
+				text = "Terrain Movement Speed:"
 			});
-			id = ++id;
 
-			foreach( bro in data.TerrainModifiers )
-			{
-				if (bro[1] == 0) continue;
-				ret.push({
-					id = id,
-					type = "text",
-					text = bro[0] + " [color=" + this.Const.UI.Color.PositiveValue + "]" + bro[1] + "%[/color]"
-				});
-				id = ++id;
+			foreach( terrainModifier in data.TerrainModifiers ) {
+				local name = terrainModifier[0];
+				local speed = terrainModifier[1];
+				// avoid float rounding errors, don't show when 100% speed
+				if (this.Math.abs(speed - 100.0) < 0.01) {
+        			continue;
+    			}
+				local speedText = ::format("%.2f", speed);
+				if (speed > 100.0) {
+					ret.push({
+						id = id++,
+						type = "text",
+						text = name + " [color=%positive%]" + speedText + "%[/color]"
+					});
+				}
+				else {
+					ret.push({
+						id = id++,
+						type = "text",
+						text = name + " [color=%negative%]" + speedText + "%[/color]"
+					});
+				}
 			}
 
 			ret.push({
-				id = id,
+				id = id++,
 				type = "hint",
 				text = "Company Strength: " + this.World.State.getPlayer().getStrength()
 			});
-			id = ++id;
 
 			local brothersLimit = 12;
-			local i = 0
+			local i = 0;
 			foreach( bro in data.Brothers )
 			{
 				ret.push({
-					id = id,
+					id = id++,
 					type = "hint",
 					icon = bro.Mood,
 					text = "L" + bro.Level + "  " + bro.Name + " (" + bro.Background + ")"
 				});
-				id = ++id;
 				i++;
 				if (i == brothersLimit) break;
 			}
@@ -1668,7 +1876,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher melee defense reduces the probability of being hit with a melee attack, such as the thrust of a spear. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
@@ -1682,7 +1890,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield."
+					text = "A higher ranged defense reduces the probability of being hit with a ranged attack, such as an arrow shot from afar. It can be increased as the character gains experience and by equipping a good shield. Diminishing returns above 50."
 				}
 			];
 
@@ -1859,7 +2067,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]WARNING:[/color] Deletes the selected campaign without any further warning."
+					text = "[color=%negative%]WARNING:[/color] Deletes the selected campaign without any further warning."
 				}
 			];
 
@@ -1901,7 +2109,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]WARNING:[/color] Deletes the selected campaign without any further warning."
+					text = "[color=%negative%]WARNING:[/color] Deletes the selected campaign without any further warning."
 				}
 			];
 
@@ -1985,7 +2193,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Evil lurks in every corner — this is where legends are forged.\n\n All enemies gain new perks, some have new effects entirely. Scaling and mechanics is about that of Expert early game, but will rapidly increase mid-late game. Expect to see more champions earlier and harder enemies much sooner — along with the the experience and equipment they bring... \n\nRecommended for those who enjoy a tactical challenge and can accept losses for a greater good."
+					text = "Evil lurks in every corner — this is where legends are forged.\n\n All enemies gain new perks, some have new effects entirely. Scaling and mechanics is about that of Expert early game, but will rapidly increase mid-late game. Expect to see more champions earlier and harder enemies much sooner — along with the experience and equipment they bring... \n\nRecommended for those who enjoy a tactical challenge and can accept losses for a greater good."
 				}
 			];
 
@@ -2125,7 +2333,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Not recommended in Legends Beta. Ironman mode disables manual saving. Only a single save will exist for the company, and the game is automatically saved during the game and on exiting it. Losing the whole company means losing the save. Not recommended in while Legends is in Beta due to possible save corruptions.\n\nNote that on weaker computers autosaves may result in the game pausing for a few seconds."
+					text = "Not recommended in Legends. Ironman mode disables manual saving. Only a single save will exist for the company, and the game is automatically saved during the game and on exiting it. Losing the whole company means losing the save. Not recommended in while Legends is in Beta due to possible save corruptions.\n\nNote that on weaker computers autosaves may result in the game pausing for a few seconds."
 				}
 			];
 
@@ -2535,6 +2743,62 @@
 				}
 			];
 
+		case "tactical-screen.topbar.round-information-module.SpeedNormalButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Normal Speed (F1)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Regular combat speed."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Fast Speed (F2)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Faster combat speed."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedVeryFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Very Fast Speed (F3)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Even faster combat speed. Use judiciously."
+				}
+			];
+
+		case "tactical-screen.topbar.round-information-module.SpeedSuperFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Super Fast Speed (F4)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Much faster combat speed. Use judiciously."
+				}
+			];
+
 		case "tactical-screen.topbar.options-bar-module.CenterButton":
 			return [
 				{
@@ -2795,7 +3059,7 @@
 						id = 1,
 						type = "text",
 						icon = "ui/icons/days_wounded.png",
-						text = "Will heal in [color=" + this.Const.UI.Color.NegativeValue + "]" + entity.getDaysWounded() + "[/color] days"
+						text = "Will heal in [color=%negative%]" + entity.getDaysWounded() + "[/color] days"
 					});
 				}
 			}
@@ -2851,13 +3115,13 @@
 					id = 1,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Dealt [color=" + this.Const.UI.Color.PositiveValue + "]" + combatStats.DamageDealtHitpoints + "[/color] damage to hitpoints"
+					text = "Dealt [color=%positive%]" + combatStats.DamageDealtHitpoints + "[/color] damage to hitpoints"
 				});
 				result.push({
 					id = 2,
 					type = "text",
 					icon = "ui/icons/shield_damage.png",
-					text = "Dealt [color=" + this.Const.UI.Color.PositiveValue + "]" + combatStats.DamageDealtArmor + "[/color] damage to armor"
+					text = "Dealt [color=%positive%]" + combatStats.DamageDealtArmor + "[/color] damage to armor"
 				});
 			}
 
@@ -2884,13 +3148,13 @@
 					id = 1,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "Received [color=" + this.Const.UI.Color.NegativeValue + "]" + combatStats.DamageReceivedHitpoints + "[/color] hitpoint damage"
+					text = "Received [color=%negative%]" + combatStats.DamageReceivedHitpoints + "[/color] hitpoint damage"
 				});
 				result.push({
 					id = 2,
 					type = "text",
 					icon = "ui/icons/shield_damage.png",
-					text = "Received [color=" + this.Const.UI.Color.NegativeValue + "]" + combatStats.DamageReceivedArmor + "[/color] armor damage"
+					text = "Received [color=%negative%]" + combatStats.DamageReceivedArmor + "[/color] armor damage"
 				});
 			}
 
@@ -2907,6 +3171,20 @@
 					id = 2,
 					type = "description",
 					text = "Loot all items found until the stash is full."
+				}
+			];
+
+		case "tactical-combat-result-screen.loot-panel.ValueLootItemsButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Loot Items by Value"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Pick the items with the highest value from both current and looted items."
 				}
 			];
 
@@ -3030,6 +3308,20 @@
 				}
 			];
 
+		case "character-screen.right-panel-header-module.ProfessionsButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Professions"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Switch to viewing the professions of the currently selected character.\n\nThe number in braces, if any, is the number of available profession points."
+				}
+			];
+
 		case "character-screen.right-panel-header-module.FormationButton":
 			return [
 				{
@@ -3111,7 +3403,19 @@
 					id = 2,
 					type = "description",
 					text = "Show only armor, helmets and shields."
-				}
+				},
+				{
+					id = 3,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button.png",
+					text = "Toggle this filter"
+				},
+				{
+					id = 4,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button.png",
+					text = "Show advanced filter settings"
+				},
 			];
 
 		case "character-screen.right-panel-header-module.FilterMiscButton":
@@ -3142,6 +3446,20 @@
 				}
 			];
 
+		case "character-screen.right-panel-header-module.SellAllButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Sell Marked For Sale"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Sell all items marked for sale and fully repaired items marked for repair and sale."
+				}
+			];
+
 		case "character-screen.right-panel-header-module.FilterMoodButton":
 			return [
 				{
@@ -3153,6 +3471,34 @@
 					id = 2,
 					type = "description",
 					text = "Toggle between showing and hiding the mood of your men."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.OrganizeLayersButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Organize Layers"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Join layered items based on chosen automation flags."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.OrganizeLayersStripButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Organize Layers and Unlayer"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Join layered items based on chosen automation flags and unlayer the unmatched upgrades."
 				}
 			];
 
@@ -3195,6 +3541,90 @@
 					id = 2,
 					type = "description",
 					text = "Give this formation a descriptive label for your reference."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenBooks":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Perk Books"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of books read by this character."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenScrolls":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Perk Scrolls"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of scrolls read by this character."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenPlanned":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Level Required"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Level required for all the acquired and planned perks."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.PerkPlanScreenTentative":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Tentative Perks"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of perks marked as tentative."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.ProfessionPlanScreenPlanned":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Level Required"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Level required for all the acquired and planned professions."
+				}
+			];
+
+		case "character-screen.right-panel-header-module.ProfessionPlanScreenTentative":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Tentative Professions"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Number of professions marked as tentative."
 				}
 			];
 
@@ -3279,6 +3709,34 @@
 					id = 2,
 					type = "description",
 					text = "Set time to pass faster than normal. (2x Speed)"
+				}
+			];
+
+		case "world-screen.topbar.TimeVeryFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Very Fast Speed (3)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Set time to pass even faster than normal. Use judiciously."
+				}
+			];
+
+		case "world-screen.topbar.TimeSuperFastButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Super Fast Speed (4)"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Set time to pass much faster than normal. Use judiciously."
 				}
 			];
 
@@ -3372,7 +3830,7 @@
 					id = 9,
 					type = "text",
 					icon = "ui/tooltips/warning.png",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]Unable to camp while travelling with other parties[/color]"
+					text = "[color=%negative%]Unable to camp while travelling with other parties[/color]"
 				});
 			}
 
@@ -3383,12 +3841,12 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Retinue (P)"
+					text = "Camping Tools (P)"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = "See your retinue of non-combat followers that grant various advantages outside combat, and upgrade your cart for more inventory space."
+					text = "Purchase tools to upgrade the camp to gain various advantages outside combat, and upgrade your cart for more inventory space."
 				}
 			];
 
@@ -3540,7 +3998,7 @@
 					{
 						id = 4,
 						type = "hint",
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -3574,7 +4032,7 @@
 						id = 4,
 						type = "hint",
 						divider = "top", // the options are: "top" / "bottom" / "both". Works only for type = "hint"
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -3599,7 +4057,7 @@
 				{
 					id = 3,
 					type = "hint",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "]You already have a contract![/color]"
+					text = "[color=%negative%]You already have a contract![/color]"
 				},
 				{
 					id = 4,
@@ -3614,7 +4072,7 @@
 						id = 5,
 						type = "hint",
 						divider = "top",
-						text = "Contract Category: [color=" + this.Const.UI.Color.PositiveValue + "]" + contract.getCategory() + "[/color]"
+						text = "Contract Category: [color=%positive%]" + contract.getCategory() + "[/color]"
 					}
 				);
 			}
@@ -3762,6 +4220,7 @@
 			];
 
 		case "world-town-screen.main-dialog-module.Arena":
+
 			local ret = [
 				{
 					id = 1,
@@ -3775,14 +4234,23 @@
 				}
 			];
 
-			if (this.World.State.getCurrentTown() != null && this.World.State.getCurrentTown().getBuilding("building.arena").isClosed())
-			{
+			if (this.World.State.getCurrentTown() != null) {
+				local ttinfo = this.World.State.getCurrentTown().getBuilding("building.arena").getAttempts();
 				ret.push({
 					id = 3,
 					type = "hint",
-					icon = "ui/tooltips/warning.png",
-					text = "No more matches take place here today. Come back tomorrow!"
+					icon = "ui/icons/melee_skill.png",
+					text = "There are " + ttinfo[0] + " / " + ttinfo[1] + " fights available today."
 				});
+
+				if (this.World.State.getCurrentTown().getBuilding("building.arena").isClosed()) {
+					ret.push({
+						id = 3,
+						type = "hint",
+						icon = "ui/tooltips/warning.png",
+						text = "No more matches take place here today. Come back tomorrow!"
+					});
+				}
 			}
 
 			if (this.World.Contracts.getActiveContract() != null && this.World.Contracts.getActiveContract().getType() != "contract.arena" && this.World.Contracts.getActiveContract().getType() != "contract.arena_tournament")
@@ -3996,18 +4464,21 @@
 			];
 
 		case "world-town-screen.hire-dialog-module.KnownPerks":
-			return [
+			local ret = [
 				{
 					id = 1,
 					type = "title",
-					text = "Character Perks"
+					text = "Character Perk Groups"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = entity.getBackground().getPerkTreeDescription()
+					text = "[color=%negative%]Click to view all perks[/color]"
 				}
 			];
+
+			entity.getBackground().extendKnownPerksTooltip(ret);
+			return ret;
 
 		case "world-town-screen.taxidermist-dialog-module.CraftButton":
 			return [
@@ -4075,7 +4546,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary participate in a sparring fight with experienced opponents and various fighting styles. The bruises collected and lessons learned will result in [color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Experience Gain for the next battle."
+					text = "Have your mercenary participate in a sparring fight with experienced opponents and various fighting styles. The bruises collected and lessons learned will result in [color=%positive%]+50%[/color] Experience Gain for the next battle."
 				}
 			];
 
@@ -4089,7 +4560,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary learn valuable lessons and insights from a true veteran of the trade. The knowledge imparted will result in [color=" + this.Const.UI.Color.PositiveValue + "]+35%[/color] Experience Gain for the duration of three battles."
+					text = "Have your mercenary learn valuable lessons and insights from a true veteran of the trade. The knowledge imparted will result in [color=%positive%]+35%[/color] Experience Gain for the duration of three battles."
 				}
 			];
 
@@ -4103,7 +4574,47 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Have your mercenary undergo a rigorous training regimen to shape them into a skilled fighter. The blood and sweat spent today will benefit your mercenary in the long run with [color=" + this.Const.UI.Color.PositiveValue + "]+20%[/color] Experience Gain for the duration of five battles."
+					text = "Have your mercenary undergo a rigorous training regimen to shape them into a skilled fighter. The blood and sweat spent today will benefit your mercenary in the long run with [color=%positive%]+20%[/color] Experience Gain for the duration of five battles."
+				}
+			];
+
+		case "world-town-screen.training-dialog-module.Train100":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Thorough Training"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Utilize settlement facilities to train faster. The bruises collected and lessons learned will result in [color=%positive%]1[/color] point towards training progress. Requires participating in 2 battles to be ready for next training."
+				}
+			];
+		case "world-town-screen.training-dialog-module.Train101":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Intense Training"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Fence with a Freifechter to train faster. The bruises collected and lessons learned will result in up to [color=%positive%]3[/color] points towards training progress. Requires participating in 5 battles to be ready for next training."
+				}
+			];
+		case "world-town-screen.training-dialog-module.Train102":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Merciless Regimen"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Spare with local swordmasters and use the knowledge of veterans to adjust and perfect your skills. Rerols trait gained during Training. Requires participating in 5 battles to be ready for next training. Cost increases with each reroll."
 				}
 			];
 
@@ -4202,11 +4713,11 @@
 
 			if (this.Const.DLC.Lindwurm == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4233,11 +4744,11 @@
 
 			if (this.Const.DLC.Unhold == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4256,7 +4767,8 @@
 		case "camp.enchanter":
 		case "camp.fletcher":
 		case "camp.healer":
-		case "camp.hunter":
+		//case "camp.hunter":
+		case "camp.kitchen":
 		case "camp.repair":
 		case "camp.rest":
 		case "camp.scout":
@@ -4337,22 +4849,24 @@
 			];
 
 		case "workshop.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local desc = "Number of tools that will be salvaged from selected equipment. " + tent.getConversionRate() + " points of item condition equals 1 tool. Once a tools condition reaches zero it will be destroyed.";
 			local ret = [
 				{
 					id = 1,
 					type = "title"
+					text = "Tools Produced"
 				},
 				{
 					id = 2,
-					type = "description"
+					type = "description",
+					text = desc
 				}
 			];
 			return ret;
 
 		case "workshop.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Workshop);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be salvaged.";
 			local ret = [
@@ -4380,7 +4894,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -4404,7 +4918,7 @@
 			return ret;
 
 		case "crafting.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Crafting);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Crafting);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to crafting duty. The more assigned, the quicker items can be crafted.";
 			local ret = [
@@ -4432,7 +4946,7 @@
 					id = id,
 					type = "text",
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
+					text = "[color=%positive%]" + bro[0] + " units/hour [/color] " + bro[1] + " (" + bro[2] + ")"
 				});
 				id = ++id;
 			}
@@ -4467,7 +4981,7 @@
 					type = "description",
 					text = "Sets this item to be crafted repeatedly as long as there are enough ingredients."
 				}
-			]
+			];
 			return ret;
 
 		case "healer.Supplies":
@@ -4488,7 +5002,7 @@
 			return ret;
 
 		case "healer.Required":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Healer);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local desc = "Quantity of Medicine required to treat selected injuries.";
 			local ret = [
 				{
@@ -4505,7 +5019,7 @@
 			return ret;
 
 		case "healer.Bros":
-			local tent = this.World.Camp.getBuildingByID(this.Const.World.CampBuildings.Healer);
+			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to tent duty. The more assigned, the quicker injuries can be treated.";
 			local ret = [
@@ -4522,13 +5036,13 @@
 					id = 3,
 					type = "text",
 					icon = "ui/icons/asset_medicine.png",
-					text = "Total treatment modifier is [color=" + this.Const.UI.Color.PositiveValue + "]" + repair.Craft + " units per hour[/color]"
+					text = "Total treatment modifier is [color=%positive%]" + repair.Craft + " units per hour[/color]"
 				}
 			];
 			return ret;
 
 		case "healer.Time":
-			local desc = "Total number of hours required to treat all the selected injuries. Assign more people to this task to decrease the amout of time required. Some backgrounds are better than others!";
+			local desc = "Total number of hours required to treat all the selected injuries. Assign more people to this task to decrease the amount of time required. Some backgrounds are better than others!";
 			local ret = [
 				{
 					id = 1,
@@ -4542,6 +5056,20 @@
 				}
 			];
 			return ret;
+
+		case "healer.IntensiveCare":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Intensive Care"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Allow the usage of extra medical attention to heal faster at the cost of additional medicine supplies. Requires the Surgeon Table upgrade."
+				}
+			];
 
 		case "camp-screen.main-dialog-module.CampButton":
 			return [
@@ -4573,11 +5101,11 @@
 
 			if (this.Const.DLC.Wildmen == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4604,11 +5132,11 @@
 
 			if (this.Const.DLC.Desert == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for purchase on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({
@@ -4635,11 +5163,11 @@
 
 			if (this.Const.DLC.Paladins == true)
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.PositiveValue + "]This DLC has been installed.[/color]";
+				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
 			else
 			{
-				ret[1].text += "\n\n[color=" + this.Const.UI.Color.NegativeValue + "]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
+				ret[1].text += "\n\n[color=%negative%]This DLC is missing. It\'s available for free on Steam and GOG! ALL DLC IS NEEDED TO PLAY LEGENDS![/color]";
 			}
 
 			ret.push({

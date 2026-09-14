@@ -14,9 +14,7 @@ this.legend_eat_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		this.m.Overlay = "active_144";
-		this.m.SoundOnUse = [
-			"sounds/combat/eat_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/eat_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;

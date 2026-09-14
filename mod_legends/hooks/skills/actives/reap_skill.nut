@@ -1,0 +1,144 @@
+::mods_hookExactClass("skills/actives/reap_skill", function(o)
+{
+	o.m.SoundsA <- ::Legends.S.setSounds("sounds/combat/cleave_hit_hitpoints", 3);
+	o.m.SoundsB <- ::Legends.S.setSounds("sounds/combat/chop_hit", 3);
+
+	local create = o.create;
+	o.create = function()
+	{
+		create();
+		this.m.HitChanceBonus = 0;
+	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function ()
+	{
+		local tooltip = getTooltip();
+		if (::Legends.S.isCharacterWeaponSpecialized(this.getContainer().getActor().getCurrentProperties(), this.getItem()))
+		{
+			tooltip.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Inflicts additional stacking [color=%damage%]5[/color] bleeding damage per turn, for 2 turns"
+			});
+		}
+
+		return tooltip;
+	}
+
+	o.addResources <- function ()
+	{
+		foreach( r in this.m.SoundsA )
+		{
+			this.Tactical.addResource(r);
+		}
+
+		foreach( r in this.m.SoundsB )
+		{
+			this.Tactical.addResource(r);
+		}
+	}
+
+	o.onAfterUpdate = function ( _properties ) {
+		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
+			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+		}
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1)
+			{
+				_properties.MeleeSkill += -15;
+				this.m.HitChanceBonus = -15;
+			}
+		}
+	}
+
+	o.onUse = function ( _user, _targetTile )
+	{
+		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing);
+		local ret = false;
+		local myTile = _user.getTile();
+		local myTile = this.m.Container.getActor().getTile();
+		local d = myTile.getDistanceTo(_targetTile);
+		local result = {
+			Tiles = [],
+			MyTile = myTile,
+			TargetTile = _targetTile,
+			Num = 0
+		};
+		this.Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
+		local tiles = [];
+
+		for( local i = 0; i != result.Tiles.len(); i = ++i )
+		{
+			if (result.Tiles[i].ID == _targetTile.ID)
+			{
+				tiles.push(result.Tiles[i]);
+				local idx = i - 1;
+
+				if (idx < 0)
+				{
+					idx = idx + result.Tiles.len();
+				}
+
+				tiles.push(result.Tiles[idx]);
+				idx = i - 2;
+
+				if (idx < 0)
+				{
+					idx = idx + result.Tiles.len();
+				}
+
+				tiles.push(result.Tiles[idx]);
+				break;
+			}
+		}
+
+		foreach( t in tiles )
+		{
+			if (!t.IsVisibleForEntity)
+			{
+				continue;
+			}
+
+			if (this.Math.abs(t.Level - myTile.Level) > 1 || this.Math.abs(t.Level - _targetTile.Level) > 1)
+			{
+				continue;
+			}
+
+			if (!t.IsEmpty && t.getEntity().isAttackable())
+			{
+				ret = this.applyBleed( _user, t) || ret;
+			}
+
+			if (::Legends.S.isEntityNullOrDead(_user))
+				break;
+		}
+
+		return ret;
+	}
+
+	o.applyBleed <- function( _user, _targetTile )
+	{
+		local target = _targetTile.getEntity();
+		local hp = target.getHitpoints();
+		local success = this.attackEntity(_user, _targetTile.getEntity());
+
+		if (::Legends.S.isEntityNullOrDead(_user))
+			return success;
+
+		if (success && ::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem())) {
+			local damage = 5;
+			::Legends.S.applyBleed(target, _user, hp, this.m.SoundsA, this.m.SoundsB, damage);
+		}
+
+		return success;
+	}
+
+});

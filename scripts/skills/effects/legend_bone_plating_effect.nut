@@ -2,8 +2,7 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_bone_plating";
-		this.m.Name = "Bone Plating";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBonePlating);
 		this.m.Icon = "skills/boneplating_effect.png";
 		this.m.IconMini = "mini_boneplating_effect";
 		this.m.Overlay = "boneplating_effect";
@@ -21,7 +20,7 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Completely absorbs the first hit which doesn\'t ignore armor";
+		return "Completely absorbs the first hit which doesn\'t ignore armor.";
 	}
 
 	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties)
@@ -33,7 +32,7 @@ this.legend_bone_plating_effect <- this.inherit("scripts/skills/skill", {
 
 			this.playSound();
 			this.spawnIcon(this.m.Overlay, this.getContainer().getActor().getTile());
-			
+
 			this.removeSelf();
 		}
 	}

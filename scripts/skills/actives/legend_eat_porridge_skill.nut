@@ -4,11 +4,8 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_porridge";
-		this.m.Name = "Eat or Give Porridge";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatPorridge);
 		this.m.Description = "Give to an adjacent ally or eat yourself a porridge that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/porridge_square.png";
-		this.m.IconDisabled = "skills/porridge_square_bw.png";
 	}
 
 	function getTooltip()
@@ -33,7 +30,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Hitpoints per turn for 15 turns"
+				text = "[color=%positive%]+10[/color] Hitpoints per turn for 15 turns"
 			}
 		];
 
@@ -43,7 +40,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -56,7 +53,7 @@ this.legend_eat_porridge_skill <- this.inherit("scripts/skills/actives/base/lege
 
 		if (_user.getID() == user.getID())
 		{
-			user.getSkills().add(this.new("scripts/skills/effects/legend_porridge_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendPorridgeEffect);
 
 			if (!user.isHiddenToPlayer())
 			{

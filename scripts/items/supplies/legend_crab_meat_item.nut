@@ -51,9 +51,9 @@ this.legend_crab_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 	function onEquip()
 	{
 		this.food_item.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_eat_rations_skill");
-		skill.setItem(this);
-		skill.setAmount(this.m.Amount);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEatRations, function (_skill) {
+			_skill.setItem(this);
+			_skill.setAmount(this.m.Amount);
+		}.bindenv(this));
 	}
 });

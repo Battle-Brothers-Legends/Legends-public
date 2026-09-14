@@ -1,7 +1,6 @@
 this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legends.retinue_brother_lost";
 		this.m.Title = "At camp...";
 		this.m.IsSpecial = true;
@@ -12,36 +11,27 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Not everything goes as planned. | Oh well. | The men will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
-					function getResult( _event )
-					{
-						this.World.Retinue.removeDisabledFollowers();
-						return 0;
-					}
+			Options = [{
+				Text = "{Not everything goes as planned. | Oh well. | The mercs will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
+				function getResult(_event) {
+					this.World.Retinue.removeDisabledFollowers();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
-			}
+			}],
+			function start(_event) {}
 		});
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		return this.World.Retinue.hasFollowersToRemove();
 	}
 
-	function canFire()
-	{
+	function canFire() {
 		return this.isValid();
 	}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		local lostFollowers = this.World.Retinue.getFollowersToRemove();
-
 		_vars.push([
 			"s",
 			lostFollowers.len() == 1 ? "" : "s"
@@ -59,19 +49,18 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			this.World.Assets.getName()
 		]);
 
-		local followers = ""
-		foreach (follower in lostFollowers)
-		{
+		local followers = "";
+		foreach (follower in lostFollowers) {
 			followers += " - ";
 			followers += follower.getLinkedBro() == null ? "Unknown" : follower.getLinkedBro().getName();
-			followers += " (" + follower.getName() + ")\n"
+			followers += " (" + follower.getName() + ")\n";
 		}
 
-		this.Const.LegendMod.extendVarsWithPronouns(_vars, lostFollowers.len() == 1 ? (lostFollowers[0].getLinkedBro() == null ? -1 : lostFollowers[0].getLinkedBro().getGender()) : -1);
+		::Const.LegendMod.extendVarsWithPronouns(_vars, lostFollowers.len() == 1 ? (lostFollowers[0].getLinkedBro() == null ? -1 : lostFollowers[0].getLinkedBro().getGender()) : -1);
 
 		_vars.push([
 			"bronames",
 			followers
-		])
+		]);
 	}
 });

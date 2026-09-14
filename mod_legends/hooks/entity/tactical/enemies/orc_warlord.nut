@@ -1,110 +1,14 @@
 ::mods_hookExactClass("entity/tactical/enemies/orc_warlord", function(o)
 {
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
+	local create = o.create;
+	o.create = function ()
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
-		{
-			this.updateAchievement("Beastmode", 1, 1);
-		}
-
-		local flip = this.Math.rand(1, 100) < 50;
-
-		if (_tile != null)
-		{
-			this.m.IsCorpseFlipped = flip;
-			this.spawnBloodPool(_tile, 1);
-			local decal;
-			local appearance = this.getItems().getAppearance();
-			local sprite_body = this.getSprite("body");
-			local sprite_head = this.getSprite("head");
-			decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-			decal.Color = sprite_body.Color;
-			decal.Saturation = sprite_body.Saturation;
-			decal.Scale = 0.9;
-			decal.setBrightness(0.9);
-
-			if (appearance.CorpseArmor != "")
-			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.9;
-				decal.setBrightness(0.9);
-			}
-
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
-				if (!appearance.HideCorpseHead)
-				{
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Color = sprite_head.Color;
-					decal.Saturation = sprite_head.Saturation;
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-
-				if (appearance.HelmetCorpse != "")
-				{
-					decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
-					decal.Scale = 0.9;
-					decal.setBrightness(0.9);
-				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
-				local layers = [];
-
-				if (!appearance.HideCorpseHead)
-				{
-					layers.push(sprite_head.getBrush().Name + "_dead");
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					layers.push(appearance.HelmetCorpse);
-				}
-
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, "bust_orc_04_head_dead_bloodpool");
-				local idx = 0;
-
-				if (!appearance.HideCorpseHead)
-				{
-					decap[idx].Color = sprite_head.Color;
-					decap[idx].Saturation = sprite_head.Saturation;
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-
-				if (appearance.HelmetCorpse.len() != 0)
-				{
-					decap[idx].Scale = 0.9;
-					decap[idx].setBrightness(0.9);
-					idx = ++idx;
-				}
-			}
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-			{
-				if (this.Math.rand(1, 100) <= 5) //5%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_fabric");
-					loot.drop(_tile);
-				}
-
-				if (this.Math.rand(1, 100) <= 4) //4%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_metal");
-					loot.drop(_tile);
-				}
-
-				if (this.Math.rand(1, 100) <= 3) //3%
-				{
-					local loot = this.new("scripts/items/misc/legend_masterwork_tools");
-					loot.drop(_tile);
-				}
-			}
-		}
-		this.getItems().dropAll(_tile, _killer, flip);
-		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+		create();
+		this.m.OnDeathLootTable.extend([
+			[5, "scripts/items/misc/legend_masterwork_fabric"],
+			[4, "scripts/items/misc/legend_masterwork_metal"],
+			[3, "scripts/items/misc/legend_masterwork_tools"]
+		]);
 	}
 
 	o.onFactionChanged <- function ()
@@ -112,6 +16,8 @@
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = 8;
+		local v2 = -15;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -119,6 +25,7 @@
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 
@@ -128,8 +35,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcWarlord);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
-		{
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.WarlordStatIncreaseDay)	{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -159,9 +65,9 @@
 		injury.setBrush("bust_orc_04_head_injured");
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
-
+		this.setAlwaysApplySpriteOffset(true);
 		local v = 8;
 		local v2 = -15;
 		foreach (a in this.Const.CharacterSprites.Helmets)
@@ -183,17 +89,20 @@
 		this.setSpriteOffset("status_rooted", this.createVec(0, 16));
 		this.setSpriteOffset("status_stunned", this.createVec(-5, 30));
 		this.setSpriteOffset("arrow", this.createVec(-5, 30));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/warcry"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
+		::Legends.Actives.grant(this, ::Legends.Active.Warcry);
+		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
@@ -203,40 +112,11 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 200;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 100
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 50
-					break;
-			}
+		::Legends.S.scaleBaseProperties(b);
+	}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
 	}
 
 	o.assignRandomEquipment = function ()
@@ -262,7 +142,7 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/orc_warlord_armor"]
+				[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
 			]);
 			this.m.Items.equip(item);
 		}
@@ -270,7 +150,7 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/orc_warlord_helmet"]
+				[1, ::Legends.Helmet.Greenskin.orc_warlord_helmet]
 			]);
 			if (item != null)
 			{
@@ -297,7 +177,7 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (this.Math.rand(1, 100) <= 80)
 		{
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 		}

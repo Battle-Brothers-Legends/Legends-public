@@ -1,8 +1,52 @@
 ::mods_hookExactClass("items/weapons/oriental/qatal_dagger", function(o) {
+
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function() {
 		create();
 		this.m.Value = 750;
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.updateVariant <- function() {
+		if (this.getVariant() == 0) {
+			this.m.Icon = "weapons/melee/qatal_dagger_01_70x70.png";
+			this.m.IconLarge = "weapons/melee/qatal_dagger_01.png";
+			this.m.ArmamentIcon = "icon_qatal_dagger";
+		} else {
+			this.m.Icon = "weapons/melee/qatal_dagger_01_" + this.getVariant() + "_70x70.png";
+			this.m.IconLarge = "weapons/melee/qatal_dagger_01_" + this.getVariant() + ".png";
+			this.m.ArmamentIcon = "icon_qatal_dagger_01_" + this.getVariant();
+		}
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
+	}
+
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Deathblow, function (_skill)
+			{
+				_skill.m.DeathblowBonus = true;
+			}.bindenv(this));
+			return;
+		}
+
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
+		{
+			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill)
+			{
+				_skill.m.IsQatalStab = true;
+			}.bindenv(this));
+			return;
+		}
+
+		weapon.addSkill(_skill);
 	}
 });

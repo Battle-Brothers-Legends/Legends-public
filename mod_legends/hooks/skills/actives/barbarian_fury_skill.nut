@@ -14,6 +14,6 @@
 		if (!target.isAlliedWith(this.getContainer().getActor()))
 			return false;
 
-		return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+		return this.skill.onVerifyTarget(_originTile, _targetTile) && !::Legends.S.isEntityMovementDisabled(target) && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
 	}
 });

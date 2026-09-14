@@ -5,9 +5,8 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_sanctified_effect";
-		this.m.Name = "Sanctified";
-		this.m.Description = "This character is being cleansed by holy light";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSanctifiedEffect);
+		this.m.Description = "This character is being cleansed by holy light.";
 		this.m.Icon = "ui/perks/holybluefire_circle.png";
 		this.m.IconMini = "mini_bluefire_circle";
 		this.m.Overlay = "bluefire_circle";
@@ -19,7 +18,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
-		local turnsText = this.m.TurnsLeft > 0 ? (" Lasts [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turns.") : "";
+		local turnsText = this.m.TurnsLeft > 0 ? (" Lasts [color=%negative%]" + this.m.TurnsLeft + "[/color] more turns.") : "";
 		ret.push({
 			id = 12,
 			type = "text",
@@ -44,9 +43,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		// Commenting this out so that adding this effect via the Holy Flame tile effect will impact the countdown
-		// If adding from any other source, you will need to manually set m.TurnsLeft
-		// this.m.TurnsLeft = 2;
+		this.m.TurnsLeft = 2;
 	}
 
 	function onRefresh()
@@ -100,14 +97,15 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 			else
 			{
 				_properties.IsAffectedByLosingHitpoints = false;
-				_properties.IsAffectedByInjuries = false;
-				_properties.IsAffectedByFreshInjuries = false;
-				_properties.IsImmuneToBleeding = true;
-				_properties.IsImmuneToPoison = true;	
+				if (!::Legends.Traits.has(this.getContainer().getActor(), ::Legends.Trait.RacialGhost)) {
+					_properties.IsAffectedByInjuries = false;
+					_properties.IsAffectedByFreshInjuries = false;
+					_properties.IsImmuneToBleeding = true;
+					_properties.IsImmuneToPoison = true;
+				}
 			}
 		}
 	}
 
 
 });
-

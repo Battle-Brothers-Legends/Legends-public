@@ -18,7 +18,7 @@
 		{
 			local r = this.Math.rand(1, 2);
 
-			if (r == 1 || !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60)
+			if (r == 1 || !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Goblins.LegendsAmbusherHeavyBowDay)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_heavy_bow"));
 			}
@@ -34,7 +34,7 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local item = this.Const.World.Common.pickArmor([
-				[1, "greenskins/goblin_skirmisher_armor"]
+				[1, ::Legends.Armor.Greenskin.goblin_skirmisher_armor]
 			]);
 			this.m.Items.equip(item);
 		}
@@ -42,7 +42,7 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[1, "greenskins/goblin_skirmisher_helmet"]
+				[1, ::Legends.Helmet.Greenskin.goblin_skirmisher_helmet]
 			]);
 			this.m.Items.equip(item);
 		}

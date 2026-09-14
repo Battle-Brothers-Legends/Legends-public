@@ -15,6 +15,11 @@
 	20000 // new veterancy
 ]; // reset for the new max level added
 
+::Const.SkillType.Profession <- 131072;
+::Const.SkillType.All = ::Const.SkillType.All | ::Const.SkillType.Profession;
+::Const.SkillType.Passive = ::Const.SkillType.Passive | ::Const.SkillType.Profession; // no combat effects, right?
+::Const.SkillOrder.Profession <- 5500;
+
 for( local i = 1; i < 88; i = ++i )
 {
 	::Const.LevelXP.push(this.Const.LevelXP[this.Const.LevelXP.len() - 1] + 4000 + 1000 * i);
@@ -29,15 +34,19 @@ for( local i = 1; i < 88; i = ++i )
 ::Const.Combat.BloodPoolsAtDeathMin = 2;
 ::Const.Combat.BloodiedBustCount = 2;
 ::Const.Combat.ResurrectAnimationTime = 0.5;
+::Const.Combat.LegendHolyFlameTimeout <- 2;
+::Const.Combat.LegendShadowMistTimeout <- 3;
 
 ::Const.ShakeCharacterLayers[0].extend([
 	"armor_layer_chain",
 	"armor_layer_plate",
-	"armor_layer_tabbard",
+	"armor_layer_tabard",
 	"armor_layer_cloak_front",
 	"armor_layer_cloak",
 ]);
 ::Const.ShakeCharacterLayers[1].extend([
+	"helmet_helm_lower",
+	"helmet_top_lower",
 	"helmet_vanity_lower",
 	"helmet_vanity_lower_2",
 	"helmet_helm",
@@ -48,9 +57,11 @@ for( local i = 1; i < 88; i = ++i )
 ::Const.ShakeCharacterLayers[2].extend([
 	"armor_layer_chain",
 	"armor_layer_plate",
-	"armor_layer_tabbard",
+	"armor_layer_tabard",
 	"armor_layer_cloak_front",
 	"armor_layer_cloak",
+	"helmet_helm_lower",
+	"helmet_top_lower",
 	"helmet_vanity_lower",
 	"helmet_vanity_lower_2",
 	"helmet_helm",
@@ -59,6 +70,7 @@ for( local i = 1; i < 88; i = ++i )
 	"helmet_vanity_2",
 ]);
 ::Const.CharacterProperties.DailyWageMult = 1.0; //Is not serialised in vanilla. But I have serialised it today because Scenarios were not keeping their wage multiplier modifiers between save/load cycles - Luft 29/12/22
+::Const.CharacterProperties.DailyMedicine <- 0.0;
 
 ::Const.CharacterProperties.getMeleeDefense = function ()
 {
@@ -109,6 +121,6 @@ local onSerialize = ::Const.CharacterProperties.onSerialize;
 local onDeserialize = ::Const.CharacterProperties.onDeserialize;
 ::Const.CharacterProperties.onDeserialize = function (_in)
 {
-	onDeserialize( _in )
+	onDeserialize( _in );
 	this.DailyWageMult = _in.readF32();
 };

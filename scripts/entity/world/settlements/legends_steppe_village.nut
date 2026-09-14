@@ -86,114 +86,115 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 			"Brunnenland"
 		]];
 		this.m.DraftLists = [[
-			"apprentice_background",
-			"beggar_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"daytaler_background",
-			"peddler_background",
-			"refugee_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"poacher_background",
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"peddler_background",
-			"refugee_background",
-			"vagabond_background",
-			"poacher_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Beggar,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Peddler,
+			::Legends.Background.Refugee,
+			::Legends.Background.Tailor,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Poacher,
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Peddler,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Poacher
 		],[
-			"apprentice_background",
-			"beggar_background",
-			"bowyer_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"daytaler_background",
-			"historian_background",
-			"hunter_background",
-			"mason_background",
-			"militia_background",
-			"minstrel_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"refugee_background",
-			"servant_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"adventurous_noble_background",
-			"cripple_background",
-			"poacher_background",
-			"apprentice_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"historian_background",
-			"hunter_background",
-			"mason_background",
-			"militia_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"refugee_background",
-			"vagabond_background",
-			"cripple_background",
-			"poacher_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Beggar,
+			::Legends.Background.Bowyer,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Historian,
+			::Legends.Background.Hunter,
+			::Legends.Background.Mason,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Refugee,
+			::Legends.Background.Servant,
+			::Legends.Background.Tailor,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Cripple,
+			::Legends.Background.Poacher,
+			::Legends.Background.Apprentice,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Historian,
+			::Legends.Background.Hunter,
+			::Legends.Background.Mason,
+			::Legends.Background.Militia,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Cripple,
+			::Legends.Background.Poacher
 		],[
-			"apprentice_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"historian_background",
-			"hunter_background",
-			"juggler_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"minstrel_background",
-			"flagellant_background",
-			"peddler_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"refugee_background",
-			"servant_background",
-			"shepherd_background",
-			"thief_background",
-			"vagabond_background",
-			"bastard_background",
-			"raider_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"swordmaster_background",
-			"cripple_background",
-			"eunuch_background",
-			"legend_inventor_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Historian,
+			::Legends.Background.Hunter,
+			::Legends.Background.Juggler,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Flagellant,
+			::Legends.Background.Peddler,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Refugee,
+			::Legends.Background.Servant,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Thief,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Bastard,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch,
+			::Legends.Background.LegendInventor
 		]];
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier",
-			"legend_horse_courser"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier,
+			::Legends.Background.LegendHorseCourser
 		],[],[]];
 
 		if (this.Const.DLC.Unhold)
 		{
-			this.m.DraftLists[0].push("beast_hunter_background");
-			this.m.DraftLists[1].push("beast_hunter_background");
-			this.m.DraftLists[2].push("beast_hunter_background");
+			this.m.DraftLists[0].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[1].push(::Legends.Background.BeastSlayer);
+			this.m.DraftLists[2].push(::Legends.Background.BeastSlayer);
 		}
 
 		this.m.Rumors = this.Const.Strings.RumorsSteppeSettlement;
@@ -314,7 +315,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 				Force = true
 			}]
 
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -372,10 +373,10 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -453,7 +454,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		]);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -546,7 +547,7 @@ this.legends_steppe_village <- this.inherit("scripts/entity/world/settlements/le
 		], [], 3, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

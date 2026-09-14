@@ -5,7 +5,7 @@
 		{
 			this.m.IsSpent = true;
 			local actor = this.getContainer().getActor();
-			actor.setFatigue(this.Math.max(0, actor.getFatigue() - actor.getBaseProperties().Stamina * actor.getBaseProperties().StaminaMult * 0.1));
+			actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.ceil(actor.getBaseProperties().Stamina * actor.getBaseProperties().StaminaMult * 0.1)));
 			actor.setDirty(true);
 		}
 	}

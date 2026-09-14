@@ -4,8 +4,10 @@
 	o.onInit = function ()
 	{
 		onInit();
-
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_donkey_kick_skill"));
+		local b = this.m.BaseProperties;
+		b.IsImmuneToBleeding = false;
+		b.IsImmuneToPoison = false;
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);

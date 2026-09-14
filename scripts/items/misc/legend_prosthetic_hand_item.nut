@@ -64,25 +64,25 @@ this.legend_prosthetic_hand_item <- this.inherit("scripts/items/item", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Defense when using a shield"
+				text = "[color=%negative%]-10%[/color] Melee Defense when using a shield"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Defense when using a shield"
+				text = "[color=%negative%]-10%[/color] Ranged Defense when using a shield"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Melee Skill when NOT using a shield"
+				text = "[color=%negative%]-10%[/color] Melee Skill when NOT using a shield"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill when NOT using a shield"
+				text = "[color=%negative%]-10%[/color] Ranged Skill when NOT using a shield"
 			},
 			{
 				id = 65,

@@ -10,9 +10,9 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("militia_background");
-		_list.push("militia_background");
-		_list.push("retired_soldier_background");
+		_list.push(::Legends.Background.Militia);
+		_list.push(::Legends.Background.Militia);
+		_list.push(::Legends.Background.RetiredSoldier);
 		onUpdateDraftList(_list);
 	}
 
@@ -66,7 +66,7 @@
 			_list.push({
 				R = 50,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 50,
@@ -76,12 +76,12 @@
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 		}
 	}

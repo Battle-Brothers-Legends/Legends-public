@@ -12,7 +12,6 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Pitchfork;
-		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -22,6 +21,9 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Condition = 30.0;
 		this.m.ConditionMax = 30.0;
 		this.m.StaminaModifier = -9;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 2;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamageMax = 30;
 		this.m.ArmorDamageMult = 0.25;
@@ -31,12 +33,14 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local cleave = this.new("scripts/skills/actives/cleave");
-		cleave.m.FatigueCost = 15;
-		this.addSkill(cleave);
-		this.addSkill(this.new("scripts/skills/actives/reap_skill"));
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_bush_skill"));
-
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill)
+		{
+			_skill.m.IsScytheCleave = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Reap);
+		::Legends.Actives.grant(this, ::Legends.Active.Decapitate, function (_skill) {
+			_skill.m.IsScytheDecapitate = true;
+		}.bindenv(this));
 	}
 
 });

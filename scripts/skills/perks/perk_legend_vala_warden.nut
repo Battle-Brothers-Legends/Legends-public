@@ -5,14 +5,11 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaWarden);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaWarden);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast + 10;
 		this.m.IsSerialized = true;
-		this.m.IsActive = false;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function isHidden()
@@ -63,7 +60,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 				text = "Hitpoints: " + WardenHitpoints + "\nMelee skill: " + WardenMeleeSkill + "\nMelee defense: " + WardenMeleeDefense + "\nRanged skill: " + WardenRangedSkill + "\nRanged defense: " + WardenRangedDefense + "\nInitiative: " + WardenInitiative
 			});
 
-			if (this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
+			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
 			{
 				tooltip.push({
 					id = 8,
@@ -88,27 +85,24 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 	function findTileToSpawnWarden()
 	{
-		local ActorTile = this.getContainer().getActor().getTile();
-		local MapSize = this.Tactical.getMapSize();
+		local actor = this.getContainer().getActor();
+
+		if (!actor.isPlacedOnMap()) {
+			return null;
+    	}
+
 		local EmptyTiles = [];
 
-		for( local x = 0; x < MapSize.X; x = ++x )
-		{
-			for( local y = 0; y < MapSize.Y; y = ++y )
-			{
-				local tile = this.Tactical.getTileSquare(x, y);
+		local populateTiles = function( _tile, _emptyTiles ) {
+        	if (_tile.IsEmpty) {
+            	_emptyTiles.push(_tile);
+        	}
+    	};
+		
+		this.Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);	
 
-				if (tile.IsEmpty && tile.getDistanceTo(ActorTile) <= 3)
-				{
-					EmptyTiles.push(tile);
-				}
-			}
-		}
-
-		if (EmptyTiles.len() != 0)
-		{
-			local random = this.Math.rand(0, EmptyTiles.len() - 1);
-			return EmptyTiles[random];
+		if (EmptyTiles.len() != 0) {
+			return EmptyTiles[this.Math.rand(0, EmptyTiles.len() - 1)];
 		}
 
 		return null;
@@ -133,16 +127,15 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 				if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendValaSpiritualBond))
 				{
-					if (!this.getContainer().getActor().getSkills().hasSkill("effects.legend_vala_spiritual_bond_effect"))
+					if (!this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.LegendValaSpiritualBondEffect))
 					{
-						local bond = this.new("scripts/skills/effects/legend_vala_spiritual_bond_effect");
-						bond.setVala(this);
-						this.getContainer().getActor().getSkills().add(bond);
+						::Legends.Effects.grant(this, ::Legends.Effect.LegendValaSpiritualBondEffect, function(_effect) {
+							_effect.setVala(this);
+						}.bindenv(this));
 					}
-
-					local WardenScaling = this.new("scripts/skills/effects/legend_vala_warden_damage");
-					WardenScaling.setDamageBonus(this.getContainer().getActor().getBravery());
-					this.m.WardenEntity.getSkills().add(WardenScaling);
+					::Legends.Effects.grant(this.m.WardenEntity, ::Legends.Effect.LegendValaWardenDamage, function(_effect) {
+						_effect.setDamageBonus(this.getContainer().getActor().getBravery());
+					}.bindenv(this));
 				}
 
 				local effect = {
@@ -221,12 +214,12 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		this.summonWarden();
+		//this.summonWarden();
 	}
 
 	function onCombatFinished()
 	{
 		this.m.WardenEntity = null;
-		//this.getContainer().removeByID("effects.legend_vala_spiritual_bond_effect");
+		//::Legends.Effects.remove(this, ::Legends.Effect.LegendValaSpiritualBondEffect);
 	}
 });

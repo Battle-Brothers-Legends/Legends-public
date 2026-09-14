@@ -201,6 +201,36 @@
 	bottom: 4.0rem;
 }
 
+/* special case for harbor drawing 2 rectangles instead of 1 to make the clickable area smaller */
+.harbor-overlay {
+    position: absolute;
+    pointer-events: none;
+    width: 31.0rem;  
+    height: 33.0rem; 
+}
+
+/* harbor mast */
+.harbor-overlay::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 14.5rem;
+    height: 33.0rem;
+	pointer-events: auto;
+}
+
+/* harbor pier */
+.harbor-overlay::after {
+    content: '';
+    position: absolute;
+    left: 14.5rem;
+    bottom: 0;
+    width: 16.5rem;
+    height: 18.0rem;
+	pointer-events: auto;
+}
+
 .world-town-screen > .l-main-dialog-container .slot4
 {
 	-webkit-transform: scaleX(-1);

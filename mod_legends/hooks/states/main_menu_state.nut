@@ -1,4 +1,4 @@
-::mods_hookExactClass("states/main_menu_state", function(o) 
+::mods_hookExactClass("states/main_menu_state", function(o)
 {
 
 	o.onSiblingAdded = function ( _stateName )
@@ -51,10 +51,6 @@
 
 				case 10:
 					tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_line_battle_goblins"));
-					break;
-
-				case 11:
-					tacticalState.setScenario(this.new("scripts/scenarios/tactical/scenario_line_battle_kobolds"));
 					break;
 
 				case 12:
@@ -138,6 +134,10 @@
 					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_basilisks"));
 					break;
 
+				case 42:
+					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_enraged_hyena"));
+					break;
+
 				default:
 					tacticalState.setScenario(this.new("scripts/scenarios/tactical/legend_scenario_combat_basics"));
 					break;
@@ -168,6 +168,11 @@
 	{
 
 		local result = [
+			{
+				id = 42,
+				name = "Enraged Hyenas (Legendary)",
+				description = "[p=c][img]gfx/ui/events/event_148.png[/img][/p]\n[p=c]Face a dozen raging hyenas.[/p]"
+			},
 			{
 				id = 41,
 				name = "Basilisks",
@@ -262,11 +267,6 @@
 				id = 10,
 				name = "Line Battle (Goblins)",
 				description = "[p=c][img]gfx/ui/events/event_48.png[/img][/p]\n[p=c]Featuring two battle lines pitted against each other in close combat from the start. Difficult.[/p]"
-			},
-			{
-				id = 11,
-				name = "Kobold Swamp (Legendary)",
-				description = "[p=c][img]gfx/ui/events/event_09.png[/img][/p]\n[p=c]Try out against Kobolds in a swamp. Difficult.[/p]"
 			},
 			{
 				id = 12,

@@ -1,90 +1,58 @@
-::mods_hookExactClass("factions/actions/build_unique_locations_action", function(o)
-{
-	o.m.BuildMummySite <- true;
-	o.m.BuildTournamentSite <- true;
+::mods_hookExactClass("factions/actions/build_unique_locations_action", function (o) {
+	o.m.BuildLegendMummyPyramid <- true;
+	o.m.BuildLegendGrandTournament <- false;
 
-	local updateBuildings = o.updateBuildings;
-	o.updateBuildings = function( )
-	{
-		updateBuildings();
-
-		local locations = this.World.EntityManager.getLocations();
-
-		foreach( v in locations )
-		{
-			if (v.getTypeID() == "location.legend_mummy")
-				this.m.BuildMummySite = false;
-
-			if (v.getTypeID() == "location.legend_tournament")
-				this.m.BuildTournamentSite = false;
+	o.updateBuildings = function () {
+		foreach (loc in ::World.EntityManager.getLocations()) {
+			foreach (key in ::Legends.World.LegendaryLocations.Order) {
+				if (loc.getTypeID() == ::Legends.World.LegendaryLocations[key].ID) {
+					this.m["Build" + key] = false;
+				}
+			}
 		}
 	}
 
-	local onExecute = o.onExecute;
-	o.onExecute = function( _faction )
-	{
-		onExecute(_faction);
-
-		local camp;
-		local distanceToOthers = 15;
-
-		if (this.m.BuildMummySite)
-		{
-			local disallowedTerrain = [];
-
-			for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = i )
-			{
-				if (i == this.Const.World.TerrainType.Desert)
-				{
+	o.onExecute = function (_faction, _retries = 5) {
+		local missingLocations = [];
+		foreach (key in ::Legends.World.LegendaryLocations.Order) {
+			local location = ::Legends.World.LegendaryLocations[key];
+			local camp = null;
+			if (this.m["Build" + key]) {
+				local disallowedTerrain = [];
+				if ("AllowedTerrainTypes" in location) {
+					for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++) {
+						if (location.AllowedTerrainTypes.find(i) == null) {
+							disallowedTerrain.push(i);
+						}
+					}
+				} else if ("DisallowedTerrainTypes" in location) {
+					disallowedTerrain = location.DisallowedTerrainTypes;
 				}
-				else
-				{
-					disallowedTerrain.push(i);
+				local retryModifier = _retries - 5;
+				local tile = this.getTileToSpawnLocation(::Const.Factions.BuildCampTries * 1000, disallowedTerrain, ("MinDistToSettlements" in location ? location.MinDistToSettlements : 7) + retryModifier, "MaxDistToSettlements" in location ? location.MaxDistToSettlements : 1000, "MaxDistToAllies" in location ? location.MaxDistToAllies : 1001, ("MinDistToEnemyLocations" in location ? location.MinDistToEnemyLocations : 15) + retryModifier, ("MinDistToAlliedLocations" in location ? location.MinDistToAlliedLocations : 15) + retryModifier, null, "MinY" in location ? location.MinY : 0.0, "MaxY" in location ? location.MaxY : 1.0);
+				if (tile != null) {
+					camp = ::World.spawnLocation(location.Script, tile.Coords);
 				}
-
-				i = ++i;
-			}
-
-			local tile = this.getTileToSpawnLocation(this.Const.Factions.BuildCampTries * 100, disallowedTerrain, 8, 25, 1001, 8, 8, null, 0.1);
-
-			if (tile != null)
-			{
-				camp = this.World.spawnLocation("scripts/entity/world/locations/legendary/legend_mummy_location", tile.Coords);
-			}
-
-			if (camp != null)
-			{
-				camp.onSpawned();
-				this.logInfo("Built Legends Ancient Mastaba location")
+				if (camp != null) {
+					camp.onSpawned();
+					if ("OnSpawned" in location) {
+						location.OnSpawned(this, camp, tile);
+					}
+				} else {
+					missingLocations.push(key);
+				}
 			}
 		}
-		if (this.m.BuildTournamentSite)
-		{
-			local disallowedTerrain = [];
 
-			for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = i )
-			{
-				if (i == this.Const.World.TerrainType.Hills || i == this.Const.World.TerrainType.Mountains)
-				{
-				}
-				else
-				{
-					disallowedTerrain.push(i);
-				}
-				i = ++i;
-			}
-
-			local tile = this.getTileToSpawnLocation(this.Const.Factions.BuildCampTries * 100, disallowedTerrain, 30, 1000, 1001, distanceToOthers, distanceToOthers);
-
-			if (tile != null)
-			{
-				camp = this.World.spawnLocation("scripts/entity/world/locations/legendary/legend_tournament_location", tile.Coords);
-			}
-
-			if (camp != null)
-			{
-				camp.onSpawned();
-				this.logInfo("Built Legends Tournament location")
+		if (missingLocations.len() == 0 || _retries == 0) {
+			this.m.CooldownUntil = 1000000000.0;
+			this.m.IsRunOnNewCampaign = false;
+			return;
+		} else {
+			if (_retries > 0) {
+				::logDebug("Unable to place: " + missingLocations.reduce(@(_a, _b) _a + ", " + _b) + ", retrying...");
+				this.updateBuildings();
+				this.onExecute(_faction, _retries - 1);
 			}
 		}
 	}

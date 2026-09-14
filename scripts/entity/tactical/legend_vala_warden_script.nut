@@ -201,7 +201,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		local WardenStats = this.m.BaseProperties;
 		WardenStats.setValues(NewWardenStats);
 		this.m.Hitpoints = WardenStats.Hitpoints;
-		this.m.CurrentProperties = WardenStats;
+		this.m.CurrentProperties = clone WardenStats;
 	}
 
 
@@ -262,10 +262,10 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(-5, -5));
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_vala_warden_pale_touch_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_vala_warden_wail_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendValaWardenPaleTouch);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendValaWardenWail);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Traits.grant(this, ::Legends.Trait.Loyal); //Should prevent charm

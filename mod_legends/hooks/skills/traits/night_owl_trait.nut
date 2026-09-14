@@ -24,26 +24,26 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Vision during Night time"
+				text = "[color=%positive%]+1[/color] Vision during Night time"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Ranged Skill during Night time"
+				text = "[color=%positive%]+15%[/color] Ranged Skill during Night time"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Ranged Defense during Night time"
+				text = "[color=%positive%]+15%[/color] Ranged Defense during Night time"
 			}
 		];
 	}
 
 	o.onUpdate = function ( _properties )
 	{
-		if (this.getContainer().hasSkill("special.night") && _properties.IsAffectedByNight)
+		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight)
 		{
 			_properties.Vision += 1;
 			_properties.RangedSkillMult *= 1.15;

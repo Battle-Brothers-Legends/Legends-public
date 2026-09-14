@@ -9,6 +9,9 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 		this.m.Name = "Building Effort";
 		this.m.Description = "This settlement is expanding with a new location, building materials are in high demand and low supply.";
 		this.m.Icon = "ui/settlement_status/building_effort_effect.png";
+		this.m.Rumors = [
+			"Been seein\' lots of materials coming through \'ere to the %direction%...",
+		];
 		this.m.IsStacking = false;
 		this.m.ValidDays = 5;
 	}
@@ -90,26 +93,26 @@ this.legend_building_effort_situation <- this.inherit("scripts/entity/world/sett
 	function onUpdateDraftList( _draftList )
 	{
 		if (this.m.IsSouthern) {
-			_draftList.push("daytaler_southern_background");
-			_draftList.push("daytaler_southern_background");
-			_draftList.push("daytaler_southern_background");
-			_draftList.push("daytaler_southern_background");
-			_draftList.push("slave_southern_background");
-			_draftList.push("slave_southern_background");
-			_draftList.push("slave_southern_background");
-			_draftList.push("slave_southern_background");
-			_draftList.push("slave_southern_background");
-			_draftList.push("slave_southern_background");
+			_draftList.push(::Legends.Background.DaytalerSouthern);
+			_draftList.push(::Legends.Background.DaytalerSouthern);
+			_draftList.push(::Legends.Background.DaytalerSouthern);
+			_draftList.push(::Legends.Background.DaytalerSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
+			_draftList.push(::Legends.Background.SlaveSouthern);
 		}
 		else {
-			_draftList.push("lumberjack_background");
-			_draftList.push("lumberjack_background");
-			_draftList.push("mason_background");
-			_draftList.push("mason_background");
-			_draftList.push("daytaler_background");
-			_draftList.push("daytaler_background");
-			_draftList.push("daytaler_background");
-			_draftList.push("legend_inventor_background");
+			_draftList.push(::Legends.Background.Lumberjack);
+			_draftList.push(::Legends.Background.Lumberjack);
+			_draftList.push(::Legends.Background.Mason);
+			_draftList.push(::Legends.Background.Mason);
+			_draftList.push(::Legends.Background.Daytaler);
+			_draftList.push(::Legends.Background.Daytaler);
+			_draftList.push(::Legends.Background.Daytaler);
+			_draftList.push(::Legends.Background.LegendInventor);
 		}
 
 	}

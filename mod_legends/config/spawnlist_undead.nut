@@ -15,7 +15,7 @@ if (!("Spawn" in ::Const.World))
 	MovementSpeedMult = 1.0,
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
-	Body = "figure_vampire_01",
+	Body = "figure_mummy_01",
 	MaxR = 521,
 	MinR = 108,
 	Troops = [
@@ -73,7 +73,7 @@ if (!("Spawn" in ::Const.World))
 	MovementSpeedMult = 1.0,
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
-	Body = "figure_vampire_01",
+	Body = "figure_mummy_01",
 	MaxR = 650,
 	MinR = 100,
 	Troops = [

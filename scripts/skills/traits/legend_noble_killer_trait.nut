@@ -11,7 +11,7 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead)
 		];
 	}
@@ -33,13 +33,13 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Melee Skill when in a battle against a noble house"
+				text = "[color=%positive%]+10[/color] Melee Skill when in a battle against a noble house"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Ranged Skill when in a battle against a noble house"
+				text = "[color=%positive%]+10[/color] Ranged Skill when in a battle against a noble house"
 			}
 		];
 	}

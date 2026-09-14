@@ -49,6 +49,20 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.SoundVolumeOverall = 1.25;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/unhold_agent");
 		this.m.AIAgent.setActor(this);
+
+		this.m.OnDeathLootTable.extend([
+			[33, "scripts/items/supplies/strange_meat_item"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[50, "scripts/items/misc/legend_rock_unhold_bones_item"],
+				[50, "scripts/items/misc/legend_rock_unhold_hide_item"],
+				[50, "scripts/items/misc/unhold_heart_item"],
+				[50, "scripts/items/misc/unhold_hide_item"],
+				[50, "scripts/items/misc/unhold_bones_item"],
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -155,61 +169,33 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Rock Unhold";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 30)
-				{
-					loot = this.new("scripts/items/misc/legend_rock_unhold_bones_item");
-				}
-				else
-				{
-					loot = this.new("scripts/items/misc/legend_rock_unhold_hide_item");
-				}
-
-				loot.drop(_tile);
-				if (r <= 50)
-				{
-					loot = this.new("scripts/items/misc/unhold_heart_item");
-					loot.drop(_tile);
-				}
-				if (r <= 50)
-				{
-					loot = this.new("scripts/items/misc/unhold_hide_item");
-					loot.drop(_tile);
-				}
-				if (r <= 50)
-				{
-					loot = this.new("scripts/items/misc/unhold_bones_item");
-					loot.drop(_tile);
-				}
-			}
-
-			if (this.Math.rand(1, 100) <= 33)
-			{
-				local loot = this.new("scripts/items/supplies/strange_meat_item");
-				loot.drop(_tile);
-			}
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Rock Unhold";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onInit()
@@ -219,12 +205,12 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(this.Const.Tactical.Actor.LegendRockUnhold);
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay)
 		{
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 190)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2)
 		{
 			b.DamageTotalMult += 0.2;
 		}
@@ -260,58 +246,25 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_rock_unhold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendRockUnhold);
+		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
+		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
+		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
+		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodyHarvest);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			local dateToSkip = 0;
-			switch (this.World.Assets.getCombatDifficulty())
-			{
-				case this.Const.Difficulty.Easy:
-					dateToSkip = 250;
-					break;
-				case this.Const.Difficulty.Normal:
-					dateToSkip = 200
-					break;
-				case this.Const.Difficulty.Hard:
-					dateToSkip = 150
-					break;
-				case this.Const.Difficulty.Legendary:
-					dateToSkip = 100
-					break;
-			}
 
-			if (this.World.getTime().Days >= dateToSkip)
-			{
-				local bonus = this.Math.min(1, this.Math.floor( (this.World.getTime().Days - dateToSkip) / 20.0));
-				b.MeleeSkill += bonus;
-				b.RangedSkill += bonus;
-				b.MeleeDefense += this.Math.floor(bonus / 2);
-				b.RangedDefense += this.Math.floor(bonus / 2);
-				b.Hitpoints += this.Math.floor(bonus * 2);
-				b.Initiative += this.Math.floor(bonus / 2);
-				b.Stamina += bonus;
-			//	b.XP += this.Math.floor(bonus * 4);
-				b.Bravery += bonus;
-				b.FatigueRecoveryRate += this.Math.floor(bonus / 4);
-			}
-		}
-
+		::Legends.S.scaleBaseProperties(b);
 	}
 
 	function assignRandomEquipment()
@@ -319,4 +272,3 @@ this.legend_rock_unhold <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 });
-

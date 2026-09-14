@@ -1,21 +1,27 @@
-::mods_hookExactClass("events/events/dlc2/location/monolith_enter_event", function(o) {
+::mods_hookExactClass("events/events/dlc2/location/monolith_enter_event", function (o) {
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
-		foreach (s in this.m.Screens) {
-			if (s.ID == "B") {
-				s.Options[0].getResult <- function (_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setAttackable(true);
-						if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-							this.World.State.getLastLocation().setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getID());
-						else
-							this.World.State.getLastLocation().setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID());
+		::Legends.Screens.hook(this, "B", function (_screen) {
+			_screen.Options[0].getResult <- function (_event) {
+				if (this.World.State.getLastLocation() != null) 
+				{
+					this.World.State.getLastLocation().setAttackable(true);
+					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") 
+					{
+						this.World.State.getLastLocation().setAttackable(false);
+						this.World.State.getLastLocation().setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID());
+						// this.World.State.getLastLocation().setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getID()); // - we will rework this later when we have legion township art. - Luft 30/5/26
+					} 
+
+					else
+					{
+						this.World.State.getLastLocation().setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID());
 					}
-					this.World.Events.showCombatDialog(true, true, true);
-					return 0;
 				}
+				this.World.Events.showCombatDialog(true, true, true);
+				return 0;
 			}
-		}
+		});
 	}
 });

@@ -12,7 +12,7 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 		];
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Pessimist),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Dumb),
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
@@ -35,13 +35,13 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Initiative"
+				text = "[color=%positive%]+5[/color] Initiative"
 			},
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Chance To Hit Head"
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
 			}
 		];
 	}

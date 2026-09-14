@@ -178,7 +178,7 @@
 
 	o.onExecute = function ( _faction )
 	{
-		local budget = !::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() ? 0 : ::Const.World.Common.WorldEconomy.Trade.calculateTradingBudget(this.m.Start);
+		local budget = ::Const.World.Common.WorldEconomy.Trade.calculateTradingBudget(this.m.Start);
 
 		if (!this.m.Start.isMilitary() && this.m.Start.getSize() < 3)
 			budget *= 1.5;
@@ -193,8 +193,7 @@
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
 
-		if (this.World.Assets.m.IsBrigand && this.m.Start.getTile().getDistanceTo(this.World.State.getPlayer().getTile()) <= 70)
-		{
+		if (this.m.Start.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 70 * ::World.Assets.m.ProfessionEffect.LegendHighwayman) {
 			party.setVisibleInFogOfWar(true);
 			party.setImportant(true);
 			party.setDiscovered(true);
@@ -202,16 +201,7 @@
 
 		this.addLoot(party);
 
-		// yes world economy
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
-		}
-		// no world economy
-		else
-		{
-			this.addToPartyInventory(party);
-		}
+		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
 
 		local c = party.getController();
 		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);

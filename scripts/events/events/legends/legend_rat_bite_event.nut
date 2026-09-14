@@ -14,16 +14,10 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
+			Options = [				{
 					Text = "That is a poor meal",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
+					getResult = @(_event) 0
+				}			],
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Ratman.getImagePath());
@@ -50,11 +44,6 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (!this.Const.DLC.Unhold)
-		{
-			return;
-		}
-
 		if (this.World.getTime().IsDaytime)
 		{
 			return;
@@ -120,8 +109,8 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		this.m.Ratman = ratman_candidates[this.Math.rand(0, hedge_knight_candidates.len() - 1)];
-		this.m.Bitten = bitten_candidates[this.Math.rand(0, this.raider_candidates.len() - 1)];
+		this.m.Ratman = ratman_candidates[::Math.rand(0, hedge_knight_candidates.len() - 1)];
+		this.m.Bitten = bitten_candidates[::Math.rand(0, this.raider_candidates.len() - 1)];
 		this.m.Score = ratman_candidates.len() * 3;
 	}
 

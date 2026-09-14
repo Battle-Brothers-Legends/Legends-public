@@ -28,13 +28,13 @@
 			entity.setScenarioValues();
 			local items = entity.getItems();
 			local helmet = [
-				[1, "oriental/southern_head_wrap"]
-			]
+				[1, ::Legends.Helmet.Southern.southern_head_wrap]
+			];
 			items.equip(this.Const.World.Common.pickHelmet(helmet));
 
 
 			local r = this.Math.rand(1, 3);
-			local a = this.new("scripts/items/armor/oriental/gladiator_harness");
+			local a = this.new("scripts/items/armor/oriental/southern_gladiator_harness");
 			local u;
 			r = this.Math.rand(1, 2);
 

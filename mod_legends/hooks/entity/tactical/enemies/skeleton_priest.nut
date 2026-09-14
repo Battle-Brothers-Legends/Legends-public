@@ -1,5 +1,13 @@
 ::mods_hookExactClass("entity/tactical/enemies/skeleton_priest", function(o)
 {
+	local create = o.create;
+	o.create = function () {
+		create();
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++)
+			this.m.OnDeathLootTable.push([5, "scripts/items/misc/legend_ancient_scroll_item"]);
+	}
+
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -7,7 +15,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		}
@@ -16,38 +24,21 @@
 	o.assignRandomEquipment = function ()
 	{
 		local armor = [
-			[1, "ancient/ancient_priest_attire"]
+			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
 		local item = this.Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
 		local item = this.Const.World.Common.pickHelmet([
-			[99, "ancient/ancient_priest_diadem"]
+			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
 		]);
 		if (item != null)
 		{
 			this.m.Items.equip(item);
 		}
+		local b = this.m.BaseProperties;	
+		b.Armor[this.Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of ancient priests to vanilla levels while respecting the outfit
+		b.ArmorMax[this.Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
 
-	local onDeath = o.onDeath;
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
-		onDeath( _killer, _skill, _tile, _fatalityType );
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-				if (r <= 5)
-				{
-					loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					loot.drop(_tile);
-				}
-			}
-		}
-	}
 });

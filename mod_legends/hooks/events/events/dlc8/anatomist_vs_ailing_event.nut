@@ -39,7 +39,7 @@
 									icon = _trait.getIcon(),
 									text = _event.m.Ailing.getName() + " gains " + _trait.getName()
 								});
-							});
+							}.bindenv(this));
 							num_new_traits = num_new_traits - 1;
 						}
 					}

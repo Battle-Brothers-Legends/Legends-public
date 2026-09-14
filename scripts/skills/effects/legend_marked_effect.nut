@@ -3,9 +3,8 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_marked_target";
-		this.m.Name = "Marked";
-		this.m.Description = "This character has gotten the attention of nearby opponents and is more likely to get attacked over other potential targets.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMarkedTarget);
+		this.m.Description = "This character has gotten the attention of nearby opponents and is more likely to be attacked over other potential targets.";
 		this.m.Icon = "ui/perks/perk_38.png";
 		this.m.IconMini = "perk_38_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;

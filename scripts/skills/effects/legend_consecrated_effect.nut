@@ -5,40 +5,10 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		DamageMax = 20,
 		Actor = null
 	},
-
-	function setActor( _a )
-	{
-		this.m.Actor = ::MSU.asWeakTableRef(_a);
-	}
-
-	function getAttacker()
-	{
-		if (!::Legends.Mod.ModSettings.getSetting("BleedKiller").getValue())
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (::MSU.isNull(this.m.Actor))
-		{
-			return this.getContainer().getActor();
-		}
-
-		if (this.m.Actor.getID() != this.getContainer().getActor().getID())
-		{
-			if (this.m.Actor.isAlive() && this.m.Actor.isPlacedOnMap())
-			{
-				return this.m.Actor;
-			}
-		}
-
-		return this.getContainer().getActor();
-	}
-
 	function create()
 	{
-		this.m.ID = "effects.legend_consecrated_effect";
-		this.m.Name = "Consecrated";
-		this.m.Description = "This character is being consecrated by holy flames";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendConsecratedEffect);
+		this.m.Description = "This character is being consecrated by holy flames.";
 		this.m.Icon = "ui/perks/holyfire_circle.png";
 		this.m.IconMini = "mini_fire_circle";
 		this.m.Overlay = "fire_circle";
@@ -47,11 +17,16 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsRemovedAfterBattle = true;
 	}
 
+	function setActor( _a )
+	{
+		this.m.Actor = ::MSU.asWeakTableRef(_a);
+	}
+
 	function getTooltip()
 	{
 		local ret = this.skill.getTooltip();
 		local damageText = format(" Take %s - %s damage at the end of each turn.", ::Const.UI.getColorized(this.m.DamageMin, ::Const.UI.Color.NegativeValue), ::Const.UI.getColorized(this.m.DamageMax, ::Const.UI.Color.NegativeValue));
-		local turnsText = this.m.TurnsLeft > 0 ? (" Lasts [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turns.") : "";
+		local turnsText = this.m.TurnsLeft > 0 ? (" Lasts [color=%negative%]" + this.m.TurnsLeft + "[/color] more turns.") : "";
 		ret.push({
 			id = 12,
 			type = "text",
@@ -97,7 +72,7 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " is burnt by holy flames");
-		actor.onDamageReceived(this.getAttacker(), this, hitInfo);
+		actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 	}
 
 	function onTurnEnd()
@@ -122,10 +97,12 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		else
 		{
 			_properties.IsAffectedByLosingHitpoints = true;
-			_properties.IsAffectedByInjuries = true;
-			_properties.IsAffectedByFreshInjuries = true;
-			_properties.IsImmuneToBleeding = false;
-			_properties.IsImmuneToPoison = false;
+			if (!::Legends.Traits.has(this.getContainer().getActor(), ::Legends.Trait.RacialGhost)) {
+				_properties.IsAffectedByInjuries = true;
+				_properties.IsAffectedByFreshInjuries = true;
+				_properties.IsImmuneToBleeding = false;
+				_properties.IsImmuneToPoison = false;
+			}
 		}
 	}
 

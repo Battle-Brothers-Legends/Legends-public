@@ -5,7 +5,7 @@ this.legend_named_heavy_southern_mace <- this.inherit("scripts/items/weapons/nam
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1,2];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_heavy_southern_mace";
@@ -40,8 +40,8 @@ this.legend_named_heavy_southern_mace <- this.inherit("scripts/items/weapons/nam
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/bash"));
-		this.addSkill(this.new("scripts/skills/actives/knock_out"));
+		::Legends.Actives.grant(this, ::Legends.Active.Bash);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut);
 	}
 
 });

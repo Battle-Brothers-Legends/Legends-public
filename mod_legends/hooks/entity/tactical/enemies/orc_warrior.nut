@@ -5,6 +5,8 @@
 		this.actor.onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
 		flip = !flip;
+		local v = 1;
+		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
@@ -12,6 +14,7 @@
 				continue;
 			}
 			this.getSprite(a).setHorizontalFlipping(flip);
+			this.setSpriteOffset(a, this.createVec(flip ? v2 : -v2, v));
 		}
 	}
 
@@ -21,8 +24,7 @@
 		local b = this.m.BaseProperties;
 		b.setValues(this.Const.Tactical.Actor.OrcWarrior);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 200)
-		{
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.WarriorStatIncreaseDay)	{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -51,11 +53,12 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_03_head_injured");
+		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
 		}
 
@@ -65,14 +68,15 @@
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.6;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 5));
-		this.m.Skills.add(this.new("scripts/skills/special/double_grip"));
+		::Legends.Effects.grant(this, ::Legends.Effect.DoubleGrip);
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
-		this.m.Skills.add(this.new("scripts/skills/actives/line_breaker"));
+		::Legends.Actives.grant(this, ::Legends.Active.LineBreaker);
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
@@ -80,12 +84,13 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (this.Const.DLC.Unhold)
-		{
-			this.m.Skills.add(this.new("scripts/skills/actives/wake_ally_skill"));
-		}
+		::Legends.Actives.grant(this, ::Legends.Active.WakeAlly);
+		::Legends.Effects.grant(this, ::Legends.Effect.Captain);
+		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
+	}
 
-		this.m.Skills.add(this.new("scripts/skills/effects/captain_effect"));
+	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
+		this.legend_orc.onDeath( _killer, _skill, _tile, _fatalityType );
 	}
 
 	o.assignRandomEquipment = function ()
@@ -108,10 +113,10 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
 		{
 			local armor = [
-				[1, "greenskins/orc_warrior_light_armor"],
-				[1, "greenskins/orc_warrior_medium_armor"],
-				[1, "greenskins/orc_warrior_heavy_armor"],
-				[1, "greenskins/orc_warrior_heavy_armor"]
+				[1, ::Legends.Armor.Greenskin.orc_warrior_light_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_medium_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor],
+				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor]
 			];
 			local item = this.Const.World.Common.pickArmor(armor);
 			this.m.Items.equip(item);
@@ -120,9 +125,9 @@
 		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
 		{
 			local helmet = [
-				[1, "greenskins/orc_warrior_light_helmet"],
-				[1, "greenskins/orc_warrior_medium_helmet"],
-				[1, "greenskins/orc_warrior_heavy_helmet"]
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_light_helmet],
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet],
+				[1, ::Legends.Helmet.Greenskin.orc_warrior_heavy_helmet]
 			];
 			local item = this.Const.World.Common.pickHelmet(helmet);
 			this.m.Items.equip(item);
@@ -145,7 +150,7 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (this.Math.rand(1, 100) <= 80)
 		{
 			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));

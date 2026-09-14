@@ -3,10 +3,7 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 		Skill = null,
 		Entity = null,
 		Script = "scripts/entity/tactical/legend_warbear",
-		UnleashSounds = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		]
+		UnleashSounds = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2)
 	},
 	function getScript()
 	{
@@ -60,9 +57,8 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 
 	function playInventorySound( _eventType )
 	{
-		if (this.Math.rand(1, 100) <= 50)
-		{
-			this.Sound.play("sounds/enemies/bear_idle1.wav", this.Const.Sound.Volume.Inventory);
+		if (this.Math.rand(1, 100) <= 50) {
+			::Sound.play("sounds/enemies/bear_idle_01.wav", ::Const.Sound.Volume.Inventory);
 		}
 	}
 
@@ -88,10 +84,10 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local unleash = this.new("scripts/skills/actives/legend_unleash_warbear_skill");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendUnleashWarbear, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 	function onCombatFinished()
@@ -110,11 +106,6 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 			entity.setFaction(this.Const.Faction.PlayerAnimals);
 			this.Sound.play(this.m.UnleashSounds[this.Math.rand(0, this.m.UnleashSounds.len() - 1)], this.Const.Sound.Volume.Skill, _onTile.Pos);
 		}
-	}
-
-	function onCombatFinished()
-	{
-		this.setEntity(null);
 	}
 
 	function onSerialize( _out )

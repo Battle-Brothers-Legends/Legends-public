@@ -3,13 +3,10 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 	function create()
 	{
 		this.legend_horse.create();
-		this.m.ID = "background.legend_horse_destrier";
-		this.m.Name = "Destrier";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorseDestrier);
 		this.m.BackgroundDescription = "Despite being so highly prized by fighting men they are also called Great Horses, not all knights can afford them over courser, and rare indeed is the non-Noble riding one";
 		this.m.GoodEnding = "A marvel of a fighting horse, %name% the Destrier was retired to horse breeder, where he was treated lavishly as he helped father the next generation of living engines-of-war";
 		this.m.BadEnding = "%name% the horse was sold to a trader, their caravan was attacked by orcs and the remains of %name% were never found";
-		this.m.HiringCost = 55000;
-		this.m.DailyCost = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
@@ -22,75 +19,69 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed)
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted)
 		];
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[1];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[1];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[2];
-
 		this.m.CustomPerkTree = [
 				[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.LegendHorseLongeing
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.Recover,
+				::Legends.Perk.Adrenaline,
+				::Legends.Perk.LegendHorseLongeing
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.LegendHorseLiberty,
-				this.Const.Perks.PerkDefs.LegendHorseBitting,
-				this.Const.Perks.PerkDefs.LegendHorseDesensitization
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.LegendComposure,
+				::Legends.Perk.SteelBrow,
+				::Legends.Perk.LegendHorseLiberty,
+				::Legends.Perk.LegendHorseBitting,
+				::Legends.Perk.LegendHorseDesensitization
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.LegendSprint,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
-				this.Const.Perks.PerkDefs.LegendHorseCollection,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
-				this.Const.Perks.PerkDefs.LegendHorseCharge
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Steadfast,
+				// ::Legends.Perk.LegendSprint,
+				::Legends.Perk.LegendOnslaught,
+				::Legends.Perk.LegendHorseCollection,
+				::Legends.Perk.LegendBackToBasics,
+				::Legends.Perk.LegendHorseCharge
 
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendEfficientPacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBinding,
-				this.Const.Perks.PerkDefs.LegendMedPackages,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers,
-				this.Const.Perks.PerkDefs.LegendHorseImpulsion,
-				this.Const.Perks.PerkDefs.LegendHorseHippology
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers,
+				::Legends.Perk.LegendHorseImpulsion,
+				::Legends.Perk.LegendHippology
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendHorseLegControl,
-				this.Const.Perks.PerkDefs.LegendHorseLeadChange,
-				this.Const.Perks.PerkDefs.LegendHorseParthianShot
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Underdog,
+				::Legends.Perk.LegendHorseLegControl,
+				::Legends.Perk.LegendHorseLeadChange,
+				::Legends.Perk.LegendHorseParthianShot
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.LegendMuscularity,
-				this.Const.Perks.PerkDefs.LegendHorsePiaffe,
-				this.Const.Perks.PerkDefs.LegendHorseTempiChange,
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendTacticalManeuvers,
+				::Legends.Perk.LegendMuscularity,
+				::Legends.Perk.LegendHorsePiaffe,
+				::Legends.Perk.LegendHorseTempiChange,
 			],
 			[
-				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBundles,
-				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares,
-				this.Const.Perks.PerkDefs.LegendHorseFlyingChange,
-				this.Const.Perks.PerkDefs.LegendHorsePirouette,
-				this.Const.Perks.PerkDefs.LegendHorsePassage
+				::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares,
+				::Legends.Perk.LegendHorseFlyingChange,
+				::Legends.Perk.LegendHorsePirouette,
+				::Legends.Perk.LegendHorsePassage
 			],
 			[],
 			[],
@@ -107,41 +98,7 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				125,
-				145
-			],
-			Bravery = [
-				10,
-				15
-			],
-			Stamina = [
-				55,
-				65
-			],
-			MeleeSkill = [
-				10,
-				10
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				10,
-				10
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				-5,
-				-10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorseDestrier);
 	}
 
 

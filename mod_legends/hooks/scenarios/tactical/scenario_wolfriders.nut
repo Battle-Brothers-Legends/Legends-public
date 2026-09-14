@@ -23,7 +23,7 @@
 		entity.setScenarioValues();
 		items = entity.getItems();
 		items.equip(this.new("scripts/items/armor/padded_leather"));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "kettle_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
 		items.equip(this.new("scripts/items/armor/padded_leather"));
 		items.equip(this.new("scripts/items/weapons/longaxe"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 12, 12);
@@ -33,14 +33,14 @@
 		items = entity.getItems();
 		items.equip(this.new("scripts/items/armor/leather_tunic"));
 		items.equip(this.new("scripts/items/weapons/pike"));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "hood"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 12, 12, 14, 14);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "mouth_piece"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mouth_piece]]));
 		items.equip(this.new("scripts/items/armor/thick_tunic"));
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
@@ -50,7 +50,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "aketon_cap"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
 		items.equip(this.new("scripts/items/armor/gambeson"));
 		items.equip(this.new("scripts/items/weapons/crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
@@ -60,15 +60,15 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "kettle_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
 		items.equip(this.new("scripts/items/armor/lamellar_harness"));
-		items.equip(this.new("scripts/items/weapons/greatsword"));
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 10, 10, 15, 15);
 		this.World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "dented_nasal_helmet"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.dented_nasal_helmet]]));
 		items.equip(this.new("scripts/items/armor/padded_leather"));
 		items.equip(this.new("scripts/items/weapons/arming_sword"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -77,7 +77,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "nasal_helmet_with_rusty_mail"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet_with_rusty_mail]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
 		items.equip(this.new("scripts/items/weapons/hand_axe"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -86,7 +86,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "closed_mail_coif"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.closed_mail_coif]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
 		items.equip(this.new("scripts/items/weapons/boar_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -95,7 +95,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "flat_top_with_mail"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_with_mail]]));
 		items.equip(this.new("scripts/items/armor/mail_shirt"));
 		items.equip(this.new("scripts/items/weapons/warhammer"));
 		items.equip(this.new("scripts/items/shields/named/named_full_metal_heater_shield"));
@@ -104,7 +104,7 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "witchhunter_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.witchhunter_hat]]));
 		items.equip(this.new("scripts/items/armor/ragged_surcoat"));
 		items.equip(this.new("scripts/items/weapons/winged_mace"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 15, 15, 13, 13);
@@ -112,13 +112,25 @@
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, "mail_coif"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
 		items.equip(this.new("scripts/items/armor/coat_of_plates"));
-		items.equip(this.new("scripts/items/weapons/greatsword"));
+		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 
-		for( local i = 0; i < 10; i = ++i )
+		for( local i = 0; i < 4; i = ++i )
+		{
+			entity = this.spawnEnemy("scripts/entity/tactical/enemies/legend_goblin_direwolf_rider");
+			entity.setFaction(this.Const.Faction.Goblins);
+			entity.assignRandomEquipment();
+		}
+		for( local i = 0; i < 4; i = ++i )
 		{
 			entity = this.spawnEnemy("scripts/entity/tactical/enemies/goblin_wolfrider");
+			entity.setFaction(this.Const.Faction.Goblins);
+			entity.assignRandomEquipment();
+		}
+		for( local i = 0; i < 4; i = ++i )
+		{
+			entity = this.spawnEnemy("scripts/entity/tactical/enemies/legend_goblin_white_direwolf_rider");
 			entity.setFaction(this.Const.Faction.Goblins);
 			entity.assignRandomEquipment();
 		}
@@ -149,10 +161,10 @@
 		this.Stash.add(this.new("scripts/items/weapons/arming_sword"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
 		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
-		this.Stash.add(this.new("scripts/items/weapons/greatsword"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
 		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
 		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
 		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
@@ -185,23 +197,23 @@
 		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
 		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
 		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "hood"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "aketon_cap"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "full_aketon_cap"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "nasal_helmet"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "padded_nasal_helmet"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "nasal_helmet_with_mail"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "mail_coif"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "closed_mail_coif"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "reinforced_mail_coif"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "kettle_hat"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "padded_kettle_hat"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "kettle_hat_with_mail"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "flat_top_helmet"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "flat_top_with_mail"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "full_helm"]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, "full_helm"]]));
-		this.Stash.add(this.new("scripts/items/armor/padded_surcoat"));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_aketon_cap]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_nasal_helmet]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.closed_mail_coif]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.reinforced_mail_coif]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_kettle_hat]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_helmet]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_with_mail]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
+		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
+		this.Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		this.Stash.add(this.new("scripts/items/armor/gambeson"));
 		this.Stash.add(this.new("scripts/items/armor/gambeson"));
 		this.Stash.add(this.new("scripts/items/armor/padded_leather"));

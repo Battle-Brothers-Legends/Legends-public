@@ -6,8 +6,8 @@ this.legend_rune_safety <- this.inherit("scripts/items/legend_armor/legend_armor
 		this.m.ID = "legend_armor_upgrade.legend_rune_safety";
 		this.m.Type = this.Const.Items.ArmorUpgrades.Rune;
 		this.m.Name = "Armor Rune Sigil: Safety";
-		this.m.Description = "An inscribed rock that can be attached to a character\'s armor.";
-		this.m.ArmorDescription = "Includes An inscribed rock that grants additional safety bonuses.";
+		this.m.Description = "An inscribed rock that can be attached to a character\'s armor to increase the wearer's safety.";
+		this.m.ArmorDescription = "Includes a safety rune.";
 		this.m.Icon = "rune_sigils/rune_stone_3.png";
 		this.m.IconLarge = this.m.Icon;
 		this.m.OverlayIcon = "layers/glow_runed_icon.png";
@@ -19,44 +19,13 @@ this.legend_rune_safety <- this.inherit("scripts/items/legend_armor/legend_armor
 		this.m.SpriteCorpseFront = "";
 		this.m.SpriteCorpseBack = "";
 		this.m.Value = 1200;
-		this.setRuneVariant(22);
+		this.setRuneVariant(::Legends.Rune.LegendRsaSafety);
 		this.setRuneBonus(false); // false = unupgraded enchanter stats. true = upgraded enchanter stats
-	}
-
-	function getTooltip()
-	{
-		local result = this.legend_armor_upgrade.getTooltip();
-		result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received."
-		});
-		return result;
-	}
-
-	function onArmorTooltip( _result )
-	{
-		_result.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "This item has the power of the rune sigil of Safety:\n[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.m.RuneBonus1 + "%[/color] Hitpoints.\n[color=" + this.Const.UI.Color.PositiveValue + "]-" + this.m.RuneBonus2 + "%[/color] Damage received."
-		});
 	}
 
 	function onDamageReceived( _damage, _fatalityType, _attacker )
 	{
 		return _damage;
 	}
-
-	function onUpdateProperties( _properties )
-	{
-		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.HitpointsMult *= (1.0 + ((this.m.RuneBonus1 * 1.0) / 100.0));
-		_properties.DamageReceivedTotalMult *= (1.0 - ((this.m.RuneBonus2 * 1.0) / 100.0));
-	}
-
-
 });
 

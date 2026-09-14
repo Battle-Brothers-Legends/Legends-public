@@ -2,6 +2,11 @@
 {
 	while(!("ID" in o.m)) o=o[o.SuperName];
 
+	local isSpecial = o.isSpecial;
+	o.isSpecial = function () {
+		return "isValidForEncounter" in this.m || isSpecial();
+	}
+
 	o.setScreen = function ( _screen )
 	{
 		if (_screen == null)
@@ -50,6 +55,7 @@
 			option.Event <- this;
 		}
 	}
+
 	o.buildText = function ( _text )
 	{
 		local brothers = this.World.getPlayerRoster().getAll();
@@ -72,7 +78,7 @@
 					brothers.remove(i);
 				}
 			}
-			else if (brothers.len() > 1 && brothers[i].getBackground().getID() == "background.slave")
+			else if (brothers.len() > 1 && ::Legends.Backgrounds.has(brothers[i], ::Legends.Background.Slave))
 			{
 				slaves.push(brothers[i]);
 				brothers.remove(i);
@@ -108,14 +114,10 @@
 		local citystates = [];
 		local northern = [];
 
-		for( local i = 0; i < villages.len(); i = ++i )
-		{
-			if (this.isKindOf(villages[i], "city_state"))
-			{
+		for (local i = 0; i < villages.len(); i = ++i) {
+			if (villages[i].isSouthern()) {
 				citystates.push(villages[i]);
-			}
-			else
-			{
+			} else {
 				northern.push(villages[i]);
 			}
 		}
@@ -207,7 +209,6 @@
 			}
 		}
 
-		local text;
 		local vars = [
 			[
 				"SPEECH_ON",
@@ -250,88 +251,8 @@
 				brother1
 			],
 			[
-				"they1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "they")
-			],
-			[
-				"them1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "them")
-			],
-			[
-				"their1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "their")
-			],
-			[
-				"theirs1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "theirs")
-			],
-			[
-				"themselves1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "themselves")
-			],
-			[
-				"They1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "They")
-			],
-			[
-				"Them1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Them")
-			],
-			[
-				"Their1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Their")
-			],
-			[
-				"Theirs1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Theirs")
-			],
-			[
-				"Themselves1",
-				this.Const.LegendMod.getPronoun(bro1.getGender(), "Themselves")
-			],
-			[
 				"randombrother2",
 				brother2
-			],
-			[
-				"they2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "they")
-			],
-			[
-				"them2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "them")
-			],
-			[
-				"their2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "their")
-			],
-			[
-				"theirs2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "theirs")
-			],
-			[
-				"themselves2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "themselves")
-			],
-			[
-				"They2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "They")
-			],
-			[
-				"Them2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Them")
-			],
-			[
-				"Their2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Their")
-			],
-			[
-				"Theirs2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Theirs")
-			],
-			[
-				"Themselves2",
-				this.Const.LegendMod.getPronoun(bro2.getGender(), "Themselves")
 			],
 			[
 				"randomtown",
@@ -350,6 +271,17 @@
 				this.m.TownImage
 			]
 		];
+
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro1, "randombrother");
+		::Const.LegendMod.extendVarsWithPronouns(vars, bro2, "randombrother2");
+		// Dynamically handle pronouns for any additional actors in an event
+		// For this to work, any event text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
+		// For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
+		foreach (key, value in this.m) {
+			if (::MSU.isKindOf(value, "actor")) {
+				::Const.LegendMod.extendVarsWithPronouns(vars, value, key.tolower());
+			}
+		}
 		this.onPrepareVariables(vars);
 		return this.buildTextFromTemplate(_text, vars);
 	}
@@ -407,8 +339,36 @@
 			]
 		]);
 	}
-	o.canFire <- function ()
-	{
+
+	local update = o.update;
+	o.update = function () {
+		if("isValidForEncounter" in this.m) {
+			if (this.Time.getVirtualTimeF() < this.m.CooldownUntil) {
+				this.m.isValidForEncounter = false; // it might be true here and show up not ready encounter
+				return;
+			}
+			this.onClear();
+			this.onUpdateScore();
+		} else update();
+	}
+
+	o.canFire <- function () {
 		return true;
+	}
+
+	local getUIList = o.getUIList;
+	o.getUIList = function () {
+		// Add templates from _tooltip_templates to event lists
+		local list = getUIList();
+		local transform = function (_list) {
+			 _list.items = _list.items.map(function (_item) {
+				if ("text" in _item)
+					_item.text = ::Legends.tooltip(_item.text);
+				return _item;
+			});
+			return _list;
+		}
+
+		return list.map(transform);
 	}
 });

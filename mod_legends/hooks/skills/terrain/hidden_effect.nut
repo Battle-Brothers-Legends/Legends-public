@@ -32,28 +32,28 @@
 					id = 11,
 					type = "text",
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Minimum and Maximum Damage from the Assassinate perk"
+					text = "[color=%positive%]+50%[/color] Minimum and Maximum Damage from the Assassinate perk"
 				}
 			]);
 		}
 
-		if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+		if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
 		ret.extend([
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+50%[/color] Maximum Damage from being an assassin"
+				text = "[color=%positive%]+50%[/color] Maximum Damage from being an assassin"
 			}
 		]);
 
-		if (actor.getSkills().hasSkill("background.legend_commander_assassin"))
+		if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
 		ret.extend([
 			{
 				id = 13,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+75%[/color] Maximum Damage from being an experienced assassin"
+				text = "[color=%positive%]+75%[/color] Maximum Damage from being an experienced assassin"
 			}
 		]);
 
@@ -81,28 +81,33 @@
 	}
 
 	//added all this missing code from legend_hidden_effect which seemingly controls the hidden graphics--
-	o.onMovementCompleted <- function ( _tile )
+	o.onMovementFinished <- function ()
 	{
 		//initialise variables
 		local body = 0;
 		local head = 0;
 		local actor = this.getContainer().getActor();
+		
+		if (::Legends.S.isEntityNullOrDead(actor)) //In case actor dies to spearwall
+			return;
+		
+		local tile = actor.getTile();
 
 		//get the items
-		local bodyItem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local headItem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local bodyItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+		local headItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
 
 		//check if the item exists to stop the error: getStaminaModifier does not exist
 
 		if (bodyItem != null)
 		{
-		//update the variables
-		body = bodyItem.getStaminaModifier();
+			//update the variables
+			body = bodyItem.getStaminaModifier();
 		}
 
 		if (headItem != null)
 		{
-		head = headItem.getStaminaModifier();
+			head = headItem.getStaminaModifier();
 		}
 
 		//calculate either on the initial or updated variable
@@ -112,7 +117,7 @@
 		local entites = this.Tactical.Entities.getAllHostilesAsArray();
 
 		local outOfEarshot3 = true;
-		if(fat > 15 && fat <=35){
+		if (fat > 15 && fat <= 35) {
 
 			foreach( unit in entites )
 			{
@@ -120,7 +125,7 @@
 	            {
 	                continue;
 	            }
-				if (unit.getTile().getDistanceTo(_tile) <= 3)
+				if (unit.getTile().getDistanceTo(tile) <= 3)
 				{
 					outOfEarshot3 = false;
 					break;
@@ -136,14 +141,14 @@
 		}
 
 		local outOfEarshot5 = true;
-		if(fat > 35){
+		if (fat > 35) {
 			foreach( unit in entites )
 			{
 	            if (unit.getID() == actor.getID())
 	            {
 	                continue;
 	            }
-				if (unit.getTile().getDistanceTo(_tile) <= 5)
+				if (unit.getTile().getDistanceTo(tile) <= 5)
 				{
 					outOfEarshot5 = false;
 					break;
@@ -157,8 +162,8 @@
 				return;
 			}
 		}
-		if(fat <= 15){
-			if (_tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+		if (fat <= 15) {
+			if (tile.hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 			{
 				this.m.ToRemove = true;
 				this.effect();
@@ -172,14 +177,14 @@
 	o.onTargetHit <- function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
 		this.getContainer().getActor().setHidden(false);
-		effect();
+		this.effect();
 		this.m.ToRemove = true;
 	}
 
 	o.onTargetMissed <- function ( _skill, _targetEntity )
 	{
 		this.getContainer().getActor().setHidden(false);
-		effect();
+		this.effect();
 		this.m.ToRemove = true;
 	}
 
@@ -260,11 +265,11 @@
             _properties.DamageRegularMin *= 1.2;
             _properties.DamageRegularMax *= 1.2;
 
-            if (actor.getSkills().hasSkill("background.legend_assassin") || actor.getSkills().hasSkill("background.assassin") || actor.getSkills().hasSkill("background.assassin_southern"))
+            if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Assassin)) || actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.AssassinSouthern)))
             {
                 _properties.DamageRegularMax *= 1.3;
             }
-            if (actor.getSkills().hasSkill("background.legend_commander_assassin"))
+            if (actor.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderAssassin)))
             {
                 _properties.DamageRegularMax *= 1.5;
             }

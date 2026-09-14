@@ -8,8 +8,8 @@
 					this.Characters.push(_event.m.Anatomist.getImagePath());
 
 					local item = this.Const.World.Common.pickArmor([
-					[1, "decayed_coat_of_scales"],
-					[1, "decayed_reinforced_mail_hauberk"]
+						[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
+						[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 					]);
 
 					item.setCondition(item.getConditionMax() / 2 - 1);
@@ -17,7 +17,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					item = this.new("scripts/items/weapons/arming_sword");
 					item.setCondition(item.getConditionMax() / 2 - 1);
@@ -46,8 +47,8 @@
 					this.Characters.push(_event.m.Noble.getImagePath());
 
 					local armor_list = [
-						this.Const.World.Common.pickArmor("decayed_reinforced_mail_hauberk"),
-						this.Const.World.Common.pickHelmet("decayed_closed_flat_top_with_mail")
+						this.Const.World.Common.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
+						this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
 					];
 
 					local item = this.new(armor_list[this.Math.rand(0, armor_list.len() - 1)]);
@@ -56,7 +57,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					_event.m.Anatomist.worsenMood(1.0, "Was denied the opportunity to examine a promising corpse");
 
@@ -86,8 +88,8 @@
 				{
 					this.Characters.push(_event.m.Anatomist.getImagePath());
 					local armor_list = [
-						this.Const.World.Common.pickArmor("decayed_reinforced_mail_hauberk"),
-						this.Const.World.Common.pickHelmet("decayed_closed_flat_top_with_mail")
+						this.Const.World.Common.pickArmor([[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]]),
+						this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail]])
 					];
 					local item = this.new(armor_list[this.Math.rand(0, armor_list.len() - 1)]);
 					item.setCondition(item.getConditionMax() / 2 - 1);
@@ -95,14 +97,15 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 					_event.m.Anatomist.addXP(200, false);
 					_event.m.Anatomist.updateLevel();
 					this.List.push({
 						id = 16,
 						icon = "ui/icons/xp_received.png",
-						text = _event.m.Anatomist.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]+200[/color] Experience"
+						text = _event.m.Anatomist.getName() + " gains [color=%positiveEvent%]+200[/color] Experience"
 					});
 				}
 			}
@@ -132,7 +135,7 @@
 		local noble_candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().getID() == "background.anatomist")
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Anatomist))
 				anatomist_candidates.push(bro);
 			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
 				noble_candidates.push(bro);

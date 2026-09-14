@@ -1,18 +1,18 @@
-::mods_hookExactClass("entity/tactical/humans/barbarian_thrall", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/barbarian_thrall", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		// todo delete it - chopeks
-//		if (this.LegendsMod.Configs().LegendTherianthropyEnabled())
-//		{
-//			if(this.Math.rand(1, 20) == 1)
-//			{
-//				this.m.Skills.add(this.new("scripts/skills/injury_permanent/legend_lycanthropy_injury"));
-//			}
-//		}
-
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
@@ -20,7 +20,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}
@@ -66,15 +66,15 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "barbarians/thick_furs_armor"],
-			[1, "barbarians/animal_hide_armor"],
-			[2, ""]
+			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
+			[1, ::Legends.Armor.Barbarian.animal_hide_armor],
+			[2, ::Legends.Armor.None]
 		]));
 
 
 		local item = this.Const.World.Common.pickHelmet([
-			[1, "barbarians/leather_headband"],
-			[1, "barbarians/bear_headpiece"],
+			[1, ::Legends.Helmet.Barbarian.leather_headband],
+			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[2, ""]
 		]);
 		if (item != null)

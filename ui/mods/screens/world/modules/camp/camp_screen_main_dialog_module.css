@@ -163,7 +163,7 @@
 
 /* Bottow row of tents */
 .camp-screen > .l-main-dialog-container .slot-craft {
-	-webkit-transform: scale(-0.7, 0.7);
+	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
 	left: 7.0rem;
 	top: 42.0rem;
@@ -172,14 +172,14 @@
 .camp-screen > .l-main-dialog-container .slot-train {
 	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
-	left: 20.0rem;
+	left: 24.0rem;
 	top: 46.0rem;
 }
 
 .camp-screen > .l-main-dialog-container .slot-rest {
 	-webkit-transform: scale(0.7, 0.7);
 	position: absolute;
-	left: 44.0rem;
+	left: 49.0rem;
 	top: 47.0rem;
 }
 
@@ -250,7 +250,14 @@
 		top: 26.0rem;
 	}
 
-.camp-screen > .l-main-dialog-container .slot-hunt {
+/*.camp-screen > .l-main-dialog-container .slot-hunt {
+		-webkit-transform: scale(0.7, 0.7);
+		position: absolute;
+		left: 45.0rem;
+		top: 23.0rem;
+	}*/
+
+.camp-screen > .l-main-dialog-container .slot-cook {
 		-webkit-transform: scale(0.7, 0.7);
 		position: absolute;
 		left: 45.0rem;
@@ -803,6 +810,13 @@
 	left: 25.2rem;
 }
 
+.camp-screen > .l-barber-dialog-container .content .details-container .tattoo-head-control
+{
+	position: absolute;
+	top: 42.0rem;
+	left: 2.9rem;
+}
+
 .camp-screen > .l-barber-dialog-container .content .details-container .appearance-control .text
 {
 	margin-top: 0.2rem;
@@ -1060,4 +1074,120 @@
 	position: absolute;
 
 	line-height: 3.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract-scroll
+{
+	position: absolute;
+	margin-left: auto;
+	margin-right: auto;
+	margin-top: auto;
+	margin-bottom: auto;
+}
+
+.camp-screen > .l-main-dialog-container .contract0
+{
+	position: absolute;
+	left: 2.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract1
+{
+	position: absolute;
+	left: 8.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract2
+{
+	position: absolute;
+	left: 14.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract3
+{
+	position: absolute;
+	left: 20.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract4
+{
+	position: absolute;
+	left: 26.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract5
+{
+	position: absolute;
+	left: 32.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract6
+{
+	position: absolute;
+	left: 39.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract7
+{
+	position: absolute;
+	left: 45.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract8
+{
+	position: absolute;
+	left: 51.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .contract9
+{
+	position: absolute;
+	left: 57.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .is-contract
+{
+	 max-width: 5.0rem;
+	 height: auto;
+	 top: 2.0rem;
+}
+
+.camp-screen > .l-main-dialog-container .is-scroll
+{
+	 top: 3.4rem;
+	 margin-left: 0.6rem;
+	 pointer-events: none;
+}
+
+/*Bottom Middle*/
+.camp-screen > .l-main-dialog-container .is-contract-category-middle
+{
+	 top: 7.4rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
+}
+
+/*Bottom Right*/
+.camp-screen > .l-main-dialog-container .is-contract-category-right
+{
+	 top: 7.4rem;
+	 margin-left: 2.6rem;
+	 pointer-events: none;
+}
+
+
+/*Bottom Left*/
+.camp-screen > .l-main-dialog-container .is-contract-category-left
+{
+	 top: 7.4rem;
+	 margin-left: -0.8rem;
+	 pointer-events: none;
+}
+
+/*Below*/
+.camp-screen > .l-main-dialog-container .is-contract-category-below
+{
+	 top: 9rem;
+	 margin-left: 0.9rem;
+	 pointer-events: none;
 }

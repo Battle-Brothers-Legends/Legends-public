@@ -3,7 +3,7 @@ this.legend_tent_heal <- this.inherit("scripts/items/trade/trading_good_item", {
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.healer_tent";
+		this.m.ID = ::Legends.Camp.Tent.Healer;
 		this.m.Name = "Healer\'s Tent";
 		this.m.Description = "Cloth tent woven from sheep wool and wood, comes with healer tools, salves and cots. Having this in your stash upgrades your camp, increasing your healing rate and reducing medicine consumption.";
 		this.m.Icon = "tents/tent_heal_70x70.png";

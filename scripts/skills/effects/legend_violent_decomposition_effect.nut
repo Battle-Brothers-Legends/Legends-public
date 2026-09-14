@@ -11,7 +11,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 	function setActorID( _id )
 	{
-		this.m.ActorID = _id
+		this.m.ActorID = _id;
 	}
 
 	function getAttacker()
@@ -29,18 +29,12 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		return this.getContainer().getActor();
 	}
 
-	function create()
-	{
-		this.m.ID = "effects.legend_violent_decomposition_effect";
-		this.m.Name = "Violent Decomposition";
+	function create() {
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecompositionEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.SoundOnUse = [
-			"sounds/enemies/ghoul_death_fullbelly_01.wav",
-			"sounds/enemies/ghoul_death_fullbelly_02.wav",
-			"sounds/enemies/ghoul_death_fullbelly_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/ghoul_death_fullbelly", 3);
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -48,7 +42,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 	function getDescription()
 	{
-		return "This summon is set to explode in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This summon is set to explode in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -69,17 +63,17 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		return ret;
 	}
 
-	function onAdded()
-	{
-		if (this.getContainer().getActor().getFlags().has("skeleton"))
-		{
+	function onAdded() {
+		if (this.getContainer().getActor().getFlags().has("skeleton")) {
 			// change explosion sound for skeleton minion
-			this.m.SoundOnUse = [
-				"sounds/enemies/dlc6/skull_bang_01.wav",
-				"sounds/enemies/dlc6/skull_bang_02.wav",
-				"sounds/enemies/dlc6/skull_bang_03.wav",
-				"sounds/enemies/dlc6/skull_bang_04.wav"
-			];
+			this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/skull_bang", 4);
+		}
+
+		this.m.TurnsLeft = 1;
+
+		if (this.m.SoundOnUse.len() != 0)
+		{
+			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
 		}
 	}
 
@@ -101,9 +95,9 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		{
 			mult *= data.TotalDamageMult;
 		}
-		
+
 		//this.spawnIcon("status_effect_78", actor.getTile());
-		
+
 		this.spawnEffectOnTile(ownTile);
 		for( local i = 5; i >= 0; i = --i )
 		{
@@ -127,16 +121,6 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		}
 
 		actor.kill(null, null, this.Const.FatalityType.Suicide, false);
-	}
-
-	function onAdded()
-	{
-		this.m.TurnsLeft = 1;
-
-		if (this.m.SoundOnUse.len() != 0)
-		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
-		}
 	}
 
 	function onUpdate( _properties )

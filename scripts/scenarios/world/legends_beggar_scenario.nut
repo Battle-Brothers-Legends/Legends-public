@@ -13,17 +13,12 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 
 
-	function onSpawnAssets()
-	{
-		local roster = this.World.getPlayerRoster();
-		local names = [];
+	function onSpawnAssets() {
 		local bro;
 		bro = ::World.getPlayerRoster().create("scripts/entity/tactical/player");
 		bro.m.HireTime = this.Time.getVirtualTimeF();
 		bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
-		bro.setStartValuesEx([
-			"legend_beggar_commander_background"
-		]);
+		bro.setStartValuesEx([::Legends.Background.LegendCommanderBeggar]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		bro.getFlags().set("IsPlayerCharacter", true);
 		bro.worsenMood(1.5, "Saw something awful");
@@ -127,12 +122,12 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		return false;
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !_bro.isStabled())
 		{
-			bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
-			bro.worsenMood(1.0, "Fell sick after joining you");
+			_bro.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
+			_bro.worsenMood(1.0, "Fell sick after joining you");
 		}
 	}
 

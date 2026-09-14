@@ -4,11 +4,8 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_pie";
-		this.m.Name = "Eat or Give Pie";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatPie);
 		this.m.Description = "Give to an adjacent ally or eat yourself a pie that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/pie_square.png";
-		this.m.IconDisabled = "skills/pie_square_bw.png";
 	}
 
 	function getTooltip()
@@ -33,13 +30,13 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Hitpoints per turn for 10 turns"
+				text = "[color=%positive%]+1[/color] Hitpoints per turn for 10 turns"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+1[/color] Fatigue per turn for 10 turns"
+				text = "[color=%positive%]+1[/color] Fatigue per turn for 10 turns"
 			}
 		];
 
@@ -49,7 +46,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -62,7 +59,7 @@ this.legend_eat_pie_skill <- this.inherit("scripts/skills/actives/base/legend_ea
 
 		if (_user.getID() == user.getID())
 		{
-			user.getSkills().add(this.new("scripts/skills/effects/legend_pie_effect"));
+			::Legends.Effects.grant(user, ::Legends.Effect.LegendPieEffect);
 
 			if (!user.isHiddenToPlayer())
 			{

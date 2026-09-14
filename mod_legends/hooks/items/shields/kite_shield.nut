@@ -1,9 +1,9 @@
 ::mods_hookExactClass("items/shields/kite_shield", function(o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Variants = [
+			0,
 			1,
 			2,
 			3,
@@ -13,8 +13,8 @@
 			7,
 			8,
 			9,
-/* 			10,
-			11, */
+			// 10,
+			// 11,
 			12,
 			13,
 			14,
@@ -37,22 +37,75 @@
 			31,
 			32,
 			33,
-			34,
+			// 34,
 			35,
 			36,
-			37,
+			// 37,
 			38,
 			39,
 			40,
 			41,
-			42
+			// 42,
+			43,
+			44,
+			45,
+			101,
+			102,
+			103,
+			104,
+			105,
+			106
 		];
-		this.m.Variant = this.Math.rand(0, 9); //random one is only 1-9 though
+		if (this.Const.DLC.UnholdSupporter)
+			this.m.Variants.push(34);
+		if (this.Const.DLC.WildmenSupporter)
+			this.m.Variants.push(37);
+		if (this.Const.DLC.DesertSupporter)
+			this.m.Variants.push(42);
+		this.m.Block = 20;
+		this.m.RegularDamage = 10;
+		this.m.RegularDamage = 25;
+		this.addVariants();
+		this.m.Variant = this.Math.rand(0, 9); //random one is only 0-9 though
+		this.updateVariant();
 	}
 
-	o.onPaintSpecificColor <- function ( _color )
-	{
+	o.getTooltip <- function () {
+		local result = this.shield.getTooltip();
+		result.push({
+			id = 11,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Reduces any ranged damage taken by [color=%negative%]30%[/color]"
+		});
+		return result;
+	}
+
+	o.onUpdateProperties <- function (_properties) {
+		this.shield.onUpdateProperties(_properties);
+		_properties.DamageReceivedRangedMult *= 0.7;
+	}
+
+	o.addVariants <- function () {
+		local bannerID = 0;
+		foreach (banner in ::Const.PlayerBanners) {
+			bannerID = banner.slice("banner_".len()).tointeger();
+			bannerID = bannerID >= 50 ? bannerID : bannerID + 11;
+			if (this.m.Variants.find(bannerID) == null) {
+				this.m.Variants.push(bannerID);
+			}
+		}
+		this.m.Variants.sort();
+	}
+
+	o.onPaintSpecificColor <- function ( _color ) {
 		this.setVariant(_color);
+		this.updateAppearance();
+	}
+
+	o.onPaintInCompanyColors = function () {
+		local bannerID = this.World.Assets.getBannerID() >= 50 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		this.setVariant(bannerID);
 		this.updateAppearance();
 	}
 });

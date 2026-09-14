@@ -16,11 +16,7 @@
 				local startD = s.start;
 				s.start <- function (_event) {
 					startD(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(3, false));
 				}
 			}
 			if (s.ID == "E") {
@@ -28,11 +24,7 @@
 				local startE = s.start;
 				s.start <- function (_event) {
 					startE(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(3, false));
 				}
 			}
 		}
@@ -66,7 +58,7 @@
 			else if (r == 2)
 				item = this.new("scripts/items/weapons/knife");
 			else if (r == 3)
-					item = this.Const.World.Common.pickHelmet([[1, "hood"]]);
+					item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
 			else if (r == 4)
 				item = this.new("scripts/items/weapons/woodcutters_axe");
 			else if (r == 5)
@@ -74,12 +66,12 @@
 			else if (r == 6)
 				item = this.new("scripts/items/weapons/pickaxe");
 			else if (r == 7)
-				item = this.Const.World.Common.pickHelmet([[1, "feathered_hat"]]);
+				item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.feathered_hat]]);
 			else {
 				item = this.Const.World.Common.pickArmor([
-					[1, "linen_tunic"],
-					[1, "leather_wraps"],
-					[1, "tattered_sackcloth"],
+					[1, ::Legends.Armor.Standard.linen_tunic],
+					[1, ::Legends.Armor.Standard.leather_wraps],
+					[1, ::Legends.Armor.Standard.tattered_sackcloth],
 				]);
 			}
 
@@ -87,7 +79,8 @@
 			_list.push({
 				id = 10,
 				icon = "ui/items/" + item.getIcon(),
-				text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+				imageOverlayPath = item.getIconOverlay(),
+				text = "You gain " + item.makeName()
 			});
 		}
 	}
@@ -116,9 +109,9 @@
 		foreach( bro in brothers ) {
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getSkills().hasTrait(::Legends.Trait.Brute))
 				candidates_aggro.push(bro);
-			else if (bro.getBackground().getID() == "background.refugee")
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Refugee))
 				candidates_refugees.push(bro);
-			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player) && bro.getBackground().getID() != "background.slave")
+			else if (!bro.getSkills().hasTrait(::Legends.Trait.Player) && !::Legends.Backgrounds.has(bro, ::Legends.Background.Slave))
 				candidates_other.push(bro);
 		}
 
@@ -132,5 +125,13 @@
 			this.m.RefugeeDude = candidates_refugees[this.Math.rand(0, candidates_refugees.len() - 1)];
 
 		this.m.Score = 10;
+	}
+
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function ()
+	{
+		if (this.Stash.getNumberOfEmptySlots() < 2)
+			return;
+		onUpdateScore();
 	}
 })

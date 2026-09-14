@@ -1,6 +1,6 @@
 Brush checklist
 
-Make the brush ID the same as the filename, so its easy to look up without checking the XML
+Make the brush ID the same as the filename, so it's easy to look up without checking the XML
 
 
 **Item checklist**

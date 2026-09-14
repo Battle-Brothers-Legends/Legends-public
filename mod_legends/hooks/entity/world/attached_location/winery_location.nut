@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "Golden wheat can be seen glistening in the sun from afar. Many people from the nearby settlement work here. Contributes bread, grains, poridge, farmhands, daytalers, millers and bakers to the local town.";
+		this.m.Description = "This winery is surrounded by a large vineyard. The wine produced here is a prized commodity in wealthier circles.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;

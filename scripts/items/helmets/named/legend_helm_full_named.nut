@@ -1,7 +1,7 @@
 this.legend_helm_full_named <- this.inherit("scripts/items/helmets/named/named_helmet", {
 	m = {},
 	function create()
-	{
+	{	//mfdel
 		this.named_helmet.create();
 		this.m.ID = "armor.head.legend_helm_full_named";
 		this.m.Name = "Full Great Helm";

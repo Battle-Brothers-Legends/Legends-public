@@ -2,12 +2,7 @@ this.perk_legend_net_casting <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendNetCasting);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNetCasting);
 	}
 
 	function onUpdate( _properties )
@@ -36,9 +31,7 @@ this.perk_legend_net_casting <- this.inherit("scripts/skills/skill", {
 
 		// Equipping a net into a free offhand (whether from the bag or from the ground) is always free
 		if (_items.len() == 3 && nets == 1 && notNets == 0)
-		{
-			return 0
-		}
+			return 0;
 
 		return null;
 

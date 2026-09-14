@@ -37,33 +37,33 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 			i = ++i;
 		}
 
-		local bros = roster.getAll(); //starting party
-		local talents;
-		bros[0].setStartValuesEx([
-			"legend_ranger_commander_background"
-		]);
+		local bros = roster.getAll(); //starting party	
+		bros[0].setStartValuesEx([::Legends.Background.LegendCommanderRanger]);
 		bros[0].getBackground().m.RawDescription = "{%name% grew up in the rangers and was taught the ways of the forest by veteran foresters. Running through the woods for a lifetime has made %name% particularly good at tracking enemies, or tumbling into the homes of wild druids trying to escape from the modern world}";
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[0].getBackground(), this.Const.Perks.PerkDefs.Footwork);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.Pathfinder);
+		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendTacticalManeuvers);
 		bros[0].improveMood(1.5, "Narrowly escaped a bear");
 		bros[0].addLightInjury();
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setPlaceInFormation(3);
 		bros[0].setVeteranPerks(2);
 
-		bros[1].setStartValuesEx([
-			"legend_druid_commander_background"
-		]);
+		bros[1].setStartValuesEx([::Legends.Background.LegendDruid]);
 		bros[1].getBackground().m.RawDescription = "{%name% was the bastard of a noblewoman who left them in a ditch at the edge of the forest to be taken by wolves. It worked, but instead left %name% being cared for by a wolfmother with no cubs of her own. When the she-wolf was slain by vengeful poachers %name% took it upon themselves to be as far away from society as possible. Right up until a certain ranger fell headfirst into their hovel}";
 
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Pathfinder);
-		this.addScenarioPerk(bros[1].getBackground(), this.Const.Perks.PerkDefs.Footwork);
-		bros[1].worsenMood(1.5, "Had my home destroyed by an idiot");
+		this.addScenarioPerk(bros[1].getBackground(), ::Const.Perks.PerkDefs.Pathfinder);
+		this.addScenarioPerk(bros[1].getBackground(), ::Const.Perks.PerkDefs.LegendTacticalManeuvers);
+		bros[1].worsenMood(1.5, "Had his home destroyed by a clumsy intruder");
 		bros[1].getFlags().set("IsPlayerCharacter", true);
 		bros[1].setPlaceInFormation(4);
 		bros[1].setVeteranPerks(2);
+		bros[1].getBaseProperties().MeleeSkill += 10;
+		local talents = bros[1].getTalents();
+		talents.resize(this.Const.Attributes.COUNT, 0);
+		talents[this.Const.Attributes.MeleeSkill] = 2;
+		talents[this.Const.Attributes.Hitpoints] = 2;
 		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
@@ -185,48 +185,53 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 	function onUpdateHiringRoster( _roster )
 	{
-		this.addBroToRoster(_roster, "poacher_background", 6);
-		// this.addBroToRoster(_roster, "wildwoman_background", 6);
-		this.addBroToRoster(_roster, "wildman_background", 8);
-		this.addBroToRoster(_roster, "hunter_background", 6);
-		this.addBroToRoster(_roster, "legend_herbalist_background", 8);
-		this.addBroToRoster(_roster, "legend_ranger_background", 9);
+		this.addBroToRoster(_roster, ::Legends.Background.Hunter, 6);
+		this.addBroToRoster(_roster, ::Legends.Background.Poacher, 6);
+		this.addBroToRoster(_roster, ::Legends.Background.Wildman, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendHerbalist, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendRanger, 9);
 
 	}
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
 		{
-			bro.improveMood(1.0, "Supports the ranger cause");
-			bro.getSprite("socket").setBrush("bust_base_beasts");
+			_bro.improveMood(1.0, "Supports the ranger cause");
+			_bro.getSprite("socket").setBrush("bust_base_beasts");
 		}
 		else
 		{
-			bro.worsenMood(2.0, "Does not like sleeping in the woods");
+			_bro.worsenMood(2.0, "Does not like sleeping in the woods");
 		}
 	}
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.isStabled()) {
+			return;
+		}
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75) //1.0 = default
-				bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-				bro.getSkills().update();
+				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+				_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+				_bro.getSkills().update();
 			}
 			else
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25) //1.0 = default
-				bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
-				bro.getSkills().update();
+				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
+				_bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
+				_bro.getSkills().update();
 			}
 	}
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(this.Const.BackgroundType.Druid) || _background.isBackgroundType(this.Const.BackgroundType.Ranger));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(this.Const.BackgroundType.Druid) || _background.isBackgroundType(this.Const.BackgroundType.Ranger));
 	}
 });
 

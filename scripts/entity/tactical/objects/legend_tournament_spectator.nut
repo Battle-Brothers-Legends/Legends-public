@@ -114,10 +114,10 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 			"bust_helmet_205",
 			"bust_helmet_206",
 			"bust_helmet_236",
-			"legend_frogmouth_01",
-			"legend_frogmouth_02",
-			"legend_frogmouth_03",
-			"legend_frogmouth_04",
+			"frogmouth_01",
+			"frogmouth_02",
+			"frogmouth_03",
+			"frogmouth_04",
 			"bust_helmet_04_bearded",
 			"bust_helmet_04_full",
 			"bust_helmet_04_curved",
@@ -152,7 +152,7 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 			"faction_helmet_11"
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled" && this.Math.rand(1, 100) >= 50)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.Math.rand(1, 100) >= 50)
 		{
 			beards = null;
 		}

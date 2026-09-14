@@ -31,7 +31,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Gain a [color=" + this.Const.UI.Color.PositiveValue + "]75%[/color] chance to stun any opponent missing this character with a melee attack (resistances and immunities still apply)."
+				text = "Gain a [color=%positive%]75%[/color] chance to stun any opponent missing this character with a melee attack (resistances and immunities still apply)."
 			}
 		];
 	}
@@ -40,7 +40,7 @@
 	{
 		if (!this.m.IsSpent)
 		{
-			this.m.Container.add(this.new("scripts/skills/effects/legend_return_favor_effect"));
+			::Legends.Effects.grant(this, ::Legends.Effect.LegendReturnFavor);
 			this.m.IsSpent = true;
 			return true;
 		}

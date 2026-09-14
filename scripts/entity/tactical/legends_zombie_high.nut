@@ -7,7 +7,7 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
-		this.m.Skills.add(this.new("scripts/skills/actives/zombie_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
 		// this.m.Skills.add(this.new("scripts/skills/traits/legend_rotten_flesh_trait"));
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
@@ -100,16 +100,16 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "decayed_coat_of_plates"],
-			[1, "decayed_coat_of_scales"],
-			[1, "decayed_reinforced_mail_hauberk"]
+			[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
+			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
+			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		]));
 
 		local item = this.Const.World.Common.pickHelmet([
-			[2, "decayed_closed_flat_top_with_mail"],
-			[1, "decayed_closed_flat_top_with_sack"],
-			[3, "decayed_full_helm"],
-			[3, "decayed_great_helm"]
+			[2, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
+			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
+			[3, ::Legends.Helmet.Standard.decayed_full_helm],
+			[3, ::Legends.Helmet.Standard.decayed_great_helm]
 		]);
 
 		if (item != null)

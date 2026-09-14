@@ -3,14 +3,10 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_magister";
-		this.m.Name = "Magister";
-		this.m.Icon = "ui/backgrounds/background_magister.png";
-		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane preside over, their quiet madness eclipses all and causes the rest to fall in line.";
-		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often they appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendMagister);
+		this.m.BackgroundDescription = "Magisters are a unique breed of insane. While among the ranks of the insane they preside over, their quiet madness eclipses all and causes the rest to fall in line.";
+		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often %they% appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
 		this.m.BadEnding = "You heard that %name%, the cultist, left the company at some juncture and went out to spread the faith. There\'s no telling what became of the fanatic, but there was a recent inquisition against unholy faiths and hundreds of \'folk in dark cloaks with even darker intentions\' were burned at the stake across the realm.";
-		this.m.HiringCost = 250;
-		this.m.DailyCost = 27;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
@@ -28,12 +24,12 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Bright),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed)
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted)
 		];
 		this.m.Titles = [
 			"the Cultist",
@@ -48,76 +44,30 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
 		this.m.Level = this.Math.rand(2, 3);
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[2];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[2];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[3];
-		this.m.Modifiers.Gathering = this.Const.LegendMod.ResourceModifiers.Gather[2];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.FlailTree,	
-				this.Const.Perks.SlingTree,	
-				this.Const.Perks.SwordTree,						
-				this.Const.Perks.StaffTree
-			],
-			Defense = [
-				this.Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.InspirationalTree
-			],
-			Enemy = [
-				this.Const.Perks.CaravanTree,
-				this.Const.Perks.NoblesTree
-			],
-			Class = [
-				this.Const.Perks.NinetailsClassTree,
-				this.Const.Perks.SickleClassTree,
-				this.Const.Perks.HealerClassTree
-			],
-			Magic = []
-		}
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
 	}
 
-	// Should overwrite the "character_backgrounds" isCultist() check
-	function isCultist()
-	{
+	function onBuildDescription() {
+		return "{Magisters are a conduit of evil in the world, seemingly sucking up all the suffering around them and directing it upon whoever they please.} {%name% is wreathed in fabrics that seem to obey a different set of rules to the rest of the world. | %name% occasionally turns their head as if an unseen force was whispering to them, nodding and whispering back to the unseen force in kind, almost as if affirming their own madness. | %name% whispers into their weapon and nods in agreement with it, almost as if conversing with a long lost friend. | %name% tracks and nods towards unseen figures like a ringmaster for a ghostly parade. | The look in the eyes of %name% reveals little, aside from the fact that the more you look at %them% the more you notice the irregularities, having a smaller, second pupil for instance. | %name% stands with a a crooked posture, as if holding up a heavy and unseen burden.} \"Davkul awaits us all\" %they% parrot. You are not certain, but you feel a second voice repeat those words in unison from deep inside your mind.";
+	}
+
+	function isCultist() {
 		return true;
 	}
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 12,
@@ -125,52 +75,13 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 				icon = "ui/icons/special.png",
 				text = "Will never be sacrificed to Davkul"
 			}
-		)
-		return ret
-	}
-
-	function onBuildDescription()
-	{
-		return "{Magisters are a conduit of evil in the world, seemingly sucking up all the suffering around them and directing it upon whoever they please.} {%name% is wreathed in fabrics that seem to obey a differant set of rules to the rest of the world. | %name% occasionally turns their head as if an unseen force was whispering to them, nodding and whispering back to the unseen force in kind, almost as if affirming their own madness. | %name% whispers into their weapon and nods in agreement with it, almost as if conversing with a long lost friend. | The stranger tracks and nods towards unseen figures like a ringmaster for a ghostly parade. | The look in the eyes of %name% reveals little, aside from the fact that the more you look at them the more you notice the irregularaties, having a smaller, second pupil for instance. | They stand with a a crooked posture, as if holding up a heavy and unseen burden.} \"Davkul awaits us all\" %name% parrots. You are not certain, but you feel a second voice repeat those words in unison from deep inside your mind.";
+		);
+		return ret;
 	}
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-5,
-				5
-			],
-			Bravery = [
-				15,
-				25
-			],
-			Stamina = [
-				-4,
-				6
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				5,
-				8
-			],
-			MeleeDefense = [
-				-2,
-				5
-			],
-			RangedDefense = [
-				2,
-				5
-			],
-			Initiative = [
-				-5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendMagister);
 	}
 
 	function onSetAppearance()
@@ -250,15 +161,15 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "tattered_sackcloth"],
-			[1, "leather_wraps"],
-			[1, "monk_robe"],
-			[1, "cultist_leather_robe"]
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.monk_robe],
+			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "cultist_hood"],
-			[1, "hood"],
-			[1, "cultist_leather_hood"]
+			[1, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
 	}
 
@@ -268,4 +179,3 @@ this.legend_magister_background <- this.inherit("scripts/skills/backgrounds/char
 		this.getContainer().getActor().getFlags().add("cultist");
 	}
 });
-

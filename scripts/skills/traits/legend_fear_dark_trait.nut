@@ -31,26 +31,26 @@ this.legend_fear_dark_trait <- this.inherit("scripts/skills/traits/character_tra
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Resolve during Nighttime"
+				text = "[color=%negative%]-10[/color] Resolve during Nighttime"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-20[/color] Resolve when attacked by mental effects during Nighttime"
+				text = "[color=%negative%]-20[/color] Resolve when attacked by mental effects during Nighttime"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5[/color] Resolve during daytime"
+				text = "[color=%positive%]+5[/color] Resolve during daytime"
 			}
 		];
 	}
 
 	function onUpdate( _properties )
 	{
-		if (this.getContainer().hasSkill("special.night") && _properties.IsAffectedByNight == true)
+		if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 		{
 			_properties.Bravery -= 10;
 			_properties.MoraleCheckBravery[::Const.MoraleCheckType.MentalAttack] -= 20;

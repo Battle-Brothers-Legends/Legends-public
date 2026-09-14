@@ -32,20 +32,20 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 				id = 10,
 				type = "text",
 				icon = "ui/icons/morale.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] chance to boost up company morale at the start of a combat"
+				text = "Has a [color=%positive%]10%[/color] chance to boost up company morale at the start of a combat"
 			},
 		];
 	}
-	
+
 	function onCombatStarted()
 	{
 		this.skill.onCombatStarted();
-		
+
 		if (this.Math.rand(1, 10) < 10)
 		{
 			return;
 		}
-		
+
 		local allies = this.Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 		local ownID = this.getContainer().getActor().getID();
 
@@ -56,13 +56,13 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 				continue;
 			}
 			local ally_morale = ally.getMoraleState();
-			
+
 			if (ally_morale < this.Const.MoraleState.Confident)
 			{
 				ally.setMoraleState(ally_morale + 1);
 			}
 		}
-	}	
+	}
 
 });
 

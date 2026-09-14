@@ -8,6 +8,7 @@ this.legend_oms_fate_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "This volume titled \'Book of Fate\' contains a single, thick page between two slabs of old leather from an unknown animal. The page is blank on both sides and stained throughout - some say that if the holder sees only a blank page they are fully in control of their destiny...or soon to die. This is possibly an elaborate scam, but you can\'t deny the item does feel much heavier than it should do.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/oms_book_of_fate.png";
@@ -53,30 +54,23 @@ this.legend_oms_fate_item <- this.inherit("scripts/items/accessory/accessory", {
 			});
 		}
 
-		if (!this.World.Flags.get("Item Identified"))
-		{
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "Chance to survive after being struck down will always be zero. Gain +40% chance to reroll an attack that would normally hit you"
 			});
-			return result;
 		}
-		else
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Chance to survive after being struck down will always be zero. Gain +40% chance to reroll an attack that would normally hit you."
-			});
-			return result;
-		}
+
+		return result;
 	}
 
-	function onUpdate( _properties )
+	function onUpdateProperties( _properties )
 	{
+		this.accessory.onUpdateProperties(_properties);
 		_properties.SurviveWithInjuryChanceMult = 0.0;
 		_properties.RerollDefenseChance += 40;
 	}

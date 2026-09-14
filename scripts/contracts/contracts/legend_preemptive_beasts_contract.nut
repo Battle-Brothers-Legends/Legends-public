@@ -160,6 +160,21 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				}
 			}
 
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (this.Flags.has("NumPoachers"))
+				{
+					// check if the guests are still alive
+					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
+					{
+						if (_actor.getID() == this.Flags.get("Poacher" + i))
+						{
+							this.World.getGuestRoster().remove(_actor);
+						}
+					}
+				}
+			}
+
 		});
 		this.m.States.push({
 			ID = "Return",
@@ -223,6 +238,21 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					}
 
 					this.World.Contracts.showActiveContract();
+				}
+			}
+
+			function onActorKilled( _actor, _killer, _combatID )
+			{
+				if (this.Flags.has("NumPoachers"))
+				{
+					// check if the guests are still alive
+					for( local i = 0; i < this.Flags.get("NumPoachers"); i++ )
+					{
+						if (_actor.getID() == this.Flags.get("Poacher" + i))
+						{
+							this.World.getGuestRoster().remove(_actor);
+						}
+					}
 				}
 			}
 
@@ -372,7 +402,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({
 			ID = "TrackingBeastsExpert",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_126.png[/img]{%expert% springs forward, and before you can stop %them_expert%, %they_expert% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_expert% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_expert% how %they_expert% knows, %they_expert% gets up and points to the %direction%.%SPEECH_ON%They went that way. If we hurry, we can catch them before they hurt anyone.%SPEECH_OFF% | %expert% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_expert% even leave in the first place, but %they_expert% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%expert% saunters over to your side and appears to be measuring the tracks with a stick. %They_expert% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_126.png[/img]{%experthunter% springs forward, and before you can stop %them_experthunter%, %they_experthunter% is already on all fours examining the tracks.%SPEECH_ON%Hmmm...%SPEECH_OFF%Wait a minute, is %they_experthunter% licking a piece of dirt from the tracks?%SPEECH_ON%Ah, yes. These must be %beasts% indeed.%SPEECH_OFF%Before you are able to ask %them_experthunter% how %they_experthunter% knows, %they_experthunter% gets up and points to the %direction%.%SPEECH_ON%They went that way. If we hurry, we can catch them before they hurt anyone.%SPEECH_OFF% | %experthunter% taps you on the shoulder from behind.%SPEECH_ON%It\'s %beasts%, boss. I saw them while I was scouting ahead.%SPEECH_OFF%You are about to ask when did %they_experthunter% even leave in the first place, but %they_experthunter% interrupts you.%SPEECH_ON%There\'s no time to waste. We should head towards the %direction% immediately if we want to make sure they don\'t cause any trouble.%SPEECH_OFF% | %SPEECH_ON%Those are definitely the tracks of %beasts% if I have ever seen them.%SPEECH_OFF%%experthunter% saunters over to your side and appears to be measuring the tracks with a stick. %They_experthunter% sniffs the air uncomfortably loudly.%SPEECH_ON%We should head %direction%. They can\'t be far now.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -621,7 +651,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				local brothers = ::World.getPlayerRoster().getAll();
-				local peddlerBackgrounds = ["background.peddler","background.legend_trader","background.legend_commander_trader"];
+				local peddlerBackgrounds = [::Legends.Backgrounds.getID(::Legends.Background.Peddler),::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderPeddler)];
 				foreach( bro in brothers )
 				{
 					if (peddlerBackgrounds.find(bro.getBackground().getID()) != null)
@@ -666,11 +696,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
+				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
 					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
-					poacher.setPlaceInFormation(19 + i);
+					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
 					this.Flags.set("Poacher" + i, poacher.getID());
 				}
@@ -835,11 +866,12 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
+				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
 					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
-					poacher.setPlaceInFormation(19 + i);
+					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
 					this.Flags.set("Poacher" + i, poacher.getID());
 				}
@@ -921,7 +953,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (this.Flags.get("PeddlerPayLater"))
 				{
-					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}"
+					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}";
 					this.World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
@@ -990,7 +1022,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 				if (this.Flags.get("PeddlerPayLater"))
 				{
-					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}"
+					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}";
 					this.World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
 					this.List.push({
 						id = 10,
@@ -1052,28 +1084,28 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 		if (this.m.Flags.get("IsHumans"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
 			party.setFootprintType(this.Const.World.FootprintsType.Direwolves);
 			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Direwolves, 0.75);
 		}
 		else if (this.m.Flags.get("IsGhouls"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Nachzehrers", false, this.Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Nachzehrers", false, this.Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A flock of scavenging nachzehrers.");
 			party.setFootprintType(this.Const.World.FootprintsType.Ghouls);
 			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Ghouls, 0.75);
 		}
 		else if (this.m.Flags.get("IsSpiders"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Webknechts", false, this.Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Webknechts", false, this.Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A swarm of webknechts skittering about.");
 			party.setFootprintType(this.Const.World.FootprintsType.Spiders);
 			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Spiders, 0.75);
 		}
 		else
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
 			party.setFootprintType(this.Const.World.FootprintsType.Direwolves);
 			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Direwolves, 0.75);
@@ -1114,7 +1146,6 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				"peddler",
 				::Const.UI.getColorized(this.m.Peddler.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Peddler.getGender(), "peddler");
 		}
 
 		if (!::MSU.isNull(this.m.Poacher))
@@ -1123,16 +1154,14 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				"poacher",
 				::Const.UI.getColorized(this.m.Poacher.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.Poacher.getGender(), "poacher");
 		}
 
 		if (!::MSU.isNull(this.m.ExpertHunter))
 		{
 			_vars.push([
-				"expert",
+				"experthunter",
 				::Const.UI.getColorized(this.m.ExpertHunter.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
 			]);
-			::Const.LegendMod.extendVarsWithPronouns(_vars, this.m.ExpertHunter.getGender(), "expert");
 		}
 
 		local beasts;

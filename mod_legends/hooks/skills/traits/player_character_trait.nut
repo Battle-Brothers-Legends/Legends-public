@@ -30,19 +30,19 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] Resolve."
+				text = "[color=%positive%]+10[/color] Resolve."
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]Immune to charm effects.[/color]"
+				text = "[color=%positive%]Immune to charm effects.[/color]"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]Will never desert the company.[/color]"
+				text = "[color=%positive%]Will never desert the company.[/color]"
 			}
 		];
 	}

@@ -45,17 +45,17 @@
 	{
 		local garbage = [];
 
-		foreach( i, o in this.m.KnownOpponents )
+		foreach( i, opponent in this.m.KnownOpponents )
 		{
-			if (o.Actor == null || o.Actor.isNull() || !o.Actor.isAlive() || !o.Actor.isPlacedOnMap() || this.Tactical.State.isScenarioMode() && this.Const.FactionAlliance[this.m.Faction].find(o.Actor.getFaction()) != null || !this.Tactical.State.isScenarioMode() && this.World.FactionManager.isAllied(this.m.Faction, o.Actor.getFaction()))
+			if (opponent.Actor == null || opponent.Actor.isNull() || !opponent.Actor.isAlive() || !opponent.Actor.isPlacedOnMap() || this.Tactical.State.isScenarioMode() && this.Const.FactionAlliance[this.m.Faction].find(opponent.Actor.getFaction()) != null || !this.Tactical.State.isScenarioMode() && this.World.FactionManager.isAllied(this.m.Faction, opponent.Actor.getFaction()))
 			{
 				garbage.push(i);
-				continue
+				continue;
 			}
 
-			if (o.Actor.isHidden())
+			if (opponent.Actor.isHidden())
 			{
-				garbage.push(i)
+				garbage.push(i);
 			}
 		}
 

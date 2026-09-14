@@ -28,12 +28,11 @@ this.legend_katar <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/stab");
-		s.m.Icon = "skills/active_198.png";
-		s.m.IconDisabled = "skills/active_198_sw.png";
-		s.m.Overlay = "active_198";
-		this.addSkill(s);
-		this.addSkill(this.new("scripts/skills/actives/deathblow_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Deathblow, function (_skill) {
+			_skill.m.DeathblowBonus = true;
+			_skill.m.IsIgnoredAsAOO = false;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
 	}
 
 });

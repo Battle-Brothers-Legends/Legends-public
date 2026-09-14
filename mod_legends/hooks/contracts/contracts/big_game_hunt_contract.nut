@@ -130,7 +130,7 @@
 						]
 					];
 
-					if (beasts[this.Contract.m.Size].find(_actor.getType()) != null && !this.isKindOf(_actor, "lindwurm_tail"))
+					if (beasts[this.Contract.m.Size].find(_actor.getType()) != null && !_actor.getFlags().has("tail"))
 					{
 						this.Flags.set("HeadsCollected", this.Flags.get("HeadsCollected") + 1);
 					}

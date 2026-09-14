@@ -4,15 +4,9 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_quick_step";
-		this.m.Name = "Quick Step";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
-		this.m.Icon = "skills/unarmed_lunge_square.png";
-		this.m.IconDisabled = "skills/unarmed_lunge_square_bw.png";
-		this.m.Overlay = "perk_25_active";
-		this.m.SoundOnUse = [
-			"sounds/combat/footwork_01.wav"
-		];
+		this.m.SoundOnUse = ["sounds/combat/footwork_01.wav"];
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -57,7 +51,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can only be used when outside an opponent\'s Zone of Control[/color]"
+				text = "[color=%negative%]Can only be used when outside an opponent\'s Zone of Control[/color]"
 			});
 		}
 
@@ -67,7 +61,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
+				text = "[color=%negative%]Can not be used while rooted[/color]"
 			});
 		}
 
@@ -77,7 +71,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can only be used once per turn[/color]"
+				text = "[color=%negative%]Can only be used once per turn[/color]"
 			});
 		}
 		return ret;
@@ -104,7 +98,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 
 		// this.m.FatigueCostMult = _properties.IsFleetfooted ? 0.5 : 1.0;
 
-		// if (this.getContainer().getActor().getSkills().hasSkill("effects.goblin_grunt_potion"))
+		// if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.GoblinGruntPotion))
 		// {
 		// 	this.m.ActionPointCost = 2;
 		// }

@@ -4,8 +4,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_zombie_poison";
-		this.m.Name = "Infected";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendZombiePoison);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.Type = this.Const.SkillType.StatusEffect;
@@ -16,7 +15,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has zombie infection running through his veins. His vision is blurred, his speech slurred and it takes a great deal of effort for him to move in a coordinated fashion. The effect will slowly get worse over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has zombie infection running through their veins. Their vision is blurred, their speech is slurred, and it takes a great deal of effort for them to move in a coordinated fashion. The effect will slowly get worse over [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()
@@ -39,19 +38,19 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 1 * remaining + "[/color] Action Points"
+				text = "[color=%negative%]-" + 1 * remaining + "[/color] Action Points"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 1 * remaining + "[/color] Vision"
+				text = "[color=%negative%]-" + 1 * remaining + "[/color] Vision"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + 10 * remaining + "[/color] Initiative"
+				text = "[color=%negative%]-" + 10 * remaining + "[/color] Initiative"
 			}
 		];
 	}
@@ -78,7 +77,7 @@ this.legend_zombie_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration; //if uhave resilient t starts scaling from like 5 and scales to 10 but that seems weird, this makes it scale from like 1 to 5	
+		local nsed = this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration; //if uhave resilient t starts scaling from like 5 and scales to 10 but that seems weird, this makes it scale from like 1 to 5
 		local AP = this.Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));
 		local Init = this.Math.max(1, 10 * (10 -(this.m.TurnsLeft - nsed)));
 		local Vis = this.Math.max(1, 1 * (10 - (this.m.TurnsLeft - nsed)));

@@ -21,12 +21,13 @@
 						}
 					}
 
-					local item = this.Const.World.Common.pickHelmet([[1, "cultist_leather_hood"]]);
+					local item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.cultist_leather_hood]]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 				}
 			}
@@ -44,7 +45,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				candidates.push(bro);
 		}
 

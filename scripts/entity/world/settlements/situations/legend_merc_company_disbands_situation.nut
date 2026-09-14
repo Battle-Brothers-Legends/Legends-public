@@ -31,37 +31,35 @@ this.legend_merc_company_disbands_situation <- this.inherit("scripts/entity/worl
 
 	function onUpdateDraftList( _draftList )
 	{
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("sellsword_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("hedge_knight_background");
-		_draftList.push("swordmaster_background");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("retired_soldier_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("deserter_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
-		_draftList.push("militia_background");
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.Sellsword);
+		_draftList.push(::Legends.Background.HedgeKnight);
+		_draftList.push(::Legends.Background.HedgeKnight);
+		_draftList.push(::Legends.Background.Swordmaster);
+		_draftList.push(::Legends.Background.LegendMasterArcher);
+		_draftList.push(::Legends.Background.RetiredSoldier);
+		_draftList.push(::Legends.Background.RetiredSoldier);
+		_draftList.push(::Legends.Background.RetiredSoldier);
+		_draftList.push(::Legends.Background.RetiredSoldier);
+		_draftList.push(::Legends.Background.Deserter);
+		_draftList.push(::Legends.Background.Deserter);
+		_draftList.push(::Legends.Background.Deserter);
+		_draftList.push(::Legends.Background.Militia);
+		_draftList.push(::Legends.Background.Militia);
+		_draftList.push(::Legends.Background.Militia);
+		_draftList.push(::Legends.Background.Militia);
 
 		if (this.World.Assets.getOrigin().getID() == "scenario.legends_noble") {
-			_draftList.push("legend_noble_2h");
-			_draftList.push("legend_noble_shield");
-			_draftList.push("legend_noble_ranged");
-			_draftList.push("adventurous_noble_background");	
-			_draftList.push("adventurous_noble_background");			
-			// _draftList.push("female_adventurous_noble_background");
-			// _draftList.push("female_adventurous_noble_background");
-			_draftList.push("hedge_knight_background");
+			_draftList.push(::Legends.Background.LegendHouseGuard);
+			_draftList.push(::Legends.Background.LegendFootSoldier);
+			_draftList.push(::Legends.Background.LegendArbalester);
+			_draftList.push(::Legends.Background.AdventurousNoble);
+			_draftList.push(::Legends.Background.AdventurousNoble);
+			_draftList.push(::Legends.Background.HedgeKnight);
 		}
 	}
 

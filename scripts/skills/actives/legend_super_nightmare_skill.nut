@@ -30,7 +30,7 @@ this.legend_super_nightmare_skill <- this.inherit("scripts/skills/actives/nightm
 
 		if (!target.checkMorale(0, -35, this.Const.MoraleCheckType.MentalAttack))
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/horrified_effect"));
+			::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 
 			if (!_tag.User.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{

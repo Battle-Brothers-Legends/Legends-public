@@ -8,6 +8,7 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 		this.m.Description = "A small ledger that is made of skin, inside the pages are names laid out in rows, some crossed or or with symbols beside them. Closing and opening the book again results in the names and markings changing once again.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "accessory/oms_ledger.png";
@@ -53,30 +54,23 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 			});
 		}
 
-		if (!this.World.Flags.get("Item Identified"))
-		{
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "Melee damage received from undead reduced by 50%"
 			});
-			return result;
 		}
-		else
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Melee damage received from undead reduced by 50%."
-			});
-			return result;
-		}
+
+		return result;
 	}
 
-	function onUpdate( _properties )
+	function onUpdateProperties( _properties )
 	{
+		this.accessory.onUpdateProperties(_properties);
 		if (!this.getContainer().getActor().isPlacedOnMap())
 		{
 			return;

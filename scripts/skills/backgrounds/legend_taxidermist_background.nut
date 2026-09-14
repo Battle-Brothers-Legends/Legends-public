@@ -3,14 +3,10 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_taxidermist";
-		this.m.Name = "Taxidermist";
-		this.m.Icon = "ui/backgrounds/taxidermist.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendTaxidermist);
 		this.m.BackgroundDescription = "Taxidermists are good at gutting beasts, but not fighting them.";
 		this.m.GoodEnding = "What was a taxidermist doing in a mercenary company? A good question, but %name% got so much practice collecting trophies he became one of the most skilled taxidermists in the land. After a few good years in the company, he eventually left to start up a business creating trinkets from rare beasts. His name is world-renowned, well, the known-world-renowned, and he gets so much business he\'s making a very different killing these days.";
 		this.m.BadEnding = "A taxidermist at heart, it didn\'t take much to compel %name% to bail from the quickly sinking company. He left to go start a business, but was kidnapped along the way by a group of brigands. When they threatened to kill him, he pretended to be a simple and weak taxidermist and showed his talents in creating trinkets. Impressed, the superstitious outlaws took him into their band. A few days later they were all dead and this \'meek\' man walked out of their camp with a bit of red on him. He started his business a week later and is doing well to this day.";
-		this.m.HiringCost = 250;
-		this.m.DailyCost = 10;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
 			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
@@ -36,50 +32,12 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		this.m.BackgroundType = this.Const.BackgroundType.Ranger;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[3];
-		this.m.Modifiers.ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[1];
-		this.m.Modifiers.MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[2];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.DaggerTree,
-				this.Const.Perks.SwordTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.ThrowingTree
-			],
-			Defense = [
-				this.Const.Perks.ClothArmorTree,
-				this.Const.Perks.MediumArmorTree
-			],
-			Traits = [
-				this.Const.Perks.OrganisedTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.FastTree,
-				this.Const.Perks.ViciousTree
-			],
-			Enemy = [
-				this.Const.Perks.GhoulTree,
-				this.Const.Perks.DirewolfTree,
-				this.Const.Perks.UnholdTree,
-				this.Const.Perks.AlpTree
-			],
-			Class = [],
-			Magic = []
-		}
 	}
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
-		ret.push(
-			{
-				id = 13,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+100%[/color] crafting rate in the crafting tent, [color=" + this.Const.UI.Color.PositiveValue + "]-10%[/color] medicine usage, [color=" + this.Const.UI.Color.PositiveValue + "]+10[/color] maximum medicine capacity,  [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] faster healing while in the heal tent. "
-			}
-		)
-		return ret
+		local ret = this.character_background.getTooltip();
+		return ret;
 	}
 	function onBuildDescription()
 	{
@@ -88,41 +46,7 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-3,
-				0
-			],
-			Bravery = [
-				5,
-				5
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				5,
-				10
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendTaxidermist);
 	}
 
 	function onAddEquipment()
@@ -130,11 +54,11 @@ this.legend_taxidermist_background <- this.inherit("scripts/skills/backgrounds/c
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_blacksmith_apron"]
+			[1, ::Legends.Armor.Standard.legend_blacksmith_apron]
 		]));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ""],
-			[1, "feathered_hat"]
+			[1, ::Legends.Helmet.None],
+			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 	}
 });

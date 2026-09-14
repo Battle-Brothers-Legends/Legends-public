@@ -81,7 +81,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getSkills().hasSkill("effects.legend_wolfsbane"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendWolfsbane))
 		{
 			return;
 		}

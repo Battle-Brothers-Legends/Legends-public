@@ -32,11 +32,11 @@
 		}
 
 		local aList = [
-			[1, "oriental/stitched_nomad_armor"],
-			[1, "oriental/plated_nomad_mail"],
-			[1, "oriental/leather_nomad_robe"],
-			[1, "oriental/nomad_robe"],
-			[1, "oriental/thick_nomad_robe"]
+			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
+			[1, ::Legends.Armor.Southern.plated_nomad_mail],
+			[1, ::Legends.Armor.Southern.leather_nomad_robe],
+			[1, ::Legends.Armor.Southern.nomad_robe],
+			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		];
 		local armor = this.Const.World.Common.pickArmor(aList);
 		if (this.Math.rand(1, 100) <= 66)
@@ -46,12 +46,12 @@
 		this.m.Items.equip(armor);
 
 		local helmet = [
-			[1, "oriental/nomad_leather_cap"],
-			[1, "oriental/nomad_light_helmet"],
-			[1, "oriental/nomad_reinforced_helmet"],
-			[1, "oriental/leather_head_wrap"],
-			[1, "oriental/nomad_head_wrap"],
-			[1, "oriental/nomad_head_wrap"]
+			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
+			[1, ::Legends.Helmet.Southern.nomad_light_helmet],
+			[1, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
+			[1, ::Legends.Helmet.Southern.leather_head_wrap],
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		];
 		local helm = this.Const.World.Common.pickHelmet(helmet);
 

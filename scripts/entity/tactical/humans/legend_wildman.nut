@@ -2,20 +2,20 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.Wildman;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.Wildman.XP;
+		this.m.Type = ::Const.EntityType.Wildman;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.Wildman.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 10)
-		{
+		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
-			this.m.Faces = this.Const.Faces.WildFemale;
+			this.m.Faces = ::Const.Faces.WildFemale;
 		}
 	}
 
@@ -65,9 +65,8 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecFists);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendKick);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrapple);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrappler);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
@@ -75,47 +74,20 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-		r = this.Math.rand(0, 7);
-
-		if (r == 0)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/hatchet"));
-		}
-		else if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_metal_club"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/greenskins/orc_wooden_club"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
-		}
-		else if (r == 6)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
-		}
-		else if (r == 7)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/two_handed_mace"));
-		}
-
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/hatchet"],
+			[1, "weapons/wooden_stick"],
+			[1, "weapons/greenskins/orc_metal_club"],
+			[1, "weapons/greenskins/orc_wooden_club"],
+			[1, "weapons/boar_spear"],
+			[1, "weapons/woodcutters_axe"],
+			[1, "weapons/two_handed_wooden_hammer"],
+			[1, "weapons/two_handed_mace"],
+		], "scripts/items/"));
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_wraps"]
+			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 	}
 
 });
-

@@ -1,5 +1,7 @@
 ::mods_hookExactClass("contracts/contracts/arena_contract", function(o)
 {
+	o.m.WasInReserves <- [];
+
 	local create = o.create;
 	o.create = function()
 	{
@@ -102,7 +104,8 @@
 			}
 		}
 
-		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult();
+		local paymentMult = ::World.Assets.m.IsArenaTooled ? 1.25 : 1.0;
+		this.m.Payment.Pool = pay * this.getPaymentMult() * this.getReputationToPaymentMult() * paymentMult;
 		this.m.Payment.Completion = 1.0;
 	}
 
@@ -112,29 +115,34 @@
 		createScreens();
 		foreach (s in this.m.Screens)
 		{
+			if (s.ID == "Task") {
+				local start = s.start;
+				s.start <- function () {
+					start();
+					this.Text = ::MSU.String.replace(this.Text, "The arena master", " The arena master");
+				}
+				
+			}
 			if (s.ID == "Overview")
 			{
 				s.Options.push(
 				{
-					Text = "{This isn\'t what I had in mind. | I\'ll sit this one out. | I\'ll wait for the next fight.}",
+					Text = "{I\'ll have to think it over.}",
 					function getResult()
 					{
+						this.Contract.getHome().getBuilding("building.arena").registerAttempt();
 						this.Contract.getHome().getBuilding("building.arena").refreshCooldown();
-						this.World.State.getTownScreen().getMainDialogModule().reload();
+						::World.Contracts.removeContract(this.Contract);
+						::World.State.getTownScreen().getMainDialogModule().reload();
 						return 0;
 					}
 				});
 			}
-
 			if (s.ID == "Start")
 			{
-				s.Options.push(
-				{
+				s.Options.push({
 					Text = "I\'ll have to think it over.",
-					function getResult()
-					{
-						return 0;
-					}
+					getResult = @() 0
 				});
 
 				s.start <- function ()
@@ -147,63 +155,19 @@
 			{
 				s.start <- function ()
 				{
-					local roster = this.World.getPlayerRoster().getAll();
-					local n = 0;
+					this.Text = "[img]gfx/ui/events/event_147.png[/img]{The arena master talks as if he doesn\'t even remember your face, then again he probably doesn\'t.%SPEECH_ON%Here\'s your pay, please come again.%SPEECH_OFF% | Without even raising his head from a rag of papyrus, the arena master throws you a purse of coin.%SPEECH_ON%I heard the crowds, and so here are your crowns. May you come visit the pits again.%SPEECH_OFF% | The arena master is waiting for you.%SPEECH_ON%That was a mighty fine show, Crownling. Would not mind it in the slightest if you come back again.%SPEECH_OFF%}";
 
-					foreach( bro in roster )
-					{
-						local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
+					local arena = this.Contract.getHome().getBuilding("building.arena");
+					if (arena.getCurrentAttempts() == arena.getMaxAttempts() - 1) {
+						this.Text += "The arena will be closed for the day, but you could return as early as tomorrow.";
+					} else {
+						this.Text += "You can continue fighting today if you want.";
+					}
 
-						if (item != null && item.getID() == "accessory.arena_collar") {
-							local skill;
-							bro.getFlags().increment("ArenaFightsWon", 1);
-							bro.getFlags().increment("ArenaFights", 1);
-
-							if (bro.getFlags().getAsInt("ArenaFightsWon") == 1) {
-								::Legends.Traits.grant(bro, ::Legends.Trait.PitFighter);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") == 5 && bro.getSkills().hasTrait(::Legends.Trait.PitFighter)) {
-								::Legends.Traits.remove(bro, ::Legends.Trait.PitFighter);
-								::Legends.Traits.grant(bro, ::Legends.Trait.ArenaFighter);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
-								::Legends.Traits.remove(bro, ::Legends.Trait.ArenaFighter);
-								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaVeteran);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaVeteran)) {
-								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaVeteran);
-								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaChampion);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							} else if (bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion)) {
-								::Legends.Traits.remove(bro, ::Legends.Trait.LegendArenaChampion);
-								::Legends.Traits.grant(bro, ::Legends.Trait.LegendArenaInvictus);
-								this.List.push({
-									id = 10,
-									icon = skill.getIcon(),
-									text = bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
-								});
-							}
-							n++;
-						}
-
-						if (n >= 3)
-							break;
+					foreach( bro in ::Legends.Arena.getCollaredBros()) {
+						bro.getFlags().increment("ArenaFightsWon", 1);
+						bro.getFlags().increment("ArenaFights", 1);
+						::Legends.Arena.updateTraits(this.List, bro);
 					}
 
 					if (this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") > 0 && this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") % 5 == 0)
@@ -225,25 +189,25 @@
 						{
 						case 1:
 							a = this.Const.World.Common.pickArmor([
-									[1, "oriental/gladiator_harness"],
+									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 
 							this.List.push({
 								id = 12,
-								icon = "ui/items/armor_upgrades/upgrade_24.png",
+								icon = "ui/items/" + a.getUpgrade().getIcon(),
 								text = "You gain a " + a.getName()
 							});
 							break;
 
 						case 2:
 							a = this.Const.World.Common.pickArmor([
-									[1, "oriental/gladiator_harness"],
+									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 							this.List.push({
 								id = 12,
-								icon = "ui/items/armor_upgrades/upgrade_25.png",
+								icon = "ui/items/" + a.getUpgrade().getIcon(),
 								text = "You gain a " + a.getName()
 							});
 							break;
@@ -267,29 +231,32 @@
 					}
 				}
 			}
+			if (s.ID == "Failure1")
+			{
+				s.Options[0].getResult <- function ()
+				{
+					foreach (bro in ::Legends.Arena.getCollaredBros()) {
+						bro.getFlags().increment("ArenaFights", 1);
+					}
+
+					this.Contract.getHome().getBuilding("building.arena").refreshCooldown();
+					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
+					this.World.Contracts.finishActiveContract(true);
+				}
+			}
 		}
 	}
 
 
 	o.getBros = function ()
 	{
-		local ret = [];
-		local roster = this.World.getPlayerRoster().getAll();
-
-		foreach( bro in roster )
-		{
-			local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-			if (item != null && item.getID() == "accessory.arena_collar")
-			{
-				if (bro.isInReserves())
-				{
-					bro.setInReserves(false);
-				}
-				ret.push(bro);
+		local ret = ::Legends.Arena.getCollaredBros();
+		foreach (bro in ret) {
+			if (bro.isInReserves()) {
+				this.m.WasInReserves.push(bro);
+				bro.setInReserves(false);
 			}
 		}
-
 		return ret;
 	}
 
@@ -300,29 +267,36 @@
 	*/
 	o.prepareBroVariables <- function ( _maxNumBros, _vars)
 	{
-		local currentBro = 1
+		local currentBro = 1;
 
-		foreach (bro in this.World.getPlayerRoster().getAll())
-		{
-			local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-			if (item != null && item.getID() == "accessory.arena_collar")
-			{
-				_vars.push([
-					"bro" + currentBro++ + "name",
-					" - " + bro.getName()
-				]);
-			}
-
+		foreach (bro in ::Legends.Arena.getCollaredBros()) {
+			_vars.push([
+				"bro" + currentBro++ + "name",
+				" - " + bro.getName()
+			]);
 		}
-
-		for (local i = currentBro; i <= _maxNumBros; ++i)
-		{
+		for (local i = currentBro; i <= _maxNumBros; ++i) {
 			_vars.push([
 				"bro" + i + "name",
 				""
 			])
 		}
+	}
+
+	local onClear = o.onClear;
+	o.onClear = function ()
+	{
+		if(this.m.Home != null && this.m.IsActive) {
+			this.m.Home.getBuilding("building.arena").registerAttempt();
+			foreach (bro in this.m.WasInReserves) {
+				bro.setInReserves(true);
+			}
+		}
+		this.m.WasInReserves.clear();
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			::Legends.Arena.removeCollar(bro);
+		}
+		onClear();
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;

@@ -14,16 +14,15 @@ this.legend_sack_hood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendSpecCultHood)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Perks.new(::Legends.Perk.LegendSpecCultHood),
+			::Legends.Professions.new(::Legends.Profession.LegendTailoring)
+		]);
 	}
 
 	function onCraft( _stash )
 	{
 		local item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_sack");
-		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 		item = this.new("scripts/items/legend_helmets/vanity/legend_helmet_sack");
 		_stash.add(item);

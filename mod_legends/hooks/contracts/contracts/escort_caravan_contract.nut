@@ -102,7 +102,7 @@
 		this.m.Destination = this.WeakTableRef(candidates[this.Math.rand(0, candidates.len() - 1)]);
 		local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), this.m.Destination.getTile());
 		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
-		local modrate = 10 * this.World.State.getPlayer().getBarterMult();
+		local modrate = 10 * this.World.State.getPlayer().getHaggleMult();
 
 
 		if (days >= 5)
@@ -235,8 +235,7 @@
 						local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
 						local numParties = 0;
 
-						foreach( party in parties )
-						{
+						foreach( _ in parties )	{
 							numParties = ++numParties;
 						}
 
@@ -326,14 +325,14 @@
 			{
 				foreach (option in s.Options)
 				{
-					option.Text = "Those should be worth a pretty crown. (Decrease Moral Reputation)"
+					option.Text = "Those should be worth a pretty crown. (Decrease Moral Reputation)";
 				}
 			}
 			if (s.ID == "Prisoner2")
 			{
 				foreach (option in s.Options)
 				{
-					option.Text = "I see my pocket filled with crowns already! (Decrease Moral Reputation)"
+					option.Text = "I see my pocket filled with crowns already! (Decrease Moral Reputation)";
 				}
 			}
 			if (s.ID == "Success1")
@@ -357,7 +356,7 @@
 						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
 						this.World.Assets.addMoney(money);
 
-						local xp = money * 0.50;
+						local xp = this.Math.round(money * 0.5 * this.Const.Combat.GlobalXPMult);
 						local playerRoster = this.World.getPlayerRoster().getAll();
 						foreach( bro in playerRoster )
 						{
@@ -380,14 +379,10 @@
 
 						this.World.Contracts.finishActiveContract();
 
-						if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-						{
-							local origin = this.Contract.getOrigin();
-							if (origin != null)
-							{
-								local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
-								origin.setResources(origin.getResources() + v)
-							}
+						local origin = this.Contract.getOrigin();
+						if (origin != null) {
+							local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
+							origin.setResources(origin.getResources() + v);
 						}
 
 						return 0;
@@ -419,15 +414,11 @@
 						}
 
 						//moved from up above when we actually call this screen -> supposedly this is the issue where it makes it fail the contract but here it shouldn't
-						if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-						{
-							this.Contract.m.Caravan.setResources(this.Math.round(this.Contract.m.Caravan.getResources() / 2));
-							local L = this.Contract.m.Caravan.getInventory();
-							this.Contract.m.Caravan.clearInventory();
-							for (local i = 0; i < (L.len() - 1) / 2; i = ++i)
-							{
-								this.Contract.m.Caravan.addToInventory(L[i]);
-							}
+						this.Contract.m.Caravan.setResources(this.Math.round(this.Contract.m.Caravan.getResources() / 2));
+						local L = this.Contract.m.Caravan.getInventory();
+						this.Contract.m.Caravan.clearInventory();
+						for (local i = 0; i < (L.len() - 1) / 2; i++) {
+							this.Contract.m.Caravan.addToInventory(L[i]);
 						}
 
 						this.World.Contracts.finishActiveContract();
@@ -438,7 +429,7 @@
 						if (origin != null)
 						{
 							local v = this.Contract.m.Caravan.getResources() + this.Contract.m.Caravan.getResources() * 0.10;
-							origin.setResources(origin.getResources() + v)
+							origin.setResources(origin.getResources() + v);
 						}
 
 						return 0;
@@ -455,11 +446,11 @@
 
 		if (faction.hasTrait(this.Const.FactionTrait.OrientalCityState))
 		{
-			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanSouthernEscort, this.m.Home.getResources() * this.Math.rand(10, 25) * 0.01);
+			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanSouthernEscort, this.m.Home.getResources() * ::Math.rand(10, 25) * 0.01, this.getMinibossModifier());
 		}
 		else
 		{
-			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanEscort, this.m.Home.getResources() * 0.4);
+			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanEscort, this.m.Home.getResources() * 0.4, this.getMinibossModifier());
 		}
 
 		party.getSprite("banner").Visible = false;
@@ -469,25 +460,7 @@
 		party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 0.6);
 		party.setLeaveFootprints(false);
 
-		// yes world economy
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Home, this.m.Destination);
-		}
-		// no world economy
-		else
-		{
-			if (this.m.Home.getProduce().len() != 0)
-			{
-				local produce = 3
-				local L = this.m.Home.getProduce();
-
-				for( local j = 0; j < produce; j = ++j )
-				{
-					party.addToInventory(::MSU.Array.rand(L));
-				}
-			}
-		}
+		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Home, this.m.Destination);
 
 		party.getLoot().Money = this.Math.rand(0, 100);
 

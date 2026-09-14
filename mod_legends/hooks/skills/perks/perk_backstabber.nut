@@ -13,6 +13,7 @@
 		if (surroundedCount > 0)
 		{
 			_properties.DamageRegularMult *= 1.0 + surroundedCount * 0.05;
+			_properties.DamageDirectMult *= 1.0 + surroundedCount * 0.03;
 		}
 
 	}

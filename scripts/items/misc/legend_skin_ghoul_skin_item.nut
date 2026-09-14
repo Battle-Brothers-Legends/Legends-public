@@ -2,6 +2,7 @@ this.legend_skin_ghoul_skin_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_skin_ghoul_skin";
 		this.m.Name = "Ghoul Skin";
 		this.m.Description = "This skin taken from a skin ghoul looks as if from a human, but covered in tears and stretch marks.";

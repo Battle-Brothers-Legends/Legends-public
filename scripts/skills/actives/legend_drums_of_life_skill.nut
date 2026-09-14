@@ -2,17 +2,9 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_drums_of_life";
-		this.m.Name = "Song of Life";
-		this.m.Description = "Push allies on with your music, restoring the health of all allies within 8 tiles by 4 hp. Must be holding a musical instrument to use.";
-		this.m.Icon = "skills/drums_of_life_square.png";
-		this.m.IconDisabled = "skills/drums_of_life_square_bw.png";
-		this.m.Overlay = "drums_of_life_square";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc4/wardrums_01.wav",
-			"sounds/enemies/dlc4/wardrums_02.wav",
-			"sounds/enemies/dlc4/wardrums_03.wav"
-		];
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDrumsOfLife);
+		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
@@ -45,52 +37,94 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 				id = 3,
 				type = "text",
 				text = this.getCostString()
+			},
+			{
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Restores [color=%positive%]" + this.getBonus() + "[/color] hitpoints to all allied units"
 			}
 		];
+
+		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		{
+			ret.push({
+				id = 5,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
+			});
+		}
+
 		return ret;
+	}
+
+	function getBonus()
+	{
+		local effect = 1;
+
+		// +3 from Music Mastery
+		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInMusic)
+			effect += 3;
+
+		// +3 from Entrancing Song
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistMusician))
+			effect += 3;
+
+		// +3 from Legend Minnesanger
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendMinnesanger))
+			effect += 3;
+
+		return effect;
 	}
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getMainhandItem();
-		if (mainhand == null || !this.skill.isUsable())
-		{
+		if (!this.skill.isUsable())
 			return false;
-		}
-		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical);
+
+		local mainhand = this.getContainer().getActor().getMainhandItem();
+		if (mainhand == null)
+			return false;
+
+		if (!this.Tactical.isActive())
+			return false;
+
+		local tile = this.getContainer().getActor().getTile();
+
+		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) &&
+			!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse( _user, _targetTile ) {
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
+		local affectedActors = [];
 		foreach( a in actors )
 		{
-			if (a.getID() == _user.getID())
-			{
+			if (_user.getID() == a.getID())
 				continue;
-			}
 
-			// if (a.getFatigue() == 0)
-			// {
-			// 	continue;
-			// }
-
-			if (myTile.getDistanceTo(a.getTile()) > 8)
-			{
+			if (a.getSkills().hasEffect(::Legends.Effect.LegendDrumsOfLife))
 				continue;
-			}
 
-			if (a.getFaction() == _user.getFaction())
-			{
-				a.getSkills().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
-			}
+			if (a.getTile().getDistanceTo(myTile) > 8)
+				continue;
+
+			::Legends.Effects.grant(a, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+				_effect.setEffect(this.getBonus());
+			}.bindenv(this));
+
+			affectedActors.push(a.weakref());
 		}
 
-		this.getContainer().add(this.new("scripts/skills/effects/legend_drums_of_life_effect"));
+		::Legends.Effects.grant(_user, ::Legends.Effect.LegendDrumsOfLife, function(_effect) {
+			_effect.setEffect(this.getBonus());
+			_effect.m.Caster = _user.weakref();
+			_effect.m.AffectedActors = affectedActors;
+		}.bindenv(this));
 		return true;
 	}
-
 });
 

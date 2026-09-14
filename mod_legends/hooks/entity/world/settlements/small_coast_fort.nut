@@ -1,77 +1,35 @@
-::mods_hookExactClass("entity/world/settlements/small_coast_fort", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/small_coast_fort", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
-		this.m.DraftList = [
-			"fisherman_background",
-			"fisherman_background",
-			"houndmaster_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"witchhunter_background",
-			"adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"fisherman_background",
-			"fisherman_background",
-			"houndmaster_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"witchhunter_background",
-			"adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background"
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.LegendAdventurousNobleRanged,
+		]);
 		this.m.StablesList = [
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		];
 	}
 
-	o.onBuild = function ( _settings )
-	{
+	o.onBuild = function() {
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Const.World.Buildings.Kennels == 0)
-		{
+		if (this.Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		}
-		else if (this.Const.World.Buildings.Stables == 0)
-		{
+		} else if (this.Const.World.Buildings.Stables == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
-		}
-		else
-		{
+		} else {
 			local r = this.Math.rand(1, 4);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 			}
 		}

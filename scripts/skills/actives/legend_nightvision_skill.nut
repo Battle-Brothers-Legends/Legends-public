@@ -2,17 +2,9 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_nightvision";
-		this.m.Name = "Nightvision";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightvision);
 		this.m.Description = "Use your superior vision to pick out enemies in the dark and point them out to your mercenaries.";
-		this.m.Icon = "skills/nightvision_square.png";
-		this.m.IconDisabled = "skills/nightvision_square_bw.png";
-		this.m.Overlay = "nightvision_square";
-		this.m.SoundOnUse = [
-			"sounds/enemies/shaman_skill_nightvision_01.wav",
-			"sounds/enemies/shaman_skill_nightvision_02.wav",
-			"sounds/enemies/shaman_skill_nightvision_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/shaman_skill_nightvision", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
@@ -49,7 +41,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text =  "Removes night penalties from all allies within [color=" + this.Const.UI.Color.PositiveValue + "]4[/color] tiles"
+				text =  "Removes night penalties from all allies within [color=%positive%]4[/color] tiles"
 			}
 		];
 	}
@@ -71,12 +63,12 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 				continue
 			}
 
-			if (a.getSkills().hasSkill("special.night"))
+			if (a.getSkills().hasEffect(::Legends.Effect.Night))
 		 	{
 				this.spawnIcon("status_effect_98", a.getTile());
-				a.getSkills().removeByID("special.night");
+				::Legends.Effects.remove(a, ::Legends.Effect.Night);
 		 	}
-			
+
 		}
 
 		return true;

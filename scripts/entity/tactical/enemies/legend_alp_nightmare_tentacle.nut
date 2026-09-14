@@ -43,7 +43,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -76,8 +76,8 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.setSpriteOffset("status_rooted", this.createVec(5, 25));
 		this.setSpriteOffset("arrow", this.createVec(0, 25));
 		this.setSpriteOffset("status_stunned", this.createVec(0, 25));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_move_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/kraken_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.KrakenMove);
+		::Legends.Actives.grant(this, ::Legends.Active.KrakenBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);

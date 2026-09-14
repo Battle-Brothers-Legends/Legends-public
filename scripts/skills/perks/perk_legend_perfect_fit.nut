@@ -5,18 +5,15 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPerfectFit);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFit);
 		this.m.Description = "Leveraging the superior fit of %their% armor, %name% is gaining increased speed and endurance.";
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
-	function getBonus()
+	function getBonus(_actor = null)
 	{
-		local actor = this.getContainer().getActor();
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
 
 		local bodyitem = actor.getBodyItem();
 
@@ -35,7 +32,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			armorFatPenMult = this.Math.maxf(0, 1 - 0.01 * this.Math.pow(armorFatPen - maxFat/2.0, 2.44));
+			armorFatPenMult = this.Math.maxf(0, 1 - 0.01 * this.Math.pow(armorFatPen - maxFat / 2.0, 2.44));
 		}
 
 		return this.m.BonusMax * armorFatPenMult;
@@ -63,18 +60,56 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 					id = 6,
 					type = "text",
 					icon = "ui/icons/initiative.png",
-					text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
+					text = "[color=%positive%]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
 				},
 				{
 					id = 6,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue cost of skills reduced by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
+					text = "Fatigue cost of skills reduced by [color=%positive%]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
 				}
 			]);
 		}
 
 		if (this.getContainer().getActor().getBodyItem() == null)
+		{
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "This character is not wearing any body armor and hence receives no bonus from this perk"
+			});
+		}
+
+		return tooltip;
+	}
+
+	function getUnactivatedPerkTooltipHints(_actor = null)
+	{
+		local bonus = this.getBonus(_actor);
+		local tooltip = [];
+
+		if (bonus > this.m.BonusMin)
+		{
+			tooltip.extend([
+				{
+					id = 6,
+					type = "text",
+					icon = "ui/icons/initiative.png",
+					text = "[color=%positive%]+" + this.getInitiativeBonus(bonus) + "%[/color] Initiative"
+				},
+				{
+					id = 6,
+					type = "text",
+					icon = "ui/icons/fatigue.png",
+					text = "Fatigue cost of skills reduced by [color=%positive%]" + this.getFatCostReductionBonus(bonus) + "%[/color]"
+				}
+			]);
+		}
+
+		local actor = _actor != null ? _actor : this.getContainer().getActor();
+
+		if (actor.getBodyItem() == null)
 		{
 			tooltip.push({
 				id = 6,

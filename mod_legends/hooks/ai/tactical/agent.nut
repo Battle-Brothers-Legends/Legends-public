@@ -20,19 +20,19 @@
 		this.getStrategy().compileKnownOpponents();
 		local knownOpponents = this.getKnownOpponents();
 
-		local entityRet = []
+		local entityRet = [];
 
 		if (knownOpponents.len() == 0)
 		{
 			return [];
 		}
 
-		foreach( o in knownOpponents )
+		foreach( opponent in knownOpponents )
 		{
-			if (!o.Actor.isNull() && o.Actor.isAlive() && o.Actor.isPlacedOnMap() && o.Actor.get().getTile().getDistanceTo(this.getActor().getTile()) <= this.getActor().getCurrentProperties().getVision())
+			if (!opponent.Actor.isNull() && opponent.Actor.isAlive() && opponent.Actor.isPlacedOnMap() && opponent.Actor.get().getTile().getDistanceTo(this.getActor().getTile()) <= this.getActor().getCurrentProperties().getVision())
 			{
-				// this.logWarning("Tile Added: " + o.Actor.get().getTile())
-				entityRet.push(o.Actor.get());
+				// this.logWarning("Tile Added: " + opponent.Actor.get().getTile())
+				entityRet.push(opponent.Actor.get());
 			}
 		}
 

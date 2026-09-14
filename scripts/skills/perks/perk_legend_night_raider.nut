@@ -4,12 +4,8 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendNightRaider);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNightRaider);
 		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 	}
 
 	function onAdded() // make this perk work when added to non-player
@@ -23,7 +19,7 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	// function isHidden()
 	// {
 	// 	//return !this.m.IsBattleStart || this.World.getTime().IsDaytime;
-	// 	if (this.getContainer().hasSkill("special.night") && _properties.IsAffectedByNight == true)
+	// 	if (this.getContainer().hasEffect(::Legends.Effect.Night) && _properties.IsAffectedByNight == true)
 	// }
 
 	function onUpdate( _properties )
@@ -51,7 +47,7 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 	// function onUpdate(_properties)
 	// {
 	// 	local actor = this.getContainer().getActor();
-	// 	if (actor.getSkills().hasSkill("special.night"))
+	// 	if (actor.getSkills().hasEffect(::Legends.Effect.Night))
 	// 	{
 	// 		_properties.Threat += 10;
 	// 		_properties.Vision += 1;

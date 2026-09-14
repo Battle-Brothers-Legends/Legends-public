@@ -2,25 +2,11 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_mark_target";
-		this.m.Name = "Mark Target";
-		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the targets ranged defense by 20 for 3 turns";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMarkTarget);
+		this.m.Description = "Analyse the weak points on an opponent and tell your comrades, reducing the target's Defense by 10 and increasing Damage Taken from all sources by 1% of their total Hitpoints for 2 turns.";
 		this.m.KilledString = "Marked";
-		this.m.Icon = "skills/MarkTargetSkill.png";
-		this.m.IconDisabled = "skills/MarkTargetSkill_bw.png";
-		this.m.Overlay = "mark_target";
-		this.m.SoundOnUse = [
-			"sounds/combat/puncture_01.wav",
-			"sounds/combat/puncture_02.wav",
-			"sounds/combat/puncture_03.wav"
-
-		];
-		this.m.SoundOnHit = [
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav",
-			"sounds/humans/0/human_fatigue_01.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
+		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
@@ -31,23 +17,36 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = false;
 		this.m.IsAttack = false;
 		this.m.ActionPointCost = 2;
-		this.m.FatigueCost = 10;
-		this.m.MaxLevelDifference = 6;
+		this.m.FatigueCost = 15;
+		this.m.MaxLevelDifference = 3;
 		this.m.IsUsingHitchance = false;
 		this.m.MinRange = 1;
-		this.m.MaxRange = 9;
+		this.m.MaxRange = 4;
 	}
 
 	function getTooltip()
 	{
-		local ret = this.getDefaultUtilityTooltip()
-		ret.push(
+		local ret = this.getDefaultUtilityTooltip();
+		ret.extend([
 			{
-				id = 7,
+				id = 10,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Leave your opponent marked, reducing their ranged defense by 20"
-			})
+				icon = "ui/icons/melee_defense.png",
+				text = "[color=%negative%]-10[/color] Melee Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/ranged_defense.png",
+				text = "[color=%negative%]-10[/color] Ranged Defense"
+			},
+			{
+				id = 10,
+				type = "text",
+				icon = "ui/icons/warning.png",
+				text = "Up to [color=%positive%]20%[/color] Damage Received from all sources, scaling on Hitpoints"
+			}
+		]);
 		return ret;
 	}
 
@@ -56,9 +55,9 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
 
-		if (target.isAlive())
+		if (target.isAlive() && !target.isDying())
 		{
-			target.getSkills().add(this.new("scripts/skills/effects/legend_marked_target"));
+			::Legends.Effects.grant(target, ::Legends.Effect.LegendMarkedTarget);
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{

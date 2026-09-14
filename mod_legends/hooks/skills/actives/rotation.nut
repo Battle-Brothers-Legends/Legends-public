@@ -1,18 +1,57 @@
 ::mods_hookExactClass("skills/actives/rotation", function(o)
 {
+	local create = o.create;
+	o.create = function ()
+	{
+		create();
+		this.m.FatigueCost = 20;
+	}
+
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
 		if (!_targetTile.IsOccupiedByActor)
 			return false;
 
 		local target = _targetTile.getEntity();
+		local actor = this.getContainer().getActor();
+		local setting = ::Legends.Mod.ModSettings.getSetting("AiRotation").getValue();
 
-		if (!target.isAlive() && ::MSU.isNull(target))
+		if (actor.getFaction() != this.Const.Faction.Player && setting == "Disabled")
 			return false;
 
-		// if (!target.isPlayerControlled() && (target.getFaction() != this.Const.Faction.PlayerAnimals || !this.getContainer().hasPerk(::Legends.Perk.LegendTwirl)))
-		// 	return false;
-		if (target.isPlayerControlled() || target.getFaction() == this.Const.Faction.PlayerAnimals || this.getContainer().hasPerk(::Legends.Perk.LegendTwirl))
-			return this.skill.onVerifyTarget(_originTile, _targetTile) && !target.getCurrentProperties().IsStunned && !target.getCurrentProperties().IsRooted && target.getCurrentProperties().IsMovable && !target.getCurrentProperties().IsImmuneToRotation;
+		if (::Legends.S.isEntityNullOrDead(target))
+			return false;
+
+		if (::Legends.S.isEntityMovementDisabled(target))
+			return false;
+
+		if (!target.getCurrentProperties().IsMovable)
+			return false;
+
+		if (target.getCurrentProperties().IsImmuneToRotation)
+			return false;
+
+		local canRotate = target.isAlliedWith(this.getContainer().getActor()) || this.getContainer().hasPerk(::Legends.Perk.LegendTwirl);
+		local setting = ::Legends.Mod.ModSettings.getSetting("AiRotation").getValue();
+		if (!canRotate)
+			return false;
+
+		if (actor.getFaction() != this.Const.Faction.Player && target.getFaction() == this.Const.Faction.Player)
+		{
+			if (setting == "Limited" || (setting && !canRotate))
+			{
+				return false;
+			}
+		}
+
+		return this.skill.onVerifyTarget(_originTile, _targetTile);
+	}
+
+	o.onAfterUpdate = function(_properties) {
+		_properties.SkillCostAdjustments.push({
+			ID = this.m.ID,
+			APAdjust = ::Legends.Effects.has(this.getContainer(), ::Legends.Effect.GoblinGruntPotion) ? -1 : 0,
+			FatigueMultAdjust = _properties.IsFleetfooted ? 0.5 : 1.0
+		});
 	}
 });

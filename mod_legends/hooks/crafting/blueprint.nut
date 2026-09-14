@@ -3,7 +3,7 @@
 	while(!("ID" in o.m)) o=o[o.SuperName];
 
 	o.m.PreviewSkills <- [];
-	o.m.Enchanter <- false;
+	o.m.BlueprintType <- "Crafting";
 	o.m.Type <- this.Const.Items.ItemType.None;
 	o.m.CraftMultiplier <- 1.0;
 
@@ -11,17 +11,33 @@
 	{
 		return this.m.Type;
 	}
-	o.getCostForCraft <- function  ()
-	{
-		return getCost() * this.m.CraftMultiplier;
+
+	o.getCostForCraft <- function  () {
+		local modifier = 1.0;
+
+    	foreach (reqGroup in this.m.PreviewSkills) {
+			foreach (skillInstance in reqGroup.Instances) {
+				local skillID = skillInstance.getID(); // switcheroo for enchanting - we require vala but assist with enchanters assistant
+				if(skillID == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala)) {
+					skillID = ::Legends.Professions.getID(::Legends.Profession.LegendEnchantersAssistant);
+				}
+				
+				local professionDef = ::Const.Professions.findById(skillID);
+				if(professionDef != null) {
+					local effect = ::World.Assets.m.ProfessionEffect[professionDef.Const];
+					if (effect > 0) {
+						modifier /= effect;
+					}
+				}
+       		}
+    	}
+		return this.getCost() * this.m.CraftMultiplier * modifier;
 	}
 
 	o.getIcon = function ()
 	{
-		if (this.m.PreviewCraftable.getIcon() == "layers/named_icon_glow.png")
-		{
+		if (::Legends.S.oneOf(this.m.PreviewCraftable.getIcon(), "layers/named_icon_glow.png", "layers/legendary_icon_glow.png"))
 			return this.m.PreviewCraftable.m.Icon;
-		}
 		return this.m.PreviewCraftable.getIcon();
 	}
 
@@ -44,35 +60,14 @@
 			{
 				if (s.getID() == _idx)
 				{
-					return s.getTooltip();
-				}
-			}
-		}
-
-		return null;
-	}
-
-
-	o.getTooltipForComponent = function ( _idx )
-	{
-		if (_idx > this.m.PreviewComponents.len() - 1)
-		{
-			this.logError("Out of bound error on blueprint :: " + this.m.ID);
-			return null;
-		}
-
-		return this.m.PreviewComponents[_idx].Instance.getTooltip();
-	}
-
-	o.getTooltipForSkill <- function ( _idx )
-	{
-		foreach( c in this.m.PreviewSkills )
-		{
-			foreach( s in c.Instances )
-			{
-				if (s.getID() == _idx)
-				{
-					return s.getTooltip();
+					local tooltip = s.getTooltip();
+					if(tooltip[0].text.find("Background:") != null)
+						tooltip.push({
+							id = 2,
+							type = "description",
+							text = "Requires a " + tooltip[0].text.slice(tooltip[0].text.find("Background:") + 12) + " to craft."
+						});
+					return tooltip;
 				}
 			}
 		}
@@ -100,22 +95,20 @@
 		}
 	}
 
-	o.initSkills <- function ( _skills )
-	{
-		foreach( i in _skills )
-		{
-			local C = [];
-
-			foreach( s in i.Scripts )
-			{
-				C.push(this.new(s));
-			}
-
+	o.initSkills <- function (_skills) {
+		foreach (skill in _skills) {
 			this.m.PreviewSkills.push({
-				Instances = C
+				Instances = [skill]
 			});
 		}
 	}
+
+	o.initSkillsOneOf <- function (_skills) {
+		this.m.PreviewSkills.push({
+			Instances = _skills
+		});
+	}
+
 
 	o.requirementsMet <- function ( _ids )
 	{
@@ -209,15 +202,8 @@
 		return true;
 	}
 
-	o.isQualified = function ()
-	{
-		if (this.m.Enchanter)
-		{
-			return false;
-		}
-
-		if (this.m.TimesCrafted >= 1)
-		{
+	o.isQualified = function ()	{
+		if (this.m.TimesCrafted >= 1) {
 			return true;
 		}
 
@@ -225,16 +211,6 @@
 		if (::Legends.Mod.ModSettings.getSetting("ShowBlueprintsWhen").getValue() == "One Ingredient Available") return this.isPartlyCraftable();
 
 		return this.isCraftable();
-	}
-
-	o.isQualifiedEnchant <- function ()
-	{
-		if (this.m.Enchanter)
-		{
-			return true;
-		}
-
-		return false;
 	}
 
 	o.getUIData = function ()
@@ -253,6 +229,7 @@
 			Description = this.getDescription(),
 			ImagePath = this.getIcon(),
 			LargeImagePath = this.getIconLarge() != null ? this.getIconLarge() : this.getIcon(),
+			IconOverlay = this.m.PreviewCraftable.getIconOverlay(),
 			Ingredients = this.getIngredients(),
 			Cost = this.getCost(),
 			IsCraftable = this.isCraftable(),
@@ -273,51 +250,47 @@
 		return ret;
 	}
 
-	o.getIngredients = function ()
-	{
+	o.getIngredients = function () {
 		local ret = [];
 		local itemsMap = {};
 
-		foreach( item in this.World.Assets.getStash().getItems() )
-		{
-			if (item == null)
-			{
+		foreach (item in ::World.Assets.getStash().getItems()) {
+			if (item == null) {
 				continue;
 			}
 
-			if (!(item.getID() in itemsMap))
-			{
+			if (!(item.getID() in itemsMap)) {
 				itemsMap[item.getID()] <- 0;
 			}
-			if ("Uses" in item.m) itemsMap[item.getID()] = itemsMap[item.getID()] + item.m.Uses;
-			else itemsMap[item.getID()] = itemsMap[item.getID()] + 1;
+			if ("Uses" in item.m) {
+				itemsMap[item.getID()] = itemsMap[item.getID()] + item.m.Uses;
+			} else {
+				itemsMap[item.getID()] = itemsMap[item.getID()] + 1;
+			}
 		}
 
-		foreach( c in this.m.PreviewSkills )
-		{
-			foreach( s in c.Instances )
-			{
+		foreach (c in this.m.PreviewSkills) {
+			local groupIDs = [];
+			foreach (s in c.Instances) {
+				groupIDs.push(s.getID());
+			}
+			foreach( s in c.Instances )	{
 				ret.push({
 					InstanceID = s.getID(),
 					ImagePath = s.getIconColored(),
-					IsMissing = !this.requirementsMet([
-						s.getID()
-					]),
+					IsMissing = !this.requirementsMet(groupIDs),
 					IsSkill = 1
 				});
 			}
 		}
 
-		foreach( i, c in this.m.PreviewComponents )
-		{
+		foreach (i, c in this.m.PreviewComponents) {
 			local num = 0;
 
-			if (c.Instance == null)
-			{
+			if (c.Instance == null) {
 				local name = "";
 
-				if (c.Name != null)
-				{
+				if (c.Name != null) {
 					name = c.Name;
 				}
 
@@ -325,8 +298,7 @@
 				continue;
 			}
 
-			if (c.Instance.getID() in itemsMap)
-			{
+			if (c.Instance.getID() in itemsMap) {
 				num = itemsMap[c.Instance.getID()];
 			}
 
@@ -343,70 +315,38 @@
 		return ret;
 	}
 
-	o.craft = function ()
-	{
-		if (!this.isQualified())
-		{
+	o.craft = function () {
+		if (!this.isQualified()) {
 			return;
 		}
 
 		this.updateAchievement("IMadeThis", 1, 1);
-		local stash = this.World.Assets.getStash();
-		local hasAlchemist = this.World.Retinue.hasFollower("follower.alchemist");
+		local stash = ::World.Assets.getStash();
 
-		foreach( c in this.m.PreviewComponents )
-		{
-			for( local j = 0; j < c.Num; j = j )
-			{
+		foreach (c in this.m.PreviewComponents) {
+			for (local j = 0; j < c.Num; j++) {
 				local item = stash.getItemByID(c.Instance.getID());
 
-				if (!hasAlchemist || item.getMagicNumber() > 25)
-				{
-					if ("Uses" in item.m && item.m.Uses > 1)
-					{
+				if (::World.Assets.m.ProfessionEffect.LegendThrifty <= 0 || item.getMagicNumber() > ::World.Assets.m.ProfessionEffect.LegendThrifty * 100) {
+					if ("Uses" in item.m && item.m.Uses > 1) {
 						item.m.Uses -= 1;
-					}
-					else
-					{
+					} else {
 						stash.remove(item);
 					}
-				}
-				else
-				{
+				} else {
 					item.setMagicNumber(this.Math.rand(1, 100));
 				}
-
-				j = ++j;
 			}
 		}
 
 		++this.m.TimesCrafted;
+
+		if (::Legends.S.oneOf(this.m.Type, ::Const.Items.ItemType.Ammo, ::Const.Items.ItemType.Armor, ::Const.Items.ItemType.Helmet, ::Const.Items.ItemType.Shield, ::Const.Items.ItemType.Weapon)) {
+			::World.Assets.addBusinessReputation(::World.Assets.m.ProfessionEffect.LegendPersonalSeal * this.m.Cost * 0.01);
+		}
+	
 		this.onCraft(stash);
 	}
 
-	o.enchant <- function ( _bonus )
-	{
-		if (!this.isQualifiedEnchant())
-		{
-			return;
-		}
-
-		local stash = this.World.Assets.getStash();
-
-		foreach( c in this.m.PreviewComponents )
-		{
-			for( local j = 0; j < c.Num; j = j )
-			{
-				stash.removeByID(c.Instance.getID());
-				j = ++j;
-			}
-		}
-
-		++this.m.TimesCrafted;
-		this.onEnchant(stash, _bonus);
-	}
-
-	o.onEnchant <- function ( _stash, _bonus )
-	{
-	}
+	o.onEnchant <- function (_upgraded) {}
 });

@@ -4,8 +4,8 @@ this.legend_yummy_sausages <- this.inherit("scripts/items/supplies/food_item", {
 	{
 		this.food_item.create();
 		this.m.ID = "supplies.legend_yummy_sausages";
-		this.m.Name = "Yummy Sausages";
-		this.m.Description = "Provisions. These sausages sure look yummy! Can be eaten in battle to provide up to 3 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Name = "Sausages";
+		this.m.Description = "Provisions. Can be eaten in battle to provide up to 3 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
 		this.m.Icon = "supplies/legend_yummy_sausages.png";
 		this.m.Value = 50;
 		this.m.Amount = 30.0;
@@ -51,9 +51,9 @@ this.legend_yummy_sausages <- this.inherit("scripts/items/supplies/food_item", {
 	function onEquip()
 	{
 		this.food_item.onEquip();
-		local skill = this.new("scripts/skills/actives/legend_eat_rations_skill");
-		skill.setItem(this);
-		skill.setAmount(this.m.Amount);
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendEatRations, function (_skill) {
+			_skill.setItem(this);
+			_skill.setAmount(this.m.Amount);
+		}.bindenv(this));
 	}
 });

@@ -32,8 +32,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_rations_effect";
-		this.m.Name = "Satiated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRationsEffect);
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";
@@ -45,7 +44,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to eating food, this character regains Health and loses Fatigue for [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s). ";
+		return "Thanks to eating food, this character regains Health and loses Fatigue for [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s). ";
 	}
 
 	function getTooltip()
@@ -56,7 +55,7 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor != null)
 		{
-			local stuffed = actor.getSkills().getSkillByID("effects.legend_stuffed_effect");
+			local stuffed = ::Legends.Effects.get(actor, ::Legends.Effect.LegendStuffedEffect);
 			if (stuffed != null)
 			{
 				title = "Stuffed";
@@ -84,13 +83,13 @@ this.legend_rations_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "] +" + rate + "[/color] Healing per turn for " + turns + " turns "
+				text = "Heals [color=%positive%] +" + rate + "[/color] Hitpoints per turn for " + turns + " turns "
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "] -" + rate + "[/color] Fatigue Recovery per turn for " + turns + " turns"
+				text = "[color=%negative%] -" + rate + "[/color] Fatigue Recovery per turn for " + turns + " turns"
 			}
 		];
 		return ret;

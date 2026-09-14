@@ -1,72 +1,50 @@
 ::mods_hookExactClass("skills/actives/shatter_skill", function(o)
 {
-	o.applyEffectToTarget = function ( _user, _target, _targetTile )
+	local create = o.create;
+	o.create = function()
 	{
-		local applyEffect = this.Math.rand(1, 3);
+		create();
+		this.m.HitChanceBonus = -10;
+	}
 
-		if (applyEffect == 1)
+	o.getTooltip = function ()
+	{
+		local ret = this.getDefaultTooltip();
+		ret.extend([
+			{
+				id = 8,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%positive%]33%[/color] chance to stagger on a hit"
+			},
+			{
+				id = 9,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Has a [color=%positive%]33%[/color] chance to knock back on a hit"
+			},
+			{
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Can hit up to 3 targets"
+			}
+		]);
+		return ret;
+	}
+
+	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
 		{
-			return;
-		}
-		else if (applyEffect == 2)
-		{
-			if (_target.getCurrentProperties().IsImmuneToKnockBackAndGrab || _target.getCurrentProperties().IsRooted)
+			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInHammers)
 			{
-				return;
-			}
-
-			local knockToTile = this.findTileToKnockBackTo(_user.getTile(), _targetTile);
-
-			if (knockToTile == null)
-			{
-				return;
-			}
-
-			this.m.TilesUsed.push(knockToTile.ID);
-
-			if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer))
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_target));
-			}
-
-			if (!_target.getSkills().hasSkill("effects.legend_break_stance"))
-				_target.getSkills().add(this.new("scripts/skills/effects/legend_break_stance_effect"));
-
-			_target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-			local damage = this.Math.max(0, this.Math.abs(knockToTile.Level - _targetTile.Level) - 1) * this.Const.Combat.FallingDamage;
-
-			if (damage == 0)
-			{
-				this.Tactical.getNavigator().teleport(_target, knockToTile, null, null, true);
+				_properties.MeleeSkill -= 10;
 			}
 			else
 			{
-				local p = this.getContainer().getActor().getCurrentProperties();
-				local tag = {
-					Attacker = _user,
-					Skill = this,
-					HitInfo = clone this.Const.Tactical.HitInfo
-				};
-				tag.HitInfo.DamageRegular = damage;
-				tag.HitInfo.DamageDirect = 1.0;
-				tag.HitInfo.BodyPart = this.Const.BodyPart.Body;
-				tag.HitInfo.BodyDamageMult = 1.0;
-				tag.HitInfo.FatalityChanceMult = 1.0;
-				this.Tactical.getNavigator().teleport(_target, knockToTile, this.onKnockedDown, tag, true);
-			}
-		}
-		else
-		{
-			if (_target.isNonCombatant())
-			{
-				return;
-			}
-
-			_target.getSkills().add(this.new("scripts/skills/effects/staggered_effect"));
-
-			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
+				this.m.HitChanceBonus += 5;
+				_properties.MeleeSkill -= 5;
 			}
 		}
 	}

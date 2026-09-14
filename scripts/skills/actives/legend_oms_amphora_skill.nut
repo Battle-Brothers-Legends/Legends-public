@@ -2,17 +2,9 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_oms_amphora";
-		this.m.Name = "Drink from Amphora";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendOmsAmphora);
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
-		this.m.Icon = "skills/amphora_active.png";
-		this.m.IconDisabled = "skills/amphora_active_bw.png";
-		this.m.Overlay = "amphora_active.png";
-		this.m.SoundOnUse = [
-			"sounds/combat/drink_01.wav",
-			"sounds/combat/drink_02.wav",
-			"sounds/combat/drink_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -46,26 +38,18 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 			type = "text",
 			text = this.getCostString()
 		}];
-		if (!this.World.Flags.get("Item Identified"))
-		{
+
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot and consumed in battle."
+				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle"
 			});
-			return result;
 		}
-		else
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Drinking in battle provides a random status effect. May be harmful or helpful. Refills after every battle."
-			});
-			return result;
-		}
+		return result;
 	}
 
 	function isUsable()
@@ -108,28 +92,27 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		}
 
 		local effects = ::MSU.Class.WeightedContainer([
-			[0.5, "scripts/skills/effects/antidote_effect"],
-			[0.5, "scripts/skills/effects/bleeding_effect"],
-			[0.5, "scripts/skills/effects/legend_beer_buzz_effect"],
-			[0.5, "scripts/skills/effects/legend_mead_warmth_effect"],
-			[0.5, "scripts/skills/effects/legend_wine_tipsy_effect"],
+			[0.5, ::Legends.Effect.ImmuneToPoison],
+			[0.5, ::Legends.Effect.Bleeding],
+			[0.5, ::Legends.Effect.LegendBeerBuzzEffect],
+			[0.5, ::Legends.Effect.LegendMeadWarmthEffect],
+			[0.5, ::Legends.Effect.LegendWineTipsyEffect],
 
-			[0.4, "scripts/skills/effects/cat_potion_effect"],
-			[0.4, "scripts/skills/effects/lionheart_potion_effect"],
-			[0.4, "scripts/skills/effects/dazed_effect"],
+			[0.4, ::Legends.Effect.CatPotion],
+			[0.4, ::Legends.Effect.LionheartPotion],
+			[0.4, ::Legends.Effect.LegendDazed],
 
-			[0.3, "scripts/skills/effects/recovery_potion_effect"],
-			[0.3, "scripts/skills/effects/chilled_effect"],
-			[0.3, "scripts/skills/effects/goblin_poison_effect"],
+			[0.3, ::Legends.Effect.RecoveryPotion],
+			[0.3, ::Legends.Effect.Chilled],
+			[0.3, ::Legends.Effect.GoblinPoison],
 
-			[0.2, "scripts/skills/effects/spider_poison_effect"],
-			[0.2, "scripts/skills/effects/iron_will_effect"],
-			[0.2, "scripts/skills/effects/legend_redback_spider_poison_effect"],
+			[0.2, ::Legends.Effect.SpiderPoison],
+			[0.2, ::Legends.Effect.LegendRedbackSpiderPoison],
+			[0.2, ::Legends.Effect.IronWill],
 
-			[0.1, "scripts/skills/effects/legend_greenwood_sap_effect"]
+			[0.1, ::Legends.Effect.LegendGreenwoodSap]
 		]);
-
-		user.getSkills().add(::new(effects.roll()));
+		::Legends.Effects.grant(_user, effects.roll());
 		this.getItem().setConsumed(true);
 	}
 });

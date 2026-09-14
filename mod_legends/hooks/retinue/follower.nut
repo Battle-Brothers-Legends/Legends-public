@@ -6,6 +6,33 @@
 	o.m.LinkedBro <- null;
 	o.m.WasOwned <- false;
 
+	o.getTooltip = function () {
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 4,
+				type = "description",
+				text = this.getDescription()
+			}
+		];
+
+		foreach( i, e in this.m.Effects )
+		{
+			ret.push({
+				id = i,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = e
+			});
+		}
+
+		return ret;
+	}
+
 	o.getLinkedBro <- function ()
 	{
 		return this.m.LinkedBro;
@@ -37,32 +64,6 @@
 	o.getCost = function ()
 	{
 		return this.m.WasOwned ? 0 : this.m.Cost;
-	}
-
-	o.isUnlocked = function ()
-	{
-		local hasSecondary = false;
-		local isSecondaryFulfilled = false;
-
-		foreach (r in this.m.Requirements)
-		{
-			if (r.NotImportant)
-			{
-				hasSecondary = true;
-
-				if (isSecondaryFulfilled || !r.IsSatisfied) continue;
-
-				isSecondaryFulfilled = true;
-				continue;
-			}
-
-			// primary requirement (must fulfill this)
-			if (!r.IsSatisfied) return false;
-		}
-
-		if (hasSecondary) return isSecondaryFulfilled;
-
-		return true;
 	}
 
 	o.onEvaluate = function ()
@@ -208,5 +209,7 @@
 
 		return 0;
 	}
+
+	o.onDismiss <- function() {}
 
 });

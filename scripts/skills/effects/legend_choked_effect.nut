@@ -4,8 +4,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_choked";
-		this.m.Name = "Choked";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendChoked);
 		this.m.Icon = "ui/perks/choke_circle.png";
 		this.m.IconMini = "mini_choke";
 		this.m.Overlay = "choke_circle";
@@ -16,7 +15,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	}
 	function getDescription()
 	{ // changed the  description slightly
-		return "This character was choked out and exhausted, they will catch their breath in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character has recently been choked out and is exhausted. They will catch their breath in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -36,7 +35,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15[/color] Fatigue recovered per turn"
+				text = "[color=%negative%]-15[/color] Fatigue recovered per turn"
 			}
 		];
 	}
@@ -56,7 +55,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").Visible = false;
 		}
@@ -67,7 +66,7 @@ this.legend_choked_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (!actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
 			actor.getSprite("status_stunned").Visible = true;

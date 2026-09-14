@@ -11,8 +11,7 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_trance_malevolent_effect";
-		this.m.Name = "Haunted";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaTranceMalevolentEffect);
 		this.m.Icon = "skills/status_effect_52.png";
 		this.m.IconMini = "status_effect_52_mini";
 		this.m.Overlay = "status_effect_52";
@@ -81,9 +80,7 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 		local actor = this.getContainer().getActor();
 		this.addSprite(1, "bust_ghost_fog_02");
 		this.addSprite(2, "bust_ghost_fog_02", true);
-		this.spawnIcon("status_effect_52", actor.getTile());
-
-		this.m.TurnsLeft = this.Math.max(1, 3 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = this.Math.max(1, 3 + actor.getCurrentProperties().NegativeStatusEffectDuration);
 	}
 
 
@@ -114,7 +111,7 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 			foreach (e in ever)
 			{
 				local distance = e.getTile().getDistanceTo(actor.getTile());
-				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasSkill("effects.legend_vala_trance_malevolent_effect"))
+				if (distance <= 2 && e.isAlliedWith(actor) && e.isAlive() && !e.isDying() && !e.getSkills().hasEffect(::Legends.Effect.LegendValaTranceMalevolentEffect))
 				{
 					local chance = this.m.Power - e.getBravery();
 
@@ -133,9 +130,9 @@ this.legend_vala_trance_malevolent_effect <- this.inherit("scripts/skills/skill"
 
 					if (this.Math.rand(1, 100) <= chance)
 					{
-						local effect = this.new("scripts/skills/effects/legend_vala_trance_malevolent_effect");
-						effect.setPower(this.m.Power * 0.75);
-						e.getSkills().add(effect);
+						::Legends.Effects.grant(e, ::Legends.Effect.LegendValaTranceMalevolentEffect, function(_effect) {
+							_effect.setPower(this.m.Power * 0.75);
+						}.bindenv(this));
 						this.Sound.play("sounds/combat/legend_vala_malevolent.wav");
 					}
 

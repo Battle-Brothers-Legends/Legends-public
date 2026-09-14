@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A harbor that serves both foreign trading ships and local fishermen. Contributes fish, nets, fishermen and fishmongers to the local town";
+		this.m.Description = "A harbor that serves both foreign trading ships and local fishermen. Contributes fish, nets, fishermen and fishmongers to the local town.";
 	}
 
 	o.onBuild = function ()
@@ -183,8 +183,8 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("fisherman_background");
-		_list.push("fisherman_background");
+		_list.push(::Legends.Background.Fisherman);
+		_list.push(::Legends.Background.Fisherman);
 		onUpdateDraftList(_list);
 	}
 

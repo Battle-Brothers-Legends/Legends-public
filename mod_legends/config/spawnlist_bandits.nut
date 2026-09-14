@@ -6,17 +6,15 @@
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
 	Body = "figure_bandit_01",
-	MaxR = 1,
+	MinR = 145,
+	MaxR = 600,
 	Fixed = [
 		{
-			Type = this.Const.World.Spawn.Troops.BanditWarlord,
-			Weight = 100, //100 Weight guarentees this will be added
+			Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
+			Weight = 100, //100 Weight guarantees this will be added
 			Cost = 1, //dictates cost taken from minR
 			Roll = true
-		}
-	],
-	MaxR = 12,
-	Fixed = [
+		},
 		{
 			Type = this.Const.World.Spawn.Troops.BanditLeader, //no. 1
 			Weight = 100,
@@ -36,7 +34,7 @@
 			//Roll = true
 		},
 		{
-			Type = this.Const.World.Spawn.Troops.BanditVeteran,
+			Type = this.Const.World.Spawn.Troops.BanditMarauder,
 			Weight = 100,
 			Cost = 1,
 			Roll = true
@@ -48,8 +46,6 @@
 			//Roll = true
 		}
 	],
-	MinR = 145,
-	MaxR = 600,
 	Troops =
 	[
 		{
@@ -71,7 +67,7 @@
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				}
 			]
@@ -120,6 +116,22 @@
 					Type = this.Const.World.Spawn.Troops.HedgeKnight,
 					Cost = 50,
 					Roll = true
+				}
+			]
+		},
+		{
+			Weight = 5,
+			Types =
+			[
+				{
+					MinR = 350,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutioner,
+					Cost = 25,
+				},
+				{
+					MinR = 600,
+					Type = this.Const.World.Spawn.Troops.LegendBanditExecutionerHigh,
+					Cost = 45,
 				}
 			]
 		},

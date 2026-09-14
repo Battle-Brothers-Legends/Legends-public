@@ -56,16 +56,44 @@
 	this.Const.BackgroundType[_typeKey] <- max << 1;
 }
 
-::Const.ProjectileType.Missile <- 11;
-::Const.ProjectileType.Blood <- 12;
-::Const.ProjectileType.Dart <- 13;
-::Const.ProjectileType.COUNT = 14;
+::Const.ProjectileType.Missile <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Blood <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Dart <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+::Const.ProjectileType.Dagger <- ::Const.ProjectileType.COUNT;
+::Const.ProjectileType.COUNT += 1;
+
+::Const.ProjectileDecals.extend([
+	[],
+	[],
+	[],
+	[
+		"dagger_missed_01",
+		"dagger_missed_02",
+		"dagger_missed_03"
+	]
+]);
 
 ::Const.ProjectileSprite.extend([
 	"projectile_missile",
 	"projectile_blood",
-	"projectile_dart"
+	"projectile_dart",
+	"projectile_dagger"
 ]);
+
+::Const.ZombieMovementAPCost <- [
+	0,		// none
+	3,		// paved ground
+	3,		// flat ground
+	4,		// rough ground
+	4,		// forest
+	5,		// rocks
+	5,		// swamp
+	3,		// sand
+	5		// shallow water
+];
 
 ::Const.HorseMovementAPCost <- [
 	0,
@@ -163,27 +191,28 @@
 	24
 ];
 
-::Const.CharacterProperties.FatigueLossOnBeingMissedMult <- 1.0;
 ::Const.CharacterProperties.IsParrying <- false;
 ::Const.CharacterProperties.IsEvadingAllAttacks <- false;
 ::Const.CharacterProperties.IsAffectedByRain <- true;
 ::Const.CharacterProperties.SurvivesAsUndead <- false;
 ::Const.CharacterProperties.IsAffectedByMovementMorale <- true;
-::Const.CharacterProperties.IsSpecializedInOneHandedSwords <- false;
-::Const.CharacterProperties.IsSpecializedInSpearThrust <- false;
-::Const.CharacterProperties.IsSpecializedInShieldPush <- false;
 ::Const.CharacterProperties.IsSpecializedInNets <- false;
 ::Const.CharacterProperties.IsSpecializedInNetCasting <- false;
 ::Const.CharacterProperties.IsSpecializedInFists <- false;
 ::Const.CharacterProperties.IsSpecializedInSlings <- false;
 ::Const.CharacterProperties.IsSpecializedInStaves <- false;
+::Const.CharacterProperties.IsSpecializedInMusic <- false;
 ::Const.CharacterProperties.IsSpecializedInStaffStun <- false;
 ::Const.CharacterProperties.IsSpecializedInSummons <- false;
+::Const.CharacterProperties.Block <- 0;
+::Const.CharacterProperties.RerollAttackChance <- 0;
 ::Const.CharacterProperties.DamageInitiativeMin <- 0;
 ::Const.CharacterProperties.DamageInitiativeMax <- 0;
 ::Const.CharacterProperties.DamageInitiativeCutoff <- 100;
 ::Const.CharacterProperties.FlatOnKillOtherActorModifier <- 0;
 ::Const.CharacterProperties.PercentOnKillOtherActorModifier <- 1.0;
+::Const.CharacterProperties.FatigueDealtAsPercentOfMaxFatigue <- 0.0;
+::Const.CharacterProperties.Modifiers <- {};
 
 ::Const.CharacterProperties.getInitiativeMinDamage <- function ()
 {

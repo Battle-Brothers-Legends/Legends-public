@@ -2,25 +2,20 @@ this.perk_legend_horse_charge <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHorseCharge);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHorseCharge);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_horse_charge"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHorseCharge))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_horse_charge_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendHorseCharge);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_horse_charge");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendHorseCharge);
 	}
 
 	function onUpdated( _properties )

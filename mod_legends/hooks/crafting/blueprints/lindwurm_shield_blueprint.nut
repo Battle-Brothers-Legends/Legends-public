@@ -5,15 +5,15 @@
 	{
 		create();
 		this.m.Type = this.Const.Items.ItemType.Shield;
-		this.m.PreviewCraftable = this.new("scripts/items/shields/named/named_lindwurm_shield");
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
-		];
-		this.initSkills(skills);
+		local preview = ::new("scripts/items/shields/named/named_lindwurm_shield");
+		preview.resetStats();
+		preview.setName("Lindwurm Shield");
+		this.m.PreviewCraftable = preview;
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	o.onCraft = function ( _stash )
 	{
-		_stash.add(this.new("scripts/items/shields/named/named_lindwurm_shield"));
+		_stash.add(::new("scripts/items/shields/named/named_lindwurm_shield"));
 	}
 });

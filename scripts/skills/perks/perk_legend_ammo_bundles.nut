@@ -4,12 +4,7 @@ this.perk_legend_ammo_bundles <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendAmmoBundles);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAmmoBundles);
 	}
 
 	function getModifier()

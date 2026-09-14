@@ -19,7 +19,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 					Text = "Sounds good. Here\'s 600 crowns for the expenses. Take 5 tools from the cart.",
 					function getResult( _event )
 					{
-							return this.Math.rand(1, 100) <= 85 ? "C" : "D";
+							return ::Math.rand(1, 100) <= 85 ? "C" : "D";
 					}
 				},
 				{
@@ -73,10 +73,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "You look.. good?",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -103,7 +100,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 						icon = _trait.getIcon(),
 						text = _event.m.Noeye.m.Name + " receives a " + _trait.m.Name
 					});
-				});
+				}.bindenv(this));
 
 				local missing_eye_bye = this.new("scripts/skills/injury_permanent/missing_eye_injury");
 				_event.m.Noeye.getSkills().removeByID("injury.missing_eye");
@@ -127,10 +124,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "What have you done?!",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -175,10 +169,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Maybe later?",
-					function getResult( _event )
-					{
-						return 0;
-					}
+					getResult = @(_event) 0
 				}
 			],
 			function start( _event )
@@ -218,7 +209,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Inventor = inventor_candidates[this.Math.rand(0, inventor_candidates.len() - 1)];
+			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
 
@@ -235,7 +226,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		}
 		else
 		{
-			this.m.Noeye = noeye_candidates[this.Math.rand(0, noeye_candidates.len() - 1)];
+			this.m.Noeye = noeye_candidates[::Math.rand(0, noeye_candidates.len() - 1)];
 		}
 
 
@@ -261,13 +252,8 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 	function onDetermineStartScreen()
 	{
 		if (this.m.Noeye.getSkills().hasSkill("injury.brain_damage"))
-		{
 			return "B";
-		}
-		else
-		{
-			return "A";
-		}
+		return "A";
 	}
 
 	function onClear()

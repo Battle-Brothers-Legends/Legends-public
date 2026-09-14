@@ -23,18 +23,12 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.IsChangeableInBattle = true;
 	}
 
-	function isAllowedInBag()
-	{
-		if (this.getContainer() == null)
-			return true;
-		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
+	function isAllowedInBag() {
+		return true;
 	}
 
-	function isChangeableInBattle()
-	{
-		if (this.getContainer() == null)
-			return true;
-		return this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendPackleader);
+	function isChangeableInBattle()	{
+		return true;
 	}
 
 	function isUnleashed()
@@ -113,7 +107,12 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			local entity = this.Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
 			entity.setItem(this);
 			entity.setName(this.getName());
-			entity.setVariant(this.getVariant());
+			if (entity.setVariant.getinfos().parameters.len()-1 == 1) { // regular pet
+				entity.setVariant(this.getVariant());
+			}
+			else { //white wolf
+				entity.setVariant(this.getVariant(), entity.getSprite("body").Color, entity.getSprite("body").Saturation);
+			}
 
 			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendDogWhisperer))
 			{
@@ -133,11 +132,6 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 			this.Sound.play(this.m.UnleashSounds[this.Math.rand(0, this.m.UnleashSounds.len() - 1)], this.Const.Sound.Volume.Skill, _onTile.Pos);
 		}
-	}
-
-	function onCombatFinished()
-	{
-		this.setEntity(null);
 	}
 
 	function onEquip()

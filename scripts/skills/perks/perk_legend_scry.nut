@@ -2,25 +2,20 @@ this.perk_legend_scry <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendScry);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendScry);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_scry"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendScry))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_scry_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendScry);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_scry");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendScry);
 	}
 
 });

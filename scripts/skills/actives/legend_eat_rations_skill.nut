@@ -4,11 +4,8 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 	function create()
 	{
 		this.legend_eat_skill.create();
-		this.m.ID = "actives.legend_eat_rations";
-		this.m.Name = "Eat or Give Food";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEatRations);
 		this.m.Description = "Give to an adjacent ally or eat food that slowly recovers hitpoints. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
-		this.m.Icon = "skills/rations_square.png";
-		this.m.IconDisabled = "skills/rations_square_bw.png";
 	}
 
 	function getTooltip()
@@ -17,7 +14,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 		local rations = null;
 		if (this.Tactical.isActive())
 		{
-			rations = this.getContainer().getActor().getSkills().getSkillByID("effects.legend_rations_effect");
+			rations = ::Legends.Effects.get(this, ::Legends.Effect.LegendRationsEffect);
 			if (rations != null)
 			{
 				amount += rations.getAmount() - (10 - rations.getTurnsLeft());
@@ -52,13 +49,13 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 11,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "On self, will restore [color=" + this.Const.UI.Color.PositiveValue + "]+" + rate + "[/color] Hitpoints per turn for ten turns"
+				text = "On self, will restore [color=%positive%]+" + rate + "[/color] Hitpoints per turn for ten turns"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "On self, recovers fatigue by [color=" + this.Const.UI.Color.NegativeValue + "]-" + rate + "[/color] per turn for ten turns"
+				text = "On self, recovers fatigue by [color=%negative%]-" + rate + "[/color] per turn for ten turns"
 			}
 		];
 
@@ -68,7 +65,7 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -99,40 +96,38 @@ this.legend_eat_rations_skill <- this.inherit("scripts/skills/actives/base/legen
 			return true;
 		}
 
-		if (!_user.getSkills().hasSkill("effects.legend_satiated_effect"))
+		if (!_user.getSkills().hasEffect(::Legends.Effect.LegendSatiatedEffect))
 		{
 			if (!_user.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes satiated");
 			}
 
-			local skill = this.new("scripts/skills/effects/legend_rations_effect");
-			skill.setAmount(this.m.Amount);
-			_user.getSkills().add(skill);
-			local skill = this.new("scripts/skills/effects/legend_satiated_effect");
-			_user.getSkills().add(skill);
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendSatiatedEffect);
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendRationsEffect, function(_effect) {
+				_effect.setAmount(this.m.Amount);
+			}.bindenv(this));
 
 			if (this.m.Item != null && !this.m.Item.isNull())
 			{
 				this.m.Item.removeSelf();
 			}
-
 			//this.Const.Tactical.Common.checkDrugEffect(_user);
 			return true;
 		}
 
 		//We are satiated at this point
 
-		local rationsEffect = _user.getSkills().getSkillByID("effects.legend_rations_effect");
+		local rationsEffect = ::Legends.Effects.get(_user, ::Legends.Effect.LegendRationsEffect);
 
-		if (!_user.getSkills().hasSkill("effects.legend_stuffed_effect"))
+		if (!_user.getSkills().hasEffect(::Legends.Effect.LegendStuffedEffect))
 		{
 			if (!_user.isHiddenToPlayer())
 			{
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " eats food and becomes stuffed");
 			}
 
-			_user.getSkills().add(this.new("scripts/skills/effects/legend_stuffed_effect"));
+			::Legends.Effects.grant(_user, ::Legends.Effect.LegendStuffedEffect);
 
 			rationsEffect.addAmount(rationsEffect.getAmount() + this.m.Amount);
 			rationsEffect.resetTurns();

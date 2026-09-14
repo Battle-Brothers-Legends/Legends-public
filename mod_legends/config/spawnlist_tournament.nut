@@ -148,7 +148,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				},
 				{
@@ -305,7 +305,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 					Cost = 80,
 				}
 			]
@@ -513,7 +513,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditVeteran,
+					Type = this.Const.World.Spawn.Troops.BanditMarauder,
 					Cost = 30
 				},
 				{
@@ -630,10 +630,10 @@ if (!("Spawn" in ::Const.World))
 					Type = this.Const.World.Spawn.Troops.Hyena,
 					Cost = 15
 				},
-		 		{
-		 			Type = this.Const.World.Spawn.Troops.KoboldFighter,
-		 			Cost = 15
-		 		},
+		 		// {
+		 		// 	Type = this.Const.World.Spawn.Troops.KoboldFighter,
+		 		// 	Cost = 15
+		 		// },
 				{
 					Type = this.Const.World.Spawn.Troops.Direwolf,
 					Cost = 20
@@ -642,6 +642,11 @@ if (!("Spawn" in ::Const.World))
 					Type = this.Const.World.Spawn.Troops.HyenaHIGH,
 					MinR = 400,
 					Cost = 20
+				},
+				{
+					Type = this.Const.World.Spawn.Troops.LegendEnragedHyena,
+					MinR = 500,
+					Cost = 25
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.DirewolfHIGH,
@@ -654,7 +659,7 @@ if (!("Spawn" in ::Const.World))
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 800,
-					Cost = 40
+					Cost = 25
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.GoblinWolfrider,
@@ -672,7 +677,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.BarbarianUnhold,
 							Cost = 50,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(20, c);
 							}
 						},
@@ -680,7 +685,7 @@ if (!("Spawn" in ::Const.World))
 							Type = this.Const.World.Spawn.Troops.BarbarianUnholdFrost,
 							Cost = 70,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(80, c);
 							}
 						}
@@ -846,7 +851,7 @@ if (!("Spawn" in ::Const.World))
 							MinR = 200,
 							Cost = 6,
 							function Weight(scale) {
-								local c = 100 - (scale * 100)
+								local c = 100 - (scale * 100);
 								return this.Math.max(0, c);
 							}
 						},
@@ -855,7 +860,7 @@ if (!("Spawn" in ::Const.World))
 							MinR = 400,
 							Cost = 24,
 							function Weight(scale) {
-								local c = 100 - ((1.0 - scale) * 100)
+								local c = 100 - ((1.0 - scale) * 100);
 								return this.Math.min(100, c);
 							}
 						}
@@ -884,7 +889,7 @@ if (!("Spawn" in ::Const.World))
 					MinGuards = 1,
 					MaxGuards = 2,
 					MaxGuardsWeight = 66,
-					Weight = 0, //0 Weight guarentees this will be added
+					Weight = 0, //0 Weight guarantees this will be added
 					Guards = [
 						{
 							Type = this.Const.World.Spawn.Troops.DirewolfBodyguard,
@@ -916,7 +921,7 @@ if (!("Spawn" in ::Const.World))
 					Cost = 80,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.BanditWarlord,
+					Type = this.Const.World.Spawn.Troops.LegendRobberBaron,
 					Cost = 80,
 				},
 				{

@@ -1,35 +1,13 @@
-::mods_hookExactClass("entity/world/settlements/medium_tundra_village", function(o) 
-{
+::mods_hookExactClass("entity/world/settlements/medium_tundra_village", function(o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
-		this.m.DraftList = [
-			"beggar_background",
-			"bowyer_background",
-			"brawler_background",
-			"brawler_background",
-			"butcher_background",
-			"cultist_background",
-			"daytaler_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"hunter_background",
-			"killer_on_the_run_background",
-			"messenger_background",
-			"militia_background",
-			"minstrel_background",
-			"monk_background",
-			"peddler_background",
-			"poacher_background",
-			"tailor_background",
-			"thief_background",
-			"vagabond_background",
-			"wildman_background"
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.LegendDisownedNobleRanged,
+		]);
 	}
 
-	o.onBuild = function ( _settings )
+	o.onBuild = function ( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

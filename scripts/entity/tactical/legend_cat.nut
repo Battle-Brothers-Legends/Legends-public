@@ -81,9 +81,9 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
 			local appearance = this.getItems().getAppearance();
 			local decal;
 			this.m.IsCorpseFlipped = flip;
@@ -125,21 +125,35 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = this.getName();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			corpse.IsResurrectable = false;
+			this.spawnFlies(_tile);
+		}
+
+		if (this.m.Item != null && !this.m.Item.isNull())
+			this.m.Item = null;
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (this.m.Item != null && !this.m.Item.isNull())
-		{
-
-			this.m.Item = null;
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = this.getName();
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsResurrectable = false;
+		return corpse;
 	}
 
 	function onFactionChanged()
@@ -214,7 +228,7 @@ this.legend_cat <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(8, -15));
 		this.setSpriteOffset("status_stunned", this.createVec(0, -25));
 		this.setSpriteOffset("arrow", this.createVec(0, -25));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_cat_bite_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendCatBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendEvasion);

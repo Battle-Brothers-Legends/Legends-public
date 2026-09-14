@@ -2,12 +2,8 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.werewolf_howl";
-		this.m.Name = "Howl";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWerewolfHowl);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_22.png";
-		this.m.IconDisabled = "skills/active_22_sw.png";
-		this.m.Overlay = "active_22";
 		this.m.SoundOnUse = [
 			//"sounds/werewolf_howl.wav"
 		];
@@ -25,9 +21,7 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 0;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -62,9 +56,8 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 			Self = _user,
 			Skill = this
 		};
-		this.Tactical.queryActorsInRange(_user.getTile(), 6, this.raiseMorale, this.result);
+		this.Tactical.queryActorsInRange(_user.getTile(), 1, 6, this.raiseMorale, this.result);
 		return true;
 	}
 
 });
-

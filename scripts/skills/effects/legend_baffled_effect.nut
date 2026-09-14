@@ -5,8 +5,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_baffled";
-		this.m.Name = "Baffled";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBaffled);
 		this.m.Icon = "skills/baffled.png";
 		this.m.IconMini = "mini_baffled_circle";
 		this.m.Overlay = "baffled_circle";
@@ -18,7 +17,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character is confused. Will wear off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "This character is confused. Will wear off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -38,19 +37,19 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Damage"
+				text = "[color=%negative%]-15%[/color] Damage"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Max Fatigue"
+				text = "[color=%negative%]-15%[/color] Max Fatigue"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15%[/color] Initiative"
+				text = "[color=%negative%]-15%[/color] Initiative"
 			}
 		];
 	}
@@ -65,7 +64,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 		{
 			if (!actor.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being baffled thanks to his unnatural physiology");
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being baffled thanks to unnatural physiology");
 			}
 
 			this.removeSelf();
@@ -86,7 +85,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").Visible = false;
 		}
@@ -101,7 +100,7 @@ this.legend_baffled_effect <- this.inherit("scripts/skills/skill", {
 		_properties.InitiativeMult *= 0.85;
 		_properties.StaminaMult *= 0.85;
 
-		if (actor.hasSprite("status_stunned") && !this.getContainer().hasSkill("effects.stunned"))
+		if (actor.hasSprite("status_stunned") && !this.getContainer().hasEffect(::Legends.Effect.Stunned))
 		{
 			actor.getSprite("status_stunned").setBrush("bust_dazed");
 			actor.getSprite("status_stunned").Visible = true;

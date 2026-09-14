@@ -1,74 +1,39 @@
-::mods_hookExactClass("skills/actives/swing", function(o)
-{
-	o.m.ApplyAxeMastery <- false;
+::mods_hookExactClass("skills/actives/swing", function (o) {
+	o.m.IsStaffSwing <- false;
+	o.m.TilesLeft <- 2;
+	o.m.TilesRight <- 0;
 
-	o.isAxeMasteryApplied <- function ()
-	{
-		return this.m.ApplyAxeMastery;
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.HitChanceBonus = -5;
 	}
 
-	o.setApplyAxeMastery <- function ( _f )
-	{
-		this.m.ApplyAxeMastery = _f;
-	}
-
-	o.getTooltip = function ()
-	{
-		local tooltip = this.getDefaultTooltip();
-		tooltip.push({
+	o.getTooltip = function () {
+		local ret = this.getDefaultTooltip();
+		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
 			text = "Can hit up to 3 targets"
 		});
-
-		if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-		{
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] chance to hit"
-			});
-		}
-		else
-		{
-			tooltip.push({
-				id = 6,
-				type = "text",
-				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] chance to hit"
-			});
-		}
-
-		return tooltip;
+		return ret;
 	}
 
-	o.onAfterUpdate = function ( _properties )
-	{
-		if (this.m.ApplyAxeMastery)
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInAxes ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+	o.onAfterUpdate = function (_properties) {
+		if (this.m.IsStaffSwing	&& ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
+			this.m.ActionPointCost -= 1;
 		}
-		else
-		{
-			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
-		}
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
-			if (!this.getContainer().getActor().getCurrentProperties().IsSpecializedInSwords)
-			{
-				_properties.MeleeSkill -= 5;
-			}
-			else
-			{
+	o.onAnySkillUsed = function (_skill, _targetEntity, _properties) {
+		if (_skill == this) {
+			_properties.MeleeSkill -= 5;
+			if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 				_properties.MeleeSkill += 5;
+				this.m.HitChanceBonus += 5;
 			}
 		}
 	}
-
 });

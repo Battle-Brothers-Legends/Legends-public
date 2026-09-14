@@ -12,7 +12,7 @@
 		{
 			Type = this.Const.World.Spawn.Troops.FreeCompanyLeader,
 			Cost = 30,
-			Weight = 0, //0 Weight guarentees this will be added
+			Weight = 0, //0 Weight guarantees this will be added
 		}
 	],
 	Troops = [ //weights dont add up to 100 but it doesn't really matter : total weight is of 120
@@ -114,14 +114,13 @@
 	VisibilityMult = 1.0,
 	VisionMult = 1.0,
 	Body = "figure_bandit_03",
-	MinR = 120,
 	MaxR = 225,
 	MinR = 97,
 	Fixed = [
 		{
 			Type = this.Const.World.Spawn.Troops.FreeCompanyLeaderLow,
 			Cost = 30,
-			Weight = 0, //0 Weight guarentees this will be added
+			Weight = 0, //0 Weight guarantees this will be added
 		}
 	],
 	Troops = [ //weights dont add up to 100 but it doesn't really matter : total weight is of 120
@@ -195,7 +194,7 @@
 		{
 			Type = this.Const.World.Spawn.Troops.FreeCompanyLeader,
 			Cost = 30,
-			Weight = 0, //0 Weight guarentees this will be added
+			Weight = 0, //0 Weight guarantees this will be added
 		}
 	],
 	Troops = [ //weights dont add up to 100 but it doesn't really matter : total weight is of 120

@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/effects/whipped_effect", function(o) {
-	
+
 	o.m.TurnsLeft = 3;
 
 	o.getTooltip = function ()
@@ -19,37 +19,37 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + (12 + this.m.Level) + "[/color] Melee Skill"
+				text = "[color=%positive%]+" + (12 + this.m.Level) + "[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + (14 + this.m.Level) + "[/color] Ranged Skill"
+				text = "[color=%positive%]+" + (14 + this.m.Level) + "[/color] Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + (5 + this.m.Level) + "[/color] Resolve"
+				text = "[color=%negative%]-" + (5 + this.m.Level) + "[/color] Resolve"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + (9 + this.m.Level) + "[/color] Initiative"
+				text = "[color=%positive%]+" + (9 + this.m.Level) + "[/color] Initiative"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + (5 + this.m.Level) + "[/color] Melee Defense"
+				text = "[color=%positive%]+" + (5 + this.m.Level) + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + (5 + this.m.Level) + "[/color] Ranged Defense"
+				text = "[color=%positive%]+" + (5 + this.m.Level) + "[/color] Ranged Defense"
 			}
 		];
 	}

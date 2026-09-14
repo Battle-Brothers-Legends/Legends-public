@@ -258,7 +258,6 @@
 	"Nasty %randomname%",
 	"The Pig",
 	"Prince %randomname% Murderhand",
-	"%randomname% the Citrene",
 	"%randomname% Ubermensch",
 	"Furious %randomname%"
 ]);
@@ -297,8 +296,83 @@
 	"Dotos",
 	"Mucapor",
 	"Oroles",
-	"Asteta"
+	"Asteta",
+	"Marcus",
+	"Lucius",
+	"Gaius",
+	"Julius",
+	"Titus",
+	"Octavius",
+	"Quintus",
+	"Flavius",
+	"Cassius",
+	"Severus",
+	"Tiberius",
+	"Valerius",
+	"Fabius",
+	"Publius",
+	"Decimus",
+	"Antonius",
+	"Pompeius",
+	"Crassus", //GIVE ME BACK MY LEGIONS
+	"Sulla",
+	"Drusus",
+	"Ignatius",
+	"Cassius",
+	"Brutus",
+	"Cicero",
+	"Gracchus",
+	//Gender Neutral names:
+	"Fabia",
+	"Marcellus",
+	"Junius",
+	"Terentius",
+	"Valerius",
+	"Minervius",
+	"Flaviana",
+	"Tiberia",
+	"Severa"
 ]);
+
+::Const.Strings.AncientDeadNamesFemale <- [
+	"Julia",
+	"Claudia",
+	"Cornelia",
+	"Livia",
+	"Octavia",
+	"Aurelia",
+	"Flavia",
+	"Domitia",
+	"Fulvia",
+	"Marcella",
+	"Terentia",
+	"Sylvanus",
+	"Flora",
+	"Valeria",
+	"Concordia",
+	"Clementia",
+	"Prudentia",
+	"Aurora",
+	"Junia",
+	"Laetitia",
+	"Diana",
+	"Victoria",
+	"Honoria",
+	"Fortuna",
+	"Juno",
+	"Minerva",
+	//Gender Neutral names:
+	"Fabia",
+	"Marcellus",
+	"Junius",
+	"Terentius",
+	"Valerius",
+	"Minervius",
+	"Flaviana",
+	"Tiberia",
+	"Severa"
+];
+
 ::Const.Strings.AncientDeadTitles.extend([
 	"the Hanter",
 	"the Patient",
@@ -350,7 +424,12 @@
 	"the Last",
 	"the High Judge",
 	"of the High Command",
-	"the Master of Horse"
+	"the Master of Horse",
+	"the Builder",
+	"the Elder",
+	"the Magistrate",
+	"the Augur",
+	"the Gladiator"
 ]);
 ::Const.Strings.GoblinNames.extend([
 	"Snubb",

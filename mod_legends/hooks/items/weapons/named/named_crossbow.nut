@@ -1,5 +1,12 @@
 ::mods_hookExactClass("items/weapons/named/named_crossbow", function(o) {
 
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.RangeMax = 5;
+		this.m.RangeIdeal = 5;
+	}
+
 	o.getTooltip <- function ()
 	{
 		local result = this.named_weapon.getTooltip();
@@ -10,7 +17,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Must be reloaded before firing again[/color]"
+				text = "[color=%negative%]Must be reloaded before firing again[/color]"
 			});
 		}
 
@@ -21,7 +28,12 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_piercing_bolt_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendPiercingBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendStrafingRun);
+		::Legends.Actives.grant(this, ::Legends.Active.ReloadBolt);
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsRangedKnockOut = true;
+		}.bindenv(this));
 	}
 
 	o.onCombatFinished = function ()

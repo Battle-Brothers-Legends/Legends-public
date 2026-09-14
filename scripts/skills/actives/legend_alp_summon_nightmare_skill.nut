@@ -4,20 +4,9 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_alp_summon_nightmare";
-		this.m.Name = "Conjure Nightmare";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendAlpSummonNightmare);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_160.png";
-		this.m.IconDisabled = "skills/active_160.png";
-		this.m.Overlay = "active_160";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/alp_nightmare_01.wav",
-			"sounds/enemies/dlc2/alp_nightmare_02.wav",
-			"sounds/enemies/dlc2/alp_nightmare_03.wav",
-			"sounds/enemies/dlc2/alp_nightmare_04.wav",
-			"sounds/enemies/dlc2/alp_nightmare_05.wav",
-			"sounds/enemies/dlc2/alp_nightmare_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted;

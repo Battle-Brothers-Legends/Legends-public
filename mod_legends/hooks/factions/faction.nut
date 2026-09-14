@@ -14,6 +14,27 @@
 		Wildcard = []
 	};
 
+	o.normalizeRelation = function () {
+		if (!this.m.IsRelationDecaying) {
+			return;
+		}
+
+		if (this.m.PlayerRelation > 50.0) {
+			this.setPlayerRelation(::Math.maxf(50.0, this.m.PlayerRelation - this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayGoodMult * (::World.Assets.m.ProfessionEffect.LegendDiplomacy > 0 ? 0.85 : 1.0))); // relation decay mult kept for escaped slaves
+		} else if (this.m.PlayerRelation < 50.0) {
+			this.setPlayerRelation(this.Math.minf(50.0, this.m.PlayerRelation + this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayBadMult * (::World.Assets.m.ProfessionEffect.LegendDiplomacy > 0 ? 1.15 : 1.0))); // relation decay mult kept for escaped slaves
+		}
+
+		if (this.m.PlayerRelationChanges.len() != 0	&& this.m.PlayerRelationChanges[this.m.PlayerRelationChanges.len() - 1].Time + ::Const.World.Assets.RelationTimeOut < ::Time.getVirtualTimeF())	{
+			this.m.PlayerRelationChanges.remove(this.m.PlayerRelationChanges.len() - 1);
+		}
+	}
+
+	local addPlayerRelation = o.addPlayerRelation;
+	o.addPlayerRelation = function(_r, _reason = "") {
+		addPlayerRelation(_r * (1 + ::World.Assets.m.ProfessionEffect.LegendDiplomacy), _reason);
+	}
+
 	o.getPlayerRelationAsText = function ()
 	{
 		if (this.m.PlayerRelation <= 0)
@@ -210,97 +231,11 @@
 	}
 
 	local spawnEntity = o.spawnEntity;
-	o.spawnEntity = function (_tile, _name, _uniqueName, _template, _resources) {
-		local entity = spawnEntity(_tile, _name, _uniqueName, _template, _resources);
+	o.spawnEntity = function (_tile, _name, _uniqueName, _template, _resources, _minibossify = 0) {
+		local entity = spawnEntity(_tile, _name, _uniqueName, _template, _resources, _minibossify);
 		if (this.m.SpawnListener != null)
 			this.m.SpawnListener(entity);
 		this.m.SpawnListener = null;
 		return entity;
-	}
-
-	o.onDeserialize = function ( _in )
-	{
-		this.m.ID = _in.readU8();
-		this.m.Name = _in.readString();
-		this.m.Description = _in.readString();
-		this.m.Motto = _in.readString();
-		this.m.Banner = _in.readU8();
-		local numTraits = _in.readU8();
-
-		for( local i = 0; i < numTraits; i = ++i )
-		{
-			this.addTrait(_in.readU8());
-		}
-
-		local numCooldowns = _in.readU16();
-		local cooldowns = [];
-
-		for( local i = 0; i != numCooldowns; i = ++i )
-		{
-			local actionID = _in.readI32();
-			local cooldownUntil = _in.readF32();
-
-			for( local j = 0; j != this.m.Deck.len(); j = ++j )
-			{
-				if (this.m.Deck[j].ClassNameHash == actionID)
-				{
-					this.m.Deck[j].setCooldownUntil(cooldownUntil);
-					break;
-				}
-			}
-		}
-
-		this.m.Allies = [];
-		local numAllies = _in.readU8();
-
-		for( local i = 0; i != numAllies; i = ++i )
-		{
-			local a = _in.readU8();
-			this.addAlly(a);
-		}
-
-		this.m.PlayerRelation = _in.readF32();
-		local numSettlements = _in.readU8();
-
-		for( local i = 0; i != numSettlements; i = ++i )
-		{
-			local s = this.World.getEntityByID(_in.readI32());
-			local owner = _in.readBool();
-			this.addSettlement(s, owner);
-		}
-
-		local numUnits = _in.readU16();
-
-		for( local i = 0; i != numUnits; i = ++i )
-		{
-			local unit = this.World.getEntityByID(_in.readI32());
-
-			if (_in.getMetaData().getVersion() == 68 && unit.m.Name == "Ship")
-			{
-				unit.fadeOutAndDie();
-				continue;
-			}
-			this.addUnit(unit);
-
-		}
-
-		this.m.LastActionTime = _in.readF32();
-		this.m.LastActionHour = _in.readU8();
-		this.m.LastContractTime = _in.readF32();
-		this.m.IsDiscovered = _in.readBool();
-		this.m.Flags.onDeserialize(_in);
-		local numRelationChanges = _in.readU8();
-		this.m.PlayerRelationChanges.resize(numRelationChanges, 0);
-
-		for( local i = 0; i != numRelationChanges; i = ++i )
-		{
-			local relationChange = {};
-			relationChange.Positive <- _in.readBool();
-			relationChange.Text <- _in.readString();
-			relationChange.Time <- _in.readF32();
-			this.m.PlayerRelationChanges[i] = relationChange;
-		}
-
-		this.updatePlayerRelation();
 	}
 });

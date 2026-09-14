@@ -1,4 +1,90 @@
 ::mods_hookNewObjectOnce("ui/global/data_helper", function(o) {
+	o.m.ArmorFilter <- null; // used by armor filter
+
+	o.filterArmorFromStashToUIData <- function() // used by armor filter
+    {
+        if (::Stash.isLocked())
+            return null;
+
+        if (this.m.ArmorFilter == null)
+            return this.convertStashToUIData(false, ::Const.Items.ItemFilter.Armor);
+
+        local items = ::Stash.getItems();
+
+        if (items == null)
+        	return null;
+
+        if(this.m.ArmorFilter.Armor.len() == 0 && this.m.ArmorFilter.Helmet.len() == 0)
+			return array(items.len(), null); // no filter is checked so there is nothing to see
+
+        local i, result = [], includedBaseHelmet = false, includedBaseArmor = false;
+        local hasArmor = this.m.ArmorFilter.Armor.len() > 0, hasHelmet = this.m.ArmorFilter.Helmet.len() > 0;
+        if (hasArmor) {
+        	i = this.m.ArmorFilter.Armor.find(-1);
+	        if (i != null)
+	        	includedBaseArmor = this.m.ArmorFilter.Armor.remove(i) != null;
+        }
+
+        if (hasHelmet) {
+        	i = this.m.ArmorFilter.Helmet.find(-1);
+	        if (i != null)
+	        	includedBaseHelmet = this.m.ArmorFilter.Helmet.remove(i) != null;
+        }
+
+        foreach (item in items)
+        {
+        	if (item != null && hasArmor && item.isItemType(::Const.Items.ItemType.Armor)) {
+        		if (::isKindOf(item, "armor") && !includedBaseArmor)
+        			continue;
+        		else if (::isKindOf(item, "legend_armor_upgrade") && this.m.ArmorFilter.Armor.find(item.m.Type) == null)
+        			continue;
+        	}
+        	else if (item != null && hasHelmet && item.isItemType(::Const.Items.ItemType.Helmet)) {
+        		if (::isKindOf(item, "helmet") && !includedBaseHelmet)
+        			continue;
+        		else if (::isKindOf(item, "legend_helmet_upgrade") && this.m.ArmorFilter.Helmet.find(item.m.Type) == null)
+        			continue;
+        	}
+        	else {
+        		result.push(null);
+        		continue;
+        	}
+
+			result.push(this.convertItemToUIData(item, true, ::Const.UI.ItemOwner.Stash));
+        }
+
+        return result;
+    }
+
+	o.addProfessionsToUIData <- function ( _entity, _professions, _target )	{
+		foreach( p in _professions ) {
+			_target.push(p.getID());
+		}
+	}
+
+	o.convertProfessionToUIData <- function ( _professionId )	{
+		local profession = this.Const.Professions.findById(_professionId);
+
+		if (profession != null)	{
+			return {
+				id = profession.ID,
+				name = profession.Name,
+				description = profession.Tooltip,
+				imagePath = profession.Icon
+			};
+		}
+
+		return null;
+	}
+
+    local convertStashToUIData = o.convertStashToUIData; // used by armor filter
+    o.convertStashToUIData = function(_ignoreLocked = false, _filter = 0)
+    {
+        if (this.m.ArmorFilter != null && _filter == ::Const.Items.ItemFilter.Armor)
+            return this.filterArmorFromStashToUIData();
+
+        return convertStashToUIData(_ignoreLocked, _filter);
+    }
 
 	o.convertCampaignStorageToUIData = function ( _meta )
 	{
@@ -111,11 +197,37 @@
 	{
 		local result = convertEntityToUIData(_entity, _activeEntity);
 		result.perkTree <- [];
+		result.professions <- [];
+		result.professionTree <- [];
 
-		local bg = _entity.getBackground();
-		if (bg != null)
-		{
+		if (_entity.getBackground() != null) {
+			this.addProfessionsToUIData(_entity, _entity.getSkills().query(::Const.SkillType.Profession, true), result.professions);
 			result.perkTree = _entity.getBackground().getPerkTree();
+			result.professionTree = _entity.getBackground().getProfessionTree();
+			local perkPlan = _entity.getPerkPlan();
+			result.PerksPlan <- perkPlan;
+			local professionPlan = _entity.getProfessionPlan();
+			result.ProfessionPlan <- professionPlan;
+
+			local plannedCount = 0;
+    		local tentativeCount = 0;
+    		foreach(state in perkPlan) {
+        		if (state == 1) plannedCount++;
+        		else if (state == 2) tentativeCount++;
+    		}
+			result.PlannedLevelRequired <- plannedCount + _entity.getLevel() - _entity.getPerkPoints();
+    		result.TentativePerksCount <- tentativeCount;
+			result.BooksRead <- _entity.getFlags().getAsInt("LegendsSkillBookCount") + " / 1";
+			result.ScrollsRead <- _entity.getFlags().getAsInt("LegendsScrollCount") + " / " + (::Legends.Traits.has(_entity, ::Legends.Trait.Bright) ? 2 : (::Legends.Traits.has(_entity, ::Legends.Trait.Dumb) ? 0 : 1));
+
+			plannedCount = 0;
+    		tentativeCount = 0;
+    		foreach(state in professionPlan) {
+        		if (state == 1) plannedCount++;
+        		else if (state == 2) tentativeCount++;
+    		}
+			result.PlannedProfessionLevelRequired <- plannedCount + _entity.getLevel() - _entity.getProfessionPoints();
+    		result.TentativeProfessionCount <- tentativeCount;
 		}
 
 		return result;
@@ -126,13 +238,17 @@
 	{
 		local result = convertEntityHireInformationToUIData(_entity);
 		result.Talents <- _entity.getHiringTalents();
+		result.perkTree <- _entity.getBackground().getPerkTree();
+		result.professionTree <- _entity.getBackground().getProfessionTree();
+		result.Attributes <- _entity.getHiringAttributes();
 		return result;
 	}
 
 	local addCharacterToUIData = o.addCharacterToUIData;
-	o.addCharacterToUIData = function ( _entity, _target )
-	{
+	o.addCharacterToUIData = function ( _entity, _target ) {
 		addCharacterToUIData(_entity, _target);
+		_target.professionPoints <- _entity.getProfessionPoints();
+		_target.professionPointsSpent <- _entity.getProfessionPointsSpent();
 		if (_entity.getBackground() != null)
 		{
 			_target.background <- _entity.getBackground().getID();
@@ -178,10 +294,22 @@
 		_target.morale <- _entity.getMoraleState();
 		_target.moraleMax <- this.Const.MoraleState.COUNT - 1;
 		_target.moraleLabel <- this.Const.MoraleStateName[_entity.getMoraleState()];
+		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue()){
+			_target.potentials <- {
+                hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints),
+                fatigue = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Fatigue),
+                bravery = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Bravery),
+                initiative = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Initiative),
+                meleeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeSkill),
+                rangeSkill = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedSkill),
+                meleeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.MeleeDefense),
+                rangeDefense = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.RangedDefense)
+            };
+		}
 
 		local dm = 1.0;
-		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasSkill("actives.hand_to_hand")) ? properties.MeleeDamageMult : 1.0;
-		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasSkill("actives.hand_to_hand")) ? properties.RangedDamageMult : 1.0;
+		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.MeleeDamageMult : 1.0;
+		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.RangedDamageMult : 1.0;
 
 		local damageMin = properties.getRegularDamageAverage() * dm;
 		local damageMax = this.Const.CharacterMaxValue.RegularDamage;
@@ -228,9 +356,12 @@
 	}
 
 
-	o.convertPerksToUIData = function ()
-	{
-		return this.Const.Perks.PerksTreeTemplate;
+	o.convertPerksToUIData = function () {
+		return ::Const.Perks.PerksTreeTemplate;
+	}
+
+	o.convertProfessionsToUIData <- function ()	{
+		return ::Const.Professions.ProfessionsTreeTemplate;
 	}
 
 	local convertItemToUIData = o.convertItemToUIData;
@@ -244,7 +375,12 @@
 			return null;
 
 		result.salvage <- _item.isToBeSalvaged();
+		result.automationState <- ::Legends.Inventory.getCompositeAutomationState(_item);
 		result.upgrades <- _item.getUpgrades();
+		if (result.slot == "accessory" && _item.m != null && _item.m.ShowOnCharacter != null) {
+			result.showOnCharacter <- _item.m.ShowOnCharacter;
+			result.accessoryVisible <- _item.isAccessoryVisible();
+		}
 		return result;
 	}
 

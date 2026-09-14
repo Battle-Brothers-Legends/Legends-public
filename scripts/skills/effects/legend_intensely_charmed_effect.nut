@@ -19,17 +19,11 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.ID = "effects.legend_intensely_charmed";
-		this.m.Name = "Infatuated";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendIntenselyCharmed);
 		this.m.Icon = "skills/status_effect_85.png";
 		this.m.IconMini = "status_effect_85_mini";
 		this.m.Overlay = "status_effect_85";
-		this.m.SoundOnUse = [
-			"sounds/enemies/dlc2/hexe_charm_chimes_01.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_02.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_03.wav",
-			"sounds/enemies/dlc2/hexe_charm_chimes_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -37,7 +31,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has been charmed. They no longer has any control over his actions and is a puppet that has no choice but to obey their master. Wears off in [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).\n\nThe higher a character\'s resolve, the higher the chance to resist being charmed.";
+		return "This character has been charmed. They no longer have any control over their actions and are a puppet with no choice but to obey their master. Wears off in [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).\n\nThe higher a character\'s resolve, the higher the chance to resist being charmed.";
 	}
 
 	function addTurns( _t )
@@ -148,12 +142,8 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 		this.onRemoved();
 	}
 
-	function onTurnEnd()
-	{
-		local actor = this.getContainer().getActor();
-
-		if (--this.m.TurnsLeft <= 0)
-		{
+	function onTurnEnd() {
+		if (--this.m.TurnsLeft <= 0) {
 			this.removeSelf();
 		}
 	}

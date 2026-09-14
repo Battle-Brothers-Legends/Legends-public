@@ -7,12 +7,7 @@
 				s.start <- function (_event) {
 					this.Banner = _event.m.NobleHouse.getUIBannerSmall();
 					_event.m.NobleHouse.addPlayerRelation(this.Const.World.Assets.RelationOffense, "Ambushed some of their men");
-					this.World.Assets.addMoralReputation(-1);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases slightly"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-1));
 					_event.m.Town.getFactionOfType(this.Const.FactionType.Settlement).addPlayerRelation(this.Const.World.Assets.RelationFavor, "Helped in an ambush against " + _event.m.NobleHouse.getName());
 					local item;
 					local banner = _event.m.NobleHouse.getBanner();
@@ -42,8 +37,8 @@
 						item.setFaction(banner);
 					} else {
 						item = this.Const.World.Common.pickArmor([
-							[1, "mail_shirt"],
-							[1, "basic_mail_shirt"],
+							[1, ::Legends.Armor.Standard.mail_shirt],
+							[1, ::Legends.Armor.Standard.basic_mail_shirt],
 						]);
 					}
 
@@ -51,7 +46,8 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 				}
 			}
@@ -60,4 +56,12 @@
 			}
 		}
 	}
-})
+
+	local onUpdateScore = o.onUpdateScore;
+	o.onUpdateScore = function ()
+	{
+		if (this.Stash.getNumberOfEmptySlots() < 2)
+			return;
+		onUpdateScore();
+	}
+});

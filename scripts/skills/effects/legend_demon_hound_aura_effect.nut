@@ -1,12 +1,11 @@
 this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	m = {
-	Penalty = 0
+		Penalty = 0
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_demon_hound_aura";
-		this.m.Name = "Sluggish";
-		this.m.Description = "The Höllenhund's presence has sapped the strength from your limbs, slowing you down.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAura);
+		this.m.Description = "The Höllenhund's presence has sapped the strength from this character\'s limbs, slowing them down.";
 		this.m.Icon = "ui/orientation/hollenhound_orientation.png";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
@@ -32,7 +31,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + penalty * 100 + "%[/color] Initative"
+				text = "[color=%negative%]-" + penalty * 100 + "%[/color] Initative"
 			}
 		];
 	}

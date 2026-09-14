@@ -34,6 +34,7 @@
 			_properties.MeleeDefenseMult *= 1.15;
 			_properties.RangedDefenseMult *= 1.15;
 			_properties.BraveryMult *= 1.15;
+			_properties.MovementAPCostAdditional -= 1;
 		}
 		else
 		{

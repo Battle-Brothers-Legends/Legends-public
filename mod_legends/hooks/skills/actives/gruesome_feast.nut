@@ -1,7 +1,7 @@
 ::mods_hookExactClass("skills/actives/gruesome_feast", function(o)
 {
 	o.isUsable <- function ()
-	{	
+	{
 		return this.skill.isUsable() && !this.getContainer().getActor().getCurrentProperties().IsRooted;
 	}
 
@@ -50,10 +50,8 @@
 		}
 
 		this.spawnBloodbath(_targetTile);
-		local effect = _user.getSkills().getSkillByID("effects.gruesome_feast");
 
-		if (effect == null)
-			_user.getSkills().add("scripts/skills/effects/gruesome_feast_effect");
+		local effect = ::Legends.Effects.grant(_user, ::Legends.Effect.GruesomeFeast);
 
 		if (!_user.isHiddenToPlayer())
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onFeasted, effect);

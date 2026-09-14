@@ -1,56 +1,40 @@
-::mods_hookExactClass("entity/tactical/enemies/skeleton_lich", function(o)
-{
-	o.onFactionChanged <- function ()
-	{
+::mods_hookExactClass("entity/tactical/enemies/skeleton_lich", function (o) {
+	o.onFactionChanged <- function () {
 		this.skeleton.onFactionChanged();
 	}
 
-	// local onDeath = o.onDeath;
-	// o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	// {
-	// 	onDeath( _killer, _skill, _tile, _fatalityType );
-	// 	if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-	// 	{
-	// 		local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-	// 		for( local i = 0; i < n; i = ++i )
-	// 		{
-	// 			for (local v = 0; v < 5; ++v)
-	// 			{
-	// 				local loot = this.new("scripts/items/misc/legend_ancient_scroll_item");
-	// 				loot.drop(_tile);
-	// 			}
-	// 		}
-	// 	}
-	// }
-
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		this.addSprite("armor_layer_chain");
 		this.addSprite("armor_layer_plate");
-		this.addSprite("armor_layer_tabbard");
+		this.addSprite("armor_layer_tabard");
 		this.addSprite("armor_layer_cloak");
 		this.addSprite("armor_upgrade_back");
-		foreach (a in this.Const.CharacterSprites.Helmets)
-		{
-			this.addSprite(a)
+		foreach (a in ::Const.CharacterSprites.Helmets) {
+			if (!this.hasSprite(a)) {
+				this.addSprite(a);
+			}
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local armor = [
-			[1, "ancient/ancient_lich_attire"]
+			[1, ::Legends.Armor.Ancient.ancient_lich_attire]
 		];
-		local item = this.Const.World.Common.pickArmor(armor);
+		local item = ::Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
-		local helmet = [
-			[1, "ancient/ancient_lich_headpiece"]
-		];
-		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
+
+		local item = ::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Ancient.ancient_lich_headpiece]
+		]);
+		if (item != null) {
+			this.m.Items.equip(item);
+		}
+		local b = this.m.BaseProperties;	
+		b.Armor[::Const.BodyPart.Head] = 80 - item.getArmorMax(); // set head armor of the lorekeeper to vanilla levels while respecting the outfit
+		b.ArmorMax[::Const.BodyPart.Head] = 80 - item.getArmorMax();
 	}
 });

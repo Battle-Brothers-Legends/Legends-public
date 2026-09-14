@@ -3,14 +3,10 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_horserider";
-		this.m.Name = "Horse Rider";
-		this.m.Icon = "ui/backgrounds/donkey.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorserider);
 		this.m.BackgroundDescription = "Horses are used to long and exhausting travels.";
 		this.m.GoodEnding = "%name% the horse was retired to a lovely paddock and spent the days eating and carousing with other horses.";
 		this.m.BadEnding = "%name% the horse was sold to a trader, their caravan was attacked by orcs and the remains of %name% were never found";
-		this.m.HiringCost = 10000;
-		this.m.DailyCost = 1;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
@@ -20,81 +16,55 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		this.m.Faces = this.Const.Faces.AllWhiteMale;
 		this.m.Hairs = this.Const.Hair.None;
 		this.m.HairColors = this.Const.HairColors.None;
-		this.m.Beards = null
+		this.m.Beards = null;
 
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Modifiers.Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[3];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[4];
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[3];
-		this.m.Modifiers.Stash = this.Const.LegendMod.ResourceModifiers.Stash[4];
-		this.m.Modifiers.Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.05,//plains
-			0.01, //swamp
-			0.01, //hills
-			0.01, //forest
-			0.01, //forest
-			0.01, //forest_leaves
-			0.01, //autumn_forest
-			0.01, //mountains
-			0.0, // ?
-			0.05, //farmland
-			0.015, // snow
-			0.015, // badlands
-			0.015, //highlands
-			0.05, //stepps
-			0.0, //ocean
-			0.01, //desert
-			0.05 //oasis
-		];
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.Pathfinder,
-				this.Const.Perks.PerkDefs.Steadfast,
-				this.Const.Perks.PerkDefs.Recover
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Pathfinder,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.Recover
 			],
 			[
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendComposure,
-				this.Const.Perks.PerkDefs.SteelBrow
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				::Legends.Perk.LegendComposure,
+				::Legends.Perk.SteelBrow
 			],
 			[
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.Taunt,
-				this.Const.Perks.PerkDefs.LegendSprint
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.LegendTacticalManeuvers,
+				::Legends.Perk.Taunt,
+				// ::Legends.Perk.LegendSprint
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendEfficientPacking,
-				this.Const.Perks.PerkDefs.LegendAmmoBinding,
-				this.Const.Perks.PerkDefs.LegendMedPackages,
-				this.Const.Perks.PerkDefs.LegendToolsDrawers
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers
 
 			],
 			[
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Footwork,
-				this.Const.Perks.PerkDefs.LegendBattleheart
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.LegendBattleheart
 			],
 			[
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendLastStand,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.LegendMuscularity
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendMuscularity
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.Stalwart,
-				this.Const.Perks.PerkDefs.LegendSkillfulStacking
-				this.Const.Perks.PerkDefs.LegendAmmoBundles,
-				this.Const.Perks.PerkDefs.LegendMedIngredients,
-				this.Const.Perks.PerkDefs.LegendToolsSpares
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares
 			],
 			[],
 			[],
@@ -112,41 +82,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				100,
-				120
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				40,
-				50
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				-20,
-				-20
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorserider);
 	}
 
 	function onSetAppearance()
@@ -174,23 +110,23 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			"helmet",
 			"helmet_damage",
 			"body_blood"
-		]
+		];
 		foreach(s in Sprites)
 		{
 			if (!rider.hasSprite(s))
 			{
-				continue
+				continue;
 			}
-			local brush = rider.getSprite(s).getBrush()
+			local brush = rider.getSprite(s).getBrush();
 			if (brush == null)
 			{
-				continue
+				continue;
 			}
 			if (!actor.hasSprite(s))
 			{
-				actor.addSprite(s)
+				actor.addSprite(s);
 			}
-			actor.getSprite(s).setBrush(brush.Name)
+			actor.getSprite(s).setBrush(brush.Name);
 		}
 
 		local offset = this.createVec(-20, 0);
@@ -199,7 +135,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			actor.setSpriteOffset(s, offset);
 		}
 
-		offset = this.createVec(10,0)
+		offset = this.createVec(10,0);
 		local variant = this.Math.rand(0, 7);
 		local horse = actor.addSprite("horse_body");
 		horse.setBrush(actor.getHorse().getSprite("body").getBrush().Name);
@@ -208,7 +144,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		local horse_head = actor.addSprite("horse_head");
 		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name);
 		local horse_injury = actor.addSprite("injury_horse_body");
-		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name)
+		horse.setBrush(actor.getHorse().getSprite("head").getBrush().Name);
 		local offset = this.createVec(10, 0);
 		actor.setSpriteOffset("horse_body", offset);
 		actor.setSpriteOffset("horse_head", offset);
@@ -219,7 +155,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 	function onAdded()
 	{
 		this.character_background.onAdded();
-		this.m.Container.add(this.new("scripts/skills/actives/legend_horse_kick_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		//this.m.Container.add(this.new("scripts/skills/traits/legend_horse_trait")); //commenting this lets our player horserider use items lol
 	}
 

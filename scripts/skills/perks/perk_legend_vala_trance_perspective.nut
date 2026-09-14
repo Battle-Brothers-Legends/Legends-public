@@ -11,7 +11,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	}
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaTrancePerspective);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
@@ -19,8 +19,6 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
@@ -34,39 +32,22 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		local actor = this.getContainer().getActor();
 
 		if (!this.Tactical.isActive())
-		{
 			return false;
-		}
 
 		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
-		{
 			return false;
-		}
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.TranceIsActive)
-		{
 			return false;
-		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting") || actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 			return false;
-		}
 
-		if (actor.getMainhandItem() == null)
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
-
-		if (actor.getMainhandItem().getID() != "weapon.legend_staff_vala")
-		{
-			return false;
-		}
 
 		return true;
 	}
@@ -74,7 +55,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 	function getCostString()
 	{
-		return "[i]Costs [b][color=" + this.Const.UI.Color.NegativeValue + "]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=" + this.Const.UI.Color.PositiveValue + "]" + this.getFatigueCost() : "[b][color=" + this.Const.UI.Color.NegativeValue + "]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
+		return "[i]Costs [b][color=%negative%]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
 
@@ -89,23 +70,23 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			text = "Enter a trance and bla bla bla."
 		});
 
-		if (actor.getMainhandItem() == null || (actor.getMainhandItem() != null && actor.getMainhandItem().getID() != "weapon.legend_staff_vala"))
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala's staff.[/color]"
+				text = "[color=%negative%]Requires the Vala's staff.[/color]"
 			});
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while chanting.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while chanting.[/color]"
 			});
 		}
 
@@ -115,7 +96,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				id = 11,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Cannot enter a trance while engaged in melee.[/color]"
+				text = "[color=%negative%]Cannot enter a trance while engaged in melee.[/color]"
 			});
 		}
 
@@ -127,7 +108,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance") && this.m.TranceIsActive)
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive)
 		{
 			local expertise = actor.getBravery() / this.m.Difficulty;
 			expertise += this.m.Failures * 20.0 / this.m.Difficulty;
@@ -187,9 +168,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 						{
 							if (this.Math.rand(1, 100) <= expertise)  // APPLICATION SUCCESS
 							{
-								local effect = this.new("scripts/skills/effects/legend_vala_trance_perspective_effect");
-								effect.setVala(this);
-								t.getSkills().add(effect);
+								::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect, function(_effect) {
+									_effect.setVala(this);
+								}.bindenv(this));
 							}
 						}
 					}
@@ -197,7 +178,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " returns to this realm.");
 //				this.Sound.play("sounds/combat/legend_vala_perspective.wav");
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 			else  // TRANCE FAILURE
 			{
@@ -211,7 +192,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				}
 				else  //  CANCEL TRANCE BECAUSE OF FATIGUE
 				{
-					actor.getSkills().removeByID("effects.legend_vala_in_trance");
+					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
 			}
 		}
@@ -222,9 +203,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_in_trance");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 		}
 
 		this.resetTrance();
@@ -255,18 +236,18 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			return;
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 		{
 			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
 				if (this.Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
 				{
-					actor.getSkills().removeByID("effects.legend_vala_in_trance");
+					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
 			}
 			else
 			{
-				actor.getSkills().removeByID("effects.legend_vala_in_trance");
+				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 		}
 	}
@@ -285,9 +266,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		{
 			foreach (t in tar)
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_trance_perspective_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTrancePerspectiveEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_trance_perspective_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect);
 				}
 			}
 		}
@@ -300,9 +281,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		{
 			local actor = this.getContainer().getActor();
 
-			if (!actor.getSkills().hasSkill("effects.legend_vala_in_trance"))
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
 			{
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_in_trance"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");

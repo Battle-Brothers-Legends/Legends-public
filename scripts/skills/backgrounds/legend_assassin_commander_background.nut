@@ -5,14 +5,10 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_commander_assassin";
-		this.m.Name = "Assassin";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendCommanderAssassin);
 		this.m.BackgroundDescription = "This character\'s history is a secret";
 		this.m.GoodEnding = "After leaving %companyname%, %name% was never heard from again. %name%\'s calling card has been found near a few accidents, so you believe the assassin is doing well.";
 		this.m.BadEnding = "After leaving %companyname%, %name% was never heard from again. There are rumours that a rival assassin was hunting %name%, but no one has heard anything from either of them.";
-		this.m.Icon = "ui/backgrounds/background_53.png";
-		this.m.HiringCost = 9999999;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
@@ -31,11 +27,11 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 			::Legends.Traits.getID(::Legends.Trait.ShortSighted),
 			::Legends.Traits.getID(::Legends.Trait.Dexterous),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.Bright),
@@ -53,132 +49,39 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 			"the Rogue",
 			"the Sly"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.TidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
-
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
 
 		this.m.Level = 3;
 		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented;
-		this.m.Modifiers.Scout = this.Const.LegendMod.ResourceModifiers.Scout[3];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
 		this.m.CustomPerkTree = [
-			[
-				this.Const.Perks.PerkDefs.Pathfinder,
-				this.Const.Perks.PerkDefs.CripplingStrikes,
-				this.Const.Perks.PerkDefs.Adrenaline,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.FastAdaption,
-				this.Const.Perks.PerkDefs.LegendBackToBasics,
-				this.Const.Perks.PerkDefs.Colossus,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.LegendKnifeplay,
-				this.Const.Perks.PerkDefs.LegendAlert
-			],
-			[
-				this.Const.Perks.PerkDefs.Backstabber,
-				this.Const.Perks.PerkDefs.LegendAthlete,
-				this.Const.Perks.PerkDefs.DevastatingStrikes,
-				this.Const.Perks.PerkDefs.QuickHands,
-				this.Const.Perks.PerkDefs.Dodge,
-				this.Const.Perks.PerkDefs.CoupDeGrace,
-				this.Const.Perks.PerkDefs.Bullseye,
-				this.Const.Perks.PerkDefs.HoldOut,
-				this.Const.Perks.PerkDefs.LegendOpportunist,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyCaravan
-			],
-			[
-				this.Const.Perks.PerkDefs.LegendBoondockBlade,
-				this.Const.Perks.PerkDefs.LegendHairSplitter,
-				this.Const.Perks.PerkDefs.LegendEscapeArtist,
-				this.Const.Perks.PerkDefs.LegendTrueBeliever,
-				this.Const.Perks.PerkDefs.Anticipation,
-				this.Const.Perks.PerkDefs.Rotation,
-				this.Const.Perks.PerkDefs.LegendFeint,
-				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.LegendOnslaught,
-				this.Const.Perks.PerkDefs.LegendPrepared,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyBandit
-			],
-			[
-				this.Const.Perks.PerkDefs.SpecDagger,
-				this.Const.Perks.PerkDefs.SpecSword,
-				this.Const.Perks.PerkDefs.SpecPolearm,
-				this.Const.Perks.PerkDefs.SpecBow,
-				this.Const.Perks.PerkDefs.SpecThrowing,
-				this.Const.Perks.PerkDefs.SpecCrossbow,
-				this.Const.Perks.PerkDefs.LegendSpecPoison,
-				this.Const.Perks.PerkDefs.LegendLurker,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyMercenary
-			],
-			[
-				this.Const.Perks.PerkDefs.LegendPushTheAdvantage,
-				this.Const.Perks.PerkDefs.LegendDoubleStrike,
-				this.Const.Perks.PerkDefs.LegendEvasion,
-				this.Const.Perks.PerkDefs.LegendHeightenedReflexes,
-				this.Const.Perks.PerkDefs.LoneWolf,
-				this.Const.Perks.PerkDefs.Overwhelm,
-				this.Const.Perks.PerkDefs.LegendVengeance,
-				this.Const.Perks.PerkDefs.LegendLithe,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyNoble
-			],
-			[
-				this.Const.Perks.PerkDefs.LegendLeap,
-				this.Const.Perks.PerkDefs.LegendWindReader,
-				this.Const.Perks.PerkDefs.Berserk,
-				this.Const.Perks.PerkDefs.LegendBalance,
-				this.Const.Perks.PerkDefs.LegendClarity,
-				this.Const.Perks.PerkDefs.HeadHunter,
-				this.Const.Perks.PerkDefs.Nimble,
-				this.Const.Perks.PerkDefs.LegendPerfectFit,
-				this.Const.Perks.PerkDefs.LegendNightRaider,
-				this.Const.Perks.PerkDefs.LegendSecondWind
-			],
-			[
-				this.Const.Perks.PerkDefs.LegendTumble,
-				this.Const.Perks.PerkDefs.LegendCloseCombatArcher,
-				this.Const.Perks.PerkDefs.KillingFrenzy,
-				this.Const.Perks.PerkDefs.Duelist,
-				this.Const.Perks.PerkDefs.LegendRebound,
-				this.Const.Perks.PerkDefs.BattleFlow,
-				this.Const.Perks.PerkDefs.LegendPerfectFocus,
-				this.Const.Perks.PerkDefs.LegendFreedomOfMovement,
-				this.Const.Perks.PerkDefs.LegendAssassinate,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemySwordmaster
-			]
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[]
 		];
 	}
 
-	//Default Male
-	function setGender(_gender = -1)
-	{
-		if (_gender == -1) _gender = ::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Disabled" ? 0 : ::Math.rand(0, 1);
-
-		if (_gender != 1) return;
-		this.m.Faces = this.Const.Faces.PrettyFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = null;
-		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.setCommanderGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.PrettyFemale}) : this.setBodyCharacteristics(_gender, {Hairs = ::Const.Hair.TidyMale, Beards = ::Const.Beards.Tidy});
 	}
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
 		ret.push(
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Chance To Hit Head"
+				text = "[color=%positive%]+15%[/color] Chance To Hit Head"
 			}
-		)
-		return ret
+		);
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -188,41 +91,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				10
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				15,
-				15
-			],
-			RangedSkill = [
-				4,
-				8
-			],
-			MeleeDefense = [
-				8,
-				12
-			],
-			RangedDefense = [
-				8,
-				12
-			],
-			Initiative = [
-				15,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendCommanderAssassin);
 	}
 
 
@@ -254,9 +123,10 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	}
 
 	function onAdded()
-	{
+	{	
+		if (this.m.IsNew)
+			::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 		this.character_background.onAdded();
-		::Legends.Traits.grant(this, ::Legends.Trait.LegendAggressive);
 	}
 
 	function onAddEquipment()
@@ -267,24 +137,18 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 		talents[this.Const.Attributes.RangedSkill] = 1;
 		talents[this.Const.Attributes.Initiative] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		local items = this.getContainer().getActor().getItems();
-		local stash = this.World.Assets.getStash();
-		stash.removeByID("supplies.ground_grains");
-		stash.removeByID("supplies.ground_grains");
-		stash.add(this.new("scripts/items/supplies/rice_item"));
-		stash.add(this.new("scripts/items/supplies/dried_lamb_item"));
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/dagger"));
 		items.addToBag(this.new("scripts/items/weapons/legend_slingshot"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "thick_dark_tunic"],
-			[1, "ragged_dark_surcoat"]
+			[1, ::Legends.Armor.Standard.thick_dark_tunic],
+			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[1, "hood"]
+			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}
 
@@ -307,4 +171,3 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	}
 
 });
-

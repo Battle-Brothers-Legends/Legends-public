@@ -8,7 +8,7 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A beautiful staff with the distinctive twisted design of a vala.";
 		this.m.IconLarge = "weapons/melee/legend_staff_05.png";
 		this.m.Icon = "weapons/melee/legend_staff_05_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Polearm | this.Const.Items.WeaponType.Staff | this.Const.Items.WeaponType.MagicStaff;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -28,22 +28,25 @@ this.legend_staff_vala <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.RegularDamageMax = 30;
 		this.m.ArmorDamageMult = 0.6;
 		this.m.DirectDamageMult = 0.4;
+		this.m.Flags.add("vala_staff");
 //		this.m.IsChangeableInBattle = false;
 	}
 
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.Icon = "skills/staff_bash_vala.png";
-		s.m.IconDisabled = "skills/staff_bash_vala_bw.png";
-		s.m.IsStaffBash = true;
-		this.addSkill(s);
-
-		local t = this.new("scripts/skills/actives/knock_out");
-		t.m.Icon = "skills/staff_knock_out_vala.png";
-		t.m.IconDisabled = "skills/staff_knock_out_vala_bw.png";
-		t.m.IsStaffKnockOut = true;
-		this.addSkill(t);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.Icon = "skills/staff_bash_vala.png";
+			_skill.m.IconDisabled = "skills/staff_bash_vala_bw.png";
+			_skill.m.IsStaffBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.Icon = "skills/staff_knock_out_vala.png";
+			_skill.m.IconDisabled = "skills/staff_knock_out_vala_bw.png";
+			_skill.m.IsStaffKnockOut = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Riposte, function (_skill) {
+			_skill.m.IsStaff = true;
+		}.bindenv(this));
 	}
 });

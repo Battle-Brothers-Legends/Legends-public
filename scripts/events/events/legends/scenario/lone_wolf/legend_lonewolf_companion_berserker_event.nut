@@ -2,8 +2,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 	m = {
 		Dude = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_berserker";
 		this.m.Title = "Sole Survivor";
 		this.m.Cooldown = 66.0 * this.World.getTime().SecondsPerDay;
@@ -13,57 +12,30 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Someone needs our help! | It\'s worth a look at least... | Approach carefully...}",
-					function getResult( _event )
-					{
-						return "B";
-					}
-
-				},
-				{
-					Text = "Rest and leave.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
+			Options = [{
+				Text = "{Someone needs our help! | It\'s worth a look at least... | Approach carefully...}",
+				getResult = @(_event) "B"
+			}, {
+				Text = "Rest and leave.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_76.png[/img]{You wind your way through the sea of tents and huts to find a pile of corpses in the middle of what appears to be an area. The edges are clearly marked with large stones in an oval that is nearly twenty paces from the furthest edges. Two-dozen bodies burn on the the pyre in the middle of the area, some melted away while others have been added more recently.\n\n You follow the screaming to find a lone fighter — a barely dressed and heavily bleeding mountain of a northman who is in the process of ripping a necrosavant\'s head in two by parting its upper and lower jaw away with their bare hands like a scribe would part a large tome with a stiff spine. You cannot tell if the screaming is from the berserker or the bloodsucker which is now clawing for freedom to no avail.\n A crack is heard and the vampire falls to the ground with its lower jaw lolling free. It hits the snow the pale skin turns to ash like a book soaked in heavy rain. Two more of it\'s kind emerge from a longhouse, as you draw your weapon with a hurried breath they both disappear back into the storm.\n\n Of the two of you, the berserker is the first to speak. %SPEECH_ON%My name is %dude%, and what you see around me is the last of my people...%SPEECH_OFF% You cast a gaze around, anticipating more will emerge from the huts. But no survivors present themselves aside from the remains on the still-burning pyre. %SPEECH_ON%I am hungry for revenge, outlander. And I think you are too.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_76.png[/img]{You wind your way through the sea of tents and huts to find a pile of corpses in the middle of what appears to be an area. The edges are clearly marked with large stones in an oval that is nearly twenty paces from the furthest edges. Two-dozen bodies burn on the pyre in the middle of the area, some melted away while others have been added more recently.\n\n You follow the screaming to find a lone fighter — a barely dressed and heavily bleeding mountain of a northman who is in the process of ripping a necrosavant\'s head in two by parting its upper and lower jaw away with their bare hands like a scribe would part a large tome with a stiff spine. You cannot tell if the screaming is from the berserker or the bloodsucker which is now clawing for freedom to no avail.\n A crack is heard and the vampire falls to the ground with its lower jaw lolling free. It hits the snow the pale skin turns to ash like a book soaked in heavy rain. Two more of it\'s kind emerge from a longhouse, as you draw your weapon with a hurried breath they both disappear back into the storm.\n\n Of the two of you, the berserker is the first to speak. %SPEECH_ON%My name is %dude%, and what you see around me is the last of my people...%SPEECH_OFF% You cast a gaze around, anticipating more will emerge from the huts. But no survivors present themselves aside from the remains on the still-burning pyre. %SPEECH_ON%I am hungry for revenge, outlander. And I think you are too.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{I haven\'t told you who I am yet... | What about me? | I\'d be glad to have a fighter like you.}",
-					function getResult( _event )
-					{
-						return "C";
-					}
-
-				},
-				{
-					Text = "{Not interested. | You\'re too unpredictable for my tastes.}",
-					function getResult( _event )
-					{
-						return "D";
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "{I haven\'t told you who I am yet... | What about me? | I\'d be glad to have a fighter like you.}",
+				getResult = @(_event) "C"
+			}, {
+				Text = "{Not interested. | You\'re too unpredictable for my tastes.}",
+				getResult = @(_event) "D"
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "C",
@@ -71,21 +43,16 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "{Good thing I\'m not one of those bloodsuckers.}",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Dude.onHired();
-						return 0;
-					}
-
+			Options = [{
+				Text = "{Good thing I\'m not one of those bloodsuckers.}",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Dude);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Dude.onHired();
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}],
+			function start(_event) {
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
 
@@ -96,20 +63,11 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Hopefully it works out okay.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			],
-			function start( _event )
-			{
-			}
-
+			Options = [{
+				Text = "Hopefully it works out okay.",
+				getResult = @(_event) 0
+			}],
+			function start(_event) {}
 		});
 		this.m.Screens.push({
 			ID = "E",
@@ -117,58 +75,45 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Nothing good could\'ve come of that.",
-					function getResult( _event )
-					{
-						return 0;
-					}
-
-				}
-			]
+			Options = [{
+				Text = "Nothing good could\'ve come of that.",
+				getResult = @(_event) 0
+			}]
+			function start(_event) {}
 		});
 	}
 
-	function onUpdateScore()
-	{
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf")
-		{
+	function onUpdateScore() {
+		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
-		{
+		if (!this.World.getTime().IsDaytime) {
 			return;
 		}
 
 		local brothers = this.World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
-		{
+		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
 			return;
 		}
 
 		local currentTile = this.World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest)
-		{
+		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest) {
 			return;
 		}
 
 		this.m.Score = 30;
 	}
 
-	function onPrepareVariables( _vars )
-	{
-		if (this.m.Dude == null)
-		{
+	function onPrepareVariables(_vars) {
+		if (this.m.Dude == null) {
 			local roster = this.World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
-			this.m.Dude.setStartValuesEx([
-				"legend_berserker_background"
-			]);
+			this.m.Dude.setStartValuesEx([::Legends.Background.LegendBerserker]);
 			this.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
+			this.m.Dude.getBaseProperties().DailyWage = 0;
 			this.m.Dude.addHeavyInjury();
 		}
 
@@ -178,8 +123,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 		]);
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Dude = null;
 	}
 

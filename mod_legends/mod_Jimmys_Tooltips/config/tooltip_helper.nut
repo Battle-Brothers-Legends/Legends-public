@@ -45,7 +45,7 @@
 			tooltip.push(ret);
 		}
 	};
-	local isPerk = @( _, _skill ) _skill.isType(this.Const.SkillType.Perk)
+	local isPerk = @( _, _skill ) _skill.isType(this.Const.SkillType.Perk);
 	local isInjury = @( _, _skill ) _skill.isType(this.Const.SkillType.TemporaryInjury);
 	local isTextRow = @( _, row ) ("type" in row) && row.type == "text";
 
@@ -118,7 +118,7 @@
 
 			if (stackInOneLine && stacks[name] > 1)
 			{
-				text = text + (" [color=" + this.Const.UI.Color.NegativeValue + "]" + "x" + stacks[name] + "[/color]");
+				text = text + (" [color=%negative%]" + "x" + stacks[name] + "[/color]");
 			}
 
 			if(title == "Ammo" && this.isKindOf(_entity, "player")){
@@ -172,7 +172,7 @@
 	patchedPerkIcons[this.Const.Strings.PerkName.BatteringRam] <- "ui/settlement_status/settlement_effect_13.png";
 	local getRealPerkIcon = function ( perk )
 	{
-		local realPerk = this.Const.Perks.findById(perk.getID());
+		local realPerk = ::Const.Perks.findById(perk.getID());
 
 		if (realPerk)
 		{
@@ -318,7 +318,7 @@
 					}
 					else
 					{
-						injuryRow.text += "[color=" + this.Const.UI.Color.PositiveValue + "]" + " (Iron Will)[/color]";
+						injuryRow.text += "[color=%positive%]" + " (Iron Will)[/color]";
 					}
 
 					tooltip.push(injuryRow);
@@ -347,7 +347,7 @@
 		activePerks = removeDuplicates(activePerks);
 		pushSection(activePerks, "Usable perks", 200, 1);
 		local thresholdToCompact = 0;
-		local perks = _entity.getSkills().query(this.Const.SkillType.Perk, false, true);
+		local perks = _entity.getSkills().query(this.Const.SkillType.Perk, true, true);
 		perks = removeDuplicates(perks);
 		pushSectionName(perks, "Perks", 300);
 
@@ -359,7 +359,7 @@
 					id = 301 + i,
 					type = "text",
 					icon = getRealPerkIcon(perk),
-					text = perk.getName()
+					text = perk.m.Name
 				});
 			}
 		}
@@ -369,11 +369,11 @@
 
 			foreach( _, perk in perks )
 			{
-				local name = perk.getName();
+				local name = perk.m.Name;
 
 				if (name && name.len() > 1)
 				{
-					texts = texts + ("[color=" + this.Const.UI.Color.NegativeValue + "]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
+					texts = texts + ("[color=%negative%]" + name.slice(0, 1) + "[/color]" + name.slice(1) + ", ");
 				}
 			}
 
@@ -395,7 +395,7 @@
 			if(mainhand != null){
 				local name = mainhand.getName();
 				//::logInfo(name);
-				pushSectionName(mainhand, "Equiped Items:", 400);
+				pushSectionName(mainhand, "Equipped Items:", 400);
 				if(mainhand.isItemType(this.Const.Items.ItemType.Ammo)){
 					tooltip.push({
 						id = 401,
@@ -471,7 +471,7 @@
 			local startID = 500;
 			foreach (skill in skills){
 				local skillID = skill.getID(); // todo it shows it in log, remove when problem with tooltips is gone - chopeks
-				if (skill.getContainer() == null || skill.getContainer().getActor() == null)
+				if (skill.getContainer() == null || !("getActor" in skill.getContainer()) || skill.getContainer().getActor() == null)
 					continue;
 				if(skill.isUsable()){
 					pushSectionName(skill, skill.getName(), startID, "" + skill.getIcon());
@@ -491,50 +491,56 @@
 		tooltip.extend(::ModJimmysTooltips.modGetEquipmentLootChance(_entity, _targetedWithSkill, 700));
 	}
 
-	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()){
+	if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Stats").getValue()) {
 		local properties = _entity.getCurrentProperties();
 		tooltip.push({
 			id = 600,
 			type = "hint",
 			icon = "ui/icons/melee_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getMeleeSkill()+"[/color] Melee Skill"
+			text = "[color=%positive%]" + properties.getMeleeSkill() + "[/color] Melee Skill"
 		});
 		tooltip.push({
 			id = 601,
 			type = "hint",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getMeleeDefense()+"[/color] Melee Defense"
+			text = "[color=%positive%]" + properties.getMeleeDefense() + "[/color] Melee Defense"
 		});
 		tooltip.push({
 			id = 602,
 			type = "hint",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getRangedSkill()+"[/color] Ranged Skill"
+			text = "[color=%positive%]" + properties.getRangedSkill() + "[/color] Ranged Skill"
 		});
 		tooltip.push({
 			id = 603,
 			type = "hint",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+properties.getRangedDefense()+"[/color] Ranged Defense"
+			text = "[color=%positive%]" + properties.getRangedDefense() + "[/color] Ranged Defense"
 		});
 		tooltip.push({
 			id = 604,
 			type = "hint",
 			icon = "ui/icons/initiative.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+_entity.getInitiative()+"[/color] Initiative"
+			text = "[color=%positive%]" + _entity.getInitiative() + "[/color] Initiative"
 		});
 		tooltip.push({
 			id = 605,
 			type = "hint",
 			icon = "ui/icons/bravery.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]"+_entity.getBravery()+"[/color] Resolve"
+			text = "[color=%positive%]" + _entity.getBravery() + "[/color] Resolve"
+		});
+		tooltip.push({
+			id = 606,
+			type = "hint",
+			icon = "ui/icons/fatigue.png",
+			text = "[color=%positive%]" + properties.FatigueRecoveryRate + "[/color] Fatigue Recovery per Turn"
 			divider = "bottom" // add a diviver
 		});
 	}
 
 	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance"))
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
@@ -543,7 +549,7 @@
 		});
 	else
 		tooltip.push({
-			id = 606,
+			id = 607,
 			type = "hint",
 			icon = "ui/skin/icon_wait.png",
 			text = "Press \""
@@ -556,11 +562,11 @@
 
 local function colorizeInRed( _text )
 {
-	return "[color=" + ::Const.UI.Color.NegativeValue + "]" + _text + "[/color]"
+	return "[color=%negative%]" + _text + "[/color]"
 };
 local function colorizeInGreen( _text )
 {
-	return "[color=" + ::Const.UI.Color.PositiveValue + "]" + _text + "[/color]"
+	return "[color=%positive%]" + _text + "[/color]"
 }
 
 ::ModJimmysTooltips.modGetEquipmentLootChance <- function( _entity, _targetedWithSkill = null, _startID = 0 )
@@ -583,11 +589,14 @@ local function colorizeInGreen( _text )
 		if (!_item.m.IsDroppedAsLoot)
 			continue;
 
+		local upgradeIconPaths = ::ModJimmysTooltips.getItemIconPaths(_item);
+
 		local ret = {
 			id = _startID,
 			type = "hint",
-			icon = checkForIcon("ui/items/", _item),
-			text = _item.getName()
+			icon = upgradeIconPaths[0],
+			icons = upgradeIconPaths
+			text = _item.makeName()
 		};
 
 		switch(_item.getSlotType())
@@ -640,6 +649,24 @@ local function colorizeInGreen( _text )
 		return "ui/items/supplies/legend_placeholder.png";
 	else
 		return toAdd + _item.getIcon();
+}
+
+::ModJimmysTooltips.getItemIconPaths <- function (_item) {
+	local paths = [];
+	local baseIcon = ::ModJimmysTooltips.checkForIcon("ui/items/", _item);
+	paths.push(baseIcon);
+
+	local slot = _item.getSlotType();
+	if (slot == ::Const.ItemSlot.Body || slot == ::Const.ItemSlot.Head) {
+		if(_item.getUpgrades().len() > 0){
+			foreach (u in _item.m.Upgrades) {
+				 if (u != null && u.getIcon() != "" && u.getIcon().find("rune_sigils") == null) {
+					paths.push("ui/items/" + u.getIcon());
+				}
+			}
+		}
+	}
+	return paths;
 }
 
 ::ModJimmysTooltips.modGetStandardLootChance <- function( _tooltip, _item, _isArmor = false )
@@ -738,7 +765,7 @@ local function colorizeInGreen( _text )
 		return _tooltip;
 
 	local condition = _item.getRepair(), conditionMax = _item.getRepairMax();
-	local isValid = condition > 30 && condition / conditionMax >= 0.25;
+	local isValid = condition >= 5 && condition / conditionMax >= 0.2;
 	local conditionExpected = condition;
 
 	if (_expectedDamage != null)

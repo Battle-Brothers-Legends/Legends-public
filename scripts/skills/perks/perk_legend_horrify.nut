@@ -2,19 +2,18 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendHorrify);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendHorrify);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_horrific_scream"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendHorrificScream))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_horrific_scream"));
+			::Legends.Actives.grant(this, ::Legends.Effect.HorrificScream, function(_skill) {
+				_skill.m.ActionPointCost = 6;
+				_skill.m.FatigueCost = 30;
+				_skill.m.MaxRange = 4;
+			}.bindenv(this));
 		}
 	}
 
@@ -22,7 +21,7 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.m.Container.hasPerk(::Legends.Perk.LegendHorrify))
 		{
-			this.m.Container.removeByID("actives.legend_horrific_scream");
+			::Legends.Actives.remove(this, ::Legends.Active.HorrificScream);
 		}
 	}
 

@@ -15,10 +15,11 @@
 		Repair = this.Const.LegendMod.ResourceModifiers.Repair[0],
 		Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[0],
 		Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[0],
-		Barter = this.Const.LegendMod.ResourceModifiers.Barter[0],
+		Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[0],
 		ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[0],
 		MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[0],
-		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0],
+		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
+		Cooking = ::Const.LegendMod.ResourceModifiers.Cooking[0],
 		Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[0],
 		Scout = this.Const.LegendMod.ResourceModifiers.Scout[0],
 		Gathering = this.Const.LegendMod.ResourceModifiers.Gather[0],
@@ -40,7 +41,7 @@
 			0.0, // snow
 			0.0, // badlands
 			0.0, //highlands
-			0.0, //stepps
+			0.0, //steppes
 			0.0, //ocean
 			0.0, //desert
 			0.0 //oasis
@@ -54,53 +55,64 @@
 		EnemyChance = 0.01,
 		Class = 1,
 		ClassChance = 0.01,
+		Profession = 1,
+		ProfessionChance = 0.01,
 		Magic = 1,
 		MagicChance = 0
 	};
-	o.m.PerkTreeDynamicMinsMagic <- {
-		Weapon = 8,
-		Defense = 2,
-		Traits = 8,
-		Enemy = 1,
-		EnemyChance = 0.01,
-		Class = 1,
-		ClassChance = 0.01,
-		Magic = 1,
-		MagicChance = 0.001
+	o.m.PerkTreeCustomMins <- { // overwritten if needed
+		Weapon = 0,
+		Defense = 0,
+		Traits = 0,
+		Enemy = 0,
+		EnemyChance = 0.00,
+		Class = 0,
+		ClassChance = 0.00,
+		Magic = 0,
+		MagicChance = 0
 	};
-	o.m.PerkTreeDynamicMinsBeast <- {
-		Weapon = 8,
-		Defense = 2,
-		Traits = 8,
-		Enemy = 1,
-		EnemyChance = 0.05,
-		Class = 1,
-		ClassChance = 0.02,
-		Magic = 1,
-		MagicChance = 0.001
-	};
-	o.m.PerkTreeDynamic <- { //ALL recruits get these perks as base
+	o.m.PerkTreeDynamicBase <- { // this is a base perk tree so even if you don't add custom or dynamic perk tree it will default to this and build an average bro
 		Weapon = [
-			this.Const.Perks.SwordTree,
-			this.Const.Perks.SpearTree,
-			this.Const.Perks.MaceTree
+			::Const.Perks.SwordTree,
+			::Const.Perks.SpearTree,
+			::Const.Perks.MaceTree
 		],
 		Defense = [
-			this.Const.Perks.MediumArmorTree
+			::Const.Perks.MediumArmorTree
 		],
 		Traits = [
-			this.Const.Perks.FitTree,
-			this.Const.Perks.FastTree,
-			this.Const.Perks.AgileTree
+			::Const.Perks.FitTree,
+			::Const.Perks.FastTree,
+			::Const.Perks.AgileTree
 		],
 		Enemy = [],
 		Class = [],
 		Magic = []
 	};
+	o.m.PerkTreeDynamic <- null;
 	o.m.CustomPerkTree <- null;
 	o.m.PerkTreeMap <- null;
 	o.m.PerkTree <- null;
 	o.m.IsGuaranteed <- [];
+	o.m.CustomProfessionTree <- null;
+	o.m.ProfessionTreeMap <- null;
+	o.m.ProfessionTree <- null;
+	o.m.DefaultSprites <- {
+		Male = {
+			Bodies = ::Const.Bodies.AllMale,
+			Faces = ::Const.Faces.AllWhiteMale,
+			Hairs = ::Const.Hair.AllMale,
+			HairColors = ::Const.HairColors.All,
+			Beards = ::Const.Beards.All
+		},
+		Female = {
+			Bodies = ::Const.Bodies.NorthernFemale,
+			Faces = ::Const.Faces.AllWhiteFemale,
+			Hairs = ::Const.Hair.AllFemale,
+			HairColors = ::Const.HairColors.All
+			Beards = null
+		},
+	}
 
 	local create = o.create;
 	o.create = function()
@@ -111,16 +123,16 @@
 
 	o.convertToBackgroundType <- function ()
 	{
-		local function addToBackgroundType(_type, _constType){
+		function addToBackgroundType(_type, _constType){
 			if (!_type) return
-			this.m.BackgroundType = this.m.BackgroundType == this.Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType
+			this.m.BackgroundType = this.m.BackgroundType == this.Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
 		}
-		addToBackgroundType(this.m.IsScenarioOnly, this.Const.BackgroundType.Scenario);
-		addToBackgroundType(this.m.IsUntalented, this.Const.BackgroundType.Untalented);
-		addToBackgroundType(this.m.IsOffendedByViolence, this.Const.BackgroundType.OffendedByViolence);
-		addToBackgroundType(this.m.IsCombatBackground, this.Const.BackgroundType.Combat);
-		addToBackgroundType(this.m.IsNoble, this.Const.BackgroundType.Noble);
-		addToBackgroundType(this.m.IsLowborn, this.Const.BackgroundType.Lowborn);
+		this.addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
+		this.addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
+		this.addToBackgroundType(this.m.IsOffendedByViolence, ::Const.BackgroundType.OffendedByViolence);
+		this.addToBackgroundType(this.m.IsCombatBackground, ::Const.BackgroundType.Combat);
+		this.addToBackgroundType(this.m.IsNoble, ::Const.BackgroundType.Noble);
+		this.addToBackgroundType(this.m.IsLowborn, ::Const.BackgroundType.Lowborn);
 	}
 
 	o.isBackgroundType <- function ( _type )
@@ -152,6 +164,31 @@
 		}
 	}
 
+	local isUntalented = o.isUntalented;
+	o.isUntalented = function () {
+		return isUntalented() || this.isBackgroundType(::Const.BackgroundType.Untalented);
+	}
+
+	local isOffendedByViolence = o.isOffendedByViolence;
+	o.isOffendedByViolence = function () {
+		return isOffendedByViolence() || this.isBackgroundType(::Const.BackgroundType.OffendedByViolence);
+	}
+
+	local isCombatBackground = o.isCombatBackground;
+	o.isCombatBackground = function () {
+		return isCombatBackground() || this.isBackgroundType(::Const.BackgroundType.Combat);
+	}
+
+	local isNoble = o.isNoble;
+	o.isNoble = function () {
+		return isNoble() || this.isBackgroundType(::Const.BackgroundType.Noble);
+	}
+
+	local isLowborn = o.isLowborn;
+	o.isLowborn = function () {
+		return isLowborn() || this.isBackgroundType(::Const.BackgroundType.Lowborn);
+	}
+
 	o.getModifiers <- function() {
 		return this.m.Modifiers;
 	}
@@ -180,7 +217,7 @@
 	o.getPerkTreeGroupDescription <- function ( _p, _prefix = "")
 	{
 		if( _p.len() == 0) {
-			return ""
+			return "";
 		}
 		local i = 0;
 		local text = _prefix + " " + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
@@ -197,7 +234,7 @@
 		}
 
 		text = text + ", ";
-		for (i; i < _p.len(); i = ++i)
+		for (i; i < _p.len(); i++)
 		{
 			text = text + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
 			if (i <  _p.len() - 2)
@@ -206,7 +243,7 @@
 			}
 			else if (i <  _p.len() - 1)
 			{
-				text = text + " and "
+				text = text + " and ";
 			}
 		}
 		return text + ".\n";
@@ -215,6 +252,8 @@
 	o.getPerkBackgroundDescription <- function ( _tree )
 	{
 		local text = "";
+		if (_tree == null) // donkeys don't have tree
+			return text;
 		text += this.getPerkTreeGroupDescription(_tree.Weapon,  "Has an aptitude for");
 		text += this.getPerkTreeGroupDescription(_tree.Defense,  "Likes wearing");
 		text += this.getPerkTreeGroupDescription(_tree.Enemy,  "Prefers fighting");
@@ -226,14 +265,14 @@
 	// Deprecated. New approach uses getBackgroundDescriptionTooltip
 	o.getBackgroundDescription = function ( _desc )
 	{
-		local text = ""
+		local text = "";
 		if (_desc)
 		{
 			text = text + this.m.BackgroundDescription + "\n";
 			text = text + "\n" + this.getPerkBackgroundDescription(this.m.PerkTreeDynamic) + "\n";
 		}
 
-		local mtext = ""
+		local mtext = "";
 		foreach (k, v in this.m.Modifiers)
 		{
 			if (k == "Terrain")
@@ -267,55 +306,55 @@
 		}
 
 		local terrains = this.m.Modifiers.Terrain;
-		local val = 0.0
+		local val = 0.0;
 		local ttext = "";
 		val = terrains[2] * 100.0;
 		if (val > 0) {
-			ttext += "\nPlains +" + val +"%"
+			ttext += "\nPlains +" + val +"%";
 		}
 		val = terrains[3] * 100.0;
 		if (val > 0) {
-			ttext += "\nSwamp +" + val +"%"
+			ttext += "\nSwamp +" + val +"%";
 		}
 		val = terrains[4] * 100.0;
 		if (val > 0) {
-			ttext += "\nHills +" + val +"%"
+			ttext += "\nHills +" + val +"%";
 		}
 		val = terrains[5] * 100.0;
 		if (val > 0) {
-			ttext += "\nForests +" + val +"%"
+			ttext += "\nForests +" + val +"%";
 		}
 		val = terrains[9] * 100.0;
 		if (val > 0) {
-			ttext += "\nMountains +" + val +"%"
+			ttext += "\nMountains +" + val +"%";
 		}
 		val = terrains[11] * 100.0;
 		if (val > 0) {
-			ttext += "\nFarmland +" + val +"%"
+			ttext += "\nFarmland +" + val +"%";
 		}
 		val = terrains[12] * 100.0;
 		if (val > 0) {
-			ttext += "\nSnow +" + val +"%"
+			ttext += "\nSnow +" + val +"%";
 		}
 		val = terrains[13] * 100.0;
 		if (val > 0) {
-			ttext += "\nBadlands +" + val +"%"
+			ttext += "\nBadlands +" + val +"%";
 		}
 		val = terrains[14] * 100.0;
 		if (val > 0) {
-			ttext += "\nHighlands +" + val +"%"
+			ttext += "\nHighlands +" + val +"%";
 		}
 		val = terrains[15] * 100.0;
 		if (val > 0) {
-			ttext += "\nStepps +" + val +"%"
+			ttext += "\nSteppes +" + val +"%";
 		}
 		val = terrains[17] * 100.0;
 		if (val > 0) {
-			ttext += "\nDeserts +" + val +"%"
+			ttext += "\nDeserts +" + val +"%";
 		}
 		val = terrains[18] * 100.0;
 		if (val > 0) {
-			ttext += "\nOases +" + val +"%"
+			ttext += "\nOases +" + val +"%";
 		}
 
 		if (ttext != "")
@@ -327,7 +366,7 @@
 
 	o.getBackgroundDescriptionTooltip <- function ( _desc )
 	{
-		local tooltip = []
+		local tooltip = [];
 
 		if (_desc)
 		{
@@ -366,7 +405,7 @@
 				name = "Medical Supplies",
 				icon = "ui/icons/asset_medicine_icon.png"
 			}
-		]
+		];
 
 		local capacityTitle = true;
 		foreach (c in capacities)
@@ -452,10 +491,15 @@
 				name = "Gathering Supplies"
 				icon = "ui/icons/banner_gather_icon.png"
 			},
-			{
+			/*{
 				key = "Hunting",
 				name = "Hunting",
 				icon = "ui/icons/banner_hunt_icon.png"
+			},*/
+			{
+				key = "Cooking",
+				name = "Cooking",
+				icon = "ui/icons/banner_cook_icon.png"
 			},
 			{
 				key = "Enchanting",
@@ -463,11 +507,11 @@
 				icon = "ui/icons/banner_enchant_icon.png"
 			},
 			{
-				key = "Barter",
-				name = "Bartering",
+				key = "Haggle",
+				name = "Haggling",
 				icon = "ui/icons/banner_rest_icon.png"
 			}
-		]
+		];
 
 		local skillsTitle = true;
 		foreach (s in skills)
@@ -616,147 +660,43 @@
 				text = this.getDescription()
 			}
 		];
+		if (this.getContainer() != null && this.getContainer().getActor().getLevel() >= 12)
+		{
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Gain a perk point every [color=%positive%]" + this.getContainer().getActor().getVeteranPerks() + "[/color] Levels"
+			});
+		}
 		if (this.getContainer() != null) ret.extend(this.getAttributesTooltip());
 		return ret;
 	}
 
-	o.getAttributesTooltip <- function()
-	{
-		if (this.getContainer().getActor().getLevel() >= 12) {
+	o.getAttributesTooltip <- function() {
+		local bro = this.getContainer().getActor();
+
+		if (bro.getLevel() >= 12) {
 			return [];
 		}
 
-		local calculateAttribute = function(attribute, maximum = false)
-		{
-			local bro = this.getContainer().getActor();
-			local attributeMin = this.Const.AttributesLevelUp[attribute].Min + this.Math.min(bro.m.Talents[attribute], 2);
-			local attributeMax = this.Const.AttributesLevelUp[attribute].Max;
-			if (bro.m.Talents[attribute] == 3) attributeMax += 1;
-			local levelUps = this.Math.max(12 - bro.getLevel() + bro.getLevelUps(), 0);
-			local attributeValue = maximum ? attributeMax * levelUps : attributeMin * levelUps;
+		local getStat = function(_attribute, _addDistance = true) {
+			local text = ::String.replace(::Legends.S.getStatPotential(bro, _attribute), "-", " to ");
 
-			switch (attribute)
-			{
-				case this.Const.Attributes.Hitpoints:
-					return attributeValue + bro.getBaseProperties().Hitpoints;
-					break;
-				case this.Const.Attributes.Bravery:
-					return attributeValue + bro.getBaseProperties().Bravery;
-					break;
-				case this.Const.Attributes.Fatigue:
-					return attributeValue + bro.getBaseProperties().Stamina;
-					break;
-				case this.Const.Attributes.Initiative:
-					return attributeValue + bro.getBaseProperties().Initiative;
-					break;
-				case this.Const.Attributes.MeleeSkill:
-					return attributeValue + bro.getBaseProperties().MeleeSkill;
-					break;
-				case this.Const.Attributes.RangedSkill:
-					return attributeValue + bro.getBaseProperties().RangedSkill;
-					break;
-				case this.Const.Attributes.MeleeDefense:
-					return attributeValue + bro.getBaseProperties().MeleeDefense;
-					break;
-				case this.Const.Attributes.RangedDefense:
-					return attributeValue + bro.getBaseProperties().RangedDefense;
-					break;
-				default:
-					return 0;
-					break;
+			if (!_addDistance) {
+				return text;
 			}
-		}
 
-		local a = {
-			Hitpoints = [
-				calculateAttribute(this.Const.Attributes.Hitpoints),
-				calculateAttribute(this.Const.Attributes.Hitpoints, true)
-			],
-			Bravery = [
-				calculateAttribute(this.Const.Attributes.Bravery),
-				calculateAttribute(this.Const.Attributes.Bravery, true)
-			],
-			Fatigue = [
-				calculateAttribute(this.Const.Attributes.Fatigue),
-				calculateAttribute(this.Const.Attributes.Fatigue, true)
-			],
-			Initiative = [
-				calculateAttribute(this.Const.Attributes.Initiative),
-				calculateAttribute(this.Const.Attributes.Initiative, true)
-			],
-			MeleeSkill = [
-				calculateAttribute(this.Const.Attributes.MeleeSkill),
-				calculateAttribute(this.Const.Attributes.MeleeSkill, true)
-			],
-			RangedSkill = [
-				calculateAttribute(this.Const.Attributes.RangedSkill),
-				calculateAttribute(this.Const.Attributes.RangedSkill, true)
-			],
-			MeleeDefense = [
-				calculateAttribute(this.Const.Attributes.MeleeDefense),
-				calculateAttribute(this.Const.Attributes.MeleeDefense, true)
-			],
-			RangedDefense = [
-				calculateAttribute(this.Const.Attributes.RangedDefense),
-				calculateAttribute(this.Const.Attributes.RangedDefense, true)
-			]
+			local paddingCount = 8 + ::Math.max(0, 12 - text.len()) * 2;
+			local distance = "";
+			for (local i = 0; i < paddingCount; i++) {
+				distance += "&nbsp;";
+			}
+
+			return text + distance;
 		};
 
-		local bufferHealth = "";
-		local bufferFatigue = "";
-		local bufferBravery = "";
-		local bufferInitiative = "";
-
-		if (a.Hitpoints[0] >= 100)
-		{
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Hitpoints[1] >= 100)
-		{
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Fatigue[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Fatigue[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Bravery[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Bravery[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferInitiative += "&nbsp;&nbsp;";
-		}
-		if (a.Initiative[0] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-		}
-		if (a.Initiative[1] >= 100)
-		{
-			bufferHealth += "&nbsp;&nbsp;";
-			bufferFatigue += "&nbsp;&nbsp;";
-			bufferBravery += "&nbsp;&nbsp;";
-		}
-
-		local tooltip = [
+		return [
 			{
 				id = 103,
 				type = "hint",
@@ -765,26 +705,24 @@
 			{
 				id = 104,
 				type = "hint",
-				text = "[img]gfx/ui/icons/health_va11.png[/img] " + a.Hitpoints[0] + " to " + a.Hitpoints[1] + bufferHealth + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/melee_skill_va11.png[/img] " + a.MeleeSkill[0] + " to " + a.MeleeSkill[1]
+				text = "[img]gfx/ui/icons/health_va11.png[/img] " + getStat(::Const.Attributes.Hitpoints) + "[img]gfx/ui/icons/melee_skill_va11.png[/img] " + getStat(::Const.Attributes.MeleeSkill, false)
 			},
 			{
 				id = 105,
 				type = "hint",
-				text = "[img]gfx/ui/icons/fatigue_va11.png[/img] " + a.Fatigue[0] + " to " + a.Fatigue[1] + bufferFatigue + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/ranged_skill_va11.png[/img] " + a.RangedSkill[0] + " to " + a.RangedSkill[1]
+				text = "[img]gfx/ui/icons/fatigue_va11.png[/img] " + getStat(::Const.Attributes.Fatigue) + "[img]gfx/ui/icons/ranged_skill_va11.png[/img] " + getStat(::Const.Attributes.RangedSkill, false)
 			},
 			{
 				id = 106,
 				type = "hint",
-				text = "[img]gfx/ui/icons/bravery_va11.png[/img] " + a.Bravery[0] + " to " + a.Bravery[1] + bufferBravery + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/melee_defense_va11.png[/img] " + a.MeleeDefense[0] + " to " + a.MeleeDefense[1]
+				text = "[img]gfx/ui/icons/bravery_va11.png[/img] " + getStat(::Const.Attributes.Bravery) + "[img]gfx/ui/icons/melee_defense_va11.png[/img] " + getStat(::Const.Attributes.MeleeDefense, false)
 			},
 			{
 				id = 107,
 				type = "hint",
-				text = "[img]gfx/ui/icons/initiative_va11.png[/img] " + a.Initiative[0] + " to " + a.Initiative[1] + bufferInitiative + "&nbsp;&nbsp;&nbsp;[img]gfx/ui/icons/ranged_defense_va11.png[/img] " + a.RangedDefense[0] + " to " + a.RangedDefense[1]
+				text = "[img]gfx/ui/icons/initiative_va11.png[/img] " + getStat(::Const.Attributes.Initiative) + "[img]gfx/ui/icons/ranged_defense_va11.png[/img] " + getStat(::Const.Attributes.RangedDefense, false)
 			}
 		];
-
-		return tooltip;
 	}
 
 	o.getPerkTreeDescription <- function ()
@@ -808,7 +746,7 @@
 			return this.m.PerkTree;
 		}
 
-		local pT = this.Const.Perks.PerksTreeTemplate;
+		local pT = ::Const.Perks.PerksTreeTemplate;
 		if (pT == null)
 		{
 			return [];
@@ -824,12 +762,12 @@
 		if (typeof _perk == "string")
 		{
 			id = _perk;
-			local basePerkDefObject = this.Const.Perks.findById(_perk);
-			perkDef = this.Const.Perks.PerkDefs[basePerkDefObject.Const];
+			local basePerkDefObject = ::Const.Perks.findById(_perk);
+			perkDef = ::Legends.Perk[basePerkDefObject.Const];
 		}
 		else
 		{
-			id = this.Const.Perks.PerkDefObjects[_perk].ID;
+			id = ::Const.Perks.PerkDefObjects[_perk].ID;
 			perkDef = _perk;
 		}
 
@@ -841,28 +779,64 @@
 		return this.m.PerkTreeMap[id];
 	}
 
-	o.addPerk <- function ( _perk, _row = 0, _isRefundable = true )
-	{
-		local perkDefObject = clone this.Const.Perks.PerkDefObjects[_perk];
-		//Dont add dupes
-		if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
-		{
-			return false;
-		}
+    o.addPerk <- function ( _perk, _preferredRow = 0, _isRefundable = true )
+    {
+        local perkDefObject = clone ::Const.Perks.PerkDefObjects[_perk];
 
-		perkDefObject.Row <- _row;
-		perkDefObject.Unlocks <- _row;
-		perkDefObject.IsRefundable <- _isRefundable;
+        // Don't add duplicates
+        if (this.m.PerkTreeMap == null || perkDefObject.ID in this.m.PerkTreeMap)
+        {
+            return false;
+        }
 
-		for (local i = this.getPerkTree().len(); i < _row + 1; i = ++i)
-		{
-			this.getPerkTree().push([]);
-		}
-		this.getPerkTree()[_row].push(perkDefObject);
-		this.m.CustomPerkTree[_row].push(_perk);
-		this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
-		return true;
-	}
+        // Attempt to find a valid row
+        local finalRow = _preferredRow;
+        local foundRow = false;
+
+        for (local i = 0; i <= 6; i++)
+        {
+            local tryRow = (_preferredRow + i) % 7;
+
+            // Ensure row exists
+            while (this.getPerkTree().len() <= tryRow)
+            {
+                this.getPerkTree().push([]);
+            }
+
+            if (this.getPerkTree()[tryRow].len() < 13)
+            {
+                finalRow = tryRow;
+                foundRow = true;
+                break;
+            }
+        }
+
+        if (!foundRow)
+        {
+            // All rows are full, fallback to preferredRow
+            finalRow = _preferredRow;
+        }
+
+        perkDefObject.Row <- finalRow;
+        perkDefObject.Unlocks <- finalRow;
+        perkDefObject.IsRefundable <- _isRefundable;
+
+        // Extend perk tree if not enough rows exist
+        while (this.getPerkTree().len() <= finalRow)
+        {
+            this.getPerkTree().push([]);
+        }
+        while (this.m.CustomPerkTree.len() <= finalRow)
+        {
+            this.m.CustomPerkTree.push([]);
+        }
+
+        this.getPerkTree()[finalRow].push(perkDefObject);
+        this.m.CustomPerkTree[finalRow].push(_perk);
+        this.m.PerkTreeMap[perkDefObject.ID] <- perkDefObject;
+
+        return true;
+    }
 
 	o.addPerkGroup <- function (_Tree) {
 		foreach(index, arrAdd in _Tree)
@@ -876,7 +850,7 @@
 
 	o.removePerk <- function ( _perk )
 	{
-		local perkDefObject = this.Const.Perks.PerkDefObjects[_perk];
+		local perkDefObject = ::Const.Perks.PerkDefObjects[_perk];
 		if (!(perkDefObject.ID in this.m.PerkTreeMap))
 		{
 			return false;
@@ -923,7 +897,7 @@
 
 	o.removePerkGroup <- function ( _group )
 	{
-		foreach (i, row in _group.Tree)
+		foreach (_, row in _group.Tree)
 		{
 			foreach (perk in row)
 			{
@@ -934,8 +908,255 @@
 
 	o.hasPerk <- function ( _perk )
 	{
-		return this.Const.Perks.PerkDefObjects[_perk].ID in this.m.PerkTreeMap;
+		return ::Const.Perks.PerkDefObjects[_perk].ID in this.m.PerkTreeMap;
 	}
+
+	/**
+	 * Gets information on how many complete perk groups the character has,
+	 * as well as any additional perks that are not part of a complete set
+	 *
+	 * @return A table containing the following:
+	 * 	- CompleteGroupsIDs: Table whose keys are perk group categories; values are arrays containing IDs of complete perk groups
+	 * 	- RemainingPerkDefs: Array of perkDefs (numbers representing indeces in ::Const.Perks.PerkDefObjects) that do not belong to any complete perk group
+	 */
+	o.getPerkGroups <- function ()
+	{
+		local tmp = {};
+		local nonStrayPerks = {};
+		local possibleStrayPerks = [];
+		local ret = {
+			CompleteGroupsIDs = ::Legends.Perks.buildPerkGroupCategoriesTableOfArrays(),
+			RemainingPerkDefs = [] // Array of perkDefs that do not belong to any complete perk group
+		}
+
+		foreach (perk in this.m.PerkTreeMap)
+		{
+			// 1. Find out which perk groups are possible
+			// 2. Check if each perk group is fully represented
+			// 3. List out all fully represented perk groups, and the remaining number of ungrouped perks
+			foreach (entry in perk.PerkGroups)
+			{
+				if (!(entry.ID in tmp))
+				{
+					tmp[entry.ID] <- {
+						Category = entry.Category,
+						PerkDefs = {}
+					}
+				}
+
+				tmp[entry.ID].PerkDefs[::Legends.Perk[perk.Const]] <- true;
+			}
+		}
+
+		foreach (id, entry in tmp)
+		{
+			if (::Legends.Perks.isPerkGroupFullyRepresented(id, entry.PerkDefs))
+			{
+				ret.CompleteGroupsIDs[entry.Category].push(id);
+				foreach (key, _ in entry.PerkDefs)
+				{
+					if (!(key in nonStrayPerks))
+					{
+						nonStrayPerks[key] <- true;
+					}
+				}
+			}
+			else
+			{
+				foreach (key, _ in entry.PerkDefs)
+				{
+					possibleStrayPerks.push(key);
+				}
+			}
+		}
+
+		foreach (perkDef in possibleStrayPerks)
+		{
+			if (!(perkDef in nonStrayPerks))
+			{
+				ret.RemainingPerkDefs.push(perkDef);
+			}
+		}
+
+		return ret;
+	}
+
+	/**
+	 * Update tooltip data to add a list of all perk groups this character has, organised by categories
+	 *
+	 * @param arr An array of tables to hold the tooltip data, as seen in tooltip_events.nut
+	 */
+	o.extendKnownPerksTooltip <- function(arr)
+	{
+		local data = this.getPerkGroups();
+		local last = arr[arr.len() - 1];
+		local iter = "id" in last ? last.id : 3;
+		foreach (category in ::Legends.Perks.PerkGroupCategoriesOrder)
+		{
+			iter++;
+			if (data.CompleteGroupsIDs[category].len() > 0)
+			{
+				arr.push({
+					id = iter,
+					type = "text",
+					text = "\n[u]" + category + "[/u]"
+				});
+			}
+
+			local counter = 0;
+
+			foreach (_, group in data.CompleteGroupsIDs[category])
+			{
+				counter++;
+				arr.push({
+					id = iter,
+					type = "textDualColumn",
+					listCount = counter,
+					listLength = data.CompleteGroupsIDs[category].len(),
+					icon = "Icon" in ::Const.Perks[group] ? ::Const.Perks[group].Icon : "ui/perks/legend_vala_days.png",
+					text = ::Const.Perks[group].Name
+				});
+			}
+		}
+	}
+
+	o.getProfessionTreeDescription <- function () {
+		local text = "";
+		foreach (i, group in this.m.ProfessionTree) {
+			text += "\nTier " + (i + 1) + ": ";
+			foreach (p in group) {
+				text += p.Name + ", ";
+			}
+		}
+		return text;
+	}
+
+	o.getProfessionTree <- function () {
+		if (this.m.ProfessionTree != null) {
+			return this.m.ProfessionTree;
+		}
+
+		local pT = ::Const.Professions.ProfessionsTreeTemplate;
+		return pT != null ? pT.Tree : [];
+	}
+
+	o.getProfession <- function (_profession) {
+		local id = typeof _profession == "string" ? _profession : ::Const.Professions.ProfessionDefObjects[_profession].ID;
+
+		if (id in this.m.ProfessionTreeMap) {
+        	return this.m.ProfessionTreeMap[id];
+    	}
+    	return null;
+	}
+
+	o.addProfession <- function (_profession, _preferredRow = 0) {
+		local professionDefObject = clone ::Const.Professions.ProfessionDefObjects[_profession];
+
+		if (this.m.ProfessionTreeMap == null) {
+     	   this.buildProfessionTree();
+    	}
+
+		// Don't add duplicates
+		if (professionDefObject.ID in this.m.ProfessionTreeMap) {
+			return false;
+		}
+
+		// Attempt to find a valid row
+		local finalRow = _preferredRow;
+
+		while (this.m.ProfessionTree.len() <= finalRow) {
+			this.m.ProfessionTree.push([]);
+		}
+		while (this.m.CustomProfessionTree.len() <= finalRow) {
+			this.m.CustomProfessionTree.push([]);
+		}
+
+		while (this.m.ProfessionTree[finalRow].len() >= 13) {
+			finalRow++;
+			while (this.m.ProfessionTree.len() <= finalRow) {
+				this.m.ProfessionTree.push([]);
+				this.m.CustomProfessionTree.push([]);
+			}
+		}
+
+		professionDefObject.Row <- finalRow;
+    	professionDefObject.Unlocks <- finalRow;
+
+		this.m.ProfessionTree[finalRow].push(professionDefObject);
+		this.m.CustomProfessionTree[finalRow].push(_profession);
+		this.m.ProfessionTreeMap[professionDefObject.ID] <- professionDefObject;
+
+		return true;
+	}
+
+	o.addProfessionTree <- function ( _treeDef ) {
+		if (this.m.CustomProfessionTree == null) {
+			local baseTree = [];
+			foreach (row in ::Const.Professions.DefaultProfessionTree) {
+				local newRow = [];
+				foreach (p in row) newRow.push(p);
+				baseTree.push(newRow);
+			}
+			this.m.CustomProfessionTree = baseTree;
+			this.buildProfessionTree();
+		}
+
+		local tree = typeof _treeDef == "table" && ("Tree" in _treeDef) ? _treeDef.Tree : _treeDef;
+		foreach (rowIndex, row in tree) {
+			foreach (professionDef in row) {
+				this.addProfession(professionDef, rowIndex);
+			}
+		}
+    }
+
+	o.addProfessionGroup <- function (_trees) {
+		foreach (tree in _trees) {
+			this.addProfessionTree(tree);
+		}
+	}
+
+	o.removeProfession <- function (_profession) {
+		local professionDefObject = ::Const.Professions.ProfessionDefObjects[_profession];
+		if (!(professionDefObject.ID in this.m.ProfessionTreeMap)) {
+			return false;
+		}
+
+		local row = this.m.ProfessionTreeMap[professionDefObject.ID].Row;
+
+		foreach (i, p in this.m.ProfessionTree[row]) {
+			if (p.ID == professionDefObject.ID) {
+				this.m.ProfessionTree[row].remove(i);
+				break;
+			}
+		}
+
+		foreach (i, pID in this.m.CustomProfessionTree[row]) {
+			if (pID == _profession) {
+				this.m.CustomProfessionTree[row].remove(i);
+				break;
+			}
+		}
+
+		delete this.m.ProfessionTreeMap[professionDefObject.ID];
+		return true;
+	}
+
+	o.hasProfession <- function (_profession) {
+		return ::Const.Professions.ProfessionDefObjects[_profession].ID in this.m.ProfessionTreeMap;
+	}
+
+	o.buildProfessionTree <- function () {
+        if (this.m.ProfessionTree != null) return;
+
+        if (this.m.CustomProfessionTree == null) {
+            this.m.ProfessionTree = ::Const.Professions.ProfessionsTreeTemplate.Tree;
+            this.m.ProfessionTreeMap = ::Const.Professions.ProfessionsTreeTemplate.Map;
+        } else {
+            local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+            this.m.ProfessionTree = pT.Tree;
+            this.m.ProfessionTreeMap = pT.Map;
+        }
+    }
 
 	o.buildDescription = function( _isFinal = false )
 	{
@@ -950,7 +1171,7 @@
 
 		for( local i = 0; i < villages.len(); i = ++i )
 		{
-			if (this.isKindOf(villages[i], "city_state"))
+			if (villages[i].isSouthern())
 			{
 				citystates.push(villages[i]);
 			}
@@ -988,6 +1209,10 @@
 				this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
 			],
 			[
+				"randomvizier",
+				this.Const.Strings.SouthernNames[this.Math.rand(0, this.Const.Strings.SouthernNames.len() - 1)] + " " + this.Const.Strings.VizierTitles[this.Math.rand(0, this.Const.Strings.VizierTitles.len() - 1)]
+			],
+			[
 				"randomnamefemale",
 				this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)]
 			],
@@ -1020,213 +1245,52 @@
 			this.getContainer().getActor().getTitle()
 		]);
 
-		this.Const.LegendMod.extendVarsWithPronouns(vars, this.getContainer().getActor().getGender());
+		::Const.LegendMod.extendVarsWithPronouns(vars, this.getContainer().getActor());
 
 		this.m.Description = this.buildTextFromTemplate(this.m.RawDescription, vars);
 	}
 
 	o.buildAttributes = function (_tag = null, _attrs = null)
 	{
-		local a = [];
-
-		if (_tag == "zombie")
-		{
-			a = {
-				Hitpoints = [
-					75,
-					75
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					40,
-					40
-				],
-				RangedSkill = [
-					20,
-					20
-				],
-				MeleeDefense = [
-					-5,
-					-5
-				],
-				RangedDefense = [
-					-6,
-					-6
-				],
-				Initiative = [
-					65,
-					65
-				]
-			};
-		}
-		else if (_tag == "skeleton")
-		{
-			a = {
-				Hitpoints = [
-					50,
-					50
-				],
-				Bravery = [
-					100,
-					100
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					3,
-					3
-				],
-				RangedDefense = [
-					5,
-					5
-				],
-				Initiative = [
-					95,
-					95
-				]
-			};
-		}
-		else //human bro
-		{
-			a = {
-				Hitpoints = [
-					60,
-					60
-				],
-				Bravery = [
-					40,
-					40
-				],
-				Stamina = [
-					100,
-					100
-				],
-				MeleeSkill = [
-					50,
-					50
-				],
-				RangedSkill = [
-					40,
-					40
-				],
-				MeleeDefense = [
-					0,
-					0
-				],
-				RangedDefense = [
-					0,
-					0
-				],
-				Initiative = [
-					85,
-					85
-				]
-			};
+		// helper function to sum all keys in the table, that ensures [min, max], regardless the input
+		local sum = function (_a, _b) {
+			local ret = {};
+			foreach(k, v in _a) {
+				local aMin = ::Math.min(v[0], v[1]);
+				local aMax = ::Math.max(v[0], v[1]);
+				if (k in _b) {
+					local bv = _b[k];
+					ret[k] <- [
+						aMin + ::Math.min(bv[0], bv[1]),
+						aMax + ::Math.max(bv[0], bv[1])
+					];
+				} else { // key doesn't exist in _b, so just use what's in _a
+					ret[k] <- [aMin, aMax];
+				}
+			}
+			return ret;
 		}
 
+		local a = clone ::Legends.Backgrounds.BaseAttr.resolve(_tag);
 		// Modify the stats if being female carries a gameplay effect
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled")
-		{
-			if (this.getContainer().getActor().getGender()==1)
-			{
-				// Female characters trade HP for Fatigue compared to male characters
-				a.Hitpoints[0] -= 10;
-				a.Hitpoints[1] -= 10;
-				a.Stamina[0] += 10;
-				a.Stamina[1] += 10;
+		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() == "Enabled") {
+			if (this.getContainer().getActor().getGender() == 1) {
+				a = sum(a, ::Legends.Backgrounds.BaseAttr.Female);
 			}
 		}
 
-		local c = this.onChangeAttributes();
-		a.Hitpoints[0] += c.Hitpoints[0];
-		a.Hitpoints[1] += c.Hitpoints[1];
-		a.Bravery[0] += c.Bravery[0];
-		a.Bravery[1] += c.Bravery[1];
-		a.Stamina[0] += c.Stamina[0];
-		a.Stamina[1] += c.Stamina[1];
-		a.MeleeSkill[0] += c.MeleeSkill[0];
-		a.MeleeSkill[1] += c.MeleeSkill[1];
-		a.MeleeDefense[0] += c.MeleeDefense[0];
-		a.MeleeDefense[1] += c.MeleeDefense[1];
-		a.RangedSkill[0] += c.RangedSkill[0];
-		a.RangedSkill[1] += c.RangedSkill[1];
-		a.RangedDefense[0] += c.RangedDefense[0];
-		a.RangedDefense[1] += c.RangedDefense[1];
-		a.Initiative[0] += c.Initiative[0];
-		a.Initiative[1] += c.Initiative[1];
-
+		a = sum(a, this.onChangeAttributes());
 		if (_attrs != null)
-		{
-			a.Hitpoints[0] += _attrs.Hitpoints[0];
-			a.Hitpoints[1] += _attrs.Hitpoints[1];
-			a.Bravery[0] += _attrs.Bravery[0];
-			a.Bravery[1] += _attrs.Bravery[1];
-			a.Stamina[0] += _attrs.Stamina[0];
-			a.Stamina[1] += _attrs.Stamina[1];
-			a.MeleeSkill[0] += _attrs.MeleeSkill[0];
-			a.MeleeSkill[1] += _attrs.MeleeSkill[1];
-			a.MeleeDefense[0] += _attrs.MeleeDefense[0];
-			a.MeleeDefense[1] += _attrs.MeleeDefense[1];
-			a.RangedSkill[0] += _attrs.RangedSkill[0];
-			a.RangedSkill[1] += _attrs.RangedSkill[1];
-			a.RangedDefense[0] += _attrs.RangedDefense[0];
-			a.RangedDefense[1] += _attrs.RangedDefense[1];
-			a.Initiative[0] += _attrs.Initiative[0];
-			a.Initiative[1] += _attrs.Initiative[1];
-		}
+			a = sum(a, _attrs);
+
+		this.getContainer().getActor().m.Hiring.AttributeLimits <- clone a;
+
 		local b = this.getContainer().getActor().getBaseProperties();
 		b.ActionPoints = 9;
-		local Hitpoints1 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery1 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina1 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill1 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill1 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense1 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense1 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative1 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local Hitpoints2 = this.Math.rand(a.Hitpoints[0], a.Hitpoints[1]);
-		local Bravery2 = this.Math.rand(a.Bravery[0], a.Bravery[1]);
-		local Stamina2 = this.Math.rand(a.Stamina[0], a.Stamina[1]);
-		local MeleeSkill2 = this.Math.rand(a.MeleeSkill[0], a.MeleeSkill[1]);
-		local RangedSkill2 = this.Math.rand(a.RangedSkill[0], a.RangedSkill[1]);
-		local MeleeDefense2 = this.Math.rand(a.MeleeDefense[0], a.MeleeDefense[1]);
-		local RangedDefense2 = this.Math.rand(a.RangedDefense[0], a.RangedDefense[1]);
-		local Initiative2 = this.Math.rand(a.Initiative[0], a.Initiative[1]);
-		local HitpointsAvg = this.Math.round((Hitpoints1 + Hitpoints2) / 2);
-		local BraveryAvg  = this.Math.round((Bravery1 + Bravery2) / 2);
-		local StaminaAvg  = this.Math.round((Stamina1 + Stamina2) / 2);
-		local MeleeSkillAvg  = this.Math.round((MeleeSkill1 + MeleeSkill2) / 2);
-		local RangedSkillAvg  = this.Math.round((RangedSkill1 + RangedSkill2) / 2);
-		local MeleeDefenseAvg  = this.Math.round((MeleeDefense1 + MeleeDefense2) / 2);
-		local RangedDefenseAvg  = this.Math.round((RangedDefense1 + RangedDefense2) / 2);
-		local InitiativeAvg  = this.Math.round((Initiative1 + Initiative2) / 2);
+		foreach(k, v in a) { // set avg of 2 rolls to `b`
+			b[k] = ::Math.round((::Math.rand(v[0], v[1]) + ::Math.rand(v[0], v[1])) / 2);
+		}
 
-
-		b.Hitpoints = HitpointsAvg;
-		b.Bravery = BraveryAvg;
-		b.Stamina = StaminaAvg;
-		b.MeleeSkill = MeleeSkillAvg;
-		b.RangedSkill = RangedSkillAvg;
-		b.MeleeDefense = MeleeDefenseAvg;
-		b.RangedDefense = RangedDefenseAvg;
-		b.Initiative = InitiativeAvg;
 		this.getContainer().getActor().m.CurrentProperties = clone b;
 		this.getContainer().getActor().setHitpoints(b.Hitpoints);
 
@@ -1240,6 +1304,7 @@
 				return 50;
 			return weight;
 		}
+
 		local weighted = [
 			calc(a, b, "Hitpoints"),
 			calc(a, b, "Bravery"),
@@ -1255,60 +1320,34 @@
 
 	o.rebuildPerkTree <- function ( _tree )
 	{
-		this.m.CustomPerkTree = _tree
-		this.m.CustomPerkTree = this.Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
-		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
+		this.m.CustomPerkTree = _tree;
+		this.m.CustomPerkTree = ::Const.Perks.MergeDynamicPerkTree(_tree, this.m.PerkTreeDynamic);
+		local pT = ::Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
 	}
 
+	o.rebuildProfessionTree <- function ( _tree )
+    {
+        this.m.CustomProfessionTree = _tree;
+        local pT = ::Const.Professions.BuildCustomProfessionTree(this.m.CustomProfessionTree);
+    	this.m.ProfessionTree = pT.Tree;
+    	this.m.ProfessionTreeMap = pT.Map;
+    }
+
 	o.getPerkTreeDynamicMins <- function ()
 	{
 		local mins = this.m.PerkTreeDynamicMins;
-
-		if (this.World.Assets.getOrigin().getID() == "scenario.beast_hunters")
-		{
-			mins = this.m.PerkTreeDynamicMinsBeast;
-		}
+		if (this.isBackgroundType(this.Const.BackgroundType.Educated))
+			mins.ProfessionChance += 0.09;
+		if (this.isBackgroundType(this.Const.BackgroundType.Lowborn))
+			mins.ClassChance += 0.09;
 		return mins;
 	}
 
 	o.buildPerkTree <- function ()
 	{
-		local a = {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
+		local a = clone ::Legends.Backgrounds.EmptyAttr;
 
 		if (this.m.PerkTree != null)
 		{
@@ -1317,16 +1356,22 @@
 
 		if (this.m.CustomPerkTree == null)
 		{
-				local mins = this.getPerkTreeDynamicMins();
+			local tree = this.m.PerkTreeDynamic == null ? this.m.PerkTreeDynamicBase : this.m.PerkTreeDynamic;
+			local mins = this.getPerkTreeDynamicMins();
 
-				local result  = this.Const.Perks.GetDynamicPerkTree(mins, this.m.PerkTreeDynamic);
-				this.m.CustomPerkTree = result.Tree
-				a = result.Attributes;
+			local result  = ::Const.Perks.GetDynamicPerkTree(mins, tree, false);
+			this.m.CustomPerkTree = result.Tree;
+			a = result.Attributes;
 		}
 
-		local pT = this.Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
+		local pT = ::Const.Perks.BuildCustomPerkTree(this.m.CustomPerkTree);
 		this.m.PerkTree = pT.Tree;
 		this.m.PerkTreeMap = pT.Map;
+
+		if (this.m.PerkTreeDynamic != null)
+		{
+			this.rebuildPerkTree(this.m.CustomPerkTree);
+		}
 
 		//When deserializing, the scenario isn't set yet, so it will be null - in this case, the sceario should
 		//already have added its perks so we should be ok. This will fail though loading an old save
@@ -1335,8 +1380,9 @@
 		// THE COMMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
 		// shenanigans are still happening, so I will test some more. -- Midas
 		local origin = this.World.Assets.getOrigin();
-		if (origin != null)
+		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet"))
 		{
+			this.getContainer().getActor().getFlags().set("ScenarioPerkSet", true);
 			origin.onBuildPerkTree(this);
 		}
 
@@ -1351,10 +1397,6 @@
 		}
 		else
 		{
-			if(this.isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
-			{
-				this.m.DailyCost = 4; // Converted cultists only cost 4, this is instead of saving the value for all bros.
-			}
 			local level = this.getContainer().getActor().getLevel();
 			local wage = this.Math.round(this.m.DailyCost * this.m.DailyCostMult);
 			_properties.DailyWage += wage * this.Math.pow(1.1, this.Math.min(10, level - 1));
@@ -1366,7 +1408,7 @@
 			}
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != "background.slave")
+		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
 		{
 			_properties.XPGainMult *= 0.9;
 		}
@@ -1402,7 +1444,7 @@
 			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Zombie[this.Math.rand(0, this.Const.Hair.Zombie.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.Zombie[this.Math.rand(0, this.Const.Beards.Zombie.len() - 1)]);
@@ -1437,7 +1479,7 @@
 			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
 				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieOnly[this.Math.rand(0, this.Const.Beards.ZombieOnly.len() - 1)]);
@@ -1471,15 +1513,15 @@
 			if (this.m.Hairs != null && this.Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len())
 			{
 				local sprite = actor.getSprite("hair");
-				sprite.setBrush("hair_" + hairColor + "_" + this.m.Hairs[this.Math.rand(0, this.m.Hairs.len() - 1)]);
+				local hair = this.m.Hairs[::Math.rand(0, this.m.Hairs.len() - 1)];
+				if(hair != "") {
+					sprite.setBrush("hair_" + hairColor + "_" + hair);
 
-				if (hairColor != "grey")
-				{
-					sprite.varyColor(0.1, 0.1, 0.1);
-				}
-				else
-				{
-					sprite.varyBrightness(0.1);
+					if (hairColor != "grey") {
+						sprite.varyColor(0.1, 0.1, 0.1);
+					} else {
+						sprite.varyBrightness(0.1);
+					}
 				}
 			}
 
@@ -1521,7 +1563,8 @@
 		this.onSetAppearance();
 	}
 
-	o.calculateAdditionalRecruitmentLevels <- function ()
+	// old recruit scaling feature, removed with the introduction of professions
+	/*o.calculateAdditionalRecruitmentLevels <- function ()
 	{
 		if (::Legends.Mod.ModSettings.getSetting("RecruitScaling").getValue())
 		{
@@ -1529,7 +1572,7 @@
 			local levels = 0;
 			local count = 0;
 
-			foreach( i, bro in roster )
+			foreach( _, bro in roster )
 			{
 				local brolevel = bro.getLevel();
 				levels = levels + brolevel;
@@ -1547,7 +1590,7 @@
 		{
 			return 0;
 		}
-	}
+	}*/
 
 	o.onAdded = function()
 	{
@@ -1572,14 +1615,16 @@
 
 		this.m.IsNew = false;
 
-		if (this.m.LastNames.len() == 0 && this.m.Ethnicity == 1)
-		{
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		if (this.m.LastNames.len() == 0 && this.m.Ethnicity == 1) {
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 
-		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)
-		{
-			actor.setTitle(this.m.LastNames[this.Math.rand(0, this.m.LastNames.len() - 1)]);
+		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)	{
+			local lastName = this.m.LastNames[::Math.rand(0, this.m.LastNames.len() - 1)];
+			if (this.getContainer().getActor().getGender()) {
+				lastName = ::String.replace(lastName, "Ibn ", "Bint "); // changes southern "son of" to "daughter of"
+			}
+			actor.setTitle(lastName);
 		}
 
 		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && this.Math.rand(0, 3) == 3)
@@ -1600,7 +1645,7 @@
 				}
 				else if (this.m.Ethnicity == 2)
 				{
-					names = this.Const.Strings.BarbarianNames
+					names = this.Const.Strings.BarbarianNames;
 				}
 
 				if (this.isBackgroundType(this.Const.BackgroundType.Female))
@@ -1620,7 +1665,7 @@
 			actor.setName(names[this.Math.rand(0, names.len() - 1)]);
 		}
 
-		this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels();
+		//this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels(); old recruit scaling option
 
 		if (this.m.Level != 1)
 		{
@@ -1705,28 +1750,55 @@
 
 		if (ret.len() == 0) return "";
 
-		return "[color=" + this.Const.UI.Color.NegativeValue + "]Background Type: " + ret.slice(0, ret.len() - 2) + "[/color]";
+		return "[color=%negative%]Background Type: " + ret.slice(0, ret.len() - 2) + "[/color]";
 	}
 
 	//0 = Male, 1 = Female, -1 = Either
-	o.setGender <- function (_gender)
-	{
+	o.setGender <- function (_gender) {}
+
+	o.randomizeHumanGender <- function () {
+		if (::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	o.setCommanderGender <- function () {
+		if(::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Female"){
+			return 1;
+		} else if(::Legends.Mod.ModSettings.getSetting("CommanderAvatarGender").getValue() == "Male") {
+			return 0;
+		} else if (::Math.rand(1, 100) <= ::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue()) {
+			return 1;
+		} else {
+			return 0;
+		}
+	}
+
+	o.setDefaultGenderedSprite <- function (_gender, _bodyPart, _spriteObject) {
+		this.m[_bodyPart] = _spriteObject != null && _bodyPart in _spriteObject ? _spriteObject[_bodyPart] : (_gender ? this.m.DefaultSprites.Female[_bodyPart] : this.m.DefaultSprites.Male[_bodyPart]);
+	}
+
+	o.setBodyCharacteristics <- function(_gender, _spriteObject = null, _beardChanceForce = null) {
+		local sprites = ["Bodies", "Faces", "Hairs", "HairColors", "Beards"];
+		foreach(sprite in sprites){
+			this.setDefaultGenderedSprite(_gender, sprite, _spriteObject);
+		}
+		if (_gender) {
+			this.m.BeardChance = 0;
+			this.addBackgroundType(::Const.BackgroundType.Female);
+		}
+
+		if (_beardChanceForce != null) {
+			this.m.BeardChance = _beardChanceForce;
+		}
 	}
 
 	o.Convert <- function()
 	{
 		this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
-		local cultistGroup = [
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsSkill],
-						[this.Const.Perks.PerkDefs.LegendSpecCultHood],
-						[this.Const.Perks.PerkDefs.LegendSpecialistNinetailsDamage],
-						[],
-						[this.Const.Perks.PerkDefs.LegendPrepareGraze],
-						[this.Const.Perks.PerkDefs.LegendSpecCultArmor],
-						[this.Const.Perks.PerkDefs.LegendLacerate]
-					];
-
-		this.addPerkGroup(cultistGroup);
+		this.addPerkGroup(this.Const.Perks.NinetailsClassTree.Tree);
 		this.getContainer().getActor().getFlags().add("cultist");
 	}
 
@@ -1764,7 +1836,7 @@
 			{
 				if (!perk.IsRefundable)
 				{
-					nonRefundablePerks.push(this.Const.Perks.PerkDefs[perk.Const]);
+					nonRefundablePerks.push(::Legends.Perk[perk.Const]);
 				}
 			}
 		}
@@ -1774,6 +1846,18 @@
 		{
 			_out.writeU16(perk);
 		}
+
+		if (this.m.CustomProfessionTree == null) {
+            _out.writeU8(0);
+        } else {
+            _out.writeU8(this.m.CustomProfessionTree.len());
+            for (local i = 0; i < this.m.CustomProfessionTree.len(); i = ++i) {
+                _out.writeU8(this.m.CustomProfessionTree[i].len());
+                for (local j = 0; j < this.m.CustomProfessionTree[i].len(); j = ++j) {
+                    _out.writeU16(this.m.CustomProfessionTree[i][j]);
+                }
+            }
+        }
 	}
 
 	o.onDeserialize = function ( _in )
@@ -1783,24 +1867,16 @@
 		this.m.RawDescription = _in.readString();
 		this.m.Level = _in.readU8();
 		this.m.IsNew = _in.readBool();
-
-		if (_in.getMetaData().getVersion() >= 39)
-		{
-			this.m.DailyCostMult = _in.readF32();
-		}
-		else
-		{
-			this.m.DailyCostMult = 1.0;
-		}
+		this.m.DailyCostMult = _in.readF32();
 
 		if(_in.readBool())
 		{
 			this.addBackgroundType(this.Const.BackgroundType.Female);
-			this.setGender(1)
+			this.setGender(1);
 		}
 		else
 		{
-			this.setGender(0)
+			this.setGender(0);
 		}
 
 		if (_in.readBool())
@@ -1816,7 +1892,7 @@
 			local perks = [];
 			for( local j = 0; j < numPerks; j = ++j )
 			{
-				perks.push(_in.readU16())
+				perks.push(_in.readU16());
 			}
 			this.m.CustomPerkTree.push(perks);
 		}
@@ -1831,9 +1907,28 @@
 		{
 			this.getPerk(_in.readU16()).IsRefundable <- false;
 		}
+
+		this.m.CustomProfessionTree = [];
+        local numProfRows = _in.readU8();
+		if (numProfRows == 0) {
+            this.m.CustomProfessionTree = null;
+        }
+		else {
+			this.m.CustomProfessionTree = [];
+			for (local i = 0; i < numProfRows; i = ++i) {
+				local numProfessions = _in.readU8();
+				local professions = [];
+				for (local j = 0; j < numProfessions; j = ++j) {
+					professions.push(_in.readU16());
+				}
+				this.m.CustomProfessionTree.push(professions);
+			}
+		}
+
+		this.buildProfessionTree();
 	}
 
-	// little hack to remove it from onDeserialize() - chopeks
+	// little hack to remove it from onDeserialize()
 	local adjustHiringCostBasedOnEquipment = o.adjustHiringCostBasedOnEquipment;
 	o.adjustHiringCostBasedOnEquipment = function () {};
 
@@ -1844,7 +1939,7 @@
 	local addEquipment = o.addEquipment;
 	o.addEquipment = function () {
 		addEquipment();
-		adjustHiringCostBasedOnEquipmentLegends();
+		this.adjustHiringCostBasedOnEquipmentLegends();
 	}
 	// endhack
 })

@@ -4,7 +4,7 @@
 	"weapon.knife",
 	"weapon.wooden_stick",
 	"weapon.wooden_flail",
-	"weapon.pickaxe",	
+	"weapon.pickaxe",
 	"weapon.militia_spear",
 	"weapon.legend_wooden_spear",
 	"weapon.sickle",
@@ -23,7 +23,7 @@
 	"weapon.warfork",
 	"weapon.legend_ranged_wooden_flail",
 	"weapon.pitchfork",
-	"weapon.lute",	
+	"weapon.lute",
 	"weapon.legend_wooden_pitchfork",
 	"weapon.legend_two_handed_club", //debatable
 	"weapon.legend_tipstaff",
@@ -37,7 +37,7 @@
 
 //Peasant - low tier ranged weapons - 1 handed
 ::Const.PeasantRangedWeapons1h <- [
-	"weapon.legend_sling"
+	"weapon.legend_dilapidated_sling"
 ];
 
 //Peasant - low tier ranged weapons - 2 handed
@@ -52,7 +52,6 @@
 	"weapon.shortsword",
 	"weapon.scramasax",
 	"weapon.morning_star",
-	"weapon.legend_glaive",	
 	"weapon.hand_axe",
 	"weapon.flail",
 	"weapon.falchion",
@@ -68,14 +67,13 @@
 	"weapon.warbrand",
 	"weapon.two_handed_wooden_hammer",
 	"weapon.two_handed_wooden_flail",
-	"weapon.two_handed_hammer",	
+	"weapon.two_handed_hammer",
 	"weapon.spetum",
 	"weapon.pike",
-	"weapon.longsword",
+	"weapon.greatsword",
 	"weapon.longaxe",
 	"weapon.reinforced_wooden_flail",
-	"weapon.legend_voulge",
-	"weapon.legend_longsword",
+	"weapon.longsword",
 	"weapon.hooked_blade",
 	"weapon.goedendag",
 	"weapon.bardiche"
@@ -100,9 +98,8 @@
 	"weapon.warhammer",
 	"weapon.three_headed_flail",
 	"weapon.noble_sword",
-	"weapon.military_pick",	
+	"weapon.military_pick",
 	"weapon.military_cleaver",
-	"weapon.legend_battle_glaive",
 	"weapon.fighting_spear",
 	"weapon.fighting_axe",
 	"weapon.fencing_sword"
@@ -114,12 +111,12 @@
 	"weapon.two_handed_flail",
 	"weapon.polehammer",
 	"weapon.legend_pole_flail",
-	"weapon.legend_swordstaff",	
-	"weapon.legend_military_voulge",
+	"weapon.legend_swordstaff",
+	"weapon.legend_battle_glaive",
 	"weapon.legend_military_goedendag",
 	"weapon.legend_infantry_axe",
 	"weapon.legend_halberd",
-	"weapon.legend_estoc",
+	"weapon.estoc",
 	"weapon.greatsword",
 	"weapon.greataxe",
 	"weapon.billhook"
@@ -150,10 +147,9 @@
 	"weapon.ancient_sword",
 	"weapon.broken_ancient_sword",
 	"weapon.falx",
-	"weapon.khopesh",	
+	"weapon.khopesh",
 	"weapon.legend_kopis",
-	"weapon.legend_gladius",
-	"weapon.legend_khopesh"
+	"weapon.legend_gladius"
 ];
 
 //Ancient dead melee weapons - 2h
@@ -162,7 +158,7 @@
 	"weapon.broken_bladed_pike",
 	"weapon.crypt_cleaver",
 	"weapon.legend_fan_axe",
-	"weapon.legend_great_khopesh",	
+	"weapon.legend_great_khopesh",
 	"weapon.rhomphaia",
 	"weapon.warscythe"
 ];
@@ -186,7 +182,7 @@
 	"weapon.scimitar",
 	"weapon.legend_katar",
 	"weapon.firelance",
-	"weapon.heavy_southern_mace",	
+	"weapon.heavy_southern_mace",
 	"weapon.light_southern_mace",
 	"weapon.nomad_mace",
 	"weapon.qatal_dagger",
@@ -197,8 +193,8 @@
 ::Const.SouthernMeleeWeapons2h <- [
 	"weapon.polemace",
 	"weapon.swordlance",
-	"weapon.two_handed_saif", 
-	"weapon.two_handed_scimitar" 
+	"weapon.two_handed_saif",
+	"weapon.two_handed_scimitar"
 ];
 
 // //Southern ranged weapons - 1h
@@ -207,7 +203,7 @@
 // 	"",
 // 	"",
 // 	"",
-// 	"",	
+// 	"",
 // 	"",
 // 	"",
 // 	"",
@@ -229,7 +225,7 @@
 	"weapon.legend_meat_hacker",
 	"weapon.legend_skin_flayer",
 	"weapon.legend_skullsmasher",
-	"weapon.orc_axe",	
+	"weapon.orc_axe",
 	"weapon.orc_cleaver",
 	"weapon.orc_metal_club",
 	"weapon.orc_wooden_club"
@@ -241,7 +237,7 @@
 	"weapon.legend_limb_lopper",
 	"weapon.legend_man_mangler",
 	"weapon.legend_skullbreaker",
-	"weapon.orc_axe_2h",	
+	"weapon.orc_axe_2h",
 	"weapon.orc_flail_2h"
 ];
 
@@ -256,7 +252,7 @@
 // 	"",
 // 	"",
 // 	"",
-// 	"",	
+// 	"",
 // 	"",
 // 	"",
 // 	"",
@@ -297,7 +293,7 @@
 	"weapon.axehammer",
 	"weapon.blunt_cleaver",
 	"weapon.claw_club",
-	"weapon.crude_axe",	
+	"weapon.crude_axe",
 	"weapon.thorned_whip"
 ];
 
@@ -322,7 +318,7 @@
 // 	"",
 // 	"",
 // 	"",
-// 	"",	
+// 	"",
 // 	"",
 // 	"",
 // 	"",
@@ -344,10 +340,11 @@
 //Special melee weapons - 2h
 ::Const.SpecialMeleeWeapons2h <- [
 	"weapon.legend_staff_vala",
+	"weapon.legend_named_staff_vala",
 	"weapon.legend_staff_gnarled",
 	"weapon.legend_mystic_staff",
 	"weapon.legend_grisly_scythe",
-	"weapon.legend_drum",	
+	"weapon.legend_drum",
 	"weapon.legend_crusader_sword",
 	"weapon.legend_mage_swordstaff"
 ];
@@ -358,7 +355,7 @@
 // 	"",
 // 	"",
 // 	"",
-// 	"",	
+// 	"",
 // 	"",
 // 	"",
 // 	"",

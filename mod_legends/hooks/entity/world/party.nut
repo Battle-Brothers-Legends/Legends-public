@@ -39,7 +39,20 @@
 			}
 		}
 
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.World.Assets.m.IsBrigand && this.m.Flags.get("IsCaravan"))
+		// add noble house flavor tooltip
+		if (f != null && f.getType() == ::Const.FactionType.NobleHouse) {
+			local flavor = ::Const.GetFactionNobleFlavorText(f);
+			local icon = f.getUIBanner();
+
+			foreach (entry in ret) {
+				if ("icon" in entry && entry.icon == icon) {
+					entry.text += flavor;
+					break;
+				}
+			}
+		}
+
+		if (::World.Assets.m.ProfessionEffect.LegendGreasedPalms > 0 && this.m.Flags.get("IsCaravan"))
 		{
 			local inv = this.getStashInventory().getItems();
 
@@ -48,12 +61,12 @@
 				ret.push({
 					id = 51,
 					type = "text",
-					text = "[color=" + this.Const.UI.Color.NegativeValue + "][u]Inventory is empty[/u][/color]"
+					text = "[color=%negative%][u]Inventory is empty[/u][/color]"
 				});
 			}
 			else
 			{
-				local num = ::Math.min(inv.len(), ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo);
+				local num = ::Math.min(inv.len(), ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms));
 
 				ret.push({
 					id = 51,
@@ -71,12 +84,12 @@
 					});
 				}
 
-				if (inv.len() > ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo)
+				if (inv.len() > ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms))
 				{
 					ret.push({
 						id = 53 + num,
 						type = "text",
-						text = "And " + (inv.len() - ::Const.World.Common.WorldEconomy.Trade.AmountOfLeakedCaravanInventoryInfo) + " more item(s)"
+						text = "And " + (inv.len() - ::Math.round(::World.Assets.m.ProfessionEffect.LegendGreasedPalms)) + " more item(s)"
 					});
 				}
 			}
@@ -207,13 +220,26 @@
 					broTable = bro.getBackground().getModifiers().Terrain;
 					if (broTable == null)
 					{
-						continue
+						continue;
 					}
-					for (local i=0; i < broTable.len() ; ++i)
+					for (local i = 0; i < broTable.len(); ++i)
 					{
 						tTable[i] += broTable[i];
 					}
 				}
+				if (::World.Assets.m.ProfessionEffect.LegendTrailblazer > 0) {
+					for (local i = 0; i < terrainTable.len(); ++i)
+					{
+						if (::Const.World.TerrainTypeSpeedMult[i] <= 1.0 && ::Const.World.TerrainTypeSpeedMult[i] > 0.0) {
+							tTable[i] *= ::Math.minf(1.0, (::Const.World.TerrainTypeSpeedMult[i] + ::World.Assets.m.ProfessionEffect.LegendTrailblazer)) / ::Const.World.TerrainTypeSpeedMult[i];
+						}
+					}
+				}
+
+				for (local i = 0; i < terrainTable.len(); ++i) {
+					tTable[i] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance);
+				}
+
 				terrainTable = tTable;
 			}
 
@@ -290,7 +316,7 @@
 	o.onCombatLost = function ()
 	{
 		// World Economy: Track caravan destroyed
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue() && this.getFlags().has("CaravanInvestment"))
+		if (this.getFlags().has("CaravanInvestment"))
 		{
 			local origin = this.getOrigin();
 			if (!::MSU.isNull(origin))
@@ -313,30 +339,11 @@
 		this.world_entity.onCombatLost();
 	}
 
-	o.onDiscovered = function ()
-	{
+	o.onDiscovered = function () {
 		this.world_entity.onDiscovered();
-		// temporarily removed until we figure out what's going on with the caravan hunter retinue - Breaky 23.10.2024
-		// local playerRoster = this.World.getPlayerRoster().getAll();
-		// local lookout = 0;
-
-		// if(!World.State.isPaused() && isAttackable() && getFaction() != 0 && !isAlliedWithPlayer() && getTile().getDistanceTo(World.State.getPlayer().getTile()) <= 12)
-		// {
-		// 	foreach( bro in playerRoster )
-		// 	{
-		// 		if (bro.getCampAssignment() != this.Const.World.CampBuildings.Scout)
-		// 			{
-		// 				if (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout)
-		// 					{
-		// 					lookout += 1;
-		// 					}
-		// 			}
-		// 	}
-		// 	if (lookout > 0)
-		// 	{
-		// 		World.State.setPause(true);
-		// 	}
-		// }
+		if(::Legends.Mod.ModSettings.getSetting("PauseOnEnemySighted").getValue() && !::World.State.isPaused() && this.isAttackable() && this.getFaction() != 0 && !this.isAlliedWithPlayer() && this.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 12) {
+			::World.State.setPause(true);
+		}
 	}
 
 	o.addToInventory <- function ( _i )

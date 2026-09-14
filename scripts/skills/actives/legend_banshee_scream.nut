@@ -2,18 +2,9 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_banshee_scream";
-		this.m.Name = "Banshee Scream";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBansheeScream);
 		this.m.Description = "";
-		this.m.Icon = "skills/active_41.png";
-		this.m.IconDisabled = "skills/active_41.png";
-		this.m.Overlay = "active_41";
-		this.m.SoundOnUse = [
-			"sounds/enemies/banshee_attack_01.wav",
-			"sounds/enemies/banshee_attack_02.wav",
-			"sounds/enemies/banshee_attack_03.wav",
-			"sounds/enemies/banshee_attack_04.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/banshee_attack", 4);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -43,9 +34,8 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
 		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
 		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
-		if (!hit)
-		{
-			return true
+		if (!hit) {
+			return true;
 		}
 
 		//Do some damage!!
@@ -60,7 +50,7 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 		hitInfo.FatalityChanceMult = 0.0;
 		target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
 
-		target.getSkills().add(this.new("scripts/skills/effects/horrified_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 		if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 		{
 			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is horrified");

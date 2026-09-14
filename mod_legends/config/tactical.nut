@@ -10,3 +10,5 @@
 ::Const.Tactical.CombatInfo.PlayerDeploymentWithFrontlineCallback <- null;
 
 ::Const.Tactical.HitInfo.BodyDamageMultBeforeSteelBrow <- 1.0;
+
+::Const.Tactical.Settings.AnimationSpeed <- 1.0;

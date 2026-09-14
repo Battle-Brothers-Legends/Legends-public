@@ -13,6 +13,9 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 		this.getFlags().add("peasant");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/militia_ranged_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -27,8 +30,7 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = this.Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPoacher);
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecBow);
 		this.getSprite("socket").setBrush("bust_base_militia");
@@ -44,7 +46,6 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r;
 		local weapons = [
 			[
 				"weapons/short_bow",
@@ -53,29 +54,34 @@ this.legend_peasant_poacher <- this.inherit("scripts/entity/tactical/human", {
 			[
 				"weapons/short_bow",
 				"ammo/quiver_of_arrows"
+			],
+			[
+				"weapons/legend_sturdy_sling"
 			]
 		];
 		local n = this.Math.rand(0, weapons.len() - 1);
 
 		foreach( w in weapons[n] )
 		{
-			this.m.Items.equip(this.new("scripts/items/" + w));
+			this.getItems().equip(this.new("scripts/items/" + w));
 		}
 
-		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
+		this.getItems().addToBag(::Const.World.Common.pickItem([
+			[1, "weapons/knife"],
+		], "scripts/items/"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "sackcloth"],
-			[1, "thick_tunic"],
-			[8, "linen_tunic"]
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.sackcloth],
+			[1, ::Legends.Armor.Standard.thick_tunic],
+			[8, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
 		if (this.Math.rand(1, 100) <= 66)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				// [1, "hunters_hat"],
-				[3, "hood"]
-			]))
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				// [1, ::Legends.Helmet.Standard.hunters_hat],
+				[3, ::Legends.Helmet.Standard.hood]
+			]));
 		}
 	}
 

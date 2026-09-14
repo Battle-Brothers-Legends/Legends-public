@@ -1,0 +1,76 @@
+::mods_hookExactClass("skills/backgrounds/crucified_background", function(o)
+{
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Crucified);
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
+		];
+		this.m.Faces = this.Const.Faces.AllWhiteMale;
+		this.m.Hairs = this.Const.Hair.AllMale;
+		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Beards = this.Const.Beards.WildExtended;
+		this.m.Bodies = this.Const.Bodies.Muscular;
+		this.m.BeardChance = 100;
+		this.m.Level = this.Math.rand(2, 4);
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+	}
+
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
+	o.onSetAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+		local tattoo_head = actor.getSprite("tattoo_head");
+		local body = actor.getSprite("body");
+		tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		tattoo_body.Visible = true;
+		tattoo_head.setBrush("scar_02_head");
+		tattoo_head.Visible = true;
+	}
+
+	o.updateAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+
+		if (tattoo_body.HasBrush)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		}
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Crucified);
+	}
+
+	o.onAddEquipment = function ()
+	{
+	}
+
+});

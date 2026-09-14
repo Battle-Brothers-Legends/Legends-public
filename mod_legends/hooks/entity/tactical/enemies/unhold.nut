@@ -1,24 +1,19 @@
-::mods_hookExactClass("entity/tactical/enemies/unhold", function(o)
-{
-	o.onFactionChanged = function ()
+::mods_hookExactClass("entity/tactical/enemies/unhold", function(o) {
+	local onFactionChanged = o.onFactionChanged;
+	o.onFactionChanged = function()
 	{
-		this.actor.onFactionChanged();
+		onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
-		this.getSprite("body").setHorizontalFlipping(flip);
-		this.getSprite("injury").setHorizontalFlipping(flip);
-		this.getSprite("armor").setHorizontalFlipping(flip);
-		this.getSprite("head").setHorizontalFlipping(flip);
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
-			{
 				continue;
-			}
+
 			this.getSprite(a).setHorizontalFlipping(flip);
 		}
 	}
 
-	o.onInit = function ()
+	o.onInit = function()
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
@@ -26,13 +21,11 @@
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
-		{
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 190)
-		{
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2) {
 			b.DamageTotalMult += 0.2;
 		}
 
@@ -44,13 +37,13 @@
 		this.m.Items.getAppearance().Body = "bust_unhold_body_02";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		if(this.Math.rand(1, 100) < 5)
+		if (this.Math.rand(1, 100) < 5)
 		{
-		body.setBrush("bust_unhold_body_04");
+			body.setBrush("bust_unhold_body_04");
 		}
 		else
 		{
-		body.setBrush("bust_unhold_body_02");
+			body.setBrush("bust_unhold_body_02");
 		}
 		body.varySaturation(0.1);
 		body.varyColor(0.09, 0.09, 0.09);
@@ -59,19 +52,19 @@
 		injury_body.setBrush("bust_unhold_02_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		if(this.Math.rand(1, 100) < 3)
+		if (this.Math.rand(1, 100) < 3)
 		{
-		head.setBrush("bust_unhold_head_04");
+			head.setBrush("bust_unhold_head_04");
 		}
 		else
 		{
-		head.setBrush("bust_unhold_head_02");
+			head.setBrush("bust_unhold_head_02");
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		foreach (a in this.Const.CharacterSprites.Helmets)
 		{
-			this.addSprite(a)
+			this.addSprite(a);
 		}
 		this.addSprite("accessory");
 		this.addSprite("accessory_special");
@@ -86,12 +79,12 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.BatteringRam);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
-		this.m.Skills.add(this.new("scripts/skills/racial/unhold_racial"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/sweep_zoc_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/fling_back_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
-		if(::Legends.isLegendaryDifficulty())
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialUnhold);
+		::Legends.Actives.grant(this, ::Legends.Active.Sweep);
+		::Legends.Actives.grant(this, ::Legends.Active.SweepZoc);
+		::Legends.Actives.grant(this, ::Legends.Active.FlingBack);
+		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
+		if (::Legends.isLegendaryDifficulty())
 		{
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
@@ -101,7 +94,7 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
+	o.assignRandomEquipment = function()
 	{
 	}
 });

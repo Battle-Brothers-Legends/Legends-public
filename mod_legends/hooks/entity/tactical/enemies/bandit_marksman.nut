@@ -36,7 +36,7 @@
 			b.Vision = 8;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanStatIncreaseDay)
 		{
 			b.RangedDefense += 5;
 		}
@@ -44,7 +44,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanBullseyeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
@@ -52,7 +52,7 @@
 		if (::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBallistics);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendCloseCombatArcher);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.LoneWolf);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
@@ -68,7 +68,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 4);
+		local r = this.Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -89,6 +89,14 @@
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
+		}
+		else if (r == 5)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		}
+		else if (r == 6)
+		{
+			this.m.Items.equip(this.new("scripts/items/weapons/staff_sling"));
 		}
 
 		r = this.Math.rand(1, 4);
@@ -111,21 +119,21 @@
 		}
 
 		local item = this.Const.World.Common.pickArmor([
-			[20, "thick_tunic"],
-			[20, "padded_surcoat"],
-			[20,"leather_wraps"],
-			[20,"blotched_gambeson"]
+			[20, ::Legends.Armor.Standard.thick_tunic],
+			[20, ::Legends.Armor.Standard.padded_surcoat],
+			[20, ::Legends.Armor.Standard.leather_wraps],
+			[20, ::Legends.Armor.Standard.blotched_gambeson]
 		]);
 		this.m.Items.equip(item);
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
 			local item = this.Const.World.Common.pickHelmet([
-				[20, "hood"],
-				[20, "open_leather_cap"],
-				[20,"headscarf"],
-				[20,"full_leather_cap"],
-				[20,"mouth_piece"]
+				[20, ::Legends.Helmet.Standard.hood],
+				[20, ::Legends.Helmet.Standard.open_leather_cap],
+				[20, ::Legends.Helmet.Standard.headscarf],
+				[20, ::Legends.Helmet.Standard.full_leather_cap],
+				[20, ::Legends.Helmet.Standard.mouth_piece]
 			]);
 			if (item != null)
 			{

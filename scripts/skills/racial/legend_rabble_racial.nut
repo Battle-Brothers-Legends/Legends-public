@@ -23,7 +23,7 @@ this.legend_rabble_racial <- this.inherit("scripts/skills/skill", {
 		foreach( i in actors )
 		{
 
-			if (i.getType() == this.Const.EntityType.BanditThug || i.getType() == this.Const.EntityType.BanditPoacher || i.getType() == this.Const.EntityType.BanditMarksman || i.getType() == this.Const.EntityType.BanditRaider || i.getType() == this.Const.EntityType.BanditVeteran || i.getType() == this.Const.EntityType.BanditWarlord)
+			if (i.getType() == this.Const.EntityType.BanditThug || i.getType() == this.Const.EntityType.BanditPoacher || i.getType() == this.Const.EntityType.BanditMarksman || i.getType() == this.Const.EntityType.BanditRaider || i.getType() == this.Const.EntityType.BanditMarauder || i.getType() == this.Const.EntityType.LegendRobberBaron)
 			{
 				bandits += 1;
 
@@ -33,9 +33,7 @@ this.legend_rabble_racial <- this.inherit("scripts/skills/skill", {
 		return bandits;
 	}
 
-	function onUpdate( _properties )
-	{	
-		local user = this.getContainer();
+	function onUpdate( _properties ) {	
 		local bandits = this.getBandits();
 		local bonus = 2 * bandits;
 

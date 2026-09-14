@@ -1,5 +1,4 @@
-::mods_hookExactClass("ambitions/ambitions/make_nobles_aware_ambition", function(o) 
-{
+::mods_hookExactClass("ambitions/ambitions/make_nobles_aware_ambition", function(o) {
 	o.onUpdateScore = function ()
 	{
 		if (this.World.Ambitions.getDone() < 2 && !this.World.Assets.getOrigin().getID() == "scenario.legends_noble")

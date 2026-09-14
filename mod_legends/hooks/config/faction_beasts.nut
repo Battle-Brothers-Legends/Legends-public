@@ -19,9 +19,10 @@
 
 ::Const.Tactical.Actor.SpiderEggs.RangedDefense = -10;
 
+::Const.Tactical.Actor.Lindwurm.Hitpoints = 950;
 ::Const.Tactical.Actor.Lindwurm.MeleeSkill = 70;
 ::Const.Tactical.Actor.Lindwurm.MeleeDefense = 5;
-
+::Const.Tactical.Actor.Lindwurm.XP = 1600; // compensate for exp lost by making tail not giving exp
 
 ::Const.Tactical.Actor.TricksterGod.XP = 3500;
 ::Const.Tactical.Actor.TricksterGod.Hitpoints = 2500;

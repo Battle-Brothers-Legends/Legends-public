@@ -2,24 +2,19 @@ this.perk_legend_stun <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendStunned);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMagicStun);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_stun"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendMagicStun))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_magic_stun_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendMagicStun);
 		}
 	}
 		function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_stun");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendMagicStun);
 	}
 
 });

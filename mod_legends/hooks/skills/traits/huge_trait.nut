@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/traits/huge_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
@@ -7,8 +7,7 @@
 		this.m.Description = "Being particularly huge and burly, this character\'s strikes hurt plenty, but they\'re also a bigger target than most.";
 		this.m.Excluded.extend(
 		[
-			::Legends.Traits.getID(::Legends.Trait.LegendLight),
-			::Legends.Traits.getID(::Legends.Trait.LegendFrail)
+			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		]);
 	}
 
@@ -29,25 +28,25 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] Melee Damage increase"
+				text = "[color=%positive%]5%[/color] Melee Damage increase"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/regular_damage.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]5%[/color] Ranged Damage increase"
+				text = "[color=%positive%]5%[/color] Ranged Damage increase"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Melee Defense"
+				text = "[color=%negative%]-5[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5[/color] Ranged Defense"
+				text = "[color=%negative%]-5[/color] Ranged Defense"
 			}
 		];
 	}

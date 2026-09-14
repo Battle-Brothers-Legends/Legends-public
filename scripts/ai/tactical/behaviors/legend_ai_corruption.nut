@@ -3,7 +3,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 		TargetTile = null,
 		TargetScore = 0,
 		PossibleSkills = [
-			"actives.legend_shadows"
+			// ::Legends.Actives.getID(::Legends.Active.LegendShadows)
 		],
 		Skill = null
 	},
@@ -108,7 +108,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			myTile
 		];
 		local nearestOpponentDist = 9000;
-		local advancedAI = !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 100;
+		local advancedAI = !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.AI.LegendsCorruptionAdvancedAIDay;
 
 		foreach( o in _targets )
 		{

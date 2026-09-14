@@ -33,17 +33,16 @@ this.legend_reinforced_flail <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local skill;
-		skill = this.new("scripts/skills/actives/pound");
-		skill.m.Icon = "skills/active_129.png";
-		skill.m.IconDisabled = "skills/active_129_sw.png";
-		skill.m.Overlay = "active_129";
-		this.addSkill(skill);
-		skill = this.new("scripts/skills/actives/thresh");
-		skill.m.Icon = "skills/active_130.png";
-		skill.m.IconDisabled = "skills/active_130_sw.png";
-		skill.m.Overlay = "active_130";
-		this.addSkill(skill);
+		::Legends.Actives.grant(this, ::Legends.Active.Pound, function (_skill) {
+			_skill.m.Icon = "skills/active_129.png";
+			_skill.m.IconDisabled = "skills/active_129_sw.png";
+			_skill.m.Overlay = "active_129";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Thresh, function (_skill) {
+			_skill.m.Icon = "skills/active_130.png";
+			_skill.m.IconDisabled = "skills/active_130_sw.png";
+			_skill.m.Overlay = "active_130";
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

@@ -4,8 +4,10 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyHexen,
-		ValidTypes = this.Const.LegendMod.FavoriteHexe
+		Perk = ::Legends.Perk.LegendFavouredEnemyOccult,
+		ValidTypes = this.Const.LegendMod.FavoriteOccult,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 			"The Coven is a cabal of dark souls and twisted minds, their sinister powers spreads their malevolent influence far and wide.",
 			"A Coven is a cesspit of dark magic and corruption. Burn them all, and quickly! Lest they claim your soul.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
@@ -94,6 +97,14 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
 				this.Flags.set("Delay", this.Math.rand(10, 30) * 1.0);
 				local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
+				local items = envoy.getItems();
+					items.equip(this.Const.World.Common.pickArmor([
+						[1, ::Legends.Armor.Standard.linen_tunic]
+					]));
+					items.equip(this.Const.World.Common.pickHelmet([
+						[1, ::Legends.Helmet.Standard.feathered_hat],
+						[3, ::Legends.Helmet.None]
+					]));
 				envoy.setName(this.Flags.get("ProtecteeName"));
 				envoy.setTitle("");
 				envoy.setFaction(1);
@@ -272,7 +283,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		this.m.Screens.push({
 			ID = "Banter",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_79.png[/img]{%randombrother% comes up to you. He\'s auguring his ear with a pinky.%SPEECH_ON%Hey there captain. You seen any of them saucy broads yet?%SPEECH_OFF%Hearing this, %randombrother2% comes over. He leans in.%SPEECH_ON%Hey, the way I hear it them hexes ARE quite the lookers, but that\'s how they get ya. They fool ya with their charms and then eat yer very soul.%SPEECH_OFF%Laughing, %randombrother% wipes the wax on %randombrother2%\'s garb.%SPEECH_ON%They\'ll have to go to %randomtown% to get my soul, then, cause another woman done beat them to the punch.%SPEECH_OFF% | You\'re inspecting inventory when %randombrother% comes up. You\'d sent him to scout the lands and he\'s readied a report.%SPEECH_ON%Sir, nothing sighted as of yet, but I got talking to some of the locals. The way they have it, the witches make pacts with regular folk and then trade on the investment years later, usually with great interest. They said they can fool you into seeing them as licentious minxes. They can bed you right into the grave! I said that sounded like cicada cockamamie to me.%SPEECH_OFF%Nodding, you ask the man what the hell a cicada is. He laughs.%SPEECH_ON%Seriously? It\'s a kind of nut, sir.%SPEECH_OFF% | The brothers are idling the time away, bantering about women and witches alike and if there\'s any real significant difference at all. %randombrother% holds his hand out.%SPEECH_ON%Now in all seriousness, I\'ve heard tales of these wenches. They can put a hex on you to make you see things. They\'ll make you sign bloodpacts and if you don\'t pay they\'ll cut your kneecaps out and use them for divination. Hell, when I was a child, my neighbor made a deal with one and then he disappeared. I later saw a mysterious woman walking around with a fresh skull being used for a lantern!%SPEECH_OFF%%randombrother2% nods attentively.%SPEECH_ON%That\'s incredible, but does anybody know what a witch does?%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_79.png[/img]{%randombrother% comes up to you. %They're_randombrother% auguring %their_randombrother% ear with a pinky.%SPEECH_ON%Hey there captain. You seen any of them saucy broads yet?%SPEECH_OFF%Hearing this, %randombrother2% comes over. %They_randombrother2% leans in.%SPEECH_ON%Hey, the way I hear it them hexes ARE quite the lookers, but that\'s how they get ya. They fool ya with their charms and then eat yer very soul.%SPEECH_OFF%Laughing, %randombrother% wipes the wax on %randombrother2%\'s garb.%SPEECH_ON%They\'ll have to go to %randomtown% to get my soul, then, cause another woman done beat them to the punch.%SPEECH_OFF% | You\'re inspecting inventory when %randombrother% comes up. You\'d sent %them_randombrother% to scout the lands and %they're_randombrother% readied a report.%SPEECH_ON%Sir, nothing sighted as of yet, but I got talking to some of the locals. The way they have it, the witches make pacts with regular folk and then trade on the investment years later, usually with great interest. They said they can fool you into seeing them as licentious minxes. They can bed you right into the grave! I said that sounded like cicada cockamamie to me.%SPEECH_OFF%Nodding, you ask the man what the hell a cicada is. %They_randombrother% laughs.%SPEECH_ON%Seriously? It\'s a kind of nut, sir.%SPEECH_OFF% | The brothers are idling the time away, bantering about women and witches alike and if there\'s any real significant difference at all. %randombrother% holds %their_randombrother% hand out.%SPEECH_ON%Now in all seriousness, I\'ve heard tales of these wenches. They can put a hex on you to make you see things. They\'ll make you sign bloodpacts and if you don\'t pay they\'ll cut your kneecaps out and use them for divination. Hell, when I was a child, my neighbor made a deal with one and then he disappeared. I later saw a mysterious woman walking around with a fresh skull being used for a lantern!%SPEECH_OFF%%randombrother2% nods attentively.%SPEECH_ON%That\'s incredible, but does anybody know what a witch does?%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Options = [
@@ -314,7 +325,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		this.m.Screens.push({
 			ID = "SinisterDeal",
 			Title = "Near %townname%",
-			Text = "[img]gfx/ui/events/event_106.png[/img]{%randombrother% whistles and tips his cap at the beautiful ladies which have arrived seemingly out of nowhere to swoon before the company. You hold the sellsword back and step forward, but before you can speak one of the women holds her hands up and strides to meet you.%SPEECH_ON%Let me show you my true self, sellsword.%SPEECH_OFF%Her arms go to her sides and there turn grey and shrivel like wet almond skin. Once bright and silken hair falls out in long wispy strands until her grotesque skull is bared, the last roots there holding clumped assemblage of gnats and lice like final congregates upon a dying world. She bows, her face up toward you with a yellow grin shorn across it.%SPEECH_ON%We\'ve great power, sellsword, of this you surely see. I offer you a deal.%SPEECH_OFF%She produces a tiny vial in each hand, one carrying a drop of green liquid, the other blue. She smiles and spins them in her fingers as she talks.%SPEECH_ON%A drink for the body, or for the spirit. Men would kill for either. I offer you one in exchange for the firstborn\'s life. What worth is the offspring of a stranger? You\'ve slaughtered your fair share, have you not? Stand aside, sellsword, and let us have this one. Or confront us, risk your men\'s lives, and your own, all for some runt who won\'t remember your face in due time. It\'s your choice.%SPEECH_OFF%}",
+			Text = "[img]gfx/ui/events/event_106.png[/img]{%randombrother% whistles and tips %their_randombrother% cap at the beautiful ladies which have arrived seemingly out of nowhere to swoon before the company. You hold the sellsword back and step forward, but before you can speak one of the women holds her hands up and strides to meet you.%SPEECH_ON%Let me show you my true self, sellsword.%SPEECH_OFF%Her arms go to her sides and there turn grey and shrivel like wet almond skin. Once bright and silken hair falls out in long wispy strands until her grotesque skull is bared, the last roots there holding clumped assemblage of gnats and lice like final congregates upon a dying world. She bows, her face up toward you with a yellow grin shorn across it.%SPEECH_ON%We\'ve great power, sellsword, of this you surely see. I offer you a deal.%SPEECH_OFF%She produces a tiny vial in each hand, one carrying a drop of green liquid, the other blue. She smiles and spins them in her fingers as she talks.%SPEECH_ON%A drink for the body, or for the spirit. Men would kill for either. I offer you one in exchange for the firstborn\'s life. What worth is the offspring of a stranger? You\'ve slaughtered your fair share, have you not? Stand aside, sellsword, and let us have this one. Or confront us, risk your men\'s lives, and your own, all for some runt who won\'t remember your face in due time. It\'s your choice.%SPEECH_OFF%}",
 			Image = "",
 			List = [],
 			Options = [
@@ -459,13 +470,13 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 			function start()
 			{
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
-				local effect = this.new("scripts/skills/effects_world/afraid_effect");
-				this.Contract.m.Dude.getSkills().add(effect);
-				this.List.push({
-					id = 10,
-					icon = effect.getIcon(),
-					text = this.Contract.m.Dude.getName() + " is afraid"
-				});
+				::Legends.Effects.grant(this.Contract.m.Dude, ::Legends.Effect.Afraid, function(_effect) {
+					this.List.push({
+						id = 10,
+						icon = _effect.getIcon(),
+						text = this.Contract.m.Dude.getName() + " is afraid"
+					});
+				}.bindenv(this));
 				this.Contract.m.Dude.worsenMood(1.5, "Was cursed by a witch");
 
 				if (this.Contract.m.Dude.getMoodState() <= this.Const.MoodState.Neutral)
@@ -499,7 +510,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		this.m.Screens.push({
 			ID = "Failure1",
 			Title = "After the battle...",
-			Text = "[img]gfx/ui/events/event_124.png[/img]{The battle over, %randombrother% comes to your side. He says %protectee% died during the fight. Says his eyeballs are gone as is his tongue, that his face looks like two wet rags folding in on each other. No point in going back to %employer% now. | You look down at %protectee%\'s corpse. The eyeballs have been yanked and hang down his cheeks like wet craw. His face is stretched into a smile, though whatever put it that way couldn\'t have been the least bit funny. %randombrother% asks if the company should return to %employer% and you shake your head no. | You find %employer%\'s firstborn crumpled on the ground. Every joint has been scooped or carved out, though when or how this happened is beyond you. %randombrother% tries to move the body, but it twists and clatters like a stringless puppet. The sellsword grimaces and throws the corpse back to the ground where it rimples into a basket of its own ribcage, the head egglike in the nest. There\'s no point in returning to %employer% now.}",
+			Text = "[img]gfx/ui/events/event_124.png[/img]{The battle over, %randombrother% comes to your side. %They_randombrother% says %protectee% died during the fight. Says his eyeballs are gone as is his tongue, that his face looks like two wet rags folding in on each other. No point in going back to %employer% now. | You look down at %protectee%\'s corpse. The eyeballs have been yanked and hang down his cheeks like wet craw. His face is stretched into a smile, though whatever put it that way couldn\'t have been the least bit funny. %randombrother% asks if the company should return to %employer% and you shake your head no. | You find %employer%\'s firstborn crumpled on the ground. Every joint has been scooped or carved out, though when or how this happened is beyond you. %randombrother% tries to move the body, but it twists and clatters like a stringless puppet. The sellsword grimaces and throws the corpse back to the ground where it rimples into a basket of its own ribcage, the head egglike in the nest. There\'s no point in returning to %employer% now.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -617,22 +628,19 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -645,7 +653,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -657,9 +665,8 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

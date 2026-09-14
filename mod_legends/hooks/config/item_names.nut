@@ -5,3 +5,12 @@
 	"of the Bear",
 	"of the Eagle"
 ]);
+
+::Const.Strings.WardogNames.extend([
+	"Fido"
+]);
+
+::Const.Strings.GreatswordNames.extend([
+	"Freiheit",
+	"Sieger"
+]);

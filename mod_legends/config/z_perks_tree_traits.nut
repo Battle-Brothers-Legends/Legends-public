@@ -1,11 +1,11 @@
-if (!("Perks" in ::Const))
-{
+if (!("Perks" in ::Const)) {
 	::Const.Perks <- {};
 }
 
 ::Const.Perks.AgileTree <- {
 	ID = "AgileTree",
 	Name = "Agile",
+	Icon = "ui/perks/perk_23.png",
 	Descriptions = [
 		"is agile",
 		"moves gracefully",
@@ -15,59 +15,21 @@ if (!("Perks" in ::Const))
 		"is spry as a fox",
 		"is particularly dexterous"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.Pathfinder
-		],
+		[::Legends.Perk.Pathfinder, ::Legends.Perk.Anticipation],
 		[],
-		[
-			::Legends.Perk.LegendAthlete
-		],
+		[::Legends.Perk.LegendTacticalManeuvers],
 		[],
-		[
-			::Legends.Perk.Footwork
-		],
 		[],
-		[]
+		[],
+		[::Legends.Perk.LegendInTheZone]
 	]
 };
 ::Const.Perks.IndestructibleTree <- {
 	ID = "IndestructibleTree",
 	Name = "Tenacious",
+	Icon = "ui/perks/perk_30.png",
 	Descriptions = [
 		"is practicaly indestructible",
 		"is stubbornly relentless",
@@ -77,59 +39,21 @@ if (!("Perks" in ::Const))
 		"seems unswervingly firm",
 		"is adamantly resolute"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.NineLives
-		],
+		[::Legends.Perk.NineLives, ::Legends.Perk.LegendRecuperation],
 		[],
-		[
-			::Legends.Perk.HoldOut
-		],
+		[::Legends.Perk.HoldOut],
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.Indomitable
-		]
+		[::Legends.Perk.Indomitable]
 	]
 };
 ::Const.Perks.MartyrTree <- {
 	ID = "MartyrTree",
 	Name = "Martyr",
+	Icon = "ui/perks/vengeance_circle.png",
 	Descriptions = [
 		"has martyr complex",
 		"strictly penatant ",
@@ -139,61 +63,21 @@ if (!("Perks" in ::Const))
 		"takes joy in feeling pain",
 		"perversely enjoys to be tormented"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[],
-		[
-			::Legends.Perk.Taunt
-		],
+		[::Legends.Perk.LegendNearDeathExperience],
+		[::Legends.Perk.Taunt],
 		[],
 		[],
-		[
-			::Legends.Perk.LoneWolf
-		],
-		[
-			::Legends.Perk.LegendVengeance
-		],
-		[
-			::Legends.Perk.LegendLastStand
-		]
+		[::Legends.Perk.LoneWolf],
+		[::Legends.Perk.LegendVengeance],
+		[::Legends.Perk.LegendLastStand]
 	]
 };
 ::Const.Perks.ViciousTree <- {
 	ID = "ViciousTree",
 	Name = "Vicious",
+	Icon = "ui/perks/perk_57.png",
 	Descriptions = [
 		"is vicious",
 		"seems fiendishly barbarous",
@@ -203,61 +87,21 @@ if (!("Perks" in ::Const))
 		"is beastially dangerous",
 		"enjoys martial butchery"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.CripplingStrikes
-		],
+		[::Legends.Perk.CripplingStrikes],
 		[],
-		[
-			::Legends.Perk.LegendDebilitate
-		],
+		[::Legends.Perk.LegendDebilitate],
 		[],
-		[
-			::Legends.Perk.Berserk
-		],
-		[
-			::Legends.Perk.LegendAssuredConquest
-		],
+		[::Legends.Perk.Berserk],
+		[::Legends.Perk.LegendAssuredConquest],
 		[]
 	]
 };
 ::Const.Perks.DeviousTree <- {
 	ID = "DeviousTree",
 	Name = "Devious",
+	Icon = "ui/perks/perk_59.png",
 	Descriptions = [
 		"is devious",
 		"strikes you as shifty",
@@ -267,59 +111,21 @@ if (!("Perks" in ::Const))
 		"responds evasively",
 		"is shrewdly deceitful"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[],
-		[
-			::Legends.Perk.LegendTrueBeliever
-		],
+		[::Legends.Perk.LegendBlendIn],
+		[::Legends.Perk.LegendTrueBeliever],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendEvasion
-		],
-		[
-			::Legends.Perk.Backstabber
-		],
+		[::Legends.Perk.LegendEvasion],
+		[::Legends.Perk.LegendNightRaider],
 		[]
 	]
 };
 ::Const.Perks.InspirationalTree <- {
 	ID = "InspirationalTree",
 	Name = "Inspirational",
+	Icon = "ui/perks/perk_42.png",
 	Descriptions = [
 		"is inspirational",
 		"arouses loyalty in people",
@@ -329,61 +135,21 @@ if (!("Perks" in ::Const))
 		"gives impressive speeches",
 		"instills motivation through words"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[],
-		[
-			::Legends.Perk.RallyTheTroops
-		],
-		[
-			::Legends.Perk.Taunt
-		],
+		[::Legends.Perk.RallyTheTroops],
+		[::Legends.Perk.Taunt],
 		[],
 		[],
-		[
-			::Legends.Perk.InspiringPresence
-		],
-		[
-			::Legends.Perk.LegendInspire
-		]
+		[::Legends.Perk.InspiringPresence],
+		[::Legends.Perk.LegendInspire]
 	]
 };
 ::Const.Perks.IntelligentTree <- {
 	ID = "IntelligentTree",
 	Name = "Intelligent",
+	Icon = "ui/perks/perk_21.png",
 	Descriptions = [
 		"is intelligent",
 		"is strikingly astute",
@@ -393,61 +159,21 @@ if (!("Perks" in ::Const))
 		"approaches problems rationally",
 		"inventively resolves challenges"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.Student
-		],
-		[
-			::Legends.Perk.Gifted,
-		],
+		[::Legends.Perk.Student, ::Legends.Perk.Gifted],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendAdaptive
-		],
-		[
-			::Legends.Perk.LegendMindOverBody
-		],
+		[],
+		[::Legends.Perk.LegendPromisedPotential],
+		[::Legends.Perk.LegendMindOverBody],
 		[]
 	]
 };
 ::Const.Perks.CalmTree <- {
 	ID = "CalmTree",
 	Name = "Calm",
+	Icon = "ui/perks/clarity_circle.png",
 	Descriptions = [
 		"is calm",
 		"is soothingly relaxed",
@@ -456,61 +182,21 @@ if (!("Perks" in ::Const))
 		"goes with the flow",
 		"is unworried"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.LegendAlert
-		],
+		[::Legends.Perk.LegendAlert],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendPeaceful
-		],
-		[
-			::Legends.Perk.LegendClarity
-		],
+		[::Legends.Perk.LegendPeaceful],
+		[::Legends.Perk.LegendClarity],
 		[],
-		[
-			::Legends.Perk.LegendPerfectFocus
-		]
+		[::Legends.Perk.LegendPerfectFocus]
 	]
 };
 ::Const.Perks.FastTree <- {
 	ID = "FastTree",
-	Name =  "Fast",
+	Name = "Fast",
+	Icon = "ui/perks/unarmed_lunge.png",
 	Descriptions = [
 		"is fast",
 		"runs quickly",
@@ -520,49 +206,10 @@ if (!("Perks" in ::Const))
 		"steps briskly",
 		"is a speedy sprinter"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.FastAdaption,
-			::Legends.Perk.Adrenaline
-		],
-		[
-			::Legends.Perk.Anticipation,
-			::Legends.Perk.LegendQuickStep
-		],
+		[::Legends.Perk.FastAdaption, ::Legends.Perk.Adrenaline],
+		[::Legends.Perk.LegendQuickStep],
 		[],
 		[],
 		[],
@@ -573,6 +220,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.LargeTree <- {
 	ID = "LargeTree",
 	Name = "Large",
+	Icon = "ui/perks/perk_06.png",
 	Descriptions = [
 		"is large",
 		"has a hulking form",
@@ -582,59 +230,21 @@ if (!("Perks" in ::Const))
 		"is a mountainous figure",
 		"wields considerable musculature"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.Colossus
-		],
+		[::Legends.Perk.Colossus],
+		[::Legends.Perk.LegendWideSwings],
+		[::Legends.Perk.LegendOnslaught],
 		[],
+		[::Legends.Perk.LegendSecondWind],
 		[],
-		[],
-		[
-			::Legends.Perk.LegendSecondWind
-		],
-		[],
-		[
-			::Legends.Perk.LegendMuscularity
-		]
+		[::Legends.Perk.LegendMuscularity]
 	]
 };
 ::Const.Perks.OrganisedTree <- {
 	ID = "OrganisedTree",
 	Name = "Organized",
+	Icon = "ui/perks/perk_20.png",
 	Descriptions = [
 		"is organized",
 		"coordinates activities effectively",
@@ -644,55 +254,13 @@ if (!("Perks" in ::Const))
 		"alphabetizes the supplies",
 		"is fastidiously organised"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.BagsAndBelts,
-			::Legends.Perk.LegendPacifist
-		],
-		[
-			::Legends.Perk.LegendHelpful
-		],
-		[
-			::Legends.Perk.LegendEfficientPacking
-		],
+		[::Legends.Perk.BagsAndBelts, ::Legends.Perk.LegendPacifist],
+		[::Legends.Perk.LegendHelpful],
+		[::Legends.Perk.LegendEfficientPacking],
 		[],
-		[
-			::Legends.Perk.LegendSkillfulStacking
-		],
+		[::Legends.Perk.LegendPrepared, ::Legends.Perk.LegendSkillfulStacking],
 		[],
 		[]
 	]
@@ -700,6 +268,7 @@ if (!("Perks" in ::Const))
 ::Const.Perks.SturdyTree <- {
 	ID = "SturdyTree",
 	Name = "Sturdy",
+	Icon = "ui/perks/steadfast_circle.png",
 	Descriptions = [
 		"is sturdy",
 		"is built to last",
@@ -709,61 +278,21 @@ if (!("Perks" in ::Const))
 		"is well built",
 		"seems hardy"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.LegendRecuperation
-		],
-		[
-			::Legends.Perk.FortifiedMind
-		],
-		[
-			::Legends.Perk.Steadfast
-		],
+		[],
+		[::Legends.Perk.FortifiedMind],
+		[::Legends.Perk.Steadfast],
 		[],
 		[],
 		[],
-		[
-			::Legends.Perk.LegendRebound
-		]
+		[::Legends.Perk.LegendRebound]
 	]
 };
 ::Const.Perks.FitTree <- {
 	ID = "FitTree",
 	Name = "Fit",
+	Icon = "ui/perks/perk_54.png",
 	Descriptions = [
 		"can run all day",
 		"lifts weight for hours",
@@ -772,60 +301,21 @@ if (!("Perks" in ::Const))
 		"has superb stamina",
 		"rarely loses breath"
 	],
-	Attributes = {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.Recover,
-			::Legends.Perk.LegendRecuperation
-		],
+		[::Legends.Perk.Recover],
+		[],
+		[::Legends.Perk.LegendAthlete, ::Legends.Perk.Overwhelm],
 		[],
 		[],
-		[],
-		[],
-		[
-			::Legends.Perk.Overwhelm
-		],
-		[
-			::Legends.Perk.LegendRebound
-		]
+		[::Legends.Perk.LegendRebound],
+		[]
 	]
 };
 ::Const.Perks.TrainedTree <- {
 	ID = "TrainedTree",
 	Name = "Trained",
+	Icon = "ui/perks/back_to_basics_circle.png",
 	Descriptions = [
 		"is well trained",
 		"has great qualifications",
@@ -835,57 +325,19 @@ if (!("Perks" in ::Const))
 		"has been instructed by someone skillful",
 		"has genuine experience"
 	],
-	Attributes =  {
-		Hitpoints = [
-			0,
-			0
-		],
-		Bravery = [
-			0,
-			0
-		],
-		Stamina = [
-			0,
-			0
-		],
-		MeleeSkill = [
-			0,
-			0
-		],
-		RangedSkill = [
-			0,
-			0
-		],
-		MeleeDefense = [
-			0,
-			0
-		],
-		RangedDefense = [
-			0,
-			0
-		],
-		Initiative = [
-			0,
-			0
-		]
-	},
+	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[
-			::Legends.Perk.LegendBackToBasics
-		],
+		[::Legends.Perk.LegendBackToBasics],
 		[],
-		[
-			::Legends.Perk.Rotation
-		],
+		[::Legends.Perk.LegendTacticalManeuvers, ::Legends.Perk.Underdog],
 		[],
-		[
-			::Legends.Perk.Underdog
-		],
+		[::Legends.Perk.LegendPrepared],
 		[],
 		[]
 	]
 };
 ::Const.Perks.TraitsTrees <- {
+	GroupsCategory = "Traits",
 	Tree = [
 		::Const.Perks.AgileTree,
 		::Const.Perks.IndestructibleTree,
@@ -902,14 +354,11 @@ if (!("Perks" in ::Const))
 		::Const.Perks.FitTree,
 		::Const.Perks.TrainedTree
 	],
-	function getRandom( _exclude )
-	{
+	function getRandom(_exclude) {
 		local L = [];
 
-		foreach( i, t in this.Tree )
-		{
-			if (_exclude != null && _exclude.find(t.ID) != null)
-			{
+		foreach (i, t in this.Tree) {
+			if (_exclude != null && _exclude.find(t.ID) != null) {
 				continue;
 			}
 
@@ -920,14 +369,11 @@ if (!("Perks" in ::Const))
 		return this.Tree[L[r]];
 	}
 
-	function getRandomPerk()
-	{
+	function getRandomPerk() {
 		local tree = this.getRandom(null);
 		local L = [];
-		foreach (row in tree.Tree)
-		{
-			foreach (p in row)
-			{
+		foreach (row in tree.Tree) {
+			foreach (p in row) {
 				L.push(p);
 			}
 		}
@@ -936,42 +382,8 @@ if (!("Perks" in ::Const))
 		return L[r];
 	}
 
-	function getBaseAttributes()
-	{
-		return {
-			Hitpoints = [
-				0,
-				0
-			],
-			Bravery = [
-				0,
-				0
-			],
-			Stamina = [
-				0,
-				0
-			],
-			MeleeSkill = [
-				0,
-				0
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				0,
-				0
-			],
-			RangedDefense = [
-				0,
-				0
-			],
-			Initiative = [
-				0,
-				0
-			]
-		};
+	function getBaseAttributes() {
+		return clone ::Legends.Backgrounds.EmptyAttr;
 	}
 
 };

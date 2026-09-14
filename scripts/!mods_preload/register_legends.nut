@@ -1,28 +1,49 @@
 ::Legends <- {
 	ID = "mod_legends",
-	Version = "19.1.0",
+	Version = "19.5.0-alpha1",
 	Name = "Legends Mod",
-	BuildName = "Name Pending",
+	BuildName = "Bandits & Greenskins",
 	IsStartingNewCampaign = false
 };
 
-if (!("MSU" in this.getroottable()) || ::MSU.SemVer.compare(::MSU.SemVer.getTable(::MSU.Version), ::MSU.SemVer.getTable("1.3.0")) >= 0 && !("Hooks" in this.getroottable()))
-{
-	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-}
-else
-{
-	::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-}
-
-::mods_queue(::Legends.ID, "mod_msu, mod_legends_assets(>=19.1.0), vanilla(>=1.5.0-15), dlc_lindwurm, dlc_unhold, dlc_wildmen, dlc_desert, dlc_paladins, mod_events_delayed_fix_legends, !mod_tooltip_extension(<=1.01)", function()
-{
+::mods_registerMod(::Legends.ID, ::Legends.Version, ::Legends.Name);
+::mods_queue(::Legends.ID, [
+	"mod_legends_assets(>=19.5.0-alpha1)",
+	"mod_msu(>=1.9.0)",
+	"vanilla(>=1.5.2-3)",
+	"vanilla(<1.5.3)",
+	"dlc_lindwurm",
+	"dlc_unhold",
+	"dlc_wildmen",
+	"dlc_desert",
+	"dlc_paladins",
+	//"mod_events_delayed_fix_legends",
+	">blazing_deserts_plus(>=0.9)",
+	"!mod_tooltip_extension(<=1.01)"
+].reduce(@(p, n) ::format("%s, %s", p, n)), function () {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);
-
-	// ::Legends.Mod <- this.new("scripts/mods/legends_mod")
 	::Legends.Mod.Registry.addModSource(::MSU.System.Registry.ModSourceDomain.GitHub, "https://github.com/Battle-Brothers-Legends/Legends-public");
-    ::Legends.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
+	::Legends.Mod.Registry.setUpdateSource(::MSU.System.Registry.ModSourceDomain.GitHub);
+	// loading mod files
+	::include("mod_legends/load.nut");
 
-    // loading mod files
-    ::include("mod_legends/load.nut");
+	if (::mods_getRegisteredMod("blazing_deserts_plus") != null) {
+		::logInfo("Blazing Desert Plus detected, loading compatibility patch");
+		foreach (file in ::IO.enumerateFiles("mod_legends/patch/bdplus/"))
+			::include(file);
+	}
+});
+
+// some mods can be easily 'fixed' by loading after legends, that what it is for
+::mods_registerMod(::Legends.ID + "_load_order_fix", ::Legends.Version, ::Legends.Name + " - Load order fix");
+::mods_queue(::Legends.ID + "_load_order_fix", [
+	">mod_legends", // mods listed here will be forced to load after legends
+	"<mod_prepare_carefully",
+].reduce(@(p, n) ::format("%s, %s", p, n)), function () {});
+
+// compat mod
+::include("mod_legends/compat_defs.nut");
+::mods_registerMod(::Legends.ID + "_compat_check", ::Legends.Version, ::Legends.Name + " - Compat");
+::mods_queue(::Legends.ID + "_compat_check", ">mod_legends", function () {
+	::include("mod_legends/compat.nut");
 });

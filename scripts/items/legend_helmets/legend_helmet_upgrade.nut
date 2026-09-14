@@ -10,7 +10,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		ConditionModifier = 0,
 		StaminaModifier = 0,
 		Type = -1,
-		IsLowerVanity = false,
+		Lower = false,
 		ImpactSound = this.Const.Sound.ArmorLeatherImpact,
 		InventorySound = this.Const.Sound.ArmorLeatherImpact,
 		IsDestroyedOnRemove = false,
@@ -22,6 +22,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	},
 	function create()
 	{
+		this.item.create();
 		this.m.SlotType = this.Const.ItemSlot.Head;
 		this.m.ItemType = this.Const.Items.ItemType.Helmet;
 		this.m.IsDroppedAsLoot = true;
@@ -116,6 +117,16 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 	function getStaminaModifier()
 	{
+		if (this.getContainer() == null)
+			return this.m.StaminaModifier;
+
+		if (this.getContainer().getActor() == null)
+			return this.m.StaminaModifier;
+
+		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendFashionable);
+		if (perk != null && ::Legends.S.oneOf(this.m.Type, perk.m.FreeSlotTypes))
+			return 0;
+
 		return this.m.StaminaModifier;
 	}
 
@@ -125,10 +136,13 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		if (this.isNamed())
 		{
-			L.push("layers/named_icon_glow.png")
+			if (this.isItemType(::Const.Items.ItemType.Legendary))
+				L.push("layers/legendary_icon_glow.png");
+			else
+				L.push("layers/named_icon_glow.png");
 		}
 
-		L.push(this.m.Icon)
+		L.push(this.m.Icon);
 
 		switch (this.m.Type)
 		{
@@ -178,7 +192,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			text = this.getValueString()
 		});
 
-		if (this.getOverlayIconLarge() != null)
+		if (this.getOverlayIconLarge() != null && this.m.Type != this.Const.Items.HelmetUpgrades.Rune)
 		{
 			result.push({
 				id = 3,
@@ -196,18 +210,33 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			});
 		}
 
-		result.push({
-			id = 65,
-			type = "hint",
-			icon = "ui/icons/mouse_right_button.png",
-			text = "Right-click or left-click and drag onto the helmet of the currently selected character to attach."
-		});
-		result.push({
-			id = 66,
-			type = "hint",
-			icon = "ui/icons/mouse_right_button_shift_drag.png",
-			text = "Hold Shift and drag onto a helmet in the stash to attach."
-		});
+		if (this.m.Armor == null) {
+			result.push({
+				id = 65,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button.png",
+				text = "Right-click or left-click and drag onto the helmet of the currently selected character to attach."
+			});
+			result.push({
+				id = 66,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button_shift_drag.png",
+				text = "Hold Shift and drag onto a helmet in the stash to attach."
+			});
+		} else {
+			result.push({
+				id = 1,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
+			});
+			result.push({
+				id = 2,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Unequip layer"
+			});
+		}
 		result.push({
 			id = 4,
 			type = "progressbar",
@@ -224,11 +253,11 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Maximum Fatigue: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 			});
 		}
 
-		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() ) 
+		if ( this.getStaminaModifier() < 0 && ::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() )
 		{
 			result.push({
 				id = 5,
@@ -248,6 +277,16 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			});
 		}
 
+		local rune = ::Legends.Runes.get(this.getRuneVariant());
+		if (rune != null) {
+			result.push({
+				id = 77,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Legends.Runes.getTooltip(this, rune)
+			});
+		}
+
 		return result;
 	}
 
@@ -256,19 +295,21 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		_result.push({	// An empty line is put in to improve formatting
 			id = 10,
 			type = "text",
-			icon = "ui/icons/blank.png",
-			text = " "
-		})
+			text = "&nbsp;"
+		});
+
 		_result.push({
 			id = 10,
 			type = "text",
-			icon = "ui/icons/armor_head.png",	// ui/icons/armor_body.png
-			text = "[u]" + this.getName() + "[/u]"
+			text = "[b][u]%name%[/u][/b]",
+			icon = "ui/items/" + this.m.Icon,
+			param = [["name", this.getName()]],
+			isPartialLayer = true
 		});
 
-		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() ) 
+		if ( ::Legends.Mod.ModSettings.getSetting("ShowExpandedArmorLayerTooltip").getValue() )
 		{
-			if ( _isExtraVanity ) 
+			if ( _isExtraVanity )
 			{
 				_result.push({
 					id = 10,
@@ -283,13 +324,13 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 					icon = "ui/icons/armor_head.png",
 					text = "Armor: " + this.getConditionMax()
 				});
-				if ( this.getStaminaModifier() != 0 ) 
+				if ( this.getStaminaModifier() != 0 )
 				{
 					_result.push({
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Fatigue: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+						text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 					});
 				}
 			}
@@ -304,34 +345,46 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + this.Math.abs(this.getVision()), this.getVision())
 			});
 		}
+
+		local rune = ::Legends.Runes.get(this.getRuneVariant());
+		if (rune != null) {
+			_result.push({
+				id = 7,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = ::Legends.Runes.getTooltip(this, rune)
+			});
+		}
+
 		this.onArmorTooltip(_result);
 	}
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.ImpactSound[0], this.Const.Sound.Volume.Inventory);
+		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
 	}
 
 	function addArmor( _a)
 	{
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
-			this.m.Condition += _a
-			return 0
+			this.m.Condition += _a;
+			return 0;
 		}
 
+		local ret = _a - (this.m.ConditionMax - this.m.Condition);
 		this.m.Condition = this.m.ConditionMax;
-		return _a - (this.m.ConditionMax - this.m.Condition);
+		return ret;
 	}
 
 	function removeArmor( _a)
 	{
 		if (this.m.Condition - _a >= 0)
 		{
-			this.m.Condition -= _a
-			return 0
+			this.m.Condition -= _a;
+			return 0;
 		}
-		local delta = _a - this.m.Condition
+		local delta = _a - this.m.Condition;
 		this.m.Condition = 0;
 		return delta;
 	}
@@ -349,12 +402,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		}
 		else
 		{
-			this.removeArmor(this.m.Condition - _a)
+			this.removeArmor(this.m.Condition - _a);
 		}
 
 		if (this.m.Armor == null)
 		{
-			return
+			return;
 		}
 
 		if (this.m.Armor.getContainer() != null && this.m.Armor.isEquipped())
@@ -385,15 +438,22 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		if (this.m.Armor != null && this.m.Armor.getContainer() != null && this.m.Armor.isEquipped())
 		{
 			local app = this.getContainer().getAppearance();
+			app.HideHair = this.m.Armor.getHideHair();
+			app.HideBeard = this.m.Armor.getHideBeard();
 			this.updateAppearance(app);
 			this.getContainer().updateAppearance();
 		}
-		return _bool
+		return _bool;
 	}
 
 	function isVisible()
 	{
-		return this.m.Visible
+		return this.m.Visible;
+	}
+
+	function isLower()
+	{
+		return this.m.Lower;
 	}
 
 	function updateAppearance( _app )
@@ -403,15 +463,16 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			return false;
 		}
 		local sprite = "";
+		local spriteCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
 		local slot = this.m.Type;
 		if (slot == this.Const.Items.HelmetUpgrades.Vanity && this.m.Armor.getUpgrade(slot) != this)
 		{
 			slot = this.Const.Items.HelmetUpgrades.ExtraVanity;
 		}
-
-		if (this.isVisible() == false)
+		if (this.isVisible() == false || this.getCondition() == 0 && this.m.Armor.m.HideHelmetIfDestroyed)
 		{
 			sprite = "";
+			spriteCorpse = "";
 		}
 		else if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
 		{
@@ -422,54 +483,25 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			sprite = this.m.Sprite != null ? this.m.Sprite : "";
 		}
 
-		switch(slot)
-		{
-			case this.Const.Items.HelmetUpgrades.Helm:
-				_app.HelmetLayerHelm = sprite;
-				_app.HelmetLayerHelmCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-				break;
+		local key = "";
+		switch(slot) {
+			case this.Const.Items.HelmetUpgrades.Helm:        key = "Helm"; break;
+			case this.Const.Items.HelmetUpgrades.Top:         key = "Top"; break;
+			case this.Const.Items.HelmetUpgrades.Vanity:      key = "Vanity"; break;
+			case this.Const.Items.HelmetUpgrades.ExtraVanity: key = "Vanity2"; break;
+		}
 
-			case this.Const.Items.HelmetUpgrades.Top:
-				_app.HelmetLayerTop = sprite;
-				_app.HelmetLayerTopCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-				break;
+		if (key != "") {
+			local normal = "HelmetLayer" + key;
+			local lower = "HelmetLayer" + key + "Lower";
 
-			case this.Const.Items.HelmetUpgrades.Vanity:
-				if (this.m.IsLowerVanity)
-				{
-					_app.HelmetLayerVanity = "";
-					_app.HelmetLayerVanityCorpse = "";
-					_app.HelmetLayerVanityLower = sprite;
-					_app.HelmetLayerVanityLowerCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-				}
-				else
-				{
-					_app.HelmetLayerVanity = sprite;
-					_app.HelmetLayerVanityCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-					_app.HelmetLayerVanityLower = "";
-					_app.HelmetLayerVanityLowerCorpse = "";
-				}
-				break;
-
-			case this.Const.Items.HelmetUpgrades.ExtraVanity:
-				if (this.m.IsLowerVanity)
-				{
-					_app.HelmetLayerVanity2 = "";
-					_app.HelmetLayerVanity2Corpse = "";
-					_app.HelmetLayerVanity2Lower = sprite;
-					_app.HelmetLayerVanity2LowerCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-				}
-				else
-				{
-					_app.HelmetLayerVanity2 = sprite;
-					_app.HelmetLayerVanity2Corpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
-					_app.HelmetLayerVanity2Lower = "";
-					_app.HelmetLayerVanity2LowerCorpse = "";
-				}
+			_app[normal] = this.m.Lower ? "" : sprite;
+			_app[normal + "Corpse"] = this.m.Lower ? "" : spriteCorpse;
+			_app[lower] = this.m.Lower ? sprite : "";
+			_app[lower + "Corpse"] = this.m.Lower ? spriteCorpse : "";
 		}
 
 		return true;
-
 	}
 
 	function onEquip()
@@ -481,11 +513,11 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	function onUnequip()
 	{
 		this.item.onUnequip();
-        if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
+        //if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
 		this.setCurrentSlotType(this.Const.ItemSlot.None);
 	}
 
-	function onUse( _actor, _item = null )
+	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
@@ -494,7 +526,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		local success = armor.setUpgrade(this);
 
-		if (success)
+		if (success && _playSound)
 		{
 			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
 		}

@@ -4,8 +4,7 @@ this.legend_hexe_ichor_potion_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_hexe_ichor_potion";
-		this.m.Name = "Hexe Ichor Potion";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHexeIchorPotion);
 		this.m.Icon = "skills/ichor_potion_circle.png";
 		this.m.IconMini = "status_effect_89_mini";
 		this.m.Overlay = "status_effect_89";
@@ -17,7 +16,7 @@ this.legend_hexe_ichor_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "Thanks to taking a concoction of dubious ingredients, this character feels a second wind for another [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] turn(s).";
+		return "Thanks to taking a concoction of dubious ingredients, this character feels a second wind for another [color=%negative%]" + this.m.TurnsLeft + "[/color] turn(s).";
 	}
 
 	function getTooltip()
@@ -37,13 +36,13 @@ this.legend_hexe_ichor_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Fatigue Recovery per turn"
+				text = "[color=%positive%]+20[/color] Fatigue Recovery per turn"
 			},
 			{
 				id = 12,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Health Recovery per turn"
+				text = "[color=%positive%]+20[/color] Health Recovery per turn"
 			}
 		];
 		return ret;

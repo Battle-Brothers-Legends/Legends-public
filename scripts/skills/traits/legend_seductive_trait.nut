@@ -32,11 +32,11 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 				id = 10,
 				type = "text",
 				icon = "ui/icons/asset_money.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+0.3%[/color] barter skill"
+				text = "[color=%positive%]+0.3%[/color] haggling skill"
 			},
 		];
 	}
-	
+
 	function getModifier()
 	{
 		return this.m.Amount;
@@ -49,7 +49,7 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 			return;
 		}
 
-		this.World.State.getPlayer().calculateBarterMult();
+		this.World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onRemoved()
@@ -59,8 +59,8 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 			return;
 		}
 
-		this.World.State.getPlayer().calculateBarterMult();
-	}	
+		this.World.State.getPlayer().calculateHaggleMult();
+	}
 
 });
 

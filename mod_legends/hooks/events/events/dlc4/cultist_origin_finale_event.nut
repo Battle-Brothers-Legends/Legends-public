@@ -24,7 +24,7 @@
 					this.World.getPlayerRoster().remove(_event.m.Sacrifice);
 					this.World.Assets.getStash().makeEmptySlots(1);
 
-					local item = this.new("scripts/items/legend_armor/legendary/legend_armor_of_davkul");
+					local item = this.new("scripts/items/legend_armor/legendary/legend_davkul_armor");
 
 					item.m.Description = "A grisly aspect of Davkul, an ancient power not from this world, and the last remnants of " + _event.m.Sacrifice.getName() + " from whose body it has been fashioned. It shall never break, but instead keep regrowing its scarred skin on the spot.";
 					this.World.Assets.getStash().add(item);
@@ -114,7 +114,7 @@
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist)) {
 				cultist_candidates.push(bro);
 				// This requires a Cultist, that isn't a convert.
-				if ((bestCultist == null || bro.getLevel() > bestCultist.getLevel()) && bro.getBackground().getID() == "background.cultist")
+				if ((bestCultist == null || bro.getLevel() > bestCultist.getLevel()) && ::Legends.Backgrounds.has(bro, ::Legends.Background.Cultist))
 					bestCultist = bro;
 
 				if (bro.getLevel() >= 11)

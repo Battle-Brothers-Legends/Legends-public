@@ -17,6 +17,15 @@ class Templates:
         '<sprite id="$dead" offsetX="6" offsetY="10" f="64FE" ic="$ic" width="131" height="125" img="$dead_path" left="-57" right="59" top="-53" bottom="55" />\n'
     ]
 
+    LFrontBack = [
+        '<sprite id="$front_name" offsetY="35" f="64FE" ic="$ic" width="140" height="248" img="$front_name_path" left="$fl" right="$fr" top="$ft" bottom="$fb" />\n',
+        '<sprite id="$front_damaged" offsetY="35" f="64FE" ic="$ic" width="140" height="248" img="$front_damaged_path" left="$fl" right="$fr" top="$ft" bottom="$fb" />\n',
+        '<sprite id="$front_dead" offsetX="6" offsetY="10" f="64FE" ic="$ic" width="191" height="185" img="$front_dead_path" left="$fld" right="$frd" top="$ftd" bottom="$fbd" />\n'
+        '<sprite id="$back_name" offsetY="35" f="64FE" ic="$ic" width="140" height="248" img="$back_name_path" left="$bl" right="$br" top="$bt" bottom="$bb" />\n',
+        '<sprite id="$back_damaged" offsetY="35" f="64FE" ic="$ic" width="140" height="248" img="$back_damaged_path" left="$bl" right="$br" top="$bt" bottom="$bb" />\n',
+        '<sprite id="$back_dead" offsetX="6" offsetY="10" f="64FE" ic="$ic" width="191" height="185" img="$back_dead_path" left="$bld" right="$brd" top="$btd" bottom="$bbd" />\n'
+    ]
+
     LBase = [
         '<sprite id="$name" offsetY="35" f="64FE" ic="$ic" width="104" height="142" img="$name_path" left="-44" right="50" top="-53" bottom="13" />\n',
         '<sprite id="$damaged" offsetY="35" f="64FE" ic="$ic" width="104" height="142" img="$damaged_path" left="-44" right="50" top="-53" bottom="13" />\n',

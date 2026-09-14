@@ -2,29 +2,25 @@ this.perk_legend_net_repair <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendNetRepair);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNetRepair);
 	}
 
+	function onAdded()
+	{
+		getContainer().getActor().getFlags().set("LegendsCanRepairNet", true);
+	}
+
+	function onRemoved()
+	{
+		getContainer().getActor().getFlags().remove("LegendsCanRepairNet");
+	}
 
 	function onUpdate( _properties )
 	{
-		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local resolve = actor.getCurrentProperties().Bravery;
+		local item = getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
-		if (item != null)
-		{
-			if(item.isItemType(this.Const.Items.ItemType.Net))
-			{
-				_properties.MeleeDefense += 10;
-			}
-
-		}
+		if (item != null && item.isItemType(this.Const.Items.ItemType.Net))
+			_properties.MeleeDefense += 10;
 	}
 
 });

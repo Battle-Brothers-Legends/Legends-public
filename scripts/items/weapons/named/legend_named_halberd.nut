@@ -3,13 +3,13 @@ this.legend_named_halberd <- this.inherit("scripts/items/weapons/named/named_wea
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variants = [1,2,3]
+		this.m.Variants = [1,2,3];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_halberd";
 		this.m.NameList = this.Const.Strings.BillNames;
 		this.m.Description = "A pike-like weapon with a spike for stabbing over some distance and an axe blade for delivering devastating strikes.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Polearm
+		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
@@ -42,13 +42,13 @@ this.legend_named_halberd <- this.inherit("scripts/items/weapons/named/named_wea
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/legend_halberd_smite_skill"));
-		local impale = this.new("scripts/skills/actives/impale");
-		impale.m.Icon = "skills/legend_halberd_impale.png";
-		impale.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
-		impale.m.Overlay = "legend_halberd_impale";
-		impale.m.IsIgnoredAsAOO = true;
-		this.addSkill(impale);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHalberdSmite);
+		::Legends.Actives.grant(this, ::Legends.Active.Impale, function (_skill) {
+			_skill.m.Icon = "skills/legend_halberd_impale.png";
+			_skill.m.IconDisabled = "skills/legend_halberd_impale_bw.png";
+			_skill.m.Overlay = "legend_halberd_impale";
+			_skill.m.IsIgnoredAsAOO = true;
+		}.bindenv(this));
 	}
 
 });

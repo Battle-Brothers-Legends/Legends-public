@@ -8,148 +8,98 @@
 	o.m.BloodPoolScale = 1.25;
 	o.m.HealRemainder <- 0.0;
 	o.m.RiderID <- "";
+	// Follows the [% chance, script|function] convention
+	o.m.OnDeathLootTable <- [];
+	o.m.HitInfo <- null;
+	o.m.IsOffhandFlipped <- false;
+
+	o.getBlock <- function() {
+		return this.getCurrentProperties().Block;
+	}
 
 	o.getGender <- function()
 	{
 		return -1;
 	}
 
-	/*
-	o.onRender <- function ()
+	local setCurrentMovementType = o.setCurrentMovementType;
+	o.setCurrentMovementType = function( _t ) // to trigger the removal of stances skill upon being moved out of will
 	{
-		if (this.m.IsLoweringWeapon)
-		{
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
-
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_named_swordstaff" || this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_swordstaff" || this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).m.ID == "weapon.legend_mage_swordstaff")
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-			}
-			else if (this.m.Items.getAppearance().TwoHanded)
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-			}
-			else
-			{
-				this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -33.0;
-			}
-
-			if (p >= 1.0)
-			{
-				this.m.IsLoweringWeapon = false;
-
-				if (!this.m.IsUsingCustomRendering)
-				{
-					this.setRenderCallbackEnabled(false);
-				}
-			}
+		if (_t == ::Const.Tactical.MovementType.Involuntary && !::Tactical.TurnSequenceBar.isActiveEntity(this)) {
+			this.getFlags().remove("CanNotBeStaggered"); // a hack to prevent teamplayer user from staggering ally
+			::Const.Tactical.Common.removeStances(this);
 		}
-		else if (this.m.IsRaisingWeapon)
-		{
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
 
-			if (this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0)
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-				this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
-				//this.logDebug("hey there calls");
-			}
-			else if (this.m.Items.getAppearance().TwoHanded)
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-			}
-			else
-			{
-				this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -33.0;
-			}
-
-			if (p >= 1.0)
-			{
-				this.m.IsRaisingWeapon = false;
-
-				if (!this.m.IsUsingCustomRendering)
-				{
-					this.setRenderCallbackEnabled(false);
-				}
-			}
-		}
+		setCurrentMovementType(_t);
 	}
-	*/
 
-	local onRender = o.onRender;
-	o.onRender = function()
+	o.querySwitchableItems <- function()
 	{
-		local isLoweringWeapon = false;
-		local isRaisingWeapon = false;
+		local items = [];
+		local inv = this.getItems();
 
-		if (m.IsLoweringWeapon) {
-			local mainhand = getMainhandItem();
-			isLoweringWeapon = mainhand != null && ::Const.Items.LegendItemWithSpearwall.find(mainhand.getID()) != null;
-			m.IsLoweringWeapon = false;
-		}
-		else if (m.IsRaisingWeapon) {
-			isRaisingWeapon = this.getSpriteOffset("arms_icon").X != 0 || this.getSpriteOffset("arms_icon").Y != 0;
-			m.IsRaisingWeapon = false;
-		}
+		if (inv.isActionAffordable([]))
+		{
+			for( local i = 0; i < inv.getUnlockedBagSlots(); i++ )
+			{
+				local item = inv.getItemAtBagSlot(i);
 
-		onRender();
+				if (item == null)
+				{
+					continue;
+				}
 
-		if (isLoweringWeapon) {
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.LowerWeaponDuration;
-			this.getSprite("arms_icon").Rotation = this.Math.minf(1.0, p) * -70.0;
-			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * this.Math.minf(1.0, p), -33 * this.Math.minf(1.0, p)), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+				local slot = item.getSlotType();
 
-			if (p >= 1.0) {
-				this.m.IsLoweringWeapon = false;
+				if (slot == ::Const.ItemSlot.None || slot == ::Const.ItemSlot.Bag)
+				{
+					continue;
+				}
 
-				if (!this.m.IsUsingCustomRendering)
-					this.setRenderCallbackEnabled(false);
-			}
-			else {
-				this.m.IsLoweringWeapon = true;
-			}
-		}
-		else if (isRaisingWeapon) {
-			local p = (this.Time.getVirtualTimeF() - this.m.RenderAnimationStartTime) / this.Const.Items.Default.RaiseWeaponDuration;
-			this.getSprite("arms_icon").Rotation = (1.0 - this.Math.minf(1.0, p)) * -70.0;
-			this.moveSpriteOffset("arms_icon", this.getSpriteOffset("arms_icon"), this.createVec(46 * (1-this.Math.minf(1.0, p)), -33 * (1-this.Math.minf(1.0, p))), this.Const.Items.Default.LowerWeaponDuration, this.m.RenderAnimationStartTime);
+				local currentItem = inv.getItemAtSlot(slot);
+				if (item == null)
+					continue;
+				if (!item.isChangeableInBattle())
+					continue;
 
-			if (p >= 1.0) {
-				this.m.IsRaisingWeapon = false;
-
-				if (!this.m.IsUsingCustomRendering)
-					this.setRenderCallbackEnabled(false);
-			}
-			else{
-				this.m.IsRaisingWeapon = true;
+				if ((item.isItemType(::Const.Items.ItemType.Weapon) || item.isItemType(::Const.Items.ItemType.Tool) || item.isItemType(::Const.Items.ItemType.Shield) || item.isItemType(::Const.Items.ItemType.Accessory) || item.isItemType(::Const.Items.ItemType.Ammo) && item.m.Ammo != 0) && inv.isActionAffordable(currentItem != null ? [
+					currentItem,
+					item
+				] : [
+					item
+				]))
+				{
+					items.append(item);
+				}
 			}
 		}
+
+		return items;
 	}
 
 	local onOtherActorDeath = o.onOtherActorDeath;
 	o.onOtherActorDeath = function ( _killer, _victim, _skill )
 	{
-		if (!isAlive() || isDying())
+		if (::Legends.S.isEntityNullOrDead(this))
 			return;
 
-		if (_killer != null && getAlliedFactions().find(_victim.getFaction()) != null) {
-			m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
-			m.KillerFlatOnKillOtherActorModifier = _killer.getFlatOnKillOtherActorModifier();
+		if (_killer != null && this.getAlliedFactions().find(_victim.getFaction()) != null) {
+			this.m.KillerPercentOnKillOtherActorModifier = _killer.getPercentOnKillOtherActorModifier();
+			this.m.KillerFlatOnKillOtherActorModifier = _killer.getFlatOnKillOtherActorModifier();
 		}
 
 		onOtherActorDeath(_killer, _victim, _skill);
-		m.KillerPercentOnKillOtherActorModifier = 1.0;
-		m.KillerFlatOnKillOtherActorModifier = 0;
+		this.m.KillerPercentOnKillOtherActorModifier = 1.0;
+		this.m.KillerFlatOnKillOtherActorModifier = 0;
 	}
 
 	local checkMorale = o.checkMorale;
-	o.checkMorale = function (_change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
+	o.checkMorale = function (_change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false)
 	{
-		if (m.KillerPercentOnKillOtherActorModifier != 1.0)
-			_difficulty = ::Math.floor(_difficulty * m.KillerPercentOnKillOtherActorModifier);
+		if (this.m.KillerPercentOnKillOtherActorModifier != 1.0)
+			_difficulty = ::Math.floor(_difficulty * this.m.KillerPercentOnKillOtherActorModifier);
 
-		return checkMorale(_change, _difficulty + m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
+		return checkMorale(_change, _difficulty + this.m.KillerFlatOnKillOtherActorModifier, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
 	o.getPercentOnKillOtherActorModifier <- function ()
@@ -167,38 +117,113 @@
 		return false;
 	}
 
-	local onMovementFinish = o.onMovementFinish;
-	o.onMovementFinish = function (_tile)
+	local isTurnDone = o.isTurnDone;
+	o.isTurnDone = function()
 	{
-//		local actors = [this];
-//		for (local i = 0; i != 6; i++) {
-//			if (_tile.hasNextTile(i)) {
-//				local tile = _tile.getNextTile(i);
-//				if (!tile.IsOccupiedByActor)
-//					continue;
-//				actors.push(tile.getEntity());
-//			}
-//		}
-//		local pointers = [];
-//		foreach (i, a in actors) {
-//			pointers.push(a.checkMorale);
-//			a.checkMorale = function (_change, _difficulty) {
-//				if (a.m.CurrentProperties.IsAffectedByMovementMorale) {
-//					pointers[i](_change, _difficulty);
-//				}
-//			}
-//		}
-		onMovementFinish(_tile);
-//		foreach (i, a in actors)
-//			a.checkMorale = pointers[i];
+		if (!this.Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
+		{
+			local usableSkill = false;
+			foreach (skill in this.m.Skills.queryActives())
+			{
+				if (skill != null && skill.isUsable() && skill.isAffordable())
+				{
+					usableSkill = true;
+					break;
+				}
+			}
+			return this.m.IsTurnDone || this.m.IsSkippingTurn || this.m.ActionPoints < this.Const.Movement.AutoEndTurnBelowAP && !this.m.Skills.isBusy() && !usableSkill;
+		}
+		return isTurnDone();
+	}
 
-		this.m.Skills.MovementCompleted(_tile);
+	o.onMovementFinish = function(_tile) {
+		this.m.IsMoving = true;
+		this.updateVisibility(_tile, this.m.CurrentProperties.getVision(), this.getFaction());
+
+		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getID()) {
+			this.Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
+		}
+
+		this.setZoneOfControl(_tile, this.hasZoneOfControl());
+
+		if (!this.m.IsExertingZoneOfOccupation) {
+			_tile.addZoneOfOccupation(this.getFaction());
+			this.m.IsExertingZoneOfOccupation = true;
+		}
+
+		if (this.Const.Tactical.TerrainEffect[_tile.Type].len() > 0 && !this.m.Skills.hasSkill(this.Const.Tactical.TerrainEffectID[_tile.Type])) {
+			this.m.Skills.add(this.new(this.Const.Tactical.TerrainEffect[_tile.Type]));
+		}
+
+		if (_tile.IsHidingEntity) {
+			this.m.Skills.add(this.new(this.Const.Movement.HiddenStatusEffect));
+		}
+
+		local numOfEnemiesAdjacentToMe = _tile.getZoneOfControlCountOtherThan(this.getAlliedFactions());
+
+		if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Default) {
+			if (this.m.MoraleState != this.Const.MoraleState.Fleeing) {
+				for (local i = 0; i != 6; i = ++i) {
+					if (_tile.hasNextTile(i)) {
+						local otherTile = _tile.getNextTile(i);
+						if (otherTile.IsOccupiedByActor) {
+							local otherActor = otherTile.getEntity();
+							local numEnemies = otherTile.getZoneOfControlCountOtherThan(otherActor.getAlliedFactions());
+
+							if (otherActor.m.MaxEnemiesThisTurn < numEnemies && !otherActor.isAlliedWith(this) && otherActor.m.CurrentProperties.IsAffectedByMovementMorale) {
+								local difficulty = this.Math.maxf(10.0, 50.0 - this.getXPValue() * 0.1);
+								otherActor.checkMorale(-1, difficulty);
+								otherActor.m.MaxEnemiesThisTurn = numEnemies;
+							}
+						}
+					}
+				}
+			}
+		} else if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary) {
+			if (this.m.MaxEnemiesThisTurn < numOfEnemiesAdjacentToMe && this.m.CurrentProperties.IsAffectedByMovementMorale) {
+				local difficulty = 40.0;
+				this.checkMorale(-1, difficulty);
+			}
+		}
+
+		this.m.CurrentMovementType = this.Const.Tactical.MovementType.Default;
+		this.m.MaxEnemiesThisTurn = this.Math.max(1, numOfEnemiesAdjacentToMe);
+
+		if (this.isPlayerControlled() && this.getMoraleState() > this.Const.MoraleState.Breaking &&
+			this.getMoraleState() != this.Const.MoraleState.Ignore &&
+			(_tile.SquareCoords.X == 0 || _tile.SquareCoords.Y == 0 || _tile.SquareCoords.X == 31 || _tile.SquareCoords.Y == 31)
+		) {
+			local change = this.getMoraleState() - this.Const.MoraleState.Breaking;
+			this.checkMorale(-change, -1000);
+		}
+
+		if (this.m.IsEmittingMovementSounds && this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() != 0) {
+			local sound = this.Const.Tactical.TerrainMovementSound[_tile.Subtype][this.Math.rand(0, this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() - 1)];
+			this.Sound.play("sounds/" + sound.File, sound.Volume * this.Const.Sound.Volume.TacticalMovement * this.Math.rand(90, 100) * 0.01, this.getPos(), sound.Pitch * this.Math.rand(95, 105) * 0.01);
+		}
+
+		this.spawnTerrainDropdownEffect(_tile);
+
+		if (_tile.Properties.Effect != null && _tile.Properties.Effect.IsAppliedOnEnter) {
+			_tile.Properties.Effect.Callback(_tile, this);
+		}
+
+		this.m.Skills.onMovementFinished();
+		this.m.Items.onMovementFinished();
+		this.setDirty(true);
+		this.m.IsMoving = false;
 	}
 
 	o.isArmedWithMagicStaff <- function()
 	{
 		local item = this.getMainhandItem();
 		return item != null && item.isWeaponType(this.Const.Items.WeaponType.MagicStaff);
+	}
+
+	o.isArmedWithPoleWeapon <- function ()
+	{
+		local item = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		return item != null && item.isItemType(this.Const.Items.ItemType.MeleeWeapon) && item.m.RangeMax > 1;
 	}
 
 	o.equipItem <- function( _item)
@@ -220,20 +245,35 @@
 	o.onMissed = function ( _attacker, _skill, _dontShake = false )
 	{
 		// Attempt to Parry
-		local isParrying = false, validAttackerToParry = _attacker != null && _attacker.isAlive() && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID();
-		local validSkillToParry = _skill != null && !_skill.isIgnoringRiposte() && _skill.m.IsWeaponSkill;
+		local isParrying = false;
+		local validAttackerToParry = _attacker != null
+			&& _attacker.isAlive()
+			&& !_attacker.isAlliedWith(this)
+			&& _attacker.getTile().getDistanceTo(this.getTile()) == 1
+			&& ::Tactical.TurnSequenceBar.getActiveEntity() != null
+			&& ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID();
+		local validSkillToParry = _skill != null
+			&& !_skill.isIgnoringRiposte()
+			&& _skill.m.IsWeaponSkill;
 
-		if (getCurrentProperties().IsParrying && !getCurrentProperties().IsStunned && validAttackerToParry && validSkillToParry && !_attacker.getCurrentProperties().IsImmuneToDisarm && !_attacker.getSkills().hasSkill("effects.legend_parried")) {
-			if (isHiddenToPlayer()) {
-				_attacker.getSkills().add(::new("scripts/skills/effects/legend_parried_effect"));
+		if (this.getCurrentProperties().IsParrying
+			&& !this.getCurrentProperties().IsStunned
+			&& validAttackerToParry
+			&& validSkillToParry
+			&& !_attacker.getCurrentProperties().IsImmuneToDisarm
+			&& !_attacker.getSkills().hasEffect(::Legends.Effect.LegendParried)
+		) {
+			if (this.isHiddenToPlayer()) {
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.LegendParried);
 				this.onBeforeRiposte(_attacker, _skill);
 			}
 			else {
 				isParrying = true;
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.5, onParryVisible.bindenv(this), {
-					Actor = this,
-					Attacker = _attacker,
-					Skill = _skill
+				local attacker = _attacker, skill = _skill;
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.5, this.onParryVisible.bindenv(this), {
+					Actor = this, // this is technically not needed here because of bindenv
+					Attacker = attacker,
+					Skill = skill
 				});
 			}
 
@@ -241,49 +281,100 @@
 		}
 		else
 		{
-			this.onBeforeRiposte(_attacker,_skill);
+			this.onBeforeRiposte(_attacker, _skill);
 		}
 
-		if (isParrying) m.CurrentProperties.IsRiposting = false;
+		if (isParrying)
+			this.m.CurrentProperties.IsRiposting = false;
 		onMissed(_attacker, _skill, _dontShake);
 	}
 
-	o.onParryVisible <- function ( _info )
+	o.onParryVisible <- function (_info)
 	{
+		if (_info.Attacker == null) {
+			::logInfo("attacker == null, wtf?");
+		}
+		if (_info.Skill == null) {
+			::logInfo("skill == null, wtf?");
+		}
+		if (_info.Actor == null) {
+			::logInfo("actor == null, wtf?");
+		}
+		if (this == null) {
+			::logInfo("this == null, wtf?");
+		}
 		// Animate and provide sound effects for the Parry, and apply the Vulnerable effect
-		this.Tactical.spawnSpriteEffect("en_garde_square", this.createColor("#ffffff"), _info.Actor.getTile(), this.Const.Tactical.Settings.SkillOverlayOffsetX, this.Const.Tactical.Settings.SkillOverlayOffsetY, this.Const.Tactical.Settings.SkillOverlayScale, this.Const.Tactical.Settings.SkillOverlayScale, this.Const.Tactical.Settings.SkillOverlayStayDuration, 0, this.Const.Tactical.Settings.SkillOverlayFadeDuration);
-		_info.Skill.spawnAttackEffect(_info.Attacker.getTile(), this.Const.Tactical.AttackEffectSlash);
-		this.Tactical.getShaker().cancel(_info.Attacker);
-		this.Tactical.getShaker().shake(_info.Attacker, _info.Actor.getTile(), 2);
-		local sound = this.Const.Sound.getParrySoundByWeaponType(_info.Skill);
-		// this.Sound.play("sounds/combat/legend_parried_01.wav", this.Const.Sound.Volume.Skill, _info.Actor.getPos())
-		this.Sound.play(sound, this.Const.Sound.Volume.Skill, _info.Actor.getPos());
-		_info.Attacker.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
-		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
+		::Tactical.spawnSpriteEffect("en_garde_square", this.createColor("#ffffff"), _info.Actor.getTile(),
+			::Const.Tactical.Settings.SkillOverlayOffsetX, ::Const.Tactical.Settings.SkillOverlayOffsetY,
+			::Const.Tactical.Settings.SkillOverlayScale, ::Const.Tactical.Settings.SkillOverlayScale,
+			::Const.Tactical.Settings.SkillOverlayStayDuration, 0, ::Const.Tactical.Settings.SkillOverlayFadeDuration
+		);
+		_info.Skill.spawnAttackEffect(_info.Attacker.getTile(), ::Const.Tactical.AttackEffectSlash);
+		::Tactical.getShaker().cancel(_info.Attacker);
+		::Tactical.getShaker().shake(_info.Attacker, _info.Actor.getTile(), 2);
+		local sound = ::Const.Sound.getParrySoundByWeaponType(_info.Skill);
+		// this.Sound.play("sounds/combat/legend_parried_01.wav", ::Const.Sound.Volume.Skill, _info.Actor.getPos())
+		this.Sound.play(sound, ::Const.Sound.Volume.Skill, _info.Actor.getPos());
+		::Legends.Effects.grant(_info.Attacker, ::Legends.Effect.LegendParried);
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
 		// Attempt to perform a Riposte after the Parry (with a delay so that it only begins after the Parry animation is finished)
-		this.onBeforeRiposte(_info.Attacker,_info.Skill,1.5);
+		this.onBeforeRiposte(_info.Attacker, _info.Skill, 1.5);
 	}
 
 	// Preparation to call onRiposte(). Given its own function so it can be easily reused
 	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
 	{
-		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte())
-		{
+		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = this.m.Skills.getAttackOfOpportunity();
 
-			if (skill != null)
-			{
+			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
+			local items = this.getItems();
+        	local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+        	local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+			if (mh == null && oh != null) {
+				local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+				if (ohSkill != null) {
+					skill = ohSkill;
+				}
+			}
+
+			if (skill != null) {
 				local info = {
 					User = this,
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
+
+				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword)
+					&& ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword))
+				{
+					local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+					if (oh != null) {
+						local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+						if (ohSkill != null) {
+							local ohInfo = {
+								User = this,
+								Skill = ohSkill,
+								TargetTile = _attacker.getTile()
+							};
+							this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onOffhandRiposte.bindenv(this), ohInfo);
+						}
+					}
+				}
 			}
 
 			this.getFlags().set("PerformedRiposte", true);
 		}
 	}
+
+	o.onOffhandRiposte <- function (_info) {
+		if (!_info.User.isAlive()) {
+			return;
+		}
+		_info.Skill.useForFree(_info.TargetTile);
+	}
+
 
 	o.resetPerks <- function ()
 	{
@@ -353,14 +444,6 @@
 
 		perks -= nonRefundable.len();
 
-		// Witch gets
-		// todo delete it - chopeks
-//		if (this.getBackground().getID() == "background.legend_witch" && this.LegendsMod.Configs().LegendMagicEnabled())
-//		{
-//			::Legends.Perks.grant(this, ::Legends.Perk.LegendMagicMissile);
-//			perks = perks - 1;
-//		}
-
 		this.m.PerkPoints = perks;
 
 		if (hasStudent)
@@ -374,14 +457,14 @@
 			this.m.PerkPointsSpent += 1;
 			::Legends.Perks.grant(this, ::Legends.Perk.Gifted, function (_perk) {
 				_perk.m.IsApplied = true;
-			});
+			}.bindenv(this));
 		}
 
 		if (hasAdaptive)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAdaptive, function (_perk) {
 				_perk.m.IsNew = true;
-			});
+			}.bindenv(this));
 			if (this.getLevel() >= 15)
 				this.m.PerkPointsSpent += 1;
 		}
@@ -395,54 +478,121 @@
 	local onAppearanceChanged = o.onAppearanceChanged;
 	o.onAppearanceChanged = function( _appearance, _setDirty = true )
 	{
-		if (!isAlive() || isDying()) return;
+		if (::Legends.S.isEntityNullOrDead(this)) return;
 
 		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Helmet) // for layered helmet
 		{
-			if (!hasSprite(id))
+			if (!this.hasSprite(id))
 				continue;
 
-			if (_appearance[key].len() != 0 && !m.IsHidingHelmet) {
-				local helmet = getSprite(id);
+			if (_appearance[key].len() != 0 && !this.m.IsHidingHelmet) {
+				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Color = _appearance.HelmetColor;
 				helmet.Visible = true;
 			}
 			else {
-				getSprite(id).Visible = false;
+				this.getSprite(id).Visible = false;
 			}
 		}
 
 		foreach(key, id in ::Const.LegendOnAppearanceChangedSprites.Armor) // for layered armor
 		{
-			if (!hasSprite(id))
+			if (!this.hasSprite(id))
 				continue;
 
 			if (_appearance[key].len() != 0) {
-				local helmet = getSprite(id);
+				local helmet = this.getSprite(id);
 				helmet.setBrush(_appearance[key]);
 				helmet.Visible = true;
 			}
 			else {
-				getSprite(id).Visible = false;
+				this.getSprite(id).Visible = false;
 			}
 		}
 
-		if (hasSprite("permanent_injury_scarred"))
-			getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
+		if (this.hasSprite("permanent_injury_scarred"))
+			this.getSprite("permanent_injury_scarred").Visible = !_appearance.HideHead;
 
-		if (hasSprite("permanent_injury_burned"))
-			getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
+		if (this.hasSprite("permanent_injury_burned"))
+			this.getSprite("permanent_injury_burned").Visible = !_appearance.HideHead;
 
 		onAppearanceChanged(_appearance, _setDirty);
+
+		if (this.hasSprite("armor_upgrade_back_top"))
+		{
+			local pauldronBackTop = this.getSprite("armor_upgrade_back_top");
+			if (_appearance.ArmorUpgradeFront.len() != 0) { // if has front-back upgrade - draw back upgrade over cloak and hide the regular upgrade
+				pauldronBackTop.setBrush(_appearance.ArmorUpgradeBack);
+				pauldronBackTop.Visible = true;
+				this.getSprite("armor_upgrade_back").Visible = false;
+			}
+			else {
+				pauldronBackTop.Visible = false;
+			}
+		}
+
+		// Flip the offhand weapon sprite when dual wielding
+		if (this.hasSprite("shield_icon") && _appearance.Shield.len() != 0)
+		{
+			if (::Legends.Weapons.isDualWielding(this))
+			{
+				this.setAlwaysApplySpriteOffset(true);
+				local flip = !this.isAlliedWithPlayer();
+				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+				local ohSprite = this.getSprite("shield_icon");
+				ohSprite.setHorizontalFlipping(!flip);
+				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded))
+				{
+					// WIP, not sure if dual-wielding two handed weapons will stay
+					ohSprite.Scale = 0.80;
+					this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+				}
+				else
+				{
+					ohSprite.Scale = 1.0;
+					this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+				}
+				this.m.IsOffhandFlipped = true;
+			}
+			else if (this.m.IsOffhandFlipped) //We only want to reset sprite position when it's actually needed
+			{
+				this.m.IsOffhandFlipped = false;
+				local ohSprite = this.getSprite("shield_icon");
+				ohSprite.setHorizontalFlipping(!this.isAlliedWithPlayer());
+				ohSprite.Scale = 1.0;
+				this.setAlwaysApplySpriteOffset(false);
+				this.setSpriteOffset("shield_icon", this.createVec(0, 0));
+			}
+		}
+	}
+
+	local onFactionChanged = o.onFactionChanged;
+	o.onFactionChanged = function () {
+		onFactionChanged();
+		if (this.hasSprite("shield_icon") && ::Legends.Weapons.isDualWielding(this)) {
+			this.setAlwaysApplySpriteOffset(true);
+			local flip = !this.isAlliedWithPlayer();
+			local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+			local ohSprite = this.getSprite("shield_icon");
+			ohSprite.setHorizontalFlipping(!flip);
+			if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) {
+				// WIP, not sure if dual-wielding two handed weapons will stay
+				ohSprite.Scale = 0.80;
+				this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+			} else {
+				ohSprite.Scale = 1.0;
+				this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+			}
+		}
 	}
 
 	local setHitpoints = o.setHitpoints;
 	o.setHitpoints = function( _h )
 	{
-		local healGoal = _h + m.HealRemainder;
+		local healGoal = _h + this.m.HealRemainder;
 		local healTick = ::Math.floor(healGoal);
-		m.HealRemainder = healGoal - healTick;
+		this.m.HealRemainder = healGoal - healTick;
 		setHitpoints(healTick);
 	}
 
@@ -461,14 +611,14 @@
 	{
 		if (_id == null)
 		{
-			_id = ""
+			_id = "";
 		}
 		this.m.RiderID = _id;
 	}
 
 	o.getRiderID <- function()
 	{
-		return this.m.RiderID
+		return this.m.RiderID;
 	}
 
 	o.getRider <- function()
@@ -492,11 +642,26 @@
 	{
 	}
 
+	local makeMiniboss = o.makeMiniboss;
+	o.makeMiniboss = function ()
+	{
+		local ret = makeMiniboss();
+		if (ret)
+		{
+			this.m.OnDeathLootTable.extend([
+				[5, "scripts/items/misc/legend_masterwork_fabric"],
+				[5, "scripts/items/misc/legend_masterwork_metal"],
+				[5, "scripts/items/misc/legend_masterwork_tools"]
+			]);
+		}
+		return ret;
+	}
+
 	local isReallyKilled = o.isReallyKilled;
 	o.isReallyKilled = function( _fatalityType )
 	{
 		local ret = isReallyKilled(_fatalityType);
-		if (!ret) TherianthropeInfection(_killer);
+		//if (!ret) TherianthropeInfection(_killer);
 		return ret;
 	}
 
@@ -513,9 +678,40 @@
 	local onDamageReceived = o.onDamageReceived;
 	o.onDamageReceived = function( _attacker, _skill, _hitInfo )
 	{
+		this.m.HitInfo <- _hitInfo; // live reference hitinfo so the correct value is retrieved when vanilla onDamageReceived calls kill
 		_hitInfo.BodyDamageMultBeforeSteelBrow = _hitInfo.BodyDamageMult;
-		return onDamageReceived(_attacker, _skill, _hitInfo);
+		local ret = onDamageReceived(_attacker, _skill, _hitInfo);
+		return ret;
 	}
+
+	local getLootForTile = o.getLootForTile;
+	o.getLootForTile = function (_killer, _loot) {
+		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
+			return getLootForTile(_killer, _loot);
+
+		foreach (entry in this.m.OnDeathLootTable) {
+			if (entry == null) continue;
+			if (entry[0] == 0) { // no division by zero!
+				::logError("division by zero, skipping " + entry[1]);
+				continue;
+			}
+			local chance = entry[0];
+			if (chance < 0.005)
+				chance = 0.005; // limited by 16 bit rand
+			if (chance > 100)
+				chance = 100;
+			if (chance < 10 ? ::Math.rand(1, ::Math.round(100 / chance)) == 1 : Math.rand(1, 100) <= ::Math.round(chance)) {
+				if (typeof(entry[1]) == "function") {
+					_loot.push(entry[1]());
+				} else {
+					_loot.push(::new(entry[1]));
+				}
+			}
+		}
+
+		return getLootForTile(_killer, _loot);
+	}
+
 
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function( _out )
@@ -541,11 +737,21 @@
 	}
 
 	local kill = o.kill;
-	o.kill = function (_killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false) {
+	o.kill = function (_killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false) {
+		if (!this.isHiddenToPlayer() && this.m.HitInfo)
+			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
+
+		this.m.HitInfo = null; // yeet hit info that was saved earlier
 		if (this.getFlags().has("tail")) // ignore killer when is tail
 			kill(null, _skill, _fatalityType, _silent);
-		else
+		else {
+			if (this.isAlive() && this.m.IsMiniboss && !::Tactical.State.isScenarioMode() && !::Legends.S.isEntityNullOrDead(_killer) && _killer.isPlayerControlled()) {
+				if ((::Tactical.State.getStrategicProperties() == null || !::Tactical.State.getStrategicProperties().IsArenaMode) && ::World.Assets.m.ProfessionEffect.LegendBlackBook > 0) {
+					::World.Assets.addMoney(::Math.floor(this.getXPValue() * ::World.Assets.m.ProfessionEffect.LegendBlackBook));
+				}
+			}
 			kill(_killer, _skill, _fatalityType, _silent);
+		}
 	}
 
 	local onDeath = o.onDeath;
@@ -556,20 +762,44 @@
 			onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	// local onResurrected = o.onResurrected;
-	// o.onResurrected = function ( _info )
-	// {
-	//	 onResurrected(_info);
-	//	 this.World.getPlayerRoster().add(_info);
-	// }
-	// local onInit = o.onInit;
-	// o.onInit = function ()
-	// {
-	//	 o.onInit();
-	//	 o.m.BloodSaturation = 1.5;
-	//	 o.m.DeathBloodAmount = 1.5;
-	//	 o.m.BloodPoolScale = 1.25;
-	//	 o.m.BloodSplatterOffset = this.createVec(-1, -1);
-	// }
-	// }
+	o.getTumbleDefense <- function (_attackingEntity, _skill, _properties) {
+		local malus = 0;
+		local d = 0;
+		local shieldRangedDefense = 0;
+		local shieldMeleeDefense = 0;
+
+		if (!this.m.CurrentProperties.IsImmuneToSurrounding) {
+			malus = _attackingEntity != null ? ::Math.max(0, _attackingEntity.getCurrentProperties().SurroundedBonus * _attackingEntity.getCurrentProperties().SurroundedBonusMult - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount()	: ::Math.max(0, 5 - this.getCurrentProperties().SurroundedDefense) * this.getSurroundedCount();
+		}
+
+		local shield = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+
+		if (shield != null && shield.isItemType(::Const.Items.ItemType.Shield)) {
+			shieldMeleeDefense = shield.getMeleeDefense() * (this.m.CurrentProperties.IsSpecializedInShields ? 1.25	: 1.0);
+			shieldRangedDefense = shield.getRangedDefense() * (this.m.CurrentProperties.IsSpecializedInShields ? 1.25 : 1.0);
+		}
+
+		if (!_skill.isRanged()) {
+			d = _properties.getRangedDefense();
+			if (!_skill.isShieldRelevant()) {
+				d -= shieldRangedDefense;
+			}
+		} else {
+			d = _properties.getMeleeDefense();
+			if (!_skill.isShieldRelevant()) {
+				d -= shieldMeleeDefense;
+			}
+		}
+
+		if (d > ::Const.Tactical.Settings.AttributeDefenseSoftCap) {
+			local e = d - ::Const.Tactical.Settings.AttributeDefenseSoftCap;
+			d = ::Const.Tactical.Settings.AttributeDefenseSoftCap + e * 0.5;
+		}
+
+		if (_skill.isRanged()) {
+			d -= malus;
+		}
+
+		return d;
+	}
 });

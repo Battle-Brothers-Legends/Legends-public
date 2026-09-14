@@ -3,14 +3,10 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_vala";
-		this.m.Name = "Vala";
-		this.m.Icon = "ui/backgrounds/legend_vala.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendVala);
 		this.m.BackgroundDescription = "A Vala is a travelling seer, shaman and sorceress.";
 		this.m.GoodEnding = null;
 		this.m.BadEnding = null;
-		this.m.HiringCost = 20000;
-		this.m.DailyCost = 24;
 		this.m.Ethnicity = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
@@ -18,13 +14,18 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			::Legends.Traits.getID(::Legends.Trait.Cocky),
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Disloyal),
 			::Legends.Traits.getID(::Legends.Trait.EagleEyes),
 			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
 			::Legends.Traits.getID(::Legends.Trait.LegendSteadyHands)
 		];
+
+		this.m.ExcludedTalents = [
+			this.Const.Attributes.RangedSkill
+		];
+
 		this.m.Titles = [
 			"the Vala"
 		];
@@ -33,47 +34,31 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.HairColors = this.Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Modifiers.Meds = this.Const.LegendMod.ResourceModifiers.Meds[2];
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[3];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[3];
-		this.m.Modifiers.Enchanting = 1.0;
 		this.m.Level = 2;
-
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.StaffTree
-			],
-			Defense = [
-				this.Const.Perks.LightArmorTree,
-				this.Const.Perks.ClothArmorTree
-			],
-			Traits = [
-				this.Const.Perks.SturdyTree,
-				this.Const.Perks.InspirationalTree,
-				this.Const.Perks.IntelligentTree,
-				this.Const.Perks.CalmTree,
-				this.Const.Perks.IndestructibleTree
-			],
-			Enemy = [],
-			Class = [
-				this.Const.Perks.HealerClassTree,
-				this.Const.Perks.ChefClassTree
-			],
-			Magic = [
-				this.Const.Perks.ValaChantMagicTree,
-				this.Const.Perks.ValaTranceMagicTree,
-				this.Const.Perks.ValaSpiritMagicTree
-			]
-		}
+		this.m.CustomPerkTree = [
+			[::Legends.Perk.LegendSpecialistSelfdefense],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[],
+			[]
+		];
 	}
 
 	function getTooltip()
 	{
-		local ret = this.character_background.getTooltip()
+		local ret = this.character_background.getTooltip();
+		if (this.getContainer() == null)
+			return ret; // this is for crafting because the preview in crafting screen creates the background but it has no actor attached
 		ret.extend([
 		{
 			id = 13,
@@ -91,7 +76,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 			id = 14,
 			type = "text",
 			icon = "ui/icons/xp_received.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Experience Gain"
+			text = "[color=%positive%]+15%[/color] Experience Gain"
 		}]);
 		if (this.getContainer().getActor().getLevel() >= 12)
 		{
@@ -99,11 +84,11 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 				id = 13,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "The Vala has become a master of the intricate and lost art of inscribing signs and sigils. Increases the speed at which she can craft runes by [color=" + this.Const.UI.Color.PositiveValue + "]30%[/color]"
+				text = "The Vala has become a master of the intricate and lost art of inscribing signs and sigils. Increases the speed at which she can craft runes by [color=%positive%]30%[/color]"
 			});
 		}
 
-		return ret
+		return ret;
 	}
 
 	function onBuildDescription()
@@ -113,45 +98,14 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				-1,
-				2
-			],
-			Bravery = [
-				10,
-				15
-			],
-			Stamina = [
-				8,
-				12
-			],
-			MeleeSkill = [
-				0,
-				3
-			],
-			RangedSkill = [
-				0,
-				0
-			],
-			MeleeDefense = [
-				-1,
-				3
-			],
-			RangedDefense = [
-				-2,
-				-4
-			],
-			Initiative = [
-				10,
-				15
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendVala);
 	}
 
 	function onAddEquipment()
 	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(this.Const.Attributes.COUNT, 0);
 		talents[this.Const.Attributes.Bravery] = this.Math.rand(2, 3);
@@ -161,8 +115,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		items.equip(this.new("scripts/items/weapons/legend_staff_vala"));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "legend_vala_cloak"],
-			[1, "legend_vala_dress"]
+			[1, ::Legends.Armor.Standard.legend_vala_cloak]
 		]));
 	}
 

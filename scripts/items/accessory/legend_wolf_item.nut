@@ -73,10 +73,10 @@ this.legend_wolf_item <- this.inherit("scripts/items/accessory/legend_accessory_
 	function onEquip()
 	{
 		this.accessory.onEquip();
-		local unleash = this.new("scripts/skills/actives/unleash_wolf");
-		unleash.setItem(this);
-		this.m.Skill = this.WeakTableRef(unleash);
-		this.addSkill(unleash);
+		::Legends.Actives.grant(this, ::Legends.Active.UnleashWolf, function (_skill) {
+			_skill.setItem(this);
+			this.m.Skill = this.WeakTableRef(_skill);
+		}.bindenv(this));
 	}
 
 });

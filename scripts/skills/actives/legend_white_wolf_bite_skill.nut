@@ -1,24 +1,19 @@
 this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
-	m = {},
+	m = {
+		IsRestrained = false,
+		IsSpent = false
+	},
+	function setRestrained( _f )
+	{
+		this.m.IsRestrained = _f;
+	}
 	function create()
 	{
-		this.m.ID = "actives.legend_whit_wolf_bite";
-		this.m.Name = "White Direwolf Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWhiteWolfBite);
 		this.m.Description = "";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_71.png";
-		this.m.Overlay = "active_71";
-		this.m.SoundOnUse = [
-			"sounds/enemies/wolf_bite_01.wav",
-			"sounds/enemies/wolf_bite_02.wav",
-			"sounds/enemies/wolf_bite_03.wav",
-			"sounds/enemies/wolf_bite_04.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wolf_bite", 4);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -36,16 +31,33 @@ this.legend_white_wolf_bite_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceSmash = 0;
 	}
 
-	function onUpdate( _properties )
+	function isUsable()
 	{
-		_properties.DamageRegularMin += 45;
-		_properties.DamageRegularMax += 75;
-		_properties.DamageArmorMult *= 0.8;
+		return this.skill.isUsable() && !this.m.IsSpent;
+	}
+
+	function onAnySkillUsed( _skill, _targetEntity, _properties )
+	{
+		if (_skill == this)
+		{
+			_properties.DamageRegularMin += 45;
+			_properties.DamageRegularMax += 75;
+			_properties.DamageArmorMult *= 0.8;
+		}
 	}
 
 	function onUse( _user, _targetTile )
 	{
+		if (this.m.IsRestrained)
+		{
+			this.m.IsSpent = true;
+		}
 		return this.attackEntity(_user, _targetTile.getEntity());
+	}
+
+	function onTurnStart()
+	{
+		this.m.IsSpent = false;
 	}
 
 });

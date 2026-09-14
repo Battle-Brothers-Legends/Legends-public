@@ -3,9 +3,9 @@
 	local isViableTarget = o.isViableTarget;
 	o.isViableTarget = function  ( _user, _target )
 	{
-		ret = isViableTarget( _user, _target );
-	
-		if (_target.getSkills().hasSkill("effects.legend_intensely_charmed"))
+		local ret = isViableTarget( _user, _target );
+
+		if (_target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))
 		{
 			return false;
 		}
@@ -24,7 +24,7 @@
 		{
 			local bonus = _targetTile.getDistanceTo(_user.getTile()) == 1 ? -5 : 0;
 
-			if (target.getSkills().hasSkill("background.eunuch") || target.getSkills().hasTrait(::Legends.Trait.Player) || target.getSkills().hasTrait(::Legends.Trait.Loyal))
+			if (target.getSkills().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Eunuch)) || target.getSkills().hasTrait(::Legends.Trait.Player) || target.getSkills().hasTrait(::Legends.Trait.Loyal))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
@@ -39,7 +39,7 @@
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to his resolve");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
@@ -49,7 +49,7 @@
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to his resolve");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
@@ -59,17 +59,18 @@
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to his unnatural physiology");
+					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to unnatural physiology");
 				}
 
 				return false;
 			}
 
 			this.m.Slaves.push(target.getID());
-			local charmed = this.new("scripts/skills/effects/charmed_effect");
-			charmed.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
-			charmed.setMaster(self);
-			target.getSkills().add(charmed);
+
+			::Legends.Effects.grant(target, ::Legends.Effect.Charmed, function(_effect) {
+				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMaster(self);
+			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{

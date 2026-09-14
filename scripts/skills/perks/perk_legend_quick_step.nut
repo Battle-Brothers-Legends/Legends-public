@@ -2,25 +2,20 @@ this.perk_legend_quick_step <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendQuickStep);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendQuickStep);
 	}
 
 	function onAdded()
 	{
-		if (!this.m.Container.hasSkill("actives.legend_quick_step"))
+		if (!this.m.Container.hasActive(::Legends.Active.LegendQuickStep))
 		{
-			this.m.Container.add(this.new("scripts/skills/actives/legend_quick_step_skill"));
+			::Legends.Actives.grant(this, ::Legends.Active.LegendQuickStep);
 		}
 	}
 
 	function onRemoved()
 	{
-		this.m.Container.removeByID("actives.legend_quick_step");
+		::Legends.Actives.remove(this, ::Legends.Active.LegendQuickStep);
 	}
 
 });

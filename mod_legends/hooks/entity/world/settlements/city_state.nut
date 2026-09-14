@@ -1,66 +1,25 @@
-::mods_hookExactClass("entity/world/settlements/city_state", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/city_state", function(o) {
 
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function() {
 		create();
 		this.m.FemaleDraftList = [
-			"legend_qiyan_background"
+			::Legends.Background.LegendBellyDancer,
+			::Legends.Background.LegendDisownedNobleRanged,
 		];
-		this.m.DraftList = [
-			"beggar_southern_background",
-			"beggar_southern_background",
-			"butcher_southern_background",
-			"caravan_hand_southern_background",
-			"caravan_hand_southern_background",
-			"caravan_hand_southern_background",
-			"gambler_southern_background",
-			"daytaler_southern_background",
-			"daytaler_southern_background",
-			"historian_southern_background",
-			"peddler_southern_background",
-			"peddler_southern_background",
-			"servant_southern_background",
-			"shepherd_southern_background",
-			"shepherd_southern_background",
-			"tailor_southern_background",
-			"thief_southern_background",
-			"disowned_noble_background",
-			"sellsword_background",
-			"cripple_southern_background",
-			"eunuch_southern_background",
-			"slave_background",
-			"slave_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"slave_southern_background",
-			"manhunter_background",
-			"manhunter_background",
-			"nomad_background",
-			"nomad_background",
-			"nomad_ranged_background",
-			"juggler_southern_background",
-			"assassin_southern_background",
-			"legend_muladi_background",
-			"legend_dervish_background",
-			"beast_hunter_background"
-		];
+		this.m.DraftList.extend([
+			::Legends.Background.JugglerSouthern,
+			::Legends.Background.LegendMuladi,
+			::Legends.Background.LegendDervish,
+			::Legends.Background.BeastSlayer
+		]);
 	}
 
-	o.getSpriteName <- function ()
-	{
+	o.getSpriteName <- function() {
 		return this.m.Sprite;
 	}
 
-	o.buildNewLocation <- function ()
-	{
+	o.buildNewLocation <- function() {
 		local ALL = [
 			this.Const.World.TerrainType.Plains,
 			this.Const.World.TerrainType.Steppe,
@@ -146,27 +105,19 @@
 			}],
 
 
-		]
+		];
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	local onBuild = o.onBuild;
-	o.onBuild = function ( _settings = null)
-	{
-		onBuild();
-	}
-
-	o.onSerialize <- function ( _out )
-	{
+	o.onSerialize <- function(_out) {
 		this.settlement.onSerialize(_out);
 		_out.writeU8(this.m.AttachedLocationsMax);
 	}
 
-	o.onDeserialize <- function ( _in )
-	{
+	o.onDeserialize <- function(_in) {
 		this.settlement.onDeserialize(_in);
 		this.m.AttachedLocationsMax = _in.readU8();
 	}

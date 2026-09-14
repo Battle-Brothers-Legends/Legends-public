@@ -1,0 +1,27 @@
+name: On new version published
+
+on:
+  release:
+    types: [published]
+
+jobs:
+  discord-announcement:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Send Discord Notification
+        uses: sarisia/actions-status-discord@v1
+        with:
+          webhook: ${{ secrets.DISCORD_RELEASE_BOT }}
+          nodetail: true
+          nocontext: true
+          nofooter: true
+          notitle: true
+          notimestamp: true
+          ack_no_webhook: true
+          title: |
+            New version released!
+          description: |
+            ${{ github.event.release.body }}
+          color: 0x2ecc71
+          content: |
+            ## [Download ${{ github.event.release.name }} from github](${{ github.event.release.html_url }})

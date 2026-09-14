@@ -1,0 +1,142 @@
+::mods_hookExactClass("skills/backgrounds/nomad_background", function(o)
+{
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Nomad);
+		this.m.BackgroundDescription = "Any nomad that survived out in the desert will have some expertise in fighting.";
+		this.m.GoodEnding = "The nomad %name% left the %companyname% a few months after yourself. %they% apparently traveled south and now leads what they\'re calling the \'City on Legs,\' a huge band of peoples that roam the deserts. It is apparently so rich and successful a society that the Viziers worry their own people will flock to it.";
+		this.m.BadEnding = "You learned that %name% the nomad departed the company with the hope of finding new plains to roam. Apparently, %they% got the idea in %their% head that %they% would travel far to the north and land cozily with the barbarians there. To %their% credit, the barbarians and nomads share a similar lifestyle, culture, language, religion, laws, struggles, conflicts, and general appearances aside. The nomad was butchered almost instantly upon entrance to a barbarian encampment and %their% remains eaten in a warrior ritual.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure)
+		];
+		this.m.Titles = [
+			"the Desert Raider",
+			"of the Desert",
+			"Son of the Desert",
+			"the Desert Scourge",
+			"the Scorpion",
+			"the Nomad",
+			"Redsands",
+			"the Hyena",
+			"the Hawk",
+			"the Serpent",
+			"the Free",
+			"the Wanderer",
+			"the Waylayer"
+		];
+		this.m.Ethnicity = ::Math.rand(1, 2);
+		this.m.Names = this.Const.Strings.SouthernNames;
+		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Level = this.Math.rand(2, 4);
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
+	}
+
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernMuscular, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 90);
+		}
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanMale, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 90);
+		}
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		return "{Like many southerners, %name% is someone who grew up in the desert, roaming the dunes and waylaying caravans and lost travelers alike. | Born into one of the South\'s many desert tribes, %name% learned the ways of the sands before they learned anything else. | Nomads pepper the southern deserts and it is in one of these roaming bands that %name% was born. | True nomads are a rare find in the cities of the south and %name% is no different. | You rarely see a nomad outside their element in the dunes of the southern sands, but %name% stands, darkly tanned and gritting %themselves% again.} {However, nomadic politics are a mite complicated. Some event, which the nomad-turned-sellsword refuses to explain, ushered %them% into the cities looking for work. | A rule of %their% tribe is that every third child must travel out to see the world and, if they so wish, return. So, here %name% stands. | Accused of sexual impropriety with a woman not formally gifted to %them%, %name% was faced with execution or exile from the tribe. Their breathing and standing before you hints at which of the two they chose. | Having murdered one of their fellow tribesman over a gambling debt, the nomad was exiled from %their% tribe. | But a disastrous ambush, which they were responsible for planning, saw %them% voted out of their particular tribe. | But the nomad wished to see more of the world, to see %themselves% as more than what %they% could muster within the confines of their tribe, and so they left and ventured to the cities for adventurous work.} {The nomad stands before you every bit of their upbringing: darkly toned, eyes black, hands sanded down. If they\'s not a warrior already, they presumably could be trained into one with time. | As a %person% of the unbearable sands of the south, it\'s no surprise that the nomad is physically ready to take on the tasks of sellswording. Whether the skills are there is another matter entirely. | Men who venture the desert wastes are a hardy lot and %name% is no different. | Nomads such as %name% earn most of their combat experience ambushing caravans. It could be of use in a mercenary band, though frontline work is a fair bit different than waylaying poor merchants. | %name% is every bit of the South as you expect: worn down by the sands, yet standing with the constitution of a %person% ready to take on the day and all those to come. | %name% is unlikely to be a trained and skilled fighter quite yet, but as a %person% of the southern wastes there is little doubt that they have the heart and spirit of a warrior.}";
+	}
+
+	o.updateAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+
+		if (tattoo_body.HasBrush)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		}
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Nomad);
+	}
+
+	o.onAdded <- function ()
+	{
+		this.character_background.onAdded();
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendThrowSand);
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local items = this.getContainer().getActor().getItems();
+		local r;
+		r = this.Math.rand(0, 4);
+
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/weapons/falchion"));
+		}
+		else if (r == 1)
+		{
+			items.equip(this.new("scripts/items/weapons/oriental/saif"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/oriental/nomad_mace"));
+		}
+		else if (r == 3)
+		{
+			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
+		}
+		else if (r == 4)
+		{
+			items.equip(this.new("scripts/items/weapons/militia_spear"));
+		}
+
+		r = this.Math.rand(0, 0);
+
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/shields/oriental/southern_light_shield"));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Southern.nomad_robe],
+			[1, ::Legends.Armor.Southern.thick_nomad_robe],
+			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
+			[1, ::Legends.Armor.Southern.leather_nomad_robe]
+		]));
+
+		local helm = this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
+			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
+			[1, ::Legends.Helmet.Southern.nomad_light_helmet]
+		]);
+		items.equip(helm);
+	}
+
+});

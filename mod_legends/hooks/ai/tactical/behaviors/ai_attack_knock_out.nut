@@ -1,10 +1,12 @@
 ::mods_hookExactClass("ai/tactical/behaviors/ai_attack_knock_out", function ( o )
 {
 	o.m.PossibleSkills.extend([
-		"actives.legend_staff_knock_out",
-		"actives.legend_grapple",
-		"actives.legend_buckler_bash",
-		"actives.legend_ninetails_disarm"
+		::Legends.Actives.getID(::Legends.Active.LegendGrapple),
+		::Legends.Actives.getID(::Legends.Active.LegendBucklerBash),
+		::Legends.Actives.getID(::Legends.Active.LegendNinetailsDisarm),
+		::Legends.Actives.getID(::Legends.Active.LegendWarforkDisarm),
+		::Legends.Actives.getID(::Legends.Active.LegendDebilitate),
+		::Legends.Actives.getID(::Legends.Active.LegendWhipDebilitate)
 	]);
 
 	local getBestTarget = o.getBestTarget;
@@ -23,12 +25,12 @@
 		}
 
 		local getBestTarget = getBestTarget(_entity, _skill, _targets);
-		
+
 		while( resume getBestTarget == null)
 		{
 			yield null;
 		}
-		
+
 		return getBestTarget;
 	};
 });

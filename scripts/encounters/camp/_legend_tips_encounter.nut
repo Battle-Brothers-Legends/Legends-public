@@ -3,7 +3,7 @@ this._legend_tips_encounter <- this.inherit("scripts/encounters/encounter", {
 
     },
     function create() {
-        this.createScreens();
+	    this.encounter.create();
 		this.m.Icon = "ui/encounters/encounter_02.png";
 		this.m.Type = "encounter.legend_tips_encounter";
         this.m.Name = "Tips";
@@ -11,7 +11,7 @@ this._legend_tips_encounter <- this.inherit("scripts/encounters/encounter", {
 
     function createScreens() {
         local text = "Here are some tips for you:";
-        foreach(i, tip in ::Const.TipOfTheDay) {
+        foreach(_, tip in ::Const.TipOfTheDay) {
             text = text + "\n- " + tip;
         }
         this.m.Screens.extend([{
@@ -20,14 +20,10 @@ this._legend_tips_encounter <- this.inherit("scripts/encounters/encounter", {
             Text = text,
             Image = "",
             List = [],
-            Options = [
-            {
+            Options = [{
                 Text = "Nice",
-                function getResult(_event) {
-                    return 0;
-                }
-            }
-            ],
+                getResult = @(_event) 0
+            }],
             function start(_event) {}
         }]);
     }

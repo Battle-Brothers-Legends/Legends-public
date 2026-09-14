@@ -2,12 +2,7 @@ this.perk_legend_become_berserker <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendBecomeBerserker);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBecomeBerserker);
 	}
 
 	function onAdded()
@@ -16,7 +11,7 @@ this.perk_legend_become_berserker <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local originalbackground = actor.getBackground().getID();
-		local newbackground = this.new("scripts/skills/backgrounds/legend_berserker_background");
+		local newbackground = ::Legends.Backgrounds.new(::Legends.Background.LegendBerserker);
 		actor.getSkills().removeByID(originalbackground);
 		actor.getSkills().add(newbackground);
 	}

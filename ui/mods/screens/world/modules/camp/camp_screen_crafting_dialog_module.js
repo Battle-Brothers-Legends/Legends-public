@@ -54,6 +54,13 @@ var CampScreenCraftingDialogModule = function(_parent)
 	this.mFilterMiscButton = null;
 	this.mFilterUsableButton = null;
 
+	// pagination
+	this.mSearch = {
+		ResultButtons : [],
+		ResultPageList : null,
+	};
+	this.mItemPerPage = 4;
+	this.mMaxVisiblePage = 9;
 };
 
 
@@ -178,7 +185,6 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 		self.notifyBackendFilterUsableButtonClicked();
 	}, '', 3);
 
-
 	var listContainerLayout = $('<div class="l-list-container"/>');
 	column.append(listContainerLayout);
 	this.mListContainer = listContainerLayout.createList(8.85);
@@ -186,6 +192,11 @@ CampScreenCraftingDialogModule.prototype.createDIV = function (_parentDiv)
 
 	this.mNoCraftablesLabel = $('<div class="is-no-craftables-hint text-font-medium font-bottom-shadow font-color-description display-none">Nothing can be crafted from your combination of trophies.</div>');
 	listContainerLayout.append(this.mNoCraftablesLabel);
+
+	var pagesContainerLayout = $('<div class="page-bar-row"/>');
+	this.mSearch.ResultPageList = $('<div class="l-search-result-page-bar"/>');
+	pagesContainerLayout.append(this.mSearch.ResultPageList);
+	column.append(pagesContainerLayout);
 
 	// right column
 	column = $('<div class="column is-right"/>');
@@ -306,6 +317,10 @@ CampScreenCraftingDialogModule.prototype.destroyDIV = function ()
 	this.mContainer.remove();
 	this.mContainer = null;
 
+	this.mSearch.ResultPageList.empty();
+	this.mSearch.ResultPageList.remove();
+	this.mSearch.ResultPageList = null;
+
 	this.mQueueList = null;
 	this.mQueueSlots = null;
 };
@@ -358,7 +373,7 @@ CampScreenCraftingDialogModule.prototype.assignItemToSlot = function(_owner, _sl
 		// show amount
 
 		var percentage = Math.round(_item.Percentage) == _item.Percentage ? _item.Percentage : _item.Percentage.toFixed(1);
-		
+
 		_slot.assignListItemAmount('' + percentage +'%', '#ffffff');
 
 		if (_item.Forever)
@@ -517,13 +532,27 @@ CampScreenCraftingDialogModule.prototype.addListEntry = function (_data)
 
 	var imageOffsetX = ('ImageOffsetX' in _data ? _data['ImageOffsetX'] : 0);
 	var imageOffsetY = ('ImageOffsetY' in _data ? _data['ImageOffsetY'] : 0);
-	var image = column.createImage(Path.ITEMS + _data['ImagePath'], function (_image)
-	{
+
+	var overlays = ('IconOverlay' in _data && _data.IconOverlay !== null && _data.IconOverlay.length > 1) ? _data.IconOverlay : [_data['ImagePath']];
+	var image = column.createImage(Path.ITEMS + overlays[0], function (_image) {
 		_image.centerImageWithinParent(imageOffsetX, imageOffsetY, 0.64, false);
 		_image.removeClass('opacity-none');
+		var parent = _image.parent();
+		for (var i = 1; i < overlays.length; ++i) {
+			if (overlays[i] !== "") {
+				var overlayImage = $('<img/>');
+				overlayImage.attr('src', Path.ITEMS + overlays[i]);
+				overlayImage.css({
+					'width': _image.css('width'),
+					'height': _image.css('height'),
+					'pointer-events': 'none'
+				});
+				parent.append(overlayImage);
+			}
+		}
 	}, null, 'opacity-none');
 	image.bindTooltip({ contentType: 'ui-item', itemId: _data.ID, itemOwner: 'craft' });
-	if(_data.isAmountShown) 
+	if(_data.isAmountShown)
 	{
 		var amountLayer =$('<div class="amount-layer display-block"/>');
 		column.append(amountLayer);
@@ -867,9 +896,14 @@ CampScreenCraftingDialogModule.prototype.loadFromData = function (_data)
 		return;
 	}
 
-	if('Title' in _data && _data.Title !== null)
-	{
+	if('Title' in _data && _data.Title !== null) {
 		 this.mDialogContainer.findDialogTitle().html(_data.Title);
+
+		 if(_data.Title === "Crafting")	{
+			this.mFilterPanel.removeClass('display-none').addClass('display-block');
+		} else {
+			this.mFilterPanel.removeClass('display-block').addClass('display-none');
+		}
 	}
 
 	if('SubTitle' in _data && _data.SubTitle !== null)
@@ -901,6 +935,8 @@ CampScreenCraftingDialogModule.prototype.loadFromData = function (_data)
 			{
 				this.addListEntry(_data.Blueprints[i]);
 			}
+
+			this.createResultPageButton(_data.CurrentPage, _data.Pages);
 		}
 		else
 		{
@@ -1023,6 +1059,44 @@ CampScreenCraftingDialogModule.prototype.createImageButton = function (_parentDi
 	}
 };
 
+CampScreenCraftingDialogModule.prototype.createResultPageButton = function(_currentPage, _pages)
+{
+	var self = this;
+	this.mSearch.ResultPageList.empty();
+	this.mSearch.ResultButtons = [];
+
+	var previousButtonLayout = $('<div class="l-flex-button-39-39"/>');
+	this.mSearch.ResultPageList.append(previousButtonLayout);
+	var previousButton = previousButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_left.png', function(_button) {
+		self.notifyBackendPageChanged({ID: Math.max(0, _currentPage - 1)})
+	}, '', 10);
+	previousButton.enableButton(_currentPage != 0);
+
+	var startPage = 0;
+	if (_currentPage >= _pages - Math.floor(this.mMaxVisiblePage / 2)) {
+		startPage = Math.max(0, _pages - this.mMaxVisiblePage);
+	} else {
+		startPage = Math.max(0, _currentPage - Math.floor(this.mMaxVisiblePage / 2));
+	}
+
+	for (var i = startPage; i < startPage + this.mMaxVisiblePage && i < _pages; i++) {
+		var buttonLayout = $('<div class="l-flex-button-39-39"/>');
+		this.mSearch.ResultPageList.append(buttonLayout);
+		var button = buttonLayout.createTextButton('' + (i + 1) + '', function(_button) {
+			self.notifyBackendPageChanged({ID: _button.data('page')})
+		}, '', 10);
+		button.data('page', i);
+		button.enableButton(i != _currentPage);
+		this.mSearch.ResultButtons.push(button);
+	}
+
+	var nextButtonLayout = $('<div class="l-flex-button-39-39"/>');
+	this.mSearch.ResultPageList.append(nextButtonLayout);
+	var nextButton = nextButtonLayout.createImageButton(Path.GFX + 'ui/buttons/arrow_right.png', function(_button) {
+		self.notifyBackendPageChanged({ID: Math.min(_pages, _currentPage + 1)})
+	}, '', 10);
+	nextButton.enableButton(_currentPage != _pages - 1);
+}
 
 CampScreenCraftingDialogModule.prototype.notifyBackendModuleShown = function ()
 {
@@ -1091,4 +1165,8 @@ CampScreenCraftingDialogModule.prototype.notifyBackendFilterMiscButtonClicked = 
 
 CampScreenCraftingDialogModule.prototype.notifyBackendFilterUsableButtonClicked = function () {
 	SQ.call(this.mSQHandle, 'onFilterUsable');
+};
+
+CampScreenCraftingDialogModule.prototype.notifyBackendPageChanged = function (_pageID) {
+	SQ.call(this.mSQHandle, 'onPageChange', _pageID, null);
 };

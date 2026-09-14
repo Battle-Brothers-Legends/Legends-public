@@ -209,7 +209,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		this.m.Screens.push({ //flavour
 			ID = "Banter",
 			Title = "Along the way...",
-			Text = "[img]gfx/ui/events/event_25.png[/img]{You smell it before you see it, but you still almost trip over the half decomposed carcass of a giant bird. %randombrother% is not so lucky, and trips over the wing to disturb a flurry of flies and worms. %SPEECH_ON%Farkin\' \'ell%SPEECH_OFF% As they brush the slime from their boots, you notice the sheer size of this monster and the pointed beak which is still sharp enough cut your hand on. The eyes have been picked out and the feathers are ruined - what meat remains has spoiled here in the heat on the forest floor. | %companyname% trapises further into the woods, part of the land far from the eyes and care of men. A large nest, much larger than that of what you are hunting, lies in a ditch below a thick treeline. Bones of large animals and men litter the nest and surrounding area - some remains are crushed or torn apart while others are only missing hands or feet. %randombro% picks through the remains %SPEECH_ON%Lizard nest. Not what we\'re here for, long gone by the looks of things...%SPEECH_OFF% You noticed some eggs within the nest differ slightly in size and shape. | You come across a ditch that is filled with a stagnant pool of filth and remains. Various corpses of both animal and man litter this place, some obviously dragged dead while others were more more alive.}",
+			Text = "[img]gfx/ui/events/event_25.png[/img]{You smell it before you see it, but you still almost trip over the half decomposed carcass of a giant bird. %randombrother% is not so lucky, and trips over the wing to disturb a flurry of flies and worms. %SPEECH_ON%Farkin\' \'ell%SPEECH_OFF% As they brush the slime from their boots, you notice the sheer size of this monster and the pointed beak which is still sharp enough cut your hand on. The eyes have been picked out and the feathers are ruined - what meat remains has spoiled here in the heat on the forest floor. | %companyname% traipses further into the woods, part of the land far from the eyes and care of men. A large nest, much larger than that of what you are hunting, lies in a ditch below a thick treeline. Bones of large animals and men litter the nest and surrounding area - some remains are crushed or torn apart while others are only missing hands or feet. %randombrother% picks through the remains %SPEECH_ON%Lizard nest. Not what we\'re here for, long gone by the looks of things...%SPEECH_OFF% You noticed some eggs within the nest differ slightly in size and shape. | You come across a ditch that is filled with a stagnant pool of filth and remains. Various corpses of both animal and man litter this place, some obviously dragged dead while others were more more alive.}",
 			Image = "",
 			List = [],
 			Options = [
@@ -361,9 +361,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 			{
 				local roster = this.World.getTemporaryRoster();
 				this.Contract.m.Dude = roster.create("scripts/entity/tactical/player");
-				this.Contract.m.Dude.setStartValuesEx([
-					"hunter_background"
-				]);
+				this.Contract.m.Dude.setStartValuesEx([::Legends.Background.Hunter]);
 
 				if (!this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.FearBeasts) && !this.Contract.m.Dude.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 				{
@@ -465,7 +463,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.legend_guildmaster")
+			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster))
 			{
 				candidates_beastslayer.push(bro);
 			}
@@ -525,7 +523,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A stampede of basilisks hunting for food");
 		party.setFootprintType(this.Const.World.FootprintsType.Basilisks);
 		party.setAttackableByAI(false);

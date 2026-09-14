@@ -4,7 +4,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		this.m.ID = "scenario.legends_assassin";
 		this.m.Name = "Assassin";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_51.png[/img][/p][p] An assassin down on their luck with limitied supplies. \n\n[color=#bcad8c]Dirty Deeds:[/color] You will grant the Backstabber perk to anyone who joins you. \n[color=#bcad8c]Underworld:[/color] You have a small chance of finding other Assassins for hire. Outlaws are 50% cheaper to hire and maintain, all other backgrounds are the same cost.\n[color=#bcad8c]Avatar:[/color] Begin alone. If you die, it is game over.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_51.png[/img][/p][p] An assassin down on their luck with limited supplies. \n\n[color=#bcad8c]Dirty Deeds:[/color] You will grant the Backstabber perk to anyone who joins you. \n[color=#bcad8c]Underworld:[/color] You have a small chance of finding other Assassins for hire. Outlaws are 50% cheaper to hire and maintain, all other backgrounds are the same cost.\n[color=#bcad8c]Avatar:[/color] Begin alone. If you die, it is game over.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 20;
 		this.m.IsFixedLook = true;
@@ -17,12 +17,10 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
-		bro.setStartValuesEx([
-			"legend_assassin_commander_background"
-		]);
+		bro.setStartValuesEx([::Legends.Background.LegendCommanderAssassin]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.Backstabber);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LoneWolf);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Backstabber);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LoneWolf);
 		bro.m.PerkPointsSpent += 2;
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
@@ -30,9 +28,14 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
  		bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
 		bro.getSprite("miniboss").setBrush("bust_miniboss_assassin"); //custom bust for avatar only
 
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/signet_ring_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/jade_broche_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/accessory/cat_potion_item"));
+		local stash = this.World.Assets.getStash();
+		stash.removeByID("supplies.ground_grains");
+		stash.removeByID("supplies.ground_grains");
+		stash.add(this.new("scripts/items/supplies/rice_item"));
+		stash.add(this.new("scripts/items/supplies/dried_lamb_item"));
+		stash.add(this.new("scripts/items/loot/signet_ring_item"));
+		stash.add(this.new("scripts/items/loot/jade_broche_item"));
+		stash.add(this.new("scripts/items/accessory/cat_potion_item"));
 		this.World.Assets.m.Money = this.World.Assets.m.Money * 0.5;
 		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine * 0.5;
 		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 0.5;
@@ -126,45 +129,47 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 
 	function onUpdateHiringRoster( _roster )
 	{
-		this.addBroToRoster(_roster, "assassin_background", 11);
-		this.addBroToRoster(_roster, "assassin_southern_background", 11);
-		this.addBroToRoster(_roster, "legend_bounty_hunter_background", 11); // Increased this since it is seemingly much stronger than standard assassins.
-		this.addBroToRoster(_roster, "thief_background", 7);
-		this.addBroToRoster(_roster, "killer_on_the_run_background", 7);
+		this.addBroToRoster(_roster, ::Legends.Background.Assassin, 11);
+		this.addBroToRoster(_roster, ::Legends.Background.AssassinSouthern, 11);
+		this.addBroToRoster(_roster, ::Legends.Background.KillerOnTheRun, 7);
+		this.addBroToRoster(_roster, ::Legends.Background.Thief, 7);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendBountyHunter, 11); // Increased this since it is seemingly much stronger than standard assassins.		
 	}
 
 	function onGenerateBro(bro)
 	{
 		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw)) // if bro is NOT an outlaw then....
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5) //1.0 = default
+			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.5; //1.0 = default
 			bro.getSkills().update();
 		}
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		if (_bro.isStabled())
+			return;
+		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.worsenMood(1.0, "Is uncomfortable with joining an assassin");
+			_bro.worsenMood(1.0, "Is uncomfortable with joining an assassin");
 		}
-		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
 		{
-			bro.improveMood(1.0, "Is excited at becoming part of outlaw company");
- 			bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
+			_bro.improveMood(1.0, "Is excited at becoming part of outlaw company");
+ 			_bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
 		}
 	}
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.Backstabber);
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Backstabber);
 	}
 
 });

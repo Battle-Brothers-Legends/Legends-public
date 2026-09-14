@@ -8,7 +8,6 @@
 		this.m.Description = "A vicious bite with a 15% increased chance to hit the head. Infects on legendary difficulty. Will revive humanoid enemies as allied Wiedergangers if dealt as a killing blow.";
 		this.m.IconDisabled = "skills/active_24_bw.png";
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 2;
-		this.m.IsIgnoredAsAOO = true;
 	}
 
 	o.getTooltip <- function ()
@@ -26,12 +25,10 @@
 		{
 			if (!target.getCurrentProperties().IsImmuneToPoison && ::Legends.isLegendaryDifficulty() && hp - target.getHitpoints() >= this.Const.Combat.PoisonEffectMinDamage)
 			{
-				local effect = this.new("scripts/skills/effects/legend_zombie_poison_effect");
-				target.getSkills().add(effect);
+				::Legends.Effects.grant(target, ::Legends.Effect.LegendZombiePoison);
 			}
-
-			return success;
 		}
+		return success;
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
@@ -105,5 +102,17 @@
 
 	o.onUpdate = function ( _properties )
 	{
+	}
+
+	o.onAfterUpdate <- function ( _properties )
+	{
+		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+		{
+			this.m.IsIgnoredAsAOO = true;
+		}
+		else
+		{
+			this.m.IsIgnoredAsAOO = false;
+		}
 	}
 });

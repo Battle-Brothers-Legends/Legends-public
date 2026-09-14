@@ -3,7 +3,7 @@ this.legend_tower_shield_blueprint <- this.inherit("scripts/crafting/blueprint",
 	function create()
 	{
 		this.blueprint.create();
-		this.m.ID = "blueprint.legend_tower_shield_blueprint";
+		this.m.ID = "blueprint.legend_tower_shield";
 		this.m.Type = this.Const.Items.ItemType.Shield;
 		this.m.PreviewCraftable = this.new("scripts/items/shields/legend_tower_shield");
 		this.m.PreviewCraftable.m.Name = "Company Tower Shield";
@@ -11,14 +11,15 @@ this.legend_tower_shield_blueprint <- this.inherit("scripts/crafting/blueprint",
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/quality_wood_item",
-				Num = 3
+				Num = 2
+			},
+			{
+				Script = "scripts/items/trade/legend_iron_ingots_item",
+				Num = 1
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendWoodworking)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 
 	function onCraft( _stash )

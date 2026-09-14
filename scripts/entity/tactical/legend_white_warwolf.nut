@@ -187,6 +187,46 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
+	function setVariant(_v, _c, _s, _hp = 1.0)
+	{
+		this.m.Items.getAppearance().Body = "bust_direwolf_white_tame_0" + _v + "_body";
+		this.m.Items.getAppearance().Armor = "bust_wolf_02_armor_01";
+
+		local body = getSprite("body");
+		local head = getSprite("head");
+
+		if(_hp != 1.0) { //goblin riders still spawn regular ones
+			body.setBrush("bust_direwolf_white_01_body");
+			head.setBrush("bust_direwolf_white_01_head");
+		}
+		else {
+			body.setBrush("bust_direwolf_white_tame_0" + _v + "_body");
+			head.setBrush("bust_direwolf_white_tame_0" + _v + "_head");
+		}
+		body.Color = _c;
+		body.Saturation = _s;
+
+		head.Color = _c;
+		head.Saturation = _s;
+
+		local armor = this.addSprite("armor");
+		armor.setBrush("bust_wolf_02_armor_01");
+		armor.Visible = false;
+
+		if(_hp != 1.0)
+		{
+			local c = this.m.CurrentProperties;
+			this.m.Hitpoints = this.getHitpointsMax() * _hp;
+			c.Armor[this.Const.BodyPart.Body] = c.Armor[this.Const.BodyPart.Body] * _hp;
+			c.Armor[this.Const.BodyPart.Head] = c.Armor[this.Const.BodyPart.Head] * _hp;
+			this.onUpdateInjuryLayer();
+		}
+		else
+		{
+			this.setDirty(true);
+		}
+	}
+
 	function onInit()
 	{
 		this.actor.onInit();
@@ -223,18 +263,18 @@ this.legend_white_warwolf <- this.inherit("scripts/entity/tactical/actor", {
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.58;
 		this.setSpriteOffset("status_rooted", this.createVec(-6, -29));
-		this.m.Skills.add(this.new("scripts/skills/actives/wolf_bite"));
+		::Legends.Actives.grant(this, ::Legends.Active.WolfBite);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_white_wolf_howl_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendWhiteWolfHowl);
 		::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
-		this.m.Skills.add(this.new("scripts/skills/racial/legend_werewolf_racial"));
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendWerewolf);
 	}
 
 });

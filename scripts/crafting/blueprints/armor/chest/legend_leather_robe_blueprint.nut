@@ -18,16 +18,15 @@ this.legend_leather_robe_blueprint <- this.inherit("scripts/crafting/blueprint",
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendSpecCultArmor)
-		];
-		this.initSkills(skills);
+		this.initSkills([
+			::Legends.Perks.new(::Legends.Perk.LegendSpecCultArmor),
+			::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)
+		]);
 	}
 
 	function onCraft( _stash )
 	{
 		local item = this.new("scripts/items/legend_armor/plate/legend_armor_cult_armor");
-		item.setVariant(this.m.PreviewCraftable.m.Variant);
 		_stash.add(item);
 		item = this.new("scripts/items/legend_armor/plate/legend_armor_cult_armor");
 		_stash.add(item);

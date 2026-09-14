@@ -1,48 +1,59 @@
-this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/legend_named_armor", {
-	m = {},
+this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
+	m = {
+		Potential = {
+			Condition = { min = 250, max = 250 },
+			StaminaModifier = { min = 32, max = 32 },
+		}
+	},
 	function create()
 	{
-		this.legend_named_armor.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
+		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.legend_mountain_armor_named";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "";
-		this.m.NameList = [
-			"Titan Coat",
-			"Mountain Hide",
-			"Giant\'s Coat",
-			"Earthquake Harness",
-			"Landslide Coat",
-			"Boulder Plates",
-			"Coat of the Mountain"
-		];
-		this.m.Description = "Armor crafted from the skin and bones of a mighty rock unhold, the beast may be dead, but it continues to mend itself even after death.";
-		this.m.SlotType = this.Const.ItemSlot.Body;
-		this.m.IsDroppedAsLoot = true;
-		this.m.ShowOnCharacter = true;
-		this.m.IsIndestructible = true;
-		this.m.Variant = 516;
+		this.m.Description = "An armor crafted from the skin and bones of a mighty rock unhold. It continues to mend itself even after the beast's death.";
+		this.m.ArmorDescription = "Includes a mighty rock unhold plate.";
+		this.m.Variants = [1, 2];
+		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
 		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.Value = 10000;
-		this.m.Condition = 320;
-		this.m.ConditionMax = 320;
-		this.m.StaminaModifier = -42;
+		this.m.Value = 7500;
 		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
-		this.blockUpgrades();
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Attachment] = false
-		this.m.Blocked[ this.Const.Items.ArmorUpgrades.Rune] = false
 		this.randomizeValues();
+		this.m.NameList = ["Titan Coat","Mountain Hide","Giant\'s Coat","Earthquake Harness","Landslide Coat","Boulder Plates","Coat of the Mountain"];
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "mountain_armor_" + variant + "";
+		this.m.SpriteDamagedBack = "mountain_armor_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "mountain_armor_" + variant + "_dead";
+		this.m.Icon = "legend_armor/icon_mountain_armor_" + variant + ".png";
+		this.m.IconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
+		this.m.OverlayIcon = "legend_armor/icon_mountain_armor_" + variant + ".png";
+		this.m.OverlayIconLarge = "legend_armor/inventory_mountain_armor_"  + variant + ".png";
+	}
+
+	function onArmorTooltip( _result )
+	{
+		_result.push({
+			id = 6,
+			type = "text",
+			icon = "ui/icons/health.png",
+			text = "Repairs [color=%positive%]10%[/color] of its armor each turn"
+		});
 	}
 
 	function getTooltip()
 	{
-		local result = this.legend_armor.getTooltip();
+		local result = this.legend_named_armor_upgrade.getTooltip();
 		result.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "Repairs [color=" + this.Const.UI.Color.PositiveValue + "]10%[/color] of its armor each turn"
+			text = "Repairs [color=%positive%]10%[/color] of its armor each turn"
 		});
 		return result;
 	}
@@ -50,7 +61,7 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 	function onCombatFinished()
 	{
 		this.m.Condition = this.m.ConditionMax;
-		this.updateAppearance();
+		this.getContainer().getActor().setDirty(true);
 	}
 
 	function onTurnStart()
@@ -76,6 +87,5 @@ this.legend_armor_mountain_named <- this.inherit("scripts/items/legend_armor/leg
 			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + bodyAdded + " points");
 		}
 	}
-
 });
 

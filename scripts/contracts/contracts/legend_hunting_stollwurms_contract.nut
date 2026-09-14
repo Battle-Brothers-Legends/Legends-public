@@ -4,8 +4,10 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyLindwurm,
-		ValidTypes = this.Const.LegendMod.FavoriteLindwurm
+		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		ValidTypes = this.Const.LegendMod.FavoriteBeast,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function create()
 	{
@@ -19,6 +21,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 			"Stollwurms scales are as hard as iron. Some tribes worship these apex predators as gods.",
 			"Blessed are the maker stollwurms, whose passage cleanses the world. You don\'t believe that farkin\' nonsense of course.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
@@ -563,7 +566,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 						this.World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
 						this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
 						this.World.Assets.getStash().add(this.new("scripts/items/supplies/ammo_item"));
-						this.World.Assets.getStash().add(this.new("scripts/items/loot/armor_parts_item"));
+						this.World.Assets.getStash().add(this.new("scripts/items/supplies/armor_parts_item"));
 						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of stollwurms");
 						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Hero of the land");
 						this.World.Contracts.finishActiveContract();
@@ -612,7 +615,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 			this.Const.World.TerrainType.Mountains
 		]);
 		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 7);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Stollwurm", false, this.Const.World.Spawn.LegendStollwurm, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Stollwurm", false, this.Const.World.Spawn.LegendStollwurm, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		party.setDescription("A Stollwurm - a burrowing bipedal dragon resembling a giant snake.");
 		party.setAttackableByAI(false);
@@ -683,22 +686,19 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -711,7 +711,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -723,9 +723,8 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

@@ -8,7 +8,7 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A sturdy staff, good for walking and whacking";
 		this.m.IconLarge = "weapons/melee/legend_staff_01.png";
 		this.m.Icon = "weapons/melee/legend_staff_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Staff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Polearm | this.Const.Items.WeaponType.Staff;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -34,12 +34,15 @@ this.legend_staff <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		local s = this.new("scripts/skills/actives/bash");
-		s.m.IsStaffBash = true;
-		this.addSkill(s);
-		s = this.new("scripts/skills/actives/knock_out")
-		s.m.IsStaffKnockOut = true;
-		this.addSkill(s);
+		::Legends.Actives.grant(this, ::Legends.Active.Bash, function (_skill) {
+			_skill.m.IsStaffBash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.KnockOut, function (_skill) {
+			_skill.m.IsStaffKnockOut = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Riposte, function (_skill) {
+			_skill.m.IsStaff = true;
+		}.bindenv(this));
 	}
 
 });

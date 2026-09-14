@@ -1,0 +1,113 @@
+::mods_hookExactClass("skills/backgrounds/squire_background", function (o) {
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Squire);
+		this.m.BackgroundDescription = "Squires usually have received some training in warfare, and often have a high resolve to excel in what they do.";
+		this.m.GoodEnding = "%name% the squire eventually left the %companyname%. You\'ve heard that %they're% since been knighted. No doubt %they% is sitting happy as a plum wherever %they% is.";
+		this.m.BadEnding = "The squire, %name%, eventually departed the %companyname%. %They% intended to return home and become knighted, fulfilling %their% lifelong dream. Cruel politics got in the way and not only was %they% not knighted, %they% was stripped of %their% squire duties. Word has it %they% hanged %themselves% from a barn\'s rafters.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Irrational),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Pessimist),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
+		];
+		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax; //Neutral-good essentially
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+	}
+
+	o.getTooltip = function ()
+	{
+		return this.character_background.getTooltip();
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.FemaleMuscular, Faces = ::Const.Faces.PrettyFemale, HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Muscular, Hairs = ::Const.Hair.YoungMale, HairColors = ::Const.HairColors.Young, Beards = ::Const.Beards.Tidy});
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		if(this.isBackgroundType(this.Const.BackgroundType.Female))
+		{
+			return "{A young squire, %name% dutifully accompanied her knight to many battles. | Squire to a harsh knight, %name% spent her days running errands for her lordship. | Although a squire, %name%\'s life largely meant guarding prisoners of war, much to her chagrin. | Squire to a knight, sure, but %name% mostly cleaned latrines, fed dogs, and got far too much use out of a shinebox.} {One night, strange, shuffling men silhouetted the moonlit horizon. Alarm bells met their moans and an hour later half of %townname% lay in ruin. | While traveling, brigands attacked her lordship\'s wagon-train. Swords were drawn, heads were halved, and when it was all said and done the squire had failed: everyone she was supposed to protect lay dead. | But one evening a horde of ferocious, furred creatures came down upon her lord\'s keep. In desperation, %name% let a group of prisoners free, hoping they would aid her in combat. Instead, they slew her lordship and ran off into the night. The squire, bravely, managed to survive, a dozen husky corpses at her feet, but the battle left her alone and without purpose. | Angered by a horrible crime in %townname%, she took matters into her own hands, personally slaying the criminal. A just act, but also an improper one. The young squire was banished for her insubordination. | When a devilish red knight came to %townname% for a duel, %name%\'s knight proved far too sick to fight. After downing a mug of liquid confidence, %name% donned her lordship\'s armor and faced the red knight herself. With a sword slash so fast it rang the very air, %name% slew her opponent down.} {Now there was only one task left for her - to attain knighthood. | Now the squire seeks the company of good folk with which to again prove herself worthy of being a knight. | As war ravages the land, there is now plenty of opportunity to put her skills to use. | Though a bit too earnest, there is no doubt the world needs women like %name%.}";
+		}
+		else
+		{
+			return "{A young squire, %name% dutifully accompanied his knight to many battles. | Squire to a harsh knight, %name% spent his days running errands for his lordship. | Although a squire, %name%\'s life largely meant guarding prisoners of war, much to his chagrin. | Squire to a knight, sure, but %name% mostly cleaned latrines, fed dogs, and got far too much use out of a shinebox.} {One night, strange, shuffling men silhouetted the moonlit horizon. Alarm bells met their moans and an hour later half of %townname% lay in ruin. | While traveling, brigands attacked his lordship\'s wagon-train. Swords were drawn, heads were halved, and when it was all said and done the squire had failed: everyone he was supposed to protect lay dead. | But one evening a horde of ferocious, furred creatures came down upon his lord\'s keep. In desperation, %name% let a group of prisoners free, hoping they would aid him in combat. Instead, they slew his lordship and ran off into the night. The squire, bravely, managed to survive, a dozen husky corpses at his feet, but the battle left him alone and without purpose. | Angered by a horrible crime in %townname%, he took matters into his own hands, personally slaying the criminal. A just act, but also an improper one. The young squire was banished for his insubordination. | When a devilish red knight came to %townname% for a duel, %name%\'s knight proved far too sick to fight. After downing a mug of liquid confidence, %name% donned his lordship\'s armor and faced the red knight himself. With a sword slash so fast it rang the very air, %name% slew his opponent down.} {Now there was only one task left for him - to attain knighthood. | Now the squire seeks the company of good folk with which to again prove himself worthy of being a knight. | As war ravages the land, there is now plenty of opportunity to put his skills to use. | Though a bit too earnest, there is no doubt the world needs men like %name%.}";
+		}
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Squire);
+	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		_properties.XPGainMult *= 1.10;
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local items = this.getContainer().getActor().getItems();
+		local r;
+		r = this.Math.rand(0, 3);
+
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/weapons/shortsword"));
+		}
+		else if (r == 1)
+		{
+			items.equip(this.new("scripts/items/weapons/hatchet"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/winged_mace"));
+		}
+		else if (r == 3)
+		{
+			items.equip(this.new("scripts/items/weapons/boar_spear"));
+		}
+
+		r = this.Math.rand(0, 2);
+
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/shields/wooden_shield"));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[1, ::Legends.Armor.Standard.gambeson]
+		]));
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.nasal_helmet],
+			[1, ::Legends.Helmet.Standard.full_aketon_cap],
+			[1, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.open_leather_cap]
+		]));
+	}
+
+});

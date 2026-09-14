@@ -24,35 +24,33 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		}
 
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"legend_illusionist_background"
-		]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendIllusionist]);
 		bros[0].getBackground().m.RawDescription = "{%name% learned how to entertain on the streets, using slight of hand and magic tricks to dupe unwitting punters out of their coin. Illusion is easier with a distraction, so the choice to join others was easy.}";
 		bros[0].m.PerkPoints = 2;
 		bros[0].m.LevelUps = 2;
 		bros[0].m.Level = 3;
 		bros[0].setPlaceInFormation(13);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPush);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendManipulative);
 		bros[0].m.PerkPointsSpent += 1;
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "jesters_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
-		bros[1].setStartValuesEx(["minstrel_background"],true,0);
+		bros[1].setStartValuesEx([::Legends.Background.Minstrel],true,0);
 		bros[1].getBackground().m.RawDescription = "{%name% worked providing entertainment at inns around the country, but the bar fights and road bandits make it no life for a solo artist. Joining with others was for safety as much as the show.}";
 		bros[1].setPlaceInFormation(12);
 		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendDrumsOfLife);
+		::Legends.Perks.grant(bros[1], ::Legends.Perk.LegendSpecialistMusician);
 
 		bros[1].m.PerkPointsSpent += 1;
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "named/jugglers_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/lute"));
-		bros[2].setStartValuesEx(["minstrel_background"],true,1);
+		bros[2].setStartValuesEx([::Legends.Background.Minstrel],true,1);
 		bros[2].getBackground().m.RawDescription = "{%name% has been in the court of a local noble for years, but the same audience every night grows tiresome. It was time to find a band, hit the road and find some new audiences for their art.}";
 		bros[2].improveMood(1.0, "Got the band back together");
 		bros[2].setPlaceInFormation(4);
@@ -60,27 +58,25 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		bros[2].m.LevelUps = 3;
 		bros[2].m.Level = 4;
 		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendDrumsOfWar);
+		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendSpecialistMusician);
 		bros[2].m.PerkPointsSpent += 1;
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "named/jugglers_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_drum"));
-		bros[3].setStartValuesEx([
-			"juggler_background"
-		]);
+		bros[3].setStartValuesEx([::Legends.Background.Juggler]);
 		bros[3].getBackground().m.RawDescription = "{%name% was juggling and throwing knives in markets, and agreed to join the troupe to improve the show with the skills of others}";
 		bros[3].setPlaceInFormation(13);
 		bros[3].m.PerkPoints = 1;
 		bros[3].m.LevelUps = 1;
 		bros[3].m.Level = 2;
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendLeap);
-		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendPush);
+		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendManipulative);
 		bros[3].m.PerkPointsSpent += 1;
 		local items = bros[3].getItems();
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, "named/jugglers_padded_hat"]]));
+		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_padded_hat]]));
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/greenskins/orc_javelin"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_pie_item"));
@@ -150,20 +146,20 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		bro.improveMood(0.5, "Learned a new skill");
-		::Legends.Perks.grant(bro, ::Legends.Perk.LegendLeap);
+		_bro.improveMood(0.5, "Learned a new skill");
+		::Legends.Perks.grant(_bro, ::Legends.Perk.LegendLeap);
 	}
 
 
-	function onGenerateBro(bro)
+	function onGenerateBro(_bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Performing))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Performing))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
-			bro.getSkills().update();
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 
@@ -173,19 +169,19 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		{
 			return;
 		}
-		_background.m.CustomPerkTree[0].push(this.Const.Perks.PerkDefs.LegendLeap);
+		_background.m.CustomPerkTree[0].push(::Const.Perks.PerkDefs.LegendLeap);
 	}
 
 	function onUpdateHiringRoster( _roster )
 	{
-		this.addBroToRoster(_roster, "beggar_background", 8);
-		this.addBroToRoster(_roster, "minstrel_background", 8);
-		this.addBroToRoster(_roster, "juggler_background", 8);
-		this.addBroToRoster(_roster, "eunuch_background", 8);
-		this.addBroToRoster(_roster, "belly_dancer_background", 8);
-		this.addBroToRoster(_roster, "gambler_background", 8);
-		this.addBroToRoster(_roster, "legend_illusionist_background", 9);
-		this.addBroToRoster(_roster, "legend_dervish_background", 9);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendBellyDancer, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.Beggar, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.Eunuch, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.Gambler, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.Juggler, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.Minstrel, 8);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendDervish, 9);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendIllusionist, 9);
 	}
 
 });

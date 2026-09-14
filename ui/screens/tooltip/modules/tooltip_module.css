@@ -19,12 +19,38 @@
 	padding-bottom: 1.0rem;
 	position : absolute;
 
-	overflow: hidden;
+	overflow: visible;
 	/*pointer-events: none;*/
 
 	background-image: url("coui://gfx/ui/skin/mod_tooltip_255_bottom.png");
 	background-size: 25.5rem 100rem;
 	background-position: bottom;
+}
+
+.tooltip-scroll-wrapper {
+    width: 100%;
+    position: relative; 
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.tooltip-scroll-wrapper::-webkit-scrollbar {
+	display: none;
+    width: 0;
+}
+
+.tooltip-scroll-hint {
+    position: absolute;
+    top: 100%;
+	left: 2px;
+	width: 100%;
+    height: 20px;
+	margin-top: 0.5rem;
+    pointer-events: none;
+	background-image: url("coui://gfx/ui/icons/keyboard_up_down_button_ctrl.png");
+	background-position: center top; 
+    background-repeat: no-repeat;
+    background-size: contain;
 }
 
 .tooltip-module.is-full-width
@@ -39,7 +65,7 @@
 
 .tooltip-module .top-ornament
 {
-	width: 31.5rem;
+	width: 25.5rem;
 	height: 1.3rem;
 	top: -0.3rem;
 	left: -0.3rem;
@@ -287,6 +313,21 @@
 	height: 11.2rem;
 }
 
+.tooltip-module .left-content-container .l-image-container.is-layered-container {
+    position: relative;
+}
+
+.tooltip-module .left-content-container .l-image-container.is-layered-container img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+}
+
+.tooltip-module .left-content-container .l-image-container.is-layered-container img:first-child {
+    position: relative; 
+}
+
 .tooltip-module .left-content-container img
 {
 	width : 100%;
@@ -325,6 +366,24 @@
 	margin-top: 0.4rem;
 }
 
+.row.content-container.is-partial-layer { /* a bit of a hack to move the image into the left column on is-partial-layer as its much easier to track upgrade block heights like this */
+	overflow: visible;
+}
+
+.row.content-container.is-partial-layer .l-left-column {
+    width: 0; 
+	position: relative;
+	margin-left: -7rem;
+}
+
+.row.content-container.is-partial-layer .l-left-column img {
+    width: 5.6rem; 
+    height: auto;
+	position: absolute;
+	top: 0.4rem;
+	left: 0;
+	object-fit: contain;
+}
 
 .tooltip-module .content-container .l-right-column
 {
@@ -569,3 +628,46 @@
 	margin-left: 3rem;
 }
 
+/*Dual Column*/
+.tooltip-module .content-dual-column-container
+{
+	display: flex;
+	width: 100%;
+	/*border: 2px solid rgb(255, 0, 0);*/
+}
+
+.tooltip-module .content-dual-column-container-child
+{
+  display: flex;
+  flex: 1;                /* Each child takes equal space */
+  flex-direction: column;
+  /*border: 2px solid rgb(0,255,0);*/
+}
+
+.tooltip-module .dual-column-row
+{
+	display: flex;
+	width: 100%;
+	flex-direction: row;
+}
+
+.tooltip-module .dual-column-row-label-section
+{
+	width: 3rem;
+}
+
+.tooltip-module .dual-column-row-text-section
+{
+	flex: 1;
+}
+
+.tooltip-module .dual-column-row-label-section .label
+{
+	line-height: 2.0rem;
+}
+
+.tooltip-module .dual-column-row-text-section .text
+{
+	line-height: 2.0rem;
+	text-align: left;
+}

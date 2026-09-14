@@ -1,10 +1,17 @@
-::mods_hookExactClass("entity/tactical/humans/conscript", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/conscript", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.add(this.new("scripts/skills/effects/dodge_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
@@ -55,10 +62,10 @@
 		else if (banner == 13)
 			variant = 10;
 		else
-			variant = 8
+			variant = 8;
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[2, "oriental/linothorax", variant],
-			[1, "oriental/southern_mail_shirt"]
+			[2, ::Legends.Armor.Southern.linothorax, variant],
+			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		]));
 
 		local variant = 7;
@@ -70,9 +77,9 @@
 			variant = 7;
 
 		local helm =this.Const.World.Common.pickHelmet([
-			[1, "oriental/southern_head_wrap", variant],
-			[1, "oriental/wrapped_southern_helmet"],
-			[1, "oriental/spiked_skull_cap_with_mail"]
+			[1, ::Legends.Helmet.Southern.southern_head_wrap, variant],
+			[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
+			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 		]);
 
 		this.m.Items.equip(helm);

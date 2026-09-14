@@ -15,7 +15,7 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles)
 		];
@@ -38,19 +38,19 @@ this.legend_fear_nobles_trait <- this.inherit("scripts/skills/traits/character_t
 				id = 10,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Resolve when in battle with nobles"
+				text = "[color=%negative%]-10[/color] Resolve when in battle with nobles"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Melee Skill when in battle with nobles"
+				text = "[color=%negative%]-5%[/color] Melee Skill when in battle with nobles"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-5%[/color] Ranged Skill when in battle with nobles"
+				text = "[color=%negative%]-5%[/color] Ranged Skill when in battle with nobles"
 			}
 		];
 	}

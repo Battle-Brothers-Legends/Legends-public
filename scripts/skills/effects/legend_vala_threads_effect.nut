@@ -4,8 +4,7 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_vala_threads_effect";
-		this.m.Name = "Threads of Fate";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaThreadsEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
 		this.m.Overlay = "status_effect_78";
@@ -55,7 +54,8 @@ this.legend_vala_threads_effect <- this.inherit("scripts/skills/skill", {
 			this.m.Threads = 5;
 		}
 
-		_properties.HitpointsMult *= 1.0 - (this.m.Threads / 10.0);
+		if (this.getContainer().getActor().getHitpointsMax() > 1)
+			_properties.HitpointsMult *= 1.0 - (this.m.Threads / 10.0);
 		_properties.DamageReceivedTotalMult *= 1.0 + (this.m.Threads / 10.0);
 	}
 

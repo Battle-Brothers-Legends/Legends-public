@@ -1,109 +1,156 @@
-::mods_hookExactClass("entity/tactical/goblin", function(o)
-{
-	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
-	{
+::mods_hookExactClass("entity/tactical/goblin", function (o) {
+	local onInit = o.onInit;
+	o.onInit = function () {
+		onInit();
+		::Legends.Perks.remove(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
+	}
+
+	o.onDeath = function (_killer, _skill, _tile, _fatalityType) {
+		local appearance = this.getItems().getAppearance();
+		local targetBrightness = 0.9;
+		local targetScale = 0.95;
 		local flip = this.Math.rand(1, 100) < 50;
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
-			local decal;
 			local skin = this.getSprite("body");
-			decal = _tile.spawnDetail("bust_goblin_body_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			local decal = _tile.spawnDetail("bust_goblin_body_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = skin.Color;
 			decal.Saturation = skin.Saturation;
-			decal.setBrightness(0.9);
-			decal.Scale = 0.95;
-			_tile.spawnDetail(this.getItems().getAppearance().CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal.setBrightness(targetBrightness);
+			decal.Scale = targetScale;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
-			{
-				if (!this.getItems().getAppearance().HideCorpseHead)
-				{
+			local armorLayers = [
+				"CorpseArmor",
+				"CorpseArmorLayerChain",
+				"CorpseArmorLayerPlate",
+				"CorpseArmorLayerTabard",
+				"CorpseArmorLayerCloakBack",
+				"CorpseArmorLayerCloakFront"
+			];
+
+			if (appearance.CorpseArmorUpgradeFront != "") {
+		    	armorLayers.push("CorpseArmorUpgradeBack");
+			} 
+			else {
+    			armorLayers.insert(3, "CorpseArmorUpgradeBack");
+			}
+
+			foreach (layer in armorLayers) {
+				if (appearance[layer] != "") {
+					local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal.Scale = targetScale;
+					decal.setBrightness(targetBrightness);
+				}
+			}
+
+			local helmetLowerLayers = [
+					"HelmetLayerVanityLowerCorpse",
+					"HelmetLayerVanity2LowerCorpse"
+			];
+			local helmetLayers = [
+					"HelmetCorpse",
+					"HelmetLayerHelmLowerCorpse",
+					"HelmetLayerTopLowerCorpse",
+					"HelmetLayerHelmCorpse",
+					"HelmetLayerTopCorpse",
+					"HelmetLayerVanityCorpse",
+					"HelmetLayerVanity2Corpse"
+			];
+
+			if (_fatalityType != this.Const.FatalityType.Decapitated) {
+				foreach (layer in helmetLowerLayers) {
+					if (appearance[layer] != "") {
+						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+						decal.Scale = targetScale;
+						decal.setBrightness(targetBrightness);
+					}
+				}
+
+				if (!appearance.HideCorpseHead) {
 					decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
-					if (decal != null)
-					{
-						decal.Color = skin.Color;
-						decal.Saturation = skin.Saturation;
-						decal.setBrightness(0.9);
-						decal.Scale = 0.95;
-					}
+					decal.Color = skin.Color;
+					decal.Saturation = skin.Saturation;
+					decal.setBrightness(targetBrightness);
+					decal.Scale = targetScale;
 				}
 
-				if (this.getItems().getAppearance().HelmetCorpse != "")
-				{
-					decal = _tile.spawnDetail(this.getItems().getAppearance().HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
-					if (decal != null)
-					{
-						decal.setBrightness(0.9);
-						decal.Scale = 0.95;
+				foreach (layer in helmetLayers) {
+						if (appearance[layer] != "") {
+							decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+							decal.Scale = targetScale;
+							decal.setBrightness(targetBrightness);
+						}
 					}
-				}
-			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
-			{
-				local layers = [
-					this.getSprite("head").getBrush().Name + "_dead",
-					this.getItems().getAppearance().HelmetCorpse
-				];
+			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
+				local layers = [];
+				
+				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
+
+				layers.push(this.getSprite("head").getBrush().Name + "_dead");
+
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		layers.push(appearance[layer]);
+				//	}
+				//}
+
 				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, this.getSprite("head").getBrush().Name + "_dead_bloodpool");
-				decap[0].Color = skin.Color;
-				decap[0].Saturation = skin.Saturation;
-				decap[0].setBrightness(0.9);
-				decap[0].Scale = 0.95;
+				local idx = 0;
 
-				if (decap.len() >= 2)
-				{
-					decap[1].setBrightness(0.9);
-				}
+				//foreach (layer in helmetLowerLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].setBrightness(targetBrightness);
+				//		idx = ++idx;
+				//	}
+				//}
+				
+				decap[idx].Color = skin.Color;
+				decap[idx].Saturation = skin.Saturation;
+				decap[idx].setBrightness(targetBrightness);
+				decap[idx].Scale = targetScale;
+				idx = ++idx;
+
+				//foreach (layer in helmetLayers) {
+				//	if (appearance[layer] != "") {
+				//		decap[idx].setBrightness(targetBrightness);
+				//		idx = ++idx;
+				//	}
+				//}
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled)
-			{
+			if (_fatalityType == this.Const.FatalityType.Disemboweled) {
 				local decal = _tile.spawnDetail("bust_goblin_body_dead_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
-			{
+				decal.Scale = targetScale;
+			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail(this.getItems().getAppearance().CorpseArmor + "_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
-			{
+				decal.Scale = targetScale;
+			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail(this.getItems().getAppearance().CorpseArmor + "_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
-				decal.Scale = 0.95;
+				decal.Scale = targetScale;
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A " + this.getName();
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		this.dropLoot(_tile, tileLoot, !flip);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		this.getItems().dropAll(_tile, _killer, flip);
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
-	}
-
-	o.onFactionChanged = function ()
-	{
-		this.actor.onFactionChanged();
-		local flip = this.isAlliedWithPlayer();
-		// 	flip = !flip
-		// Note from James: I removed the check for unlayered armor from this flip = !flip thing. I have no clue what it would do though.
-		this.getSprite("helmet").setHorizontalFlipping(flip);
-		this.getSprite("helmet_damage").setHorizontalFlipping(flip);
-	}
-
-	local onInit = o.onInit;
-	o.onInit = function ()
-	{
-		onInit();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
 	}
 });

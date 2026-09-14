@@ -64,13 +64,17 @@
 					}
 				]
 			}
-			if (s.ID == "Survivors2")
-			{
-				s.Text = "[img]gfx/ui/events/event_145.png[/img]{You unsheathe your sword and lower the blade toward the man, the corpses in the tent blurring along its metal curvature, and the surviving barbarian\'s face blobbing at the tip. He grins and grips the edges, sheathing it in his huge hands. Blood drips steadily from his palms.%SPEECH_ON%Death, killing, no dishonor. For us both. Yes?%SPEECH_OFF%Nodding, you push the blade into his chest and sink him back to the floor. The weight of him on the sword is like a stone and when you unstick him the corpse claps back against the pile of corpses. Sheathing the sword, you tell the company to round up what goods they can and to ready a return to %employer%.} \n\n [img]gfx/ui/icons/asset_moral_reputation.png[/img] The company\'s Moral reputation decreases slightly";
+			if (s.ID == "Survivor2") {
+				s.Text = "[img]gfx/ui/events/event_145.png[/img]{You unsheathe your sword and lower the blade toward the man, the corpses in the tent blurring along its metal curvature, and the surviving barbarian\'s face blobbing at the tip. He grins and grips the edges, sheathing it in his huge hands. Blood drips steadily from his palms.%SPEECH_ON%Death, killing, no dishonor. For us both. Yes?%SPEECH_OFF%Nodding, you push the blade into his chest and sink him back to the floor. The weight of him on the sword is like a stone and when you unstick him the corpse claps back against the pile of corpses. Sheathing the sword, you tell the company to round up what goods they can and to ready a return to %employer%.}";
+				s.start <- function () {
+					this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
+				}
 			}
-			if (s.ID == "Survivors3")
-			{
-				s.Text = "[img]gfx/ui/events/event_145.png[/img]{You unsheathe your blade halfway, hold it long enough that the savage sees it, then you slam it back into the scabbard. Nodding, you ask.%SPEECH_ON%Understand?%SPEECH_OFF%The barbarian stands up, briefly slumping against the tent\'s post. You turn and hold your hand out to the tent flap. He nods.%SPEECH_ON%Aye, I know.%SPEECH_OFF%He stumbles out and into the light and away into the northern wastes, his shape tottering side to side, shrinking, and is then gone. You tell the company to get ready to return to %employer% for some well-earned pay.} \n\n [img]gfx/ui/icons/asset_moral_reputation.png[/img] The company\'s Moral reputation increases slightly";
+			if (s.ID == "Survivor3") {
+				s.Text = "[img]gfx/ui/events/event_145.png[/img]{You unsheathe your blade halfway, hold it long enough that the savage sees it, then you slam it back into the scabbard. Nodding, you ask.%SPEECH_ON%Understand?%SPEECH_OFF%The barbarian stands up, briefly slumping against the tent\'s post. You turn and hold your hand out to the tent flap. He nods.%SPEECH_ON%Aye, I know.%SPEECH_OFF%He stumbles out and into the light and away into the northern wastes, his shape tottering side to side, shrinking, and is then gone. You tell the company to get ready to return to %employer% for some well-earned pay.}";
+				s.start <- function () {
+					this.List.push(::Legends.EventList.changeMoralReputation(2, false));
+				}
 			}
 		}
 	}

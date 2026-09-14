@@ -3,14 +3,10 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_battle_sister";
-		this.m.Name = "Battle Sister";
-		this.m.Icon = "ui/backgrounds/background_26.png";
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendBattleSister);
 		this.m.BackgroundDescription = "Battle Sisters are warrior women trained by the inquisition to fight and destroy evil.";
 		this.m.GoodEnding = "";
 		this.m.BadEnding = "";
-		this.m.HiringCost = 160; //currently cannot recruit battle sisters - will update in inq. origin update - Luft
-		this.m.DailyCost = 18;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Weasel),
 			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
@@ -20,59 +16,26 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Fragile),
-			::Legends.Traits.getID(::Legends.Trait.Fainthearthed),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
-			::Legends.Traits.getID(::Legends.Trait.Hesistant),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight),
 			::Legends.Traits.getID(::Legends.Trait.Craven)
 		];
 		this.m.ExcludedTalents = [
 			this.Const.Attributes.Initiative
-		];	
+		];
 		this.m.Faces = this.Const.Faces.OldFemale;
 		this.m.Hairs = this.Const.Hair.AllFemale;
 		this.m.HairColors = this.Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.AllFemale;
+		this.m.Bodies = this.Const.Bodies.NorthernFemale;
 		this.m.Level = this.Math.rand(1, 3);
 		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Female;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Modifiers.Healing = this.Const.LegendMod.ResourceModifiers.Healing[1];
-		this.m.Modifiers.Injury = this.Const.LegendMod.ResourceModifiers.Injury[1];
-		this.m.Modifiers.ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[1];
-		this.m.Modifiers.Training = this.Const.LegendMod.ResourceModifiers.Training[1];
-		this.m.PerkTreeDynamic = {
-			Weapon = [
-				this.Const.Perks.FlailTree,
-				this.Const.Perks.CleaverTree,
-				this.Const.Perks.AxeTree,
-				this.Const.Perks.MaceTree,
-				this.Const.Perks.ShieldTree,
-				this.Const.Perks.HammerTree
-			],
-			Defense = [
-				this.Const.Perks.HeavyArmorTree
-			],
-			Traits = [
-				this.Const.Perks.MartyrTree,
-				this.Const.Perks.TrainedTree,
-				this.Const.Perks.IndestructibleTree,
-				this.Const.Perks.ViciousTree,
-				this.Const.Perks.FitTree,
-				this.Const.Perks.SturdyTree
-			],
-			Enemy = [
-				this.Const.Perks.ZombieTree,
-				this.Const.Perks.SkeletonTree
-			],
-			Class = [
-				this.Const.Perks.FaithClassTree
-			],
-			Magic = []
-		}
 	}
 
 
@@ -84,46 +47,10 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				7
-			],
-			Bravery = [
-				14,
-				18
-			],
-			Stamina = [
-				5,
-				10
-			],
-			MeleeSkill = [
-				6,
-				10
-			],
-			RangedSkill = [
-				-10,
-				-5
-			],
-			MeleeDefense = [
-				3,
-				5
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				5,
-				10
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBattleSister);
 	}
 
-	function onSetAppearance()
-	{
-		local actor = this.getContainer().getActor();
+	function onSetAppearance() {
 		this.updateAppearance();
 	}
 
@@ -183,16 +110,15 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		}
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "reinforced_mail_hauberk"],
-			[1, "worn_mail_shirt"]
+			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
+			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
 		items.equip(this.Const.World.Common.pickHelmet([
-			[2, "hood"],
-			[2, "aketon_cap"],
-			[1, "mail_coif"],
-			[3, ""]
+			[2, ::Legends.Helmet.Standard.hood],
+			[2, ::Legends.Helmet.Standard.aketon_cap],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[3, ::Legends.Helmet.None]
 		]));
 	}
 });
-

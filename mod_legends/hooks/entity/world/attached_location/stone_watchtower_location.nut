@@ -10,7 +10,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("legend_ironmonger_background");
+		_list.push(::Legends.Background.LegendIronmonger);
 		onUpdateDraftList(_list);
 	}
 
@@ -38,9 +38,14 @@
 			_list.push({
 				R = 20,
 				P = 1.0,
-				S = "weapons/legend_sling"
+				S = "weapons/legend_dilapidated_sling"
 			});
-				_list.push({
+			_list.push({
+				R = 40,
+				P = 1.0,
+				S = "weapons/legend_sturdy_sling"
+			});
+			_list.push({
 				R = 90,
 				P = 1.0,
 				S = "tents/legend_tent_train"
@@ -53,7 +58,7 @@
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 			_list.push({
 				R = 30,
@@ -66,7 +71,7 @@
 			_list.push({
 				R = 50,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_armor_cloak_common"
+				S = "legend_armor/cloak/legend_armor_cloak"
 			});
 			_list.push({
 				R = 95,
@@ -86,12 +91,12 @@
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/cloak/legend_sash"
+				S = "legend_armor/cloak/legend_armor_sash"
 			});
 			_list.push({
 				R = 45,
 				P = 1.0,
-				S = "legend_armor/tabard/legend_common_tabard"
+				S = "legend_armor/tabard/legend_armor_tabard"
 			});
 			_list.push({
 				R = 99,

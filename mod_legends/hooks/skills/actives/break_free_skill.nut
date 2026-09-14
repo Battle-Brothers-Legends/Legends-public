@@ -1,8 +1,9 @@
 ::mods_hookExactClass("skills/actives/break_free_skill", function(o)
 {
-	o.m.DropNet <- false; // Net item will be dropped in battle if it was thrown with Net Mastery
+	o.m.DropNet <- false;
 	o.m.IsReinforcedNet <- false;
 	o.m.IsByNetSpecialist <- false;
+	//Not used by the new net drop, flags are applied in actives.throw_net
 
 	o.getTooltip = function ()
 	{
@@ -26,7 +27,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill. Each failed attempt will increase the chance to succeed for subsequent attempts."
+				text = "Has a [color=%positive%]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill. Each failed attempt will increase the chance to succeed for subsequent attempts."
 			}
 		];
 
@@ -69,8 +70,8 @@
 	{
 		local actor = this.getContainer().getActor();
 		local skill = this.m.SkillBonus == null ? actor.getCurrentProperties().getMeleeSkill() : this.m.SkillBonus;
-		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasSkill("effects.goblin_shaman_potion") ? 100 : 0));
-		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2
+		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
+		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2;
 		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasPerk(::Legends.Perk.LegendEscapeArtist) || isBigGhoul)
 		{
 			toHit = this.Math.max(99, toHit);
@@ -139,39 +140,56 @@
 				}
 			}
 
-			if (this.m.DropNet)
-			{
+			//DropNet Check
+			if (_user.getFlags().get("DropNet")) { //Check if break free attempt comes from a net
 				local net;
-				if (this.m.IsReinforcedNet)
-				{
-					// 50% chance the reinforced net is still reusable in battle
-					if (::Math.rand(1,2) == 1)
-					{
-						net = this.new("scripts/items/tools/reinforced_throwing_net");
-						net.drop(this.getContainer().getActor().getTile());
-					}
-					else
-					{
-						this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
+				if (_user.getFlags().get("IsReinforcedNet") && _user.getFlags().get("IsByNetCasting")){
+					net = this.new("scripts/items/tools/reinforced_throwing_net");
+
+					// 50% chance the reinforced net is still reusable in battle with netcasting
+					if (::Math.rand(1,2) != 1){
+						net.m.Ammo = 0;
+						net.updateAmmo();
 					}
 				}
-				else
-				{
-					// 25% chance the regular net is still reusable in battle
-					if (::Math.rand(1,4) == 1)
-					{
-						net = this.new("scripts/items/tools/throwing_net");
-						net.drop(this.getContainer().getActor().getTile());
+				else if (_user.getFlags().get("IsReinforcedNet")) { //Reinforced Net without NetCasting
+					net = this.new("scripts/items/tools/reinforced_throwing_net");
+					net.m.Ammo = 0;
+					net.updateAmmo();
+			    }
+				else if (_user.getFlags().get("IsByNetCasting")) { //Normal Net w/ NetCasting
+					net = this.new("scripts/items/tools/throwing_net");
+
+					// 25% chance the net is still reusable in battle with netcasting
+					if (::Math.rand(1,4) != 1){
+						net.m.Ammo = 0;
+						net.updateAmmo();
 					}
 				}
+				else { //Normal Net without NetCasting
+					net = this.new("scripts/items/tools/throwing_net");
+					net.m.Ammo = 0;
+					net.updateAmmo();
+				}
+
+				if (net != null){
+					if (net.drop(this.getContainer().getActor().getTile())) {// drops the net on the tile
+						::logDebug("Dropped net on this tile");
+						::Tactical.Entities.addNetTiles(_targetTile);
+					}
+				}
+
+				_user.getFlags().remove("DropNet");
+   				_user.getFlags().remove("IsReinforcedNet");
+    			_user.getFlags().remove("IsByNetCasting");
 			}
 
 			_user.setDirty(true);
-			this.getContainer().removeByID("effects.net");
-			this.getContainer().removeByID("effects.rooted");
-			this.getContainer().removeByID("effects.web");
-			this.getContainer().removeByID("effects.kraken_ensnare");
-			this.getContainer().removeByID("effects.serpent_ensnare");
+			::Legends.Effects.remove(this, ::Legends.Effect.Net);
+			::Legends.Effects.remove(this, ::Legends.Effect.Rooted);
+			::Legends.Effects.remove(this, ::Legends.Effect.Web);
+			::Legends.Effects.remove(this, ::Legends.Effect.KrakenEnsnare);
+			::Legends.Effects.remove(this, ::Legends.Effect.SerpentEnsnare);
 			this.removeSelf();
 			return true;
 		}
@@ -193,6 +211,7 @@
 
 	o.onUseByAlly <- function ( _ally, _targetTile )
 	{
+		this.setSkillBonus(_ally.getCurrentProperties().getMeleeSkill());
 		if (_ally.getCurrentProperties().IsSpecializedInNets)
 		{
 			this.m.IsByNetSpecialist = true;
@@ -204,9 +223,9 @@
 	o.onCombatFinished <- function ()
 	{
 		local actor = this.getContainer().getActor();
-		if (actor.getSprite("status_rooted").getBrush().Name == "bust_web2")
+		if (actor.getSprite("status_rooted").getBrush() != null && actor.getSprite("status_rooted").getBrush().Name == "bust_web2")
 			actor.getSprite("status_rooted").Visible = false;
-		if (actor.getSprite("status_rooted_back").getBrush().Name == "bust_web2_back")
+		if (actor.getSprite("status_rooted_back").getBrush() != null && actor.getSprite("status_rooted_back").getBrush().Name == "bust_web2_back")
 			actor.getSprite("status_rooted_back").Visible = false;
 		this.skill.onCombatFinished();
 	}

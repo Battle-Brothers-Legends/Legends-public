@@ -2,8 +2,7 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_lurker";
-		this.m.Name = "Lurking";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLurker);
 		this.m.Description = this.Const.Strings.PerkDescription.LegendLurker;
 		this.m.Icon = "ui/perks/lurker.png";
 		this.m.IconMini = "perk_61_mini"; //needs a mini at some point
@@ -31,19 +30,19 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+3[/color] Action Points"
+				text = "[color=%positive%]+3[/color] Action Points"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+30%[/color] Ranged Defense"
+				text = "[color=%positive%]+30%[/color] Ranged Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+20[/color] Initiative"
+				text = "[color=%positive%]+20[/color] Initiative"
 			}
 		];
 	}

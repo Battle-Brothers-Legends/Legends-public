@@ -9,14 +9,12 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendValaChantFury);
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantFury);
 		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
 		this.m.Order = this.Const.SkillOrder.NonTargeted + 2;
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
 		this.m.IsAttack = false;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsVisibleTileNeeded = false;
@@ -29,31 +27,22 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!this.skill.isUsable())
-		{
 			return false;
-		}
 
 		if (this.m.ChantIsActive)
-		{
 			return false;
-		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			return false;
-		}
 
-		if (actor.getMainhandItem() == null)
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 			return false;
-		}
-
-		if (actor.getMainhandItem().getID() != "weapon.legend_staff_vala")
-		{
-			return false;
-		}
 
 		return true;
+	}
+
+	function getDescription() {
+		return "A chant that gets the blood boiling, making your allies eager to fight.";
 	}
 
 	function getTooltip()
@@ -67,23 +56,23 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 			text = "Until the start of her next turn all allies within 3 tiles of the Vala receive a bonus to their damage output and a chance to retaliate against attackers that hit them in melee range. Being closer to the Vala increases bonus amount and retaliation chance."
 		});
 
-		if (actor.getMainhandItem() == null || actor.getMainhandItem() != "weapon.legend_staff_vala")
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
 		{
 			ret.push({
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Requires the Vala\'s staff.[/color]"
+				text = "[color=%negative%]Requires the Vala\'s staff.[/color]"
 			});
 		}
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
 			ret.push({
 				id = 10,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Already chanting.[/color]"
+				text = "[color=%negative%]Already chanting.[/color]"
 			});
 		}
 
@@ -95,18 +84,18 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 		{
-			actor.getSkills().removeByID("effects.legend_vala_currently_chanting");
+			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 		}
 
 		foreach( tar in targets )
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_fury_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantFuryEffect))
 				{
-					t.getSkills().removeByID("effects.legend_vala_chant_fury_effect");
+					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaChantFuryEffect);
 				}
 			}
 		}
@@ -147,12 +136,12 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onMovementCompleted( _tile )
+	function onMovementFinished()
 	{
 		local actor = this.getContainer().getActor();
 		local targets = this.Tactical.Entities.getAllInstances();
 
-		if (actor.getSkills().hasSkill("effects.legend_vala_currently_chanting") && this.m.ChantIsActive)
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive)
 		{
 			this.Sound.play("sounds/combat/legend_vala_fury.wav");
 		}
@@ -161,7 +150,7 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 		{
 			foreach( t in tar )
 			{
-				if (t.getSkills().hasSkill("effects.legend_vala_chant_fury_effect"))
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaChantFuryEffect))
 				{
 					if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 					{
@@ -185,20 +174,20 @@ this.perk_legend_vala_chant_fury <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local targets = this.Tactical.Entities.getAllInstances();
 
-			if (!actor.getSkills().hasSkill("effects.legend_vala_currently_chanting"))
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
 			{
-				actor.getSkills().add(this.new("scripts/skills/effects/legend_vala_currently_chanting"));
+				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
 			}
 
 			foreach( tar in targets )
 			{
 				foreach( t in tar )
 				{
-					if (t.isAlliedWith(actor) && !t.getSkills().hasSkill("effects.legend_vala_chant_fury_effect"))
+					if (t.isAlliedWith(actor) && !t.getSkills().hasEffect(::Legends.Effect.LegendValaChantFuryEffect))
 					{
-						local fury = this.new("scripts/skills/effects/legend_vala_chant_fury_effect");
-						fury.setVala(this.getContainer().getActor());
-						t.getSkills().add(fury);
+						::Legends.Effects.grant(t, ::Legends.Effect.LegendValaChantFuryEffect, function(_effect) {
+							_effect.setVala(this.getContainer().getActor());
+						}.bindenv(this));
 
 						if (actor.getTile().getDistanceTo(t.getTile()) <= 3 && actor.getID() != t.getID())
 						{

@@ -1,5 +1,14 @@
 this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		DroppableRunes = [
+			::Legends.Rune.LegendRswPower,
+			::Legends.Rune.LegendRswAccuracy,
+			::Legends.Rune.LegendRswFeeding,
+			::Legends.Rune.LegendRswPoison,
+			::Legends.Rune.LegendRswBleeding,
+			::Legends.Rune.LegendRswUnbreaking,
+		]
+	},
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendDemonAlp;
@@ -66,6 +75,27 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 		this.m.Flags.add("demon");
 		this.m.Flags.add("alp");
+
+		this.m.OnDeathLootTable.extend([
+			[50,  function () {
+				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local rune = ::new(::Legends.Runes.get(selected).Script);
+				rune.setRuneVariant(selected);
+				rune.setRuneBonus(true);
+				rune.updateRuneSigilToken();
+				return rune;
+			}.bindenv(this)]
+		]);
+
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[33, "scripts/items/misc/legend_demon_alp_skin_item"],
+				[50, "scripts/items/misc/legend_demon_alp_skin_item"],
+				[50, "scripts/items/misc/legend_demon_third_eye_item"],
+				[100, "scripts/items/misc/petrified_scream_item"]
+			]);
+		}
 	}
 
 	function playIdleSound()
@@ -107,6 +137,8 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
+		local flip = this.Math.rand(1, 100) < 50;
+
 		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("SleepTight", 1, 1);
@@ -149,7 +181,7 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (_fatalityType == this.Const.FatalityType.Disemboweled)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_guts", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_guts", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
@@ -161,34 +193,48 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 			}
 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_demonalp_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, this.m.IsCorpseFlipped);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
 			this.spawnFlies(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "An " + this.getName();
-			corpse.Tile = _tile;
-			corpse.Value = 2.0;
-			corpse.IsResurrectable = false;
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
-			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
-
-			if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-				this.onDropLootForPlayer(_tile);
 		}
 
 		this.onKillAllSummonedMinions();
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
+			_tile.Properties.set("Corpse", corpse);
+			this.Tactical.Entities.addCorpse(_tile);
+		}
+
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "An " + this.getName();
+		corpse.Tile = _tile;
+		corpse.Value = 2.0;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsResurrectable = false;
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onKillAllSummonedMinions()
@@ -207,26 +253,6 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		}
 	}
 
-	function onDropLootForPlayer( _tile )
-	{
-		local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-		for( local i = 0; i < n; ++i )
-		{
-			if (this.Math.rand(1, 100) <= 33)
-				this.new("scripts/items/misc/legend_demon_alp_skin_item").drop(_tile);
-
-			this.new("scripts/items/misc/" + (this.Math.rand(1, 100) <= 50 ? "legend_demon_third_eye_item" : "legend_demon_alp_skin_item")).drop(_tile);
-			this.new("scripts/items/misc/petrified_scream_item").drop(_tile);
-		}
-
-		local token = this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
-		token.setRuneVariant(::Math.rand(1, 6));
-		token.setRuneBonus(true);
-		token.updateRuneSigilToken();
-		token.drop(_tile);
-	}
-
 	function onInit()
 	{
 		this.actor.onInit();
@@ -234,8 +260,8 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(this.Const.Tactical.Actor.LegendDemonAlp);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
+		b.IsImmuneToBleeding = true;
 		b.IsImmuneToDisarm = true;
-		b.IsImmuneToRoot = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -246,25 +272,25 @@ this.legend_demon_alp <- this.inherit("scripts/entity/tactical/actor", {
 		body.setBrush("bust_demonalp_body_01");
 		body.varySaturation(0.2);
 		local head = this.addSprite("head");
-		head.setBrush("demon_alp_head")
-		//head.setBrush("bust_demonalp_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_demonalp_head_0" + this.Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
-		injury.setBrush("demon_alp_wounds");
-		//injury.setBrush("bust_demonalp_01_injured");
+		injury.setBrush("bust_demonalp_01_injured");
 		injury.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		this.setSpriteOffset("status_rooted", this.createVec(0, 10));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_super_sleep_skill"));
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_super_nightmare_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_realm_of_shadow_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_summon_nightmare_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_alp_nightmare_manifestation_skill"));
-		this.m.Skills.add(this.new("scripts/skills/racial/alp_racial"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpRealmOfShadow);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpSummonNightmare);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendAlpNightmareManifestation);
+		::Legends.Traits.grant(this, ::Legends.Trait.RacialAlp);
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
-		::Legends.Perks.grant(this, ::Legends.Perk.Anticipation);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendWindReader);
+		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 
 		if (::Legends.isLegendaryDifficulty())
 		{

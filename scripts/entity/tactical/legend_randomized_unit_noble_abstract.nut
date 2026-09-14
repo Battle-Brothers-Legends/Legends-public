@@ -25,14 +25,19 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 			banner = this.getFaction();
 		}
 
-        this.m.Surcoat = banner;
-		if (this.Math.rand(1, 100) <= 90)
+		local surcoat = "surcoat_" + (banner < 10 ? "0" + banner : banner);
+		if (::doesBrushExist(surcoat))
 		{
-			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
+			this.m.Surcoat = banner;
+			if (this.Math.rand(1, 100) <= 90)
+				this.getSprite("surcoat").setBrush(surcoat);
 		}
+       	else {
+       		this.m.Surcoat = null;
+       	}
 
 		local armor = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body);
-		local tabard = armor.getUpgrade(this.Const.Items.ArmorUpgrades.Tabbard);
+		local tabard = armor.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard);
 		if (tabard != null)
 		{
 			tabard.setVariant(banner);
@@ -55,12 +60,10 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 					case "armor.head.legend_helmet_nordic_helm":
 					case "armor.head.legend_helmet_conic_helm":
 					case "armor.head.legend_helmet_kettle_helm_high":
-					case "armor.head.legend_helmet_kettle_helm_med":
-					case "armor.head.legend_helmet_flat_top_helm_polished":
 					case "armor.head.legend_helmet_flat_top_face_plate":
 						helmLayer.setVariant(::Const.FacColors.EliteHelm[banner]);
 						break;
-					case "armor.head.legend_helmet_kettle_helm_med":
+					case "armor.head.legend_helmet_kettle_helm":
 					case "armor.head.legend_helmet_flat_top_helm":
 						helmLayer.setVariant(::Const.FacColors.BasicHelm[banner]);
 						break;

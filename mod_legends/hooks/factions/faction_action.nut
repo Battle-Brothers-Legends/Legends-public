@@ -1,11 +1,14 @@
-::mods_hookBaseClass("factions/faction_action", function ( o )
-{
-	while(!("ID" in o.m)) o=o[o.SuperName];
+::mods_hookBaseClass("factions/faction_action", function (o) {
+	while (!("ID" in o.m)) o = o[o.SuperName];
 
 	o.m.DifficultyMult <- 1.0;
+	o.m.TimeBetweenSpawns <- 300.0;
 
-	o.getDifficultyMult <- function()
-	{
+	o.getDifficultyMult <- function () {
 		return this.m.DifficultyMult;
+	}
+
+	o.getTimeBetweenSpawns <- function () {
+		return this.m.TimeBetweenSpawns;
 	}
 });

@@ -4,8 +4,8 @@
 	{
 		local target = _targetTile.getEntity();
 		target.getAIAgent().setForcedOpponent(_user);
-		target.getSkills().add(this.new("scripts/skills/effects/taunted_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.Taunted);
 		return true;
-		this.getContainer().add(this.new("scripts/skills/effects/taunt_effect"));
+		::Legends.Effects.grant(this, ::Legends.Effect.Taunt);
 	}
 });

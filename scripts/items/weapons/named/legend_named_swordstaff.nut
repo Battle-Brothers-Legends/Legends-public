@@ -8,7 +8,7 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 		this.m.Description = "This Swordstaff is especially well-crafted, and its blade would be worthy of even a noble";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01_named_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_named_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear | this.Const.Items.WeaponType.Staff;
+		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -20,6 +20,9 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 		this.m.ShieldDamage = 0;
 		this.m.Condition = 65.0;
 		this.m.ConditionMax = 65.0;
+		this.m.RangeMin = 1;
+		this.m.RangeMax = 2;
+		this.m.RangeIdeal = 1;
 		this.m.StaminaModifier = -14;
 		this.m.RegularDamage = 50;
 		this.m.RegularDamageMax = 70;
@@ -32,10 +35,14 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash, function (_skill) {
+			_skill.m.IsGreatSlash = true;
+			_skill.m.IsStaffSlash = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);
+		::Legends.Actives.grant(this, ::Legends.Active.Strike, function (_skill) {
+			_skill.m.IsStaffStrike = true;
+		}.bindenv(this));
 	}
 });
 

@@ -19,9 +19,9 @@
 	{
 		onUpdateDraftList(_list);
 
-		_list.push("peddler_background");
-		_list.push("caravan_hand_background");
-		_list.push("thief_background");
+		_list.push(::Legends.Background.Peddler);
+		_list.push(::Legends.Background.CaravanHand);
+		_list.push(::Legends.Background.Thief);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;

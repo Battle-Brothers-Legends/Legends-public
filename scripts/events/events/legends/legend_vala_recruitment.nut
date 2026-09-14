@@ -3,8 +3,7 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 		Vala = null,
 		Town = null
 	},
-	function create()
-	{
+	function create() {
 		this.m.ID = "event.legend_vala_recruitment";
 		this.m.Title = "From the bushes...";
 		this.m.Cooldown = 60 * this.World.getTime().SecondsPerDay;
@@ -14,50 +13,38 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [
-				{
-					Text = "Welcome to the %companyname%.",
-					function getResult( _event )
-					{
-						this.World.getPlayerRoster().add(_event.m.Vala);
-						this.World.getTemporaryRoster().clear();
-						_event.m.Vala.onHired();
-						_event.m.Vala = null;
-						return 0;
-					}
-				},
-				{
-					Text = "Keep your distance!",
-					function getResult( _event )
-					{
-						this.World.getTemporaryRoster().clear();
-						_event.m.Vala = null;
-						return 0;
-					}
+			Options = [{
+				Text = "Welcome to the %companyname%.",
+				function getResult(_event) {
+					this.World.getPlayerRoster().add(_event.m.Vala);
+					this.World.getTemporaryRoster().clear();
+					_event.m.Vala.onHired();
+					_event.m.Vala = null;
+					return 0;
 				}
-			],
-			function start( _event )
-			{
+			}, {
+				Text = "Keep your distance!",
+				function getResult(_event) {
+					this.World.getTemporaryRoster().clear();
+					_event.m.Vala = null;
+					return 0;
+				}
+			}],
+			function start(_event) {
 				local roster = this.World.getTemporaryRoster();
 				_event.m.Vala = roster.create("scripts/entity/tactical/player");
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-				{
+				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 					_event.m.Vala.getFlags().add("PlayerSkeleton");
 					_event.m.Vala.getFlags().add("undead");
 					_event.m.Vala.getFlags().add("skeleton");
 				}
 
-				_event.m.Vala.setStartValuesEx([
-					"legend_vala_background"
-				]);
+				_event.m.Vala.setStartValuesEx([::Legends.Background.LegendVala]);
 
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-				{
-					_event.m.Vala.getSkills().add(this.new("scripts/skills/racial/skeleton_racial"));
+				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.LegendFleshless);
-				}
-				else
-				{
+				} else {
 					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.Loyal);
 				}
 
@@ -67,8 +54,7 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		// allow this event only for legion
 		if (this.World.Assets.getOrigin().getID() != "scenario.legend_risen_legion")
 			return;
@@ -98,11 +84,8 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 		local brothers = this.World.getPlayerRoster().getAll();
 		local totalbrothers = 0;
 		local brotherlevels = 0;
-		foreach (bro in brothers)
-		{
-			if (bro.getBackground().getID() == "background.legend_vala")
-				return;
-			if (bro.getBackground().getID() == "background.legend_commander_vala")
+		foreach (bro in brothers) {
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendVala))
 				return;
 			totalbrothers += 1;
 			brotherlevels += bro.getLevel();
@@ -115,16 +98,11 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 		this.m.Score = 20.0 + ((brotherlevels / totalbrothers * 10.00) / this.Const.LevelXP.len());
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
-	}
+	function onPrepareVariables(_vars) {}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Vala = null;
 		this.m.Town = null;
 	}

@@ -14,11 +14,12 @@ this.fangshire <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgra
 			"sounds/enemies/skeleton_hurt_03.wav"
 		];
 		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.Value = 300;
+		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
+		this.m.Value = 500;
 		this.m.Condition = 40;
 		this.m.ConditionMax = 40;
 		this.m.StaminaModifier = -2;
-		this.m.IsLowerVanity = false;
+		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 	}

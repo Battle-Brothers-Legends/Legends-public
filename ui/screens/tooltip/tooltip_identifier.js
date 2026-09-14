@@ -168,7 +168,11 @@ var TooltipIdentifier =
 			{
 				BrothersCounter: 'tactical-screen.topbar.round-information-module.BrothersCounter',
 				EnemiesCounter: 'tactical-screen.topbar.round-information-module.EnemiesCounter',
-				RoundCounter: 'tactical-screen.topbar.round-information-module.RoundCounter'
+				RoundCounter: 'tactical-screen.topbar.round-information-module.RoundCounter',
+				SpeedNormalButton: 'tactical-screen.topbar.round-information-module.SpeedNormalButton',
+				SpeedFastButton: 'tactical-screen.topbar.round-information-module.SpeedFastButton',
+				SpeedVeryFastButton: 'tactical-screen.topbar.round-information-module.SpeedVeryFastButton',
+				SpeedSuperFastButton: 'tactical-screen.topbar.round-information-module.SpeedSuperFastButton'
 			},
 
 			OptionsBarModule:
@@ -210,7 +214,8 @@ var TooltipIdentifier =
 
 		LootPanel:
 		{
-			LootAllItemsButton: 'tactical-combat-result-screen.loot-panel.LootAllItemsButton'
+			LootAllItemsButton: 'tactical-combat-result-screen.loot-panel.LootAllItemsButton',
+			ValueLootItemsButton: 'tactical-combat-result-screen.loot-panel.ValueLootItemsButton'
 		}
 	},
 
@@ -221,6 +226,8 @@ var TooltipIdentifier =
 			TimePauseButton: 'world-screen.topbar.TimePauseButton',
 			TimeNormalButton: 'world-screen.topbar.TimeNormalButton',
 			TimeFastButton: 'world-screen.topbar.TimeFastButton',
+			TimeVeryFastButton: 'world-screen.topbar.TimeVeryFastButton',
+			TimeSuperFastButton: 'world-screen.topbar.TimeSuperFastButton',
 
 			OptionsModule:
 			{
@@ -328,6 +335,7 @@ var TooltipIdentifier =
 		{
 			InventoryButton: 'character-screen.right-panel-header-module.InventoryButton',
 			PerksButton: 'character-screen.right-panel-header-module.PerksButton',
+			ProfessionsButton: 'character-screen.right-panel-header-module.ProfessionsButton',
 			CloseButton: 'character-screen.right-panel-header-module.CloseButton',
 			SortButton: 'character-screen.right-panel-header-module.SortButton',
 			FilterAllButton: 'character-screen.right-panel-header-module.FilterAllButton',
@@ -336,10 +344,19 @@ var TooltipIdentifier =
 			FilterMiscButton: 'character-screen.right-panel-header-module.FilterMiscButton',
 			FilterUsableButton: 'character-screen.right-panel-header-module.FilterUsableButton',
 			FilterMoodButton: 'character-screen.right-panel-header-module.FilterMoodButton',
+			OrganizeLayersButton: 'character-screen.right-panel-header-module.OrganizeLayersButton',
+			OrganizeLayersStripButton: 'character-screen.right-panel-header-module.OrganizeLayersStripButton',
+			SellAllButton: 'character-screen.right-panel-header-module.SellAllButton',
 			FormationButton: 'character-screen.right-panel-header-module.FormationButton',
 			ChangeFormationButton: 'character-screen.right-panel-header-module.ChangeFormation',
 			ClearFormationButton: 'character-screen.right-panel-header-module.ClearFormation',
-			ChangeFormationName: 'character-screen.right-panel-header-module.ChangeFormationName'
+			ChangeFormationName: 'character-screen.right-panel-header-module.ChangeFormationName',
+			PerkPlanScreenBooks: 'character-screen.right-panel-header-module.PerkPlanScreenBooks',
+			PerkPlanScreenScrolls: 'character-screen.right-panel-header-module.PerkPlanScreenScrolls',
+			PerkPlanScreenPlanned: 'character-screen.right-panel-header-module.PerkPlanScreenPlanned',
+			PerkPlanScreenTentative: 'character-screen.right-panel-header-module.PerkPlanScreenTentative',
+			ProfessionPlanScreenPlanned: 'character-screen.right-panel-header-module.ProfessionPlanScreenPlanned',
+			ProfessionPlanScreenTentative: 'character-screen.right-panel-header-module.ProfessionPlanScreenTentative',
 		},
 
 		BattleStartFooterModule:

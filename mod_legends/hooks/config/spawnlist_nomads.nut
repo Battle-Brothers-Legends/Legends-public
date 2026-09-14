@@ -15,23 +15,31 @@
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Slave,
-					MaxR = 110,
+					MaxR = 75,
 					Cost = 5
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
-					MinR = 200,
 					Cost = 14
 				},
 				{
 					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
-					MinR = 400,
+					MinR = 225,
 					Cost = 20
 				}
 			]
 		},
 		{
 			Weight = 10,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
+			Weight = 12,
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.NomadSlinger,
@@ -65,7 +73,7 @@
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.Slave,
-					MaxR = 130,
+					MaxR = 75,
 					Cost = 5
 				},
 				{
@@ -80,7 +88,16 @@
 			]
 		},
 		{
-			Weight = 10,
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
+			Weight = 12,
 			Types =
 			[
 				{
@@ -102,36 +119,56 @@
 		},
 		{
 			Weight = 6,
-			MinR = 140,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.NomadLeader,
+					MinR = 140,
 					Cost = 60,
 					Roll = true
 				}
 			]
 		},
 		{
+			Weight = 3,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
 			Weight = 1,
-			MinR = 160,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Assassin,
+					Roll = true,
+					Cost = 45,
+					MinR = 300,
+				}
+			]
+		},
+		{
+			Weight = 1,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.Executioner,
 					Cost = 65,
+					MinR = 160,
 					Roll = true
 				}
 			]
 		},
 		{
 			Weight = 1,
-			MinR = 310,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.DesertDevil,
 					Cost = 65,
+					MinR = 310,
 					Roll = true
 				}
 			]
@@ -167,6 +204,15 @@
 			]
 		},
 		{
+			Weight = 5,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Cost = 5
+				}
+			]
+		},
+		{
 			Weight = 12,
 			Types =
 			[
@@ -189,24 +235,47 @@
 		},
 		{
 			Weight = 5,
-			MinR = 140,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.NomadLeader,
 					Cost = 40,
+					MinR = 140,
 					Roll = true
 				}
 			]
 		},
 		{
 			Weight = 2,
-			MinR = 365,
 			Types =
 			[
 				{
 					Type = this.Const.World.Spawn.Troops.Executioner,
 					Cost = 55,
+					MinR = 365,
+					Roll = true
+				}
+			]
+		},
+		{
+			Weight = 2,
+			Types = [
+				{
+					Type = this.Const.World.Spawn.Troops.Assassin,
+					Roll = true,
+					MinR = 300,
+					Cost = 45
+				}
+			]
+		},
+		{
+			Weight = 2,
+			Types =
+			[
+				{
+					Type = this.Const.World.Spawn.Troops.DesertDevil,
+					Cost = 50,
+					MinR = 420,
 					Roll = true
 				}
 			]
@@ -217,7 +286,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.DesertDevil,
+					Type = this.Const.World.Spawn.Troops.LegendEscapedGladiator,
 					Cost = 50,
 					Roll = true
 				}

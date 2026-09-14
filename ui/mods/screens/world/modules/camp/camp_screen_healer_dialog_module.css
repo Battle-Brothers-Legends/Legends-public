@@ -334,7 +334,7 @@
 
 .camp-screen > .l-healer-dialog-container .content .details-container .row.is-injuries-container
 {
-	height: 35.0rem;
+	height: 24.0rem;
 }
 
 .camp-screen > .l-healer-dialog-container .content .details-container .row.is-injuries-container > .l-list-container
@@ -351,8 +351,16 @@
 	left: 1.0rem;
 	right: 1.0rem;
 	height: 6.0rem;
-
+	position: absolute;
    /*border-top: 1px rgba(130, 130, 130, 1) solid;*/
+}
+
+.camp-screen > .l-healer-dialog-container .l-intensive-care-button {
+    width: 17.5rem;
+	height: 4.3rem;
+    margin-top: 1.0rem;
+	margin: 0 auto;
+	line-height: 3.0rem;
 }
 
 

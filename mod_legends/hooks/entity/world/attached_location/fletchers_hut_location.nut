@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "The arrow makers in these sheds produce all kinds of ranged ammunition which they then sell at the nearest settlement. Contributes bows, crossbows, arrows, bolts, bowyers and archers to the local town";
+		this.m.Description = "The arrow makers in these sheds produce all kinds of ranged ammunition which they then sell at the nearest settlement. Contributes bows, crossbows, arrows, bolts, bowyers and archers to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
@@ -19,8 +19,8 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("hunter_background");
-		_list.push("poacher_background");
+		_list.push(::Legends.Background.Hunter);
+		_list.push(::Legends.Background.Poacher);
 		onUpdateDraftList(_list);
 	}
 
@@ -61,7 +61,12 @@
 			_list.push({
 				R = 20,
 				P = 1.0,
-				S = "weapons/legend_sling"
+				S = "weapons/legend_dilapidated_sling"
+			});
+			_list.push({
+				R = 40,
+				P = 1.0,
+				S = "weapons/legend_sturdy_sling"
 			});
 			_list.push({
 				R = 60,

@@ -1,0 +1,172 @@
+::mods_hookExactClass("skills/backgrounds/cultist_background", function(o)
+{
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Cultist);
+		this.m.BackgroundDescription = "Cultists have a resolve to spread further their cult that is second to few.";
+		this.m.GoodEnding = "The cultist, %name%, left the company with a band of cloaked converts. You know not what became of the fanatic, but every so often they appear in your dreams. Often standing alone in a great void and there is always someone, or something, lingering in the black beyond. Every night, this image gets a little more clear, and each night you find yourself staying up later and later just to avoid dreaming at all.";
+		this.m.BadEnding = "You heard that %name%, the cultist, left the company at some juncture and went out to spread the faith. There\'s no telling what became of the fanatic, but there was a recent inquisition against unholy faiths and hundreds of \'folk in dark cloaks with even darker intentions\' were burned at the stake across the realm.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendSlack),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Lucky),
+			::Legends.Traits.getID(::Legends.Trait.Athletic),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Gluttonous),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Fat),
+			::Legends.Traits.getID(::Legends.Trait.Bright),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted)
+		];
+		this.m.Titles = [
+			"the Cultist",
+			"the Mad",
+			"the Believer",
+			"the Occultist",
+			"the Insane",
+			"the Follower",
+			"the Lost",
+			"the Odd",
+			"the Misguided",
+			"the Fanatic",
+			"the Zealot"
+		];
+		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+	}
+
+	o.getTooltip = function () {
+		return this.character_background.getTooltip();
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {Faces = ::Const.Faces.OldFemale, HairColors = ::Const.HairColors.Old}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Skinny, Hairs = ::Const.Hair.UntidyMale, Beards = ::Const.Beards.Untidy});
+	}
+
+	o.isCultist <- function () {
+		return true;
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		return "{The cultist stands with a placard hanging from their neck. | Their face is wreathed in garish tattoos. They carry a note. | The face is hidden inside a deep cowl, an islanded tip of a nose all that you see in the darkness. They carry a placard around their neck. | Clothed in rags, it is strange they neither sweat nor shake in heat or cold. Clutching a scroll as if it protects from the very elements. | Scripture is written across their arm in scars, the coda of madness. | The stranger writes in the dirt as quick as someone who has done it a thousand times. The message is clear to see. | They stand with a tome nestled behind a crooked arm. They hand it to you. Opening it, the leather feels like none you\'ve ever touched before. There is only one passage inside, written over and over.} It reads: \"Ph\'nglui mglw\'nafh Davkul R\'lyeh wgah\'nagl fhtagn. Nn\'nilgh\'ri, nn\'nglui. Sgn\'wahl sll\'ha ep\'shogg.\" Hmm... quaint.";
+	}
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Cultist);
+	}
+
+	o.onSetAppearance = function ()
+	{
+		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		{
+			local actor = this.getContainer().getActor();
+			local tattoo_body = actor.getSprite("tattoo_body");
+			local tattoo_head = actor.getSprite("tattoo_head");
+
+			if (this.Math.rand(1, 100) <= 50)
+			{
+				local body = actor.getSprite("body");
+				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
+				tattoo_body.Visible = true;
+			}
+
+			if (this.Math.rand(1, 100) <= 50)
+			{
+				tattoo_head.setBrush("tattoo_01_head");
+				tattoo_head.Visible = true;
+			}
+		}
+	}
+
+	o.updateAppearance = function ()
+	{
+		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		{
+			local actor = this.getContainer().getActor();
+			local tattoo_body = actor.getSprite("tattoo_body");
+
+			if (tattoo_body.HasBrush)
+			{
+				local body = actor.getSprite("body");
+				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
+			}
+		}
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local items = this.getContainer().getActor().getItems();
+		local r;
+		r = this.Math.rand(0, 8);
+
+		if (r == 0)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_scythe"));
+		}
+		else if (r == 1)
+		{
+			items.equip(this.new("scripts/items/weapons/wooden_flail"));
+		}
+		else if (r == 2)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
+		}
+		else if (r == 3)
+		{
+			items.equip(this.new("scripts/items/weapons/legend_chain"));
+		}
+		else if (r == 4)
+		{
+			if (this.Const.DLC.Wildmen)
+			{
+				items.equip(this.new("scripts/items/weapons/battle_whip"));
+			}
+			else if (!this.Const.DLC.Wildmen)
+			{
+				items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
+			}
+		}
+		else if (r >= 5)
+		{
+		 items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
+		}
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.leather_wraps],
+			[1, ::Legends.Armor.Standard.monk_robe],
+			[1, ::Legends.Armor.Standard.cultist_leather_robe]
+		]));
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.cultist_hood],
+			[1, ::Legends.Helmet.Standard.hood],
+			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
+		]));
+	}
+
+	o.onAdded <- function ()
+	{
+		this.character_background.onAdded();
+		this.getContainer().getActor().getFlags().add("cultist");
+	}
+});

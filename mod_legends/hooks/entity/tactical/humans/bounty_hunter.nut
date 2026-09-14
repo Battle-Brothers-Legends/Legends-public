@@ -1,10 +1,17 @@
-::mods_hookExactClass("entity/tactical/humans/bounty_hunter", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/bounty_hunter", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.removeByID("effects.dodge");
+		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);
@@ -37,28 +44,16 @@
 				"weapons/warbrand",
 				"weapons/hand_axe",
 				"weapons/boar_spear",
-				"weapons/legend_glaive",
+				"weapons/legend_battle_glaive",
 				"weapons/morning_star",
 				"weapons/falchion",
 				"weapons/arming_sword",
 				"weapons/flail",
 				"weapons/dagger",
-				"weapons/legend_ranged_flail"
+				"weapons/legend_ranged_flail",
+				"weapons/spetum",
+				"weapons/battle_whip"
 			];
-
-			if (this.Const.DLC.Unhold)
-			{
-				weapons.extend([
-					"weapons/spetum"
-				]);
-			}
-
-			if (this.Const.DLC.Wildmen)
-			{
-				weapons.extend([
-					"weapons/battle_whip"
-				]);
-			}
 
 			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
 
@@ -108,28 +103,28 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_surcoat"],
-			[1, "padded_leather"],
-			[1, "patched_mail_shirt"],
-			[1, "leather_lamellar"],
-			[1, "basic_mail_shirt"],
-			[1, "mail_hauberk"]
+			[1, ::Legends.Armor.Standard.ragged_surcoat],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.patched_mail_shirt],
+			[1, ::Legends.Armor.Standard.leather_lamellar],
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
 		if (this.Math.rand(1, 100) <= 90)
 		{
 			local helm = [
-				[1, "nasal_helmet"],
-				[1, "nasal_helmet_with_mail"],
-				[1, "reinforced_mail_coif"],
-				[1, "headscarf"],
-				[1, "kettle_hat"],
-				[1, "kettle_hat_with_mail"],
-				[1, "nordic_helmet"],
-				[1, "nordic_helmet_with_closed_mail"],
-				[1, "barbute_helmet"]
+				[1, ::Legends.Helmet.Standard.nasal_helmet],
+				[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[1, ::Legends.Helmet.Standard.reinforced_mail_coif],
+				[1, ::Legends.Helmet.Standard.headscarf],
+				[1, ::Legends.Helmet.Standard.kettle_hat],
+				[1, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[1, ::Legends.Helmet.Standard.nordic_helmet],
+				[1, ::Legends.Helmet.Standard.nordic_helmet_with_closed_mail],
+				[1, ::Legends.Helmet.Standard.barbute_helmet]
 			];
-			helm.push([1, "theamson_barbute_helmet"]);
+			helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet]);
 			local item = this.Const.World.Common.pickHelmet(helm);
 
 			if (item != null)

@@ -458,7 +458,7 @@ SaveCampaignMenuModule.prototype.addCampaignsToList = function (_campaigns)
 				continue;
 			}
 
-			if(_campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name] == 'Autosave' || _campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name] == 'autosave' || _campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name] == 'quicksave' || _campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name] == 'Quicksave')
+			if(_campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name].toLowerCase().indexOf('autosave') !== -1 || _campaigns[i][CampaignMenuModulesIdentifier.Campaign.Name].toLowerCase().indexOf('quicksave') !== -1)
 				continue;
 
 			this.addCampaignEntryToList(_campaigns[i]);

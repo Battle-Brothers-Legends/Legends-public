@@ -8,6 +8,7 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Description = "A preserved hand that is somewhere between that of a large man and a beast. It has been cleanly cut at the wrist and shows no sign of decay.";
 		this.m.SlotType = this.Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
+		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "misc/inventory_werehand.png";
@@ -53,30 +54,23 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 			});
 		}
 
-		if (!this.World.Flags.get("Item Identified"))
-		{
+		if (!this.getFlags().has(::Legends.Items.Relics.IdentifiedFlag)) {
+			result.push(clone ::Legends.Items.Relics.UnidentifiedTooltip)
+		} else {
 			result.push({
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Does something when equipped in the \'accessory\' slot."
+				text = "Adds an addition +6 to fatigue recovery per turn. Increases the effect from morale effects and mental attacks by 50%"
 			});
-			return result;
 		}
-		else
-		{
-			result.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Adds an addition +6 to fatigue recovery per turn. Increases the effect from morale effects and mental attacks by 50%."
-			});
-			return result;
-		}
+
+		return result;
 	}
 
-	function onUpdate( _properties )
+	function onUpdateProperties( _properties )
 	{
+		this.accessory.onUpdateProperties(_properties);
 		_properties.FatigueRecoveryRate += 6;
 		_properties.MoraleEffectMult *= 1.50; //50% more effected by morale checks and mental attacks
 	}

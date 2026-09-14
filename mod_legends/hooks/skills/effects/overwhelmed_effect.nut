@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/effects/overwhelmed_effect", function(o) {
-	
+
 	o.getTooltip = function()
 	{
 		return [
@@ -17,13 +17,13 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.Count * 5 + "%[/color] Melee Skill"
+				text = "[color=%negative%]-" + this.m.Count * 5 + "%[/color] Melee Skill"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-" + this.m.Count * 5 + "%[/color] Ranged Skill"
+				text = "[color=%negative%]-" + this.m.Count * 5 + "%[/color] Ranged Skill"
 			}
 		];
 	}

@@ -15,6 +15,7 @@ this.legend_unhold_fur_cloak_blueprint <- this.inherit("scripts/crafting/bluepri
 			}
 		];
 		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
 	function onCraft( _stash )

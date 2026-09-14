@@ -1,25 +1,23 @@
 this.perk_legend_perfect_focus <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPerfectFocus);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFocus);
 	}
 
-	function onAdded()
-	{
-		if (!this.m.Container.hasSkill("actives.perfect_focus"))
-		{
-			this.m.Container.add(this.new("scripts/skills/actives/perfect_focus"));
+	function onAdded() {
+		if (!this.m.Container.hasActive(::Legends.Active.PerfectFocus)) {
+			::Legends.Actives.grant(this, ::Legends.Active.PerfectFocus);
 		}
 	}
-		function onRemoved()
-	{
-		this.m.Container.removeByID("actives.perfect_focus");
+
+	function onRemoved() {
+		::Legends.Actives.remove(this, ::Legends.Active.PerfectFocus);
+	}
+
+	function onUpdate(_properties) {
+		if (this.getContainer().getActor().getFlags().has("undead")) {
+			_properties.ActionPoints += 3;
+		}
 	}
 
 });

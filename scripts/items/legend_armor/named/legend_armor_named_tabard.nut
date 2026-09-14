@@ -1,76 +1,40 @@
 this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
 	m = {
-		BraveryMult = 1.03
+		BraveryMult = 1.03,
+		Potential = {
+			Condition = { min = 10, max = 15 },
+			StaminaModifier = { min = 0, max = 0 },
+			BraveryMult = { min = 105, max = 110 }
+		}
 	},
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Tabbard;
-		this.m.ID = "legend_armor.named_tabard";
+		this.m.ID = "legend_armor.body.named_tabard";
+		this.m.Type = this.Const.Items.ArmorUpgrades.Tabard;
 		this.m.Name = "";
-		this.m.NameList = [
-			"Kingly",
-			"Splendorous",
-			"Pageantry",
-			"Swanky",
-			"Noble",
-			"Elegance",
-			"Opulence",
-			"Excess",
-			"Resplendence",
-			"Glorious"
-		];
+		this.m.Description = "A luxurious striped tabard made of a sturdy material, reinforced at seams with pure gold.";
+		this.m.ArmorDescription = "Includes a luxurious striped tabard.";
+		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = this.Const.Sound.ClothEquip;
 		this.m.Variants = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
 		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 6000;
-		this.m.Condition = 10;
-		this.m.ConditionMax = 10;
-		this.m.StaminaModifier = 0;
 		this.randomizeValues();
-	}
-
-	function randomizeValues()
-	{
-		this.m.Condition = this.Math.floor(this.m.Condition * this.Math.rand(110, 150) * 0.01) * 1.0;
-		this.m.ConditionMax = this.m.Condition;
-		this.m.BraveryMult = this.Math.rand(105, 110) * 0.01;
+		this.m.NameList = ["Majesty","Splendor","Pageantry","Swank","Nobility","Elegance","Opulence","Excess","Resplendence","Glory"];
 	}
 
 	function updateVariant()
 	{
-		local variant = this.m.Variant < 10 ? "0" + this.m.Variant : this.m.Variant;
-		this.m.SpriteBack = "bust_tabard_named_" + variant;
-		this.m.SpriteDamagedBack = "bust_tabard_named_" + variant + "_damaged";
-		this.m.SpriteCorpseBack = "bust_tabard_named_" + variant + "_dead";
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.SpriteBack = "tabard_named_" + variant;
+		this.m.SpriteDamagedBack = "tabard_named_" + variant + "_damaged";
+		this.m.SpriteCorpseBack = "tabard_named_" + variant + "_dead";
 		this.m.Icon = "legend_armor/icon_tabard_named_" + variant + ".png";
-		this.m.IconLarge = this.m.Icon;
+		this.m.IconLarge = "legend_armor/inventory_tabard_named_" + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_tabard_named_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_tabard_named_" + variant + ".png";
-	}
-
-	function getTooltip()
-	{
-		local result = this.legend_named_armor_upgrade.getTooltip();
-		local val = this.Math.floor(this.m.BraveryMult * 100.0 - 100);
-		result.push({
-			id = 15,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
-		});
-		return result;
-	}
-
-	function onArmorTooltip( _result )
-	{
-		local val = this.Math.floor(this.m.BraveryMult * 100.0 - 100);
-		_result.push({
-			id = 15,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Increase the Resolve of the wearer by [color=" + this.Const.UI.Color.PositiveValue + "]+" + val + "%[/color]"
-		});
 	}
 
 	function onUpdateProperties( _properties )

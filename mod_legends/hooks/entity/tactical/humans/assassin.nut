@@ -1,10 +1,17 @@
-::mods_hookExactClass("entity/tactical/humans/assassin", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/assassin", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
 		onInit();
-		this.m.Skills.removeByID("effects.dodge");
+		::Legends.Effects.remove(this, ::Legends.Effect.Dodge);
 		::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 	}
 
@@ -27,11 +34,11 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-				[1, "oriental/assassin_robe"]
+				[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "oriental/assassin_head_wrap"],
-				[1, "oriental/assassin_face_mask"]
+				[1, ::Legends.Helmet.Southern.assassin_head_wrap],
+				[1, ::Legends.Helmet.Southern.assassin_face_mask]
 		]));
 	}
 

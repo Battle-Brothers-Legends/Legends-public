@@ -10,7 +10,7 @@ this.legend_zombie_item <- this.inherit("scripts/items/spawns/legend_spawn_item"
 	function create()
 	{
 		this.legend_spawn_item.create();
-		this.m.Variant = 1
+		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "spawns.zombie";
 		this.m.Name = "Human Carrion";

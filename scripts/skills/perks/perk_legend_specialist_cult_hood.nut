@@ -2,20 +2,15 @@ this.perk_legend_specialist_cult_hood <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendSpecCultHood);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecCultHood);
 	}
 
 	function getCultistPieces(){
 		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-		local cultItems = []
+		local cultItems = [];
 		if (item != null)
 		{
-			if(item.isItemType(this.Const.Items.ItemType.Cultist)) {
+			if (item.isItemType(this.Const.Items.ItemType.Cultist)) {
 				cultItems.push(item)
 			}
 			foreach( upgrade in item.m.Upgrades )

@@ -12,6 +12,9 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		this.m.Beards = this.Const.Beards.Tidy;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
 	}
 
 	function onInit()
@@ -46,13 +49,12 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
@@ -82,62 +84,39 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		r = this.Math.rand(1, 6);
-
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/warhammer"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/noble_sword"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/three_headed_flail"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/military_cleaver"));
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/fighting_axe"));
-		}
-		else if (r == 6)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/winged_mace"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/warhammer"],
+			[1, "weapons/noble_sword"],
+			[1, "weapons/three_headed_flail"],
+			[1, "weapons/military_cleaver"],
+			[1, "weapons/fighting_axe"],
+			[1, "weapons/winged_mace"],
+		], "scripts/items/"));
 
 		local shield = this.new("scripts/items/shields/faction_kite_shield");
-
-
 		shield.setFaction(banner);
 		this.m.Items.equip(shield);
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "man_at_arms_noble_armor"]
+			[1, ::Legends.Armor.Standard.man_at_arms_noble_armor]
 		]));
 		// this.m.Items.equip(this.Const.World.Common.pickArmor([
 		// 	[1, "mail_hauberk", 28],
-		// 	[1, "mail_shirt"],
-		// 	[1, "basic_mail_shirt"]
+		// 	[1, ::Legends.Armor.Standard.mail_shirt],
+		// 	[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		// ]));
 
-		local helmet;
-
-		helmet = this.Const.World.Common.pickHelmet([
-			[3, "stag_helm"],
-			[3, "swan_helm"],
-			[1, "heavy_noble_house_helmet_00"]
+		local helmet = this.Const.World.Common.pickHelmet([
+			[3, ::Legends.Helmet.Standard.stag_helm],
+			[3, ::Legends.Helmet.Standard.swan_helm],
+			[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 		]);
 
-
 		if (helmet != null)
-			{
-				if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
-				this.m.Items.equip(helmet);
-			}
+		{
+			if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
+			this.m.Items.equip(helmet);
+		}
 	}
 
 });

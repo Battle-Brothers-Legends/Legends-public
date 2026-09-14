@@ -13,39 +13,33 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/bear_dead.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
-			"sounds/enemies/unhold_flee_01.wav",
-			"sounds/enemies/unhold_flee_02.wav",
-			"sounds/enemies/unhold_flee_03.wav",
-			"sounds/enemies/unhold_flee_04.wav"
-		];
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
-			"sounds/enemies/bear_hit1.wav",
-			"sounds/enemies/bear_hit2.wav"
-		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
-			"sounds/enemies/bear_idle1.wav",
-			"sounds/enemies/bear_idle2.wav"
-		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
-			"sounds/enemies/unhold_confused_01.wav",
-			"sounds/enemies/unhold_confused_02.wav",
-			"sounds/enemies/unhold_confused_03.wav",
-			"sounds/enemies/unhold_confused_04.wav"
-		];
+		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
+		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
+		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
+		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/unhold_confused", 4);
 		this.m.SoundPitch = this.Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bear_agent");
 		this.m.AIAgent.setActor(this);
+
+
+		this.m.OnDeathLootTable.extend([
+			[66, "scripts/items/supplies/strange_meat_item"]
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[40, "scripts/items/trade/furs_item"],
+				[40, "scripts/items/trade/furs_item"],
+				[40, "scripts/items/loot/legend_bear_fur_item"]
+			]);
+		}
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
 		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
-		{
 			return;
-		}
-
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
@@ -143,50 +137,44 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Bear";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 40)
-				{
-					loot = this.new("scripts/items/trade/furs_item");
-				}
-				else if (r <= 80)
-				{
-					loot = this.new("scripts/items/loot/legend_bear_fur_item");
-					loot = this.new("scripts/items/misc/furs_item");
-				}
-
-				if (loot != null)
-				{
-					loot.drop(_tile);
-				}
-			}
-
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				local loot = this.new("scripts/items/supplies/strange_meat_item");
-				loot.drop(_tile);
-			}
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Bear";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
+	}
+
+	function onFactionChanged()
+	{
+		this.actor.onFactionChanged();
+		local flip = this.isAlliedWithPlayer();
+		this.getSprite("body").setHorizontalFlipping(flip);
+		this.getSprite("armor").setHorizontalFlipping(flip);
+		this.getSprite("head").setHorizontalFlipping(flip);
+		this.getSprite("injury").setHorizontalFlipping(flip);
+		this.getSprite("helmet").setHorizontalFlipping(flip);
 	}
 
 	function onInit()
@@ -196,19 +184,19 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		b.setValues(this.Const.Tactical.Actor.LegendBear);
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 90)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay)
 		{
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 190)
+		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay2)
 		{
 			b.DamageTotalMult += 0.2;
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
-		this.m.CurrentProperties = clone b;
+		b.MeleeSkill += 10;
 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bear_01";
@@ -238,20 +226,22 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_grapple_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_bite_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_bear_claws_skill"));
-		this.m.Skills.add(this.new("scripts/skills/actives/unstoppable_charge_skill"));
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGrapple);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearBite);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBearClaws);
+		::Legends.Actives.grant(this, ::Legends.Active.UnstoppableCharge);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Hitpoints = 2 * b.Hitpoints;
-			b.MeleeSkill += 10;
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
+			b.Armor[this.Const.BodyPart.Head] += 50;
+			b.ArmorMax[this.Const.BodyPart.Head] += 50;		
+			b.Armor[this.Const.BodyPart.Body] += 120;
+			b.ArmorMax[this.Const.BodyPart.Body] += 120;
+			b.Hitpoints *= 2;			
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
-
-
+		this.m.CurrentProperties = clone b;
 	}
 
 	function assignRandomEquipment()

@@ -1,10 +1,9 @@
 this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "scenario.legends_solo_necro";
 		this.m.Name = "Master Necromancer";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_29.png[/img][/p][p] What is there to do when you have reached the top? Perhaps more dangers and intrigue await? \n\n[color=#bcad8c]Dark sway:[/color] Start with a master necromancer, two puppets and three mortals.\n[color=#bcad8c]Not a fighter:[/color] The master necromancer gains martial perks later into their development, but gains experience faster. If the master necromancer dies, the binds are broken and the journey ends. Puppets under your control gain bonuses to health, while mortals wither away from sickness. There is a chance mortals in your party will be risen again as undead if killed.\n[color=#bcad8c]Dark company:[/color] Cultists, Gravediggers, Graverobbers and Anatomists will flock to join you and gain the \'Siphon\' skill. Most other backgrounds cost 20% more to recruit and maintain. Cannot hire pious backgrounds.\n[color=#bcad8c]A terrible reputation:[/color] Recruits cannot hate the undead, relationships are poor with all factions and degrade slowly each day. Undead are passive towards you, and will steadily gain in relationship over time if attacked.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_29.png[/img][/p][p] What is there to do when you have reached the top? Perhaps more dangers and intrigue await? \n\n[color=#bcad8c]Dark Sway:[/color] Start with a master necromancer, two undead and three mortals. The master necromancer gains experience faster, but the story ends if he dies. Puppets under your control gain bonus health..\n[color=#bcad8c]Morbid Company:[/color] Cultists, Gravediggers, Graverobbers and Anatomists will flock to join you and gain the \'Siphon\' skill. Cannot hire pious backgrounds and other mortals will get sick under your command.There is a chance mortals in your party will be risen again as undead if killed.\n[color=#bcad8c]A Terrible Reputation:[/color] Recruits cannot hate undead, relationships are poor with all factions and degrade slowly each day. Undead are passive towards you, and will steadily gain in relationship over time if betrayed.[/p]";
 		this.m.Difficulty = 4;
 		this.m.Order = 311;
 		this.m.IsFixedLook = true;
@@ -36,9 +35,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"legend_necro_commander_background" //starts @ lvl 3
-		]);
+		bros[0].setStartValuesEx([::Legends.Background.LegendCommanderNecro]); //starts @ lvl 3
 		bros[0].setPlaceInFormation(4);
 		bros[0].setVeteranPerks(2);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_undead");
@@ -47,10 +44,9 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPossession);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendSpawnZombieLow);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendRaiseUndead);
 
-		bros[1].setStartValuesEx([ //ur a wizard, Harold
-			"legend_puppet_background"
-		]);
+		bros[1].setStartValuesEx([::Legends.Background.LegendPuppet]); //ur a wizard, Harold
 		bros[1].setPlaceInFormation(5);
 		bros[1].setVeteranPerks(2);
  		bros[1].getSprite("socket").setBrush("bust_base_undead");
@@ -62,21 +58,13 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"wizard_hat"
-			]
+			[1, ::Legends.Helmet.Standard.wizard_hat]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[
-				1,
-				"wizard_robe"
-			]
+			[1, ::Legends.Armor.Standard.wizard_robe]
 		]));
 
-		bros[2].setStartValuesEx([
-			"legend_puppet_background"
-		]);
+		bros[2].setStartValuesEx([::Legends.Background.LegendPuppet]);
 		bros[2].setPlaceInFormation(3);
 		bros[2].setVeteranPerks(2);
  		bros[2].getSprite("socket").setBrush("bust_base_undead");
@@ -88,21 +76,13 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/throwing_axe"));
 		items.equip(this.Const.World.Common.pickHelmet([
-			[
-				1,
-				"jesters_hat"
-			]
+			[1, ::Legends.Helmet.Standard.jesters_hat]
 		]));
 		items.equip(this.Const.World.Common.pickArmor([
-			[
-				1,
-				"noble_tunic"
-			]
+			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
 
-		bros[3].setStartValuesEx([
-			"minstrel_background"
-		]);
+		bros[3].setStartValuesEx([::Legends.Background.Minstrel]);
 		bros[3].setPlaceInFormation(12);
 		bros[3].setVeteranPerks(2);
 		bros[3].m.PerkPoints = 2;
@@ -112,18 +92,14 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::Legends.Traits.grant(bros[3], ::Legends.Trait.LegendWitheringAura);
 		bros[3].getBackground().m.RawDescription = "A loyal servant and helper, you tasked %name% with keeping and distributing the \'wages\' for the actors. Until recently this was an easy task.";
 
-		bros[4].setStartValuesEx([
-			"cultist_background"
-		]);
+		bros[4].setStartValuesEx([::Legends.Background.Cultist]);
 		bros[4].setPlaceInFormation(11);
 		bros[4].setVeteranPerks(2);
 		bros[4].getSprite("socket").setBrush("bust_base_undead");
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendWitheringAura);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.LegendDeathlySpectre);
 
-		bros[5].setStartValuesEx([
-			"cultist_background"
-		]);
+		bros[5].setStartValuesEx([::Legends.Background.Cultist]);
 		bros[5].setPlaceInFormation(13);
 		bros[5].setVeteranPerks(2);
 		bros[5].getSprite("socket").setBrush("bust_base_undead");
@@ -200,19 +176,19 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
 		foreach( n in nobles )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local unwashedPeasants = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
 		foreach( n in unwashedPeasants )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
 		foreach( n in oriental )
 		{
-			n.addPlayerRelation(-50.0, "Wary of necromancers");
+			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
@@ -231,113 +207,104 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		this.World.Flags.set("IsLegendsNecro", true); //used to unlock puppets in towns
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local roster = this.World.getPlayerRoster().getAll();
-
-		foreach( bro in roster )
-		{
+		foreach (bro in roster) {
 			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
 				return true;
-			}
 		}
-
 		return false;
 	}
 
-	function onHiredByScenario( bro )
-	{
-		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.anatomist" || bro.getBackground().getID() == "background.converted_cultist")
-		{
-			bro.improveMood(1.5, "I feel strange...but better!");
-			bro.getSprite("socket").setBrush("bust_base_undead");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendDeathlySpectre);
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
-		}
-		else if (bro.getBackground().getID() == "background.legend_puppet")
-		{
-			bro.getSprite("socket").setBrush("bust_base_undead");
-			bro.getBaseProperties().Hitpoints += 12;
-		}
-		else if (!bro.isStabled())
-		{
-			bro.worsenMood(2.0, "Feels very sick all of a sudden...");
-			::Legends.Traits.grant(bro, ::Legends.Trait.LegendWitheringAura);
+	function onHiredByScenario(_bro) {
+		if (::Legends.Backgrounds.getID(_bro,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Cultist,
+			::Legends.Background.Anatomist,
+			::Legends.Background.ConvertedCultist
+		)) {
+			_bro.improveMood(1.5, "I feel strange...but better!");
+			_bro.getSprite("socket").setBrush("bust_base_undead");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendWitheringAura);
+		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendPuppet)) {
+			_bro.getSprite("socket").setBrush("bust_base_undead");
+			_bro.getBaseProperties().Hitpoints += 12;
+		} else if (!_bro.isStabled()) {
+			_bro.worsenMood(2.0, "Feels very sick all of a sudden...");
+			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendWitheringAura);
 		}
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
-		this.addBroToRoster(_roster, "graverobber_background", 4);
-		this.addBroToRoster(_roster, "gravedigger_background", 4);
-		this.addBroToRoster(_roster, "cultist_background", 4);
-		this.addBroToRoster(_roster, "anatomist_background", 5);
-		this.addBroToRoster(_roster, "legend_puppet_background", 6);
-		foreach( i, bro in bros )
-		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) //delete crusader/pious recruits
-				garbage.push(bro);
+		this.addBroToRoster(_roster, ::Legends.Background.Anatomist, 5);
+		this.addBroToRoster(_roster, ::Legends.Background.Cultist, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.Gravedigger, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendPuppet, 6);
+		foreach (i, bro in bros) {
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+				garbage.push(bro); //delete crusader/pious recruits
 		}
 		foreach (g in garbage)
 			_roster.remove(g);
 	}
 
-	function onGenerateBro(bro)
-	{
-		if (bro.getBackground().getID() == "background.graverobber" || bro.getBackground().getID() == "background.gravedigger" || bro.getBackground().getID() == "background.cultist")
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.00) //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
-			bro.getSkills().update();
-		}
-		else if (bro.getBackground().getID() == "background.legend_puppet")
-		{
-			bro.getBaseProperties().Hitpoints += 12;
-		}
-		else
-		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.2) //1.0 = default
-			bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
-			bro.getSkills().update();
+	function onGenerateBro(_bro) {
+		if (_bro.isStabled())
+			return;
+
+		if (::Legends.Backgrounds.hasAny(_bro,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Cultist
+		)) {
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.00); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
+			_bro.getSkills().update();
+		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendPuppet)) {
+			_bro.getBaseProperties().Hitpoints += 12;
+		} else {
+			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.0); //1.0 = default
+			_bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
+			_bro.getSkills().update();
 		}
 	}
 
-	function onGetBackgroundTooltip( _background, _tooltip )
-	{
-		if (_background.getID() == "background.legend_puppet")
-		{
+	function onGetBackgroundTooltip(_background, _tooltip) {
+		if (::Legends.Backgrounds.has(_background, ::Legends.Background.LegendPuppet)) {
 			_tooltip.push({
 				id = 16,
 				type = "text",
 				icon = "ui/icons/health.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+12[/color] Hitpoints due to being under the control of a powerful necromancer"
+				text = "[color=%positive%]+12[/color] Hitpoints due to being under the control of a powerful necromancer"
 			});
 		}
 	}
 
-	function onBuildPerkTree( _background )
-	{
-		if (_background.getID() == "background.gravedigger" || _background.getID() == "background.graverobber" || _background.getID() == "background.cultist")
-		{
-			this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.LegendSiphon);
+	function onBuildPerkTree(_background) {
+		if (::Legends.Backgrounds.hasAny(_background,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Cultist,
+			::Legends.Background.Anatomist
+		)) {
+			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendSiphon);
 		}
 	}
 
-	function updateFactionActionsDeck()
-	{
+	function updateFactionActionsDeck() {
 		// Disable specific contracts regarding fighting undead
 		local factions = [];
-		foreach (type in [::Const.FactionType.OrientalCityState, ::Const.FactionType.Settlement, ::Const.FactionType.NobleHouse])
-		{
+		foreach (type in [::Const.FactionType.OrientalCityState, ::Const.FactionType.Settlement, ::Const.FactionType.NobleHouse]) {
 			factions.extend(::World.FactionManager.getFactionsOfType(type));
 			factions.removeActionByID("root_out_undead_action");
 			factions.removeActionByID("investigate_cemetery_action");

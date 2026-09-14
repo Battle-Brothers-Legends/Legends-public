@@ -11,7 +11,7 @@
 					local stash = this.World.Assets.getStash().getItems();
 
 					foreach( i, item in stash ) {
-						if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.padded_surcoat" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson")) {
+						if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.quilted_aketon" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson")) {
 							stash[i] = null;
 							this.List.push({
 								id = 10,
@@ -22,13 +22,14 @@
 						}
 					}
 					local item = this.Const.World.Common.pickArmor([
-						[1, "cultist_leather_robe"],
+						[1, ::Legends.Armor.Standard.cultist_leather_robe],
 					]);
 					this.World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + item.getName()
+						imageOverlayPath = item.getIconOverlay(),
+						text = "You gain " + item.makeName()
 					});
 				}
 			}
@@ -46,7 +47,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
 				candidates.push(bro);
 
 		if (candidates.len() == 0)
@@ -56,7 +57,7 @@
 		local numItems = 0;
 
 		foreach( item in stash )
-			if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.padded_surcoat" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson"))
+			if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.quilted_aketon" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson"))
 				numItems++;
 
 		if (numItems == 0)

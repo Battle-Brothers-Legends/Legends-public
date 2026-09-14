@@ -2,6 +2,7 @@ this.legend_ancient_green_wood_item <- this.inherit("scripts/items/item", {
 	m = {},
 	function create()
 	{
+		this.item.create();
 		this.m.ID = "misc.legend_ancient_green_wood";
 		this.m.Name = "Ancient Green Wood";
 		this.m.Description = "Ancient pieces of green wood carved from the remains of a living tree.";

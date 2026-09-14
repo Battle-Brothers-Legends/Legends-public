@@ -7,10 +7,8 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		this.m.NameList = this.Const.Strings.SpetumNames;
 		this.m.PrefixList = this.Const.Strings.SouthernPrefix;
 		this.m.SuffixList = this.Const.Strings.SouthernSuffix;
-		this.m.Description = "This Swordstaff is especially well-crafted, and its blade would be worthy of even a noble";
-		this.m.IconLarge = "weapons/melee/legend_royal_lance_01.png";
-		this.m.Icon = "weapons/melee/legend_royal_lance_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Spear;
+		this.m.Description = "This Spear is especially well-crafted, withstanding the tests of time, and its blade would be worthy of even a noble. Used for thrusting over some distance and keeping the enemy at bay.";
+		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
 		this.m.SlotType = this.Const.ItemSlot.Mainhand;
 		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
 		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
@@ -24,19 +22,19 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 		this.m.Condition = 65.0;
 		this.m.ConditionMax = 65.0;
 		this.m.StaminaModifier = -10;
-		this.m.RegularDamage = 55;
-		this.m.RegularDamageMax = 70;
+		this.m.RegularDamage = 65;
+		this.m.RegularDamageMax = 85;
 		this.m.ArmorDamageMult = 1.0;
-		this.m.DirectDamageMult = 0.35;
+		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
 		this.randomizeValues();
 	}
 
 	function updateVariant()
 	{
-		this.m.IconLarge = "weapons/melee/legend_royal_lance_0" + this.m.Variant + ".png";
-		this.m.Icon = "weapons/melee/legend_royal_lance_0" + this.m.Variant + "_70x70.png";
-		this.m.ArmamentIcon = "icon_legend_royal_lance_0" + this.m.Variant;
+		this.m.IconLarge = "weapons/melee/legend_mummy_lance_named_0" + this.m.Variant + ".png";
+		this.m.Icon = "weapons/melee/legend_mummy_lance_named_0" + this.m.Variant + "_70x70.png";
+		this.m.ArmamentIcon = "icon_mummy_lance_named_0" + this.m.Variant;
 	}
 
 	function createRandomName()
@@ -65,11 +63,28 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/thrust"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
-		this.addSkill(this.new("scripts/skills/actives/lunge_skill"));
-		this.addSkill(this.new("scripts/skills/actives/spearwall"));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.Prong, function (_skill) {
+			_skill.m.Icon = "skills/active_54.png";
+			_skill.m.IconDisabled = "skills/active_54_sw.png";
+			_skill.m.Overlay = "active_54";
+		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker, function (_skill) {
+			_skill.m.IsTwoHanded = true;
+		}.bindenv(this));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendRunThrough, function (_skill)
+		{
+			_skill.m.Icon = "skills/skewer_spetum.png";
+			_skill.m.IconDisabled = "skills/skewer_spetum_bw.png";
+			_skill.m.Overlay = "skewer_spetum";
+		}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
+			_skill.m.Icon = "skills/active_54.png";
+			_skill.m.IconDisabled = "skills/active_54_sw.png";
+			_skill.m.Overlay = "active_54";
+			_skill.m.BaseAttackName = "Prong";
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+			_skill.m.ActionPointCost = 6;
+		}.bindenv(this));
 	}
 
 });
-

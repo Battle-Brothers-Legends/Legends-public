@@ -1,30 +1,16 @@
-::mods_hookExactClass("entity/world/settlements/situations/hunting_season_situation", function(o)
-{
+::mods_hookExactClass("entity/world/settlements/situations/hunting_season_situation", function (o) {
 	local onAdded = o.onAdded;
-	o.onAdded = function ( _settlement )
-	{
-		if(::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			_settlement.setResources(_settlement.getResources() + _settlement.getResources() * 0.02);
-		}
-		onAdded( _settlement );
+	o.onAdded = function (_settlement) {
+		_settlement.setResources(_settlement.getResources() * 1.02);
+		onAdded(_settlement);
 	}
 
-	o.onUpdateDraftList <- function ( _draftList )
-	{
-		_draftList.push("hunter_background");
-		_draftList.push("hunter_background");
-		_draftList.push("poacher_background");
-		_draftList.push("poacher_background");
-		_draftList.push("poacher_background");
-		_draftList.push("poacher_background");
-		_draftList.push("legend_taxidermist_background");
-		_draftList.push("legend_taxidermist_background");
-		_draftList.push("houndmaster_background");
-		_draftList.push("houndmaster_background");
-		_draftList.push("butcher_background");
-		_draftList.push("butcher_background");
-		_draftList.push("legend_master_archer_background");
-		_draftList.push("legend_master_archer_background");
+	o.onUpdateDraftList <- function (_draftList) {
+		::Legends.S.extend(_draftList, ::Legends.Background.Hunter, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Poacher, 4);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendTaxidermist, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Houndmaster, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.Butcher, 2);
+		::Legends.S.extend(_draftList, ::Legends.Background.LegendMasterArcher, 2);
 	}
 });

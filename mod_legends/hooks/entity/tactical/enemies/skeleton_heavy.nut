@@ -60,10 +60,10 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
 		{
 			local armor = [
-				[1, "ancient/ancient_plated_scale_hauberk"],
-				[1, "ancient/ancient_scale_coat"],
-				[1, "ancient/ancient_plate_harness"],
-				[1, "ancient/ancient_plated_mail_hauberk"]
+				[1, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
+				[1, ::Legends.Armor.Ancient.ancient_scale_coat],
+				[1, ::Legends.Armor.Ancient.ancient_plate_harness],
+				[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 			];
 			local item = this.Const.World.Common.pickArmor(armor);
 			this.m.Items.equip(item);
@@ -72,12 +72,49 @@
 		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
 		{
 			local item = this.Const.World.Common.pickHelmet([
-			[66, "ancient/ancient_honorguard_helmet"]
-		]);
-		if (item != null)
+				[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
+			]);
+			if (item != null)
+			{
+				this.m.Items.equip(item);
+			}
+		}
+	}
+
+	o.makeMiniboss = function ()
+	{
+		if (!this.actor.makeMiniboss())
 		{
-			this.m.Items.equip(item);
+			return false;
 		}
+
+		this.getSprite("miniboss").setBrush("bust_miniboss");
+		local weapons = [
+			"named_khopesh",
+			"named_crypt_cleaver",
+			"named_warscythe",
+			"legend_named_gladius"
+		];
+		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		
+		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
+
+		this.m.Items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Ancient.ancient_heavy_restored_armor]
+		]));
+
+		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Ancient.ancient_heavy_restored_helmet]
+		]));
+
+		::Legends.Perks.grant(this, ::Legends.Perk.DevastatingStrikes);
+		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendTerrifyingVisage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackswing);
+		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+		return true;
 	}
 });

@@ -4,8 +4,10 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		Dude = null,
 		IsPlayerAttacking = true,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
-		Perk = ::Legends.Perk.LegendFavouredEnemyUnhold,
-		ValidTypes = this.Const.LegendMod.FavoriteUnhold
+		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
+		ValidTypes = this.Const.LegendMod.FavoriteBeast,
+		LevelSumRequiredForRandomSpawn = 50,
+		IsRandomlyAdded = null,
 	},
 	function setEnemyType( _t )
 	{
@@ -24,6 +26,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 			"Colossal footsteps shake the earth. Buildings have been shattered, the very landscape torn apart by primal fury.",
 			"Rampaging unholds have left a trail of devastation for miles. You can hear their thunderous roars from here.",
 		];
+		this.m.IsRandomlyAdded = ::Math.rand(1, 100) <= ::Math.floor(::World.Assets.m.ProfessionEffect.LegendBigGameHunter);
 	}
 
 	function getBanner()
@@ -140,7 +143,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == "background.beast_slayer" || bro.getBackground().getID() == "background.wildman" || bro.getBackground().getID() == "background.barbarian" || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+						if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Barbarian) || bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 						{
 							candidates.push(bro);
 						}
@@ -518,7 +521,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		]);
 		local nearTile = this.getTileToSpawnLocation(playerTile, 4, 8);
 		local party;
-		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, this.Const.World.Spawn.LegendRockUnhold, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult());
+		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, this.Const.World.Spawn.LegendRockUnhold, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("One or more lumbering giants.");
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.85);
@@ -590,22 +593,19 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 
 	function onIsValid()
 	{
+		local sumLevels = 0;
 		foreach( bro in this.World.getPlayerRoster().getAll() )
 		{
+			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
-			{
 				continue;
-			}
 
 			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
-
 			if (stats.Strength >= this.m.MinStrength)
-			{
 				return true;
-			}
 		}
 
-		return false;
+		return this.m.IsRandomlyAdded && sumLevels > this.m.LevelSumRequiredForRandomSpawn;
 	}
 
 	function onSerialize( _out )
@@ -618,7 +618,7 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		{
 			_out.writeU32(0);
 		}
-
+		_out.writeBool(this.m.IsRandomlyAdded);
 		this.contract.onSerialize(_out);
 	}
 
@@ -630,9 +630,8 @@ this.legend_hunting_rock_unholds_contract <- this.inherit("scripts/contracts/con
 		{
 			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
 		}
-
+		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);
 	}
 
 });
-

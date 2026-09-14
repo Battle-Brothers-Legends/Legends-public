@@ -1,8 +1,35 @@
 ::mods_hookExactClass("items/weapons/barbarians/crude_axe", function(o) {
+
+	local create = o.create;
+	o.create = function() {
+		create();
+		this.m.Variants = [0, 1, 2];
+		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.m.Ammo = 1;
+		this.m.AmmoMax = 1;
+		this.m.AmmoCost = 5;
+		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
+	}
+
+	o.updateVariant <- function() {
+		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
+		this.m.Icon = "weapons/melee/wildmen_05" + v + "_70x70.png";
+		this.m.IconLarge = "weapons/melee/wildmen_05" + v + ".png";
+		this.m.ArmamentIcon = "icon_wildmen_05" + v;
+	}
+
+	o.getAmmo <- function() {
+		return this.m.Ammo;
+	}
+
+	o.getAmmoMax <- function() {
+		return this.m.AmmoMax;
+	}
+
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
+	o.onEquip = function()
 	{
 		onEquip();
-		//this.addSkill(this.new("scripts/skills/actives/legend_harvest_tree_skill"));
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupAxe);
 	}
 });

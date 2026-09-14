@@ -10,12 +10,12 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_supplies.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + amount + "[/color] Tools and Supplies."
+						text = "You gain [color=%positiveEvent%]+" + amount + "[/color] Tools and Supplies."
 					});
 					local brothers = this.World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getBackground().getID() == "background.cultist" || bro.getBackground().getID() == "background.converted_cultist" || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+						if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
 							continue;
 
 						if (bro.getEthnicity() == 0 && this.Math.rand(1, 100) <= 66) {

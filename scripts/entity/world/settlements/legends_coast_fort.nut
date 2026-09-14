@@ -95,165 +95,170 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		];
 		this.m.DraftLists = [
 			[
-			"fisherman_background",
-			"fisherman_background",
-			"houndmaster_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"witchhunter_background",
-			"adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"fisherman_background",
-			"fisherman_background",
-			"houndmaster_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background"
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier
 			],
 			[
-			"apprentice_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"gravedigger_background",
-			"historian_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"monk_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"servant_background",
-			"vagabond_background",
-			"witchhunter_background",
-			"adventurous_noble_background",
-			"adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"swordmaster_background",
-			"apprentice_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"fisherman_background",
-			"gravedigger_background",
-			"historian_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"monk_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"vagabond_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"swordmaster_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Historian,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Monk,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Servant,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Apprentice,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Historian,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Monk,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Swordmaster
 			],
 			[
-			"apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"daytaler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"gravedigger_background",
-			"historian_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"servant_background",
-			"vagabond_background",
-			"witchhunter_background",
-			"adventurous_noble_background",
-			"adventurous_noble_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"eunuch_background",
-			 "apprentice_background",
-			"brawler_background",
-			"caravan_hand_background",
-			"caravan_hand_background",
-			"gambler_background",
-			"fisherman_background",
-			"fisherman_background",
-			"gravedigger_background",
-			"historian_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"minstrel_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"vagabond_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"raider_background",
-			"raider_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"eunuch_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Daytaler,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Historian,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Servant,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.AdventurousNoble,
+			::Legends.Background.LegendAdventurousNobleRanged,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Squire,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch,
+			 ::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.CaravanHand,
+			::Legends.Background.Gambler,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Fisherman,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Historian,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Minstrel,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Squire,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch
 		]];
 
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],
 		[
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier
 		],
 		[
-			"legend_horse_destrier",
-			"legend_horse_courser"
+			::Legends.Background.LegendHorseDestrier,
+			::Legends.Background.LegendHorseCourser
 		]];
 
 		this.m.Rumors = this.Const.Strings.RumorsFishingSettlement;
@@ -312,9 +317,9 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 5
+				return 5;
 			default:
 				return 1;
 		}
@@ -326,9 +331,9 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			case 1:
 			 	return 4;
 			case 2:
-				return 5
+				return 5;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}
@@ -378,7 +383,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 				Clear = true,
 				Force = true
 			}]
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -498,10 +503,10 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -567,7 +572,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		], [], 4, true);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -697,7 +702,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		], [], 2, true);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

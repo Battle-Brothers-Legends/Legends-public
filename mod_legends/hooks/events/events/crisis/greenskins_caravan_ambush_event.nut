@@ -7,22 +7,14 @@
 				local startB = s.start;
 				s.start <- function (_event) {
 					startB(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation increases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(3, false));
 				}
 			}
 			if (s.ID == "AftermathC") {
 				local startC = s.start;
 				s.start <- function (_event) {
 					startC(_event);
-					this.List.push({
-						id = 10,
-						icon = "ui/icons/asset_moral_reputation.png",
-						text = "The company\'s moral reputation decreases"
-					});
+					this.List.push(::Legends.EventList.changeMoralReputation(-2, false));
 				}
 			}
 		}

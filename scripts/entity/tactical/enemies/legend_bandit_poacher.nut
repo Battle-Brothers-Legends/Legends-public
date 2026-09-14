@@ -2,17 +2,18 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.BanditPoacher;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.BanditPoacher.XP;
+		this.m.Type = ::Const.EntityType.BanditPoacher;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.BanditPoacher.XP;
 		this.legend_randomized_unit_abstract.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
-		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_ranged_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
+		this.m.AIAgent = ::new("scripts/ai/tactical/agents/bandit_ranged_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 10)
+		if (this.randomizeEnemyGender() == 1) 
 		{
 			this.setGender(1);
 		}
@@ -64,7 +65,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 
 	function assignRandomEquipment()
 	{
-		this.legend_randomized_unit_abstract.assignRandomEquipment()
+		this.legend_randomized_unit_abstract.assignRandomEquipment();
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 	}
 	// function assignRandomEquipment()
@@ -79,7 +80,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 	if (this.Const.DLC.Wildmen)
 	// 	{
 	// 		weapons.push([
-	// 			"weapons/legend_sling"
+	// 			"weapons/legend_dilapidated_sling"
 	// 		]);
 	// 	}
 
@@ -102,15 +103,15 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 	}
 
 	// 	local item = this.Const.World.Common.pickArmor([
-	// 		[20, "leather_wraps"]
+	// 		[20, ::Legends.Armor.Standard.leather_wraps]
 	// 	])
 	// 	this.m.Items.equip(item);
 
 	// 	if (this.Math.rand(1, 100) <= 50)
 	// 	{
 	// 		local item = this.Const.World.Common.pickHelmet([
-	// 			[1, "headscarf"],
-	// 			[1, "mouth_piece"]
+	// 			[1, ::Legends.Helmet.Standard.headscarf],
+	// 			[1, ::Legends.Helmet.Standard.mouth_piece]
 	// 		])
 	// 		if (item != null)
 	// 		{

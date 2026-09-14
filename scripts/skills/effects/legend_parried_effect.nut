@@ -2,9 +2,8 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_parried";
-		this.m.Name = "Vulnerable";
-		this.m.Description = "This character has overextended, and is now vulnerable to a counterattack.";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendParried);
+		this.m.Description = "This character has overextended and is now vulnerable to attack.";
 		this.m.Icon = "ui/perks/parried_circle.png";
 		this.m.IconMini = "mini_parried_circle";
 		this.m.Overlay = "parried_circle";
@@ -13,7 +12,7 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
-	
+
 	function getTooltip()
 	{
 		return [
@@ -31,13 +30,13 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Melee Defense"
+				text = "[color=%negative%]-10[/color] Melee Defense"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10[/color] Ranged Defense"
+				text = "[color=%negative%]-10[/color] Ranged Defense"
 			}
 		];
 	}

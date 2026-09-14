@@ -1,13 +1,8 @@
 this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
-
+	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPaymaster);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPaymaster);
 	}
 
 
@@ -15,15 +10,13 @@ this.perk_legend_barter_paymaster <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.World.State.getPlayer() == null)
 			return;
-		this.World.State.getPlayer().calculateBarterMult();
-		this.World.State.getPlayer().calculateWageModifier();
+		this.World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onRemoved()
 	{
 		if (this.World.State.getPlayer() == null)
 			return;
-		this.World.State.getPlayer().calculateWageModifier();
-		this.World.State.getPlayer().calculateBarterMult();
+		this.World.State.getPlayer().calculateHaggleMult();
 	}
 });

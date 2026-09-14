@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A small group of huts surrounded by nets, spears, hooks and other fishing equipment. The smell from baskets of fish guts travels quite a distance. Contributes fish, fishermen and nets to the local town";
+		this.m.Description = "A small group of huts surrounded by nets, spears, hooks and other fishing equipment. The smell from baskets of fish guts travels quite a distance. Contributes fish, fishermen and nets to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
@@ -17,9 +17,9 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled")
-			_list.push("legend_qiyan_background");
-		
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
+			_list.push(::Legends.Background.LegendBellyDancer);
+		}
 		onUpdateDraftList(_list);
 	}
 

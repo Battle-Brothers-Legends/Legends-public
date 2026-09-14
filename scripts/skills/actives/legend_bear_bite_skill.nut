@@ -2,22 +2,11 @@ this.legend_bear_bite_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_bear_bite";
-		this.m.Name = "Bear Bite";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBearBite);
 		this.m.Description = "Tear into an opponent with your teeth";
 		this.m.KilledString = "Ripped to shreds";
-		this.m.Icon = "skills/active_71.png";
-		this.m.IconDisabled = "skills/active_71_bw.png";
-		this.m.Overlay = "active_71";
-		this.m.SoundOnUse = [
-			"sounds/enemies/bear_attack1.wav",
-			"sounds/enemies/bear_attack1.wav"
-		];
-		this.m.SoundOnHitHitpoints = [
-			"sounds/enemies/werewolf_claw_hit_01.wav",
-			"sounds/enemies/werewolf_claw_hit_02.wav",
-			"sounds/enemies/werewolf_claw_hit_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_attack", 1);
+		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
@@ -58,7 +47,7 @@ function getTooltip()
 			damageMax += avgMax;
 		}
 
-		if (this.getContainer().hasSkill("background.brawler") || this.getContainer().hasSkill("background.legend_commander_berserker") || this.getContainer().hasSkill("background.legend_berserker") || this.getContainer().hasSkill("background.legend_druid_commander") || this.getContainer().hasSkill("background.legend_druid") )
+		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)) )
 		{
 			damageMin = damageMin * 1.25;
 			damageMax = damageMax * 1.25;
@@ -108,7 +97,7 @@ function getTooltip()
 			id = 4,
 			type = "text",
 			icon = "ui/icons/regular_damage.png",
-			text = "Inflicts damage based on hitpoints and initiative [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_regular_max + "[/color] damage, up to [color=" + this.Const.UI.Color.DamageValue + "]" + damage_direct_max + "[/color] damage can ignore armor"
+			text = "Inflicts damage based on hitpoints and initiative [color=%damage%]" + damage_regular_min + "[/color] - [color=%damage%]" + damage_regular_max + "[/color] damage, up to [color=%damage%]" + damage_direct_max + "[/color] damage can ignore armor"
 		});
 
 		if (damage_Armor_max > 0)
@@ -117,7 +106,7 @@ function getTooltip()
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_min + "[/color] - [color=" + this.Const.UI.Color.DamageValue + "]" + damage_Armor_max + "[/color] armor damage"
+				text = "Inflicts [color=%damage%]" + damage_Armor_min + "[/color] - [color=%damage%]" + damage_Armor_max + "[/color] armor damage"
 			});
 		}
 
@@ -179,7 +168,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 				damageMax += muscularity;
 			}
 
-			if (this.getContainer().hasSkill("background.brawler") || this.getContainer().hasSkill("background.legend_commander_berserker" || this.getContainer().hasSkill("background.legend_berserker")) )
+			if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Brawler)) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderBerserker) || this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.LegendBerserker))) )
 			{
 				damageMin = damageMin * 1.25;
 				damageMax = damageMax * 1.25;
@@ -202,7 +191,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			local heal = maxHP / 10;
 			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
 		}
-		return res
+		return res;
 
 
 	}

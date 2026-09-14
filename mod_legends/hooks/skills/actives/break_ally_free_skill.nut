@@ -29,7 +29,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill, or higher if there\'s been attempts to free the ally before."
+				text = "Has a [color=%positive%]" + this.getChance() + "%[/color] chance to succeed, based on Melee Skill, or higher if there\'s been attempts to free the ally before."
 			}
 		];
 
@@ -39,7 +39,7 @@
 				id = 5,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "Net Mastery makes this signficantly easier",
+				text = "Net Mastery makes this significantly easier",
 			});
 		}
 
@@ -48,14 +48,14 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		return getChance();
+		return this.getChance();
 	}
 
 	o.getChance = function ()
 	{
 		local actor = this.getContainer().getActor();
 		local skill = actor.getCurrentProperties().getMeleeSkill();
-		local toHit = this.Math.min(100, skill - 10 + (actor.getSkills().hasSkill("effects.goblin_shaman_potion") ? 100 : 0));
+		local toHit = this.Math.min(100, skill - 10 + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
 		if (actor.getCurrentProperties().IsSpecializedInNets)
 		{
 			toHit = this.Math.max(99, toHit);
@@ -63,66 +63,48 @@
 		return toHit;
 	}
 
-	o.isHidden = function ()
+	local onUse = o.onUse;
+	o.onUse = function(_user, _targetTile)
 	{
-		local actor = this.getContainer().getActor();
+		local target = _targetTile.getEntity();
 
-		if (this.Tactical.isActive() && actor.isPlacedOnMap())
+		if (target.getSkills().hasEffect(::Legends.Effect.Net))
 		{
-			local myTile = actor.getTile();
-
-			for( local i = 0; i < 6; i = ++i )
-			{
-				if (!myTile.hasNextTile(i))
-				{
-				}
-				else
-				{
-					local tile = myTile.getNextTile(i);
-
-					if (this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && tile.getEntity().isAlliedWith(actor))
-					{
-						local entity = tile.getEntity();
-
-						if (entity.getSkills().hasSkill("effects.net"))
-						{
-							this.m.Icon = "skills/active_157.png";
-							this.m.IconDisabled = "skills/active_157_sw.png";
-							return false;
-						}
-
-						if (entity.getSkills().hasSkill("effects.web"))
-						{
-							this.m.Icon = "skills/active_158.png";
-							this.m.IconDisabled = "skills/active_158_sw.png";
-							return false;
-						}
-
-						if (entity.getSkills().hasSkill("effects.rooted"))
-						{
-							this.m.Icon = "skills/active_159.png";
-							this.m.IconDisabled = "skills/active_159_sw.png";
-							return false;
-						}
-
-						if (entity.getSkills().hasSkill("effects.kraken_ensnare"))
-						{
-							this.m.Icon = "skills/active_151.png";
-							this.m.IconDisabled = "skills/active_151_sw.png";
-							return false;
-						}
-
-						if (entity.getSkills().hasSkill("effects.serpent_ensnare"))
-						{
-							this.m.Icon = "skills/active_190.png";
-							this.m.IconDisabled = "skills/active_190_sw.png";
-							return false;
-						}
-					}
-				}
-			}
+			this.spawnIcon("status_effect_99", _targetTile);
 		}
 
-		return this.skill.isHidden();
+		if (target.getSkills().hasEffect(::Legends.Effect.Web))
+		{
+			this.spawnIcon("status_effect_100", _targetTile);
+		}
+
+		if (target.getSkills().hasEffect(::Legends.Effect.Rooted))
+		{
+			this.spawnIcon("status_effect_101", _targetTile);
+		}
+
+		if (target.getSkills().hasEffect(::Legends.Effect.KrakenEnsnare))
+		{
+			this.spawnIcon("status_effect_96", _targetTile);
+		}
+
+		if (target.getSkills().hasEffect(::Legends.Effect.SerpentEnsnare))
+		{
+			this.spawnIcon("status_effect_114", _targetTile);
+		}
+
+		local breakFree = ::Legends.Actives.get(target, ::Legends.Active.BreakFree);
+
+		if (breakFree != null)
+		{
+			if (breakFree.m.SoundOnUse.len() != 0)
+			{
+				this.Sound.play(breakFree.m.SoundOnUse[this.Math.rand(0, breakFree.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * breakFree.m.SoundVolume, _user.getPos());
+			}
+
+			breakFree.onUseByAlly(this.getContainer().getActor(), _targetTile);
+		}
+
+		return true;
 	}
 });

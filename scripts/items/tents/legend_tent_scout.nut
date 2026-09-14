@@ -3,7 +3,7 @@ this.legend_tent_scout <- this.inherit("scripts/items/trade/trading_good_item", 
 	function create()
 	{
 		this.trading_good_item.create();
-		this.m.ID = "tent.scout_tent";
+		this.m.ID = ::Legends.Camp.Tent.Scout;
 		this.m.Name = "Scout\'s station";
 		this.m.Description = "A station for organising scouting parties, comes with maps, compasses and spyglasses. Having this in your stash upgrades your camp.";
 		this.m.Icon = "tents/tent_scout_70x70.png";

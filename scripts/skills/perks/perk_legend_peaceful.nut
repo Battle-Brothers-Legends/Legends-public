@@ -2,12 +2,7 @@ this.perk_legend_peaceful <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		::Const.Perks.setup(this.m, ::Legends.Perk.LegendPeaceful);
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
-		this.m.IsActive = false;
-		this.m.IsStacking = false;
-		this.m.IsHidden = false;
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPeaceful);
 	}
 
 
@@ -26,10 +21,9 @@ this.perk_legend_peaceful <- this.inherit("scripts/skills/skill", {
 		local actors = this.Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 		foreach( a in actors )
 		{
-			if (a.getFaction() == this.getContainer().getActor().getFaction() && !a.getSkills().hasSkill("effects.legend_peaceful_reassured_effect"))
+			if (a.getFaction() == this.getContainer().getActor().getFaction() && !a.getSkills().hasEffect(::Legends.Effect.LegendPeacefulReassured))
 			{
-				local effect = this.new("scripts/skills/effects/legend_peaceful_reassured_effect");
-				a.getSkills().add(effect);
+				::Legends.Effects.grant(a, ::Legends.Effect.LegendPeacefulReassured);
 			}
 		}
 	}

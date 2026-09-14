@@ -2,8 +2,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_peaceful_reassured";
-		this.m.Name = "Reassured";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPeacefulReassured);
 		this.m.Icon = "skills/peaceful_reassured.png";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Perk;
@@ -14,7 +13,7 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "The presence of nearby peaceful people is increasing this characters resolve and experience gain";
+		return "The presence of nearby peaceful people is increasing this characters Resolve and experience gain.";
 	}
 
 	function getTooltip()
@@ -36,13 +35,13 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + peaceBravery + "[/color] Resolve"
+				text = "[color=%positive%]+" + peaceBravery + "[/color] Resolve"
 			},
 			{
 				id = 7,
 				type = "hint",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+" + peacefuls + "%[/color] Experience Gain"
+				text = "[color=%positive%]+" + peacefuls + "%[/color] Experience Gain"
 			}
 		];
 		return ret;

@@ -1,0 +1,222 @@
+::mods_hookExactClass("skills/backgrounds/gladiator_background", function(o)
+{
+	o.m.LoneWolfHidden <- true;
+	o.create = function ()
+	{
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Gladiator);
+		this.m.BackgroundDescription = "Gladiators are expensive, but a life in the arena has forged them into skilled fighters. Always a show off, gladiators fight better if there are no allies nearby.";
+		this.m.GoodEnding = "You thought that %name% the gladiator would return to the arenas as you thought %they% might. However, news from the south speaks of an uprising of indebted and gladiators alike. Unlike previous revolts, this one has viziers swinging from rooftops and slavers being lynched in the streets. The general upheaval is apparently about to sit the once-ringfighter as a legitimate powerbroker in the region.";
+		this.m.BadEnding = "The call of the crowd was too loud for the gladiator %name%. After your quick retirement from the unsuccessful %companyname%, the fighter returned to the southern kingdoms\' fighting arenas. Unfortunately, the wear and tear of %their% time with mercenaries slowed %them% a step and %they% was mortally slain by a half-starved slave wielding a pitchfork and a net.";
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.Superstitious),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearDark),
+			::Legends.Traits.getID(::Legends.Trait.LegendSureshot),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Hesitant),
+			::Legends.Traits.getID(::Legends.Trait.Loyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure)
+		];
+		this.m.Ethnicity = this.Math.rand(1, 2);
+		this.m.Names = this.Const.Strings.SouthernNames;
+		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Level = this.Math.rand(2, 5);
+		this.m.BackgroundType = this.Const.BackgroundType.Combat;
+	}
+
+	o.getTooltip = function ()
+	{
+		local ret =  this.character_background.getTooltip();
+		if (!this.m.LoneWolfHidden)
+		{
+			ret.push(
+				{
+					id = 13,
+					type = "text",
+					icon = "ui/icons/regular_damage.png",
+					text = "[color=%positive%]10%[/color] damage increase"
+				}
+			);
+		}
+		return ret;
+	}
+
+	o.setGender <- function (_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		if (this.m.Ethnicity == 1) {
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
+		}
+		else if (this.m.Ethnicity == 2) {	
+			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
+		}
+	}
+
+	o.onBuildDescription <- function ()
+	{
+		return "{The South is littered with slaves of all sorts, called the indebted for their debt to the Gilder. While most find themselves in the fields, a select few are taken to the fighting pits to battle it out. | While northerners do partake in combat tournaments, nothing gets close to the violence and gore of a southern gladiatorial pit. | In the South, rich and poor alike enjoy cheering on the gladiators of the fighting pits. | Southern gladiatorial pits are filled with indebted and voluntary killers alike. | A bloody house of combat and betting, a gladiatorial pit is the one place in the South one may find rich and poor crowded together.} {It was from these ranks %name% came. %They% rapidly grew through the ranks and managed to buy %their% way out of the pits and into whatever \'freedom\' one could find after such a life. | A crowd-favorite, %name%\'s time as a gladiator ended after a \'pardon\' by %their% wealthy sponsors. But in early retirement %they% found %their% life unfulfilled. | Successful killers such as %name% can buy their way to freedom, though the bloodlust has yet to leave the %person%. | %name% was involved in a \'diving\' incident and received a year long ban from the pits. | But gladiators like %name% are not just popular with the public, but particularly with lusty folk. A raunchy tryst with a noble led to the fighter being spirited away under the cover of night lest %they% be mutilated. | A pit\'s most popular fighter is usually a blend of murderous handsomeness, and a %person% such as %name% was only the former. Dispirited by the lack of fame %they% thought %they% had earned, %they% purchased %their% freedom and departed the blood sport.} {Gladiators usually cross from fighting pit to fighting pit, so a sturdy, well skilled fighter such as %name% is rare to find in the wild. Yet here %they% stands, albeit with enough scars to make a flagellant blush. | You\'ve met many a warrior, but rarely one with the particular skillsets of a pit fighter such as %name%. All the clashing in the arenas has made %them% a clever warrior indeed, and also one with many a scar and injury to match %their% time there. | There\'s many pairings in this world, and a gladiator with an untouched body is not one of them. %name% is a skilled fighter, but %they% earned those experiences with %their% own blood and body. | An impressive gladiatorial resume such as the one %name% brings hints at a %person% well versed in killing. The many scars, however, flatly state that %their% time in the pits came with an irreversible price of their own. | Gladiators such as %name% could be the most skilled fighters in all the land, but the fighting pits are full of games and are designed to bring harm to all who partake. The %person% is a talented warrior, but %they% wears the scars and wounds of a career in the arena.}";
+	}
+
+	o.onSetAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+		local tattoo_head = actor.getSprite("tattoo_head");
+
+		if (this.Math.rand(1, 100) <= 25)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+			tattoo_body.Visible = true;
+		}
+
+		if (this.Math.rand(1, 100) <= 30)
+		{
+			tattoo_head.setBrush("scar_02_head");
+			tattoo_head.Visible = true;
+		}
+	}
+
+	o.updateAppearance = function ()
+	{
+		local actor = this.getContainer().getActor();
+		local tattoo_body = actor.getSprite("tattoo_body");
+
+		if (tattoo_body.HasBrush)
+		{
+			local body = actor.getSprite("body");
+			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
+		}
+	}
+
+	o.onUpdate <- function ( _properties )
+	{
+		this.character_background.onUpdate(_properties);
+		if (!this.getContainer().getActor().isPlacedOnMap())
+		{
+			this.m.LoneWolfHidden = true;
+			return;
+		}
+
+		local actor = this.getContainer().getActor();
+		local myTile = actor.getTile();
+		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local isAlone = true;
+
+		foreach( ally in allies )
+		{
+			if (ally.getID() == actor.getID() || !ally.isPlacedOnMap())
+			{
+				continue;
+			}
+
+			if (ally.getTile().getDistanceTo(myTile) <= 2)
+			{
+				isAlone = false;
+				break;
+			}
+		}
+
+		if (isAlone)
+		{
+			this.m.LoneWolfHidden = false;
+			_properties.DamageTotalMult *= 1.10;
+		}
+		else
+		{
+			this.m.LoneWolfHidden = true;
+		}
+	}
+
+
+	o.onChangeAttributes = function ()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.Gladiator);
+	}
+
+	o.onAdded = function ()
+	{
+		this.character_background.onAdded();
+
+		if (this.Math.rand(1, 2) == 2)
+		{
+			local actor = this.getContainer().getActor();
+			actor.setTitle(this.Const.Strings.GladiatorTitles[this.Math.rand(0, this.Const.Strings.GladiatorTitles.len() - 1)]);
+		}
+	}
+
+	o.onAddEquipment = function ()
+	{
+		local actor = this.getContainer().getActor();
+		actor.setVeteranPerks(3);
+		local items = actor.getItems();
+		local r;
+
+		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		{
+			local weapons = [
+				"weapons/shamshir",
+				"weapons/shamshir",
+				"weapons/oriental/two_handed_scimitar",
+				"weapons/oriental/heavy_southern_mace",
+				"weapons/oriental/heavy_southern_mace",
+				"weapons/oriental/swordlance",
+				"weapons/oriental/polemace",
+				"weapons/fighting_axe",
+				"weapons/fighting_spear",
+				"weapons/two_handed_flail",
+				"weapons/two_handed_flanged_mace",
+				"weapons/bardiche"
+			];
+
+			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		}
+
+		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		{
+			local offhand = [
+				"tools/throwing_net",
+				"shields/oriental/metal_round_shield"
+			];
+			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+		}
+
+
+		local a = this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Southern.gladiator_harness]
+		]);
+
+		r = this.Math.rand(1, 2);
+
+		if (r == 1)
+		{
+			a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
+		}
+		else if (r == 2)
+		{
+			a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
+		}
+		items.equip(a);
+
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, this.Math.rand(13, 15)],
+			[1, ::Legends.Helmet.None]
+		]));
+
+	}
+
+});

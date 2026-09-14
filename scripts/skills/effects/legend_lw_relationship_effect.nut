@@ -2,11 +2,10 @@ this.legend_lw_relationship_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_lw_relationship";
-		this.m.Name = "Band of Brothers";
-		this.m.Description = "Trust is in short supply, and trusting those around you allows you to fight and focus better on the battlefield";
-		this.m.Icon = "ui/traits/trait_icon_58.png"; //change
-		this.m.IconMini = "status_effect_78_mini"; //change
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLwRelationship);
+		this.m.Description = "Trust is a rare weapon on the battlefield. Fighting with trust in those around them allows this character to focus and fight better.";
+		this.m.Icon = "ui/traits/trait_icon_58.png"; //team player
+		this.m.IconMini = "band_of_brothers_mini"; //change
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
@@ -31,25 +30,25 @@ this.legend_lw_relationship_effect <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bonus * 2 + "[/color] Melee Skill"
+				text = "[color=%positive%]" + bonus * 2 + "[/color] Melee Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_skill.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bonus * 3 + "[/color] Ranged Skill"
+				text = "[color=%positive%]" + bonus * 3 + "[/color] Ranged Skill"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bonus * 2 + "[/color] Melee Defense"
+				text = "[color=%positive%]" + bonus * 2 + "[/color] Melee Defense"
 			},
 			{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + bonus * 2 + "[/color] Ranged Defense"
+				text = "[color=%positive%]" + bonus * 2 + "[/color] Ranged Defense"
 			}
 		];
 	}

@@ -4,7 +4,7 @@ this.legend_prosthetic_ear_blueprint <- this.inherit("scripts/crafting/blueprint
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_prosthetic_ear";
-		this.m.Type = this.Const.Items.ItemType.Usable
+		this.m.Type = this.Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/misc/legend_prosthetic_ear_item");
 		this.m.Cost = 50;
 		local ingredients = [
@@ -14,10 +14,7 @@ this.legend_prosthetic_ear_blueprint <- this.inherit("scripts/crafting/blueprint
 			}
 		];
 		this.init(ingredients);
-		local skills = [
-			::Legends.Perks.blueprint(::Legends.Perk.LegendInventorAnatomy)
-		];
-		this.initSkills(skills);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendProsthetics)]);
 	}
 
 	function onCraft( _stash )

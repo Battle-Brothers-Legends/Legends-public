@@ -1,4 +1,4 @@
-this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", {
+/*this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	m = {
 		Items = [],
 		NumBros = 0,
@@ -21,40 +21,19 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function create()
 	{
 		this.camp_building.create();
-		this.m.ID = this.Const.World.CampBuildings.Hunter;
+		this.m.ID = ::Legends.Camp.CampBuildings.Hunter;
 		this.m.ModName = "Hunting";
 		this.m.HasPopup = true;
 		this.m.ModMod = 10.0;
 		this.m.BaseCraft = 1.5;
 		this.m.Slot = "hunt";
 		this.m.Name = "Camp Kitchen";
-		this.m.Description = "A kitchen tent with supplies for hunting, preparing and cooking food"
-		this.m.BannerImage = "ui/buttons/banner_hunt.png"
-		this.m.CanEnter = false
-		this.m.Sounds = [
-			{
-				File = "ambience/camp/camp_hunter_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_hunter_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-		{
-				File = "ambience/camp/camp_hunter_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_hunter_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
+		this.m.Description = "A kitchen tent with supplies for hunting, preparing and cooking food";
+		this.m.BannerImage = "ui/buttons/banner_hunt.png";
+		this.m.CanEnter = false;
+		local sounds = getCampSounds(2, "hunter");
+		this.m.Sounds = sounds;
+		this.m.SoundsAtNight = sounds;
 	}
 
 	function hasPopup()
@@ -70,7 +49,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	function setMode( _m )
 	{
 		if (typeof _m == "string") this.m.Mode = this.Const.HuntingLoot.HunterCampMode[_m];
-		else if (typeof _m = "integer") this.m.Mode = _m;
+		else if (typeof _m == "integer") this.m.Mode = _m;
 	}
 
 	function queryConfigureSettings()
@@ -107,17 +86,17 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	{
 		if (this.getUpgraded())
 		{
-			return this.m.Name + " *Upgraded*"
+			return this.m.Name + " *Upgraded*";
 		}
-		return this.m.Name +  " *Not Upgraded*"
+		return this.m.Name +  " *Not Upgraded*";
 	}
 
 	function getDescription()
 	{
 		local desc = "";
-		desc += "Hunting parties can only be sent out while encamped. The more people assigned, the more food foraged or hunted. "
-		desc += "Returns different food items depending on the current biome. Some items require the knowledge of specific backgrounds to be obtainable."
-		desc += "\n\n"
+		desc += "Hunting parties can only be sent out while encamped. The more people assigned, the more food foraged or hunted. ";
+		desc += "Returns different food items depending on the current biome. Some items require the knowledge of specific backgrounds to be obtainable.";
+		desc += "\n\n";
 		desc += format(
 					"Assigning mercenaries with %s backgrounds increases the %s (based on each character's level), which allows the hunting party to hunt rarer or more dangerous prey.\n",
 					::Const.UI.getColorized("Expert Hunter",::Const.UI.Color.getHighlightLightBackgroundValue()),
@@ -133,8 +112,8 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					::Const.UI.getColorized("Alcohol Brewing",::Const.UI.Color.getHighlightLightBackgroundValue()),
 					::Const.UI.getColorized("wine and beer",::Const.UI.Color.getHighlightLightBackgroundValue())
 				);
-		desc += "\n\n"
-		desc += "Upgrading this tent grants the following effects:\n"
+		desc += "\n\n";
+		desc += "Upgrading this tent grants the following effects:\n";
 		desc += format(
 					"- Increases foraging / hunting speed by %s\n",
 					::Const.UI.getColorized("15%",::Const.UI.Color.PositiveValue)
@@ -143,7 +122,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					"- Unlock the %s button, allowing you to customize the priorities of the hunting party\n",
 					::Const.UI.getColorized("Hunting Mode",::Const.UI.Color.getHighlightLightBackgroundValue())
 				);
-		desc += "- Increases the chance to obtain bonus loot, improved food items, and brewed items\n"
+		desc += "- Increases the chance to obtain bonus loot, improved food items, and brewed items\n";
 		desc += format(
 					"- Assigning %s backgrounds increases the %s at a much greater rate\n",
 					::Const.UI.getColorized("Expert Hunter",::Const.UI.Color.getHighlightLightBackgroundValue()),
@@ -173,14 +152,14 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					"- Advanced food can also be made using spices in the %s tent",
 					::Const.UI.getColorized("crafting",::Const.UI.Color.getHighlightLightBackgroundValue())
 				);
-		desc += "\n\n"
-		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg]}),"and",false) + "\n\n";
-		desc += "Cooking backgrounds: Miller / Baker, Butcher / Fishmonger, Servant, Cannibal"
+		desc += "\n\n";
+		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg];}),"and",false) + "\n\n";
+		desc += "Cooking backgrounds: Miller / Baker, Butcher / Fishmonger, Servant, Cannibal";
 
 		return desc;
 	}
 
-	function getModifierToolip()
+	function getModifierTooltip()
 	{
 		local mod = this.getModifiers();
 		local generator = ::Const.HuntingLoot.getGenerator(::World.State.getPlayer().getTile().Type, this.getUpgraded(), this.getHuntLevel(), this.getCookLevel(), this.getBrewLevel(), this.getAssignedBackgrounds(true));
@@ -193,7 +172,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = 5,
 				type = "text",
 				icon = "ui/buttons/asset_food_up.png",
-				text = "Successful hunt will take approximately [color=" + this.Const.UI.Color.PositiveValue + "]" + ::Math.floor(estimateHuntTime) + "[/color] hours.",
+				text = "Successful hunt will take approximately " + ::Legends.S.colorizeAndPluralize(::Math.floor(estimateHuntTime), "positive", "hour")
 			}
 		];
 		local id = 6;
@@ -203,43 +182,15 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				id = id,
 				type = "hint",
 				icon = "ui/icons/special.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]" + (bro[0] / 100.0) * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
-			})
+				text = "[color=%positive%]" + (bro[0] / 100.0) * 100.0 + "%[/color] " + bro[1] + " (" + bro[2] + ")"
+			});
 			++id;
 		}
 		return ret;
 	}
 
-	function isHidden()
-	{
-
-		if (::Legends.Mod.ModSettings.getSetting("SkipCamp").getValue())
-		{
-			return false;
-		}
-
-		return !this.World.Flags.get("HasLegendCampHunting")
-	}
-
-	function getUpgraded()
-	{
-		return this.Stash.hasItem("tent.hunter_tent");
-	}
-
-	function getLevel()
-	{
-		local pro = "dude";
-		if (this.getUpgraded())
-		{
-			pro = "tent";
-		}
-
-		local sub = "empty";
-
-		if (this.getAssignedBros() > 0) {
-			sub =  "full";
-		}
-		return pro + "_" + sub;
+	function getLevel()	{
+		return (this.getUpgraded() ? "tent" : "dude") + "_" + (this.getAssignedBros() > 0 ? "full" : "empty");
 	}
 
 	function init()
@@ -321,7 +272,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getExpertHunters()
 	{
-		local ret = {}
+		local ret = {};
 		local roster = ::World.getPlayerRoster().getAll();
 		foreach (c in roster)
 		{
@@ -339,7 +290,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getCooks()
 	{
-		local ret = {}
+		local ret = {};
 		local roster = ::World.getPlayerRoster().getAll();
 		foreach (c in roster)
 		{
@@ -357,7 +308,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 
 	function getBrewers()
 	{
-		local ret = {}
+		local ret = {};
 		local roster = ::World.getPlayerRoster().getAll();
 		foreach (c in roster)
 		{
@@ -386,7 +337,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ExpertHunter) || bro.getBackground().getID() in ::Const.HuntingLoot.ExpertHunterBackgrounds)
@@ -417,13 +368,13 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			local added = false;
 			if (this.getUpgraded())
 			{
-				if (bro.getBackground().getID()=="background.miller" || bro.getBackground().getID()=="background.butcher" || bro.getBackground().getID()=="background.servant" || bro.getBackground().getID()=="background.cannibal")
+				if (bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Miller) || bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Butcher) || bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Servant))
 				{
 					cookLevel += ::Math.floor(bro.getLevel() * 0.1);
 					if (_updateVerboseResults)
@@ -458,13 +409,13 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		{
 			if (bro.getCampAssignment() != this.m.ID)
 			{
-				continue
+				continue;
 			}
 
 			local added = false;
 			if (this.getUpgraded())
 			{
-				if (bro.getBackground().getID()=="background.miller" || bro.getBackground().getID()=="background.butcher" || bro.getBackground().getID()=="background.servant" || bro.getBackground().getID()=="background.cannibal")
+				if (bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Miller) || bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Butcher) || bro.getBackground().getID()==::Legends.Backgrounds.getID(::Legends.Background.Servant))
 				{
 					brewerLevel += ::Math.floor(bro.getLevel() * 0.1);
 					if (_updateVerboseResults)
@@ -497,7 +448,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 
 		local res = [];
-		local categories = ["Food","Hunt","Cook","Brew"]
+		local categories = ["Food","Hunt","Cook","Brew"];
 
 		// res.push({
 		// 	id = 82,
@@ -510,7 +461,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		res.push({
 			id = 81,
 			icon = "ui/icons/asset_food.png"
-			text = "Your hunting party brought back " + ::Const.UI.getColorized(this.m.FoodAmount, ::Const.UI.Color.PositiveEventValue) + " Food with the following:",
+			text = "Your hunting party brought back " + ::Legends.S.colorizeAndPluralize(this.m.FoodAmount, "positiveEvent") + " food with the following:",
 			divider = "top"
 		});
 
@@ -594,15 +545,14 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		local mod = this.getModifiers();
 		local bgs = this.getAssignedBackgrounds(true);
 		local huntLevel = this.getHuntLevel(false);
-		local expertHunters = this.getExpertHunters();
+		local expertHunters = this.getExpertHunters()
 		local cooks = this.getCooks();
 		local brewers = this.getBrewers();
-		local indent = "<span style=\"display: inline-block; width: 1rem\"></span>";
 
 		ret.push("Hunting points per hour: " + mod.Craft);
 		ret.push("Hunt Tier: " + ::Const.HuntingLoot.getHuntLevelTier(huntLevel));
-		ret.push("Current mode: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.HuntingLoot.HunterCampModeNameMap[this.m.Mode] + "</span>")
-		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type]) + "</span>";
+		ret.push("Current mode: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.HuntingLoot.HunterCampModeNameMap[this.m.Mode] + "</span>");
+		ret.push("Current biome: <span style=\"color:" + ::Const.UI.Color.getHighlightLightBackgroundValue() + ";\">" + ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type] + "</span>") ;
 
 		local targets = ::Const.HuntingLoot.getBiomeTargetDefs(::World.State.getPlayer().getTile().Type);
 
@@ -628,7 +578,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					{
 						bgNames.push(::Const.HuntingLoot.RequiredBackgrounds[b]);
 					}
-					requirements.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + "; display: inline-block; padding-left: 2rem;\">Requires " + ::Const.LegendMod.Language.arrayToText(bgNames,"or",false) + "</span>");
+					requirements.push("<span style=\"color:%negative%; display: inline-block; padding-left: 2rem;\">Requires " + ::Const.LegendMod.Language.arrayToText(bgNames,"or",false) + "</span>");
 				}
 
 				if (failed)
@@ -650,7 +600,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 				if (!::Const.HuntingLoot.hasSufficientHuntLevelForTier(target,huntLevel))
 				{
 					failed = true;
-					requirements.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + "; padding-left: 2rem;\">Requires Hunt Tier " + target.Tier + "</span>");
+					requirements.push("<span style=\"color:%negative%; padding-left: 2rem;\">Requires Hunt Tier " + target.Tier + "</span>");
 				}
 
 				// Show required backgrounds if none of the currently assigned characters qualify
@@ -662,7 +612,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 					{
 						bgNames.push(::Const.HuntingLoot.RequiredBackgrounds[b]);
 					}
-					requirements.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + "; display: inline-block; padding-left: 2rem;\">Requires " + ::Const.LegendMod.Language.arrayToText(bgNames,"or",false) + "</span>");
+					requirements.push("<span style=\"color:%negative%; display: inline-block; padding-left: 2rem;\">Requires " + ::Const.LegendMod.Language.arrayToText(bgNames,"or",false) + "</span>");
 				}
 
 				// Strikethrough the target if the hunting party does not qualify
@@ -694,7 +644,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 		else
 		{
-			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Expert Hunters</u></span>");
+			ret.push("<span style=\"color:%negative%;\"><u>No Expert Hunters</u></span>");
 		}
 
 
@@ -709,7 +659,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 		else
 		{
-			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Cooks</u></span>");
+			ret.push("<span style=\"color:%negative%;\"><u>No Cooks</u></span>");
 		}
 
 		// Brewers
@@ -723,7 +673,7 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 		else
 		{
-			ret.push("<span style=\"color:" + ::Const.UI.Color.NegativeValue + ";\"><u>No Brewers</u></span>");
+			ret.push("<span style=\"color:%negative%;\"><u>No Brewers</u></span>");
 		}
 
 		ret.push("<u>Hunting points contributions per hour</u>");
@@ -913,21 +863,5 @@ this.hunter_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 			this.m.VerboseResults[_category].Items[id].Targets.push(_targetName);
 		}
 	}
-
-	function onClicked( _campScreen )
-	{
-		_campScreen.showHunterDialog();
-		this.camp_building.onClicked(_campScreen);
-	}
-
-	function onSerialize( _out )
-	{
-		this.camp_building.onSerialize(_out);
-	}
-
-	function onDeserialize( _in )
-	{
-		this.camp_building.onDeserialize(_in);
-	}
-
 });
+*/

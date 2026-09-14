@@ -47,7 +47,7 @@
 
 						case 5:
 							item = this.Const.World.Common.pickArmor([
-								[1, "ancient/ancient_mail"],
+								[1, ::Legends.Armor.Ancient.ancient_mail],
 							]);
 							break;
 
@@ -77,7 +77,7 @@
 
 						case 12:
 							local helmet = [
-								[1, "oriental/spiked_skull_cap_with_mail"]
+								[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 							];
 							item = this.Const.World.Common.pickHelmet(helmet);
 							break;
@@ -92,7 +92,8 @@
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
-							text = "You gain " + item.getName()
+							imageOverlayPath = item.getIconOverlay(),
+							text = "You gain " + item.makeName()
 						});
 					}
 
@@ -121,7 +122,7 @@
 		party.getLoot().Medicine = this.Math.rand(5, 15);
 		party.getLoot().Ammo = this.Math.rand(10, 40);
 		local r = this.Math.rand(1, 4);
-		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"]
+		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"];
 		for(local i = 0; i < this.Math.round(r/2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			party.addToInventory(arr[r-1]);
 		return party;

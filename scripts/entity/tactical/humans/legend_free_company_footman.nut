@@ -1,7 +1,7 @@
 this.legend_free_company_footman <- this.inherit("scripts/entity/tactical/legend_free_company_abstract", {
 	m = {
 		Outfits = [
-			[1, "mercenary_spearman_outfit_00"]
+			[1, ::Legends.Outfit.mercenary_spearman_outfit_00]
 		],
 		PerkList = this.Const.EnemyPerks.FreeCompanyFootman,
 		PerkPower = 11
@@ -49,60 +49,26 @@ this.legend_free_company_footman <- this.inherit("scripts/entity/tactical/legend
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 6);
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
-		}
-		else if (r == 3)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
-		}
-		else if (r == 4)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/scramasax")); //possibly remove this one
-		}
-		else if (r == 5)
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/flail"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/weapons/winged_mace"));
-		}
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "weapons/hand_axe"],
+			[1, "weapons/falchion"],
+			[1, "weapons/morning_star"],
+			[1, "weapons/scramasax"],
+			[1, "weapons/flail"],
+			[1, "weapons/winged_mace"],
+		], "scripts/items/"));
 
+		this.getItems().equip(::Const.World.Common.pickItem([
+			[1, "shields/kite_shield"],
+			[1, "shields/heater_shield"],
+			[1, "shields/wooden_shield"],
+		], "scripts/items/"));
 
-		r = this.Math.rand(1, 3);
-		if (r == 1)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
-
-		}
-		else if (r == 2)
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/heater_shield"));
-		}
-		else
-		{
-			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-		}
-
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
-		{
-			r = this.Math.rand(1, 2);
-
-			if (r == 1)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
-			}
-			else if (r == 2)
-			{
-				this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
-			}
+		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50) {
+			this.getItems().addToBag(::Const.World.Common.pickItem([
+				[1, "weapons/throwing_axe"],
+				[1, "weapons/javelin"],
+			], "scripts/items/"));
 		}
 		this.legend_free_company_abstract.assignRandomEquipment();
 	}

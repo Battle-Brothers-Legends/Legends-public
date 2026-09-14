@@ -4,8 +4,8 @@ this.legend_earings <- this.inherit("scripts/items/helmets/helmet", {
 	{
 		this.helmet.create();
 		this.m.ID = "armor.head.legend_earings";
-		this.m.Name = "Earings";
-		this.m.Description = "Earings made of delicate metal";
+		this.m.Name = "Earrings";
+		this.m.Description = "Earrings made of delicate metal";
 		this.m.ShowOnCharacter = true;
 		this.m.IsDroppedAsLoot = false;
 		this.m.HideHair = false;

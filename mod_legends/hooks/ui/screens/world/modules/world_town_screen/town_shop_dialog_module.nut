@@ -35,12 +35,56 @@
 		return result;
 	}
 
+	o.general_onUpgradeInventoryItem <- function (_data) {
+		local data = ::Legends.Inventory.queryStashItemDataByIndex(_data[0], _data[2]);
+
+		if ("error" in data) {
+			return data;
+		}
+
+		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem (data);
+		if (isErrored != null) {
+			return isErrored;
+		}
+
+		local result = {
+			Result = 0,
+			Assets = this.m.Parent.queryAssetsInformation(),
+			Shop = [],
+			Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+			StashSpaceUsed = data.stash.getNumberOfFilledSlots(),
+			StashSpaceMax = data.stash.getCapacity(),
+			IsRepairOffered = this.m.Shop.isRepairOffered()
+		};
+		this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+		return result;
+	}
+
+	o.removeInventoryItemUpgrades <- function (_data) {
+		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		return this.removeAllUpgradesFromItem(armor)
+	}
+
+	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
+		local isErrored = ::Legends.Inventory.removeAllUpgradesFromItem(_item, _entity);
+		if (isErrored != null) {
+			return isErrored;
+		}
+		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);
+	}
+
 	o.onSwapItem = function ( _data )
 	{
 		local sourceItemIdx = _data[0];
 		local sourceItemOwner = _data[1];
 		local targetItemIdx = _data[2];
 		local targetItemOwner = _data[3];
+		local ownerPlayer = "world-town-screen-shop-dialog-module.stash";
+		local ownerShop = "world-town-screen-shop-dialog-module.shop";
+
+		if (_data[4] && sourceItemOwner == ownerPlayer && targetItemOwner == ownerPlayer) {
+			return this.general_onUpgradeInventoryItem(_data);
+		}
 
 		if (targetItemOwner == null)
 		{
@@ -53,7 +97,7 @@
 
 		switch(sourceItemOwner)
 		{
-		case "world-town-screen-shop-dialog-module.stash":
+		case ownerPlayer:
 			local sourceItem = this.Stash.getItemAtIndex(sourceItemIdx);
 
 			if (sourceItem == null)
@@ -150,7 +194,7 @@
 
 			return result;
 
-		case "world-town-screen-shop-dialog-module.shop":
+		case ownerShop:
 			local sourceItem = shopStash.getItemAtIndex(sourceItemIdx);
 
 			if (sourceItem == null)
@@ -249,4 +293,105 @@
 
 		return null;
 	}
+
+	local onCanSwapItem = o.onCanSwapItem;
+	o.onCanSwapItem = function (_data) {
+		// if not town shop, use vanilla
+		if (_data[1] != "world-town-screen-shop-dialog-module.stash")
+			return onCanSwapItem(_data);
+
+		local itemWrapper = this.Stash.getItemAtIndex(_data[0]);
+		// if item null, use vanilla
+		if (itemWrapper == null)
+			return onCanSwapItem(_data);
+
+		local ret = onCanSwapItem(_data);
+		// if checked, add overlay data to draw a proper icon
+		if (::Legends.Mod.ModSettings.getSetting("SellDialogNamed").getValue() && ret.Item != null) {
+			ret.Item.slot <- itemWrapper.item.getSlotType();
+			ret.Item.imageOverlayPath <- itemWrapper.item.getIconOverlay();
+			ret.Item.upgrades <- itemWrapper.item.getUpgrades();
+			return ret;
+		}
+
+		// little switcheroo to suppress named items in dialog checks
+		local orgIsPrecious = itemWrapper.item.isPrecious;
+		local orgIsUnique = itemWrapper.item.isUnique;
+
+		itemWrapper.item.isPrecious = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsPrecious;
+		itemWrapper.item.isUnique = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsUnique;
+
+		itemWrapper.item.isPrecious = orgIsPrecious;
+		itemWrapper.item.isUnique = orgIsUnique;
+
+		return ret;
+	}
+
+	o.onSellAllButtonClicked <- function (_) {
+        local shopStash = this.m.Shop.getStash();
+        local stashItems = ::Stash.getItems();
+        local itemsSold = 0;
+		local totalGold = 0;
+
+        for (local i = 0; i < stashItems.len(); i++) {
+            local item = stashItems[i];
+            
+            if (item == null) {
+                continue;
+            }
+
+            local state = ::Legends.Inventory.getCompositeAutomationState(item);
+
+            if (state != 1 && state != 2) {
+                continue;
+            }
+
+            if (state == 1 || (state == 2 && item.getRepair() >= item.getRepairMax())) {
+                local removedItem = ::Stash.removeByIndex(i);
+
+                if (removedItem != null) {
+                    removedItem.setTransactionPrice(removedItem.getSellPrice());
+                    totalGold += removedItem.getSellPrice();
+                    removedItem.addSettlementToTradeHistory(this.m.Shop.getSettlement());
+                    shopStash.add(removedItem);
+                    removedItem.setSold(true);
+
+                    /*if (removedItem.isItemType(::Const.Items.ItemType.TradeGood)) {
+                        ::World.Statistics.getFlags().increment("TradeGoodsSold");
+                    }*/
+                    
+                    itemsSold++;
+                }
+            }
+        }
+
+		if (totalGold > 0) {
+			::World.Assets.addMoney(totalGold);
+		}
+
+        local result = {
+            Result = 0,
+            Assets = this.m.Parent.queryAssetsInformation(),
+            Shop = [],
+            Stash = [],
+            StashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+            StashSpaceMax = ::Stash.getCapacity(),
+            IsRepairOffered = this.m.Shop.isRepairOffered()
+        };
+
+        ::UIDataHelper.convertItemsToUIData(shopStash.getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
+        result.Stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter);
+
+        if (itemsSold > 0) {
+            if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 10) {
+                this.updateAchievement("Trader", 1, 1);
+            }
+
+            if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 50) {
+                this.updateAchievement("MasterTrader", 1, 1);
+            }
+        }
+
+        return result;
+    }
 });

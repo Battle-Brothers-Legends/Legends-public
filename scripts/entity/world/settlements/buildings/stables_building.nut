@@ -189,8 +189,8 @@ this.stables_building <- this.inherit("scripts/entity/world/settlements/building
 
 	function onUpdateStablesList( _list )
 	{
-		_list.push("legend_horse_rouncey");
-		_list.push("legend_donkey_background")
+		_list.push(::Legends.Background.LegendHorseRouncey);
+		_list.push(::Legends.Background.LegendDonkey)
 	}
 
 	function onSerialize( _out )

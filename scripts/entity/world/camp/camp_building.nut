@@ -14,318 +14,106 @@ this.camp_building <- {
 		Tooltip = null,
 		TooltipIcon = "",
 		TerrainLabel = "",
-		Sounds = [
-			{
-				File = "ambience/camp/camp_rest_campfire.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		],
-		SoundsAtNight = [
-			{
-				File = "ambience/camp/camp_rest_campfire.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_general_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_laugh_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_rest_snore_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/camp/camp_gatherer_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-
-		],
+		Sounds = [],
+		SoundsAtNight = [],
 		CanEnter = true,
 		HasPopup = false,
 		InCommanderTent = true,
 		Camping = true,
-		Escorting = false
 		ModName = "",
 		ModMod = 1.0,
 		BaseCraft = 0.0,
-		Conversion = 1.0
+		Conversion = 1.0,
+		IsWorkDangerous = false
 	},
-	function create()
-	{
-	}
 
-	function destroy()
-	{
-	}
+	function create() {}
 
-	function init()
-	{
-	}
+	function destroy() {}
 
-	function completed()
-	{
-	}
+	function init() {}
 
-	function Camping()
-	{
+	function completed() {}
+
+	function Camping() {
 		return this.m.Camping;
 	}
 
-	function Escorting()
-	{
-		return this.m.Escorting;
+	function isWorkDangerous() {
+		return this.m.IsWorkDangerous;
 	}
 
-	function getUpdateText()
-	{
+	function getUpdateText() {
 		return null;
 	}
 
-	function update ()
-	{
+	function update() {
 		return this.getUpdateText();
 	}
 
-	function updateTick (_hours)
-	{
-	}
+	function updateTick(_hours) {}
 
-	function hasPopup()
-	{
+	function hasPopup() {
 		return this.m.HasPopup;
 	}
 
-	function canEnter()
-	{
+	function canEnter() {
 		return this.m.CanEnter;
 	}
 
-	function getID()
-	{
+	function getID() {
 		return this.m.ID;
 	}
 
-	function getName()
-	{
+	function getName() {
 		return this.m.Name;
 	}
 
-	function getSlot()
-	{
+	function getSlot() {
 		return this.m.Slot;
 	}
 
-	function getResults()
-	{
+	function getResults() {
 		return [];
 	}
 
-	function isHidden()
-	{
-		return false;
+	function isHidden() {
+		return ::Legends.Settings.skipCamp() ? false : !::World.Flags.get(::Legends.Camp.Flag[this.m.ID]);
 	}
 
-	function getLevel()
-	{
+	function getUpgraded() {
+		return this.m.ID in ::Legends.Camp.Upgrades ? ::World.Retinue.hasFollower(::Legends.Camp.Upgrades[this.m.ID]) : false;
+	}
+
+	function getLevel() {
 		return "empty";
 	}
 
-	function getUIImage( _terrain )
-	{
-		local terrainlabel = _terrain;
-		if (this.m.TerrainLabel != "")
-		{
-			terrainlabel = this.m.TerrainLabel
+	function getCampSounds(_number, _slot, _volume = 1.0, _pitch = 1.0) {
+		local sounds = [];
+		for (local i = 1; i <= _number; i++) {
+			sounds.push({
+				File = format("ambience/camp/camp_" + _slot + "_%02d.wav", i),
+				Volume = _volume,
+				Pitch = _pitch
+			});
 		}
-		else if (_terrain < 10)
-		{
-			terrainlabel = "0" + _terrain;
-		}
-		local day = this.World.getTime().IsDaytime ? "day" : "night";
-		return "ui/settlements/" + terrainlabel + "_" + this.getSlot() + "_" + this.getLevel() + "_" + day;
+		return sounds;
 	}
 
-	function getTooltipID()
-	{
+	function getUIImage(_terrain) {
+		return "ui/settlements/" + (this.m.TerrainLabel != "" ? this.m.TerrainLabel : (_terrain < 10 ? "0" + _terrain : _terrain)) + "_" + this.getSlot() + "_" + this.getLevel() + "_"	+ (::World.getTime().IsDaytime ? "day" : "night");
+	}
+
+	function getTooltipID() {
 		return this.m.ID;
 	}
 
-	function getName()
-	{
+	function getTitle() {
 		return this.m.Name;
 	}
 
-	function getTitle()
-	{
-		return this.m.Name;
-	}
-
-	function getTooltip()
-	{
+	function getTooltip() {
 		local res = [
 			{
 				id = 1,
@@ -338,222 +126,214 @@ this.camp_building <- {
 				text = this.getDescription()
 			}
 		];
-		local mod = this.getModifierToolip()
-		foreach (i in mod)
-		{
+		local mod = this.getModifierTooltip();
+		foreach (i in mod) {
 			res.push(i);
+		}
+		if (this.canEnter()) {
+			res.push({
+				id = 61,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Open Tent Dialog"
+			});
+		}
+		if (this.inCommanderTent()) {
+			res.push({
+				id = 62,
+				type = "hint",
+				icon = "ui/icons/mouse_right_button.png",
+				text = "Open Tent Menu in Commander Dialog"
+			});
 		}
 		return res;
 	}
 
-	function getModifierToolip()
-	{
+	function getModifierTooltip() {
 		return [];
 	}
 
-	function getDescription()
-	{
+	function getDescription() {
 		return this.m.Description;
 	}
 
-	function getTooltipIcon()
-	{
+	function getTooltipIcon() {
 		return this.m.TooltipIcon;
 	}
 
-	function getNumberAssigned()
-	{
-		local count = 0;
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( b in roster )
-		{
-			if (b.getCampAssignment() != this.m.ID)
-			{
-				continue
-			}
-			++count;
-		}
-		return count;
+	function getNumberAssigned() {
+		local self = this;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && !_bro.isStabled()).len();
 	}
 
-	function getBanner()
-	{
+	function getBanner(bro = null) {
 		return this.m.BannerImage;
 	}
 
-	function getResourceImage()
-	{
+	function getResourceImage() {
 		return "";
 	}
 
-	function getResourceCount()
-	{
+	function getResourceCount() {
 		return 0;
 	}
 
-	function inCommanderTent()
-	{
+	function inCommanderTent() {
 		return this.m.InCommanderTent && !this.isHidden();
 	}
 
-	function pushUIMenuStack()
-	{
-		this.World.State.getMenuStack().push(function ()
-		{
-			this.World.State.getCampScreen().showMainDialog();
-		}, function ()
-		{
-			return !this.World.State.getCampScreen().isAnimating();
+	function pushUIMenuStack() {
+		::World.State.getMenuStack().push(function () {
+			::World.State.getCampScreen().showMainDialog();
+		}, function () {
+			return !::World.State.getCampScreen().isAnimating();
 		});
 	}
 
-	function assignBro( _bro )
-	{
+	function assignBro(_bro) {
 		_bro.setCampAssignment(this.m.ID);
 	}
 
-	function setCamp ( _camp )
-	{
+	function setCamp(_camp) {
 		this.m.Camp = this.WeakTableRef(_camp);
 	}
 
-	function onClicked( _campScreen )
-	{
-		this.World.State.getMenuStack().push(function ()
-		{
-			this.World.State.getCampScreen().showMainDialog();
-			this.World.State.getCampScreen().refresh();
-		}, function ()
-		{
-			return !this.World.State.getCampScreen().isAnimating();
+	function onClicked(_campScreen) {
+		_campScreen.showCampBuildingDialog(this.m.ID);
+		::World.State.getMenuStack().push(function () {
+			::World.State.getCampScreen().showMainDialog();
+			::World.State.getCampScreen().refresh();
+		}, function () {
+			return !::World.State.getCampScreen().isAnimating();
 		});
 	}
 
-	function onBroLeave ( _bro )
-	{
+	function onBroLeave(_bro) {}
+
+	function onBroEnter(_bro) {
+		return !_bro.isStabled();
 	}
 
-	function onBroEnter ( _bro )
-	{
-		return !_bro.isStabled()
-	}
+	function onSerialize(_out) {}
 
-	function onSerialize( _out )
-	{
-	}
+	function onDeserialize(_in) {}
 
-	function onDeserialize( _in )
-	{
-	}
-
-	function sortModifiers( _f1, _f2 )
-	{
-		if (_f1[0] > _f2[0])
-		{
+	function sortModifiers( _f1, _f2 ) {
+		if (_f1[0] > _f2[0]) {
 			return -1;
-		}
-		else if (_f1[0] < _f2[0])
-		{
+		} else if (_f1[0] < _f2[0]) {
 			return 1;
-		}
-		else
-		{
+		} else {
 			return 0;
 		}
 	}
 
-	function getModifiers()
-	{
-		local ret =
-		{
+	function getModifiers() {
+		local ret = {
 			Consumption = 1.0 / this.m.Conversion,
 			Craft = 0.0, // total Craft value of all characters assigned to the tent
 			Assigned = 0, // number of characters assigned to the tent
 			Modifiers = [] // each element is [Craft value contributed by the character (including bonuses), Name of character, Background of character]
 		}
-		local roster = this.World.getPlayerRoster().getAll();
-		foreach( bro in roster )
-		{
-			if (bro.getCampAssignment() != this.m.ID)
-			{
-				continue
-			}
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
+		foreach (bro in assignedBros) {
 			// Each character assigned will contribute the tent's BaseCraft plus any bonuses from their modifiers
 			// If the character does not have the relevant skill, they will contribute only the BaseCraft value
 			// If the character is skilled, they will contribute the BaseCraft value + the bonuses from their modifiers. The bonuses are further multiplied by the tent's ModMod value
 			// A higher ModMod value means that skilled characters will have a more significant impact on the output
-			local mod = this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod;
-			++ret.Assigned
-			ret.Modifiers.push([mod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
+			++ret.Assigned;
+			ret.Modifiers.push([this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
-		for (local i = 0; i < ret.Modifiers.len(); i = ++i)
-		{
-			ret.Modifiers[i][0] = ret.Modifiers[i][0] * this.Math.pow(i + 1, -0.5); // each additional character grants diminishing returns
-			if (this.getUpgraded())
-			{
-				ret.Modifiers[i][0] *= 1.15; // an upgraded tent grants a 15% bonus to each character's Craft contribution
-			}
+		for (local i = 0; i < ret.Modifiers.len(); i++) {
+			ret.Modifiers[i][0] = ret.Modifiers[i][0] * ::Math.pow(i + 1, -0.5) * (this.getUpgraded() ? 1.15 : 1); // each additional character grants diminishing returns
 			ret.Craft += ret.Modifiers[i][0];
 		}
 		return ret;
 	}
 
-	function getInfo()
-	{
+	function getInfo() {
 		return null;
 	}
 
-	function onSortByModifier( _a, _b )
-	{
-		if (_a.Modifier > _b.Modifier)
-		{
-			return -1;
-		}
-		else if (_a.Modifier < _b.Modifier)
-		{
-			return 1;
-		}
-
-		return 0;
-	}
-
-	function getSortedRoster()
-	{
-		local brothers = this.World.getPlayerRoster().getAll();
+	function getSortedRoster() {
 		local roster = [];
-
-		foreach( b in brothers )
-		{
-			if (!this.onBroEnter(b))
-			{
-				continue
-			}
-			local bro = this.UIDataHelper.convertEntityToUIData(b, null);
-			local tent = this.World.Camp.getBuildingByID( b.getCampAssignment() );
-			bro.bannerImage <- tent.getBanner()
-			bro.IsSelected <- b.getCampAssignment() == this.m.ID
-			local modifier = 0;
-			if (this.m.ModName != "")
-			{
-				modifier = b.getBackground().getModifiers()[this.m.ModName];
-			}
-			bro.Modifier <- modifier;
+		local self = this;
+		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (self.onBroEnter(_bro)));
+		foreach (b in assignedBros) {
+			local bro = ::UIDataHelper.convertEntityToUIData(b, null);
+			bro.bannerImage <- ::World.Camp.getBuildingByID(b.getCampAssignment()).getBanner(b);
+			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
+			bro.Modifier <- this.m.ModName != "" ? b.getBackground().getModifiers()[this.m.ModName] : 0;
 			roster.push(bro);
 		}
 
-		roster.sort(this.onSortByModifier);
-		return roster
+		roster.sort(function(_a, _b) {
+            if (_a.Modifier > _b.Modifier) return -1;
+            if (_a.Modifier < _b.Modifier) return 1;
+            return 0;
+        });
+		return roster;
 	}
 
-	function onPopupButtonClicked( _data )
-	{
-		
-	}
+	function onPopupButtonClicked(_data) {}
 
-	function queryConfigureSettings()
-	{
+	function queryConfigureSettings() {
 		return {};
+	}
+
+	function isRecovering(_bro, _addToResults = false) {
+		if(!this.isWorkDangerous()) {
+			return false;
+		}
+		local skills = _bro.getSkills();
+		local injuries = skills.hasSkillOfType(::Const.SkillType.TemporaryInjury);
+		local semiInjuries = skills.hasSkillOfType(::Const.SkillType.SemiInjury);
+		if (injuries || semiInjuries) {
+			if (_addToResults) {
+				this.addRecoveryReasonToResults(_bro, injuries ? "recovering from an injury" : skills.getAllSkillsOfType(::Const.SkillType.SemiInjury)[0].getName().tolower());
+			}
+			return true;
+		}
+		return false;
+	}
+
+	function addRecoveryReasonToResults( _bro, cause ) {
+		this.m.Results.push({
+			Icon = "ui/icons/days_wounded.png",
+			Text = _bro.getName() + " was " + cause + " and has forgone " + this.m.ActivityName + "."
+		});
+	}
+
+	function addNegativeSideEffects(_bro, _hours) {
+		local r = ::Math.min(this.getUpgraded() ? 1 : 5, 4 * ::Math.pow(_hours, 0.5) - _bro.getLevel());
+
+		if (::Math.rand(1, 100) < r) {
+			_bro.addLightInjury();
+			this.m.Results.push({
+				Icon = "ui/icons/days_wounded.png",
+				Text = _bro.getName() + " suffers light wounds while " + this.m.ActivityName.tolower() + "."
+			});
+		}
+
+		if (::Math.rand(1, 100) < r) {
+			local injury = _bro.addInjury(::Const.Injury.CampActivities);
+			this.m.Results.push({
+				Icon = injury.getIcon(),
+				Text = _bro.getName() + " suffers " + injury.getNameOnly() + " while " + this.m.ActivityName.tolower() + "."
+			});
+		}
+
+		if (::Math.rand(1, 100) < r) {
+			local effect = ::Legends.Effects.grant(_bro, ::Legends.Effect.Exhausted);
+			if (effect != null) {
+				this.m.Results.push({
+					Icon = effect.getIcon(),
+					Text = "Hard work during " + this.m.ActivityName + " left " + _bro.getName() + " Exhausted."
+				});
+			}
+		}
 	}
 }

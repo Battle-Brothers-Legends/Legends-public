@@ -1,5 +1,5 @@
 ::mods_hookExactClass("skills/traits/insecure_trait", function(o)
-{	
+{
 	local create = o.create;
 	o.create = function ()
 	{
@@ -10,7 +10,7 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendPragmatic),
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
-			::Legends.Traits.getID(::Legends.Trait.LegendNatural),
+			::Legends.Traits.getID(::Legends.Trait.LegendTalented),
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople)
 		]);
 	}
@@ -23,15 +23,15 @@
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Melee Defense"
+			text = "[color=%positive%]+5%[/color] Melee Defense"
 		},
 		{
 			id = 10,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+5%[/color] Ranged Defense"
+			text = "[color=%positive%]+5%[/color] Ranged Defense"
 		}]);
-		
+
 		return ret;
 	}
 

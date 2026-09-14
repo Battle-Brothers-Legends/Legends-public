@@ -1,5 +1,7 @@
 ::mods_hookExactClass("contracts/contracts/arena_tournament_contract", function(o)
 {
+	o.m.WasInReserves <- [];
+
 	local create = o.create;
 	o.create = function()
 	{
@@ -234,7 +236,7 @@
 						_c.addToCombat(_e, this.Const.World.Spawn.Troops.NomadOutlaw);
 				}
 			});
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Arena.StrongerEnemiesDay) {
 				twists.push({
 					R = 5,
 					function F( _c, _d, _e ) {
@@ -262,7 +264,7 @@
 
 				});
 			}
-			if (this.World.getTime().Days > 50) {
+			if (this.World.getTime().Days >= ::Const.World.Scaling.Arena.StrongerEnemiesDay) {
 				twists.push({
 					R = 5,
 					function F( _c, _d, _e ) {
@@ -360,28 +362,38 @@
 				}
 				break;
 			}
+			if (s.ID == "Failure1") {
+				s.Options[0].getResult <- function () {
+					foreach (bro in ::Legends.Arena.getCollaredBros()) {
+						bro.getFlags().increment("ArenaFights", 1);
+					}
+
+					this.Contract.getHome().removeSituationByID("situation.arena_tournament");
+					this.Contract.getHome().getBuilding("building.arena").refreshCooldown();
+					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
+					this.World.Contracts.finishActiveContract(true);
+				}
+			}
+		}
+	}
+
+	o.updateTraits = function (_list) {
+		foreach( bro in ::Legends.Arena.getCollaredBros()) {
+			bro.getFlags().increment("ArenaFightsWon", 1);
+			bro.getFlags().increment("ArenaFights", 1);
+			::Legends.Arena.updateTraits(_list, bro);
 		}
 	}
 
 	o.getBros = function ()
 	{
-		local ret = [];
-		local roster = this.World.getPlayerRoster().getAll();
-
-		foreach( bro in roster )
-		{
-			local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-			if (item != null && item.getID() == "accessory.arena_collar")
-			{
-				if (bro.isInReserves())
-				{
-					bro.setInReserves(false);
-				}
-				ret.push(bro);
+		local ret = ::Legends.Arena.getCollaredBros();
+		foreach (bro in ret) {
+			if (bro.isInReserves()) {
+				this.m.WasInReserves.push(bro);
+				bro.setInReserves(false);
 			}
 		}
-
 		return ret;
 	}
 
@@ -392,24 +404,14 @@
 	*/
 	o.prepareBroVariables <- function ( _maxNumBros, _vars)
 	{
-		local currentBro = 1
-
-		foreach (bro in this.World.getPlayerRoster().getAll())
-		{
-			local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-
-			if (item != null && item.getID() == "accessory.arena_collar")
-			{
-				_vars.push([
-					"bro" + currentBro++ + "name",
-					" - " + bro.getName()
-				]);
-			}
-
+		local currentBro = 1;
+		foreach (bro in ::Legends.Arena.getCollaredBros()) {
+			_vars.push([
+				"bro" + currentBro++ + "name",
+				" - " + bro.getName()
+			]);
 		}
-
-		for (local i = currentBro; i <= _maxNumBros; ++i)
-		{
+		for (local i = currentBro; i <= _maxNumBros; ++i) {
 			_vars.push([
 				"bro" + i + "name",
 				""
@@ -422,5 +424,18 @@
 	{
 		onPrepareVariables(_vars);
 		this.prepareBroVariables(5, _vars)
+	}
+
+	local onClear = o.onClear;
+	o.onClear = function ()
+	{
+		foreach (bro in this.m.WasInReserves) {
+			bro.setInReserves(true);
+		}
+		this.m.WasInReserves.clear();
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			::Legends.Arena.removeCollar(bro);
+		}
+		onClear();
 	}
 });

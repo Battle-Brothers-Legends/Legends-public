@@ -1,19 +1,17 @@
 this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+	function create() {
 		this.m.ID = "effects.legend_safeguarding";
 		this.m.Name = "Safeguarding";
 		this.m.Description = "This character neglects their own defense while safeguarding someone else";
-		this.m.Icon = "ui/perks/safegaurd_circle.png";
-		this.m.IconMini = "mini_safegaurd_circle";
+		this.m.Icon = "ui/perks/safeguard_circle.png";
+		this.m.IconMini = "mini_safeguard_circle";
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
 	
-	function getTooltip()
-	{
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -28,46 +26,33 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 			{
 				id = 10,
 				type = "text",
-				icon = "ui/icons/melee_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15[/color] Melee Defense"
-			},
-			{
-				id = 11,
-				type = "text",
-				icon = "ui/icons/ranged_defense.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-15[/color] Ranged Defense"
+				icon = "ui/icons/block.png",
+				text = "Block is reduced to [color=%negative%]0[/color]"
 			}
 		];
 	}
 
-	function onUpdate( _properties )
-	{
-		_properties.MeleeDefense -= 15;
-		_properties.RangedDefense -= 15;
+	function onUpdate( _properties ) {
+		_properties.Block = 0;
 	}
 
 
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		this.removeSelf();
 	}
 
-	function onAdded()
-	{
+	function onAdded() {
 		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
-		{
+		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield)) {
 			item.onShieldUp();
 		}
 	}
 
-	function onRemoved()
-	{
+	function onRemoved() {
 		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
-		{
+		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield)) {
 			item.onShieldDown();
 		}
 	}

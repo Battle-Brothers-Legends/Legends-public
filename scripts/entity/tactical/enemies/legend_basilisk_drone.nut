@@ -1,5 +1,12 @@
 this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
-	m = {},
+	m = {
+		NormalAIChance = 40,
+	},
+	function isLow()
+	{
+		return getFlags().has("low");
+	}
+
 	function create()
 	{
 		this.m.Type = this.Const.EntityType.LegendBasiliskDrone;
@@ -61,17 +68,29 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 
 		this.m.SoundPitch = this.Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
+		setupAIAgent();
 
-		if (this.Math.rand(1, 100) <= 40)
-		{
+		this.m.OnDeathLootTable.extend([
+			[66, "scripts/items/supplies/strange_meat_item"],
+		]);
+		local rolls = ::Legends.S.extraLootChance(1);
+		for(local i = 0; i < rolls; i++) {
+			this.m.OnDeathLootTable.extend([
+				[40, "scripts/items/misc/legend_basilisk_feathers_item"],
+				[40, "scripts/items/loot/legend_basilisk_talon_item"],
+				[40, "scripts/items/misc/legend_basilisk_eye_item"],
+			]);
+		}
+	}
+
+	function setupAIAgent()
+	{
+		if (::Math.rand(1, 100) <= m.NormalAIChance)
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_agent"); //normal
-		}
 		else
-		{
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_basilisk_drone_aggressive_agent"); //aggressive
-		}
-		this.m.AIAgent.setActor(this);
 
+		this.m.AIAgent.setActor(this);
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
@@ -178,50 +197,34 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
-			corpse.CorpseName = "A Basilisk Drone";
-			corpse.Tile = _tile;
-			corpse.IsResurrectable = false;
-			corpse.IsConsumable = true;
-			corpse.Items = this.getItems();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+			this.spawnFlies(_tile);
+		}
+
+		local deathLoot = this.getItems().getDroppableLoot(_killer);
+		local tileLoot = this.getLootForTile(_killer, deathLoot);
+		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
+		this.dropLoot(_tile, tileLoot, !flip);
+
+		if (_tile == null) {
+			this.Tactical.Entities.addUnplacedCorpse(corpse);
+		} else {
 			_tile.Properties.set("Corpse", corpse);
 			this.Tactical.Entities.addCorpse(_tile);
 		}
 
-		if (_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)
-		{
-			local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
-
-			for( local i = 0; i < n; i = ++i )
-			{
-				local r = this.Math.rand(1, 100);
-				local loot;
-
-				if (r <= 40)
-				{
-					loot = this.new("scripts/items/misc/legend_basilisk_feathers_item");
-				}
-				else if (r <= 80)
-				{
-					loot = this.new("scripts/items/loot/legend_basilisk_talon_item");
-					loot = this.new("scripts/items/misc/legend_basilisk_eye_item");
-				}
-
-				if (loot != null)
-				{
-					loot.drop(_tile);
-				}
-			}
-
-			if (this.Math.rand(1, 100) <= 66)
-			{
-				local loot = this.new("scripts/items/supplies/strange_meat_item");
-				loot.drop(_tile);
-			}
-		}
-
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
+	}
+
+	function generateCorpse( _tile, _fatalityType, _killer )
+	{
+		local corpse = clone this.Const.Corpse;
+		corpse.CorpseName = "A Basilisk Drone";
+		corpse.Tile = _tile;
+		corpse.IsResurrectable = false;
+		corpse.IsConsumable = true;
+		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
+		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		return corpse;
 	}
 
 	function onInit()
@@ -258,25 +261,29 @@ this.legend_basilisk_drone <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
-		this.m.Skills.add(this.new("scripts/skills/actives/legend_basilisk_peck_skill"));
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBasiliskPeck);
 		::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
-		::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
+
 		b.Threat += 5;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 35)
-		{
-			b.MeleeDefense += 5;
-			b.RangedDefense += 5;
-			::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
-		}
+		if (!isLow()) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendSecondWind);
+			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 50)
-		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskHeadhunterDay)
+			{
+				b.MeleeDefense += 5;
+				b.RangedDefense += 5;
+				::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
+			}
+
+			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBasiliskEscapeArtistDay)
+			{
+				::Legends.Perks.grant(this, ::Legends.Perk.LegendEscapeArtist);
+			}
 		}
 
 		if(::Legends.isLegendaryDifficulty())

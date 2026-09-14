@@ -12,13 +12,14 @@
 		this.attached_location.onUpdateProduce(_list);
 		_list.push("trade/copper_ingots_item");
 		_list.push("trade/legend_tin_ingots_item");
+		_list.push("trade/legend_silver_ingots_item");
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("legend_blacksmith_background");
-		_list.push("legend_ironmonger_background");
+		_list.push(::Legends.Background.LegendBlacksmith);
+		_list.push(::Legends.Background.LegendIronmonger);
 		onUpdateDraftList(_list);
 	}
 
@@ -46,7 +47,12 @@
 			_list.push({
 				R = 80,
 				P = 1.0,
-				S = "trade/legend_gold_nugget_item"
+				S = "trade/legend_gold_ore_item"
+			});
+			_list.push({
+				R = 85,
+				P = 1.0,
+				S = "trade/legend_silver_ingots_item"
 			});
 			_list.push({
 				R = 10,
@@ -60,6 +66,34 @@
 				R = 45,
 				P = 1.0,
 				S = "weapons/legend_tipstaff"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_metal"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_metal"
+			});
+		}
+		else if (_id == "building.armorsmith")
+		{
+			_list.push({
+				R = 45,
+				P = 1.0,
+				S = "weapons/legend_tipstaff"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_metal"
+			});
+			_list.push({
+				R = 95,
+				P = 2.0,
+				S = "misc/legend_masterwork_metal"
 			});
 		}
 	}

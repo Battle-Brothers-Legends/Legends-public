@@ -4,8 +4,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_skin_ghoul_blood";
-		this.m.Name = "Skin Ghoul Blood";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendSkinGhoulBlood);
 		this.m.Icon = "skills/status_effect_93.png";
 		this.m.IconMini = "status_effect_93_mini";
 		this.m.Overlay = "status_effect_93";
@@ -17,7 +16,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 
 	function getDescription()
 	{
-		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal 10% of their life each turn, and persist over [color=" + this.Const.UI.Color.NegativeValue + "]" + this.m.TurnsLeft + "[/color] more turn(s).";
+		return "This character has consumed the blood of a skin ghoul, and their flesh is knitting together internally. The effect will heal [color=%positive%]10%[/color] of their life each turn, and persist for [color=%negative%]" + this.m.TurnsLeft + "[/color] more turn(s).";
 	}
 
 	function getTooltip()
@@ -41,7 +40,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/days_wounded.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+ " + healthAdded + "[/color] this turn"
+				text = "[color=%positive%]+ " + healthAdded + "[/color] this turn"
 			}
 		];
 		return ret;
@@ -58,7 +57,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		if (!actor.getSkills().hasSkill("effects.spider_poison_effect"))
+		if (!actor.getSkills().hasEffect(::Legends.Effect.SpiderPoison))
 		{
 			actor.setHitpoints(actor.getHitpoints() + healthAdded);
 			actor.setDirty(true);

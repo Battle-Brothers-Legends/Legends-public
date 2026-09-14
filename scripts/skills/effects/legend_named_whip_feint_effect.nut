@@ -4,7 +4,7 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_named_flail";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendWhipFeint);
 		this.m.Name = "";
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
@@ -12,7 +12,7 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Type = this.Const.SkillType.StatusEffect;
 		this.m.Order = this.Const.SkillOrder.Item;
 		this.m.IsActive = false;
-		this.m.IsStacking = false;
+		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;
         this.m.IsHidden = true;
 	}
@@ -40,23 +40,22 @@ this.legend_named_whip_feint_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if ( _skill.m.IsWeaponSkill == false ) { return; } 
-		
-		local actor = this.getContainer().getActor();
-
-		if (!actor.isAlive() || actor.isDying())
-		{
+		if ( _skill == null || _skill.m.IsWeaponSkill == false )
 			return;
-		}
 
-		if (!_targetEntity.isAlive() || _targetEntity.isDying())
-		{
+		if (!_skill.isAttack())
 			return;
-		}
 
-        if ( ::Math.rand(0, 100) > this.m.Bonus ) { return; }
+		if (_skill.getItem() == null || this.getItem() == null)
+			return;
 
-        _targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_parried_effect"));
+		if (_skill.getItem().getInstanceID() != this.getItem().getInstanceID())
+   			return;
+
+        if (::Math.rand(0, 100) > this.m.Bonus)
+	        return;
+
+        ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
 	}
 
 });

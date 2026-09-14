@@ -5,7 +5,7 @@ this.legend_armor_cloak <- this.inherit("scripts/items/legend_armor/legend_armor
 	function create()
 	{
 		this.legend_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak
+		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
 		this.m.ID = "legend_armor.cloak";
 		this.m.Name = "Cloak";
 		this.m.Description = "The Cloak. Everyone needs a good cloak. Offers minimal protection and small boost to moral.";

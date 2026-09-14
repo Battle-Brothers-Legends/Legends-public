@@ -1,9 +1,7 @@
 ::Const.Faces.AllMale.extend([
 	"bust_head_19",
 	"bust_head_20",
-	"bust_head_34",
-	"bust_head_50",
-	"bust_head_51"
+	"bust_head_34"
 ]);
 
 ::Const.Faces.Necromancer.extend([
@@ -19,9 +17,6 @@
 	"26",
 	"27",
 	"28",
-	"29",
-	"31",
-	"32",
 	"southern_01",
 	"southern_02",
 	"southern_03",
@@ -34,8 +29,6 @@
 
 ::Const.Hair.AllMale.extend([
 	"22",
-	"31",
-	"32",
 	"southern_01",
 	"southern_02",
 	"southern_03",
@@ -47,19 +40,15 @@
 ]);
 
 ::Const.Hair.WildMale.extend([
-	"31",
-	"32",
 ]);
 
 ::Const.Beards.Barber.extend([
 	"legends_01",
-	"legends_02",
-	"19"
+	"legends_02"
 ]);
 ::Const.Beards.All.extend([
 	"legends_01",
-	"legends_02",
-	"19"
+	"legends_02"
 ]);
 
 ::Const.Beards.Tidy.extend([
@@ -67,7 +56,6 @@
 	"legends_02"
 ]);
 ::Const.Beards.Untidy.extend([
-	"19",
 	"legends_01",
 	"legends_02"
 ]);
@@ -79,7 +67,6 @@
 	"legends_02"
 ]);
 ::Const.Beards.Monk.extend([
-
 	"legends_01"
 ]);
 ::Const.Beards.Southern.extend([
@@ -94,9 +81,22 @@
 	"legends_02"
 ]);
 ::Const.Tattoos.All.extend([
-	"tattoo_07",
-	"tattoo_08"
+	
 ]);
+::Const.Tattoos.Head <- [
+	"",
+	"scar_02",
+	"tattoo_01",
+    "tattoo_02",
+	"tattoo_03",
+	"tattoo_04",
+	"tattoo_05",
+	"tattoo_06",
+    "warpaint_01",
+    "warpaint_02",
+	"warpaint_03"
+];
+
 
 //this is a dummy for dlc
 ::Const.Bodies.Barber = [

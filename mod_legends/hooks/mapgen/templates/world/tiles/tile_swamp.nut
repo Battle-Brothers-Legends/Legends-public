@@ -7,13 +7,13 @@
 		"world_detail_swamp_green_04",
 		"world_detail_swamp_green_05",
 		"world_detail_swamp_green_06"
-	]	
+	];
 
 	o.onSecondPass = function ( _rect )
 	{
 		local tile = this.World.getTileSquare(_rect.X, _rect.Y);
 		local swamp = tile.getSurroundingTilesOfType(this.Const.World.TerrainType.Swamp);
-		
+
 		if (this.Math.rand(0, 100) < 90)
 		{
 			tile.spawnDetail(this.m.Details[this.Math.rand(0, this.m.Details.len() - 1)], this.Const.World.ZLevel.Object, this.Const.World.DetailType.Swamp | this.Const.World.DetailType.NotCompatibleWithRoad);

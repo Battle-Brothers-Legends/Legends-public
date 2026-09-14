@@ -26,41 +26,29 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 
 		local bros = roster.getAll();
-		bros[0].setStartValuesEx([
-			"legend_shieldmaiden_background"
-		], true, 1);
+		bros[0].setStartValuesEx([::Legends.Background.LegendShieldmaiden], true, 1);
 		bros[0].setPlaceInFormation(3);
 
-		bros[1].setStartValuesEx([
-			"wildman_background"
-		], true, 1);
+		bros[1].setStartValuesEx([::Legends.Background.Wildman], true, 1);
 		bros[1].setPlaceInFormation(4);
 
-		bros[2].setStartValuesEx([
-			"legend_battle_sister_background"
-		], true, 1);
+		bros[2].setStartValuesEx([::Legends.Background.LegendBattleSister], true, 1);
 		bros[2].setPlaceInFormation(5);
 
-		bros[3].setStartValuesEx([
-			"monk_background"
-		], true, 1);
+		bros[3].setStartValuesEx([::Legends.Background.Monk], true, 1);
 		bros[3].setPlaceInFormation(12);
 
-		bros[4].setStartValuesEx([
-			"legend_vala_background"
-		], true, 1);
+		bros[4].setStartValuesEx([::Legends.Background.LegendVala], true, 1);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Player);
-		this.addScenarioPerk(bros[4].getBackground(), this.Const.Perks.PerkDefs.LegendValaWarden);
+		this.addScenarioPerk(bros[4].getBackground(), ::Const.Perks.PerkDefs.LegendValaWarden);
 		bros[4].m.PerkPointsSpent += 1;
 		bros[4].getFlags().set("IsPlayerCharacter", true);
 		bros[4].setPlaceInFormation(13);
 		bros[4].setVeteranPerks(2);
 
-		bros[5].setStartValuesEx([
-			"adventurous_noble_background"
-		], true, 1);
+		bros[5].setStartValuesEx([::Legends.Background.AdventurousNoble], true, 1);
 		bros[5].setPlaceInFormation(14);
-		this.World.Flags.set("HasLegendCampGathering", true);
+		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
 	}
@@ -134,12 +122,12 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.World.Flags.set("IsLegendsVala", true);
 	}
 
-	function onHiredByScenario( bro )
+	function onHiredByScenario( _bro )
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
+		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
 		{
-			bro.improveMood(1.0, "Joined the righteous cause of the Sisterhood");
-			bro.improveMood(0.5, "Learned a new skill");
+			_bro.improveMood(1.0, "Joined the righteous cause of the Sisterhood");
+			_bro.improveMood(0.5, "Learned a new skill");
 		}
 	}
 
@@ -148,9 +136,9 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		this.addBroToRoster(_roster, "legend_shieldmaiden_background", 6);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendShieldmaiden, 6);
 
-		foreach( i, bro in bros )
+		foreach( _, bro in bros )
 		{
 			if (bro.isStabled())
 			{
@@ -185,7 +173,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, this.Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(this.Const.BackgroundType.Female));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(this.Const.BackgroundType.Female));
 	}
 
 });

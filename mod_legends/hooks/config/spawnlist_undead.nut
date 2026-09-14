@@ -104,7 +104,7 @@ if (!("Spawn" in ::Const.World))
 			Types = [
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		}
@@ -206,7 +206,7 @@ if (!("Spawn" in ::Const.World))
 				{
 					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 800,
-					Cost = 40
+					Cost = 25
 				}
 			]
 		}

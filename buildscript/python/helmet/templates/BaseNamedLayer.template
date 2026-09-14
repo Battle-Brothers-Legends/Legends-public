@@ -1,0 +1,48 @@
+this.$name <- this.inherit("scripts/items/legend_helmets/legend_named_helmet", {
+	m = {},
+	function create()
+	{
+		this.legend_named_helmet.create();
+		this.m.ID = "$id";
+        this.m.NameList = $names;
+		this.m.Description = "$desc";
+		this.m.Variants = $variants;
+        this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.updateVariant();
+		this.m.ImpactSound = $impactSound;
+		this.m.InventorySound = $invSound;
+		this.m.BaseInventorySound = $invSound;
+		this.m.Value = $value;
+		this.m.Condition = $condition;
+		this.m.ConditionMax = $condition;
+		this.m.StaminaModifier = $stamina;
+		this.m.Vision = $vision;
+		this.m.HideHair = $hair;
+		this.m.HideBeard = $beard;
+        this.m.ItemType = $itemType;
+		this.m.Potential <- {
+			Condition = { min = $rminCond, max = $rmaxCond },
+			StaminaModifier = { min = $rminStam, max = $rmaxStam }
+			Vision = { min = $rminViz, max = $rmaxViz }
+		};
+        this.randomizeValues();
+	}
+
+	function updateVariant()
+	{
+		local variant = this.m.Variant > 9 ? this.m.Variant : "0" + this.m.Variant;
+		this.m.Sprite = "${brush}_" + variant;
+		this.m.SpriteDamaged = "${brush}_" + variant + "_damaged";
+		this.m.SpriteCorpse = "${brush}_" + variant + "_dead";
+		this.m.Icon = "legend_helmets/${icon}_" + variant + ".png";
+        this.m.IconLarge = this.m.Icon;
+	}
+
+	function randomizeValues()
+	{
+        this.m.Vision = ::Math.rand($rmaxViz, $rminViz) * -1 ;
+		this.m.StaminaModifier = ::Math.rand($rmaxStam, $rminStam) * -1;
+		this.m.Condition = ::Math.rand($rminCond, $rmaxCond);
+		this.m.ConditionMax = this.m.Condition;
+	}
+});

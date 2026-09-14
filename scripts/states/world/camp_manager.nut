@@ -6,7 +6,6 @@ this.camp_manager <- {
 		StartTime = 0,
 		StopTime = 0,
 		LastCampTime = 0,
-		lasttick = 0.0,
 		Tents = [],
 		PresetNames = [
 			false,
@@ -22,6 +21,7 @@ this.camp_manager <- {
 		LastCampingUpdateText = [],
 		CampEncountersCooldownUntil = 0.0,
 		CampEncounters = [],
+		PendingCombat = null
 	},
 
 	function create()
@@ -36,7 +36,8 @@ this.camp_manager <- {
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/training_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/fletcher_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/gatherer_building"));
-		this.addBuilding(this.new("scripts/entity/world/camp/buildings/hunter_building"));
+		//this.addBuilding(this.new("scripts/entity/world/camp/buildings/hunter_building"));
+		this.addBuilding(this.new("scripts/entity/world/camp/buildings/kitchen_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/enchanter_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/barber_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/painter_building")); //PaintingTent
@@ -59,12 +60,9 @@ this.camp_manager <- {
 		this.m.CampEncounters = [];
 	}
 
-	function init()
-	{
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+	function init() {
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				b.init();
 			}
 		}
@@ -86,6 +84,10 @@ this.camp_manager <- {
 		return null;
 	}
 
+	function canBuildingWorkCurrently (_building) {
+		return (this.m.IsCamping && _building.Camping() && !this.m.IsEscorting) || this.m.IsEscorting && !_building.isWorkDangerous();
+	}
+
 	function isCamping()
 	{
 		return this.m.IsCamping;
@@ -103,7 +105,7 @@ this.camp_manager <- {
 
 	function getElapsedHours()
 	{
-		return (this.Time.getVirtualTimeF() - this.m.StartTime) / (this.World.getTime().SecondsPerDay / 24);
+		return (this.Time.getVirtualTimeF() - this.m.StartTime) / (::World.getTime().SecondsPerDay / 24);
 	}
 
 	function getCampTime()
@@ -113,22 +115,22 @@ this.camp_manager <- {
 
 	function getCampTimeHours()
 	{
-		return this.getCampTime() / (this.World.getTime().SecondsPerDay / 24);
+		return this.getCampTime() / (::World.getTime().SecondsPerDay / 24);
 	}
 
 	function getHoursSinceLastCamp()
 	{
-		return (this.m.LastCampTime - this.m.StartTime) / (this.World.getTime().SecondsPerDay / 24);
+		return (this.m.LastCampTime - this.m.StartTime) / (::World.getTime().SecondsPerDay / 24);
 	}
 
 	function getResults()
 	{
-		local biomeText = this.m.StartedWhileEscorting ? "while escorting" : ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type]
+		local biomeText = this.m.StartedWhileEscorting ? "while escorting" : ::Const.World.TerrainLocation[::World.State.getPlayer().getTile().Type];
 		local L = [
 			{
 				id = 9000,
 				icon = "ui/buttons/icon_time.png",
-				text = "You were encamped for " + this.Math.floor(this.getElapsedHours()) + " hours " + biomeText,
+				text = "You were encamped for " + this.Math.floor(this.getElapsedHours()) + " hours " + biomeText + ".",
 			}
 		];
 
@@ -157,7 +159,7 @@ this.camp_manager <- {
 		if (this.m.IsEscorting)
 		{
 			this.m.StartTime = this.Time.getVirtualTimeF();
-			this.m.LastHourUpdated = this.World.getTime().Hours;
+			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
 		}
 		else
@@ -166,27 +168,27 @@ this.camp_manager <- {
 
 			foreach( b in this.m.Tents )
 			{
-				if (b.Escorting())
+				if (!b.isWorkDangerous())
 				{
 					b.completed();
 				}
 			}
 
 			this.m.LastCampTime = this.m.StopTime;
-			this.World.State.getPlayer().updateStrength();
-			this.World.TopbarDayTimeModule.hideMessage();
+			::World.State.getPlayer().updateStrength();
+			::World.TopbarDayTimeModule.hideMessage();
 		}
 	}
 
 	function onCamp()
 	{
 		this.m.IsCamping = !this.m.IsCamping;
-		this.World.State.getPlayer().setCamping(this.m.IsCamping);
+		::World.State.getPlayer().setCamping(this.m.IsCamping);
 
 		if (this.m.IsCamping)
 		{
 			this.m.StartTime = this.Time.getVirtualTimeF();
-			this.m.LastHourUpdated = this.World.getTime().Hours;
+			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
 		}
 		else
@@ -202,12 +204,12 @@ this.camp_manager <- {
 			}
 
 			this.m.LastCampTime = this.m.StopTime;
-			this.World.Assets.consumeItems();
-			this.World.Assets.refillAmmo();
-			this.World.Assets.updateAchievements();
-			this.World.Assets.checkAmbitionItems();
-			this.World.State.getPlayer().updateStrength();
-			this.World.Events.fire("event.camp_completed");
+			::World.Assets.consumeItems();
+			::World.Assets.refillAmmo();
+			::World.Assets.updateAchievements();
+			::World.Assets.checkAmbitionItems();
+			::World.State.getPlayer().updateStrength();
+			::World.Events.fire("event.camp_completed");
 		}
 	}
 
@@ -220,47 +222,50 @@ this.camp_manager <- {
 	 * Callback function for UI, called on encounter icon click
 	 */
 	function onEncounterClicked (_i, _townScreen) {
-		this.World.Encounters.fireCampEncounter(this.m.CampEncounters[_i]);
-		if (_i > 0) { // 1st are tips, don't remove them
-			this.m.CampEncounters.remove(_i);
-		}
+		local selectedEncounter = this.m.CampEncounters.filter(@(_, _enc) _enc.isVisible())[_i];
+		::World.Encounters.fireCampEncounter(selectedEncounter);
+    	this.m.CampEncounters.remove(this.m.CampEncounters.find(selectedEncounter));
 	}
 
 	function assignRepairs()
 	{
-		this.getBuildingByID(this.Const.World.CampBuildings.Repair).assignEquipped();
+		this.getBuildingByID(::Legends.Camp.CampBuildings.Repair).assignEquipped();
 	}
 
 	function update( _worldState )
 	{
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+		local escortEntity = ::World.State.getEscortedEntity();
+    	local isCurrentlyEscorting = escortEntity != null && !escortEntity.isNull();
+    	if (isCurrentlyEscorting != this.m.IsEscorting) {
+        	this.onEscort(isCurrentlyEscorting);
+    	}
+
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				b.updateTick(this.getElapsedHours());
 			}
 		}
 
-		if (this.World.getTime().Hours == this.m.LastHourUpdated)
+		if (::World.getTime().Hours == this.m.LastHourUpdated)
 		{
 			return;
 		}
 
-		this.m.LastHourUpdated = this.World.getTime().Hours;
+		this.m.LastHourUpdated = ::World.getTime().Hours;
 		local updates = this.getCampingUpdateText();
 
 
 		if (this.m.IsEscorting)
 		{
-			this.World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
+			::World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
 		}
 		else if (this.m.IsCamping)
 		{
-			this.World.TopbarDayTimeModule.showMessage("ENCAMPED", updates);
+			::World.TopbarDayTimeModule.showMessage("ENCAMPED", updates);
 		}
 		// else if (this.m.IsEscorting)
 		// {
-		// 	this.World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
+		// 	::World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
 		// }
 	}
 
@@ -273,10 +278,8 @@ this.camp_manager <- {
 		updates.push("Hours Encamped: " + this.Math.floor(this.getElapsedHours()));
 		updates.push("----------------------------------");
 
-		foreach( b in this.m.Tents )
-		{
-			if (this.m.IsCamping && b.Camping() || this.m.IsEscorting && b.Escorting())
-			{
+		foreach( b in this.m.Tents ) {
+			if (this.canBuildingWorkCurrently(b)) {
 				text = b.update();
 
 				if (text && typeof text == "string")
@@ -301,7 +304,7 @@ this.camp_manager <- {
 
 	function fireEvent( _eventID, _name )
 	{
-		local event = this.World.Events.getEvent(_eventID);
+		local event = ::World.Events.getEvent(_eventID);
 
 		if (event == null)
 		{
@@ -310,9 +313,9 @@ this.camp_manager <- {
 
 		event.setTownName(_name);
 
-		if (this.World.Events.canFireEvent(true))
+		if (::World.Events.canFireEvent(true))
 		{
-			this.World.Events.fire(_eventID);
+			::World.Events.fire(_eventID);
 		}
 		else
 		{
@@ -372,7 +375,7 @@ this.camp_manager <- {
 	 * Updates encounters in the camp.
 	 */
 	function updateEncounters () {
-		if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+		/*if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (i, e in this.m.CampEncounters) {
 				if (i > 0 && !e.isValid(this))
@@ -382,16 +385,16 @@ this.camp_manager <- {
 				::MSU.Array.removeByValue(this.m.CampEncounters, e);
 			}
 			return;
-		}
+		}*/
 
-		local list = [this.World.Encounters.m.CampEncounters[0]];
-		foreach (e in this.World.Encounters.m.CampEncounters) {
-			if (e.isValid(this)) {
+		local list = [::World.Encounters.m.CampEncounters[0]];
+		foreach (e in ::World.Encounters.m.CampEncounters) {
+			if (e.isValid(this) && e.isVisible()) {
 				list.push(e);
 			}
 		}
 
-		local count = this.Math.rand(3, 5);
+		local count = this.Math.rand(::Legends.Encounters.CampMin, ::Legends.Encounters.CampMax);
 		while(list.len() > count + 1) {
 			local r = this.Math.rand(1, list.len() - 1);
 			list.remove(r);
@@ -400,36 +403,84 @@ this.camp_manager <- {
 		foreach (e in list) {
 			this.m.CampEncounters.push(e);
 		}
-		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (5 * this.World.getTime().SecondsPerDay);
+		//this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);
 	}
 
-	function getUITerrain () {
-		local tile = this.World.State.getPlayer().getTile();
+	function getContracts() {
+		local contracts = [];
+		foreach(c in ::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany).getContracts()) {
+			if (c.isVisible())
+				contracts.push(c);
+		}
+		return contracts;
+	}
+
+	function hasContract( _id ) {
+		local contracts = this.getContracts();
+		foreach(c in contracts) {
+			if (c.getType() == _id)
+				return true;
+		}
+		return false;
+	}
+
+	function getUIContractInformation() {
+		local result = {
+			Contracts = [],
+			IsContractActive = ::World.Contracts.getActiveContract() != null,
+			IsContractsLocked = false
+		};
+		local contracts = this.getContracts();
+
+		foreach( i, contract in contracts ) {
+			if (i > 9)
+				break;
+
+			if (contract.isActive())
+				continue;
+
+			local c = {
+				Icon = contract.getBanner(),
+				ID = contract.getID(),
+				IsNegotiated = contract.isNegotiated(),
+				DifficultyIcon = contract.getUIDifficultySmall()
+			};
+			result.Contracts.push(c);
+		}
+		return result;
+	}
+
+	function getCampingTerrain () {
+		local tile = ::World.State.getPlayer().getTile();
 		local terrain = [];
-		terrain.resize(this.Const.World.TerrainType.COUNT, 0);
+		terrain.resize(::Const.World.TerrainType.COUNT, 0);
+
+		terrain[tile.Type] += 2;
 
 		for(local i = 0; i < 6; i++) {
 			if (tile.hasNextTile(i))
 				++terrain[tile.getNextTile(i).Type];
 		}
 
-		terrain[this.Const.World.TerrainType.Plains] = this.Math.max(0, terrain[this.Const.World.TerrainType.Plains] - 1);
+		terrain[::Const.World.TerrainType.Plains] = ::Math.max(0, terrain[::Const.World.TerrainType.Plains] - 2);
 
-		if (terrain[this.Const.World.TerrainType.Steppe] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Steppe] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
-			terrain[this.Const.World.TerrainType.Steppe] += 2;
-
-		if (terrain[this.Const.World.TerrainType.Snow] != 0 && this.Math.abs(terrain[this.Const.World.TerrainType.Snow] - terrain[this.Const.World.TerrainType.Hills]) <= 2)
-			terrain[this.Const.World.TerrainType.Snow] += 2;
-
-		local highest = 0;
-
-		for(local i = 0; i < this.Const.World.TerrainType.COUNT; i++)
-		{
-			if (i == this.Const.World.TerrainType.Ocean || i == this.Const.World.TerrainType.Shore)
-			{
+		if (terrain[::Const.World.TerrainType.Hills] > 0 || terrain[::Const.World.TerrainType.Mountains] > 0) {
+			if (terrain[::Const.World.TerrainType.Steppe] > 0) {
+				terrain[::Const.World.TerrainType.Steppe] += 2;
 			}
-			else if (terrain[i] >= terrain[highest])
-			{
+			if (terrain[::Const.World.TerrainType.Snow] > 0) {
+				terrain[::Const.World.TerrainType.Snow] += 2;
+			}
+		}
+
+		local highest = tile.Type;
+
+		if (highest == ::Const.World.TerrainType.Ocean || highest == ::Const.World.TerrainType.Shore) {
+			highest = ::Const.World.TerrainType.Plains;
+		}
+
+		for(local i = 0; i < ::Const.World.TerrainType.COUNT; i++) {
+			if (i != ::Const.World.TerrainType.Ocean && i != ::Const.World.TerrainType.Shore && terrain[i] > terrain[highest]) {
 				highest = i;
 			}
 		}
@@ -437,38 +488,34 @@ this.camp_manager <- {
 	}
 
 	function getUIInformation () {
-		local night = !this.World.getTime().IsDaytime;
-		local highest = this.getUITerrain();
-		local foreground = this.Const.World.TerrainCampImages[highest].Foreground;
+		local night = !::World.getTime().IsDaytime;
+		local highest = this.getCampingTerrain();
+		local terrain = ::Legends.Camp.TerrainCampImages[highest];
+		local background = terrain.Background;
+		local foreground = terrain.Foreground;
+		local mood = terrain.Mood;
 		local result = {
-			Title = this.World.Assets.getName() + " Camp",
-			SubTitle = "No camp tasks have been scheduled...",
+			Title = ::World.Assets.getName() + " Camp",
+			SubTitle = "Give various camp tasks to your mercenaries while taking a break from marching.",
 			HeaderImagePath = null,
-			Background = this.Const.World.TerrainCampImages[highest].Background + (night ? "_night" : "") + ".jpg",
-			Mood = this.Const.World.TerrainCampImages[highest].Mood + ".png",
+			Background = background != null ? background + (night ? "_night" : "") + ".jpg" : null,
+			Mood = mood != null ? mood + ".png" : null,
 			Foreground = foreground != null ? foreground + (night ? "_night" : "") + ".png" : null,
-				Slots = [],
-				Situations = []
+			Slots = [],
+			Situations = [],
+			Contracts = [],
+			IsContractActive = ::World.Contracts.getActiveContract() != null,
+			IsContractsLocked = false,
 		};
-		foreach (building in this.getBuildings())
-		{
-			if (building == null || building.isHidden())
-			{
+
+		foreach (building in this.getBuildings()) {
+			if (building == null || building.isHidden()) {
 				result.Slots.push(null);
 				continue;
 			}
 
-			local image = null;
-
-			// how about consts here? magic numbers are bad practice
-			if (highest == 4 || highest == 8 || highest == 9) {
-				image = building.getUIImage(highest);
-			} else {
-				image = building.getUIImage(0);
-			}
-
 			local b = {
-				Image = image,
+				Image = building.getUIImage(::Legends.Camp.TerrainCampImages[highest].BuildingVariant),
 				Tooltip = building.getTooltipID(),
 				Slot = building.getSlot(),
 				CanEnter = building.canEnter()
@@ -476,24 +523,29 @@ this.camp_manager <- {
 			result.Slots.push(b);
 		}
 
-		local isEscorting = this.World.State.m.EscortedEntity != null && !this.World.State.m.EscortedEntity.isNull();
+		local isEscorting = ::World.State.m.EscortedEntity != null && !::World.State.m.EscortedEntity.isNull();
 		if (!isEscorting) {
 			result.Encounters <- [];
-			foreach(encounter in this.m.CampEncounters) {
-				if (encounter != null) {
-					result.Encounters.push({
-						Icon = encounter.m.Icon,
-						Type = encounter.getType(),
-					});
-				}
+			local visibleEncounters = this.m.CampEncounters.filter(@(_,_enc) (_enc != null && _enc.isVisible()));
+			foreach(encounter in visibleEncounters) {
+				result.Encounters.push({
+					Icon = encounter.m.Icon,
+					Type = encounter.getType(),
+				});
 			}
 		}
+
+		local contractUI = this.getUIContractInformation();
+		foreach(contract in contractUI.Contracts)
+			result.Contracts.push(contract);
+
 		return result;
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize( _out ) {
 		_out.writeBool(this.m.IsCamping);
+		_out.writeBool(this.m.IsEscorting);
+		_out.writeBool(this.m.StartedWhileEscorting);
 		_out.writeU8(this.m.LastHourUpdated);
 		_out.writeF32(this.m.StartTime);
 		_out.writeF32(this.m.LastCampTime);
@@ -512,10 +564,10 @@ this.camp_manager <- {
 			}
 		}
 
-		::MSU.Utils.serialize(this.m.PresetNames, _out);
+		::MSU.Serialization.serialize(this.m.PresetNames, _out);
 		// serialize encounters
 		_out.writeF32(this.m.CampEncountersCooldownUntil);
-		foreach(i, e in this.m.CampEncounters) {
+		foreach(_, e in this.m.CampEncounters) {
 			if (e.isValid(this)) {
 				_out.writeBool(true);
 				_out.writeString(e.getType());
@@ -524,53 +576,57 @@ this.camp_manager <- {
 		_out.writeBool(false);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize( _in ) {
 		this.m.IsCamping = _in.readBool();
+		this.m.IsEscorting = _in.readBool();
+		this.m.StartedWhileEscorting = _in.readBool();
 		this.m.LastHourUpdated = _in.readU8();
 		this.m.StartTime = _in.readF32();
 		this.m.LastCampTime = _in.readF32();
+		this.m.Tents = [];
+		local numBuildings = _in.readU8();
 
-		if (_in.getMetaData().getVersion() >= 52)
+		for( local i = 0; i < numBuildings; ++i )
 		{
-			this.m.Tents = [];
-			local numBuildings = _in.readU8();
-
-			for( local i = 0; i < numBuildings; ++i )
+			local id = _in.readI32();
+			if (id != 0)
 			{
-				local id = _in.readI32();
-
-				if (id != 0)
-				{
-					local b = this.new(this.IO.scriptFilenameByHash(id));
-					b.setCamp(this);
-					b.onDeserialize(_in);
-					this.m.Tents.push(b);
-				}
-			}
-
-			if (_in.getMetaData().getVersion() < 65)
-			{
-				this.addBuilding(this.new("scripts/entity/world/camp/buildings/painter_building"));
+				local b = this.new(this.IO.scriptFilenameByHash(id));
+				b.setCamp(this);
+				b.onDeserialize(_in);
+				this.m.Tents.push(b);
 			}
 		}
-
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("17.1.0", _in.getMetaData()))
-		{
-			this.m.PresetNames = ::MSU.Utils.deserialize(_in);
-		}
-
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-			this.m.CampEncountersCooldownUntil = _in.readF32();
-			this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
-			while(_in.readBool()) {
-				local e = ::World.Encounters.getEncounter(_in.readString());
-				if (e != null) {
-					this.m.CampEncounters.push(e);
-				}
+		this.m.PresetNames = ::MSU.Serialization.deserialize(_in);
+		this.m.CampEncountersCooldownUntil = _in.readF32();
+		this.m.CampEncounters.push(::World.Encounters.m.CampEncounters[0]);
+		while(_in.readBool()) {
+			local e = ::World.Encounters.getEncounter(_in.readString());
+			if (e != null) {
+				this.m.CampEncounters.push(e);
 			}
 		}
 	}
 
+	function onCampAttacked () {
+		this.m.IsCamping = false;
+		::World.State.getPlayer().setCamping(false);
+
+		this.m.StopTime = ::Time.getVirtualTimeF();
+
+		foreach (b in this.m.Tents)	{
+			if (b.Camping()) {
+				b.completed();
+			}
+		}
+
+		this.m.LastCampTime = this.m.StopTime;
+		::World.Assets.consumeItems();
+		::World.Assets.refillAmmo();
+		::World.Assets.updateAchievements();
+		::World.Assets.checkAmbitionItems();
+		::World.State.getPlayer().updateStrength();
+		::World.Events.fire("event.legends_camp_attacked");
+	}
 };
 

@@ -7,7 +7,19 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variants = [1,2]
+		this.m.Variants = [1, 2, 3, 4];
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
+	}
+
+	o.addSkill <- function( _skill )
+	{
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
+		{
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFlowingSlash);
+			return;
+		}
+
+		this.weapon.addSkill(_skill);
 	}
 
 	o.getTooltip <- function ()
@@ -19,9 +31,16 @@
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Lowered Injury Threshold by [color=" + this.Const.UI.Color.PositiveValue + "]" + this.m.EffectChanceOrBonus + "%[/color]"
+				text = "Lowered Injury Threshold by [color=%positive%]" + this.m.EffectChanceOrBonus + "%[/color]" + ::Legends.Items.Named.getRangeOfSpecialEffect(this)
 			});
 		}
 		return result;
+	}
+
+	local onEquip = o.onEquip;
+	o.onEquip = function ()
+	{
+		onEquip();
+		::Legends.Actives.grant(this, ::Legends.Active.LegendDebilitate);
 	}
 });

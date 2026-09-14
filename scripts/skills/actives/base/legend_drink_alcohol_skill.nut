@@ -9,11 +9,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function create() {
-		this.m.SoundOnUse = [
-			"sounds/combat/drink_01.wav",
-			"sounds/combat/drink_02.wav",
-			"sounds/combat/drink_03.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
@@ -54,7 +50,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 				id = 5,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -102,12 +98,12 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 
 			if (user.getSkills().hasSkill("injury.sickness"))
 				user.getSkills().add(this.new("scripts/skills/injury/severe_concussion_injury"));
-			else if (user.getSkills().hasSkill("effects.drunk"))
+			else if (user.getSkills().hasEffect(::Legends.Effect.Drunk))
 				user.getSkills().add(this.new("scripts/skills/injury/sickness_injury"));
 			else if (::Legends.Food.isTipsy(user))
-				user.getSkills().add(this.new("scripts/skills/effects_world/drunk_effect"));
+				::Legends.Effects.grant(user, ::Legends.Effect.Drunk);
 			else if (this.m.Effect != null)
-				user.getSkills().add(this.new("scripts/skills/effects/" + this.m.Effect));
+				::Legends.Effects.grant(user, this.m.Effect);
 
 			if (!user.isHiddenToPlayer())
 				this.Tactical.EventLog.log(this.tacticalLogDrink(user));

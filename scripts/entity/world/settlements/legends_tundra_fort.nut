@@ -103,96 +103,99 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 			"Geirborg"
 		]];
 		this.m.DraftLists = [[
-			"apprentice_background",
-			"houndmaster_background",
-			"militia_background",
-			"militia_background",
-			"miner_background",
-			"vagabond_background",
-			"wildman_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"retired_soldier_background",
-			"retired_soldier_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Miner,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier
 		],[
-			"houndmaster_background",
-			"brawler_background",
-			"gravedigger_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"ratcatcher_background",
-			"vagabond_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"raider_background",
-			"retired_soldier_background",
-			"retired_soldier_background",
-			"sellsword_background"
+			::Legends.Background.Houndmaster,
+			::Legends.Background.Brawler,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword
 		],[
-			"apprentice_background",
-			"brawler_background",
-			"brawler_background",
-			"brawler_background",
-			"gambler_background",
-			"cultist_background",
-			"gravedigger_background",
-			"graverobber_background",
-			"messenger_background",
-			"militia_background",
-			"militia_background",
-			"militia_background",
-			"peddler_background",
-			"ratcatcher_background",
-			"refugee_background",
-			"shepherd_background",
-			"shepherd_background",
-			"vagabond_background",
-			"wildman_background",
-			"wildman_background",
-			"witchhunter_background",
-			"bastard_background",
-			"bastard_background",
-			"deserter_background",
-			"deserter_background",
-			"raider_background",
-			"retired_soldier_background",
-			"sellsword_background",
-			"sellsword_background",
-			"squire_background",
-			"swordmaster_background",
-			"cripple_background",
-			"eunuch_background",
-			"hedge_knight_background",
-			"hedge_knight_background"
+			::Legends.Background.Apprentice,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Brawler,
+			::Legends.Background.Gambler,
+			::Legends.Background.Cultist,
+			::Legends.Background.Gravedigger,
+			::Legends.Background.Graverobber,
+			::Legends.Background.Messenger,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Militia,
+			::Legends.Background.Peddler,
+			::Legends.Background.Ratcatcher,
+			::Legends.Background.Refugee,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Shepherd,
+			::Legends.Background.Vagabond,
+			::Legends.Background.Wildman,
+			::Legends.Background.Wildman,
+			::Legends.Background.Witchhunter,
+			::Legends.Background.Bastard,
+			::Legends.Background.Bastard,
+			::Legends.Background.Deserter,
+			::Legends.Background.Deserter,
+			::Legends.Background.Raider,
+			::Legends.Background.RetiredSoldier,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Sellsword,
+			::Legends.Background.Squire,
+			::Legends.Background.Swordmaster,
+			::Legends.Background.Cripple,
+			::Legends.Background.Eunuch,
+			::Legends.Background.HedgeKnight,
+			::Legends.Background.HedgeKnight
 		]];
 
 		this.m.FemaleDraftLists = [[
-			"legend_shieldmaiden_background",
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
 		],[
-			"legend_shieldmaiden_background",
-			"witchhunter_background",
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.Witchhunter,
 		],[
-			"legend_shieldmaiden_background",
-			"witchhunter_background",
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.LegendShieldmaiden,
+			::Legends.Background.Witchhunter,
 		]];
 
 		this.m.StablesLists = [[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey
 		],[
-			"legend_donkey_background",
-			"legend_horse_rouncey",
-			"legend_horse_destrier"
+			::Legends.Background.LegendDonkey,
+			::Legends.Background.LegendHorseRouncey,
+			::Legends.Background.LegendHorseDestrier
 		]];
-
+		this.m.Culture = this.Const.World.Culture.Northern;
 		this.m.Rumors = this.Const.Strings.RumorsTundraSettlement;
 	}
 
@@ -263,7 +266,7 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 				Force = true
 			}],
 
-		]
+		];
 
 		switch (this.m.Size)
 		{
@@ -453,10 +456,10 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 
 		items = this.filterNewLocation(items);
 		local item = this.Const.World.Common.pickItem(items);
-		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force)
+		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
-	function onBuildOne( _settings )
+	function onBuildOne( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -540,7 +543,7 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 		], 4, true);
 	}
 
-	function onBuildTwo( _settings )
+	function onBuildTwo( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
@@ -656,7 +659,7 @@ this.legends_tundra_fort <- this.inherit("scripts/entity/world/settlements/legen
 		], [], 2);
 	}
 
-	function onBuildThree( _settings )
+	function onBuildThree( )
 	{
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/crowd_building"), 5);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);

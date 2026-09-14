@@ -29,8 +29,12 @@ this.legend_gladius <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		this.addSkill(this.new("scripts/skills/actives/slash"));
-		this.addSkill(this.new("scripts/skills/actives/riposte"));
+		::Legends.Actives.grant(this, ::Legends.Active.Slash);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHalfsword);
+		::Legends.Actives.grant(this, ::Legends.Active.Hammer, function (_skill) {
+			_skill.m.IsMordhau = true;
+		}.bindenv(this));
 	}
 
 	function onUpdateProperties( _properties )

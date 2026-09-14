@@ -49,6 +49,11 @@ var CharacterScreenDatasourceIdentifier =
 	Perks:
 	{
 		TreesLoaded: 'perks.list-loaded'
+	},
+
+	Professions:
+	{
+		TreesLoaded: 'professions.list-loaded'
 	}
 };
 
@@ -65,6 +70,7 @@ var CharacterScreenDatasource = function(_isTacticalMode)
 	this.mSelectedBrotherIndex = null;
 	this.mStashList = null;
 	this.mPerkTrees = null;
+	this.mProfessionTrees = null;
 
 	this.mStashSpaceUsed = 0;
 	this.mStashSpaceMax = 0;
@@ -165,7 +171,7 @@ CharacterScreenDatasource.prototype.createEventChannels = function()
 	this.mEventListener[CharacterScreenDatasourceIdentifier.Inventory.FormationName] = [ ];
 
 	this.mEventListener[CharacterScreenDatasourceIdentifier.Perks.TreesLoaded] = [ ];
-
+	this.mEventListener[CharacterScreenDatasourceIdentifier.Professions.TreesLoaded] = [ ];
 };
 
 
@@ -181,6 +187,7 @@ CharacterScreenDatasource.prototype.reset = function()
 	this.mSelectedBrotherIndex = null;
 	this.mStashList = null;
 	this.mPerkTrees = null;
+	this.mProfessionTrees = null;
 
 	// States
 	this.mInventoryMode = null;
@@ -491,6 +498,52 @@ CharacterScreenDatasource.prototype.getBrotherPerkPointsSpent = function (_broth
 		if (perkPoints !== null && typeof (perkPoints) == 'number')
 		{
 			return perkPoints;
+		}
+	}
+
+	return 0;
+};
+
+CharacterScreenDatasource.prototype.getBrotherProfessionPoints = function(_brother) {
+	if (_brother === null || !(CharacterScreenIdentifier.Entity.Character.Key in _brother))	{
+		return 0;
+	}
+
+	var character = _brother[CharacterScreenIdentifier.Entity.Character.Key];
+	if (character === null)	{
+		return 0;
+	}
+
+	if (CharacterScreenIdentifier.Entity.Character.ProfessionPoints in character) {
+		var professionPoints = character[CharacterScreenIdentifier.Entity.Character.ProfessionPoints];
+		if (professionPoints !== null && typeof(professionPoints) == 'number') {
+			return professionPoints;
+		}
+	}
+
+	return 0;
+};
+
+
+CharacterScreenDatasource.prototype.getBrotherProfessionPointsSpent = function (_brother)
+{
+	if (_brother === null || !(CharacterScreenIdentifier.Entity.Character.Key in _brother))
+	{
+		return 0;
+	}
+
+	var character = _brother[CharacterScreenIdentifier.Entity.Character.Key];
+	if (character === null)
+	{
+		return 0;
+	}
+
+	if (CharacterScreenIdentifier.Entity.Character.ProfessionPoints in character)
+	{
+		var professionPoints = character[CharacterScreenIdentifier.Entity.Character.ProfessionPointsSpent];
+		if (professionPoints !== null && typeof (professionPoints) == 'number')
+		{
+			return professionPoints;
 		}
 	}
 
@@ -938,8 +991,15 @@ CharacterScreenDatasource.prototype.toggleInventoryItem = function(_itemId, _ent
    this.notifyBackendToggleInventoryItem(_itemId, _entityId, _callback);
 };
 
+CharacterScreenDatasource.prototype.toggleAutomationInventoryItem = function(_itemId, _entityId, _callback) {
+   this.notifyBackendToggleAutomationInventoryItem(_itemId, _entityId, _callback);
+};
 
-CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _sourceItemId, _sourceItemIdx)
+CharacterScreenDatasource.prototype.getCompositeAutomationDisplayStates = function(_updatedIds, _callback) {
+   this.notifyBackendGetCompositeAutomationDisplayStates(_updatedIds, _callback);
+};
+
+CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot)
 {
 	// if the _brotherId is null, this means we are trying to equip a stash item which is NOT brother bound
 	// thus we have to use the current selected one
@@ -957,7 +1017,7 @@ CharacterScreenDatasource.prototype.equipInventoryItem = function(_brotherId, _s
 	}
 
 	var self = this;
-	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
+	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1027,7 +1087,7 @@ CharacterScreenDatasource.prototype.addLayerToItem = function(_brotherId, _sourc
 	}
 
 	var self = this;
-	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
+	this.notifyBackendEquipInventoryItem(brotherId, _sourceItemId, _sourceItemIdx, null, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1149,7 +1209,7 @@ CharacterScreenDatasource.prototype.dropInventoryItemIntoBag = function(_brother
 	});
 };
 
-CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceItemId, _sourceItemIdx)
+CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot)
 {
 	// if the _brotherId is null, this means we are trying to equip a stash item which is NOT brother bound
 	// thus we have to use the current selected one
@@ -1167,7 +1227,7 @@ CharacterScreenDatasource.prototype.equipBagItem = function(_brotherId, _sourceI
 	}
 
 	var self = this;
-	this.notifyBackendEquipBagItem(brotherId, _sourceItemId, _sourceItemIdx, function (data)
+	this.notifyBackendEquipBagItem(brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, function (data)
 	{
 		if (data === undefined || data == null || typeof (data) !== 'object')
 		{
@@ -1567,12 +1627,77 @@ CharacterScreenDatasource.prototype.queryPerkInformation = function(_perkId, _ba
 	this.notifyBackendQueryPerkInformation(_perkId, _background, _callback);
 };
 
+CharacterScreenDatasource.prototype.loadProfessionTrees = function(_data, _withoutNotify)
+{
+	this.mProfessionTrees = _data;
+
+	// notify every listener
+	if (_withoutNotify === undefined || _withoutNotify !== true) {
+		this.notifyEventListener(CharacterScreenDatasourceIdentifier.Professions.TreesLoaded, this.mProfessionTrees);
+	}
+
+	return this.mProfessionTrees;
+};
+
+CharacterScreenDatasource.prototype.loadProfessionTreesOnce = function(_data, _withoutNotify)
+{
+	if (this.mProfessionTrees === null)	{
+		this.loadProfessionTrees(_data, _withoutNotify);
+	}
+};
+
+CharacterScreenDatasource.prototype.getProfessionTrees = function()
+{
+	if (this.mProfessionTrees === null)	{
+		this.loadProfessionTrees(null, true);
+	}
+
+	return this.mProfessionTrees;
+};
+
+CharacterScreenDatasource.prototype.unlockProfession = function(_brotherId, _professionId)
+{
+	var brotherId = _brotherId;
+	if (brotherId === null)	{
+		var selectedBrother = this.getSelectedBrother();
+		if (selectedBrother === null || !(CharacterScreenIdentifier.Entity.Id in selectedBrother)) {
+			console.error('ERROR: Failed to unlock profession perk. No entity selected.');
+			return;
+		}
+
+		brotherId = selectedBrother[CharacterScreenIdentifier.Entity.Id];
+	}
+
+	var self = this;
+	this.notifyBackendUnlockProfession(brotherId, _professionId, function (data) {
+		if (data === undefined || data === null || typeof (data) !== 'object') {
+			console.error('ERROR: Failed to unlock profession perk. Invalid data result.');
+			return;
+		}
+
+		// check if we have an error
+		if (ErrorCode.Key in data) {
+			self.notifyEventListener(ErrorCode.Key, data[ErrorCode.Key]);
+		} else {
+			// find the brother and update him
+			if (CharacterScreenIdentifier.Entity.Id in data) {
+				self.updateBrother(data);
+			} else {
+				console.error('ERROR: Failed to unlock profession perk. Invalid data result.');
+			}
+		}
+	});
+};
+
+CharacterScreenDatasource.prototype.queryProfessionInformation = function(_professionId, _background, _callback) {
+	this.notifyBackendQueryProfessionInformation(_professionId, _background, _callback);
+};
 
 CharacterScreenDatasource.prototype.updateBrother = function (_data)
 {
 	if (_data === null || typeof(_data) !== 'object')
 	{
-		console.error('ERROR: Failed to updated brother. Invalid data.');
+		console.error('ERROR: Failed to update brother. Invalid data.');
 		return;
 	}
 
@@ -1832,6 +1957,16 @@ CharacterScreenDatasource.prototype.notifyBackendUnlockPerk = function (_brother
 	SQ.call(this.mSQHandle, 'onUnlockPerk', [_brotherId, _perkId], _callback);
 };
 
+CharacterScreenDatasource.prototype.notifyBackendQueryProfessionInformation = function (_professionId, _background, _callback)
+{
+	SQ.call(this.mSQHandle, 'onQueryProfessionInformation', [_professionId, _background], _callback);
+};
+
+CharacterScreenDatasource.prototype.notifyBackendUnlockProfession = function (_brotherId, _professionId, _callback)
+{
+	SQ.call(this.mSQHandle, 'onUnlockProfession', [_brotherId, _professionId], _callback);
+};
+
 CharacterScreenDatasource.prototype.notifyBackendUpdateNameAndTitle = function (_brotherId, _name, _title, _callback)
 {
 	SQ.call(this.mSQHandle, 'onUpdateNameAndTitle', [_brotherId, _name, _title], _callback);
@@ -1877,9 +2012,17 @@ CharacterScreenDatasource.prototype.notifyBackendToggleInventoryItem = function 
 	SQ.call(this.mSQHandle, 'onToggleInventoryItem', [_sourceItemId, _entityId], _callback);
 };
 
-CharacterScreenDatasource.prototype.notifyBackendEquipInventoryItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _callback)
+CharacterScreenDatasource.prototype.notifyBackendToggleAutomationInventoryItem = function (_sourceItemId, _entityId, _callback) {
+	SQ.call(this.mSQHandle, 'onToggleAutomationInventoryItem', [_sourceItemId, _entityId], _callback);
+};
+
+CharacterScreenDatasource.prototype.notifyBackendGetCompositeAutomationDisplayStates = function (_updatedIds, _callback) {
+	SQ.call(this.mSQHandle, 'onGetCompositeAutomationDisplayStates', _updatedIds, _callback);
+};
+
+CharacterScreenDatasource.prototype.notifyBackendEquipInventoryItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, _callback)
 {
-	SQ.call(this.mSQHandle, 'onEquipInventoryItem', [_brotherId, _sourceItemId, _sourceItemIdx], _callback);
+	SQ.call(this.mSQHandle, 'onEquipInventoryItem', [_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot], _callback);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendDropInventoryItemIntoBag = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetItemIdx, _callback)
@@ -1892,9 +2035,9 @@ CharacterScreenDatasource.prototype.notifyBackendDropBagItemIntoInventory = func
 	SQ.call(this.mSQHandle, 'onDropBagItemIntoInventory', [_brotherId, _sourceItemId, _sourceItemIdx, _targetItemIdx], _callback);
 };
 
-CharacterScreenDatasource.prototype.notifyBackendEquipBagItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _callback)
+CharacterScreenDatasource.prototype.notifyBackendEquipBagItem = function (_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot, _callback)
 {
-	SQ.call(this.mSQHandle, 'onEquipBagItem', [_brotherId, _sourceItemId, _sourceItemIdx], _callback);
+	SQ.call(this.mSQHandle, 'onEquipBagItem', [_brotherId, _sourceItemId, _sourceItemIdx, _targetSlot], _callback);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendSwapBagItem = function (_brotherId, _sourceItemIdx, _targetItemIdx, _callback)
@@ -1931,7 +2074,19 @@ CharacterScreenDatasource.prototype.notifyBackendPopupDialogIsVisible = function
 CharacterScreenDatasource.prototype.notifyBackendDismissCharacter = function (_payCompensation)
 {
 	var activeCharacterID = this.mBrothersList[this.mSelectedBrotherIndex]['id'];
-	SQ.call(this.mSQHandle, 'onDismissCharacter', [ activeCharacterID, _payCompensation ]);
+
+	var addToObituary = false;
+	var dlg = $('.character-screen .dismiss-popup');
+	if (dlg.length > 0)
+	{
+		var checkbox = dlg.find('.obituary-checkbox');
+		if (checkbox.length > 0)
+		{
+			addToObituary = checkbox.prop('checked') === true;
+		}
+	}
+
+	SQ.call(this.mSQHandle, 'onDismissCharacter', [ activeCharacterID, _payCompensation, addToObituary ]);
 };
 
 CharacterScreenDatasource.prototype.notifyBackendToggleReservesCharacter = function ()
@@ -1961,6 +2116,29 @@ CharacterScreenDatasource.prototype.notifyBackendFilterArmorButtonClicked = func
 CharacterScreenDatasource.prototype.notifyBackendFilterMiscButtonClicked = function ()
 {
 	SQ.call(this.mSQHandle, 'onFilterMisc');
+};
+
+CharacterScreenDatasource.prototype.notifyBackendOrganizeLayeredItemsClicked = function (_stripMismatched) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onOrganizeLayeredItems', _stripMismatched, function (data) {
+        if (data === undefined || data === null || typeof (data) !== 'object') {
+            return;
+        }
+
+        if ('stashSpaceUsed' in data) {
+            self.mStashSpaceUsed = data.stashSpaceUsed;
+        }
+
+        if ('stashSpaceMax' in data) {
+            self.mStashSpaceMax = data.stashSpaceMax;
+        }
+
+		self.mInventoryModule.updateSlotsLabel();
+
+        if (CharacterScreenIdentifier.QueryResult.Stash in data) {
+			self.loadStashList(data[CharacterScreenIdentifier.QueryResult.Stash]);
+		}
+    });
 };
 
 CharacterScreenDatasource.prototype.notifyBackendFilterUsableButtonClicked = function () {
@@ -2172,6 +2350,19 @@ CharacterScreenDatasource.prototype.notifyBackendToggleUpgradeVisible = function
 	});
 };
 
+CharacterScreenDatasource.prototype.notifyBackendCyclePerkPlan = function (_data) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onCyclePerkPlan', _data, function (_brotherData) {
+        self.notifyEventListener(CharacterScreenDatasourceIdentifier.Brother.Updated, _brotherData);
+    });
+};
+
+CharacterScreenDatasource.prototype.notifyBackendCycleProfessionPlan = function (_data) {
+    var self = this;
+    SQ.call(this.mSQHandle, 'onCycleProfessionPlan', _data, function (_brotherData) {
+        self.notifyEventListener(CharacterScreenDatasourceIdentifier.Brother.Updated, _brotherData);
+    });
+};
 
 CharacterScreenDatasource.prototype.notifyBackendAssignRider = function (_rider, _horse, _callback)
 {

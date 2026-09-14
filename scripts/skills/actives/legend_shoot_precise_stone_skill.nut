@@ -5,39 +5,13 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "actives.legend_shoot_precise_stone";
-		this.m.Name = "Precise Shot";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendShootPreciseStone);
 		this.m.Description = "Make an effort to aim for the head with a singluar, precise shot. Can\'t be used while engaged in melee.";
 		this.m.KilledString = "Stoned";
-		this.m.Icon = "skills/stone_aim_square.png";
-		this.m.IconDisabled = "skills/stone_aim_square_sw.png";
-		this.m.Overlay = "stone_aim_square";
-		this.m.SoundOnUse = [
-			"sounds/combat/aimed_shot_01.wav",
-			"sounds/combat/aimed_shot_02.wav",
-			"sounds/combat/aimed_shot_03.wav"
-		];
-		this.m.SoundOnHit = [
-			"sounds/combat/dlc4/sling_hit_01.wav",
-			"sounds/combat/dlc4/sling_hit_02.wav",
-			"sounds/combat/dlc4/sling_hit_03.wav",
-			"sounds/combat/dlc4/sling_hit_04.wav"
-		];
-		this.m.SoundOnHitShield = [
-			"sounds/combat/dlc4/sling_shield_hit_01.wav",
-			"sounds/combat/dlc4/sling_shield_hit_02.wav",
-			"sounds/combat/dlc4/sling_shield_hit_03.wav",
-			"sounds/combat/dlc4/sling_shield_hit_04.wav",
-			"sounds/combat/dlc4/sling_shield_hit_05.wav"
-		];
-		this.m.SoundOnMiss = [
-			"sounds/combat/dlc4/sling_miss_01.wav",
-			"sounds/combat/dlc4/sling_miss_02.wav",
-			"sounds/combat/dlc4/sling_miss_03.wav",
-			"sounds/combat/dlc4/sling_miss_04.wav",
-			"sounds/combat/dlc4/sling_miss_05.wav",
-			"sounds/combat/dlc4/sling_miss_06.wav"
-		];
+		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/aimed_shot", 3);
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc4/sling_hit", 4);
+		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
+		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
 		this.m.SoundOnHitDelay = -150;
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
@@ -63,6 +37,8 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ProjectileType = this.Const.ProjectileType.Stone;
 		this.m.ProjectileTimeScale = 1.2;
 		this.m.IsProjectileRotated = true;
+		this.m.ChanceDecapitate = 0;
+		this.m.ChanceDisembowel = 0;
 		this.m.ChanceSmash = 25;
 	}
 
@@ -70,25 +46,19 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
 		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
-		
+
 		ret.extend([
 			{
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Inflicts [color=" + this.Const.UI.Color.DamageValue + "]" + fatPerHit + "[/color] extra fatigue"
+				text = "Inflicts [color=%damage%]" + fatPerHit + "[/color] extra fatigue"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.NegativeValue + "]100%[/color] chance to daze a target on a hit to the head"
-			},
-			{
-				id = 9,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to hit the head"
+				text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
 			}
 		]);
 
@@ -98,7 +68,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used because this character is engaged in melee[/color]"
+				text = "[color=%negative%]Can not be used because this character is engaged in melee[/color]"
 			});
 		}
 
@@ -107,7 +77,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return this.skill.isUsable() && (!this.Tactical.isActive() || !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
+		return !this.Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
 	function onAfterUpdate( _properties )
@@ -151,38 +121,41 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			this.m.AdditionalAccuracy += this.m.Item.getAdditionalAccuracy();
-
-			if (_properties.IsSpecializedInSlings)
-				this.m.AdditionalAccuracy += 5;
+			this.m.AdditionalAccuracy += _properties.IsSpecializedInSlings ? (this.m.Item.getAdditionalAccuracy() + 10) : this.m.Item.getAdditionalAccuracy();
 
 			if (_properties.IsSharpshooter)
 				_properties.DamageDirectMult += 0.05;
 
-			_properties.FatigueDealtPerHitMult += 1.0;
 			_properties.RangedSkill += this.m.AdditionalAccuracy;
+			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
+			_properties.FatigueDealtPerHitMult += 1.0;
 			_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
 		}
 	}
 
 	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_skill == this && _targetEntity.isAlive() && !_targetEntity.isDying() && !_targetEntity.getCurrentProperties().IsImmuneToDaze)
-		{
-			local targetTile = _targetEntity.getTile();
-			local user = this.getContainer().getActor();
+		if (_skill != this)
+			return;
 
-			if (_bodyPart == this.Const.BodyPart.Head)
-			{
-				_targetEntity.getSkills().add(this.new("scripts/skills/effects/dazed_effect"));
+		if (::Legends.S.isEntityNullOrDead(_targetEntity))
+			return;
 
-				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
-				}
+		if (_targetEntity.getCurrentProperties().IsImmuneToDaze)
+			return;
+
+		local targetTile = _targetEntity.getTile();
+		local user = this.getContainer().getActor();
+
+		if (_bodyPart == this.Const.BodyPart.Head) {
+			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
+
+			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
+				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
+
 	}
 
 });

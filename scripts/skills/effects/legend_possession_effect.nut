@@ -4,8 +4,7 @@ this.legend_possession_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_possession";
-		this.m.Name = "Possessed";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPossession);
 		this.m.Icon = "skills/status_effect_69.png";
 		this.m.IconMini = "status_effect_69_mini";
 		this.m.Overlay = "status_effect_69";

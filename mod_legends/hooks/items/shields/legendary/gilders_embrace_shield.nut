@@ -3,6 +3,24 @@
 	o.create = function ()
 	{
 		create();
+		this.m.Block = 50;
+		this.m.RegularDamage = 15;
+		this.m.RegularDamage = 30;
 		this.m.IsIndestructible = true;
+	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function (){
+		local result = getTooltip();
+		foreach (tooltip in result) {
+			if (!tooltip.rawin("id") || !tooltip.rawin("text") || !tooltip.rawin("icon")) {
+				continue;
+			}
+
+			if (tooltip.id == 7 && tooltip.icon == "ui/icons/fatigue.png") {
+				tooltip.text = "Fatigue Weight Penalty [color=%negative%]" + this.m.StaminaModifier + "[/color]"
+			}
+		}
+		return result;
 	}
 });

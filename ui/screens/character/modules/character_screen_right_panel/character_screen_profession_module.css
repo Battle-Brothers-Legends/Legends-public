@@ -1,0 +1,191 @@
+.character-screen-container .professions-module,
+.independent-perks-popup-800x720-dialog-content-container .professions-module {
+    top: 3.5rem;
+    left: 1.0rem;
+    right: 1.5rem;
+    bottom: -0.8rem;
+    position: absolute;
+
+    overflow: hidden;
+}
+
+.character-screen-container .professions-module .scroll-container,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container {
+    margin-top: 0.4rem;
+    margin-bottom: 0.4rem;
+}
+
+.character-screen-container .scroll-container .column,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column {
+    position: absolute;
+
+    top: 2.0rem;
+    bottom: 1.0rem;
+    left: 1.0rem;
+    right: 0.0rem;
+
+    width: 100%;
+    height: 100%;
+}
+
+.character-screen-container .scroll-container .column .row,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column .row
+ {
+    width: 100%;
+    height: 5.0rem;
+    position: absolute;
+}
+
+.character-screen-container .scroll-container .column .row .center,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .column .row .center {
+    position: absolute;
+
+    margin: auto;
+    display: block;
+}
+
+.character-screen-container .scroll-container .is-row-unlocked .profession-image-layer {
+	opacity: 1;
+}
+
+.character-screen-container .scroll-container .is-row-locked .profession-image-layer {
+	opacity: 0.33;
+}
+
+
+.character-screen-container .scroll-container .row .l-profession-container,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .row .l-profession-container {
+    width: 5.0rem;
+    height: 5.0rem;
+    position: relative;
+    float: left;
+}
+
+.character-screen-container .scroll-container .l-profession-container .selection-image-layer,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .l-profession-container .selection-image-layer  {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.7rem;
+    height: 4.7rem;
+    position: absolute;
+    margin: auto;
+    padding-bottom: 0.1rem;
+    z-index: 1;
+}
+
+.character-screen-container .scroll-container .l-profession-container .profession-image-layer,
+.independent-perks-popup-800x720-dialog-content-container .professions-module .scroll-container .l-profession-container .profession-image-layer {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin: auto;
+    z-index: 2;
+}
+
+.character-screen-container .scroll-container .l-profession-container .plan-image-layer {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 4.5rem;
+    height: 4.5rem;
+    position: absolute;
+    margin: auto;
+    z-index: 2;
+}
+
+/* Unlock Popup Dialog */
+.character-screen .ui-control.popup-dialog.unlock-profession-popup {
+    width: 40.0rem;
+    height: 25.0rem;
+
+    background-image: url("coui://gfx/ui/skin/popup_background_600x300.png");
+    background-size: 40.0rem 25.0rem;
+    background-repeat: no-repeat;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    top: -1.0rem;
+	width: 100%;
+    height: 12.0rem;
+    padding-top: 0;
+	padding-left: 0.6rem;
+	padding-right: 0.6rem;
+    position: relative;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .left-column {
+    width: 8.0rem;
+    height: 8.0rem;
+    position: relative;
+    flex-shrink: 0;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .left-column img {
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 6.0rem;
+    height: 6.0rem;
+    position: absolute;
+    margin: auto;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column {
+    position: relative;
+    padding-left: 1.0rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column .name {
+    width: 100%;
+    position: relative;
+    font-size: 2.4 rem;
+    line-height: normal;
+    margin-bottom: 0.5rem;
+}
+
+.character-screen .ui-control.popup-dialog .unlock-profession-popup-dialog-content-container .right-column .description {
+    width: 100%;
+    position: relative;
+    font-size: 1.6rem;
+    line-height: 1.4;
+    margin-right: 0.6rem;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar {
+    position: absolute;
+    bottom: 0.0rem;
+    left: 24.0rem;
+    width: 30%;
+    height: 3.2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 10;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar .status-item {
+    display: flex;
+    align-items: center;
+}
+
+.character-screen-container .professions-module .profession-plan-status-bar .status-item img {
+    width: 3.2rem;
+    height: 3.2rem;
+    margin-right: 0.8rem;
+}

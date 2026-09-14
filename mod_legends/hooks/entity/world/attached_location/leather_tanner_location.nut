@@ -10,9 +10,9 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("legend_taxidermist_background");
-		_list.push("legend_taxidermist_background");
-		_list.push("butcher_background");
+		_list.push(::Legends.Background.LegendTaxidermist);
+		_list.push(::Legends.Background.LegendTaxidermist);
+		_list.push(::Legends.Background.Butcher);
 		onUpdateDraftList(_list);
 	}
 
@@ -27,11 +27,11 @@
 				P = 1.0,
 				S = "weapons/legend_chain"
 			});
-			_list.push({
+			/*_list.push({
 				R = 90,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 			_list.push({
 				R = 80,
 				P = 1.0,

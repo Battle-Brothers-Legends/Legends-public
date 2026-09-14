@@ -1,11 +1,13 @@
 this.legend_skin_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_skin_armor";
 		this.m.Type = this.Const.Items.ItemType.Armor;
-		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/legendary/legend_skin_armor");
+		local preview = this.new("scripts/items/legend_armor/legendary/legend_skin_armor");
+		preview.m.Name = "Skinghoul Armor";
+		this.m.PreviewCraftable = preview;
 		this.m.Cost = 2500;
 		local ingredients = [
 			{
@@ -21,32 +23,12 @@ this.legend_skin_armor_blueprint <- this.inherit("scripts/crafting/blueprint", {
 				Num = 1
 			}
 		];
-
-	    this.init(ingredients); // uncommented this line to fix it showing up in taxidermist with no ingredients needed. Abyss 3/17/23
-		// local skills = [
-		// 	{
-		// 		Scripts = ["scripts/skills/backgrounds/legend_blacksmith_background"]
-		// 	}
-		// ]
-		//this.initSkills(skills);
+		this.init(ingredients);
+		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 
-	function isQualified()
-	{
-		return this.blueprint.isQualified();
-	}
-
-	function onCraft( _stash )
-	{
-		local item;
-		
-		local item = this.Const.World.Common.pickArmor([
-			[1, "legendary/legend_skin_armor"]
-		])
-		
-		// item.m.Name = "";
-		_stash.add(item);
+	function onCraft(_stash) {
+		_stash.add(::new("scripts/items/legend_armor/legendary/legend_skin_armor"));
 	}
 
 });
-

@@ -3,14 +3,10 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 	function create()
 	{
 		this.character_background.create();
-		this.m.ID = "background.legend_puppet_master";
-		this.m.Name = "Puppet Master";
-		this.m.Icon = "ui/backgrounds/background_necromancer.png"; //—
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendPuppetMaster);
 		this.m.BackgroundDescription = "Puppet masters are warlocks in training. While they do not understand the raising or preservation of the dead, they do excel at controlling them.";
 		this.m.GoodEnding = "%name% continued to practice their control over immortal objects for some time after mastering the basics from their time with the company. Given time they slowly strayed further and further from mortal company and surrounded themselves with marionettes of their own making — it didn\'t take long for them to muster a court of silent friends and comrades that agreed with their every word and whim. %name% had found a place where they could belong, even if the road to get here was paved with darker intentions.";
 		this.m.BadEnding = "%name% gradually detached from reality as their powers grew, forming their own as the world around them fell apart. Living or dead — it no longer mattered to him. %name% left quietly one night with a small group of his puppets, only to realise that when you are cold and alone, a brutal overseer has few friends when he needs them most.";
-		this.m.HiringCost = 1200000000000;
-		this.m.DailyCost = 0;
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.HateUndead),
 			::Legends.Traits.getID(::Legends.Trait.FearUndead),
@@ -53,91 +49,69 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
 		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
 		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Modifiers.Terrain = [
-				0.0, // ?
-				0.0, //ocean
-				0.0,//plains
-				0.0, //swamp
-				0.0, //hills
-				0.0, //forest
-				0.0, //forest
-				0.0, //forest_leaves
-				0.0, //autumn_forest
-				0.0, //mountains
-				0.0, // ?
-				0.0, //farmland
-				0.0, // snow
-				0.0, // badlands
-				0.0, //highlands
-				0.0, //stepps
-				0.0, //ocean
-				0.0, //desert
-				0.0 //oasis
-			];
 
 		this.m.CustomPerkTree = [
 			[
-				this.Const.Perks.PerkDefs.NineLives,
-				this.Const.Perks.PerkDefs.CripplingStrikes,
-				this.Const.Perks.PerkDefs.BagsAndBelts,
-				this.Const.Perks.PerkDefs.Student,
-				this.Const.Perks.PerkDefs.Recover,
-				this.Const.Perks.PerkDefs.LegendBalance,
-				this.Const.Perks.PerkDefs.LegendSpecialistScytheSkill,
-				this.Const.Perks.PerkDefs.LegendPossession
+				::Legends.Perk.NineLives,
+				::Legends.Perk.CripplingStrikes,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.Student,
+				::Legends.Perk.Recover,
+				::Legends.Perk.LegendBalance,
+				::Legends.Perk.LegendSpecialistReaper,
+				::Legends.Perk.LegendPossession
 			],
 			[
-				this.Const.Perks.PerkDefs.CoupDeGrace,
-				this.Const.Perks.PerkDefs.LegendWither,
-				this.Const.Perks.PerkDefs.SteelBrow,
-				this.Const.Perks.PerkDefs.Gifted,
-				this.Const.Perks.PerkDefs.LegendSpecialistShieldSkill,
-				this.Const.Perks.PerkDefs.LegendPerfectFit,
+				::Legends.Perk.CoupDeGrace,
+				::Legends.Perk.LegendWither,
+				::Legends.Perk.SteelBrow,
+				::Legends.Perk.Gifted,
+				::Legends.Perk.LegendSpecialistShieldSkill,
+				::Legends.Perk.LegendPerfectFit,
 			],
 			[
-				this.Const.Perks.PerkDefs.Backstabber,
-				this.Const.Perks.PerkDefs.LegendDebilitate,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyCaravan,
-				this.Const.Perks.PerkDefs.Brawny,
-				this.Const.Perks.PerkDefs.LegendRust,
-				this.Const.Perks.PerkDefs.LegendSpecialistScytheDamage,
-				this.Const.Perks.PerkDefs.LegendSpecStaffSkill,
-				this.Const.Perks.PerkDefs.LegendBloodbath
+				::Legends.Perk.Backstabber,
+				::Legends.Perk.LegendDebilitate,
+				::Legends.Perk.LegendFavouredEnemyCivilization,
+				::Legends.Perk.Brawny,
+				::Legends.Perk.LegendRust,
+				::Legends.Perk.LegendSpecialistSelfdefense,
+				::Legends.Perk.LegendBloodbath
 			],
 			[
-				this.Const.Perks.PerkDefs.SpecDagger,
-				this.Const.Perks.PerkDefs.SpecMace,
-				this.Const.Perks.PerkDefs.SpecCleaver,
-				this.Const.Perks.PerkDefs.SpecThrowing,
-				this.Const.Perks.PerkDefs.LegendMasteryStaves,
-				this.Const.Perks.PerkDefs.LegendSpecPoison,
-				this.Const.Perks.PerkDefs.LegendLacerate
+				::Legends.Perk.SpecDagger,
+				::Legends.Perk.SpecMace,
+				::Legends.Perk.SpecCleaver,
+				::Legends.Perk.SpecThrowing,
+				::Legends.Perk.LegendMasteryStaves,
+				::Legends.Perk.LegendSpecPoison,
+				::Legends.Perk.LegendLacerate
 			],
 			[
-				this.Const.Perks.PerkDefs.Underdog,
-				this.Const.Perks.PerkDefs.LegendLithe,
-				this.Const.Perks.PerkDefs.LegendSpecStaffStun,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyGhoul,
-				this.Const.Perks.PerkDefs.LegendBlendIn,
-				this.Const.Perks.PerkDefs.LegendInsects,
-				this.Const.Perks.PerkDefs.LegendCarnage
+				::Legends.Perk.Underdog,
+				::Legends.Perk.LegendLithe,
+				::Legends.Perk.LegendSpecStaffStun,
+				::Legends.Perk.LegendFavouredEnemyBeast,
+				::Legends.Perk.LegendBlendIn,
+				::Legends.Perk.LegendInsects,
+				::Legends.Perk.LegendCarnage
 			],
 			[
-				this.Const.Perks.PerkDefs.LegendClarity,
-				this.Const.Perks.PerkDefs.LegendFavouredEnemyAlps,
-				this.Const.Perks.PerkDefs.Taunt,
-				this.Const.Perks.PerkDefs.LegendViolentDecomposition,
-				this.Const.Perks.PerkDefs.LegendSiphon,
-				this.Const.Perks.PerkDefs.BattleForged
+				::Legends.Perk.LegendClarity,
+				::Legends.Perk.LegendFavouredEnemyOccult,
+				::Legends.Perk.Taunt,
+				::Legends.Perk.LegendViolentDecomposition,
+				::Legends.Perk.LegendSiphon,
+				::Legends.Perk.BattleForged
 			],
 			[
-				this.Const.Perks.PerkDefs.Fearsome,
-				this.Const.Perks.PerkDefs.LegendPerfectFocus,
-				this.Const.Perks.PerkDefs.LegendFullForce,
-				this.Const.Perks.PerkDefs.BattleFlow,
-				this.Const.Perks.PerkDefs.LegendMiasma,
-				this.Const.Perks.PerkDefs.LegendInTheZone,
-				this.Const.Perks.PerkDefs.LegendDeathtouch
+				::Legends.Perk.Fearsome,
+				::Legends.Perk.LegendPerfectFocus,
+				::Legends.Perk.LegendImmovableObject,
+				::Legends.Perk.BattleFlow,
+				::Legends.Perk.LegendMiasma,
+				::Legends.Perk.LegendInTheZone,
+				::Legends.Perk.LegendDeathtouch
 			],
 			[],
 			[],
@@ -153,41 +127,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 
 	function onChangeAttributes()
 	{
-		local c = {
-			Hitpoints = [
-				5,
-				5
-			],
-			Bravery = [
-				-15,
-				-10
-			],
-			Stamina = [
-				10,
-				10
-			],
-			MeleeSkill = [
-				5,
-				5
-			],
-			RangedSkill = [
-				10,
-				10
-			],
-			MeleeDefense = [
-				-5,
-				0
-			],
-			RangedDefense = [
-				-5,
-				0
-			],
-			Initiative = [
-				5,
-				5
-			]
-		};
-		return c;
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendPuppetMaster);
 	}
 
 
@@ -201,15 +141,15 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 		local items = this.getContainer().getActor().getItems();
 		//items
 		items.equip(this.Const.World.Common.pickHelmet([
-			[3, "dark_southern_helmet_00"],
-			[2, "dark_cowl"],
-			[1, ""],
-			[4, "witchhunter_hat"]
+			[3, ::Legends.Helmet.Standard.dark_southern_helmet_00],
+			[2, ::Legends.Helmet.Standard.dark_cowl],
+			[1, ::Legends.Helmet.None],
+			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
 		items.equip(this.Const.World.Common.pickArmor([
-			[1, "ragged_dark_surcoat"],
-			[1, "dark_southern_armor_00"]
+			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
+			[1, ::Legends.Armor.Standard.dark_southern_armor_00]
 		]));
 
 		items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));

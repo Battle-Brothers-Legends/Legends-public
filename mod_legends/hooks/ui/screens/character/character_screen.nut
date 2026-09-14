@@ -1,162 +1,141 @@
-::mods_hookExactClass("ui/screens/character/character_screen", function(o) {
+::mods_hookExactClass("ui/screens/character/character_screen", function (o) {
+	o.m.SelectedBrotherID <- null;
+	o.m.ProfessionTreesLoaded <- null;
 
-	o.show = function ()
-	{
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.m.ProfessionTreesLoaded = false;
+	}
+
+	o.loadProfessionsTrees <- function () {
+		if (this.m.JSDataSourceHandle != null) {
+			this.m.JSDataSourceHandle.asyncCall("loadProfessionTrees", this.onQueryProfessionTrees);
+		}
+	}
+
+	o.onApplyArmorFilter <- function (_filter) {
+		// used by armor filter
+		this.m.InventoryFilter = ::Const.Items.ItemFilter.Armor;
+
+		if (this.m.JSDataSourceHandle == null) {
+			return;
+		}
+
+		if (_filter.Armor.len() == ::Const.Items.ArmorUpgrades.COUNT + 1
+			&& _filter.Helmet.len() == ::Const.Items.HelmetUpgrades.COUNT)
+		{
+			::UIDataHelper.m.ArmorFilter = null;
+			this.loadStashList();
+		} else {
+			::UIDataHelper.m.ArmorFilter = _filter;
+			this.m.JSDataSourceHandle.asyncCall("loadStashList", ::UIDataHelper.filterArmorFromStashToUIData());
+		}
+	}
+
+	o.show = function () {
 		this.setRosterLimit();
 
-		if (this.m.JSHandle != null)
-		{
+		if (this.m.JSHandle != null) {
 			this.Tooltip.hide();
 			this.m.JSHandle.asyncCall("show", this.queryData());
 		}
 	}
 
-	o.toggleBrotherReserves <- function ()
-	{
+	o.toggleBrotherReserves <- function () {
 		this.Tooltip.hide();
 		this.m.JSDataSourceHandle.asyncCall("toggleBrotherReserves", null);
 	}
 
-	o.setRosterLimit = function (_shake = false)
-	{
-		if (this.m.JSDataSourceHandle != null)
-		{
+	o.setRosterLimit = function (_shake = false) {
+		if (this.m.JSDataSourceHandle != null) {
 			this.m.JSDataSourceHandle.asyncCall("setRosterLimit", this.queryRosterSizeData(_shake));
 		}
 	}
 
-	o.onDismissCharacter = function ( _data )
-	{
-		local bro = this.Tactical.getEntityByID(_data[0]);
+	o.onDismissCharacter = function (_data) {
+		local bro = ::Tactical.getEntityByID(_data[0]);
 		local payCompensation = _data[1];
 
-		if (bro != null)
-		{
+		if (bro != null) {
 			bro.getSkills().onDismiss();
-			this.World.Statistics.getFlags().increment("BrosDismissed");
+			::World.Statistics.getFlags().increment("BrosDismissed");
 
-			if (bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != "background.slave" || this.World.Assets.getOrigin().getID() == "scenario.sato_escaped_slaves"))
-			{
-				this.World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
+			if (bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave) || ::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")) {
+				::World.Statistics.getFlags().increment("BrosWithPermanentInjuryDismissed");
 			}
 
-			if (payCompensation)
-			{
-				this.World.Assets.addMoney(-10 * this.Math.max(1, bro.getDaysWithCompany()));
+			if (payCompensation) {
+				::World.Assets.addMoney(-10 * this.Math.max(1, bro.getDaysWithCompany()));
 
-				if (bro.getBackground().getID() == "background.slave")
-				{
-					local playerRoster = this.World.getPlayerRoster().getAll();
-
-					foreach( other in playerRoster )
-					{
-						if (bro.getID() == other.getID())
-						{
-							continue;
-						}
-
-						if (other.getBackground().getID() == "background.slave")
-						{
-							other.improveMood(this.Const.MoodChange.SlaveCompensated, "Glad to see " + bro.getName() + " get reparations for his time");
-						}
+				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
+					foreach (otherSlave in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID() && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)))){
+						otherSlave.improveMood(::Const.MoodChange.SlaveCompensated, "Glad to see " + bro.getName() + " get reparations for his time");
 					}
 				}
-			}
-			else if (bro.getBackground().getID() == "background.slave")
-			{
-			}
-			else if (bro.getLevel() >= 11 && !this.World.Statistics.hasNews("dismiss_legend") && this.World.getPlayerRoster().getSize() > 1)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_legend", news);
-			}
-			else if (bro.getDaysWithCompany() >= 50 && !this.World.Statistics.hasNews("dismiss_veteran") && this.World.getPlayerRoster().getSize() > 1 && this.Math.rand(1, 100) <= 33)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_veteran", news);
-			}
-			else if (bro.getLevel() >= 3 && bro.getSkills().hasSkillOfType(this.Const.SkillType.PermanentInjury) && !this.World.Statistics.hasNews("dismiss_injured") && this.World.getPlayerRoster().getSize() > 1 && this.Math.rand(1, 100) <= 33)
-			{
-				local news = this.World.Statistics.createNews();
-				news.set("Name", bro.getName());
-				this.World.Statistics.addNews("dismiss_injured", news);
-			}
-			else if (bro.getDaysWithCompany() >= 7)
-			{
-				local playerRoster = this.World.getPlayerRoster().getAll();
+			} else {
+				local dismissNews = null;
+				if (::World.getPlayerRoster().getSize() > 1) {
+        			if (bro.getLevel() >= 11 && !::World.Statistics.hasNews("dismiss_legend")) {
+            			dismissNews = "dismiss_legend";
+        			} else if (bro.getDaysWithCompany() >= 50 && !::World.Statistics.hasNews("dismiss_veteran") && ::Math.rand(1, 100) <= 33) {
+            			dismissNews = "dismiss_veteran";
+        			} else if (bro.getDaysWithCompany() >= 1 && bro.getLevel() >= 3 && bro.getSkills().hasSkillOfType(::Const.SkillType.PermanentInjury) && !::World.Statistics.hasNews("dismiss_injured") && ::Math.rand(1, 100) <= 33) {
+            			dismissNews = "dismiss_injured";
+        			}
+   				}
 
-				foreach( other in playerRoster )
-				{
-					if (bro.getID() == other.getID())
-					{
-						continue;
-					}
-
-					if (bro.getDaysWithCompany() >= 50)
-					{
-						other.worsenMood(this.Const.MoodChange.VeteranDismissed, "Dismissed " + bro.getName());
-					}
-					else
-					{
-						other.worsenMood(this.Const.MoodChange.BrotherDismissed, "Dismissed " + bro.getName());
+				if (dismissNews != null) {
+					local news = ::World.Statistics.createNews();
+        			news.set("Name", bro.getName());
+        			::World.Statistics.addNews(dismissNews, news);
+				} else if (bro.getDaysWithCompany() >= 7) {
+					foreach (otherBro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID()))) {
+						otherBro.worsenMood(bro.getDaysWithCompany() >= 50 ? ::Const.MoodChange.VeteranDismissed : ::Const.MoodChange.BrotherDismissed, "Dismissed " + bro.getName());
 					}
 				}
 			}
 
-			if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters")
-			{
-				local playerRoster = this.World.getPlayerRoster().getAll();
-				local indebted = 0;
-				local nonIndebted = [];
-
-				foreach( bro in playerRoster )
-				{
-					if (bro.getBackground().getID() == "background.slave")
-					{
-						indebted++;
-					}
-					else
-					{
-						nonIndebted.push(bro);
-					}
-				}
-
-				this.World.Statistics.getFlags().set("ManhunterIndebted", indebted);
-				this.World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
+			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters") {
+				local numberOfIndebted = ::World.getPlayerRoster().getAll().filter(@(_,_bro) (_bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))).len();
+				::World.Statistics.getFlags().set("ManhunterIndebted", numberOfIndebted);
+				::World.Statistics.getFlags().set("ManhunterNonIndebted", ::World.getPlayerRoster().getAll().len() - numberOfIndebted);
 			}
 
-			bro.getItems().transferToStash(this.World.Assets.getStash());
-			this.World.getPlayerRoster().remove(bro);
-			if (this.World.State.getPlayer() != null)
-			{
-				this.World.State.getPlayer().calculateModifiers();
+			bro.getItems().transferToStash(::World.Assets.getStash());
+			::World.getPlayerRoster().remove(bro);
+			if (::World.State.getPlayer() != null) {
+				::World.State.getPlayer().calculateModifiers();
 			}
 			this.loadData();
-			this.World.State.updateTopbarAssets();
+			::World.State.updateTopbarAssets();
+
+			// Get obituary messages based on compensation
+			if (_data.len() > 2 && _data[2] != null) {
+				local type = payCompensation ? "pos" : "neg";
+				local backgroundID = bro.getBackground().getID();
+				local useBackgroundSpecificMessage = (::Math.rand(1, 100) < ::Legends.Mod.ModSettings.getSetting("Backgroundspecific").getValue()) && backgroundID in ::Legends.Obituary.FateText.BackgroundMessages && ::Legends.Obituary.FateText.BackgroundMessages[backgroundID][type] != "";
+				local genericMessages = payCompensation ? ::Legends.Obituary.FateText.PositiveMessages : ::Legends.Obituary.FateText.NegativeMessages;
+				::Legends.addFallen(bro, (useBackgroundSpecificMessage ? (::Legends.Obituary.FateText.BackgroundMessages[backgroundID][type]) : (genericMessages[::Math.rand(0, genericMessages.len() - 1)])));
+			}
 		}
 	}
 
-	o.onToggleReserveCharacter <- function( _id )
-	{
+	o.onToggleReserveCharacter <- function (_id) {
 		local bro = this.Tactical.getEntityByID(_id);
-		if (bro != null && (this.World.State.getBrothersInFrontline() < this.World.Assets.getBrothersMaxInCombat() || !bro.isInReserves()))
+		if (bro != null
+			&& (this.World.State.getBrothersInFrontline() < this.World.Assets.getBrothersMaxInCombat() || !bro.isInReserves()))
 		{
 			bro.setInReserves(!bro.isInReserves());
 			this.setRosterLimit();
-		}
-		else
-		{
+		} else {
 			this.setRosterLimit(true);
 		}
 		return this.UIDataHelper.convertEntityToUIData(bro, null);
 	}
 
-
-	o.queryRosterSizeData <- function (_shake = false)
-	{
-		local brosInCombat = "State" in ::World ? ::World.State.getBrothersInFrontline() : 18;
+	o.queryRosterSizeData <- function (_shake = false) {
+		local brosInCombat = ("State" in ::World && this.World.State != null) ? ::World.State.getBrothersInFrontline() : 18;
 		local result = {
 			brothersInCombat = brosInCombat,
 			brothersMaxInCombat = 27,
@@ -165,8 +144,7 @@
 			shake = _shake,
 		};
 
-		if (("Assets" in this.World) && this.World.Assets != null)
-		{
+		if (("Assets" in this.World) && this.World.Assets != null) {
 			result.brothersMaxInCombat = this.World.Assets.getBrothersMaxInCombat();
 			result.brothersMax = this.World.Assets.getBrothersMax();
 		}
@@ -174,14 +152,12 @@
 		return result;
 	}
 
-	o.queryData = function ()
-	{
+	o.queryData = function () {
 		local result = {
 			brothers = this.onQueryBrothersList()
 		};
 
-		if (("Assets" in this.World) && this.World.Assets != null)
-		{
+		if (("Assets" in this.World) && this.World.Assets != null) {
 			result.formationIndex <- this.World.Assets.getFormationIndex();
 			result.formationName <- this.World.Assets.getFormationName();
 			result.maxBrothers <- this.World.Assets.getBrothersMax();
@@ -191,129 +167,105 @@
 			];
 		}
 
-		if (this.m.InventoryMode != this.Const.CharacterScreen.InventoryMode.Ground)
-		{
+		if (this.m.InventoryMode != this.Const.CharacterScreen.InventoryMode.Ground) {
 			result.stash <- this.onQueryStashList();
 			result.stashSpaceUsed <- this.Stash.getNumberOfFilledSlots();
 			result.stashSpaceMax <- this.Stash.getCapacity();
 		}
 
-		if (this.m.PerkTreesLoaded == false)
-		{
+		if (this.m.PerkTreesLoaded == false) {
 			this.m.PerkTreesLoaded = true;
 			result.perkTrees <- this.onQueryPerkTrees();
 		}
-		if ("stashSpaceUsed" in result)
-		{
+		if (this.m.ProfessionTreesLoaded == false) {
+			this.m.ProfessionTreesLoaded = true;
+			result.professionTrees <- this.onQueryProfessionTrees();
+		}
+		if ("stashSpaceUsed" in result) {
 			this.logDebug("Generating stash list info :" + result.stashSpaceUsed + " : " + result.stashSpaceMax);
 		}
 
 		return result;
 	}
 
-	o.onSwapInventoryItem = function ( _data )
-	{
-		if(_data[2])
+	o.onSwapInventoryItem = function (_data) {
+		if (_data[2]) {
 			return this.general_onUpgradeInventoryItem(_data);
+		}
 		return this.general_onSwapInventoryItem(_data);
 	}
 
-	o.general_onUpgradeInventoryItem <- function ( _data )
-	{
-		local data = this.helper_queryStashItemDataByIndex(_data[0], _data[1]);
+	o.general_onUpgradeInventoryItem <- function (_data) {
+		local data = ::Legends.Inventory.queryStashItemDataByIndex(_data[0], _data[1]);
 
-		if ("error" in data)
-		{
+		if ("error" in data) {
 			return data;
 		}
-		local upgrade = data.stash.upgrade(data.sourceIndex, data.targetIndex);
-		if (upgrade)
-		{
-			//only remove item if it wasn't switched out for another upgrade
-			if (typeof upgrade == "table"){
-				data.stash.removeByIndex(upgrade.index);
-				if (upgrade.item != null){
-					this.World.Assets.getStash().insert(upgrade.item, upgrade.index);
-				}
-			}
-			else{
-				data.stash.removeByIndex(data.sourceIndex);
-			}
-			return this.UIDataHelper.convertStashAndEntityToUIData(null, null, false, this.m.InventoryFilter);
-		}
-		else
-		{
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToAcquireStash);
+
+		local isErrored = ::Legends.Inventory.onUpgradeInventoryItem(data);
+		if (isErrored != null) {
+			return isErrored;
 		}
 
 		return this.UIDataHelper.convertStashAndEntityToUIData(null, null, false, this.m.InventoryFilter);
 	}
 
-	o.onToggleInventoryItem <- function ( _data )
-	{
+	o.getInventoryItemAndIndex <- function (_data) {
+		local itemId = _data[0];
+		local entityId = _data[1];
+		local result = {
+			item = null,
+			index = 0
+		}
+
+		if (this.Tactical.isActive()) {
+			return result;
+		}
+
+		local obj = null;
+		if (entityId != null) {
+			obj = this.Tactical.getEntityByID(entityId).getItems().getItemByInstanceID(itemId);
+			if (obj != null) {
+				result.item = obj;
+			}
+		} else {
+			obj = this.Stash.getItemByInstanceID(itemId);
+			if (obj != null) {
+				result.item = obj.item;
+				result.index = obj.index;
+			}
+		}
+		return result;
+	}
+
+	o.onToggleInventoryItem <- function (_data) {
 		local result = {
 			repair = false,
 			salvage = false
 		};
 
-		local itemId = _data[0];
-		local entityId = _data[1];
+		local itemData = this.getInventoryItemAndIndex(_data);
+		local item = itemData.item;
+		local index = itemData.index;
 
-		if (this.Tactical.isActive())
-		{
+		if (item == null) {
 			return result;
 		}
 
-		local obj = null;
-		local item = null;
-		local index = 0;
-		if (entityId != null)
-		{
-			obj = this.Tactical.getEntityByID(entityId).getItems().getItemByInstanceID(itemId);
-			if (obj != null)
-			{
-				item = obj;
-			}
-		}
-		else
-		{
-			obj = this.Stash.getItemByInstanceID(itemId);
-			if (obj != null)
-			{
-				item = obj.item;
-				index = obj.index;
-			}
-		}
-
-		if (item == null)
-		{
-			return result;
-		}
-
-		if (item.isIndestructible() || entityId != null)
-		{
+		if (item.isIndestructible() || _data[1] != null) {
 			item.setToBeRepaired(!item.isToBeRepaired(), index);
 			item.setToBeSalvaged(false, 0);
-		}
-		else if (!item.isToBeRepaired() && !item.isToBeSalvaged())
-		{
-			if (item.setToBeRepaired(true, index))
-			{
+		} else if (!item.isToBeRepaired() && !item.isToBeSalvaged()) {
+			if (item.setToBeRepaired(true, index)) {
 				item.setToBeSalvaged(false, 0);
-			}
-			else if (item.canBeSalvaged())
-			{
+			} else if (item.canBeSalvaged()) {
 				item.setToBeSalvaged(true, index);
 			}
 
-		}
-		else if (item.isToBeRepaired() && item.canBeSalvaged())
-		{
+		} else if (item.isToBeRepaired() && item.canBeSalvaged()) {
 			item.setToBeRepaired(false, 0);
 			item.setToBeSalvaged(true, index);
-		}
-		else
-		{
+		} else {
 			item.setToBeRepaired(false, 0);
 			item.setToBeSalvaged(false, 0);
 		}
@@ -324,21 +276,133 @@
 		};
 	}
 
-	o.onRepairInventoryItem = function ( _data )
-	{
+	o.onToggleAutomationInventoryItem <- function (_data) {
+		local result = {
+			automationState = 0,
+			updatedIDs = []
+		};
+
+		local itemData = this.getInventoryItemAndIndex(_data);
+		local item = itemData.item;
+
+		if (item == null) {
+			return result;
+		}
+
+		local baseId = item.getID();
+		local currentState = ::World.Flags.getAsInt("AutoState_" + baseId);
+		local nextState = 0;
+		local targetIDs = [baseId];
+
+		if (::Legends.Inventory.isItemLayered(item)) {
+			local isAligned = true;
+			foreach (upg in item.m.Upgrades) {
+				if (upg != null) {
+					targetIDs.push(upg.getID());
+					if (::World.Flags.getAsInt("AutoState_" + upg.getID()) != currentState) {
+						isAligned = false;
+					}
+				}
+			}
+			nextState = isAligned ? (currentState + 1) % 5 : 1;
+		} else {
+			nextState = (currentState + 1) % 5;
+		}
+
+		if (nextState == 2 && (item.getConditionMax() <= 1 && !::isKindOf(item, "legend_helmet_upgrade") && !::isKindOf(item, "legend_armor_upgrade"))) {
+			nextState = 4;
+		}
+		if (nextState == 4 && !item.canBeSalvaged()) {
+			nextState = 0;
+		}
+
+		foreach (id in targetIDs) {
+			::World.Flags.set("AutoState_" + id, nextState);
+		}
+
+		::Legends.Inventory.applyAutomationStateEffects(item, itemData.index, nextState);
+
+		local stashItems = ::Stash.getItems();
+		foreach (i, stashItem in stashItems) {
+			if (stashItem == null) {
+				continue;
+			}
+
+			local itemUpdated = false;
+
+			if (targetIDs.find(stashItem.getID()) != null) {
+				::Legends.Inventory.applyAutomationStateEffects(stashItem, i, ::Legends.Inventory.getCompositeAutomationState(stashItem, nextState));
+				itemUpdated = true;
+			}
+
+			if (::Legends.Inventory.isItemLayered(stashItem)) {
+				foreach (upg in stashItem.m.Upgrades) {
+					if (upg != null && targetIDs.find(upg.getID()) != null) {
+						::Legends.Inventory.applyAutomationStateEffects(upg, 0, nextState);
+						itemUpdated = true;
+					}
+				}
+			}
+
+			if (itemUpdated) {
+				result.updatedIDs.push(stashItem.getInstanceID());
+			}
+		}
+
+		result.automationState = nextState;
+		return result;
 	}
 
-	o.general_onQueryPerkInformation = function ( _data )
-	{
-		return this.UIDataHelper.convertPerkToUIData(_data[0], _data[1]);
+	o.onGetCompositeAutomationDisplayStates <- function (_ids) {
+		local result = {};
+
+		foreach (id in _ids) {
+			local itemData = ::Stash.getItemByInstanceID(id);
+			if (itemData != null) {
+				local item = itemData.item;
+				result[id.tostring()] <- {
+					state = ::Legends.Inventory.getCompositeAutomationState(item),
+					repair = item.isToBeRepaired(),
+					salvage = item.isToBeSalvaged()
+				}
+			}
+		}
+
+		return result;
 	}
 
-	o.general_onEquipStashItem = function ( _data )
-	{
+	o.onRepairInventoryItem = function (_data) {}
+
+	o.general_onQueryPerkInformation = function (_data) {
+		return ::UIDataHelper.convertPerkToUIData(_data[0], _data[1]);
+	}
+
+	o.general_onQueryProfessionInformation <- function (_data) {
+		return ::UIDataHelper.convertProfessionToUIData(_data[0], _data[1]);
+	}
+
+	o.general_onUnlockProfession <- function (_data) {
+		local entity = ::Tactical.getEntityByID(_data[0]);
+
+		if (entity == null || !entity.isPlayerControlled()) {
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToFindEntity);
+		}
+
+		if (!entity.unlockProfession(_data[1])) {
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToUnlockPerk);
+		}
+
+		if (::Tactical.isActive()) {
+			return this.UIDataHelper.convertEntityToUIData(entity, ::Tactical.TurnSequenceBar.getActiveEntity());
+		} else {
+			return this.UIDataHelper.convertEntityToUIData(entity, null);
+		}
+	}
+
+	o.general_onEquipStashItem = function (_data) {
 		local data = this.helper_queryStashItemData(_data);
 
-		if ("error" in data)
-		{
+		if ("error" in data) {
 			return data;
 		}
 
@@ -349,106 +413,99 @@
 			targetItems.secondItem
 		], false);
 
-		if (allowed != null)
-		{
+		if (allowed != null) {
 			return allowed;
 		}
 
-		if (!this.Tactical.isActive() && data.sourceItem.isUsable())
-		{
-			local result = data.sourceItem.onUse(data.inventory.getActor());
-			if (result)
-			{
-				if (typeof result == "table"){
+		if (!this.Tactical.isActive() && data.sourceItem.isUsable()) {
+			local targetItem = null;
+
+			if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand" && data.sourceItem.getID().find("inscription") != null) {
+				//for equipping runes on offhand with shift
+				targetItem = data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
+				if (targetItem != null && ((targetItem.getItemType() & this.Const.Items.ItemType.Weapon) == 0)) {
+					targetItem = null;
+				}
+			}
+
+			local result = data.sourceItem.onUse(data.inventory.getActor(), targetItem);
+			if (result) {
+				if (typeof result == "table") {
 					data.stash.removeByIndex(result.index);
-					if (result.item != null){
+					if (result.item != null) {
 						this.World.Assets.getStash().insert(result.item, result.index);
 					}
-				}
-				else{
+				} else {
 					data.stash.removeByIndex(data.sourceIndex);
 				}
 				data.inventory.getActor().getSkills().update();
 				return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, false, this.m.InventoryFilter);
-			}
-			else
-			{
+			} else {
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem);
 			}
 		}
 
-		if (!data.stash.isResizable() && data.stash.getNumberOfEmptySlots() < targetItems.slotsNeeded - 1)
+		if (!data.stash.isResizable()
+			&& data.stash.getNumberOfEmptySlots() < targetItems.slotsNeeded - 1)
 		{
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
-		if (targetItems.firstItem != null)
-		{
-			if (!targetItems.firstItem.isInBag() && !data.inventory.unequip(targetItems.firstItem) || targetItems.firstItem.isInBag() && !data.inventory.removeFromBag(targetItems.firstItem))
+		if (targetItems.firstItem != null) {
+			if (!targetItems.firstItem.isInBag()
+				&& !data.inventory.unequip(targetItems.firstItem)
+				|| targetItems.firstItem.isInBag()
+				&& !data.inventory.removeFromBag(targetItems.firstItem))
 			{
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 			}
 
-			if (targetItems.secondItem != null)
-			{
-				if (data.inventory.unequip(targetItems.secondItem) == false)
-				{
+			if (targetItems.secondItem != null) {
+				if (data.inventory.unequip(targetItems.secondItem) == false) {
 					data.inventory.equip(targetItems.firstItem);
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 				}
 			}
 		}
 
-		if (data.stash.removeByIndex(data.sourceIndex) == null)
-		{
-			if (targetItems != null && targetItems.firstItem != null)
-			{
+		if (data.stash.removeByIndex(data.sourceIndex) == null) {
+			if (targetItems != null && targetItems.firstItem != null) {
 				data.inventory.equip(targetItems.firstItem);
 
-				if (targetItems.secondItem != null)
-				{
+				if (targetItems.secondItem != null) {
 					data.inventory.equip(targetItems.secondItem);
 				}
 			}
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 		}
 
-		if (data.inventory.equip(data.sourceItem) == false)
-		{
+		if (data.inventory.equip(data.sourceItem) == false) {
 			data.stash.insert(data.sourceItem, data.sourceIndex);
 
-			if (targetItems != null && targetItems.firstItem != null)
-			{
+			if (targetItems != null && targetItems.firstItem != null) {
 				data.inventory.equip(targetItems.firstItem);
 
-				if (targetItems.secondItem != null)
-				{
+				if (targetItems.secondItem != null) {
 					data.inventory.equip(targetItems.secondItem);
 				}
 			}
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
 		}
 
-		if (targetItems != null && targetItems.firstItem != null)
-		{
+		if (targetItems != null && targetItems.firstItem != null) {
 			local firstItemIdx = data.sourceIndex;
 
-			if (data.swapItem == true)
-			{
+			if (data.swapItem == true) {
 				data.stash.insert(targetItems.firstItem, data.sourceIndex);
-			}
-			else
-			{
+			} else {
 				firstItemIdx = data.stash.add(targetItems.firstItem);
 
-				if (firstItemIdx == null)
-				{
+				if (firstItemIdx == null) {
 					data.inventory.unequip(data.sourceItem);
 					data.stash.insert(data.sourceItem, data.sourceIndex);
 					data.inventory.equip(targetItems.firstItem);
 
-					if (targetItems.secondItem != null)
-					{
+					if (targetItems.secondItem != null) {
 						data.inventory.equip(targetItems.secondItem);
 					}
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
@@ -457,15 +514,13 @@
 
 			local secondItemIdx = data.stash.add(targetItems.secondItem);
 
-			if (targetItems.secondItem != null && secondItemIdx == null)
-			{
+			if (targetItems.secondItem != null && secondItemIdx == null) {
 				data.stash.removeByIndex(firstItemIdx);
 				data.inventory.unequip(data.sourceItem);
 				data.stash.insert(data.sourceItem, data.sourceIndex);
 				data.inventory.equip(targetItems.firstItem);
 
-				if (targetItems.secondItem != null)
-				{
+				if (targetItems.secondItem != null) {
 					data.inventory.equip(targetItems.secondItem);
 				}
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
@@ -479,114 +534,97 @@
 			targetItems.secondItem
 		]);
 
-		if (this.Tactical.isActive())
-		{
+		if (this.Tactical.isActive()) {
 			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, this.Tactical.TurnSequenceBar.getActiveEntity(), false, this.m.InventoryFilter);
-		}
-		else
-		{
+		} else {
 			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, false, this.m.InventoryFilter);
 		}
 	}
 
-	o.helper_dropItemIntoStash = function ( _data )
-	{
+	o.helper_dropItemIntoStash = function (_data) {
 
-		if (_data.targetItemIdx == null && _data.stash.hasEmptySlot() == false && !_data.stash.isResizable())
+		if (_data.targetItemIdx == null
+			&& _data.stash.hasEmptySlot() == false
+			&& !_data.stash.isResizable())
 		{
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
 		local slotType = _data.sourceItem.getCurrentSlotType();
 
-		if (slotType == this.Const.ItemSlot.None)
-		{
+		if (slotType == this.Const.ItemSlot.None) {
 			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotAssignedToAnySlot);
 		}
 
-		if (_data.sourceItem.getCurrentSlotType() == this.Const.ItemSlot.Bag)
-		{
-			if (_data.inventory.removeFromBag(_data.sourceItem) == false)
-			{
+		if (_data.sourceItem.getCurrentSlotType() == this.Const.ItemSlot.Bag) {
+			if (_data.inventory.removeFromBag(_data.sourceItem) == false) {
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
 			}
 
 			local result = _data.stash.add(_data.sourceItem);
 
-			if (result == null)
-			{
+			if (result == null) {
 				_data.inventory.addToBag(_data.sourceItem);
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 			}
-		}
-		else if (_data.targetItemIdx != null)
-		{
-			if (_data.targetItem != null)
-			{
-				if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand || _data.sourceItem.getSlotType() == this.Const.ItemSlot.Offhand)
+		} else if (_data.targetItemIdx != null) {
+			if (_data.targetItem != null) {
+				if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand
+					|| _data.sourceItem.getSlotType() == this.Const.ItemSlot.Offhand)
 				{
-					if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand)
-					{
-						local sourceItemIsBlockingOffhand = _data.sourceItem.getBlockedSlotType() != null && _data.sourceItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
-						local targetItemIsBlockingOffhand = _data.targetItem.getBlockedSlotType() != null && _data.targetItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
+					if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand) {
+						local sourceItemIsBlockingOffhand = _data.sourceItem.getBlockedSlotType() != null
+							&& _data.sourceItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
+						local targetItemIsBlockingOffhand = _data.targetItem.getBlockedSlotType() != null
+							&& _data.targetItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
 
-						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand) != null) && _data.targetItem.getSlotType() == this.Const.ItemSlot.Mainhand && targetItemIsBlockingOffhand == true)
+						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+							&& _data.targetItem.getSlotType() == this.Const.ItemSlot.Mainhand
+							&& targetItemIsBlockingOffhand == true)
 						{
 							return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
 
-						if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType() && !(_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == this.Const.ItemSlot.Offhand))
+						if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()
+							&& !(_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == this.Const.ItemSlot.Offhand))
 						{
 							return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
-					}
-					else if (_data.targetItem.getSlotType() != this.Const.ItemSlot.Offhand)
-					{
+					} else if (_data.targetItem.getSlotType() != this.Const.ItemSlot.Offhand) {
 						return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 					}
-				}
-				else if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType())
-				{
+				} else if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()) {
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
-				}
-				else if (::mods_isClass(_data.targetItem, "legend_armor_upgrade") != null || ::mods_isClass(_data.targetItem, "legend_helmet_upgrade") != null)
+				} else if (::mods_isClass(_data.targetItem, "legend_armor_upgrade") != null
+					|| ::mods_isClass(_data.targetItem, "legend_helmet_upgrade") != null)
 				{
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
-				if (_data.inventory.unequip(_data.sourceItem) == false)
-				{
+				if (_data.inventory.unequip(_data.sourceItem) == false) {
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
 				local result = _data.stash.insert(_data.sourceItem, _data.targetItemIdx);
 
-				if (result != null)
-				{
+				if (result != null) {
 					_data.inventory.equip(_data.targetItem);
 				}
-			}
-			else
-			{
-				if (_data.inventory.unequip(_data.sourceItem) == false)
-				{
+			} else {
+				if (_data.inventory.unequip(_data.sourceItem) == false) {
 					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
 				_data.stash.insert(_data.sourceItem, _data.targetItemIdx);
 			}
-		}
-		else
-		{
-			if (_data.inventory.unequip(_data.sourceItem) == false)
-			{
+		} else {
+			if (_data.inventory.unequip(_data.sourceItem) == false) {
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 			}
 
 			local result = _data.stash.add(_data.sourceItem);
 
-			if (result == null)
-			{
+			if (result == null) {
 				_data.inventory.equip(_data.sourceItem);
 				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 			}
@@ -600,19 +638,15 @@
 		return null;
 	}
 
-	o.tactical_onQueryBrothersList = function ()
-	{
+	o.tactical_onQueryBrothersList = function () {
 		local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
 
-		if (entities != null && entities.len() > 0)
-		{
+		if (entities != null && entities.len() > 0) {
 			local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
 			local result = [];
 
-			foreach( entity in entities )
-			{
-				if (entity.isSummoned())
-				{
+			foreach (entity in entities) {
+				if (entity.isSummoned()) {
 					continue;
 				}
 				result.push(this.UIDataHelper.convertEntityToUIData(entity, activeEntity));
@@ -624,125 +658,548 @@
 		return null;
 	}
 
-	o.onFormationChanged <- function ( _data )
-	{
+	o.onQueryProfessionTrees <- function () {
+		return this.UIDataHelper.convertProfessionsToUIData();
+	}
+
+	o.onQueryProfessionInformation <- function (_data) {
+		return this.general_onQueryProfessionInformation(_data);
+	}
+
+	o.onUnlockProfession <- function (_data) {
+		return this.general_onUnlockProfession(_data);
+	}
+
+	o.onCyclePerkPlan <- function (_data) {
+		local bro = ::Tactical.getEntityByID(_data[0]);
+		local perkPlan = bro.getPerkPlan();
+
+		local perkID = _data[1];
+		local currentState = perkID in perkPlan ? perkPlan[perkID] : 0;
+		local nextState = (currentState + 1) % 4;
+
+		if (nextState == 0) {
+			delete perkPlan[perkID];
+		} else {
+			perkPlan[perkID] <- nextState;
+		}
+
+		return ::UIDataHelper.convertEntityToUIData(bro, null);
+	}
+
+	o.onCycleProfessionPlan <- function (_data) {
+		local bro = ::Tactical.getEntityByID(_data[0]);
+		local professionPlan = bro.getProfessionPlan();
+
+		local professionID = _data[1];
+		local currentState = professionID in professionPlan ? professionPlan[professionID] : 0;
+		local nextState = (currentState + 1) % 4;
+
+		if (nextState == 0) {
+			delete professionPlan[professionID];
+		} else {
+			professionPlan[professionID] <- nextState;
+		}
+
+		return ::UIDataHelper.convertEntityToUIData(bro, null);
+	}
+
+	o.onFormationChanged <- function (_data) {
 		local index = _data[0];
 		this.World.Assets.changeFormation(index);
 		this.loadData();
 	}
 
-	o.onFormationClear <- function ( _data )
-	{
+	o.onFormationClear <- function (_data) {
 		this.World.Assets.clearFormation();
 		this.loadData();
 	}
 
-	o.removeInventoryItemUpgrades <- function (_data)
-	{
-		local armor  = this.Stash.getItemAtIndex(_data[0]).item;
-		return this.removeAllUpgradesFromItem(armor)
+	o.removeInventoryItemUpgrades <- function (_data) {
+		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		return this.removeAllUpgradesFromItem(armor);
 	}
 
-	o.removePaperdollItemUpgrades <- function (_data)
-	{
+	o.removePaperdollItemUpgrades <- function (_data) {
 		local bro = this.Tactical.getEntityByID(_data[0]);
-		local item  = bro.m.Items.getItemByInstanceID(_data[1]);
-		return this.removeAllUpgradesFromItem(item, bro)
+		local item = bro.m.Items.getItemByInstanceID(_data[1]);
+		return this.removeAllUpgradesFromItem(item, bro);
 	}
 
-	o.removeAllUpgradesFromItem <- function (_item, _entity = null){
-		if (_item != null)
-		{
-			local toRemove = []
-			foreach (idx, value in _item.getUpgrades())
-			{
-				if (value != 1) continue
-				toRemove.push(idx)
-			}
-			if (this.Stash.getNumberOfEmptySlots() < toRemove.len()){
-				return {
-					error = this.Const.UI.Error.NotEnoughStashSpace,
-					code = this.Const.UI.Error.NotEnoughStashSpace
-				};
-			}
-			foreach(idx in toRemove)
-			{
-				local upgrade = _item.getUpgrade(idx);
-				if (upgrade.isDestroyedOnRemove()) continue
-				this.Stash.add(_item.removeUpgrade(idx))
-			}
+	o.removeAllUpgradesFromItem <- function (_item, _entity = null) {
+		local isErrored = ::Legends.Inventory.removeAllUpgradesFromItem(_item, _entity);
+		if (isErrored != null) {
+			return isErrored;
 		}
 		return this.UIDataHelper.convertStashAndEntityToUIData(_entity, null, false, this.m.InventoryFilter);
 	}
 
-	o.onRemoveUpgrade <- function (_data)
-	{
-		if (this.Stash.getNumberOfEmptySlots() <= 0){
+	o.onRemoveUpgrade <- function (_data) {
+		if (this.Stash.getNumberOfEmptySlots() <= 0) {
 			return {
 				error = this.Const.UI.Error.NotEnoughStashSpace,
 				code = this.Const.UI.Error.NotEnoughStashSpace
 			};
 		}
 		local bro = this.Tactical.getEntityByID(_data[1]);
-		local upgrade = bro.removeArmorUpgrade(_data[2] == "body" ? this.Const.ItemSlot.Body : this.Const.ItemSlot.Head, _data[0]);
-		if (upgrade != null && !upgrade.isDestroyedOnRemove())
-		{
+		local upgrade = bro.removeArmorUpgrade(_data[2] == "body"
+			? this.Const.ItemSlot.Body
+			: this.Const.ItemSlot.Head, _data[0]);
+		if (upgrade != null && !upgrade.isDestroyedOnRemove()) {
 			this.World.Assets.getStash().add(upgrade);
 			bro.getSkills().update();
 			return this.UIDataHelper.convertStashAndEntityToUIData(bro, null, false, this.m.InventoryFilter);
 		}
 	}
 
-	o.onToggleUpgradeVisibility <- function ( _data )
-	{
+	o.onToggleUpgradeVisibility <- function (_data) {
 		local bro = this.Tactical.getEntityByID(_data[1]);
-		local armor = bro.getItems().getItemAtSlot(_data[2] == "body" ? this.Const.ItemSlot.Body : this.Const.ItemSlot.Head);
-		local upgrade = armor.getUpgrade(_data[0]);
-		local result = upgrade.toggleVisible();
+		local slot;
+		switch (_data[2]) {
+			case "head":
+				slot = this.Const.ItemSlot.Head;
+				break;
+			case "body":
+				slot = this.Const.ItemSlot.Body;
+				break;
+			case "accessory":
+				slot = this.Const.ItemSlot.Accessory;
+				break;
+			default:
+				::logError("Unknown slot type: " + _data[2]);
+				return;
+		}
+
+		local item = bro.getItems().getItemAtSlot(slot);
+		if (slot == this.Const.ItemSlot.Accessory) {
+			// Some items are not visible, like dogs.
+			if (item.m.ShowOnCharacter) {
+				item.toggleAccessoryVisible();
+			}
+		} else {
+			local upgrade = item.getUpgrade(_data[0]);
+			local result = upgrade.toggleVisible();
+		}
 		return this.UIDataHelper.convertStashAndEntityToUIData(bro, null, false, this.m.InventoryFilter);
 	}
 
-
-	o.onUpdateFormationName <- function ( _data )
-	{
+	o.onUpdateFormationName <- function (_data) {
 		local name = _data[0];
 		this.World.Assets.changeFormationName(name);
 		return this.World.Assets.getFormationName();
 	}
 
-	o.onAssignRider <- function ( _data )
-	{
+	o.onAssignRider <- function (_data) {
 		local riderID = _data[0];
 		local horseID = _data[1];
 
 		local rider = this.Tactical.getEntityByID(_data[0]);
 		local horse = this.Tactical.getEntityByID(_data[1]);
 
-		if (rider == null && horse == null)
-		{
+		if (rider == null && horse == null) {
 			return this.onQueryBrothersList();
 		}
 
 		//assign a bro to a horse
-		if (horse != null && rider != null)
-		{
+		if (horse != null && rider != null) {
 			horse.setRiderID(_data[0]);
 			rider.setRiderID(_data[0]);
 			return this.onQueryBrothersList();
 		}
 
 		//Removing bro from horse
-		if (horse != null)
-		{
+		if (horse != null) {
 			horse.setRiderID("");
 		}
 
 		//Removing horse from bro
-		if (rider != null)
-		{
+		if (rider != null) {
 			rider.setRiderID("");
 		}
 
-		return this.onQueryBrothersList()
+		return this.onQueryBrothersList();
+	}
+
+	o.onBrotherSelected <- function (_data) {
+		this.m.SelectedBrotherID = _data;
+	}
+
+	o.getSelectedActor <- function () {
+		if (this.m.SelectedBrotherID == null) {
+			return null;
+		}
+		local entity = ::Tactical.getEntityByID(this.m.SelectedBrotherID);
+		if (entity != null) {
+			foreach (bro in ::World.getPlayerRoster().getAll()) {
+				if (bro.getID() == entity.getID()) {
+					return bro;
+				}
+			}
+		}
+		return null;
+	}
+
+	local general_onEquipStashItem = o.general_onEquipStashItem;
+	o.general_onEquipStashItem = function (_data) {
+		local entity = this.Tactical.getEntityByID(_data[0]);
+		if (entity == null || !entity.isPlayerControlled()) {
+			return general_onEquipStashItem(_data);
+		}
+
+		if (this.Stash == null) {
+			return general_onEquipStashItem(_data);
+		}
+
+		local sourceItem = this.Stash.getItemByInstanceID(_data[1]);
+		if (sourceItem == null) {
+			return general_onEquipStashItem(_data);
+		}
+		sourceItem = sourceItem.item;
+
+		local inventory = entity.getItems();
+		local slotType = sourceItem.getSlotType();
+		if (inventory.getUnlockedBagSlots() == 0 && slotType == ::Const.ItemSlot.Bag) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+		}
+
+		// Proceed only if this is a 1h main hand weapon
+		if (slotType != this.Const.ItemSlot.Mainhand || sourceItem.getBlockedSlotType() != null) {
+			return general_onEquipStashItem(_data);
+		}
+
+		local inventory = entity.getItems();
+		local mh = inventory.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local ohBlocked = inventory.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+
+		local targetSlot = null;
+		if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") {
+			targetSlot = this.Const.ItemSlot.Offhand;
+		}
+
+		// Equipping to offhand
+		if (targetSlot == this.Const.ItemSlot.Offhand
+			&& !ohBlocked
+			&& inventory.canDualWield(entity, sourceItem))
+		{
+
+			local originalSlotType = sourceItem.m.SlotType;
+			sourceItem.m.SlotType = this.Const.ItemSlot.Offhand;
+
+			general_onEquipStashItem(_data);
+			sourceItem.m.SlotType = originalSlotType;
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Offhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		// Equipping to mainhand while offhand has a dw weapon
+		if (oh != null && oh.getSlotType() == this.Const.ItemSlot.Mainhand) {
+
+			general_onEquipStashItem(_data);
+
+			this.dualWieldRefresh(entity, this.Const.ItemSlot.Mainhand);
+
+			entity.getSkills().update();
+			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+		}
+
+		return general_onEquipStashItem(_data);
+	}
+
+	local general_onEquipBagItem = o.general_onEquipBagItem;
+	o.general_onEquipBagItem = function (_data) {
+		local data = this.helper_queryEntityItemData(_data);
+
+		if ("error" in data) {
+			return data;
+		}
+
+		if (data.entity == null || !data.entity.isPlayerControlled() || data.inventory == null || data.sourceItem == null || !data.sourceItem.isInBag()) {
+			return general_onEquipBagItem(_data);
+		}
+
+		// Change logic only for 1h (Mainhand) weapon
+		if (data.sourceItem.getSlotType() != ::Const.ItemSlot.Mainhand || data.sourceItem.getBlockedSlotType() != null) {
+			return general_onEquipBagItem(_data);
+		}
+
+		return this.onEquipDualWieldBagItem(_data, data);
+	}
+
+	o.onEquipDualWieldBagItem <- function (_data, _entityItemData) {
+		local result;
+		local oh = _entityItemData.inventory.getItemAtSlot(::Const.ItemSlot.Offhand);
+		local equipOH = (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") && !_entityItemData.inventory.hasBlockedSlot(::Const.ItemSlot.Offhand) && _entityItemData.inventory.canDualWield(_entityItemData.entity, _entityItemData.sourceItem);
+		local equipMH = oh != null && oh.getSlotType() == ::Const.ItemSlot.Mainhand;
+
+		if (equipOH) {
+			local originalSlotType = _entityItemData.sourceItem.m.SlotType;
+			_entityItemData.sourceItem.m.SlotType = ::Const.ItemSlot.Offhand;
+			result = general_onEquipBagItem(_data);
+			_entityItemData.sourceItem.m.SlotType = originalSlotType;
+		} else if (equipMH) {
+			result = general_onEquipBagItem(_data);
+		}
+
+		if (equipOH || equipMH) {
+			if (typeof result == "table" && "error" in result) {
+				return result;
+			}
+
+			this.dualWieldRefresh(_entityItemData.entity, equipOH ? ::Const.ItemSlot.Offhand : ::Const.ItemSlot.Mainhand);
+			_entityItemData.entity.getSkills().update();
+
+			return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.isActive ? ::Tactical.TurnSequenceBar.getActiveEntity() : null, true, this.m.InventoryFilter);
+		}
+
+		return general_onEquipBagItem(_data);
+	}
+
+	o.dualWieldRefresh <- function (_entity, _slot) {
+		local effect = ::Legends.Effects.get(_entity, ::Legends.Effect.LegendDualWield);
+		if (effect == null) {
+			return;
+		}
+
+		local items = _entity.getItems();
+		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+
+		if (mh != null && oh != null && mh.getID() != oh.getID()) {
+
+			if (_slot == this.Const.ItemSlot.Offhand) {
+				mh.onUnequip();
+				mh.onEquip();
+			} else if (_slot == this.Const.ItemSlot.Mainhand) {
+				oh.onUnequip();
+				oh.onEquip();
+			}
+
+		}
+	}
+
+	o.onSwapDualWieldSlots <- function (_data) {
+		local entity = this.Tactical.getEntityByID(_data[0]);
+		if (entity == null || !entity.isPlayerControlled()) {
+			return null;
+		}
+
+		local inventory = entity.getItems();
+		if (inventory == null || !inventory.swapDualWieldSlots()) {
+			return null;
+		}
+
+		return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
+	}
+
+	local helper_isActionAllowed = o.helper_isActionAllowed;
+	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags) {
+		local sourceItem = _items[0];
+		if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+		}
+		if (_items.len() > 1) {
+			local targetItem = _items[1];
+			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.S.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
+				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+			}
+		}
+		return helper_isActionAllowed(_entity, _items, _putIntoBags);
+	}
+
+	o.general_onDropPaperdollItemIntoBag = function (_data) {
+		local data = this.helper_queryEntityItemData(_data, true);
+
+		if ("error" in data) {
+			return data;
+		}
+
+		local targetItem;
+
+		if (data.targetItemIdx != null) {
+			targetItem = data.inventory.getItemAtBagSlot(data.targetItemIdx);
+		}
+
+		local allowed = this.helper_isActionAllowed(data.entity, [data.sourceItem, targetItem], true);
+
+		if (allowed != null) {
+			return allowed;
+		}
+
+		if (data.sourceItem.isInBag() == true) {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemAlreadyWithinBag);
+		}
+
+		local fatigueDifference = data.entity.getFatigueMax() - data.entity.getFatigue();
+
+		if (data.targetItemIdx != null) {
+			if (targetItem != null) {
+				if (data.inventory.removeFromBagSlot(data.targetItemIdx) == false) {
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
+				}
+
+				if (data.inventory.unequip(data.sourceItem) == false) {
+					// check if unequip was successful and rollback if not
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
+				}
+
+				if (data.inventory.equip(targetItem) == false) {
+					data.inventory.unequip(targetItem);
+					data.inventory.equip(data.sourceItem);
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
+				}
+
+				if (data.inventory.addToBag(data.sourceItem, data.targetItemIdx) == false) {
+					// check if addToBag was successful and rollback if not
+					data.inventory.unequip(targetItem);
+					data.inventory.equip(data.sourceItem);
+					data.inventory.addToBag(targetItem, data.targetItemIdx);
+					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
+				}
+			} else {
+				data.inventory.unequip(data.sourceItem);
+				data.inventory.addToBag(data.sourceItem, data.targetItemIdx);
+			}
+		} else if (data.inventory.hasEmptySlot(this.Const.ItemSlot.Bag) == true) {
+			local result = this.helper_dropItemIntoBag(data, false);
+
+			if (result != null) {
+				return result.error;
+			}
+		} else {
+			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+		}
+
+		data.sourceItem.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
+
+		if (("State" in this.Tactical) && this.Tactical.State != null) {
+			data.entity.setFatigue(data.entity.getFatigueMax() - fatigueDifference);
+		}
+
+		this.helper_payForAction(data.entity, [
+			data.sourceItem,
+			targetItem
+		]);
+
+		if (this.Tactical.isActive()) {
+			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, this.Tactical.TurnSequenceBar.getActiveEntity(), true, this.m.InventoryFilter);
+		} else {
+			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, true, this.m.InventoryFilter);
+		}
+	}
+
+	o.onOrganizeLayeredItems <- function (_stripMismatched) {
+		::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
+
+		local stash = ::Stash.getItems();
+		local bases = [];
+		local upgrades = [];
+
+		// create pools of bases and upgrades
+		for (local i = 0; i < stash.len(); i++) {
+			local item = stash[i];
+			if (item == null) {
+				continue;
+			}
+
+			if (::Legends.Inventory.isItemLayered(item)) {
+				bases.push({
+					item = item,
+					state = ::World.Flags.getAsInt("AutoState_" + item.getID())
+				});
+			} else if (::isKindOf(item, "legend_armor_upgrade") || ::isKindOf(item, "legend_helmet_upgrade")) {
+				upgrades.push({
+					item = item,
+					idx = i,
+					state = ::World.Flags.getAsInt("AutoState_" + item.getID())
+				});
+			}
+		}
+
+		// join/switch upgrades
+		local i = 0;
+		while (i < upgrades.len()) {
+			local upgrade = upgrades[i];
+
+			foreach (base_item in bases) {
+				if (base_item.state != upgrade.state) {
+					continue;
+				}
+
+				if (::isKindOf(base_item.item, "legend_armor") && !::isKindOf(upgrade.item, "legend_armor_upgrade")) {
+					continue;
+				}
+				if (::isKindOf(base_item.item, "legend_helmet") && !::isKindOf(upgrade.item, "legend_helmet_upgrade")) {
+					continue;
+				}
+				if (base_item.item.m.Blocked[upgrade.item.getType()]) {
+					continue;
+				}
+
+				local layer = upgrade.item.getType();
+				if (::isKindOf(base_item.item, "legend_helmet") && layer == ::Const.Items.HelmetUpgrades.Vanity && base_item.item.m.Upgrades[layer] != null) {
+					layer = ::Const.Items.HelmetUpgrades.ExtraVanity;
+				}
+
+				local equippedUpgrade = base_item.item.m.Upgrades[layer];
+				if (equippedUpgrade != null) {
+					if (::World.Flags.getAsInt("AutoState_" + equippedUpgrade.getID()) == base_item.state) {
+						continue;
+					}
+				}
+
+				local result = base_item.item.setUpgrade(upgrade.item);
+
+				if (typeof result == "table") {
+					::Stash.removeByIndex(upgrade.idx);
+
+					if (result.item != null) {
+						::Stash.insert(result.item, upgrade.idx);
+						upgrades.push({
+							item = result.item,
+							idx = upgrade.idx,
+							state = ::World.Flags.getAsInt("AutoState_" + result.item.getID())
+						});
+					}
+					break;
+				}
+			}
+			i++;
+		}
+
+		// strip mismatched layers on 2nd button
+		if (_stripMismatched) {
+			foreach (base_item in bases) {
+				foreach (slotIdx, upg in base_item.item.m.Upgrades) {
+					if (upg != null) {
+						local upgState = ::World.Flags.getAsInt("AutoState_" + upg.getID());
+						if (upgState != base_item.state) {
+							local removed = base_item.item.removeUpgrade(slotIdx);
+							if (removed != null) {
+								::Stash.add(removed);
+							}
+						}
+					}
+				}
+			}
+		}
+
+		foreach (item in ::Stash.getItems()) {
+			if (item != null) {
+				::Legends.Inventory.applyAutomationStateEffects(item, 0, ::Legends.Inventory.getCompositeAutomationState(item));
+			}
+		}
+
+		return {
+			stash = ::UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter),
+			stashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+			stashSpaceMax = ::Stash.getCapacity()
+		};
 	}
 });

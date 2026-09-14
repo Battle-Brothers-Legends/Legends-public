@@ -2,8 +2,7 @@ this.legend_rain_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "special.legend_rain";
-		this.m.Name = "Raining";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRain);
 		this.m.Description = "The rain obscures vision and makes everything slippery";
 		this.m.Icon = "skills/rain_circle.png";
 		this.m.IconMini = "status_effect_35_mini";
@@ -31,19 +30,19 @@ this.legend_rain_effect <- this.inherit("scripts/skills/skill", {
 			id = 11,
 			type = "text",
 			icon = "ui/icons/vision.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-1[/color] Vision"
+			text = "[color=%negative%]-1[/color] Vision"
 		});
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = "[color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Ranged Skill"
+			text = "[color=%negative%]-10%[/color] Ranged Skill"
 		});
 		ret.push({
 			id = 12,
 			type = "text",
 			icon = "ui/icons/ranged_defense.png",
-			text = "[color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] Ranged Defense"
+			text = "[color=%positive%]+10%[/color] Ranged Defense"
 		});
 		return ret;
 	}

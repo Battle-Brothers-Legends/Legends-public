@@ -1,5 +1,15 @@
 ::mods_hookExactClass("entity/world/attached_location/blast_furnace_location", function(o)
 {
+	local onUpdateDraftList = o.onUpdateDraftList;
+	function onUpdateDraftList( _list ) {
+		onUpdateDraftList(_list);
+		if (!this.isActive()) {
+			return;
+		}
+
+		_list.push(::Legends.Background.LegendDisownedNobleRanged);
+	}
+
 	local onUpdateShopList = o.onUpdateShopList;
 	o.onUpdateShopList = function ( _id, _list )
 	{
@@ -48,6 +58,11 @@
 				R = 80,
 				P = 1.0,
 				S = "helmets/legend_helm_curved"
+			});
+			_list.push({
+				R = 80,
+				P = 1.0,
+				S = "helmets/legend_helm_sharp"
 			});
 			_list.push({
 				R = 50,

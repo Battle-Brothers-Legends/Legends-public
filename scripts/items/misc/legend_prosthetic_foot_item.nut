@@ -5,7 +5,7 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 		this.item.create();
 		this.m.ID = "misc.legend_prosthetic_foot";
 		this.m.Name = "Prosthetic Foot";
-		this.m.Description = "It\'s more than a prosthetic foot, it’s a foundation! Or so it\'s creator says, but this contraption looks like hell to walk with. Crafted out of wood, metal and various leather straps, it manages to mimic foot movement well enough and will allow the wearer to at least recover a part of their dexterity.";
+		this.m.Description = "It\'s more than a prosthetic foot, it\'s a foundation! Or so it\'s creator says, but this contraption looks like hell to walk with. Crafted out of wood, metal and various leather straps, it manages to mimic foot movement well enough and will allow the wearer to at least recover a part of their dexterity.";
 		this.m.Icon = "consumables/prosthetic_foot.png";
 		this.m.SlotType = this.Const.ItemSlot.None;
 		this.m.ItemType = this.Const.Items.ItemType.Usable;
@@ -58,19 +58,19 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/action_points.png",
-				text = "Removes the [color=" + this.Const.UI.Color.NegativeValue + "]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
+				text = "Removes the [color=%negative%]1[/color] Additional Action Point per tile moved penalty from Maimed Foot Injury"
 			},
 			{
 				id = 8,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "Reduces the penalty of Missing Foot to [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] Initiative"
+				text = "Reduces the penalty of Missing Foot to [color=%negative%]-10%[/color] Initiative"
 			},
 			{
 				id = 9,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Builds up [color=" + this.Const.UI.Color.NegativeValue + "]3[/color] more fatigue for each tile travelled"
+				text = "Builds up [color=%negative%]3[/color] more fatigue for each tile travelled"
 			},
 			{
 				id = 65,

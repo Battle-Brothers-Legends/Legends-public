@@ -17,7 +17,7 @@
 	local onUpdateDraftList = o.onUpdateDraftList;
 	o.onUpdateDraftList = function ( _list )
 	{
-		_list.push("poacher_background");
+		_list.push(::Legends.Background.Poacher);
 		onUpdateDraftList(_list);
 	}
 
@@ -57,11 +57,11 @@
 				P = 1.0,
 				S = "tools/throwing_net"
 			});
-			_list.push({
+			/*_list.push({
 				R = 80,
 				P = 1.0,
 				S = "tents/legend_tent_hunter"
-			});
+			});*/
 				_list.push({
 				R = 30,
 				P = 1.0,

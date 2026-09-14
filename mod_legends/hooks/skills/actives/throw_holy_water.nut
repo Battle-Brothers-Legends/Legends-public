@@ -1,0 +1,86 @@
+::mods_hookExactClass("skills/actives/throw_holy_water", function(o)
+{
+	o.m.Item <- null;
+	o.setItem <- function( _i )
+	{
+		this.m.Item = this.WeakTableRef(_i);
+	}
+
+	local getTooltip = o.getTooltip;
+	o.getTooltip = function()
+	{
+		local ret = getTooltip();
+		local ammo = this.getAmmo();
+
+		if (ammo > 0)
+		{
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/icons/ammo.png",
+				text = "Has [color=%positive%]" + ammo + "[/color] use left"
+			});
+		}
+		else
+		{
+			ret.push({
+				id = 8,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Has been used[/color]"
+			});
+		}
+
+		return ret;
+	}
+
+	o.isUsable <- function()
+	{
+		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+	}
+
+	o.getAmmo <- function()
+	{
+		if (this.m.Item != null && !this.m.Item.isNull())
+			return this.m.Item.getAmmo();
+
+		return 0;
+	}
+
+	o.consumeAmmo <- function()
+	{
+		if (this.m.Item != null && !this.m.Item.isNull())
+			this.m.Item.consumeAmmo();
+	}
+
+	o.onUse = function( _user, _targetTile )
+	{
+		local targetEntity = _targetTile.getEntity();
+
+		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0)
+		{
+			local flip = !this.m.IsProjectileRotated && targetEntity.getPos().X > _user.getPos().X;
+
+			if (_user.getTile().getDistanceTo(targetEntity.getTile()) >= this.Const.Combat.SpawnProjectileMinDist)
+			{
+				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+			}
+		}
+
+		this.consumeAmmo();
+
+		this.Time.scheduleEvent(this.TimeUnit.Real, 200, this.onApplyEffect.bindenv(this), {
+			Skill = this,
+			TargetTile = _targetTile
+		});
+
+		this.m.Item.drop(_targetTile);
+		return true;
+	}
+
+	o.onAfterUpdate = function( _properties )
+	{
+		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
+	}
+});

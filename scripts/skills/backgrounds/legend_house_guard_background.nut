@@ -1,0 +1,101 @@
+this.legend_house_guard_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+	m = {},
+	function create() {
+		this.character_background.create();
+		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHouseGuard);
+		this.m.DailyCostMult = 1.0;
+		this.m.Excluded = [
+			::Legends.Traits.getID(::Legends.Trait.HateUndead),
+			::Legends.Traits.getID(::Legends.Trait.HateBeasts),
+			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
+			::Legends.Traits.getID(::Legends.Trait.Weasel),
+			::Legends.Traits.getID(::Legends.Trait.FearUndead),
+			::Legends.Traits.getID(::Legends.Trait.FearBeasts),
+			::Legends.Traits.getID(::Legends.Trait.FearGreenskins),
+			::Legends.Traits.getID(::Legends.Trait.LegendFearNobles),
+			::Legends.Traits.getID(::Legends.Trait.Paranoid),
+			::Legends.Traits.getID(::Legends.Trait.NightBlind),
+			::Legends.Traits.getID(::Legends.Trait.Ailing),
+			::Legends.Traits.getID(::Legends.Trait.Impatient),
+			::Legends.Traits.getID(::Legends.Trait.Asthmatic),
+			::Legends.Traits.getID(::Legends.Trait.Greedy),
+			::Legends.Traits.getID(::Legends.Trait.Clubfooted),
+			::Legends.Traits.getID(::Legends.Trait.Drunkard),
+			::Legends.Traits.getID(::Legends.Trait.Disloyal),
+			::Legends.Traits.getID(::Legends.Trait.Tiny),
+			::Legends.Traits.getID(::Legends.Trait.Fragile),
+			::Legends.Traits.getID(::Legends.Trait.Clumsy),
+			::Legends.Traits.getID(::Legends.Trait.Fainthearted),
+			::Legends.Traits.getID(::Legends.Trait.Craven),
+			::Legends.Traits.getID(::Legends.Trait.Bleeder),
+			::Legends.Traits.getID(::Legends.Trait.Dastard),
+			::Legends.Traits.getID(::Legends.Trait.Insecure),
+			::Legends.Traits.getID(::Legends.Trait.Dexterous),
+			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
+		];
+		this.m.ExcludedTalents = [
+			this.Const.Attributes.RangedSkill,
+			this.Const.Attributes.RangedDefense
+		];
+		this.m.BackgroundDescription = "Noble House Warriors are drawn from peasant backgrounds, then trained in two handed weapons and heavy armor";
+		this.m.GoodEnding = "A supporter of your cause from the start, %name%, has joined you in retirement, leaving the company not long after you did. Though %they% was a lowly peasant, %they% proved %themselves% in battle after battle and slowly became as trusted and valued a friend as one can find in a mercenary company.";
+		this.m.BadEnding = "Supporting you from the start, %name% was as loyal as %they% was talented. %They% stayed with the company for a time before eventually leaving to forge out a path for %themselves%. The other day, you received a letter from the mercenary stating that %they% had started %their% own company and was in dire need of help. Unfortunately, the message was dated to nearly a full year ago. When you investigated the existence of %their% company, you learned that it had been completely annihilated in a battle between nobles.";
+
+		this.m.BackgroundType = this.Const.BackgroundType.Combat;
+		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+	}
+
+	function setGender(_gender = -1) {
+		if (_gender == -1) _gender = this.randomizeHumanGender();
+		_gender ? this.setBodyCharacteristics(_gender, {HairColors = ::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Beards = ::Const.Beards.Raider});
+	}
+
+
+
+	function onBuildDescription() {
+		return "Brooding and at times suicidal, it\'s no surprise that %name% is frequently found diving into battle with nothing more than a large two-hander. {Clothed in murderous intent, you once saw %them% cleave a man in two - top to bottom. | It is said that %they% once cleaved a warrior orc in two, leaving the trunk of its legs still standing. | The %person% is known to ignore the fragility of %their% own mortality just to end the life of another. | %They% thrives being in the thick of battle where %they% can swing %their% weapons with little regard for safety or accuracy. | Supposedly, %they% once won a jousting tournament, but had to flee after bedding a watching nobleman\'s wife. | The %person% is not a murderer, but %they% would have made a fine one. | Seemingly unstoppable at times, you are glad to have the %person% on your side. | In a fit of bloodthirsty rage %they% once impaled two goblins on one pike. | A strong brute, you once saw %name% kill someone just on %their% backswing.} %They%\'ll use any weapon you give %them%, but %name% has a proclivity towards those that can make calamitous ruin out of a man\'s body.";
+	}
+
+	function onPrepareVariables( _vars )
+	{
+		_vars.extend(this.World.Assets.getFounderNames());
+	}
+
+	function onChangeAttributes()
+	{
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHouseGuard);
+	}
+
+	function onAdded()
+	{
+		this.character_background.onAdded();
+		local actor = this.getContainer().getActor();
+
+		if (this.Math.rand(0, 3) == 3)
+		{
+			actor.setTitle(this.Const.Strings.SellswordTitles[this.Math.rand(0, this.Const.Strings.SellswordTitles.len() - 1)]);
+		}
+	}
+
+	function onAddEquipment()
+	{
+		local items = this.getContainer().getActor().getItems();
+
+		items.equip(this.new("scripts/items/weapons/legend_infantry_axe"));
+
+		items.equip(this.Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.padded_surcoat],
+			[2, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.gambeson]
+		]));
+
+		items.equip(this.Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Standard.legend_enclave_vanilla_armet_01],
+			[10, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+			[50, ::Legends.Helmet.Standard.greatsword_hat]
+		]));
+
+	}
+});

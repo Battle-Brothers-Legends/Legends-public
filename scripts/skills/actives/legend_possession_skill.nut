@@ -2,17 +2,9 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "actives.legend_possession";
-		this.m.Name = "Possess Undead";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
 		this.m.Description = "";
-		this.m.Icon = "skills/possession.png";
-		this.m.IconDisabled = "skills/possession_bw.png";
-		this.m.Overlay = "active_26";
-		this.m.SoundOnHit = [
-			"sounds/enemies/necromancer_01.wav",
-			"sounds/enemies/necromancer_02.wav",
-			"sounds/enemies/necromancer_03.wav"
-		];
+		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
 		this.m.Type = this.Const.SkillType.Active;
 		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 27;
 		this.m.IsSerialized = false;
@@ -29,9 +21,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxLevelDifference = 4;
 	}
 
-	function getTooltip()
-	{
-		local p = this.getContainer().getActor().getCurrentProperties();
+	function getTooltip() {
 		return [
 			{
 				id = 1,
@@ -71,7 +61,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (target.getSkills().hasSkill("effects.legend_possession"))
+		if (target.getSkills().hasEffect(::Legends.Effect.LegendPossession))
 		{
 			return false;
 		}
@@ -93,7 +83,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		target.getSkills().add(::new("scripts/skills/effects/legend_possession_effect"));
+		::Legends.Effects.grant(target, ::Legends.Effect.LegendPossession);
 		::Legends.Traits.grant(target, ::Legends.Trait.Loyal); //removes charm and makes immune to charm.
 		target.setActionPoints(target.getCurrentProperties().ActionPoints);
 		// local possessing = this.new("scripts/skills/effects/possessing_undead_effect");

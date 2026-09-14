@@ -7,28 +7,28 @@ this.encounter_manager <- {
     },
 
     function onInit() {
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/events")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/events")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/generic")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/generic")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/situation")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/situation")) {
             this.m.SettlementEncounters.push(this.new(scriptFile));
         }
 
-        foreach(i, scriptFile in this.IO.enumerateFiles("scripts/encounters/camp")) {
+        foreach(_, scriptFile in this.IO.enumerateFiles("scripts/encounters/camp")) {
             this.m.CampEncounters.push(this.new(scriptFile));
         }
     }
 
     function clear() {
-        this.m.ActiveEvent = null;
+	    this.clearActiveEvent();
         foreach(e in this.m.SettlementEncounters) {
-            e.reset();
+            e.clear();
         }
         foreach(e in this.m.CampEncounters) {
-            e.reset();
+            e.clear();
         }
     }
 
@@ -36,6 +36,10 @@ this.encounter_manager <- {
 		if (this.m.ActiveEvent != null)
 			this.m.ActiveEvent.clear();
 		this.m.ActiveEvent = null;
+
+        if (this.m.ActiveCampEvent != null)
+			this.m.ActiveCampEvent.clear();
+		this.m.ActiveCampEvent = null;
 	}
 
     function getEncounter(_typeID) {
@@ -56,22 +60,26 @@ this.encounter_manager <- {
     function processInput(_buttonID) {
         if (this.m.ActiveEvent != null) {
             if (this.m.ActiveEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveEvent)
+                this.World.State.getEventScreen().show(this.m.ActiveEvent);
                 return false;
             } else {
-                this.m.ActiveEvent.clear();
-                this.m.ActiveEvent = null;
+                if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+                    this.m.ActiveEvent.clear();
+                    this.m.ActiveEvent = null;
+                }
                 this.World.State.getMenuStack().pop(true);
                 return true;
             }
         }
         if (this.m.ActiveCampEvent != null) {
             if (this.m.ActiveCampEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveCampEvent)
+                this.World.State.getEventScreen().show(this.m.ActiveCampEvent);
                 return false;
             } else {
-                this.m.ActiveCampEvent.clear();
-                this.m.ActiveCampEvent = null;
+                if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
+                    this.m.ActiveCampEvent.clear();
+                    this.m.ActiveCampEvent = null;
+                }
                 this.World.State.getMenuStack().pop(true);
                 return true;
             }
@@ -113,33 +121,24 @@ this.encounter_manager <- {
 
     function fire( _id, _update = true )
     {
-        if (this.m.ActiveEvent != null && this.m.ActiveEvent.getID() != _id)
-        {
+        if (this.m.ActiveEvent != null && this.m.ActiveEvent.getID() != _id) {
             this.logInfo("Failed to fire event - another event with id \'" + this.m.ActiveEvent.getID() + "\' is already queued.");
             return false;
         }
 
         local event = this.getEvent(_id);
 
-        if (event != null)
-        {
+        if (event != null) {
             if (_update)
-            {
                 event.update();
-            }
 
             this.m.ActiveEvent = event;
             this.m.ActiveEvent.fire();
 
-            if (this.World.State.showEventScreen(this.m.ActiveEvent))
-            {
+            if (::World.State.showEventScreen(this.m.ActiveEvent))
                 return true;
-            }
-            else
-            {
-				this.clearActiveEvent();
-                return false;
-            }
+			this.clearActiveEvent();
+            return false;
         } else {
             this.logInfo("Failed to fire event - with id \'" + _id + "\' not found.");
             return false;
@@ -174,25 +173,27 @@ this.encounter_manager <- {
 
     function onSerialize( _out )
     {
-        _out.writeU32(this.m.SettlementEncounters.len());
+        _out.writeU32(this.m.SettlementEncounters.len() + this.m.CampEncounters.len());
         foreach(e in this.m.SettlementEncounters) {
             _out.writeString(e.getType());
             e.onSerialize(_out);
         }
+	    foreach(e in this.m.CampEncounters) {
+		    _out.writeString(e.getType());
+		    e.onSerialize(_out);
+	    }
     }
 
     function onDeserialize( _in )
     {
-		if (::Legends.Mod.Serialization.isSavedVersionAtLeast("19.1.0", _in.getMetaData())) {
-            local numEncounters = _in.readU32();
-            for (local i = 0; i < numEncounters; i++) {
-                local e = this.getEncounter(_in.readString());
-                if (e != null) {
-					e.onDeserialize(_in);
-                } else {
-					_in.readF32(); // this here has to be the same as encounter's onDeserialize, to skip all stored data
-                }
-            }
-        }
+		local numEncounters = _in.readU32();
+		for (local i = 0; i < numEncounters; i++) {
+			local e = this.getEncounter(_in.readString());
+			if (e != null) {
+				e.onDeserialize(_in);
+			} else {
+				_in.readF32(); // this here has to be the same as encounter's onDeserialize, to skip all stored data
+			}
+		}
     }
 };

@@ -44,39 +44,18 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 		}
 	}
 
-	function getLighting()
-	{
-		local prefix = ""
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			prefix ="legend_";
-		}
-		local s = prefix + "world_townhall_0" + this.m.Size + "_light";
-		return s;
+	function getLighting() {
+		return "legend_world_townhall_0" + this.m.Size + "_light";
 	}
 
-	function getSpriteName()
-	{
-		local prefix = ""
-		if (::Legends.Mod.ModSettings.getSetting("WorldEconomy").getValue())
-		{
-			prefix ="legend_";
-		}
-
-		local s = prefix + "world_townhall_0" + this.m.Size;
-
-		if (this.isUpgrading())
-		{
-			s += "_upgrade";
-		}
-
-		return s;
+	function getSpriteName() {
+		return "legend_world_townhall_0" + this.m.Size + (this.isUpgrading() ? "_upgrade" : "");
 	}
 
 	//UISprite
 	function getImagePath()
 	{
-		local s = "ui/settlement_sprites/townhall_0" + this.m.Size + ".png"
+		local s = "ui/settlement_sprites/townhall_0" + this.m.Size + ".png";
 		return s;
 	}
 
@@ -87,9 +66,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 4
+				return 4;
 			default:
 				return 1;
 		}
@@ -102,9 +81,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 2;
 			case 2:
-				return 3
+				return 3;
 			case 3:
-				return 6
+				return 6;
 			default:
 				return 1;
 		}
@@ -117,9 +96,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 1;
 			case 2:
-				return 2
+				return 2;
 			case 3:
-				return 3
+				return 3;
 			default:
 				return 1;
 		}
@@ -132,9 +111,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 			case 1:
 			 	return 3;
 			case 2:
-				return 4
+				return 4;
 			case 3:
-				return 7
+				return 7;
 			default:
 				return 1;
 		}
@@ -143,9 +122,9 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 	function getDraftList()
 	{
 		local L = clone this.m.DraftLists[this.m.Size - 1];
-		if (::Legends.Mod.ModSettings.getSetting("GenderEquality").getValue() != "Disabled" && this.m.FemaleDraftLists.len() != 0)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.m.FemaleDraftLists.len() != 0)
 		{
-			L.extend(clone this.m.FemaleDraftLists[this.m.Size - 1])
+			L.extend(clone this.m.FemaleDraftLists[this.m.Size - 1]);
 		}
 
 		return L;
@@ -156,16 +135,16 @@ this.legends_village <- this.inherit("scripts/entity/world/settlement", {
 		return this.m.StablesLists[this.m.Size - 1];
 	}
 
-	function onBuild( _settings )
+	function onBuild( )
 	{
 		switch (this.m.Size)
 		{
 			case 1:
-				return this.onBuildOne(_settings);
+				return this.onBuildOne();
 			case 2:
-				return this.onBuildTwo(_settings);
+				return this.onBuildTwo();
 			case 3:
-				return this.onBuildThree(_settings);
+				return this.onBuildThree();
 		}
 	}
 

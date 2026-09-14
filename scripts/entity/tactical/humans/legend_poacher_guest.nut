@@ -7,21 +7,21 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendPeasantPoacher;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendPeasantPoacher.XP;
+		this.m.Type = ::Const.EntityType.LegendPeasantPoacher;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendPeasantPoacher.XP;
 		this.m.IsGuest = true;
 		this.player.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.AIAgent = this.new("scripts/ai/tactical/player_agent");
+		this.m.Bodies = ::Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
+		this.m.AIAgent = ::new("scripts/ai/tactical/player_agent");
 		this.m.AIAgent.setActor(this);
-		if (this.Math.rand(1, 100) <= 10)
-		{
+		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
-			this.m.Faces = this.Const.Faces.WildFemale;
+			this.m.Faces = ::Const.Faces.WildFemale;
 		}
 	}
 
@@ -41,8 +41,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 		this.m.Name = this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)];
 		this.m.Title = "the Poacher";
 		this.setAppearance();
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowSkill);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShortbowDamage);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPoacher);
 		::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecBow);
 		this.getSprite("socket").setBrush("bust_base_militia");
@@ -58,27 +57,26 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 
 	function assignRandomEquipment()
 	{
-		local r;
-		this.m.Items.equip(this.new("scripts/items/weapons/short_bow"));
-		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.m.Items.addToBag(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.m.Items.addToBag(this.new("scripts/items/weapons/hatchet"));
+		this.getItems().equip(this.new("scripts/items/weapons/short_bow"));
+		this.getItems().equip(this.new("scripts/items/ammo/quiver_of_arrows"));
+		this.getItems().addToBag(this.new("scripts/items/ammo/quiver_of_arrows"));
+		this.getItems().addToBag(this.new("scripts/items/weapons/hatchet"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "leather_tunic"],
-			[1, "linen_tunic"],
-			[1, "tattered_sackcloth"],
-			[1, "sackcloth"]
+		this.getItems().equip(::Const.World.Common.pickArmor([
+			[1, ::Legends.Armor.Standard.leather_tunic],
+			[1, ::Legends.Armor.Standard.linen_tunic],
+			[1, ::Legends.Armor.Standard.tattered_sackcloth],
+			[1, ::Legends.Armor.Standard.sackcloth]
 		]));
 
 		if (this.Math.rand(1, 100) <= 50)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "hood"],
-				[1, "aketon_cap"],
-				[1, "open_leather_cap"],
-				[1, "full_leather_cap"]
-			]))
+			this.getItems().equip(::Const.World.Common.pickHelmet([
+				[1, ::Legends.Helmet.Standard.hood],
+				[1, ::Legends.Helmet.Standard.aketon_cap],
+				[1, ::Legends.Helmet.Standard.open_leather_cap],
+				[1, ::Legends.Helmet.Standard.full_leather_cap]
+			]));
 		}
 	}
 

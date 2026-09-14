@@ -1,5 +1,12 @@
-::mods_hookExactClass("entity/tactical/humans/militia_captain", function(o)
-{
+::mods_hookExactClass("entity/tactical/humans/militia_captain", function(o) {
+	local create = o.create;
+	o.create = function(){
+		create();
+		if (this.randomizeEnemyGender() == 1) {
+			this.setGender(1);
+		}
+	}
+	
 	local onInit = o.onInit;
 	o.onInit = function ()
 	{
@@ -11,18 +18,18 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldPush);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendFullForce);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
+
 		}
 	}
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 8);
+		local r = this.Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -54,10 +61,6 @@
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 			}
-			else if (r == 8)
-			{
-				this.m.Items.equip(this.new("scripts/items/weapons/legend_glaive"));
-			}
 
 			if (this.Math.rand(1, 100) <= 75)
 			{
@@ -75,17 +78,16 @@
 		}
 
 		this.m.Items.equip(this.Const.World.Common.pickArmor([
-			[1, "basic_mail_shirt"],
-			[1, "padded_leather"],
-			[1, "mail_shirt"]
+			[1, ::Legends.Armor.Standard.basic_mail_shirt],
+			[1, ::Legends.Armor.Standard.padded_leather],
+			[1, ::Legends.Armor.Standard.mail_shirt]
 		]));
 
-		local r = this.Math.rand(1, 4);
 		this.m.Items.equip(this.Const.World.Common.pickHelmet([
-				[1, "nasal_helmet_with_mail"],
-				[1, "mail_coif"],
-				[1, "feathered_hat"],
-				[1, "kettle_hat"]
+			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+			[1, ::Legends.Helmet.Standard.mail_coif],
+			[1, ::Legends.Helmet.Standard.feathered_hat],
+			[1, ::Legends.Helmet.Standard.kettle_hat]
 		]))
 	}
 });

@@ -4,8 +4,7 @@ this.legend_mummy_curse_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.ID = "effects.legend_mummy_curse";
-		this.m.Name = "Curse of the Mummy";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendMummyCurse);
 		this.m.Description = "This character has been cursed by the death of a mummy.";
 		this.m.Icon = "skills/icon_mummy_curse.png";
 		this.m.IconMini = "mini_icon_mummy_curse";
@@ -29,7 +28,7 @@ this.legend_mummy_curse_effect <- this.inherit("scripts/skills/skill", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Receive [color=" + this.Const.UI.Color.NegativeValue + "]+" + this.getBonus() + "[/color] damage from any source"
+				text = "Receive [color=%negative%]+" + this.getBonus() + "[/color] damage from any source"
 			},
 			{
 				id = 6,

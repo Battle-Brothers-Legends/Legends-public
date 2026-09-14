@@ -2,8 +2,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 	m = {},
 	function create()
 	{
-		this.m.ID = "effects.legend_return_favor";
-		this.m.Name = "Return Favor";
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendReturnFavor);
 		this.m.Description = "This character has assumed a defensive stance seeking to incapacitate anyone attacking.";
 		this.m.Icon = "ui/perks/perk_31.png";
 		this.m.IconMini = "perk_31_mini";
@@ -30,7 +29,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]75%[/color] chance to stun and stagger any opponent missing with a melee attack (resistances and immunities still apply)."
+				text = "Has a [color=%positive%]75%[/color] chance to stun and stagger any opponent missing with a melee attack (resistances and immunities still apply)."
 			}
 		];
 	}
@@ -45,18 +44,17 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isRanged())
 			return;
 
-		if (this.Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasSkill("effects.stunned"))
+		if (this.Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 			local d = _attacker.getTile().getDistanceTo(user.getTile());
 			local item = user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
 
 			if (d <= 1 || item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && d <= item.getRangeMax())
 			{
-				local stunned_effect = this.new("scripts/skills/effects/stunned_effect");
-				local staggered_effect = this.new("scripts/skills/effects/staggered_effect");
-				stunned_effect.addTurns(1);
-				_attacker.getSkills().add(stunned_effect);
-				_attacker.getSkills().add(staggered_effect);
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function(_effect) {
+					_effect.addTurns(1);
+				}.bindenv(this));
+				::Legends.Effects.grant(_attacker, ::Legends.Effect.Staggered);
 				if (!user.isHiddenToPlayer() && !_attacker.isHiddenToPlayer())
 				{
 					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has stunned and staggered " + this.Const.UI.getColorizedEntityName(_attacker) + " for one turn");

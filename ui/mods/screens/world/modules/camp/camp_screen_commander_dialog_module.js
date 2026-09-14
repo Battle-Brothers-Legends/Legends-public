@@ -28,7 +28,7 @@ var CampScreenCommanderDialogModule = function(_parent)
 	this.mTentListContainer = null
 	this.mTentListScrollContainer = null;
 	this.mTentMap = {};
-	
+
 	this.mStatsContainer = null;
 	this.mStatsScrollContainer = null;
 	this.mStatsList = [];
@@ -101,7 +101,7 @@ CampScreenCommanderDialogModule.prototype.createDIV = function (_parentDiv)
 	// create tabs
 	var tabButtonsContainer = $('<div class="l-tab-container"/>');
 	this.mDialogContainer.findDialogTabContainer().append(tabButtonsContainer);
-		
+
 	// create assets
 	this.mAssets.createDIV(tabButtonsContainer);
 
@@ -391,7 +391,7 @@ CampScreenCommanderDialogModule.prototype.unbindTooltips = function ()
 	{
 		this.mPopupDialogButtons.forEach( function (_b){
 			_b.unbindTooltip();
-		});	
+		});
 	}
 };
 
@@ -544,7 +544,7 @@ CampScreenCommanderDialogModule.prototype.loadFromData = function (_data)
 	{
 		return;
 	}
-	
+
 	if('Title' in _data && _data.Title !== null)
 	{
 		 this.mDialogContainer.findDialogTitle().html(_data.Title);
@@ -559,11 +559,13 @@ CampScreenCommanderDialogModule.prototype.loadFromData = function (_data)
 	{
 		this.mAssets.loadFromData(_data.Assets);
 	}
-	
+
 	//this.onBrothersListLoaded(_data.brothers);
 	var selectedID = null;
-	if (this.mSelectedTent !== null)
-	{
+	if ('SelectedID' in _data && _data.SelectedID !== null)	{
+		selectedID = _data.SelectedID;
+	}
+	else if (this.mSelectedTent !== null) {
 		selectedID = this.mSelectedTent.data('ID');
 	}
 
@@ -589,7 +591,7 @@ CampScreenCommanderDialogModule.prototype.loadFromData = function (_data)
 	{
 		this.selectTentEntry(this.mTentListContainer.findListEntryByIndex(0, '.tent-panel'), true);
 	}
-	else 
+	else
 	{
 		this.selectTentEntry(this.mSelectedTent);
 	}
@@ -661,9 +663,9 @@ CampScreenCommanderDialogModule.prototype.selectTentEntry = function(_element, _
 						var stats = $('<div class="stats-row text-font-small">' + text + '</div>');
 						self.mStatsList.push(stats);
 						self.mStatsScrollContainer.append(stats);
-					})				
+					})
 				}
-			});			
+			});
 		}
 	}
 	else
@@ -726,9 +728,9 @@ CampScreenCommanderDialogModule.prototype.addTentEntry = function (_data, _index
 		var image = $('<img class="asset-count"/>');
 		image.attr('src', Path.GFX + _data.resourceImage);
 		entry.append(image);
-	
+
 		var label = $('<div class="asset-count-label text-font-normal font-bold font-color-brother-name">'+ _data.resourceCount + '</div>');
-		entry.append(label);	
+		entry.append(label);
 	}
 
 	entry.bindTooltip({ contentType: 'ui-element', elementId: _data.id });
@@ -747,7 +749,7 @@ CampScreenCommanderDialogModule.prototype.selectListEntry = function(_element, _
 		// check if this is already selected
 		//if (_element.hasClass('is-selected') !== true)
 		{
-		   
+
 			//_element.addClass('is-selected');
 			// give the renderer some time to layout his shit...
 			if (_scrollToEntry !== undefined && _scrollToEntry === true)
@@ -857,7 +859,7 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 	// // drag handler
 	// result.drag("start", function (ev, dd)
 	// {
-	//	 // dont allow drag if this is an empty slot
+	//	 // don't allow drag if this is an empty slot
 	//	 /*var data = $(this).data('item');
 	//	 if (data.isEmpty === true)
 	//	 {
@@ -962,7 +964,7 @@ CampScreenCommanderDialogModule.prototype.addBrotherSlotDIV = function (_data, _
 
 		//self.mDataSource.selectedBrotherById(data.id);
 	});
-		
+
 	// result.assignListItemRightClick(function (_item, _event)
 	// {
 	//	 self.notifyBackendBrotherAssigned(_item.data('ID'), 'camp.rest', function( _load ) {
@@ -1003,8 +1005,51 @@ CampScreenCommanderDialogModule.prototype.onSelectButtonInThisArray = function(_
 	});
 }
 
-CampScreenCommanderDialogModule.prototype.showHunterPopupDialog = function( _data )
-{
+CampScreenCommanderDialogModule.prototype.showHealerPopupDialog = function (_data) {
+	var self = this;
+	this.notifyBackendPopupDialogIsVisible(true);
+	this.mPopupDialog = $('.camp-screen').createPopupDialog('Configuration', null, null, 'popup-300x600-dialog');
+
+	// create: footer button
+	this.mPopupDialog.addPopupDialogOkButton(function (_dialog) {
+		self.mPopupDialog = null;
+		self.refreshInfoPanel(self.mSelectedTent.data('ID'));
+		_dialog.destroyPopupDialog();
+		self.notifyBackendPopupDialogIsVisible(false);
+	});
+
+	var ButtonNames = _data.Buttons;
+	var SelectedIndex = _data.CurrentMode;
+	// create: content
+	var createContent = function (_dialog, _dialogButtons) {
+		var result = $('<div class="popup-300x600-dialog-content-container"/>');
+		var title = $('<div class="label title-font-normal font-bold font-bottom-shadow font-color-title" style="text-align:center; margin-bottom: 1.5rem;"/>');
+		title.html(_data.Title);
+		result.append(title);
+		_dialogButtons = [];
+		for (var i = 0; i < ButtonNames.length; i++) {
+			var layout = $('<div class="l-popup-button-175-43"/>');
+			result.append(layout);
+			var button = layout.createTextButton(ButtonNames[i], function (_button) {
+				self.onSelectButtonInThisArray(_dialogButtons, _button.data('ID'));
+				self.notifyBackendPopupButtonPressed(_button.data('ID'), _button.data('Func'));
+			}, '', 1);
+			button.data('ID', ButtonNames[i]);
+			button.data('Func', "setMode");
+			var eid = "CampHealerIntensiveCare." + ButtonNames[i];
+			button.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: eid });
+			_dialogButtons.push(button);
+		}
+		_dialogButtons[SelectedIndex].enableButton(false);
+		return result;
+	};
+
+	this.mPopupDialog.addPopupDialogContent(createContent(this.mPopupDialog, this.mPopupDialogButtons));
+};
+
+// Note: this function gets called generically from the backend via the `onConfigureButtonClicked` function in camp_commander_dialog_module.nut
+// (That's why searching for usages of "showGathererPopupDialog" returns no results)
+CampScreenCommanderDialogModule.prototype.showGathererPopupDialog = function( _data ) {
     var self = this;
     this.notifyBackendPopupDialogIsVisible(true);
     this.mPopupDialog = $('.camp-screen').createPopupDialog('Configuration', null, null, 'popup-300x600-dialog');
@@ -1018,25 +1063,24 @@ CampScreenCommanderDialogModule.prototype.showHunterPopupDialog = function( _dat
     });
 
     var ButtonNames = _data.Buttons;
-    var SelectedIndex = _data.CurrentMode;
+    var States = _data.States;
   	// create: content
-    var createContent = function(_dialog, _dialogButtons) {
+    var createContent = function(_dialog) {
 	    var result = $('<div class="popup-300x600-dialog-content-container"/>');
-	    _dialogButtons = [];
 	    for (var i = 0; i < ButtonNames.length; i++) {
 	    	var layout = $('<div class="l-popup-button-175-43"/>');
 	    	result.append(layout);
-	    	var button = layout.createTextButton(ButtonNames[i], function(_button) {
-				self.onSelectButtonInThisArray(_dialogButtons, _button.data('ID'));
-				self.notifyBackendPopupButtonPressed(_button.data('ID'), _button.data('Func'));
+	    	var button = layout.createTextButton((ButtonNames[i] + (States[ButtonNames[i]] ? ": ON" : ": OFF")), function(_button) {
+                var newState = !_button.data('Enabled');
+                _button.data('Enabled', newState);
+                _button.find('.label').text(_button.data('ID') + (newState ? ": ON" : ": OFF"));
+                self.notifyBackendPopupButtonPressed(_button.data('ID'), 'toggleMode');
 			}, '', 1);
 			button.data('ID', ButtonNames[i]);
-			button.data('Func', "setMode");
-			var eid = "CampingHuntingMode." + ButtonNames[i];
+			button.data('Enabled', States[ButtonNames[i]]);
+			var eid = "CampGatheringMode." + ButtonNames[i];
 			button.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: eid});
-			_dialogButtons.push(button);
 	    }
-	    _dialogButtons[SelectedIndex].enableButton(false);
     	return result;
     };
 
@@ -1066,7 +1110,7 @@ CampScreenCommanderDialogModule.prototype.notifyBackendConfigureButtonPressed = 
 
 CampScreenCommanderDialogModule.prototype.notifyBackendTentButtonPressed = function (_entryID, _callback)
 {
-	SQ.call(this.mSQHandle, 'onTentBuldingClicked', _entryID, _callback);
+	SQ.call(this.mSQHandle, 'onTentBuildingClicked', _entryID, _callback);
 };
 
 CampScreenCommanderDialogModule.prototype.notifyBackendTentSelected = function (_entryID, _callback)
@@ -1081,7 +1125,7 @@ CampScreenCommanderDialogModule.prototype.refreshInfoPanel = function(_tentID)
 	{
 		self.mStatsList.forEach(function (c) {
 			c.remove();
-		});	
+		});
 		if (_res.Info)
 		{
 			_res.Info.forEach(function (i) {
@@ -1098,10 +1142,10 @@ CampScreenCommanderDialogModule.prototype.refreshInfoPanel = function(_tentID)
 				var stats = $('<div class="stats-row text-font-small">' + text + '</div>');
 				self.mStatsList.push(stats);
 				self.mStatsScrollContainer.append(stats);
-			})				
+			})
 		}
 	}
-	
+
 	SQ.call(this.mSQHandle,'onTentSelected', _tentID, callback);
 }
 

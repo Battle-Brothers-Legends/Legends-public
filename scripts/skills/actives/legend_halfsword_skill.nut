@@ -1,0 +1,36 @@
+this.legend_halfsword_skill <- this.inherit("scripts/skills/actives/puncture", {
+	m = {
+		IsGreatHalfsword = false
+	}
+
+	function setItem (_item) {
+		if (this.m.IsGreatHalfsword) {
+			this.m.ActionPointCost = 6;
+			this.m.FatigueCost = 35;
+		}
+		this.skill.setItem(_item);
+	}
+
+	function create() {
+		this.puncture.create();
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHalfsword);
+		this.m.Description = "A calculated attack with one hand firmly on the blade aiming in gaps of the armor. Ignores all armor but is harder to hit with and can not land critical hits for additional damage.";
+		this.m.ActionPointCost = 4;
+		this.m.FatigueCost = 25;
+		this.m.IsIgnoredAsAOO = true;
+		this.m.IsHidden = true;
+		this.m.HitChanceBonus = -80;
+	}
+
+	function onAfterUpdate( _properties ) {
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.IsHidden = !this.canDoubleGrip() && !this.m.Item.isItemType(this.Const.Items.ItemType.TwoHanded);
+	}
+
+	function onAnySkillUsed ( _skill, _targetEntity, _properties ) {
+		this.puncture.onAnySkillUsed( _skill, _targetEntity, _properties );
+		if (_skill == this) {
+			_properties.DamageTotalMult *= 0.5;
+		}
+	}
+});
