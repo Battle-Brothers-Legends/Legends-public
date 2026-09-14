@@ -68,7 +68,7 @@
 	TundraMoss = {
 		Name = "Tundra Moss",
 		Difficulty = 100,
-		Loot = "scripts/item/supplies/legend_edible_moss_item",
+		Loot = "scripts/items/supplies/legend_edible_moss_item",
 		ExtraLoot = [
 			[95, ""],
 			[5, "scripts/items/supplies/legend_medicine_small_item"]
@@ -371,7 +371,7 @@
 		Loot = "scripts/items/trade/legend_stone_item",
 		ExtraLoot = [
 			[95, ""],
-			[5, "scripts/items/trade/legend_amber_item"]
+			[5, "scripts/items/trade/amber_shards_item"]
 		]
 	},
 	Slate = {
@@ -385,7 +385,7 @@
 		Loot = "scripts/items/trade/legend_stone_item",
 		ExtraLoot = [
 			[90, ""],
-			[10, "scripts/items/trade/legend_amber_item"]
+			[10, "scripts/items/trade/amber_shards_item"]
 		]
 	},
 	Granite = {
@@ -420,7 +420,7 @@
 		ExtraLoot = [
 			[70, ""],
 			[20, "scripts/items/trade/legend_gem_shards_item"],
-			[8, "scripts/items/trade/legend_amber_item"],
+			[8, "scripts/items/trade/amber_shards_item"],
 			[2, "scripts/items/trade/uncut_gems_item"]
 		]
 	},
@@ -431,7 +431,7 @@
 		ExtraLoot = [
 			[70, ""],
 			[24, "scripts/items/trade/legend_gem_shards_item"],
-			[6, "scripts/items/trade/legend_amber_item"]
+			[6, "scripts/items/trade/amber_shards_item"]
 		]
 	},
 	IronOre = {
@@ -441,7 +441,7 @@
 		ExtraLoot = [
 			[70, ""],
 			[20, "scripts/items/trade/legend_gem_shards_item"],
-			[8, "scripts/items/trade/legend_amber_item"],
+			[8, "scripts/items/trade/amber_shards_item"],
 			[2, "scripts/items/trade/uncut_gems_item"]
 		]
 	},

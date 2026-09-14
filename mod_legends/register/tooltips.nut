@@ -98,42 +98,11 @@
 		Manual = ::MSU.Class.BasicTooltip("Selected", "Toggle which brothers are to receive intensive treatment inside the healer's tent."),
 		Auto = ::MSU.Class.BasicTooltip("All", "All brothers are treated intensively automatically whenever required.")
 	},
-	CampingHuntingMode = {
-		Default = ::MSU.Class.BasicTooltip("Default Mode","Your hunting party will carry out their activities at the baseline rates."),
-		Cook = ::MSU.Class.BasicTooltip(
-			"Meal Preparation",
-			format(
-				"Allow cooks more time to prepare better food.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s",
-				::Const.UI.getColorized("improved food items",::Const.UI.Color.PositiveValue),
-				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue)
-			)
-		),
-		Brew = ::MSU.Class.BasicTooltip(
-			"Alcohol Brewing",
-			format(
-				"Focus on brewing alcoholic drinks.\n\nDoubles the drop rate of %s, but increases foraging and hunting time by about %s",
-				::Const.UI.getColorized("brewed items",::Const.UI.Color.PositiveValue),
-				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue)
-			)
-		),
-		Hunt = ::MSU.Class.BasicTooltip(
-			"Focused Hunting",
-			format(
-				"Your hunting party will %s for animals or monsters, taking their time to scour the remains for loot.\n\nDoubles the drop rate of %s, but increases hunting time by about %s\n\n%s are required for loot items to be obtainable",
-				::Const.UI.getColorized("only hunt",::Const.UI.Color.PositiveValue),
-				::Const.UI.getColorized("loot items",::Const.UI.Color.PositiveValue),
-				::Const.UI.getColorized("40%",::Const.UI.Color.NegativeValue),
-				::Const.UI.getColorized("Expert Hunters",::Const.UI.Color.NegativeValue)
-			)
-		),
-		Forage = ::MSU.Class.BasicTooltip(
-			"Focused Foraging",
-			format(
-				"Your hunting party will %s for food and do so quickly.\n\nDecreases foraging time by about %s",
-				::Const.UI.getColorized("only forage",::Const.UI.Color.PositiveValue),
-				::Const.UI.getColorized("15%",::Const.UI.Color.PositiveValue)
-			)
-		),
+	CampGatheringMode = {
+		Foraging = ::MSU.Class.BasicTooltip("Foraging",	"Allow your gatherers to Forage supplies."),
+		Hunting = ::MSU.Class.BasicTooltip("Hunting", "Allow your gatherers to Hunt for meat and trophies."),
+		Mining = ::MSU.Class.BasicTooltip("Mining", "Allow your gatherers to Mine for ores and gemstones."),
+		Woodcutting = ::MSU.Class.BasicTooltip("Woodcutting", "Allow your gatherers to cut trees down to procure wood.")
 	},
 	CombatResult = {
 		Sort = ::MSU.Class.BasicTooltip("Sort Items", "Sort items by type.")

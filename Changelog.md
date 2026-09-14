@@ -358,6 +358,9 @@
 - Masterwork tools cost from 750 to 1250.
 - Masterwork metal cost from 1450 to 2900.
 - Masterwork fabric cost from 950 to 1140.
+- Quality Wood cost increased from 180 to 220.
+- Raw Wood cost increased from 40 to 60.
+- added more trade items to support the expanded gathering system
 
 ## Enemies
 ### Dynamic Troops Day To Skip
@@ -438,6 +441,9 @@
 - gathering and scouting requires healthy bros and can injure/exhaust bros similarly to training
 - healing tent gains intensive treatment of hitpoints at the cost of medicine when upgraded
 - scout tent now always produces a scouting message
+- gathering now incorporates hunting and has been overhauled
+- gathering now allows the company to collect more types of materials
+- it is now possible to restrict the types of materials to gather
 
 ## New Campaign
 - changed the labels so the functions are easier to understand
@@ -555,6 +561,7 @@
 - female southern backgrounds will use Bint instead of Ibn as last name now
 - fixed mummies head armor showing empty bars and incorrect maximum values
 - fixed athletic sometimes using a different path than the calculated one
+- fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering, scouting and training aren't available
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

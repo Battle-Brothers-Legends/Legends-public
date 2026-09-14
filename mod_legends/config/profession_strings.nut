@@ -463,6 +463,8 @@ A quality armor can save one's life. Even if that life isn't worth the cost of s
 The earth itself carries a wealth of valuables. Rock and stone, ores and gems.
 
 [color=%passive%][u]Passive:[/u][/color]
+• Allows the company to mine veins while Gathering.
+
 • Increases the effectiveness of Mining while Gathering.
 ";
 
@@ -706,6 +708,8 @@ There is no quicker school of war than on the battlefield.
 While any fool can wield an axe, there are certain intricacies to the art of cutting wood.
 
 [color=%passive%][u]Passive:[/u][/color]
+• Allows the company to cut down trees while Gathering.
+
 • Increases the effectiveness of Woodcutting while Gathering.
 ";
 

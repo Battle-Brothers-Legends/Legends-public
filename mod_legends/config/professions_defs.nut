@@ -431,8 +431,8 @@ professionDefObjects.push({
 	Icon = "ui/professions/foraging.png",
 	IconDisabled = "ui/professions/foraging_bw.png",
 	Const = "LegendForaging",
-    ScalingArray = [0, 1], // personal profession
-    ScalingFactor = 0
+    ScalingArray = [0, 0.3], // improves chances of successful foraging
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendFriendsInRightPlaces <- null;
@@ -548,8 +548,8 @@ professionDefObjects.push({
 	Icon = "ui/professions/hunting.png",
 	IconDisabled = "ui/professions/hunting_bw.png",
 	Const = "LegendHunting",
-    ScalingArray = [0, 1], // personal profession
-    ScalingFactor = 0
+    ScalingArray = [0, 0.3], // improves chances of successful hunts and allows more difficult hunts
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendInterpretation <- null;
@@ -653,8 +653,8 @@ professionDefObjects.push({
 	Icon = "ui/professions/mining.png",
 	IconDisabled = "ui/professions/mining_bw.png",
 	Const = "LegendMining",
-    ScalingArray = [0, 1], // personal profession
-    ScalingFactor = 0
+    ScalingArray = [0, 0.3], // improves chances of successful gathering while mining
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendNegotiator <- null;
@@ -1054,8 +1054,8 @@ professionDefObjects.push({
 	Icon = "ui/professions/woodcutting.png",
 	IconDisabled = "ui/professions/woodcutting_bw.png",
 	Const = "LegendWoodcutting",
-    ScalingArray = [0, 1], // personal profession
-    ScalingFactor = 0
+    ScalingArray = [0, 0.3], // improves chances of successful gathering while cutting wood
+    ScalingFactor = 0.1
 });
 
 ::Legends.Profession.LegendWoodworking <- null;

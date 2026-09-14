@@ -1048,9 +1048,8 @@ CampScreenCommanderDialogModule.prototype.showHealerPopupDialog = function (_dat
 };
 
 // Note: this function gets called generically from the backend via the `onConfigureButtonClicked` function in camp_commander_dialog_module.nut
-// (That's why searching for usages of "showHunterPopupDialog" returns no results)
-CampScreenCommanderDialogModule.prototype.showHunterPopupDialog = function( _data )
-{
+// (That's why searching for usages of "showGathererPopupDialog" returns no results)
+CampScreenCommanderDialogModule.prototype.showGathererPopupDialog = function( _data ) {
     var self = this;
     this.notifyBackendPopupDialogIsVisible(true);
     this.mPopupDialog = $('.camp-screen').createPopupDialog('Configuration', null, null, 'popup-300x600-dialog');
@@ -1064,25 +1063,24 @@ CampScreenCommanderDialogModule.prototype.showHunterPopupDialog = function( _dat
     });
 
     var ButtonNames = _data.Buttons;
-    var SelectedIndex = _data.CurrentMode;
+    var States = _data.States;
   	// create: content
-    var createContent = function(_dialog, _dialogButtons) {
+    var createContent = function(_dialog) {
 	    var result = $('<div class="popup-300x600-dialog-content-container"/>');
-	    _dialogButtons = [];
 	    for (var i = 0; i < ButtonNames.length; i++) {
 	    	var layout = $('<div class="l-popup-button-175-43"/>');
 	    	result.append(layout);
-	    	var button = layout.createTextButton(ButtonNames[i], function(_button) {
-				self.onSelectButtonInThisArray(_dialogButtons, _button.data('ID'));
-				self.notifyBackendPopupButtonPressed(_button.data('ID'), _button.data('Func'));
+	    	var button = layout.createTextButton((ButtonNames[i] + (States[ButtonNames[i]] ? ": ON" : ": OFF")), function(_button) {
+                var newState = !_button.data('Enabled');
+                _button.data('Enabled', newState);
+                _button.find('.label').text(_button.data('ID') + (newState ? ": ON" : ": OFF"));
+                self.notifyBackendPopupButtonPressed(_button.data('ID'), 'toggleMode');
 			}, '', 1);
 			button.data('ID', ButtonNames[i]);
-			button.data('Func', "setMode");
-			var eid = "CampingHuntingMode." + ButtonNames[i];
+			button.data('Enabled', States[ButtonNames[i]]);
+			var eid = "CampGatheringMode." + ButtonNames[i];
 			button.bindTooltip({ contentType: 'msu-generic', modId: "mod_legends", elementId: eid});
-			_dialogButtons.push(button);
 	    }
-	    _dialogButtons[SelectedIndex].enableButton(false);
     	return result;
     };
 
