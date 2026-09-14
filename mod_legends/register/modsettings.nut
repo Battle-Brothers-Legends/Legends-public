@@ -8,39 +8,46 @@ function addNCSetting( _page, _setting ) {
 	_page.addElement(_setting);
 }
 
-local map = ::Legends.Mod.ModSettings.addPage("Map Options");
+
+// Campaign Settings
+local campaign = ::Legends.Mod.ModSettings.addPage("Campaign Options");
+//local map = ::Legends.Mod.ModSettings.addPage("Map Options"); // squashed into a single page, can be revived if more setting space is necessary
 
 //Setting, Default, Min, Max, ?, Name, Description
-addNCSetting(map, ::MSU.Class.RangeSetting("WaterLevel", 50, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. Default is 50."));
-addNCSetting(map, ::MSU.Class.RangeSetting("Snowline", 85, 75, 95, 1, "Snowline", "Determines where the snowline is generated. Default is 85. This value is inverted. A value of 10 would mean the top 90% of the map is snow."));
-addNCSetting(map, ::MSU.Class.RangeSetting("Settlements", 19, 19, 27, 1, "Settlements", "Maximum number of settlements. Depending on map size, this will try to add the number of settlements on the slider. It will keep the same ratio of settlement types as default Battle Brothers maps. Minimum distance between settlements is 12 tiles. Vanilla default is 19."));
-addNCSetting(map, ::MSU.Class.RangeSetting("Factions", 3, 2, 6, 1, "Factions", "Maximum number of Factions to try and generate. Depending on map size, this may not add all the factions on the slider."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("WaterLevel", 50, ::Const.World.Settings.MinWaterSetting, ::Const.World.Settings.MaxWaterSetting, 1, "Water", "Determines the amount of water on the map. Default is 50."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("Snowline", 85, 75, 95, 1, "Snowline", "Determines where the snowline is generated. Default is 85. This value is inverted. A value of 10 would mean the top 90% of the map is snow."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("Settlements", 19, 19, 27, 1, "Settlements", "Maximum number of settlements. Depending on map size, this will try to add the number of settlements on the slider. It will keep the same ratio of settlement types as default Battle Brothers maps. Minimum distance between settlements is 12 tiles. Vanilla default is 19."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("Factions", 3, 2, 6, 1, "Factions", "Maximum number of Factions to try and generate. Depending on map size, this may not add all the factions on the slider."));
 
-addNCSetting(map, ::MSU.Class.SettingsDivider("MapDivider1"));
+addNCSetting(campaign, ::MSU.Class.SettingsSpacer("Spacer1t", "72rem", "1rem"));
+addNCSetting(campaign, ::MSU.Class.SettingsDivider("Divider1"));
+addNCSetting(campaign, ::MSU.Class.SettingsSpacer("Spacer1b", "72rem", "1rem"));
 
-addNCSetting(map, ::MSU.Class.BooleanSetting("StackCitadels", false, "Decked Out Citadels", "If enabled, every Citadel will start with all those building attachments map scummers are re-rolling for."));
-addNCSetting(map, ::MSU.Class.BooleanSetting("AllTradeLocations", false, "All trade buildings available", "If enabled, ensures there is at least one of each trade location building on the map."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("FemaleGenderPercent", 25, 0, 100, 5, "Allied Female Character %", "The higher the value, the more allied female characters will appear in the game. Default at 25%. Some characters are locked as male or female only and are not affected by this setting."));
+addNCSetting(campaign, ::MSU.Class.RangeSetting("EnemyFemaleGenderPercent", 25, 0, 100, 5, "Enemy Female Character %", "The higher the value, the more enemy female characters will appear in the game. Default at 25%. Some characters are locked as male or female only and are not affected by this setting."));
+addNCSetting(campaign, ::MSU.Class.EnumSetting("GenderEquality", "Enabled", ["Enabled", "Disabled (Cosmetic)"], "Gender Stat Difference", "When enabled female characters receive +10 fatigue, but -10 hit points.\n\n[u]Enabled[/u]\nBeing female has gameplay effects.\n\n[u]Disabled (Cosmetic)[/u]\nBeing female has no effect on stats."));
+addNCSetting(campaign, ::MSU.Class.EnumSetting("CommanderAvatarGender", "Random", ["Random", "Male", "Female"], "Commander Avatar Gender", "Sets the gender of the commander in scenarios with an avatar present (apart from random scenarios). Leave at random to have it follow the percentage specified in Female Character % setting."));
+
+addNCSetting(campaign, ::MSU.Class.SettingsSpacer("Spacer2t", "72rem", "1rem"));
+addNCSetting(campaign, ::MSU.Class.SettingsDivider("Divider2"));
+addNCSetting(campaign, ::MSU.Class.SettingsSpacer("Spacer2b", "72rem", "1rem"));
+
+addNCSetting(campaign, ::MSU.Class.BooleanSetting("StackCitadels", false, "Decked Out Citadels", "If enabled, every Citadel will start with all those building attachments map scummers are re-rolling for."));
+addNCSetting(campaign, ::MSU.Class.BooleanSetting("AllTradeLocations", false, "All trade buildings available", "If enabled, ensures there is at least one of each trade location building on the map."));
+addNCSetting(campaign, ::MSU.Class.BooleanSetting("SkipCamp", true, "Skip Camp Tutorial", "If disabled, you will gradually unlock camping activities by visiting towns. Useful for first playthroughs. \n\n Detail: skips the camp unlock events and ambition, you still need to buy upgrades."));
+
 //addNCSetting(map, ::MSU.Class.BooleanSetting("DebugMap", false, "(Debug) Show Entire Map", "If enabled, the map will start completely revealed and all enemies and camps will be visible."));
-
-local config = ::Legends.Mod.ModSettings.addPage("Campaign Options");
-
-addNCSetting(config, ::MSU.Class.RangeSetting("FemaleGenderPercent", 25, 0, 100, 5, "Allied Female Character %", "The higher the value, the more allied female characters will appear in the game. Default at 25%. Some characters are locked as male or female only and are not affected by this setting."));
-addNCSetting(config, ::MSU.Class.RangeSetting("EnemyFemaleGenderPercent", 25, 0, 100, 5, "Enemy Female Character %", "The higher the value, the more enemy female characters will appear in the game. Default at 25%. Some characters are locked as male or female only and are not affected by this setting."));
-addNCSetting(config, ::MSU.Class.EnumSetting("GenderEquality", "Enabled", ["Enabled", "Disabled (Cosmetic)"], "Gender Stat Difference", "When enabled female characters receive +10 fatigue, but -10 hit points.\n\n[u]Enabled[/u]\nBeing female has gameplay effects.\n\n[u]Disabled (Cosmetic)[/u]\nBeing female has no effect on stats."));
-addNCSetting(config, ::MSU.Class.EnumSetting("CommanderAvatarGender", "Random", ["Random", "Male", "Female"], "Commander Avatar Gender", "Sets the gender of the commander in scenarios with an avatar present (apart from random scenarios). Leave at random to have it follow the percentage specified in Female Character % setting."));
-local myEnumTooltip = "Specialist Skills bonuses (in example Poacher\'s arm) count as 25% for non specialist weapons, but will grow by 5% according to the following rules.\n\n[u]Level[/u]\n5% per level (100% at level 16)\n\n[u]Week in company (SSU Style)[/u]\n5% per 7 days the mercenary has been in the company (100% at day 105)\n\n[u]Training[/u]\n5% per camp training level (100% when training completed)";
+//addNCSetting(config, ::MSU.Class.BooleanSetting("RecruitScaling", true, "Recruit Scaling", "If enabled, new recruits will gain levels based on the levels in your party and your renown in the world. \n\n  Details: The maximum level of recruits is increased by half the average level of mercs in your company, averaged with your reputation divided by 1,000. \n\n For example: if your company were all level 10, and your renown was 10,000, new recruits could gain up to 7 levels rounded down. \n\n This in addition to normal recruit level variance."));
+// local myEnumTooltip = "Specialist Skills bonuses (in example Poacher\'s arm) count as 25% for non specialist weapons, but will grow by 5% according to the following rules.\n\n[u]Level[/u]\n5% per level (100% at level 16)\n\n[u]Week in company (SSU Style)[/u]\n5% per 7 days the mercenary has been in the company (100% at day 105)\n\n[u]Training[/u]\n5% per camp training level (100% when training completed)";
 // addNCSetting(config, ::MSU.Class.EnumSetting("SpecialistSkillsSetting", "Level", ["Level", "Week in company", "Training"], "Specialist Skills Rules", myEnumTooltip));
 // deprecated with the removal of spec skills
-addNCSetting(config, ::MSU.Class.SettingsDivider("ConfigDivider1"));
 // addNCSetting(config, ::MSU.Class.RangeSetting("DynamicDayToSkip", 150, 0, 150, 10, "Dynamic Troops Day To Skip", "Impacts how fast elite enemies start appearing on the map. If you leave it at 150 they will by default choose according to difficulty: 30 - Legendary, 60 Expert, 90 Veteran and 120 beginner."));
-addNCSetting(config, ::MSU.Class.BooleanSetting("SkipCamp", true, "Skip Camp Tutorial", "If disabled, you will gradually unlock camping activities by visiting towns. Useful for first playthroughs. \n\n Detail: skips the camp unlock events and ambition, you still need to buy upgrades."));
-//addNCSetting(config, ::MSU.Class.BooleanSetting("RecruitScaling", true, "Recruit Scaling", "If enabled, new recruits will gain levels based on the levels in your party and your renown in the world. \n\n  Details: The maximum level of recruits is increased by half the average level of mercs in your company, averaged with your reputation divided by 1,000. \n\n For example: if your company were all level 10, and your renown was 10,000, new recruits could gain up to 7 levels rounded down. \n\n This in addition to normal recruit level variance."));
 
 local general = ::Legends.Mod.ModSettings.addPage("General");
 general.addTitle("Gameplay", "Gameplay");
 general.addElement(::MSU.Class.RangeSetting("MinimumChanceToHit", 5, 0, 100, 1, "Minimum hitchance", "Slider for minimum hitchance percentage. Pushing this slider too far will result in no chance to hit for anyone."));
 general.addElement(::MSU.Class.RangeSetting("MaximumChanceToHit", 95, 0, 100, 1, "Maximum hitchance", "Slider for maximum hitchance percentage. Pushing this slider too far back will result in no chance to hit for anyone."));
-myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, AI is free to rotate itself and your bros as long as the skill allows; 'Limited' AI can only rotate itself, but not your bros (unless they have the Twirl Perk); 'Disabled' disable AI Rotation entirely";
+local myEnumTooltip = "Define AI Rotation rules: 'Default' is the Vanilla behaviour, AI is free to rotate itself and your bros as long as the skill allows; 'Limited' AI can only rotate itself, but not your bros (unless they have the Twirl Perk); 'Disabled' disable AI Rotation entirely";
 general.addElement(::MSU.Class.EnumSetting("AiRotation", "Default", ["Default", "Limited", "Disabled"], "AI Rotation Rules", myEnumTooltip));
 general.addTitle("Pause", "Pause");
 general.addElement(::MSU.Class.BooleanSetting("PauseOnEnemySighted", true, "Pause On Enemy Sighted", "Game pause when new enemy group is sighted"));
