@@ -154,8 +154,17 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		this.m.Points += this.m.Craft;
 		if (this.m.CurrentTarget == null) {
-			this.m.CurrentTarget = this.m.LootGenerator.rollTarget(this.getAllowedTargets(), this.getHuntingLevel());
-			this.m.TargetStartTime = ::Time.getVirtualTimeF();
+			local allowedTargets = this.getAllowedTargets();
+			local targetFound = ::Math.rand(1, allowedTargets.len() + 1) <= allowedTargets.len();
+			if (!targetFound && this.getUpgraded() && ::Math.rand(1, 100) <= 50) {
+				targetFound = true;
+			}
+			if (targetFound) {
+				this.m.CurrentTarget = this.m.LootGenerator.rollTarget(allowedTargets, this.getHuntingLevel());
+				this.m.TargetStartTime = ::Time.getVirtualTimeF();
+			} else {
+				return this.getUpdateText();
+			}
 		}
 
 		if (::Math.rand(1, 100) <= ::Math.ceil(100.0 * this.m.Points / calcTargetDifficulty(this.m.CurrentTarget.Profession, this.m.CurrentTarget.Difficulty))) {

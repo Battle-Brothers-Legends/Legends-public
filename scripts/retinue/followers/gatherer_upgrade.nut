@@ -10,8 +10,8 @@ this.gatherer_upgrade <- this.inherit("scripts/retinue/follower", {
 		this.m.Cost = 5000;
 		this.m.Effects = [
 			"Increase gathering speed by 15%",
-			"Reduces the chance of getting injured while gathering"
-			//"produce more kinds of medicine." "Having both an upgraded tent and skilled apothecaries can provide rare medicines, and powerful potions."
+			"Reduces the chance of getting injured while gathering",
+			"Reduces the search time for new gathering targets"
 		];
 	}
 });
