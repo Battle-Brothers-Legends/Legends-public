@@ -6,7 +6,7 @@ this.legend_hardwood_item <- this.inherit("scripts/items/trade/trading_good_item
 		this.m.ID = "misc.legend_hardwood";
 		this.m.Name = "Hardwood";
 		this.m.Description = "High quality raw product used all over the known world.";
-		this.m.Icon = "trade/legend_rough_wood.png";
+		this.m.Icon = "trade/legend_hardwood.png";
 		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.ProducingBuildings = [
 			"attached_location.lumber_camp"

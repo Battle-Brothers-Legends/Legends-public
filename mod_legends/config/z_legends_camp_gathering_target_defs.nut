@@ -401,7 +401,7 @@
 	Peat = {
 		Name = "Peat",
 		Difficulty = 250,
-		Loot = "scripts/items/trade/legend_coal_item"
+		Loot = "scripts/items/trade/peat_bricks_item"
 	},
 	Coal = {
 		Name = "Coal",
