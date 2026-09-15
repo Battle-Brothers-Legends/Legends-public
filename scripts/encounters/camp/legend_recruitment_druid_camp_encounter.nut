@@ -7,6 +7,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
         this.m.Type = "encounter.legend_recruitment_druid_camp";
         this.m.Name = ::Const.Strings.randomCampEncounterName();
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
+		this.m.SpawnChance = 75;
 	}
 
     function createScreens() {

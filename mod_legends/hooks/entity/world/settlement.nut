@@ -1147,7 +1147,16 @@
 	 * Updates encounters in the town.
 	 */
 	o.updateEncounters <- function() {
-		if (this.m.SettlementEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+		local self = this;
+		local time = ::Time.getVirtualTimeF();
+		if (time >= this.m.SettlementEncountersCooldownUntil) {
+			this.m.SettlementEncounters = ::World.Encounters.m.SettlementEncounters.filter(@(_, _encounter) (_encounter.isValid(self) && _encounter.isVisible() && _encounter.checkAvailability(true)));
+			this.m.SettlementEncountersCooldownUntil = time + (::Legends.Encounters.SettlementCooldown * ::World.getTime().SecondsPerDay);
+		} else {
+			this.m.SettlementEncounters = this.m.SettlementEncounters.filter(@(_, _encounter) _encounter.isValid(self) && _encounter.isVisible());
+		}
+		// below can be removed if above turns out to work fine
+		/*if (this.m.SettlementEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (e in this.m.SettlementEncounters) {
 				if (!e.isValid(this))
@@ -1161,22 +1170,22 @@
 		}
 
 		local list = [];
-		foreach (e in this.World.Encounters.m.SettlementEncounters) {
-			if (e.isValid(this)) {
+		foreach (e in ::World.Encounters.m.SettlementEncounters) {
+			if (e.isValid(this) && e.isVisible() && e.checkAvailability()) {
 				list.push(e);
 			}
 		}
 
-		local count = this.Math.rand(::Legends.Encounters.SettlementMin, ::Legends.Encounters.SettlementMax);
+		local count = ::Math.rand(::Legends.Encounters.SettlementMin, ::Legends.Encounters.SettlementMax);
 		while(list.len() > count) {
-			local r = this.Math.rand(0, list.len() - 1);
+			local r = ::Math.rand(0, list.len() - 1);
 			list.remove(r);
 		}
 		this.m.SettlementEncounters.clear();
 		foreach (e in list) {
 			this.m.SettlementEncounters.push(e);
 		}
-		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * this.World.getTime().SecondsPerDay);
+		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * this.World.getTime().SecondsPerDay);*/
 	}
 
 	local onSerialize = o.onSerialize;

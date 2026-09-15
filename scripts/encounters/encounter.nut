@@ -10,45 +10,41 @@ this.encounter <- {
         ActiveScreen = null,
         IsActive = false,
         HasBigButtons = false,
+        SpawnChance = 10,
+        RollCooldown = 3.0,
+        RollCooldownUntil = 0.0,
+        IsAvailable = false
     },
 
-    function getID()
-    {
+    function getID() {
         return this.m.ID;
     }
 
-    function getType()
-    {
+    function getType() {
         return this.m.Type;
     }
 
-    function getTitle()
-    {
+    function getTitle() {
         return this.getName();
     }
 
-    function getName()
-    {
+    function getName() {
         return this.buildText(this.m.Name, false);
     }
 
-    function getActiveScreen()
-    {
+    function getActiveScreen() {
         return this.m.ActiveScreen;
     }
 
-    function isActive()
-    {
+    function isActive() {
         return this.m.IsActive;
     }
 
-    function hasBigButtons()
-    {
+    function hasBigButtons() {
         return this.m.HasBigButtons;
     }
 
-    function setActive( _f )
-    {
+    function setActive(_f) {
         this.m.IsActive = _f;
     }
 
@@ -56,25 +52,28 @@ this.encounter <- {
         this.createScreens();
     }
 
-    function createScreens()
-    {
+    function checkAvailability (_skipEncounterCooldown = false) {
+        local time = ::Time.getVirtualTimeF();
+        if (_skipEncounterCooldown) {
+            this.m.IsAvailable = ::Math.rand(1,100) <= this.m.SpawnChance;
+        } else if (time >= this.m.RollCooldownUntil) {
+            this.m.IsAvailable = ::Math.rand(1,100) <= this.m.SpawnChance;
+            this.m.RollCooldownUntil = time + (this.m.RollCooldown * ::World.getTime().SecondsPerDay);
+        }
+        return this.m.IsAvailable;
     }
 
-    function start()
-    {
-    }
+    function createScreens() {}
 
-    function getScreen( _id )
-    {
-        if (typeof _id == "table" || typeof _id == "instance")
-        {
+    function start() {}
+
+    function getScreen(_id) {
+        if (typeof _id == "table" || typeof _id == "instance") {
             return _id;
         }
 
-        foreach( s in this.m.Screens )
-        {
-            if (s.ID == _id)
-            {
+        foreach (s in this.m.Screens) {
+            if (s.ID == _id) {
                 return s;
             }
         }
@@ -83,24 +82,19 @@ this.encounter <- {
         return null;
     }
 
-    function processInput( _option )
-    {
-        if (this.m.ActiveScreen == null)
-        {
+    function processInput(_option) {
+        if (this.m.ActiveScreen == null) {
             return false;
         }
 
-        if (_option >= this.m.ActiveScreen.Options.len())
-        {
+        if (_option >= this.m.ActiveScreen.Options.len()) {
             return true;
         }
 
         local result = this.m.ActiveScreen.Options[_option].getResult(this);
 
-        if (typeof result != "string" && result <= 0)
-        {
-            if (this.isActive())
-            {
+        if (typeof result != "string" && result <= 0) {
+            if (this.isActive()) {
                 this.setScreen(null);
             }
 
@@ -111,31 +105,27 @@ this.encounter <- {
         return true;
     }
 
-    function setScreen( _screen, _restartIfAlreadyActive = true )
-    {
-        if (_screen == null)
-        {
-	        ::logInfo("yo, what the fuck?");
+    function setScreen(_screen, _restartIfAlreadyActive = true) {
+        if (_screen == null) {
+            ::logInfo("yo, what the fuck?");
             this.m.ActiveScreen = null;
             return;
         }
 
-        if (typeof _screen == "string")
-        {
+        if (typeof _screen == "string") {
             _screen = this.getScreen(_screen);
         }
 
         local oldID = "";
 
-        if (this.m.ActiveScreen != null)
-        {
+        if (this.m.ActiveScreen != null) {
             oldID = this.m.ActiveScreen.ID;
         }
 
         this.m.ActiveScreen = clone _screen;
         this.m.ActiveScreen.Options = [];
 
-        foreach( o in _screen.Options ) {
+        foreach (o in _screen.Options) {
             local option = {
                 Text = o.Text,
                 getResult = o.getResult
@@ -143,90 +133,90 @@ this.encounter <- {
             this.m.ActiveScreen.Options.push(option);
         }
 
-        if ("List" in this.m.ActiveScreen)
-        {
+        if ("List" in this.m.ActiveScreen) {
             this.m.ActiveScreen.List = [];
         }
 
-        if ("Characters" in this.m.ActiveScreen)
-        {
+        if ("Characters" in this.m.ActiveScreen) {
             this.m.ActiveScreen.Characters = [];
         }
 
-        if (("start" in this.m.ActiveScreen) && (_restartIfAlreadyActive || this.m.ActiveScreen.ID != oldID))
+        if (("start" in this.m.ActiveScreen)
+            && (_restartIfAlreadyActive || this.m.ActiveScreen.ID != oldID))
         {
             this.m.ActiveScreen.start(this);
         }
 
-	    if (!("Title" in this.m.ActiveScreen)) {
-		    this.m.ActiveScreen.Title <- "";
-	    }
-
+        if (!("Title" in this.m.ActiveScreen)) {
+            this.m.ActiveScreen.Title <- "";
+        }
 
         this.m.ActiveScreen.Title = this.getUITitle();
         this.m.ActiveScreen.Text = this.buildText(this.m.ActiveScreen.Text);
 
-	    ::logInfo("encounter activated: " + this.m.ActiveScreen.Title);
-	    //::logInfo("text is: " + this.m.ActiveScreen.Text);
+        ::logInfo("encounter activated: " + this.m.ActiveScreen.Title);
+        //::logInfo("text is: " + this.m.ActiveScreen.Text);
 
-        foreach( option in this.m.ActiveScreen.Options )
-        {
+        foreach (option in this.m.ActiveScreen.Options) {
             option.Text <- this.buildText(option.Text);
         }
     }
 
-    function buildText( _text, _full = true )
-    {
-        local brothers = this.World.getPlayerRoster().getAll();
+    function buildText(_text, _full = true) {
+        local brothers = ::World.getPlayerRoster().getAll();
         local brother1;
         local brother2;
         local notnagel;
         local slaves = [];
 
-        for( local i = 0; i < brothers.len(); i = ++i )
-        {
-            if (brothers[i].getSkills().hasTrait(::Legends.Trait.Player))
-            {
+        for (local i = 0; i < brothers.len(); i++) {
+            if (brothers[i].getSkills().hasTrait(::Legends.Trait.Player)) {
                 notnagel = brothers[i];
 
-                if (brothers.len() > 1)
+                if (brothers.len() > 1) {
                     brothers.remove(i);
-            }
-            else if (brothers.len() > 1 && brothers[i].getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-            {
+                }
+            } else if (brothers.len() > 1 && brothers[i].getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
                 slaves.push(brothers[i]);
                 brothers.remove(i);
             }
         }
 
-        local r = this.Math.rand(0, brothers.len() - 1);
+        local r = ::Math.rand(0, brothers.len() - 1);
         brother1 = brothers[r];
         brothers.remove(r);
 
-        if (brothers.len() != 0)
+        if (brothers.len() != 0) {
             brother2 = brothers[::Math.rand(0, brothers.len() - 1)];
-        else if (slaves.len() != 0)
+        } else if (slaves.len() != 0) {
             brother2 = slaves[::Math.rand(0, slaves.len() - 1)];
-        else if (notnagel != null)
-			brother2 = notnagel;
-		else
-			brother2 = brother1;
+        } else if (notnagel != null) {
+            brother2 = notnagel;
+        } else {
+            brother2 = brother1;
+        }
 
-		local nearestTown = ::Legends.S.getClosestSettlement();
+        local nearestTown = ::Legends.S.getClosestSettlement();
         local vars = [
-			["SPEECH_ON", "\n\n[color=#bcad8c]\""],
-			["SPEECH_START", "[color=#bcad8c]\""],
-			["SPEECH_OFF", "\"[/color]\n\n"],
-			["companyname", ::World.Assets.getName()],
-			["randomname", ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]],
-			["randomnoble", ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]],
-			["randombrother", brother1.getName()],
-			["randombrother2", brother2.getName()],
-        	["settlement", nearestTown == null ? "" : nearestTown.getName()]
+            ["SPEECH_ON", "\n\n[color=#bcad8c]\""],
+            ["SPEECH_START", "[color=#bcad8c]\""],
+            ["SPEECH_OFF", "\"[/color]\n\n"],
+            ["companyname", ::World.Assets.getName()],
+            [
+                "randomname",
+                ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
+            ],
+            [
+                "randomnoble",
+                ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]
+            ],
+            ["randombrother", brother1.getName()],
+            ["randombrother2", brother2.getName()],
+            ["settlement", nearestTown == null ? "" : nearestTown.getName()]
         ];
 
-	    ::Const.LegendMod.extendVarsWithPronouns(vars, brother1, "randombrother");
-	    ::Const.LegendMod.extendVarsWithPronouns(vars, brother2, "randombrother2");
+        ::Const.LegendMod.extendVarsWithPronouns(vars, brother1, "randombrother");
+        ::Const.LegendMod.extendVarsWithPronouns(vars, brother2, "randombrother2");
         // Dynamically handle pronouns for any additional actors in an encounter
         // For this to work, any encounter text using the placeholder pronoun must refer to the actor in the lowercase form of the actor's variable name
         // For example, the placeholder "%they_somebody%" will get the pronoun for this.m.Somebody
@@ -236,29 +226,30 @@ this.encounter <- {
             }
         }
 
-	    if (_full) {
-		    this.onPrepareVariables(vars);
-	    } else {
-			try { this.onPrepareVariables(vars); } catch(_) {}
-	    }
+        if (_full) {
+            this.onPrepareVariables(vars);
+        } else {
+            try {
+                this.onPrepareVariables(vars);
+            } catch (_) {
+            }
+        }
 
         return this.buildTextFromTemplate(_text, vars);
     }
 
-    function getUITitle()
-    {
-        if (this.m.ActiveScreen && "Title" in this.m.ActiveScreen)
+    function getUITitle() {
+        if (this.m.ActiveScreen && "Title" in this.m.ActiveScreen) {
             return this.m.ActiveScreen.Title;
-        else
+        } else {
             return this.buildText(this.m.Name);
+        }
     }
 
-    function getUIButtons()
-    {
+    function getUIButtons() {
         local buttons = [];
 
-        foreach( i, option in this.m.ActiveScreen.Options )
-        {
+        foreach (i, option in this.m.ActiveScreen.Options) {
             buttons.push({
                 id = i,
                 text = option.Text
@@ -268,9 +259,8 @@ this.encounter <- {
         return buttons;
     }
 
-    function getUIContent()
-    {
-	    local type = this.getType(); // this is for error catching only, not used
+    function getUIContent() {
+        local type = this.getType(); // this is for error catching only, not used
         local result = [];
         result.push({
             id = 1,
@@ -280,13 +270,11 @@ this.encounter <- {
         return result;
     }
 
-    function getUIList()
-    {
-	    local type = this.getType(); // this is for error catching only, not used
+    function getUIList() {
+        local type = this.getType(); // this is for error catching only, not used
         local ret = [];
 
-        if (this.m.ActiveScreen.List.len() != 0)
-        {
+        if (this.m.ActiveScreen.List.len() != 0) {
             local list = {
                 title = "",
                 items = this.m.ActiveScreen.List,
@@ -297,92 +285,84 @@ this.encounter <- {
         return ret;
     }
 
-    function getUIImage()
-    {
-	    local type = this.getType(); // this is for error catching only, not used
+    function getUIImage() {
+        local type = this.getType(); // this is for error catching only, not used
         return this.m.ActiveScreen.Image;
     }
 
-    function getUICharacterImage( _index = 0 )
-    {
-	    local type = this.getType(); // this is for error catching only, not used
-        if (("Characters" in this.m.ActiveScreen) && this.m.ActiveScreen.Characters.len() > _index)
+    function getUICharacterImage(_index = 0) {
+        local type = this.getType(); // this is for error catching only, not used
+        if (("Characters" in this.m.ActiveScreen)
+            && this.m.ActiveScreen.Characters.len() > _index) {
             return {
                 Image = this.m.ActiveScreen.Characters[_index],
                 IsProcedural = true
             };
+        }
 
-        if (("Banner" in this.m.ActiveScreen) && _index > 0)
+        if (("Banner" in this.m.ActiveScreen) && _index > 0) {
             return {
                 Image = this.m.ActiveScreen.Banner,
                 IsProcedural = false
             };
+        }
 
-	    return null;
-    }
-
-    function getUIMiddleOverlay()
-    {
         return null;
     }
 
-    function isValid(_settlement)
-    {
+    function getUIMiddleOverlay() {
+        return null;
+    }
+
+    function isValid(_settlement) {
         return false;
     }
 
-	function isVisible()
-	{
-		return true;
-	}
-
-    function isOnCooldown() {
-        return this.m.CooldownUntil > this.Time.getVirtualTimeF();
+    function isVisible() {
+        return true;
     }
 
-    function reset()
-    {
+    function isOnCooldown() {
+        return this.m.CooldownUntil > ::Time.getVirtualTimeF();
+    }
+
+    function reset() {
         this.m.CooldownUntil = 0;
         this.clear();
     }
 
-    function clear()
-    {
+    function clear() {
         this.onClear();
     }
 
-    function onPrepareVariables( _vars )
-    {
-    }
+    function onPrepareVariables(_vars) {}
 
-    function onClear()
-    {
-    }
+    function onClear() {}
 
-    function colorizeDone( _str )
-    {
+    function colorizeDone(_str) {
         return "[color=#30ac2a]" + _str + "[/color]";
     }
 
-    function importScreens( _screens )
-    {
+    function importScreens(_screens) {
         this.m.Screens.extend(_screens);
     }
 
-    function fire()
-    {
-		if (this.m.Screens.len() > 0)
-        	this.setScreen(this.m.Screens[0]);
+    function fire() {
+        if (this.m.Screens.len() > 0) {
+            this.setScreen(this.m.Screens[0]);
+        }
         this.m.CooldownUntil = this.Time.getVirtualTimeF() + this.m.Cooldown;
     }
 
-    function onSerialize( _out ) {
+    function onSerialize(_out) {
         _out.writeF32(this.m.CooldownUntil);
+        _out.writeF32(this.m.RollCooldownUntil);
+        _out.writeBool(this.m.IsAvailable);
     }
 
-    function onDeserialize( _in ) {
+    function onDeserialize(_in) {
         this.m.CooldownUntil = _in.readF32();
+        this.m.RollCooldownUntil = _in.readF32();
+        this.m.IsAvailable = _in.readBool();
     }
-
 };
-
