@@ -75,7 +75,13 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 				this.Characters.push(_event.m.Puppet.getImagePath());		
 				this.List.extend([
 					::Legends.EventList.changeMood(_event.m.Anatomist, -1.0, "Lost a finger in search of knowledge"),
-					::Legends.EventList.addInjury(_event.m.Anatomist, "injury.missing_finger"),
+					::Legends.EventList.addInjury(_event.m.Anatomist, [
+						{
+							ID = "injury.missing_finger",
+							Threshold = 0.0,
+							Script = "injury_permanent/missing_finger_injury"
+						}
+					]),
 					::Legends.EventList.changeBroExperience(_event.m.Anatomist, ::Math.rand(280, 550))
 				]);
 			}
