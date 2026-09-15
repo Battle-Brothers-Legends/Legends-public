@@ -1,7 +1,7 @@
 this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_liquor";
 		this.m.Name = "Liquor";
@@ -10,17 +10,17 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.m.Value = 300;
 		this.m.Amount = 30.0;
 		this.m.GoodForDays = 30;
+		this.m.SlotType = ::Const.ItemSlot.Bag;
+		this.m.IsAllowedInBag = true;
+		this.m.IsChangeableInBattle = true;
 	}
 
-	function getBuyPrice()
-	{
-		if (this.m.IsSold)
-		{
+	function getBuyPrice() {
+		if (this.m.IsSold) {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
+		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
 			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.brewery");
 			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
 		}
@@ -28,15 +28,12 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 		return this.item.getBuyPrice();
 	}
 
-	function getSellPrice()
-	{
-		if (this.m.IsBought)
-		{
+	function getSellPrice() {
+		if (this.m.IsBought) {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
+		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
 			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.brewery");
 			return this.Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
 		}
@@ -44,17 +41,30 @@ this.legend_liquor_item <- this.inherit("scripts/items/supplies/food_item", {
 		return this.item.getSellPrice();
 	}
 
-	function onPutIntoBag()
-	{
+	function onPutIntoBag() {
 		this.onEquip();
 	}
 
-	function onEquip()
-	{
-		this.food_item.onEquip();
+	function onEquip() {
+		this.item.onEquip();
+
+		if (this.m.AddGenericSkill) {
+			this.addGenericItemSkill();
+		}
+
+		if (::World.State.getPlayer() != null && this.m.StashModifier > 0) {
+			this.World.State.getPlayer().calculateStashModifier();
+		}
+
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkLiquor, function (_skill) {
 			_skill.setItem(this);
 		}.bindenv(this));
 	}
-});
 
+	function onUnequip() {
+		this.item.onUnequip();
+		if (::World.State.getPlayer() != null && this.m.StashModifier > 0) {
+			this.World.State.getPlayer().calculateStashModifier();
+		}
+	}
+});

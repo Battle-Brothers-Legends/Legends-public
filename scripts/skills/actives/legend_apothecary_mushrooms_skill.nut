@@ -5,7 +5,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 	{
 		this.legend_eat_skill.create();
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendApothecaryMushrooms);
-		this.m.Description = "Give these strange mushrooms to an adjacent ally, or eat them yourself to enter a state of trance-like state with otherworldy dodging and no sense of pain. May result in sickness. The effect will slowly wear off over 4 turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
+		this.m.Description = "Give these strange mushrooms to an adjacent ally, or eat them yourself to enter a state of trance-like state with otherworldly dodging and no sense of pain. May result in sickness. The effect will slowly wear off over 4 turns. Can not be used while engaged in melee, and anyone receiving the item needs to have a free bag slot.";
 	}
 
 	function getTooltip()
