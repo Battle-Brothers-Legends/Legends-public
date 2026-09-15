@@ -517,7 +517,6 @@ this.camp_manager <- {
 		local isEscorting = ::World.State.m.EscortedEntity != null && !::World.State.m.EscortedEntity.isNull();
 		if (!isEscorting) {
 			result.Encounters <- [];
-			::logDebug(this.m.CampEncounters)
 			local visibleEncounters = this.m.CampEncounters.filter(@(_,_enc) (_enc != null && _enc.isVisible()));
 			foreach(encounter in visibleEncounters) {
 				result.Encounters.push({
