@@ -222,8 +222,18 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			text = this.getValueString()
 		});
 
-		local layer = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body).getUpgrade(this.m.Type);
-		this.applyCompareTooltip(result, layer);
+		local equippedLayer = null;
+		if (::World.State.isInCharacterScreen() && this.getContainer() == null) {
+			// equippedLayer is the one equipped by currently selected character in Character Screen
+			local actor = ::World.State.m.CharacterScreen.getSelectedActor();
+			if (actor != null) {
+				local armor = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+				if (armor != null) {
+					equippedLayer = armor.getUpgrade(this.m.Type);
+				}
+			}
+		}	
+		this.applyCompareTooltip(result, equippedLayer);
 
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
