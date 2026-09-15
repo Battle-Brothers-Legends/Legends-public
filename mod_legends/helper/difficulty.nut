@@ -23,9 +23,9 @@
 	],
 	BroStrengthScaling = function (_broLevel, _count) {
 		return [
-			3 + ((_broLevel / 4) + (_broLevel - 1)) * 1.5,
-			10 + (((3 * _broLevel) / 4) + (_broLevel - 1)) * 2,
-			6 + (_count / 2) + ((_broLevel / 2) + (pow(_broLevel, 1.2))),
+			1.5 + 1.875 * _broLevel,
+			_count + 2 * _broLevel,
+			_count + ((_broLevel / 2) + (pow(_broLevel, 1.2))),
 			_count + (_broLevel + (pow(_broLevel, 1.2)))
 		][::World.Assets.getCombatDifficulty()] * ::World.Assets.getOrigin().getBrotherScaling();
 	},

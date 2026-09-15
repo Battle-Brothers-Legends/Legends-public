@@ -562,6 +562,7 @@
 - fixed mummies head armor showing empty bars and incorrect maximum values
 - fixed athletic sometimes using a different path than the calculated one
 - fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering, scouting and training aren't available
+- fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
