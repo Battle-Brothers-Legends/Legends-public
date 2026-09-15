@@ -1920,6 +1920,27 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 		}
 	}
 
+	// add optional dividers
+	if ('divider' in _data)
+	{
+		switch(_data.divider)
+		{
+			case 'top':
+			{
+				container.addClass('ui-control-tooltip-module-top-devider');
+			} break;
+			case 'bottom':
+			{
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
+			case 'both':
+			{
+				container.addClass('ui-control-tooltip-module-top-devider');
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
+		}
+	}
+
 	return container;
 };
 

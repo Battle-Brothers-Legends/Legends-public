@@ -18,6 +18,11 @@
     return (::Legends.S.getSign == "") ? "=" : ::Legends.S.getSign;
 }
 
+::Legends.S.addSign <- function(_value)
+{
+	return ::Legends.S.getSign(_value) + this.Math.abs(_value);
+}
+
 ::Legends.S.highlightForLightBackground <- function(_text)
 {
 	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue())	
