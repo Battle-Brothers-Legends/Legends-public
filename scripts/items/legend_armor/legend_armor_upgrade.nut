@@ -663,7 +663,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 						icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
 						text = "%_diff% Armor per 1 Weight \n(%_this_efficiency% vs %_other_efficiency%)",
 						param = [
-							["_diff", ::Legends.S.colorize(::Legends.S.getSign(compareMath) + format("%.1f", this.Math.abs(compareMath)), compareMath)],
+							["_diff", ::Legends.S.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
 							["_this_efficiency", format("%.1f", thisEfficiency)],
 							["_other_efficiency", format("%.1f", otherEfficiency)]
 						]
