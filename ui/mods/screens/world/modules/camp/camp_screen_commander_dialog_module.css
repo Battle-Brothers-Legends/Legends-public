@@ -764,3 +764,10 @@ However this would change if you decide to add a subtitle or a tab bar to your p
 	position: relative;
 	float: left;
 }
+
+.camp-screen .unable-to-work-bro-warning-icon {
+	position: absolute;
+    top: 0.5rem;
+    right: 0.0rem;
+	z-index: 10;
+}

@@ -130,7 +130,7 @@ this.camp_manager <- {
 			{
 				id = 9000,
 				icon = "ui/buttons/icon_time.png",
-				text = "You were encamped for " + this.Math.floor(this.getElapsedHours()) + " hours " + biomeText + ".",
+				text = "You were encamped for " + ::Math.floor(this.getElapsedHours()) + " hours " + biomeText + ".",
 			}
 		];
 
@@ -195,10 +195,8 @@ this.camp_manager <- {
 		{
 			this.m.StopTime = this.Time.getVirtualTimeF();
 
-			foreach( b in this.m.Tents )
-			{
-				if (b.Camping())
-				{
+			foreach( b in this.m.Tents ) {
+				if (b.Camping() && !b.isWorkDangerous()) {
 					b.completed();
 				}
 			}
@@ -246,27 +244,18 @@ this.camp_manager <- {
 			}
 		}
 
-		if (::World.getTime().Hours == this.m.LastHourUpdated)
-		{
+		if (::World.getTime().Hours == this.m.LastHourUpdated) {
 			return;
 		}
 
 		this.m.LastHourUpdated = ::World.getTime().Hours;
 		local updates = this.getCampingUpdateText();
 
-
-		if (this.m.IsEscorting)
-		{
+		if (this.m.IsEscorting) {
 			::World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
-		}
-		else if (this.m.IsCamping)
-		{
+		} else if (this.m.IsCamping) {
 			::World.TopbarDayTimeModule.showMessage("ENCAMPED", updates);
 		}
-		// else if (this.m.IsEscorting)
-		// {
-		// 	::World.TopbarDayTimeModule.showMessage("ESCORTING", updates);
-		// }
 	}
 
 	function getCampingUpdateText()
@@ -275,19 +264,16 @@ this.camp_manager <- {
 		local text;
 
 		updates.push("----------------------------------");
-		updates.push("Hours Encamped: " + this.Math.floor(this.getElapsedHours()));
+		updates.push("Hours Encamped: " + ::Math.floor(this.getElapsedHours()));
 		updates.push("----------------------------------");
 
 		foreach( b in this.m.Tents ) {
 			if (this.canBuildingWorkCurrently(b)) {
 				text = b.update();
 
-				if (text && typeof text == "string")
-				{
+				if (text && typeof text == "string") {
 					updates.push(text);
-				}
-				else if (text && typeof text == "array")
-				{
+				} else if (text && typeof text == "array") {
 					updates.extend(text);
 				}
 			}
@@ -375,6 +361,11 @@ this.camp_manager <- {
 	 * Updates encounters in the camp.
 	 */
 	function updateEncounters () {
+		local self = this;
+		local encounters = [::World.Encounters.m.CampEncounters[0]];
+		encounters.extend(::World.Encounters.m.CampEncounters.filter(@(_, _encounter) (_encounter.isValid(self) && _encounter.isVisible() && _encounter.checkAvailability())));
+		this.m.CampEncounters = encounters;
+		// below can be removed if above turns out to work fine
 		/*if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (i, e in this.m.CampEncounters) {
@@ -385,25 +376,25 @@ this.camp_manager <- {
 				::MSU.Array.removeByValue(this.m.CampEncounters, e);
 			}
 			return;
-		}*/
+		}
 
 		local list = [::World.Encounters.m.CampEncounters[0]];
 		foreach (e in ::World.Encounters.m.CampEncounters) {
-			if (e.isValid(this) && e.isVisible()) {
+			if (e.isValid(this) && e.isVisible() && e.checkAvailability()) {
 				list.push(e);
 			}
 		}
 
-		local count = this.Math.rand(::Legends.Encounters.CampMin, ::Legends.Encounters.CampMax);
+		local count = ::Math.rand(::Legends.Encounters.CampMin, ::Legends.Encounters.CampMax);
 		while(list.len() > count + 1) {
-			local r = this.Math.rand(1, list.len() - 1);
+			local r = ::Math.rand(1, list.len() - 1);
 			list.remove(r);
 		}
 		this.m.CampEncounters.clear();
 		foreach (e in list) {
 			this.m.CampEncounters.push(e);
 		}
-		//this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);
+		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);*/
 	}
 
 	function getContracts() {

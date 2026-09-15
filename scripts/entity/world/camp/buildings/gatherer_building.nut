@@ -104,7 +104,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 			res.push({
 				id = id,
 				icon = "ui/items/" + item.getIcon(),
-				text = "The gatherers bring " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent") + "."
+				text = "The gatherers brought " + ::Legends.S.colorizeAndPluralize(item.getName(), "positiveEvent") + "."
 			});
 			id = ++id;
 		}

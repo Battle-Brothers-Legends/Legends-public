@@ -9,7 +9,7 @@ this.legend_copper_ore_item <- this.inherit("scripts/items/trade/trading_good_it
 		this.m.Icon = "trade/legend_copper_ore.png";
 		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.ProducingBuildings = [
-			"attached_location.surface_iron_vein"
+			"attached_location.surface_copper_vein"
 		];
 		this.m.Value = 15;
 		this.m.ResourceValue = 1;

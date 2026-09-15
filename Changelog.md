@@ -25,7 +25,7 @@
 ### Necro Trio & Solo
 - Shuffled possible backgrounds that could spawn as undead for the purposes of several events
 - Most, if not all, necromancer events now decrease relationships with potential employers if the player accepts the rewards of said event(s)
-- Summoner loses 1 melee defence talent, gets 2 hitpoint defence talents.
+- Summoner loses 1 melee defense talent, gets 2 hitpoint defense talents.
 - Puppets shifted in behavior, now require 1 medicine per day to maintain and no food.
 > Not maintaining your puppets (and by extension, all zombies in your roster) with medicine will cause them to take 5-20 nonlethal damage per day until medicine is replenished. This alert will show up in their mood tooltip.
 - Starting puppet in necro trio now starts at level 2 as opposed to level 1.
@@ -60,7 +60,7 @@
 - new redback potion
 - new rock unhold potion
 - new stollwurm potion
-- new skinghoul potion
+- new skin ghoul potion
 - new white direwolf potion
 
 - Anatomists can no longer be scared of the dark
@@ -383,7 +383,7 @@
 - `Peasant Squire` - removed from comps
 - `Peasant Witchhunter` - removed from comps
 - Estoc removed from `Robber Barron` and `Bandit Leader`
-- Added dagger mastery to `Sswordmasters` and `Fencers` for the purposes of vanilla estoc compatibility
+- Added dagger mastery to `Swordmasters` and `Fencers` for the purposes of vanilla estoc compatibility
 
 ### Nomads
 - `Escaped Gladiator` - new enemy that will appear in nomad comps, more or less will feel familiar to regular Gladiators you meet in arena, but they aren't dressed like they're putting on a show
@@ -562,6 +562,7 @@
 - fixed mummies head armor showing empty bars and incorrect maximum values
 - fixed athletic sometimes using a different path than the calculated one
 - fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering, scouting and training aren't available
+- fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

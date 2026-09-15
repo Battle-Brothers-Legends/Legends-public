@@ -3,8 +3,8 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		Inventor = null,
 		Noeye = null
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "event.legend_inventor_prosthetic_eye";
 		this.m.Title = "During camp...";
 		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
@@ -17,21 +17,15 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Sounds good. Here\'s 600 crowns for the expenses. Take 5 tools from the cart.",
-					function getResult( _event )
-					{
-							return ::Math.rand(1, 100) <= 85 ? "C" : "D";
-					}
+					getResult = @(_event) ::Math.rand(1, 100) <= 85 ? "C" : "D"
 				},
 				{
 					Text = "We can\'t spare resources on this right now.",
-					function getResult( _event )
-					{
-						return "E";
-					}
+					getResult = @(_event) "E"
 				}
 			],
-			function start( _event )
-			{
+
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Noeye.getImagePath());
 			}
@@ -45,21 +39,15 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Sounds good. Here\'s 600 crowns for the expenses.",
-					function getResult( _event )
-					{
-							return "C";
-					}
+					getResult = @(_event) "C"
 				},
 				{
 					Text = "We can\'t spare resources on this right now.",
-					function getResult( _event )
-					{
-						return "E";
-					}
+					getResult = @(_event) "E"
 				}
 			],
-			function start( _event )
-			{
+
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Noeye.getImagePath());
 			}
@@ -73,21 +61,15 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "You look.. good?",
-					getResult = @(_event) 0
+					getResult = @(_event)0
 				}
 			],
-			function start( _event )
-			{
+
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Noeye.getImagePath());
-				this.World.Assets.addMoney(-600);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]600[/color] Crowns"
-				});
-
-				this.World.Assets.addArmorParts(-5);
+				this.List.push(::Legends.EventList.changeMoney(-600));
+				::World.Assets.addArmorParts(-5);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
@@ -102,13 +84,13 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 					});
 				}.bindenv(this));
 
-				local missing_eye_bye = this.new("scripts/skills/injury_permanent/missing_eye_injury");
+				local missing_eye_bye = ::new("scripts/skills/injury_permanent/missing_eye_injury");
 				_event.m.Noeye.getSkills().removeByID("injury.missing_eye");
 				_event.m.Noeye.getSprite("permanent_injury_4").Visible = false;
 				this.List.push({
-						id = 10,
-						icon = missing_eye_bye.getIcon(),
-						text = _event.m.Noeye.m.Name + " no longer has a " + missing_eye_bye.m.Name
+					id = 10,
+					icon = missing_eye_bye.getIcon(),
+					text = _event.m.Noeye.m.Name + " no longer has a " + missing_eye_bye.m.Name
 				});
 
 				_event.m.Inventor.improveMood(2.0, "Created a " + trait.m.Name + " for " + _event.m.Noeye.m.Name);
@@ -124,36 +106,30 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "What have you done?!",
-					getResult = @(_event) 0
+					getResult = @(_event)0
 				}
 			],
-			function start( _event )
-			{
+
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Noeye.getImagePath());
-				this.World.Assets.addMoney(-600);
-				this.List.push({
-					id = 10,
-					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]600[/color] Crowns"
-				});
-
-				this.World.Assets.addArmorParts(-5);
+				this.List.push(::Legends.EventList.changeMoney(-600));
+				::World.Assets.addArmorParts(-5);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
 					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
-				if (!_event.m.Noeye.getSkills().hasSkill("injury.brain_damage"))
-				{
-					local brain_damage_yum = this.new("scripts/skills/injury_permanent/brain_damage_injury");
-					_event.m.Noeye.getSkills().add(brain_damage_yum);
-					this.List.push({
-							id = 10,
-							icon = brain_damage_yum.getIcon(),
-							text = _event.m.Noeye.m.Name + " suffers " + brain_damage_yum.m.Name
-					});
+				local brain_damage_yum = ::new("scripts/skills/injury_permanent/brain_damage_injury");
+				if (!_event.m.Noeye.getSkills().hasSkill("injury.brain_damage")) {
+					::Legends.EventList.addInjury(_event.m.Noeye, [
+						{
+							ID = "injury.brain_damage",
+							Threshold = 0.0,
+							Script = "injury_permanent/brain_damage_injury"
+						}
+					]);
 				}
 
 				_event.m.Inventor.worsenMood(this.Const.MoodChange.PermanentInjury, "Caused " + brain_damage_yum.m.Name + " in " + _event.m.Noeye.m.Name);
@@ -169,76 +145,43 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 			Options = [
 				{
 					Text = "Maybe later?",
-					getResult = @(_event) 0
+					getResult = @(_event)0
 				}
 			],
-			function start( _event )
-			{
+
+			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Noeye.getImagePath());
 			}
 		});
 	}
 
-	function onUpdateScore()
-	{
+	function onUpdateScore() {
 		this.m.Score = 0;
 		return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		local inventor_candidates = [];
-		local noeye_candidates = [];
-
-
-		if (this.World.Assets.getMoney() < 2000 || this.World.Assets.getArmorParts() < 40)
-		{
+		if (::World.Assets.getMoney() < 2000 || ::World.Assets.getArmorParts() < 40) {
 			return;
 		}
 
+		local brothers = ::World.getPlayerRoster().getAll();
+		local inventor_candidates = brothers.filter(@(_, _bro) (_bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy)));
 
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
-			{
-				inventor_candidates.push(bro);
-			}
-		}
-		if (inventor_candidates.len() < 1)
-		{
-			return;
-		}
-		else
-		{
+		if (inventor_candidates.len() > 0) {
 			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];
 		}
 
-
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasSkill("injury.missing_eye") && !bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEye))
-			{
-				noeye_candidates.push(bro);
-			}
-		}
-		if (noeye_candidates.len() < 1)
-		{
-			return;
-		}
-		else
-		{
+		local noeye_candidates = brothers.filter(@(_, _bro) (_bro.getSkills().hasSkill("injury.missing_eye") && !_bro.getSkills().hasTrait(::Legends.Trait.LegendProstheticEye)));
+		if (noeye_candidates.len() > 0) {
 			this.m.Noeye = noeye_candidates[::Math.rand(0, noeye_candidates.len() - 1)];
 		}
 
-
-		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / this.Const.LevelXP.len());
+		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / ::Const.LevelXP.len());
 	}
 
-	function onPrepare()
-	{
-	}
+	function onPrepare() {}
 
-	function onPrepareVariables( _vars )
-	{
+	function onPrepareVariables(_vars) {
 		_vars.push([
 			"inventor",
 			this.m.Inventor.m.Name
@@ -249,15 +192,14 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		]);
 	}
 
-	function onDetermineStartScreen()
-	{
-		if (this.m.Noeye.getSkills().hasSkill("injury.brain_damage"))
+	function onDetermineStartScreen() {
+		if (this.m.Noeye.getSkills().hasSkill("injury.brain_damage")) {
 			return "B";
+		}
 		return "A";
 	}
 
-	function onClear()
-	{
+	function onClear() {
 		this.m.Inventor = null;
 		this.m.Noeye = null;
 	}

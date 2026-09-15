@@ -297,6 +297,12 @@ var TooltipIdentifier =
 		}
 	},
 
+	CampScreen: {
+		CommanderModule: {
+			UnableToWorkWarning: 'camp-screen.commander-module.UnableToWorkWarning'
+		}
+	},
+
 	RelationsScreen:
 	{
 		Relations: 'world-relations-screen.Relations',

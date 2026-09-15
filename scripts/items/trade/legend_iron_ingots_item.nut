@@ -6,7 +6,7 @@ this.legend_iron_ingots_item <- this.inherit("scripts/items/trade/trading_good_i
 		this.m.ID = "misc.legend_iron_ingots";
 		this.m.Name = "Iron Ingots";
 		this.m.Description = "Iron smolten and cast into ingots for easy transportation. Traders will pay good coin for this.";
-		this.m.Icon = "trade/legend_iron_bars.png";
+		this.m.Icon = "trade/legend_iron_ingots.png";
 		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.ProducingBuildings = [
 			"attached_location.surface_iron_vein"

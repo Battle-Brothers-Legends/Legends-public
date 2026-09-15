@@ -63,7 +63,7 @@
 					MaxGuardsWeight = 100,
 					Guards = [
 						{
-							Type = this.Const.World.Spawn.Troops.Mortar, //addmittedly the weight function is dumb to add here im just sraight copying guards from necromancers so every engineer has a mrotar
+							Type = this.Const.World.Spawn.Troops.Mortar, //admittedly the weight function is dumb to add here im just straight copying guards from necromancers so every engineer has a mortar
 							Cost = 30,
 							function Weight(scale) {
 								return 100;

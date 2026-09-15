@@ -7,6 +7,7 @@ this.legend_recruitment_vala_encounter <- this.inherit("scripts/encounters/encou
         this.m.Type = "encounter.legend_recruitment_vala_encounter";
         this.m.Name = ::Const.Strings.randomCityEncounterName();
 		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
+		this.m.SpawnChance = 75;
 	}
 
     function createScreens() {

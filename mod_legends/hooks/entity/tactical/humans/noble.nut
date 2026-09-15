@@ -3,14 +3,7 @@
 	local create = o.create;
 	o.create = function(){
 		create();
-		this.m.Name = this.generateName();
-		if (this.randomizeHumanGender() == 1) { // these are the nobles in faction screen, employers etc.
-			this.setGender(1);
-		}
-	}
-
-	o.generateName = function()	{
-		return this.Const.Strings.NobleTitles[this.Math.rand(0, this.Const.Strings.NobleTitles.len() - 1)] + " " + (this.getGender() != 1 ? this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)] : this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)]);
+		this.m.Name = ::Const.Strings.NobleTitles[::Math.rand(0, ::Const.Strings.NobleTitles.len() - 1)] + " " + (this.getGender() != 1 ? ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)] : ::Const.Strings.CharacterNamesFemale[::Math.rand(0, ::Const.Strings.CharacterNamesFemale.len() - 1)]); // these are the nobles in faction screen, employers etc.
 	}
 
 	local onInit = o.onInit;
