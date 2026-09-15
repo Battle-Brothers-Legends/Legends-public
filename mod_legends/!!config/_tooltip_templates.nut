@@ -11,7 +11,10 @@ local colors = [
 	["positiveEvent", ::Const.UI.Color.PositiveEventValue],
 	["negativeEvent", ::Const.UI.Color.NegativeEventValue],
 	["damage", ::Const.UI.Color.DamageValue],
-	["positiveLighter", ::Const.UI.Color.PositiveLighter]
+	["positiveLighter", ::Const.UI.Color.PositiveLighter],
+	["highlightLightBg", ::Const.UI.Color.getHighlightLightBackgroundValue()],
+	["highlightDarkBg", ::Const.UI.Color.getHighlightDarkBackgroundValue()],
+	["fadeDarkBg", ::Const.UI.Color.getFadeDarkBackgroundValue()]
 ];
 
 ::Legends.tooltip <- function (_text, _vars = [])  {
