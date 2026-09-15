@@ -9,8 +9,8 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/martial_march_circle.png";
 		this.m.IconMini = "martial_march_mini";
 		this.m.Overlay = "martial_march_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -30,7 +30,7 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 1));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 1));
 			this.m.IsApplied = true;
 		}
 	}
@@ -40,7 +40,7 @@ this.legend_martial_march_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 1));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 1));
 			this.m.IsApplied = true;
 		}
 	}

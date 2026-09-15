@@ -23,10 +23,10 @@ this.legend_helm_full_named <- this.inherit("scripts/items/helmets/named/named_h
 		local variants = [
 			1
 		];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 10000;
 		this.m.Condition = 370;
 		this.m.ConditionMax = 370;

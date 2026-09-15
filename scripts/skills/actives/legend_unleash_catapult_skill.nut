@@ -14,8 +14,8 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCatapult);
 		this.m.Description = "Summon a catapult. Needs a free tile adjacent.";
 		this.m.SoundOnUse = ["sounds/enemies/unhold_idle_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -84,8 +84,8 @@ this.legend_unleash_catapult_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedCatapultEffect);
-		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
 
 		return true;

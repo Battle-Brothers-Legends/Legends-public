@@ -2,7 +2,7 @@
 {
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.investigate_cemetery_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.investigate_cemetery_contract))
 		{
 			return;
 		}
@@ -12,14 +12,14 @@
 			return;
 		}
 
-		if (!this.World.FactionManager.isUndeadScourge() && this.World.getTime().Days > 3 && this.Math.rand(1, 100) > 75)
+		if (!::World.FactionManager.isUndeadScourge() && ::World.getTime().Days > 3 && ::Math.rand(1, 100) > 75)
 		{
 			return;
 		}
 
 		local myTile = _faction.getSettlements()[0].getTile();
 		this.m.Target = null;
-		local undead = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements();
+		local undead = ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements();
 
 		foreach( b in undead )
 		{
@@ -37,7 +37,7 @@
 
 		this.m.Score = 1;
 		
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
 		{
 			this.m.Score = 10;
 		}

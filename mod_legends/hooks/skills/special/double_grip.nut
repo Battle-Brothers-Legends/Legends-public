@@ -20,7 +20,7 @@
 	o.getTooltip = function()
 	{
 		local tooltip = getTooltip();
-		local bonus = this.Math.floor(this.getContainer().getActor().getCurrentProperties().MeleeSkill * 0.25);
+		local bonus = ::Math.floor(this.getContainer().getActor().getCurrentProperties().MeleeSkill * 0.25);
 		tooltip.push({
 			id = 6,
 			type = "text",
@@ -81,8 +81,8 @@
 		local actor = this.getContainer().getActor();
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
-		local main = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local main = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasXbow = off != null && ::MSU.String.endsWith(off.getID(), "_hand_crossbow");
 		local hasNet = off != null && ::MSU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow || hasNet) && main.isDoubleGrippable();
@@ -94,7 +94,7 @@
 		onUpdate(_properties);
 		if (this.canDoubleGrip())
 		{
-			_properties.DamageDirectAdd += this.Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
+			_properties.DamageDirectAdd += ::Math.floor(_properties.MeleeSkill * 0.25) * 0.01;
 		}
 	}
 });

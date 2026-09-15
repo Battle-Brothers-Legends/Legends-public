@@ -24,31 +24,31 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			"the Overseer"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Bravery
 		];
-		this.m.Ethnicity = this.Math.rand(1, 2); //is southern
+		this.m.Ethnicity = ::Math.rand(1, 2); //is southern
 		if (this.m.Ethnicity == 1)
 		{
-			this.m.Bodies = this.Const.Bodies.SouthernMuscular;
-			this.m.Faces = this.Const.Faces.SouthernMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.Southern;
+			this.m.Bodies = ::Const.Bodies.SouthernMuscular;
+			this.m.Faces = ::Const.Faces.SouthernMale;
+			this.m.Hairs = ::Const.Hair.SouthernMale;
+			this.m.HairColors = ::Const.HairColors.Southern;
 		}
 		else
 		{
-			this.m.Bodies = this.Const.Bodies.AfricanMale;
-			this.m.Faces = this.Const.Faces.AfricanMale;
-			this.m.Hairs = this.Const.Hair.SouthernMale;
-			this.m.HairColors = this.Const.HairColors.African;
+			this.m.Bodies = ::Const.Bodies.AfricanMale;
+			this.m.Faces = ::Const.Faces.AfricanMale;
+			this.m.Hairs = ::Const.Hair.SouthernMale;
+			this.m.HairColors = ::Const.HairColors.African;
 		}
-		this.m.Beards = this.Const.Beards.Southern;
+		this.m.Beards = ::Const.Beards.Southern;
 		this.m.BeardChance = 90;
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		//---
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 
 		this.m.CustomPerkTree = [
 			[
@@ -134,20 +134,20 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.RangedSkill] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.RangedSkill] = 2;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		//items
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.Standard.dark_southern_helmet_00],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.None],
 			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[1, ::Legends.Armor.Standard.dark_southern_armor_00]
 		]));

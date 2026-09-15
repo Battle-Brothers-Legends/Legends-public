@@ -7,7 +7,7 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 		this.m.Name = "Natural Order";
 		this.m.Icon = "ui/traits/legend_natural_order_trait.png";
 		this.m.Description = "Nature is not for the faint of heart — those that dwell on the fringes of society not only thrive in the danger, but know the natural order of things will eat them alive. Quite literally.";
-		this.m.Order = this.Const.SkillOrder.Trait - 2;
+		this.m.Order = ::Const.SkillOrder.Trait - 2;
 		this.m.Excluded = [];
 	}
 
@@ -55,11 +55,11 @@ this.legend_beastslayers_trait <- this.inherit("scripts/skills/traits/character_
 		}
 
 		local fightingBeasts = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Beasts || enemy.getType() == this.Const.EntityType.BarbarianUnhold || enemy.getType() == this.Const.EntityType.BarbarianUnholdFrost)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Beasts || enemy.getType() == ::Const.EntityType.BarbarianUnhold || enemy.getType() == ::Const.EntityType.BarbarianUnholdFrost)
 			{
 				fightingBeasts = true;
 				break;

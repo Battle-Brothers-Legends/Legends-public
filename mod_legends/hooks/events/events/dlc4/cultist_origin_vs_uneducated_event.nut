@@ -34,10 +34,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() != "scenario.cultists" && this.World.Assets.getOrigin().getID() != "scenario.legends_necro" )
+		if (::World.Assets.getOrigin().getID() != "scenario.cultists" && ::World.Assets.getOrigin().getID() != "scenario.legends_necro" )
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 			return;
@@ -56,8 +56,8 @@
 				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendBerserker):
 				case ::Legends.Backgrounds.has(bro, ::Legends.Background.LegendDonkey):
 					continue;
-				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist):
-				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist):
+				case bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist):
+				case bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist):
 					{
 						cultist_candidates.push(bro);
 						continue;
@@ -69,9 +69,9 @@
 					continue;
 				}
 				case bro.getSkills().hasTrait(::Legends.Trait.Bright):
-				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble):
-				case bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated):
-				case !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn):
+				case bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble):
+				case bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated):
+				case !bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn):
 					continue;
 			}
 			uneducated_candidates.push(bro);
@@ -80,8 +80,8 @@
 		if (cultist_candidates.len() == 0 || uneducated_candidates.len() == 0)
 			return;
 
-		this.m.Cultist = cultist_candidates[this.Math.rand(0, cultist_candidates.len() - 1)];
-		this.m.Uneducated = uneducated_candidates[this.Math.rand(0, uneducated_candidates.len() - 1)];
+		this.m.Cultist = cultist_candidates[::Math.rand(0, cultist_candidates.len() - 1)];
+		this.m.Uneducated = uneducated_candidates[::Math.rand(0, uneducated_candidates.len() - 1)];
 		this.m.Score = cultist_candidates.len() * 9;
 	}
 })

@@ -4,8 +4,8 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswPoison);
 		this.m.Description = "Rune Sigil: Poison";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsHidden = true;
@@ -39,8 +39,8 @@ this.legend_RSW_poison <- this.inherit("scripts/skills/skill", {
 				"sounds/combat/poison_applied_02.wav"
 			];
 
-			this.Sound.play(poisonSound[this.Math.rand(0, poisonSound.len() - 1)], this.Const.Sound.Volume.Actor, _targetEntity.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned.");
+			::Sound.play(poisonSound[::Math.rand(0, poisonSound.len() - 1)], ::Const.Sound.Volume.Actor, _targetEntity.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is poisoned.");
 		}
 
 		local runePoison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendRswPoisonEffect);

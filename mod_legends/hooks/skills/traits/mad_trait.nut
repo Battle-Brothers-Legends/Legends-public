@@ -47,23 +47,23 @@
 		local actor = this.getContainer().getActor();
 		local morale = actor.getMoraleState();
 
-		local rand = this.Math.rand(1, 2) == 1 ? -1 : 1;
-		if (morale == this.Const.MoraleState.Fleeing || morale == this.Const.MoraleState.Breaking) {
-			a.checkMorale(1, this.Math.rand(-15, 15), this.Const.MoraleCheckType.Default);
+		local rand = ::Math.rand(1, 2) == 1 ? -1 : 1;
+		if (morale == ::Const.MoraleState.Fleeing || morale == ::Const.MoraleState.Breaking) {
+			a.checkMorale(1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
-		else if (morale == this.Const.MoraleState.Confident) {
-			a.checkMorale(-1, this.Math.rand(-15, 15), this.Const.MoraleCheckType.Default);
+		else if (morale == ::Const.MoraleState.Confident) {
+			a.checkMorale(-1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		else {
-			a.checkMorale(rand, this.Math.rand(-15, 15), this.Const.MoraleCheckType.Default);
+			a.checkMorale(rand, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		local newMorale = actor.getMoraleState();
-		if (morale != this.Const.MoraleState.Fleeing && morale != newMorale) { // it'll say he rallied so no point spamming the log
+		if (morale != ::Const.MoraleState.Fleeing && morale != newMorale) { // it'll say he rallied so no point spamming the log
 			if (newMorale - morale > 0) {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the better");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the better");
 			}
 			else {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the worse");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + " experienced a wild mood swing for the worse");
 			}
 		}
 	}

@@ -6,7 +6,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_inventor_prosthetic_ear";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 25 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 25 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_inventor_general.png[/img]%inventor% bumps your side and points to %nofoot%\'s ear. %SPEECH_ON% It\'s left a nasty scar, but I reckon I could make life a little easier for them — all I need is a little scratch and some supplies from the stash...%SPEECH_OFF%",
@@ -40,18 +40,18 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Nofoot.getImagePath());
-				this.World.Assets.addMoney(-350);
+				::World.Assets.addMoney(-350);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]350[/color] Crowns"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]350[/color] Crowns"
 				});
 
-				this.World.Assets.addArmorParts(-5);
+				::World.Assets.addArmorParts(-5);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
 				local trait = ::Legends.Traits.grant(_event.m.Nofoot, ::Legends.Trait.LegendProstheticEar, function(_trait) {
@@ -95,12 +95,12 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		this.m.Score = 0;
 		return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local inventor_candidates = [];
 		local nofoot_candidates = [];
 
 
-		if (this.World.Assets.getMoney() < 800 || this.World.Assets.getArmorParts() < 20) {
+		if (::World.Assets.getMoney() < 800 || ::World.Assets.getArmorParts() < 20) {
 			return;
 		}
 
@@ -129,7 +129,7 @@ this.legend_inventor_prosthetic_ear <- this.inherit("scripts/events/event", {
 		}
 
 
-		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / this.Const.LevelXP.len());
+		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / ::Const.LevelXP.len());
 	}
 
 	function onPrepare() {

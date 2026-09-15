@@ -3,7 +3,7 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function ()
 	{
-		if (this.World.Ambitions.getDone() == 0 && (this.World.Assets.getOrigin().getID() != "scenario.deserters" || this.World.Assets.getOrigin().getID() != "scenario.raiders" || this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves"))
+		if (::World.Ambitions.getDone() == 0 && (::World.Assets.getOrigin().getID() != "scenario.deserters" || ::World.Assets.getOrigin().getID() != "scenario.raiders" || ::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves"))
 			return;
 		onUpdateScore();
 	}

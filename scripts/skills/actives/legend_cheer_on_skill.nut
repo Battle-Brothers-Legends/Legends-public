@@ -5,8 +5,8 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCheerOn);
 		this.m.Description = "Give it your all! Put your support behind an ally, granting them two Actions Points. Targets can only be inspired once per turn and you must be adjacent.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -56,7 +56,7 @@ this.legend_cheer_on_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) || mainhand.getID() == "weapon.player_banner")
+		if (mainhand.isWeaponType(::Const.Items.WeaponType.Musical) || mainhand.getID() == "weapon.player_banner")
 		{
 			return true;
 		}

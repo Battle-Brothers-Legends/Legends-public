@@ -19,9 +19,9 @@
 			::Legends.Traits.getID(::Legends.Trait.IronLungs),
 			::Legends.Traits.getID(::Legends.Trait.Optimist)
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
 	o.getTooltip = function () {

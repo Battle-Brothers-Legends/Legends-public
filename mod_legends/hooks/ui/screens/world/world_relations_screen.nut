@@ -2,11 +2,11 @@
 
 	o.convertFactionsToUIData = function () {
 		local result = {
-			BusinessReputation = this.World.Assets.getBusinessReputationAsText(),
-			MoralReputation = this.World.Assets.getMoralReputationAsText(),
+			BusinessReputation = ::World.Assets.getBusinessReputationAsText(),
+			MoralReputation = ::World.Assets.getMoralReputationAsText(),
 			Factions = []
 		};
-		local factions = clone this.World.FactionManager.getFactions(true);
+		local factions = clone ::World.FactionManager.getFactions(true);
 		factions.sort(this.onSortFactions);
 
 		foreach (f in factions) {
@@ -23,7 +23,7 @@
 				Motto = f.getMotto(),
 				Traits = ::Const.GetFactionNobleTraitsForRelationsScreen(f),
 				Relation = f.getPlayerRelationAsText(),
-				RelationNum = this.Math.round(f.getPlayerRelation()),
+				RelationNum = ::Math.round(f.getPlayerRelation()),
 				IsHostile = !f.isAlliedWithPlayer(),
 				Characters = []
 			};

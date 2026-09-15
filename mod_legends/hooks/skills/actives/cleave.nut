@@ -52,7 +52,7 @@
 		if (this.m.IsScytheCleave && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0; 
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0; 
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {
@@ -65,7 +65,7 @@
 	}
 
 	o.onUse = function ( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectChop);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
 		local success = this.attackEntity(_user, _targetTile.getEntity());

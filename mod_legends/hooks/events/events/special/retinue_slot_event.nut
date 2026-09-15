@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 33.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 33.0 * ::World.getTime().SecondsPerDay;
 
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {

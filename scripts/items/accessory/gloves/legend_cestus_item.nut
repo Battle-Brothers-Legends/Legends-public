@@ -14,7 +14,7 @@ this.legend_cestus_item <- this.inherit("scripts/items/accessory/gloves/legend_g
 		this.m.ID = "accessory.legend_cestus";
 		this.m.Name = "Gladiator\'s Cestus";
 		this.m.Description = "A pair of gloves, made from studded leather straps, enclosing and protecting a fighter\'s lower arm and fist. Used to deal more powerful punches.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
 		this.m.IconLarge = "";

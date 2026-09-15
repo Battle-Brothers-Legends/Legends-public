@@ -2,9 +2,9 @@ this.legend_noble_footman_veteran <- this.inherit("scripts/entity/tactical/legen
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendNobleGuard;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendNobleGuard.XP;
+		this.m.Type = ::Const.EntityType.LegendNobleGuard;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendNobleGuard.XP;
 		this.legend_randomized_unit_noble_abstract.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
@@ -19,7 +19,7 @@ this.legend_noble_footman_veteran <- this.inherit("scripts/entity/tactical/legen
 	{
 		this.legend_randomized_unit_noble_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendNobleGuard);
+		b.setValues(::Const.Tactical.Actor.LegendNobleGuard);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -43,10 +43,10 @@ this.legend_noble_footman_veteran <- this.inherit("scripts/entity/tactical/legen
 	function setMale()
     {
 		this.setGender(0);
-        this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.Military;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = this.Const.Beards.Tidy;  
+        this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.Military;
+		this.m.HairColors = ::Const.HairColors.Old;
+		this.m.Beards = ::Const.Beards.Tidy;  
     }
 
 

@@ -2,10 +2,10 @@
 {
 	o.onInit = function ()
 	{
-		local bodies = this.Const.Bodies.SouthernMale;
-		local heads = this.Const.Faces.SouthernMale;
-		local beards = this.Const.Beards.Southern;
-		local hairs = this.Const.Hair.SouthernMale;
+		local bodies = ::Const.Bodies.SouthernMale;
+		local heads = ::Const.Faces.SouthernMale;
+		local beards = ::Const.Beards.Southern;
+		local hairs = ::Const.Hair.SouthernMale;
 		local armors = [
 				"bust_desert_noble_01",
 				"bust_desert_noble_02",
@@ -39,36 +39,36 @@
 			"helmet_desert_noble_03"
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.Math.rand(1, 100) >= 50)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && ::Math.rand(1, 100) >= 50)
 		{
-			bodies = this.Const.Bodies.SouthernFemale;
-			heads = this.Const.Faces.SouthernFemale;
-			hairs = this.Const.Hair.SouthernFemale;
+			bodies = ::Const.Bodies.SouthernFemale;
+			heads = ::Const.Faces.SouthernFemale;
+			hairs = ::Const.Hair.SouthernFemale;
 			beards = null;
 		}
 
 
 
 		local body = this.addSprite("body");
-		body.setBrush(bodies[this.Math.rand(0, bodies.len() - 1)]);
+		body.setBrush(bodies[::Math.rand(0, bodies.len() - 1)]);
 		body.varyColor(0.05, 0.05, 0.05);
 		body.varySaturation(0.1);
 		local armor = this.addSprite("armor");
 
-		if (this.Math.rand(1, 100) <= 95)
+		if (::Math.rand(1, 100) <= 95)
 		{
-			armor.setBrush(armors[this.Math.rand(0, armors.len() - 1)]);
+			armor.setBrush(armors[::Math.rand(0, armors.len() - 1)]);
 		}
 
 		local head = this.addSprite("head");
-		head.setBrush(heads[this.Math.rand(0, heads.len() - 1)]);
+		head.setBrush(heads[::Math.rand(0, heads.len() - 1)]);
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local beard = this.addSprite("beard");
 
-		if (beards != null && this.Math.rand(1, 100) <= 60)
+		if (beards != null && ::Math.rand(1, 100) <= 60)
 		{
-			beard.setBrush("beard_brown_" + beards[this.Math.rand(0, beards.len() - 1)]);
+			beard.setBrush("beard_brown_" + beards[::Math.rand(0, beards.len() - 1)]);
 			beard.Saturation = 0.8;
 			beard.setBrightness(0.4);
 		}
@@ -78,11 +78,11 @@
 
 		if (!beard.HasBrush)
 		{
-			helmet.setBrush(helmets[this.Math.rand(0, helmets.len() - 1)]);
+			helmet.setBrush(helmets[::Math.rand(0, helmets.len() - 1)]);
 		}
-		else if (this.Math.rand(1, 100) <= 95)
+		else if (::Math.rand(1, 100) <= 95)
 		{
-			hair.setBrush("hair_brown_" + hairs[this.Math.rand(0, hairs.len() - 1)]);
+			hair.setBrush("hair_brown_" + hairs[::Math.rand(0, hairs.len() - 1)]);
 			hair.Saturation = 0.8;
 			hair.setBrightness(0.4);
 		}

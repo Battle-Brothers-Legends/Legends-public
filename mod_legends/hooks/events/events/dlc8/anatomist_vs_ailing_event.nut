@@ -29,7 +29,7 @@
 
 					while (num_new_traits > 0 && new_traits.len() > 0)
 					{
-						local newTrait = new_traits.remove(this.Math.rand(0, new_traits.len() - 1));
+						local newTrait = new_traits.remove(::Math.rand(0, new_traits.len() - 1));
 
 						if (!::Legends.Traits.has(_event.m.Ailing, newTrait))
 						{

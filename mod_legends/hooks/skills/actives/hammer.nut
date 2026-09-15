@@ -36,7 +36,7 @@
 	local onAfterUpdate = o.onAfterUpdate;
 	o.onAfterUpdate = function ( _properties ) {
 		if (this.m.IsMordhau || this.m.IsGreatMordhau)
-			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		else
 			return onAfterUpdate(_properties);
 	}
@@ -57,7 +57,7 @@
 		if (!this.m.IsMordhau)
 			return;
 
-		if (_bodyPart != this.Const.BodyPart.Head)
+		if (_bodyPart != ::Const.BodyPart.Head)
 			return;
 
 		if (::Legends.S.isEntityNullOrDead(_targetEntity)) {
@@ -67,7 +67,7 @@
 		local actor = this.getContainer().getActor();
 		local effect = this.m.IsGreatMordhau ? ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered) : ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(effect.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
+			::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 	}
 });

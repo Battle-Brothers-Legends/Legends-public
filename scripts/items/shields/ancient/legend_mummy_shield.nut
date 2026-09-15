@@ -16,7 +16,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 			3,
 			4
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 200;
 		this.m.MeleeDefense = 8;
@@ -42,7 +42,7 @@ this.legend_mummy_shield <- this.inherit("scripts/items/shields/shield", {
 		this.shield.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
-			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+			_effect.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);
 			this.m.SkillPtrs.push(_effect);
 		}.bindenv(this));

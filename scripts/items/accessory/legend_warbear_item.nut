@@ -42,12 +42,12 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 	function create()
 	{
 		this.accessory.create();
-		this.m.Variant = this.Math.rand(1, 4);
+		this.m.Variant = ::Math.rand(1, 4);
 		this.updateVariant();
 		this.m.ID = "accessory.legend_warbear";
-		this.m.Name = this.Const.Strings.WarbearNames[this.Math.rand(0, this.Const.Strings.WarbearNames.len() - 1)] + " the Bear";
+		this.m.Name = ::Const.Strings.WarbearNames[::Math.rand(0, ::Const.Strings.WarbearNames.len() - 1)] + " the Bear";
 		this.m.Description = "A strong and wild bear, not fully tamed, but powerful in battle. Can be unleashed to devastating effect, perhaps not near your allies.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
@@ -57,7 +57,7 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 
 	function playInventorySound( _eventType )
 	{
-		if (this.Math.rand(1, 100) <= 50) {
+		if (::Math.rand(1, 100) <= 50) {
 			::Sound.play("sounds/enemies/bear_idle_01.wav", ::Const.Sound.Volume.Inventory);
 		}
 	}
@@ -99,12 +99,12 @@ this.legend_warbear_item <- this.inherit("scripts/items/accessory/accessory", {
 	{
 		if (!this.isUnleashed() && _onTile != null)
 		{
-			local entity = this.Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
+			local entity = ::Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
 			entity.setItem(this);
 			entity.setName(this.getName());
 			this.setEntity(entity);
-			entity.setFaction(this.Const.Faction.PlayerAnimals);
-			this.Sound.play(this.m.UnleashSounds[this.Math.rand(0, this.m.UnleashSounds.len() - 1)], this.Const.Sound.Volume.Skill, _onTile.Pos);
+			entity.setFaction(::Const.Faction.PlayerAnimals);
+			::Sound.play(this.m.UnleashSounds[::Math.rand(0, this.m.UnleashSounds.len() - 1)], ::Const.Sound.Volume.Skill, _onTile.Pos);
 		}
 	}
 

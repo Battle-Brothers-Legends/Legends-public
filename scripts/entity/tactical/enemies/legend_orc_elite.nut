@@ -2,15 +2,15 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendOrcElite;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendOrcElite.XP;
+		this.m.Type = ::Const.EntityType.LegendOrcElite;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendOrcElite.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(20, -20);
 		this.m.DecapitateBloodAmount = 3.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/orc_death_01.wav",
 			"sounds/enemies/orc_death_02.wav",
 			"sounds/enemies/orc_death_03.wav",
@@ -20,12 +20,12 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			"sounds/enemies/orc_death_07.wav",
 			"sounds/enemies/orc_death_08.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/enemies/orc_flee_01.wav",
 			"sounds/enemies/orc_flee_02.wav",
 			"sounds/enemies/orc_flee_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/orc_hurt_01.wav",
 			"sounds/enemies/orc_hurt_02.wav",
 			"sounds/enemies/orc_hurt_03.wav",
@@ -34,7 +34,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			"sounds/enemies/orc_hurt_06.wav",
 			"sounds/enemies/orc_hurt_07.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/orc_idle_01.wav",
 			"sounds/enemies/orc_idle_02.wav",
 			"sounds/enemies/orc_idle_03.wav",
@@ -68,22 +68,22 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 			"sounds/enemies/orc_fatigue_02.wav",
 			"sounds/enemies/orc_fatigue_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/orc_fatigue_01.wav",
 			"sounds/enemies/orc_fatigue_02.wav",
 			"sounds/enemies/orc_fatigue_03.wav"
 		];
 		this.m.SoundPitch = 0.9;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 1.25;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 1.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 0.75;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 1.25;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.75;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/orc_warrior_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
-		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
 		{
 			return;
 		}
@@ -97,13 +97,13 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "An Orc Elite";
 		corpse.Tile = _tile;
 		corpse.IsResurrectable = false;
 		corpse.IsConsumable = true;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		return corpse;
 	}
 
@@ -114,7 +114,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		flip = !flip;
 		local v = 1;
 		local v2 = -6;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -129,9 +129,9 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendOrcElite);
+		b.setValues(::Const.Tactical.Actor.LegendOrcElite);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.LegendsOrcHighStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.2;
@@ -143,8 +143,8 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints * 2;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_03_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -155,7 +155,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		injury_body.setBrush("bust_orc_03_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_03_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_03_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local injury = this.addSprite("injury");
@@ -165,7 +165,7 @@ this.legend_orc_elite <- this.inherit("scripts/entity/tactical/legend_orc", {
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));

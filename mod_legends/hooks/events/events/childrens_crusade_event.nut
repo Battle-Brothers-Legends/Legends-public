@@ -117,37 +117,37 @@
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Doubter, ::Math.rand(1, 2)));
 				_event.m.Doubter.improveMood(1.0, "Saved some children from certain doom");
 
-				if (_event.m.Doubter.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Doubter.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Doubter.getMoodState()],
-						text = _event.m.Doubter.getName() + this.Const.MoodStateEvent[_event.m.Doubter.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Doubter.getMoodState()],
+						text = _event.m.Doubter.getName() + ::Const.MoodStateEvent[_event.m.Doubter.getMoodState()]
 					});
 				}
 				this.List.push(::Legends.EventList.changeMoralReputation(1));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers ) {
-					if (bro.getID() != _event.m.Doubter.getID() && this.Math.rand(1, 100) <= 25) {
+					if (bro.getID() != _event.m.Doubter.getID() && ::Math.rand(1, 100) <= 25) {
 						bro.worsenMood(1.0, "Remembers what " + _event.m.Doubter.getName() + " said about certain doom");
 
-						if (bro.getMoodState() <= this.Const.MoodState.Neutral) {
+						if (bro.getMoodState() <= ::Const.MoodState.Neutral) {
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
-					if (bro.getID() != _event.m.Doubter.getID() && this.Math.rand(1, 100) <= 25) {
+					if (bro.getID() != _event.m.Doubter.getID() && ::Math.rand(1, 100) <= 25) {
 						bro.improveMood(0.5, "Glad that " + _event.m.Doubter.getName() + " saved children from certain doom");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -158,25 +158,25 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.FactionManager.isGreaterEvil())
+		if (::World.FactionManager.isGreaterEvil())
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.2)
+		if (::Const.DLC.Desert && currentTile.SquareCoords.Y < ::World.getMapSize().Y * 0.2)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement();
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 5)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_monk = [];
 		local candidates_doubter = [];
 		local candidates_traveller = [];
@@ -194,16 +194,16 @@
 		}
 
 		if (candidates_monk.len() != 0)
-			this.m.Monk = candidates_monk[this.Math.rand(0, candidates_monk.len() - 1)];
+			this.m.Monk = candidates_monk[::Math.rand(0, candidates_monk.len() - 1)];
 
 		if (candidates_traveller.len() != 0)
-			this.m.Traveller = candidates_traveller[this.Math.rand(0, candidates_traveller.len() - 1)];
+			this.m.Traveller = candidates_traveller[::Math.rand(0, candidates_traveller.len() - 1)];
 
 		if (candidates_doubter.len() != 0)
-			this.m.Doubter = candidates_doubter[this.Math.rand(0, candidates_doubter.len() - 1)];
+			this.m.Doubter = candidates_doubter[::Math.rand(0, candidates_doubter.len() - 1)];
 
 		if (candidates_shieldmaiden.len())
-			this.m.Shieldmaiden = candidates_shieldmaiden[this.Math.rand(0, candidates_shieldmaiden.len() - 1)];
+			this.m.Shieldmaiden = candidates_shieldmaiden[::Math.rand(0, candidates_shieldmaiden.len() - 1)];
 
 		this.m.Score = 5;
 	}

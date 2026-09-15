@@ -7,7 +7,7 @@ this.legend_enraged_hyena_grip_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/legend_enraged_hyena_bite_effect.png";
 		this.m.IconMini = "legend_enraged_hyena_bite_effect_mini";
 		this.m.Overlay = "legend_enraged_hyena_bite_effect";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsStacking = false;

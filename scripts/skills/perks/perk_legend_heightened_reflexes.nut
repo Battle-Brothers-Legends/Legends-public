@@ -7,7 +7,7 @@ this.perk_legend_heightened_reflexes <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		_properties.DamageTotalMult += this.Math.floor(this.getContainer().getActor().getInitiative() * 0.15) * 0.01;
+		_properties.DamageTotalMult += ::Math.floor(this.getContainer().getActor().getInitiative() * 0.15) * 0.01;
 	}
 });
 

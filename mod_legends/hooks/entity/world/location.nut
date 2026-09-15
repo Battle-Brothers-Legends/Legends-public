@@ -2,7 +2,7 @@
 {
 	o.isShowingDefenders = function ()
 	{
-		return this.m.IsShowingDefenders || this.World.Assets.getOrigin().getID() == "scenario.rangers" || this.World.Assets.getOrigin().getID() == "scenario.legends_rangers";
+		return this.m.IsShowingDefenders || ::World.Assets.getOrigin().getID() == "scenario.rangers" || ::World.Assets.getOrigin().getID() == "scenario.legends_rangers";
 	}
 
 	local getTooltip = o.getTooltip;
@@ -56,7 +56,7 @@
 		local nearestSettlement = 9000;
 		local myTile = this.getTile();
 
-		foreach( s in this.World.EntityManager.getSettlements() )
+		foreach( s in ::World.EntityManager.getSettlements() )
 		{
 			local d = myTile.getDistanceTo(s.getTile());
 
@@ -66,23 +66,23 @@
 			}
 		}
 
-		if (!this.isLocationType(this.Const.World.LocationType.Unique))
+		if (!this.isLocationType(::Const.World.LocationType.Unique))
 		{
 			local num = 0;
 
 			for( local chance = (this.m.Resources + nearestSettlement * 4) / 5.0 - 37.0; num < 2;  )
 			{
-				local r = this.Math.rand(1, 100);
+				local r = ::Math.rand(1, 100);
 
 				if (r <= chance)
 				{
 					chance = chance - r;
 					num = ++num;
-					local type = this.Math.rand(1, 100);
+					local type = ::Math.rand(1, 100);
 
 					if (type <= 30)
 					{
-						local weapons = clone this.Const.Items.NamedWeapons;
+						local weapons = clone ::Const.Items.NamedWeapons;
 
 						if (this.m.NamedWeaponsList != null && this.m.NamedWeaponsList.len() != 0)
 						{
@@ -90,11 +90,11 @@
 							weapons.extend(this.m.NamedWeaponsList);
 						}
 
-						this.m.Loot.add(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+						this.m.Loot.add(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 					}
 					else if (type <= 40)
 					{
-						local shields = clone this.Const.Items.NamedShields;
+						local shields = clone ::Const.Items.NamedShields;
 
 						if (this.m.NamedShieldsList != null && this.m.NamedShieldsList.len() != 0)
 						{
@@ -102,30 +102,30 @@
 							shields.extend(this.m.NamedShieldsList);
 						}
 
-						this.m.Loot.add(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+						this.m.Loot.add(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 					}
 					else if (type <= 65)
 					{
-						local helmets = clone this.Const.Items.NamedHelmets;
+						local helmets = clone ::Const.Items.NamedHelmets;
 
 						if (this.m.NamedHelmetsList != null && this.m.NamedHelmetsList.len() != 0)
 						{
 							helmets.extend(this.m.NamedHelmetsList);
 							helmets.extend(this.m.NamedHelmetsList);
 						}
-						local weightName = this.Const.World.Common.convNameToList(helmets);
-						this.m.Loot.add(this.Const.World.Common.pickHelmet(weightName));
+						local weightName = ::Const.World.Common.convNameToList(helmets);
+						this.m.Loot.add(::Const.World.Common.pickHelmet(weightName));
 					}
 					else if (type <= 100)
 					{
-						local armor = clone this.Const.Items.NamedArmors;
+						local armor = clone ::Const.Items.NamedArmors;
 						if (this.m.NamedArmorsList != null && this.m.NamedArmorsList.len() != 0)
 						{
 							armor.extend(this.m.NamedArmorsList);
 							armor.extend(this.m.NamedArmorsList);
 						}
-						local weightName = this.Const.World.Common.convNameToList(armor);
-						this.m.Loot.add(this.Const.World.Common.pickArmor(weightName));
+						local weightName = ::Const.World.Common.convNameToList(armor);
+						this.m.Loot.add(::Const.World.Common.pickArmor(weightName));
 					}
 				}
 				else
@@ -175,12 +175,12 @@
 
 		if (this.m.IsScalingDefenders)
 		{
-			resources = resources * this.Math.minf(3.0, 1.0 + this.World.getTime().Days * 0.0075);
+			resources = resources * ::Math.minf(3.0, 1.0 + ::World.getTime().Days * 0.0075);
 		}
 
 		if (!this.isAlliedWithPlayer())
 		{
-			resources = resources * this.Const.Difficulty.EnemyMult[this.World.Assets.getCombatDifficulty()];
+			resources = resources * ::Const.Difficulty.EnemyMult[::World.Assets.getCombatDifficulty()];
 		}
 
 		if (this.Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
@@ -194,7 +194,7 @@
 
 		if (this.m.DefenderSpawnList && ("Name" in this.m.DefenderSpawnList))
 		{
-			best = this.Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources);
+			best = ::Const.World.Common.buildDynamicTroopList(this.m.DefenderSpawnList, resources);
 		}
 		else
 		{
@@ -228,7 +228,7 @@
 
 			if (potential.len() != 0)
 			{
-				best = potential[this.Math.rand(0, potential.len() - 1)];
+				best = potential[::Math.rand(0, potential.len() - 1)];
 			}
 
 			if (best == null)
@@ -237,10 +237,10 @@
 
 				foreach( party in this.m.DefenderSpawnList )
 				{
-					if (this.Math.abs(party.Cost - resources) < bestCost)
+					if (::Math.abs(party.Cost - resources) < bestCost)
 					{
 						best = party;
-						bestCost = this.Math.abs(party.Cost - resources);
+						bestCost = ::Math.abs(party.Cost - resources);
 					}
 				}
 			}
@@ -255,11 +255,11 @@
 
 		if (this.Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
 		{
-			this.m.DefenderSpawnDay = this.World.getTime().Days - 7;
+			this.m.DefenderSpawnDay = ::World.getTime().Days - 7;
 		}
 		else
 		{
-			this.m.DefenderSpawnDay = this.World.getTime().Days;
+			this.m.DefenderSpawnDay = ::World.getTime().Days;
 		}
 
 		local troopMbMap = {};
@@ -268,14 +268,14 @@
 			local key = "Enemy" + t.Type.ID;
 			if (!(key in troopMbMap))
 			{
-				troopMbMap[key] <- this.Const.LegendMod.GetFavEnemyBossChance(t.Type.ID);
+				troopMbMap[key] <- ::Const.LegendMod.GetFavEnemyBossChance(t.Type.ID);
 			}
 
 			local mb = troopMbMap[key];
 
 			for( local i = 0; i != t.Num; i = ++i )
 			{
-				this.Const.World.Common.addTroop(this, t, false, mb);
+				::Const.World.Common.addTroop(this, t, false, mb);
 			}
 		}
 

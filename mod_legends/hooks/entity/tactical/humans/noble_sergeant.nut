@@ -11,9 +11,9 @@
 	o.onInit = function ()
 	{
 		onInit();
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
-			local r = this.Math.rand(1, 4);
+			local r = ::Math.rand(1, 4);
 
 			if (r == 1)
 			{
@@ -61,9 +61,9 @@
 	{
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -72,7 +72,7 @@
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= 80)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
@@ -91,9 +91,9 @@
 			"weapons/legend_military_warscythe",
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[2, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));

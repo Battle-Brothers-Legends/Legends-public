@@ -10,7 +10,7 @@ this.legend_evasion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "%name% ignores all Zones of Control and will ignore the first attack done against %them%.";
 		this.m.Icon = "skills/evasion.png";
 		this.m.Overlay = "evasion";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -67,7 +67,7 @@ this.legend_evasion_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.m.MeekStacks > 0)
 		{
-			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_attacker) + " underestimated " + this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s speed.");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_attacker) + " underestimated " + ::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s speed.");
 			this.m.MeekStacks -= 1;
 		}
 	}

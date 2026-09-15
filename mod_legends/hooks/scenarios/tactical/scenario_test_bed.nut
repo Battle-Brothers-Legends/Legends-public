@@ -9,15 +9,15 @@
 
 			while (1)
 			{
-				x = this.Math.rand(2, 6);
-				y = this.Math.rand(2, 6) - x / 2;
+				x = ::Math.rand(2, 6);
+				y = ::Math.rand(2, 6) - x / 2;
 
-				if (this.Tactical.getTile(x, y).Level == 3)
+				if (::Tactical.getTile(x, y).Level == 3)
 				{
 					continue;
 				}
 
-				if (this.Tactical.getTile(x, y).IsEmpty)
+				if (::Tactical.getTile(x, y).IsEmpty)
 				{
 					break;
 				}
@@ -30,13 +30,13 @@
 			local helmet = [
 				[1, ::Legends.Helmet.Southern.southern_head_wrap]
 			];
-			items.equip(this.Const.World.Common.pickHelmet(helmet));
+			items.equip(::Const.World.Common.pickHelmet(helmet));
 
 
-			local r = this.Math.rand(1, 3);
+			local r = ::Math.rand(1, 3);
 			local a = this.new("scripts/items/armor/oriental/southern_gladiator_harness");
 			local u;
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 
 			if (r == 1)
 			{
@@ -53,7 +53,7 @@
 		}
 
 		local entity = this.spawnEntity("scripts/entity/tactical/enemies/orc_berserker");
-		entity.setFaction(this.Const.Faction.Orcs);
+		entity.setFaction(::Const.Faction.Orcs);
 		entity.assignRandomEquipment();
 	}
 });

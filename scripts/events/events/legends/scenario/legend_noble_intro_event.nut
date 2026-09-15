@@ -16,13 +16,13 @@ this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				// this.logInfo("Making you well known");
-				// this.World.Assets.addBusinessReputation(1000);
+				// ::World.Assets.addBusinessReputation(1000);
 				this.logInfo("Making a noble house like you");
-				//this.World.FactionManager.makeRandomNoblesFriendlyToPlayer();
+				//::World.FactionManager.makeRandomNoblesFriendlyToPlayer();
 				this.logInfo("Making a noble house hate you");
-				//this.World.FactionManager.makeRandomNoblesUnfriendlyToPlayer();
+				//::World.FactionManager.makeRandomNoblesUnfriendlyToPlayer();
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 			}
 		});
 	}
@@ -36,7 +36,7 @@ this.legend_noble_intro_event <- this.inherit("scripts/events/event", {
 	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
-			this.World.Flags.get("HomeVillage")
+			::World.Flags.get("HomeVillage")
 		]);
 	}
 

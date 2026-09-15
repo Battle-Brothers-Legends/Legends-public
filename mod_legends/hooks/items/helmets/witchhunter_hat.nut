@@ -15,9 +15,9 @@
 
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Brawny))
 			staminaMult = 0.75;
-		_properties.Armor[this.Const.BodyPart.Head] += this.m.Condition;
-		_properties.ArmorMax[this.Const.BodyPart.Head] += this.m.ConditionMax;
-		_properties.Stamina += this.Math.ceil(this.m.StaminaModifier * staminaMult);
+		_properties.Armor[::Const.BodyPart.Head] += this.m.Condition;
+		_properties.ArmorMax[::Const.BodyPart.Head] += this.m.ConditionMax;
+		_properties.Stamina += ::Math.ceil(this.m.StaminaModifier * staminaMult);
 		_properties.Vision += this.getVision();
 		_properties.IsAffectedByNight = false;
 	}

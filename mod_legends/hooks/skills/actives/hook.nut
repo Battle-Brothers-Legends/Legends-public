@@ -15,13 +15,13 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
+			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to stagger on a hit"
 		});
 		ret.push({
 			id = 6,
 			type = "text",
 			icon = "ui/icons/hitchance.png",
-			text = "Has [color=" + this.Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
+			text = "Has [color=" + ::Const.UI.Color.PositiveValue + "]+10%[/color] chance to hit"
 		});
 		return ret;
 	}
@@ -65,7 +65,7 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
@@ -76,7 +76,7 @@
 		if (knockToTile == null)
 			return;
 		// to show where the target may be knocked back
-		this.Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
 
 	o.getHitchance <- function ( _targetEntity )

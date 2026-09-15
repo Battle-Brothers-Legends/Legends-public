@@ -6,7 +6,7 @@
 		create();
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 1.0;
 			this.m.Properties.TargetPriorityHitchanceMult = 1.5;
 			this.m.Properties.TargetPriorityHitpointsMult = 0.3;
 			this.m.Properties.TargetPriorityRandomMult = 0.0;

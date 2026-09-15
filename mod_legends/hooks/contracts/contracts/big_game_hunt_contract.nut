@@ -34,7 +34,7 @@
 			{
 				s.start <- function ()
 				{
-					this.Flags.set("StartDay", this.World.getTime().Days);
+					this.Flags.set("StartDay", ::World.getTime().Days);
 					this.Contract.m.BulletpointsObjectives.clear();
 
 					if (this.Contract.m.Size == 0)
@@ -91,7 +91,7 @@
 
 				s.onActorKilled = function ( _actor, _killer, _combatID )
 				{
-					if (_killer != null && _killer.getFaction() != this.Const.Faction.Player && _killer.getFaction() != this.Const.Faction.PlayerAnimals)
+					if (_killer != null && _killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals)
 					{
 						return;
 					}
@@ -102,31 +102,31 @@
 					}
 
 					local beasts = [[
-							this.Const.EntityType.Ghoul,
-							this.Const.EntityType.LegendSkinGhoul,
-							this.Const.EntityType.Direwolf,
-							this.Const.EntityType.LegendWhiteDirewolf,
-							this.Const.EntityType.Spider,
-							this.Const.EntityType.LegendRedbackSpider,
-							this.Const.EntityType.Hyena,
-							this.Const.EntityType.Serpent
+							::Const.EntityType.Ghoul,
+							::Const.EntityType.LegendSkinGhoul,
+							::Const.EntityType.Direwolf,
+							::Const.EntityType.LegendWhiteDirewolf,
+							::Const.EntityType.Spider,
+							::Const.EntityType.LegendRedbackSpider,
+							::Const.EntityType.Hyena,
+							::Const.EntityType.Serpent
 						],
 						[
-							this.Const.EntityType.Alp,
-							this.Const.EntityType.LegendDemonAlp,
-							this.Const.EntityType.Unhold,
-							this.Const.EntityType.UnholdFrost,
-							this.Const.EntityType.UnholdBog,
-							this.Const.EntityType.LegendRockUnhold,
-							this.Const.EntityType.Hexe,
-							this.Const.EntityType.LegendHexeLeader
+							::Const.EntityType.Alp,
+							::Const.EntityType.LegendDemonAlp,
+							::Const.EntityType.Unhold,
+							::Const.EntityType.UnholdFrost,
+							::Const.EntityType.UnholdBog,
+							::Const.EntityType.LegendRockUnhold,
+							::Const.EntityType.Hexe,
+							::Const.EntityType.LegendHexeLeader
 						],
 						[
-							this.Const.EntityType.Lindwurm,
-							this.Const.EntityType.Schrat,
-							this.Const.EntityType.LegendGreenwoodSchrat,
-							this.Const.EntityType.LegendGreenwoodSchratSmall,
-							this.Const.EntityType.LegendStollwurm
+							::Const.EntityType.Lindwurm,
+							::Const.EntityType.Schrat,
+							::Const.EntityType.LegendGreenwoodSchrat,
+							::Const.EntityType.LegendGreenwoodSchratSmall,
+							::Const.EntityType.LegendStollwurm
 						]
 					];
 

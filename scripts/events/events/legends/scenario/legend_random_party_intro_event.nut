@@ -15,7 +15,7 @@ this.legend_random_party_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 		});
 	}
@@ -23,7 +23,7 @@ this.legend_random_party_intro_event <- this.inherit("scripts/events/event", {
 	function onUpdateScore() {}
 
 	function onPrepare() {
-		this.m.Title = "The " + this.World.Assets.getName();
+		this.m.Title = "The " + ::World.Assets.getName();
 	}
 
 	function onPrepareVariables(_vars) {}

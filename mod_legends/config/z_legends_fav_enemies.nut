@@ -673,7 +673,7 @@ if (!("LegendMod" in ::Const))
 			str += (mKills * 1.0 / ::Const.LegendMod.GetFavoriteEnemyValue(t));
 		}
 	}
-	local hitChance = 5 + this.Math.min(this.Math.floor(str), 20); // base bonus of 5 and cap total at 25
+	local hitChance = 5 + ::Math.min(::Math.floor(str), 20); // base bonus of 5 and cap total at 25
 	local hitMult = 1.0 + (0.01 * hitChance);
 	return {
 		Kills = kills,
@@ -733,7 +733,7 @@ if (!("LegendMod" in ::Const))
 	}
 
 	local bonus = 0;
-	local roster = this.World.getPlayerRoster().getAll();
+	local roster = ::World.getPlayerRoster().getAll();
 	foreach (bro in roster)
 	{
 		foreach (perk in perks)
@@ -746,7 +746,7 @@ if (!("LegendMod" in ::Const))
 			local P = bro.getSkills().getSkillByID(perk);
 
 			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, P.m.ValidTypes);
-			bonus += this.Math.floor((stats.Kills * 1.0) / 10.0);
+			bonus += ::Math.floor((stats.Kills * 1.0) / 10.0);
 			break;
 		}
 	}

@@ -13,8 +13,8 @@ this.legend_into_the_fray_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Charge at an enemy up to 2 tiles away, attacking them in the process.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc2/lunge_move", 4);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc2/lunge_attack_hit", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -22,8 +22,8 @@ this.legend_into_the_fray_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.HitChanceBonus = 10;
 		this.m.DirectDamageMult = 0.2;
 		this.m.ActionPointCost = 6;
@@ -53,7 +53,7 @@ this.legend_into_the_fray_skill <- this.inherit("scripts/skills/skill", {
 				id = 9,
 				type = "text",
 				icon = "ui/tooltips/warning.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]Can not be used while rooted[/color]"
 			});
 		}
 
@@ -84,7 +84,7 @@ function isUsable()
 			{
 				local tile = _targetTile.getNextTile(i);
 
-				if (tile.IsEmpty && tile.getDistanceTo(myTile) == 1 && this.Math.abs(myTile.Level - tile.Level) <= 1 && this.Math.abs(_targetTile.Level - tile.Level) <= 1)
+				if (tile.IsEmpty && tile.getDistanceTo(myTile) == 1 && ::Math.abs(myTile.Level - tile.Level) <= 1 && ::Math.abs(_targetTile.Level - tile.Level) <= 1)
 				{
 					hasTile = true;
 					break;
@@ -101,13 +101,13 @@ function isUsable()
 
 		foreach( r in this.m.SoundOnAttack )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSwords ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
@@ -125,7 +125,7 @@ function isUsable()
 			{
 				local tile = _targetTile.getNextTile(i);
 
-				if (tile.IsEmpty && tile.getDistanceTo(myTile) == 1 && this.Math.abs(myTile.Level - tile.Level) <= 1 && this.Math.abs(_targetTile.Level - tile.Level) <= 1)
+				if (tile.IsEmpty && tile.getDistanceTo(myTile) == 1 && ::Math.abs(myTile.Level - tile.Level) <= 1 && ::Math.abs(_targetTile.Level - tile.Level) <= 1)
 				{
 					destTile = tile;
 					break;
@@ -147,7 +147,7 @@ function isUsable()
 			OnRepelled = this.onRepelled
 		};
 		_user.spawnTerrainDropdownEffect(myTile);
-		this.Tactical.getNavigator().teleport(_user, destTile, this.onTeleportDone.bindenv(this), tag, false, 3.0);
+		::Tactical.getNavigator().teleport(_user, destTile, this.onTeleportDone.bindenv(this), tag, false, 3.0);
 		return true;
 	}
 
@@ -195,7 +195,7 @@ function isUsable()
 			{
 				if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer)
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_entity) + " charges and is repelled");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_entity) + " charges and is repelled");
 				}
 
 				if (!_entity.isAlive() || _entity.isDying())
@@ -209,7 +209,7 @@ function isUsable()
 				{
 					local tile = myTile.getNextTile(dir);
 
-					if (tile.IsEmpty && this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1)
+					if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1)
 					{
 						_tag.TargetTile = tile;
 						this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
@@ -219,7 +219,7 @@ function isUsable()
 			}
 		}
 
-		this.spawnAttackEffect(_tag.TargetTile, this.Const.Tactical.AttackEffectSlash);
+		this.spawnAttackEffect(_tag.TargetTile, ::Const.Tactical.AttackEffectSlash);
 		local s = this.m.SoundOnUse;
 		this.m.SoundOnUse = this.m.SoundOnAttack;
 		this.attackEntity(_entity, _tag.TargetTile.getEntity());
@@ -228,7 +228,7 @@ function isUsable()
 
 	function onRepelled( _tag )
 	{
-		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
+		::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, null, null, false);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

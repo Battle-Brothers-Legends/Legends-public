@@ -96,9 +96,9 @@ this.legend_horse_rouncey <- this.inherit("scripts/skills/backgrounds/legend_hor
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 2;
-		talents[this.Const.Attributes.Fatigue] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 2;
+		talents[::Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(1, true);
 
 	}

@@ -49,8 +49,8 @@
 
 	o.getBonus <- function() {
 		local actor = this.getContainer().getActor();
-		local bonus = this.Math.maxf(1.0, this.Math.minf(2.0, 2.0 - (actor.getHitpointsMax().tofloat() - 50.0) / 50.0));
-		return this.Math.floor(actor.getInitiative() * bonus * 0.15);
+		local bonus = ::Math.maxf(1.0, ::Math.minf(2.0, 2.0 - (actor.getHitpointsMax().tofloat() - 50.0) / 50.0));
+		return ::Math.floor(actor.getInitiative() * bonus * 0.15);
 	}
 
 });

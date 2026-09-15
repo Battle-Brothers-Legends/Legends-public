@@ -1,9 +1,9 @@
 this.legend_legion_adoring_fan <- ::inherit("scripts/entity/tactical/skeleton", {
 	m = {},
 	function create() {
-		this.m.Type = this.Const.EntityType.SkeletonLight;
-		this.m.BloodType = this.Const.BloodType.Bones;
-		this.m.XP = this.Const.Tactical.Actor.SkeletonLight.XP;
+		this.m.Type = ::Const.EntityType.SkeletonLight;
+		this.m.BloodType = ::Const.BloodType.Bones;
+		this.m.XP = ::Const.Tactical.Actor.SkeletonLight.XP;
 		this.skeleton.create();
 	}
 

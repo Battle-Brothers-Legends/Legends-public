@@ -17,7 +17,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBanditExecutioner);
+		b.setValues(::Const.Tactical.Actor.LegendBanditExecutioner);
 		b.IsSpecializedInCleavers = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -28,7 +28,7 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsBanditExecutionerSwordDay) {
 			::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		}
 		if(::Legends.isLegendaryDifficulty()) {
@@ -51,11 +51,11 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(this.Const.World.Common.pickArmor([
+		this.getItems().equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.bandit_executioner_tunic]
 		]));
 
-		this.getItems().equip(this.Const.World.Common.pickHelmet([
+		this.getItems().equip(::Const.World.Common.pickHelmet([
 			[10, ::Legends.Helmet.Standard.executioner_hood],
 			[1, ::Legends.Helmet.Standard.bandit_executioner_hood]
 		]));
@@ -84,8 +84,8 @@ this.legend_bandit_executioner <- this.inherit("scripts/entity/tactical/human", 
 		else
 		{
 			// TODO equip a named item
-			// this.getItems().equip(this.Const.World.Common.pickArmor(
-			// 	this.Const.World.Common.convNameToList(
+			// this.getItems().equip(::Const.World.Common.pickArmor(
+			// 	::Const.World.Common.convNameToList(
 			// 		armor
 			// 	)
 			// ));

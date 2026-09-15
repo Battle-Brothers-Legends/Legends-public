@@ -7,7 +7,7 @@ this.legend_monk_admires_dervish_encounter <- ::inherit("scripts/encounters/enco
 		this.encounter.create();
 		this.m.Type = "encounter.legend_monk_admires_dervish";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 30 * ::World.getTime().SecondsPerDay;
 	}
 
 	function createScreens() {

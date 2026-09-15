@@ -9,7 +9,7 @@
 			this.m.Events.push(this.new(scriptFile));
 		}
 
-		if (this.Const.DLC.Desert)
+		if (::Const.DLC.Desert)
 		{
 			this.addSpecialEvent("event.manhunters_origin_capture_prisoner");
 		}
@@ -39,8 +39,8 @@
 				{
 					this.Time.scheduleEvent(this.TimeUnit.Real, 4000, function ( _tag )
 					{
-						if (this.World.Events.canFireEvent(true, true) && this.World.Events.getEvent(e).canFire()) {
-							this.World.Events.fire(e);
+						if (::World.Events.canFireEvent(true, true) && ::World.Events.getEvent(e).canFire()) {
+							::World.Events.fire(e);
 						}
 					}, null);
 				}
@@ -85,11 +85,11 @@
     }
 
 	o.update = function () {
-		if (this.World.State.getMenuStack().hasBacksteps() || this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible())) {
+		if (::World.State.getMenuStack().hasBacksteps() || this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible())) {
 			return;
 		}
 
-		if (("State" in this.Tactical) && this.Tactical.State != null) {
+		if (("State" in ::Tactical) && ::Tactical.State != null) {
 			return;
 		}
 
@@ -109,7 +109,7 @@
 		if (this.m.ActiveEvent != null) {
 			if (!this.m.IsEventShown && (this.m.ActiveEvent.getScore() != 0 || this.m.ActiveEvent.isSpecial())) {
 				if (!this.m.ActiveEvent.isSpecial() && this.m.ActiveEvent.getScore() < 500) {
-					local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+					local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 
 					foreach (party in parties) {
 						if (!party.isAlliedWithPlayer()) {
@@ -123,7 +123,7 @@
 					this.m.ForceScreen = null;
 				}
 
-				this.m.IsEventShown = this.World.State.showEventScreen(this.m.ActiveEvent) != false;
+				this.m.IsEventShown = ::World.State.showEventScreen(this.m.ActiveEvent) != false;
 			}
 
 			return;
@@ -151,35 +151,35 @@
 		}
 
 		this.m.AllowNewsOnly = false;
-		local isNewsReady = this.World.Statistics.isNewsReady();
+		local isNewsReady = ::World.Statistics.isNewsReady();
 		if (isNewsReady) {
 			isNewsReady = false;
-			local checkFrequency = this.Math.max(1, this.World.getSpeedMult()) * 3;
-			if (timeF - this.m.LastNewsEventTime > this.World.getTime().SecondsPerHour * 2 / checkFrequency) {
+			local checkFrequency = ::Math.max(1, ::World.getSpeedMult()) * 3;
+			if (timeF - this.m.LastNewsEventTime > ::World.getTime().SecondsPerHour * 2 / checkFrequency) {
 				this.m.AllowNewsOnly = true;
             	isNewsReady = true;
 				this.m.LastNewsEventTime = timeF;
 			}
 		}
 		if (!isNewsReady) {
-			if (this.m.LastEventTime + this.Const.Events.GlobalMinDelay > timeF) {
+			if (this.m.LastEventTime + ::Const.Events.GlobalMinDelay > timeF) {
 				return;
 			}
 
-			if (timeF - this.m.LastCheckTime <= this.World.getTime().SecondsPerHour * 2) {
+			if (timeF - this.m.LastCheckTime <= ::World.getTime().SecondsPerHour * 2) {
 				return;
 			}
 
 			this.m.LastCheckTime = timeF;
-			local timeSinceLastEvent = timeF - this.m.LastEventTime - this.Const.Events.GlobalMinDelay;
-			local chanceToFireEvent = this.Const.Events.GlobalBaseChance + timeSinceLastEvent * this.Const.Events.GlobalChancePerSecond;
+			local timeSinceLastEvent = timeF - this.m.LastEventTime - ::Const.Events.GlobalMinDelay;
+			local chanceToFireEvent = ::Const.Events.GlobalBaseChance + timeSinceLastEvent * ::Const.Events.GlobalChancePerSecond;
 
-			if (timeF - this.m.LastBattleTime >= 5.0 && this.Math.rand(1, 100) > chanceToFireEvent) {
+			if (timeF - this.m.LastBattleTime >= 5.0 && ::Math.rand(1, 100) > chanceToFireEvent) {
 				return;
 			}
 		}
 
-		local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+		local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 		foreach (party in parties) {
 			if (!party.isAlliedWithPlayer()) {
 				return;
@@ -201,8 +201,8 @@
 		local score = 0;
 		local eventToFire;
 		local timeF = this.Time.getVirtualTimeF();
-		local limit = this.Math.max(1, this.World.getSpeedMult()) * 3;
-		local allowNewsOnly = this.m.AllowNewsOnly || (timeF - this.m.LastEventTime < this.Const.Events.GlobalMinDelay);
+		local limit = ::Math.max(1, ::World.getSpeedMult()) * 3;
+		local allowNewsOnly = this.m.AllowNewsOnly || (timeF - this.m.LastEventTime < ::Const.Events.GlobalMinDelay);
 		local recentBattleCheck = timeF - this.m.LastBattleTime < 5.0;
 
 		for (local i = 0; i < this.m.Events.len(); i = ++i) {
@@ -226,7 +226,7 @@
 		}
 
 		if (score <= 0) return true;
-		local pick = this.Math.rand(1, score);
+		local pick = ::Math.rand(1, score);
 		yield false;
 
 		for (local i = 0; i < this.m.Events.len(); i = ++i) {
@@ -265,7 +265,7 @@
 		}
 
 		if (this.m.ActiveEvent.getScore() < 500) {
-			local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+			local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 
 			foreach (party in parties) {
 				if (!party.isAlliedWithPlayer()) {
@@ -281,7 +281,7 @@
 		}
 
 		this.m.ActiveEvent.fire();
-		this.m.IsEventShown = this.World.State.showEventScreen(this.m.ActiveEvent);
+		this.m.IsEventShown = ::World.State.showEventScreen(this.m.ActiveEvent);
 		return true;
 	}
 
@@ -304,7 +304,7 @@
 			this.m.ActiveEvent = _event;
 			this.m.ActiveEvent.fire();
 
-			if (this.World.State.showEventScreen(this.m.ActiveEvent)) {
+			if (::World.State.showEventScreen(this.m.ActiveEvent)) {
 				return true;
 			} else {
 				this.m.ActiveEvent.clear();

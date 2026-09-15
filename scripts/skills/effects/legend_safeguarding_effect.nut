@@ -6,7 +6,7 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character neglects their own defense while safeguarding someone else";
 		this.m.Icon = "ui/perks/safeguard_circle.png";
 		this.m.IconMini = "mini_safeguard_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -42,17 +42,17 @@ this.legend_safeguarding_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield)) {
+		if (item != null && item.isItemType(::Const.Items.ItemType.Shield)) {
 			item.onShieldUp();
 		}
 	}
 
 	function onRemoved() {
-		local item = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield)) {
+		if (item != null && item.isItemType(::Const.Items.ItemType.Shield)) {
 			item.onShieldDown();
 		}
 	}

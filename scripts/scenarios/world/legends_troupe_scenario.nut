@@ -14,7 +14,7 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 	function onSpawnAssets()
 	{
-	local roster = this.World.getPlayerRoster();
+	local roster = ::World.getPlayerRoster();
 
 		for( local i = 0; i < 4; i = ++i )
 		{
@@ -34,9 +34,9 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendManipulative);
 		bros[0].m.PerkPointsSpent += 1;
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.jesters_hat]]));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_northern_sling"));
 		bros[1].setStartValuesEx([::Legends.Background.Minstrel],true,0);
 		bros[1].getBackground().m.RawDescription = "{%name% worked providing entertainment at inns around the country, but the bar fights and road bandits make it no life for a solo artist. Joining with others was for safety as much as the show.}";
@@ -46,9 +46,9 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 		bros[1].m.PerkPointsSpent += 1;
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/lute"));
 		bros[2].setStartValuesEx([::Legends.Background.Minstrel],true,1);
 		bros[2].getBackground().m.RawDescription = "{%name% has been in the court of a local noble for years, but the same audience every night grows tiresome. It was time to find a band, hit the road and find some new audiences for their art.}";
@@ -61,9 +61,9 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		::Legends.Perks.grant(bros[2], ::Legends.Perk.LegendSpecialistMusician);
 		bros[2].m.PerkPointsSpent += 1;
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_hat]]));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_drum"));
 		bros[3].setStartValuesEx([::Legends.Background.Juggler]);
 		bros[3].getBackground().m.RawDescription = "{%name% was juggling and throwing knives in markets, and agreed to join the troupe to improve the show with the skills of others}";
@@ -75,23 +75,23 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendManipulative);
 		bros[3].m.PerkPointsSpent += 1;
 		local items = bros[3].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_padded_hat]]));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.jugglers_padded_hat]]));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/greenskins/orc_javelin"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_pie_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_drum"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/legend_pie_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_drum"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/greenskins/goblin_spiked_balls"));
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
 			{
@@ -103,17 +103,17 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -131,15 +131,15 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(114);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(114);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_troupe_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_troupe_scenario_intro");
 		}, null);
 
 	}
@@ -155,9 +155,9 @@ this.legends_troupe_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 	function onGenerateBro(_bro)
 	{
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Performing))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Performing))
 		{
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			_bro.getSkills().update();
 		}

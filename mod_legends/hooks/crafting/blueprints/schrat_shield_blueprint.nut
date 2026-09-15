@@ -8,7 +8,7 @@
 		preview.resetStats();
 		this.m.PreviewCraftable = preview;
 		this.m.Cost = 650;
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = ::Const.Items.ItemType.Shield;
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendWoodworking)]);
 	}
 

@@ -29,16 +29,16 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			"the Butcher",
 			"the Fleshshaper"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Faces = ::Const.Faces.AllWhiteFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Female;
+		this.m.Bodies = ::Const.Bodies.NorthernFemale;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Kind;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Druid | ::Const.BackgroundType.Female;
 		
 		this.m.CustomPerkTree = [
 		[
@@ -127,23 +127,23 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 1;
-		talents[this.Const.Attributes.Initiative] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 1;
+		talents[::Const.Attributes.Initiative] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.None],
 			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		local r;
-		r = this.Math.rand(0, 8);
+		r = ::Math.rand(0, 8);
 
 		if (r == 0)
 		{

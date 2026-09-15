@@ -17,9 +17,9 @@
 		}
 
 		local myTile = this.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Ship;
-		local path = this.World.getNavigator().findPath(myTile, deepWaterTile, navSettings, 0);
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Ship;
+		local path = ::World.getNavigator().findPath(myTile, deepWaterTile, navSettings, 0);
 
 		if (path.isEmpty())
 		{
@@ -38,7 +38,7 @@
 			{
 				local nextTile = myTile.getNextTile(i);
 
-				if (nextTile.Type != this.Const.World.TerrainType.Ocean)
+				if (nextTile.Type != ::Const.World.TerrainType.Ocean)
 				{
 				}
 				else
@@ -47,17 +47,17 @@
 
 					for( local j = 0; j != 6; j = ++j )
 					{
-						if (nextTile.hasNextTile(j) && nextTile.getNextTile(j).Type != this.Const.World.TerrainType.Ocean)
+						if (nextTile.hasNextTile(j) && nextTile.getNextTile(j).Type != ::Const.World.TerrainType.Ocean)
 						{
 							isOpenSea = false;
 							break;
 						}
 					}
 
-					if (isOpenSea || this.Math.rand(1, 100) <= 20)
+					if (isOpenSea || ::Math.rand(1, 100) <= 20)
 					{
-						nextTile.clearAllBut(this.Const.World.DetailType.Shore);
-						nextTile.spawnDetail("world_ship_0" + this.Math.rand(1, 2), this.Const.World.ZLevel.Object, 0);
+						nextTile.clearAllBut(::Const.World.DetailType.Shore);
+						nextTile.spawnDetail("world_ship_0" + ::Math.rand(1, 2), ::Const.World.ZLevel.Object, 0);
 						ships = ++ships;
 					}
 
@@ -80,29 +80,29 @@
 		local tile = this.getTile();
 		local landDir = -1;
 
-		if ((tile.Subregion & this.Const.DirectionAsBit.N) != 0 && tile.hasNextTile(this.Const.Direction.S) && tile.getNextTile(this.Const.Direction.S).Type == this.Const.World.TerrainType.Ocean)
+		if ((tile.Subregion & ::Const.DirectionAsBit.N) != 0 && tile.hasNextTile(::Const.Direction.S) && tile.getNextTile(::Const.Direction.S).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.N;
+			landDir = ::Const.Direction.N;
 		}
-		else if ((tile.Subregion & this.Const.DirectionAsBit.NE) != 0 && tile.hasNextTile(this.Const.Direction.SW) && tile.getNextTile(this.Const.Direction.SW).Type == this.Const.World.TerrainType.Ocean)
+		else if ((tile.Subregion & ::Const.DirectionAsBit.NE) != 0 && tile.hasNextTile(::Const.Direction.SW) && tile.getNextTile(::Const.Direction.SW).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.NE;
+			landDir = ::Const.Direction.NE;
 		}
-		else if ((tile.Subregion & this.Const.DirectionAsBit.SE) != 0 && tile.hasNextTile(this.Const.Direction.NW) && tile.getNextTile(this.Const.Direction.NW).Type == this.Const.World.TerrainType.Ocean)
+		else if ((tile.Subregion & ::Const.DirectionAsBit.SE) != 0 && tile.hasNextTile(::Const.Direction.NW) && tile.getNextTile(::Const.Direction.NW).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.SE;
+			landDir = ::Const.Direction.SE;
 		}
-		else if ((tile.Subregion & this.Const.DirectionAsBit.S) != 0 && tile.hasNextTile(this.Const.Direction.N) && tile.getNextTile(this.Const.Direction.N).Type == this.Const.World.TerrainType.Ocean)
+		else if ((tile.Subregion & ::Const.DirectionAsBit.S) != 0 && tile.hasNextTile(::Const.Direction.N) && tile.getNextTile(::Const.Direction.N).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.S;
+			landDir = ::Const.Direction.S;
 		}
-		else if ((tile.Subregion & this.Const.DirectionAsBit.SW) != 0 && tile.hasNextTile(this.Const.Direction.NE) && tile.getNextTile(this.Const.Direction.NE).Type == this.Const.World.TerrainType.Ocean)
+		else if ((tile.Subregion & ::Const.DirectionAsBit.SW) != 0 && tile.hasNextTile(::Const.Direction.NE) && tile.getNextTile(::Const.Direction.NE).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.SW;
+			landDir = ::Const.Direction.SW;
 		}
-		else if ((tile.Subregion & this.Const.DirectionAsBit.NW) != 0 && tile.hasNextTile(this.Const.Direction.SE) && tile.getNextTile(this.Const.Direction.SE).Type == this.Const.World.TerrainType.Ocean)
+		else if ((tile.Subregion & ::Const.DirectionAsBit.NW) != 0 && tile.hasNextTile(::Const.Direction.SE) && tile.getNextTile(::Const.Direction.SE).Type == ::Const.World.TerrainType.Ocean)
 		{
-			landDir = this.Const.Direction.NW;
+			landDir = ::Const.Direction.NW;
 		}
 
 		if (landDir == -1)
@@ -112,9 +112,9 @@
 				if (!tile.hasNextTile(i))
 				{
 				}
-				else if (tile.getNextTile(i).Type != this.Const.World.TerrainType.Shore)
+				else if (tile.getNextTile(i).Type != ::Const.World.TerrainType.Shore)
 				{
-					if (tile.hasNextTile(i - 1 < 0 ? 5 : i - 1) && tile.getNextTile(i - 1 < 0 ? 5 : i - 1).Type != this.Const.World.TerrainType.Shore && tile.hasNextTile(i + 1 <= 5 ? i + 1 : 0) && tile.getNextTile(i + 1 <= 5 ? i + 1 : 0).Type != this.Const.World.TerrainType.Shore && tile.hasNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3) && tile.getNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3).Type == this.Const.World.TerrainType.Shore)
+					if (tile.hasNextTile(i - 1 < 0 ? 5 : i - 1) && tile.getNextTile(i - 1 < 0 ? 5 : i - 1).Type != ::Const.World.TerrainType.Shore && tile.hasNextTile(i + 1 <= 5 ? i + 1 : 0) && tile.getNextTile(i + 1 <= 5 ? i + 1 : 0).Type != ::Const.World.TerrainType.Shore && tile.hasNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3) && tile.getNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3).Type == ::Const.World.TerrainType.Shore)
 					{
 						landDir = i;
 						break;
@@ -129,9 +129,9 @@
 					if (!tile.hasNextTile(i))
 					{
 					}
-					else if (tile.getNextTile(i).Type != this.Const.World.TerrainType.Shore)
+					else if (tile.getNextTile(i).Type != ::Const.World.TerrainType.Shore)
 					{
-						if (tile.hasNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3) && tile.getNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3).Type == this.Const.World.TerrainType.Shore)
+						if (tile.hasNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3) && tile.getNextTile(i + 3 > 5 ? i + 3 - 6 : i + 3).Type == ::Const.World.TerrainType.Shore)
 						{
 							landDir = i;
 							break;
@@ -147,7 +147,7 @@
 					if (!tile.hasNextTile(i))
 					{
 					}
-					else if (tile.getNextTile(i).Type != this.Const.World.TerrainType.Shore)
+					else if (tile.getNextTile(i).Type != ::Const.World.TerrainType.Shore)
 					{
 						landDir = i;
 						break;

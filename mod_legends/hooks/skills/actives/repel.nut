@@ -35,7 +35,7 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 	
@@ -46,7 +46,7 @@
 		if (knockToTile == null)
 			return;
 		// to show where the target may be knocked back
-		this.Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon("mortar_target_02", knockToTile, knockToTile.Pos.X, knockToTile.Pos.Y);
 	}
 
 	o.getHitchance <- function ( _targetEntity )

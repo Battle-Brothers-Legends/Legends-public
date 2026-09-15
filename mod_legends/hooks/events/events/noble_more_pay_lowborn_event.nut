@@ -18,11 +18,11 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getMoney() < 500) {
+		if (::World.Assets.getMoney() < 500) {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() == "scenario.lone_wolf") {
 			return;
 		}
 
@@ -30,7 +30,7 @@
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2) {
 			return;
@@ -46,7 +46,7 @@
 			}
 
 			if (bro.getDailyCost() < lowestPay
-				&& bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
+				&& bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble))
 			{
 				lowestNoble = bro;
 				lowestPay = bro.getDailyCost();
@@ -59,7 +59,7 @@
 
 		local lowborn_candidates = [];
 
-		foreach (bro in brothers) if (bro.getDailyCost() > lowestPay && bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn)	&& bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
+		foreach (bro in brothers) if (bro.getDailyCost() > lowestPay && bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn)	&& bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 			lowborn_candidates.push(bro);
 		}
 
@@ -68,7 +68,7 @@
 		}
 
 		this.m.Noble = lowestNoble;
-		this.m.Lowborn = lowborn_candidates[this.Math.rand(0, lowborn_candidates.len() - 1)];
+		this.m.Lowborn = lowborn_candidates[::Math.rand(0, lowborn_candidates.len() - 1)];
 		this.m.Score = 7 + (lowestNoble.getSkills().hasTrait(::Legends.Trait.Greedy) ? 9 : 0);
 	}
 })

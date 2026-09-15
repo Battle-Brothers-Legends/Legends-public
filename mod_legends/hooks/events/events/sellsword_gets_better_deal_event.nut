@@ -7,9 +7,9 @@
 			_screen.Options[0] = {
 				Text = "I see, time to part ways then.",
 				function getResult( _event ) {
-					_event.m.Sellsword.getSkills().onDeath(this.Const.FatalityType.None);
+					_event.m.Sellsword.getSkills().onDeath(::Const.FatalityType.None);
 					::Legends.addFallen(_event.m.Sellsword, "Got a better paying offer");
-					this.World.getPlayerRoster().remove(_event.m.Sellsword);
+					::World.getPlayerRoster().remove(_event.m.Sellsword);
 					return 0;
 				}
 			}
@@ -23,12 +23,12 @@
 				this.List.push({
 					id = 13,
 					icon = "ui/icons/kills.png",
-					text = _event.m.Sellsword.getName() + " leaves the " + this.World.Assets.getName()
+					text = _event.m.Sellsword.getName() + " leaves the " + ::World.Assets.getName()
 				});
-				_event.m.Sellsword.getItems().transferToStash(this.World.Assets.getStash());
-				_event.m.Sellsword.getSkills().onDeath(this.Const.FatalityType.None);
+				_event.m.Sellsword.getItems().transferToStash(::World.Assets.getStash());
+				_event.m.Sellsword.getSkills().onDeath(::Const.FatalityType.None);
 				::Legends.addFallen(_event.m.Sellsword, "Got a better paying offer");
-				this.World.getPlayerRoster().remove(_event.m.Sellsword);
+				::World.getPlayerRoster().remove(_event.m.Sellsword);
 			}
 		});
 		::Legends.Screens.hook(this, "D", function(_screen) {
@@ -38,14 +38,14 @@
 	}
 
 	o.onUpdateScore = function() {
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
+		if (::World.Assets.getOrigin().getID() == "scenario.lone_wolf")
 			return;
 
 		if (::World.Assets.m.ProfessionEffect.LegendPaymaster > 0) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach (bro in brothers) {
@@ -53,7 +53,7 @@
 				continue;
 			if (bro.getLevel() < 4 && bro.getLevel() > 9)
 				continue;
-			if (this.Time.getVirtualTimeF() - bro.getHireTime() < this.World.getTime().SecondsPerDay * 25.0)
+			if (this.Time.getVirtualTimeF() - bro.getHireTime() < ::World.getTime().SecondsPerDay * 25.0)
 				continue;
 			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist))
 				continue;
@@ -66,8 +66,8 @@
 		if (candidates.len() == 0)
 			return;
 
-		this.m.Sellsword = candidates[this.Math.rand(0, candidates.len() - 1)];
-		this.m.Amount = this.Math.rand(5, 15);
+		this.m.Sellsword = candidates[::Math.rand(0, candidates.len() - 1)];
+		this.m.Amount = ::Math.rand(5, 15);
 		this.m.OldPay = this.m.Sellsword.getDailyCost();
 		this.m.Score = candidates.len() * 10;
 	}

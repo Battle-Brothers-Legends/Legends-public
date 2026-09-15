@@ -13,7 +13,7 @@ this.perk_legend_sleight_of_hand <- this.inherit("scripts/skills/skill", {
 		if (weapon.getAmmoMax() != weapon.getAmmo())
 		{
 			weapon.setAmmo(::Math.min(weapon.getAmmoMax(), weapon.getAmmo() + 1));
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " gains one extra ammo for " + weapon.getName() + ".");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " gains one extra ammo for " + weapon.getName() + ".");
 			return;
 		}
 	}

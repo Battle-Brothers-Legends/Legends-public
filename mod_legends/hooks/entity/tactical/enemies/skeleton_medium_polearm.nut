@@ -15,7 +15,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.Math.max(10, 60 - this.World.getTime().Days))
+		if (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::Math.max(10, 60 - ::World.getTime().Days))
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/ancient/broken_bladed_pike"));
 		}
@@ -29,10 +29,10 @@
 			[1, ::Legends.Armor.Ancient.ancient_mail],
 			[1, ::Legends.Armor.Ancient.ancient_double_layer_mail]
 		];
-		local item = this.Const.World.Common.pickArmor(armor);
+		local item = ::Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_legionary_helmet]
 		]);
 		if (item != null)

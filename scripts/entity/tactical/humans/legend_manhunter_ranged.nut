@@ -2,15 +2,15 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendManhunterRanged;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendManhunterRanged.XP;
+		this.m.Type = ::Const.EntityType.LegendManhunterRanged;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendManhunterRanged.XP;
 		this.human.create();
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.SouthernUntidy;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.SouthernUntidy;
 		this.m.BeardChance = 80;
 		this.m.Ethnicity = 1;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_manhunter_ranged_agent");
@@ -24,7 +24,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendManhunterRanged);
+		b.setValues(::Const.Tactical.Actor.LegendManhunterRanged);
 		b.TargetAttractionMult = 1.1;
 		b.Vision = 8;
 		this.m.ActionPoints = b.ActionPoints;
@@ -33,7 +33,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
 
-		if (this.Math.rand(1, 100) <= 15)
+		if (::Math.rand(1, 100) <= 15)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -45,7 +45,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.getSprite("eye_rings").Visible = true;
 		}
@@ -62,7 +62,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 
 	function onOtherActorDeath( _killer, _victim, _skill )
 	{
-		if (_victim.getType() == this.Const.EntityType.Slave && _victim.isAlliedWith(this))
+		if (_victim.getType() == ::Const.EntityType.Slave && _victim.isAlliedWith(this))
 		{
 			return;
 		}
@@ -72,7 +72,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 
 	function onOtherActorFleeing( _actor )
 	{
-		if (_actor.getType() == this.Const.EntityType.Slave && _actor.isAlliedWith(this))
+		if (_actor.getType() == ::Const.EntityType.Slave && _actor.isAlliedWith(this))
 		{
 			return;
 		}
@@ -82,7 +82,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 
 	function assignRandomEquipment()
 	{
-		local r = this.Math.rand(1, 2);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -95,7 +95,7 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 			this.m.Items.addToBag(this.new("scripts/items/weapons/militia_spear"));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
@@ -105,14 +105,14 @@ this.legend_manhunter_ranged <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Standard.leather_lamellar]
 		];
-		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 
 		local helmet = [
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]
 		];
-		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
 	}
 
 });

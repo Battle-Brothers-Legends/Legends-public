@@ -24,8 +24,8 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_disengage"));
 		// this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_defend_rotation"));
 
-		this.addBite(this.Const.AI.Behavior.ID.EngageMelee);
-		this.addBite(this.Const.AI.Behavior.ID.AttackDefault);
+		this.addBite(::Const.AI.Behavior.ID.EngageMelee);
+		this.addBite(::Const.AI.Behavior.ID.AttackDefault);
 	}
 
 	function addBite(_behaviorID) {
@@ -77,9 +77,9 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 		this.hyena_agent.onUpdate();
 
 		if (actor.getFlags().has("LegendEnragedHyenaBiteVictim")) {
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 5.0;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Roam] = 0.5;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.AttackDefault] = 5.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.5;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Roam] = 0.5;
 		} else {
 			// // TODO Should prioritize engaging targets that are already bitten by other hyenas
 			// local tile = this.getActor().getTile();
@@ -97,9 +97,9 @@ this.legend_enraged_hyena_agent <- this.inherit("scripts/ai/tactical/agents/hyen
 			// 	}
 			// }
 
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 1.25;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 1.0;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Roam] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.AttackDefault] = 1.25;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Roam] = 1.0;
 		}
 
 	}

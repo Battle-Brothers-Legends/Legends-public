@@ -9,7 +9,7 @@ this.legend_wizard_tower_location <- this.inherit("scripts/entity/world/location
 	{
 		this.location.create();
 		this.m.TypeID = "location.legend_wizard_tower";
-		this.m.LocationType = this.Const.World.LocationType.Unique;
+		this.m.LocationType = ::Const.World.LocationType.Unique;
 		this.m.IsShowingDefenders = false;
 		this.m.IsShowingBanner = false;
 		this.m.VisibilityMult = 0.8;
@@ -26,9 +26,9 @@ this.legend_wizard_tower_location <- this.inherit("scripts/entity/world/location
 	function onDiscovered()
 	{
 		this.location.onDiscovered();
-		this.World.Flags.increment("LegendaryLocationsDiscovered", 1);
+		::World.Flags.increment("LegendaryLocationsDiscovered", 1);
 
-		if (this.World.Flags.get("LegendaryLocationsDiscovered") >= 10)
+		if (::World.Flags.get("LegendaryLocationsDiscovered") >= 10)
 		{
 			this.updateAchievement("FamedExplorer", 1, 1);
 		}

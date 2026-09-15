@@ -57,7 +57,7 @@
 		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendBarrage))
 			return;
 
-		if (_bodyPart != this.Const.BodyPart.Head)
+		if (_bodyPart != ::Const.BodyPart.Head)
 			return;
 
 		this.m.FreeReload = true;

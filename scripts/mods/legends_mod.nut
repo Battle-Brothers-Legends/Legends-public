@@ -30,12 +30,12 @@ this.legends_mod <- {
 
 	function doDevConsoleEvent(_args)
 	{
-		if (!this.World.Events.canFireEvent())
+		if (!::World.Events.canFireEvent())
 		{
 			this.logInfo("Can not fire event " + _args +" at this time");
 			return
 		}
 
-		this.World.Events.fire(_args);
+		::World.Events.fire(_args);
 	}
 }

@@ -6,13 +6,13 @@ this.legend_named_goblin_gruesome_falchion <- this.inherit("scripts/items/weapon
 		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_goblin_gruesome_falchion";
-		this.m.NameList = this.Const.Strings.SwordNames;
-		this.m.PrefixList = this.Const.Strings.GoblinWeaponPrefix;
+		this.m.NameList = ::Const.Strings.SwordNames;
+		this.m.PrefixList = ::Const.Strings.GoblinWeaponPrefix;
 		this.m.UseRandomName = false;
 		this.m.Description = "Fashioned from sharpened black rock, this wavy blade and can cause gruesome injuries. Even if it\'s crafted by goblins, the crafstmanship is amazing.";
 		this.m.Categories = "Sword, One-Handed";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

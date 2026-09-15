@@ -33,9 +33,9 @@
 			function start(_event) {
 				this.Characters.push(_event.m.Herbalist.getImagePath());
 
-				local amount = this.Math.rand(5, 12);
+				local amount = ::Math.rand(5, 12);
 
-				this.World.Assets.addMedicine(amount);
+				::World.Assets.addMedicine(amount);
 				this.List.extend([
 					{
 						id = 10,
@@ -51,10 +51,10 @@
 
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function() {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
 			return;
 
@@ -64,7 +64,7 @@
 				herbalists.push(bro);
 		}
 		if (herbalists.len() > 0)
-			this.m.Herbalist = herbalists[this.Math.rand(0, herbalists.len() - 1)];
+			this.m.Herbalist = herbalists[::Math.rand(0, herbalists.len() - 1)];
 
 		onUpdateScore();
 	}

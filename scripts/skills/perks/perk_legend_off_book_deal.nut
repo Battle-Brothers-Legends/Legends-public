@@ -10,7 +10,7 @@ this.perk_legend_off_book_deal <- this.inherit("scripts/skills/skill", {
 
     function countAllOffBookDealer()
     {
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
         local numberOfOffBookDealer = 0;
 		foreach (bro in roster)
 		{

@@ -33,9 +33,9 @@
 			"Hoofmind",
 			"the Sheep"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -55,7 +55,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local r = this.Math.rand(1, 100);
+		local r = ::Math.rand(1, 100);
 
 		if (r <= 25)
 		{
@@ -70,12 +70,12 @@
 			items.equip(this.new("scripts/items/weapons/legend_staff"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.leather_tunic],
-			[1, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
+			[1, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.straw_hat],
 		]));
 

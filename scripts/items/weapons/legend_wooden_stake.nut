@@ -8,9 +8,9 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A roughly sharpened wooden shaft, usually used for tents and carpentry. Can be applied to other more visceral tasks. Very effective against vampires.";
 		this.m.IconLarge = "weapons/melee/wooden_stake_01.png";
 		this.m.Icon = "weapons/melee/wooden_stake_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Dagger;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
@@ -42,7 +42,7 @@ this.legend_wooden_stake <- this.inherit("scripts/items/weapons/weapon", {
 		if (item.getID() != this.getID())
 			return;
 
-		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
 		{
 			_properties.DamageRegularMin += 100;
 			_properties.DamageRegularMax += 105;

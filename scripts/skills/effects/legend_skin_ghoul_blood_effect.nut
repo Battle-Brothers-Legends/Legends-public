@@ -8,8 +8,8 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_93.png";
 		this.m.IconMini = "status_effect_93_mini";
 		this.m.Overlay = "status_effect_93";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -23,7 +23,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, this.Math.floor(actor.getHitpointsMax() * 0.10));
+		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
 
 		local ret = [
 			{
@@ -51,7 +51,7 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, this.Math.floor(actor.getHitpointsMax() * 0.10));
+		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
 
 		if (healthAdded <= 0)
 		{
@@ -68,10 +68,10 @@ this.legend_skin_ghoul_blood_effect <- this.inherit("scripts/skills/skill", {
 
 				if (this.m.SoundOnUse.len() != 0)
 				{
-					this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+					::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
 				}
 
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
 			}
 		}
 	}

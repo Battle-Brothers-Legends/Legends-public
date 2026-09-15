@@ -99,7 +99,7 @@
 }
 
 ::Legends.S.extraLootChance <- function (_baseLootAmount = 0) {
-	return _baseLootAmount + (!this.Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
+	return _baseLootAmount + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
 }
 
 ::Legends.S.getNeighbouringActors <- function (_tile)
@@ -115,7 +115,7 @@
 		{
 			local next = _tile.getNextTile(i);
 
-			if (next.IsOccupiedByActor && this.Math.abs(next.Level - _tile.Level) <= 1)
+			if (next.IsOccupiedByActor && ::Math.abs(next.Level - _tile.Level) <= 1)
 			{
 				actors.push(next.getEntity());
 			}
@@ -185,22 +185,22 @@
 }
 
 ::Legends.S.scaleBaseProperties <- function (_properties) {
-	if (this.Tactical.State.isScenarioMode()) {
+	if (::Tactical.State.isScenarioMode()) {
 		return;
 	}
 	local daysToScale = ::World.getTime().Days - ::Legends.Difficulty.DayScaling[::World.Assets.getCombatDifficulty()];
 	if (daysToScale > 0) {
-		local bonus = this.Math.floor(daysToScale / 20.0);
+		local bonus = ::Math.floor(daysToScale / 20.0);
 		_properties.MeleeSkill += bonus;
 		_properties.RangedSkill += bonus;
-		_properties.MeleeDefense += this.Math.floor(bonus / 2);
-		_properties.RangedDefense += this.Math.floor(bonus / 2);
-		_properties.Hitpoints += this.Math.floor(bonus * 2);
-		_properties.Initiative += this.Math.floor(bonus / 2);
+		_properties.MeleeDefense += ::Math.floor(bonus / 2);
+		_properties.RangedDefense += ::Math.floor(bonus / 2);
+		_properties.Hitpoints += ::Math.floor(bonus * 2);
+		_properties.Initiative += ::Math.floor(bonus / 2);
 		_properties.Stamina += bonus;
-		//	b.XP += this.Math.floor(bonus * 4);
+		//	b.XP += ::Math.floor(bonus * 4);
 		_properties.Bravery += bonus;
-		_properties.FatigueRecoveryRate += this.Math.floor(bonus / 4);
+		_properties.FatigueRecoveryRate += ::Math.floor(bonus / 4);
 	}
 }
 
@@ -216,7 +216,7 @@
 		toolEfficiencyModifier += 25;
 	}
 	// Cap efficiency at 50%
-	return this.Math.maxf(0.5, (100.0 - toolEfficiencyModifier) / 100.0);
+	return ::Math.maxf(0.5, (100.0 - toolEfficiencyModifier) / 100.0);
 }
 
 ::Legends.S.applyBleed <- function (_target, _actor, _hpBefore, _soundsA, _soundsB, _damage = 0, _effect = ::Legends.Effect.Bleeding, _bypassHitpointsCheck = false) {
@@ -230,22 +230,22 @@
 
 	if (::Legends.S.isEntityNullOrDead(_target)) {
 		if (_target.getFlags().has("tail") || !_target.getCurrentProperties().IsImmuneToBleeding) {
-			this.Sound.play(_soundsA[this.Math.rand(0, _soundsA.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+			::Sound.play(_soundsA[::Math.rand(0, _soundsA.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
 		}
 		else {
-			this.Sound.play(_soundsB[this.Math.rand(0, _soundsB.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+			::Sound.play(_soundsB[::Math.rand(0, _soundsB.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
 		}
 	}
-	else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
+	else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
 		::Legends.Effects.grant(_target, _effect, function(_effect) {
-			if (_actor.getFaction() == this.Const.Faction.Player )
+			if (_actor.getFaction() == ::Const.Faction.Player )
 				_effect.setActor(_actor);
 			_effect.setDamage(damage);
 		}.bindenv(this));
-		this.Sound.play(_soundsA[this.Math.rand(0, _soundsA.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+		::Sound.play(_soundsA[::Math.rand(0, _soundsA.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
 	}
 	else {
-		this.Sound.play(_soundsB[this.Math.rand(0, _soundsB.len() - 1)], this.Const.Sound.Volume.Skill, _actor.getPos());
+		::Sound.play(_soundsB[::Math.rand(0, _soundsB.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
 	}
 }
 
@@ -410,28 +410,28 @@
 
 	local baseProp = 0;
 	switch (attribute) {
-		case this.Const.Attributes.Hitpoints:
+		case ::Const.Attributes.Hitpoints:
 			baseProp = bro.getBaseProperties().Hitpoints;
 			break;
-		case this.Const.Attributes.Bravery:
+		case ::Const.Attributes.Bravery:
 			baseProp = bro.getBaseProperties().Bravery;
 			break;
-		case this.Const.Attributes.Fatigue:
+		case ::Const.Attributes.Fatigue:
 			baseProp = bro.getBaseProperties().Stamina;
 			break;
-		case this.Const.Attributes.Initiative:
+		case ::Const.Attributes.Initiative:
 			baseProp = bro.getBaseProperties().Initiative;
 			break;
-		case this.Const.Attributes.MeleeSkill:
+		case ::Const.Attributes.MeleeSkill:
 			baseProp = bro.getBaseProperties().MeleeSkill;
 			break;
-		case this.Const.Attributes.RangedSkill:
+		case ::Const.Attributes.RangedSkill:
 			baseProp = bro.getBaseProperties().RangedSkill;
 			break;
-		case this.Const.Attributes.MeleeDefense:
+		case ::Const.Attributes.MeleeDefense:
 			baseProp = bro.getBaseProperties().MeleeDefense;
 			break;
-		case this.Const.Attributes.RangedDefense:
+		case ::Const.Attributes.RangedDefense:
 			baseProp = bro.getBaseProperties().RangedDefense;
 			break;
 	}

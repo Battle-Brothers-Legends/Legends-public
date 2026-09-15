@@ -5,7 +5,7 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_blacksmith_fix_equipment";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_82.png[/img]While setting up for a camp %blacksmith% takes you aside, the staunch musclebound man looking unusually concerned.%SPEECH_ON%Sir, this equipment of ours is in really bad shape! It\'s a disgrace to be seen fighting in this. It is high time we bring it back to working condition!%SPEECH_OFF% The brute of a man rolls up his sleeves and swings around his hammer, seemingly eager to spend a whole night working his anvil.",
@@ -31,7 +31,7 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "Nice work!",
 				function getResult(_event) {
-					this.World.Assets.addMoralReputation(1);
+					::World.Assets.addMoralReputation(1);
 					return 0;
 				}
 			}],
@@ -40,11 +40,11 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 
 				this.List.push(::Legends.EventList.changeMood(_event.m.Blacksmith, -0.5, "Stayed up all night working"));
 
-				local stash = this.World.Assets.getStash().getItems();
+				local stash = ::World.Assets.getStash().getItems();
 				local items = 0;
 
 				foreach (item in stash) {
-					if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax()) {
+					if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax()) {
 						item.setCondition(item.getRepairMax());
 						this.List.push({
 							id = 10,
@@ -81,10 +81,10 @@ this.legend_blacksmith_fix_equipment <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.getTime().IsDaytime)
+		if (::World.getTime().IsDaytime)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_blacksmith = [];
 
 		foreach (b in brothers) {

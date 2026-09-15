@@ -7,8 +7,8 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 		this.m.Name = "Prosthetic Foot";
 		this.m.Description = "It\'s more than a prosthetic foot, it\'s a foundation! Or so it\'s creator says, but this contraption looks like hell to walk with. Crafted out of wood, metal and various leather straps, it manages to mimic foot movement well enough and will allow the wearer to at least recover a part of their dexterity.";
 		this.m.Icon = "consumables/prosthetic_foot.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = false;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -91,12 +91,12 @@ this.legend_prosthetic_foot_item <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onUse( _actor, _item = null )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.maimed_foot"))
 		{
 			::Legends.Traits.grant(_actor, ::Legends.Trait.LegendProstheticFoot);

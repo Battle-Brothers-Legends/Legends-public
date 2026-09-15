@@ -6,7 +6,7 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSwagger);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getTooltip ()
@@ -30,13 +30,13 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/armor_body.png",
-				text = "[color=%positive%]+" + this.Math.floor(bonus) + "[/color] armor condition added at start of combat"
+				text = "[color=%positive%]+" + ::Math.floor(bonus) + "[/color] armor condition added at start of combat"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "[color=%positive%]+" + this.Math.floor(bonus / 2) + "[/color] helmet condition added at start of combat"
+				text = "[color=%positive%]+" + ::Math.floor(bonus / 2) + "[/color] helmet condition added at start of combat"
 			}]);
 		}
 		else
@@ -56,19 +56,19 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 	{
 		local bonus = this.getBonus(_actor);
 		local ret = [];
-		if (this.Math.floor(bonus) > 0)
+		if (::Math.floor(bonus) > 0)
 		{
 			ret.extend([{
 				id = 10,
 				type = "text",
 				icon = "ui/icons/armor_body.png",
-				text = "[color=%positive%]+" + this.Math.floor(bonus) + "[/color] armor condition added at start of combat"
+				text = "[color=%positive%]+" + ::Math.floor(bonus) + "[/color] armor condition added at start of combat"
 			},
 			{
 				id = 11,
 				type = "text",
 				icon = "ui/icons/armor_head.png",
-				text = "[color=%positive%]+" + this.Math.floor(bonus / 2) + "[/color] helmet condition added at start of combat"
+				text = "[color=%positive%]+" + ::Math.floor(bonus / 2) + "[/color] helmet condition added at start of combat"
 			}]);
 		}
 		else
@@ -86,18 +86,18 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 
 	function onCombatStarted ()
 	{
-		this.m.ArmorAdded = this.Math.floor(this.getBonus());
-		this.m.HelmetAdded = this.Math.floor(this.getBonus() / 2);
+		this.m.ArmorAdded = ::Math.floor(this.getBonus());
+		this.m.HelmetAdded = ::Math.floor(this.getBonus() / 2);
 	}
 
 	function onUpdate(_properties)
 	{
-		if (("State" in this.Tactical) && this.Tactical.State != null)
+		if (("State" in ::Tactical) && ::Tactical.State != null)
 		{
-			_properties.Armor[this.Const.BodyPart.Body] += this.m.ArmorAdded;
-			_properties.Armor[this.Const.BodyPart.Head] += this.m.HelmetAdded;
-			_properties.ArmorMax[this.Const.BodyPart.Body] += this.m.ArmorAdded;
-			_properties.ArmorMax[this.Const.BodyPart.Head] += this.m.HelmetAdded;
+			_properties.Armor[::Const.BodyPart.Body] += this.m.ArmorAdded;
+			_properties.Armor[::Const.BodyPart.Head] += this.m.HelmetAdded;
+			_properties.ArmorMax[::Const.BodyPart.Body] += this.m.ArmorAdded;
+			_properties.ArmorMax[::Const.BodyPart.Head] += this.m.HelmetAdded;
 		}
 	}
 
@@ -110,8 +110,8 @@ this.perk_legend_swagger <- this.inherit("scripts/skills/skill", {
 	function getBonus (_actor = null)
 	{
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
-		local body = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local head = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local body = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		local head = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local gearValue = 0;
 
 		if (body != null)

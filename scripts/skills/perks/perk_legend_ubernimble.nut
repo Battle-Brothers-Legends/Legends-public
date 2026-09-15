@@ -3,12 +3,12 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendUberNimble);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function isHidden()
 	{
-		local fm = this.Math.floor(this.getChance() * 100);
+		local fm = ::Math.floor(this.getChance() * 100);
 		return fm >= 100;
 	}
 
@@ -19,10 +19,10 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local fm = this.Math.round(this.getChance() * 100);
+		local fm = ::Math.round(this.getChance() * 100);
 		local tooltip = this.skill.getTooltip();
-		local  bodyitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local  headitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local  bodyitem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		local  headitem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
 
 		if (bodyitem == null && headitem == null)
 		{
@@ -53,8 +53,8 @@ this.perk_legend_ubernimble <- this.inherit("scripts/skills/skill", {
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
-	   local  bodyitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-	   local  headitem = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+	   local  bodyitem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Body);
+	   local  headitem = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
 
 	   if (bodyitem != null || headitem != null)
 	   {

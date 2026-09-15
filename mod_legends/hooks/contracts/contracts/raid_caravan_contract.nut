@@ -24,15 +24,15 @@
 			{
 				o.end <- function ()
 				{
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local r = this.Math.rand(1, 100);
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = ::Math.rand(1, 100);
 					this.Flags.set("Survivors", 0);
 
 					if (r <= 10)
 					{
 						this.Flags.set("IsBribe", true);
-						this.Flags.set("Bribe1", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (this.Math.rand(70, 150) * 0.01)));
-						this.Flags.set("Bribe2", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (this.Math.rand(70, 150) * 0.01)));
+						this.Flags.set("Bribe1", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (::Math.rand(70, 150) * 0.01)));
+						this.Flags.set("Bribe2", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (::Math.rand(70, 150) * 0.01)));
 					}
 					else if (r <= 15)
 					{
@@ -57,21 +57,21 @@
 						this.Flags.set("IsCompromisingPapers", true);
 					}
 
-					local enemyFaction = this.World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse"));
-					local best_start = this.World.getEntityByID(this.Flags.get("InterceptStart"));
-					local best_dest = this.World.getEntityByID(this.Flags.get("InterceptDest"));
+					local enemyFaction = ::World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse"));
+					local best_start = ::World.getEntityByID(this.Flags.get("InterceptStart"));
+					local best_dest = ::World.getEntityByID(this.Flags.get("InterceptDest"));
 
-					local spawnParty = this.Const.World.Spawn.NobleCaravan;
-					local r = this.Math.rand(1, 100);
+					local spawnParty = ::Const.World.Spawn.NobleCaravan;
+					local r = ::Math.rand(1, 100);
 					if (r > 75)
 					{
-						spawnParty = this.Const.World.Spawn.Mercenaries;
+						spawnParty = ::Const.World.Spawn.Mercenaries;
 					}
 					else if (r > 50)
 					{
-						spawnParty = this.Const.World.Spawn.MixedNobleCaravan;
+						spawnParty = ::Const.World.Spawn.MixedNobleCaravan;
 					}
-					local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, this.Const.World.Spawn.NobleCaravan, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+					local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, ::Const.World.Spawn.NobleCaravan, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 					party.getSprite("base").Visible = false;
 					party.getSprite("banner").setBrush(enemyFaction.getBannerSmall());
 					party.setMirrored(true);
@@ -79,17 +79,17 @@
 					party.setImportant(true);
 					party.setDiscovered(true);
 					party.setDescription("A caravan with armed escorts transporting something worth protecting between settlements.");
-					party.setFootprintType(this.Const.World.FootprintsType.Caravan);
+					party.setFootprintType(::Const.World.FootprintsType.Caravan);
 					party.getFlags().set("IsCaravan", true);
 					party.setAttackableByAI(false);
 					party.getFlags().add("ContractCaravan");
 					this.Contract.m.Target = this.WeakTableRef(party);
 					this.Contract.m.UnitsSpawned.push(party);
-					party.getLoot().Money = this.Math.rand(50, 100);
-					party.getLoot().ArmorParts = this.Math.rand(0, 10);
-					party.getLoot().Medicine = this.Math.rand(0, 2);
-					party.getLoot().Ammo = this.Math.rand(0, 20);
-					local r = this.Math.rand(1, 6);
+					party.getLoot().Money = ::Math.rand(50, 100);
+					party.getLoot().ArmorParts = ::Math.rand(0, 10);
+					party.getLoot().Medicine = ::Math.rand(0, 2);
+					party.getLoot().Ammo = ::Math.rand(0, 20);
+					local r = ::Math.rand(1, 6);
 
 					if (r == 1)
 					{
@@ -113,8 +113,8 @@
 					}
 
 					local c = party.getController();
-					c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-					c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+					c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+					c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 					local move = this.new("scripts/ai/world/orders/move_order");
 					move.setDestination(best_dest.getTile());
 					move.setRoadsOnly(true);
@@ -122,7 +122,7 @@
 					c.addOrder(move);
 					c.addOrder(despawn);
 					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 		}
@@ -145,7 +145,7 @@
 						Text = "We\'re paid to leave no one alive, so that\'s what we\'ll do. (Decrease Moral Reputation)",
 						function getResult()
 						{
-							this.World.Assets.addMoralReputation(-5);
+							::World.Assets.addMoralReputation(-5);
 							return "WomenAndChildren2";
 						}
 
@@ -154,7 +154,7 @@
 						Text = "To hell with it - let them leave. (Increase Moral Reputation)",
 						function getResult()
 						{
-							this.World.Assets.addMoralReputation(2);
+							::World.Assets.addMoralReputation(2);
 							this.Flags.set("Survivors", this.Flags.get("Survivors") + 3);
 							this.Contract.setState("Return");
 							return 0;

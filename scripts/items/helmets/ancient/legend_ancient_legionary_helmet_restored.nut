@@ -12,8 +12,8 @@ this.legend_ancient_legionary_helmet_restored <- this.inherit("scripts/items/hel
 		this.m.HideBeard = false;
 		this.m.ReplaceSprite = true;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 700;
 		this.m.Condition = 140;
 		this.m.ConditionMax = 140;

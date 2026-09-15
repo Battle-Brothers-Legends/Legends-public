@@ -136,9 +136,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "The Grand Melee is for us, let\'s begin at once",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GrandMelee, false);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GrandMelee, false);
 						_event.registerToShowAfterCombat("F", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -181,9 +181,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Another round",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GrandMelee, false);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GrandMelee, false);
 						_event.registerToShowAfterCombat("F", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -213,9 +213,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Another round",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GrandGauntlet, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GrandGauntlet, true);
 						_event.registerToShowAfterCombat("F2", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -249,16 +249,16 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				local round = this.World.Flags.get("LegendTournamentRound");
+				local round = ::World.Flags.get("LegendTournamentRound");
 				round += 1;
 				local payment = 1000 * round ;
-				this.World.Assets.addMoney(payment);
+				::World.Assets.addMoney(payment);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
 					text = payment + " crowns as reward"
 				});
-				this.World.Flags.set("LegendTournamentRound", round);
+				::World.Flags.set("LegendTournamentRound", round);
 			}
 
 		});
@@ -277,16 +277,16 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				local round = this.World.Flags.get("LegendTournamentRound");
+				local round = ::World.Flags.get("LegendTournamentRound");
 				round += 1;
 				local payment = 500 * round;
-				this.World.Assets.addMoney(payment);
+				::World.Assets.addMoney(payment);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
 					text = payment + " crowns as reward"
 				});
-				this.World.Flags.set("LegendTournamentRound", round);
+				::World.Flags.set("LegendTournamentRound", round);
 			}
 
 		});
@@ -305,17 +305,17 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 			],
 			function start( _event )
 			{
-				local round = this.World.Flags.get("LegendTournamentRound");
+				local round = ::World.Flags.get("LegendTournamentRound");
 				round += 1;
 				local payment = 250 * round;
 
-				this.World.Assets.addMoney(payment);
+				::World.Assets.addMoney(payment);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
 					text = payment + " crowns as reward"
 				});
-				this.World.Flags.set("LegendTournamentRound", round);
+				::World.Flags.set("LegendTournamentRound", round);
 			}
 
 		});
@@ -330,9 +330,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Lets begin the Gauntlet",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GrandGauntlet, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GrandGauntlet, true);
 						_event.registerToShowAfterCombat("F2", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -426,39 +426,39 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					function getResult( _event )
 					{
 						local SpawnGroups = [
-							this.Const.World.Spawn.Noble,
-							this.Const.World.Spawn.BanditBoss,
-							this.Const.World.Spawn.Barbarians,
-							this.Const.World.Spawn.Southern,
-							this.Const.World.Spawn.NomadRaiders,
-							this.Const.World.Spawn.Mercenaries,
-							this.Const.World.Spawn.Militia,
-							this.Const.World.Spawn.GoblinBoss,
-							this.Const.World.Spawn.OrcBoss,
-							this.Const.World.Spawn.Ghouls,
-							this.Const.World.Spawn.LegendHexeLeader,
-							this.Const.World.Spawn.LegendRockUnhold,
-							this.Const.World.Spawn.LegendSkinGhouls,
-							this.Const.World.Spawn.LegendWhiteDirewolf,
-							this.Const.World.Spawn.LegendRedbackSpider,
-							this.Const.World.Spawn.LegendDemonAlp,
-							this.Const.World.Spawn.LegendStollwurm,
-							this.Const.World.Spawn.LegendGreenwoodSchrat,
-							this.Const.World.Spawn.SandGolems,
-							this.Const.World.Spawn.Serpents,
-							this.Const.World.Spawn.Hyenas,
-							this.Const.World.Spawn.UndeadArmy,
-							this.Const.World.Spawn.Vampires,
-							this.Const.World.Spawn.Mummies,
-							this.Const.World.Spawn.Zombies,
-							this.Const.World.Spawn.Ghosts,
-							this.Const.World.Spawn.Necromancer,
-							this.Const.World.Spawn.BountyHunters,
-							this.Const.World.Spawn.GreenskinHorde
+							::Const.World.Spawn.Noble,
+							::Const.World.Spawn.BanditBoss,
+							::Const.World.Spawn.Barbarians,
+							::Const.World.Spawn.Southern,
+							::Const.World.Spawn.NomadRaiders,
+							::Const.World.Spawn.Mercenaries,
+							::Const.World.Spawn.Militia,
+							::Const.World.Spawn.GoblinBoss,
+							::Const.World.Spawn.OrcBoss,
+							::Const.World.Spawn.Ghouls,
+							::Const.World.Spawn.LegendHexeLeader,
+							::Const.World.Spawn.LegendRockUnhold,
+							::Const.World.Spawn.LegendSkinGhouls,
+							::Const.World.Spawn.LegendWhiteDirewolf,
+							::Const.World.Spawn.LegendRedbackSpider,
+							::Const.World.Spawn.LegendDemonAlp,
+							::Const.World.Spawn.LegendStollwurm,
+							::Const.World.Spawn.LegendGreenwoodSchrat,
+							::Const.World.Spawn.SandGolems,
+							::Const.World.Spawn.Serpents,
+							::Const.World.Spawn.Hyenas,
+							::Const.World.Spawn.UndeadArmy,
+							::Const.World.Spawn.Vampires,
+							::Const.World.Spawn.Mummies,
+							::Const.World.Spawn.Zombies,
+							::Const.World.Spawn.Ghosts,
+							::Const.World.Spawn.Necromancer,
+							::Const.World.Spawn.BountyHunters,
+							::Const.World.Spawn.GreenskinHorde
 						];
 						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -550,39 +550,39 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					function getResult( _event )
 					{
 						local SpawnGroups = [
-							this.Const.World.Spawn.Noble,
-							this.Const.World.Spawn.BanditBoss,
-							this.Const.World.Spawn.Barbarians,
-							this.Const.World.Spawn.Southern,
-							this.Const.World.Spawn.NomadRaiders,
-							this.Const.World.Spawn.Mercenaries,
-							this.Const.World.Spawn.Militia,
-							this.Const.World.Spawn.GoblinBoss,
-							this.Const.World.Spawn.OrcBoss,
-							this.Const.World.Spawn.Ghouls,
-							this.Const.World.Spawn.LegendHexeLeader,
-							this.Const.World.Spawn.LegendRockUnhold,
-							this.Const.World.Spawn.LegendSkinGhouls,
-							this.Const.World.Spawn.LegendWhiteDirewolf,
-							this.Const.World.Spawn.LegendRedbackSpider,
-							this.Const.World.Spawn.LegendDemonAlp,
-							this.Const.World.Spawn.LegendStollwurm,
-							this.Const.World.Spawn.LegendGreenwoodSchrat,
-							this.Const.World.Spawn.SandGolems,
-							this.Const.World.Spawn.Serpents,
-							this.Const.World.Spawn.Hyenas,
-							this.Const.World.Spawn.UndeadArmy,
-							this.Const.World.Spawn.Vampires,
-							this.Const.World.Spawn.Mummies,
-							this.Const.World.Spawn.Zombies,
-							this.Const.World.Spawn.Ghosts,
-							this.Const.World.Spawn.Necromancer,
-							this.Const.World.Spawn.BountyHunters,
-							this.Const.World.Spawn.GreenskinHorde
+							::Const.World.Spawn.Noble,
+							::Const.World.Spawn.BanditBoss,
+							::Const.World.Spawn.Barbarians,
+							::Const.World.Spawn.Southern,
+							::Const.World.Spawn.NomadRaiders,
+							::Const.World.Spawn.Mercenaries,
+							::Const.World.Spawn.Militia,
+							::Const.World.Spawn.GoblinBoss,
+							::Const.World.Spawn.OrcBoss,
+							::Const.World.Spawn.Ghouls,
+							::Const.World.Spawn.LegendHexeLeader,
+							::Const.World.Spawn.LegendRockUnhold,
+							::Const.World.Spawn.LegendSkinGhouls,
+							::Const.World.Spawn.LegendWhiteDirewolf,
+							::Const.World.Spawn.LegendRedbackSpider,
+							::Const.World.Spawn.LegendDemonAlp,
+							::Const.World.Spawn.LegendStollwurm,
+							::Const.World.Spawn.LegendGreenwoodSchrat,
+							::Const.World.Spawn.SandGolems,
+							::Const.World.Spawn.Serpents,
+							::Const.World.Spawn.Hyenas,
+							::Const.World.Spawn.UndeadArmy,
+							::Const.World.Spawn.Vampires,
+							::Const.World.Spawn.Mummies,
+							::Const.World.Spawn.Zombies,
+							::Const.World.Spawn.Ghosts,
+							::Const.World.Spawn.Necromancer,
+							::Const.World.Spawn.BountyHunters,
+							::Const.World.Spawn.GreenskinHorde
 						];
 						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -612,9 +612,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Goblins",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GoblinBoss, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GoblinBoss, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -623,9 +623,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Berserkers",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.BerserkersOnly, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.BerserkersOnly, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -634,9 +634,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Warriors",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.OrcBoss, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.OrcBoss, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -645,9 +645,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "You decide, any will do",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.GreenskinHorde, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.GreenskinHorde, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -677,9 +677,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Ancient Legions",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.UndeadArmy, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.UndeadArmy, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -688,9 +688,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Wiedergangers",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Necromancer, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Necromancer, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -699,9 +699,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "The Embalmed",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Mummies, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Mummies, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -710,9 +710,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "You decide, any will do",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.UndeadScourge, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.UndeadScourge, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -742,9 +742,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "An unhold",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.LegendRockUnhold, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.LegendRockUnhold, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -753,9 +753,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A spider",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.LegendRedbackSpider, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.LegendRedbackSpider, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -764,9 +764,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A wolf",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.LegendWhiteDirewolf, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.LegendWhiteDirewolf, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -775,9 +775,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A wyrm",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.LegendStollwurm, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.LegendStollwurm, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -786,9 +786,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "You decide, any will do",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.LegendHexeLeader, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.LegendHexeLeader, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -835,15 +835,15 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					function getResult( _event )
 					{
 						local SpawnGroups = [
-							this.Const.World.Spawn.Noble,
-							this.Const.World.Spawn.Southern,
-							this.Const.World.Spawn.Mercenaries,
-							this.Const.World.Spawn.Militia,
-							this.Const.World.Spawn.BountyHunters
+							::Const.World.Spawn.Noble,
+							::Const.World.Spawn.Southern,
+							::Const.World.Spawn.Mercenaries,
+							::Const.World.Spawn.Militia,
+							::Const.World.Spawn.BountyHunters
 						];
 						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -873,9 +873,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A Noble House",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Noble, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Noble, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -884,9 +884,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A City State",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Southern, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Southern, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -895,9 +895,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "Mercenaries",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Mercenaries, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Mercenaries, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -907,18 +907,18 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					function getResult( _event )
 					{
 						local SpawnGroups = [
-							this.Const.World.Spawn.Noble,
-							this.Const.World.Spawn.Southern,
-							this.Const.World.Spawn.Mercenaries,
-							this.Const.World.Spawn.Militia,
-							this.Const.World.Spawn.BountyHunters,
-							this.Const.World.Spawn.BanditBoss,
-							this.Const.World.Spawn.Barbarians,
-							this.Const.World.Spawn.NomadDefenders
+							::Const.World.Spawn.Noble,
+							::Const.World.Spawn.Southern,
+							::Const.World.Spawn.Mercenaries,
+							::Const.World.Spawn.Militia,
+							::Const.World.Spawn.BountyHunters,
+							::Const.World.Spawn.BanditBoss,
+							::Const.World.Spawn.Barbarians,
+							::Const.World.Spawn.NomadDefenders
 						];
 						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -948,9 +948,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A Bandit Gang",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.BanditBoss, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.BanditBoss, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -959,9 +959,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A Barbarian Tribe",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.Barbarians, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.Barbarians, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -970,9 +970,9 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					Text = "A Nomad Tribe",
 					function getResult( _event )
 					{
-						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), this.Const.World.Spawn.NomadDefenders, true);
+						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), ::Const.World.Spawn.NomadDefenders, true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -982,13 +982,13 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 					function getResult( _event )
 					{
 						local SpawnGroups = [
-							this.Const.World.Spawn.BanditBoss,
-							this.Const.World.Spawn.Barbarians,
-							this.Const.World.Spawn.NomadDefenders
+							::Const.World.Spawn.BanditBoss,
+							::Const.World.Spawn.Barbarians,
+							::Const.World.Spawn.NomadDefenders
 						];
 						local p = _event.selectFight(_event.getReputationToDifficultyLightMult(), SpawnGroups[::Math.rand(0, SpawnGroups.len() - 1)], true);
 						_event.registerToShowAfterCombat("J3", "null");
-						this.World.State.startScriptedCombat(p, false, false, false);
+						::World.State.startScriptedCombat(p, false, false, false);
 						return 0;
 					}
 
@@ -1011,30 +1011,30 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 
 	function selectFight( scale, type, lootingStopped )
 	{
-		local round = this.World.Flags.get("LegendTournamentRound");
+		local round = ::World.Flags.get("LegendTournamentRound");
 		local roundDifficulty = 0.7 + round * 0.3;
-		this.World.Flags.increment("LegendTournamentRound", 1);
-		local p = this.Const.Tactical.CombatInfo.getClone();
-		p.LocationTemplate = clone this.Const.Tactical.LocationTemplate;
+		::World.Flags.increment("LegendTournamentRound", 1);
+		local p = ::Const.Tactical.CombatInfo.getClone();
+		p.LocationTemplate = clone ::Const.Tactical.LocationTemplate;
 		p.TerrainTemplate = "tactical.tournament";
 		p.LocationTemplate.Template[0] = "tactical.legend_tournament_floor";
 		p.CombatID = "Legend Tournament";
 		local tracks = [
-			this.Const.Music.OrcsTracks,
-			this.Const.Music.NobleTracks,
-			this.Const.Music.UndeadTracks,
-			this.Const.Music.BanditTracks,
-			this.Const.Music.CivilianTracks,
-			this.Const.Music.BeastsTracks,
-			this.Const.Music.GoblinsTracks,
-			this.Const.Music.OrientalBanditTracks,
-			this.Const.Music.OrientalCityStateTracks,
-			this.Const.Music.BarbarianTracks,
-			this.Const.Music.BattleTracks
+			::Const.Music.OrcsTracks,
+			::Const.Music.NobleTracks,
+			::Const.Music.UndeadTracks,
+			::Const.Music.BanditTracks,
+			::Const.Music.CivilianTracks,
+			::Const.Music.BeastsTracks,
+			::Const.Music.GoblinsTracks,
+			::Const.Music.OrientalBanditTracks,
+			::Const.Music.OrientalCityStateTracks,
+			::Const.Music.BarbarianTracks,
+			::Const.Music.BattleTracks
 		];
 		p.Music = tracks[::Math.rand(0, tracks.len() - 1)];
-		p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Arena;
-		p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Arena;
+		p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Arena;
+		p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Arena;
 		p.IsUsingSetPlayers = false;
 		p.IsFleeingProhibited = true;
 		p.IsLootingProhibited = lootingStopped;
@@ -1044,11 +1044,11 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 		p.IsAutoAssigningBases = false;
 		p.Players = [];
 		p.Entities = [];
-		this.Const.World.Common.addUnitsToCombat(p.Entities, type, ::Math.pow(scale, roundDifficulty), this.Const.Faction.Enemy);
+		::Const.World.Common.addUnitsToCombat(p.Entities, type, ::Math.pow(scale, roundDifficulty), ::Const.Faction.Enemy);
 		p.AfterDeploymentCallback = function ()
 		{
-			this.Tactical.getWeather().setAmbientLightingPreset(1);
-			this.Tactical.getWeather().setAmbientLightingSaturation(1.1);
+			::Tactical.getWeather().setAmbientLightingPreset(1);
+			::Tactical.getWeather().setAmbientLightingSaturation(1.1);
 		};
 		return p;
 	}
@@ -1063,10 +1063,10 @@ this.legend_tournament_enter_event <- this.inherit("scripts/events/event", {
 
 	function onDetermineStartScreen()
 	{
-		this.World.Flags.set("LegendTournamentRound", 1);
+		::World.Flags.set("LegendTournamentRound", 1);
 		local candidate_veteran = [];
 
-		foreach( bro in this.World.getPlayerRoster().getAll() )
+		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			if (::Legends.Traits.has(bro, ::Legends.Trait.ArenaVeteran) || ::Legends.Traits.has(bro, ::Legends.Trait.LegendArenaChampion) || ::Legends.Traits.has(bro, ::Legends.Trait.LegendArenaInvictus))
 			{

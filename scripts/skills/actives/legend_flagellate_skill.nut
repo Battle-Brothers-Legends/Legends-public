@@ -10,8 +10,8 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Flaggelated to death";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/whip", 3);
 		this.m.SoundOnHit = [];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -19,8 +19,8 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsRanged = false;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.1;
 		this.m.ActionPointCost = 3;
 		this.m.FatigueCost = 15;
@@ -32,12 +32,12 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 	{
 		foreach( r in this.m.SoundsA )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.SoundsB )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
@@ -62,7 +62,7 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
@@ -82,35 +82,35 @@ this.legend_flagellate_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding)
 				{
-					this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+					::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				}
 				else
 				{
-					this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+					::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 				}
 			}
-			else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding)
+			else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding)
 			{
 				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-					if (_user.getFaction() == this.Const.Faction.Player )
+					if (_user.getFaction() == ::Const.Faction.Player )
 						_effect.setActor(this.getContainer().getActor());
 					_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
 				}.bindenv(this));
 				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-					if (_user.getFaction() == this.Const.Faction.Player )
+					if (_user.getFaction() == ::Const.Faction.Player )
 						_effect.setActor(this.getContainer().getActor());
 					_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
 				}.bindenv(this));
 				::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function(_effect) {
-					if (_user.getFaction() == this.Const.Faction.Player )
+					if (_user.getFaction() == ::Const.Faction.Player )
 						_effect.setActor(this.getContainer().getActor());
 					_effect.setDamage(this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers ? 10 : 5);
 				}.bindenv(this));
-				this.Sound.play(this.m.SoundsA[this.Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 			else
 			{
-				this.Sound.play(this.m.SoundsB[this.Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 		}
 

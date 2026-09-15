@@ -2,7 +2,7 @@
 {
 	o.onVerifyTarget = function ( _originTile, _targetTile )
 	{
-		local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 		if (brothers.len() == 1)
 		{
 			return false;

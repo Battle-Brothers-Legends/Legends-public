@@ -6,8 +6,8 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_129.png";
 		this.m.IconMini = "status_effect_129_mini";
 		this.m.Overlay = "status_effect_129";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -35,7 +35,7 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "The Fatigue cost of the Adrenaline skill is reduced by [color=" + this.Const.UI.Color.PositiveValue + "]60%[/color]"
+				text = "The Fatigue cost of the Adrenaline skill is reduced by [color=" + ::Const.UI.Color.PositiveValue + "]60%[/color]"
 			},
 			{
 				id = 12,
@@ -49,15 +49,15 @@ this.legend_orc_behemoth_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isOrcBehemothPotionAcquired", false);
+			::World.Statistics.getFlags().set("isOrcBehemothPotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isOrcBehemothPotionAcquired", false);
+		::World.Statistics.getFlags().set("isOrcBehemothPotionAcquired", false);
 	}
 
 });

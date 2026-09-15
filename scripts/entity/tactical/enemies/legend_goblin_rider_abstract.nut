@@ -1,11 +1,11 @@
 this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/goblin", {
 	m = {
 		Variant = 1,
-		LastBodyPartHit = this.Const.BodyPart.Body,
+		LastBodyPartHit = ::Const.BodyPart.Body,
 		Info = null,
 		AssignAIAgent = "scripts/ai/tactical/agents/goblin_wolfrider_agent",
-		AssignEntityType = this.Const.EntityType.GoblinWolfrider,
-		AssignActor = this.Const.Tactical.Actor.GoblinWolfrider,
+		AssignEntityType = ::Const.EntityType.GoblinWolfrider,
+		AssignActor = ::Const.Tactical.Actor.GoblinWolfrider,
 		WolfScript = "scripts/entity/tactical/enemies/wolf",
 		GoblinScript = "scripts/entity/tactical/enemies/goblin_fighter"
 	},
@@ -28,20 +28,20 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 				"helmet_damage"
 			]
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
 			"sounds/enemies/werewolf_hurt_01.wav",
 			"sounds/enemies/werewolf_hurt_02.wav",
 			"sounds/enemies/werewolf_hurt_03.wav",
 			"sounds/enemies/werewolf_hurt_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other2] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other2] = [
 			"sounds/enemies/werewolf_death_01.wav",
 			"sounds/enemies/werewolf_death_02.wav",
 			"sounds/enemies/werewolf_death_03.wav",
 			"sounds/enemies/werewolf_death_04.wav",
 			"sounds/enemies/werewolf_death_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/werewolf_idle_01.wav",
 			"sounds/enemies/werewolf_idle_02.wav",
 			"sounds/enemies/werewolf_idle_03.wav",
@@ -64,8 +64,8 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 			"sounds/enemies/werewolf_idle_20.wav",
 			"sounds/enemies/werewolf_idle_21.wav"
 		];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 0.6;
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 0.6;
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/werewolf_fatigue_01.wav",
 			"sounds/enemies/werewolf_fatigue_02.wav",
 			"sounds/enemies/werewolf_fatigue_03.wav",
@@ -90,8 +90,8 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.createSprites();
 		this.assignSkills();
 		this.applySpriteOffset(0, -20);
@@ -99,7 +99,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 
 	function createSprites()
 	{
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.setAlwaysApplySpriteOffset(true);
 		local offset = this.createVec(8, 14);
 		this.setSpriteOffset("body", offset);
@@ -109,7 +109,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 		this.setSpriteOffset("helmet", offset);
 		this.setSpriteOffset("helmet_damage", offset);
 		this.setSpriteOffset("body_blood", offset);
-		local variant = this.Math.rand(1, 2);
+		local variant = ::Math.rand(1, 2);
 		local wolf = this.addSprite("wolf");
 		wolf.setBrush("bust_wolf_0" + variant + "_body");
 		wolf.varySaturation(0.15);
@@ -178,10 +178,10 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 			Saturation = this.getSprite("body").Saturation,
 			WolfColor = this.getSprite("wolf").Color,
 			WolfSaturation = this.getSprite("wolf").Saturation,
-			Morale = this.Math.max(this.Const.MoraleState.Breaking, this.getMoraleState())
+			Morale = ::Math.max(::Const.MoraleState.Breaking, this.getMoraleState())
 		};
 
-		if (this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
 			this.spawnDeadWolf(_killer, _skill, _tile, _fatalityType);
 		}
@@ -193,7 +193,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 
 	function onAfterDeath( _tile )
 	{
-		if (this.Tactical.Entities.getHostilesNum() == 0)
+		if (::Tactical.Entities.getHostilesNum() == 0)
 		{
 			return;
 		}
@@ -211,7 +211,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 				{
 					local tile = this.m.Info.Tile.getNextTile(i);
 
-					if (tile.IsEmpty && this.Math.abs(tile.Level - this.m.Info.Tile.Level) <= 1)
+					if (tile.IsEmpty && ::Math.abs(tile.Level - this.m.Info.Tile.Level) <= 1)
 					{
 						this.m.Info.Tile = tile;
 						changed = true;
@@ -226,7 +226,7 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 			}
 		}
 
-		if (this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
 			this.spawnGoblin(this.m.Info);
 		}
@@ -242,8 +242,8 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 
 	function spawnWolf( _info )
 	{
-		this.Sound.play(this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived][this.Math.rand(0, this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived].len() - 1)], this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
-		local entity = this.Tactical.spawnEntity(this.m.WolfScript, _info.Tile.Coords.X, _info.Tile.Coords.Y);
+		::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.DamageReceived][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.DamageReceived].len() - 1)], ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
+		local entity = ::Tactical.spawnEntity(this.m.WolfScript, _info.Tile.Coords.X, _info.Tile.Coords.Y);
 
 		if (entity != null)
 		{
@@ -255,8 +255,8 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 
 	function spawnGoblin( _info )
 	{
-		this.Sound.play(this.m.Sound[this.Const.Sound.ActorEvent.Other1][this.Math.rand(0, this.m.Sound[this.Const.Sound.ActorEvent.Other1].len() - 1)], this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
-		local entity = this.Tactical.spawnEntity(this.m.GoblinScript, _info.Tile.Coords.X, _info.Tile.Coords.Y);
+		::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.Other1][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.Other1].len() - 1)], ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1], _info.Tile.Pos, 1.0);
+		local entity = ::Tactical.spawnEntity(this.m.GoblinScript, _info.Tile.Coords.X, _info.Tile.Coords.Y);
 		if (this.m.IsMiniboss)
 		{
 			entity.makeMiniboss();
@@ -282,18 +282,18 @@ this.legend_goblin_rider_abstract <- this.inherit("scripts/entity/tactical/gobli
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
-		if (_type == this.Const.Sound.ActorEvent.DamageReceived && this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		if (_type == ::Const.Sound.ActorEvent.DamageReceived && this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
-			_type = this.Const.Sound.ActorEvent.Other1;
+			_type = ::Const.Sound.ActorEvent.Other1;
 		}
-		else if (_type == this.Const.Sound.ActorEvent.Death && this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		else if (_type == ::Const.Sound.ActorEvent.Death && this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
-			_type = this.Const.Sound.ActorEvent.Other2;
-			this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 0.7;
+			_type = ::Const.Sound.ActorEvent.Other2;
+			this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 0.7;
 		}
 
 		this.actor.playSound(_type, _volume, _pitch);
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 1.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 1.0;
 	}
 
 	function assignRandomEquipment()

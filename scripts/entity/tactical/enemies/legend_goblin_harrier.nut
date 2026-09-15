@@ -3,8 +3,8 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendGoblinHarrier;
-		this.m.XP = this.Const.Tactical.Actor.LegendGoblinHarrier.XP;
+		this.m.Type = ::Const.EntityType.LegendGoblinHarrier;
+		this.m.XP = ::Const.Tactical.Actor.LegendGoblinHarrier.XP;
 		this.goblin.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/goblin_melee_agent");
 		this.m.AIAgent.setActor(this);
@@ -14,7 +14,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 	{
 		this.goblin_fighter.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendGoblinHarrier);
+		b.setValues(::Const.Tactical.Actor.LegendGoblinHarrier);
 		::Legends.Perks.grant(this, ::Legends.Perk.Backstabber);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTumble);
@@ -32,7 +32,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 	function assignRandomEquipment()
 	{
 		local r;
-		r = this.Math.rand(1, 2);
+		r = ::Math.rand(1, 2);
 
 		local weapons = [
 			"weapons/greenskins/goblin_falchion",
@@ -44,20 +44,20 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 			"weapons/greenskins/legend_goblin_infantry_axe"
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			local item = this.Const.World.Common.pickArmor([
+			local item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
 				[2, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 			]);
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[25, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 				[75, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 			]);
@@ -83,7 +83,7 @@ this.legend_goblin_harrier <- this.inherit("scripts/entity/tactical/enemies/gobl
 			"weapons/named/named_warbrand",
 			"weapons/named/legend_named_goblin_notched_blade"
 		];
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;

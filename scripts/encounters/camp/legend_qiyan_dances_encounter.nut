@@ -35,7 +35,7 @@ this.legend_qiyan_dances_encounter <- this.inherit("scripts/encounters/encounter
 						continue;
 					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, 1.0, "Amazed by the qiyan\'s mesmerising performance!");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push(entry);
 					}
 				}

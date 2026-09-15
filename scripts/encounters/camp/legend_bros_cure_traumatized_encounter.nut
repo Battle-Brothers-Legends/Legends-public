@@ -79,12 +79,12 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 				this.Characters.push(_event.m.Traumatized.getImagePath());
 				::Legends.Traits.grant(_event.m.Traumatized, ::Legends.Trait.Drunkard);
 				_event.m.Drunkard.improveMood(1.0, "Got a new drinking buddy");
-				if (_event.m.Drunkard.getMoodState() > this.Const.MoodState.Neutral)
+				if (_event.m.Drunkard.getMoodState() > ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
-						text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
+						text = _event.m.Drunkard.getName() + ::Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 					});
 				}
 			}
@@ -123,20 +123,20 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 					icon = afraidEffect.getIcon(),
 					text = _event.m.Monk.getName() + " is afraid"
 				});
-				if (_event.m.Traumatized.getMoodState() > this.Const.MoodState.Neutral)
+				if (_event.m.Traumatized.getMoodState() > ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Traumatized.getMoodState()],
-						text = _event.m.Traumatized.getName() + this.Const.MoodStateEvent[_event.m.Traumatized.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Traumatized.getMoodState()],
+						text = _event.m.Traumatized.getName() + ::Const.MoodStateEvent[_event.m.Traumatized.getMoodState()]
 					});
 				}
-				if (_event.m.Monk.getMoodState() < this.Const.MoodState.Neutral)
+				if (_event.m.Monk.getMoodState() < ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Monk.getMoodState()],
-						text = _event.m.Monk.getName() + this.Const.MoodStateEvent[_event.m.Monk.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Monk.getMoodState()],
+						text = _event.m.Monk.getName() + ::Const.MoodStateEvent[_event.m.Monk.getMoodState()]
 					});
 				}
 			}
@@ -203,7 +203,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 		if (::World.getPlayerRoster().getSize() < 3)
 			return false;
 
-		local bros = this.World.getPlayerRoster().getAll();
+		local bros = ::World.getPlayerRoster().getAll();
 		local randomBros = [];
 		foreach (bro in bros) {
 			if (bro.getSkills().hasSkill("injury.traumatized")) {

@@ -6,12 +6,12 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.legend_battle_glaive";
 		this.m.Name = "Battle Glaive";
 		this.m.Description = "A long and sturdy glaive built for heavy combat, used to thrust, deal sweeping strikes over some distance and slashes in close range.";
-		this.m.Variant = this.Math.rand(1, 2);
+		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
-		this.m.WeaponType = this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
@@ -43,8 +43,8 @@ this.legend_battle_glaive <- this.inherit("scripts/items/weapons/weapon", {
 			_skill.m.IsGlaiveStrike = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
-			_skill.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-			_skill.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+			_skill.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+			_skill.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 			_skill.m.IsIgnoredAsAOO = true;
 		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough);

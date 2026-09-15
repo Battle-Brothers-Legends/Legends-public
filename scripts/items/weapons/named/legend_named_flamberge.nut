@@ -8,14 +8,14 @@ this.legend_named_flamberge <- this.inherit("scripts/items/weapons/named/named_w
 	function create() {
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_flamberge";
-		this.m.NameList = this.Const.Strings.GreatswordNames;
+		this.m.NameList = ::Const.Strings.GreatswordNames;
 		this.m.Description = "The flamberge is of similar length and weight as other zweihanders, but what makes it special is its jagged edge, capable of leaving nasty gashes in the body of the unwise victim.";
 		this.m.IconLarge = "weapons/melee/flamberge_01_named_01.png";
 		this.m.Icon = "weapons/melee/flamberge_01_named_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;

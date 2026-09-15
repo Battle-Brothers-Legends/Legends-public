@@ -36,11 +36,11 @@
 		}
 
 		local fightingGreenskins = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Orcs || this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Goblins)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Orcs || ::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Goblins)
 			{
 				fightingGreenskins = true;
 				break;

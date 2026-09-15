@@ -30,23 +30,23 @@
 
 	o.onUpdate = function ()
 	{
-		if ("NegotiationAnnoyanceMult" in this.World.Assets.m)
-			this.World.Assets.m.NegotiationAnnoyanceMult = 0.5;
-		if ("AdvancePaymentCap" in this.World.Assets.m)
-			this.World.Assets.m.AdvancePaymentCap = 0.75;
+		if ("NegotiationAnnoyanceMult" in ::World.Assets.m)
+			::World.Assets.m.NegotiationAnnoyanceMult = 0.5;
+		if ("AdvancePaymentCap" in ::World.Assets.m)
+			::World.Assets.m.AdvancePaymentCap = 0.75;
 
-		if ("RelationDecayGoodMult" in this.World.Assets.m) {
-			if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
-				this.World.Assets.m.RelationDecayGoodMult = 1.075;
+		if ("RelationDecayGoodMult" in ::World.Assets.m) {
+			if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
+				::World.Assets.m.RelationDecayGoodMult = 1.075;
 			} else {
-				this.World.Assets.m.RelationDecayGoodMult = 0.85;
+				::World.Assets.m.RelationDecayGoodMult = 0.85;
 			}
 		}
-		if ("RelationDecayBadMult" in this.World.Assets.m) {
-			if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
-				this.World.Assets.m.RelationDecayBadMult = 0.925;
+		if ("RelationDecayBadMult" in ::World.Assets.m) {
+			if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves") {
+				::World.Assets.m.RelationDecayBadMult = 0.925;
 			} else {
-				this.World.Assets.m.RelationDecayBadMult = 1.15;
+				::World.Assets.m.RelationDecayBadMult = 1.15;
 			}
 		}
 	}

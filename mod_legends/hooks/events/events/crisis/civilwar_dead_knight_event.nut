@@ -12,10 +12,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.FactionManager.isCivilWar())
+		if (!::World.FactionManager.isCivilWar())
 			return;
 
-		if (!this.World.State.getPlayer().getTile().HasRoad)
+		if (!::World.State.getPlayer().getTile().HasRoad)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isSouthern() && t.isAlliedWithPlayer());
@@ -26,7 +26,7 @@
 		if (distance < 4 || distance > 10)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers ) {
@@ -35,7 +35,7 @@
 		}
 
 		if (candidates.len() != 0)
-			this.m.Thief = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Thief = candidates[::Math.rand(0, candidates.len() - 1)];
 
 		this.m.Score = 10;
 	}

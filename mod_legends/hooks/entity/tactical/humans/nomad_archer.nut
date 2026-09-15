@@ -23,7 +23,7 @@
 				"ammo/quiver_of_arrows"
 			]
 		];
-		local n = this.Math.rand(0, weapons.len() - 1);
+		local n = ::Math.rand(0, weapons.len() - 1);
 
 		foreach( w in weapons[n] )
 		{
@@ -36,7 +36,7 @@
 			"weapons/oriental/nomad_mace",
 			"weapons/oriental/saif"
 		];
-		this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 
 		local armor = [
@@ -59,7 +59,7 @@
 			[1, ::Legends.Outfit.dark_southern_outfit_00]
 		];
 
-		foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
+		foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
 		{
 			this.m.Items.equip(item)
 		}

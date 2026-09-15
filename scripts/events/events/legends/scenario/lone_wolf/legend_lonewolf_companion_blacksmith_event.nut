@@ -5,7 +5,7 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_blacksmith";
 		this.m.Title = "Last stand";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay; //—
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay; //—
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_30.png[/img]As you wander a common sight comes into view — an isolated gathering of homes with no name is in the process of being raided. Figures of all shapes and sizes dart from home to home, taking anything that isn\'t nailed down or fighting back. In the distance, a stockier figure dressed in a blacksmith\'s apron is holding their ground, cutting bandits down left, right and center.\n However, they show signs of beginning to slow down.",
@@ -92,14 +92,14 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 			Options = [{
 				Text = "We can introduce ourselves when they wake up.",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.LegendBlacksmith]);
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
@@ -135,17 +135,17 @@ this.legend_lonewolf_companion_blacksmith_event <- this.inherit("scripts/events/
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 

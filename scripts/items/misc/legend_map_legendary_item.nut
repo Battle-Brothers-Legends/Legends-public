@@ -9,8 +9,8 @@ this.legend_map_legendary_item <- this.inherit("scripts/items/item", {
         this.m.Name = "Legendary location map";
         this.m.Icon = "misc/map_legendary.png";
         this.m.Description = "This map seems to have marked location and a lot of annotations. Right click to study it.";
-        this.m.SlotType = this.Const.ItemSlot.None;
-        this.m.ItemType = this.Const.Items.ItemType.Usable;
+        this.m.SlotType = ::Const.ItemSlot.None;
+        this.m.ItemType = ::Const.Items.ItemType.Usable;
         this.m.IsUsable = true;
         this.m.IsDroppedAsLoot = true;
         this.m.Value = 350;
@@ -20,8 +20,8 @@ this.legend_map_legendary_item <- this.inherit("scripts/items/item", {
         if (this.m.IsSold) {
             return this.getSellPrice();
         }
-        if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-            return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * this.Const.World.Assets.BaseBuyPrice));
+        if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+            return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult() * ::Const.World.Assets.BaseBuyPrice));
         }
         return this.item.getBuyPrice();
     }
@@ -30,8 +30,8 @@ this.legend_map_legendary_item <- this.inherit("scripts/items/item", {
         if (this.m.IsBought) {
             return this.getBuyPrice();
         }
-        if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-            return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getSellPriceMult() * this.Const.World.Assets.BaseSellPrice);
+        if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+            return ::Math.floor(this.getValue() * ::World.State.getCurrentTown().getSellPriceMult() * ::Const.World.Assets.BaseSellPrice);
         }
         return this.item.getSellPrice();
     }
@@ -66,7 +66,7 @@ this.legend_map_legendary_item <- this.inherit("scripts/items/item", {
         ::World.getCamera().Zoom = 1.0;
         ::World.getCamera().setPos(location.getPos());
 
-        this.Sound.play("sounds/scribble.wav", this.Const.Sound.Volume.Inventory);
+        ::Sound.play("sounds/scribble.wav", ::Const.Sound.Volume.Inventory);
         return false;
     }
 

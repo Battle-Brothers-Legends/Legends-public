@@ -27,7 +27,7 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_fear_nobles";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 25.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_26.png[/img]{You find %brother% arguing with several other companions at camp. From what you gather the group observed a noble dueling tournament in the last town.%SPEECH_ON%I\'m telling ye, \'ee moved way too fast! That speed 'aint normal! What the fark am I gonna do if I face that in a fight? Bleed all over his pretty armor and hope \'ee slips in it? I mean, the big \'uns with the plate and the \'ammers is one thing, but those lunging fops... fark me.%SPEECH_OFF%No amount of cajoling or improbable war stories from the rest of the company seems able to break %brother% out of this defeatist mood.}",
@@ -56,13 +56,13 @@ this.legend_fear_nobles_event <- this.inherit("scripts/events/event", {
 		if (fallen.len() < 2)
 			return;
 
-		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < ::World.getTime().Days)
+		if (fallen[0].Time < ::World.getTime().Days || fallen[1].Time < ::World.getTime().Days)
 			return;
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.NobleHouse).getID())
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.NobleHouse).getID())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 2)
 			return;
 

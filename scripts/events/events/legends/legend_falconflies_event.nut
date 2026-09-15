@@ -7,7 +7,7 @@ this.legend_falconflies_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_falconflies"; //—
 		this.m.Title = "At %townname%";
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay; //falcon flies into a house and steals something
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay; //falcon flies into a house and steals something
 		this.m.Screens.push({
 			ID = "A",
 			Text = "%townImage%While in %townname%, you take the time to provision and make ready for the next part of your journey. %falconhandler% starts to wrestle with their birdcage, trying to keep it under control as the angry avian is desperate to get out. %They_falconhandler% mounts %their_falconhandler% bodyweight onto the cage and instead ends up having %their_falconhandler% fingers clipped and clawed by the animal inside for the effort. %SPEECH_ON%I think she wants out \'fer a bit.%SPEECH_OFF% The bird begins to calm down a little and chirps like a songbird in agreement — as if it knew exactly what was going on.",
@@ -97,7 +97,7 @@ this.legend_falconflies_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) t.isAlliedWithPlayer());
@@ -112,7 +112,7 @@ this.legend_falconflies_event <- this.inherit("scripts/events/event", {
 			return;
 
 		this.m.Falconhandler = candidates[::Math.rand(0, candidates.len() - 1)];
-		this.m.Falcon = this.m.Falconhandler.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
+		this.m.Falcon = this.m.Falconhandler.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
 		this.m.Town = town;
 		this.m.Score = candidates.len() * 15;
 	}

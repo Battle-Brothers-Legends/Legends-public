@@ -10,20 +10,20 @@ this.legend_named_warlock_hood <- this.inherit("scripts/items/legend_helmets/leg
 	{
 		this.legend_named_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_named_warlock_hood";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Warlock Hood";
 		this.m.Description = "An ominous hood crafted from witch hair to hide evil intentions.";
 		this.m.ArmorDescription = "Includes a hood crafted from witch hair.";
 		this.m.Variants = [1,2,3,4];
-        this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+        this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 100;
 		this.m.Lower = false;
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
-        this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Cultist;
+        this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Cultist;
         this.randomizeValues();
 	}
 

@@ -23,7 +23,7 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "status_effect_01_mini";
 		this.m.Overlay = "status_effect_01";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DamageOverTime;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 	}
@@ -36,10 +36,10 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 		if (this.m.LastRoundApplied != this.Time.getRound()) {
 			this.m.LastRoundApplied = this.Time.getRound();
 			this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
-			local hitInfo = clone this.Const.Tactical.HitInfo;
+			local hitInfo = clone ::Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = this.m.Damage;
 			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = this.Const.BodyPart.Body;
+			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
 			this.getContainer().getActor().onDamageReceived(this.getEffectOwner(), this, hitInfo);
@@ -52,7 +52,7 @@ this.legend_RSW_bleeding_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		this.m.TurnsLeft = this.Math.max(1, this.m.TurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, this.m.TurnsLeft + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Bleeder)) {
 			++this.m.TurnsLeft;

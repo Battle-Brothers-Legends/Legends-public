@@ -13,7 +13,7 @@ this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/bac
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/hunting_bow"));
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
@@ -27,7 +27,7 @@ this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/bac
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
@@ -35,7 +35,7 @@ this.legend_disowned_noble_ranged_background <- this.inherit("scripts/skills/bac
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.aketon_cap],

@@ -6,7 +6,7 @@ this.legend_cannibal_corrupts_butcher <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_cannibal_corrupts_butcher";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 30 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_cannibal_corrupts_butcher.png[/img]As it turns out, a butcher of men and a butcher of animals aren't that different. Since %cannibal% and %butcher% have been acquainted, the two have become fast friends. Perhaps too friendly even... \n You\'re interrupted in your ruminating by %butcher% %themselves_butcher%.%SPEECH_ON% Dinner\'s ready, Captain. Got a new recipe.%SPEECH_OFF% Handing you a bowl, the butcher strides off towards %cannibal%. You feel a sudden lack of appetite.",

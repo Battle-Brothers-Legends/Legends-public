@@ -30,7 +30,7 @@
 
 		if (!this.getContainer().getActor().isPlayerControlled())
 		{
-			this.m.Ammo = this.Math.rand(1, this.Math.max(1, this.m.AmmoMax - 1));
+			this.m.Ammo = ::Math.rand(1, ::Math.max(1, this.m.AmmoMax - 1));
 		}
 	}
 

@@ -28,15 +28,15 @@
 			"the Axe",
 			"the Woodsman"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Untidy;
 
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Combat;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.Bodies = ::Const.Bodies.Muscular;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Combat;
 	}
 
 	o.getTooltip = function ()
@@ -58,7 +58,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -77,13 +77,13 @@
 			items.equip(this.new("scripts/items/weapons/legend_saw"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic, 6]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood]
 		]));

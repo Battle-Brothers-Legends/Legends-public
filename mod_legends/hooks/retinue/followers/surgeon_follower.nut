@@ -21,8 +21,8 @@
 
 	o.onUpdate = function ()
 	{
-		if ("IsSurvivalGuaranteed" in this.World.Assets.m)
-			this.World.Assets.m.IsSurvivalGuaranteed = true;
+		if ("IsSurvivalGuaranteed" in ::World.Assets.m)
+			::World.Assets.m.IsSurvivalGuaranteed = true;
 	}
 
 	o.onEvaluate = function () {

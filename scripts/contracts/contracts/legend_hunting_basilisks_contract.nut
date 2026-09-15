@@ -10,7 +10,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_basilisks";
 		this.m.Name = "Basilisk Infestation";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"An ominous clucking floats across the fields at dawn. Locals tell tales of a bloodthirsty beast standing taller than a man.",
 			"Underestimate these giant chickens at your peril. A single one can either kill or feed an entire company.",
@@ -29,9 +29,9 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 	function start()
 	{
-		this.m.Payment.Pool = 490 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 490 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -54,7 +54,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					"Hunt down basilisks in the woods around " + this.Contract.m.Home.getName()
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -66,8 +66,8 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 
 				if (r <= 10)
 				{
@@ -85,7 +85,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -104,11 +104,11 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
 				{
-					if (this.Flags.get("IsExtraLoot") && this.World.Assets.getStash().hasEmptySlot())
+					if (this.Flags.get("IsExtraLoot") && ::World.Assets.getStash().hasEmptySlot())
 					{
 						this.Contract.setScreen("ExtraLoot");
 					}
-					else if (this.Flags.get("IsSurvivor") && this.World.getPlayerRoster().getSize() < this.World.Assets.getBrothersMax())
+					else if (this.Flags.get("IsSurvivor") && ::World.getPlayerRoster().getSize() < ::World.Assets.getBrothersMax())
 					{
 						this.Contract.setScreen("Survivor");
 					}
@@ -117,18 +117,18 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 						this.Contract.setScreen("Victory");
 					}
 
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
 				{
-					local tileType = this.World.State.getPlayer().getTile().Type;
+					local tileType = ::World.State.getPlayer().getTile().Type;
 
-					if (tileType == this.Const.World.TerrainType.Forest || tileType == this.Const.World.TerrainType.LeaveForest || tileType == this.Const.World.TerrainType.AutumnForest)
+					if (tileType == ::Const.World.TerrainType.Forest || tileType == ::Const.World.TerrainType.LeaveForest || tileType == ::Const.World.TerrainType.AutumnForest)
 					{
 						this.Flags.set("IsBanterShown", true);
 						this.Contract.setScreen("Banter");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}
@@ -139,11 +139,11 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				{
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -163,7 +163,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -172,8 +172,8 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -195,7 +195,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					Text = "{I\'d prefer to hunt smaller chickens.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -248,7 +248,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 //					Text = "Good to know.",
 //					function getResult()
 //					{
-//						local xp = this.Math.rand (9, 43); //Query: can the player exploit this to farm xp? I think this event will keep triggering? - Luft
+//						local xp = ::Math.rand (9, 43); //Query: can the player exploit this to farm xp? I think this event will keep triggering? - Luft
 //						foreach( bro in playerRoster )		//Follow up: now that I think about it, if they are willing to lose gold per day in exchange for rabble-tier xp maybe they deserve it. Plus there's no free beastslayer so they'd need to pay at least this background for this event to MAYBE fire multiple times and drip feed them xp. - Luft
 //						{
 //							bro.addXP(xp);
@@ -317,7 +317,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				local item = this.new("scripts/items/misc/legend_basilisk_feathers_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -338,8 +338,8 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					Text = "Welcome to the company!",
 					function getResult()
 					{
-						this.World.getPlayerRoster().add(this.Contract.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(this.Contract.m.Dude);
+						::World.getTemporaryRoster().clear();
 						this.Contract.m.Dude.onHired();
 						this.Contract.m.Dude = null;
 						return 0;
@@ -350,7 +350,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					Text = "You\'ll have to find your luck elsewhere.",
 					function getResult()
 					{
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						this.Contract.m.Dude = null;
 						return 0;
 					}
@@ -359,7 +359,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 			],
 			function start()
 			{
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				this.Contract.m.Dude = roster.create("scripts/entity/tactical/player");
 				this.Contract.m.Dude.setStartValuesEx([::Legends.Background.Hunter]);
 
@@ -375,24 +375,24 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				this.Contract.m.Dude.getBackground().buildDescription(true);
 				this.Contract.m.Dude.worsenMood(0.5, "Almost consumed alive by basilisks");
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).getArmor() * 0.33);
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).getArmor() * 0.33);
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).getArmor() * 0.33);
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).getArmor() * 0.33);
 				}
 
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
@@ -412,10 +412,10 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of basilisks");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of basilisks");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -426,10 +426,10 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 				local food;
-				local r = this.Math.rand(1, 3);
+				local r = ::Math.rand(1, 3);
 
 				if (r == 1)
 				{
@@ -444,7 +444,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					food = this.new("scripts/items/supplies/roots_and_berries_item");
 				}
 
-				this.World.Assets.getStash().add(food);
+				::World.Assets.getStash().add(food);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + food.getIcon(),
@@ -458,7 +458,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 	function onUpdateScore()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_beastslayer = [];
 
 		foreach( bro in brothers )
@@ -471,7 +471,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 		if (candidates_beastslayer.len() != 0)
 		{
-			this.m.Beastslayer = candidates_beastslayer[this.Math.rand(0, candidates_beastslayer.len() - 1)];
+			this.m.Beastslayer = candidates_beastslayer[::Math.rand(0, candidates_beastslayer.len() - 1)];
 		}
 	}
 
@@ -479,7 +479,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : this.Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
 		]);
 
 		_vars.push([
@@ -498,24 +498,24 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 	function spawnEnemies() {
 		local disallowedTerrain = [];
-		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i ) {
-			if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
+		for( local i = 0; i < ::Const.World.TerrainType.COUNT; i = ++i ) {
+			if (i == ::Const.World.TerrainType.Forest || i == ::Const.World.TerrainType.LeaveForest || i == ::Const.World.TerrainType.AutumnForest)
 				continue;
 			disallowedTerrain.push(i);
 		}
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local mapSize = this.World.getMapSize();
-		local x = this.Math.max(3, playerTile.SquareCoords.X - 9);
-		local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
-		local y = this.Math.max(3, playerTile.SquareCoords.Y - 9);
-		local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
+		local playerTile = ::World.State.getPlayer().getTile();
+		local mapSize = ::World.getMapSize();
+		local x = ::Math.max(3, playerTile.SquareCoords.X - 9);
+		local x_max = ::Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
+		local y = ::Math.max(3, playerTile.SquareCoords.Y - 9);
+		local y_max = ::Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
 		local numWoods = 0;
 
 		while (x <= x_max) {
 			while (y <= y_max) {
-				local tile = this.World.getTileSquare(x, y);
-				if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
+				local tile = ::World.getTileSquare(x, y);
+				if (tile.Type == ::Const.World.TerrainType.Forest || tile.Type == ::Const.World.TerrainType.LeaveForest || tile.Type == ::Const.World.TerrainType.AutumnForest)
 					numWoods++;
 				y++;
 			}
@@ -523,28 +523,28 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, this.Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		local party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Basilisks", false, ::Const.World.Spawn.LegendBasiliskLOW, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A stampede of basilisks hunting for food");
-		party.setFootprintType(this.Const.World.FootprintsType.Basilisks);
+		party.setFootprintType(::Const.World.FootprintsType.Basilisks);
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(1.10);
 
 		for( local i = 0; i < 2; i = ++i ) {
 			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 5);
 			if (nearTile != null)
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Basilisks, 0.75);
+				::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Basilisks, 0.75);
 		}
 
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(true);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setNoTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Forest, true);
-		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
-		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
+		roam.setTerrain(::Const.World.TerrainType.Forest, true);
+		roam.setTerrain(::Const.World.TerrainType.LeaveForest, true);
+		roam.setTerrain(::Const.World.TerrainType.AutumnForest, true);
 		roam.setMinRange(1);
 		roam.setMaxRange(1);
 		c.addOrder(roam);
@@ -604,7 +604,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 
 		this.contract.onDeserialize(_in);

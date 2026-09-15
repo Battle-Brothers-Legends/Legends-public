@@ -6,7 +6,7 @@
 		create();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.5;
 			this.m.Properties.TargetPriorityHitchanceMult = 1.5;
 			this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 			this.m.Properties.TargetPriorityRandomMult = 0.0;

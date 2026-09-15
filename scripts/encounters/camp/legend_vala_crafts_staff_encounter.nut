@@ -29,7 +29,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Vala.getImagePath());
-				local stash = this.World.Assets.getStash().getItems();
+				local stash = ::World.Assets.getStash().getItems();
 
 				foreach( i, item in stash )
 				{
@@ -46,7 +46,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 				}
 				local item = this.new("scripts/items/weapons/named/legend_named_staff_vala");
 				item.m.Name = _event.m.Vala.getNameOnly() + "\'s " + item.m.Name;
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -54,34 +54,34 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 				});
 				_event.m.Vala.improveMood(2.0, "Forged a staff of legend");
 
-				if (_event.m.Vala.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Vala.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Vala.getMoodState()],
-						text = _event.m.Vala.getName() + this.Const.MoodStateEvent[_event.m.Vala.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Vala.getMoodState()],
+						text = _event.m.Vala.getName() + ::Const.MoodStateEvent[_event.m.Vala.getMoodState()]
 					});
 				}
 
 				_event.m.RandomBrother.improveMood(1.0, "Witnessed a miracle");
 
-				if (_event.m.RandomBrother.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.RandomBrother.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.RandomBrother.getMoodState()],
-						text = _event.m.RandomBrother.getName() + this.Const.MoodStateEvent[_event.m.RandomBrother.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.RandomBrother.getMoodState()],
+						text = _event.m.RandomBrother.getName() + ::Const.MoodStateEvent[_event.m.RandomBrother.getMoodState()]
 					});
 				}
 
 				_event.m.RandomBrother2.improveMood(1.0, "Witnessed a miracle");
 
-				if (_event.m.RandomBrother2.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.RandomBrother2.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.RandomBrother2.getMoodState()],
-						text = _event.m.RandomBrother2.getName() + this.Const.MoodStateEvent[_event.m.RandomBrother2.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.RandomBrother2.getMoodState()],
+						text = _event.m.RandomBrother2.getName() + ::Const.MoodStateEvent[_event.m.RandomBrother2.getMoodState()]
 					});
 				}
 			}
@@ -110,7 +110,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 		if (::World.getPlayerRoster().getSize() < 3)
 			return false;
 
-		local bros = this.World.getPlayerRoster().getAll();
+		local bros = ::World.getPlayerRoster().getAll();
 
 		local randomBros = [];
 		foreach (bro in bros)
@@ -130,8 +130,8 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 		if (randomBros.len() < 2)
 			return;
 
-		this.m.RandomBrother = randomBros.remove(this.Math.rand(0, randomBros.len() - 1));
-		this.m.RandomBrother2 = randomBros[this.Math.rand(0, randomBros.len() - 1)];
+		this.m.RandomBrother = randomBros.remove(::Math.rand(0, randomBros.len() - 1));
+		this.m.RandomBrother2 = randomBros[::Math.rand(0, randomBros.len() - 1)];
 
 		local stash = World.Assets.getStash().getItems();
 		local staves = 0;

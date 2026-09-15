@@ -3,23 +3,23 @@
 	o.onUpdate = function ( _faction )
 	{
 		// For settlement faction
-		if (_faction.getType() == this.Const.FactionType.Settlement && !_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.deliver_item_contract))
+		if (_faction.getType() == ::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.deliver_item_contract))
 		{
 			return;
 		}
 
 		// For city-state faction
-		if (_faction.getType() !=this.Const.FactionType.Settlement && !_faction.isReadyForContract())
+		if (_faction.getType() !=::Const.FactionType.Settlement && !_faction.isReadyForContract())
 		{
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 20 || this.Math.rand(1, 100) > 10)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 20 || ::Math.rand(1, 100) > 10)
 		{
 			return;
 		}
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local mySettlement = _faction.getSettlements()[0];
 		local candidates = 0;
 

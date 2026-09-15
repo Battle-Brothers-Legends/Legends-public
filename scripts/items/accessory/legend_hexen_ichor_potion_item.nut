@@ -6,7 +6,7 @@ this.legend_hexen_ichor_potion_item <- this.inherit("scripts/items/accessory/acc
 		this.m.ID = "accessory.legend_hexen_ichor_potion";
 		this.m.Name = "Hexen Ichor Potion";
 		this.m.Description = "A disgusting Hexen brew, will heal and remove fatigue for 8 turns, but poison for 3 turns.";
-		this.m.SlotType = this.Const.ItemSlot.Bag;
+		this.m.SlotType = ::Const.ItemSlot.Bag;
 		this.m.IsAllowedInBag = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
@@ -24,7 +24,7 @@ this.legend_hexen_ichor_potion_item <- this.inherit("scripts/items/accessory/acc
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/bottle_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onEquip()

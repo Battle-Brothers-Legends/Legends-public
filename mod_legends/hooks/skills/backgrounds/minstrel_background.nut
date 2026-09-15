@@ -38,9 +38,9 @@
 			"the Lover",
 			"the Bard"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Performing;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Performing;
 	}
 
 	o.getTooltip = function ()
@@ -60,7 +60,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "\'{I can swing a sword and cleave an axe, | One might ask of me a task, | Right with god, but in the left a flask,} {and I say, \'You question a woman who wears no mask?\'. | and so I have to move quick, but not quite fast.} {Stare down the stuffed bears I did, | Into my frayed pantaloons I bid, | Along the muddy roads my boots skid,} {and so of many things I am rid. | truth! My shameful talent is to - ferociously! - knit.} {So take me along your adventure, | Bring me with your men who clatter and clamber, | Hand me your shield and that thing shaped like a member,} {and let us go and bid fear a farewell to remember! | and let\'s - oh, ow! I have a splinter! | and may we come, one and all, to a healthy next-winter!}\'. {The woman speaks gibberish. | It rhymes!}";
 		}
@@ -79,16 +79,16 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
-			[1, "linen_tunic", this.Math.rand(3,4)]
+		items.equip(::Const.World.Common.pickArmor([
+			[1, "linen_tunic", ::Math.rand(3,4)]
 		]));
 		local r;
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 
-		local r = this.Math.rand(0, 1);
+		local r = ::Math.rand(0, 1);
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/weapons/lute"));

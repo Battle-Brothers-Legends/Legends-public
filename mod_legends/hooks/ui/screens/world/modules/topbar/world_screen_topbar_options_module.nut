@@ -2,6 +2,6 @@
 
 	o.onCampButtonPressed = function ()
 	{
-		this.World.State.showCampScreen();
+		::World.State.showCampScreen();
 	}
 });

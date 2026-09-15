@@ -39,7 +39,7 @@
 	local unit = ::Const.World.Spawn.Troops.Necromancer;
 	local character = _roster.create("scripts/entity/tactical/employer/legend_necromancer_employer");
 	character.setFaction(_factionID);
-	character.m.HairColors = this.Const.HairColors.Old;
+	character.m.HairColors = ::Const.HairColors.Old;
 	character.setAppearance();
 	character.assignRandomEquipment();
 	character.setName(::Const.World.Common.generateName(unit.NameList) + (unit.TitleList != null ? " " + unit.TitleList[::Math.rand(0, unit.TitleList.len() - 1)] : ""));

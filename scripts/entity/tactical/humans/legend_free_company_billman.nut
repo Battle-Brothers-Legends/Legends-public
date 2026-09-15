@@ -3,19 +3,19 @@ this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend
 		Outfits = [
 			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		],
-		PerkList = this.Const.EnemyPerks.FreeCompanyBillman,
+		PerkList = ::Const.EnemyPerks.FreeCompanyBillman,
 		PerkPower = 7
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.FreeCompanyBillman;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.FreeCompanyBillman.XP;
+		this.m.Type = ::Const.EntityType.FreeCompanyBillman;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.FreeCompanyBillman.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bounty_hunter_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -24,7 +24,7 @@ this.legend_free_company_billman <- this.inherit("scripts/entity/tactical/legend
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanyBillman);
+		b.setValues(::Const.Tactical.Actor.FreeCompanyBillman);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;

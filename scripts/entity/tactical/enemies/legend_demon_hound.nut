@@ -267,12 +267,12 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function generateCorpse(_tile, _fatalityType, _killer) {
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.Faction = this.getFaction();
 		corpse.CorpseName = "A " + this.getName();
 		corpse.Armor = this.m.BaseProperties.Armor;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.IsConsumable = false;
 		corpse.IsResurrectable = false;
 		if (_tile != null) {
@@ -309,8 +309,8 @@ this.legend_demon_hound <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		this.m.Items.getAppearance().Body = "bust_demon_hound_01";
 		this.addSprite("socket").setBrush("bust_base_undead");

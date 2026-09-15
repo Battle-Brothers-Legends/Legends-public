@@ -13,10 +13,10 @@
 		_list.push(::Legends.Background.Nomad);
 		_list.push(::Legends.Background.Nomad);
 
-		if (this.Math.rand(0, 6) == 1)
+		if (::Math.rand(0, 6) == 1)
 			_list.push(::Legends.Background.LegendConscript);
 		
-		if (this.Math.rand(0, 6) == 1)
+		if (::Math.rand(0, 6) == 1)
 			_list.push(::Legends.Background.LegendConscriptRanged);
 		
 		onUpdateDraftList(_list);

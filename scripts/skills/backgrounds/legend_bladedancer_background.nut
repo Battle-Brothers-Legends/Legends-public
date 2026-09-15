@@ -26,7 +26,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
+			::Const.Attributes.RangedSkill,
 		];
 		this.m.Titles = [
 			"the Desert Devil",
@@ -35,11 +35,11 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			"the Restless",
 			"the Chosen One" //if someone gets this ref. i'll be surprised.
 		];
-		this.m.Ethnicity = this.Math.rand(1, 2);
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger;
+		this.m.Ethnicity = ::Math.rand(1, 2);
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Ranger;
 	}
 
 	function setGender(_gender = -1) {
@@ -55,7 +55,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 	function onBuildDescription()
 	{
 
-		if(this.isBackgroundType(this.Const.BackgroundType.Female)) //holdover text, need to expand this.
+		if(this.isBackgroundType(::Const.BackgroundType.Female)) //holdover text, need to expand this.
 		{
 
 		return "{The South is brimming with slaves, and those not among their ranks should be considered lucky. Outside of the walls of southern society %name% was born into a nameless nomadic tribe and made a living off the land. Every year the natural bounty of nature becomes slimmer and the walls of the city states expand further into their homeland.}";
@@ -78,9 +78,9 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			r = this.Math.rand(0, 2);
+			r = ::Math.rand(0, 2);
 
 			if (r == 0)
 			{
@@ -96,11 +96,11 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 			}
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.assassin_robe],
 			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
 			[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 		]));

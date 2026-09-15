@@ -2,7 +2,7 @@
 
 	o.setTurns = function (_t) {
 		if (!::MSU.isNull(this.getContainer()) && !::MSU.isNull(this.getContainer().getActor())) {
-			this.m.TurnsLeft = this.Math.max(1, _t + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+			this.m.TurnsLeft = ::Math.max(1, _t + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		}
 	}
 
@@ -67,7 +67,7 @@
 
 		if (statusResisted) {
 			if (!actor.isHiddenToPlayer()) {
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " shook off being stunned thanks to unnatural physiology.");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " shook off being stunned thanks to unnatural physiology.");
 			}
 
 			this.removeSelf();

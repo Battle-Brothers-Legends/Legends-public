@@ -43,7 +43,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local weapons = [
 				"weapons/legend_zweihander",
@@ -54,10 +54,10 @@
 				"weapons/bardiche"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = [
 				[1, ::Legends.Armor.Standard.coat_of_plates],
@@ -66,14 +66,14 @@
 				[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
 				[1, ::Legends.Armor.Standard.brown_hedgeknight_armor]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
+			this.m.Items.equip(::Const.World.Common.pickArmor(
 				armor
 			));
 		}
 
 
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = [
 				[30, ::Legends.Helmet.Standard.full_helm],
@@ -100,7 +100,7 @@
 				//[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_kettle_sallet_03],
 				//[2, ::Legends.Helmet.Standard.brown_hedgeknight_helmet]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(
+			this.m.Items.equip(::Const.World.Common.pickHelmet(
 				helmet
 			));
 		}
@@ -124,11 +124,11 @@
 			"weapons/named/named_two_handed_flail"
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		local r = this.Math.rand(1, 2);
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		local r = ::Math.rand(1, 2);
 		if (r == 1)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Named.brown_coat_of_plates_armor],
 				[1, ::Legends.Armor.Named.golden_scale_armor],
 				[1, ::Legends.Armor.Named.green_coat_of_plates_armor]
@@ -136,7 +136,7 @@
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[3, ::Legends.Helmet.Named.bascinet_named],
 				[3, ::Legends.Helmet.Named.kettle_helm_named],
 				[3, ::Legends.Helmet.Named.deep_cervelliere_named],

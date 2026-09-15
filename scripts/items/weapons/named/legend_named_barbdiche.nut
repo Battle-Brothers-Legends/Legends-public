@@ -4,16 +4,16 @@ this.legend_named_barbdiche <- this.inherit("scripts/items/weapons/named/named_w
 	{
 		this.named_weapon.create();
 		this.m.Variants = [1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.ID = "weapon.legend_named_barbdiche";
-		this.m.NameList = this.Const.Strings.AxeNames;
-		this.m.PrefixList = this.Const.Strings.BarbarianPrefix;
-		this.m.SuffixList = this.Const.Strings.BarbarianSuffix;
+		this.m.NameList = ::Const.Strings.AxeNames;
+		this.m.PrefixList = ::Const.Strings.BarbarianPrefix;
+		this.m.SuffixList = ::Const.Strings.BarbarianSuffix;
 		this.m.Description = "This ornamented battleaxe betrays a certain care for the weapon that is uncharacteristic to the northern tribes.";
 		this.m.Categories = "Axe, Two-Handed";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;

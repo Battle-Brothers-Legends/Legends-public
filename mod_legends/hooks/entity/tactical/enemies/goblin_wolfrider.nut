@@ -22,9 +22,9 @@
 			"weapons/greenskins/legend_goblin_infantry_axe",
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Greenskin.goblin_medium_armor],
 			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
@@ -32,7 +32,7 @@
 
 
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[75, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 			[25, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);

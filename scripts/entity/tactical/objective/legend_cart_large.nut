@@ -5,23 +5,23 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.IsActingEachTurn = false;
 		this.m.IsNonCombatant = true;
 		this.m.IsShakingOnHit = false;
-		this.m.Type = this.Const.EntityType.CaravanDonkey;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
-		this.m.XP = this.Const.Tactical.Actor.Donkey.XP;
+		this.m.Type = ::Const.EntityType.CaravanDonkey;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
+		this.m.XP = ::Const.Tactical.Actor.Donkey.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.actor.create();
 		this.m.Name = "Caravan Donkey";
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/misc/donkey_hurt_01.wav",
 			"sounds/misc/donkey_hurt_02.wav",
 			"sounds/misc/donkey_hurt_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/misc/donkey_death_01.wav",
 			"sounds/misc/donkey_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/misc/donkey_idle_01.wav",
 			"sounds/misc/donkey_idle_02.wav",
 			"sounds/misc/donkey_idle_03.wav",
@@ -31,34 +31,34 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/misc/donkey_idle_07.wav",
 			"sounds/misc/donkey_idle_08.wav"
 		];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 0.35;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 0.35;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/donkey_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 
 		if (_tile != null)
 		{
 			local decal;
 			local skin = this.getSprite("body");
-			decal = _tile.spawnDetail("donkey_tactical_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("donkey_tactical_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = skin.Color;
 			decal.Saturation = skin.Saturation;
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				_tile.spawnDetail("donkey_tactical_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				_tile.spawnDetail("donkey_tactical_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				_tile.spawnDetail("donkey_tactical_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				_tile.spawnDetail("donkey_tactical_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
+			local corpse = clone ::Const.Corpse;
 			corpse.CorpseName = "A Donkey";
 			corpse.Tile = _tile;
 			corpse.Value = 1.0;
@@ -66,7 +66,7 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 			corpse.IsConsumable = true;
 			corpse.IsHeadAttached = true;
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -90,7 +90,7 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDamageReceived( _attacker, _skill, _hitInfo )
 	{
-		_hitInfo.BodyPart = this.Const.BodyPart.Body;
+		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 		return this.actor.onDamageReceived(_attacker, _skill, _hitInfo);
 	}
 
@@ -104,7 +104,7 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Donkey);
+		b.setValues(::Const.Tactical.Actor.Donkey);
 		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToStun = true;
@@ -116,8 +116,8 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		local body = this.addSprite("body");
 		body.setBrush("donkey_tactical");
 		body.varySaturation(0.4);
@@ -133,12 +133,12 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onPlacedOnMap();
 		local directionPriority = [
-			this.Const.Direction.NW,
-			this.Const.Direction.NE,
-			this.Const.Direction.N,
-			this.Const.Direction.SW,
-			this.Const.Direction.S,
-			this.Const.Direction.SE
+			::Const.Direction.NW,
+			::Const.Direction.NE,
+			::Const.Direction.N,
+			::Const.Direction.SW,
+			::Const.Direction.S,
+			::Const.Direction.SE
 		];
 		local myTile = this.getTile();
 		local tile;
@@ -153,7 +153,7 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 			{
 				local nextTile = myTile.getNextTile(directionPriority[i]);
 
-				if (!nextTile.IsEmpty || this.Math.abs(nextTile.Level - myTile.Level) > 1)
+				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - myTile.Level) > 1)
 				{
 				}
 				else
@@ -167,14 +167,14 @@ this.legend_cart_large <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (tile != null)
 		{
-			local cart = this.Tactical.spawnEntity("scripts/entity/tactical/objects/cart_military", tile.Coords);
+			local cart = ::Tactical.spawnEntity("scripts/entity/tactical/objects/cart_military", tile.Coords);
 
-			if (directionPriority[dir] == this.Const.Direction.NE)
+			if (directionPriority[dir] == ::Const.Direction.NE)
 			{
 				cart.setFlipped(true);
 				this.setFlipped(true);
 			}
-			else if (directionPriority[dir] == this.Const.Direction.SE)
+			else if (directionPriority[dir] == ::Const.Direction.SE)
 			{
 				cart.setFlipped(true);
 			}

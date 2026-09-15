@@ -160,7 +160,7 @@
 		this.m.ArmorDamageMult = _in.readF32();
 		this.m.ChanceToHitHead = _in.readU8();
 		this.m.ShieldDamage = _in.readU16();
-		this.m.AdditionalAccuracy = this.Const.Serialization.Version <= 63 ? _in.readU16() : _in.readI16();
+		this.m.AdditionalAccuracy = ::Const.Serialization.Version <= 63 ? _in.readU16() : _in.readI16();
 		this.m.DirectDamageAdd = _in.readF32();
 		this.m.FatigueOnSkillUse = _in.readI16();
 		this.m.AmmoMax = _in.readU16();

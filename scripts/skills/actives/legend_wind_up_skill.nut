@@ -10,8 +10,8 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendWindUp);
 		this.m.Description = "Evaluate your enemy, preparing your next attack to push them back.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rupture_blood", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -57,8 +57,8 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 			return ret;
 		}
 
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local hasMelee = item == null || item.isItemType(::Const.Items.ItemType.MeleeWeapon);
 
 		if (hasMelee) {
 			ret.push({
@@ -68,7 +68,7 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 				text = "The next attack will push the enemy back and baffle them if it connects, otherwise the effect is wasted."
 			});
 		}
-		else if (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded)) {
+		else if (item.isWeaponType(::Const.Items.WeaponType.Sling) && item.isItemType(::Const.Items.ItemType.OneHanded)) {
 			ret.push({
 				id = 7,
 				type = "text",
@@ -90,14 +90,14 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 
 	function isHidden() {
 		local canUse = ::Legends.Effects.get(this, ::Legends.Effect.LegendKnockbackPrepared);
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local hasMelee = item == null || item.isItemType(this.Const.Items.ItemType.MeleeWeapon) || (item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded) || item.isWeaponType(this.Const.Items.WeaponType.Throwing));
-		return !((!this.Tactical.isActive() || canUse == null) && hasMelee);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local hasMelee = item == null || item.isItemType(::Const.Items.ItemType.MeleeWeapon) || (item.isWeaponType(::Const.Items.WeaponType.Sling) && item.isItemType(::Const.Items.ItemType.OneHanded) || item.isWeaponType(::Const.Items.WeaponType.Throwing));
+		return !((!::Tactical.isActive() || canUse == null) && hasMelee);
 	}
 
 	function onUse( _user, _targetTile ) {
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Sling) && item.isItemType(this.Const.Items.ItemType.OneHanded)) {
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Sling) && item.isItemType(::Const.Items.ItemType.OneHanded)) {
 			::Legends.Effects.grant(this, ::Legends.Effect.LegendPrepareBullet);
 		}
 		else {
@@ -109,16 +109,16 @@ this.legend_wind_up_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties ) {
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		if (item == null) {
 			return;
 		}
 
-		if (item.isItemType(this.Const.Items.ItemType.TwoHanded)) {
+		if (item.isItemType(::Const.Items.ItemType.TwoHanded)) {
 			this.m.ActionPointCost = 1;
 		}
-		else if (item.isItemType(this.Const.Items.ItemType.OneHanded)) {
+		else if (item.isItemType(::Const.Items.ItemType.OneHanded)) {
 			this.m.ActionPointCost = 2;
 		}
 	}

@@ -8,7 +8,7 @@
 				s.start <- function (_event)
 				{
 					this.Characters.push(_event.m.Tailor.getImagePath());
-					local stash = this.World.Assets.getStash().getItems();
+					local stash = ::World.Assets.getStash().getItems();
 
 					foreach( i, item in stash ) {
 						if (item != null && (item.getID() == "armor.body.padded_leather" || item.getID() == "armor.body.quilted_aketon" || item.getID() == "armor.body.rugged_surcoat" || item.getID() == "armor.body.thick_tunic" || item.getID() == "armor.body.blotched_gambeson")) {
@@ -21,10 +21,10 @@
 							break;
 						}
 					}
-					local item = this.Const.World.Common.pickArmor([
+					local item = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.cultist_leather_robe],
 					]);
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -37,23 +37,23 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Wildmen)
+		if (!::Const.DLC.Wildmen)
 			return;
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.cultists")
+		if (::World.Assets.getOrigin().getID() != "scenario.cultists")
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
 				candidates.push(bro);
 
 		if (candidates.len() == 0)
 			return;
 
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local numItems = 0;
 
 		foreach( item in stash )
@@ -63,7 +63,7 @@
 		if (numItems == 0)
 			return;
 
-		this.m.Tailor = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Tailor = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = numItems * 5;
 	}
 

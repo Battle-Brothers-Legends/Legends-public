@@ -63,7 +63,7 @@
 	}
 
 	o.convertProfessionToUIData <- function ( _professionId )	{
-		local profession = this.Const.Professions.findById(_professionId);
+		local profession = ::Const.Professions.findById(_professionId);
 
 		if (profession != null)	{
 			return {
@@ -89,7 +89,7 @@
 	o.convertCampaignStorageToUIData = function ( _meta )
 	{
 		local d;
-		d = " (" + this.Const.Strings.Difficulty[_meta.getInt("difficulty2")] + "/" + this.Const.Strings.Difficulty[_meta.getInt("difficulty")];
+		d = " (" + ::Const.Strings.Difficulty[_meta.getInt("difficulty2")] + "/" + ::Const.Strings.Difficulty[_meta.getInt("difficulty")];
 
 		if (_meta.getInt("ironman") == 1)
 		{
@@ -115,7 +115,7 @@
 			banner = _meta.getString("banner"),
 			dayName = "Day " + _meta.getInt("days") + d,
 			creationDate = _meta.getCreationDate(),
-			isIncompatibleVersion = _meta.getVersion() < 33 || _meta.getVersion() > this.Const.Serialization.Version || !this.Const.DLC.isCompatible(_meta),
+			isIncompatibleVersion = _meta.getVersion() < 33 || _meta.getVersion() > ::Const.Serialization.Version || !::Const.DLC.isCompatible(_meta),
 			isIronman = _meta.getInt("ironman") == 1,
 			legendsVersion = legendsVersionText,
 		};
@@ -124,7 +124,7 @@
 	o.convertHireRosterToUIData = function ( _rosterID )
 	{
 		local result = [];
-		local roster = this.World.getRoster(_rosterID);
+		local roster = ::World.getRoster(_rosterID);
 
 		if (roster == null)
 			return null;
@@ -153,7 +153,7 @@
 	o.convertStablesRosterToUIData <- function ( _rosterID )
 	{
 		local result = [];
-		local roster = this.World.getRoster(_rosterID);
+		local roster = ::World.getRoster(_rosterID);
 
 		if (roster == null)
 		{
@@ -185,9 +185,9 @@
 	o.convertAssetsInformationToUIData = function ()
 	{
 		local result = convertAssetsInformationToUIData();
-		result.SuppliesMax <- this.World.Assets.getMaxArmorParts();
-		result.AmmoMax <- this.World.Assets.getMaxAmmo();
-		result.MedicineMax <- this.World.Assets.getMaxMedicine();
+		result.SuppliesMax <- ::World.Assets.getMaxArmorParts();
+		result.AmmoMax <- ::World.Assets.getMaxAmmo();
+		result.MedicineMax <- ::World.Assets.getMaxMedicine();
 
 		return result;
 	}
@@ -267,33 +267,33 @@
 		local properties = _entity.getCurrentProperties();
 		_target.hitpoints <- _entity.getHitpoints();
 		_target.hitpointsMax <- _entity.getHitpointsMax();
-		_target.hitpointsTalent <- _entity.getTalents()[this.Const.Attributes.Hitpoints];
+		_target.hitpointsTalent <- _entity.getTalents()[::Const.Attributes.Hitpoints];
 		_target.fatigue <- _entity.getFatigue();
 		_target.fatigueMax <- _entity.getFatigueMax();
-		_target.fatigueTalent <- _entity.getTalents()[this.Const.Attributes.Fatigue];
+		_target.fatigueTalent <- _entity.getTalents()[::Const.Attributes.Fatigue];
 		_target.initiative <- _entity.getInitiative();
-		_target.initiativeMax <- this.Const.CharacterMaxValue.Initiative;
-		_target.initiativeTalent <- _entity.getTalents()[this.Const.Attributes.Initiative];
+		_target.initiativeMax <- ::Const.CharacterMaxValue.Initiative;
+		_target.initiativeTalent <- _entity.getTalents()[::Const.Attributes.Initiative];
 		_target.bravery <- _entity.getBravery();
-		_target.braveryMax <- this.Const.CharacterMaxValue.Bravery;
-		_target.braveryTalent <- _entity.getTalents()[this.Const.Attributes.Bravery];
+		_target.braveryMax <- ::Const.CharacterMaxValue.Bravery;
+		_target.braveryTalent <- _entity.getTalents()[::Const.Attributes.Bravery];
 		_target.meleeSkill <- properties.getMeleeSkill();
-		_target.meleeSkillMax <- this.Const.CharacterMaxValue.MeleeSkill;
-		_target.meleeSkillTalent <- _entity.getTalents()[this.Const.Attributes.MeleeSkill];
+		_target.meleeSkillMax <- ::Const.CharacterMaxValue.MeleeSkill;
+		_target.meleeSkillTalent <- _entity.getTalents()[::Const.Attributes.MeleeSkill];
 		_target.rangeSkill <- properties.getRangedSkill();
-		_target.rangeSkillMax <- this.Const.CharacterMaxValue.RangedSkill;
-		_target.rangeSkillTalent <- _entity.getTalents()[this.Const.Attributes.RangedSkill];
+		_target.rangeSkillMax <- ::Const.CharacterMaxValue.RangedSkill;
+		_target.rangeSkillTalent <- _entity.getTalents()[::Const.Attributes.RangedSkill];
 		_target.meleeDefense <- properties.getMeleeDefense();
-		_target.meleeDefenseMax <- this.Const.CharacterMaxValue.MeleeDefense;
-		_target.meleeDefenseTalent <- _entity.getTalents()[this.Const.Attributes.MeleeDefense];
+		_target.meleeDefenseMax <- ::Const.CharacterMaxValue.MeleeDefense;
+		_target.meleeDefenseTalent <- _entity.getTalents()[::Const.Attributes.MeleeDefense];
 		_target.rangeDefense <- properties.getRangedDefense();
-		_target.rangeDefenseMax <- this.Const.CharacterMaxValue.RangedDefense;
-		_target.rangeDefenseTalent <- _entity.getTalents()[this.Const.Attributes.RangedDefense];
+		_target.rangeDefenseMax <- ::Const.CharacterMaxValue.RangedDefense;
+		_target.rangeDefenseTalent <- _entity.getTalents()[::Const.Attributes.RangedDefense];
 		_target.actionPoints <- _entity.getActionPoints();
 		_target.actionPointsMax <- _entity.getActionPointsMax();
 		_target.morale <- _entity.getMoraleState();
-		_target.moraleMax <- this.Const.MoraleState.COUNT - 1;
-		_target.moraleLabel <- this.Const.MoraleStateName[_entity.getMoraleState()];
+		_target.moraleMax <- ::Const.MoraleState.COUNT - 1;
+		_target.moraleLabel <- ::Const.MoraleStateName[_entity.getMoraleState()];
 		if(::Legends.Mod.ModSettings.getSetting("ShowPotentialOnBars").getValue()){
 			_target.potentials <- {
                 hitpoints = ::Legends.S.getStatPotential(_entity, ::Const.Attributes.Hitpoints),
@@ -312,19 +312,19 @@
 		dm *= (_entity.isArmedWithMeleeWeapon() || _entity.getSkills().hasActive(::Legends.Active.HandToHand)) ? properties.RangedDamageMult : 1.0;
 
 		local damageMin = properties.getRegularDamageAverage() * dm;
-		local damageMax = this.Const.CharacterMaxValue.RegularDamage;
+		local damageMax = ::Const.CharacterMaxValue.RegularDamage;
 
 		local shouldbreak = false;
-		foreach (slot in _entity.getSkills().getSkillsSortedByItems(this.Const.SkillType.Active))
+		foreach (slot in _entity.getSkills().getSkillsSortedByItems(::Const.SkillType.Active))
 		{
 			foreach (active in slot)
 			{
 				if (active.isAttack() && !active.isHidden())
 				{
 					local p = _entity.getSkills().buildPropertiesForUse(active, null);
-					damageMin = this.Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * (active.isRanged() ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
-					damageMax = this.Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * (active.isRanged() ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
-					this.Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
+					damageMin = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * (active.isRanged() ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMinMult);
+					damageMax = ::Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * (active.isRanged() ? p.RangedDamageMult : p.MeleeDamageMult) * p.DamageTooltipMaxMult);
+					::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
 					shouldbreak = true;
 					break;
 				}
@@ -339,20 +339,20 @@
 		_target.regularDamage <- damageMin;
 		_target.regularDamageMax <- damageMax;
 		_target.regularDamageLabel <- damageMin + " - " + damageMax;
-		_target.armorHead <- _entity.getArmor(this.Const.BodyPart.Head);
-		_target.armorHeadMax <- _entity.getArmorMax(this.Const.BodyPart.Head);
+		_target.armorHead <- _entity.getArmor(::Const.BodyPart.Head);
+		_target.armorHeadMax <- _entity.getArmorMax(::Const.BodyPart.Head);
 		_target.armorHeadTalent <- 0;
-		_target.armorBody <- _entity.getArmor(this.Const.BodyPart.Body);
-		_target.armorBodyMax <- _entity.getArmorMax(this.Const.BodyPart.Body);
+		_target.armorBody <- _entity.getArmor(::Const.BodyPart.Body);
+		_target.armorBodyMax <- _entity.getArmorMax(::Const.BodyPart.Body);
 		_target.armorBodyTalent <- 0;
-		_target.crushingDamage <- this.Math.floor(properties.getDamageArmorMult() * 100);
-		_target.crushingDamageMax <- this.Const.CharacterMaxValue.ArmorDamage;
-		_target.crushingDamageLabel <- this.Math.floor(properties.getDamageArmorMult() * 100) + "%";
-		_target.chanceToHitHead <- properties.getHitchance(this.Const.BodyPart.Head);
-		_target.chanceToHitHeadMax <- this.Const.CharacterMaxValue.Hitchance;
-		_target.chanceToHitHeadLabel <- properties.getHitchance(this.Const.BodyPart.Head) + "%";
+		_target.crushingDamage <- ::Math.floor(properties.getDamageArmorMult() * 100);
+		_target.crushingDamageMax <- ::Const.CharacterMaxValue.ArmorDamage;
+		_target.crushingDamageLabel <- ::Math.floor(properties.getDamageArmorMult() * 100) + "%";
+		_target.chanceToHitHead <- properties.getHitchance(::Const.BodyPart.Head);
+		_target.chanceToHitHeadMax <- ::Const.CharacterMaxValue.Hitchance;
+		_target.chanceToHitHeadLabel <- properties.getHitchance(::Const.BodyPart.Head) + "%";
 		_target.sightDistance <- properties.getVision();
-		_target.sightDistanceMax <- this.Const.CharacterMaxValue.Vision;
+		_target.sightDistanceMax <- ::Const.CharacterMaxValue.Vision;
 	}
 
 
@@ -388,7 +388,7 @@
 	{
 		if (_filter == 0)
 		{
-			_filter = this.Const.Items.ItemFilter.All;
+			_filter = ::Const.Items.ItemFilter.All;
 		}
 
 		if (_items == null || _items.len() == 0)

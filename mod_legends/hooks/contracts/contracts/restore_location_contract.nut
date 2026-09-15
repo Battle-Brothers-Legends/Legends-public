@@ -44,11 +44,11 @@
 				local start = s.start;
 				s.start <- function () {
 					start();
-					if (!this.World.State.isPaused()) {
-						this.World.setSpeedMult(this.Const.World.SpeedSettings.EscortMult);
+					if (!::World.State.isPaused()) {
+						::World.setSpeedMult(::Const.World.SpeedSettings.EscortMult);
 					}
 
-					this.World.State.m.LastWorldSpeedMult = this.Const.World.SpeedSettings.EscortMult;
+					::World.State.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.EscortMult;
 				}
 				s.update <- function () {
 					if (this.Contract.m.Caravan == null
@@ -57,36 +57,36 @@
 						|| this.Contract.m.Caravan.getTroops().len() == 0)
 					{
 						this.Contract.setScreen("Failure1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 
 					if (!this.Contract.m.IsEscortUpdated) {
-						this.World.State.setEscortedEntity(this.Contract.m.Caravan);
+						::World.State.setEscortedEntity(this.Contract.m.Caravan);
 						this.Contract.m.IsEscortUpdated = true;
 					}
 
-					this.World.State.setCampingAllowed(false);
-					this.World.State.getPlayer().setPos(this.Contract.m.Caravan.getPos());
-					this.World.State.getPlayer().setVisible(false);
-					this.World.Assets.setUseProvisions(false);
-					this.World.getCamera().moveTo(this.World.State.getPlayer());
+					::World.State.setCampingAllowed(false);
+					::World.State.getPlayer().setPos(this.Contract.m.Caravan.getPos());
+					::World.State.getPlayer().setVisible(false);
+					::World.Assets.setUseProvisions(false);
+					::World.getCamera().moveTo(::World.State.getPlayer());
 
 					// from vanilla
-					// if (!this.World.State.isPaused())
+					// if (!::World.State.isPaused())
 					// {
-					// 	this.World.setSpeedMult(this.Const.World.SpeedSettings.EscortMult);
+					// 	::World.setSpeedMult(::Const.World.SpeedSettings.EscortMult);
 					// }
 
-					// this.World.State.m.LastWorldSpeedMult = this.Const.World.SpeedSettings.EscortMult;
+					// ::World.State.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.EscortMult;
 
 					if (this.Flags.get("IsFleeing")) {
 						this.Contract.setScreen("Failure1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					} else if (this.Contract.isPlayerAt(this.Contract.m.Location)) {
 						this.Contract.setScreen("RebuildingLocation");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}

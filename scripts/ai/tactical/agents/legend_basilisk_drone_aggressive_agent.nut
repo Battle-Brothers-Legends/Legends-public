@@ -3,7 +3,7 @@ this.legend_basilisk_drone_aggressive_agent <- this.inherit("scripts/ai/tactical
 	function create()
 	{
 		this.agent.create(); 
-		this.m.ID = this.Const.AI.Agent.ID.BasiliskDroneAggressive;
+		this.m.ID = ::Const.AI.Agent.ID.BasiliskDroneAggressive;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityRandomMult = 0.5;
@@ -34,7 +34,7 @@ this.legend_basilisk_drone_aggressive_agent <- this.inherit("scripts/ai/tactical
 
 	function onUpdate()
 	{
-		if (this.getActor().getHitpointsPct() < 1.0 && this.Math.rand(1, 100) <= 25)
+		if (this.getActor().getHitpointsPct() < 1.0 && ::Math.rand(1, 100) <= 25)
 		{
 			this.m.Properties.EngageAgainstSpearwallMult = 3.5;
 		}

@@ -6,7 +6,7 @@ this.legend_hexen_leader_trophy_item <- this.inherit("scripts/items/accessory/ac
 		this.m.ID = "accessory.legend_hexen_leader_trophy";
 		this.m.Name = "Hexen Coven Leader Trophy Necklace";
 		this.m.Description = "This necklace fashioned from trophies taken of slain Hexe Coven Leaders declares the one wearing it a veteran of battle against vile sorcery, and not easily daunted.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";

@@ -5,7 +5,7 @@ this.legion_origin_buried_castle_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legion_origin_buried_castle";
 		this.m.Title = "Near the buried castle...";
-		this.m.Cooldown = 10.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 10.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//—
 			ID = "A",
@@ -17,28 +17,28 @@ this.legion_origin_buried_castle_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "Yes, join us.",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 
 				_event.m.Dude.getFlags().add("PlayerSkeleton");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("skeleton");
-				_event.m.Dude.setStartValuesEx(this.Const.CharacterLegionBackgrounds); //see: 'character_backgrounds' file
+				_event.m.Dude.setStartValuesEx(::Const.CharacterLegionBackgrounds); //see: 'character_backgrounds' file
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 				this.Characters.push(_event.m.Dude.getImagePath());
 
-				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-				local settlement = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
-				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
-				local skellies = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+				local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+				local settlement = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
+				local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
+				local skellies = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 
 				foreach (n in nobles) {
 					n.addPlayerRelation(-400.0, "Grew in company strength");
@@ -57,7 +57,7 @@ this.legion_origin_buried_castle_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
@@ -76,12 +76,12 @@ this.legion_origin_buried_castle_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
 
-		local locations = this.World.EntityManager.getLocations();
+		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
 		foreach (v in locations) {
 			if (v.getTypeID() == "location.undead_buried_castle" && v.getTile().getDistanceTo(currentTile) < 5) {

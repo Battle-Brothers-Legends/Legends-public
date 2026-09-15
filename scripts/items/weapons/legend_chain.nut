@@ -8,11 +8,11 @@ this.legend_chain <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A length of intertwined metal links. As a weapon it's ungainly and rather unpredictable but useful to spin, strike around shield cover and pull in enemies.";
 		this.m.IconLarge = "weapons/melee/legend_chain_01.png";
 		this.m.Icon = "weapons/melee/legend_chain_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Flail;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Cultist;
-		this.m.ItemProperty = this.Const.Items.Property.IgnoresShieldwall;
+		this.m.WeaponType = ::Const.Items.WeaponType.Flail;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Cultist;
+		this.m.ItemProperty = ::Const.Items.Property.IgnoresShieldwall;
 		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

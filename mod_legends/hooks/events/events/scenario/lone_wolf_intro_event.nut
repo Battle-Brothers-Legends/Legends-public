@@ -7,7 +7,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.start <- function ( _event ) {
-					this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+					this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 				}
 				s.Options[0].getResult <-  function ( _event ) {
 					return "B"; //B = Pick a weapon, any weapon
@@ -70,7 +70,7 @@
 			}
 			],
 			function start( _event ) {
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 		});
 
@@ -94,10 +94,10 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 
@@ -108,7 +108,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -154,7 +154,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/shields/heater_shield");
@@ -162,10 +162,10 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 
@@ -176,7 +176,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -225,7 +225,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/shields/buckler_shield");
@@ -233,10 +233,10 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.leather_lamellar]
 				]);
 
@@ -247,7 +247,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat]
 				]);
 
@@ -294,7 +294,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/weapons/arming_sword");
@@ -302,17 +302,17 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/ammo/quiver_of_bolts");
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.padded_leather]
 				]);
 
@@ -323,7 +323,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 
@@ -373,7 +373,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/ammo/quiver_of_arrows");
@@ -381,7 +381,7 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
 				local item = this.new("scripts/items/weapons/rondel_dagger");
@@ -389,10 +389,10 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.patched_mail_shirt]
 				]);
 
@@ -403,7 +403,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.closed_mail_coif]
 				]);
 
@@ -453,10 +453,10 @@
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.reinforced_mail_hauberk]
 				]);
 
@@ -467,7 +467,7 @@
 					text = "You gain " + item.makeName()
 				});
 
-				item = this.Const.World.Common.pickHelmet([
+				item = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
 				]);
 
@@ -494,7 +494,7 @@
 
 	o.onUpdateScore = function ()
 	{
-		this.m.Dude = this.World.getPlayerRoster().getAll()[0];
+		this.m.Dude = ::World.getPlayerRoster().getAll()[0];
 		return;
 	}
 

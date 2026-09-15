@@ -8,8 +8,8 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 	},
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.AttackBow;
-		this.m.Order = this.Const.AI.Behavior.Order.AttackBow;
+		this.m.ID = ::Const.AI.Behavior.ID.AttackBow;
+		this.m.Order = ::Const.AI.Behavior.Order.AttackBow;
 		this.behavior.create();
 	}
 
@@ -19,19 +19,19 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 		this.m.SelectedSkill = null;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasVisibleOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local skills = [];
@@ -48,7 +48,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 
 		if (skills.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local targets = this.getAgent().getKnownOpponents();
@@ -56,12 +56,12 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 
 		if (this.m.TargetTile == null || this.m.SelectedSkill == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		score = score * this.getFatigueScoreMult(this.m.SelectedSkill);
 
-		return this.Const.AI.Behavior.Score.Attack * score;
+		return ::Const.AI.Behavior.Score.Attack * score;
 	}
 
 	function onBeforeExecute( _entity )
@@ -75,7 +75,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 			if (this.m.TargetTile.getEntity().isPlayerControlled() && _entity.isHiddenToPlayer())
 			{
 				_entity.setDiscovered(true);
-				_entity.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				_entity.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			this.getAgent().adjustCameraToTarget(this.m.TargetTile, this.m.SelectedSkill.getDelay());
@@ -85,7 +85,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 
 		if (this.m.TargetTile != null && this.m.TargetTile.IsOccupiedByActor)
 		{
-			if (this.Const.AI.VerboseMode)
+			if (::Const.AI.VerboseMode)
 			{
 				this.logInfo("* " + _entity.getName() + ": Using " + this.m.SelectedSkill.getName() + " against " + this.m.TargetTile.getEntity().getName() + "!");
 			}
@@ -157,7 +157,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 
 			if (myTile.getDistanceTo(targetTile) > 1)
 			{
-				for( local i = 0; i < this.Const.Direction.COUNT; i = ++i )
+				for( local i = 0; i < ::Const.Direction.COUNT; i = ++i )
 				{
 					if (!targetTile.hasNextTile(i))
 					{
@@ -186,12 +186,12 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 				}
 			}
 
-			if (targetTile.getZoneOfControlCount(_entity.getFaction()) < this.Const.AI.Behavior.RangedEngageIgnoreDangerMinZones)
+			if (targetTile.getZoneOfControlCount(_entity.getFaction()) < ::Const.AI.Behavior.RangedEngageIgnoreDangerMinZones)
 			{
-				score = score * (1.0 + (1.0 - this.Math.minf(1.0, this.queryActorTurnsNearTarget(target.Actor, myTile, _entity).Turns)) * this.Const.AI.Behavior.AttackDangerMult);
+				score = score * (1.0 + (1.0 - ::Math.minf(1.0, this.queryActorTurnsNearTarget(target.Actor, myTile, _entity).Turns)) * ::Const.AI.Behavior.AttackDangerMult);
 			}
 
-			if (score > bestScore && (this.getProperties().TargetPriorityHittingAlliesMult >= 1.0 || alliesAdjacent <= this.Const.AI.Behavior.AttackRangedMaxAlliesAdjacent))
+			if (score > bestScore && (this.getProperties().TargetPriorityHittingAlliesMult >= 1.0 || alliesAdjacent <= ::Const.AI.Behavior.AttackRangedMaxAlliesAdjacent))
 			{
 				bestTarget = target;
 				bestScore = score;
@@ -210,15 +210,15 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 			{
 				if (bestSkills[i].Score > highestScore)
 				{
-					highestScore = this.Math.floor(this.Math.pow(bestSkills[i].Score * 100, this.Const.AI.Behavior.AttackRangedChancePOW));
+					highestScore = ::Math.floor(::Math.pow(bestSkills[i].Score * 100, ::Const.AI.Behavior.AttackRangedChancePOW));
 				}
 			}
 
 			for( local i = 0; i < bestSkills.len(); i = ++i )
 			{
-				local score = this.Math.floor(this.Math.pow(bestSkills[i].Score * 100, this.Const.AI.Behavior.AttackRangedChancePOW));
+				local score = ::Math.floor(::Math.pow(bestSkills[i].Score * 100, ::Const.AI.Behavior.AttackRangedChancePOW));
 
-				if (score < highestScore * this.Const.AI.Behavior.AttackRangedScoreCutoff)
+				if (score < highestScore * ::Const.AI.Behavior.AttackRangedScoreCutoff)
 				{
 				}
 				else
@@ -229,13 +229,13 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 
 			if (chance != 0)
 			{
-				local pick = this.Math.rand(1, chance);
+				local pick = ::Math.rand(1, chance);
 
 				for( local i = 0; i < bestSkills.len(); i = ++i )
 				{
-					local score = this.Math.floor(this.Math.pow(bestSkills[i].Score * 100, this.Const.AI.Behavior.AttackRangedChancePOW));
+					local score = ::Math.floor(::Math.pow(bestSkills[i].Score * 100, ::Const.AI.Behavior.AttackRangedChancePOW));
 
-					if (score < highestScore * this.Const.AI.Behavior.AttackRangedScoreCutoff)
+					if (score < highestScore * ::Const.AI.Behavior.AttackRangedScoreCutoff)
 					{
 					}
 					else
@@ -243,7 +243,7 @@ this.legend_vala_warden_ai_ranged_attack <- this.inherit("scripts/ai/tactical/be
 						if (pick <= score)
 						{
 							this.m.SelectedSkill = bestSkills[i].Skill;
-							return this.Math.maxf(0.1, bestSkills[i].Score + this.Math.maxf(0.0, bestScore));
+							return ::Math.maxf(0.1, bestSkills[i].Score + ::Math.maxf(0.0, bestScore));
 						}
 
 						pick = pick - score;

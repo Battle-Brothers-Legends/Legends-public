@@ -22,11 +22,11 @@
 			return;
 		}
 
-		_properties.DamageReceivedRegularMult *= this.Math.maxf(0.3, 1.0 - 0.01 * this.m.RageStacks);
+		_properties.DamageReceivedRegularMult *= ::Math.maxf(0.3, 1.0 - 0.01 * this.m.RageStacks);
 	}
 
 	o.onTurnStart = function () {
-		this.m.RageStacks = this.Math.max(0, this.m.RageStacks - 2);
+		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 2);
 		this.getContainer().getActor().updateRageVisuals(this.m.RageStacks);
 	}
 

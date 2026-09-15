@@ -16,7 +16,7 @@
 
 ::Const.Tactical.Common.getRandomPlayerNameFemale <- function()
 {
-	return this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)];
+	return ::Const.Strings.CharacterNamesFemale[::Math.rand(0, ::Const.Strings.CharacterNamesFemale.len() - 1)];
 };
 
 ::Const.Tactical.Common.onApplyHolyFlame <- function (_tile, _entity, _killer = null) {

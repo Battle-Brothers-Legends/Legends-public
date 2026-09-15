@@ -27,17 +27,17 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.Killer.getName() + " has died"
 					});
-					_event.m.Killer.getItems().transferToStash(this.World.Assets.getStash());
-					_event.m.Killer.getSkills().onDeath(this.Const.FatalityType.None);
+					_event.m.Killer.getItems().transferToStash(::World.Assets.getStash());
+					_event.m.Killer.getSkills().onDeath(::Const.FatalityType.None);
 					::Legends.addFallen(_event.m.Killer, "Hanged for attempted murder");
-					this.World.getPlayerRoster().remove(_event.m.Killer);
+					::World.getPlayerRoster().remove(_event.m.Killer);
 					_event.m.OtherGuy1.improveMood(2.0, "Got satisfaction with " + _event.m.Killer.getNameOnly() + "\'s hanging");
 
-					if (_event.m.OtherGuy1.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.OtherGuy1.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.OtherGuy1.getMoodState()],
-							text = _event.m.OtherGuy1.getName() + this.Const.MoodStateEvent[_event.m.OtherGuy1.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.OtherGuy1.getMoodState()],
+							text = _event.m.OtherGuy1.getName() + ::Const.MoodStateEvent[_event.m.OtherGuy1.getMoodState()]
 						});
 					}
 				}
@@ -63,11 +63,11 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.Killer.getName() + " has died"
 					});
-					_event.m.Killer.getItems().transferToStash(this.World.Assets.getStash());
-					_event.m.Killer.getSkills().onDeath(this.Const.FatalityType.None);
+					_event.m.Killer.getItems().transferToStash(::World.Assets.getStash());
+					_event.m.Killer.getSkills().onDeath(::Const.FatalityType.None);
 					::Legends.addFallen(_event.m.Killer, "Murdered by his fellow comrades");
-					this.World.getPlayerRoster().remove(_event.m.Killer);
-					local brothers = this.World.getPlayerRoster().getAll();
+					::World.getPlayerRoster().remove(_event.m.Killer);
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers )
 					{
@@ -76,19 +76,19 @@
 							continue;
 						}
 
-						if (this.Math.rand(1, 100) <= 33)
+						if (::Math.rand(1, 100) <= 33)
 						{
 							continue;
 						}
 
 						bro.worsenMood(1.0, "Concerned about lack of discipline");
 
-						if (bro.getMoodState() < this.Const.MoodState.Neutral)
+						if (bro.getMoodState() < ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}

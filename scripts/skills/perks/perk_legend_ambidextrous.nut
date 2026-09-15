@@ -14,7 +14,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAmbidextrous);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function isHidden() {
@@ -24,21 +24,21 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local items = this.getContainer().getActor().getItems();
-		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
 			&& off != null && off.getID().find("throwing_net") != null;
 
 		if (hasNet) {
 			return false;
 		}
-		return !(off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand));
+		return !(off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand));
 	}
 
 	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local items = actor.getItems();
-		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		local ret = [
 			{
@@ -54,7 +54,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		];
 
 		local ohSkill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill : this.getHandToHandSkill();
-		local blockedOffhand = items.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+		local blockedOffhand = items.hasBlockedSlot(::Const.ItemSlot.Offhand);
 		if (ohSkill != null && !blockedOffhand) {
 			if (::Legends.Weapons.isDualWielding(actor)) {
 				ret.push({
@@ -120,7 +120,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 		}
 
 		local items = actor.getItems();
-		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = actor.getCurrentProperties().IsSpecializedInNets
 			&& off != null && off.getID().find("throwing_net") != null;
 		// Don't trigger follow-up if the attack came from the offhand
@@ -128,7 +128,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
+		if (_targetEntity != null && ((off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand)) || hasNet || !::MSU.isNull(this.m.offHandSkill)))	{
 			if (!_forFree) {
 				//if (_targetTile == null || actor.getTile() == null) {
 					// Is this necessary?
@@ -150,7 +150,7 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 						Skill = skillToUse
 					});
 				}.bindenv(this), this);
-				/*this.Const.SkillCounter++;
+				/*::Const.SkillCounter++;
 				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
 					Skill = !::MSU.isNull(this.m.offHandSkill) ? this.m.offHandSkill: this.m.HandToHand
@@ -177,12 +177,12 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 	function onUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 		local items = actor.getItems();
-		local off = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local main = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local off = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+		local main = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local hasNet = actor.getCurrentProperties
 			&& off != null && off.getID().find("throwing_net") != null;
 		if ((main == null || this.getContainer().hasEffect(::Legends.Effect.Disarmed))
-			&& (off == null && !items.hasBlockedSlot(this.Const.ItemSlot.Offhand) || hasNet))
+			&& (off == null && !items.hasBlockedSlot(::Const.ItemSlot.Offhand) || hasNet))
 		{
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;

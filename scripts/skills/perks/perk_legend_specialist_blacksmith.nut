@@ -4,10 +4,10 @@ this.perk_legend_specialist_blacksmith <- this.inherit("scripts/skills/legend_sp
 			"weapon.legend_hammer"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.OneHanded
+			::Const.Items.ItemType.OneHanded
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Hammer
+			::Const.Items.WeaponType.Hammer
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

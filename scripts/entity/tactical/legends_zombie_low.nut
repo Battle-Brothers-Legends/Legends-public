@@ -3,7 +3,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 
 	function onInit()
 	{
-		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieLight;
+		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieLight;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
@@ -24,7 +24,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 	function assignRandomEquipment()
 	{
 
-		local r = this.Math.rand(1, 7);
+		local r = ::Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -51,7 +51,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_hammer"));
 		}
 
-		local r = this.Math.rand(1, 2);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -62,7 +62,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[4, ::Legends.Armor.Standard.leather_tunic],
 			[4, ::Legends.Armor.Standard.linen_tunic],
 			[3, ::Legends.Armor.Standard.sackcloth],
@@ -74,7 +74,7 @@ this.legends_zombie_low <- this.inherit("scripts/entity/tactical/legend_zombie",
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[67, ::Legends.Helmet.None],
 			[7, ::Legends.Helmet.Standard.hood],
 			[7, ::Legends.Helmet.Standard.straw_hat],

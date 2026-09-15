@@ -2,7 +2,7 @@ this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/
 	function create () {
 		this.adventurous_noble_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendAdventurousNobleRanged);
-		this.m.Names = this.Const.Strings.LadyNames;
+		this.m.Names = ::Const.Strings.LadyNames;
 	}
 
 	function onChangeAttributes () {
@@ -12,7 +12,7 @@ this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/weapons/hunting_bow"));
@@ -29,13 +29,13 @@ this.legend_adventurous_noble_ranged_background <- this.inherit("scripts/skills/
 		}
 
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.nasal_helmet],
 			[2, ::Legends.Helmet.Standard.padded_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],

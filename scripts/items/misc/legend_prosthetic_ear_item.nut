@@ -7,8 +7,8 @@ this.legend_prosthetic_ear_item <- this.inherit("scripts/items/item", {
 		this.m.Name = "Prosthetic Ear";
 		this.m.Description = "A wax ear, carefully crafted to resemble a real one. Hardly a proper replacement, but some hearing may be returned.";
 		this.m.Icon = "consumables/prosthetic_ear.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = false;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -78,12 +78,12 @@ this.legend_prosthetic_ear_item <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onUse( _actor, _item = null )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_ear"))
 		{
 			::Legends.Traits.grant(_actor, ::Legends.Trait.LegendProstheticEar);

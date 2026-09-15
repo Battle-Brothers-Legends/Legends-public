@@ -3,7 +3,7 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPointBlank);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getDescription()
@@ -40,15 +40,15 @@ this.perk_legend_point_blank <- this.inherit("scripts/skills/skill", {
 		local mskillBonus = 0;
 		local rdefBonus = 0;
 
-		if (actor.getMainhandItem() != null && actor.getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Throwing))
+		if (actor.getMainhandItem() != null && actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Throwing))
 		{
-			mskillBonus = this.Math.floor(0.3 * _properties.getMeleeSkill());
-			rdefBonus = this.Math.floor(0.5 * _properties.getRangedDefense());
+			mskillBonus = ::Math.floor(0.3 * _properties.getMeleeSkill());
+			rdefBonus = ::Math.floor(0.5 * _properties.getRangedDefense());
 		}
 		else
 		{
 			mskillBonus = 0;
-			rdefBonus = this.Math.floor(0.3 * _properties.getRangedDefense());
+			rdefBonus = ::Math.floor(0.3 * _properties.getRangedDefense());
 		}
 
 		return mskillBonus + rdefBonus;

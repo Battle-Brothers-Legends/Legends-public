@@ -68,21 +68,21 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (currentTile.Type == this.Const.World.TerrainType.Snow || currentTile.Type == this.Const.World.TerrainType.SnowyForest)
+		if (currentTile.Type == ::Const.World.TerrainType.Snow || currentTile.Type == ::Const.World.TerrainType.SnowyForest)
 			return;
 
-		if (this.World.Assets.getMoney() < 100) //very niche situation but still...
+		if (::World.Assets.getMoney() < 100) //very niche situation but still...
 			return;
 
 		this.m.Score = 5;

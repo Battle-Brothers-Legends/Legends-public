@@ -42,7 +42,7 @@
 		if (::Legends.S.isEntityNullOrDead(target))
 			return ret;
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
+		if (::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill ) {
@@ -63,6 +63,6 @@
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) { //!this.m.IsEstocStab &&
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 });

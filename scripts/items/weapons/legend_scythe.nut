@@ -8,10 +8,10 @@ this.legend_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "An agricultural tool originally used for mowing grass or reaping crops that can be used as an improvised two handed weapon. The edge has been sharpened and will easily rip through unarmored individuals.";
 		this.m.IconLarge = "weapons/melee/legend_scythe_02.png";
 		this.m.Icon = "weapons/melee/legend_scythe_02_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Pitchfork;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Pitchfork;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;

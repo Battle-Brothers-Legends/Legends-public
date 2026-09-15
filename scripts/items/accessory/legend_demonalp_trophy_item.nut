@@ -6,7 +6,7 @@ this.legend_demonalp_trophy_item <- this.inherit("scripts/items/accessory/access
 		this.m.ID = "accessory.legend_demonalp_trophy";
 		this.m.Name = "Demon Alp Trophy Necklace";
 		this.m.Description = "This necklace fashioned from trophies taken of various demon alps declares the one wearing it a veteran of battle against supernatural nocturnal predators, and not easily daunted.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";

@@ -108,7 +108,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 	// Base: ArmorPartsPerArmor=0.067 (~1/15).
 	// If upgraded, reduce tools-per-condition by ~25% yielding ~20 per tool instead of 15.
 	function getConversionRate() {
-		return this.Math.floor(1.0 / (::World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency()) + 0.5);
+		return ::Math.floor(1.0 / (::World.Assets.m.ArmorPartsPerArmor * ::Legends.S.getToolEfficiency()) + 0.5);
 	}
 
 	function getStash() {
@@ -214,7 +214,7 @@ this.repair_building <- this.inherit("scripts/entity/world/camp/camp_building", 
 		}
 
 		local modifiers = this.getModifiers();
-		modifiers.Craft = this.Math.round(modifiers.Craft); //important
+		modifiers.Craft = ::Math.round(modifiers.Craft); //important
 
 		foreach (i, item in this.m.Repairs) {
 			if (item == null) {

@@ -4,12 +4,12 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.roaming_beasts_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.roaming_beasts_contract))
 		{
 			return;
 		}
@@ -25,7 +25,7 @@
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 20 || this.Math.rand(1, 100) > 10)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 20 || ::Math.rand(1, 100) > 10)
 		{
 			return;
 		}

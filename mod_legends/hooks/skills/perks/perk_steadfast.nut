@@ -21,7 +21,7 @@
 			]
 		);
 		fat *= -1;
-		local bonus = this.Math.abs(fat / 10);
-		_properties.MeleeDefense += this.Math.floor(bonus);
+		local bonus = ::Math.abs(fat / 10);
+		_properties.MeleeDefense += ::Math.floor(bonus);
 	}
 });

@@ -4,7 +4,7 @@ this.legend_gold_ingot_03_blueprint <- this.inherit("scripts/crafting/blueprint"
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_gold_ingot_03";
-		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_gold_ingots_item");
 		this.m.Cost = 3600;
 		local ingredients = [

@@ -5,7 +5,7 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 		local appearance = this.getItems().getAppearance();
 		local targetBrightness = 0.9;
 		local targetScale = 0.9;
-		local flip = this.Math.rand(1, 100) < 50;
+		local flip = ::Math.rand(1, 100) < 50;
 
 		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
@@ -13,7 +13,7 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 			local sprite_body = this.getSprite("body");
 			local sprite_head = this.getSprite("head");
 			local sprite_prefix = sprite_body.getBrush().Name.slice(0, sprite_body.getBrush().Name.find("_body"));
-			local decal = _tile.spawnDetail(sprite_prefix + "_body_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			local decal = _tile.spawnDetail(sprite_prefix + "_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
 			decal.Scale = targetScale;
@@ -36,7 +36,7 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 
 			foreach (layer in armorLayers) {
 				if (appearance[layer] != "") {
-					local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+					local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = targetScale;
 					decal.setBrightness(targetBrightness);
 				}
@@ -56,17 +56,17 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 				"HelmetLayerVanity2Corpse"
 			];
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated) {
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				foreach (layer in helmetLowerLayers) {
 					if (appearance[layer] != "") {
-						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, !flip);
+						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, !flip);
 						decal.Scale = targetScale;
 						decal.setBrightness(targetBrightness);
 					}
 				}
 
 				if (!appearance.HideCorpseHead) {
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = targetScale;
@@ -75,12 +75,12 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 
 				foreach (layer in helmetLayers) {
 					if (appearance[layer] != "") {
-						decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+						decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip);
 						decal.Scale = targetScale;
 						decal.setBrightness(targetBrightness);
 					}
 				}
-			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
 				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
@@ -100,7 +100,7 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 				//	}
 				//}
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
 				local idx = 0;
 
 				//foreach (layer in helmetLowerLayers) {
@@ -128,14 +128,14 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 				//}
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled) {
-				decal = _tile.spawnDetail("guts_flesh_golem_body_02_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			if (_fatalityType == ::Const.FatalityType.Disemboweled) {
+				decal = _tile.spawnDetail("guts_flesh_golem_body_02_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = targetScale;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
-				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
+				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = targetScale;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
-				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
+				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = targetScale;
 			}
 
@@ -148,10 +148,10 @@ this.legend_flesh_golem <- this.inherit("scripts/entity/tactical/actor", {
 		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);

@@ -24,7 +24,7 @@
 
 	o.onCombatFinished <- function()
 	{
-		local helmet = this.getContainer().getItemAtSlot(this.Const.ItemSlot.Head);
+		local helmet = this.getContainer().getItemAtSlot(::Const.ItemSlot.Head);
 		helmet.setArmor(helmet.getArmorMax());
 		this.getContainer().updateAppearance();
 	}
@@ -32,8 +32,8 @@
 
 	o.onTurnStart <- function()
 	{
-		local helmet = this.getContainer().getItemAtSlot(this.Const.ItemSlot.Head);
-		local armorRepaired = this.Math.min(helmet.getArmorMax() - helmet.getArmor(), 90.0);
+		local helmet = this.getContainer().getItemAtSlot(::Const.ItemSlot.Head);
+		local armorRepaired = ::Math.min(helmet.getArmorMax() - helmet.getArmor(), 90.0);
 		if (armorRepaired < 0)
 			return;
 		helmet.setArmor(helmet.getArmor() + armorRepaired);

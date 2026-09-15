@@ -35,10 +35,10 @@ this.perk_legend_bone_breaker <- this.inherit("scripts/skills/skill", {
 		local armorDamage = hitCopy.DamageArmor - p.DamageArmorReduction;
 		local armor = p.Armor[hitCopy.BodyPart] * p.ArmorMult[hitCopy.BodyPart];
 		armorDamage *= p.DamageReceivedArmorMult * dmgMult;
-		armorDamage = this.Math.max(this.Math.min(armor, armorDamage), 0);
+		armorDamage = ::Math.max(::Math.min(armor, armorDamage), 0);
 
 		// --- Apply only our intended modification to the real hit info ---
 		_hitInfo.DamageRegular += armorDamage * 0.1;
-		_hitInfo.DamageMinimum += this.Math.round(armorDamage * 0.1);
+		_hitInfo.DamageMinimum += ::Math.round(armorDamage * 0.1);
 	}
 });

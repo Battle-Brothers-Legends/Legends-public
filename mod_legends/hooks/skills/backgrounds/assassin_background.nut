@@ -32,9 +32,9 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.RangedDefense,
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.RangedDefense,
+			::Const.Attributes.Bravery
 		];
 		this.m.Titles = [
 			"the Assassin",
@@ -42,10 +42,10 @@
 			"the Rogue",
 			"the Sly"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Level = this.Math.rand(2, 5);
-		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
+		this.m.Level = ::Math.rand(2, 5);
+		this.m.BackgroundType = ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -82,7 +82,7 @@
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -114,16 +114,16 @@
 	o.onAddEquipment = function ()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.Initiative] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.Initiative] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/rondel_dagger"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}
@@ -143,7 +143,7 @@
 	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 
 });

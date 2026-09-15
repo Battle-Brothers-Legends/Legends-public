@@ -4,7 +4,7 @@ this.legend_heartwood_sap_flask_blueprint <- this.inherit("scripts/crafting/blue
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_heartwood_sap_flask";
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = ::Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_heartwood_sap_flask_item");
 		this.m.Cost = 150;
 		local ingredients = [

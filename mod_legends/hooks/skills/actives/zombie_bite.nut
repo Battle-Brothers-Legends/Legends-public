@@ -7,7 +7,7 @@
 		this.m.Name = "Wiederganger Bite";
 		this.m.Description = "A vicious bite with a 15% increased chance to hit the head. Infects on legendary difficulty. Will revive humanoid enemies as allied Wiedergangers if dealt as a killing blow.";
 		this.m.IconDisabled = "skills/active_24_bw.png";
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 2;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted + 2;
 	}
 
 	o.getTooltip <- function ()
@@ -23,7 +23,7 @@
 
 		if (success)
 		{
-			if (!target.getCurrentProperties().IsImmuneToPoison && ::Legends.isLegendaryDifficulty() && hp - target.getHitpoints() >= this.Const.Combat.PoisonEffectMinDamage)
+			if (!target.getCurrentProperties().IsImmuneToPoison && ::Legends.isLegendaryDifficulty() && hp - target.getHitpoints() >= ::Const.Combat.PoisonEffectMinDamage)
 			{
 				::Legends.Effects.grant(target, ::Legends.Effect.LegendZombiePoison);
 			}
@@ -36,7 +36,7 @@
 		if (_skill == this)
 		{
 			local items = this.m.Container.getActor().getItems();
-			local mhand = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+			local mhand = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 			if (mhand != null)
 			{
@@ -48,7 +48,7 @@
 			_properties.DamageRegularMin += 15;
 			_properties.DamageRegularMax += 35;
 			_properties.DamageArmorMult = 0.5;
-			_properties.HitChance[this.Const.BodyPart.Head] += 15;
+			_properties.HitChance[::Const.BodyPart.Head] += 15;
 
 			if (this.canDoubleGrip())
 			{
@@ -79,19 +79,19 @@
 		if (_targetEntity.getTile().IsCorpseSpawned && _targetEntity.getTile().Properties.get("Corpse").IsResurrectable)
 		{
 			local corpse = _targetEntity.getTile().Properties.get("Corpse");
-			corpse.Faction = actor.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : actor.getFaction();
+			corpse.Faction = actor.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : actor.getFaction();
 			corpse.Hitpoints = 1.0;
 			corpse.Items = _targetEntity.getItems();
 			corpse.IsConsumable = false;
 			corpse.IsResurrectable = false;
-			this.Time.scheduleEvent(this.TimeUnit.Rounds, this.Math.rand(1, 1), this.Tactical.Entities.resurrect, corpse);
+			this.Time.scheduleEvent(this.TimeUnit.Rounds, ::Math.rand(1, 1), ::Tactical.Entities.resurrect, corpse);
 		}
 	}
 
 	o.canDoubleGrip <- function ()
 	{
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		return main != null && off == null && main.isDoubleGrippable();
 	}
 
@@ -106,7 +106,7 @@
 
 	o.onAfterUpdate <- function ( _properties )
 	{
-		if (this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+		if (this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 		{
 			this.m.IsIgnoredAsAOO = true;
 		}

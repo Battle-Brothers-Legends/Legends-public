@@ -7,7 +7,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_80.png";
 		this.m.IconMini = "status_effect_80_mini";
 		this.m.Overlay = "status_effect_80";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsHidden = true;
@@ -46,7 +46,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 		if (actor.isPlacedOnMap()) {
 			if (actor.hasSprite("status_rooted")) {
 				local rooted = actor.getSprite("status_rooted");
-				local effect = this.Tactical.spawnSpriteEffect("bust_web2", this.createColor("#ffffff"), actor.getTile(), 0, 4, 1.0, rooted.Scale, 100, 100, 0);
+				local effect = ::Tactical.spawnSpriteEffect("bust_web2", this.createColor("#ffffff"), actor.getTile(), 0, 4, 1.0, rooted.Scale, 100, 100, 0);
 				local flip = !actor.isAlliedWithPlayer();
 				effect.setHorizontalFlipping(flip);
 				rooted.setBrush("bust_web2");

@@ -9,7 +9,7 @@
 
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(30, 150)));
 
-				local r = this.Math.rand(1, 8);
+				local r = ::Math.rand(1, 8);
 				local item;
 
 				if (r == 1)
@@ -29,14 +29,14 @@
 				else if (r == 8)
 					item = this.new("scripts/items/weapons/hand_axe");
 
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
-					text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+					text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 				});
 
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.gambeson],
 					[1, ::Legends.Armor.Standard.leather_tunic],
 					[1, ::Legends.Armor.Standard.thick_tunic],
@@ -44,7 +44,7 @@
 					[1, ::Legends.Armor.Standard.worn_mail_shirt],
 				]);
 
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -58,7 +58,7 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function ()
 	{
-		if (this.Stash.getNumberOfEmptySlots() < 2)
+		if (::Stash.getNumberOfEmptySlots() < 2)
 			return;
 		onUpdateScore();
 	}

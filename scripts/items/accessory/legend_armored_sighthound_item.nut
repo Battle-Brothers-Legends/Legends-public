@@ -5,7 +5,7 @@ this.legend_armored_sighthound_item <- this.inherit("scripts/items/accessory/leg
 		this.legend_sighthound_item.create();
 		this.m.ID = "accessory.legend_armored_sighthound";
 		this.m.Description = "A strong and loyal southern hound bred for war. Can be unleashed in battle for scouting, tracking or running down routing enemies. This one wears a leather coat for protection against cutting wounds.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
 		this.m.ArmorScript = "scripts/items/armor/legend_sighthound_armor";

@@ -8,22 +8,22 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		this.m.Difficulty = 1;
 		this.m.Order = 70;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 1150;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function onSpawnAssets() {
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([::Legends.Background.LegendCrusader]);
 		 //skills on start
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		::Legends.Traits.grant(bro, ::Legends.Trait.LegendUndeadKiller);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.FortifiedMind);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendRebound);
-		this.addScenarioPerk(bro.getBackground(), this.Const.Perks.PerkDefs.LegendFavouredEnemyUndead);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.FortifiedMind);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendRebound);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendFavouredEnemyUndead);
 		bro.m.PerkPointsSpent += 3;
 		bro.setPlaceInFormation(4);
 		bro.setVeteranPerks(2);
@@ -31,11 +31,11 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		bro.getSprite("socket").setBrush("bust_base_crusader"); //custom base
 		bro.getSprite("miniboss").setBrush("bust_miniboss_crusader"); //custom bust
 		bro.m.HireTime = this.Time.getVirtualTimeF();
-		this.World.Assets.addMoralReputation(20);
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.m.Ammo = 0;
+		::World.Assets.addMoralReputation(20);
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.m.Ammo = 0;
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/armor_parts_item"));
@@ -47,8 +47,8 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		local randomVillage;
 
-		for (local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i) {
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary()
 				&& !randomVillage.isIsolatedFromRoads()
@@ -61,15 +61,15 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		local randomVillageTile = randomVillage.getTile();
 
 		do {
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y)) {
+			if (!::World.isValidTileSquare(x, y)) {
 			} else {
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean
-					|| tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean
+					|| tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
 				} else if (!tile.HasRoad) {
@@ -80,15 +80,15 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 			}
 		} while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(102);
-		//this.World.State.m.Player.getSprite("body").setBrush("figure_player_crusader");
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(102);
+		//::World.State.m.Player.getSprite("body").setBrush("figure_player_crusader");
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function (_tag) {
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_crusader_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_crusader_scenario_intro");
 		}, null);
 
 	}
@@ -96,12 +96,12 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 	function onInit() //starting slots
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsCrusader", true);
+		::World.Flags.set("IsLegendsCrusader", true);
 	}
 
 	function onCombatFinished() //is crusader kill?
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach (bro in roster) {
 			if (bro.getFlags().get("IsPlayerCharacter")) {
@@ -113,7 +113,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 	}
 
 	function onHiredByScenario(_bro) {
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) {
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 			_bro.improveMood(1.5, "Joined a righteous cause");
 			_bro.getSprite("socket").setBrush("bust_base_crusader"); //custom base
 		} else {
@@ -133,7 +133,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 
 		foreach (i, bro in bros) {
 
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw)) {
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
 				garbage.push(bro);
 			}
 		}
@@ -147,23 +147,23 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		if (bro.isStabled())
 			return;
 
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader)) {
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
+		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
 		} else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Squire)) {
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.85); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.85); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.85; //1.0 = default
 			bro.getSkills().update();
 		} else {
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 			bro.getSkills().update();
 		}
 	}
 
 	function onBuildPerkTree(_background) {
-		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.FortifiedMind, 2, _background.isBackgroundType(this.Const.BackgroundType.Crusader));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.FortifiedMind, 2, _background.isBackgroundType(::Const.BackgroundType.Crusader));
 	}
 
 });

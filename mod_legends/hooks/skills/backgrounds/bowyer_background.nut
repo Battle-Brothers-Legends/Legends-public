@@ -26,7 +26,7 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.MeleeSkill
+			::Const.Attributes.MeleeSkill
 		];
 		this.m.Titles = [
 			"the Bowyer",
@@ -34,9 +34,9 @@
 			"the Arrowmaker",
 			"the Patient"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Ranger;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Ranger;
 	}
 
 	o.getTooltip = function () {
@@ -55,7 +55,7 @@
 	}
 
 	o.onBuildDescription <- function ()	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{With calloused hands and an eye for thin strings, | Born to a blacksmith, it\'s definitely somewhat curious that | Picking up %their% trade from a long lineage of strong-sighted forefathers,} %name% is a fletcher and bowyer. {Plying %their% trade for royalty, %their% career came to an end when a bowstring snapped, cutting off the finger of a promising heir. | Unfortunately, war destroyed the forests from which %they% used to draw the finest wood. | Sadly, %they% sold arrows to a young boy which led to a horrible, arrow-related accident. After much debate, she was no longer wanted in town. | But after so many years of making weapons for others, she began to wonder what else there was to life besides wood and string.} {Now, %name% seeks a different path. If she can\'t sell arrows, maybe she can use them. | Now %name% rests in the company of the very men she used to supply. | With her interest in bowmaking gone, can the former bowyer shoot arrows as well as she makes them?}";
 		} else {
 			return "{With calloused hands and an eye for thin strings, | Born to a blacksmith, it\'s definitely somewhat curious that | Picking up his trade from a long lineage of strong-sighted forefathers,} %name% is a fletcher and bowyer. {Plying his trade for royalty, his career came to an end when a bowstring snapped, cutting off the finger of a promising heir. | Unfortunately, war destroyed the forests from which he used to draw the finest wood. | Sadly, he sold a bow to a young boy which led to a horrible, arrow-related accident. After much debate, he was no longer wanted in town. | But after so many years of making weapons for others, he began to wonder what else there was to life besides wood and string.} {Now, %name% seeks a different path. If he can\'t sell bows, maybe he can use them. | Now %name% rests in the company of the very men he used to supply. | With his interest in bowmaking gone, can the former bowyer shoot arrows as well as he makes them?}";
@@ -71,7 +71,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -83,12 +83,12 @@
 		}
 
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.apron]
 		]));
 
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.feathered_hat],
 				[2, ::Legends.Helmet.None]
 		]);

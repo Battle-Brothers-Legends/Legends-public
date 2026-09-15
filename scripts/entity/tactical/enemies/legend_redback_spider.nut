@@ -12,15 +12,15 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendRedbackSpider;
-		this.m.BloodType = this.Const.BloodType.Green;
-		this.m.XP = this.Const.Tactical.Actor.LegendRedbackSpider.XP;
+		this.m.Type = ::Const.EntityType.LegendRedbackSpider;
+		this.m.BloodType = ::Const.BloodType.Green;
+		this.m.XP = ::Const.Tactical.Actor.LegendRedbackSpider.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(20, -15);
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc2/giant_spider_hurt_01.wav",
 			"sounds/enemies/dlc2/giant_spider_hurt_02.wav",
 			"sounds/enemies/dlc2/giant_spider_hurt_03.wav",
@@ -29,7 +29,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/giant_spider_hurt_06.wav",
 			"sounds/enemies/dlc2/giant_spider_hurt_07.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/dlc2/giant_spider_death_01.wav",
 			"sounds/enemies/dlc2/giant_spider_death_02.wav",
 			"sounds/enemies/dlc2/giant_spider_death_03.wav",
@@ -39,13 +39,13 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/giant_spider_death_07.wav",
 			"sounds/enemies/dlc2/giant_spider_death_08.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/enemies/dlc2/giant_spider_flee_01.wav",
 			"sounds/enemies/dlc2/giant_spider_flee_02.wav",
 			"sounds/enemies/dlc2/giant_spider_flee_03.wav",
 			"sounds/enemies/dlc2/giant_spider_flee_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/dlc2/giant_spider_idle_01.wav",
 			"sounds/enemies/dlc2/giant_spider_idle_02.wav",
 			"sounds/enemies/dlc2/giant_spider_idle_03.wav",
@@ -63,10 +63,10 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/giant_spider_idle_15.wav",
 			"sounds/enemies/dlc2/giant_spider_idle_16.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 0.7;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 2.0;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.7;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 2.0;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_redback_spider_agent");
 		this.m.AIAgent.setActor(this);
 
@@ -80,7 +80,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
-		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 33)
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 33)
 		{
 			return;
 		}
@@ -97,7 +97,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
 			this.m.DistortTargetB = !this.m.IsFlipping ? this.createVec(-0.5 * this.m.Size, 0) : this.createVec(0.5 * this.m.Size, 0);
 			this.m.DistortTargetC = !this.m.IsFlipping ? this.createVec(0.5 * this.m.Size, 0) : this.createVec(-0.5 * this.m.Size, 0);
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - this.Math.rand(10, 100) * 0.01;
+			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
 		}
 
 		this.moveSpriteOffset("legs_back", this.m.DistortTargetPrevB, this.m.DistortTargetB, 1.0, this.m.DistortAnimationStartTimeA);
@@ -120,7 +120,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
 			local decal;
@@ -129,21 +129,21 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
 			local head = this.getSprite("head");
-			decal = _tile.spawnDetail("bust_spider_redback_body_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_spider_redback_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.9 * this.m.Size;
 			body_decal = decal;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
-				decal = _tile.spawnDetail("bust_spider_redback_head_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_spider_redback_head_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.9 * this.m.Size;
 				head_decal = decal;
 
-				if (_fatalityType == this.Const.FatalityType.None)
+				if (_fatalityType == ::Const.FatalityType.None)
 				{
 					local corpse_data = {
 						Body = body_decal,
@@ -160,7 +160,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 									return;
 								}
 
-								_data.Vector = this.createVec(this.Math.rand(-100, 100) * 0.01, this.Math.rand(-100, 100) * 0.01);
+								_data.Vector = this.createVec(::Math.rand(-100, 100) * 0.01, ::Math.rand(-100, 100) * 0.01);
 								_data.Start = this.Time.getRealTimeF();
 							}
 
@@ -174,31 +174,31 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 					this.Time.scheduleEvent(this.TimeUnit.Real, 10, corpse_data.onCorpseEffect, corpse_data);
 				}
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [
 					"bust_spider_redback_head_01_dead"
 				];
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, -10), 0.0, "bust_spider_head_01_dead_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, -10), 0.0, "bust_spider_head_01_dead_bloodpool");
 				decap[0].Color = head.Color;
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.9 * this.m.Size;
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_spider_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_spider_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9 * this.m.Size;
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled)
+			if (_fatalityType == ::Const.FatalityType.Disemboweled)
 			{
-				decal = _tile.spawnDetail("bust_spider_gut", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_spider_gut", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9 * this.m.Size;
 			}
-			else if (_fatalityType == this.Const.FatalityType.Smashed)
+			else if (_fatalityType == ::Const.FatalityType.Smashed)
 			{
-				decal = _tile.spawnDetail("bust_spider_skull", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_spider_skull", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9 * this.m.Size;
 			}
 
@@ -212,10 +212,10 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -223,9 +223,9 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Redback Webknecht";
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.IsConsumable = false;
 		corpse.Tile = _tile;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -237,11 +237,11 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendRedbackSpider);
+		b.setValues(::Const.Tactical.Actor.LegendRedbackSpider);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderDamageIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsSpiderDamageIncreaseDay)
 		{
 			b.DamageDirectAdd += 0.05;
 		}
@@ -249,26 +249,26 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local legs_back = this.addSprite("legs_back");
 		legs_back.setBrush("bust_spider_redback_legs_back");
 		local body = this.addSprite("body");
-		body.setBrush("bust_spider_redback_body_0" + this.Math.rand(1, 4));
+		body.setBrush("bust_spider_redback_body_0" + ::Math.rand(1, 4));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.3);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.1, 0.1, 0.1);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyBrightness(0.1);
 		}
@@ -291,7 +291,7 @@ this.legend_redback_spider <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_rooted", this.createVec(7, 10));
 		this.setSpriteOffset("status_stunned", this.createVec(0, -20));
 		this.setSpriteOffset("arrow", this.createVec(0, -20));
-		this.setSize(this.Math.rand(70, 90) * 0.01);
+		this.setSize(::Math.rand(70, 90) * 0.01);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendRedbackSpiderBite);
 		::Legends.Actives.grant(this, ::Legends.Active.Web);
 		::Legends.Perks.grant(this, ::Legends.Perk.Footwork);

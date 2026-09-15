@@ -22,14 +22,14 @@
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.Bodies = this.Const.Bodies.Skinny;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Untidy;
+		this.m.Bodies = ::Const.Bodies.Skinny;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()
@@ -71,10 +71,10 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.PilgrimTitles[this.Math.rand(0, this.Const.Strings.PilgrimTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.PilgrimTitles[::Math.rand(0, ::Const.Strings.PilgrimTitles.len() - 1)]);
 		}
 	}
 
@@ -82,7 +82,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 1)
 		{
@@ -95,35 +95,35 @@
 		}
 		else if (r == 3)
 		{
-			if (this.Const.DLC.Wildmen)
+			if (::Const.DLC.Wildmen)
 			{
 			items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 			}
-			else if (!this.Const.DLC.Wildmen)
+			else if (!::Const.DLC.Wildmen)
 			{
 			items.equip(this.new("scripts/items/weapons/wooden_flail"));
 			}
 		}
 		else if (r == 4)
 		{
-			if (this.Const.DLC.Wildmen)
+			if (::Const.DLC.Wildmen)
 			{
 			items.equip(this.new("scripts/items/weapons/battle_whip"));
 			}
-			else if (!this.Const.DLC.Wildmen)
+			else if (!::Const.DLC.Wildmen)
 			{
 			items.equip(this.new("scripts/items/weapons/legend_reinforced_flail"));
 			}
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.monk_robe]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[4, ::Legends.Helmet.None]
 		]));

@@ -6,7 +6,7 @@ this.legend_bandit_raider_low <- this.inherit("scripts/entity/tactical/enemies/l
 		this.m.IsLow = true;
 
 		//TODO: Look athow to normalize this for low tier units?
-		local writeTable = clone this.Const.RandomizedCharacterInfo["BanditRaiderLow"];
+		local writeTable = clone ::Const.RandomizedCharacterInfo["BanditRaiderLow"];
 		this.writeTablesFromParam(writeTable)
 	}
 
@@ -24,7 +24,7 @@ this.legend_bandit_raider_low <- this.inherit("scripts/entity/tactical/enemies/l
 	{
 		this.legend_bandit_raider.assignRandomEquipment();
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 25)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 25)
 		{
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/throwing_axe"],

@@ -22,7 +22,7 @@
 
 for( local i = 1; i < 88; i = ++i )
 {
-	::Const.LevelXP.push(this.Const.LevelXP[this.Const.LevelXP.len() - 1] + 4000 + 1000 * i);
+	::Const.LevelXP.push(::Const.LevelXP[::Const.LevelXP.len() - 1] + 4000 + 1000 * i);
 }
 
 ::Const.Combat.SpawnBloodSameTileChance = 95;
@@ -76,11 +76,11 @@ for( local i = 1; i < 88; i = ++i )
 {
 	if (this.MeleeDefense >= 0)
 	{
-		return this.Math.floor(this.MeleeDefense * (this.MeleeDefenseMult >= 0 ? this.MeleeDefenseMult : 1.0 / this.MeleeDefenseMult));
+		return ::Math.floor(this.MeleeDefense * (this.MeleeDefenseMult >= 0 ? this.MeleeDefenseMult : 1.0 / this.MeleeDefenseMult));
 	}
 	else
 	{
-		return this.Math.floor(this.MeleeDefense * (this.MeleeDefenseMult < 0 ? this.MeleeDefenseMult : 1.0 / this.MeleeDefenseMult));
+		return ::Math.floor(this.MeleeDefense * (this.MeleeDefenseMult < 0 ? this.MeleeDefenseMult : 1.0 / this.MeleeDefenseMult));
 	}
 };
 
@@ -88,27 +88,27 @@ for( local i = 1; i < 88; i = ++i )
 {
 	if (this.RangedDefense >= 0)
 	{
-		return this.Math.floor(this.RangedDefense * (this.RangedDefenseMult >= 0 ? this.RangedDefenseMult : 1.0 / this.RangedDefenseMult));
+		return ::Math.floor(this.RangedDefense * (this.RangedDefenseMult >= 0 ? this.RangedDefenseMult : 1.0 / this.RangedDefenseMult));
 	}
 	else
 	{
-		return this.Math.floor(this.RangedDefense * (this.RangedDefenseMult < 0 ? this.RangedDefenseMult : 1.0 / this.RangedDefenseMult));
+		return ::Math.floor(this.RangedDefense * (this.RangedDefenseMult < 0 ? this.RangedDefenseMult : 1.0 / this.RangedDefenseMult));
 	}
 };
 
 ::Const.CharacterProperties.getRangedSkill = function ()
 {
-	return this.Math.floor(this.RangedSkill * (this.RangedSkillMult >= 0 ? this.RangedSkillMult : 1.0 / this.RangedSkillMult));
+	return ::Math.floor(this.RangedSkill * (this.RangedSkillMult >= 0 ? this.RangedSkillMult : 1.0 / this.RangedSkillMult));
 };
 
 ::Const.CharacterProperties.getBravery = function ()
 {
-	return this.Math.floor(this.Bravery * (this.BraveryMult >= 0 ? this.BraveryMult : 1.0 / this.BraveryMult));
+	return ::Math.floor(this.Bravery * (this.BraveryMult >= 0 ? this.BraveryMult : 1.0 / this.BraveryMult));
 };
 
 ::Const.CharacterProperties.getInitiative = function ()
 {
-	return this.Math.floor(this.Initiative * (this.InitiativeMult >= 0 ? this.InitiativeMult : 1.0 / this.InitiativeMult));
+	return ::Math.floor(this.Initiative * (this.InitiativeMult >= 0 ? this.InitiativeMult : 1.0 / this.InitiativeMult));
 };
 
 local onSerialize = ::Const.CharacterProperties.onSerialize;

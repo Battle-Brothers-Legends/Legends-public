@@ -48,7 +48,7 @@
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 9,
@@ -63,7 +63,7 @@
 
 	o.isUsable = function ()
 	{
-		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		local isUsable = !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			return isUsable;
 
@@ -91,7 +91,7 @@
 			this.m.MinRange = 1;
 			this.m.MaxRange = 3;
 		}
-		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		// this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 

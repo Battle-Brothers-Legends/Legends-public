@@ -5,7 +5,7 @@
 	{
 		onUpdate(_faction);
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
 		{
 			this.m.Score = 10;
 		}		

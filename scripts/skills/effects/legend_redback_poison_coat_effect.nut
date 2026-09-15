@@ -48,7 +48,7 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 			this.removeSelf();
 		}
 
-		if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < this.Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0 || _targetEntity.getFlags().has("undead")) {
+		if (!_targetEntity.isAlive() || _targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints < ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0 || _targetEntity.getFlags().has("undead")) {
 			return;
 		}
 
@@ -62,7 +62,7 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendRedbackSpiderPoison, function(_effect) {
 			local actor = this.getContainer().getActor();
-			if (actor.getFaction() == this.Const.Faction.Player )
+			if (actor.getFaction() == ::Const.Faction.Player )
 				_effect.setActor(actor);
 		}.bindenv(this));
 	}

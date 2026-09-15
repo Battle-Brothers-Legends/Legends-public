@@ -2,15 +2,15 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendManhunterVeteran;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendManhunterVeteranRanged.XP;
+		this.m.Type = ::Const.EntityType.LegendManhunterVeteran;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendManhunterVeteranRanged.XP;
 		this.human.create();
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.SouthernUntidy;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.SouthernUntidy;
 		this.m.BeardChance = 80;
 		this.m.Ethnicity = 1;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_manhunter_ranged_agent");
@@ -24,7 +24,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendManhunterVeteranRanged);
+		b.setValues(::Const.Tactical.Actor.LegendManhunterVeteranRanged);
 		b.TargetAttractionMult = 1.1;
 		b.Vision = 8;
 		this.m.ActionPoints = b.ActionPoints;
@@ -33,7 +33,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
 
-		if (this.Math.rand(1, 100) <= 15)
+		if (::Math.rand(1, 100) <= 15)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -45,7 +45,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.getSprite("eye_rings").Visible = true;
 		}
@@ -65,7 +65,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 
 	function onOtherActorDeath( _killer, _victim, _skill )
 	{
-		if (_victim.getType() == this.Const.EntityType.Slave && _victim.isAlliedWith(this))
+		if (_victim.getType() == ::Const.EntityType.Slave && _victim.isAlliedWith(this))
 		{
 			return;
 		}
@@ -75,7 +75,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 
 	function onOtherActorFleeing( _actor )
 	{
-		if (_actor.getType() == this.Const.EntityType.Slave && _actor.isAlliedWith(this))
+		if (_actor.getType() == ::Const.EntityType.Slave && _actor.isAlliedWith(this))
 		{
 			return;
 		}
@@ -85,9 +85,9 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 
 	function assignRandomEquipment()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			local r = this.Math.rand(1, 3);
+			local r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -102,7 +102,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 					"weapons/javelin"
 				];
 
-				if (this.World.getTime().Days < 80)
+				if (::World.getTime().Days < 80)
 				{
 					weapons.extend([
 						"weapons/greenskins/goblin_spiked_balls"
@@ -113,11 +113,11 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 					"weapons/greenskins/goblin_spiked_balls"
 				]);
 
-				this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+				this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			}
 		}
 
-		local mainhandWeaponID = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID();
+		local mainhandWeaponID = this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID();
 		if (mainhandWeaponID == "weapon.handgonne" || mainhandWeaponID == "weapon.named_handgonne") {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/oriental/qatal_dagger"],
@@ -132,7 +132,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 			], "scripts/items/"));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armors = [
 				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating],
@@ -142,7 +142,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				[1, ::Legends.Armor.Standard.lamellar_harness]
 			];
 
-			if (this.Const.DLC.Unhold)
+			if (::Const.DLC.Unhold)
 			{
 				armors.extend([
 					[1, ::Legends.Armor.Standard.leather_scale_armor],
@@ -150,10 +150,10 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				]);
 			}
 
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armors));
+			this.m.Items.equip(::Const.World.Common.pickArmor(armors));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmets = [
 				[1, ::Legends.Helmet.Southern.wrapped_southern_helmet],
@@ -161,12 +161,12 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
 
-			if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
+			if (::World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterVeteranBetterArmorDay) {
 				helmets.extend([
 					[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet]
 				]);
 
-				if (this.Const.DLC.Wildmen)
+				if (::Const.DLC.Wildmen)
 				{
 					helmets.extend([
 						[1, ::Legends.Helmet.Standard.conic_helmet_with_closed_mail]
@@ -174,7 +174,7 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				}
 			}
 
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmets));
+			this.m.Items.equip(::Const.World.Common.pickHelmet(helmets));
 		}
 	}
 
@@ -198,21 +198,21 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 				"ammo/powder_bag"
 			]
 		];
-		local armors = clone this.Const.Items.NamedSouthernArmors;
+		local armors = clone ::Const.Items.NamedSouthernArmors;
 
 		armors.push("armor/named/golden_scale_armor");
-		if (this.Const.DLC.Wildmen)
+		if (::Const.DLC.Wildmen)
 		{
 			armors.push("armor/named/named_golden_lamellar_armor");
 		}
 
-		local helmets = clone this.Const.Items.NamedSouthernHelmets;
+		local helmets = clone ::Const.Items.NamedSouthernHelmets;
 
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 
 		if (r == 1)
 		{
-			local r = this.Math.rand(0, weapons.len() - 1);
+			local r = ::Math.rand(0, weapons.len() - 1);
 
 			foreach( w in weapons[r] )
 			{
@@ -221,14 +221,14 @@ this.legend_manhunter_veteran_ranged <- this.inherit("scripts/entity/tactical/hu
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
-				this.Const.World.Common.convNameToList(armors)
+			this.m.Items.equip(::Const.World.Common.pickArmor(
+				::Const.World.Common.convNameToList(armors)
 			));
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(
-				this.Const.World.Common.convNameToList(helmets)
+			this.m.Items.equip(::Const.World.Common.pickHelmet(
+				::Const.World.Common.convNameToList(helmets)
 			));
 		}
 

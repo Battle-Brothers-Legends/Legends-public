@@ -23,7 +23,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		LegendaryTraits = [],
 		LevelRange = [1, 1],
 		EnemyLevel = 1,
-		PerkPower = this.Const.PerkPurchasePower.Low
+		PerkPower = ::Const.PerkPurchasePower.Low
 	},
 
 	//TODO:
@@ -66,12 +66,12 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	{
 		this.human.create();
 
-		local writeTable = clone this.Const.RandomizedCharacterInfo["Default"];
+		local writeTable = clone ::Const.RandomizedCharacterInfo["Default"];
 		this.writeTablesFromParam(writeTable);
 
-		if (this.m.Type in this.Const.RandomizedCharacterInfo)
+		if (this.m.Type in ::Const.RandomizedCharacterInfo)
 		{
-			writeTable = clone this.Const.RandomizedCharacterInfo[this.m.Type];
+			writeTable = clone ::Const.RandomizedCharacterInfo[this.m.Type];
 			this.writeTablesFromParam(writeTable);
 		}
 		else
@@ -79,7 +79,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 			this.logWarning("Entity type didnt exist: " + this.m.Type);
 		}
 
-		this.m.EnemyLevel = this.Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] );
+		this.m.EnemyLevel = ::Math.rand( this.m.LevelRange[0], this.m.LevelRange[1] );
 		this.m.XP = this.m.EnemyLevel * 35;
 		if (!::Legends.isLegendaryDifficulty())	{
 			this.m.PerkPower -= 1;
@@ -91,18 +91,18 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	function modifyAttributes( _attributes )
 	{
 		local b = this.m.BaseProperties;
-		b.Hitpoints += this.Math.rand(_attributes.Hitpoints[0], _attributes.Hitpoints[1]);
-		b.Bravery += this.Math.rand(_attributes.Bravery[0], _attributes.Bravery[1]);
-		b.Stamina += this.Math.rand(_attributes.Stamina[0], _attributes.Stamina[1]);
-		b.MeleeSkill += this.Math.rand(_attributes.MeleeSkill[0], _attributes.MeleeSkill[1]);
-		b.RangedSkill += this.Math.rand(_attributes.RangedSkill[0], _attributes.RangedSkill[1]);
-		b.MeleeDefense += this.Math.rand(_attributes.MeleeDefense[0], _attributes.MeleeDefense[1]);
-		b.RangedDefense += this.Math.rand(_attributes.RangedDefense[0], _attributes.RangedDefense[1]);
-		b.Initiative += this.Math.rand(_attributes.Initiative[0], _attributes.Initiative[1]);
+		b.Hitpoints += ::Math.rand(_attributes.Hitpoints[0], _attributes.Hitpoints[1]);
+		b.Bravery += ::Math.rand(_attributes.Bravery[0], _attributes.Bravery[1]);
+		b.Stamina += ::Math.rand(_attributes.Stamina[0], _attributes.Stamina[1]);
+		b.MeleeSkill += ::Math.rand(_attributes.MeleeSkill[0], _attributes.MeleeSkill[1]);
+		b.RangedSkill += ::Math.rand(_attributes.RangedSkill[0], _attributes.RangedSkill[1]);
+		b.MeleeDefense += ::Math.rand(_attributes.MeleeDefense[0], _attributes.MeleeDefense[1]);
+		b.RangedDefense += ::Math.rand(_attributes.RangedDefense[0], _attributes.RangedDefense[1]);
+		b.Initiative += ::Math.rand(_attributes.Initiative[0], _attributes.Initiative[1]);
 	}
 
 	// _purchaseLimit	| How many perks a unit can actually purchase, the total cost it could purchase
-	// _tree			| This is the actual tree to purchase from, we pipe in a tree from any of this.Const.[NameOfATree].Tree
+	// _tree			| This is the actual tree to purchase from, we pipe in a tree from any of ::Const.[NameOfATree].Tree
 	// _cap 			| The actual cap on the perk tree, this is changed by the units level. A level 1 unit could buy from the first row, a level 10 unit could buy from the max row
 	// 							there are up to 7 rows in any given tree, or 0-6, so we cap it at 6
 	function pickPerkFromTree( _purchaseLimit, _tree, _cap = 6)
@@ -147,7 +147,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 		}
 		else if (_malus)
 		{
-			this.modifyAttributes(this.Const.RandomizedMalus);
+			this.modifyAttributes(::Const.RandomizedMalus);
 		}
 
 		local tabl = _table["Tree"];
@@ -172,12 +172,12 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 				::Legends.Traits.grant(this, trait);
 		}
 
-		local idx = this.Math.rand(0, this.m.DefensePerkList.len() - 1);
+		local idx = ::Math.rand(0, this.m.DefensePerkList.len() - 1);
 		this.pickPerk(this.m.PerkPower, this.m.DefensePerkList[idx], this.m.EnemyLevel - 1 );
 
 		while (this.m.PerkPower > 0 && this.m.TraitsPerkList.len() != 0)
 		{
-			local idx = this.Math.rand(0, this.m.TraitsPerkList.len() - 1);
+			local idx = ::Math.rand(0, this.m.TraitsPerkList.len() - 1);
 			local selectedTree = this.m.TraitsPerkList.remove(idx);
 			this.pickPerk(this.m.PerkPower, selectedTree, this.m.EnemyLevel - 1 );
 		}
@@ -186,7 +186,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Picks and equips our units outfit
 	function assignOutfit()
 	{
-		foreach( item in this.Const.World.Common.pickOutfit(this.m.Outfits) )
+		foreach( item in ::Const.World.Common.pickOutfit(this.m.Outfits) )
 		{
 			this.m.Items.equip(item);
 		}
@@ -198,7 +198,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Adds everything from (technically our index 3) guaranteed Legendary Perks if the enemy rolls that weapon (this should be a table at this point perhaps)
 	function assignWeapon()
 	{
-		local selection = this.Const.GetWeaponAndTree(this.m.WeaponsAndTrees);
+		local selection = ::Const.GetWeaponAndTree(this.m.WeaponsAndTrees);
 		local weaponScriptAndChances = selection[0];
 		this.m.Items.equip( this.new( "scripts/items/weapons/" + weaponScriptAndChances[0] ) );
 		local weapon = this.getMainhandItem();
@@ -209,15 +209,15 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 				::Legends.Perks.grant(this, perk);
 		}
 
-		local weaponPerkTree = this.Const.GetWeaponPerkTree(weapon);
-		weaponPerkTree = weaponPerkTree[this.Math.rand(0, weaponPerkTree.len() - 1)];
-		if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && this.Math.rand(1, 100) <= weaponScriptAndChances[1])
+		local weaponPerkTree = ::Const.GetWeaponPerkTree(weapon);
+		weaponPerkTree = weaponPerkTree[::Math.rand(0, weaponPerkTree.len() - 1)];
+		if (weaponPerkTree != null && weaponScriptAndChances.len() >= 2 && ::Math.rand(1, 100) <= weaponScriptAndChances[1])
 		{
 			this.pickPerk( this.m.PerkPower,  weaponPerkTree, this.m.EnemyLevel - 1);
 		}
 
-		local weaponClassTree = this.Const.GetWeaponClassTree(weapon);
-		if (weaponClassTree != null && weaponScriptAndChances.len() >= 3 && this.Math.rand(1, 100) <= weaponScriptAndChances[2])
+		local weaponClassTree = ::Const.GetWeaponClassTree(weapon);
+		if (weaponClassTree != null && weaponScriptAndChances.len() >= 3 && ::Math.rand(1, 100) <= weaponScriptAndChances[2])
 		{
 			this.pickPerk( this.m.PerkPower,  weaponClassTree, this.m.EnemyLevel - 1, true);
 		}
@@ -226,7 +226,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	function assignShield()
 	{
 		if (this.m.Shields.len() == 0) { return; }
-		if (this.getMainhandItem().isItemType(this.Const.Items.ItemType.TwoHanded)) { return; }
+		if (this.getMainhandItem().isItemType(::Const.Items.ItemType.TwoHanded)) { return; }
 
 		local candidates = [];
 		local totalWeight = 0;
@@ -241,7 +241,7 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 			totalWeight += shield[0];
 		}
 
-		local r = this.Math.rand(0, totalWeight);
+		local r = ::Math.rand(0, totalWeight);
 		foreach (shield in candidates)
 		{
 			r = r - shield[0];
@@ -263,20 +263,20 @@ this.legend_randomized_unit_abstract <- this.inherit("scripts/entity/tactical/hu
 	// Will not give any ammo if it's not a ranged weapon (this is primarily for the spear-gun thing that's a firearm but not a rangedweapon, but helps for modded items maybe)
 	function assignAmmo()
 	{
-		local weapon = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local weapon = this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if (weapon == null) { return; }
-		if ( !(weapon.isItemType(this.Const.Items.ItemType.RangedWeapon)) ) { return; }
+		if ( !(weapon.isItemType(::Const.Items.ItemType.RangedWeapon)) ) { return; }
 
 
-		if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
+		if (weapon.isWeaponType(::Const.Items.WeaponType.Bow))
 		{
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
-		else if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow))
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 		{
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		}
-		else if (weapon.isWeaponType(this.Const.Items.WeaponType.Firearm))
+		else if (weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 		{
 			this.m.Items.equip(this.new("scripts/items/ammo/powder_bag"));
 		}

@@ -9,9 +9,9 @@ this.legend_orc_elite_heavy_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.Description = "";
 		this.m.IconLarge = "";
 		this.m.Icon = "";
-		this.m.SlotType = this.Const.ItemSlot.Body;
+		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.ShowOnCharacter = true;
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Condition = 600;
 		this.m.ConditionMax = 600;
 		this.m.StaminaModifier = -45;

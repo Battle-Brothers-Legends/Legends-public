@@ -4,7 +4,7 @@ this.legend_sack_hood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_sack_hood_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/vanity/legend_helmet_sack");
 		this.m.Cost = 75;
 		local ingredients = [

@@ -5,8 +5,8 @@ this.legend_RSS_radiance <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRssRadiance);
 		this.m.Description = "Rune Sigil: Radiance";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
-		this.m.Type = this.Const.SkillType.Special;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Special;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;

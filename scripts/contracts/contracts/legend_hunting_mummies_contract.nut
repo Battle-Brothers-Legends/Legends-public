@@ -9,7 +9,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 		this.contract.create();
 		this.m.Type = "contract.hunting_mummies";
 		this.m.Name = "The Ancient Dead";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"The fleshed dead have been seen roaming the desert, their purpose long since lost to the sands of time.",
 			"Amongst the shifting sands, the embalmed dead wander aimlessly, their mummified forms driven by an insatiable thirst for the life they lost centuries ago.",
@@ -28,9 +28,9 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 
 	function start()
 	{
-		this.m.Payment.Pool = 600 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 600 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -57,14 +57,14 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -84,18 +84,18 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
 				{
 					this.Contract.setScreen("Victory");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
 				{
-					local tileType = this.World.State.getPlayer().getTile().Type;
+					local tileType = ::World.State.getPlayer().getTile().Type;
 
-					if (tileType == this.Const.World.TerrainType.Desert)
+					if (tileType == ::Const.World.TerrainType.Desert)
 					{
 						this.Flags.set("IsBanterShown", true);
 						this.Contract.setScreen("Banter");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}
@@ -107,11 +107,11 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				{
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -131,7 +131,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -140,8 +140,8 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -163,7 +163,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 					Text = "{This doesn\'t sound like our kind of work. | I won\'t lead the men on a wild goose chase through the desert. | I don\'t think so. | I say no. The men prefer known enemies of flesh and blood.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -239,10 +239,10 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractSuccess, "Rid the city of the dead");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractSuccess, "Rid the city of the dead");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -253,7 +253,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 				this.Contract.m.SituationID = this.Contract.resolveSituation(this.Contract.m.SituationID, this.Contract.m.Home, this.List);
 			}
@@ -265,7 +265,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : this.Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
 		]);
 	}
 
@@ -279,39 +279,39 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 
 	function spawnEnemies() {
 		local disallowedTerrain = [];
-		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i ) {
-			if (i == this.Const.World.TerrainType.Desert)
+		for( local i = 0; i < ::Const.World.TerrainType.COUNT; i = ++i ) {
+			if (i == ::Const.World.TerrainType.Desert)
 				continue;
 			disallowedTerrain.push(i);
 		}
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local mapSize = this.World.getMapSize();
+		local playerTile = ::World.State.getPlayer().getTile();
+		local mapSize = ::World.getMapSize();
 		local tile = this.getTileToSpawnLocation(playerTile, 8, 12, disallowedTerrain);
 		local party;
-		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).spawnEntity(tile, "Embalmed", false, this.Const.World.Spawn.MummiesPatrol, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).spawnEntity(tile, "Embalmed", false, ::Const.World.Spawn.MummiesPatrol, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("Glints of gold and heavy steps serve as a warning to all.");
-		party.setFootprintType(this.Const.World.FootprintsType.Undead);
+		party.setFootprintType(::Const.World.FootprintsType.Undead);
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.75);
 
 		for( local i = 0; i < 1; i = ++i ) {
 			local nearTile = this.getTileToSpawnLocation(playerTile, 5, 10, disallowedTerrain);
 			if (nearTile != null)
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.UndeadFootprints, this.Const.World.FootprintsType.Undead, 0.75);
+				::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.UndeadFootprints, ::Const.World.FootprintsType.Undead, 0.75);
 		}
 
 		this.m.Target = this.WeakTableRef(party);
-		local nearestUndead = this.getNearestLocationTo(this.m.Home, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements());
+		local nearestUndead = this.getNearestLocationTo(this.m.Home, ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements());
 		party.getSprite("banner").setBrush(nearestUndead.getBanner());
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setPivot(this.m.Home);
 		roam.setMinRange(8);
 		roam.setMaxRange(12);
 		roam.setNoTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Desert, true);
+		roam.setTerrain(::Const.World.TerrainType.Desert, true);
 		c.addOrder(roam);
 		return party;
 	}
@@ -366,7 +366,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 
 		this.contract.onDeserialize(_in);

@@ -36,7 +36,7 @@
 	{
 		local r;
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/billhook",
@@ -55,19 +55,19 @@
 				"weapons/battle_whip"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.dagger")
+			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.dagger")
 			{
 				::Legends.Perks.grant(this, ::Legends.Perk.Duelist);
 			}
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Legends.Perk.Duelist))
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && !this.m.Skills.hasPerk(::Legends.Perk.Duelist))
 		{
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				r = this.Math.rand(0, 2);
+				r = ::Math.rand(0, 2);
 
 				if (r == 0)
 				{
@@ -88,9 +88,9 @@
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 
 			if (r == 1)
 			{
@@ -102,7 +102,7 @@
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
@@ -111,7 +111,7 @@
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		if (this.Math.rand(1, 100) <= 90)
+		if (::Math.rand(1, 100) <= 90)
 		{
 			local helm = [
 				[1, ::Legends.Helmet.Standard.nasal_helmet],
@@ -125,7 +125,7 @@
 				[1, ::Legends.Helmet.Standard.barbute_helmet]
 			];
 			helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet]);
-			local item = this.Const.World.Common.pickHelmet(helm);
+			local item = ::Const.World.Common.pickHelmet(helm);
 
 			if (item != null)
 			{

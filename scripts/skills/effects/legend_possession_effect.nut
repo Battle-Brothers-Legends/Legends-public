@@ -9,7 +9,7 @@ this.legend_possession_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IconMini = "status_effect_69_mini";
 		this.m.Overlay = "status_effect_69";
 		this.m.SoundOnUse = [];
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -30,7 +30,7 @@ this.legend_possession_effect <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, actor.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, actor.getPos());
 		}
 
 		if (actor.hasSprite("status_rage"))

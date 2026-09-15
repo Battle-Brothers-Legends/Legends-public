@@ -13,10 +13,10 @@ this.legend_noble_crown <- this.inherit("scripts/items/helmets/helmet", {
 		local variants = [
 			1
 		];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 500;
 		this.m.Condition = 50;
 		this.m.ConditionMax = 50;

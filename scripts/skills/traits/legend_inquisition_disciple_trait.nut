@@ -7,7 +7,7 @@ this.legend_inquisition_disciple_trait <- this.inherit("scripts/skills/traits/ch
 		this.m.Name = "Disciple of the Inquisition";
 		this.m.Icon = "ui/traits/trait_icon_67.png";
 		this.m.Description = "This character is a disciple of the Old Gods, an individual with unquestionable loyalty to the faith. They embrace physical pain and peril as bringing them closer to salvation.";
-		this.m.Order = this.Const.SkillOrder.Trait - 1;
+		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
 	function getTooltip()

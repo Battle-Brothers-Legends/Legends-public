@@ -7,8 +7,8 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/digging", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/digging", 3);
 		this.m.SoundVolume = 1.2;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -47,7 +47,7 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " burrows");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " burrows");
 		}
 
 		if (_user.getTile().IsVisibleForPlayer)
@@ -76,7 +76,7 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 			_tag.User.fadeTo(this.createColor("ffffff00"), 0);
 		}
 
-		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 1000.0);
+		::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 1000.0);
 	}
 
 	function onTeleportDone( _entity, _tag )
@@ -93,7 +93,7 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 
 		if (_tag.Skill.m.SoundOnHit.len() > 0)
 		{
-			this.Sound.play(_tag.Skill.m.SoundOnHit[this.Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _entity.getPos());
+			::Sound.play(_tag.Skill.m.SoundOnHit[::Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _entity.getPos());
 		}
 	}
 

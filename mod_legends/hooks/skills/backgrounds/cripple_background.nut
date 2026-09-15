@@ -26,8 +26,8 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendTalented)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Initiative
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Initiative
 		];
 		this.m.Titles = [
 			"the Cripple",
@@ -35,9 +35,9 @@
 			"the Broken",
 			"the Grotesque"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMin;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
 	o.setGender <- function(_gender = -1) {
@@ -61,7 +61,7 @@
 
 	o.onBuildDescription <- function()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
+		if(this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 		return "%name% {hobbles toward you like a mangy dog | greets you with a hand missing numerous fingers | smiles at you with a toothless grin | carries the slouching posture of a woman with a broken back | wobbles on two very stiff, possibly even wooden legs | uses a cane to walk toward you | crawls toward you at first, but then rises to her feet with all the grace of a drunk on church steps | has bones that creak and croak with every step | carries an arm in a sling, and has a cane standing in support for one of her legs | has a smashed nose and two blackened eyes | looks like someone tried to scalp and burn her alive | has flesh that smells partly cooked, her eyes wincing with every step she takes toward you | is missing two ears, though the holes she still hears | reeks of shit and urine | is missing one eye, and the other wanders severely | has two lazy eyes and a crooked, gap-filled smile}. She explains that {she was once a mason, but that she was attacked by a madman for trying to replicate his work | she once donned the atire of a belly dancer, but that cruel fate has taken all of that from her | once upon a time she was a Vizier\'s wife, but her poor vocabulary suggests this may be a lie | she was a peddler once, but the sale of a lobo-rail ended with her at the mercy of an angry town mob | she dabbled in cultism, but when she bailed they punished her for it | she used to wash and cook for decadent traders, but a beatdown by nomad raiders left her crippled | she used to serve food in the arena, but a bad match ended with her horribly crippled | she used to rob graves, but when she got caught a parishioner broke more of her bones than she knew a skeleton even had | she dabbled in {the arcane arts | necromancy} but, made obvious by her near-deathly state, that experiment was shortlived | she was once a successful gambler, but as it turns out not paying back your debts is bad for business - and your bones | she used to catch rats for a living, but apparently a giant rat paid her a vengeful visit in the night | she once served a vizier of %randomcitystate%, but after dropping a plate of food she was sent to the dungeons where she was promptly forgotten for years | she once killed a man, sure, but that she deserved a better fate than the irreversible torture she received as punishment | she used to hunt witches, but a cruel mistress tricked her into drinking a concoction which crippled her very bones | she once deserted an a master and, obviously, got caught | she used to dance for the rich until she accidentally fell down some steps in the middle of a performance. The steps proved rather edgy against her bones, it seems | she was born with a horrific deformity | her father brutally attacked her for not finding a husband early enough | her mother scarred her with endless torture | her siblings tortured hr all her life}. {The woman looks so weak you can almost see her mortal coil flapping in the wind. | Hiring her would almost certainly be the woman\'s doom. How merciful! | You don\'t want to be seen as hiring just anybody, but if this woman is a nobody, does that still count as \'anybody\'? | You\'ve seen dead people who look better than this woman. | This woman is wolf-lunch on two legs. | The good news is that if she comes back from the dead she shouldn\'t be too hard to put down a second time. | Dreams and inanimate objects are more threatening than this poor wench. | To be honest, you\'d rather hire a child, but apparently people look down on that so here we are instead. | And you thought %randombrother% smelled bad. | Hiring a woman such as this would send anyone\'s moral compass spinning. | Oh c\'mon, look at her! Are the %companyname% really that in need of warm bodies? | Hiring this woman just wouldn\'t be right. Whelp, here goes. | A pair of crutches has more value than this poor woman. | This woman is in such a sorry state she can play dead standing up.}";
 		}
@@ -87,7 +87,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -98,12 +98,12 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood, 38],
 			[3, ::Legends.Helmet.None]
 		]);

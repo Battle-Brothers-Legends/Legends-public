@@ -3,7 +3,7 @@
 	local generateCorpse = o.generateCorpse;
 	o.generateCorpse = function (_tile, _fatalityType, _killer) {
 		local corpse = generateCorpse(_tile, _fatalityType, _killer);
-		corpse.IsResurrectable = _fatalityType != this.Const.FatalityType.Decapitated && this.m.IsResurrectable;
+		corpse.IsResurrectable = _fatalityType != ::Const.FatalityType.Decapitated && this.m.IsResurrectable;
 		return corpse;
 	}
 
@@ -26,7 +26,7 @@
 		this.getSprite("beard_top").setHorizontalFlipping(flip);
 		this.getSprite("body_blood").setHorizontalFlipping(flip);
 		this.getSprite("dirt").setHorizontalFlipping(flip);
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -40,13 +40,13 @@
 	o.onInit = function ()
 	{
 		this.actor.onInit();
-		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
+		local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
 
-		if (this.Math.rand(1, 2) == 1)
+		if (::Math.rand(1, 2) == 1)
 		{
-			body.setBrush("bust_skeleton_body_0" + this.Math.rand(1, 2));
+			body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
 		}
 		else
 		{
@@ -56,12 +56,12 @@
 		body.setHorizontalFlipping(true);
 		body.Saturation = 0.8;
 
-		if (this.Math.rand(0, 100) < 75)
+		if (::Math.rand(0, 100) < 75)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.025, 0.025, 0.025);
 		}
@@ -85,24 +85,24 @@
 		local beard = this.addSprite("beard");
 		beard.varyColor(0.02, 0.02, 0.02);
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
-			beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieOnly[this.Math.rand(0, this.Const.Beards.ZombieOnly.len() - 1)]);
+			beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieOnly[::Math.rand(0, ::Const.Beards.ZombieOnly.len() - 1)]);
 		}
 
 		local face = this.addSprite("face");
-		face.setBrush("bust_skeleton_face_0" + this.Math.rand(1, 6));
+		face.setBrush("bust_skeleton_face_0" + ::Math.rand(1, 6));
 		local hair = this.addSprite("hair");
 		hair.setHorizontalFlipping(true);
 		hair.Color = beard.Color;
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
+			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.ZombieOnly[::Math.rand(0, ::Const.Hair.ZombieOnly.len() - 1)]);
 		}
 
 		this.setSpriteOffset("hair", this.createVec(0, -3));
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a)
 		}
@@ -121,7 +121,7 @@
 		local body_dirt = this.addSprite("dirt");
 		body_dirt.setBrush("bust_body_dirt_02");
 		body_dirt.setHorizontalFlipping(true);
-		body_dirt.Visible = this.Math.rand(1, 100) <= 33;
+		body_dirt.Visible = ::Math.rand(1, 100) <= 33;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
@@ -137,7 +137,7 @@
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType ) {
 		local appearance = this.getItems().getAppearance();
 		local targetScale = 0.9;
-		local flip = this.Math.rand(1, 100) < 50;
+		local flip = ::Math.rand(1, 100) < 50;
 		this.m.IsCorpseFlipped = flip;
 
 		if (_tile != null) {
@@ -147,7 +147,7 @@
 			local sprite_hair = this.getSprite("hair");
 			local sprite_beard = this.getSprite("beard");
 			local sprite_beard_top = this.getSprite("beard_top");
-			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
 			decal.Scale = targetScale;
@@ -165,7 +165,7 @@
 					armorDecal = appearance.CorpseArmor;
 				}
 
-				local decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+				local decal = _tile.spawnDetail(armorDecal, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 			}
 
@@ -183,18 +183,18 @@
 					"HelmetLayerVanity2Corpse"
 			];
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
 				foreach (layer in helmetLowerLayers) {
 					if (appearance[layer] != "") {
-						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Scale = targetScale;
 					}
 				}
 
 				if (!appearance.HideCorpseHead)
 				{
-					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					local decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = targetScale;
@@ -202,14 +202,14 @@
 
 				if (!appearance.HideBeard && !appearance.HideCorpseHead && sprite_beard.HasBrush)
 				{
-					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					local decal = _tile.spawnDetail(sprite_beard.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_beard.Color;
 					decal.Saturation = sprite_beard.Saturation;
 					decal.Scale = targetScale;
 
 					if (sprite_beard_top.HasBrush)
 					{
-						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						local decal = _tile.spawnDetail(sprite_beard_top.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Color = sprite_beard.Color;
 						decal.Saturation = sprite_beard.Saturation;
 						decal.Scale = targetScale;
@@ -218,7 +218,7 @@
 
 				if (!appearance.HideCorpseHead)
 				{
-					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					local decal = _tile.spawnDetail(sprite_face.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_face.Color;
 					decal.Saturation = sprite_face.Saturation;
 					decal.Scale = targetScale;
@@ -226,7 +226,7 @@
 
 				if (!appearance.HideHair && !appearance.HideCorpseHead && sprite_hair.HasBrush)
 				{
-					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					local decal = _tile.spawnDetail(sprite_hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Color = sprite_hair.Color;
 					decal.Saturation = sprite_hair.Saturation;
 					decal.Scale = targetScale;
@@ -234,12 +234,12 @@
 
 				foreach (layer in helmetLayers) {
 					if (appearance[layer] != "") {
-						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Scale = targetScale;
 					}
 				}
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [];
 
@@ -281,7 +281,7 @@
 					layers.push(sprite_beard_top.getBrush().Name + "_dead");
 				}
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
 				local idx = 0;
 				//foreach (layer in helmetLowerLayers) {
 				//	if (appearance[layer] != "") {
@@ -339,7 +339,7 @@
 				}
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
 				local armorDecal;
 
@@ -358,11 +358,11 @@
 
 				if (this.doesBrushExist(armorDecal))
 				{
-					decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal = _tile.spawnDetail(armorDecal, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Saturation = 0.85;
 				}
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
 				local armorDecal;
 
@@ -381,7 +381,7 @@
 
 				if (this.doesBrushExist(armorDecal))
 				{
-					decal = _tile.spawnDetail(armorDecal, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					decal = _tile.spawnDetail(armorDecal, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Saturation = 0.85;
 				}
 			}
@@ -396,12 +396,12 @@
 
 		if (_tile == null)
 		{
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		}
 		else
 		{
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);

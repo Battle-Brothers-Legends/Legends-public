@@ -4,7 +4,7 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendUnburdened);
 		this.m.IconMini = "mini_meek";
-		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillOrder.Any;
+		this.m.Order = ::Const.SkillOrder.Perk | ::Const.SkillOrder.Any;
 	}
 
 	function onAdded()
@@ -39,7 +39,7 @@ this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
 				}
 			}
 
-			row = hasRow ? this.Math.max(0, this.Math.min(row, 6)) : _row;
+			row = hasRow ? ::Math.max(0, ::Math.min(row, 6)) : _row;
 			bg.addPerk(_perk, row);
 		}
 

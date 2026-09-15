@@ -77,8 +77,8 @@ gt.tnf_debug.purgeFileList <- function(fileList) {
 /***************************************************/
 
 gt.tnf_debug.getRandomActor <- function(faction = "random") {
-  if (faction == "random" ) faction = gt.tnf_debug.factions[this.Math.rand(0, gt.tnf_debug.factions.len() - 1)];
-  local actor = gt.tnf_debug.actors[faction][this.Math.rand(0, gt.tnf_debug.actors[faction].len() - 1)];
+  if (faction == "random" ) faction = gt.tnf_debug.factions[::Math.rand(0, gt.tnf_debug.factions.len() - 1)];
+  local actor = gt.tnf_debug.actors[faction][::Math.rand(0, gt.tnf_debug.actors[faction].len() - 1)];
   return [faction, actor];
 };
 
@@ -88,7 +88,7 @@ gt.tnf_debug.getTraits <- function(character) {
   local traits = [];
   foreach(skill in character.m.Skills.m.Skills)
   {
-    if (skill.getType() == this.Const.SkillType.Trait) traits.push(skill.getID());
+    if (skill.getType() == ::Const.SkillType.Trait) traits.push(skill.getID());
   }
   return traits;
 };
@@ -1097,7 +1097,7 @@ gt.tnf_debug.itemStats <- {
 gt.tnf_debug.logSeedFertility <- function() {
 //// ROSTER ////
   local rosterLog = "";
-  foreach (character in this.World.getPlayerRoster().getAll()) {
+  foreach (character in ::World.getPlayerRoster().getAll()) {
     local attributesValuesMin = gt.tnf_debug.getAttributesValues(character, false, false); //current values
     local attributesValuesMax = gt.tnf_debug.getAttributesValues(character, true, false); //current + level up values
 
@@ -1108,9 +1108,9 @@ gt.tnf_debug.logSeedFertility <- function() {
       if (index < 7) rosterLog += ", ";
     }
 
-    local traits = character.getSkills().getAllSkillsOfType(this.Const.SkillType.Trait);
+    local traits = character.getSkills().getAllSkillsOfType(::Const.SkillType.Trait);
     foreach (trait in traits) {
-      if (trait.isType(this.Const.SkillType.Background) || trait.isType(this.Const.SkillType.Special)) continue;
+      if (trait.isType(::Const.SkillType.Background) || trait.isType(::Const.SkillType.Special)) continue;
       rosterLog += " " + trait.getName() + " +";
     }
     if (traits.len() > 2) rosterLog = rosterLog.slice(0, rosterLog.len() - 2); //trim
@@ -1126,11 +1126,11 @@ gt.tnf_debug.logSeedFertility <- function() {
   local weaponsLog = "", shieldsLog = "", armorsLog = "", helmetsLog = "";
   local bonus;
 
-  foreach (location in this.World.EntityManager.getLocations()) {
+  foreach (location in ::World.EntityManager.getLocations()) {
     if (location.isAlliedWithPlayer()) continue;
     if (!location.getLoot().isEmpty()) {
       foreach (item in location.getLoot().getItems()) {
-        if (item.isItemType(this.Const.Items.ItemType.Named)) {
+        if (item.isItemType(::Const.Items.ItemType.Named)) {
           itemsNum++;
           if (item.m.ID.find("weapon") != null) {
             weaponsNum++;

@@ -5,20 +5,20 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 	function create()
 	{
 		this.legend_camp_contract.create();
-		local r = this.Math.rand(1, 100);
+		local r = ::Math.rand(1, 100);
 
 		if (r <= 70)
 		{
-			this.m.DifficultyMult = this.Math.rand(95, 105) * 0.01;
+			this.m.DifficultyMult = ::Math.rand(95, 105) * 0.01;
 		}
 		else
 		{
-			this.m.DifficultyMult = this.Math.rand(115, 135) * 0.01;
+			this.m.DifficultyMult = ::Math.rand(115, 135) * 0.01;
 		}
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
 		this.m.Type = "contract.legend_camp_legion_siege";
 		this.m.Name = "Siege";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.MakeAllSpawnsResetOrdersOnContractEnd = false;
 
 		this.m.DescriptionTemplates = [
@@ -81,7 +81,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.Flags.set("RivalHouse", this.m.Origin.getOwner().getName());
 		this.m.Flags.set("WaitUntil", 0.0);
 		this.m.Name = "Siege " + this.m.Origin.getName();
-		this.m.Flags.set("CommanderName", this.Const.Strings.AncientDeadNames[this.Math.rand(0, this.Const.Strings.AncientDeadNames.len() - 1)]);
+		this.m.Flags.set("CommanderName", ::Const.Strings.AncientDeadNames[::Math.rand(0, ::Const.Strings.AncientDeadNames.len() - 1)]);
 
 		this.List.extend(::Legends.EventList.addItems(this.Contract.m.Payment.Items, ::World.Assets.getStash()));
 
@@ -99,7 +99,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					"Help in the siege"
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -111,12 +111,12 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function end()
 			{
-				local r = this.Math.rand(1, 100);
+				local r = ::Math.rand(1, 100);
 
 				if (r <= 50)
 				{
 					this.Flags.set("IsTakingAction", true);
-					local r = this.Math.rand(1, 100);
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 50)
 					{
@@ -134,7 +134,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				else
 				{
 					this.Flags.set("IsMaintainingSiege", true);
-					r = this.Math.rand(1, 100);
+					r = ::Math.rand(1, 100);
 
 					if (r <= 25)
 					{
@@ -143,7 +143,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					else
 					{
 						this.Flags.set("IsReliefAttack", true);
-						r = this.Math.rand(1, 100);
+						r = ::Math.rand(1, 100);
 
 						if (r <= 40)
 						{
@@ -158,7 +158,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 				this.Contract.spawnSiege();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -178,11 +178,11 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Contract.isPlayerNear(this.Contract.m.Origin, 300))
 				{
 					this.Contract.setScreen("TheSiege");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 
 					foreach( a in this.Contract.m.Allies )
 					{
-						local ally = this.World.getEntityByID(a);
+						local ally = ::World.getEntityByID(a);
 
 						if (ally != null)
 						{
@@ -210,10 +210,10 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function update()
 			{
-				if (this.Contract.m.Origin.getDistanceTo(this.World.State.getPlayer()) >= 800)
+				if (this.Contract.m.Origin.getDistanceTo(::World.State.getPlayer()) >= 800)
 				{
 					this.Contract.setScreen("TooFarAway");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
@@ -224,7 +224,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 				foreach( i, a in this.Contract.m.Allies )
 				{
-					local ally = this.World.getEntityByID(a);
+					local ally = ::World.getEntityByID(a);
 
 					if (ally == null || !ally.isAlive())
 					{
@@ -236,30 +236,30 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				{
 					if (this.Flags.get("IsReliefAttackForced"))
 					{
-						if (this.World.getTime().IsDaytime)
+						if (::World.getTime().IsDaytime)
 						{
 							this.Contract.setScreen("ReliefAttack");
-							this.World.Contracts.showActiveContract();
+							::World.Contracts.showActiveContract();
 						}
 					}
 					else if (this.Flags.get("IsSurrenderForced"))
 					{
 						this.Contract.setScreen("Surrender");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsDefendersSallyForthForced"))
 					{
 						this.Contract.setScreen("DefendersSallyForth");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsTakingAction"))
 					{
-						if (this.World.getTime().IsDaytime)
+						if (::World.getTime().IsDaytime)
 						{
 							if (this.Flags.get("IsPlayerDecision"))
 							{
 								this.Contract.setScreen("TakingAction");
-								this.World.Contracts.showActiveContract();
+								::World.Contracts.showActiveContract();
 							}
 							else
 							{
@@ -270,7 +270,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					else if (this.Flags.get("IsMaintainingSiege"))
 					{
 						this.Contract.setScreen("MaintainSiege");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}
@@ -292,10 +292,10 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function update()
 			{
-				if (this.Contract.m.Origin.getDistanceTo(this.World.State.getPlayer()) >= 800)
+				if (this.Contract.m.Origin.getDistanceTo(::World.State.getPlayer()) >= 800)
 				{
 					this.Contract.setScreen("TooFarAway");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
@@ -307,41 +307,41 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Flags.get("IsLost"))
 				{
 					this.Contract.setScreen("Failure");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsAssaultTheGate") && !this.TempFlags.get("AssaultTheGateShown"))
 				{
 					this.TempFlags.set("AssaultTheGateShown", true);
 					this.Contract.setScreen("AssaultTheGate");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsAssaultAftermath"))
 				{
 					this.Contract.setScreen("AssaultAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsAssaultTheCourtyard") && !this.TempFlags.get("AssaultTheCourtyardShown"))
 				{
 					this.TempFlags.set("AssaultTheCourtyardShown", true);
 					this.Contract.setScreen("AssaultTheCourtyard");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsBurnTheCastleAftermath"))
 				{
 					this.Contract.setScreen("BurnTheCastleAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsBurnTheCastle") && !this.TempFlags.get("BurnTheCastleShown"))
 				{
 					this.TempFlags.set("BurnTheCastleShown", true);
 					this.Contract.setScreen("BurnTheCastle");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
 					foreach( i, a in this.Contract.m.Allies )
 					{
-						local ally = this.World.getEntityByID(a);
+						local ally = ::World.getEntityByID(a);
 
 						if (ally == null || !ally.isAlive())
 						{
@@ -352,7 +352,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					if (this.Contract.m.Allies.len() == 0)
 					{
 						this.Contract.setScreen("Failure");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 				}
@@ -403,14 +403,14 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function update()
 			{
-				if (this.Contract.m.Origin.getDistanceTo(this.World.State.getPlayer()) >= 800)
+				if (this.Contract.m.Origin.getDistanceTo(::World.State.getPlayer()) >= 800)
 				{
 					this.Contract.setScreen("TooFarAway");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
-				if (this.Time.getVirtualTimeF() < this.Flags.get("WaitUntil") || this.World.getTime().IsDaytime)
+				if (this.Time.getVirtualTimeF() < this.Flags.get("WaitUntil") || ::World.getTime().IsDaytime)
 				{
 					return;
 				}
@@ -418,27 +418,27 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Flags.get("IsNighttimeEncounterLost"))
 				{
 					this.Contract.setScreen("NighttimeEncounterFail");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsNighttimeEncounterAfermath"))
 				{
 					this.Contract.setScreen("NighttimeEncounterAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsNighttimeEncounter") && !this.TempFlags.get("NighttimeEncounterShown"))
 				{
-					if (!this.World.getTime().IsDaytime)
+					if (!::World.getTime().IsDaytime)
 					{
 						this.TempFlags.set("NighttimeEncounterShown", true);
 						this.Contract.setScreen("NighttimeEncounter");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 				else
 				{
 					foreach( i, a in this.Contract.m.Allies )
 					{
-						local ally = this.World.getEntityByID(a);
+						local ally = ::World.getEntityByID(a);
 
 						if (ally == null || !ally.isAlive())
 						{
@@ -449,7 +449,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					if (this.Contract.m.Allies.len() == 0)
 					{
 						this.Contract.setScreen("Failure");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 				}
@@ -516,23 +516,23 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Flags.get("IsSecretPassageWin"))
 				{
 					this.Contract.setScreen("SecretPassageAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsSecretPassageLost"))
 				{
 					this.Contract.setScreen("SecretPassageFail");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
-				else if (this.World.getTime().IsDaytime)
+				else if (::World.getTime().IsDaytime)
 				{
 					this.Contract.setScreen("FailedToReturn");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
 					foreach( i, a in this.Contract.m.Allies )
 					{
-						local ally = this.World.getEntityByID(a);
+						local ally = ::World.getEntityByID(a);
 
 						if (ally == null || !ally.isAlive())
 						{
@@ -543,7 +543,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					if (this.Contract.m.Allies.len() == 0)
 					{
 						this.Contract.setScreen("Failure");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 				}
@@ -555,30 +555,30 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				{
 					this.TempFlags.set("IsSecretPassageShown", true);
 					this.Contract.setScreen("SecretPassage");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					p.CombatID = "SecretPassage";
-					p.Music = this.Const.Music.NobleTracks;
-					p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-					p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
+					p.Music = ::Const.Music.NobleTracks;
+					p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
 					this.Contract.flattenTerrain(p);
 					p.Entities = [];
 					p.EnemyBanners = [
 						this.Contract.m.Origin.getOwner().getBannerSmall()
 					];
-					this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
 					p.Entities.push({
-						ID = this.Const.EntityType.Knight,
+						ID = ::Const.EntityType.Knight,
 						Variant = 0,
 						Row = 2,
 						Script = "scripts/entity/tactical/humans/knight",
 						Faction = this.Contract.m.Origin.getOwner().getID(),
 						Callback = this.onEnemyCommanderPlaced
 					});
-					this.World.Contracts.startScriptedCombat(p, false, true, true);
+					::World.Contracts.startScriptedCombat(p, false, true, true);
 				}
 			}
 
@@ -629,17 +629,17 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function update()
 			{
-				if (this.Contract.m.Origin.getDistanceTo(this.World.State.getPlayer()) >= 800)
+				if (this.Contract.m.Origin.getDistanceTo(::World.State.getPlayer()) >= 800)
 				{
 					this.Contract.setScreen("TooFarAway");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
 				if (this.Flags.get("IsReliefAttackLost"))
 				{
 					this.Contract.setScreen("Failure");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
@@ -647,7 +647,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 				foreach( id in this.Contract.m.UnitsSpawned )
 				{
-					local e = this.World.getEntityByID(id);
+					local e = ::World.getEntityByID(id);
 
 					if (e != null && e.isAlive() && e.getFaction() == this.Contract.m.Origin.getOwner().getID())
 					{
@@ -664,13 +664,13 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Flags.get("IsReliefAttackWon") || !isAlive)
 				{
 					this.Contract.setScreen("ReliefAttackAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
 				foreach( i, a in this.Contract.m.Allies )
 				{
-					local ally = this.World.getEntityByID(a);
+					local ally = ::World.getEntityByID(a);
 
 					if (ally == null || !ally.isAlive())
 					{
@@ -681,27 +681,27 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Contract.m.Allies.len() == 0)
 				{
 					this.Contract.setScreen("Failure");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 			}
 
 			function onCombatWithPlayer( _dest, _isPlayerAttacking = true )
 			{
-				_dest.setPos(this.World.State.getPlayer().getPos());
-				local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+				_dest.setPos(::World.State.getPlayer().getPos());
+				local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 				p.CombatID = "ReliefAttack";
-				p.Music = this.Const.Music.NobleTracks;
-				p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-				p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
-				p.AllyBanners.push(this.World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall());
+				p.Music = ::Const.Music.NobleTracks;
+				p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+				p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
+				p.AllyBanners.push(::World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall());
 				p.EnemyBanners.push(_dest.getBanner());
 				this.Contract.flattenTerrain(p);
 				local alliesIncluded = false;
 
 				for( local i = 0; i < p.Entities.len(); i = ++i )
 				{
-					if (this.World.FactionManager.isAlliedWithPlayer(p.Entities[i].Faction))
+					if (::World.FactionManager.isAlliedWithPlayer(p.Entities[i].Faction))
 					{
 						alliesIncluded = true;
 					}
@@ -709,11 +709,11 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 				if (!alliesIncluded && _dest.getDistanceTo(this.Contract.m.Origin) <= 400)
 				{
-					this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction()); //check
+					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction()); //check
 
 					foreach( id in this.Contract.m.UnitsSpawned )
 					{
-						local e = this.World.getEntityByID(id);
+						local e = ::World.getEntityByID(id);
 
 						if (e.isAlliedWithPlayer())
 						{
@@ -723,7 +723,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					}
 				}
 
-				this.World.Contracts.startScriptedCombat(p, false, true, true);
+				::World.Contracts.startScriptedCombat(p, false, true, true);
 			}
 
 			function onCombatVictory( _combatID )
@@ -760,28 +760,28 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			function update()
 			{
-				if (this.Contract.m.Origin.getDistanceTo(this.World.State.getPlayer()) >= 800)
+				if (this.Contract.m.Origin.getDistanceTo(::World.State.getPlayer()) >= 800)
 				{
 					this.Contract.setScreen("TooFarAway");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
 				if (this.Flags.get("IsDefendersSallyForthLost"))
 				{
 					this.Contract.setScreen("DefendersPrevail");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Flags.get("IsDefendersSallyForthWon"))
 				{
 					this.Contract.setScreen("DefendersAftermath");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
 					this.Contract.m.Origin.getOwner().addPlayerRelation(-99.0, "Took sides in the war");
 					this.Contract.setScreen("DefendersSallyForth");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -823,7 +823,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success1");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -848,7 +848,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			}, {
 				Text = "We have other duties to attend to.",
 				function getResult() {
-					this.World.Contracts.removeContract(this.Contract);
+					::World.Contracts.removeContract(this.Contract);
 					return 0;
 				}
 			}],
@@ -866,7 +866,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "The %companyname% will be ready.",
 					function getResult()
 					{
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + this.Math.rand(15, 30));
+						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}
@@ -914,21 +914,21 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult()
 					{
 						local tile = this.Contract.m.Origin.getTile();
-						this.World.State.getPlayer().setPos(tile.Pos);
-						this.World.getCamera().moveToPos(this.World.State.getPlayer().getPos());
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						::World.State.getPlayer().setPos(tile.Pos);
+						::World.getCamera().moveToPos(::World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "AssaultTheGate";
-						p.Music = this.Const.Music.NobleTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
+						p.Music = ::Const.Music.NobleTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
 						this.Contract.flattenTerrain(p);
 						p.Entities = [];
 						p.AllyBanners = [];
 						p.EnemyBanners = [
 							this.Contract.m.Origin.getOwner().getBannerSmall()
 						];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Mercenaries, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Mercenaries, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -951,25 +951,25 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult()
 					{
 						local tile = this.Contract.m.Origin.getTile();
-						this.World.State.getPlayer().setPos(tile.Pos);
-						this.World.getCamera().moveToPos(this.World.State.getPlayer().getPos());
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						::World.State.getPlayer().setPos(tile.Pos);
+						::World.getCamera().moveToPos(::World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "BurnTheCastle";
-						p.Music = this.Const.Music.NobleTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
+						p.Music = ::Const.Music.NobleTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
 						this.Contract.flattenTerrain(p);
 						p.Entities = [];
 						p.AllyBanners = [
-							this.World.Assets.getBanner(),
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall()
+							::World.Assets.getBanner(),
+							::World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall()
 						];
 						p.EnemyBanners = [
 							this.Contract.m.Origin.getOwner().getBannerSmall()
 						];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction());
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction());
 						p.Entities.push({
-							ID = this.Const.EntityType.Knight,
+							ID = ::Const.EntityType.Knight,
 							Variant = 0,
 							Row = 2,
 							Script = "scripts/entity/tactical/humans/knight",
@@ -977,16 +977,16 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 							Callback = this.Contract.onCommanderPlaced.bindenv(this.Contract),
 							Tag = this.Contract
 						});
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
 						p.Entities.push({
-							ID = this.Const.EntityType.Knight,
+							ID = ::Const.EntityType.Knight,
 							Variant = 0,
 							Row = 2,
 							Script = "scripts/entity/tactical/humans/knight",
 							Faction = this.Contract.m.Origin.getOwner().getID(),
 							Callback = null
 						});
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -996,7 +996,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			{
 				foreach( id in this.Contract.m.UnitsSpawned )
 				{
-					local e = this.World.getEntityByID(id);
+					local e = ::World.getEntityByID(id);
 
 					if (e != null && e.isAlive())
 					{
@@ -1018,29 +1018,29 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult()
 					{
 						local tile = this.Contract.m.Origin.getTile();
-						this.World.State.getPlayer().setPos(tile.Pos);
-						this.World.getCamera().moveToPos(this.World.State.getPlayer().getPos());
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						::World.State.getPlayer().setPos(tile.Pos);
+						::World.getCamera().moveToPos(::World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "AssaultTheCourtyard";
-						p.Music = this.Const.Music.NobleTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
+						p.Music = ::Const.Music.NobleTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
 						this.Contract.flattenTerrain(p);
 						p.Entities = [];
 						p.AllyBanners = [];
 						p.EnemyBanners = [
 							this.Contract.m.Origin.getOwner().getBannerSmall()
 						];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Peasants, 180 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Peasants, 180 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
 						p.Entities.push({
-							ID = this.Const.EntityType.LegendNobleGuard,
+							ID = ::Const.EntityType.LegendNobleGuard,
 							Variant = 0,
 							Row = 2,
 							Script = "scripts/entity/tactical/humans/legend_noble_footman_veteran",
 							Faction = this.Contract.m.Origin.getOwner().getID(),
 							Callback = null
 						});
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -1050,7 +1050,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			{
 				foreach( id in this.Contract.m.UnitsSpawned )
 				{
-					local e = this.World.getEntityByID(id);
+					local e = ::World.getEntityByID(id);
 
 					if (e != null && e.isAlive())
 					{
@@ -1127,7 +1127,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 						else if (this.Flags.get("IsReliefAttack"))
 						{
 							this.Flags.set("IsReliefAttackForced", true);
-							this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + this.Math.rand(15, 30));
+							this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
 							this.Contract.setState("Running_Wait");
 						}
 
@@ -1149,20 +1149,20 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult()
 					{
 						local tile = this.Contract.m.Origin.getTile();
-						this.World.State.getPlayer().setPos(tile.Pos);
-						this.World.getCamera().moveToPos(this.World.State.getPlayer().getPos());
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						::World.State.getPlayer().setPos(tile.Pos);
+						::World.getCamera().moveToPos(::World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "NighttimeEncounter";
-						p.Music = this.Const.Music.NobleTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Center;
+						p.Music = ::Const.Music.NobleTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Center;
 						this.Contract.flattenTerrain(p);
 						p.Entities = [];
 						p.EnemyBanners = [
 							this.Contract.m.Origin.getOwner().getBannerSmall()
 						];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Militia, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Militia, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -1183,7 +1183,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 						this.Flags.set("IsNighttimeEncounterLost", false);
 						this.Flags.set("IsNighttimeEncounter", false);
 						this.Flags.set("IsReliefAttack", true);
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + this.Math.rand(15, 30));
+						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						return 0;
 					}
 
@@ -1220,8 +1220,8 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "Damnit!",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -1278,7 +1278,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					{
 						this.Flags.set("IsSecretPassage", false);
 						this.Flags.set("IsReliefAttackForced", true);
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + this.Math.rand(15, 30));
+						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}
@@ -1327,7 +1327,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 							this.Flags.set("IsDefendersSallyForthForced", true);
 						}
 
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + this.Math.rand(10, 20));
+						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(10, 20));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}
@@ -1357,7 +1357,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			{
 				foreach( id in this.Contract.m.UnitsSpawned )
 				{
-					local e = this.World.getEntityByID(id);
+					local e = ::World.getEntityByID(id);
 
 					if (e != null && e.isAlive())
 					{
@@ -1379,34 +1379,34 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult()
 					{
 						local tile = this.Contract.m.Origin.getTile();
-						this.World.State.getPlayer().setPos(tile.Pos);
-						this.World.getCamera().moveToPos(this.World.State.getPlayer().getPos());
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						::World.State.getPlayer().setPos(tile.Pos);
+						::World.getCamera().moveToPos(::World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "DefendersSallyForth";
-						p.Music = this.Const.Music.NobleTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
+						p.Music = ::Const.Music.NobleTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
 						this.Contract.flattenTerrain(p);
 						p.Entities = [];
 						p.AllyBanners = [
-							this.World.Assets.getBanner(),
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall()
+							::World.Assets.getBanner(),
+							::World.FactionManager.getFaction(this.Contract.getFaction()).getBannerSmall()
 						];
 						p.EnemyBanners = [
 							this.Contract.m.Origin.getOwner().getBannerSmall()
 						];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 90 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction());
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 90 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getFaction());
 						p.Entities.push({
-							ID = this.Const.EntityType.Knight,
+							ID = ::Const.EntityType.Knight,
 							Variant = 0,
 							Row = 2,
 							Script = "scripts/entity/tactical/humans/knight",
 							Faction = this.Contract.getFaction(),
 							Callback = this.Contract.onCommanderPlaced.bindenv(this.Contract)
 						});
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.Noble, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Noble, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.m.Origin.getOwner().getID());
 						p.Entities.push({
-							ID = this.Const.EntityType.Knight,
+							ID = ::Const.EntityType.Knight,
 							Variant = 0,
 							Row = 2,
 							Script = "scripts/entity/tactical/humans/knight",
@@ -1414,7 +1414,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 							Callback = null
 						});
 						this.Contract.setState("Running_DefendersSallyForth");
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -1424,7 +1424,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			{
 				foreach( id in this.Contract.m.UnitsSpawned )
 				{
-					local e = this.World.getEntityByID(id);
+					local e = ::World.getEntityByID(id);
 
 					if (e != null && e.isAlive())
 					{
@@ -1445,8 +1445,8 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "The siege has failed.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -1485,8 +1485,8 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "%objective% has fallen.", //millions must find a new place to buy items
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Contracts.finishActiveContract();
 						this.Contract.destroysettlement();
 						return 0;
 					}
@@ -1509,8 +1509,8 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "Damn this place!",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -1528,9 +1528,9 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					Text = "Right, there was this siege...",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractFail);
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractFail);
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -1546,22 +1546,22 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 		while (true)
 		{
-			local x = this.Math.rand(originTile.SquareCoords.X - 8, originTile.SquareCoords.X + 8);
-			local y = this.Math.rand(originTile.SquareCoords.Y - 8, originTile.SquareCoords.Y + 8);
+			local x = ::Math.rand(originTile.SquareCoords.X - 8, originTile.SquareCoords.X + 8);
+			local y = ::Math.rand(originTile.SquareCoords.Y - 8, originTile.SquareCoords.Y + 8);
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 				continue;
 			}
 
-			tile = this.World.getTileSquare(x, y);
+			tile = ::World.getTileSquare(x, y);
 
 			if (tile.getDistanceTo(originTile) <= 4)
 			{
 				continue;
 			}
 
-			if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Mountains)
+			if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Mountains)
 			{
 				continue;
 			}
@@ -1570,20 +1570,20 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		}
 
 		local enemyFaction = this.m.Origin.getOwner();
-		local party = enemyFaction.spawnEntity(this.Const.World.Spawn.Mercenaries, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		local party = enemyFaction.spawnEntity(::Const.World.Spawn.Mercenaries, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		// party.getSprite("body").setBrush(party.getSprite("body").getBrush().Name + "_" + enemyFaction.getBannerString());
 		// party.getSprite("banner").setBrush(enemyFaction.getBannerSmall());
 		party.setDescription("Professional soldiers in service to local lords.");
-		party.setFootprintType(this.Const.World.FootprintsType.Nobles);
-		party.getLoot().ArmorParts = this.Math.rand(10, 30);
-		party.getLoot().Medicine = this.Math.rand(0, 5);
-		party.getLoot().Ammo = this.Math.rand(0, 30);
+		party.setFootprintType(::Const.World.FootprintsType.Nobles);
+		party.getLoot().ArmorParts = ::Math.rand(10, 30);
+		party.getLoot().Medicine = ::Math.rand(0, 5);
+		party.getLoot().Ammo = ::Math.rand(0, 30);
 
 		party.setAttackableByAI(false);
 		this.m.UnitsSpawned.push(party.getID());
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 		local move = this.new("scripts/ai/world/orders/move_order");
 		move.setDestination(originTile);
 		c.addOrder(move);
@@ -1599,15 +1599,15 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 		while (true)
 		{
-			local x = this.Math.rand(originTile.SquareCoords.X - 7, originTile.SquareCoords.X + 7);
-			local y = this.Math.rand(originTile.SquareCoords.Y - 7, originTile.SquareCoords.Y + 7);
+			local x = ::Math.rand(originTile.SquareCoords.X - 7, originTile.SquareCoords.X + 7);
+			local y = ::Math.rand(originTile.SquareCoords.Y - 7, originTile.SquareCoords.Y + 7);
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 				continue;
 			}
 
-			tile = this.World.getTileSquare(x, y);
+			tile = ::World.getTileSquare(x, y);
 
 			if (tile.getDistanceTo(originTile) <= 4)
 			{
@@ -1623,7 +1623,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		}
 
 		local enemyFaction = this.m.Origin.getOwner();
-		local party = enemyFaction.spawnEntity(tile, "Supply Caravan", false, this.Const.World.Spawn.NobleCaravan, this.Math.rand(100, 150), this.getMinibossModifier());
+		local party = enemyFaction.spawnEntity(tile, "Supply Caravan", false, ::Const.World.Spawn.NobleCaravan, ::Math.rand(100, 150), this.getMinibossModifier());
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
 		party.setDescription("A caravan with armed escorts transporting provisions, supplies and equipment between settlements.");
@@ -1631,10 +1631,10 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		party.addToInventory("supplies/ground_grains_item");
 		party.addToInventory("supplies/ground_grains_item");
 		party.addToInventory("supplies/ground_grains_item");
-		party.getLoot().Money = this.Math.rand(0, 100);
+		party.getLoot().Money = ::Math.rand(0, 100);
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local move = this.new("scripts/ai/world/orders/move_order");
 		move.setDestination(originTile);
 		move.setRoadsOnly(true);
@@ -1645,13 +1645,13 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 	function spawnSiege() {
 		foreach (a in this.m.Origin.getActiveAttachedLocations()) {
-			if (this.Math.rand(1, 100) <= 50) {
+			if (::Math.rand(1, 100) <= 50) {
 				a.spawnFireAndSmoke();
 				a.setActive(false);
 			}
 		}
 
-		local f = this.World.FactionManager.getFaction(this.getFaction());
+		local f = ::World.FactionManager.getFaction(this.getFaction());
 		local castles = [];
 
 		foreach (s in f.getSettlements()) {
@@ -1671,20 +1671,20 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			local tile;
 
 			while (true) {
-				local x = this.Math.rand(originTile.SquareCoords.X - 1, originTile.SquareCoords.X + 1);
-				local y = this.Math.rand(originTile.SquareCoords.Y - 1, originTile.SquareCoords.Y + 1);
+				local x = ::Math.rand(originTile.SquareCoords.X - 1, originTile.SquareCoords.X + 1);
+				local y = ::Math.rand(originTile.SquareCoords.Y - 1, originTile.SquareCoords.Y + 1);
 
-				if (!this.World.isValidTileSquare(x, y)) {
+				if (!::World.isValidTileSquare(x, y)) {
 					continue;
 				}
 
-				tile = this.World.getTileSquare(x, y);
+				tile = ::World.getTileSquare(x, y);
 
 				if (tile.getDistanceTo(originTile) == 0) {
 					continue;
 				}
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean) {
+				if (tile.Type == ::Const.World.TerrainType.Ocean) {
 					continue;
 				}
 
@@ -1700,11 +1700,11 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			}
 
 			lastTile = tile;
-			// local party = f.spawnEntity(tile, castles[this.Math.rand(0, castles.len() - 1)].getName() + " Company", true, this.Const.World.Spawn.Noble, castles[this.Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
+			// local party = f.spawnEntity(tile, castles[::Math.rand(0, castles.len() - 1)].getName() + " Company", true, ::Const.World.Spawn.Noble, castles[::Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
 
-			local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(140, 250) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			local party = ::World.FactionManager.getFactionOfType(::Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, ::Const.World.Spawn.UndeadArmy, ::Math.rand(140, 250) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 
-			// local party = f.spawnEntity(tile, castles[this.Math.rand(0, castles.len() - 1)], this.Const.World.Spawn.UndeadArmy, castles[this.Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
+			// local party = f.spawnEntity(tile, castles[::Math.rand(0, castles.len() - 1)], ::Const.World.Spawn.UndeadArmy, castles[::Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
 
 			party.setDescription("An Undead Legion");
 			party.setVisibilityMult(2.5);
@@ -1721,8 +1721,8 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			this.m.Allies.push(party.getID());
 
 			local c = party.getController();
-			c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-			c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+			c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+			c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 			local wait = this.new("scripts/ai/world/orders/wait_order");
 			wait.setTime(9000.0);
 			c.addOrder(wait);
@@ -1749,32 +1749,32 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			local tries = 0;
 
 			while (tries++ < 500) {
-				local x = this.Math.rand(originTile.SquareCoords.X - 4, originTile.SquareCoords.X + 4);
-				local y = this.Math.rand(originTile.SquareCoords.Y - 4, originTile.SquareCoords.Y + 4);
+				local x = ::Math.rand(originTile.SquareCoords.X - 4, originTile.SquareCoords.X + 4);
+				local y = ::Math.rand(originTile.SquareCoords.Y - 4, originTile.SquareCoords.Y + 4);
 
-				if (!this.World.isValidTileSquare(x, y)) {
+				if (!::World.isValidTileSquare(x, y)) {
 					continue;
 				}
 
-				tile = this.World.getTileSquare(x, y);
+				tile = ::World.getTileSquare(x, y);
 
 				if (tile.getDistanceTo(originTile) <= 1) {
 					continue;
 				}
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean) {
+				if (tile.Type == ::Const.World.TerrainType.Ocean) {
 					continue;
 				}
 				break;
 			}
 //check
-			local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(90, 110) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			local party = ::World.FactionManager.getFactionOfType(::Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, ::Const.World.Spawn.UndeadArmy, ::Math.rand(90, 110) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			this.m.UnitsSpawned.push(party.getID());
 			party.setDescription("Legionaries marching to war.");
 			party.getSprite("banner").setBrush(orcBase != null ? orcBase.getBanner() : "banner_undead_01");
 			local c = party.getController();
-			local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
-			c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+			local raidTarget = targets[::Math.rand(0, targets.len() - 1)].getTile();
+			c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 			local raid = this.new("scripts/ai/world/orders/raid_order");
 			raid.setTime(30.0);
 			raid.setTargetTile(raidTarget);
@@ -1790,7 +1790,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 	function destroysettlement()
 	{
-		local f = this.World.FactionManager.getFaction(this.getFaction());
+		local f = ::World.FactionManager.getFaction(this.getFaction());
 		local castles = [];
 
 		foreach( s in f.getSettlements() )
@@ -1815,22 +1815,22 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 			while (true)
 			{
-				local x = this.Math.rand(originTile.SquareCoords.X - 1, originTile.SquareCoords.X + 1);
-				local y = this.Math.rand(originTile.SquareCoords.Y - 1, originTile.SquareCoords.Y + 1);
+				local x = ::Math.rand(originTile.SquareCoords.X - 1, originTile.SquareCoords.X + 1);
+				local y = ::Math.rand(originTile.SquareCoords.Y - 1, originTile.SquareCoords.Y + 1);
 
-				if (!this.World.isValidTileSquare(x, y))
+				if (!::World.isValidTileSquare(x, y))
 				{
 					continue;
 				}
 
-				tile = this.World.getTileSquare(x, y);
+				tile = ::World.getTileSquare(x, y);
 
 				if (tile.getDistanceTo(originTile) == 0)
 				{
 					continue;
 				}
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean)
+				if (tile.Type == ::Const.World.TerrainType.Ocean)
 				{
 					continue;
 				}
@@ -1849,9 +1849,9 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			}
 
 			// lastTile = tile; //will come from a nearby castle for now. Can refine later.
-			// local party = f.spawnEntity(tile, castles[this.Math.rand(0, castles.len() - 1)], this.Const.World.Spawn.UndeadArmy, castles[this.Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
+			// local party = f.spawnEntity(tile, castles[::Math.rand(0, castles.len() - 1)], ::Const.World.Spawn.UndeadArmy, castles[::Math.rand(0, castles.len() - 1)].getResources(), this.getMinibossModifier());
 
-			local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, this.Const.World.Spawn.UndeadArmy, this.Math.rand(140, 250) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			local party = ::World.FactionManager.getFactionOfType(::Const.FactionType.UndeadArmy).spawnEntity(tile, "Legion Cohort", false, ::Const.World.Spawn.UndeadArmy, ::Math.rand(140, 250) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 
 			party.setDescription("A legion moving to sack a settlement.");
 			party.setVisibilityMult(2.5);
@@ -1869,10 +1869,10 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 			party.setAttackableByAI(false);
 								///the bit that destroys the settlement v
 			local c = party.getController();
-			local raidTarget = targets[this.Math.rand(0, targets.len() - 1)].getTile();
+			local raidTarget = targets[::Math.rand(0, targets.len() - 1)].getTile();
 
-			c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-			c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+			c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+			c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 			c.setAttackableByAI(false); //ensures action not interrupted
 
 			local raid = this.new("scripts/ai/world/orders/raid_order");
@@ -1933,7 +1933,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		]);
 		_vars.push([
 			"noblefamily",
-			this.World.FactionManager.getFaction(this.getFaction()).getName()
+			::World.FactionManager.getFaction(this.getFaction()).getName()
 		]);
 		_vars.push([
 			"rivalhouse",
@@ -1945,7 +1945,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		]);
 		_vars.push([
 			"direction",
-			this.m.Origin == null || this.m.Origin.isNull() ? "" : this.Const.Strings.Direction8[this.World.State.getPlayer().getTile().getDirection8To(this.m.Origin.getTile())]
+			this.m.Origin == null || this.m.Origin.isNull() ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Origin.getTile())]
 		]);
 	}
 
@@ -1955,7 +1955,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		{
 			foreach( id in this.m.UnitsSpawned )
 			{
-				local e = this.World.getEntityByID(id);
+				local e = ::World.getEntityByID(id);
 
 				if (e != null && e.isAlive())
 				{

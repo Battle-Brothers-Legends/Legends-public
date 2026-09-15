@@ -131,7 +131,7 @@
 		local orig = this.getDifficultyMult();
 		if (this.getDifficultyMult() >= 1.45 && this.getDifficultyMult() <= 1.65) //lazy man's tweak to make the 4 skull return item contract a bit harder
 		{
-			local dm = this.Math.rand(155, 175) * 0.01;
+			local dm = ::Math.rand(155, 175) * 0.01;
 			this.m.DifficultyMult = (dm > orig) ? dm : orig;
 		}
 
@@ -189,9 +189,9 @@
 
 	o.start = function ()
 	{
-		this.m.Payment.Pool = 400 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 400 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;

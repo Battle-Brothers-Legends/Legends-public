@@ -47,7 +47,7 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -61,11 +61,11 @@ this.legend_drink_hexe_ichor_potion_skill <- this.inherit("scripts/skills/active
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks Hexen Ichor Potion";
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks Hexen Ichor Potion";
 	}
 
 	function tacticalLogGive(_user, _target) {
-		return this.Const.UI.getColorizedEntityName(_user) + " gives Hexen Ichor Potion to " + this.Const.UI.getColorizedEntityName(_target);
+		return ::Const.UI.getColorizedEntityName(_user) + " gives Hexen Ichor Potion to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
 

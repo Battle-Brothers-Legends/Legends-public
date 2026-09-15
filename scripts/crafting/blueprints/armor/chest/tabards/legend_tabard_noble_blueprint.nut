@@ -5,7 +5,7 @@ this.legend_tabard_noble_blueprint <- this.inherit("scripts/crafting/blueprint",
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_tabard_noble_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/tabard/legend_armor_tabard_noble");
 		this.m.Cost = 1000;
 		local ingredients = [

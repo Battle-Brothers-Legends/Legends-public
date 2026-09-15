@@ -3,7 +3,7 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 	function create() {
 		this.ambition.create();
 		this.m.ID = "ambition.legend_roster_of_6";
-		this.m.Duration = 20.0 * this.World.getTime().SecondsPerDay;
+		this.m.Duration = 20.0 * ::World.getTime().SecondsPerDay;
 		this.m.ButtonText = "We shall get the company strength back to a half dozen men! It will make us\na formidable force again and will allow us to take on more profitable work.";
 		this.m.UIText = "Have a roster of at least 6 men";
 		this.m.TooltipText = "Hire enough men to have a crew roster of at least 6 men. Visit settlements across the lands to find recruits that suit your needs. Having a fuller roster will allow you to take on more dangerous and better paying contracts.";
@@ -13,31 +13,31 @@ this.legend_roster_of_6_ambition <- this.inherit("scripts/ambitions/ambition", {
 
 	function onReward() {
 		local item;
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		item = this.new("scripts/items/supplies/wine_item");
 
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 		});
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getBrothersMax() < 6 || this.World.Assets.getOrigin().getID() == "scenario.lone_wolf")
+		if (::World.Assets.getBrothersMax() < 6 || ::World.Assets.getOrigin().getID() == "scenario.lone_wolf")
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= 6) {
+		if (::World.getPlayerRoster().getSize() >= 6) {
 			this.m.IsDone = true;
 			return;
 		}
 
-		this.m.Score = 1 + this.Math.rand(0, 5);
+		this.m.Score = 1 + ::Math.rand(0, 5);
 	}
 
 	function onCheckSuccess() {
-		if (this.World.getPlayerRoster().getSize() >= 6) {
+		if (::World.getPlayerRoster().getSize() >= 6) {
 			return true;
 		}
 

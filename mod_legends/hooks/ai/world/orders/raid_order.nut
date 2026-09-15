@@ -16,7 +16,7 @@
 		}
 		else if (this.Time.getVirtualTimeF() - this.m.Start >= this.m.Time)
 		{
-			local entities = this.World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
+			local entities = ::World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
 
 			foreach( e in entities ) {
 				if (!e.isLocation())
@@ -28,9 +28,9 @@
 
 				if (e.getSettlement() != null && !e.getSettlement().isNull() && e.getSettlement().isAlive()) {
 					local situation;
-					local f = this.World.FactionManager.getFaction(_entity.getFaction());
+					local f = ::World.FactionManager.getFaction(_entity.getFaction());
 
-					if (f != null && (f.getType() == this.Const.FactionType.Undead || f.getType() == this.Const.FactionType.Zombies)) {
+					if (f != null && (f.getType() == ::Const.FactionType.Undead || f.getType() == ::Const.FactionType.Zombies)) {
 						situation = this.new("scripts/entity/world/settlements/situations/terrified_villagers_situation");
 					} else {
 						situation = this.new("scripts/entity/world/settlements/situations/raided_situation");
@@ -48,7 +48,7 @@
 
 		if (!this.m.IsBurning) {
 			this.m.IsBurning = true;
-			local entities = this.World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
+			local entities = ::World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
 
 			foreach( e in entities ) {
 				if (e.isLocation()) {

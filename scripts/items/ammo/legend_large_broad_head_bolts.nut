@@ -8,9 +8,9 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.Description = "A large quiver of bolts with broad tips, designed for tearing flesh, but easily stopped by armor. Is automatically refilled after each battle if you have enough global ammunition. Grants 10% more damage, but 10% less armor piercing damage while wielding a crossbow.";
 		this.m.Icon = "ammo/quiver_04_light.png";
 		this.m.IconEmpty = "ammo/quiver_04_empty.png";
-		this.m.SlotType = this.Const.ItemSlot.Ammo;
-		this.m.ItemType = this.Const.Items.ItemType.Ammo;
-		this.m.AmmoType = this.Const.Items.AmmoType.Bolts;
+		this.m.SlotType = ::Const.ItemSlot.Ammo;
+		this.m.ItemType = ::Const.Items.ItemType.Ammo;
+		this.m.AmmoType = ::Const.Items.AmmoType.Bolts;
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";
@@ -93,7 +93,7 @@ this.legend_large_broad_head_bolts <- this.inherit("scripts/items/ammo/ammo", {
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		local item = _skill.getItem();
-		if (_skill.isAttack() && item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.isWeaponType(this.Const.Items.WeaponType.Crossbow))
+		if (_skill.isAttack() && item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isWeaponType(::Const.Items.WeaponType.Crossbow))
 		{
 			_properties.DamageDirectMult *= 0.9;
 			_properties.RangedDamageMult *= 1.1;

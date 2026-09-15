@@ -13,8 +13,8 @@ this.legend_enclave_vanilla_armet_01 <- this.inherit("scripts/items/helmets/helm
 		this.m.HideBeard = true;
 		this.m.IsDroppedAsLoot = true;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 3500;
 		this.m.Condition = 300;
 		this.m.ConditionMax = 300;

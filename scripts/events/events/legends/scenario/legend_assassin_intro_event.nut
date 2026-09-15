@@ -17,9 +17,9 @@ this.legend_assassin_intro_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.logInfo("Unlocking training");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 			}
 		});
 	}
@@ -33,7 +33,7 @@ this.legend_assassin_intro_event <- this.inherit("scripts/events/event", {
 	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
-			this.World.Flags.get("HomeVillage")
+			::World.Flags.get("HomeVillage")
 		]);
 	}
 

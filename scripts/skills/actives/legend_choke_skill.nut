@@ -8,8 +8,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Choked";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/puncture_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+3;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted+3;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -17,8 +17,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = false;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.HitChanceBonus = -65;
 		this.m.DirectDamageMult = 1.0;
 		this.m.ActionPointCost = 4;
@@ -50,8 +50,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function isUsable()
 	{
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		if (hasNet && mainhand == null && this.skill.isUsable())
 			return true;
@@ -61,8 +61,8 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 	function isHidden()
 	{
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		if (hasNet && mainhand == null)
 			return false;
@@ -77,7 +77,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			if (target != null)
 			{
-				local bonus = this.Math.max(0, this.Math.floor((target.getFatiguePct() - actor.getFatiguePct())*100));
+				local bonus = ::Math.max(0, ::Math.floor((target.getFatiguePct() - actor.getFatiguePct())*100));
 				this.logInfo(bonus);
 				_tooltip.push({
 					icon = "ui/tooltips/positive.png",
@@ -118,17 +118,17 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		{
 			mod += 25;
 		}
-		if (_targetEntity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
 			mod += 50;
 		}
 		local chance = _targetEntity.getFatiguePct() * 50;
-		return mod + this.Math.round(chance);
+		return mod + ::Math.round(chance);
 	}
 
 	function onAfterUpdate( _properties )
 	{
-			this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+			this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
@@ -138,7 +138,7 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local target = _targetTile.getEntity();
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendChoked);
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " choked " + this.Const.UI.getColorizedEntityName(target) + " ");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " choked " + ::Const.UI.getColorizedEntityName(target) + " ");
 		}
 		return success;
 	}
@@ -168,10 +168,10 @@ this.legend_choke_skill <- this.inherit("scripts/skills/skill", {
 			_properties.DamageRegularMult *= 1.5;
 		}
 
-		_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
+		_properties.HitChance[::Const.BodyPart.Head] += 100.0;
 
-		local accessory = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
-		if (accessory != null && accessory.isItemType(this.Const.Items.ItemType.Brawler))
+		local accessory = actor.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
+		if (accessory != null && accessory.isItemType(::Const.Items.ItemType.Brawler))
 		{
 			_properties.DamageRegularMin += accessory.m.ChokeMin;
 			_properties.DamageRegularMax += accessory.m.ChokeMax;

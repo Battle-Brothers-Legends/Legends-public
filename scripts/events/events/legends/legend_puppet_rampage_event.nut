@@ -8,7 +8,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_puppet_rampage";
 		this.m.Title = "At %townname%";
-		this.m.Cooldown = 42.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 42.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({ //— \
 			ID = "A",
 			Text = "%townImage%Entering %townname%, you are met with the usual stares and uneasy looks. Women hurry their children back inside while militia ready their weapons and ask if they're under attack. The merchants within the market are also uneasy, but gold is nothing if not a great equaliser of men. With little to no warning, one of your puppets, %puppet%, breaks ranks and lunges for a group of children throwing stones at it. \n\nThe troupe of children scatter as a few of the braver militia jump into action.",
@@ -51,8 +51,8 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 					});
 				}
 
-				this.World.Assets.addMoralReputation(-1);
-				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your thralls caused havoc in town");
+				::World.Assets.addMoralReputation(-1);
+				f.addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your thralls caused havoc in town");
 				this.Characters.push(_event.m.Puppet.getImagePath());
 
 				this.List.push({
@@ -81,9 +81,9 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Puppet.getImagePath());
-				this.World.Assets.addMoralReputation(-4);
-				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
-				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your puppets caused havoc in town and you did nothing");
+				::World.Assets.addMoralReputation(-4);
+				local f = _event.m.Town.getFactionOfType(::Const.FactionType.Settlement);
+				f.addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your puppets caused havoc in town and you did nothing");
 
 				this.List.push({
 					id = 11,
@@ -116,7 +116,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Puppet.getImagePath());
-				this.World.Assets.addMoralReputation(2);
+				::World.Assets.addMoralReputation(2);
 
 				this.List.push({
 					id = 11,
@@ -149,15 +149,15 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			function start( _event )
 			{
 				this.Characters.push(_event.m.Puppet.getImagePath());
-				this.World.Assets.addMoralReputation(-8);
-				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
-				f.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You pillaged the town");
-				local money = this.Math.rand(252, 782);
-				this.World.Assets.addMoney(money);
+				::World.Assets.addMoralReputation(-8);
+				local f = _event.m.Town.getFactionOfType(::Const.FactionType.Settlement);
+				f.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You pillaged the town");
+				local money = ::Math.rand(252, 782);
+				::World.Assets.addMoney(money);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
 				});
 				this.List.push({
 					id = 11,
@@ -170,18 +170,18 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 					text = "Local inhabitants are furious with you."
 				});
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach( bro in brothers )
 				{
 					if (bro.getBackground().getID() == (::Legends.Background.Cultist))
 					{
 						bro.improveMood(2.0, "Enjoyed raiding and pillaging");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -208,7 +208,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			{
 				this.Characters.push(_event.m.Puppet.getImagePath());
 				this.Characters.push(_event.m.Necrohandler.getImagePath());
-				this.World.Assets.addMoralReputation(3);
+				::World.Assets.addMoralReputation(3);
 			}
 
 		});
@@ -216,15 +216,15 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			return;
 		}
 
-		local towns = this.World.EntityManager.getSettlements();
+		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
 		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
+		local playerTile = ::World.State.getPlayer().getTile();
 
 		foreach( t in towns )
 		{
@@ -246,7 +246,7 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_puppet = [];
 		local candidates_necrohandler = [];
 
@@ -272,11 +272,11 @@ this.legend_puppet_rampage_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		this.m.Puppet = candidates_puppet[this.Math.rand(0, candidates_puppet.len() - 1)];
+		this.m.Puppet = candidates_puppet[::Math.rand(0, candidates_puppet.len() - 1)];
 
 		if (candidates_necrohandler.len() != 0)
 		{
-			this.m.Necrohandler = candidates_necrohandler[this.Math.rand(0, candidates_necrohandler.len() - 1)];
+			this.m.Necrohandler = candidates_necrohandler[::Math.rand(0, candidates_necrohandler.len() - 1)];
 		}
 
 		this.m.Town = town;

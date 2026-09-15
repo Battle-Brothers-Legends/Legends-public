@@ -35,7 +35,7 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -49,11 +49,11 @@ this.legend_drink_heartwood_sap_skill <- this.inherit("scripts/skills/actives/ba
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks Heartwood Sap";
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks Heartwood Sap";
 	}
 
 	function tacticalLogGive(_user, _target) {
-		return this.Const.UI.getColorizedEntityName(_user) + " gives Heartwood Sap to " + this.Const.UI.getColorizedEntityName(_target);
+		return ::Const.UI.getColorizedEntityName(_user) + " gives Heartwood Sap to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
 

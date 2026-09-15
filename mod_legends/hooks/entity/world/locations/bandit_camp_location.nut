@@ -3,10 +3,10 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropMoney(this.Math.rand(200, 500), _lootTable);
-		this.dropArmorParts(this.Math.rand(15, 30), _lootTable);
-		this.dropAmmo(this.Math.rand(0, 30), _lootTable);
-		this.dropMedicine(this.Math.rand(0, 5), _lootTable);
+		this.dropMoney(::Math.rand(200, 500), _lootTable);
+		this.dropArmorParts(::Math.rand(15, 30), _lootTable);
+		this.dropAmmo(::Math.rand(0, 30), _lootTable);
+		this.dropMedicine(::Math.rand(0, 5), _lootTable);
 		local treasure = [
 			"trade/furs_item",
 			"trade/copper_ingots_item",
@@ -33,7 +33,7 @@
 		treasure.push("legend_armor/armor_upgrades/legend_heraldic_plates_upgrade");
 		treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 
-		this.dropFood(this.Math.rand(2, 4), [
+		this.dropFood(::Math.rand(2, 4), [
 			"bread_item",
 			"beer_item",
 			"dried_fruits_item",
@@ -45,6 +45,6 @@
 			"cured_venison_item",
 			"goat_cheese_item"
 		], _lootTable);
-		this.dropTreasure(this.Math.rand(1, 2), treasure, _lootTable);
+		this.dropTreasure(::Math.rand(1, 2), treasure, _lootTable);
 	}
 });

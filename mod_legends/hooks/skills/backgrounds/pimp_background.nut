@@ -27,15 +27,15 @@
 			::Legends.Traits.getID(::Legends.Trait.Deathwish),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.TidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.TidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Tidy;
 
-		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.Bodies = this.Const.Bodies.Thick;
+		this.m.BackgroundType = ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Notorious;
+		this.m.Bodies = ::Const.Bodies.Thick;
 	}
 
 	o.getTooltip = function ()
@@ -56,10 +56,10 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.pimp_hat]
 		]));
 	}

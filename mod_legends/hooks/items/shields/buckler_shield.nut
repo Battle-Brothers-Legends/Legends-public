@@ -25,7 +25,7 @@
 	o.onEquip = function () {
 		onEquip();
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
-			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+			_effect.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);
 			this.m.SkillPtrs.push(_effect);
 		}.bindenv(this));

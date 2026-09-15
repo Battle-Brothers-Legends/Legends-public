@@ -5,7 +5,7 @@
 		::Legends.Screens.hook(this, "A", function(_screen) {
 			_screen.start = function ( _event ) {
 				this.Characters.push(_event.m.Tailor.getImagePath());
-				local stash = this.World.Assets.getStash().getItems();
+				local stash = ::World.Assets.getStash().getItems();
 				local numPelts = 0;
 
 				foreach( i, item in stash ) {
@@ -23,12 +23,12 @@
 					}
 				}
 
-				local item = this.Const.World.Common.pickArmor([
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.werewolf_hide_armor],
 				]);
 
 
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),

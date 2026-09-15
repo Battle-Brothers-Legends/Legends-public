@@ -5,7 +5,7 @@
 		this.m.Description = "Chant a forbidden ritual and add a fresh corpse to do your bidding."
 		this.m.Icon = "skills/raisedead2.png",
 		this.m.IconDisabled = "skills/raisedead2_bw.png",
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Order = ::Const.SkillOrder.Any;
 	}
 
 	o.getTooltip <- function ()
@@ -58,11 +58,11 @@
 	{
 		local p = _tile.Properties.get("Corpse");
 		p.Faction = _user.getFaction();
-		if (p.Faction == this.Const.Faction.Player)
+		if (p.Faction == ::Const.Faction.Player)
 		{
-			p.Faction = this.Const.Faction.PlayerAnimals;
+			p.Faction = ::Const.Faction.PlayerAnimals;
 		}
-		local e = this.Tactical.Entities.onResurrect(p, true);
+		local e = ::Tactical.Entities.onResurrect(p, true);
 
 		if (e != null)
 		{

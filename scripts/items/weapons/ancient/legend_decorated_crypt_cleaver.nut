@@ -10,10 +10,10 @@ this.legend_decorated_crypt_cleaver <- this.inherit("scripts/items/weapons/weapo
 		this.m.Description = "A light, ceremonial version of a two-handed cleaver with a curved end, adorned with gold inlay and odd motifs.";
 		this.m.IconLarge = "weapons/melee/legend_decorated_crypt_cleaver_01.png";
 		this.m.Icon = "weapons/melee/legend_decorated_crypt_cleaver_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

@@ -44,10 +44,10 @@
 			"weapons/named/legend_named_horn_decorated_mace",
 			"weapons/named/legend_named_rusty_greatsword"
 		];
-		local armor = this.Const.Items.NamedBarbarianArmors;
-		local helmets = this.Const.Items.NamedBarbarianHelmets;
+		local armor = ::Const.Items.NamedBarbarianArmors;
+		local helmets = ::Const.Items.NamedBarbarianHelmets;
 		local runeSelection = [];
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		runeSelection = [
 			::Legends.Rune.LegendRswBleeding,
 			::Legends.Rune.LegendRswPoison,
@@ -55,37 +55,37 @@
 			::Legends.Rune.LegendRswPower
 		];
 
-		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local selected = runeSelection[::Math.rand(0, runeSelection.len() - 1)];
 		local rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);
 		rune.updateRuneSigilToken();
 		rune.onUse(this, null, false);
 
-		local weightName = this.Const.World.Common.convNameToList(armor);
-		this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+		local weightName = ::Const.World.Common.convNameToList(armor);
+		this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
 		runeSelection = [
 			::Legends.Rune.LegendRshBravery,
 			::Legends.Rune.LegendRsaEndurance,
 			::Legends.Rune.LegendRsaSafety
 		];
 
-		selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		selected = runeSelection[::Math.rand(0, runeSelection.len() - 1)];
 		rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);
 		rune.updateRuneSigilToken();
 		rune.onUse(this, null, false);
 
-		weightName = this.Const.World.Common.convNameToList(helmets);
-		this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+		weightName = ::Const.World.Common.convNameToList(helmets);
+		this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
 		runeSelection = [
 			::Legends.Rune.LegendRshClarity,
 			::Legends.Rune.LegendRshBravery,
 			::Legends.Rune.LegendRshLuck
 		];
 
-		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local selected = runeSelection[::Math.rand(0, runeSelection.len() - 1)];
 		local rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);

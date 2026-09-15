@@ -10,13 +10,13 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Bravery
 		];
-		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
-		this.m.Level = this.Math.rand(4, 5);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
+		this.m.LastNames = ::Const.Strings.AncientDeadTitles;
+		this.m.Level = ::Math.rand(4, 5);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
@@ -45,19 +45,19 @@ this.legend_legion_gladiator_background <- this.inherit("scripts/skills/backgrou
 			[1, "weapons/ancient/legend_kopis"]
 		], "scripts/items/"));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			items.equip(::Const.World.Common.pickItem([
 				[2, "tools/throwing_net"],
 				[1, "shields/ancient/tower_shield"]
 			], "scripts/items/"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_ripped_cloth],
 			[1, ::Legends.Armor.Standard.indebted_armor_rags],
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_gladiator_helmet]
 		]));
 	}

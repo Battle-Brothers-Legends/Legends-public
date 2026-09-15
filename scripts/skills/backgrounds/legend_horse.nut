@@ -19,14 +19,14 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
-		this.m.Variant = this.Math.rand(1, 7);
-		this.m.Faces = this.Const.Faces.Horse;
-		this.m.Hairs = this.Const.Hair.None;
-		this.m.HairColors = this.Const.HairColors.None;
-		this.m.Bodies = this.Const.Bodies.Horses;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Variant = ::Math.rand(1, 7);
+		this.m.Faces = ::Const.Faces.Horse;
+		this.m.Hairs = ::Const.Hair.None;
+		this.m.HairColors = ::Const.HairColors.None;
+		this.m.Bodies = ::Const.Bodies.Horses;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Stabled;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Colossus,
@@ -149,9 +149,9 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 	}
 

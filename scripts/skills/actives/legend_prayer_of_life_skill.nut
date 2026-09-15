@@ -7,8 +7,8 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Push allies on with your chant of holy scripture, restoring the health of all allies within 1 tile by 20% of your resolve. Does not work on cultists. Inflicts a disintegrating ailment on each adjacent undead.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
 		this.m.SoundVolume = 1.5;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -52,7 +52,7 @@ this.legend_prayer_of_life_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 		local bonus = _user.getCurrentProperties().Bravery * 0.20;
 		foreach( a in actors )
 		{

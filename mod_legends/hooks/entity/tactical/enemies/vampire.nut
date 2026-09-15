@@ -6,7 +6,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.IsLady = this.Math.rand(1, 100) <= 50;
+		this.m.IsLady = ::Math.rand(1, 100) <= 50;
 
 		local rolls = ::Legends.S.extraLootChance(1);
 		for(local i = 0; i < rolls; i++)
@@ -74,16 +74,16 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Vampire);
+		b.setValues(::Const.Tactical.Actor.Vampire);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsSpecializedInSwords = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
 		body.setBrush("bust_skeleton_body_05");
@@ -93,9 +93,9 @@
 		this.addSprite("armor");
 		local body_detail = this.addSprite("body_detail");
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
-			this.m.IsLady ? body_detail.setBrush("bust_vampire_lady_detail_0" + this.Math.rand(1, 2)) : body_detail.setBrush("bust_skeleton_detail_0" + this.Math.rand(2, 3));
+			this.m.IsLady ? body_detail.setBrush("bust_vampire_lady_detail_0" + ::Math.rand(1, 2)) : body_detail.setBrush("bust_skeleton_detail_0" + ::Math.rand(2, 3));
 		}
 
 		local head = this.addSprite("head");
@@ -107,7 +107,7 @@
 		injury.setBrush("bust_skeleton_head_05_injured");
 		local head_detail = this.addSprite("head_detail");
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.m.IsLady ? head_detail.setBrush("bust_vampire_head_lady_detail_01") : head_detail.setBrush("bust_skeleton_head_detail_01");
 		}
@@ -118,21 +118,21 @@
 		local hair = this.addSprite("hair");
 		hair.Color = beard.Color;
 
-		if (this.Math.rand(1, 100) <= 75 && !this.m.IsLady)
+		if (::Math.rand(1, 100) <= 75 && !this.m.IsLady)
 		{
-			local idx = this.Math.rand(0, this.Const.Hair.Vampire.len() - 1);
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Vampire[idx]);
+			local idx = ::Math.rand(0, ::Const.Hair.Vampire.len() - 1);
+			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Vampire[idx]);
 		}
-		else if (this.Math.rand(1, 100) <= 67 && this.m.IsLady)
+		else if (::Math.rand(1, 100) <= 67 && this.m.IsLady)
 		{
-			local idx = this.Math.rand(0, this.Const.Hair.VampireLady.len() - 1);
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.VampireLady[idx]);
+			local idx = ::Math.rand(0, ::Const.Hair.VampireLady.len() - 1);
+			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.VampireLady[idx]);
 		}
 
 		this.setSpriteOffset("hair", this.createVec(0, -3));
 		local v = -3;
 		local v2 = 0;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
@@ -155,7 +155,7 @@
 		local body_dirt = this.addSprite("dirt");
 		body_dirt.setBrush("bust_body_dirt_02");
 		body_dirt.setHorizontalFlipping(true);
-		body_dirt.Visible = this.Math.rand(1, 100) <= 33;
+		body_dirt.Visible = ::Math.rand(1, 100) <= 33;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
 
@@ -206,7 +206,7 @@
 	{
 		onFactionChanged();
 		local flip = !this.isAlliedWithPlayer();
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 				continue;

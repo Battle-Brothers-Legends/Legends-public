@@ -30,9 +30,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty),
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -49,7 +49,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{Life is difficult. Moreso for some than others. | Some women can fall from grace. Other women have nowhere to fall to, having been born already on the ground. | If life is a throw of dice, maybe some are fools to be women rather than mice.} %name% {was a servant to a decadent lord. | served an abusive family where the kids played with fire. | was kidnapped by brigands and forced to serve their every. Last. Need. | worked feverishly for mad men who looked far too long at the stars.}  She rarely made a mistake about her place in the world. One day, though, her masters {beat her unconscious. When she awoke, she did so in the bed of a benevolent doctor who refused to return her to her \'employers\'. Instead, %name% was free to go and her masters were told she had died. | set her free, no questions asked. Not one to dally on ceremony, %name% left in earnest. | invited her to a party. Believing she was a guest, she showed up in her finest attire - a shirt with hemmed sleeves and a billowy dress that hid her skeletal frame well. Unfortunately, she was but a show for the party - they gave her a wooden shield and sword, threw her into an arena with a wild boar, and took bets as they watched the horrific spectacle. She barely escaped the \'festivities\'.} {%name% has since sworn to never \'serve\' someone again. | The woman, though now free of her duties, still bears a great deal of humiliation and pain from her long, hard life.}";
 		}
@@ -67,7 +67,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));

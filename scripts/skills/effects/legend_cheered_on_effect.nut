@@ -9,7 +9,7 @@ this.legend_cheered_on_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/cheered_on_circle.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Overlay = "perk_28";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;

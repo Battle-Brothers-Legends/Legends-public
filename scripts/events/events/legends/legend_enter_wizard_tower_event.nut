@@ -5,7 +5,7 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.location.legend_enter_wizard_tower";
 		this.m.Title = "As you approach...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_125.png[/img]{The tower is the tallest structure you have ever seen. %observer% walks up and halts at the very sight.%SPEECH_ON%By the old gods, is that tower touching the sky? %SPEECH_OFF%You sigh and tell the company to stay here while you and the very observant sellsword go take a look.}",
@@ -18,8 +18,8 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			}, {
 				Text = "It\'s not worth investigating now.",
 				function getResult(_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setVisited(false);
+					if (::World.State.getLastLocation() != null) {
+						::World.State.getLastLocation().setVisited(false);
 					}
 					return 0;
 				}
@@ -41,8 +41,8 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			}, {
 				Text = "We don\'t buy children",
 				function getResult(_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setVisited(false);
+					if (::World.State.getLastLocation() != null) {
+						::World.State.getLastLocation().setVisited(false);
 					}
 					return 0;
 				}
@@ -76,8 +76,8 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "The journeyman begins",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
@@ -85,7 +85,7 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
 				_event.m.Dude.setTitle("the apprentice");
@@ -99,7 +99,7 @@ this.legend_enter_wizard_tower_event <- this.inherit("scripts/events/event", {
 	function onUpdateScore() {}
 
 	function onPrepare() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach (bro in brothers) {

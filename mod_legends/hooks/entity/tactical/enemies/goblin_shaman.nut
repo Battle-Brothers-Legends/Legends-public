@@ -24,11 +24,11 @@
 
 	o.assignRandomEquipment = function () {
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_staff"));
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_shaman_armor]
 		]);
 		this.m.Items.equip(item);
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_shaman_helmet]
 		]);
 		this.m.Items.equip(item);

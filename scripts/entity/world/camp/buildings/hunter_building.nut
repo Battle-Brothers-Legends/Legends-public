@@ -48,17 +48,17 @@
 
 	function setMode( _m )
 	{
-		if (typeof _m == "string") this.m.Mode = this.Const.HuntingLoot.HunterCampMode[_m];
+		if (typeof _m == "string") this.m.Mode = ::Const.HuntingLoot.HunterCampMode[_m];
 		else if (typeof _m == "integer") this.m.Mode = _m;
 	}
 
 	function queryConfigureSettings()
 	{
 		local ret = {};
-		ret.Buttons <- array(this.Const.HuntingLoot.HunterCampMode.len(), "");
+		ret.Buttons <- array(::Const.HuntingLoot.HunterCampMode.len(), "");
 		ret.CurrentMode <- this.m.Mode;
 
-		foreach (mode, index in this.Const.HuntingLoot.HunterCampMode) {
+		foreach (mode, index in ::Const.HuntingLoot.HunterCampMode) {
 			ret.Buttons[index] = mode;
 		}
 
@@ -243,7 +243,7 @@
 	function getAssignedBackgrounds( _relevantOnly = false )
 	{
 		local ret = [];
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		foreach (c in roster)
 		{
 			if (c.getCampAssignment() != this.m.ID)
@@ -280,7 +280,7 @@
 			{
 				continue;
 			}
-			if (c.getBackground().isBackgroundType(this.Const.BackgroundType.ExpertHunter) || c.getBackground().getID() in ::Const.HuntingLoot.ExpertHunterBackgrounds)
+			if (c.getBackground().isBackgroundType(::Const.BackgroundType.ExpertHunter) || c.getBackground().getID() in ::Const.HuntingLoot.ExpertHunterBackgrounds)
 			{
 				ret[c.getNameOnly()] <- c.getBackground().getNameOnly();
 			}
@@ -331,7 +331,7 @@
 	// Tier 3: Level 15+
 	function getHuntLevel( _updateVerboseResults = false )
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local huntLevel = 0;
 		foreach( bro in roster )
 		{
@@ -340,17 +340,17 @@
 				continue;
 			}
 
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ExpertHunter) || bro.getBackground().getID() in ::Const.HuntingLoot.ExpertHunterBackgrounds)
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ExpertHunter) || bro.getBackground().getID() in ::Const.HuntingLoot.ExpertHunterBackgrounds)
 			{
 				if (_updateVerboseResults) this.m.VerboseResults.Hunt.Assigned.push(bro.getNameOnly());
 
 				if(this.getUpgraded())
 				{
-					huntLevel += this.Math.ceil(bro.getLevel());
+					huntLevel += ::Math.ceil(bro.getLevel());
 				}
 				else
 				{
-				   huntLevel += this.Math.ceil(bro.getLevel() * 0.1); // hunting rewards are limited without the tent upgrade
+				   huntLevel += ::Math.ceil(bro.getLevel() * 0.1); // hunting rewards are limited without the tent upgrade
 				}
 			}
 		}
@@ -362,7 +362,7 @@
 	// The Meal Preparation perk is the main way to increase this level
 	function getCookLevel( _updateVerboseResults = false )
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local cookLevel = 0;
 		foreach( bro in roster )
 		{
@@ -403,7 +403,7 @@
 	// The Alocohol Brewing perk is the main way to increase this level
 	function getBrewLevel( _updateVerboseResults = false )
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local brewerLevel = 0;
 		foreach( bro in roster )
 		{
@@ -689,12 +689,12 @@
 		}
 
 		local text =  ["Obtained ... " + this.m.FoodAmount + " food and gained " + this.m.Items.len() + " items"];
-		if (this.Stash.getNumberOfEmptySlots() == 0)
+		if (::Stash.getNumberOfEmptySlots() == 0)
 		{
 			return [text[0] + " (Inventory is full!)"];
 		}
 
-		local hours = ::Math.ceil((::Time.getVirtualTimeF() - this.m.TargetStartTime) / (this.World.getTime().SecondsPerDay / 24)) + 1;
+		local hours = ::Math.ceil((::Time.getVirtualTimeF() - this.m.TargetStartTime) / (::World.getTime().SecondsPerDay / 24)) + 1;
 		local plural = hours > 1 ? "s" : "";
 
 		if (this.m.CurrentTarget)

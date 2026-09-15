@@ -74,9 +74,9 @@ this.legend_aggressive_trait <- this.inherit("scripts/skills/traits/character_tr
 	{
 		local actor = this.getContainer().getActor();
 
-		if (actor.getMoraleState() < this.Const.MoraleState.Steady)
+		if (actor.getMoraleState() < ::Const.MoraleState.Steady)
 		{
-			actor.setMoraleState(this.Const.MoraleState.Steady);
+			actor.setMoraleState(::Const.MoraleState.Steady);
 		}
 	}
 

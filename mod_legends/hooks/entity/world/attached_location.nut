@@ -149,7 +149,7 @@
 
 		if (settlementID != 0)
 		{
-			this.setSettlement(this.World.getEntityByID(settlementID));
+			this.setSettlement(::World.getEntityByID(settlementID));
 
 			if (this.m.Settlement != null)
 			{

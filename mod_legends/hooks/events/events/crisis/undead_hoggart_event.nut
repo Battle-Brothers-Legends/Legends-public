@@ -12,11 +12,11 @@
 			}
 			if (s.ID == "F") {
 				s.start <- function (_event) {
-					local item = this.Const.World.Common.pickArmor([
+					local item = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Named.black_leather_armor],
 					]);
 
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),

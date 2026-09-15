@@ -33,69 +33,69 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			"the Donkey",
 			"the Jackass"
 		];
-		this.m.Faces = this.Const.Faces.Donkey;
-		this.m.Hairs = this.Const.Hair.None;
-		this.m.HairColors = this.Const.HairColors.None;
-		this.m.Bodies = this.Const.Bodies.Donkeys;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
+		this.m.Faces = ::Const.Faces.Donkey;
+		this.m.Hairs = ::Const.Hair.None;
+		this.m.HairColors = ::Const.HairColors.None;
+		this.m.Bodies = ::Const.Bodies.Donkeys;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Stabled;
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
-			this.Const.Attributes.RangedDefense,
-			this.Const.Attributes.MeleeDefense
+			::Const.Attributes.RangedSkill,
+			::Const.Attributes.RangedDefense,
+			::Const.Attributes.MeleeDefense
 		];
 		this.m.CustomPerkTree = [
 			[
-				this.Legends.Perk.Colossus,
-				this.Legends.Perk.NineLives,
-				this.Legends.Perk.Pathfinder,
-				this.Legends.Perk.Steadfast,
-				this.Legends.Perk.BagsAndBelts,
-				this.Legends.Perk.Recover
+				::Legends.Perk.Colossus,
+				::Legends.Perk.NineLives,
+				::Legends.Perk.Pathfinder,
+				::Legends.Perk.Steadfast,
+				::Legends.Perk.BagsAndBelts,
+				::Legends.Perk.Recover
 			],
 			[
-				this.Legends.Perk.Dodge,
-				this.Legends.Perk.HoldOut,
-				// this.Legends.Perk.LegendComposure,
-				this.Legends.Perk.LegendAlert,
-				this.Legends.Perk.LegendOnslaught,
-				this.Legends.Perk.SteelBrow,
-				this.Legends.Perk.LegendRecuperation
+				::Legends.Perk.Dodge,
+				::Legends.Perk.HoldOut,
+				// ::Legends.Perk.LegendComposure,
+				::Legends.Perk.LegendAlert,
+				::Legends.Perk.LegendOnslaught,
+				::Legends.Perk.SteelBrow,
+				::Legends.Perk.LegendRecuperation
 			],
 			[
-				this.Legends.Perk.Anticipation,
-				this.Legends.Perk.Rotation,
-				this.Legends.Perk.LegendPeaceful,
-				this.Legends.Perk.Taunt,
-				// this.Legends.Perk.LegendSprint
+				::Legends.Perk.Anticipation,
+				::Legends.Perk.Rotation,
+				::Legends.Perk.LegendPeaceful,
+				::Legends.Perk.Taunt,
+				// ::Legends.Perk.LegendSprint
 			],
 			[
-				this.Legends.Perk.LegendEfficientPacking,
-				this.Legends.Perk.LegendAmmoBinding,
-				this.Legends.Perk.LegendMedPackages,
-				this.Legends.Perk.LegendToolsDrawers
+				::Legends.Perk.LegendEfficientPacking,
+				::Legends.Perk.LegendAmmoBinding,
+				::Legends.Perk.LegendMedPackages,
+				::Legends.Perk.LegendToolsDrawers
 			],
 			[
-				this.Legends.Perk.LoneWolf,
-				this.Legends.Perk.Footwork,
-				this.Legends.Perk.LegendLastStand,
-				this.Legends.Perk.LegendBlendIn,
-				this.Legends.Perk.Underdog
+				::Legends.Perk.LoneWolf,
+				::Legends.Perk.Footwork,
+				::Legends.Perk.LegendLastStand,
+				::Legends.Perk.LegendBlendIn,
+				::Legends.Perk.Underdog
 			],
 			[
-				this.Legends.Perk.Nimble,
-				this.Legends.Perk.LegendRebound,
-				this.Legends.Perk.LegendPacifist,
-				this.Legends.Perk.LegendSkillfulStacking,
-				this.Legends.Perk.LegendMuscularity,
+				::Legends.Perk.Nimble,
+				::Legends.Perk.LegendRebound,
+				::Legends.Perk.LegendPacifist,
+				::Legends.Perk.LegendSkillfulStacking,
+				::Legends.Perk.LegendMuscularity,
 			],
 			[
-				this.Legends.Perk.Fearsome,
-				// this.Legends.Perk.Stalwart,
-				this.Legends.Perk.LegendAmmoBundles,
-				this.Legends.Perk.LegendMedIngredients,
-				this.Legends.Perk.LegendToolsSpares,
+				::Legends.Perk.Fearsome,
+				// ::Legends.Perk.Stalwart,
+				::Legends.Perk.LegendAmmoBundles,
+				::Legends.Perk.LegendMedIngredients,
+				::Legends.Perk.LegendToolsSpares,
 			],
 			[],
 			[],
@@ -114,7 +114,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			return;
 		}
 
-		this.addBackgroundType(this.Const.BackgroundType.Female);
+		this.addBackgroundType(::Const.BackgroundType.Female);
 	}
 
 	function getTooltip() {
@@ -176,48 +176,48 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 		local items = actor.getItems();
 			//ineloquent solution for forcing the item assigned to any of these slots via hotkey to be unassigned and returned to ground or stash. We squish this code later.
 			//Note that 'item.unequip();' does not work.
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand))
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Mainhand))
+		if (items.getItemAtSlot(::Const.ItemSlot.Mainhand))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Head))
+		if (items.getItemAtSlot(::Const.ItemSlot.Head))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Head);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Head);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Body))
+		if (items.getItemAtSlot(::Const.ItemSlot.Body))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Body);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Body);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Ammo))
+		if (items.getItemAtSlot(::Const.ItemSlot.Ammo))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Ammo);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Ammo);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Accessory))
+		if (items.getItemAtSlot(::Const.ItemSlot.Accessory))
 		{
-			local item = items.getItemAtSlot(this.Const.ItemSlot.Accessory);
+			local item = items.getItemAtSlot(::Const.ItemSlot.Accessory);
 			item.drop();
 		}
 
-		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
-		items.getData()[this.Const.ItemSlot.Mainhand][0] = -1;
-		items.getData()[this.Const.ItemSlot.Head][0] = -1;
-		items.getData()[this.Const.ItemSlot.Body][0] = -1;
-		items.getData()[this.Const.ItemSlot.Ammo][0] = -1;
-		items.getData()[this.Const.ItemSlot.Accessory][0] = -1;
+		items.getData()[::Const.ItemSlot.Offhand][0] = -1;
+		items.getData()[::Const.ItemSlot.Mainhand][0] = -1;
+		items.getData()[::Const.ItemSlot.Head][0] = -1;
+		items.getData()[::Const.ItemSlot.Body][0] = -1;
+		items.getData()[::Const.ItemSlot.Ammo][0] = -1;
+		items.getData()[::Const.ItemSlot.Accessory][0] = -1;
 		items.setUnlockedBagSlots(0);
 
 		this.character_background.onAdded();
@@ -225,9 +225,9 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 	}
 });

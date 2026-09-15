@@ -31,9 +31,9 @@
 		local r;
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -42,12 +42,12 @@
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= 80)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/crossbow"));
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
@@ -58,7 +58,7 @@
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		}
 
-		r = this.Math.rand(1, 2);
+		r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -69,12 +69,12 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		local helmet = this.Const.World.Common.pickHelmet([
+		local helmet = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

@@ -7,8 +7,8 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCurseofyears);
 		this.m.Description = "This curse gives the victim a glimpse of their own mortality, briefly aging them. Imagining itself with an infirm body of advanced age, the afflicted believes it is no longer capable of youthful exertions.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 500;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -123,7 +123,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 
 		if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " Died over time");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " Died over time");
 		}
 
 		::Legends.Effects.grant(target, ::Legends.Effect.LegendCurseofyears);
@@ -135,7 +135,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart()
 	{
-		this.m.Cooldown = this.Math.max(0, this.m.Cooldown - 1);
+		this.m.Cooldown = ::Math.max(0, this.m.Cooldown - 1);
 	}
 
 });

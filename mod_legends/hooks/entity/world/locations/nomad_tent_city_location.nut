@@ -3,10 +3,10 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropMoney(this.Math.rand(300, 700), _lootTable);
-		this.dropArmorParts(this.Math.rand(25, 50), _lootTable);
-		this.dropAmmo(this.Math.rand(0, 50), _lootTable);
-		this.dropMedicine(this.Math.rand(5, 15), _lootTable);
+		this.dropMoney(::Math.rand(300, 700), _lootTable);
+		this.dropArmorParts(::Math.rand(25, 50), _lootTable);
+		this.dropAmmo(::Math.rand(0, 50), _lootTable);
+		this.dropMedicine(::Math.rand(5, 15), _lootTable);
 		local treasure = [
 			"trade/incense_item",
 			"trade/dies_item",
@@ -19,7 +19,7 @@
 			"tools/fire_bomb_item"
 		];
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			treasure.extend(treasure);
 			treasure.extend(treasure);
@@ -34,13 +34,13 @@
 			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 		}
 
-		this.dropFood(this.Math.rand(4, 8), [
+		this.dropFood(::Math.rand(4, 8), [
 			"bread_item",
 			"dried_fruits_item",
 			"ground_grains_item",
 			"roots_and_berries_item",
 			"goat_cheese_item"
 		], _lootTable);
-		this.dropTreasure(this.Math.rand(2, 3), treasure, _lootTable);
+		this.dropTreasure(::Math.rand(2, 3), treasure, _lootTable);
 	}
 });

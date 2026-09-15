@@ -10,10 +10,10 @@ this.legend_shovel <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A tool meant for digging holes, not maiming men. A shovel\'s wide blade lends accuracy when aiming for the head, but almost anything else would be better.";
 		this.m.IconLarge = "weapons/melee/legend_shovel_01.png";
 		this.m.Icon = "weapons/melee/legend_shovel_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Mace;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Mace;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

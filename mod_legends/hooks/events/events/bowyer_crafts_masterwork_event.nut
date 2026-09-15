@@ -8,12 +8,12 @@
 				s.Options[0] = {
 					Text = "Build me a bow of legends!",
 					function getResult( _event ) {
-						local brothers = this.World.getPlayerRoster().getAll();
+						local brothers = ::World.getPlayerRoster().getAll();
 						foreach( bro in brothers ) {
 							if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendInventor))
 								return "BA";
 						}
-						local r = this.Math.rand(1, 100);
+						local r = ::Math.rand(1, 100);
 						if (r <= 60)
 							return "B";
 						else
@@ -28,7 +28,7 @@
 
 					this.List.push(::Legends.EventList.changeMoney(-500));
 
-					local stash = this.World.Assets.getStash().getItems();
+					local stash = ::World.Assets.getStash().getItems();
 
 					foreach( i, item in stash )
 					{
@@ -46,7 +46,7 @@
 
 					local item = this.new("scripts/items/weapons/masterwork_bow");
 					item.m.Name = _event.m.Bowyer.getNameOnly() + "\'s " + item.m.Name;
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -54,12 +54,12 @@
 					});
 					_event.m.Bowyer.improveMood(2.0, "Created a masterwork");
 
-					if (_event.m.Bowyer.getMoodState() >= this.Const.MoodState.Neutral)
+					if (_event.m.Bowyer.getMoodState() >= ::Const.MoodState.Neutral)
 					{
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
-							text = _event.m.Bowyer.getName() + this.Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
+							text = _event.m.Bowyer.getName() + ::Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
 						});
 					}
 				}
@@ -83,7 +83,7 @@
 
 				this.List.push(::Legends.EventList.changeMoney(-500));
 
-				local stash = this.World.Assets.getStash().getItems();
+				local stash = ::World.Assets.getStash().getItems();
 				foreach( i, item in stash ) {
 					if (item != null && item.getID() == "misc.quality_wood") {
 						stash[i] = null;
@@ -98,7 +98,7 @@
 
 				local item = this.new("scripts/items/weapons/legend_hand_crossbow");
 				item.m.Name = _event.m.Bowyer.getNameOnly() + "\'s " + item.m.Name;
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -106,11 +106,11 @@
 				});
 				_event.m.Bowyer.improveMood(2.0, "Created a masterwork");
 
-				if (_event.m.Bowyer.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Bowyer.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
-						text = _event.m.Bowyer.getName() + this.Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Bowyer.getMoodState()],
+						text = _event.m.Bowyer.getName() + ::Const.MoodStateEvent[_event.m.Bowyer.getMoodState()]
 					});
 				}
 			}

@@ -12,28 +12,28 @@
 
 	o.onPrepare = function () {
 		local item;
-		local r = this.Math.rand(1, 19);
+		local r = ::Math.rand(1, 19);
 
 		if (r == 1)
 			item = this.new("scripts/items/weapons/militia_spear");
 		else if (r == 2)
-			item = this.Const.World.Common.pickArmor([
+			item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.patched_mail_shirt],
 			]);
 		else if (r == 3)
-			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.dented_nasal_helmet]]);
+			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.dented_nasal_helmet]]);
 		else if (r == 4)
-			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]);
+			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]);
 		else if (r == 5)
-			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.cultist_hood]]);
+			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.cultist_hood]]);
 		else if (r == 6)
-			item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_leather_cap]]);
+			item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_leather_cap]]);
 		else if (r == 7)
-			item = this.Const.World.Common.pickArmor([
+			item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.ragged_surcoat],
 			]);
 		else if (r == 8)
-			item = this.Const.World.Common.pickArmor([
+			item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.noble_tunic],
 			]);
 		else if (r == 9)
@@ -53,7 +53,7 @@
 		else if (r == 16)
 			item = this.new("scripts/items/weapons/lute");
 		else if (r == 17)
-			item = this.Const.World.Common.pickArmor([
+			item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			]);
 		else if (r == 18)
@@ -62,7 +62,7 @@
 			item = this.new("scripts/items/misc/legend_paint_black_item");
 
 		if (item.getConditionMax() > 1)
-			item.setCondition(this.Math.max(1, item.getConditionMax() * this.Math.rand(10, 40) * 0.01));
+			item.setCondition(::Math.max(1, item.getConditionMax() * ::Math.rand(10, 40) * 0.01));
 
 		this.m.FoundItem = item;
 	}

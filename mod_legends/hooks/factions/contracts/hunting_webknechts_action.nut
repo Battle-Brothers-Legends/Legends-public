@@ -4,17 +4,17 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.hunting_webknechts_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.hunting_webknechts_contract))
 		{
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 || this.Math.rand(1, 100) > 30)
+		if (::World.getTime().Days <= 3 || ::Math.rand(1, 100) > 30)
 		{
 			return;
 		}

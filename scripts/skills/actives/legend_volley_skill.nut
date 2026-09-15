@@ -11,8 +11,8 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/tripleshot", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/tripleshot_hit", 3);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/arrow_miss", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 250;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -25,8 +25,8 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsDoingForwardMove = false;
 		this.m.IsShowingProjectile = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.PiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.PiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.PiercingHead;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
@@ -35,7 +35,7 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		this.m.ChanceDecapitate = 0;
 		this.m.ChanceDisembowel = 0;
 		this.m.MaxLevelDifference = 4;
-		this.m.ProjectileType = this.Const.ProjectileType.Arrow;
+		this.m.ProjectileType = ::Const.ProjectileType.Arrow;
 	}
 
 	function getTooltip() {
@@ -61,7 +61,7 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -93,13 +93,13 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getAmmo() {
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 
 		if (item == null) {
 			return 0;
 		}
 
-		if (item.getAmmoType() == this.Const.Items.AmmoType.Arrows) {
+		if (item.getAmmoType() == ::Const.Items.AmmoType.Arrows) {
 			return item.getAmmo();
 		}
 	}
@@ -108,12 +108,12 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().getActor().isArmedWithRangedWeapon()) {
 			return false;
 		}
-		return (!this.Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return (!::Tactical.isActive() || this.skill.isUsable()) && this.getAmmo() > 2 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 
 	function consumeAmmo() {
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 		if (item == null)
 		{
 			return;
@@ -127,7 +127,7 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 		local bonusRange = (_properties.IsSpecializedInBows ? 1 : 0) + (this.getContainer().hasPerk(::Legends.Perk.LegendSpecialistSharpshooter) ? 1 : 0);
 		this.m.MaxRange = this.m.Item.getRangeMax() + bonusRange - 1;
 		this.m.AdditionalAccuracy = this.m.Item.getAdditionalAccuracy();
-		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInBows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.InitiativeAdditionalDamage = _properties.IsSpecializedInBows ? 0.1 : 0.05;
 	}
 
@@ -180,8 +180,8 @@ this.legend_volley_skill <- this.inherit("scripts/skills/skill", {
 				local attackerCurrentInitiative = this.getContainer().getActor().getInitiative();
 				local diff = defenderCurrentInitiative - attackerCurrentInitiative;
 				if (diff > 0) {
-					_properties.DamageRegularMin += this.Math.floor(this.m.InitiativeAdditionalDamage * diff);
-					_properties.DamageRegularMax += this.Math.floor(this.m.InitiativeAdditionalDamage * diff); 
+					_properties.DamageRegularMin += ::Math.floor(this.m.InitiativeAdditionalDamage * diff);
+					_properties.DamageRegularMax += ::Math.floor(this.m.InitiativeAdditionalDamage * diff); 
 				}
 			}
 		}

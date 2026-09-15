@@ -14,8 +14,8 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendSummonStorm);
 		this.m.Description = "Summons rain to the battlefield. Anyone caught in the rain will have their vision and ranged skill reduced by 1 and 10% respectively and their ranged defense increased by 10%. If cast when you are already wet, it will be like drinking a lionheart potion.";
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -48,17 +48,17 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isHidden() {
-		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand);
+		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Mainhand);
 	}
 
 	function onUse(_user, _targetTile) {
-		local weather = this.Tactical.getWeather();
+		local weather = ::Tactical.getWeather();
 		local rain = weather.createRainSettings();
 
 		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain)) {
 
 			if (this.m.SoundOnLightning.len() != 0) {
-				this.Sound.play(this.m.SoundOnLightning[this.Math.rand(0, this.m.SoundOnLightning.len() - 1)], this.Const.Sound.Volume.Skill * 2.0, _user.getPos());
+				::Sound.play(this.m.SoundOnLightning[::Math.rand(0, this.m.SoundOnLightning.len() - 1)], ::Const.Sound.Volume.Skill * 2.0, _user.getPos());
 			}
 			if (!this.m.Container.hasEffect(::Legends.Effect.LionheartPotion)) {
 				::Legends.Effects.grant(this, ::Legends.Effect.LionheartPotion);
@@ -86,7 +86,7 @@ this.legend_summon_storm_skill <- this.inherit("scripts/skills/skill", {
 			rain.MinScale = 0.75;
 			rain.MaxScale = 1.0;
 			weather.buildRain(rain);
-			this.Sound.setAmbience(0, ::Const.SoundAmbience.Rain, ::Const.Sound.Volume.Ambience, 0);
+			::Sound.setAmbience(0, ::Const.SoundAmbience.Rain, ::Const.Sound.Volume.Ambience, 0);
 		} else {
 			foreach (ever in ::Tactical.Entities.getAllInstances()) {
 				foreach (e in ever) {

@@ -3,7 +3,7 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 
 	function onInit()
 	{
-		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieLightXbow;
+		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieLightXbow;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Actives.grant(this, ::Legends.Active.ZombieBite);
@@ -22,7 +22,7 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 		this.m.Items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[2, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.sackcloth],
@@ -33,7 +33,7 @@ this.legends_zombie_low_xbow <- this.inherit("scripts/entity/tactical/legend_zom
 			[1, ::Legends.Armor.Standard.monk_robe]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[67, ::Legends.Helmet.None],
 			[7, ::Legends.Helmet.Standard.hood],
 			[7, ::Legends.Helmet.Standard.aketon_cap],

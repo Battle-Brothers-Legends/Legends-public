@@ -9,7 +9,7 @@ this.legend_realm_of_nightmares_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_102.png";
 		this.m.IconMini = "status_effect_102_mini";
 		this.m.Overlay = "status_effect_102";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

@@ -8,8 +8,8 @@ this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 	},
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.Howl;
-		this.m.Order = this.Const.AI.Behavior.Order.Howl;
+		this.m.ID = ::Const.AI.Behavior.ID.Howl;
+		this.m.Order = ::Const.AI.Behavior.Order.Howl;
 		this.behavior.create();
 	}
 
@@ -18,31 +18,31 @@ this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 		this.m.Skill = null;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownAllies())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local targets = this.queryTargetsInMeleeRange();
 
 		if (targets.len() != 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local skills = [];
@@ -59,10 +59,10 @@ this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 
 		if (skills.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		this.m.Skill = skills[this.Math.rand(0, skills.len() - 1)];
+		this.m.Skill = skills[::Math.rand(0, skills.len() - 1)];
 		local knownAllies = this.getAgent().getKnownAllies();
 		local allies = 0;
 
@@ -74,23 +74,23 @@ this.legend_ai_buff_howl <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 		}
 
-		if (this.Const.AI.VerboseMode)
+		if (::Const.AI.VerboseMode)
 		{
 			this.logInfo("* " + _entity.getName() + ": Other Werewolves in range to howl with: " + allies);
 		}
 
-		if (allies >= this.Const.AI.Behavior.HowlMinAlliesInRange)
+		if (allies >= ::Const.AI.Behavior.HowlMinAlliesInRange)
 		{
-			local scoreMult = this.Math.minf(1.5, allies / 4.0);
-			return this.Const.AI.Behavior.Score.Howl * scoreMult * score;
+			local scoreMult = ::Math.minf(1.5, allies / 4.0);
+			return ::Const.AI.Behavior.Score.Howl * scoreMult * score;
 		}
 
-		return this.Const.AI.Behavior.Score.Zero;
+		return ::Const.AI.Behavior.Score.Zero;
 	}
 
 	function onExecute( _entity )
 	{
-		if (this.Const.AI.VerboseMode)
+		if (::Const.AI.VerboseMode)
 		{
 			this.logInfo("* " + _entity.getName() + ": Using Howl!");
 		}

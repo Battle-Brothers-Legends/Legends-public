@@ -27,16 +27,16 @@ this.perk_legend_distant_visions <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().getActor().isInReserves())
 			return;
 
-		if ( this.Math.rand(1,100) <= this.m.BaseChance + (this.m.DaysNotProcced/4) )
+		if ( ::Math.rand(1,100) <= this.m.BaseChance + (this.m.DaysNotProcced/4) )
 		{
-			if ( this.World.State.getDistantVisionBonus() ) //just on the off chance 2 different brothers would proc it in the same newDay(), this wouldn't pop 2 events
+			if ( ::World.State.getDistantVisionBonus() ) //just on the off chance 2 different brothers would proc it in the same newDay(), this wouldn't pop 2 events
 			{
 				this.m.DaysNotProcced = 0;
 				return;
 			}
-			this.World.State.setDistantVisionBonus(true);
+			::World.State.setDistantVisionBonus(true);
 			this.m.DaysNotProcced = 0;
-			this.World.Events.fire("event.legend_distant_visions");
+			::World.Events.fire("event.legend_distant_visions");
 		}
 		else
 		{

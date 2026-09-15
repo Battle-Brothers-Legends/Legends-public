@@ -38,16 +38,16 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.IsGuaranteed = [::Legends.Traits.new(::Legends.Trait.HateUndead)];
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	function getTooltip() //nobody loves pilgrims
 	{
 		local ret = this.character_background.getTooltip();
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin().getID() == "scenario.legends_crusader")
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.legends_crusader")
 		{
 		ret.push({
 			id = 19,
@@ -85,7 +85,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local body = actor.getSprite("body");
 			local tattoo_body = actor.getSprite("tattoo_body");
@@ -104,7 +104,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			"weapons/legend_tipstaff"
 		];
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
@@ -112,7 +112,7 @@ this.legend_pilgrim_background <- this.inherit("scripts/skills/backgrounds/chara
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

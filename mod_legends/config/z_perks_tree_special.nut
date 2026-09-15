@@ -72,7 +72,7 @@ function getRandom( _exclude )
 		L.push(i);
 	}
 
-	local r = this.Math.rand(0, L.len() - 1);
+	local r = ::Math.rand(0, L.len() - 1);
 	return this.Tree[L[r]];
 }
 
@@ -89,7 +89,7 @@ function getRandomPerk()
 		}
 	}
 
-	local r = this.Math.rand(0, L.len() - 1);
+	local r = ::Math.rand(0, L.len() - 1);
 	return L[r];
 }
 };
@@ -106,7 +106,7 @@ function getRandomPerk()
 	{
 		return 0;
 	}
-	_chance *= this.Math.pow(2, tl);
+	_chance *= ::Math.pow(2, tl);
 
 	return _chance;
 });
@@ -119,7 +119,7 @@ function getRandomPerk()
 	{
 		return 0;
 	}
-	_chance *= this.Math.pow(2, tl);
+	_chance *= ::Math.pow(2, tl);
 
 	return _chance;
 });
@@ -132,7 +132,7 @@ function getRandomPerk()
 	{
 		return 0;
 	}
-	_chance *= this.Math.pow(2, tl);
+	_chance *= ::Math.pow(2, tl);
 
 	return _chance;
 });
@@ -150,7 +150,7 @@ function getRandomPerk()
 		return 0;
 	}
 
-	_chance *= this.Math.pow(2, tl);
+	_chance *= ::Math.pow(2, tl);
 
 	return _chance;
 });

@@ -19,20 +19,20 @@
 			item(85, 1.25, "legend_armor/armor_upgrades/legend_double_mail_upgrade"),
 		]);
 
-		foreach (i in this.Const.Items.NamedSouthernShields) {
-			if (this.Math.rand(1, 100) <= 33) {
+		foreach (i in ::Const.Items.NamedSouthernShields) {
+			if (::Math.rand(1, 100) <= 33) {
 				list.push(item(99, 2.0, i));
 			}
 		}
 
-		foreach (i in this.Const.Items.LegendNamedSouthernArmorLayers) {
-			if (this.Math.rand(1, 100) <= 33) {
+		foreach (i in ::Const.Items.LegendNamedSouthernArmorLayers) {
+			if (::Math.rand(1, 100) <= 33) {
 				list.push(item(99, 2.0, i));
 			}
 		}
 
-		foreach (i in this.Const.Items.LegendNamedArmorUpgrades) {
-			if (this.Math.rand(1, 100) <= 33) {
+		foreach (i in ::Const.Items.LegendNamedArmorUpgrades) {
+			if (::Math.rand(1, 100) <= 33) {
 				list.push(item(99, 2.0, i));
 			}
 		}

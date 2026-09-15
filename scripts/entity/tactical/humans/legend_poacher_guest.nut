@@ -29,16 +29,16 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 	{
 		this.player.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendPeasantPoacher);
+		b.setValues(::Const.Tactical.Actor.LegendPeasantPoacher);
 		b.TargetAttractionMult = 1.0;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.Talents.resize(this.Const.Attributes.COUNT, 0);
-		this.m.Attributes.resize(this.Const.Attributes.COUNT, [
+		this.m.Talents.resize(::Const.Attributes.COUNT, 0);
+		this.m.Attributes.resize(::Const.Attributes.COUNT, [
 			0
 		]);
-		this.m.Name = this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)];
+		this.m.Name = ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)];
 		this.m.Title = "the Poacher";
 		this.setAppearance();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistPoacher);
@@ -69,7 +69,7 @@ this.legend_poacher_guest <- this.inherit("scripts/entity/tactical/player", {
 			[1, ::Legends.Armor.Standard.sackcloth]
 		]));
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.getItems().equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],

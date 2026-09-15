@@ -45,8 +45,8 @@
 			tooltip.push(ret);
 		}
 	};
-	local isPerk = @( _, _skill ) _skill.isType(this.Const.SkillType.Perk);
-	local isInjury = @( _, _skill ) _skill.isType(this.Const.SkillType.TemporaryInjury);
+	local isPerk = @( _, _skill ) _skill.isType(::Const.SkillType.Perk);
+	local isInjury = @( _, _skill ) _skill.isType(::Const.SkillType.TemporaryInjury);
 	local isTextRow = @( _, row ) ("type" in row) && row.type == "text";
 
 	local pushSection = function ( items, title, startID,filter = 0, prependIcon = "", stackInOneLine = false)
@@ -169,7 +169,7 @@
 		return items.len() > 1 ? "s" : "";
 	};
 	local patchedPerkIcons = {};
-	patchedPerkIcons[this.Const.Strings.PerkName.BatteringRam] <- "ui/settlement_status/settlement_effect_13.png";
+	patchedPerkIcons[::Const.Strings.PerkName.BatteringRam] <- "ui/settlement_status/settlement_effect_13.png";
 	local getRealPerkIcon = function ( perk )
 	{
 		local realPerk = ::Const.Perks.findById(perk.getID());
@@ -201,11 +201,11 @@
 				{
 					if (row.id == 5 && row.icon == "ui/icons/armor_head.png")
 					{
-						row.text <- "" + _entity.getArmor(this.Const.BodyPart.Head) + " / " + _entity.getArmorMax(this.Const.BodyPart.Head) + "";
+						row.text <- "" + _entity.getArmor(::Const.BodyPart.Head) + " / " + _entity.getArmorMax(::Const.BodyPart.Head) + "";
 					}
 					else if (row.id == 6 && row.icon == "ui/icons/armor_body.png")
 					{
-						row.text <- "" + _entity.getArmor(this.Const.BodyPart.Body) + " / " + _entity.getArmorMax(this.Const.BodyPart.Body) + "";
+						row.text <- "" + _entity.getArmor(::Const.BodyPart.Body) + " / " + _entity.getArmorMax(::Const.BodyPart.Body) + "";
 					}
 					else if (row.id == 7 && row.icon == "ui/icons/health.png")
 					{
@@ -222,7 +222,7 @@
 
 	local pushRemainingAP = function ()
 	{
-		local turnsToGo = this.Tactical.TurnSequenceBar.getTurnsUntilActive(_entity.getID());
+		local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(_entity.getID());
 		local remainingAP = _entity.m.IsTurnDone || turnsToGo == null ? 0 : _entity.getActionPoints();
 		tooltip.push({
 			id = 10,
@@ -255,7 +255,7 @@
 
 	if (!::Tactical.Entities.getFlags().get("ModJimmysTooltips_ShowLootChance"))
 	{
-		local statusEffects = _entity.getSkills().query(this.Const.SkillType.StatusEffect | this.Const.SkillType.TemporaryInjury, false, true);
+		local statusEffects = _entity.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.TemporaryInjury, false, true);
 		local count = tooltip.len() - statusEffects.len();
 
 		if (statusEffects.len() && count > 0)
@@ -270,7 +270,7 @@
 				});
 				statusEffects = removeDuplicates(statusEffects);
 				pushSection(statusEffects, null, 100, 2, "", true);
-				local injuries = _entity.getSkills().query(this.Const.SkillType.TemporaryInjury, false, true);
+				local injuries = _entity.getSkills().query(::Const.SkillType.TemporaryInjury, false, true);
 
 				foreach( i, injury in injuries )
 				{
@@ -343,11 +343,11 @@
 			pushRemainingAP();
 		}
 
-		local activePerks = _entity.getSkills().query(this.Const.SkillType.Active, false, true);
+		local activePerks = _entity.getSkills().query(::Const.SkillType.Active, false, true);
 		activePerks = removeDuplicates(activePerks);
 		pushSection(activePerks, "Usable perks", 200, 1);
 		local thresholdToCompact = 0;
-		local perks = _entity.getSkills().query(this.Const.SkillType.Perk, true, true);
+		local perks = _entity.getSkills().query(::Const.SkillType.Perk, true, true);
 		perks = removeDuplicates(perks);
 		pushSectionName(perks, "Perks", 300);
 
@@ -390,13 +390,13 @@
 			});
 		}
 
-		local mainhand = _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local mainhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		if(::ModJimmysTooltips.Mod.ModSettings.getSetting("Items").getValue()){
 			if(mainhand != null){
 				local name = mainhand.getName();
 				//::logInfo(name);
 				pushSectionName(mainhand, "Equipped Items:", 400);
-				if(mainhand.isItemType(this.Const.Items.ItemType.Ammo)){
+				if(mainhand.isItemType(::Const.Items.ItemType.Ammo)){
 					tooltip.push({
 						id = 401,
 						type = "text",
@@ -414,11 +414,11 @@
 				}
 			}
 
-			local offhand = _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+			local offhand = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			if(offhand != null){
 				local name = offhand.getName();
 				// ::logInfo(name);
-				if(offhand.isItemType(this.Const.Items.ItemType.Ammo)){
+				if(offhand.isItemType(::Const.Items.ItemType.Ammo)){
 					tooltip.push({
 						id = 421,
 						type = "text",
@@ -436,12 +436,12 @@
 				}
 			}
 
-			local items = _entity.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag);
+			local items = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 			foreach (item in items){
 				local name = item.getName();
 				// ::logInfo(name);
 				pushSectionName(item, "Bags", 430);
-				if(item.isItemType(this.Const.Items.ItemType.Ammo)){
+				if(item.isItemType(::Const.Items.ItemType.Ammo)){
 					tooltip.push({
 						id = 431,
 						type = "text",
@@ -460,10 +460,10 @@
 			}
 		}
 
-		local accessories = _entity.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Accessory);
+		local accessories = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Accessory);
 		pushSection(accessories, "Accessory", 600, 0, "ui/items/");
 
-		local ammos = _entity.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Ammo);
+		local ammos = _entity.getItems().getAllItemsAtSlot(::Const.ItemSlot.Ammo);
 		pushSection(ammos, "Ammo", 700, 0, "ui/items/");
 
 		if(_targetedWithSkill == null && ::ModJimmysTooltips.Mod.ModSettings.getSetting("Skills").getValue() && mainhand != null){
@@ -801,7 +801,7 @@ local function colorizeInGreen( _text )
 	local d = _target.getSkills().buildPropertiesForDefense(actor, _skill);
 	local critical = 1.0 + p.getHitchance(::Const.BodyPart.Head) / 100.0 * (p.DamageAgainstMult[::Const.BodyPart.Head] - 1.0);
 	local armor = _target.getArmor(::Const.BodyPart.Head) * (p.getHitchance(::Const.BodyPart.Head) / 100.0) + _target.getArmor(::Const.BodyPart.Body) * (::Math.max(0, p.getHitchance(::Const.BodyPart.Body)) / 100.0);
-	local armorDamage = this.Math.min(armor, p.getArmorDamageAverage()) * (d.DamageReceivedArmorMult * d.DamageReceivedTotalMult);
+	local armorDamage = ::Math.min(armor, p.getArmorDamageAverage()) * (d.DamageReceivedArmorMult * d.DamageReceivedTotalMult);
 
 	if (_skill.isRanged())
 		armorDamage = armorDamage * (p.RangedDamageMult * d.DamageReceivedRangedMult);

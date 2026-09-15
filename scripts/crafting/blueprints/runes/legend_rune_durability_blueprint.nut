@@ -5,7 +5,7 @@ this.legend_rune_durability_blueprint <- this.inherit("scripts/crafting/legend_r
 		this.m.Rune = ::Legends.Rune.LegendRssDurability;
 		this.legend_rune.create();
 		this.m.ID = "blueprint.legend_rune_durability";
-		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.Misc;
 	}
 
 });

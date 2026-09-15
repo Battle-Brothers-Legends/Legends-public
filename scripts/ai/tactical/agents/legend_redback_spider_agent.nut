@@ -3,7 +3,7 @@ this.legend_redback_spider_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.LegendRedbackSpider;
+		this.m.ID = ::Const.AI.Agent.ID.LegendRedbackSpider;
 		this.m.Properties.TargetPriorityHitchanceMult = 1.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 1.0;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;

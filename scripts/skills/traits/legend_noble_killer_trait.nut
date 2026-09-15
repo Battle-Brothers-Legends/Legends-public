@@ -54,11 +54,11 @@ this.legend_noble_killer_trait <- this.inherit("scripts/skills/traits/character_
 		}
 
 		local fightingNobles = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.NobleHouse)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.NobleHouse)
 			{
 				fightingNobles = true;
 				break;

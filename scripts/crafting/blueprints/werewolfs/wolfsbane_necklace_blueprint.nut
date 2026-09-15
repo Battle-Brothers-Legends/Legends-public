@@ -4,7 +4,7 @@ this.wolfsbane_necklace_blueprint <- this.inherit("scripts/crafting/blueprint", 
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.wolfsbane_necklace";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = ::Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_wolfsbane_necklace_item");
 		this.m.Cost = 10;
 		local ingredients = [

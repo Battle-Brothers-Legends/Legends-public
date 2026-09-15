@@ -4,15 +4,15 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 	{
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_helmet_mountain_helm";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Mountain Helm";
 		this.m.Description = "A helmet crafted from the skin and skull of a mighty rock unhold, which continues to mend itself even after the beast's death.";
 		this.m.ArmorDescription = "Includes a heavy, stone-like helmet.";
 		this.m.Variants = [1,2];
 		this.m.Variant = 1;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 2000;
 		this.m.Condition = 30;
 		this.m.ConditionMax = 30;
@@ -22,7 +22,7 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 		// this.m.NameList = ["Helmet of the Mountain"];
-		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
+		// this.m.Name = this.m.NameList[::Math.rand(0, this.m.NameList.len())];
 	}
 
 	function updateVariant()
@@ -65,9 +65,9 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();
-		local helm = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local helm = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local helmMissing = helm.getArmorMax() - helm.getArmor();
-		local helmAdded = this.Math.min(helmMissing, this.Math.floor(helm.getArmorMax() * 0.1));
+		local helmAdded = ::Math.min(helmMissing, ::Math.floor(helm.getArmorMax() * 0.1));
 
 
 		if (helmAdded <= 0)
@@ -80,9 +80,9 @@ this.legend_helmet_mountain_helm <- this.inherit("scripts/items/legend_helmets/l
 
 		if (!actor.isHiddenToPlayer())
 		{
-			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play("sounds/enemies/unhold_regenerate_02.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + helmAdded + " points");
+			::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+			::Sound.play("sounds/enemies/unhold_regenerate_02.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + helmAdded + " points");
 		}
 	}
 });

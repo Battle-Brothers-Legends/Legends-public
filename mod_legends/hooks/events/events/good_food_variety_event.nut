@@ -1,6 +1,6 @@
 ::mods_hookExactClass("events/events/good_food_variety_event", function(o) {
 	o.onUpdateScore = function() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local hasBros = false;
 
 		foreach (bro in brothers) {
@@ -18,11 +18,11 @@
 		if (!hasBros)
 			return;
 
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local food = [];
 
 		foreach (item in stash) {
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Food) && food.find(item.getID()) == null)
+			if (item != null && item.isItemType(::Const.Items.ItemType.Food) && food.find(item.getID()) == null)
 				food.push(item.getID());
 		}
 

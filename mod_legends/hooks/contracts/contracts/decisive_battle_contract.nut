@@ -63,27 +63,27 @@
 		::Legends.Screens.hook(this, "InterceptSupplies", function (_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_96.png[/img]You meet with %commander% in %their_commander% tent. %They_commander% looks rather excited. A shrewd and shrouded little man stands by %their_commander% side. The commander talks hurriedly.%SPEECH_ON%{My little bird here has reported that a shipment of equipment is heading toward %feudfamily%\'s army. If we can intercept and destroy it, they won\'t be nearly as ready to fight in the future! | Hello, sellsword. My spies tell me that %feudfamily% has a much needed shipment of equipment heading toward their camp. I need you to go and destroy it. | Aren\'t spies the best? Look at this little man. He tells me, sir, %feudfamily% has a large shipment of goods coming in. Weapons, armor, food, so and so forth. Well I say, I\'ve got just the man to take advantage of this news: you! Go and find this shipment and lay it to waste. | Battles are oft won before they ever take place, you know that, right? My little spy here tells me that %feudfamily% has a shipment of arms and armor coming in. If you can manage to take it out, then their army will be far less prepared for a fight on open ground. | Did you know I once won a battle without so much as raising a sword? I managed to intercept a shipment of goods which left my enemy wholly unready to fight, so they surrendered instead. My little spy here tells me that %feudfamily% has a similar shipment of equipment coming in. I\'m sure it won\'t end the war, but if you could go and take it out that would be a huge boon. | Did you know that an army without equipment is hardly an army to begin with? %feudfamily%\'s army is running low on supplies. In fact, the reason they haven\'t attacked yet is because they\'re waiting for more arms and armor to arrive! Well, my little spy here has spotted that shipment. And I want you to go and destroy it. | I\'ve acquired a bit of most excellent news, sellsword. %feudfamily% is awaiting the arrival of arms and armor - and we know exactly where it\'s coming from. I just need you to go and do the obvious: destroy that shipment and cripple my enemy before he even knows what\'s hit him.}%SPEECH_OFF%";
 			_screen.start <- function () {
-				local startTile = this.World.getEntityByID(this.Flags.get("InterceptSuppliesStart")).getTile();
-				local destTile = this.World.getEntityByID(this.Flags.get("InterceptSuppliesDest")).getTile();
-				local enemyFaction = this.World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse"));
-				local party = enemyFaction.spawnEntity(startTile, "Supply Caravan", false, this.Const.World.Spawn.NobleCaravan, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+				local startTile = ::World.getEntityByID(this.Flags.get("InterceptSuppliesStart")).getTile();
+				local destTile = ::World.getEntityByID(this.Flags.get("InterceptSuppliesDest")).getTile();
+				local enemyFaction = ::World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse"));
+				local party = enemyFaction.spawnEntity(startTile, "Supply Caravan", false, ::Const.World.Spawn.NobleCaravan, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 				party.getSprite("base").Visible = false;
-				party.getSprite("banner").setBrush(this.World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse")).getBannerSmall());
+				party.getSprite("banner").setBrush(::World.FactionManager.getFaction(this.Flags.get("EnemyNobleHouse")).getBannerSmall());
 				party.setMirrored(true);
 				party.setVisibleInFogOfWar(true);
 				party.setImportant(true);
 				party.setDiscovered(true);
 				party.setDescription("A caravan with armed escorts transporting provisions, supplies and equipment between settlements.");
-				party.setFootprintType(this.Const.World.FootprintsType.Caravan);
+				party.setFootprintType(::Const.World.FootprintsType.Caravan);
 				party.getFlags().set("IsCaravan", true);
 				party.setAttackableByAI(false);
 				party.getFlags().add("ContractSupplies");
 				this.Contract.m.Destination = this.WeakTableRef(party);
 				this.Contract.m.UnitsSpawned.push(party);
-				party.getLoot().Money = this.Math.rand(50, 100);
-				party.getLoot().ArmorParts = this.Math.rand(0, 10);
-				party.getLoot().Medicine = this.Math.rand(0, 2);
-				party.getLoot().Ammo = this.Math.rand(0, 20);
+				party.getLoot().Money = ::Math.rand(50, 100);
+				party.getLoot().ArmorParts = ::Math.rand(0, 10);
+				party.getLoot().Medicine = ::Math.rand(0, 2);
+				party.getLoot().Ammo = ::Math.rand(0, 20);
 
 				switch (::Math.rand(1, 6)) {
 					case 1:
@@ -104,8 +104,8 @@
 				}
 				
 				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+				c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+				c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(destTile);
 				move.setRoadsOnly(true);
@@ -177,8 +177,8 @@
 	}
 
 	o.generateActors <- function () {
-		local commander = this.World.getTemporaryRoster().create("scripts/entity/tactical/humans/knight");
-		local name = this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)];
+		local commander = ::World.getTemporaryRoster().create("scripts/entity/tactical/humans/knight");
+		local name = ::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)];
 		if (commander.getGender() == 1) {
 			name = ::MSU.String.replace(name, "Sir", "Dame");
 		}
@@ -191,7 +191,7 @@
 				this.m.Commander.Appearance[s] = sprite.HasBrush ? sprite.getBrush().Name : "";
 			}
 		}
-		this.World.getTemporaryRoster().clear();
+		::World.getTemporaryRoster().clear();
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;

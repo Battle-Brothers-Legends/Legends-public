@@ -10,7 +10,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/holybluefire_circle.png";
 		this.m.IconMini = "mini_bluefire_circle";
 		this.m.Overlay = "bluefire_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -54,7 +54,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 	function onNewRound()
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 		{
 			this.removeSelf();
 			return;
@@ -83,7 +83,7 @@ this.legend_sanctified_effect <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 		{
 			this.removeSelf();
 			return;

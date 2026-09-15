@@ -4,14 +4,14 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_royal_lance";
-		this.m.NameList = this.Const.Strings.SpetumNames;
-		this.m.PrefixList = this.Const.Strings.SouthernPrefix;
-		this.m.SuffixList = this.Const.Strings.SouthernSuffix;
+		this.m.NameList = ::Const.Strings.SpetumNames;
+		this.m.PrefixList = ::Const.Strings.SouthernPrefix;
+		this.m.SuffixList = ::Const.Strings.SouthernSuffix;
 		this.m.Description = "This Spear is especially well-crafted, withstanding the tests of time, and its blade would be worthy of even a noble. Used for thrusting over some distance and keeping the enemy at bay.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
+		this.m.WeaponType = ::Const.Items.WeaponType.Spear;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Defensive;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -39,24 +39,24 @@ this.legend_named_royal_lance <- this.inherit("scripts/items/weapons/named/named
 
 	function createRandomName()
 	{
-		if (!this.m.UseRandomName || this.Math.rand(1, 100) <= 60)
+		if (!this.m.UseRandomName || ::Math.rand(1, 100) <= 60)
 		{
-			if (this.m.SuffixList.len() == 0 || this.Math.rand(1, 100) <= 70)
+			if (this.m.SuffixList.len() == 0 || ::Math.rand(1, 100) <= 70)
 			{
-				return this.m.PrefixList[this.Math.rand(0, this.m.PrefixList.len() - 1)] + " " + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
+				return this.m.PrefixList[::Math.rand(0, this.m.PrefixList.len() - 1)] + " " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
 			}
 			else
 			{
-				return this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)] + " " + this.m.SuffixList[this.Math.rand(0, this.m.SuffixList.len() - 1)];
+				return this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)] + " " + this.m.SuffixList[::Math.rand(0, this.m.SuffixList.len() - 1)];
 			}
 		}
-		else if (this.Math.rand(1, 2) == 1)
+		else if (::Math.rand(1, 2) == 1)
 		{
-			return this.getRandomCharacterName(this.Const.Strings.SouthernNamesLast) + "\'s " + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
+			return this.getRandomCharacterName(::Const.Strings.SouthernNamesLast) + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
 		}
 		else
 		{
-			return this.getRandomCharacterName(this.Const.Strings.NomadChampionStandalone) + "\'s " + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
+			return this.getRandomCharacterName(::Const.Strings.NomadChampionStandalone) + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
 		}
 	}
 

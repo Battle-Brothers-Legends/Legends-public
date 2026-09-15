@@ -23,7 +23,7 @@
 	local onAnySkillUsed = o.onAnySkillUsed;
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
 		if (_skill == this && this.m.IsHack)
-			_properties.HitChance[this.Const.BodyPart.Head] += 25;
+			_properties.HitChance[::Const.BodyPart.Head] += 25;
 		onAnySkillUsed( _skill, _targetEntity, _properties );
 	}
 });

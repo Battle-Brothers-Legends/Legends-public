@@ -15,8 +15,8 @@ this.legend_vala_warden_damage <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendValaWardenDamage);
 		this.m.Description = "Warden Damage Scaling";
 		this.m.Icon = "";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;

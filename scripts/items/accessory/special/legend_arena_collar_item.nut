@@ -6,7 +6,7 @@ this.legend_arena_collar_item <- this.inherit("scripts/items/accessory/accessory
 		this.m.ID = "accessory.legend_arena_collar";
 		this.m.Name = "Legend Arena Collar";
 		this.m.Description = "A collar worn by combatants in the Grand Tournament.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = false;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";

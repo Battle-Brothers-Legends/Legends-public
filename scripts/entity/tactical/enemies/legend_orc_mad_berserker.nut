@@ -3,11 +3,11 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 
 	function create() {
 		this.orc_berserker.create();
-		this.m.Type = this.Const.EntityType.LegendOrcMadBerserker;
-		this.m.XP = this.Const.Tactical.Actor.LegendOrcMadBerserker.XP;
-		if (this.m.Type != this.Const.EntityType.Player)
+		this.m.Type = ::Const.EntityType.LegendOrcMadBerserker;
+		this.m.XP = ::Const.Tactical.Actor.LegendOrcMadBerserker.XP;
+		if (this.m.Type != ::Const.EntityType.Player)
 		{
-			this.m.Name = this.Const.Strings.EntityName[this.m.Type];
+			this.m.Name = ::Const.Strings.EntityName[this.m.Type];
 		}
 		this.actor.create();
 	}
@@ -15,9 +15,9 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 	function onInit() {
 		this.orc_berserker.onInit();
 		local tattooBody = this.getSprite("tattoo_body");
-		tattooBody.setBrush("bust_orc_02_body_paint_0" + this.Math.rand(4, 6));
+		tattooBody.setBrush("bust_orc_02_body_paint_0" + ::Math.rand(4, 6));
 		local tattooHead = this.getSprite("tattoo_head");
-		tattooHead.setBrush("bust_orc_02_head_paint_0" + this.Math.rand(4, 6));
+		tattooHead.setBrush("bust_orc_02_head_paint_0" + ::Math.rand(4, 6));
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 		::Legends.Perks.grant(this, ::Legends.Perk.Brawny);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHeightenedReflexes);
@@ -42,7 +42,7 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 			"weapons/greenskins/legend_bough",
 			"weapons/greenskins/legend_skullbreaker"
 		];
-		local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 		this.m.Items.equip(this.new("scripts/items/" + weapon));
 		if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
 			this.m.Items.equip(this.new("scripts/items/" + weapon));
@@ -63,14 +63,14 @@ this.legend_orc_mad_berserker <- this.inherit("scripts/entity/tactical/enemies/o
 			"weapons/named/legend_named_orc_flail_2h",
 			"weapons/named/named_orc_axe"
 		];
-		local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 		this.m.Items.equip(this.new("scripts/items/" + weapon));
 		if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
 			local weapons = [
 				"weapons/greenskins/orc_axe",
 				"weapons/greenskins/orc_cleaver",
 			];
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			this.m.Items.updateDualWield();
 		}
 

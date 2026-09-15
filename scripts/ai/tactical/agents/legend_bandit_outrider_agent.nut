@@ -3,7 +3,7 @@ this.legend_bandit_outrider_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.BanditOutrider;
+		this.m.ID = ::Const.AI.Agent.ID.BanditOutrider;
 		this.m.IsUsingHeat = true;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.8;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.2;

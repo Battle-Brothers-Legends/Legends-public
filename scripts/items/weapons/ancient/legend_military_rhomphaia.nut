@@ -8,10 +8,10 @@ this.legend_military_rhomphaia <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A straighter, heavier than usual Rhomphaia that appears to be specially constructed and refined for dueling. This weapon lacks a reaping edge but is significantly easier to handle, despite it\'s weight.";
 		this.m.IconLarge = "weapons/melee/legend_military_rhompaia_01.png";
 		this.m.Icon = "weapons/melee/legend_military_rhompaia_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

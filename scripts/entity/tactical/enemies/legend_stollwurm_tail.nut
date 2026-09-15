@@ -163,22 +163,22 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendStollwurm;
-		this.m.BloodType = this.Const.BloodType.Green;
-		this.m.XP = this.Const.Tactical.Actor.LegendStollwurm.XP;
+		this.m.Type = ::Const.EntityType.LegendStollwurm;
+		this.m.BloodType = ::Const.BloodType.Green;
+		this.m.XP = ::Const.Tactical.Actor.LegendStollwurm.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-10, -25);
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.m.IsUsingZoneOfControl = false;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/lindwurm_hurt_01.wav",
 			"sounds/enemies/lindwurm_hurt_02.wav",
 			"sounds/enemies/lindwurm_hurt_03.wav",
 			"sounds/enemies/lindwurm_hurt_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/lindwurm_idle_01.wav",
 			"sounds/enemies/lindwurm_idle_02.wav",
 			"sounds/enemies/lindwurm_idle_03.wav",
@@ -191,11 +191,11 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/lindwurm_idle_10.wav",
 			"sounds/enemies/lindwurm_idle_11.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Attack] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 1.5;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 2.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] = 2.0;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.Sound[::Const.Sound.ActorEvent.Attack] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 2.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 2.0;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.getFlags().add("body_immune_to_acid");
 		this.getFlags().add("head_immune_to_acid");
 		this.getFlags().add("lindwurm");
@@ -206,7 +206,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playAttackSound()
 	{
-		this.playSound(this.Const.Sound.ActorEvent.Attack, this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] * (this.Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
+		this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
 	}
 
 	function onDamageReceived( _attacker, _skill, _hitInfo )
@@ -221,12 +221,12 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			return 0;
 		}
 
-		_hitInfo.BodyPart = this.Const.BodyPart.Body;
+		_hitInfo.BodyPart = ::Const.BodyPart.Body;
 
 		if (_attacker != null && _attacker.isPlayerControlled() && !this.isPlayerControlled())
 		{
 			this.setDiscovered(true);
-			this.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+			this.getTile().addVisibilityForFaction(::Const.Faction.Player);
 		}
 
 		local p = this.m.Body.m.Skills.buildPropertiesForBeingHit(_attacker, _skill, _hitInfo);
@@ -238,23 +238,23 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		if (_hitInfo.DamageDirect < 1.0)
 		{
 			armor = p.Armor[_hitInfo.BodyPart] * p.ArmorMult[_hitInfo.BodyPart];
-			armorDamage = this.Math.min(armor, _hitInfo.DamageArmor);
+			armorDamage = ::Math.min(armor, _hitInfo.DamageArmor);
 			armor = armor - armorDamage;
-			_hitInfo.DamageInflictedArmor = this.Math.max(0, armorDamage);
+			_hitInfo.DamageInflictedArmor = ::Math.max(0, armorDamage);
 		}
 
 		_hitInfo.DamageFatigue *= p.FatigueEffectMult;
-		this.m.Body.m.Fatigue = this.Math.min(this.getFatigueMax(), this.Math.round(this.m.Body.m.Fatigue + _hitInfo.DamageFatigue * p.FatigueReceivedPerHitMult));
+		this.m.Body.m.Fatigue = ::Math.min(this.getFatigueMax(), ::Math.round(this.m.Body.m.Fatigue + _hitInfo.DamageFatigue * p.FatigueReceivedPerHitMult));
 		local damage = 0;
-		damage = damage + this.Math.maxf(0.0, _hitInfo.DamageRegular * _hitInfo.DamageDirect - armor * this.Const.Combat.ArmorDirectDamageMitigationMult);
+		damage = damage + ::Math.maxf(0.0, _hitInfo.DamageRegular * _hitInfo.DamageDirect - armor * ::Const.Combat.ArmorDirectDamageMitigationMult);
 
 		if (armor <= 0 || _hitInfo.DamageDirect >= 1.0)
 		{
-			damage = damage + this.Math.max(0, _hitInfo.DamageRegular * this.Math.maxf(0.0, 1.0 - _hitInfo.DamageDirect) - armorDamage);
+			damage = damage + ::Math.max(0, _hitInfo.DamageRegular * ::Math.maxf(0.0, 1.0 - _hitInfo.DamageDirect) - armorDamage);
 		}
 
 		damage = damage * _hitInfo.BodyDamageMult;
-		damage = this.Math.max(0, this.Math.max(damage, this.Math.min(_hitInfo.DamageMinimum, _hitInfo.DamageMinimum * p.DamageReceivedTotalMult)));
+		damage = ::Math.max(0, ::Math.max(damage, ::Math.min(_hitInfo.DamageMinimum, _hitInfo.DamageMinimum * p.DamageReceivedTotalMult)));
 		_hitInfo.DamageInflictedHitpoints = damage;
 		this.m.Body.m.Skills.onDamageReceived(_attacker, _hitInfo.DamageInflictedHitpoints, _hitInfo.DamageInflictedArmor);
 		this.m.Racial.onDamageReceived(_attacker, _hitInfo.DamageInflictedHitpoints, _hitInfo.DamageInflictedArmor);
@@ -265,12 +265,12 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (armorHitSound.len() > 0)
 			{
-				this.Sound.play(armorHitSound[this.Math.rand(0, armorHitSound.len() - 1)], this.Const.Sound.Volume.ActorArmorHit, this.getPos());
+				::Sound.play(armorHitSound[::Math.rand(0, armorHitSound.len() - 1)], ::Const.Sound.Volume.ActorArmorHit, this.getPos());
 			}
 
-			if (damage < this.Const.Combat.PlayPainSoundMinDamage)
+			if (damage < ::Const.Combat.PlayPainSoundMinDamage)
 			{
-				this.playSound(this.Const.Sound.ActorEvent.NoDamageReceived, this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.NoDamageReceived]);
+				this.playSound(::Const.Sound.ActorEvent.NoDamageReceived, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.NoDamageReceived]);
 			}
 		}
 
@@ -282,11 +282,11 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			}
 			else
 			{
-				this.m.Body.m.Hitpoints = this.Math.round(this.m.Body.m.Hitpoints - damage);
+				this.m.Body.m.Hitpoints = ::Math.round(this.m.Body.m.Hitpoints - damage);
 			}
 		}
 
-		local fatalityType = this.Const.FatalityType.None;
+		local fatalityType = ::Const.FatalityType.None;
 
 		if (this.m.Body.m.Hitpoints <= 0)
 		{
@@ -294,17 +294,17 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (_skill != null)
 			{
-				if (_skill.getChanceDecapitate() >= 100 || _hitInfo.BodyPart == this.Const.BodyPart.Head && this.Math.rand(1, 100) <= _skill.getChanceDecapitate() * _hitInfo.FatalityChanceMult)
+				if (_skill.getChanceDecapitate() >= 100 || _hitInfo.BodyPart == ::Const.BodyPart.Head && ::Math.rand(1, 100) <= _skill.getChanceDecapitate() * _hitInfo.FatalityChanceMult)
 				{
-					fatalityType = this.Const.FatalityType.Decapitated;
+					fatalityType = ::Const.FatalityType.Decapitated;
 				}
-				else if (_skill.getChanceSmash() >= 100 || _hitInfo.BodyPart == this.Const.BodyPart.Head && this.Math.rand(1, 100) <= _skill.getChanceSmash() * _hitInfo.FatalityChanceMult)
+				else if (_skill.getChanceSmash() >= 100 || _hitInfo.BodyPart == ::Const.BodyPart.Head && ::Math.rand(1, 100) <= _skill.getChanceSmash() * _hitInfo.FatalityChanceMult)
 				{
-					fatalityType = this.Const.FatalityType.Smashed;
+					fatalityType = ::Const.FatalityType.Smashed;
 				}
-				else if (_skill.getChanceDisembowel() >= 100 || _hitInfo.BodyPart == this.Const.BodyPart.Body && this.Math.rand(1, 100) <= _skill.getChanceDisembowel() * _hitInfo.FatalityChanceMult)
+				else if (_skill.getChanceDisembowel() >= 100 || _hitInfo.BodyPart == ::Const.BodyPart.Body && ::Math.rand(1, 100) <= _skill.getChanceDisembowel() * _hitInfo.FatalityChanceMult)
 				{
-					fatalityType = this.Const.FatalityType.Disemboweled;
+					fatalityType = ::Const.FatalityType.Disemboweled;
 				}
 			}
 		}
@@ -316,19 +316,19 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			if (this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] != 0)
 			{
 				overflowDamage = overflowDamage - this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] * this.m.Body.m.BaseProperties.ArmorMult[_hitInfo.BodyPart];
-				this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] = this.Math.max(0, this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] * this.m.Body.m.BaseProperties.ArmorMult[_hitInfo.BodyPart] - _hitInfo.DamageArmor);
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s natural armor is hit for [b]" + this.Math.floor(_hitInfo.DamageArmor) + "[/b] damage");
+				this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] = ::Math.max(0, this.m.Body.m.BaseProperties.Armor[_hitInfo.BodyPart] * this.m.Body.m.BaseProperties.ArmorMult[_hitInfo.BodyPart] - _hitInfo.DamageArmor);
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s natural armor is hit for [b]" + ::Math.floor(_hitInfo.DamageArmor) + "[/b] damage");
 			}
 
 			if (overflowDamage > 0)
 			{
-				this.m.Items.onDamageReceived(overflowDamage, fatalityType, _hitInfo.BodyPart == this.Const.BodyPart.Body ? this.Const.ItemSlot.Body : this.Const.ItemSlot.Head, _attacker);
+				this.m.Items.onDamageReceived(overflowDamage, fatalityType, _hitInfo.BodyPart == ::Const.BodyPart.Body ? ::Const.ItemSlot.Body : ::Const.ItemSlot.Head, _attacker);
 			}
 		}
 
-		if (this.getFaction() == this.Const.Faction.Player && _attacker != null && _attacker.isAlive())
+		if (this.getFaction() == ::Const.Faction.Player && _attacker != null && _attacker.isAlive())
 		{
-			this.Tactical.getCamera().quake(_attacker, this, 5.0, 0.16, 0.3);
+			::Tactical.getCamera().quake(_attacker, this, 5.0, 0.16, 0.3);
 		}
 
 		if (damage <= 0 && armorDamage >= 0)
@@ -340,8 +340,8 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (_attacker != null && _attacker.isAlive())
 				{
-					this.Tactical.getShaker().cancel(this);
-					this.Tactical.getShaker().shake(this, _attacker.getTile(), this.m.IsShakingOnHit ? 2 : 3, this.Const.Combat.ShakeEffectArmorHitColor, this.Const.Combat.ShakeEffectArmorHitHighlight, this.Const.Combat.ShakeEffectArmorHitFactor, this.Const.Combat.ShakeEffectArmorSaturation, layers, recoverMult);
+					::Tactical.getShaker().cancel(this);
+					::Tactical.getShaker().shake(this, _attacker.getTile(), this.m.IsShakingOnHit ? 2 : 3, ::Const.Combat.ShakeEffectArmorHitColor, ::Const.Combat.ShakeEffectArmorHitHighlight, ::Const.Combat.ShakeEffectArmorHitFactor, ::Const.Combat.ShakeEffectArmorSaturation, layers, recoverMult);
 				}
 			}
 
@@ -350,7 +350,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			return 0;
 		}
 
-		if (damage >= this.Const.Combat.SpawnBloodMinDamage)
+		if (damage >= ::Const.Combat.SpawnBloodMinDamage)
 		{
 			this.spawnBloodDecals(this.getTile());
 		}
@@ -362,20 +362,20 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		}
 		else
 		{
-			if (damage >= this.Const.Combat.SpawnBloodEffectMinDamage)
+			if (damage >= ::Const.Combat.SpawnBloodEffectMinDamage)
 			{
-				local mult = this.Math.maxf(0.75, this.Math.minf(2.0, damage / this.getHitpointsMax() * 3.0));
+				local mult = ::Math.maxf(0.75, ::Math.minf(2.0, damage / this.getHitpointsMax() * 3.0));
 				this.spawnBloodEffect(this.getTile(), mult);
 			}
 
-			if (this.m.Body.m.CurrentProperties.IsAffectedByInjuries && this.m.IsAbleToDie && damage >= this.Const.Combat.InjuryMinDamage && this.m.Body.m.CurrentProperties.ThresholdToReceiveInjuryMult != 0 && _hitInfo.InjuryThresholdMult != 0 && _hitInfo.Injuries != null)
+			if (this.m.Body.m.CurrentProperties.IsAffectedByInjuries && this.m.IsAbleToDie && damage >= ::Const.Combat.InjuryMinDamage && this.m.Body.m.CurrentProperties.ThresholdToReceiveInjuryMult != 0 && _hitInfo.InjuryThresholdMult != 0 && _hitInfo.Injuries != null)
 			{
 				local potentialInjuries = [];
-				local bonus = _hitInfo.BodyPart == this.Const.BodyPart.Head ? 1.25 : 1.0;
+				local bonus = _hitInfo.BodyPart == ::Const.BodyPart.Head ? 1.25 : 1.0;
 
 				foreach( inj in _hitInfo.Injuries )
 				{
-					if (inj.Threshold * _hitInfo.InjuryThresholdMult * this.Const.Combat.InjuryThresholdMult * this.m.Body.m.CurrentProperties.ThresholdToReceiveInjuryMult * bonus <= damage / (this.getHitpointsMax() * 1.0))
+					if (inj.Threshold * _hitInfo.InjuryThresholdMult * ::Const.Combat.InjuryThresholdMult * this.m.Body.m.CurrentProperties.ThresholdToReceiveInjuryMult * bonus <= damage / (this.getHitpointsMax() * 1.0))
 					{
 						if (!this.m.Body.m.Skills.hasSkill(inj.ID))
 						{
@@ -386,46 +386,46 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (potentialInjuries.len() != 0)
 				{
-					local injury = this.new("scripts/skills/" + potentialInjuries[this.Math.rand(0, potentialInjuries.len() - 1)]);
+					local injury = this.new("scripts/skills/" + potentialInjuries[::Math.rand(0, potentialInjuries.len() - 1)]);
 					this.m.Body.m.Skills.add(injury);
 
 					if (this.isPlayerControlled() && this.isKindOf(this, "player"))
 					{
-						this.worsenMood(this.Const.MoodChange.Injury, "Suffered an injury");
+						this.worsenMood(::Const.MoodChange.Injury, "Suffered an injury");
 					}
 
 					if (this.isPlayerControlled() || !this.isHiddenToPlayer())
 					{
-						this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(damage) + "[/b] damage and suffers " + injury.getNameOnly() + "!");
+						::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s " + ::Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + ::Math.floor(damage) + "[/b] damage and suffers " + injury.getNameOnly() + "!");
 					}
 				}
 				else if (damage > 0 && !this.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(damage) + "[/b] damage");
+					::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s " + ::Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + ::Math.floor(damage) + "[/b] damage");
 				}
 			}
 			else if (damage > 0 && !this.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(damage) + "[/b] damage");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s " + ::Const.Strings.BodyPartName[_hitInfo.BodyPart] + " is hit for [b]" + ::Math.floor(damage) + "[/b] damage");
 			}
 
-			if (this.m.Body.m.MoraleState != this.Const.MoraleState.Ignore && damage > this.Const.Morale.OnHitMinDamage && this.getCurrentProperties().IsAffectedByLosingHitpoints)
+			if (this.m.Body.m.MoraleState != ::Const.MoraleState.Ignore && damage > ::Const.Morale.OnHitMinDamage && this.getCurrentProperties().IsAffectedByLosingHitpoints)
 			{
-				this.checkMorale(-1, this.Const.Morale.OnHitBaseDifficulty * (1.0 - this.getHitpoints() / this.getHitpointsMax()), this.Const.MoraleCheckType.Default, "", true);
+				this.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - this.getHitpoints() / this.getHitpointsMax()), ::Const.MoraleCheckType.Default, "", true);
 			}
 
 			this.m.Body.m.Skills.onAfterDamageReceived();
 
-			if (damage >= this.Const.Combat.PlayPainSoundMinDamage && this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived].len() > 0)
+			if (damage >= ::Const.Combat.PlayPainSoundMinDamage && this.m.Sound[::Const.Sound.ActorEvent.DamageReceived].len() > 0)
 			{
 				local volume = 1.0;
 
-				if (damage < this.Const.Combat.PlayPainVolumeMaxDamage)
+				if (damage < ::Const.Combat.PlayPainVolumeMaxDamage)
 				{
-					volume = damage / this.Const.Combat.PlayPainVolumeMaxDamage;
+					volume = damage / ::Const.Combat.PlayPainVolumeMaxDamage;
 				}
 
-				this.playSound(this.Const.Sound.ActorEvent.DamageReceived, this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] * volume, this.m.SoundPitch);
+				this.playSound(::Const.Sound.ActorEvent.DamageReceived, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] * volume, this.m.SoundPitch);
 			}
 
 			this.m.Body.m.Skills.update();
@@ -434,12 +434,12 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 			if (!this.isHiddenToPlayer())
 			{
 				local layers = this.m.ShakeLayers[_hitInfo.BodyPart];
-				local recoverMult = this.Math.minf(1.5, this.Math.maxf(1.0, damage * 2.0 / this.getHitpointsMax()));
+				local recoverMult = ::Math.minf(1.5, ::Math.maxf(1.0, damage * 2.0 / this.getHitpointsMax()));
 
 				if (_attacker != null && _attacker.isAlive())
 				{
-					this.Tactical.getShaker().cancel(this);
-					this.Tactical.getShaker().shake(this, _attacker.getTile(), this.m.IsShakingOnHit ? 2 : 3, this.Const.Combat.ShakeEffectHitpointsHitColor, this.Const.Combat.ShakeEffectHitpointsHitHighlight, this.Const.Combat.ShakeEffectHitpointsHitFactor, this.Const.Combat.ShakeEffectHitpointsSaturation, layers, recoverMult);
+					::Tactical.getShaker().cancel(this);
+					::Tactical.getShaker().shake(this, _attacker.getTile(), this.m.IsShakingOnHit ? 2 : 3, ::Const.Combat.ShakeEffectHitpointsHitColor, ::Const.Combat.ShakeEffectHitpointsHitHighlight, ::Const.Combat.ShakeEffectHitpointsHitFactor, ::Const.Combat.ShakeEffectHitpointsSaturation, layers, recoverMult);
 				}
 			}
 
@@ -451,12 +451,12 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
-			decal = _tile.spawnDetail("bust_stollwurm_tail_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_stollwurm_tail_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
@@ -468,10 +468,10 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -479,7 +479,7 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Stollwurm";
 		corpse.IsHeadAttached = true;
 		if (_tile != null)
@@ -487,12 +487,12 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function checkMorale( _change, _difficulty, _type = this.Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
+	function checkMorale( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
 		this.m.Body.checkMorale(_change, _difficulty, _type, _showIconBeforeMoraleIcon, _noNewLine);
 	}
 
-	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false ) {
+	function kill( _killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false ) {
 		this.actor.kill(_killer, _skill, _fatalityType, _silent);
 
 		if (!::Legends.S.isEntityNullOrDead(this.m.Body)) {
@@ -505,19 +505,19 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		if (this.m.ParentID != 0)
 		{
-			this.m.Body = this.Tactical.getEntityByID(this.m.ParentID);
+			this.m.Body = ::Tactical.getEntityByID(this.m.ParentID);
 			this.m.Items = this.m.Body.m.Items;
 		}
 
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendStollwurm);
+		b.setValues(::Const.Tactical.Actor.LegendStollwurm);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToStun = true;
 		b.IsMovable = false;
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;
@@ -526,18 +526,18 @@ this.legend_stollwurm_tail <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_stollwurm_tail_0" + this.Math.rand(1, 1));
+		body.setBrush("bust_stollwurm_tail_0" + ::Math.rand(1, 1));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.08, 0.08, 0.08);
 		}

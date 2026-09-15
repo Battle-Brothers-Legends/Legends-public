@@ -14,8 +14,8 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
-		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.NonTargeted + 11;
+		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.NonTargeted + 11;
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -31,7 +31,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 			return false;
 
 		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
@@ -90,7 +90,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			});
 		}
 
-		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 		{
 			ret.push({
 				id = 11,
@@ -113,7 +113,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			local expertise = actor.getBravery() / this.m.Difficulty;
 			expertise += this.m.Failures * 20.0 / this.m.Difficulty;
 
-			local everyone = this.Tactical.Entities.getAllInstances();
+			local everyone = ::Tactical.Entities.getAllInstances();
 			foreach (ever in everyone)
 			{
 				foreach (e in ever)
@@ -151,22 +151,22 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 
 			local minimumHitChance = ::Legends.Mod.ModSettings.getSetting("MinimumChanceToHit").getValue();
 			local maximumHitChance = ::Legends.Mod.ModSettings.getSetting("MaximumChanceToHit").getValue();
-			expertise = this.Math.max(minimumHitChance, this.Math.min(maximumHitChance, expertise));
+			expertise = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, expertise));
 
 			this.logInfo("INCORPOREAL PERSPECTIVE :: expertise is " + expertise);
 
-			if (this.Math.rand(1, 100) <= expertise)  // TRANCE SUCCESS
+			if (::Math.rand(1, 100) <= expertise)  // TRANCE SUCCESS
 			{
 				expertise += 10.0;
 
-				local targets = this.Tactical.Entities.getAllInstances();
+				local targets = ::Tactical.Entities.getAllInstances();
 				foreach (tar in targets)
 				{
 					foreach (t in tar)
 					{
 						if (!t.isAlliedWith(actor))
 						{
-							if (this.Math.rand(1, 100) <= expertise)  // APPLICATION SUCCESS
+							if (::Math.rand(1, 100) <= expertise)  // APPLICATION SUCCESS
 							{
 								::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect, function(_effect) {
 									_effect.setVala(this);
@@ -176,15 +176,15 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 					}
 				}
 
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " returns to this realm.");
-//				this.Sound.play("sounds/combat/legend_vala_perspective.wav");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " returns to this realm.");
+//				::Sound.play("sounds/combat/legend_vala_perspective.wav");
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 			else  // TRANCE FAILURE
 			{
 				if (this.isAffordableBasedOnFatigue())  //  STAY IN TRANCE AND GAIN A STACKING BONUS SUCCESS CHANCE FOR NEXT TURN
 				{
-					this.Sound.play("sounds/combat/legend_vala_trance.wav");
+					::Sound.play("sounds/combat/legend_vala_trance.wav");
 					this.m.TranceIsActive = true;
 					++this.m.Failures;
 					actor.m.ActionPoints = 0;
@@ -240,7 +240,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		{
 			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
-				if (this.Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
+				if (::Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
 				{
 					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
@@ -256,11 +256,11 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 	function onDeath( _fatalityType )
 	{
 		local actor =  this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 			return;
 
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		foreach (tar in targets)
 		{
@@ -286,8 +286,8 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");
-			this.Sound.play("sounds/combat/legend_vala_trance.wav");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");
+			::Sound.play("sounds/combat/legend_vala_trance.wav");
 			actor.m.ActionPoints = 0;
 			this.m.TranceIsActive = true;
 		}

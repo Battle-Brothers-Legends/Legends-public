@@ -36,7 +36,7 @@ this.legend_rallied_militia_situation <- this.inherit("scripts/entity/world/sett
 			_draftList.push(::Legends.Background.Militia);
 		}
 
-		if  (this.World.Assets.getOrigin().getID() == "scenario.militia")
+		if  (::World.Assets.getOrigin().getID() == "scenario.militia")
 		{
 			for (local i = 0; i < 6; ++i)
 			{

@@ -13,7 +13,7 @@
 			MinCount = 1,
 			MaxCount = 3,
 			Weight = 30 //percentage chance after min count is met
-			Type = this.Const.World.Spawn.Troops.CaravanDonkey,
+			Type = ::Const.World.Spawn.Troops.CaravanDonkey,
 			Cost = 0
 		}
 	],
@@ -22,7 +22,7 @@
 			Weight = 42,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Footman,
+					Type = ::Const.World.Spawn.Troops.Footman,
 					Cost = 20
 				}
 			]
@@ -31,7 +31,7 @@
 			Weight = 20,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Mercenary,
+					Type = ::Const.World.Spawn.Troops.Mercenary,
 					Cost = 25
 				}
 			]
@@ -40,7 +40,7 @@
 			Weight = 3,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Wardog,
+					Type = ::Const.World.Spawn.Troops.Wardog,
 					Cost = 8
 				}
 			]
@@ -49,11 +49,11 @@
 			Weight = 15,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Billman,
+					Type = ::Const.World.Spawn.Troops.Billman,
 					Cost = 15
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NoblePollax,
+					Type = ::Const.World.Spawn.Troops.NoblePollax,
 					Cost = 40
 				}
 			]
@@ -62,11 +62,11 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Arbalester,
+					Type = ::Const.World.Spawn.Troops.Arbalester,
 					Cost = 20
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NobleSureshot,
+					Type = ::Const.World.Spawn.Troops.NobleSureshot,
 					Cost = 50
 				}
 			]
@@ -76,11 +76,11 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.MercenaryRanged,
+					Type = ::Const.World.Spawn.Troops.MercenaryRanged,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.MasterArcher,
+					Type = ::Const.World.Spawn.Troops.MasterArcher,
 					Cost = 40
 				}
 			]
@@ -89,7 +89,7 @@
 			Weight = 2,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Greatsword,
+					Type = ::Const.World.Spawn.Troops.Greatsword,
 					Cost = 25
 				}
 			]
@@ -98,11 +98,11 @@
 			Weight = 2,
 			Types =[
 				{
-					Type = this.Const.World.Spawn.Troops.HedgeKnight,
+					Type = ::Const.World.Spawn.Troops.HedgeKnight,
 					Cost = 40
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Swordmaster,
+					Type = ::Const.World.Spawn.Troops.Swordmaster,
 					Cost = 40
 				}
 			]
@@ -112,7 +112,7 @@
 			MinR = 0.5 * 365,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Sergeant,
+					Type = ::Const.World.Spawn.Troops.Sergeant,
 					Cost = 40,
 					Roll = true
 				}
@@ -123,7 +123,7 @@
 			MinR = 0.5 * 365,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendHalberdier,
+					Type = ::Const.World.Spawn.Troops.LegendHalberdier,
 					Cost = 60
 				}
 			]
@@ -133,7 +133,7 @@
 			MinR = 0.5 * 365,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendFencer,
+					Type = ::Const.World.Spawn.Troops.LegendFencer,
 					Cost = 80
 				}
 			]
@@ -143,7 +143,7 @@
 			MinR = 0.5 * 365,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendSlinger,
+					Type = ::Const.World.Spawn.Troops.LegendSlinger,
 					Cost = 80
 				}
 			]
@@ -153,7 +153,7 @@
 			MinR = 0.5 * 500,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendManAtArms,
+					Type = ::Const.World.Spawn.Troops.LegendManAtArms,
 					Cost = 100
 				}
 			]

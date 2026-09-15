@@ -10,8 +10,8 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/throw_axe", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/throw_axe_hit", 3);
 		this.m.SoundOnHitDelay = -150;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 750;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -23,15 +23,15 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsShowingProjectile = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsDoingForwardMove = false;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 12;
 		this.m.MinRange = 2;
 		this.m.MaxRange = 3;
 		this.m.MaxLevelDifference = 4;
 		this.m.DirectDamageMult = 0.2;
-		this.m.ProjectileType = this.Const.ProjectileType.Dagger;
+		this.m.ProjectileType = ::Const.ProjectileType.Dagger;
 		this.m.ProjectileTimeScale = 1.5;
 	}
 
@@ -57,7 +57,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -72,14 +72,14 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 	function canDoubleGrip () {
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
-		local main = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local main = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		return (missinghand == null || newhand != null) && main != null && off == null && main.isDoubleGrippable();
 	}
 
 	function isUsable() {
 		local ammoNeeded = this.canDoubleGrip() ? 2 : 1;
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() >= ammoNeeded && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() >= ammoNeeded && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function getAmmo() {
@@ -139,10 +139,10 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		if (!_bodyPart == ::Const.BodyPart.Head)
 			return;
 
-		if (this.Math.rand(1, 100) <= this.m.DistractedChance) {
+		if (::Math.rand(1, 100) <= this.m.DistractedChance) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Distracted);
 			if (!this.getContainer().getActor().isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " distracted");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " distracted");
 		}
 	}
 
@@ -150,7 +150,7 @@ this.legend_throw_knife_skill <- this.inherit("scripts/skills/skill", {
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			this.m.MinRange = 1;
 
-		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInThrowing ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 		this.m.ActionPointCost = this.getContainer().hasPerk(::Legends.Perk.LegendAmbidextrous) ? 3 : 4;
 		this.m.DistractedChance = _properties.IsSpecializedInDaggers ? 50 : 25;

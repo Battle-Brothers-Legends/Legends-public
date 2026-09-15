@@ -9,13 +9,13 @@ this.legend_orc_throwing_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Categories = "Throwing Weapon/Spear, One-Handed";
 		this.m.IconLarge = "weapons/ranged/legend_orc_throwing_spear.png";
 		this.m.Icon = "weapons/ranged/legend_orc_throwing_spear_70x70.png";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Tool;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Tool;
 		this.m.IsAgainstShields = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowArmamentIcon = true;
 		this.m.ArmamentIcon = "icon_orc_weapon_03";
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.OneHanded;
 		this.m.Value = 400;
 		this.m.Ammo = 1;
 		this.m.AmmoMax = 1;
@@ -79,7 +79,7 @@ this.legend_orc_throwing_spear <- this.inherit("scripts/items/weapons/weapon", {
 
 	function isDroppedAsLoot()
 	{
-		return this.weapon.isDroppedAsLoot() && (this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getCurrentSlotType() != this.Const.ItemSlot.Bag);
+		return this.weapon.isDroppedAsLoot() && (this.m.LastEquippedByFaction == ::Const.Faction.Player || this.getCurrentSlotType() != ::Const.ItemSlot.Bag);
 	}
 
 	function onEquip()

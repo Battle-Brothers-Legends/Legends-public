@@ -1,14 +1,14 @@
 this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create() {
-		this.m.Type = this.Const.EntityType.BanditLeader;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.BanditLeader.XP;
+		this.m.Type = ::Const.EntityType.BanditLeader;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.BanditLeader.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
 	}
 
 	function onInit() {
@@ -17,7 +17,7 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		//this.setArmorSaturation(0.85);
 		//this.getSprite("shield_icon").setBrightness(0.85);
 	}
@@ -29,7 +29,7 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 	}
 
 	function assignRandomEquipment() {
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head)) {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			local armor = [
 				[1, "coat_of_plates"],
 				[1, "coat_of_scales"],
@@ -58,13 +58,13 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 			local outfits = [
 				[1, "red_bandit_leader_outfit_00"]
 			];
-			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) ) {
+			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) ) {
 				this.m.Items.equip(item);
 			}
 			return;
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null) {
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null) {
 			local armor = [
 				[1, "reinforced_mail_hauberk"],
 				[2, "heavy_lamellar_armor"],
@@ -74,11 +74,11 @@ this.legend_bandit_employer <- ::inherit("scripts/entity/tactical/human", {
 				[1, "light_scale_armor"],
 				[1, "red_bandit_leader_armor"]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor))
+			this.m.Items.equip(::Const.World.Common.pickArmor(armor))
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null) {
-			local item = this.Const.World.Common.pickHelmet([
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
+			local item = ::Const.World.Common.pickHelmet([
 				[1, "closed_mail_coif"],
 				[1, "padded_kettle_hat"],
 				[1, "kettle_hat_with_closed_mail"],

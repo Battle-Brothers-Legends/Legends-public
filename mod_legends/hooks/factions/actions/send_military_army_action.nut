@@ -43,8 +43,8 @@
 			}
 		}
 
-		local activeContract = this.World.Contracts.getActiveContract();
-		local settlements = this.World.EntityManager.getSettlements();
+		local activeContract = ::World.Contracts.getActiveContract();
+		local settlements = ::World.EntityManager.getSettlements();
 		local lowest_distance = 99999;
 		local best_settlement;
 
@@ -53,7 +53,7 @@
 				continue;
 			}
 
-			if (this.World.FactionManager.isAllied(_faction.getID(), s.getFaction())) {
+			if (::World.FactionManager.isAllied(_faction.getID(), s.getFaction())) {
 				continue;
 			}
 
@@ -61,7 +61,7 @@
 				continue;
 			}
 
-			if (this.World.FactionManager.isHolyWar() && s.getActiveAttachedLocations() == 0) {
+			if (::World.FactionManager.isHolyWar() && s.getActiveAttachedLocations() == 0) {
 				continue;
 			}
 
@@ -103,17 +103,17 @@
 			}
 		}
 
-		for (local i = 0; i != this.Math.min(2, spawnpoints.len()); i = ++i) {
-			local party = this.getFaction().spawnEntity(spawnpoints[i], origin.getName() + " Company", true, this.Const.World.Spawn.Noble, this.Math.rand(80, 120) * this.getScaledDifficultyMult());
+		for (local i = 0; i != ::Math.min(2, spawnpoints.len()); i = ++i) {
+			local party = this.getFaction().spawnEntity(spawnpoints[i], origin.getName() + " Company", true, ::Const.World.Spawn.Noble, ::Math.rand(80, 120) * this.getScaledDifficultyMult());
 			party.getSprite("body").setBrush(party.getSprite("body").getBrush().Name + "_" + _faction.getBannerString());
 			party.setDescription("Professional soldiers in service to local lords.");
-			party.setFootprintType(this.Const.World.FootprintsType.Nobles);
+			party.setFootprintType(::Const.World.FootprintsType.Nobles);
 			party.getFlags().set("IsRandomlySpawned", true);
-			party.getLoot().Money = this.Math.rand(50, 200);
-			party.getLoot().ArmorParts = this.Math.rand(0, 25);
-			party.getLoot().Medicine = this.Math.rand(0, 3);
-			party.getLoot().Ammo = this.Math.rand(0, 30);
-			local r = this.Math.rand(1, 4);
+			party.getLoot().Money = ::Math.rand(50, 200);
+			party.getLoot().ArmorParts = ::Math.rand(0, 25);
+			party.getLoot().Medicine = ::Math.rand(0, 3);
+			party.getLoot().Ammo = ::Math.rand(0, 30);
+			local r = ::Math.rand(1, 4);
 
 			if (r == 1) {
 				party.addToInventory("supplies/bread_item");
@@ -128,7 +128,7 @@
 			local c = party.getController();
 
 			if (targets.len() != 0) {
-				local target = targets[this.Math.rand(0, targets.len() - 1)];
+				local target = targets[::Math.rand(0, targets.len() - 1)];
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(target.getTile());
 				c.addOrder(move);
@@ -142,7 +142,7 @@
 				local despawn = this.new("scripts/ai/world/orders/despawn_order");
 				c.addOrder(despawn);
 			} else {
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+				c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 				local target = best_settlement;
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(target.getTile());

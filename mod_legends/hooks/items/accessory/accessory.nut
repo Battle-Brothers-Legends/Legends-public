@@ -49,11 +49,11 @@
 		onEquip();
 		if (this.m.StashModifier > 0)
 		{
-			if (this.World.State.getPlayer() == null)
+			if (::World.State.getPlayer() == null)
 			{
 				return;
 			}
-			this.World.State.getPlayer().calculateStashModifier();
+			::World.State.getPlayer().calculateStashModifier();
 		}
 
 		this.setAccessoryVisible(this.m.AccessoryVisible);
@@ -61,7 +61,7 @@
 
 	o.playInventorySound <- function ( _eventType )
 	{
-		this.Sound.play(this.m.InventorySound, this.Const.Sound.Volume.Inventory);
+		::Sound.play(this.m.InventorySound, ::Const.Sound.Volume.Inventory);
 	}
 
 	local onUnequip = o.onUnequip;
@@ -69,7 +69,7 @@
 	{
 		onUnequip();
 
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
@@ -77,7 +77,7 @@
 		if (this.m.StashModifier > 0)
 		{
 			this.getContainer().unequipNoUpdate(this);
-			this.World.State.getPlayer().calculateStashModifier();
+			::World.State.getPlayer().calculateStashModifier();
 		}
 
 	}

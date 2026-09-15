@@ -9,18 +9,18 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 		this.m.BadEnding = "There is no beginning or end for %name%. Like any feral animal %they% simply wander around - occasionally following hordes of like minded dead, being adopted by a new master and slain, only to get back up again and wander some more. %name% repeats this cycle until one day the blow will be fatal. Is this a curse of a blessing? To cheat death is such a manner many would kill for. But %name% does not care. There is only hunger.";
 		this.m.Excluded = ::Legends.Necromancer.excludedTraits();
 		/*this.m.ExcludedTalents = [ //talentless
-			this.Const.Attributes.Hitpoints
-			this.Const.Attributes.Fatigue
-			this.Const.Attributes.Bravery
-			this.Const.Attributes.Initiative
-			this.Const.Attributes.MeleeSkill
-			this.Const.Attributes.RangedSkill
-			this.Const.Attributes.MeleeDefense
-			this.Const.Attributes.RangedDefense
+			::Const.Attributes.Hitpoints
+			::Const.Attributes.Fatigue
+			::Const.Attributes.Bravery
+			::Const.Attributes.Initiative
+			::Const.Attributes.MeleeSkill
+			::Const.Attributes.RangedSkill
+			::Const.Attributes.MeleeDefense
+			::Const.Attributes.RangedDefense
 		];*/
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
@@ -53,14 +53,14 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 	function adjustHiringCostBasedOnEquipment() //reduces cost for equipment worn on zombies to zero for recruiting purposes.
 	{
 		local actor = this.getContainer().getActor();
-		actor.m.HiringCost = this.Math.floor(this.m.HiringCost + 500 * this.Math.pow(this.m.Level - 1, 1.5));
+		actor.m.HiringCost = ::Math.floor(this.m.HiringCost + 500 * ::Math.pow(this.m.Level - 1, 1.5));
 	}
 
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 7);
+		r = ::Math.rand(0, 7);
 
 		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
@@ -84,7 +84,7 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			items.equip(this.new("scripts/items/weapons/boar_spear"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([ //1 = least likely
+		items.equip(::Const.World.Common.pickArmor([ //1 = least likely
 		//	[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 		//	[1, ::Legends.Armor.Standard.southern_knight_armor],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
@@ -98,10 +98,10 @@ this.legend_puppet_background <- this.inherit("scripts/skills/backgrounds/charac
 			[4, ::Legends.Armor.Standard.butcher_apron],
 			[4, ::Legends.Armor.Standard.leather_tunic],
 			[5, ::Legends.Armor.Standard.leather_wraps],
-			[5, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
+			[5, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 		//	[1, ::Legends.Helmet.Standard.decayed_great_helm],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],

@@ -4,13 +4,13 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 	{
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/werewolf_hurt_01.wav",
 			"sounds/enemies/werewolf_hurt_02.wav",
 			"sounds/enemies/werewolf_hurt_03.wav",
 			"sounds/enemies/werewolf_hurt_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/werewolf_idle_01.wav",
 			"sounds/enemies/werewolf_idle_02.wav",
 			"sounds/enemies/werewolf_idle_03.wav",
@@ -33,7 +33,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 			"sounds/enemies/werewolf_idle_20.wav",
 			"sounds/enemies/werewolf_idle_21.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Attack] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
 			"sounds/enemies/werewolf_idle_01.wav",
 			"sounds/enemies/werewolf_idle_02.wav",
 			"sounds/enemies/werewolf_idle_03.wav",
@@ -42,7 +42,7 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 			"sounds/enemies/werewolf_idle_07.wav",
 			"sounds/enemies/werewolf_idle_08.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/werewolf_fatigue_01.wav",
 			"sounds/enemies/werewolf_fatigue_02.wav",
 			"sounds/enemies/werewolf_fatigue_03.wav",
@@ -53,32 +53,32 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		];
 
 		this.m.Flags.set("type", "direwolf");
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] = 0.8;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 0.7;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 0.8;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.7;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/direwolf_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));
-		this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Retreat);
+		this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Retreat);
 		this.m.AIAgent.setActor(this);
 	}
 
 	function playAttackSound()
 	{
-		if (this.Math.rand(1, 100) <= 50)
-			this.playSound(this.Const.Sound.ActorEvent.Attack, this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] * (this.Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
+		if (::Math.rand(1, 100) <= 50)
+			this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
 	}
 
 	function onInit()
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FrenziedDirewolf);
+		b.setValues(::Const.Tactical.Actor.FrenziedDirewolf);
 
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		b.DamageTotalMult = 1.25;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay2)
 		{
 			b.MeleeSkill += 5;
 			b.MeleeDefense += 5;
@@ -88,8 +88,8 @@ this.legend_alp_nightmare_direwolf <- this.inherit("scripts/entity/tactical/enem
 		this.addSprite("socket").setBrush("bust_base_shadow");
 
 		local blurAlpha = 110;
-		local body_brush = "bust_alp_direwolf_0" + this.Math.rand(1, 3) + "_body";
-		local head_brush = "bust_alp_direwolf_0" + this.Math.rand(1, 3) + "_head";
+		local body_brush = "bust_alp_direwolf_0" + ::Math.rand(1, 3) + "_body";
+		local head_brush = "bust_alp_direwolf_0" + ::Math.rand(1, 3) + "_head";
 		local body = this.addSprite("body");
 		body.setBrush(body_brush);
 		//body.Alpha = 0;

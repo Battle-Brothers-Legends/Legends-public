@@ -8,8 +8,8 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFieldTriage);
 		this.m.Description = "Heal a unit at a rate of 1 medicine for every 2 hitpoints. Heals up to 20 hitpoints per use.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/first_aid", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -37,14 +37,14 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/asset_medicine.png",
-			text = "You have [color=%positive%]" + this.World.Assets.getMedicine() + "[/color] medicine."
+			text = "You have [color=%positive%]" + ::World.Assets.getMedicine() + "[/color] medicine."
 		});
-		local hp = this.World.Assets.getMedicine() * 2 ;
+		local hp = ::World.Assets.getMedicine() * 2 ;
 		ret.push({
 			id = 8,
 			type = "text",
 			icon = "ui/icons/health.png",
-			text = "You can heal up to [color=%positive%]" + this.Math.floor(hp) +  "[/color] Hitpoints."
+			text = "You can heal up to [color=%positive%]" + ::Math.floor(hp) +  "[/color] Hitpoints."
 		});
 		return ret;
 	}
@@ -55,7 +55,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return false;
 		}
-		if (this.World.Assets.getMedicine() < 1)
+		if (::World.Assets.getMedicine() < 1)
 		{
 			return false;
 		}
@@ -92,7 +92,7 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		local meds = this.World.Assets.getMedicine();
+		local meds = ::World.Assets.getMedicine();
 		local target = _targetTile.getEntity();
 		local maxHeal = 20;
 		if (meds < 10)
@@ -109,9 +109,9 @@ this.legend_field_triage_skill <- this.inherit("scripts/skills/skill", {
 
 		local finalMeds = finalHeal / 2;
 
-		local cost = this.Math.min(meds, finalMeds);
-		this.World.Assets.addMedicine(cost * -1);
-		target.setHitpoints(this.Math.min(target.getHitpointsMax(), target.getHitpoints() + finalHeal));
+		local cost = ::Math.min(meds, finalMeds);
+		::World.Assets.addMedicine(cost * -1);
+		target.setHitpoints(::Math.min(target.getHitpointsMax(), target.getHitpoints() + finalHeal));
 		return true;
 	}
 

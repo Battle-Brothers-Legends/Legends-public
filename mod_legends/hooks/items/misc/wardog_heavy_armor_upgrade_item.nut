@@ -1,7 +1,7 @@
 ::mods_hookExactClass("items/misc/wardog_heavy_armor_upgrade_item", function(o) {
 	o.onUse = function ( _actor, _item = null )
 	{
-		local dog = _item == null ? _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory) : _item;
+		local dog = _item == null ? _actor.getItems().getItemAtSlot(::Const.ItemSlot.Accessory) : _item;
 
 		if (dog == null ||
 			dog.getID() != "accessory.legend_wardog" &&
@@ -12,7 +12,7 @@
 			return false;
 		}
 
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 		local new_dog;
 
 		if (dog.getID() == "accessory.legend_wardog" || dog.getID() == "accessory.legend_armored_wardog" )

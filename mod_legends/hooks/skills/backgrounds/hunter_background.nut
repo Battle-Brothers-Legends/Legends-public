@@ -33,10 +33,10 @@
 			"One Shot",
 			"Eagle Eye"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
 	}
 
 	o.getTooltip = function () {
@@ -64,18 +64,18 @@
 		items.equip(this.new("scripts/items/weapons/hunting_bow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 
-		if (this.Math.rand(0, 1) == 0)
+		if (::Math.rand(0, 1) == 0)
 		{
 			items.addToBag(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood]
 				// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]));

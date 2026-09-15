@@ -9,8 +9,8 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
 		this.m.SoundOnUse = ["sounds/combat/legend_vala_warden_wail.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -72,8 +72,8 @@ this.legend_vala_warden_wail_skill <- this.inherit("scripts/skills/skill", {
 			}
 			else
 			{
-				_properties.DamageRegularMin += 10 + this.Math.round(bonus1 * 0.67) + this.Math.round(bonus2 * 0.67);
-				_properties.DamageRegularMax += 15 + this.Math.round(bonus1) + this.Math.round(bonus2);
+				_properties.DamageRegularMin += 10 + ::Math.round(bonus1 * 0.67) + ::Math.round(bonus2 * 0.67);
+				_properties.DamageRegularMax += 15 + ::Math.round(bonus1) + ::Math.round(bonus2);
 				_properties.IsIgnoringArmorOnAttack = true;
 				_properties.HitChanceAdditionalWithEachTile -= 2;
 			}

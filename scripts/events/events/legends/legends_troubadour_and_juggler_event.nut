@@ -6,7 +6,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 	function create() {
 		this.m.ID = "event.legends_troubadour_and_juggler";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 50.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_26.png[/img]As sparks rise from the fire, %juggler% is stretching and adopting various acrobatic poses. %troubadour% approaches and adopts some of the positions along side the juggler. %SPEECH_ON% These movements remind me of the theater troupe I used to perform in. Playing at fighting and love needs tight timings and positioning, to know your spacing as well as your lines. Do you know the faked dagger pass? The trust fall? What of the stage dive? %SPEECH_OFF% \n\n The juggler laughs and replies. %SPEECH_ON%I have been practicing them for years troubadour, shall we dance? %SPEECH_OFF% The two rise and begin conducting a series of moves you have not seen before. One turning their back to the other and then falling into their arms, before trading places. They grow faster and faster at this blind falling, before the juggler turns midair and the fall becomes a tumble. Soon both are tumbling, through each others arms, and spinning around each other. It becomes a blur of arms, legs and objects moving between them. They begin passing things back and forth, first a ball, then a rock, then a knife. Before long there are items hurling through the air, most caught, but some bouncing off through the camp.",
@@ -47,7 +47,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 						this.List.push(::Legends.EventList.addInjury(_event.m.Troubadour, ::Const.Injury.PiercingBody));
 					}
 
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 					foreach (bro in brothers) {
 						if (bro.getID() == _event.m.Troubadour.getID() || bro.getID() == _event.m.Juggler.getID()) {
 							continue;
@@ -66,7 +66,7 @@ this.legends_troubadour_and_juggler_event <- this.inherit("scripts/events/event"
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 			return;

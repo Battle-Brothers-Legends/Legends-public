@@ -20,10 +20,10 @@ this.legend_hand_crossbow <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A miniature pull-lever crossbow that can propel bolts over medium distances attached to the wrist. The small size reduces power, but doesn't impede the hands so a melee weapon can be held in both hands. Requires almost a full turn to reload.";
 		this.m.IconLarge = "weapons/ranged/legend_hand_crossbow_01.png";
 		this.m.Icon = "weapons/ranged/legend_hand_crossbow_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Crossbow;
-		this.m.SlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive| this.Const.Items.ItemType.OneHanded;
-		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.WeaponType = ::Const.Items.WeaponType.Crossbow;
+		this.m.SlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive| ::Const.Items.ItemType.OneHanded;
+		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = true;
 		this.m.ShowArmamentIcon = true;

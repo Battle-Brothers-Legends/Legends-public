@@ -12,8 +12,8 @@ this.legend_warlock_hood <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.HideBeard = false;
 		this.m.Variant = 508;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 200;
 		this.m.Condition = 100;
 		this.m.ConditionMax = 100;

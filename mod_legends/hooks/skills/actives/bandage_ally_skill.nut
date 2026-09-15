@@ -39,7 +39,7 @@
 			}
 		];
 
-		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (!::Legends.Perks.has(this.getContainer(), ::Legends.Perk.LegendSpecBandage) && ::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			tooltip.push({
 				id = 5,
@@ -54,7 +54,7 @@
 
 	o.isUsable = function()
 	{
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 			return false;
 
 		local actor = this.getContainer().getActor();

@@ -3,9 +3,9 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Cultist | this.Const.Items.ItemType.Pitchfork;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded | ::Const.Items.ItemType.Cultist | ::Const.Items.ItemType.Pitchfork;
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

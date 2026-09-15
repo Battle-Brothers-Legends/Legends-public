@@ -6,7 +6,7 @@ this.legend_butcher_vs_donkey <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_butcher_vs_donkey";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 7.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 7.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_06.png[/img]You come around the tents to find %butcher% looming around %donkey%, the donkey is busy grazing and pays no heed to the human nearby. %butcher% seems to have not noticed you and begins edging towards %donkey%. From your vantage point you can make out a large blade hidden begind the butcher\'s back, and you hear a muttering. %SPEECH_ON%That\'s right, nothing to see here. Keep feeding those juicy little rump cuts and ribs. You may have plenty of food, but the rest of us could use a roast!%SPEECH_OFF% As the butcher leans closer, the donkey notices something awry and kicks out towards the butcher before running off to safety behind you.",

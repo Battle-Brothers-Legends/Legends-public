@@ -8,26 +8,26 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		this.m.Difficulty = 3;
 		this.m.Order = 99;
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function isValid()
 	{
-		return false; //this.Const.LegendMod.DebugMode;
+		return false; //::Const.LegendMod.DebugMode;
 	}
 
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local bro = roster.create("scripts/entity/tactical/player");
 		bro.m.HireTime = this.Time.getVirtualTimeF();
-		bro.setStartValuesEx(this.Const.CharacterBackgroundsRandom);
+		bro.setStartValuesEx(::Const.CharacterBackgroundsRandom);
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 3;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
 
@@ -36,9 +36,9 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		local randomVillage;
 		local northernmostY = 0;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			local v = this.World.EntityManager.getSettlements()[i];
+			local v = ::World.EntityManager.getSettlements()[i];
 
 			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
 			{
@@ -49,22 +49,22 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 
 		randomVillage.setLastSpawnTimeToNow();
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 2), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 2), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -72,7 +72,7 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -107,14 +107,14 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		s.setValidForDays(5);
 		randomVillage.addSituation(s);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/civilians_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_custom_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_custom_scenario_intro");
 		}, null);
 	}
 });

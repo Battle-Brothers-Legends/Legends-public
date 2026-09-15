@@ -5,7 +5,7 @@
 		create();
 		this.m.Variants = [1, 2, 3, 4, 5];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.TwoHanded;
 		this.m.RangeMax = 8;
 		this.m.RangeIdeal = 8;
 	}

@@ -9,7 +9,7 @@
 
 	o.onUpdateScore = function ()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
 			return;
 
@@ -26,7 +26,7 @@
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
-		this.m.Surefooted = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Surefooted = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Town = town;
 		this.m.Score = candidates.len() * 15;
 	}

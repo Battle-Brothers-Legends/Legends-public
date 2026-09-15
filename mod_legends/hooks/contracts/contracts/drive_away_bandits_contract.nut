@@ -27,12 +27,12 @@
 						if (!this.Flags.get("IsAttackDialogTriggered")) {
 							this.Flags.set("IsAttackDialogTriggered", true);
 							this.Contract.setScreen("AttackRobberBaron");
-							this.World.Contracts.showActiveContract();
+							::World.Contracts.showActiveContract();
 						} else if (!this.Flags.get("IsRobberBaronDead")) {
-							local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
-							properties.Music = this.Const.Music.BanditTracks;
+							local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
+							properties.Music = ::Const.Music.BanditTracks;
 							properties.Entities.push({
-								ID = this.Const.EntityType.BanditLeader,
+								ID = ::Const.EntityType.BanditLeader,
 								Variant = 0,
 								Row = 2,
 								Script = "scripts/entity/tactical/enemies/bandit_leader",
@@ -40,10 +40,10 @@
 								Callback = this.onRobberBaronPlaced.bindenv(this)
 							});
 							properties.EnemyBanners.push(this.Contract.m.Destination.getBanner());
-							this.World.Contracts.startScriptedCombat(properties, true, true, true);
+							::World.Contracts.startScriptedCombat(properties, true, true, true);
 						}
 					} else {
-						this.World.Contracts.showCombatDialog();
+						::World.Contracts.showCombatDialog();
 					}
 				}
 			}
@@ -77,11 +77,11 @@
 		::Legends.Screens.hook(this, "Volunteer2", function (_screen) {
 			_screen.start = function () {
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
-				this.World.getPlayerRoster().add(this.Contract.m.Dude);
+				::World.getPlayerRoster().add(this.Contract.m.Dude);
 				this.Contract.m.Dude.onHired();
 			}
 			_screen.Options[0].getResult = function () {
-				this.World.getTemporaryRoster().clear();
+				::World.getTemporaryRoster().clear();
 				this.Contract.m.Dude = null;
 				return 0;
 			}
@@ -92,7 +92,7 @@
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
 			}
 			_screen.Options[0].getResult <- function () {
-				this.World.getTemporaryRoster().clear();
+				::World.getTemporaryRoster().clear();
 				this.Contract.m.Dude = null;
 				return 0;
 			}
@@ -123,7 +123,7 @@
 		local destination = _in.readU32();
 
 		if (destination != 0) {
-			this.m.Destination = this.WeakTableRef(this.World.getEntityByID(destination));
+			this.m.Destination = this.WeakTableRef(::World.getEntityByID(destination));
 		}
 
 		this.contract.onDeserialize(_in);

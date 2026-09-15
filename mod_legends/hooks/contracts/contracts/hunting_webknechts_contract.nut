@@ -28,11 +28,11 @@
 		::Legends.Screens.hook(this, "OldArmor", function (_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_123.png[/img]{With the webknechts dispatched you have the company briefly search the creatures\' nest, though the mercenaries are ordered to never wander alone. You muck about as well, %randombrother% at your side. Together, you spot a tree that\'s remarkably untouched by the webs. As you circle around, you find a knight\'s corpse leaning against its trunk. His hand rests atop a broken sword\'s pommel, the other hand is missing altogether, nothing but sleeve at the wrist with the mutilated arm couched at his belly. The corpse rests in a nest of its own making, a thicket of what look like spoiled rhubarb stalks and decayed carapaces, the broken bodies caverned and smelling of poison. %randombrother% nods.%SPEECH_ON%That\'s a right shame. I\'d wager he would have made a sound addition to the %companyname%, whoever he was.%SPEECH_OFF%Indeed, it has all the look of a great fighter\'s end. You\'ve mind to bury him, but you\'ve no time. You tell %randombrother% to fetch what %they_randombrother% can from the corpse and to ready a return to %employer%.}";
 			_screen.start <- function () {
-				local item = this.Const.World.Common.pickArmor([
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk],
 					[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 				]);
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -57,20 +57,20 @@
 				this.Contract.m.Dude.worsenMood(0.5, "Lost %their% previous company to webknechts");
 				this.Contract.m.Dude.worsenMood(0.5, "Almost consumed alive by webknechts");
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null) {
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null) {
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).getArmor() * 0.33);
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).getArmor() * 0.33);
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body) != null) {
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).getArmor() * 0.33);
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body) != null) {
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).getArmor() * 0.33);
 				}
 
 				this.Characters.push(this.Contract.m.Dude.getImagePath());

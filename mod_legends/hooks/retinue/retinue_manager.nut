@@ -181,6 +181,6 @@
 		}
 
 		this.m.InventoryUpgrades = _in.readU8();
-		this.World.Assets.resetToDefaults();
+		::World.Assets.resetToDefaults();
 	}
 });

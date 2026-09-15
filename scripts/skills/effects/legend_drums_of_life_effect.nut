@@ -16,7 +16,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "ui/perks/drums_of_life.png";
 		this.m.Overlay = "drums_of_life_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -26,7 +26,7 @@ this.legend_drums_of_life_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		if (actor.getHitpoints() < actor.getHitpointsMax()) {
-			actor.setHitpoints(this.Math.max(0, this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.Effect)));
+			actor.setHitpoints(::Math.max(0, ::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + this.m.Effect)));
 			if (actor.isPlacedOnMap())
 				this.spawnIcon(this.m.Overlay, actor.getTile());
 		}

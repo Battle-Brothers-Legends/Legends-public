@@ -60,7 +60,7 @@ this.legend_catapult_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.ID = "accessory.legend_catapult";
 		this.m.Name = "Catapult";
 		this.m.Description = "A war machine, can be constructed in battle to inflict damage from afar.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
@@ -106,12 +106,12 @@ this.legend_catapult_item <- this.inherit("scripts/items/accessory/accessory", {
 	{
 		if (!this.isUnleashed() && _onTile != null)
 		{
-			local entity = this.Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
+			local entity = ::Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
 			entity.setItem(this);
 			entity.setName(this.getName());
 			entity.setVariant(this.getVariant());
 			this.setEntity(entity);
-			entity.setFaction(this.Const.Faction.PlayerAnimals);
+			entity.setFaction(::Const.Faction.PlayerAnimals);
 
 			if (this.m.ArmorScript != null)
 			{
@@ -119,7 +119,7 @@ this.legend_catapult_item <- this.inherit("scripts/items/accessory/accessory", {
 				entity.getItems().equip(item);
 			}
 
-			this.Sound.play(this.m.UnleashSounds[this.Math.rand(0, this.m.UnleashSounds.len() - 1)], this.Const.Sound.Volume.Skill, _onTile.Pos);
+			::Sound.play(this.m.UnleashSounds[::Math.rand(0, this.m.UnleashSounds.len() - 1)], ::Const.Sound.Volume.Skill, _onTile.Pos);
 		}
 	}
 

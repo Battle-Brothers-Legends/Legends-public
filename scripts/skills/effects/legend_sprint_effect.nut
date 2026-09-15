@@ -6,7 +6,7 @@ this.legend_sprint_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character runs like the wind, moving at great speed. Movement costs 1 less AP, at 50% increased fatigue costs.";
 		this.m.Icon = "ui/perks/perk_sprint.png";
 		this.m.Overlay = "perk_37";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

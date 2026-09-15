@@ -7,8 +7,8 @@ this.legend_necrosavant_lord_potion_effect <- this.inherit("scripts/skills/skill
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_133";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/vampire_life_drain", 3);
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -36,7 +36,7 @@ this.legend_necrosavant_lord_potion_effect <- this.inherit("scripts/skills/skill
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Ignore Zone of Control(ZOC) if hitpoints are below [color=" + this.Const.UI.Color.NegativeValue + "]50%[/color]"
+				text = "Ignore Zone of Control(ZOC) if hitpoints are below [color=" + ::Const.UI.Color.NegativeValue + "]50%[/color]"
 			},
 			{
 				id = 12,
@@ -60,15 +60,15 @@ this.legend_necrosavant_lord_potion_effect <- this.inherit("scripts/skills/skill
 
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isNecrosavantLorePotionAcquired", false);
+			::World.Statistics.getFlags().set("isNecrosavantLorePotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isNecrosavantLorePotionAcquired", false);
+		::World.Statistics.getFlags().set("isNecrosavantLorePotionAcquired", false);
 	}
 
 });

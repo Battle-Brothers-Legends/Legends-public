@@ -10,7 +10,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		this.m.Type = "contract.legend_camp_smuggle_contract";
 		this.m.Name = "Smuggle item";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Bandits;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 10.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 10.0;
 		this.m.DifficultyMult = ::Math.rand(80, 139) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Bandits want to procure an item, but as outlaws they cannot enter town.",
@@ -48,7 +48,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 	}
 
 	function start() {
-		this.m.Payment.Pool = 600 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 600 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 		this.m.Payment.Completion = 1.0;
 
 		local sourceSettlements = [];
@@ -143,7 +143,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			function update() {
 				if (this.Flags.get("IsFailure")) {
 					this.Contract.setScreen("FailedPursuit");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					return;
 				}
 
@@ -194,8 +194,8 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 				local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 				p.CombatID = "Ambush";
 				p.MapSeed = this.Flags.getAsInt("MapSeed");
-				p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
-				p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
+				p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
+				p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
 				p.Entities = [];
 				this.Contract.spawnAmbushParty(p);
 				::World.Contracts.startScriptedCombat(p, false, true, true);
@@ -204,7 +204,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			function update() {
 				if (this.Flags.get("IsFailure")) {
 					this.Contract.setScreen("FailedAmbush");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					if (this.Contract.m.Camp != null && !this.Contract.m.Camp.isNull()) {
 						this.Contract.m.Camp.die();
 						this.Contract.m.Camp = null;
@@ -400,8 +400,8 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			Options = [{
 				Text = "{This is not worth losing the company over...}",
 				function getResult() {
-					this.World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
-					this.World.Contracts.finishActiveContract(true);
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+					::World.Contracts.finishActiveContract(true);
 					return 0;
 				}
 			}],
@@ -419,8 +419,8 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			Options = [{
 				Text = "{This is not worth losing the company over...}",
 				function getResult() {
-					this.World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
-					this.World.Contracts.finishActiveContract(true);
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+					::World.Contracts.finishActiveContract(true);
 					return 0;
 				}
 			}],
@@ -447,7 +447,7 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 				.spawnEntity(tile, this.m.Town.getName() + " Militia", false, ::Const.World.Spawn.Militia, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.getSprite("banner").setBrush(this.m.Town.getBanner());
 			party.setDescription("Brave men defending their homes with their lives. Farmers, craftsmen, artisans - but not one real soldier.");
-			party.setFootprintType(this.Const.World.FootprintsType.Militia);
+			party.setFootprintType(::Const.World.FootprintsType.Militia);
 		} else { // hardest should spawn nobles
 			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany)
 				.spawnEntity(tile, "Patrol", false, ::Const.World.Spawn.Noble, 80 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
@@ -463,13 +463,13 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 			party.setDescription(party.getDescription() + " Small mercenary contingent attached.");
 		}
 
-		party.getLoot().Money = this.Math.rand(50, 100);
-		party.getLoot().ArmorParts = this.Math.rand(0, 10);
-		party.getLoot().Medicine = this.Math.rand(0, 2);
-		party.getLoot().Ammo = this.Math.rand(0, 20);
+		party.getLoot().Money = ::Math.rand(50, 100);
+		party.getLoot().ArmorParts = ::Math.rand(0, 10);
+		party.getLoot().Medicine = ::Math.rand(0, 2);
+		party.getLoot().Ammo = ::Math.rand(0, 20);
 		party.setMovementSpeed(::Const.World.MovementSettings.Speed * 2.0);
 
-		local r = this.Math.rand(1, 6);
+		local r = ::Math.rand(1, 6);
 		if (r == 1) {
 			party.addToInventory("supplies/bread_item");
 		} else if (r == 2) {
@@ -507,13 +507,13 @@ this.legend_camp_smuggle_contract <- ::inherit("scripts/contracts/legend_camp_co
 		::Const.World.Spawn.BanditArmy.MaxR = oldMaxR;
 		party.setDescription("Bandit army of your employer.");
 		party.setFootprintType(::Const.World.FootprintsType.Brigands);
-		party.getLoot().Money = this.Math.rand(50, 100);
-		party.getLoot().ArmorParts = this.Math.rand(0, 10);
-		party.getLoot().Medicine = this.Math.rand(0, 2);
-		party.getLoot().Ammo = this.Math.rand(0, 20);
+		party.getLoot().Money = ::Math.rand(50, 100);
+		party.getLoot().ArmorParts = ::Math.rand(0, 10);
+		party.getLoot().Medicine = ::Math.rand(0, 2);
+		party.getLoot().Ammo = ::Math.rand(0, 20);
 		party.setMovementSpeed(::Const.World.MovementSettings.Speed * 2.0);
 
-		local r = this.Math.rand(1, 6);
+		local r = ::Math.rand(1, 6);
 		if (r == 1) {
 			party.addToInventory("supplies/bread_item");
 		} else if (r == 2) {

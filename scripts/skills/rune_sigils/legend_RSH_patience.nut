@@ -6,8 +6,8 @@ this.legend_RSH_patience <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRshPatience);
 		this.m.Description = "Rune Sigil: Patience";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;

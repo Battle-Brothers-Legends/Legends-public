@@ -8,7 +8,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_warhoundowner"; //— \'
 		this.m.Title = "At a Creek";
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay; //warhound finds owner, decisions happen
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay; //warhound finds owner, decisions happen
 		this.m.Screens.push({
 			ID = "A", //find man fishing, offering to buy hound
 			Text = "[img]gfx/ui/events/event_08.png[/img]As you trudge through the cold, the snow capitulates beneath the slow progress of %companyname%. The conditions out here are more brutal than you expected — and makes you wonder how anyone survives up here for so long. The wildmen whisper that this is the last foothold of the old gods, a refrain of their power here in the north. \n\nWith that thought, a figure comes into view by a creek daubed in furs and tattoos in equal measure, he skilfully skewers another fish from the water. He initially ignores you, only to peer at you from the corner of his vision, assess you, and return to his hunt.\n\n Meanwhile, %houndhandler% is struggling to keep the company warhound under control. The dog thrashes this way and that against their chain, almost pulling their handler into the stream.",
@@ -101,7 +101,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "May we meet again.",
 				function getResult(_event){
-				this.World.Assets.addMoralReputation(4);
+				::World.Assets.addMoralReputation(4);
 					return 0}
 			}],
 			function start(_event) {
@@ -153,21 +153,21 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				local item = this.new("scripts/items/loot/deformed_valuables_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
 				local item = this.new("scripts/items/loot/valuable_furs_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
 				local item = this.new("scripts/items/loot/signet_ring_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -192,11 +192,11 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.World.Assets.addMoney(400);
+				::World.Assets.addMoney(400);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]400[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]400[/color] Crowns"
 				});
 				_event.m.Hound.getContainer().unequip(_event.m.Hound);
 				this.List.push({
@@ -219,13 +219,13 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.List.push(::Legends.EventList.changeMood(_event.m.Merchant, 1.5, "Traded a dog for a lot of crowns."));
-				local money = this.Math.rand(581, 782);
-				this.World.Assets.addMoney(money);
+				local money = ::Math.rand(581, 782);
+				::World.Assets.addMoney(money);
 				this.List = [
 					{
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns"
 					}
 				];
 				_event.m.Hound.getContainer().unequip(_event.m.Hound);
@@ -249,7 +249,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				this.List.push(::Legends.EventList.changeMood(_event.m.Merchant, 2.0, "Traded a dog for an exceptional set of axes."));
 				local item = this.new("scripts/items/weapons/named/named_weapon/legend_named_heavy_throwing_axe");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -270,8 +270,8 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			return;
 
 //		local playerTile = ::World.State.getPlayer().getTile();
-		local currentTile = this.World.State.getPlayer().getTile();
-		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest) //only happens in snow areas
+		local currentTile = ::World.State.getPlayer().getTile();
+		if (currentTile.Type != ::Const.World.TerrainType.Snow && currentTile.Type != ::Const.World.TerrainType.SnowyForest) //only happens in snow areas
 		{
 			return;
 		}
@@ -281,7 +281,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		if (this.Stash.getNumberOfEmptySlots() < 3) //must have 3 stash spaces free or more
+		if (::Stash.getNumberOfEmptySlots() < 3) //must have 3 stash spaces free or more
 		{
 			return;
 		}
@@ -292,7 +292,7 @@ this.legend_warhoundowner_event <- this.inherit("scripts/events/event", {
 
 		if (candidate_merchant.len() != 0)
 		{
-			this.m.Merchant = candidate_Merchant[this.Math.rand(0, candidate_Merchant.len() - 1)];
+			this.m.Merchant = candidate_Merchant[::Math.rand(0, candidate_Merchant.len() - 1)];
 		}
 
 		foreach (bro in brothers)

@@ -34,9 +34,9 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 			"the Calm",
 			"the Apothecary"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Kind;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Druid;
 	}
 
 	function setGender(_gender = -1) {
@@ -56,7 +56,7 @@ this.legend_herbalist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_herbalist_robe]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_sickle"));

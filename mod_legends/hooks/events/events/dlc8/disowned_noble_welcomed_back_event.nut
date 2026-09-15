@@ -46,9 +46,9 @@
 				s.start = function (_event)
 				{
 					local item;
-					local stash = this.World.Assets.getStash();
+					local stash = ::World.Assets.getStash();
 
-					local armor_list = this.Const.World.Common.pickArmor([
+					local armor_list = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.footman_armor],
 						[1, ::Legends.Armor.Standard.light_scale_armor],
 						[1, ::Legends.Armor.Standard.sellsword_armor],
@@ -65,7 +65,7 @@
 						"warbrand"
 					];
 
-					item = this.new("scripts/items/armor/" + armor_list[this.Math.rand(0, armor_list.len() - 1)]);
+					item = this.new("scripts/items/armor/" + armor_list[::Math.rand(0, armor_list.len() - 1)]);
 					stash.add(item);
 					this.List.push({
 						id = 10,
@@ -74,20 +74,20 @@
 						text = "You gain " + item.makeName()
 					});
 
-					item = this.new("scripts/items/weapons/" + weapons_list[this.Math.rand(0, weapons_list.len() - 1)]);
+					item = this.new("scripts/items/weapons/" + weapons_list[::Math.rand(0, weapons_list.len() - 1)]);
 					stash.add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 
-					item = this.new("scripts/items/weapons/" + weapons_list[this.Math.rand(0, weapons_list.len() - 1)]);
+					item = this.new("scripts/items/weapons/" + weapons_list[::Math.rand(0, weapons_list.len() - 1)]);
 					stash.add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 				}
 			}
@@ -95,10 +95,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		local towns = this.World.EntityManager.getSettlements();
+		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
 		local town;
-		local playerTile = this.World.State.getPlayer().getTile();
+		local playerTile = ::World.State.getPlayer().getTile();
 
 		foreach( t in towns ) {
 			if (t.getTile().getDistanceTo(playerTile) <= 3 && t.isAlliedWithPlayer()) {
@@ -112,7 +112,7 @@
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local disowned_candidates = [];
 
 		foreach( bro in brothers ) {
@@ -127,7 +127,7 @@
 			return;
 		}
 
-		this.m.Disowned = disowned_candidates[this.Math.rand(0, disowned_candidates.len() - 1)];
+		this.m.Disowned = disowned_candidates[::Math.rand(0, disowned_candidates.len() - 1)];
 		this.m.Town = town;
 		this.m.Score = 4 * disowned_candidates.len();
 	}

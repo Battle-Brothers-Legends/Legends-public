@@ -20,8 +20,8 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashHound);
 		this.m.Description = "Summon a faithful hound. Needs a free tile adjacent. Can only summon one per combat.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/unleash_wardog", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -40,32 +40,32 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 
 		foreach( r in this.m.Sounds0 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds1 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds2 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds3 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds4 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds5 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
@@ -114,8 +114,8 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 	function onUse( _user, _targetTile )
 	{
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedHoundEffect);
-		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
 
 		if (this.m.Item != null) {
@@ -126,12 +126,12 @@ this.legend_unleash_hound_skill <- this.inherit("scripts/skills/actives/legend_u
 
 		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
 		{
-			entity.setMoraleState(this.Const.MoraleState.Confident);
+			entity.setMoraleState(::Const.MoraleState.Confident);
 		}
 
 		this.addAnimalSkills(entity);
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}

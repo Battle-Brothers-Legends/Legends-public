@@ -3,7 +3,7 @@
 	o.create = function()
 	{
 		create();
-		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect;
+		this.m.Type = this.m.Type | ::Const.SkillType.StatusEffect;
 		this.m.Description = "Will turn any stun attacks made against you into dazes instead.";
 		this.m.IconMini = "mini_steel_brow";
 	}

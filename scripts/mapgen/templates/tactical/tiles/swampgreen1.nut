@@ -77,90 +77,90 @@ this.swampgreen1 <- this.inherit("scripts/mapgen/tactical_template", {
 		this.m.MinY = 1;
 		local t = this.createTileTransition();
 		t.setBlendIntoSockets(false);
-		t.setBrush(this.Const.Direction.N, "transition_swamp_01_N");
-		t.setBrush(this.Const.Direction.NE, "transition_swamp_01_NE");
-		t.setBrush(this.Const.Direction.SE, "transition_swamp_01_SE");
-		t.setBrush(this.Const.Direction.S, "transition_swamp_01_S");
-		t.setBrush(this.Const.Direction.SW, "transition_swamp_01_SW");
-		t.setBrush(this.Const.Direction.NW, "transition_swamp_01_NW");
+		t.setBrush(::Const.Direction.N, "transition_swamp_01_N");
+		t.setBrush(::Const.Direction.NE, "transition_swamp_01_NE");
+		t.setBrush(::Const.Direction.SE, "transition_swamp_01_SE");
+		t.setBrush(::Const.Direction.S, "transition_swamp_01_S");
+		t.setBrush(::Const.Direction.SW, "transition_swamp_01_SW");
+		t.setBrush(::Const.Direction.NW, "transition_swamp_01_NW");
 		t.setSocket("socket_earth");
-		this.Tactical.setTransitions("tile_swamp_green_01", t);
+		::Tactical.setTransitions("tile_swamp_green_01", t);
 	}
 
 	function onFirstPass( _rect )
 	{
-		local tile = this.Tactical.getTileSquare(_rect.X, _rect.Y);
+		local tile = ::Tactical.getTileSquare(_rect.X, _rect.Y);
 
 		if (tile.Type != 0)
 		{
 			return;
 		}
 
-		tile.Type = this.Const.Tactical.TerrainType.RoughGround;
-		tile.Subtype = this.Const.Tactical.TerrainSubtype.MoistEarth;
-		tile.BlendPriority = this.Const.Tactical.TileBlendPriority.Swampgreen1;
+		tile.Type = ::Const.Tactical.TerrainType.RoughGround;
+		tile.Subtype = ::Const.Tactical.TerrainSubtype.MoistEarth;
+		tile.BlendPriority = ::Const.Tactical.TileBlendPriority.Swampgreen1;
 		tile.IsBadTerrain = false;
 		tile.setBrush("tile_swamp_green_01");
 		local n = 0;
 
-		if (this.Math.rand(0, 100) < this.m.ChanceToSpawnObject)
+		if (::Math.rand(0, 100) < this.m.ChanceToSpawnObject)
 		{
-			tile.spawnObject(this.m.Objects[this.Math.rand(0, this.m.Objects.len() - 1)]);
+			tile.spawnObject(this.m.Objects[::Math.rand(0, this.m.Objects.len() - 1)]);
 		}
 		else
 		{
 			local h = 0;
 
-			if (this.Tactical.isValidTileSquare(_rect.X - 1, _rect.Y) && this.Tactical.getTileSquare(_rect.X - 1, _rect.Y).IsHidingEntity)
+			if (::Tactical.isValidTileSquare(_rect.X - 1, _rect.Y) && ::Tactical.getTileSquare(_rect.X - 1, _rect.Y).IsHidingEntity)
 			{
 				h = ++h;
 			}
 
-			if (this.Tactical.isValidTileSquare(_rect.X - 1, _rect.Y + 1) && this.Tactical.getTileSquare(_rect.X - 1, _rect.Y + 1).IsHidingEntity)
+			if (::Tactical.isValidTileSquare(_rect.X - 1, _rect.Y + 1) && ::Tactical.getTileSquare(_rect.X - 1, _rect.Y + 1).IsHidingEntity)
 			{
 				h = ++h;
 			}
 
-			if (this.Tactical.isValidTileSquare(_rect.X, _rect.Y - 1) && this.Tactical.getTileSquare(_rect.X, _rect.Y - 1).IsHidingEntity)
+			if (::Tactical.isValidTileSquare(_rect.X, _rect.Y - 1) && ::Tactical.getTileSquare(_rect.X, _rect.Y - 1).IsHidingEntity)
 			{
 				h = ++h;
 			}
 
-			if (this.Math.rand(1, 100) < this.m.ChanceToSpawnHiding + h * this.m.ChanceToSpawnHidingVicinityBonus)
+			if (::Math.rand(1, 100) < this.m.ChanceToSpawnHiding + h * this.m.ChanceToSpawnHidingVicinityBonus)
 			{
 				tile.spawnDetail(this.m.HidingBack);
 				tile.spawnDetail(this.m.HidingFront);
 
-				if (this.Math.rand(1, 100) < this.m.ChanceToSpawnHidingExtra)
+				if (::Math.rand(1, 100) < this.m.ChanceToSpawnHidingExtra)
 				{
-					tile.spawnDetail(this.m.HidingExtras[this.Math.rand(0, this.m.HidingExtras.len() - 1)]);
+					tile.spawnDetail(this.m.HidingExtras[::Math.rand(0, this.m.HidingExtras.len() - 1)]);
 				}
 
 				tile.IsHidingEntity = true;
 			}
 			else
 			{
-				while (this.Math.rand(0, 100) < this.m.ChanceToSpawnDetails && n++ < this.m.LimitOfSpawnedDetails)
+				while (::Math.rand(0, 100) < this.m.ChanceToSpawnDetails && n++ < this.m.LimitOfSpawnedDetails)
 				{
-					tile.spawnDetail(this.m.Details[this.Math.rand(0, this.m.Details.len() - 1)]);
+					tile.spawnDetail(this.m.Details[::Math.rand(0, this.m.Details.len() - 1)]);
 				}
 			}
 
-			if (this.Math.rand(0, 100) < this.m.ChanceToSpawnFog)
+			if (::Math.rand(0, 100) < this.m.ChanceToSpawnFog)
 			{
-				if (this.Math.rand(0, 100) < this.m.ChanceToSpawnFogFiller)
+				if (::Math.rand(0, 100) < this.m.ChanceToSpawnFogFiller)
 				{
 					local detail = tile.spawnDetail(this.m.FogFiller);
 					detail.Color = this.m.FogColor;
 				}
 
-				if (this.Math.rand(0, 100) < this.m.ChanceToSpawnFogAnimation)
+				if (::Math.rand(0, 100) < this.m.ChanceToSpawnFogAnimation)
 				{
-					local detail = tile.spawnDetail(this.m.FogRotator[this.Math.rand(0, this.m.FogRotator.len() - 1)]);
+					local detail = tile.spawnDetail(this.m.FogRotator[::Math.rand(0, this.m.FogRotator.len() - 1)]);
 					detail.Color = this.m.FogColor;
 				}
 
-				local detail = tile.spawnDetail(this.m.FogCover[this.Math.rand(0, this.m.FogCover.len() - 1)]);
+				local detail = tile.spawnDetail(this.m.FogCover[::Math.rand(0, this.m.FogCover.len() - 1)]);
 				detail.Color = this.m.FogColor;
 			}
 		}
@@ -168,7 +168,7 @@ this.swampgreen1 <- this.inherit("scripts/mapgen/tactical_template", {
 
 	function onSecondPass( _rect )
 	{
-		local tile = this.Tactical.getTileSquare(_rect.X, _rect.Y);
+		local tile = ::Tactical.getTileSquare(_rect.X, _rect.Y);
 		local h = 0;
 
 		if (tile.IsHidingEntity)
@@ -176,32 +176,32 @@ this.swampgreen1 <- this.inherit("scripts/mapgen/tactical_template", {
 			return;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.SW) && tile.getNextTile(this.Const.Direction.SW).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.SW) && tile.getNextTile(::Const.Direction.SW).IsHidingEntity)
 		{
 			h = ++h;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.NE) && tile.getNextTile(this.Const.Direction.NE).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.NE) && tile.getNextTile(::Const.Direction.NE).IsHidingEntity)
 		{
 			h = ++h;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.NW) && tile.getNextTile(this.Const.Direction.NW).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.NW) && tile.getNextTile(::Const.Direction.NW).IsHidingEntity)
 		{
 			h = ++h;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.SE) && tile.getNextTile(this.Const.Direction.SE).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.SE) && tile.getNextTile(::Const.Direction.SE).IsHidingEntity)
 		{
 			h = ++h;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.N) && tile.getNextTile(this.Const.Direction.N).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.N) && tile.getNextTile(::Const.Direction.N).IsHidingEntity)
 		{
 			h = ++h;
 		}
 
-		if (tile.hasNextTile(this.Const.Direction.S) && tile.getNextTile(this.Const.Direction.S).IsHidingEntity)
+		if (tile.hasNextTile(::Const.Direction.S) && tile.getNextTile(::Const.Direction.S).IsHidingEntity)
 		{
 			h = ++h;
 		}
@@ -209,11 +209,11 @@ this.swampgreen1 <- this.inherit("scripts/mapgen/tactical_template", {
 		if (h != 0)
 		{
 			tile.clear();
-			local n = this.Math.rand(2, this.Math.min(this.Math.max(2, h), 4));
+			local n = ::Math.rand(2, ::Math.min(::Math.max(2, h), 4));
 
 			for( local hi = 0; hi < n; hi = ++hi )
 			{
-				tile.spawnDetail(this.m.HidingExtras[this.Math.rand(0, this.m.HidingExtras.len() - 1)]);
+				tile.spawnDetail(this.m.HidingExtras[::Math.rand(0, this.m.HidingExtras.len() - 1)]);
 			}
 		}
 	}

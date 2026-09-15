@@ -10,7 +10,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/legend_enraged_hyena_bite_effect.png";
 		this.m.IconMini = "legend_enraged_hyena_bite_effect_mini";
 		this.m.Overlay = "legend_enraged_hyena_bite_effect";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsStacking = false;
@@ -71,7 +71,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	function onAdded() {
 		local actor = this.getContainer().getActor();
 		if (!actor.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is locked in the hyena's jaws!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " is locked in the hyena's jaws!");
 		}
 
 		if (!actor.hasSprite("status_bite")) {
@@ -81,7 +81,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 		actor.setDirty(true);
 
 		// Generate a unique token for this instance (idk how to make refs work properly)
-		this.m.Token = this.Math.rand(1, 2147483647);
+		this.m.Token = ::Math.rand(1, 2147483647);
 
 		// Tag victim with attacker
 		actor.getFlags().set("LegendEnragedHyenaAttacker", this.m.Token);
@@ -97,7 +97,7 @@ this.legend_enraged_hyena_bite_effect <- this.inherit("scripts/skills/skill", {
 	function onRemoved() {
 		local actor = this.getContainer().getActor();
 		if (!actor.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " breaks free from the hyena's bite!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " breaks free from the hyena's bite!");
 		}
 
 		// Clear attacker from victim

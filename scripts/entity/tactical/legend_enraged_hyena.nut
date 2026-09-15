@@ -26,24 +26,24 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		this.setRenderCallbackEnabled(true);
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendEnragedHyena);
+		b.setValues(::Const.Tactical.Actor.LegendEnragedHyena);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		b.DamageTotalMult = 1.25;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 
 		local body = this.getSprite("body");
-		body.setBrush("bust_hyena_0" + this.Math.rand(7, 8));
+		body.setBrush("bust_hyena_0" + ::Math.rand(7, 8));
 		local head = this.getSprite("head");
-		head.setBrush("bust_hyena_0" + this.Math.rand(7, 8) + "_head");
-		if (this.Math.rand(0, 100) < 90) {
+		head.setBrush("bust_hyena_0" + ::Math.rand(7, 8) + "_head");
+		if (::Math.rand(0, 100) < 90) {
 			body.varySaturation(0.2);
 		}
-		if (this.Math.rand(0, 100) < 90) {
+		if (::Math.rand(0, 100) < 90) {
 			body.varyColor(0.05, 0.05, 0.05);
 		}
 
@@ -65,12 +65,12 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsHyenaEnragedDodgeDay) {
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsHyenaEnragedDodgeDay) {
 				::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 			}
 		}
 
-		if (this.Tactical.State.isScenarioMode()) {
+		if (::Tactical.State.isScenarioMode()) {
 			return;
 		}
 
@@ -92,7 +92,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
 
-		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
+		foreach (entity in ::Tactical.Entities.getAllInstancesAsArray()) {
 			if (::Legends.S.isEntityNullOrDead(entity)) {
 				continue;
 			}
@@ -120,7 +120,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 		local victimToken = this.getFlags().get("LegendEnragedHyenaBiteVictim");
 
-		foreach (entity in this.Tactical.Entities.getAllInstancesAsArray()) {
+		foreach (entity in ::Tactical.Entities.getAllInstancesAsArray()) {
 			if (::Legends.S.isEntityNullOrDead(entity)) {
 				continue;
 			}
@@ -149,7 +149,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			// Initialize breathing animation targets
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
 			this.m.DistortTargetB = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - this.Math.rand(10, 100) * 0.01;
+			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
 			this.m.LastSmokeTime = this.Time.getVirtualTimeF();
 		}
 
@@ -174,7 +174,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		if (breathCycleComplete && currentTime - this.m.LastSmokeTime > 2.0) {
 			this.m.LastSmokeTime = currentTime;
 
-			this.Tactical.spawnParticleEffect(
+			::Tactical.spawnParticleEffect(
 				false,
 				["legend_dust_03"],
 				this.getTile(),
@@ -237,57 +237,57 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 
 		// spawn corpse
 		if (_tile != null) {
-			local flip = this.Math.rand(0, 100) < 50;
+			local flip = ::Math.rand(0, 100) < 50;
 			local decal;
 			m.IsCorpseFlipped = flip;
 
 			local body = getSprite("body");
 			local head = getSprite("head");
 
-			decal = _tile.spawnDetail("bust_hyena_07_body_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_hyena_07_body_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated) {
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				// no fatality
-				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
-			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				// decapitated
 				local layers = [ head.getBrush().Name + "_dead" ];
-				local decap = this.Tactical.spawnHeadEffect(getTile(), layers, createVec(0, 0), 0.0, "bust_hyena_head_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(getTile(), layers, createVec(0, 0), 0.0, "bust_hyena_head_bloodpool");
 				decap[0].Color			= head.Color;
 				decap[0].Saturation		= head.Saturation;
 				decap[0].Scale = 0.95;
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
-				decal = _tile.spawnDetail("bust_hyena_01_body_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
+				decal = _tile.spawnDetail("bust_hyena_01_body_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			} else if(_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
-				decal = _tile.spawnDetail("bust_hyena_01_body_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+			} else if(_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
+				decal = _tile.spawnDetail("bust_hyena_01_body_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
 			spawnTerrainDropdownEffect(_tile);
 			spawnFlies(_tile);
 
-			local corpse = clone this.Const.Corpse;
+			local corpse = clone ::Const.Corpse;
 			corpse.CorpseName = "An Enraged Hyena";
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+			corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 
 			// loot
-			if ((_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals)) {
-				local n = 1 + (!this.Tactical.State.isScenarioMode() && this.Math.rand(1, 100) <= this.World.Assets.getExtraLootChance() ? 1 : 0);
+			if ((_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals)) {
+				local n = 1 + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= ::World.Assets.getExtraLootChance() ? 1 : 0);
 				for (local i = 0; i < n; ++i) {
-					if (this.Math.rand(1, 100) <= 50) {
-						local r = this.Math.rand(1, 100);
+					if (::Math.rand(1, 100) <= 50) {
+						local r = ::Math.rand(1, 100);
 						local loot;
 
 						if (r <= 60) {
@@ -297,13 +297,13 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 						}
 
 						loot.drop(_tile);
-					} else if (this.Math.rand(1, 100) <= 33) {
+					} else if (::Math.rand(1, 100) <= 33) {
 						local loot = new("scripts/items/supplies/strange_meat_item");
 						loot.drop(_tile);
 					}
 				}
 
-				if (this.Math.rand(1, 100) <= 20) {
+				if (::Math.rand(1, 100) <= 20) {
 					local loot = this.new("scripts/items/loot/sabertooth_item");
 					loot.drop(_tile);
 				}

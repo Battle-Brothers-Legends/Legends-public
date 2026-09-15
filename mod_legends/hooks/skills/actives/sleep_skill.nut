@@ -14,7 +14,7 @@
 			return false;
 		}
 
-		if (_targetTile.getEntity().getCurrentProperties().IsStunned || _targetTile.getEntity().getMoraleState() == this.Const.MoraleState.Ignore)
+		if (_targetTile.getEntity().getCurrentProperties().IsStunned || _targetTile.getEntity().getMoraleState() == ::Const.MoraleState.Ignore)
 		{
 			return false;
 		}
@@ -39,7 +39,7 @@
 	// 		return true;
 	// 	}
 
-	// 	local b = this.getContainer().getActor().getAIAgent().getBehavior(this.Const.AI.Behavior.ID.AttackDefault);
+	// 	local b = this.getContainer().getActor().getAIAgent().getBehavior(::Const.AI.Behavior.ID.AttackDefault);
 	// 	local targets = b.queryTargetsInMeleeRange(this.getMinRange(), this.getMaxRange());
 	// 	local myTile = this.getContainer().getActor().getTile();
 

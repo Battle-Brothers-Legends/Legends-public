@@ -43,12 +43,12 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 			"the Hacksaw",
 			"the Bright"
 		];
-		this.m.Ethnicity = this.Math.rand(1, 2);
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.Level = this.Math.rand(2, 4);
+		this.m.Ethnicity = ::Math.rand(1, 2);
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.Level = ::Math.rand(2, 4);
 
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Educated;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Educated;
 	}
 
 	function setGender(_gender = -1) {
@@ -77,7 +77,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 
 	function onBuildDescription()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{ //Female
 			return "{Some women are born to be feared. %name% is not one of them. | Relatively normal in stature, %name% garners little attention from passers by. | Years of study and \'practical\' research has left %them% with a good understanding on how to make or unmake a man.} {The surgeon spent many a day tending to the Vizier\'s men, until the camp as overrun by northern armies. | Never intending to be a crownling, %name% finds themselves with little choice after wandering in the desert looking for help. | While %they% have never been in a serious fight in %their% life, %name% knows their way around cutting tools and isn\'t afraid of a little gore. | When ordered to kill the wounded who could not walk, %name% refused and found themselves thrown out of the camp. | After being captured by and tending to wounded nomads, %name% found some hospitality and provisions before they left %them% on the road.} {The war has made the worst come out from both sides, with her stuck in the middle.}";
 		}
@@ -96,7 +96,7 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
@@ -111,13 +111,13 @@ this.legend_surgeon_background <- this.inherit("scripts/skills/backgrounds/chara
 			items.equip(this.new("scripts/items/weapons/butchers_cleaver"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.vizier_gear],
 			[2, ::Legends.Armor.Southern.cloth_sash],
 			[3, ::Legends.Armor.Standard.butcher_apron]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.vizier_headgear],
 			[1, ::Legends.Helmet.Southern.engineer_hat]

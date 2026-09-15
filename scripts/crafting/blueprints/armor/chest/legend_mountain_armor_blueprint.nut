@@ -4,7 +4,7 @@ this.legend_mountain_armor_blueprint <- this.inherit("scripts/crafting/blueprint
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_mountain_armor";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_armor/legendary/legend_armor_mountain_named");
 		preview.m.Name = "Mountain Armor";
 		this.m.PreviewCraftable = preview;

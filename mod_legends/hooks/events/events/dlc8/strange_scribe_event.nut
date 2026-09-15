@@ -7,7 +7,7 @@
 			local start = _screen.start;
 			_screen.start = function (_event) {
 				start(_event);
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Minstrel]);
 				_event.m.Dude.getBackground().m.RawDescription = "{%name% was found deploying %their% minstrel talents in street scamming. Vouched for by a fellow minstrel, %they% joined the %companyname% to seek out a life on the road. Hopefully the charlatan-turned-sellsword will be able to \'fake it til %they% makes it\', as %they% likes to say a little too often.}";

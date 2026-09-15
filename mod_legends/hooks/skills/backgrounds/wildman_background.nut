@@ -45,10 +45,10 @@
 			"the Wild",
 			"the Barbarian"
 		];
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Druid | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	o.getTooltip = function ()
@@ -92,7 +92,7 @@
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -119,7 +119,7 @@
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		r = this.Math.rand(0, 7);
+		r = ::Math.rand(0, 7);
 
 		if (r == 0)
 		{
@@ -154,7 +154,7 @@
 			items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.legend_rabble_fur]
 		]));

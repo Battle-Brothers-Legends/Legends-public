@@ -31,7 +31,7 @@
 
 	o.addKillCount = function ( _actor, _killer )
 	{
-		if (_killer != null && _killer.getFaction() != this.Const.Faction.Player && _killer.getFaction() != this.Const.Faction.PlayerAnimals)
+		if (_killer != null && _killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals)
 		{
 			return;
 		}
@@ -46,7 +46,7 @@
 			return;
 		}
 
-		if (_actor.getType() == this.Const.EntityType.GoblinWolfrider || _actor.getType() == this.Const.EntityType.Wardog || _actor.getType() == this.Const.EntityType.Warhound || _actor.getType() == this.Const.EntityType.SpiderEggs || _actor.getFlags().has("tail"))
+		if (_actor.getType() == ::Const.EntityType.GoblinWolfrider || _actor.getType() == ::Const.EntityType.Wardog || _actor.getType() == ::Const.EntityType.Warhound || _actor.getType() == ::Const.EntityType.SpiderEggs || _actor.getFlags().has("tail"))
 		{
 			return;
 		}
@@ -75,20 +75,20 @@
 				}
 				s.start <- function ()
 				{
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers )
 					{
-						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+						if (bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) && !bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 						{
 							bro.worsenMood(0.5, "You let a crucified man die a slow death");
 
-							if (bro.getMoodState() < this.Const.MoodState.Neutral)
+							if (bro.getMoodState() < ::Const.MoodState.Neutral)
 							{
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
 						}

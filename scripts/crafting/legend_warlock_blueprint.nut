@@ -13,7 +13,7 @@ this.legend_warlock_blueprint <- this.inherit("scripts/crafting/blueprint", {
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderNecro)
 		];
 
-		foreach (bro in this.World.getPlayerRoster().getAll()) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			foreach (bg in bgs) {
 				if (bro.getSkills().hasSkill(bg)) {
 					return true;

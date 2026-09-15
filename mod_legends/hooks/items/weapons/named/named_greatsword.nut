@@ -5,7 +5,7 @@
 		create();
 		this.m.Description = "A long two-handed greatsword as good for crushing as for cutting, it has a good balance between the lighter longsword and heavier zweihander.";
 		this.m.Variants = [1,2,3,4,5,6];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.randomizeValues <- function ()

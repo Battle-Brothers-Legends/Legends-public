@@ -2,7 +2,7 @@
 {
 	o.getBrosWithMastery = function ()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local count = 0;
 
 		foreach( bro in brothers )

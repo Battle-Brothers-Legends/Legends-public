@@ -52,7 +52,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -84,7 +84,7 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 
 			if (!_user.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " eats Magic Mushrooms");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " eats Magic Mushrooms");
 			}
 
 			if (this.m.Item != null && !this.m.Item.isNull())
@@ -92,17 +92,17 @@ this.legend_apothecary_mushrooms_skill <- this.inherit("scripts/skills/actives/b
 				this.m.Item.removeSelf();
 			}
 
-			this.Const.Tactical.Common.checkDrugEffect(user);
+			::Const.Tactical.Common.checkDrugEffect(user);
 		}
 		else
 		{
 			if (!_user.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " gives Magic Mushrooms to " + this.Const.UI.getColorizedEntityName(user));
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " gives Magic Mushrooms to " + ::Const.UI.getColorizedEntityName(user));
 			}
 
 			this.spawnIcon("status_effect_67", _targetTile);
-			this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
+			::Sound.play("sounds/cloth_01.wav", ::Const.Sound.Volume.Inventory);
 			local item = this.m.Item.get();
 			_user.getItems().removeFromBag(item);
 			user.getItems().addToBag(item);

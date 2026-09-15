@@ -11,9 +11,9 @@
 
 	o.getValue = function () {
 		if (this.m.IsRandomized) {
-			return this.Math.floor(this.m.Amount / this.m.MaxStack * (this.getSpoilInDays() / (this.m.GoodForDays * 1.0)) * this.m.Value);
+			return ::Math.floor(this.m.Amount / this.m.MaxStack * (this.getSpoilInDays() / (this.m.GoodForDays * 1.0)) * this.m.Value);
 		}
-		return this.Math.floor(1 * (this.getSpoilInDays() / (this.m.GoodForDays * 1.0)) * this.m.Value);
+		return ::Math.floor(1 * (this.getSpoilInDays() / (this.m.GoodForDays * 1.0)) * this.m.Value);
 	}
 
 	o.getBestBeforeTime = function () {
@@ -23,7 +23,7 @@
 	o.randomizeAmount = function () {
 		this.m.IsRandomized = true;
 		this.m.MaxStack = this.m.Amount;
-		this.m.Amount = this.Math.rand(this.Math.ceil(this.m.MaxStack * 0.4), this.m.MaxStack);
+		this.m.Amount = ::Math.rand(::Math.ceil(this.m.MaxStack * 0.4), this.m.MaxStack);
 	}
 
 	o.getStaminaModifier <- function () {

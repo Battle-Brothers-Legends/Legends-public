@@ -5,7 +5,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyBeast,
-		ValidTypes = this.Const.LegendMod.FavoriteBeast,
+		ValidTypes = ::Const.LegendMod.FavoriteBeast,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -14,8 +14,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_redback_webknechts";
 		this.m.Name = "Hunting Redback Webknechts (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"The woods are poisoned. The way is blocked. Scuttling horrors chitter in the dark. There is something odd at work here.",
 			"Bloated red bodies and gaping maws skitter through the darkness, hungry for blood.",
@@ -36,9 +36,9 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 
 	function start()
 	{
-		this.m.Payment.Pool = 900 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 900 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 10)
+		if (::Math.rand(1, 100) <= 10)
 		{
 			this.m.Payment.Completion = 0.9;
 			this.m.Payment.Advance = 0.1;
@@ -61,7 +61,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					"Hunt down Redback Webknechts in the woods around " + this.Contract.m.Home.getName()
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -73,8 +73,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 
 				if (r <= 10)
 				{
@@ -92,7 +92,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -111,11 +111,11 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			{
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
 				{
-					if (this.Flags.get("IsOldArmor") && this.World.Assets.getStash().hasEmptySlot())
+					if (this.Flags.get("IsOldArmor") && ::World.Assets.getStash().hasEmptySlot())
 					{
 						this.Contract.setScreen("OldArmor");
 					}
-					else if (this.Flags.get("IsSurvivor") && this.World.getPlayerRoster().getSize() < this.World.Assets.getBrothersMax())
+					else if (this.Flags.get("IsSurvivor") && ::World.getPlayerRoster().getSize() < ::World.Assets.getBrothersMax())
 					{
 						this.Contract.setScreen("Survivor");
 					}
@@ -124,18 +124,18 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 						this.Contract.setScreen("Victory");
 					}
 
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
 				{
-					local tileType = this.World.State.getPlayer().getTile().Type;
+					local tileType = ::World.State.getPlayer().getTile().Type;
 
-					if (tileType == this.Const.World.TerrainType.Forest || tileType == this.Const.World.TerrainType.LeaveForest || tileType == this.Const.World.TerrainType.AutumnForest)
+					if (tileType == ::Const.World.TerrainType.Forest || tileType == ::Const.World.TerrainType.LeaveForest || tileType == ::Const.World.TerrainType.AutumnForest)
 					{
 						this.Flags.set("IsBanterShown", true);
 						this.Contract.setScreen("Banter");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}
@@ -146,11 +146,11 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 				{
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -170,7 +170,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -179,8 +179,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -202,7 +202,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					Text = "{This doesn\'t sound like our kind of work.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -283,11 +283,11 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			],
 			function start()
 			{
-				local item = this.Const.World.Common.pickArmor([
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.mail_hauberk],
 					[1, ::Legends.Armor.Standard.coat_of_scales]
 				]);
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -309,8 +309,8 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					Text = "Welcome to the company!",
 					function getResult()
 					{
-						this.World.getPlayerRoster().add(this.Contract.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(this.Contract.m.Dude);
+						::World.getTemporaryRoster().clear();
 						this.Contract.m.Dude.onHired();
 						this.Contract.m.Dude = null;
 						return 0;
@@ -321,7 +321,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					Text = "You\'ll have to find your luck elsewhere.",
 					function getResult()
 					{
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						this.Contract.m.Dude = null;
 						return 0;
 					}
@@ -330,7 +330,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 			],
 			function start()
 			{
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				this.Contract.m.Dude = roster.create("scripts/entity/tactical/player");
 				this.Contract.m.Dude.setStartValuesEx([::Legends.Background.Swordmaster]);
 
@@ -345,24 +345,24 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 				this.Contract.m.Dude.worsenMood(0.5, "Lost his previous company to webknechts");
 				this.Contract.m.Dude.worsenMood(0.5, "Almost consumed alive by webknechts");
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).getArmor() * 0.33);
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).getArmor() * 0.33);
 				}
 
-				if (this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body) != null)
+				if (this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body) != null)
 				{
-					this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body).getArmor() * 0.33);
+					this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).setArmor(this.Contract.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body).getArmor() * 0.33);
 				}
 
 				this.Characters.push(this.Contract.m.Dude.getImagePath());
@@ -382,10 +382,10 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -396,10 +396,10 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 				local food;
-				local r = this.Math.rand(1, 3);
+				local r = ::Math.rand(1, 3);
 
 				if (r == 1)
 				{
@@ -414,7 +414,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 					food = this.new("scripts/items/supplies/roots_and_berries_item");
 				}
 
-				this.World.Assets.getStash().add(food);
+				::World.Assets.getStash().add(food);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + food.getIcon(),
@@ -429,24 +429,24 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 	function spawnEnemies() {
 		local disallowedTerrain = [];
 
-		for (local i = 0; i < this.Const.World.TerrainType.COUNT; i++) {
-			if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
+		for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++) {
+			if (i == ::Const.World.TerrainType.Forest || i == ::Const.World.TerrainType.LeaveForest || i == ::Const.World.TerrainType.AutumnForest)
 				continue;
 			disallowedTerrain.push(i);
 		}
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local mapSize = this.World.getMapSize();
-		local x = this.Math.max(3, playerTile.SquareCoords.X - 9);
-		local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
-		local y = this.Math.max(3, playerTile.SquareCoords.Y - 9);
-		local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
+		local playerTile = ::World.State.getPlayer().getTile();
+		local mapSize = ::World.getMapSize();
+		local x = ::Math.max(3, playerTile.SquareCoords.X - 9);
+		local x_max = ::Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 9);
+		local y = ::Math.max(3, playerTile.SquareCoords.Y - 9);
+		local y_max = ::Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 9);
 		local numWoods = 0;
 
 		while (x <= x_max) {
 			while (y <= y_max) {
-				local tile = this.World.getTileSquare(x, y);
-				if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest) {
+				local tile = ::World.getTileSquare(x, y);
+				if (tile.Type == ::Const.World.TerrainType.Forest || tile.Type == ::Const.World.TerrainType.LeaveForest || tile.Type == ::Const.World.TerrainType.AutumnForest) {
 					numWoods = ++numWoods;
 					numWoods = numWoods;
 				}
@@ -456,7 +456,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 9, disallowedTerrain);
-		local party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Redback Webknechts", false, this.Const.World.Spawn.LegendRedbackSpider, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		local party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Redback Webknechts", false, ::Const.World.Spawn.LegendRedbackSpider, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A swarm of redback webknechts skittering about.");
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.75);
@@ -464,19 +464,19 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 		for( local i = 0; i < 2; i++ ) {
 			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 5);
 			if (nearTile != null)
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.75);
+				::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.BeastFootprints, 0.75);
 		}
 
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setNoTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Forest, true);
-		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
-		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
+		roam.setTerrain(::Const.World.TerrainType.Forest, true);
+		roam.setTerrain(::Const.World.TerrainType.LeaveForest, true);
+		roam.setTerrain(::Const.World.TerrainType.AutumnForest, true);
 		roam.setMinRange(1);
 		roam.setMaxRange(1);
 		c.addOrder(roam);
@@ -487,7 +487,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : this.Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
 		]);
 	}
 
@@ -526,13 +526,13 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 	function onIsValid()
 	{
 		local sumLevels = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
+		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
 				continue;
 
-			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
+			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
 			if (stats.Strength >= this.m.MinStrength)
 				return true;
 		}
@@ -560,7 +560,7 @@ this.legend_hunting_redback_webknechts_contract <- this.inherit("scripts/contrac
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);

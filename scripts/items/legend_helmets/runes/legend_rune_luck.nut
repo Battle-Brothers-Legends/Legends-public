@@ -4,7 +4,7 @@ this.legend_rune_luck <- this.inherit("scripts/items/legend_helmets/legend_helme
 	{
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "legend_helmet_upgrade.legend_rune_luck";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Rune;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Rune;
 		this.m.Name = "Helmet Rune Sigil: Luck";
 		this.m.Description = "An inscribed rock that can be attached to a character\'s helmet to increase the wearer's luck.";
 		this.m.ArmorDescription = "Includes a luck rune.";

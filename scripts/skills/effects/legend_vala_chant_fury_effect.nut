@@ -17,19 +17,19 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	function getDamageBonus()
 	{
 		local bonus = this.m.Vala.getBravery() * 0.05;
-		return this.Math.max(0, this.Math.floor(bonus * this.getMasteryMult() * this.getDistanceMult()));
+		return ::Math.max(0, ::Math.floor(bonus * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
 	function getPayBackChance()
 	{
 		local chance = this.m.Vala.getBravery() * 0.4;
-		return this.Math.min(100, this.Math.max(0, chance * this.getMasteryMult() * this.getDistanceMult()));
+		return ::Math.min(100, ::Math.max(0, chance * this.getMasteryMult() * this.getDistanceMult()));
 	}
 
 	function getPayBackDamage()
 	{
 		local damage = this.m.Vala.getBravery() * 0.3;
-		return this.Math.min(100, damage * this.getMasteryMult() * this.getDistanceMult());
+		return ::Math.min(100, damage * this.getMasteryMult() * this.getDistanceMult());
 	}
 
 	function getDistanceMult()
@@ -113,7 +113,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 
 		local chance = this.getPayBackChance();
 
-		if (this.Math.rand(1, 100) <= chance)
+		if (::Math.rand(1, 100) <= chance)
 		{
 			local payback = this.getContainer().getAttackOfOpportunity();
 			if (payback != null)
@@ -126,7 +126,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 					Container = this.getContainer(),
 					StartingTile = actor.getTile()
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
+				this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
 		}
 	}
@@ -135,13 +135,13 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 			return;
 
 		if (!this.checkEntities() || !this.isInRange())
 			return;
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
+		if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == this.getContainer().getActor().getID())
 			return;
 
 		if (this.m.isPerformingPayback == true)

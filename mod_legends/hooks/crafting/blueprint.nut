@@ -4,7 +4,7 @@
 
 	o.m.PreviewSkills <- [];
 	o.m.BlueprintType <- "Crafting";
-	o.m.Type <- this.Const.Items.ItemType.None;
+	o.m.Type <- ::Const.Items.ItemType.None;
 	o.m.CraftMultiplier <- 1.0;
 
 	o.getItemType <- function ()
@@ -112,7 +112,7 @@
 
 	o.requirementsMet <- function ( _ids )
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -130,7 +130,7 @@
 
 	o.isPartlyCraftable <- function ()
 	{
-		local itemsMap = this.World.Assets.getStash().getNumItemsMap(true);
+		local itemsMap = ::World.Assets.getStash().getNumItemsMap(true);
 
 		foreach( c in this.m.PreviewSkills )
 		{
@@ -167,7 +167,7 @@
 
 	o.isCraftable = function ()
 	{
-		local itemsMap = this.World.Assets.getStash().getNumItemsMap(true);
+		local itemsMap = ::World.Assets.getStash().getNumItemsMap(true);
 
 		foreach( c in this.m.PreviewComponents )
 		{
@@ -334,7 +334,7 @@
 						stash.remove(item);
 					}
 				} else {
-					item.setMagicNumber(this.Math.rand(1, 100));
+					item.setMagicNumber(::Math.rand(1, 100));
 				}
 			}
 		}

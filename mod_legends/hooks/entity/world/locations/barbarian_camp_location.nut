@@ -3,7 +3,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.NamedWeaponsList = clone this.Const.Items.NamedBarbarianWeapons;
+		this.m.NamedWeaponsList = clone ::Const.Items.NamedBarbarianWeapons;
 		this.m.NamedWeaponsList.extend([
 			"weapons/named/legend_named_heavy_javelin",
 			"weapons/named/legend_named_heavy_throwing_axe"
@@ -13,10 +13,10 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropMoney(this.Math.rand(200, 500), _lootTable);
-		this.dropArmorParts(this.Math.rand(15, 30), _lootTable);
-		this.dropAmmo(this.Math.rand(0, 30), _lootTable);
-		this.dropMedicine(this.Math.rand(0, 5), _lootTable);
+		this.dropMoney(::Math.rand(200, 500), _lootTable);
+		this.dropArmorParts(::Math.rand(15, 30), _lootTable);
+		this.dropAmmo(::Math.rand(0, 30), _lootTable);
+		this.dropMedicine(::Math.rand(0, 5), _lootTable);
 		local treasure = [
 			"trade/furs_item",
 			"trade/furs_item",
@@ -29,7 +29,7 @@
 			"loot/bead_necklace_item",
 			"loot/looted_valuables_item"
 		];
-		this.dropFood(this.Math.rand(2, 4), [
+		this.dropFood(::Math.rand(2, 4), [
 			"bread_item",
 			"beer_item",
 			"dried_fruits_item",
@@ -41,6 +41,6 @@
 			"cured_venison_item",
 			"goat_cheese_item"
 		], _lootTable);
-		this.dropTreasure(this.Math.rand(1, 2), treasure, _lootTable);
+		this.dropTreasure(::Math.rand(1, 2), treasure, _lootTable);
 	}
 });

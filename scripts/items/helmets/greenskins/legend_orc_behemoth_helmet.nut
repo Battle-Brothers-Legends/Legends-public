@@ -10,7 +10,7 @@ this.legend_orc_behemoth_helmet <- this.inherit("scripts/items/helmets/helmet", 
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
 		this.m.Icon = "";
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Condition = 300;
 		this.m.ConditionMax = 300;
 		this.m.StaminaModifier = -18;

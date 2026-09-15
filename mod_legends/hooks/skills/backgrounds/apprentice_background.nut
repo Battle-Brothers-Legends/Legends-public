@@ -29,9 +29,9 @@
 			"the Kid",
 			"the Bright"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Educated;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -66,7 +66,7 @@
 	o.onAddEquipment = function()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.apron]

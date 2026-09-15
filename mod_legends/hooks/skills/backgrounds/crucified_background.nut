@@ -23,16 +23,16 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.WildExtended;
-		this.m.Bodies = this.Const.Bodies.Muscular;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.WildExtended;
+		this.m.Bodies = ::Const.Bodies.Muscular;
 		this.m.BeardChance = 100;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()

@@ -8,7 +8,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character is being protected by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_purple.png";
 		this.m.Overlay = "prayer_purple";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -18,7 +18,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 	{
 		// local actor = this.getContainer().getActor();
 		local resolve = this.m.Resolve;
-		local bonus = this.Math.floor(resolve * 0.20);
+		local bonus = ::Math.floor(resolve * 0.20);
 
 		return bonus;
 	}

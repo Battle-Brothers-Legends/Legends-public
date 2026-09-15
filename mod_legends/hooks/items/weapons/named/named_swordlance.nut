@@ -5,7 +5,7 @@
 	{
 		create();
 		this.m.Categories = "Cleaver/Polearm, Two-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
 		this.m.Variants = [1, 2, 3, 4, 5];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}

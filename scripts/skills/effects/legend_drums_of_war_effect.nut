@@ -16,7 +16,7 @@ this.legend_drums_of_war_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "ui/perks/drums_of_war.png";
 		this.m.Overlay = "drums_of_war_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -25,7 +25,7 @@ this.legend_drums_of_war_effect <- this.inherit("scripts/skills/skill", {
 	function onAdded()
 	{
 		local actor = this.getContainer().getActor();
-		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.m.Effect));
+		actor.setFatigue(::Math.max(0, actor.getFatigue() - this.m.Effect));
 		if (actor.isPlacedOnMap())
 			this.spawnIcon(this.m.Overlay, actor.getTile());
 	}

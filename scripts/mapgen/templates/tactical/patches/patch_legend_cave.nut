@@ -12,7 +12,7 @@ this.patch_legend_cave<- this.inherit("scripts/mapgen/tactical_template", {
 		local cave1Tile = this.MapGen.get("tactical.tile.legend_cave1");
 		local cave2Tile = this.MapGen.get("tactical.tile.stone2");
 		local bumpyChance = 98;
-		local mainTile = this.Math.rand(1, 100) < 50 ? cave1Tile : cave2Tile;
+		local mainTile = ::Math.rand(1, 100) < 50 ? cave1Tile : cave2Tile;
 		local otherTile = mainTile == cave2Tile ? cave1Tile : cave2Tile;
 		local otherTileChance = 10;
 
@@ -20,51 +20,51 @@ this.patch_legend_cave<- this.inherit("scripts/mapgen/tactical_template", {
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
 				}
 				else
 				{
-					if (this.Math.abs(x - _rect.X) <= 2 || this.Math.abs(x - (_rect.X + _rect.W - 1)) <= 2 || this.Math.abs(y - _rect.Y) <= 2 || this.Math.abs(y - (_rect.Y + _rect.H - 1)) <= 2)
+					if (::Math.abs(x - _rect.X) <= 2 || ::Math.abs(x - (_rect.X + _rect.W - 1)) <= 2 || ::Math.abs(y - _rect.Y) <= 2 || ::Math.abs(y - (_rect.Y + _rect.H - 1)) <= 2)
 					{
-						if (this.Math.rand(0, 100) < 33)
+						if (::Math.rand(0, 100) < 33)
 						{
 						}
 					}
 
 					local n = 0;
 
-					if (this.Tactical.isValidTileSquare(x - 1, y) && this.Tactical.getTileSquare(x - 1, y).Level == 1)
+					if (::Tactical.isValidTileSquare(x - 1, y) && ::Tactical.getTileSquare(x - 1, y).Level == 1)
 					{
 						n = ++n;
 					}
 
-					if (this.Tactical.isValidTileSquare(x - 1, y + 1) && this.Tactical.getTileSquare(x - 1, y + 1).Level == 1)
+					if (::Tactical.isValidTileSquare(x - 1, y + 1) && ::Tactical.getTileSquare(x - 1, y + 1).Level == 1)
 					{
 						n = ++n;
 					}
 
-					if (this.Tactical.isValidTileSquare(x, y - 1) && this.Tactical.getTileSquare(x, y - 1).Level == 1)
+					if (::Tactical.isValidTileSquare(x, y - 1) && ::Tactical.getTileSquare(x, y - 1).Level == 1)
 					{
 						n = ++n;
 					}
 
 					tile.Level = 0;
 
-					if (this.Math.rand(0, 100) > bumpyChance - n * 20)
+					if (::Math.rand(0, 100) > bumpyChance - n * 20)
 					{
 						tile.Level = 1;
 					}
 
-					local brush = this.Math.rand(0, 100) < otherTileChance ? otherTile : mainTile;
+					local brush = ::Math.rand(0, 100) < otherTileChance ? otherTile : mainTile;
 					brush.fill({
 						X = x,
 						Y = y,
 						W = 1,
 						H = 1,
-						IsEmpty = _rect.IsEmpty || this.Math.rand(0, 100) < 33
+						IsEmpty = _rect.IsEmpty || ::Math.rand(0, 100) < 33
 					}, _properties);
 				}
 			}

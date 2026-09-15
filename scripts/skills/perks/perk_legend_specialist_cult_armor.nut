@@ -4,7 +4,7 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecCultArmor);
 		this.m.Description = "This character is gaining increased Maximum Damage because of adjacent opponents.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function isHidden()
@@ -53,22 +53,22 @@ this.perk_legend_specialist_cult_armor <- this.inherit("scripts/skills/skill", {
 	function getResolveBonus()
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 		local cultItems = [];
 		if (item != null)
 		{
-			if (item.isItemType(this.Const.Items.ItemType.Cultist)) {
+			if (item.isItemType(::Const.Items.ItemType.Cultist)) {
 				cultItems.push(item);
 			}
 			foreach (upgrade in item.m.Upgrades)
 			{
-				if (upgrade != null && upgrade.isItemType(this.Const.Items.ItemType.Cultist)) cultItems.push(upgrade);
+				if (upgrade != null && upgrade.isItemType(::Const.Items.ItemType.Cultist)) cultItems.push(upgrade);
 			}
 		}
 
 		if (cultItems.len() > 0)
 		{
-			return this.Math.floor((actor.getHitpointsMax() - actor.getHitpoints()) * 0.75);
+			return ::Math.floor((actor.getHitpointsMax() - actor.getHitpoints()) * 0.75);
 		}
 
 		return 0;

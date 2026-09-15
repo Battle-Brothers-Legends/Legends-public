@@ -9,7 +9,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/daze56_circle.png";
 		this.m.IconMini = "mini_daze56_circle";
 		this.m.Overlay = "status_daze56_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -56,14 +56,14 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		// if (!this.m.Container.getActor().getCurrentProperties().IsImmuneToStun || this.m.IsForced)
 		// {
-		// 	this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		// 	this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		// }
 		// else
 		// {
-		//  this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.m.Container.getActor().getName()) + " became baffled instead of dazed, due to being stun immune.");
+		//  ::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.m.Container.getActor().getName()) + " became baffled instead of dazed, due to being stun immune.");
 		// 	local forceBaffle = this.new("scripts/skills/effects/legend_baffled_effect");
 		// 	forceBaffle.m.IsForced = true;
 		// 	this.m.Container.add(forceBaffle);
@@ -73,7 +73,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRefresh()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		this.spawnIcon("status_effect_87", this.getContainer().getActor().getTile());
 	}
 

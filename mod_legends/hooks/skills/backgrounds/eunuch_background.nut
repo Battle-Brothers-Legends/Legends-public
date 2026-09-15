@@ -21,14 +21,14 @@
 			"the Eunuch",
 			"the Gelding"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.YoungMale;
-		this.m.HairColors = this.Const.HairColors.Young;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.YoungMale;
+		this.m.HairColors = ::Const.HairColors.Young;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Performing;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.Bodies = ::Const.Bodies.Muscular;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated | ::Const.BackgroundType.Performing;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	o.getTooltip = function ()
@@ -49,7 +49,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));

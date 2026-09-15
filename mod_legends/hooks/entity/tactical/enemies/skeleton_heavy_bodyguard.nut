@@ -5,7 +5,7 @@
 	// 	this.actor.onFactionChanged();
 	// 	local flip = this.isAlliedWithPlayer()
 	// 	flip = !flip
-	// 	foreach (a in this.Const.CharacterSprites.Helmets)
+	// 	foreach (a in ::Const.CharacterSprites.Helmets)
 	// 	{
 	// 		if (!this.hasSprite(a))
 	// 		{
@@ -40,9 +40,9 @@
 			"weapons/ancient/legend_gladius",
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
@@ -53,10 +53,10 @@
 			[1, ::Legends.Armor.Ancient.ancient_plate_harness],
 			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		];
-		local item = this.Const.World.Common.pickArmor(armor);
+		local item = ::Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[66, ::Legends.Helmet.Ancient.ancient_honorguard_helmet]
 		]);
 		if (item != null)
@@ -79,18 +79,18 @@
 			"named_warscythe",
 			"legend_named_gladius"
 		];
-		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/ancient/tower_shield"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Ancient.ancient_heavy_restored_armor]
 		]));
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_heavy_restored_helmet]
 		]));
 

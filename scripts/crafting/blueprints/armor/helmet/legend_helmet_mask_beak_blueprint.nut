@@ -4,7 +4,7 @@ this.legend_helmet_mask_beak_blueprint <- this.inherit("scripts/crafting/bluepri
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_helmet_mask_beak";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/top/legend_helmet_mask_beak");
 		this.m.Cost = 110;
 		local ingredients = [

@@ -24,11 +24,11 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Names = this.Const.Strings.KnightNames;
-		this.m.Level = this.Math.rand(1, 3);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Noble;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.Names = ::Const.Strings.KnightNames;
+		this.m.Level = ::Math.rand(1, 3);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated | ::Const.BackgroundType.Noble;
 	}
 
 	o.getTooltip = function () {
@@ -56,7 +56,7 @@
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/weapons/fencing_sword"));
@@ -71,13 +71,13 @@
 			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],

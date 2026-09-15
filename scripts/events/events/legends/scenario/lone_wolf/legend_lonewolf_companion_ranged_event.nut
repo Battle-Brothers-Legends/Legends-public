@@ -5,7 +5,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_ranged";
 		this.m.Title = "Like minds and simple hearts";
-		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 20.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_36.png[/img]{A figure comes into sight, sitting on a low rock and carefully sharpening their weapon and patching any holes in their armour. Strangely enough, they speak first.%SPEECH_ON%I\'m %recruit%, and there\'s talk across the land of you runnin\' around looking to prove \'urself%SPEECH_OFF%Your hand steadily crawls towards your weapon but the stranger takes note of this.%SPEECH_ON%No — not like that. In fact, I\'m interested in joining. The arenas in the south only have so many things to kill and the north can be...somewhat empty at times.%SPEECH_OFF%}",
@@ -36,8 +36,8 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Options = [{
 				Text = "{A good shot, mostly. | A good shot but lacking awareness. | Now we\'ll all be safe when the bottles invade.}",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
@@ -65,8 +65,8 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Options = [{
 				Text = "{Get in line. | It was the wind. | I\'d like to see how they fare against more than one arrow.}",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
@@ -94,8 +94,8 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Options = [{
 				Text = "{Well, you hit it at least... | I hope they don\'t take as long to piss. | Deadly. You almost killed it from boredom.}",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
@@ -124,7 +124,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 			Options = [{
 				Text = "I\'m not recruiting everyone from here to the coast.",
 				function getResult(_event) {
-					this.World.getTemporaryRoster().clear();
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude = null;
 					return 0;
 				}
@@ -133,17 +133,17 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
@@ -154,7 +154,7 @@ this.legend_lonewolf_companion_ranged_event <- this.inherit("scripts/events/even
 
 	function onPrepareVariables(_vars) {
 		if (this.m.Dude == null) {
-			local roster = this.World.getTemporaryRoster();
+			local roster = ::World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
 			this.m.Dude.setStartValuesEx([::Legends.Background.LegendCompanionRanged]);
 			this.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");

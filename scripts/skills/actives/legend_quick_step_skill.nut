@@ -7,8 +7,8 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendQuickStep);
 		this.m.Description = "Exert yourself to move one tile at an unusually quick speed. Can only be used once per turn while outside of zone of control.";
 		this.m.SoundOnUse = ["sounds/combat/footwork_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -45,7 +45,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 9,
@@ -127,7 +127,7 @@ this.legend_quick_step_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		this.m.IsSpent = true;
-		this.Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
+		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		return true;
 	}
 

@@ -6,7 +6,7 @@ this.legend_wolfsbane_necklace_item <- this.inherit("scripts/items/accessory/acc
 		this.m.ID = "accessory.legend_wolfsbane_necklace";
 		this.m.Name = "Wolfsbane Necklace";
 		this.m.Description = "This necklace fashioned from wolfsbane is used to surpress therianthropic beastly transformations.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";

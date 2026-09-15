@@ -6,8 +6,8 @@ this.legend_vala_currently_chanting <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Overlay = "perk_28";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast + 6;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast + 6;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

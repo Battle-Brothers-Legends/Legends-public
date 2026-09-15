@@ -15,8 +15,8 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -109,16 +109,16 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		{
 			return _stat;
 		}
-		local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
-		return this.Math.floor(0.01 * this.Math.min(5 * actor.getLevel() + 25, 100) * _stat);
+		local daysCompany = ::Math.floor(actor.getDaysWithCompany() / 7);
+		return ::Math.floor(0.01 * ::Math.min(5 * actor.getLevel() + 25, 100) * _stat);
 		// if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Week in company")
 		// {
-		// 	local daysCompany = this.Math.floor(actor.getDaysWithCompany() / 7);
-		// 	return this.Math.floor(0.01 * this.Math.min(5 * daysCompany + 25, 100) * _stat);
+		// 	local daysCompany = ::Math.floor(actor.getDaysWithCompany() / 7);
+		// 	return ::Math.floor(0.01 * ::Math.min(5 * daysCompany + 25, 100) * _stat);
 		// }
 		// else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Level")
 		// {
-		// 	return this.Math.floor(0.01 * this.Math.min(5 * actor.getLevel() + 25, 100) * _stat);
+		// 	return ::Math.floor(0.01 * ::Math.min(5 * actor.getLevel() + 25, 100) * _stat);
 		// }
 		// else if (::Legends.Mod.ModSettings.getSetting("SpecialistSkillsSetting").getValue() == "Training")
 		// {
@@ -128,7 +128,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		// 		return 0;
 		// 	}
 
-		// 	return this.Math.floor(0.01 * this.Math.min(5 * training.getStatsIncreased() + 25, 100) * _stat);
+		// 	return ::Math.floor(0.01 * ::Math.min(5 * training.getStatsIncreased() + 25, 100) * _stat);
 		// }
 		// else
 		// {
@@ -166,7 +166,7 @@ this.legend_specialist_abstract <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isNull(item))
 			return false;
 
-		if (!item.isItemType(this.Const.Items.ItemType.Weapon))
+		if (!item.isItemType(::Const.Items.ItemType.Weapon))
 			return false;
 
 		if (!this.hasBonus(item))

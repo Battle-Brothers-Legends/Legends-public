@@ -4,15 +4,15 @@ this.legend_light_gladiator_upgrade <- this.inherit("scripts/items/legend_armor/
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_light_gladiator_upgrade";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Padded Armor Pieces";
 		this.m.Description = "A padded armguard that provides additional protection, used by gladiators in fighting pits.";
 		this.m.ArmorDescription = "Includes a padded armguard.";
 		this.m.Variants = [1,2,3,4,5];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 400;
 		this.m.Condition = 45;
 		this.m.ConditionMax = 45;

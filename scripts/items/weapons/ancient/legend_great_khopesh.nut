@@ -8,10 +8,10 @@ this.legend_great_khopesh <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "With the weight and size like the leg of a large animal this mysterious weapon is both large as it is intimidating. Its outside curved edge bares a sharpness that makes it whistle through the air when swung.";
 		this.m.IconLarge = "weapons/melee/legend_great_khopesh.png";
 		this.m.Icon = "weapons/melee/legend_great_khopesh_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

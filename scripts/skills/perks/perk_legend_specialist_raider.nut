@@ -5,10 +5,10 @@ this.perk_legend_specialist_raider <- this.inherit("scripts/skills/legend_specia
 			"weapon.throwing_axe"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Axe
+			::Const.Items.WeaponType.Axe
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.OneHanded
+			::Const.Items.ItemType.OneHanded
 		],
 		BonusMelee = 12,
 		BonusRanged = 12,

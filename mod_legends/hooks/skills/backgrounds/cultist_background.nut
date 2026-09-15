@@ -45,11 +45,11 @@
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Cultist | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	o.getTooltip = function () {
@@ -77,20 +77,20 @@
 
 	o.onSetAppearance = function ()
 	{
-		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (!this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
@@ -100,7 +100,7 @@
 
 	o.updateAppearance = function ()
 	{
-		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (!this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
@@ -117,7 +117,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 8);
+		r = ::Math.rand(0, 8);
 
 		if (r == 0)
 		{
@@ -137,11 +137,11 @@
 		}
 		else if (r == 4)
 		{
-			if (this.Const.DLC.Wildmen)
+			if (::Const.DLC.Wildmen)
 			{
 				items.equip(this.new("scripts/items/weapons/battle_whip"));
 			}
-			else if (!this.Const.DLC.Wildmen)
+			else if (!::Const.DLC.Wildmen)
 			{
 				items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 			}
@@ -151,13 +151,13 @@
 		 items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.monk_robe],
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]

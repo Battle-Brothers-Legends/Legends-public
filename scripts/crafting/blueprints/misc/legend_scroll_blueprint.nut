@@ -3,7 +3,7 @@ this.legend_scroll_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_experience_scroll_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = ::Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/misc/legend_scroll_preview_item");
 		this.m.Cost = 2000;
 		// this.m.Cost = 10;

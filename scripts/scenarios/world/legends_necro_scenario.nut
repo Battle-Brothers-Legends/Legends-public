@@ -8,15 +8,15 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Difficulty = 3;
 		this.m.Order = 310;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(4);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(27);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(4);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 4; i = i )
@@ -28,7 +28,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -74,20 +74,20 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Perks.grant(bros[3], ::Legends.Perk.LegendZombieBite);
 
 		//Starting stash
-		this.World.Assets.m.Money = this.World.Assets.m.Money / 1;
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/black_marsh_stew_item"));
-		this.World.Flags.set("IsLegendNecroOrigin", true);
+		::World.Assets.m.Money = ::World.Assets.m.Money / 1;
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/black_marsh_stew_item"));
+		::World.Flags.set("IsLegendNecroOrigin", true);
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
 			{
@@ -98,33 +98,33 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Plains && tile.Type != this.Const.World.TerrainType.Steppe && tile.Type != this.Const.World.TerrainType.Tundra && tile.Type != this.Const.World.TerrainType.Snow)
+				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
 				{
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -136,25 +136,25 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(104);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(104);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(this.Const.Music.CivilianTracks, this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_necro_intro_event"); //starting event
+			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_necro_intro_event"); //starting event
 		}, null);
 	}
 
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsNecro", true);
+		::World.Flags.set("IsLegendsNecro", true);
 	}
 
 	function onCombatFinished() //trio avatar checks
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local necros = 0;
 
 		foreach( bro in roster )
@@ -165,9 +165,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			}
 		}
 
-		if (necros == 2 && !this.World.Flags.get("NecrosOriginDeath2"))
+		if (necros == 2 && !::World.Flags.get("NecrosOriginDeath2"))
 		{
-			this.World.Flags.set("NecrosOriginDeath2", true);
+			::World.Flags.set("NecrosOriginDeath2", true);
 
 			foreach( bro in roster )
 			{
@@ -178,9 +178,9 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				}
 			}
 		}
-		else if (necros == 1 && !this.World.Flags.get("NecrosOriginDeath1"))
+		else if (necros == 1 && !::World.Flags.get("NecrosOriginDeath1"))
 		{
-			this.World.Flags.set("NecrosOriginDeath1", true);
+			::World.Flags.set("NecrosOriginDeath1", true);
 
 			foreach( bro in roster )
 			{
@@ -221,7 +221,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, ::Legends.Background.Gravedigger, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
 		foreach (i, bro in bros) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
 			//delete crusader/pious recruits
 				garbage.push(bro);
 		}
@@ -235,14 +235,14 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Graverobber) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getBaseProperties().MeleeSkill += 10;
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.2); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.2); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.2; //1.0 = default
 			bro.getSkills().update();
 		}
@@ -264,7 +264,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	// function isCultist( _background )
 	// {
-	// 	return _background.isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist);
+	// 	return _background.isBackgroundType(::Const.BackgroundType.ConvertedCultist | ::Const.BackgroundType.Cultist);
 	// }
 	//new end
 

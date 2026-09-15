@@ -7,7 +7,7 @@
 		local b = this.m.BaseProperties;
 		local body = this.getSprite("body");
 		local head = this.getSprite("head");
-		if (this.Math.rand(1, 100) < 10)
+		if (::Math.rand(1, 100) < 10)
 		{
 			head.setBrush("bust_unhold_head_06");
 		}
@@ -17,7 +17,7 @@
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (a == "helmet")
 				continue;

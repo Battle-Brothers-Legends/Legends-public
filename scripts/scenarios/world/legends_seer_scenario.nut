@@ -8,16 +8,16 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		this.m.Difficulty = 3;
 		this.m.Order = 250;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([::Legends.Background.LegendSeer]);
@@ -33,22 +33,22 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		bro.getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
 		bro.m.HireTime = this.Time.getVirtualTimeF();
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/black_marsh_stew_item"));
 		stash.add(this.new("scripts/items/supplies/medicine_item"));
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.m.Ammo = 0;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.m.Ammo = 0;
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
 			{
@@ -62,17 +62,17 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -90,27 +90,27 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(105);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(105);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_seer_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_seer_scenario_intro");
 		}, null);
 	}
 
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsSeer", true);
+		::World.Flags.set("IsLegendsSeer", true);
 	}
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -133,7 +133,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated))
 		{
 			_bro.improveMood(1.0, "Excited to study from you");
 		}
@@ -161,15 +161,15 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright))
 		{
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.9); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.9); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			_bro.getSkills().update();
 		}
-		else if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb))
+		else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb))
 		{
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.1); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.1); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
 			_bro.getSkills().update();
 		}

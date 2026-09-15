@@ -40,17 +40,17 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsRanged) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.IsShieldRelevant = false;
 		}
-		this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInFlails ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties ) {	
 		if (_skill != this) {
 			return;
 		}
-		_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
+		_properties.HitChance[::Const.BodyPart.Head] += 100.0;
 		if (this.m.IsRanged && _targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 			this.m.HitChanceBonus += -15;
 			_properties.MeleeSkill += -15;

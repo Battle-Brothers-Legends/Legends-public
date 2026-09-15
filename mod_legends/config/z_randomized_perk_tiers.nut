@@ -715,7 +715,7 @@
 		totalWeight += weapon[0];
 	}
 
-    local r = this.Math.rand(0, totalWeight);
+    local r = ::Math.rand(0, totalWeight);
     foreach (weapon in candidates)
 	{
 		r = r - weapon[0];
@@ -768,7 +768,7 @@
             return ::Const.Perks.KnifeClassTree;
 
     //Inventor
-        case _item.isWeaponType(this.Const.Items.WeaponType.Firearm):
+        case _item.isWeaponType(::Const.Items.WeaponType.Firearm):
             return ::Const.Perks.InventorClassTree;
 
     //Bodyguard
@@ -792,11 +792,11 @@
             return ::Const.Perks.ClubClassTree;
 
     //Pitchfork
-        case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
+        case _item.isItemType(::Const.Items.ItemType.Pitchfork):
             return ::Const.Perks.PitchforkClassTree;
 
     //Shortbow
-        case _item.isItemType(this.Const.Items.ItemType.Shortbow):
+        case _item.isItemType(::Const.Items.ItemType.Shortbow):
             return ::Const.Perks.ShortbowClassTree;
 
     //Militia
@@ -832,7 +832,7 @@
     }
     foreach (weapon, tree in weaponToPerkMap)
     {
-        if (_item.isWeaponType(this.Const.Items.WeaponType[weapon])) ret.push(tree);
+        if (_item.isWeaponType(::Const.Items.WeaponType[weapon])) ret.push(tree);
     }
     return ret;
 

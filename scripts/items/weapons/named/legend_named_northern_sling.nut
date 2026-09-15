@@ -4,16 +4,16 @@ this.legend_named_northern_sling <- this.inherit("scripts/items/weapons/named/na
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_northern_sling";
-		this.m.NameList = this.Const.Strings.SlingNames;
+		this.m.NameList = ::Const.Strings.SlingNames;
 		this.m.Categories = "Sling/Staff, Two-Handed";
 		this.m.Description = "An exquisite slingstaff for true marksmen. It features a bigger pouch for heavier rocks, but trades off precision for damage and range. With rocks being everywhere it will never run out of ammunition.";
 		this.m.IconLarge = "weapons/ranged/legend_named_slingstaff_01.png";
 		this.m.Icon = "weapons/ranged/legend_named_slingstaff_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sling | this.Const.Items.WeaponType.Staff;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType =  this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.TwoHanded;
-		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sling | ::Const.Items.WeaponType.Staff;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType =  ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.TwoHanded;
+		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = true;
 		this.m.ShowArmamentIcon = true;
@@ -50,7 +50,7 @@ this.legend_named_northern_sling <- this.inherit("scripts/items/weapons/named/na
 	function onUpdateProperties (_properties)
 	{
 		this.weapon.onUpdateProperties(_properties);
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)) {
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
 			item.onSlingUpdateProperties();
 		}
 	}

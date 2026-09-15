@@ -37,10 +37,10 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 		b.setValues(::Const.Tactical.Actor.LegendGoblinFiend);
 
 		this.m.BodyNum = 1;
-		if (this.Math.rand(1, 20) != 1) {
-			this.m.BodyNum = this.Math.rand(2, 3);
+		if (::Math.rand(1, 20) != 1) {
+			this.m.BodyNum = ::Math.rand(2, 3);
 		}
-		this.m.HeadNum = this.Math.rand(1, 3);
+		this.m.HeadNum = ::Math.rand(1, 3);
 		this.m.Items.getAppearance().Body = "bust_goblin_02_body_0" + this.m.BodyNum;
 		local body = this.getSprite("body");
 		body.setBrush("bust_goblin_02_body_0" + this.m.BodyNum);
@@ -48,7 +48,7 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 		body.varyColor(0.07, 0.07, 0.09);
 		local injury_body = this.getSprite("injury_body");
 		injury_body.Visible = false;
-		this.m.Injured = this.Math.rand(1, 2) == 2 ? true : false
+		this.m.Injured = ::Math.rand(1, 2) == 2 ? true : false
 		injury_body.setBrush("bust_goblin_02_body_0" + this.m.BodyNum + "_body_injured");
 		local head = this.getSprite("head");
 		head.setBrush("bust_goblin_04_head_0" + this.m.HeadNum);
@@ -56,7 +56,7 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 		head.Color = body.Color;
 		local injury = this.getSprite("injury");
 		injury.Visible = false;
-		this.m.HeadInjured = this.Math.rand(1, 2) == 2 ? true : false
+		this.m.HeadInjured = ::Math.rand(1, 2) == 2 ? true : false
 		injury.setBrush("bust_goblin_04_head_0" + this.m.HeadNum + "_head_injured");
 		local body_blood = this.getSprite("body_blood");
 		body_blood.Visible = false;
@@ -153,7 +153,7 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 
 	function assignRandomEquipment() {
 		local r;
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 		if (r <= 1) {
 			this.m.Items.equip(::new("scripts/items/weapons/greenskins/goblin_pike"));
 		}
@@ -176,7 +176,7 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 			"weapons/named/named_goblin_pike",
 			"weapons/named/named_warbrand"
 		];
-		this.m.Items.equip(::new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

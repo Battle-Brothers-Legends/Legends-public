@@ -22,18 +22,18 @@
 	o.onUpdate = function ()
 	{
 		// handled in settlement
-		// if ("RosterSizeAdditionalMin" in this.World.Assets.m)
-		// 	this.World.Assets.m.RosterSizeAdditionalMin += 2;
-		// if ("RosterSizeAdditionalMax" in this.World.Assets.m)
-		// 	this.World.Assets.m.RosterSizeAdditionalMax  += 4;
+		// if ("RosterSizeAdditionalMin" in ::World.Assets.m)
+		// 	::World.Assets.m.RosterSizeAdditionalMin += 2;
+		// if ("RosterSizeAdditionalMax" in ::World.Assets.m)
+		// 	::World.Assets.m.RosterSizeAdditionalMax  += 4;
 		
 		// handled in town_hire_dialog_module
-		// if ("HiringCostMult" in this.World.Assets.m)
-		// 	this.World.Assets.m.HiringCostMult *= 0.9;
+		// if ("HiringCostMult" in ::World.Assets.m)
+		// 	::World.Assets.m.HiringCostMult *= 0.9;
 		
 		// handled in player
-		// if ("TryoutPriceMult" in this.World.Assets.m)
-		// 	this.World.Assets.m.TryoutPriceMult *= 0.5;
+		// if ("TryoutPriceMult" in ::World.Assets.m)
+		// 	::World.Assets.m.TryoutPriceMult *= 0.5;
 	}
 
 	o.onEvaluate = function () {

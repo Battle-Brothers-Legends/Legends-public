@@ -4,7 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

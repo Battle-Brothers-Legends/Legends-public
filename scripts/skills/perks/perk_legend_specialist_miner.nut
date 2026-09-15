@@ -5,14 +5,14 @@ this.perk_legend_specialist_miner <- this.inherit("scripts/skills/legend_special
 			"weapon.military_pick"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Hammer
+			::Const.Items.WeaponType.Hammer
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.TwoHanded
+			::Const.Items.ItemType.TwoHanded
 		],
 		ValidEntities = [
-			this.Const.EntityType.LegendRockUnhold,
-			this.Const.EntityType.SandGolem
+			::Const.EntityType.LegendRockUnhold,
+			::Const.EntityType.SandGolem
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

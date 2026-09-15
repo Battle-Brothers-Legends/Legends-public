@@ -8,8 +8,8 @@ this.legend_haftstrike <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Bashed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/thrust", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/thrust_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -17,8 +17,8 @@ this.legend_haftstrike <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntAndPiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntAndPiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntAndPiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntAndPiercingHead;
 		this.m.HitChanceBonus = 0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 4;
@@ -50,11 +50,11 @@ this.legend_haftstrike <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties ) {
 		local cost = this.m.ActionPointCost - this.m.SkillsUsed;
-		this.m.ActionPointCost = this.Math.max(cost, 0);
+		this.m.ActionPointCost = ::Math.max(cost, 0);
 	}
 
 	function onUse( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectThrust);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectThrust);
 		this.m.SkillsUsed = 0;
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}

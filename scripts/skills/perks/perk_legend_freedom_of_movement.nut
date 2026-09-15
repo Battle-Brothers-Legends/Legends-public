@@ -67,7 +67,7 @@ this.perk_legend_freedom_of_movement <- this.inherit("scripts/skills/skill", {
 				}
 			}
 
-			row = hasRow ? this.Math.max(0, this.Math.min(row, 6)) : _row;
+			row = hasRow ? ::Math.max(0, ::Math.min(row, 6)) : _row;
 			bg.addPerk(_perk, row);
 		}
 

@@ -4,8 +4,8 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPeacefulReassured);
 		this.m.Icon = "skills/peaceful_reassured.png";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -49,17 +49,17 @@ this.legend_peaceful_reassured_effect <- this.inherit("scripts/skills/skill", {
 
 	function getPeacefuls()
 	{
-		if (!("Entities" in this.Tactical) || this.Tactical.Entities == null || !this.Tactical.isActive())
+		if (!("Entities" in ::Tactical) || ::Tactical.Entities == null || !::Tactical.isActive())
 		{
 			return 0;
 		}
 
 		local hippies = 0;
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
 		foreach( a in actors )
 		{
-			if (a.getFaction() == this.Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful))
+			if (a.getFaction() == ::Const.Faction.Player && a.getSkills().hasPerk(::Legends.Perk.LegendPeaceful))
 			{
 				hippies += 1;
 			}

@@ -9,11 +9,11 @@
 
 				this.List.push(::Legends.EventList.changeMoralReputation(1));
 
-				local stash = this.World.Assets.getStash().getItems();
+				local stash = ::World.Assets.getStash().getItems();
 				local items = 0;
 
 				foreach (item in stash) {
-					if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax()) {
+					if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.getCondition() < item.getConditionMax()) {
 						item.setCondition(item.getRepairMax());
 						this.List.push({
 							id = 10,

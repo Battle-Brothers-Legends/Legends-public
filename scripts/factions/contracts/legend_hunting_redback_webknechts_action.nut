@@ -3,24 +3,24 @@ this.legend_hunting_redback_webknechts_action <- this.inherit("scripts/factions/
 	function create()
 	{
 		this.m.ID = "legend_hunting_redback_webknechts_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 	}
 
 	function onUpdate( _faction )
 	{
 
 
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 		{
 			return;
 		}
 
 		// For settlement faction
-		if (_faction.getType()==this.Const.FactionType.Settlement && !_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_hunting_redback_webknechts_contract))
+		if (_faction.getType()==::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_hunting_redback_webknechts_contract))
 		{
 			return;
 		}
@@ -43,9 +43,9 @@ this.legend_hunting_redback_webknechts_action <- this.inherit("scripts/factions/
 			return;
 		}
 
-		local minResources = this.Const.World.LegendaryContract.RedSpider * this.Const.World.ContractCost.RedSpider + this.Const.World.ContractCost.RedSpider;
+		local minResources = ::Const.World.LegendaryContract.RedSpider * ::Const.World.ContractCost.RedSpider + ::Const.World.ContractCost.RedSpider;
 
-		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * this.Const.World.ContractCost.RedSpider;
+		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.RedSpider;
 
 		if(currentResources < minResources)
 		{
@@ -53,7 +53,7 @@ this.legend_hunting_redback_webknechts_action <- this.inherit("scripts/factions/
 		}
 		else
 		{
-			this.Const.World.LegendaryContract.RedSpider += 1;
+			::Const.World.LegendaryContract.RedSpider += 1;
 		}
 
 		this.m.Score = 1;
@@ -69,7 +69,7 @@ this.legend_hunting_redback_webknechts_action <- this.inherit("scripts/factions/
 		contract.setFaction(_faction.getID());
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

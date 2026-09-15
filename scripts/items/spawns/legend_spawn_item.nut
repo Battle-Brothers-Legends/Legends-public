@@ -22,8 +22,8 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 	function create()
 	{
 		this.item.create();
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Misc;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Misc;
 	}
 
 	function getTooltip()
@@ -113,13 +113,13 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 
 	function getMedicinePerDay()
 	{
-		foreach (bro in this.World.getPlayerRoster().getAll())
+		foreach (bro in ::World.getPlayerRoster().getAll())
 		{
 			if (!bro.getSkills().hasPerk(::Legends.Perk.LegendConservation))
 				continue;
 
 			local skill = ::Legends.Perks.get(bro, ::Legends.Perk.LegendConservation);
-			return this.Math.floor(this.m.MedicinePerDay * skill.m.MedicinePerDayMult);
+			return ::Math.floor(this.m.MedicinePerDay * skill.m.MedicinePerDayMult);
 		}
 		return this.m.MedicinePerDay;
 	}
@@ -134,7 +134,7 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 		if (this.m.Entity.m.IsAlive)
 		{
 			this.setEntity(null);
-			this.World.Assets.getStash().add(this);
+			::World.Assets.getStash().add(this);
 			return;
 		}
 
@@ -145,25 +145,25 @@ this.legend_spawn_item <- this.inherit("scripts/items/item", {
 	function onNewDay()
 	{
 
-		if (!this.World.Assets.isUsingProvisions())
+		if (!::World.Assets.isUsingProvisions())
 		{
 			return;
 		}
 
-		if (this.World.Assets.getMedicine() >= this.getMedicinePerDay()) {
-			this.World.Assets.addMedicine(-this.getMedicinePerDay());
+		if (::World.Assets.getMedicine() >= this.getMedicinePerDay()) {
+			::World.Assets.addMedicine(-this.getMedicinePerDay());
 			if (this.m.Condition < this.m.ConditionMax)
 			{
-				this.m.Condition = this.Math.min(this.m.ConditionMax, this.m.Condition += this.m.DecayRate);
+				this.m.Condition = ::Math.min(this.m.ConditionMax, this.m.Condition += this.m.DecayRate);
 			}
 		} else {
-			this.World.Assets.addMedicine(-this.World.Assets.getMedicine());
-			this.m.Condition = this.Math.min(0, this.m.Condition -= this.m.DecayRate);
+			::World.Assets.addMedicine(-::World.Assets.getMedicine());
+			this.m.Condition = ::Math.min(0, this.m.Condition -= this.m.DecayRate);
 		}
 
 		if (this.m.Condition <= 0)
 		{
-			this.World.Assets.getStash().remove(this);
+			::World.Assets.getStash().remove(this);
 		}
 
 	}

@@ -29,7 +29,7 @@
 	}
 
 	o.isUsable <- function () {
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 	}
 
 	o.getAmmo <- function () {
@@ -50,8 +50,8 @@
 		if (this.m.IsShowingProjectile && this.m.ProjectileType != 0) {
 			local flip = !this.m.IsProjectileRotated && _targetTile.Pos.X > _user.getPos().X;
 
-			if (_user.getTile().getDistanceTo(_targetTile) >= this.Const.Combat.SpawnProjectileMinDist) {
-				this.Tactical.spawnProjectileEffect(this.Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
+			if (_user.getTile().getDistanceTo(_targetTile) >= ::Const.Combat.SpawnProjectileMinDist) {
+				::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 			}
 		}
 
@@ -71,7 +71,7 @@
 		if (::Legends.Perks.has(this.getContainer().getActor(), ::Legends.Perk.LegendPrepared) && ::Time.getRound() == 1) {
 			this.m.ActionPointCost = 0;
 		}
-		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = (_properties.IsSpecializedInThrowing || _properties.IsSpecializedInNetCasting) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.MaxRange = _properties.IsSpecializedInNetCasting ? 4 : 3;
 	}
 

@@ -7,7 +7,7 @@ this.legend_marked_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character has gotten the attention of nearby opponents and is more likely to be attacked over other potential targets.";
 		this.m.Icon = "ui/perks/perk_38.png";
 		this.m.IconMini = "perk_38_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;

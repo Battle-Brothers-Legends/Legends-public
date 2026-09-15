@@ -6,8 +6,8 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Unleash roots from the ground to ensnare your target to prevent them from moving or defending themself effectively. Will always hit if the enemy isn\'t immune. This spell is easier to cast when it\'s raining.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/goblin_roots", 2);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/break_free_roots", 4, 0);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 0;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -31,7 +31,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local tooltip = this.getDefaultUtilityTooltip();
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			tooltip.push({
 				id = 5,
@@ -66,7 +66,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
 
 		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
@@ -87,7 +87,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.isViableTarget(_user, target))
 		{
-			local item = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+			local item = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 			local hasStaff = item != null && item.getID() == "legend_named_goblin_staff";
 			if (!hasStaff)
 			{
@@ -108,7 +108,7 @@ this.legend_root_skill <- this.inherit("scripts/skills/skill", {
 			}.bindenv(this));
 			target.raiseRootsFromGround("bust_roots", "bust_roots_back");
 
-			this.Sound.play(this.m.SoundOnHitHitpoints[this.Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], this.Const.Sound.Volume.Skill, target.getPos());
+			::Sound.play(this.m.SoundOnHitHitpoints[::Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], ::Const.Sound.Volume.Skill, target.getPos());
 		}
 
 		return true;

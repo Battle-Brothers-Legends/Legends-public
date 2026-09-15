@@ -10,8 +10,8 @@ this.legend_imbue_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/mage_legend_magic_imbue_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

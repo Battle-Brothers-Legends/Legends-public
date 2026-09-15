@@ -6,8 +6,8 @@
 		create();
 		this.m.Variants = [1,2,3];
 		this.m.Categories = "Throwing Weapon/Axe, One-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Throwing | this.Const.Items.WeaponType.Axe;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Throwing | ::Const.Items.WeaponType.Axe;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.OneHanded;
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 

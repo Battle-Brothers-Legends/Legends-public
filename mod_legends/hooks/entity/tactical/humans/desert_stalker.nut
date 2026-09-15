@@ -19,7 +19,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(this.new("scripts/items/weapons/war_bow"));
 			this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
@@ -31,15 +31,15 @@
 			"weapons/oriental/qatal_dagger",
 			"weapons/legend_katar"
 		];
-		this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.plated_nomad_mail]
 		]));
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head) && this.Math.rand(1, 100) <= 75)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 75)
 		{
-			local helm =this.Const.World.Common.pickHelmet([
+			local helm =::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Southern.desert_stalker_head_wrap]
 			]);
 			this.m.Items.equip(helm);
@@ -57,9 +57,9 @@
 			]
 		];
 
-		if (this.Math.rand(1, 100) <= 70)
+		if (::Math.rand(1, 100) <= 70)
 		{
-			local r = this.Math.rand(0, weapons.len() - 1);
+			local r = ::Math.rand(0, weapons.len() - 1);
 
 			foreach( w in weapons[r] )
 			{
@@ -68,7 +68,7 @@
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}

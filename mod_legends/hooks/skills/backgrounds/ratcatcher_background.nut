@@ -29,9 +29,9 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendHeavy)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.ExpertHunter;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMax;
 	}
 
 	o.getTooltip = function () {
@@ -56,10 +56,10 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.RatcatcherTitles[this.Math.rand(0, this.Const.Strings.RatcatcherTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.RatcatcherTitles[::Math.rand(0, ::Const.Strings.RatcatcherTitles.len() - 1)]);
 		}
 	}
 
@@ -69,7 +69,7 @@
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth]
 		]));

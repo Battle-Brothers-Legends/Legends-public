@@ -8,9 +8,9 @@ this.legend_sica <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "An ancient weapon resembling a mix between a short sword and a large dagger. It\'s original purpose has been lost to time, but it\'s intended purpose still has staying power.";
 		this.m.IconLarge = "weapons/melee/legend_sica_01.png";
 		this.m.Icon = "weapons/melee/legend_sica_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Dagger;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Dagger;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

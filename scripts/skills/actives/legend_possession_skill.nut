@@ -5,8 +5,8 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPossession);
 		this.m.Description = "";
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 27;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted + 27;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -75,11 +75,11 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " possesses " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " possesses " + ::Const.UI.getColorizedEntityName(target));
 
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill * 1.2, _user.getPos());
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill * 1.2, _user.getPos());
 			}
 		}
 

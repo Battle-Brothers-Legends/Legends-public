@@ -1,6 +1,6 @@
 ::mods_hookExactClass("ui/screens/world/modules/world_town_screen/town_taxidermist_dialog_module", function(o) {
 
-	o.m.InventoryFilter <- this.Const.Items.ItemFilter.All;
+	o.m.InventoryFilter <- ::Const.Items.ItemFilter.All;
 	o.m.CurrentPage <- 0;
 
 	o.onModuleShown <- function ()
@@ -37,9 +37,9 @@
 
 	o.onFilterAll <- function ()
 	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.All)
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.All)
 		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.All;
+			this.m.InventoryFilter = ::Const.Items.ItemFilter.All;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -47,9 +47,9 @@
 
 	o.onFilterWeapons <- function ()
 	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Weapons)
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Weapons)
 		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Weapons;
+			this.m.InventoryFilter = ::Const.Items.ItemFilter.Weapons;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -57,9 +57,9 @@
 
 	o.onFilterArmor <- function ()
 	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Armor)
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Armor)
 		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Armor;
+			this.m.InventoryFilter = ::Const.Items.ItemFilter.Armor;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -67,9 +67,9 @@
 
 	o.onFilterMisc <- function ()
 	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Misc)
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Misc)
 		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Misc;
+			this.m.InventoryFilter = ::Const.Items.ItemFilter.Misc;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -77,9 +77,9 @@
 
 	o.onFilterUsable <- function ()
 	{
-		if (this.m.InventoryFilter != this.Const.Items.ItemFilter.Usable)
+		if (this.m.InventoryFilter != ::Const.Items.ItemFilter.Usable)
 		{
-			this.m.InventoryFilter = this.Const.Items.ItemFilter.Usable;
+			this.m.InventoryFilter = ::Const.Items.ItemFilter.Usable;
 			this.m.CurrentPage = 0;
 			this.loadBlueprints();
 		}
@@ -106,7 +106,7 @@
 			}
 			if (item.m.ID == "shield.faction_kite_shield" || item.m.ID == "shield.heater_kite_shield")
 			{
-				local blueprint = this.World.Crafting.getBlueprint(_result.ID);
+				local blueprint = ::World.Crafting.getBlueprint(_result.ID);
 				blueprint.m.PreviewCraftable = item;
 			}
 			result = item.m.IconLarge != null ? item.m.IconLarge : item.m.Icon;
@@ -117,21 +117,21 @@
 
 	o.onCraft = function ( _result )
 	{
-		local blueprint = this.World.Crafting.getBlueprint(_result.ID);
+		local blueprint = ::World.Crafting.getBlueprint(_result.ID);
 		if (_result.Variant != 0)
 		{
 			blueprint.setVariant(_result.Variant);
 		}
 		blueprint.craft();
-		this.World.Assets.addMoney(-blueprint.getCost());
+		::World.Assets.addMoney(-blueprint.getCost());
 
 		if (blueprint.getSounds().len() != 0)
 		{
-			this.Sound.play(blueprint.getSounds()[this.Math.rand(0, blueprint.getSounds().len() - 1)], 1.0);
+			::Sound.play(blueprint.getSounds()[::Math.rand(0, blueprint.getSounds().len() - 1)], 1.0);
 		}
 
-		this.World.Statistics.getFlags().increment("ItemsCrafted");
-		this.World.Ambitions.updateUI();
+		::World.Statistics.getFlags().increment("ItemsCrafted");
+		::World.Ambitions.updateUI();
 
 		return this.queryBlueprints();
 	}

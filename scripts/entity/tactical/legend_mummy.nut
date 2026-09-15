@@ -126,7 +126,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 				//	}
 				//}
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), -90.0, "");
 				local idx = 0;
 				//foreach (layer in helmetLowerLayers) {
 				//	if (appearance[layer] != "") {
@@ -216,7 +216,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 			}
 
 			//_tile.Properties.set("Corpse", corpse);
-			//this.Tactical.Entities.addCorpse(_tile);
+			//::Tactical.Entities.addCorpse(_tile);
 		}
 
 		local deathLoot = this.getItems().getDroppableLoot(_killer);
@@ -224,10 +224,10 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -304,12 +304,12 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		body.setHorizontalFlipping(true);
 		// body.Saturation = 0.8;
 
-		// if (this.Math.rand(0, 100) < 75)
+		// if (::Math.rand(0, 100) < 75)
 		// {
 		// 	body.varySaturation(0.2);
 		// }
 
-		// if (this.Math.rand(0, 100) < 90)
+		// if (::Math.rand(0, 100) < 90)
 		// {
 		// 	body.varyColor(0.025, 0.025, 0.025);
 		// }
@@ -333,7 +333,7 @@ this.legend_mummy <- this.inherit("scripts/entity/tactical/actor", {
 		injury.setBrush("bust_skeleton_head_injured");
 
 		//local face = this.addSprite("face");
-		//face.setBrush("mummy_head_0" + this.Math.rand(1, 4));
+		//face.setBrush("mummy_head_0" + ::Math.rand(1, 4));
 
 		foreach (a in ::Const.CharacterSprites.Helmets) {
 			this.addSprite(a);

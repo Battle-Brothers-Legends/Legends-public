@@ -14,13 +14,13 @@
 			party = entity;
 		});
 		onExecute(_faction);
-		party.getLoot().Money = this.Math.rand(100, 300);
-		party.getLoot().ArmorParts = this.Math.rand(10, 35);
-		party.getLoot().Medicine = this.Math.rand(5, 15);
-		party.getLoot().Ammo = this.Math.rand(10, 40);
-		local r = this.Math.rand(1, 4);
+		party.getLoot().Money = ::Math.rand(100, 300);
+		party.getLoot().ArmorParts = ::Math.rand(10, 35);
+		party.getLoot().Medicine = ::Math.rand(5, 15);
+		party.getLoot().Ammo = ::Math.rand(10, 40);
+		local r = ::Math.rand(1, 4);
 		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"];
-		for (local i = 0; i < this.Math.round(r / 2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
+		for (local i = 0; i < ::Math.round(r / 2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			party.addToInventory(arr[r - 1]);
 		return true;
 	}

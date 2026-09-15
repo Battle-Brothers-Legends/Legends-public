@@ -14,17 +14,17 @@
 	}
 
 	o.onPrepare = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && !bro.getSkills().hasTrait(::Legends.Trait.ShortSighted) && !bro.getSkills().hasTrait(::Legends.Trait.NightBlind))
+			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble) && !bro.getSkills().hasTrait(::Legends.Trait.Bright) && !bro.getSkills().hasTrait(::Legends.Trait.ShortSighted) && !bro.getSkills().hasTrait(::Legends.Trait.NightBlind))
 				candidates.push(bro);
 		}
 
 		if (candidates.len() != 0)
-			this.m.Observer = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Observer = candidates[::Math.rand(0, candidates.len() - 1)];
 		else
-			this.m.Observer = brothers[this.Math.rand(0, brothers.len() - 1)];
+			this.m.Observer = brothers[::Math.rand(0, brothers.len() - 1)];
 	}
 });

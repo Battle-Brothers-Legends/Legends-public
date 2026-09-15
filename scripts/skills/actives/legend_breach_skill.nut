@@ -18,7 +18,7 @@ this.legend_breach_skill <- this.inherit("scripts/skills/actives/slash", {
 	}
 
 	function onUse( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSlash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSlash);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

@@ -16,7 +16,7 @@ this.desert_camp_table <- this.inherit("scripts/entity/tactical/entity", {
 			"04"
 		];
 		local body = this.addSprite("body");
-		body.setBrush("desert_camp_" + variants[this.Math.rand(0, variants.len() - 1)]);
+		body.setBrush("desert_camp_" + variants[::Math.rand(0, variants.len() - 1)]);
 	}
 
 });

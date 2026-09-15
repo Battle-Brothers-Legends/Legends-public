@@ -15,8 +15,8 @@ this.legend_eat_skill <- this.inherit("scripts/skills/skill", {
 	function create() {
 		this.m.Overlay = "active_144";
 		this.m.SoundOnUse = ["sounds/combat/eat_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -32,12 +32,12 @@ this.legend_eat_skill <- this.inherit("scripts/skills/skill", {
 
 	function getCursorForTile( _tile ) {
 		if (_tile.ID == this.getContainer().getActor().getTile().ID)
-			return this.Const.UI.Cursor.Drink;
-		return this.Const.UI.Cursor.Give;
+			return ::Const.UI.Cursor.Drink;
+		return ::Const.UI.Cursor.Give;
 	}
 
 	function isUsable() {
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -50,7 +50,7 @@ this.legend_eat_skill <- this.inherit("scripts/skills/skill", {
 		if (!this.m.Container.getActor().isAlliedWith(target))
 			return false;
 
-		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(::Const.ItemSlot.Bag))
 			return false;
 
 		if (!target.getFlags().has("human"))

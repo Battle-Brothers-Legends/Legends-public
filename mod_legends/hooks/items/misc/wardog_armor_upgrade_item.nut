@@ -6,7 +6,7 @@
 	];
 
 	o.onUse = function(_actor, _item = null) {
-		local dog = _item == null ? _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory) : _item;
+		local dog = _item == null ? _actor.getItems().getItemAtSlot(::Const.ItemSlot.Accessory) : _item;
 
 		if (dog == null) {
 			return false;
@@ -17,7 +17,7 @@
 			return false;
 		}
 
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 
 		local newDog = this.new(scripts[0]);
 

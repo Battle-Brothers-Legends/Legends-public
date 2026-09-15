@@ -11,7 +11,7 @@
 
 		foreach( a in allAllies )
 		{
-			if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 			{
 				continue;
 			}
@@ -51,7 +51,7 @@
 				}
 				else if (dist <= 6)
 				{
-					score = this.Math.maxf(0.0, 1.0 - dist / 6.0);
+					score = ::Math.maxf(0.0, 1.0 - dist / 6.0);
 				}
 				else
 				{
@@ -63,14 +63,14 @@
 
 				switch(dir)
 				{
-				case this.Const.Direction8.W:
-					dirs[this.Const.Direction.NW] += 4 * score;
-					dirs[this.Const.Direction.SW] += 4 * score;
+				case ::Const.Direction8.W:
+					dirs[::Const.Direction.NW] += 4 * score;
+					dirs[::Const.Direction.SW] += 4 * score;
 					break;
 
-				case this.Const.Direction8.E:
-					dirs[this.Const.Direction.NE] += 4 * score;
-					dirs[this.Const.Direction.SE] += 4 * score;
+				case ::Const.Direction8.E:
+					dirs[::Const.Direction.NE] += 4 * score;
+					dirs[::Const.Direction.SE] += 4 * score;
 					break;
 
 				default:
@@ -84,7 +84,7 @@
 				}
 			}
 
-			relevant = this.Math.maxf(1.0, relevant);
+			relevant = ::Math.maxf(1.0, relevant);
 
 			for( local i = 0; i != 6; i = ++i )
 			{
@@ -104,7 +104,7 @@
 					{
 						local score = 1;
 						local immediateBonus = 0;
-						score = score + dirs[i] / this.Math.max(1, allOpponents.len()) * this.Const.AI.Behavior.ProtectAllyDirectionMult;
+						score = score + dirs[i] / ::Math.max(1, allOpponents.len()) * ::Const.AI.Behavior.ProtectAllyDirectionMult;
 						score = score - myTile.getDistanceTo(tile);
 
 						for( local j = 0; j != 6; j = ++j )
@@ -119,7 +119,7 @@
 								if (!adjacentTile.IsOccupiedByActor)
 								{
 								}
-								else if (this.Math.abs(tile.Level - adjacentTile.Level) > 1)
+								else if (::Math.abs(tile.Level - adjacentTile.Level) > 1)
 								{
 								}
 								else
@@ -128,7 +128,7 @@
 
 									if (!_entity.isAlliedWith(other))
 									{
-										immediateBonus = immediateBonus + this.Const.AI.Behavior.ProtectAllyEngagedBonus;
+										immediateBonus = immediateBonus + ::Const.AI.Behavior.ProtectAllyEngagedBonus;
 									}
 									else if (other.getCurrentProperties().TargetAttractionMult > 1.0 && other.getCurrentProperties().TargetAttractionMult > _entity.getCurrentProperties().TargetAttractionMult)
 									{
@@ -140,7 +140,7 @@
 
 						if (tile.Properties.Effect != null && !tile.Properties.Effect.IsPositive && tile.Properties.Effect.Applicable(_entity))
 						{
-							immediateBonus = immediateBonus - this.Const.AI.Behavior.ProtectAllyTileEffectPenalty;
+							immediateBonus = immediateBonus - ::Const.AI.Behavior.ProtectAllyTileEffectPenalty;
 						}
 
 						score = score + immediateBonus;
@@ -150,7 +150,7 @@
 						{
 							if (t.Tile.ID == tile.ID)
 							{
-								t.AllyDefendBonus += a.getCurrentProperties().TargetAttractionMult * this.Const.AI.Behavior.ProtectAllyAttractionBonus;
+								t.AllyDefendBonus += a.getCurrentProperties().TargetAttractionMult * ::Const.AI.Behavior.ProtectAllyAttractionBonus;
 								t.TileBonus += dirs[i] + immediateBonus;
 								t.Score += score;
 								already_in = true;
@@ -164,7 +164,7 @@
 								Tile = tile,
 								Score = score,
 								TileBonus = dirs[i] + immediateBonus,
-								AllyDefendBonus = a.getCurrentProperties().TargetAttractionMult * this.Const.AI.Behavior.ProtectAllyAttractionBonus
+								AllyDefendBonus = a.getCurrentProperties().TargetAttractionMult * ::Const.AI.Behavior.ProtectAllyAttractionBonus
 							});
 						}
 					}
@@ -177,7 +177,7 @@
 			return false;
 		}
 
-		local navigator = this.Tactical.getNavigator();
+		local navigator = ::Tactical.getNavigator();
 		local settings = navigator.createSettings();
 		local myTile = _entity.getTile();
 		potential_tiles.sort(this.onSortByScore);
@@ -193,7 +193,7 @@
 		settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
 		settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
 		settings.AllowZoneOfControlPassing = false;
-		settings.ZoneOfControlCost = this.Const.AI.Behavior.ZoneOfControlAPPenalty;
+		settings.ZoneOfControlCost = ::Const.AI.Behavior.ZoneOfControlAPPenalty;
 		settings.AlliedFactions = _entity.getAlliedFactions();
 		settings.Faction = _entity.getFaction();
 
@@ -210,7 +210,7 @@
 			local isForNextTurn = false;
 			attempts = ++attempts;
 
-			if (attempts > this.Const.AI.Behavior.DefendMaxAttempts)
+			if (attempts > ::Const.AI.Behavior.DefendMaxAttempts)
 			{
 				break;
 			}
@@ -243,8 +243,8 @@
 			}
 
 			local allyDefendBonus = t.AllyDefendBonus;
-			local TileBonus = t.TileBonus * this.Const.AI.Behavior.ProtectAllyDirectionMult;
-			local score = TileBonus + allyDefendBonus - apCost * this.Const.AI.Behavior.ProtectAllyAPCostMult;
+			local TileBonus = t.TileBonus * ::Const.AI.Behavior.ProtectAllyDirectionMult;
+			local score = TileBonus + allyDefendBonus - apCost * ::Const.AI.Behavior.ProtectAllyAPCostMult;
 
 			if (score > bestScore)
 			{
@@ -257,7 +257,7 @@
 
 		if (bestDestination != null && bestIsForNextTurn == false)
 		{
-			if (this.Const.AI.VerboseMode && bestDestination.isSameTileAs(_entity.getTile()))
+			if (::Const.AI.VerboseMode && bestDestination.isSameTileAs(_entity.getTile()))
 			{
 				this.logInfo("* " + _entity.getName() + ": In fact, I would prefer to remain where I am");
 			}

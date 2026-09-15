@@ -17,8 +17,8 @@
 			this.m.FatigueCost = 13;
 			this.m.DirectDamageMult = 0.25;
 			this.m.HitChanceBonus = 5;
-			this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-			this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+			this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+			this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 			this.m.IsIgnoredAsAOO = true;
 		}
 	}
@@ -57,7 +57,7 @@
 				this.m.ActionPointCost -= 1;
 			}
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
@@ -74,7 +74,7 @@
 	}
 
 	o.onUse = function ( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectImpale);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectImpale);
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
 		local success = this.attackEntity(_user, _targetTile.getEntity());

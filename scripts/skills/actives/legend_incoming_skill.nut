@@ -5,8 +5,8 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendIncoming);
 		this.m.Description = "This mercenary has received clear instructions to keep their head down, and is coordinating accordingly.";
 		this.m.SoundOnUse = ["sounds/combat/rally_the_troops_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -65,7 +65,7 @@ this.legend_incoming_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
 		foreach( a in actors )
 		{

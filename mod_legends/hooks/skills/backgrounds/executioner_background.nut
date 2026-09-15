@@ -35,10 +35,10 @@
 			"the Executioner",
 			"the Hangman"
 		];
-		this.m.Level = this.Math.rand(1, 3);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | this.Const.BackgroundType.Performing;
+		this.m.Level = ::Math.rand(1, 3);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Notorious;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Performing;
 	}
 
 	o.getTooltip = function () {
@@ -69,14 +69,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -110,7 +110,7 @@
 			"weapons/woodcutters_axe",
 			"weapons/bardiche"
 		];
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps],

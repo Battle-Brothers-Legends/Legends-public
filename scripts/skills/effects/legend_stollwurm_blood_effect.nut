@@ -8,7 +8,7 @@ this.legend_stollwurm_blood_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_30.png";
 		this.m.IconMini = "perk_30_mini";
 		this.m.Overlay = "perk_30";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

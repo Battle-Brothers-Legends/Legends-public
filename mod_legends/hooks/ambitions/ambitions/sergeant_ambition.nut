@@ -9,7 +9,7 @@
 	}
 
 	o.onPrepareVariables = function (_vars) {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local highestBravery = 0;
 
 		foreach (bro in brothers) {

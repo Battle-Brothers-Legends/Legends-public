@@ -5,7 +5,7 @@ this.perk_legend_specialist_shepherd <- this.inherit("scripts/skills/legend_spec
 			"weapon.legend_slingshot"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Sling
+			::Const.Items.WeaponType.Sling
 		],
 		BonusRanged = 12,
 		BonusDamage = 10

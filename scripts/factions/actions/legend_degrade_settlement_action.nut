@@ -5,13 +5,13 @@ this.legend_degrade_settlement_action <- this.inherit("scripts/factions/faction_
 	function create()
 	{
 		this.m.ID = "legend_degrade_settlement_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 15;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 15;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
 	}
 
 	function onUpdate( _faction ) {
-		this.m.Settlement = _faction.getSettlements()[this.Math.rand(0, _faction.getSettlements().len() - 1)];
+		this.m.Settlement = _faction.getSettlements()[::Math.rand(0, _faction.getSettlements().len() - 1)];
 
 		if (this.m.Settlement.isBuilding())
 		{

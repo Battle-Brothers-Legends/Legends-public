@@ -35,20 +35,20 @@
 			::Legends.Traits.getID(::Legends.Trait.Hesitant)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.MeleeSkill,
-			this.Const.Attributes.MeleeDefense
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.MeleeSkill,
+			::Const.Attributes.MeleeDefense
 		];
 		this.m.GoodEnding = "He was with you from the start, %name%, and he was with you in retirement, leaving the company not long after you did. But he wasn\'t yet done with the fighting life and took up fighting for another company - his own. Having learned so much from your leadership, he is making you about as proud as any son could. Ironically, he hates the notion of you being a father figure to him, and you always tell him you\'d never father a son so ugly to begin with. You keep in touch to this day.";
 		this.m.BadEnding = "With you from the start, %name% was as loyal as he was talented. He stayed with the company for a time before eventually leaving to forge out a path for himself. The other day, you received a letter from the mercenary stating that he had started his own company and was in dire need of help. Unfortunately, the message was dated to nearly a full year ago. When you investigated the existence of his company, you learned that it had been completely annihilated in a battle between nobles.";
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
+		this.m.Bodies = ::Const.Bodies.Muscular;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Untalented;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()
@@ -63,7 +63,7 @@
 
 	o.onPrepareVariables = function ( _vars )
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		_vars.push([
 			"1h",
 			brothers.len() >= 1 ? brothers[0].getName() : ""
@@ -87,28 +87,28 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.SellswordTitles[this.Math.rand(0, this.Const.Strings.SellswordTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
 	o.onAddEquipment = function ()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.RangedSkill] = 2;
-		talents[this.Const.Attributes.RangedDefense] = 1;
-		talents[this.Const.Attributes.Initiative] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.RangedSkill] = 2;
+		talents[::Const.Attributes.RangedDefense] = 1;
+		talents[::Const.Attributes.Initiative] = 1;
 		local items = this.getContainer().getActor().getItems();
 		local r;
 		items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		items.addToBag(this.new("scripts/items/weapons/knife"));
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));

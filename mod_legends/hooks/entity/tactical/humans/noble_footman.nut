@@ -33,9 +33,9 @@
 		local r;
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -44,12 +44,12 @@
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 90)
+		if (::Math.rand(1, 100) <= 90)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{
@@ -68,7 +68,7 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 		}
 
-		r = this.Math.rand(1, 2);
+		r = ::Math.rand(1, 2);
 		local shield;
 
 		if (r == 1)
@@ -83,11 +83,11 @@
 		shield.setFaction(banner);
 		this.m.Items.equip(shield);
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor]
 		]));
-		// this.m.Items.equip(this.Const.World.Common.pickArmor([
+		// this.m.Items.equip(::Const.World.Common.pickArmor([
 		// 	[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 		// 	[1, ::Legends.Armor.Standard.mail_shirt],
 		// 	[1, ::Legends.Armor.Standard.basic_mail_shirt]
@@ -96,7 +96,7 @@
 		local helmet;
 		if (banner <= 4)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[5, ::Legends.Helmet.Standard.kettle_hat],
 					[5, ::Legends.Helmet.Standard.rondel_helm],
 					[4, ::Legends.Helmet.Standard.scale_helm],
@@ -109,7 +109,7 @@
 			}
 		else if (banner <= 7)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[5, ::Legends.Helmet.Standard.rondel_helm],
 					[4, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
@@ -122,7 +122,7 @@
 			}
 		else
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[5, ::Legends.Helmet.Standard.nasal_helmet],
 					[5, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[4, ::Legends.Helmet.Standard.nasal_helmet_with_mail],

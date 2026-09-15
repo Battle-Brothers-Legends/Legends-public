@@ -20,8 +20,8 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashCat);
 		this.m.Description = "Summon your cat. Hopefully it won\'t just run away. Needs a free tile adjacent.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/cat_purr", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -40,32 +40,32 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach( r in this.m.Sounds0 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds1 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds2 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds3 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds4 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds5 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
@@ -107,16 +107,16 @@ this.legend_unleash_cat_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
 
 		//And cats are cocky too I believe!
-		entity.setMoraleState(this.Const.MoraleState.Confident);
+		entity.setMoraleState(::Const.MoraleState.Confident);
 
 		this.m.Entity = entity;
 		//Cats are nocturnal right!
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}

@@ -4,11 +4,11 @@
 	o.m.CurrentSettlement <- null;
 	o.m.StashModifier <- 0;
 	o.m.StartingBusinessReputation <- 0;
-	o.m.StartingRosterTier <- this.Const.Roster.DefaultTier;
-	o.m.RosterTierMax <- this.Const.Roster.DefaultTierMax;
+	o.m.StartingRosterTier <- ::Const.Roster.DefaultTier;
+	o.m.RosterTierMax <- ::Const.Roster.DefaultTierMax;
 	o.m.RosterTierMaxCombat <- null;
-	o.m.RosterReputationTiers <- this.Const.Roster.DefaultReputationTiers;
-	o.m.StaticRelationsToFaction <- array(this.Const.FactionType.len(), false);
+	o.m.RosterReputationTiers <- ::Const.Roster.DefaultReputationTiers;
+	o.m.StaticRelationsToFaction <- array(::Const.FactionType.len(), false);
 	//Something defined here won't have relations normalized over time in faction_manager
 	//I think this would be better if we instead automatically set the size to be faction_manager's update()
 	//Useful for when you set the relations and want them to be permanent e.g. legion scenario
@@ -89,7 +89,7 @@
 
 		for( local i = 0; i < this.m.RosterReputationTiers.len(); i++ )
 		{
-			if (this.World.Assets.getBusinessReputation() >= this.m.RosterReputationTiers[i])
+			if (::World.Assets.getBusinessReputation() >= this.m.RosterReputationTiers[i])
 			{
 				tier++;
 			}
@@ -137,7 +137,7 @@
 		if (::Math.rand(0, _chance * multiplier) == 0) {
 			local bro = _roster.create("scripts/entity/tactical/player");
 			bro.setStartValuesEx([_background]);
-			//this.World.Assets.getOrigin().onGenerateBro(bro); will be called at the end of `updateRoster` in `settlement` anyway
+			//::World.Assets.getOrigin().onGenerateBro(bro); will be called at the end of `updateRoster` in `settlement` anyway
 		}
 	}
 

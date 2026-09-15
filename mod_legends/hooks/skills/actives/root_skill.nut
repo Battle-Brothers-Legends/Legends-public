@@ -19,7 +19,7 @@
 			text = "All enemies in an area of [color=%damage%]7[/color] tiles will become [color=#731f39]Trapped in Vines[/color]"
 		});
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			tooltip.push({
 				id = 5,
@@ -34,7 +34,7 @@
 
 	o.onAfterUpdate <- function ( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInPolearms ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInPolearms ? 5 : 6;
 
 		if (this.getContainer().hasEffect(::Legends.Effect.LegendRain))
@@ -53,7 +53,7 @@
 	local onUse = o.onUse;
 	o.onUse = function ( _user, _targetTile )
 	{
-		local item = _user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = _user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local hasStaff = item != null && item.getID() == "legend_named_goblin_staff";
 		local hasTraitCombo = ::Legends.Traits.has(this, ::Legends.Trait.RacialGoblinShaman) && ::Legends.Traits.has(this, ::Legends.Trait.RacialSchrat);
 		if (!hasStaff && !hasTraitCombo)
@@ -115,7 +115,7 @@
 
 		if (targets.len() > 0 && this.m.SoundOnHit.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, this.targetEntity.getPos());
+			::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, this.targetEntity.getPos());
 		}
 		this.m.Cooldown = 2;
 		return true;

@@ -4,7 +4,7 @@
 	{
 		if (this.isActive())
 		{
-			local contract_faction = this.World.FactionManager.getFaction(this.getFaction());
+			local contract_faction = ::World.FactionManager.getFaction(this.getFaction());
 			local towns = contract_faction.getSettlements();
 
 			foreach( town in towns )

@@ -19,8 +19,8 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashSighthound);
 		this.m.Description = "Summon a faithful sighthound. Needs a free tile adjacent. Can only summon one per combat.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/unleash_wardog", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -36,22 +36,22 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 	function addResources() {
 		this.legend_unleash_animal_skill.addResources();
 		foreach (r in m.Sounds0) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 		foreach (r in m.Sounds1) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 		foreach (r in m.Sounds2) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 		foreach (r in m.Sounds3) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 		foreach (r in m.Sounds4) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 		foreach (r in m.Sounds5) {
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
@@ -94,8 +94,8 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 
 	function onUse(_user, _targetTile) {
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedSighthoundEffect);
-		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
 		entity.setName(this.m.Item.getName());
 		entity.setVariant(this.m.Item.getVariant());
@@ -107,12 +107,12 @@ this.legend_unleash_sighthound_skill <- this.inherit("scripts/skills/actives/leg
 		}
 
 		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster))) {
-			entity.setMoraleState(this.Const.MoraleState.Confident);
+			entity.setMoraleState(::Const.MoraleState.Confident);
 		}
 
 		this.addAnimalSkills(entity);
 
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}
 

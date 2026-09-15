@@ -7,15 +7,15 @@ this.legend_helmet_white_wolf_helm <- this.inherit("scripts/items/legend_helmets
 	{
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_helmet_white_wolf_helm";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "White Wolf Helm";
 		this.m.Description = "A fur covering fashioned from of a dangerous beast. It serves as a grim trophy that unnerves adversaries.";
 		this.m.ArmorDescription = "Includes a heavy pelt of white fur.";
 		this.m.Variants = [1, 2];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.Value = 200;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
@@ -25,7 +25,7 @@ this.legend_helmet_white_wolf_helm <- this.inherit("scripts/items/legend_helmets
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 		// this.m.NameList = ["Crown of the King of Beasts","Helmet of the White Wolf","Wulfserker Coif","Wolf Kings Helm","White Wolf Crown","Predator Crown"];
-		// this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len())];
+		// this.m.Name = this.m.NameList[::Math.rand(0, this.m.NameList.len())];
 	}
 
 	function updateVariant()

@@ -4,8 +4,8 @@ this.legend_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", 
 	{
 		this.agent.create();
 		this.m.ID = "agent.legend_manhunter_ranged";
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 1.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.0;
 		this.m.Properties.IsRangedUnit = true;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.6;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.2;
@@ -48,7 +48,7 @@ this.legend_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", 
 		this.setEngageRangeBasedOnWeapon();
 
 		local hasUsableRangedWeaponInBag = false;
-		local itemsInBag = this.m.Actor.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag);
+		local itemsInBag = this.m.Actor.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 
 		if (itemsInBag.len() > 0)
 		{
@@ -56,7 +56,7 @@ this.legend_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", 
 
 			foreach( it in itemsInBag )
 			{
-				if (it.isItemType(this.Const.Items.ItemType.RangedWeapon)
+				if (it.isItemType(::Const.Items.ItemType.RangedWeapon)
 					&& !(this.isThrowingWeapon(it))
 					&& (it.getAmmoMax() == 0 || it.getAmmo() > 0))
 				{
@@ -70,24 +70,24 @@ this.legend_manhunter_ranged_agent <- this.inherit("scripts/ai/tactical/agent", 
 			}
 		}
 
-		local item = this.m.Actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.m.Actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
 		if (hasUsableRangedWeaponInBag)
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
 		}
 
 		if (this.isThrowingWeapon(item) || !hasUsableRangedWeaponInBag)
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 1.0;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
 		}
 	}
 
 	function isThrowingWeapon(item)
 	{
 		return (item != null
-				&& item.isItemType(this.Const.Items.ItemType.RangedWeapon)
+				&& item.isItemType(::Const.Items.ItemType.RangedWeapon)
 				&& item.getRangeMax() <= 4
 				&& item.getID() != "weapon.handgonne"
 				&& item.getID() != "weapon.named_handgonne");

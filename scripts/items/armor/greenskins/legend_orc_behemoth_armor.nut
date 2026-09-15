@@ -9,9 +9,9 @@ this.legend_orc_behemoth_armor <- this.inherit("scripts/items/armor/armor", {
 		this.m.Description = "";
 		this.m.IconLarge = "";
 		this.m.Icon = "";
-		this.m.SlotType = this.Const.ItemSlot.Body;
+		this.m.SlotType = ::Const.ItemSlot.Body;
 		this.m.ShowOnCharacter = true;
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Condition = 300;
 		this.m.ConditionMax = 300;
 		this.m.StaminaModifier = -22;

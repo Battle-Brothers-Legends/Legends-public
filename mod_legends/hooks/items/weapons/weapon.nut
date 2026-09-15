@@ -10,7 +10,7 @@
 		local perk = ::Legends.Perks.get(this, ::Legends.Perk.LegendSmashingShields);
 		local doubleGrip = ::Legends.Effects.has(this, ::Legends.Effect.DoubleGrip) && ::Legends.Effects.get(this, ::Legends.Effect.DoubleGrip).canDoubleGrip() ? true : false;
 		local shieldDamage = perk == null ? this.m.ShieldDamage : this.m.ShieldDamage * perk.getModifier();
-		return doubleGrip ? this.Math.floor(shieldDamage * 1.25) : this.Math.floor(shieldDamage);
+		return doubleGrip ? ::Math.floor(shieldDamage * 1.25) : ::Math.floor(shieldDamage);
 	}
 
 	local onDamageDealt = o.onDamageDealt;
@@ -102,10 +102,10 @@
 			return true;
 		}
 
-		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
-		local isLucky = !this.Tactical.State.isScenarioMode() && !isPlayer && this.World.Assets.getOrigin().isDroppedAsLoot(this);
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
-		return (!this.item.isItemType(::Const.Items.ItemType.Ammo) || isPlayer || this.m.Ammo > 0 && this.getCurrentSlotType() != this.Const.ItemSlot.Bag || this.m.Ammo > 0 && this.m.Ammo < this.m.AmmoMax && this.getCurrentSlotType() == this.Const.ItemSlot.Bag) && (this.m.Condition >= 12 || this.m.ConditionMax <= 1 || isLucky || isBlacksmithed) && (isPlayer || isLucky || this.Math.rand(1, 100) <= 90);
+		local isPlayer = this.m.LastEquippedByFaction == ::Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
+		local isLucky = !::Tactical.State.isScenarioMode() && !isPlayer && ::World.Assets.getOrigin().isDroppedAsLoot(this);
+		local isBlacksmithed = isPlayer && !::Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
+		return (!this.item.isItemType(::Const.Items.ItemType.Ammo) || isPlayer || this.m.Ammo > 0 && this.getCurrentSlotType() != ::Const.ItemSlot.Bag || this.m.Ammo > 0 && this.m.Ammo < this.m.AmmoMax && this.getCurrentSlotType() == ::Const.ItemSlot.Bag) && (this.m.Condition >= 12 || this.m.ConditionMax <= 1 || isLucky || isBlacksmithed) && (isPlayer || isLucky || ::Math.rand(1, 100) <= 90);
 	}
 
 	o.updateAppearance = function () {
@@ -118,7 +118,7 @@
 		local currentSlot = this.getCurrentSlotType();
 		local appearance = this.getContainer().getAppearance();
 		if (this.m.ShowArmamentIcon) {
-			if (currentSlot == this.Const.ItemSlot.Offhand) {
+			if (currentSlot == ::Const.ItemSlot.Offhand) {
 				changed = appearance.Shield != this.m.ArmamentIcon;
 				appearance.Shield = this.m.ArmamentIcon;
 			} else {
@@ -127,7 +127,7 @@
 				appearance.TwoHanded = this.m.BlockedSlotType != null;
 			}
 		} else {
-			if (currentSlot == this.Const.ItemSlot.Offhand) {
+			if (currentSlot == ::Const.ItemSlot.Offhand) {
 				changed = appearance.Shield != "";
 				appearance.Shield = "";
 			} else {
@@ -160,7 +160,7 @@
 
 		if (this.m.Condition == this.m.ConditionMax && !this.isKindOf(this.getContainer().getActor().get(), "player"))
 		{
-			this.m.Condition = this.Math.rand(1, this.Math.max(1, this.m.ConditionMax - 2)) * 1.0;
+			this.m.Condition = ::Math.rand(1, ::Math.max(1, this.m.ConditionMax - 2)) * 1.0;
 		}
 	}
 
@@ -172,7 +172,7 @@
 		this.item.onUnequip();
 
 		if (this.m.ShowArmamentIcon) {
-			if (currentSlot == this.Const.ItemSlot.Offhand) {
+			if (currentSlot == ::Const.ItemSlot.Offhand) {
 				appearance.Shield = "";
 			} else {
 				appearance.Weapon = "";
@@ -198,7 +198,7 @@
 				: this.m.ArmamentIcon;
 
 			local appearance = this.getContainer().getAppearance();
-			if (currentSlot == this.Const.ItemSlot.Offhand) {
+			if (currentSlot == ::Const.ItemSlot.Offhand) {
 				appearance.Shield = brushName;
 			} else {
 				appearance.Weapon = brushName;
@@ -212,13 +212,13 @@
 	{
 		_properties.Stamina += this.m.StaminaModifier;
 
-		if (this.getCurrentSlotType() == this.Const.ItemSlot.Mainhand)
+		if (this.getCurrentSlotType() == ::Const.ItemSlot.Mainhand)
 		{
 			_properties.DamageRegularMin += this.m.RegularDamage;
 			_properties.DamageRegularMax += this.m.RegularDamageMax;
 			_properties.DamageArmorMult *= this.m.ArmorDamageMult;
 			_properties.DamageDirectAdd += this.m.DirectDamageAdd;
-			_properties.HitChance[this.Const.BodyPart.Head] += this.m.ChanceToHitHead;
+			_properties.HitChance[::Const.BodyPart.Head] += this.m.ChanceToHitHead;
 		}
 	}
 

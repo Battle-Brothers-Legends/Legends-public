@@ -31,7 +31,7 @@
 	}
 
 	o.addLoot = function (_list) {
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 		local food;
 
 		if (r == 1)
@@ -46,11 +46,11 @@
 			icon = "ui/items/" + food.getIcon(),
 			text = "You gain " + food.getName()
 		});
-		this.World.Assets.getStash().add(food);
-		this.World.Assets.updateFood();
+		::World.Assets.getStash().add(food);
+		::World.Assets.updateFood();
 
 		for (local i = 0; i < 2; i++) {
-			r = this.Math.rand(1, 10);
+			r = ::Math.rand(1, 10);
 			local item;
 
 			if (r == 1)
@@ -58,7 +58,7 @@
 			else if (r == 2)
 				item = this.new("scripts/items/weapons/knife");
 			else if (r == 3)
-					item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
+					item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]);
 			else if (r == 4)
 				item = this.new("scripts/items/weapons/woodcutters_axe");
 			else if (r == 5)
@@ -66,16 +66,16 @@
 			else if (r == 6)
 				item = this.new("scripts/items/weapons/pickaxe");
 			else if (r == 7)
-				item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.feathered_hat]]);
+				item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.feathered_hat]]);
 			else {
-				item = this.Const.World.Common.pickArmor([
+				item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.linen_tunic],
 					[1, ::Legends.Armor.Standard.leather_wraps],
 					[1, ::Legends.Armor.Standard.tattered_sackcloth],
 				]);
 			}
 
-			this.World.Assets.getStash().add(item);
+			::World.Assets.getStash().add(item);
 			_list.push({
 				id = 10,
 				icon = "ui/items/" + item.getIcon(),
@@ -86,18 +86,18 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.FactionManager.isCivilWar())
+		if (!::World.FactionManager.isCivilWar())
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.2)
+		if (::Const.DLC.Desert && currentTile.SquareCoords.Y <= ::World.getMapSize().Y * 0.2)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -107,7 +107,7 @@
 		local candidates_refugees = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getSkills().hasTrait(::Legends.Trait.Brute))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat) || bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getSkills().hasTrait(::Legends.Trait.Brute))
 				candidates_aggro.push(bro);
 			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Refugee))
 				candidates_refugees.push(bro);
@@ -118,11 +118,11 @@
 		if (candidates_aggro.len() == 0 || candidates_other.len() == 0)
 			return;
 
-		this.m.AggroDude = candidates_aggro[this.Math.rand(0, candidates_aggro.len() - 1)];
-		this.m.InjuredDude = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.AggroDude = candidates_aggro[::Math.rand(0, candidates_aggro.len() - 1)];
+		this.m.InjuredDude = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 
 		if (candidates_refugees.len() != 0)
-			this.m.RefugeeDude = candidates_refugees[this.Math.rand(0, candidates_refugees.len() - 1)];
+			this.m.RefugeeDude = candidates_refugees[::Math.rand(0, candidates_refugees.len() - 1)];
 
 		this.m.Score = 10;
 	}
@@ -130,7 +130,7 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function ()
 	{
-		if (this.Stash.getNumberOfEmptySlots() < 2)
+		if (::Stash.getNumberOfEmptySlots() < 2)
 			return;
 		onUpdateScore();
 	}

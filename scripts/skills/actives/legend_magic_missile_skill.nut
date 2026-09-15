@@ -16,8 +16,8 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/arrow_hit", 3);
 		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/shield_hit_arrow", 3);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/arrow_miss", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 1000;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -28,15 +28,15 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsShowingProjectile = true;
 		this.m.IsDoingForwardMove = false;
-		this.m.InjuriesOnBody = this.Const.Injury.PiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.PiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.PiercingHead;
 		this.m.DirectDamageMult = 0.4;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = this.m.BaseFatigueCost;
 		this.m.MinRange = 1;
 		this.m.MaxRange = 6;
 		this.m.MaxLevelDifference = 6;
-		this.m.ProjectileType = this.Const.ProjectileType.Missile;
+		this.m.ProjectileType = ::Const.ProjectileType.Missile;
 	}
 
 	function getTooltip()
@@ -66,14 +66,14 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		{
 			return false
 		}
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function onAfterUpdate( _properties )
 	{
 		this.m.FatigueCost = this.m.BaseFatigueCost;
 		this.m.MaxRange = this.m.Range - 1 + (_properties.IsSpecializedInStaves ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInStaves ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInStaves ? 5 : 6;
 
 		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileFocus))

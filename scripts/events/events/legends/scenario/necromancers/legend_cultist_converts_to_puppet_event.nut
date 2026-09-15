@@ -5,7 +5,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 	function create() {
 		this.m.ID = "event.legend_cultist_converts_to_puppet";
 		this.m.Title = "A Higher Purpose";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({ //— \n |
 			ID = "A", //cultist begs to be converted to a puppet
 			Text = "[img]gfx/ui/events/event_03.png[/img]The day is, by sellsword standards, quiet. However, the entrance of %cultist% seeks to jeopardise that calm with new ramblings and portents of doom.%SPEECH_ON%I have been in your service for days! WHY WILL YOU NOT LET ME ASCEND!?%SPEECH_OFF% The words roll around in your head for a moment — but you still don\'t quite get the meaning. You get the impression if you keep nodding along something will come of it. %SPEECH_ON%There MUST be a sacrifice. There is ALWAYS a sacrifice. There HASN\'T been a sacrifice! I ask you take me, make me you you raise so I cna serve both you and him...%SPEECH_OFF%There it is. There is always a request. There is always questions around saving a loved one from death or curing ailments using dark magic. This, however, is a very unusual request. But not one that couldn\'t be granted...",
@@ -40,7 +40,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 			}],
 			function start(_event)
 			{
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Cultist = roster.create("scripts/entity/tactical/player");
 				_event.m.Cultist.getFlags().add("PlayerZombie");
 				_event.m.Cultist.getFlags().add("undead");
@@ -62,13 +62,13 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/kills.png",
-					text = _event.m.Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "]has been reborn.[/color]"
+					text = _event.m.Cultist.getName() + " [color=" + ::Const.UI.Color.NegativeEventValue + "]has been reborn.[/color]"
 				});
 
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/regular_damage.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength![/color]"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]Your sacrifice has some supernatural strength![/color]"
 				});
 			}
 
@@ -89,7 +89,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/mood_02.png",
-					text = Cultist.getName() + " [color=" + this.Const.UI.Color.NegativeEventValue + "] becomes upset [/color]"
+					text = Cultist.getName() + " [color=" + ::Const.UI.Color.NegativeEventValue + "] becomes upset [/color]"
 				});
 
 				local entry = ::Legends.EventList.changeMood(_event.m.Cultist, 1.5, "Was rejected from ascending");
@@ -107,7 +107,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_Cultist = [];
 
 		foreach( bro in brothers )
@@ -123,7 +123,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 			}
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 		{
 			return;
 		}

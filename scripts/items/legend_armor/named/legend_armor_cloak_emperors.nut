@@ -11,12 +11,12 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 	{
 		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.cloak_emperor";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Cloak;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Cloak;
 		this.m.Name = "The Emperor\'s Cloak";
 		this.m.Description = "A cloak of the finest material that was rumored to have been worn by the last emperor.";
 		this.m.ArmorDescription = "Has a flowing embroidered cloak of the finest material.";
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Variants = [1, 2, 3, 4];
 		this.m.Variant = 1;
 		this.updateVariant();

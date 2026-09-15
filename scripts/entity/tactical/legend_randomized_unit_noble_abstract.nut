@@ -16,9 +16,9 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
         this.legend_randomized_unit_abstract.assignRandomEquipment();
 
         local banner;
-        if (!this.Tactical.State.isScenarioMode())
+        if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -29,22 +29,22 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 		if (::doesBrushExist(surcoat))
 		{
 			this.m.Surcoat = banner;
-			if (this.Math.rand(1, 100) <= 90)
+			if (::Math.rand(1, 100) <= 90)
 				this.getSprite("surcoat").setBrush(surcoat);
 		}
        	else {
        		this.m.Surcoat = null;
        	}
 
-		local armor = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body);
-		local tabard = armor.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard);
+		local armor = this.m.Items.getItemAtSlot(::Const.ItemSlot.Body);
+		local tabard = armor.getUpgrade(::Const.Items.ArmorUpgrades.Tabard);
 		if (tabard != null)
 		{
 			tabard.setVariant(banner);
 			armor.updateAppearance();
 		}
 
-		local helmet = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head);
+		local helmet = this.m.Items.getItemAtSlot(::Const.ItemSlot.Head);
 		if (helmet != null)
 		{
 			if ("setPlainVariant" in helmet) 
@@ -102,7 +102,7 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
 			helmet.updateAppearance();
 		}
 
-		local shield = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local shield = this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand);
 		if (shield != null && "setFaction" in shield)
 		{
 			shield.setFaction(banner);
@@ -115,19 +115,19 @@ this.legend_randomized_unit_noble_abstract <- this.inherit("scripts/entity/tacti
     function setFemale()
     {
         this.setGender(1);
-        this.m.Faces = this.Const.Faces.AllFemale;
-		this.m.Hairs = this.Const.Hair.BarberFemale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Female;  
+        this.m.Faces = ::Const.Faces.AllFemale;
+		this.m.Hairs = ::Const.Hair.BarberFemale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Female;  
     }
 
     function setMale()
     {
 		this.setGender(0);
-        this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;  
+        this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Tidy;  
     }
 
 }); 

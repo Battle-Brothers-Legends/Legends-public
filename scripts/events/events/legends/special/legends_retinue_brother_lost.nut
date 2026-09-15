@@ -14,7 +14,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "{Not everything goes as planned. | Oh well. | The mercs will understand. | This won\'t stop the %companyname%. | The important thing is that we\'re moving forward.}",
 				function getResult(_event) {
-					this.World.Retinue.removeDisabledFollowers();
+					::World.Retinue.removeDisabledFollowers();
 					return 0;
 				}
 			}],
@@ -23,7 +23,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 	}
 
 	function isValid() {
-		return this.World.Retinue.hasFollowersToRemove();
+		return ::World.Retinue.hasFollowersToRemove();
 	}
 
 	function canFire() {
@@ -31,7 +31,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 	}
 
 	function onPrepareVariables(_vars) {
-		local lostFollowers = this.World.Retinue.getFollowersToRemove();
+		local lostFollowers = ::World.Retinue.getFollowersToRemove();
 		_vars.push([
 			"s",
 			lostFollowers.len() == 1 ? "" : "s"
@@ -46,7 +46,7 @@ this.legends_retinue_brother_lost <- this.inherit("scripts/events/event", {
 		]);
 		_vars.push([
 			"companyname",
-			this.World.Assets.getName()
+			::World.Assets.getName()
 		]);
 
 		local followers = "";

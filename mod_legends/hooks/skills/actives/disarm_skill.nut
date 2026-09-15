@@ -6,7 +6,7 @@
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Has a [color=" + this.Const.UI.Color.PositiveValue + "]100%[/color] chance to disarm on a hit"
+			text = "Has a [color=" + ::Const.UI.Color.PositiveValue + "]100%[/color] chance to disarm on a hit"
 		});
 		return ret;
 	}
@@ -20,7 +20,7 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{

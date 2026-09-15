@@ -36,7 +36,7 @@
 
 	o.onAdded <- function()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 3 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 3 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{

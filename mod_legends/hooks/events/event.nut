@@ -58,7 +58,7 @@
 
 	o.buildText = function ( _text )
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local brother1;
 		local brother2;
 		local notnagel;
@@ -85,18 +85,18 @@
 			}
 		}
 
-		local r = this.Math.rand(0, brothers.len() - 1);
+		local r = ::Math.rand(0, brothers.len() - 1);
 		bro1 = brothers[r];
 		brother1 = bro1.getName();
 		brothers.remove(r);
 
 		if (brothers.len() != 0)
 		{
-			bro2 = brothers[this.Math.rand(0, brothers.len() - 1)];
+			bro2 = brothers[::Math.rand(0, brothers.len() - 1)];
 		}
 		else if (slaves.len() != 0)
 		{
-			bro2 = slaves[this.Math.rand(0, slaves.len() - 1)];
+			bro2 = slaves[::Math.rand(0, slaves.len() - 1)];
 		}
 		else if (notnagel != null)
 		{
@@ -109,8 +109,8 @@
 
 		brother2 = bro2.getName();
 
-		local villages = this.World.EntityManager.getSettlements();
-		local nobleHouses = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local villages = ::World.EntityManager.getSettlements();
+		local nobleHouses = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 		local citystates = [];
 		local northern = [];
 
@@ -122,65 +122,65 @@
 			}
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_33.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Snow)
+		else if (currentTile.Type == ::Const.World.TerrainType.Snow)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_143.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.SnowyForest)
+		else if (currentTile.Type == ::Const.World.TerrainType.SnowyForest)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_08.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Plains)
+		else if (currentTile.Type == ::Const.World.TerrainType.Plains)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_16.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Forest)
+		else if (currentTile.Type == ::Const.World.TerrainType.Forest)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_25.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.LeaveForest)
+		else if (currentTile.Type == ::Const.World.TerrainType.LeaveForest)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_128.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.AutumnForest)
+		else if (currentTile.Type == ::Const.World.TerrainType.AutumnForest)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_127.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Swamp)
+		else if (currentTile.Type == ::Const.World.TerrainType.Swamp)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_09.png[/img]";
 		}
-		else if (currentTile.TacticalType == this.Const.World.TerrainTacticalType.DesertHills)
+		else if (currentTile.TacticalType == ::Const.World.TerrainTacticalType.DesertHills)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_150.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Hills)
+		else if (currentTile.Type == ::Const.World.TerrainType.Hills)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_36.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Tundra)
+		else if (currentTile.Type == ::Const.World.TerrainType.Tundra)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_126.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Steppe)
+		else if (currentTile.Type == ::Const.World.TerrainType.Steppe)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_66.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Desert)
+		else if (currentTile.Type == ::Const.World.TerrainType.Desert)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_161.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Oasis)
+		else if (currentTile.Type == ::Const.World.TerrainType.Oasis)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_161.png[/img]";
 		}
-		else if (currentTile.Type == this.Const.World.TerrainType.Mountains)
+		else if (currentTile.Type == ::Const.World.TerrainType.Mountains)
 		{
 			this.m.TerrainImage = "[img]gfx/ui/events/event_42.png[/img]";
 		}
@@ -232,19 +232,19 @@
 			],
 			[
 				"companyname",
-				this.World.Assets.getName()
+				::World.Assets.getName()
 			],
 			[
 				"randomname",
-				this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+				::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
 			],
 			[
 				"randomnoble",
-				this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
+				::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]
 			],
 			[
 				"randomnoblehouse",
-				nobleHouses[this.Math.rand(0, nobleHouses.len() - 1)].getName()
+				nobleHouses[::Math.rand(0, nobleHouses.len() - 1)].getName()
 			],
 			[
 				"randombrother",
@@ -256,11 +256,11 @@
 			],
 			[
 				"randomtown",
-				northern[this.Math.rand(0, northern.len() - 1)].getNameOnly()
+				northern[::Math.rand(0, northern.len() - 1)].getNameOnly()
 			],
 			[
 				"randomcitystate",
-				citystates.len() != 0 ? citystates[this.Math.rand(0, citystates.len() - 1)].getNameOnly() : ""
+				citystates.len() != 0 ? citystates[::Math.rand(0, citystates.len() - 1)].getNameOnly() : ""
 			],
 			[
 				"terrainImage",
@@ -299,43 +299,43 @@
 		_vars.extend([
 			[
 				"they" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "they")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "they")
 			],
 			[
 				"them" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "them")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "them")
 			],
 			[
 				"their" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "their")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "their")
 			],
 			[
 				"theirs" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "theirs")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "theirs")
 			],
 			[
 				"themselves" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "themselves")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "themselves")
 			],
 			[
 				"They" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "They")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "They")
 			],
 			[
 				"Them" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "Them")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "Them")
 			],
 			[
 				"Their" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "Their")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "Their")
 			],
 			[
 				"Theirs" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "Theirs")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "Theirs")
 			],
 			[
 				"Themselves" + _suffix,
-				this.Const.LegendMod.getPronoun(_bro.getGender(), "Themselves")
+				::Const.LegendMod.getPronoun(_bro.getGender(), "Themselves")
 			]
 		]);
 	}

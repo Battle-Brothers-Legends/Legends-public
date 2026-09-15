@@ -23,7 +23,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/oriental/two_handed_scimitar",
@@ -34,19 +34,19 @@
 				"weapons/bardiche"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.lamellar_harness],
 				[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 			]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helm = [
 				[3, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
@@ -54,7 +54,7 @@
 				[3, ::Legends.Helmet.Southern.turban_helmet],
 				[1, ::Legends.Helmet.Southern.janissary_helmet]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(helm));
+			this.m.Items.equip(::Const.World.Common.pickHelmet(helm));
 		}
 	}
 
@@ -75,17 +75,17 @@
 			"weapons/named/named_bardiche"
 		];
 
-		local armor = clone this.Const.Items.NamedSouthernArmors;
-		local r = this.Math.rand(1, 2);
+		local armor = clone ::Const.Items.NamedSouthernArmors;
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
-				this.Const.World.Common.convNameToList(armor)
+			this.m.Items.equip(::Const.World.Common.pickArmor(
+				::Const.World.Common.convNameToList(armor)
 			));
 		}
 

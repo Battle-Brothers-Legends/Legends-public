@@ -12,7 +12,7 @@
 					this.Characters.push(_event.m.Helper.getImagePath());
 					local item = this.new("scripts/items/accessory/legend_wardog_item");
 					item.m.Name = "Swimmer";
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -33,14 +33,14 @@
 					this.Characters.push(_event.m.Beastslayer.getImagePath());
 					local item = this.new("scripts/items/accessory/legend_wardog_item");
 					item.m.Name = "Swimmer";
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + item.getName()
 					});
 					item = this.new("scripts/items/loot/golden_chalice_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -52,13 +52,13 @@
 				s.start <- function ( _event ) {
 					local item = this.new("scripts/items/accessory/legend_wardog_item");
 					item.m.Name = "Swimmer";
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + item.getName()
 					});
-					local stash = this.World.Assets.getStash().getItems();
+					local stash = ::World.Assets.getStash().getItems();
 
 					foreach( i, item in stash ) {
 						if (item != null && item.getID() == "tool.throwing_net") {
@@ -77,16 +77,16 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		if (this.World.State.getPlayer().getTile().Type != this.Const.World.TerrainType.Swamp)
+		if (::World.State.getPlayer().getTile().Type != ::Const.World.TerrainType.Swamp)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_houndmaster = [];
 		local candidates_beastslayer = [];
 		local candidates_other = [];
@@ -103,13 +103,13 @@
 		if (candidates_other.len() == 0)
 			return;
 
-		this.m.Helper = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Helper = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 
 		if (candidates_houndmaster.len() != 0)
-			this.m.Houndmaster = candidates_houndmaster[this.Math.rand(0, candidates_houndmaster.len() - 1)];
+			this.m.Houndmaster = candidates_houndmaster[::Math.rand(0, candidates_houndmaster.len() - 1)];
 
 		if (candidates_beastslayer.len() != 0)
-			this.m.Beastslayer = candidates_beastslayer[this.Math.rand(0, candidates_beastslayer.len() - 1)];
+			this.m.Beastslayer = candidates_beastslayer[::Math.rand(0, candidates_beastslayer.len() - 1)];
 
 		this.m.Score = 10;
 	}

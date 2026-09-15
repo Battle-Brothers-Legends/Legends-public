@@ -28,9 +28,9 @@
 			"the Traveller",
 			"the Raven"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin; //Bottom half of neutral for slightly neutral evil
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMin; //Bottom half of neutral for slightly neutral evil
 	}
 
 	o.getTooltip = function ()
@@ -56,7 +56,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -67,15 +67,15 @@
 			items.equip(this.new("scripts/items/weapons/legend_staff"));
 		}
 
-		r = this.Math.rand(0, 3);
-		items.equip(this.Const.World.Common.pickArmor([
+		r = ::Math.rand(0, 3);
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.straw_hat]

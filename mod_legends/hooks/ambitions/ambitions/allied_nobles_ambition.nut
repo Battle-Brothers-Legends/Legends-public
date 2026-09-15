@@ -2,14 +2,14 @@
 {
 	o.onReward = function ()
 	{
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 		local banner = 1;
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && f.getType() == this.Const.FactionType.NobleHouse && f.getPlayerRelation() >= 90.0)
+			if (f != null && f.getType() == ::Const.FactionType.NobleHouse && f.getPlayerRelation() >= 90.0)
 			{
 				banner = f.getBanner();
 				break;
@@ -17,8 +17,8 @@
 		}
 
 		local item;
-		local stash = this.World.Assets.getStash();
-		local i = this.Math.rand(1, 11); //No shields or daggers. Also no potentially overpowered weapons at this stage in the game like greatswords, 2h cleavers, 2h hammers, throwing weapons, etc.
+		local stash = ::World.Assets.getStash();
+		local i = ::Math.rand(1, 11); //No shields or daggers. Also no potentially overpowered weapons at this stage in the game like greatswords, 2h cleavers, 2h hammers, throwing weapons, etc.
 
 		if (i == 1)
 		{
@@ -69,7 +69,7 @@
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 		});
 	}
 });

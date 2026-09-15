@@ -4,7 +4,7 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 	{
 		this.agent.create();
 		this.m.ID = "agent.legend_manhunter_melee";
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 1.0;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.3;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;
@@ -46,9 +46,9 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onUpdate()
 	{
 		this.setEngageRangeBasedOnWeapon();
-		local item = this.m.Actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.m.Actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.isAoE())
+		if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isAoE())
 		{
 			this.m.Properties.EngageTargetMultipleOpponentsMult = 0.75;
 		}
@@ -66,7 +66,7 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 			this.m.Properties.OverallFormationMult = 1.0;
 		}
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.getRangeIdeal() == 2)
+		if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.getRangeIdeal() == 2)
 		{
 			this.m.Properties.EngageTargetAlreadyBeingEngagedMult = 0.25;
 		}
@@ -75,14 +75,14 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 			this.m.Properties.EngageTargetAlreadyBeingEngagedMult = 0.5;
 		}
 
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Protect] = 0.0;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Protect] = 0.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.SwitchToRanged] = 1.0;
 
 		if (!this.getStrategy().isDefendingCamp() && this.m.KnownAllies.len() >= 8 && this.getActor().getCurrentProperties().TargetAttractionMult <= 1.0)
 		{
-			item = this.m.Actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+			item = this.m.Actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Shield))
 			{
 				local myTile = this.getActor().getTile();
 				local priorityAlliesInRange = 0;
@@ -95,7 +95,7 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 						continue;
 					}
 
-					if (a.getCurrentProperties().TargetAttractionMult <= 1.0 && a.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Protect] >= 1.0)
+					if (a.getCurrentProperties().TargetAttractionMult <= 1.0 && a.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Protect] >= 1.0)
 					{
 						protectors = ++protectors;
 					}
@@ -112,8 +112,8 @@ this.legend_manhunter_melee_agent <- this.inherit("scripts/ai/tactical/agent", {
 
 				if (priorityAlliesInRange > 0 && protectors <= this.m.KnownAllies.len() / 14)
 				{
-					this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Protect] = 1.0;
-					this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.SwitchToRanged] = 0.0;
+					this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Protect] = 1.0;
+					this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.SwitchToRanged] = 0.0;
 				}
 			}
 		}

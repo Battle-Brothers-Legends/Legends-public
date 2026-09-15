@@ -17,20 +17,20 @@
 
  	o.spawn = function ( _properties )
 	{
-		if (this.World.State.getCombatSeed() != 0)
+		if (::World.State.getCombatSeed() != 0)
 		{
-			this.Math.seedRandom(this.World.State.getCombatSeed());
+			::Math.seedRandom(::World.State.getCombatSeed());
 		}
 
 		this.Time.setRound(0);
-		this.World.Assets.updateFormation();
-		local all_players = _properties.IsUsingSetPlayers ? _properties.Players : this.World.getPlayerRoster().getAll();
+		::World.Assets.updateFormation();
+		local all_players = _properties.IsUsingSetPlayers ? _properties.Players : ::World.getPlayerRoster().getAll();
 
 		foreach( e in _properties.TemporaryEnemies )
 		{
 			if (e > 2)
 			{
-				this.World.FactionManager.getFaction(e).setIsTemporaryEnemy(true);
+				::World.FactionManager.getFaction(e).setIsTemporaryEnemy(true);
 			}
 		}
 
@@ -56,7 +56,7 @@
 
 		foreach (r in reserves)
 		{
-			if (this.World.State.getBrothersInFrontline() != 0 || this.World.Assets.getBrothersMaxInCombat() <= frontline.len()) //Removed: _properties.IsPlayerInitiated && from this line, which should fix the issue where bro tagged as 'reserve' always get pulled into defensive battles
+			if (::World.State.getBrothersInFrontline() != 0 || ::World.Assets.getBrothersMaxInCombat() <= frontline.len()) //Removed: _properties.IsPlayerInitiated && from this line, which should fix the issue where bro tagged as 'reserve' always get pulled into defensive battles
 			{
 				break;
 			}
@@ -66,7 +66,7 @@
 
 		foreach (f in frontline)
 		{
-			local items = f.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag);
+			local items = f.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 
 			foreach( item in items )
 			{
@@ -77,9 +77,9 @@
 			}
 		}
 
-		if (this.World.State.isUsingGuests() && this.World.getGuestRoster().getSize() != 0)
+		if (::World.State.isUsingGuests() && ::World.getGuestRoster().getSize() != 0)
 		{
-			frontline.extend(this.World.getGuestRoster().getAll());
+			frontline.extend(::World.getGuestRoster().getAll());
 		}
 
 		if (_properties.BeforeDeploymentCallback != null)
@@ -89,27 +89,27 @@
 
 		local isPlayerInitiated = _properties.IsPlayerInitiated;
 
-		if (_properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.Auto)
+		if (_properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.Auto)
 		{
-			if (this.World.State.getEscortedEntity() != null && !this.World.State.getEscortedEntity().isNull())
+			if (::World.State.getEscortedEntity() != null && !::World.State.getEscortedEntity().isNull())
 			{
-				_properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
+				_properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
 			}
-			else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != this.Const.Tactical.FortificationType.None && !_properties.LocationTemplate.ForceLineBattle)
+			else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != ::Const.Tactical.FortificationType.None && !_properties.LocationTemplate.ForceLineBattle)
 			{
-				_properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.LineBack;
+				_properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.LineBack;
 			}
-			else if ((this.Const.World.TerrainTypeLineBattle[_properties.Tile.Type] || _properties.IsAttackingLocation || isPlayerInitiated) && !_properties.InCombatAlready)
+			else if ((::Const.World.TerrainTypeLineBattle[_properties.Tile.Type] || _properties.IsAttackingLocation || isPlayerInitiated) && !_properties.InCombatAlready)
 			{
-				_properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
+				_properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
 			}
 			else if (!_properties.InCombatAlready)
 			{
-				_properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
+				_properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
 			}
 			else
 			{
-				_properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.LineBack;
+				_properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.LineBack;
 			}
 		}
 
@@ -122,47 +122,47 @@
 			{
 				local f = {
 					Faction = e.Faction,
-					IsAlliedWithPlayer = this.World.FactionManager.isAlliedWithPlayer(e.Faction),
+					IsAlliedWithPlayer = ::World.FactionManager.isAlliedWithPlayer(e.Faction),
 					IsOwningLocation = false,
 					DeploymentType = _properties.EnemyDeploymentType,
 					Entities = []
 				};
 				ai_entities.push(f);
 
-				if (_properties.LocationTemplate != null && this.World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction))
+				if (_properties.LocationTemplate != null && ::World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction))
 				{
 					f.IsOwningLocation = true;
 				}
 
-				if (f.DeploymentType == this.Const.Tactical.DeploymentType.Auto)
+				if (f.DeploymentType == ::Const.Tactical.DeploymentType.Auto)
 				{
-					if (this.World.State.getEscortedEntity() != null && !this.World.State.getEscortedEntity().isNull())
+					if (::World.State.getEscortedEntity() != null && !::World.State.getEscortedEntity().isNull())
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.Line;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.Line;
 					}
 					else if (f.IsAlliedWithPlayer && !_properties.InCombatAlready)
 					{
 						f.DeploymentType = _properties.PlayerDeploymentType;
 					}
-					else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != this.Const.Tactical.FortificationType.None && !this.World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction) && !_properties.LocationTemplate.ForceLineBattle)
+					else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != ::Const.Tactical.FortificationType.None && !::World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction) && !_properties.LocationTemplate.ForceLineBattle)
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.LineBack;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.LineBack;
 					}
-					else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != this.Const.Tactical.FortificationType.None && this.World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction) && !_properties.LocationTemplate.ForceLineBattle)
+					else if (_properties.LocationTemplate != null && _properties.LocationTemplate.Fortification != ::Const.Tactical.FortificationType.None && ::World.FactionManager.isAllied(f.Faction, _properties.LocationTemplate.OwnedByFaction) && !_properties.LocationTemplate.ForceLineBattle)
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.Camp;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.Camp;
 					}
-					else if (_properties.LocationTemplate != null && (_properties.LocationTemplate.Fortification == this.Const.Tactical.FortificationType.None || _properties.LocationTemplate.ForceLineBattle))
+					else if (_properties.LocationTemplate != null && (_properties.LocationTemplate.Fortification == ::Const.Tactical.FortificationType.None || _properties.LocationTemplate.ForceLineBattle))
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.Line;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.Line;
 					}
-					else if (this.Const.World.TerrainTypeLineBattle[_properties.Tile.Type] || _properties.IsAttackingLocation || isPlayerInitiated || _properties.InCombatAlready)
+					else if (::Const.World.TerrainTypeLineBattle[_properties.Tile.Type] || _properties.IsAttackingLocation || isPlayerInitiated || _properties.InCombatAlready)
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.Line;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.Line;
 					}
 					else
 					{
-						f.DeploymentType = this.Const.Tactical.DeploymentType.Circle;
+						f.DeploymentType = ::Const.Tactical.DeploymentType.Circle;
 					}
 				}
 			}
@@ -187,7 +187,7 @@
 
 		foreach( ai in ai_entities )
 		{
-			if (ai.DeploymentType == this.Const.Tactical.DeploymentType.Camp)
+			if (ai.DeploymentType == ::Const.Tactical.DeploymentType.Camp)
 			{
 				hasCampDeployment = true;
 				break;
@@ -199,11 +199,11 @@
 
 		switch(_properties.PlayerDeploymentType)
 		{
-		case this.Const.Tactical.DeploymentType.Line:
+		case ::Const.Tactical.DeploymentType.Line:
 			this.placePlayersInFormation(frontline);
 			break;
 
-		case this.Const.Tactical.DeploymentType.LineBack:
+		case ::Const.Tactical.DeploymentType.LineBack:
 			if (_properties.InCombatAlready)
 			{
 				this.placePlayersInFormation(frontline, -10);
@@ -215,32 +215,32 @@
 
 			break;
 
-		case this.Const.Tactical.DeploymentType.LineCenter:
+		case ::Const.Tactical.DeploymentType.LineCenter:
 			this.placePlayersInFormation(frontline, 3 + shiftX);
 			break;
 
-		case this.Const.Tactical.DeploymentType.LineForward:
+		case ::Const.Tactical.DeploymentType.LineForward:
 			this.placePlayersInFormation(frontline, 8 + shiftX);
 			break;
 
-		case this.Const.Tactical.DeploymentType.Arena:
+		case ::Const.Tactical.DeploymentType.Arena:
 			this.placePlayersInFormation(frontline, -4, -3);
 			break;
 
-		case this.Const.Tactical.DeploymentType.Center:
+		case ::Const.Tactical.DeploymentType.Center:
 			this.placePlayersAtCenter(frontline);
 			break;
 
-		case this.Const.Tactical.DeploymentType.Edge:
+		case ::Const.Tactical.DeploymentType.Edge:
 			this.placePlayersAtBorder(frontline);
 			break;
 
-		case this.Const.Tactical.DeploymentType.Random:
-		case this.Const.Tactical.DeploymentType.Circle:
+		case ::Const.Tactical.DeploymentType.Random:
+		case ::Const.Tactical.DeploymentType.Circle:
 			this.placePlayersInCircle(frontline);
 			break;
 
-		case this.Const.Tactical.DeploymentType.Custom:
+		case ::Const.Tactical.DeploymentType.Custom:
 			if (_properties.PlayerDeploymentWithFrontlineCallback != null)
 			{
 				_properties.PlayerDeploymentWithFrontlineCallback(frontline);
@@ -258,7 +258,7 @@
 
 		foreach( _, f in ai_entities )
 		{
-			if ((!f.IsAlliedWithPlayer || _properties.InCombatAlready) && f.DeploymentType != this.Const.Tactical.DeploymentType.Camp && (lastFaction == 99 || !this.World.FactionManager.isAllied(lastFaction, f.Faction)))
+			if ((!f.IsAlliedWithPlayer || _properties.InCombatAlready) && f.DeploymentType != ::Const.Tactical.DeploymentType.Camp && (lastFaction == 99 || !::World.FactionManager.isAllied(lastFaction, f.Faction)))
 			{
 				factionsNotAlliedWithPlayer = ++factionsNotAlliedWithPlayer;
 			}
@@ -273,7 +273,7 @@
 
 			switch(f.DeploymentType)
 			{
-			case this.Const.Tactical.DeploymentType.Line:
+			case ::Const.Tactical.DeploymentType.Line:
 				if (_properties.InCombatAlready)
 				{
 					if (n == 1)
@@ -292,20 +292,20 @@
 
 				break;
 
-			case this.Const.Tactical.DeploymentType.Camp:
+			case ::Const.Tactical.DeploymentType.Camp:
 				this.spawnEntitiesAtCamp(f.Entities, shiftX, shiftY);
 				break;
 
-			case this.Const.Tactical.DeploymentType.LineBack:
-				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+			case ::Const.Tactical.DeploymentType.LineBack:
+				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
 				}
-				else if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineCenter)
+				else if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.LineCenter)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 3 + shiftX);
 				}
-				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, -10 - shiftX);
 				}
@@ -316,12 +316,12 @@
 
 				break;
 
-			case this.Const.Tactical.DeploymentType.LineCenter:
-				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+			case ::Const.Tactical.DeploymentType.LineCenter:
+				if (f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 8 + shiftX);
 				}
-				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.LineForward)
+				else if (!f.IsAlliedWithPlayer && _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.LineForward)
 				{
 					this.spawnEntitiesInFormation(f.Entities, n, 3 - shiftX);
 				}
@@ -331,19 +331,19 @@
 				}
 				break;
 
-			case this.Const.Tactical.DeploymentType.Arena:
+			case ::Const.Tactical.DeploymentType.Arena:
 				this.spawnEntitiesInFormation(f.Entities, n, 3, -3);
 				break;
 
-			case this.Const.Tactical.DeploymentType.Center:
+			case ::Const.Tactical.DeploymentType.Center:
 				this.spawnEntitiesAtCenter(f.Entities);
 				break;
 
-			case this.Const.Tactical.DeploymentType.Random:
+			case ::Const.Tactical.DeploymentType.Random:
 				this.spawnEntitiesRandomly(f.Entities);
 				break;
 
-			case this.Const.Tactical.DeploymentType.Circle:
+			case ::Const.Tactical.DeploymentType.Circle:
 				this.spawnEntitiesInCircle(f.Entities);
 				break;
 			}
@@ -354,26 +354,26 @@
 			_properties.EnemyDeploymentCallback();
 		}
 
-		this.m.IsLineVSLine = _properties.PlayerDeploymentType == this.Const.Tactical.DeploymentType.Line && _properties.EnemyDeploymentType == this.Const.Tactical.DeploymentType.Line;
+		this.m.IsLineVSLine = _properties.PlayerDeploymentType == ::Const.Tactical.DeploymentType.Line && _properties.EnemyDeploymentType == ::Const.Tactical.DeploymentType.Line;
 
-		if (!this.Tactical.State.isScenarioMode() && !_properties.IsPlayerInitiated && !_properties.InCombatAlready)
+		if (!::Tactical.State.isScenarioMode() && !_properties.IsPlayerInitiated && !_properties.InCombatAlready)
 		{
 			foreach( i, s in this.m.Strategies )
 			{
-				if (!this.World.FactionManager.isAllied(this.Const.Faction.Player, i))
+				if (!::World.FactionManager.isAllied(::Const.Faction.Player, i))
 				{
 					s.setIsAttackingOnWorldmap(true);
 				}
 			}
 		}
 
-		if(this.m.IsLineVSLine && !this.Tactical.State.isScenarioMode())
+		if(this.m.IsLineVSLine && !::Tactical.State.isScenarioMode())
 		{
 			local friendlyRanged = false, enemyRanged = false;
-				for( local i = this.Const.Faction.Player; i != this.m.Instances.len(); i = ++i )
+				for( local i = ::Const.Faction.Player; i != this.m.Instances.len(); i = ++i )
 					{
 					if(this.m.Instances[i].len() == 0) continue; // most factions are empty
-						local friendly = i == this.Const.Faction.Player || this.World.FactionManager.isAlliedWithPlayer(i);
+						local friendly = i == ::Const.Faction.Player || ::World.FactionManager.isAlliedWithPlayer(i);
 						if(!(friendly ? friendlyRanged : enemyRanged))
 						{
 						foreach(e in this.m.Instances[i])
@@ -390,20 +390,20 @@
 
 			if(friendlyRanged || enemyRanged)
 			{
-				for( local i = this.Const.Faction.Player; i != this.m.Instances.len(); i = ++i )
+				for( local i = ::Const.Faction.Player; i != this.m.Instances.len(); i = ++i )
 				{
 					if(this.m.Instances[i].len() == 0) continue; // most factions are empty
-					local faction = this.World.FactionManager.getFaction(i);
-					local factionType = faction != null ? faction.getType() : this.Const.FactionType.Player;
-					if(factionType == this.Const.FactionType.Zombies || factionType == this.Const.FactionType.Orcs)
+					local faction = ::World.FactionManager.getFaction(i);
+					local factionType = faction != null ? faction.getType() : ::Const.FactionType.Player;
+					if(factionType == ::Const.FactionType.Zombies || factionType == ::Const.FactionType.Orcs)
 					{
 						continue; // zombies are too dumb. orcs are too confident
 					}
-					else if(factionType == this.Const.FactionType.Bandits)
+					else if(factionType == ::Const.FactionType.Bandits)
 					{
 						local hasLeader = false; // bandits are too undisciplined unless there's a leader
 						foreach(e in this.m.Instances[i])
-						if(e.getType() == this.Const.EntityType.BanditLeader)
+						if(e.getType() == ::Const.EntityType.BanditLeader)
 						{
 							hasLeader = true;
 							break;
@@ -426,9 +426,9 @@
 
 		this.makeEnemiesKnownToAI(_properties.InCombatAlready);
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.manhunters")
+		if (::World.Assets.getOrigin().getID() == "scenario.manhunters")
 		{
-			local roster = this.World.getPlayerRoster().getAll();
+			local roster = ::World.getPlayerRoster().getAll();
 			local slaves = 0;
 			local nonSlaves = 0;
 
@@ -450,24 +450,24 @@
 					}
 
 					if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
-						bro.worsenMood(this.Const.MoodChange.TooFewSlavesInBattle, "Too few indebted in battle");
+						bro.worsenMood(::Const.MoodChange.TooFewSlavesInBattle, "Too few indebted in battle");
 					}
 				}
 			}
 		}
 
-		foreach( player in this.m.Instances[this.Const.Faction.Player] )
+		foreach( player in this.m.Instances[::Const.Faction.Player] )
 		{
 			player.onCombatStart();
 		}
 
-		this.Math.seedRandom(this.Time.getRealTime());
+		::Math.seedRandom(this.Time.getRealTime());
 	}
 
 	o.placePlayersAtBorder = function (_players) {
 		for (local x = 9; x <= 23; x = ++x) {
 			for (local y = 2; y <= 4; y = ++y) {
-				this.Tactical.getTile(x, y - x / 2).removeObject();
+				::Tactical.getTile(x, y - x / 2).removeObject();
 			}
 		}
 
@@ -511,7 +511,7 @@
 		{
 			for( local y = 10; y <= 20 + _offsetY; y = ++y )
 			{
-				this.Tactical.getTile(x, y - x / 2).removeObject();
+				::Tactical.getTile(x, y - x / 2).removeObject();
 			}
 		}
 
@@ -532,7 +532,7 @@
 
 			local x = 13 - p / 9 + _offsetX;
 			local y = 30 - (11 + p - p / 9 * 9) + _offsetY;
-			local tile = this.Tactical.getTileSquare(x, y);
+			local tile = ::Tactical.getTileSquare(x, y);
 
 			if (!tile.IsEmpty)
 			{
@@ -554,14 +554,14 @@
 				tile.Level = avg / 6;
 			}
 
-			this.Tactical.addEntityToMap(e, tile.Coords.X, tile.Coords.Y);
+			::Tactical.addEntityToMap(e, tile.Coords.X, tile.Coords.Y);
 
-			if (!this.World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
+			if (!::World.getTime().IsDaytime && e.getBaseProperties().IsAffectedByNight)
 			{
 				::Legends.Effects.grant(e, ::Legends.Effect.Night);
 			}
 
-			if (this.Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
+			if (::Tactical.getWeather().IsRaining && e.getBaseProperties().IsAffectedByRain)
 			{
 				::Legends.Effects.grant(e, ::Legends.Effect.LegendRain);
 			}
@@ -579,7 +579,7 @@
 				continue;
 			}
 
-			if (_tile.getNextTile(i).IsEmpty && this.Math.abs(_tile.Level - _tile.getNextTile(i).Level) <= 1)
+			if (_tile.getNextTile(i).IsEmpty && ::Math.abs(_tile.Level - _tile.getNextTile(i).Level) <= 1)
 			{
 				isCompletelyIsolated = false;
 				break;
@@ -591,9 +591,9 @@
 			return true;
 		}
 
-		local size = this.Tactical.getMapSize();
+		local size = ::Tactical.getMapSize();
 
-		if (_tile.Level == 0 && this.Tactical.getTileSquare(0, 0).Level == 3 && this.Tactical.getTileSquare(size.X - 1, size.Y - 1).Level == 3 && this.Tactical.getTileSquare(0, size.Y - 1).Level == 3 && this.Tactical.getTileSquare(size.X - 1, 0).Level == 3)
+		if (_tile.Level == 0 && ::Tactical.getTileSquare(0, 0).Level == 3 && ::Tactical.getTileSquare(size.X - 1, size.Y - 1).Level == 3 && ::Tactical.getTileSquare(0, size.Y - 1).Level == 3 && ::Tactical.getTileSquare(size.X - 1, 0).Level == 3)
 		{
 			return false;
 		}
@@ -606,14 +606,14 @@
 			allFactions[i] = i;
 		}
 
-		local navigator = this.Tactical.getNavigator();
+		local navigator = ::Tactical.getNavigator();
 		local settings = navigator.createSettings();
-		settings.ActionPointCosts = this.Const.SameMovementAPCost;
-		settings.FatigueCosts = this.Const.PathfinderMovementFatigueCost;
+		settings.ActionPointCosts = ::Const.SameMovementAPCost;
+		settings.FatigueCosts = ::Const.PathfinderMovementFatigueCost;
 		settings.AllowZoneOfControlPassing = true;
 		settings.AlliedFactions = allFactions;
 
-		if (!navigator.findPath(_tile, this.Tactical.getTileSquare(0, 0), settings, 1) && !navigator.findPath(_tile, this.Tactical.getTileSquare(size.X - 1, size.Y - 1), settings, 1) && !navigator.findPath(_tile, this.Tactical.getTileSquare(0, size.Y - 1), settings, 1) && !navigator.findPath(_tile, this.Tactical.getTileSquare(size.X - 1, 0), settings, 1))
+		if (!navigator.findPath(_tile, ::Tactical.getTileSquare(0, 0), settings, 1) && !navigator.findPath(_tile, ::Tactical.getTileSquare(size.X - 1, size.Y - 1), settings, 1) && !navigator.findPath(_tile, ::Tactical.getTileSquare(0, size.Y - 1), settings, 1) && !navigator.findPath(_tile, ::Tactical.getTileSquare(size.X - 1, 0), settings, 1))
 		{
 			return true;
 		}
@@ -633,16 +633,16 @@
 
 		if (_info.Tile.IsVisibleForPlayer)
 		{
-			this.Tactical.CameraDirector.addMoveToTileEvent(_delay, _info.Tile, -1, this.onResurrect.bindenv(this), _info, this.Const.Tactical.Settings.CameraWaitForEventDelay, this.Const.Tactical.Settings.CameraNextEventDelay);
-			this.Tactical.CameraDirector.addDelay(1.5);
+			::Tactical.CameraDirector.addMoveToTileEvent(_delay, _info.Tile, -1, this.onResurrect.bindenv(this), _info, ::Const.Tactical.Settings.CameraWaitForEventDelay, ::Const.Tactical.Settings.CameraNextEventDelay);
+			::Tactical.CameraDirector.addDelay(1.5);
 		}
 		else
 		{
 			this.onResurrect(_info);
 
-			if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().isPlayerControlled())
+			if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().isPlayerControlled())
 			{
-				this.Tactical.TurnSequenceBar.getActiveEntity().setDirty(true);
+				::Tactical.TurnSequenceBar.getActiveEntity().setDirty(true);
 			}
 		}
 	}
@@ -653,7 +653,7 @@
 		// holy flame stops the resurrection
 		if (_info.Tile.Properties.Effect != null && _info.Tile.Properties.Effect.Type == "legend_holyflame") {
 			if (_info.Tile.IsVisibleForPlayer)
-				this.Tactical.EventLog.log("The simmering holy flame stops the dead from raising back to life again.");
+				::Tactical.EventLog.log("The simmering holy flame stops the dead from raising back to life again.");
 
 			return null;
 		}
@@ -665,7 +665,7 @@
 		local faction = _entity.getFaction();
 		if (faction == ::Const.Faction.Player
 			|| faction == ::Const.Faction.PlayerAnimals
-			|| this.World.FactionManager.isAlliedWithPlayer(faction)) {
+			|| ::World.FactionManager.isAlliedWithPlayer(faction)) {
 			return false;
 		}
 		local barredEntities = [

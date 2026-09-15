@@ -21,7 +21,7 @@
 			if (::Legends.Difficulty.DismissCost[::World.Assets.getEconomicDifficulty()])	{
 				if (::World.Assets.getMoney() < tryoutCost) {
 					return {
-						Result = this.Const.UI.Error.NotEnoughMoney,
+						Result = ::Const.UI.Error.NotEnoughMoney,
 						Assets = null
 					};
 				}
@@ -40,7 +40,7 @@
 		}
 
 		return {
-			Result = this.Const.UI.Error.RosterEntryNotFound,
+			Result = ::Const.UI.Error.RosterEntryNotFound,
 			Assets = null
 		};
 	}
@@ -107,7 +107,7 @@
 		if (this.m.JSHandle == null || !this.isVisible()) return;
 
 		// this.Tooltip.hide();
-		// local bro = this.Tactical.getEntityByID(_id);
+		// local bro = ::Tactical.getEntityByID(_id);
 		// local entity = this.UIDataHelper.convertEntityToUIData(bro, null);
 		this.m.JSHandle.asyncCall("showKnownPerksPopupDialog", null);
 	}

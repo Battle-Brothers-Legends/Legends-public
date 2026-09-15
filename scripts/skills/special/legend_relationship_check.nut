@@ -10,8 +10,8 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRelationshipCheck);
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.Trait;
-		this.m.Order = this.Const.SkillOrder.Trait + 600;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.Trait;
+		this.m.Order = ::Const.SkillOrder.Trait + 600;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
@@ -67,10 +67,10 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 				else
 				{
 					local tile = targetTile.getNextTile(i);
-					if (tile.IsOccupiedByActor && tile.getEntity().getMoraleState() != this.Const.MoraleState.Fleeing)
+					if (tile.IsOccupiedByActor && tile.getEntity().getMoraleState() != ::Const.MoraleState.Fleeing)
 					{
 
-						if (tile.getEntity().getFaction() == this.Const.Faction.Player)
+						if (tile.getEntity().getFaction() == ::Const.Faction.Player)
 						{
 							if (tile.getEntity().getCompanyID() == -1)
 							{
@@ -82,7 +82,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 								continue;
 							}
 
-							local relB = this.World.State.getRefFromID(actor.getCompanyID());
+							local relB = ::World.State.getRefFromID(actor.getCompanyID());
 							if (relB == null)
 							{
 								continue
@@ -131,7 +131,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 					return "";
 				}
 
-				local relB = this.World.State.getRefFromID(bro.getCompanyID());
+				local relB = ::World.State.getRefFromID(bro.getCompanyID());
 				if (relB == null)
 				{
 					return "";
@@ -152,7 +152,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local position = actor.getPlaceInFormation();
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local returnString = "";
 
 		if (position <= 8) //check only down (+9)
@@ -210,7 +210,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 
-		if (("State" in this.Tactical) && this.Tactical.State != null)
+		if (("State" in ::Tactical) && ::Tactical.State != null)
 		{
 			return getCombatTooltip();
 		}
@@ -255,7 +255,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	// {
 	// 	local actor = this.getContainer().getActor();
 	// 	local myTile = actor.getTile();
-	// 	local actors = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+	// 	local actors = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 
 	// 	local properties;
 	// 	if ( _properties != null )
@@ -373,7 +373,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 
 	// function onUpdate( _properties )
 	// {
-	// 	// if (("State" in this.Tactical) && this.Tactical.State != null)
+	// 	// if (("State" in ::Tactical) && ::Tactical.State != null)
 	// 	// {
 	// 	// 	//this.doAllModifiers(_properties);
 	// 	// }

@@ -34,11 +34,11 @@ this.legend_super_sleep_skill <- this.inherit("scripts/skills/actives/sleep_skil
 		{
 			local bonus = this.m.MaxRange + 1 - myTile.getDistanceTo(target.getTile());
 
-			if (target.checkMorale(0, -60 * bonus, this.Const.MoraleCheckType.MentalAttack))
+			if (target.checkMorale(0, -60 * bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve");
 				}
 
 				continue;
@@ -48,7 +48,7 @@ this.legend_super_sleep_skill <- this.inherit("scripts/skills/actives/sleep_skil
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " falls to sleep");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " falls to sleep");
 			}
 		}
 	}

@@ -67,7 +67,7 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 					function getResult( _event )
 					{
 						::World.getPlayerRoster().add(_event.m.Druid);
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Druid.onHired();
 						_event.m.Druid = null;
 						return 0;
@@ -86,8 +86,8 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 	}
 
 	function isVisible() {
-		local currentTile = this.World.State.getPlayer().getTile();
-		local towns = this.World.EntityManager.getSettlements();
+		local currentTile = ::World.State.getPlayer().getTile();
+		local towns = ::World.EntityManager.getSettlements();
 		foreach (t in towns) {
 			if (t.getTile().getDistanceTo(currentTile) <= 7) {
 				return false; //if too close to town, hide
@@ -103,18 +103,18 @@ this.legend_recruitment_druid_camp_encounter <- this.inherit("scripts/encounters
 		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return false;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest
-			&& currentTile.Type != this.Const.World.TerrainType.SnowyForest
-			&& currentTile.Type != this.Const.World.TerrainType.LeaveForest
-			&& currentTile.Type != this.Const.World.TerrainType.AutumnForest)
+		if (currentTile.Type != ::Const.World.TerrainType.Forest
+			&& currentTile.Type != ::Const.World.TerrainType.SnowyForest
+			&& currentTile.Type != ::Const.World.TerrainType.LeaveForest
+			&& currentTile.Type != ::Const.World.TerrainType.AutumnForest)
 			return false;
 
 		local totalbrothers = 0;
 		local brotherlevels = 0;
 
-		// local towns = this.World.EntityManager.getSettlements();
+		// local towns = ::World.EntityManager.getSettlements();
 		// foreach(t in towns){
 		// 	if (t.getTile().getDistanceTo(currentTile) <= 7)
 		// 		return false //if too close to town, disable

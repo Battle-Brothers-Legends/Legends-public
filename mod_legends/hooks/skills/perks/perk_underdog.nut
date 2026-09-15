@@ -8,8 +8,8 @@
 	{
 		create();
 		this.m.Icon = "ui/perks/perk_60.png";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	o.isBonusActive <- function ()

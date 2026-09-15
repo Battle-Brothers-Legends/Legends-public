@@ -23,14 +23,14 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	{
 		this.legend_randomized_unit_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditPoacher);
+		b.setValues(::Const.Tactical.Actor.BanditPoacher);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_bandits");
 
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -40,7 +40,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 		{
 			local dirt = this.getSprite("dirt");
 			dirt.Visible = true;
-			dirt.Alpha = this.Math.rand(150, 255);
+			dirt.Alpha = ::Math.rand(150, 255);
 		}
 
 		this.setArmorSaturation(0.85);
@@ -77,14 +77,14 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 		]
 	// 	];
 
-	// 	if (this.Const.DLC.Wildmen)
+	// 	if (::Const.DLC.Wildmen)
 	// 	{
 	// 		weapons.push([
 	// 			"weapons/legend_dilapidated_sling"
 	// 		]);
 	// 	}
 
-	// 	local n = this.Math.rand(0, weapons.len() - 1);
+	// 	local n = ::Math.rand(0, weapons.len() - 1);
 
 	// 	foreach( w in weapons[n] )
 	// 	{
@@ -93,7 +93,7 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 
 
 
-	// 	if (this.Math.rand(1, 100) <= 50)
+	// 	if (::Math.rand(1, 100) <= 50)
 	// 	{
 	// 		this.m.Items.addToBag(this.new("scripts/items/weapons/legend_shiv"));
 	// 	}
@@ -102,14 +102,14 @@ this.legend_bandit_poacher <- this.inherit("scripts/entity/tactical/legend_rando
 	// 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 	// 	}
 
-	// 	local item = this.Const.World.Common.pickArmor([
+	// 	local item = ::Const.World.Common.pickArmor([
 	// 		[20, ::Legends.Armor.Standard.leather_wraps]
 	// 	])
 	// 	this.m.Items.equip(item);
 
-	// 	if (this.Math.rand(1, 100) <= 50)
+	// 	if (::Math.rand(1, 100) <= 50)
 	// 	{
-	// 		local item = this.Const.World.Common.pickHelmet([
+	// 		local item = ::Const.World.Common.pickHelmet([
 	// 			[1, ::Legends.Helmet.Standard.headscarf],
 	// 			[1, ::Legends.Helmet.Standard.mouth_piece]
 	// 		])

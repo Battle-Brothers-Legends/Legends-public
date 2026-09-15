@@ -4,7 +4,7 @@ this.legend_serpent_skin_cloak_blueprint <- this.inherit("scripts/crafting/bluep
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_serpent_skin_cloak";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_serpent_skin_cloak");
 
 		this.m.Cost = 300;

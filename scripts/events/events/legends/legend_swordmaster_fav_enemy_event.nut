@@ -104,10 +104,10 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 						properties.IsFleeingProhibited = true;
 						properties.IsAttackingLocation = true;
 						properties.BeforeDeploymentCallback = function() {
-							local size = this.Tactical.getMapSize();
+							local size = ::Tactical.getMapSize();
 							for (local x = 0; x < size.X; ++x) {
 								for (local y = 0; y < size.Y; ++y) {
-									local tile = this.Tactical.getTileSquare(x, y);
+									local tile = ::Tactical.getTileSquare(x, y);
 									tile.Level = ::Math.min(1, tile.Level);
 								}
 							}

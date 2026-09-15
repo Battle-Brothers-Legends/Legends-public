@@ -13,8 +13,8 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
 		this.m.SoundOnHitDelay = -150;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 500;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -26,15 +26,15 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsShowingProjectile = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsDoingForwardMove = false;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 12;
 		this.m.MinRange = 2;
 		this.m.MaxRange = 4;
 		this.m.MaxLevelDifference = 4;
-		this.m.ProjectileType = this.Const.ProjectileType.Stone;
+		this.m.ProjectileType = ::Const.ProjectileType.Stone;
 		this.m.ProjectileTimeScale = 1.2;
 		this.m.IsProjectileRotated = true;
 		this.m.ChanceDecapitate = 0;
@@ -45,7 +45,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getRangedTooltip(this.getDefaultTooltip());
-		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
+		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * ::Const.Combat.FatigueReceivedPerHit;
 
 		ret.extend([
 			{
@@ -62,7 +62,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 			}
 		]);
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee())
+		if (::Tactical.isActive() && this.getContainer().getActor().isEngagedInMelee())
 		{
 			ret.push({
 				id = 9,
@@ -77,13 +77,13 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		return !this.Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
+		return !::Tactical.isActive() || (this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()));
 	}
 
 	function onAfterUpdate( _properties )
 	{
 		this.m.MaxRange = this.m.Item.getRangeMax() + (_properties.IsSpecializedInSlings ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
@@ -100,7 +100,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
 			{
-				_user.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				_user.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
@@ -130,7 +130,7 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 			this.m.HitChanceBonus += this.m.AdditionalAccuracy;
 			_properties.HitChanceAdditionalWithEachTile += this.m.AdditionalHitChance;
 			_properties.FatigueDealtPerHitMult += 1.0;
-			_properties.HitChance[this.Const.BodyPart.Head] += 100.0;
+			_properties.HitChance[::Const.BodyPart.Head] += 100.0;
 		}
 	}
 
@@ -148,11 +148,11 @@ this.legend_shoot_precise_stone_skill <- this.inherit("scripts/skills/skill", {
 		local targetTile = _targetEntity.getTile();
 		local user = this.getContainer().getActor();
 
-		if (_bodyPart == this.Const.BodyPart.Head) {
+		if (_bodyPart == ::Const.BodyPart.Head) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 

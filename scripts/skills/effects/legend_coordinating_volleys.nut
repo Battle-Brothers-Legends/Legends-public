@@ -6,7 +6,7 @@ this.legend_coordinating_volleys <- this.inherit("scripts/skills/effects/legend_
 		this.m.Description = "Fire on my mark! An inspirational leader is guiding this character\'s shots.";
 		this.m.Icon = "ui/perks/coordinated_volleys_circle.png";
 		this.m.IconMini = "mini_coordinated_volleys_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

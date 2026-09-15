@@ -7,7 +7,7 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_rat_bite";
 		this.m.Title = "Along the way...";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_33.png[/img] You wake to a {piercing shriek | blood curdling scream | gutteral roar}, and run outside to find %bitten% holding a bloody wound, kicking and swearing at another mercenary while backing away. %SPEECH_ON% That beastly knave bit me! I woke to a giant rat gnawing on my {wrist|finger|thumb|hand}, i kicked it across the tent and by the time I stood up this bastard was in my tent%SPEECH_OFF%. He gestures to %ratman% who is looking guilty with a blood lined mouth. %SPEECH_ON% I don\'t know what happened sir, I was minding my own business when I started to feel a bit hungry.. I didn\'t mean to hurt anyone! %SPEECH_OFF%",
@@ -25,12 +25,12 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 				_event.m.Ratman.worsenMood(-0.5, "Hurt someone without realising");
 				_event.m.Bitten.worsenMood(-1.0, "Was bitten ");
 
-				if (_event.m.Bitten.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Bitten.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Bitten.getMoodState()],
-						text = _event.m.Bitten.getName() + this.Const.MoodStateEvent[_event.m.NightOwl.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Bitten.getMoodState()],
+						text = _event.m.Bitten.getName() + ::Const.MoodStateEvent[_event.m.NightOwl.getMoodState()]
 					});
 				}
 
@@ -44,7 +44,7 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		if (this.World.getTime().IsDaytime)
+		if (::World.getTime().IsDaytime)
 		{
 			return;
 		}
@@ -55,19 +55,19 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 			return;
 //		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 		{
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 		{

@@ -45,7 +45,7 @@
 
 	o.setup = function ()
 	{
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local candidates = [];
 
 		foreach( s in settlements )
@@ -73,19 +73,19 @@
 			}
 
 			local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), s.getTile());
-			local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
+			local days = this.getDaysRequiredToTravel(distance, ::Const.World.MovementSettings.Speed * 0.6, true);
 
 			if (days > 7 || distance < 15)
 			{
 				continue;
 			}
 
-			if (this.World.getTime().Days <= 10 && days > 4)
+			if (::World.getTime().Days <= 10 && days > 4)
 			{
 				continue;
 			}
 
-			if (this.World.getTime().Days <= 5 && days > 2)
+			if (::World.getTime().Days <= 5 && days > 2)
 			{
 				continue;
 			}
@@ -99,29 +99,29 @@
 			return;
 		}
 
-		this.m.Destination = this.WeakTableRef(candidates[this.Math.rand(0, candidates.len() - 1)]);
+		this.m.Destination = this.WeakTableRef(candidates[::Math.rand(0, candidates.len() - 1)]);
 		local distance = this.getDistanceOnRoads(this.m.Origin.getTile(), this.m.Destination.getTile());
-		local days = this.getDaysRequiredToTravel(distance, this.Const.World.MovementSettings.Speed * 0.6, true);
-		local modrate = 10 * this.World.State.getPlayer().getHaggleMult();
+		local days = this.getDaysRequiredToTravel(distance, ::Const.World.MovementSettings.Speed * 0.6, true);
+		local modrate = 10 * ::World.State.getPlayer().getHaggleMult();
 
 
 		if (days >= 5)
 		{
-			this.m.DifficultyMult = this.Math.rand(115, 135) * 0.01;
+			this.m.DifficultyMult = ::Math.rand(115, 135) * 0.01;
 		}
 		else if (days >= 2)
 		{
-			this.m.DifficultyMult = this.Math.rand(95, 105) * 0.01;
+			this.m.DifficultyMult = ::Math.rand(95, 105) * 0.01;
 		}
 		else
 		{
-			this.m.DifficultyMult = this.Math.rand(70, 85) * 0.01;
+			this.m.DifficultyMult = ::Math.rand(70, 85) * 0.01;
 		}
 
-		this.m.Payment.Pool = this.Math.max(150, distance * (4 + modrate) * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult());
-		local r = this.Math.rand(1, 3);
+		this.m.Payment.Pool = ::Math.max(150, distance * (4 + modrate) * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult());
+		local r = ::Math.rand(1, 3);
 
-		//	local modBonus = distance * modrate * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		//	local modBonus = distance * modrate * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 		//	this.Contract.m.BulletpointsObjectives.push("You gain + " modBonus " crowns due to your bartering skills");
 
 
@@ -146,7 +146,7 @@
 			25,
 			30
 		];
-		this.m.Payment.MaxCount = maximumHeads[this.Math.rand(0, maximumHeads.len() - 1)];
+		this.m.Payment.MaxCount = maximumHeads[::Math.rand(0, maximumHeads.len() - 1)];
 		this.m.Flags.set("HeadsCollected", 0);
 		this.m.Flags.set("Distance", distance);
 	}
@@ -163,7 +163,7 @@
 				s.end <- function ()
 				{
 					end();
-					this.World.State.setCampingAllowed(true);
+					::World.State.setCampingAllowed(true);
 				}
 			}
 			if (s.ID == "Running")
@@ -172,14 +172,14 @@
 				s.start <- function ()
 				{
 					start();
-					this.World.Camp.onEscort(true);
+					::World.Camp.onEscort(true);
 
-					if (!this.World.State.isPaused())
+					if (!::World.State.isPaused())
 					{
-						this.World.setSpeedMult(this.Const.World.SpeedSettings.EscortMult);
+						::World.setSpeedMult(::Const.World.SpeedSettings.EscortMult);
 					}
 
-					this.World.State.m.LastWorldSpeedMult = this.Const.World.SpeedSettings.EscortMult;
+					::World.State.m.LastWorldSpeedMult = ::Const.World.SpeedSettings.EscortMult;
 				}
 
 				s.update <- function ()
@@ -187,27 +187,27 @@
 					if (this.Contract.m.Caravan == null || this.Contract.m.Caravan.isNull() || !this.Contract.m.Caravan.isAlive() || this.Contract.m.Caravan.getTroops().len() == 0)
 					{
 						this.Contract.setScreen("Failure1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 
 					if (!this.Contract.m.IsEscortUpdated)
 					{
-						this.World.State.setEscortedEntity(this.Contract.m.Caravan);
+						::World.State.setEscortedEntity(this.Contract.m.Caravan);
 						this.Contract.m.IsEscortUpdated = true;
 					}
 
-					this.World.State.setCampingAllowed(true);
-					this.World.State.getPlayer().setPos(this.Contract.m.Caravan.getPos());
-					this.World.State.getPlayer().setVisible(false);
-					this.World.Assets.setUseProvisions(false);
-					this.World.getCamera().moveTo(this.World.State.getPlayer());
-					//this.World.Camp.update(null);
+					::World.State.setCampingAllowed(true);
+					::World.State.getPlayer().setPos(this.Contract.m.Caravan.getPos());
+					::World.State.getPlayer().setVisible(false);
+					::World.Assets.setUseProvisions(false);
+					::World.getCamera().moveTo(::World.State.getPlayer());
+					//::World.Camp.update(null);
 
 					if (this.Flags.get("IsFleeing"))
 					{
 						this.Contract.setScreen("Failure1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 						return;
 					}
 					else if (this.Contract.isPlayerAt(this.Contract.m.Destination))
@@ -221,7 +221,7 @@
 							this.Contract.setScreen("Success1");
 						}
 
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (!this.Flags.get("IsEnoughCombat"))
 					{
@@ -232,7 +232,7 @@
 					}
 					else
 					{
-						local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+						local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 						local numParties = 0;
 
 						foreach( _ in parties )	{
@@ -244,40 +244,40 @@
 							return;
 						}
 
-						if (this.Flags.get("IsStolenGoods") && this.World.State.getPlayer().getTile().HasRoad)
+						if (this.Flags.get("IsStolenGoods") && ::World.State.getPlayer().getTile().HasRoad)
 						{
-							if (!this.TempFlags.get("IsStolenGoodsDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && this.Math.rand(1, 1000) <= 1)
+							if (!this.TempFlags.get("IsStolenGoodsDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && ::Math.rand(1, 1000) <= 1)
 							{
 								this.TempFlags.set("IsStolenGoodsDialogTriggered", true);
 								this.Contract.setScreen("StolenGoods1");
-								this.World.Contracts.showActiveContract();
+								::World.Contracts.showActiveContract();
 							}
 						}
-						else if (this.Flags.get("IsVampires") && !this.World.getTime().IsDaytime)
+						else if (this.Flags.get("IsVampires") && !::World.getTime().IsDaytime)
 						{
-							if (!this.TempFlags.get("IsVampiresDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && this.Math.rand(1, 1000) <= 2)
+							if (!this.TempFlags.get("IsVampiresDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && ::Math.rand(1, 1000) <= 2)
 							{
 								this.TempFlags.set("IsVampiresDialogTriggered", true);
 								this.Contract.setScreen("Vampires1");
-								this.World.Contracts.showActiveContract();
+								::World.Contracts.showActiveContract();
 							}
 						}
 						else if (this.Flags.get("IsValuableCargo"))
 						{
-							if (!this.TempFlags.get("IsValuableCargoDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && this.Math.rand(1, 1000) <= 1)
+							if (!this.TempFlags.get("IsValuableCargoDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && ::Math.rand(1, 1000) <= 1)
 							{
 								this.TempFlags.set("IsValuableCargoDialogTriggered", true);
 								this.Contract.setScreen("ValuableCargo1");
-								this.World.Contracts.showActiveContract();
+								::World.Contracts.showActiveContract();
 							}
 						}
 						else if (this.Flags.get("IsPrisoner"))
 						{
-							if (!this.TempFlags.get("IsPrisonerDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && this.Math.rand(1, 1000) <= 1)
+							if (!this.TempFlags.get("IsPrisonerDialogTriggered") && this.Contract.getDistanceToNearestSettlement() >= 6 && ::Math.rand(1, 1000) <= 1)
 							{
 								this.TempFlags.set("IsPrisonerDialogTriggered", true);
 								this.Contract.setScreen("Prisoner1");
-								this.World.Contracts.showActiveContract();
+								::World.Contracts.showActiveContract();
 							}
 						}
 					}
@@ -286,18 +286,18 @@
 				s.end <- function ()
 				{
 					{
-						this.World.State.setCampingAllowed(true);
-						this.World.State.setEscortedEntity(null);
-						this.World.State.getPlayer().setVisible(true);
-						this.World.Assets.setUseProvisions(true);
-						this.World.Camp.onEscort(false);
+						::World.State.setCampingAllowed(true);
+						::World.State.setEscortedEntity(null);
+						::World.State.getPlayer().setVisible(true);
+						::World.Assets.setUseProvisions(true);
+						::World.Camp.onEscort(false);
 
-						if (!this.World.State.isPaused())
+						if (!::World.State.isPaused())
 						{
-							this.World.setSpeedMult(1.0);
+							::World.setSpeedMult(1.0);
 						}
 
-						this.World.State.m.LastWorldSpeedMult = 1.0;
+						::World.State.m.LastWorldSpeedMult = 1.0;
 
 						if (this.Contract.m.Destination != null && !this.Contract.m.Destination.isNull())
 						{
@@ -340,11 +340,11 @@
 				s.start <- function ()
 				{
 					local money = this.Contract.m.Payment.getOnCompletion() + this.Contract.m.Payment.getPerCount() * this.Flags.get("HeadsCollected");
-					local xpGained = this.Math.round(money * 0.50 * this.Const.Combat.GlobalXPMult);
+					local xpGained = ::Math.round(money * 0.50 * ::Const.Combat.GlobalXPMult);
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns and [color=" + this.Const.UI.Color.PositiveEventValue + "]" + xpGained + "[/color] Experience"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + money + "[/color] Crowns and [color=" + ::Const.UI.Color.PositiveEventValue + "]" + xpGained + "[/color] Experience"
 					});
 					this.Contract.addSituation(this.new("scripts/entity/world/settlements/situations/well_supplied_situation"), 3, this.Contract.m.Destination, this.List);
 				}
@@ -353,31 +353,31 @@
 					option.getResult <- function()
 					{
 						local money = this.Contract.m.Payment.getOnCompletion() + this.Contract.m.Payment.getPerCount() * this.Flags.get("HeadsCollected");
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(money);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(money);
 
-						local xp = this.Math.round(money * 0.5 * this.Const.Combat.GlobalXPMult);
-						local playerRoster = this.World.getPlayerRoster().getAll();
+						local xp = ::Math.round(money * 0.5 * ::Const.Combat.GlobalXPMult);
+						local playerRoster = ::World.getPlayerRoster().getAll();
 						foreach( bro in playerRoster )
 						{
 							bro.addXP(xp);
 							bro.updateLevel();
 						}
 
-						if (this.World.FactionManager.getFaction(this.Contract.getFaction()).getType() == this.Const.FactionType.OrientalCityState)
+						if (::World.FactionManager.getFaction(this.Contract.getFaction()).getType() == ::Const.FactionType.OrientalCityState)
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractSuccess, "Protected a caravan as promised");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractSuccess, "Protected a caravan as promised");
 						}
 						else if (this.Flags.get("IsStolenGoods"))
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess * 2.0, "Protected a caravan of stolen goods");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess * 2.0, "Protected a caravan of stolen goods");
 						}
 						else
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Protected a caravan as promised");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Protected a caravan as promised");
 						}
 
-						this.World.Contracts.finishActiveContract();
+						::World.Contracts.finishActiveContract();
 
 						local origin = this.Contract.getOrigin();
 						if (origin != null) {
@@ -396,32 +396,32 @@
 					option.getResult <- function()
 					{
 						local money = this.Contract.m.Payment.getOnCompletion() + this.Contract.m.Payment.getPerCount() * this.Flags.get("HeadsCollected");
-						money = this.Math.floor(money / 2);
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(money);
+						money = ::Math.floor(money / 2);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(money);
 
-						if (this.World.FactionManager.getFaction(this.Contract.getFaction()).getType() == this.Const.FactionType.OrientalCityState)
+						if (::World.FactionManager.getFaction(this.Contract.getFaction()).getType() == ::Const.FactionType.OrientalCityState)
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractPoor, "Protected a caravan, albeit poorly");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractPoor, "Protected a caravan, albeit poorly");
 						}
 						else if (this.Flags.get("IsStolenGoods"))
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractPoor * 2.0, "Protected a caravan of stolen goods, albeit poorly");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractPoor * 2.0, "Protected a caravan of stolen goods, albeit poorly");
 						}
 						else
 						{
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractPoor, "Protected a caravan, albeit poorly");
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractPoor, "Protected a caravan, albeit poorly");
 						}
 
 						//moved from up above when we actually call this screen -> supposedly this is the issue where it makes it fail the contract but here it shouldn't
-						this.Contract.m.Caravan.setResources(this.Math.round(this.Contract.m.Caravan.getResources() / 2));
+						this.Contract.m.Caravan.setResources(::Math.round(this.Contract.m.Caravan.getResources() / 2));
 						local L = this.Contract.m.Caravan.getInventory();
 						this.Contract.m.Caravan.clearInventory();
 						for (local i = 0; i < (L.len() - 1) / 2; i++) {
 							this.Contract.m.Caravan.addToInventory(L[i]);
 						}
 
-						this.World.Contracts.finishActiveContract();
+						::World.Contracts.finishActiveContract();
 
 						//Using this as a economy rewward for taking deliver contract missions - it'll increase the orgin resources by 10% if contract successfull
 						//Think of it as establishing a trade route?
@@ -441,32 +441,32 @@
 
 	o.spawnCaravan = function ()
 	{
-		local faction = this.World.FactionManager.getFaction(this.getFaction());
+		local faction = ::World.FactionManager.getFaction(this.getFaction());
 		local party;
 
-		if (faction.hasTrait(this.Const.FactionTrait.OrientalCityState))
+		if (faction.hasTrait(::Const.FactionTrait.OrientalCityState))
 		{
-			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanSouthernEscort, this.m.Home.getResources() * ::Math.rand(10, 25) * 0.01, this.getMinibossModifier());
+			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, ::Const.World.Spawn.CaravanSouthernEscort, this.m.Home.getResources() * ::Math.rand(10, 25) * 0.01, this.getMinibossModifier());
 		}
 		else
 		{
-			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, this.Const.World.Spawn.CaravanEscort, this.m.Home.getResources() * 0.4, this.getMinibossModifier());
+			party = faction.spawnEntity(this.m.Home.getTile(), "Trading Caravan", false, ::Const.World.Spawn.CaravanEscort, this.m.Home.getResources() * 0.4, this.getMinibossModifier());
 		}
 
 		party.getSprite("banner").Visible = false;
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
 		party.setDescription("A trading caravan from " + this.m.Home.getName() + " that is transporting all manner of goods between settlements.");
-		party.setMovementSpeed(this.Const.World.MovementSettings.Speed * 0.6);
+		party.setMovementSpeed(::Const.World.MovementSettings.Speed * 0.6);
 		party.setLeaveFootprints(false);
 
 		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Home, this.m.Destination);
 
-		party.getLoot().Money = this.Math.rand(0, 100);
+		party.getLoot().Money = ::Math.rand(0, 100);
 
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local move = this.new("scripts/ai/world/orders/move_order");
 		move.setDestination(this.m.Destination.getTile());
 		move.setRoadsOnly(true);

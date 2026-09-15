@@ -10,7 +10,7 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	}
 
 	function getTent() {
-		return this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
+		return ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 	}
 
 	function onShow() {
@@ -40,8 +40,8 @@ this.camp_healer_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 
 	function assetsInformation() {
 		return {
-			Meds = this.World.Assets.getMedicine(),
-			MedsMax = this.World.Assets.getMaxMedicine(),
+			Meds = ::World.Assets.getMedicine(),
+			MedsMax = ::World.Assets.getMaxMedicine(),
 			MedsRequired = this.getTent().getRequiredMeds(),
 			Time = this.getTent().getRequiredTime(),
 			Brothers = this.getTent().getAssignedBros()

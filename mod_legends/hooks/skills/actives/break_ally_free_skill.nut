@@ -55,10 +55,10 @@
 	{
 		local actor = this.getContainer().getActor();
 		local skill = actor.getCurrentProperties().getMeleeSkill();
-		local toHit = this.Math.min(100, skill - 10 + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
+		local toHit = ::Math.min(100, skill - 10 + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
 		if (actor.getCurrentProperties().IsSpecializedInNets)
 		{
-			toHit = this.Math.max(99, toHit);
+			toHit = ::Math.max(99, toHit);
 		}
 		return toHit;
 	}
@@ -99,7 +99,7 @@
 		{
 			if (breakFree.m.SoundOnUse.len() != 0)
 			{
-				this.Sound.play(breakFree.m.SoundOnUse[this.Math.rand(0, breakFree.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * breakFree.m.SoundVolume, _user.getPos());
+				::Sound.play(breakFree.m.SoundOnUse[::Math.rand(0, breakFree.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * breakFree.m.SoundVolume, _user.getPos());
 			}
 
 			breakFree.onUseByAlly(this.getContainer().getActor(), _targetTile);

@@ -46,21 +46,21 @@
 		local ranges = ::Legends.Items.Named.randomizeRanges;
 
 		if (this.m.StaminaModifier < -1) {
-			this.m.StaminaModifier = this.Math.round(this.m.StaminaModifier * this.Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
+			this.m.StaminaModifier = ::Math.round(this.m.StaminaModifier * ::Math.rand(ranges.StaminaModifierShield[0], ranges.StaminaModifierShield[1]) * 0.01);
 		}
 
 		local available = [];
 		available.push(function(_i) {
-			_i.m.MeleeDefense = this.Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
+			_i.m.MeleeDefense = ::Math.round(_i.m.MeleeDefense * ::Math.rand(ranges.MeleeDefense[0], ranges.MeleeDefense[1]) * 0.01);
 		});
 		available.push(function(_i) {
-			_i.m.RangedDefense = this.Math.round(_i.m.RangedDefense * this.Math.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
+			_i.m.RangedDefense = ::Math.round(_i.m.RangedDefense * ::Math.rand(ranges.RangedDefense[0], ranges.RangedDefense[1]) * 0.01);
 		});
 		available.push(function(_i) {
-			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - this.Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
+			_i.m.FatigueOnSkillUse = _i.m.FatigueOnSkillUse - ::Math.rand(ranges.FatigueOnSkillUse[0], ranges.FatigueOnSkillUse[1]);
 		});
 		available.push(function(_i) {
-			_i.m.Condition = this.Math.round(_i.m.Condition * this.Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
+			_i.m.Condition = ::Math.round(_i.m.Condition * ::Math.rand(ranges.ConditionShield[0], ranges.ConditionShield[1]) * 0.01) * 1.0;
 			_i.m.ConditionMax = _i.m.Condition;
 		});
 		available.push(function ( _i ) {
@@ -69,12 +69,12 @@
 			_i.m.RegularDamageMax = ::Math.round(_i.m.RegularDamageMax * f);
 		});
 		available.push(function(_i) {
-			_i.m.Block = this.Math.round(_i.m.Block * this.Math.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
+			_i.m.Block = ::Math.round(_i.m.Block * ::Math.rand(ranges.Block[0], ranges.Block[1]) * 0.01);
 		});
 
 		for( local n = 2; n != 0 && available.len() != 0; n = --n )
 		{
-			local r = this.Math.rand(0, available.len() - 1);
+			local r = ::Math.rand(0, available.len() - 1);
 			available[r](this);
 			available.remove(r);
 		}

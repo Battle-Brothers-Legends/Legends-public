@@ -16,7 +16,7 @@ this.legend_enemy_skill_book_item <- ::inherit("scripts/items/misc/legend_skill_
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsUsable = true;
 		this.m.Value = 1500;
-		this.m.PerkGroupSelection = this.m.PerkGroups[this.Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
+		this.m.PerkGroupSelection = this.m.PerkGroups[::Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
 	}
 
 	function addScrollCounter( _actor )

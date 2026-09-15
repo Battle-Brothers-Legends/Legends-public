@@ -4,7 +4,7 @@ this.legend_stake_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_stake_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Weapon;
+		this.m.Type = ::Const.Items.ItemType.Weapon;
 		this.m.PreviewCraftable = this.new("scripts/items/weapons/legend_wooden_stake");
 		this.m.Cost = 10;
 		local ingredients = [

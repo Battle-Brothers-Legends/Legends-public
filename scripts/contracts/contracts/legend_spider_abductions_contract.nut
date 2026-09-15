@@ -9,7 +9,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_spider_abductions";
 		this.m.Name = "Horror In The Woods";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"Few things elicit such horror as the Webknechts, especially when they grow large enough to start abducting fully-grown townsfolk.",
 			"Spider abductions is yet another nightmare come to life, with local reports of hapless victims ensnared in webs being dragged away into the darkness.",
@@ -29,14 +29,14 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 	{
 		if (this.m.SpiderNestTile == null || this.m.SpiderNestTile.IsOccupied)
 		{
-			local playerTile = this.World.State.getPlayer().getTile();
+			local playerTile = ::World.State.getPlayer().getTile();
 			local excluded = ::Const.World.getAllTerrainTypesExcept([::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest]);
 			this.m.SpiderNestTile = this.getTileToSpawnLocation(playerTile, 6, 12, excluded, false);
 		}
 
-		this.m.Payment.Pool = 550 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 550 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -61,7 +61,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					"Find the Webknecht Nest where the abducted townsfolk from " + this.Contract.m.Home.getName() + " were taken to"
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -73,10 +73,10 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				if (this.Contract.m.SpiderNestTile == null || this.Contract.m.SpiderNestTile.IsOccupied)
 				{
-					local playerTile = this.World.State.getPlayer().getTile();
+					local playerTile = ::World.State.getPlayer().getTile();
 					local excluded = ::Const.World.getAllTerrainTypesExcept([::Const.World.TerrainType.Forest, ::Const.World.TerrainType.LeaveForest, ::Const.World.TerrainType.AutumnForest]);
 					this.Contract.m.SpiderNestTile = this.Contract.getTileToSpawnLocation(playerTile, 6, 12, excluded, false);
 				}
@@ -84,11 +84,11 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				// Setup Spider Nest
 				local tile = this.Contract.m.SpiderNestTile;
 				tile.clear();
-				this.Contract.m.Destination = this.WeakTableRef(this.World.spawnLocation("scripts/entity/world/locations/legend_spider_nest_location", tile.Coords));
+				this.Contract.m.Destination = this.WeakTableRef(::World.spawnLocation("scripts/entity/world/locations/legend_spider_nest_location", tile.Coords));
 				this.Contract.m.Destination.onSpawned();
 				this.Contract.m.Destination.setAttackable(false);
 				this.Contract.m.Destination.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
-				this.Contract.m.Destination.setBanner(this.World.FactionManager.getFaction(::Const.FactionType.Beasts).getPartyBanner());
+				this.Contract.m.Destination.setBanner(::World.FactionManager.getFaction(::Const.FactionType.Beasts).getPartyBanner());
 				this.Contract.m.Destination.setDiscovered(true);
 				::World.uncoverFogOfWar(this.Contract.m.Destination.getTile().Pos, 500.0);
 				this.Contract.setScreen("Overview");
@@ -113,7 +113,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 				// {
 				// 	this.TempFlags.set("IsNestReached", true);
 				// 	this.Contract.setScreen("Nest1");
-				// 	this.World.Contracts.showActiveContract();
+				// 	::World.Contracts.showActiveContract();
 				// }
 
 				// TODO: Handle "successful retreat" (player rescued the townsfolk and retreated without destroying the nest)
@@ -122,7 +122,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			        if (this.Contract.isPlayerAt(this.Contract.m.Destination)) {
             			if (!this.TempFlags.get("AlreadyVisited")) {
                 			this.Contract.setScreen("Nest1");
-                			this.World.Contracts.showActiveContract();
+                			::World.Contracts.showActiveContract();
             			}
         			}
         			else {
@@ -155,9 +155,9 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					p.TerrainTemplate = ::Const.World.TerrainTacticalTemplate[tile.TacticalType];
 					p.Tile = tile;
 					p.CombatID = "SpiderNest";
-					p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Custom;
-					p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;			//Was 80, but this proved to be almost three fold the difficulty expected. Decreased to 30 as a test on 6/3/24 - Luft
-					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Spiders, 20 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
+					p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Custom;
+					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;			//Was 80, but this proved to be almost three fold the difficulty expected. Decreased to 30 as a test on 6/3/24 - Luft
+					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.Spiders, 20 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
 
 					// TODO: Balance the fight
 					// Maybe also add another "ring" of eggs between the player and the surrounding spiders
@@ -181,10 +181,10 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						for (local i=0; i < abductees; i++) {
 							local villager = ::World.getGuestRoster().create("scripts/entity/tactical/humans/envoy");
 							local items = villager.getItems();
-							items.equip(this.Const.World.Common.pickArmor([
+							items.equip(::Const.World.Common.pickArmor([
 								[1, ::Legends.Armor.Standard.linen_tunic]
 							]));
-							items.equip(this.Const.World.Common.pickHelmet([
+							items.equip(::Const.World.Common.pickHelmet([
 								[1, ::Legends.Helmet.Standard.feathered_hat],
 								[2, ::Legends.Helmet.None]
 							]));
@@ -202,7 +202,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 								ID = ::Const.EntityType.SpiderEggs,
 								Variant = 0,
 								Script = "scripts/entity/tactical/enemies/spider_eggs",
-								Faction = ::World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID(),
+								Faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID(),
 								Callback = this.onEggPlaced.bindenv(this)
 							}
 							eggs.push(egg);
@@ -253,13 +253,13 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 							{
 								case "Egg":
 									local egg = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/spider_eggs", tile.Coords);
-									egg.setFaction(::World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
+									egg.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
 									egg.setSpawnDelay(1);
 
 									break;
 
 								case "CrushedEgg":
-									tile.spawnDetail("nest_01_dead", this.Const.Tactical.DetailFlag.Corpse, ::Math.rand(1,2) == 1);
+									tile.spawnDetail("nest_01_dead", ::Const.Tactical.DetailFlag.Corpse, ::Math.rand(1,2) == 1);
 									break;
 
 								case "BrokenWeb":
@@ -286,7 +286,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
 				{
-					this.World.getGuestRoster().remove(_actor);
+					::World.getGuestRoster().remove(_actor);
 				}
 			}
 
@@ -361,7 +361,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 						this.Contract.setScreen("Failure1");
 					}
 
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -369,7 +369,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 			{
 				if (_actor.getFlags().has("IsSpiderAbductee") && _actor.getFlags().get("IsSpiderAbductee"))
 				{
-					this.World.getGuestRoster().remove(_actor);
+					::World.getGuestRoster().remove(_actor);
 				}
 			}
 		});
@@ -377,8 +377,8 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Horror In The Woods",
@@ -400,7 +400,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					Text = "{This isn\'t worth it. | This sounds far too dangerous.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -524,9 +524,9 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 					Text = "{All in a day\'s work. | I hope to never see a spider again for the rest of my life.}",
 					function getResult()
 					{
-						::World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
 						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rescued townsfolk from Webknechts");
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rescued townsfolk from Webknechts");
 						::World.Contracts.finishActiveContract();
 						return 0;
 					}

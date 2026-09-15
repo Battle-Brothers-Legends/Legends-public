@@ -11,7 +11,7 @@
 	{
 		create();
 		this.m.Icon = "ui/perks/perk_41.png";
-		this.m.Type = this.Const.SkillType.Perk;
+		this.m.Type = ::Const.SkillType.Perk;
 	}
 
 	// o.getDescription <- function ()

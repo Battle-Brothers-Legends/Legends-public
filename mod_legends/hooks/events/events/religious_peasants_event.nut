@@ -10,19 +10,19 @@
 			_screen.Options = [{
 				Text = "To arms!",
 				function getResult( _event ) {
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
 
 					for( local i = 0; i < 50; i = ++i ) {
-						local unit = clone this.Const.World.Spawn.Troops.Cultist;
-						unit.Faction <- this.Const.Faction.Enemy;
+						local unit = clone ::Const.World.Spawn.Troops.Cultist;
+						unit.Faction <- ::Const.Faction.Enemy;
 						properties.Entities.push(unit);
 					}
 
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}]

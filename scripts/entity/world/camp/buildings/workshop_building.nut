@@ -238,7 +238,7 @@ this.workshop_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					rune.setRuneBonus1(myItem.getRuneBonus1());
 					rune.setRuneBonus2(myItem.getRuneBonus2());
 					rune.updateRuneSigilToken();
-					this.World.Assets.getStash().add(rune);
+					::World.Assets.getStash().add(rune);
 				}
 
 				::World.Assets.getStash().remove(r.Item);

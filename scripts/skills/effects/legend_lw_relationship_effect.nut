@@ -6,8 +6,8 @@ this.legend_lw_relationship_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Trust is a rare weapon on the battlefield. Fighting with trust in those around them allows this character to focus and fight better.";
 		this.m.Icon = "ui/traits/trait_icon_58.png"; //team player
 		this.m.IconMini = "band_of_brothers_mini"; //change
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 	}
@@ -74,7 +74,7 @@ this.legend_lw_relationship_effect <- this.inherit("scripts/skills/skill", {
 			{
 				local tile = myTile.getNextTile(i);
 
-				if (!tile.IsEmpty && tile.IsOccupiedByActor && this.Math.abs(myTile.Level - tile.Level) <= 1)
+				if (!tile.IsEmpty && tile.IsOccupiedByActor && ::Math.abs(myTile.Level - tile.Level) <= 1)
 				{
 					local entity = tile.getEntity();
 

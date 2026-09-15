@@ -10,7 +10,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 	function create() {
 		this.m.ID = "event.legend_player_is_rich_op_backgrounds_event";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 100.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 100.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_06.png[/img] Over time, you\'ve come to acquire a great deal of money. While you keep the war chest under lock and key, you can\'t help but notice a few brothers have gotten a bit greedier over the time they\'ve spent in the company. Recently, you have heard rumors of the men demanding higher pay. Finally, the breaking point has been reached when an arguement between %bro1% and %bro2% nearly came to blows. %SPEECH_ON%Who contributed the most to the hoard of coin %companyname% possess?%SPEECH_OFF%The belligerents looked like they were ready to kill each other to resolve this dispute.",
@@ -39,7 +39,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 				}
 
 				foreach (bro in _event.m.Uniquebros) {
-					if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push(::Legends.EventList.changeMood(bro, -2.0, "Rivalry!"));
 					}
 				}
@@ -86,7 +86,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			function start(_event) {
 				this.Characters.push(_event.m.OPBro1.getImagePath());
 				this.Characters.push(_event.m.OPBro2.getImagePath());
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach (bro in brothers) {
 					if (bro.getSkills().hasTrait(::Legends.Trait.Player)) {
@@ -136,11 +136,11 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getMoney() <= 30000) {
+		if (::World.Assets.getMoney() <= 30000) {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() < 3) {
+		if (::World.getPlayerRoster().getSize() < 3) {
 			return;
 		}
 
@@ -148,7 +148,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidate_opbackground = [];
 		local candidate_rest = [];
 		local thetrader = null;
@@ -186,7 +186,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		this.m.TraderCmr = thetrader;
 
 		local UniquebrosNumber = ::Math.floor(candidate_opbackground.len());
-		local cash = this.World.Assets.getMoney();
+		local cash = ::World.Assets.getMoney();
 		this.m.Compensation = ::Math.round(0.05 * cash + (0.05 * UniquebrosNumber * cash));
 
 		local r = ::Math.rand(0, candidate_opbackground.len() - 1);
@@ -196,7 +196,7 @@ this.legends_player_is_rich_op_backgrounds_event <- this.inherit("scripts/events
 		this.m.OPBro2 = candidate_opbackground[r];
 		candidate_opbackground.remove(r);
 
-		this.m.Score = candidate_opbackground.len() * (this.World.Assets.getMoney() - 30000) * 0.0005;
+		this.m.Score = candidate_opbackground.len() * (::World.Assets.getMoney() - 30000) * 0.0005;
 		// this.m.Score = 9999;
 	}
 

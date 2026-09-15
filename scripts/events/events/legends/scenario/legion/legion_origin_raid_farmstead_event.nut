@@ -116,8 +116,8 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/event", 
 						properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
 						properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle; //we have you surrounded, at least from this side
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Mercenaries, ::Math.rand(120, 195) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
-						this.World.State.startScriptedCombat(properties, false, false, true);
+						::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Mercenaries, ::Math.rand(120, 195) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
+						::World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
 

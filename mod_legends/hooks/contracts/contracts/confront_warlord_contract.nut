@@ -31,14 +31,14 @@
 		::Legends.Screens.hook(this, "Berserkers2", function(_screen) {
 			_screen.Title = "Confront the Orc Warlord";
 			_screen.start <- function() {
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach (bro in brothers) {
 					if (!::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi))
 						continue;
 
 					local entry = ::Legends.EventList.changeMood(bro, -1.0, "You didn\'t help wardogs being eaten by orcs");
-					if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+					if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 						this.List.push(entry);
 					}
 				}

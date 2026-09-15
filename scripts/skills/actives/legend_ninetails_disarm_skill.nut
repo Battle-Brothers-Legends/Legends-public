@@ -6,8 +6,8 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Use the cat o ninetails to temporarily disarm an opponent on a hit. A disarmed opponent can not use any weapon skills, but may still use other skills and move freely. Unarmed targets can not be disarmed.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/dlc4/whip", 3);
 		this.m.SoundOnHit = [];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -15,8 +15,8 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.0;
 		this.m.HitChanceBonus = -15;
 		this.m.ActionPointCost = 5;
@@ -56,7 +56,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 
 		if (this.getContainer().getActor().getCurrentProperties().IsSpecializedInCleavers)
 		{
@@ -78,7 +78,7 @@ this.legend_ninetails_disarm_skill <- this.inherit("scripts/skills/skill", {
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has disarmed " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has disarmed " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 				}
 			}
 		}

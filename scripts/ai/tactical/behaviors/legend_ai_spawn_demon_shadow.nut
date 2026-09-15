@@ -5,8 +5,8 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 	},
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.SpawnShadow;
-		this.m.Order = this.Const.AI.Behavior.Order.SpawnShadow;
+		this.m.ID = ::Const.AI.Behavior.ID.SpawnShadow;
+		this.m.Order = ::Const.AI.Behavior.Order.SpawnShadow;
 		this.m.IsThreaded = true;
 		this.behavior.create();
 	}
@@ -20,28 +20,28 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 
 		if (this.m.IsSpent)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getActionPoints() == _entity.getActionPointsMax() && !this.Tactical.State.isAutoRetreat())
+		if (_entity.getActionPoints() == _entity.getActionPointsMax() && !::Tactical.State.isAutoRetreat())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getActionPoints() >= 5 && !this.Tactical.State.isAutoRetreat())
+		if (_entity.getActionPoints() >= 5 && !::Tactical.State.isAutoRetreat())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local myTile = _entity.getTile();
 		local tiles = [];
-		local mapSize = this.Tactical.getMapSize();
+		local mapSize = ::Tactical.getMapSize();
 
 		for( local x = 0; x < mapSize.X; x = ++x )
 		{
 			for( local y = 0; y < mapSize.Y; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (!tile.IsEmpty || tile.Properties.Effect == null || tile.Properties.Effect.Type != "legend_shadow_mist")
 				{
@@ -58,7 +58,7 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 
 		if (tiles.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		foreach( t in tiles )
@@ -81,7 +81,7 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 				{
 					local targetTile = tile.getNextTile(i);
 
-					if (this.Math.abs(tile.Level - targetTile.Level) > 1)
+					if (::Math.abs(tile.Level - targetTile.Level) > 1)
 					{
 					}
 					else if (!targetTile.IsOccupiedByActor || targetTile.getEntity().isAlliedWith(_entity))
@@ -91,16 +91,16 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 					{
 						local target = targetTile.getEntity();
 						local target_score = 1.0;
-						target_score = target_score + this.Math.max(0, 8 - myTile.getDistanceTo(targetTile));
+						target_score = target_score + ::Math.max(0, 8 - myTile.getDistanceTo(targetTile));
 
 						if (myTile.getDistanceTo(targetTile) <= target.getIdealRange())
 						{
-							target_score = target_score + this.Const.AI.Behavior.HorrorAttackingMeBonus;
+							target_score = target_score + ::Const.AI.Behavior.HorrorAttackingMeBonus;
 						}
 
 						if (target.isTurnDone())
 						{
-							target_score = target_score * this.Const.AI.Behavior.SleepTurnDoneMult;
+							target_score = target_score * ::Const.AI.Behavior.SleepTurnDoneMult;
 						}
 
 						target_score = target_score * this.queryTargetValue(_entity, target);
@@ -121,11 +121,11 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 
 		if (tiles[0].Score == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Tiles = tiles;
-		return this.Const.AI.Behavior.Score.SpawnShadow * scoreMult;
+		return ::Const.AI.Behavior.Score.SpawnShadow * scoreMult;
 	}
 
 	function onTurnStarted()
@@ -147,7 +147,7 @@ this.legend_ai_spawn_demon_shadow <- this.inherit("scripts/ai/tactical/behavior"
 			local tile = this.m.Tiles[0].Tile;
 			this.m.Tiles.remove(0);
 			
-			local shadow = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_shadow", tile.Coords.X, tile.Coords.Y);
+			local shadow = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_shadow", tile.Coords.X, tile.Coords.Y);
 			shadow.setFaction(_entity.getFaction());
 			max_shadows = --max_shadows;
 

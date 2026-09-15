@@ -14,7 +14,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.IsDroppedAsLoot = true;
 		this.m.Upgrades = [];
 
-		for( local i = 0; i < this.Const.Items.HelmetUpgrades.COUNT; i = ++i )
+		for( local i = 0; i < ::Const.Items.HelmetUpgrades.COUNT; i = ++i )
 		{
 			this.m.Upgrades.push(null);
 			this.m.Blocked.push(false);
@@ -173,7 +173,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function blockUpgrades()
 	{
-		for( local i = 0; i < this.Const.Items.HelmetUpgrades.COUNT; i = ++i )
+		for( local i = 0; i < ::Const.Items.HelmetUpgrades.COUNT; i = ++i )
 		{
 			this.m.Blocked[i] = true;
 		}
@@ -185,7 +185,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		foreach (i, upgrade in this.m.Upgrades)
 		{
-			if (upgrade != null && (i != this.Const.Items.HelmetUpgrades.ExtraVanity || _all))
+			if (upgrade != null && (i != ::Const.Items.HelmetUpgrades.ExtraVanity || _all))
 			{
 				value += upgrade[_function]();
 			}
@@ -201,12 +201,12 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getRepair()
 	{
-		return this.Math.floor(this.getAddedValue("getCondition", this.m.Condition, true));
+		return ::Math.floor(this.getAddedValue("getCondition", this.m.Condition, true));
 	}
 
 	function getRepairMax()
 	{
-		return this.Math.floor(this.getAddedValue("getConditionMax", this.m.ConditionMax, true));
+		return ::Math.floor(this.getAddedValue("getConditionMax", this.m.ConditionMax, true));
 	}
 
 	function getArmor()
@@ -226,7 +226,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getValue()
 	{
-		return this.Math.floor(this.getAddedValue("getValue", this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)), true));
+		return ::Math.floor(this.getAddedValue("getValue", this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)), true));
 	}
 
 	function getRawValue()
@@ -247,13 +247,13 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		foreach (i, upgrade in this.m.Upgrades)
 		{
-			if (upgrade != null && (i != this.Const.Items.HelmetUpgrades.ExtraVanity || _all))
+			if (upgrade != null && (i != ::Const.Items.HelmetUpgrades.ExtraVanity || _all))
 			{
 				_argsArray[0] = upgrade;
 				// We need this so that when legend_helmet_upgrade performs getArmorTooltip, it can check whether the current upgrade is the Extra Vanity Layer
 				if ( _addIsExtraVanityArgForGetArmorTooltip )
 				{
-					_argsArray[2] = i == this.Const.Items.HelmetUpgrades.ExtraVanity;
+					_argsArray[2] = i == ::Const.Items.HelmetUpgrades.ExtraVanity;
 				}
 				upgrade[_function].acall(_argsArray);
 			}
@@ -344,9 +344,9 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	function removeArmor(_a)
 	{
 		local delta = _a;
-		for (local i = this.Const.Items.HelmetUpgrades.COUNT - 1; i >= 0; i = --i)
+		for (local i = ::Const.Items.HelmetUpgrades.COUNT - 1; i >= 0; i = --i)
 		{
-			if (this.m.Upgrades[i] != null && i != this.Const.Items.HelmetUpgrades.ExtraVanity)
+			if (this.m.Upgrades[i] != null && i != ::Const.Items.HelmetUpgrades.ExtraVanity)
 			{
 				delta = this.m.Upgrades[i].removeArmor(delta);
 
@@ -356,7 +356,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		if (delta > 0)
 		{
-			this.m.Condition = this.Math.maxf(0, this.m.Condition - delta);
+			this.m.Condition = ::Math.maxf(0, this.m.Condition - delta);
 		}
 	}
 
@@ -395,12 +395,12 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function getAmountString()
 	{
-		return "" + this.Math.floor(this.getArmor() / (this.getArmorMax() * 1.0) * 100) + "%";
+		return "" + ::Math.floor(this.getArmor() / (this.getArmorMax() * 1.0) * 100) + "%";
 	}
 
 	function getAmountColor()
 	{
-		return this.Const.Items.ConditionColor[this.Math.min(this.Const.Items.ConditionColor.len() - 1, this.Math.max(0, this.Math.floor(this.getArmor() / (this.getArmorMax() * 1.0) * (this.Const.Items.ConditionColor.len() - 1))))];
+		return ::Const.Items.ConditionColor[::Math.min(::Const.Items.ConditionColor.len() - 1, ::Math.max(0, ::Math.floor(this.getArmor() / (this.getArmorMax() * 1.0) * (::Const.Items.ConditionColor.len() - 1))))];
 	}
 
 	function upgradeIsBlocked( _slot )
@@ -463,7 +463,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		local ids = [];
 		foreach (i, u in this.m.Upgrades)
 		{
-			if (this.m.Blocked[i] || i == this.Const.Items.HelmetUpgrades.ExtraVanity || u == null)
+			if (this.m.Blocked[i] || i == ::Const.Items.HelmetUpgrades.ExtraVanity || u == null)
 			{
 				ids.push(null);
 			}
@@ -500,14 +500,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		local slot = _upgrade.getType();
 
-		if (slot == this.Const.Items.HelmetUpgrades.Vanity && this.m.Upgrades[this.Const.Items.HelmetUpgrades.Vanity] != null)
+		if (slot == ::Const.Items.HelmetUpgrades.Vanity && this.m.Upgrades[::Const.Items.HelmetUpgrades.Vanity] != null)
 		{
-			slot = this.Const.Items.HelmetUpgrades.ExtraVanity;
+			slot = ::Const.Items.HelmetUpgrades.ExtraVanity;
 		}
 		local oldIndex;
 
-		if ("Assets" in this.World && this.World.Assets != null) {
-			oldIndex =  this.World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
+		if ("Assets" in ::World && ::World.Assets != null) {
+			oldIndex =  ::World.Assets.getStash().getItemByInstanceID(_upgrade.getInstanceID());
 		}
 		else {
 			local gt = this.getroottable();
@@ -528,7 +528,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		_upgrade.setVisible(true);
 		if (this.m.Container != null)
 		{
-			if (slot != this.Const.Items.HelmetUpgrades.ExtraVanity) _upgrade.onEquip();
+			if (slot != ::Const.Items.HelmetUpgrades.ExtraVanity) _upgrade.onEquip();
 			this.getContainer().getActor().getSkills().update();
 		}
 		//switch places with other upgrade item
@@ -547,7 +547,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function removeUpgrade( _slot )
 	{
-		if (this.m.Upgrades[_slot] == null || this.Stash.getNumberOfEmptySlots() == 0) return null;
+		if (this.m.Upgrades[_slot] == null || ::Stash.getNumberOfEmptySlots() == 0) return null;
 
 		local app = this.getContainer() == null ? null : this.getContainer().getAppearance();
 		local item = this.m.Upgrades[_slot];
@@ -587,7 +587,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		if (this.getUpgrade(4) != null)
 		{
-			NAME = "[color=" + this.Const.UI.Color.RuneColor + "] (Runed)[/color]" + NAME;
+			NAME = "[color=" + ::Const.UI.Color.RuneColor + "] (Runed)[/color]" + NAME;
 		}
 
 		return NAME;
@@ -635,14 +635,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		};
 
 		local upgradeLayerOrder = [
-			{ id = this.Const.Items.HelmetUpgrades.Vanity,      isLower = true  },
-			{ id = this.Const.Items.HelmetUpgrades.ExtraVanity, isLower = true  },
-			{ id = this.Const.Items.HelmetUpgrades.Helm,        isLower = true  },
-			{ id = this.Const.Items.HelmetUpgrades.Top,         isLower = true  },
-			{ id = this.Const.Items.HelmetUpgrades.Helm,        isLower = false },
-			{ id = this.Const.Items.HelmetUpgrades.Top,         isLower = false },
-			{ id = this.Const.Items.HelmetUpgrades.Vanity,      isLower = false },
-			{ id = this.Const.Items.HelmetUpgrades.ExtraVanity, isLower = false }
+			{ id = ::Const.Items.HelmetUpgrades.Vanity,      isLower = true  },
+			{ id = ::Const.Items.HelmetUpgrades.ExtraVanity, isLower = true  },
+			{ id = ::Const.Items.HelmetUpgrades.Helm,        isLower = true  },
+			{ id = ::Const.Items.HelmetUpgrades.Top,         isLower = true  },
+			{ id = ::Const.Items.HelmetUpgrades.Helm,        isLower = false },
+			{ id = ::Const.Items.HelmetUpgrades.Top,         isLower = false },
+			{ id = ::Const.Items.HelmetUpgrades.Vanity,      isLower = false },
+			{ id = ::Const.Items.HelmetUpgrades.ExtraVanity, isLower = false }
 		];
 		
 		foreach( u in upgradeLayerOrder )	{
@@ -663,9 +663,9 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			id = 4,
 			type = "progressbar",
 			icon = "ui/icons/armor_head.png",
-			value = this.Math.floor(this.getArmor()),
-			valueMax = this.Math.floor(this.getArmorMax()),
-			text = "" + this.Math.floor(this.getArmor()) + " / " + this.Math.floor(this.getArmorMax()) + "",
+			value = ::Math.floor(this.getArmor()),
+			valueMax = ::Math.floor(this.getArmorMax()),
+			text = "" + ::Math.floor(this.getArmor()) + " / " + ::Math.floor(this.getArmorMax()) + "",
 			style = "armor-head-slim"
 		});
 
@@ -675,7 +675,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 			});
 		}
 
@@ -685,7 +685,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = format("(%.1f Armor per 1 Weight)", this.getArmorMax() / (1.0 * this.Math.abs(this.getStaminaModifier())))
+				text = format("(%.1f Armor per 1 Weight)", this.getArmorMax() / (1.0 * ::Math.abs(this.getStaminaModifier())))
 			});
 		}
 
@@ -695,7 +695,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Combined Vision: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + this.Math.abs(this.getVision()), this.getVision())
+				text = "Combined Vision: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + ::Math.abs(this.getVision()), this.getVision())
 			});
 		}
 
@@ -730,7 +730,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.StaminaModifier) + this.Math.abs(this.m.StaminaModifier), this.m.StaminaModifier)
+					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.StaminaModifier) + ::Math.abs(this.m.StaminaModifier), this.m.StaminaModifier)
 				});
 			}
 			if (this.m.Vision != 0)
@@ -739,7 +739,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/vision.png",
-					text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Vision) + this.Math.abs(this.m.Vision), this.m.Vision)
+					text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Vision) + ::Math.abs(this.m.Vision), this.m.Vision)
 				});
 			}
 		}
@@ -797,14 +797,14 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			return true;
 		}
 
-		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
-		local isLucky = !this.Tactical.State.isScenarioMode() && this.World.Assets.getOrigin().isDroppedAsLoot(this);
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
+		local isPlayer = this.m.LastEquippedByFaction == ::Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
+		local isLucky = !::Tactical.State.isScenarioMode() && ::World.Assets.getOrigin().isDroppedAsLoot(this);
+		local isBlacksmithed = isPlayer && !::Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 		local repair = this.getRepair();
 		local repairMax = this.getRepairMax();
 
-		if (this.getArmor() > 5 && isPlayer || this.getArmor() >= 5 && this.getArmor() / this.getArmorMax() >= 0.2 && (isLucky || this.Math.rand(1, 100) <= 70) || isBlacksmithed)
+		if (this.getArmor() > 5 && isPlayer || this.getArmor() >= 5 && this.getArmor() / this.getArmorMax() >= 0.2 && (isLucky || ::Math.rand(1, 100) <= 70) || isBlacksmithed)
 		{
 			return true;
 		}
@@ -814,7 +814,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			return true;
 		}
 
-		if (repair >= 5 && repair / repairMax >= 0.2 && (isLucky || this.Math.rand(1, 100) <= 70))
+		if (repair >= 5 && repair / repairMax >= 0.2 && (isLucky || ::Math.rand(1, 100) <= 70))
 		{
 			return true;
 		}
@@ -824,7 +824,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
+		::Sound.play(this.m.InventorySound[::Math.rand(0, this.m.InventorySound.len() - 1)], ::Const.Sound.Volume.Inventory);
 	}
 
 	function updateVariant()
@@ -840,9 +840,9 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	function updateAppearance()
 	{
 
-		if (this.m.Upgrades[this.Const.Items.HelmetUpgrades.Helm] != null)
+		if (this.m.Upgrades[::Const.Items.HelmetUpgrades.Helm] != null)
 		{
-			this.m.InventorySound = this.m.Upgrades[this.Const.Items.HelmetUpgrades.Helm].m.InventorySound;
+			this.m.InventorySound = this.m.Upgrades[::Const.Items.HelmetUpgrades.Helm].m.InventorySound;
 		}
 		else
 		{
@@ -866,7 +866,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			return;
 		}
 
-		 if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
+		 if (this.m.Condition / this.m.ConditionMax <= ::Const.Combat.ShowDamagedArmorThreshold)
 		 {
 			 app.Helmet = this.m.SpriteDamaged;
 		 }
@@ -918,7 +918,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		app.HideCorpseHead = false;
 		app.HideHair = false;
 		app.HideBeard = false;
-		app.ImpactSound[this.Const.BodyPart.Head] = [];
+		app.ImpactSound[::Const.BodyPart.Head] = [];
 	}
 
 	function onEquip()
@@ -933,7 +933,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		if (this.m.ShowOnCharacter)
 		{
 			local app = this.getContainer().getAppearance();
-			app.ImpactSound[this.Const.BodyPart.Head] = this.m.ImpactSound;
+			app.ImpactSound[::Const.BodyPart.Head] = this.m.ImpactSound;
 			this.updateAppearance();
 			this.doOnFunction("onEquip");
 		}
@@ -957,7 +957,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 		for (local i = this.m.Upgrades.len() - 1; i >= 0 ; --i)
 		{
-			if (this.m.Upgrades[i] == null || i == this.Const.Items.HelmetUpgrades.ExtraVanity)
+			if (this.m.Upgrades[i] == null || i == ::Const.Items.HelmetUpgrades.ExtraVanity)
 			{
 				continue;
 			}
@@ -970,19 +970,19 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 			return;
 		}
 
-		this.m.Condition = this.Math.max(0, this.m.Condition - totalDamage) * 1.0;
+		this.m.Condition = ::Math.max(0, this.m.Condition - totalDamage) * 1.0;
 
 		if (this.m.Condition == 0 && !this.m.IsIndestructible)
 		{
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s " + this.getName() + " is hit for [b]" + this.Math.floor(_damage) + "[/b] damage and has been destroyed!");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s " + this.getName() + " is hit for [b]" + ::Math.floor(_damage) + "[/b] damage and has been destroyed!");
 			if (_attacker != null && _attacker.isPlayerControlled())
 			{
-				this.Tactical.Entities.addArmorParts(this.getArmorMax());
+				::Tactical.Entities.addArmorParts(this.getArmorMax());
 			}
 		}
 		else
 		{
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s " + this.getName() + " is hit for [b]" + this.Math.floor(_damage) + "[/b] damage");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + "\'s " + this.getName() + " is hit for [b]" + ::Math.floor(_damage) + "[/b] damage");
 		}
 		this.updateAppearance();
 	}
@@ -1007,9 +1007,9 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 		// }
 		// 19.2 changes to Brawny
 
-		_properties.Armor[this.Const.BodyPart.Head] += this.getArmor();
-		_properties.ArmorMax[this.Const.BodyPart.Head] += this.getArmorMax();
-		_properties.Stamina += this.Math.ceil(this.getStaminaModifier() * staminaMult);
+		_properties.Armor[::Const.BodyPart.Head] += this.getArmor();
+		_properties.ArmorMax[::Const.BodyPart.Head] += this.getArmorMax();
+		_properties.Stamina += ::Math.ceil(this.getStaminaModifier() * staminaMult);
 		_properties.Vision += this.getVision();
 
 		this.doOnFunction("onUpdateProperties", [_properties]);
@@ -1017,7 +1017,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 	function isItemType( _t )
 	{
-		if (_t == this.Const.Items.ItemType.Named || _t == this.Const.Items.ItemType.Legendary)
+		if (_t == ::Const.Items.ItemType.Named || _t == ::Const.Items.ItemType.Legendary)
 		{
 			if ((this.m.ItemType & _t) != 0)
 			{
@@ -1026,7 +1026,7 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 
 			foreach (i, upgrade in this.m.Upgrades)
 			{
-				if (upgrade != null && i != this.Const.Items.HelmetUpgrades.ExtraVanity)
+				if (upgrade != null && i != ::Const.Items.HelmetUpgrades.ExtraVanity)
 				{
 					if (this.m.Upgrades[i].isItemType(_t)) return true;
 				}
@@ -1071,10 +1071,10 @@ this.legend_helmet <- this.inherit("scripts/items/helmets/helmet", {
 	function onDeserialize( _in )
 	{
 		this.helmet.onDeserialize(_in);
-		this.m.Condition = this.Math.minf(this.m.ConditionMax, _in.readF32());
+		this.m.Condition = ::Math.minf(this.m.ConditionMax, _in.readF32());
 		local count = _in.readU8();
 		this.m.Upgrades = [];
-		for( local i = 0; i < this.Const.Items.HelmetUpgrades.COUNT; i = ++i )
+		for( local i = 0; i < ::Const.Items.HelmetUpgrades.COUNT; i = ++i )
 		{
 			this.m.Upgrades.push(null);
 		}

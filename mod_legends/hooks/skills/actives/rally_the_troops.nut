@@ -54,14 +54,14 @@
 
 	o.getBonus <- function()
 	{
-		return this.Math.floor(this.getContainer().getActor().getCurrentProperties().getBravery() * 0.4);
+		return ::Math.floor(this.getContainer().getActor().getCurrentProperties().getBravery() * 0.4);
 	}
 
 	o.onUse = function ( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
 		local bravery = this.getBonus();
-		local actors = this.Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
+		local actors = ::Tactical.Entities.getAllInstancesAsArray(); //Take all actors instead of ones belonging to the user's faction
 
 		foreach( a in actors )
 		{
@@ -88,7 +88,7 @@
 			/*	this.logInfo("attempting to rally");
 				if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 				{
-					local rand = this.Math.rand(1, 100);
+					local rand = ::Math.rand(1, 100);
 					if( bravery > rand )
 						{
 						this.logInfo("Removing charms");
@@ -98,7 +98,7 @@
 						}
 				}
 
-				if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
+				if ( a.getMoraleState() >= ::Const.MoraleState.Steady )
 				{
 					continue;
 				}
@@ -110,20 +110,20 @@
 					this.logInfo("getting morale state");
 				local morale = a.getMoraleState();
 
-				if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+				if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 				{
 					this.logInfo("Turning back the fleeing");
-					a.checkMorale(this.Const.MoraleState.Wavering - this.Const.MoraleState.Fleeing, difficulty, this.Const.MoraleCheckType.Default, "status_effect_56");
+					a.checkMorale(::Const.MoraleState.Wavering - ::Const.MoraleState.Fleeing, difficulty, ::Const.MoraleCheckType.Default, "status_effect_56");
 				}
 				else
 				{
 					this.logInfo("moral check for the rest");
-					a.checkMorale(1, difficulty - distance, this.Const.MoraleCheckType.Default, "status_effect_56");
+					a.checkMorale(1, difficulty - distance, ::Const.MoraleCheckType.Default, "status_effect_56");
 				} */
 
 			if (a.getSkills().hasEffect(::Legends.Effect.Charmed) || a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed) || a.getSkills().hasEffect(::Legends.Effect.Sleeping))
 			{
-				local rand = this.Math.rand(1, 100);
+				local rand = ::Math.rand(1, 100);
 				if( bravery > rand )
 				{
 					::Legends.Effects.remove(a, ::Legends.Effect.Charmed);
@@ -142,7 +142,7 @@
 				continue;
 			}
 
-			if ( a.getMoraleState() >= this.Const.MoraleState.Steady )
+			if ( a.getMoraleState() >= ::Const.MoraleState.Steady )
 			{
 				continue;
 			}
@@ -151,13 +151,13 @@
 			local distance = a.getTile().getDistanceTo(myTile) * 10;
 			local morale = a.getMoraleState();
 
-			if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 			{
-				a.checkMorale(this.Const.MoraleState.Wavering - this.Const.MoraleState.Fleeing, difficulty, this.Const.MoraleCheckType.Default, "status_effect_56");
+				a.checkMorale(::Const.MoraleState.Wavering - ::Const.MoraleState.Fleeing, difficulty, ::Const.MoraleCheckType.Default, "status_effect_56");
 			}
 			else
 			{
-				a.checkMorale(1, difficulty - distance, this.Const.MoraleCheckType.Default, "status_effect_56");
+				a.checkMorale(1, difficulty - distance, ::Const.MoraleCheckType.Default, "status_effect_56");
 			}
 
 			if (morale != a.getMoraleState())

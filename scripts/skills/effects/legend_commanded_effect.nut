@@ -10,7 +10,7 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "legend_status_effect_legion_command.png";
 		this.m.IconMini = "legend_status_effect_legion_command_mini";
 		this.m.Overlay = "legend_legion_command_square";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -40,7 +40,7 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}
@@ -50,7 +50,7 @@ this.legend_commanded_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}

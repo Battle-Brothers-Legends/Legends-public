@@ -223,7 +223,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local icon = "";
 		local properties = bro.getBaseProperties();
 
-		switch(::Math.rand(0, this.Const.Attributes.COUNT - 1))	{
+		switch(::Math.rand(0, ::Const.Attributes.COUNT - 1))	{
 		case 0:
 			properties.Hitpoints += 1;
 			icon = "ui/icons/health.png";

@@ -23,10 +23,10 @@
 		{
 			b.MeleeSkill += 10;
 			b.Hitpoints *= 1.5;
-			b.Armor[this.Const.BodyPart.Head] += 50;
-			b.ArmorMax[this.Const.BodyPart.Head] += 50;		
-			b.Armor[this.Const.BodyPart.Body] += 100;
-			b.ArmorMax[this.Const.BodyPart.Body] += 100;
+			b.Armor[::Const.BodyPart.Head] += 50;
+			b.ArmorMax[::Const.BodyPart.Head] += 50;		
+			b.Armor[::Const.BodyPart.Body] += 100;
+			b.ArmorMax[::Const.BodyPart.Body] += 100;
 		}
 	}
 
@@ -47,15 +47,15 @@
 			"weapons/legend_military_warscythe",
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			local shields = [
 				"shields/worn_heater_shield",
 				"shields/worn_kite_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
 		local aList = [
@@ -63,28 +63,28 @@
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		];
-		local armor = this.Const.World.Common.pickArmor(aList);
+		local armor = ::Const.World.Common.pickArmor(aList);
 
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
-			armor.setArmor(this.Math.round(armor.getArmorMax() / 2 - 1));
+			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
 		}
 
 		this.m.Items.equip(armor);
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null && this.Math.rand(1, 100) <= 90)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null && ::Math.rand(1, 100) <= 90)
 		{
 			local helmet = [
 				[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 				[1, ::Legends.Helmet.Standard.decayed_full_helm],
 				[3, ::Legends.Helmet.Standard.decayed_great_helm]
 			];
-			local h = this.Const.World.Common.pickHelmet(helmet);
+			local h = ::Const.World.Common.pickHelmet(helmet);
 
-			if (this.Math.rand(1, 100) <= 33)
+			if (::Math.rand(1, 100) <= 33)
 			{
-				h.setArmor(this.Math.round(h.getArmorMax() / 2 - 1));
+				h.setArmor(::Math.round(h.getArmorMax() / 2 - 1));
 			}
 
 			this.m.Items.equip(h);
@@ -98,10 +98,10 @@
 			return false;
 		}
 
-		this.m.BaseProperties.Armor[this.Const.BodyPart.Head] += 50;
-		this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Head] += 50;		
-		this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 100;
-		this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 100;
+		this.m.BaseProperties.Armor[::Const.BodyPart.Head] += 50;
+		this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 50;		
+		this.m.BaseProperties.Armor[::Const.BodyPart.Body] += 100;
+		this.m.BaseProperties.ArmorMax[::Const.BodyPart.Body] += 100;
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
 		local weapons = [
@@ -123,11 +123,11 @@
 			"named_two_handed_flail"
 		];
 
-		local shields = clone this.Const.Items.NamedUndeadShields;
+		local shields = clone ::Const.Items.NamedUndeadShields;
 
-		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/weapons/named/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

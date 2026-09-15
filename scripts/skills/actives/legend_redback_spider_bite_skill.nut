@@ -7,8 +7,8 @@ this.legend_redback_spider_bite_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Ripped to shreds";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_attack", 5);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_attack_hit_01", 6);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;

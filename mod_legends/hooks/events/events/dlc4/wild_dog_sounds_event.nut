@@ -27,7 +27,7 @@
 						this.Options.push({
 							Text = "Looks like a job for the new guy. Go take a look, %recruit%!",
 							function getResult( _event ) {
-								return this.Math.rand(1, 100) <= 40 ? "F" : "G";
+								return ::Math.rand(1, 100) <= 40 ? "F" : "G";
 							}
 						});
 					}
@@ -36,7 +36,7 @@
 			if (s.ID == "B") {
 				s.Text = "[img]gfx/ui/events/event_33.png[/img]{You tell the company to ignore the sounds. That\'s a hard task to oblige as the cries of the wild dogs only grow louder and louder until, just like that, they stop. Your mercenaries stand still as though making any noise could bring the hell of whatever horror it is that\'s out there. Nothing comes to pass, but a number of the company have a hard time sleeping through the night.}";
 				s.start <- function ( _event ){
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
 						if (::Legends.Backgrounds.hasAny(bro,
@@ -51,7 +51,7 @@
 						))
 							continue;
 
-						if (this.Math.rand(1, 100) <= 25) {
+						if (::Math.rand(1, 100) <= 25) {
 							bro.worsenMood(0.5, "Didn\'t get a good night\'s sleep");
 							::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
 								this.List.push({
@@ -89,7 +89,7 @@
 						))
 							continue;
 
-						if (this.Math.rand(1, 100) <= 15)
+						if (::Math.rand(1, 100) <= 15)
 							bro.worsenMood(0.5, "Concerned that there\'s something big out there");
 					}
 				}
@@ -105,9 +105,9 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.Expendable.getName() + " went missing"
 					});
-					_event.m.Expendable.getItems().transferToStash(this.World.Assets.getStash());
-					_event.m.Expendable.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.getPlayerRoster().remove(_event.m.Expendable);
+					_event.m.Expendable.getItems().transferToStash(::World.Assets.getStash());
+					_event.m.Expendable.getSkills().onDeath(::Const.FatalityType.None);
+					::World.getPlayerRoster().remove(_event.m.Expendable);
 				}
 			}
 			if (s.ID == "G") {
@@ -118,51 +118,51 @@
 					this.List.push(::Legends.EventList.changeBroExperience(_event.m.Expendable, 200));
 
 					_event.m.Expendable.improveMood(3.0, "Had an excellent adventure");
-					if (_event.m.Expendable.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.Expendable.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Expendable.getMoodState()],
-							text = _event.m.Expendable.getName() + this.Const.MoodStateEvent[_event.m.Expendable.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Expendable.getMoodState()],
+							text = _event.m.Expendable.getName() + ::Const.MoodStateEvent[_event.m.Expendable.getMoodState()]
 						});
 					}
 
 					local items = _event.m.Expendable.getItems();
 
-					if (items.getItemAtSlot(this.Const.ItemSlot.Mainhand) != null && items.getItemAtSlot(this.Const.ItemSlot.Mainhand).isItemType(this.Const.Items.ItemType.Weapon) && !items.getItemAtSlot(this.Const.ItemSlot.Mainhand).isItemType(this.Const.Items.ItemType.Legendary) && !items.getItemAtSlot(this.Const.ItemSlot.Mainhand).isItemType(this.Const.Items.ItemType.Named)) {
+					if (items.getItemAtSlot(::Const.ItemSlot.Mainhand) != null && items.getItemAtSlot(::Const.ItemSlot.Mainhand).isItemType(::Const.Items.ItemType.Weapon) && !items.getItemAtSlot(::Const.ItemSlot.Mainhand).isItemType(::Const.Items.ItemType.Legendary) && !items.getItemAtSlot(::Const.ItemSlot.Mainhand).isItemType(::Const.Items.ItemType.Named)) {
 						this.List.push({
 							id = 10,
-							icon = "ui/items/" + items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getIcon(),
-							text = "You lose " + this.Const.Strings.getArticle(items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getName()) + items.getItemAtSlot(this.Const.ItemSlot.Mainhand).getName()
+							icon = "ui/items/" + items.getItemAtSlot(::Const.ItemSlot.Mainhand).getIcon(),
+							text = "You lose " + ::Const.Strings.getArticle(items.getItemAtSlot(::Const.ItemSlot.Mainhand).getName()) + items.getItemAtSlot(::Const.ItemSlot.Mainhand).getName()
 						});
-						items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+						items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 					}
 
-					if (items.getItemAtSlot(this.Const.ItemSlot.Head) != null)
-						items.getItemAtSlot(this.Const.ItemSlot.Head).setCondition(this.Math.max(1, items.getItemAtSlot(this.Const.ItemSlot.Head).getConditionMax() * this.Math.rand(10, 40) * 0.01));
+					if (items.getItemAtSlot(::Const.ItemSlot.Head) != null)
+						items.getItemAtSlot(::Const.ItemSlot.Head).setCondition(::Math.max(1, items.getItemAtSlot(::Const.ItemSlot.Head).getConditionMax() * ::Math.rand(10, 40) * 0.01));
 
-					if (items.getItemAtSlot(this.Const.ItemSlot.Body) != null)
-						items.getItemAtSlot(this.Const.ItemSlot.Body).setArmor(this.Math.max(1, items.getItemAtSlot(this.Const.ItemSlot.Body).getRepairMax() * this.Math.rand(10, 40) * 0.01));
+					if (items.getItemAtSlot(::Const.ItemSlot.Body) != null)
+						items.getItemAtSlot(::Const.ItemSlot.Body).setArmor(::Math.max(1, items.getItemAtSlot(::Const.ItemSlot.Body).getRepairMax() * ::Math.rand(10, 40) * 0.01));
 				}
 			}
 		}
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Wildmen || !this.Const.DLC.Unhold)
+		if (!::Const.DLC.Wildmen || !::Const.DLC.Unhold)
 			return;
 
-		if (this.World.getTime().IsDaytime)
+		if (::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.getTime().Days < 20)
+		if (::World.getTime().Days < 20)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.SnowyForest)
+		if (currentTile.Type != ::Const.World.TerrainType.Forest && currentTile.Type != ::Const.World.TerrainType.LeaveForest && currentTile.Type != ::Const.World.TerrainType.SnowyForest)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_hunter = [];
 		local candidates_wildman = [];
 		local candidates_recruit = [];
@@ -189,13 +189,13 @@
 			return;
 
 		if (candidates_hunter.len() != 0)
-			this.m.Hunter = candidates_hunter[this.Math.rand(0, candidates_hunter.len() - 1)];
+			this.m.Hunter = candidates_hunter[::Math.rand(0, candidates_hunter.len() - 1)];
 
 		if (candidates_wildman.len() != 0)
-			this.m.Wildman = candidates_wildman[this.Math.rand(0, candidates_wildman.len() - 1)];
+			this.m.Wildman = candidates_wildman[::Math.rand(0, candidates_wildman.len() - 1)];
 
 		if (candidates_recruit.len() != 0)
-			this.m.Expendable = candidates_recruit[this.Math.rand(0, candidates_recruit.len() - 1)];
+			this.m.Expendable = candidates_recruit[::Math.rand(0, candidates_recruit.len() - 1)];
 
 		this.m.Score = 10;
 	}

@@ -9,8 +9,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Kick a target to break their balance. The blow will inflict additional fatigue, stagger the target, and has a chance to inflict daze as well. Shieldwall, Spearwall, Return Favor, and Riposte will be canceled for a target that is successfully hit.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/knockback", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -56,8 +56,8 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		}
 		
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = offhand != null && ::MSU.String.endsWith(offhand.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		if (hasNet && this.skill.isUsable()) {
 			return true;
@@ -73,14 +73,14 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local actor = this.getContainer().getActor();
-		local mainhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local offhand = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mainhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local offhand = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasNet = actor.getCurrentProperties().IsSpecializedInNets && offhand != null && offhand.getID().find("throwing_net") != null;
 		if (hasNet) {
 			return false;
 		}
 
-		if ((offhand == null && !actor.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)) || mainhand == null) {
+		if ((offhand == null && !actor.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)) || mainhand == null) {
 			return false;
 		}
 		
@@ -94,7 +94,7 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		local success = this.attackEntity(_user, target);
@@ -111,18 +111,18 @@ this.legend_kick_skill <- this.inherit("scripts/skills/skill", {
 		::Const.Tactical.Common.removeStances(target);
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered); // Always stagger, sometimes daze
-		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
-		if (this.Math.rand(1, 100) <= this.m.DazeChance && !target.getCurrentProperties().IsImmuneToDaze)
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
+		if (::Math.rand(1, 100) <= this.m.DazeChance && !target.getCurrentProperties().IsImmuneToDaze)
 		{
 			::Legends.Effects.grant(target, ::Legends.Effect.Dazed);
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " dazed");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(target) + " dazed");
 		}
 		return success;
 	}
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DazeChance = _properties.IsSpecializedInFists ? 50 : 25;
 		this.m.FatigueDamage = _properties.IsSpecializedInFists ? 10 : 5;
 	}

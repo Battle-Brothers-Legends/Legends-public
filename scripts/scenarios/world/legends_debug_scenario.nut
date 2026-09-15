@@ -12,12 +12,12 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 	function isValid()
 	{
-		return this.Const.LegendMod.DebugMode;
+		return ::Const.LegendMod.DebugMode;
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local partysize = 6;
 		local broLevelMax = 11;
 
@@ -28,7 +28,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
-			bro.setStartValuesEx(this.Const.CharacterBackgroundsRandom);
+			bro.setStartValuesEx(::Const.CharacterBackgroundsRandom);
 			bro.m.Level = broLevel;
 			bro.m.LevelUps = broPerks;
 			bro.m.PerkPoints = broPerks;
@@ -42,38 +42,38 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		 	local bro;
 		 	bro = roster.create("scripts/entity/tactical/player");
 		 	bro.m.HireTime = this.Time.getVirtualTimeF();
-		 	bro.setStartValuesEx(this.Const.HorseBackgrounds);
+		 	bro.setStartValuesEx(::Const.HorseBackgrounds);
 		 	bro.m.Level = broLevel;
 		 	bro.m.LevelUps = broPerks;
 		 	bro.m.PerkPoints = broPerks;
 		 }
 
-		this.World.Assets.getStash().resize(2000);
+		::World.Assets.getStash().resize(2000);
 
 		//local bros = roster.getAll();
 		//bros[0].m.Skills.add(this.new("scripts/skills/injury/cut_arm_injury"));
 		//bros[1].m.Skills.add(this.new("scripts/skills/injury/deep_chest_cut_injury"));
 
-		this.World.Assets.m.Money = 50000;
-		this.World.Assets.m.ArmorParts = 200;
-		this.World.Assets.m.Medicine = 200;
-		this.World.Assets.m.Ammo = 200;
-		this.World.Assets.m.Food = 200;
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.m.Money = 50000;
+		::World.Assets.m.ArmorParts = 200;
+		::World.Assets.m.Medicine = 200;
+		::World.Assets.m.Ammo = 200;
+		::World.Assets.m.Food = 200;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_curry_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/legend_liquor_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/legend_curry_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/legend_liquor_item"));
 
 		local banner = this.new("scripts/items/tools/player_banner");
 		banner.setVariant(2);
-		this.World.Assets.getStash().add(banner);
+		::World.Assets.getStash().add(banner);
 		local rune =  this.new("scripts/items/rune_sigils/legend_vala_inscription_token");
 		rune.setRuneVariant(::Legends.Rune.LegendRswBleeding);
 		rune.updateRuneSigilToken();
-		this.World.Assets.getStash().add(rune);
+		::World.Assets.getStash().add(rune);
 
 		local stashitems = [
 			"accessory/bandage_item",
@@ -99,7 +99,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		foreach (si in stashitems)
 		{
 			local pla = this.new("scripts/items/" + si);
-			this.World.Assets.getStash().add(pla);
+			::World.Assets.getStash().add(pla);
 		}
 
 		local armors = [
@@ -310,13 +310,13 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			local item = this.new("scripts/items/legend_armor/" + a);
 
 			this.logInfo("Adding " + a);
-			this.World.Assets.getStash().add(item);
+			::World.Assets.getStash().add(item);
 			for( local i = 0; i < item.m.Variants.len(); i = ++i )
 			{
 				this.logInfo("Adding " + a + " :: " + i);
 				local vitem =  this.new("scripts/items/legend_armor/" + a);
 				vitem.setVariant(item.m.Variants[i]);
-				this.World.Assets.getStash().add(vitem);
+				::World.Assets.getStash().add(vitem);
 			}
 		}
 
@@ -565,7 +565,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 
 			this.logInfo("Adding " + w);
-			this.World.Assets.getStash().add(item);
+			::World.Assets.getStash().add(item);
 
 
 			for( local i = 0; i < item.m.Variants.len(); i = ++i )
@@ -573,7 +573,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				this.logInfo("Adding " + w + " :: " + i);
 				local vitem =  this.new("scripts/items/weapons/" + w);
 				vitem.setVariant(item.m.Variants[i]);
-				this.World.Assets.getStash().add(vitem);
+				::World.Assets.getStash().add(vitem);
 			}
 		}
 
@@ -585,7 +585,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// {
 		// 	this.logInfo("Adding " + w);
 		// 	local pla = this.new("scripts/items/shields/" + w);
-		// 	this.World.Assets.getStash().add(pla);
+		// 	::World.Assets.getStash().add(pla);
 		// }
 
 		local helmets = [
@@ -864,7 +864,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			if (item.m.Variants.len() == 0)
 			{
 				this.logInfo("Adding " + h);
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				continue;
 			}
 
@@ -873,7 +873,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				this.logInfo("Adding " + h + " :: " + i);
 				local vitem =  this.new("scripts/items/legend_helmets/" + h);
 				vitem.setVariant(item.m.Variants[i]);
-				this.World.Assets.getStash().add(vitem);
+				::World.Assets.getStash().add(vitem);
 			}
 		}
 
@@ -900,7 +900,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				this.logInfo("Adding " + h);
 				local layers = item.getLootLayers();
 				foreach (l in layers) {
-					this.World.Assets.getStash().add(l);
+					::World.Assets.getStash().add(l);
 				}
 
 				continue;
@@ -912,7 +912,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 					vitem.setVariant(item.m.Variants[i]);
 					local layers = vitem.getLootLayers();
 					foreach (l in layers) {
-						this.World.Assets.getStash().add(l);
+						::World.Assets.getStash().add(l);
 					}
 				}
 
@@ -927,9 +927,9 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		local randomVillage;
 		local northernmostY = 0;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			local v = this.World.EntityManager.getSettlements()[i];
+			local v = ::World.EntityManager.getSettlements()[i];
 
 			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
 			{
@@ -940,22 +940,22 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		randomVillage.setLastSpawnTimeToNow();
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 2), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 2), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -963,7 +963,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -998,14 +998,14 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		s.setValidForDays(5);
 		randomVillage.addSituation(s);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/civilians_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_random_party_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_random_party_scenario_intro");
 		}, null);
 	}
 });

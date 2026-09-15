@@ -2,7 +2,7 @@
 	o.create = function () {
 		this.beggar_background.create();
 		this.m.Ethnicity = 1;
-		this.m.Names = this.Const.Strings.SouthernNames;
+		this.m.Names = ::Const.Strings.SouthernNames;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -21,7 +21,7 @@
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/knife"));
@@ -29,12 +29,12 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap, 16],
 			[3, ::Legends.Helmet.None]
 		]);

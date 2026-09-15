@@ -3,7 +3,7 @@
 	o.getTooltip = function ()
 	{
 		local ret = this.getDefaultTooltip();
-		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 2) * this.Const.Combat.FatigueReceivedPerHit;
+		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 2) * ::Const.Combat.FatigueReceivedPerHit;
 		ret.push({
 			id = 7,
 			type = "text",
@@ -50,7 +50,7 @@
 
 	o.onUse = function ( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, target);
 
 		if (::Legends.S.isEntityNullOrDead(_user)) {
@@ -63,13 +63,13 @@
 
 		if (success)
 		{
-			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || this.Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned))
+			if ((::Legends.S.isCharacterWeaponSpecialized(_user.getCurrentProperties(), this.getItem()) || ::Math.rand(1, 100) <= this.m.StunChance) && !target.getCurrentProperties().IsImmuneToStun && !target.getSkills().hasEffect(::Legends.Effect.Stunned))
 			{
 				local stun = ::Legends.Effects.grant(target, ::Legends.Effect.Stunned);
 
 				if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 				{
-					this.Tactical.EventLog.log(stun.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(target)));
+					::Tactical.EventLog.log(stun.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(_user), ::Const.UI.getColorizedEntityName(target)));
 				}
 			}
 		}
@@ -80,7 +80,7 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 

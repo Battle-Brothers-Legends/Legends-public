@@ -61,7 +61,7 @@
 
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 		local isSupported = false;
 
 		foreach( ally in allies ) {

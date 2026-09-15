@@ -98,8 +98,8 @@
 		return helmet;
 	}
 
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
-	local helmet = this.Const.World.Common.pickLegendHelmet(set.Hoods);
+	local set = layersObj.Sets[::Math.rand(0, layersObj.Sets.len() -1)];
+	local helmet = ::Const.World.Common.pickLegendHelmet(set.Hoods);
 	if (helmet != null)
 	{
 		if (variant != null)
@@ -108,19 +108,19 @@
 				helmet.setupArmor(variant);
 		}
 
-		local helm = this.Const.World.Common.pickLegendHelmet(set.Helms);
+		local helm = ::Const.World.Common.pickLegendHelmet(set.Helms);
 		if (helm != null)
 		{
 			helmet.setUpgrade(helm)
 		}
 
-		local top = this.Const.World.Common.pickLegendHelmet(set.Tops);
+		local top = ::Const.World.Common.pickLegendHelmet(set.Tops);
 		if (top != null)
 		{
 			helmet.setUpgrade(top)
 		}
 
-		local van = this.Const.World.Common.pickLegendHelmet(set.Vanity);
+		local van = ::Const.World.Common.pickLegendHelmet(set.Vanity);
 		if (van != null)
 		{
 			helmet.setUpgrade(van)
@@ -128,7 +128,7 @@
 
 		if ("Vanity2" in set)
 		{
-			local van2 = this.Const.World.Common.pickLegendHelmet(set.Vanity2);
+			local van2 = ::Const.World.Common.pickLegendHelmet(set.Vanity2);
 			if (van2 != null)
 			{
 				helmet.setUpgrade(van2)
@@ -165,7 +165,7 @@
 	if (armorID == "")
 		return null;
 
-	if (!(armorID in this.Const.LegendMod.Armors) && typeof(armorID) == "string")
+	if (!(armorID in ::Const.LegendMod.Armors) && typeof(armorID) == "string")
 		return this.new("scripts/items/armor/" + armorID);
 
 	local layersObj = typeof(armorID) == "string" ? ::Const.LegendMod.Armors[armorID] : armorID;
@@ -177,7 +177,7 @@
 		return item;
 	}
 
-	local set = layersObj.Sets[this.Math.rand(0, layersObj.Sets.len() -1)];
+	local set = layersObj.Sets[::Math.rand(0, layersObj.Sets.len() -1)];
 	local armor = ::Const.World.Common.pickLegendArmor(set.Cloth);
 	if (armor == null && typeof(armorID) == "string")
 		return this.new("scripts/items/armor/" + armorID);

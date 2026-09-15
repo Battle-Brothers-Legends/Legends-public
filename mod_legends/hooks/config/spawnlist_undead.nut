@@ -23,16 +23,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 50,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonLight,
+					Type = ::Const.World.Spawn.Troops.SkeletonLight,
 					Cost = 13
 				},
 				{
 					MinR = 200,
-					Type = this.Const.World.Spawn.Troops.SkeletonMedium,
+					Type = ::Const.World.Spawn.Troops.SkeletonMedium,
 					Cost = 20
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonHeavy,
+					Type = ::Const.World.Spawn.Troops.SkeletonHeavy,
 					MinR = 500,
 					Cost = 35
 				}
@@ -42,16 +42,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 35,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonMediumPolearm,
+					Type = ::Const.World.Spawn.Troops.SkeletonMediumPolearm,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonHeavyPolearm,
+					Type = ::Const.World.Spawn.Troops.SkeletonHeavyPolearm,
 					MinR = 450,
 					Cost = 35
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonGladiator,
+					Type = ::Const.World.Spawn.Troops.SkeletonGladiator,
 					MinR = 650,
 					Cost = 40
 				}
@@ -61,7 +61,7 @@ if (!("Spawn" in ::Const.World))
 			Weight = 3,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonPriest,
+					Type = ::Const.World.Spawn.Troops.SkeletonPriest,
 					Cost = 40,
 					Roll = true
 					MinGuards = 1,
@@ -69,7 +69,7 @@ if (!("Spawn" in ::Const.World))
 					MaxGuardsWeight = 33,
 					Guards = [
 						{
-							Type = this.Const.World.Spawn.Troops.SkeletonHeavyBodyguard,
+							Type = ::Const.World.Spawn.Troops.SkeletonHeavyBodyguard,
 							Cost = 30,
 							function Weight(scale) {
 								return 100;
@@ -83,16 +83,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 5
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.VampireLOW,
+					Type = ::Const.World.Spawn.Troops.VampireLOW,
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Vampire,
+					Type = ::Const.World.Spawn.Troops.Vampire,
 					MinR = 450,
 					Cost = 50
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendVampireLord,
+					Type = ::Const.World.Spawn.Troops.LegendVampireLord,
 					MinR = 650,
 					Cost = 70,
 					Roll = true
@@ -103,7 +103,7 @@ if (!("Spawn" in ::Const.World))
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
+					Type = ::Const.World.Spawn.Troops.LegendDemonHound,
 					Cost = 25
 				}
 			]
@@ -126,11 +126,11 @@ if (!("Spawn" in ::Const.World))
 			Weight = 90,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.VampireLOW,
+					Type = ::Const.World.Spawn.Troops.VampireLOW,
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Vampire,
+					Type = ::Const.World.Spawn.Troops.Vampire,
 					Cost = 50
 					MinR = 450,
 				}
@@ -141,7 +141,7 @@ if (!("Spawn" in ::Const.World))
 			MinR = 650,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendVampireLord,
+					Type = ::Const.World.Spawn.Troops.LegendVampireLord,
 					Cost = 70,
 					Roll = true
 				}
@@ -165,16 +165,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 65,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonLight,
+					Type = ::Const.World.Spawn.Troops.SkeletonLight,
 					Cost = 13
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonMedium,
+					Type = ::Const.World.Spawn.Troops.SkeletonMedium,
 					MinR = 200,
 					Cost = 20
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.SkeletonHeavy,
+					Type = ::Const.World.Spawn.Troops.SkeletonHeavy,
 					MinR = 450,
 					Cost = 35
 				}
@@ -184,17 +184,17 @@ if (!("Spawn" in ::Const.World))
 			Weight = 30,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.VampireLOW,
+					Type = ::Const.World.Spawn.Troops.VampireLOW,
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Vampire,
+					Type = ::Const.World.Spawn.Troops.Vampire,
 					MinR = 400,
 					Cost = 40
 				},
 				{
 					MinR = 600,
-					Type = this.Const.World.Spawn.Troops.LegendVampireLord,
+					Type = ::Const.World.Spawn.Troops.LegendVampireLord,
 					Cost = 70,
 					Roll = true
 				}
@@ -204,7 +204,7 @@ if (!("Spawn" in ::Const.World))
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendDemonHound,
+					Type = ::Const.World.Spawn.Troops.LegendDemonHound,
 					MinR = 800,
 					Cost = 25
 				}

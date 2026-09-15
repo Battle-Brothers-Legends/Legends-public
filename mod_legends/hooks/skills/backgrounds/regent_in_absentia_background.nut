@@ -25,9 +25,9 @@
 		];
 		this.m.IsCombatBackground = true;
 		this.m.IsNoble = true;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Noble | ::Const.BackgroundType.Crusader;
 	}
 
 	o.getTooltip = function ()
@@ -58,7 +58,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -77,7 +77,7 @@
 			items.equip(this.new("scripts/items/weapons/morning_star"));
 		}
 
-		r = this.Math.rand(0, 0);
+		r = ::Math.rand(0, 0);
 
 		if (r == 0)
 		{
@@ -85,13 +85,13 @@
 		}
 
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.nasal_helmet],
 			[2, ::Legends.Helmet.Standard.padded_nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],

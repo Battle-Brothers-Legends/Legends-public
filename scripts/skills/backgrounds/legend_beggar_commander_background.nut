@@ -42,13 +42,13 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 			"the Homeless"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Bravery
 		];
 
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Adrenaline,
@@ -114,10 +114,10 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 
 	function onAddEquipment()
 	{
-		this.World.Assets.addMoney(-208);
+		::World.Assets.addMoney(-208);
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -128,12 +128,12 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood, 38]
 		]);

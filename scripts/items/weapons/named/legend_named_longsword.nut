@@ -7,13 +7,13 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 		this.named_weapon.create();
 		this.m.Variants = [1, 2, 3, 4];
 		this.m.ID = "weapon.legend_named_longsword";
-		this.m.NameList = this.Const.Strings.GreatswordNames;
+		this.m.NameList = ::Const.Strings.GreatswordNames;
 		this.m.Description = "This longsword is a marvel to look at. The long blade is rigid and sturdy, but trades nothing in balance. Lends itself well to a diverse array of fighting moves.";
 		this.m.Categories = "Sword, Two-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = false;
 		this.m.IsAoE = false;
 		this.m.AddGenericSkill = true;
@@ -29,7 +29,7 @@ this.legend_named_longsword <- this.inherit("scripts/items/weapons/named/named_w
 		this.m.ArmorDamageMult = 0.8;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.randomizeValues();
 	}
 

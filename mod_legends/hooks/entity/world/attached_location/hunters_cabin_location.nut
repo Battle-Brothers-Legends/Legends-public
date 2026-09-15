@@ -22,7 +22,7 @@
 		_list.push(::Legends.Background.Poacher);
 		_list.push(::Legends.Background.LegendTaxidermist);
 
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendMasterArcher);
 
 		// todo delete it - chopeks
@@ -30,9 +30,9 @@
 //		{
 //			local r;
 //
-//			if  ( this.World.Assets.getOrigin().getID() == "scenario.legends_rangers")
+//			if  ( ::World.Assets.getOrigin().getID() == "scenario.legends_rangers")
 //			{
-//				r = this.Math.rand(0, 9);
+//				r = ::Math.rand(0, 9);
 //				if (r == 1)
 //				{
 //				_list.push(::Legends.Background.LegendMasterArcher);
@@ -41,7 +41,7 @@
 //			}
 //			else
 //			{
-//			r = this.Math.rand(0, 9);
+//			r = ::Math.rand(0, 9);
 //				if (r == 1)
 //				{
 //				_list.push(::Legends.Background.LegendMasterArcher);

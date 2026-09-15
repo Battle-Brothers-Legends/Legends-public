@@ -7,7 +7,7 @@
 		flip = !flip;
 		local v = -3;
 		local v2 = -3;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -22,12 +22,12 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcYoung);
+		b.setValues(::Const.Tactical.Actor.OrcYoung);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungThrowingSpecDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.YoungThrowingSpecDay) {
 			b.IsSpecializedInThrowing = true;
 
-			if (this.World.getTime().Days >= this.Const.World.Scaling.Orcs.YoungStatIncreaseDay) {
+			if (::World.getTime().Days >= ::Const.World.Scaling.Orcs.YoungStatIncreaseDay) {
 				b.RangedSkill += 5;
 			}
 		}
@@ -37,8 +37,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_01_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -50,7 +50,7 @@
 		injury_body.setBrush("bust_orc_01_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_01_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_01_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local injury = this.addSprite("injury");
@@ -59,7 +59,7 @@
 		this.setAlwaysApplySpriteOffset(true);
 		local v = -3;
 		local v2 = -3;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 
 			this.addSprite(a);
@@ -98,10 +98,10 @@
 		local r;
 		local weapon;
 
-		r = this.Math.rand(1, 100);
+		r = ::Math.rand(1, 100);
 		if (r <= 30)
 		{
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 			if (r == 1)
 			{
 				this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/orc_javelin"));
@@ -112,11 +112,11 @@
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				r = this.Math.rand(1, 3);
+				r = ::Math.rand(1, 3);
 
 				if (r == 1)
 				{
@@ -133,7 +133,7 @@
 			}
 			else
 			{
-				r = this.Math.rand(1, 2);
+				r = ::Math.rand(1, 2);
 				if (r == 1)
 				{
 					weapon = this.new("scripts/items/weapons/greenskins/orc_wooden_club");
@@ -146,7 +146,7 @@
 		}
 		else
 		{
-			r = this.Math.rand(1, 4);
+			r = ::Math.rand(1, 4);
 
 			if (r == 1)
 			{
@@ -166,7 +166,7 @@
 			}
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			this.m.Items.equip(weapon);
 		}
@@ -175,12 +175,12 @@
 			this.m.Items.addToBag(weapon);
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_light_shield"));
 		}
 
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_young_light_armor],
 			[1, ::Legends.Armor.Greenskin.orc_young_medium_armor],
 			[1, ::Legends.Armor.Greenskin.orc_young_heavy_armor],
@@ -188,7 +188,7 @@
 		]);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.orc_young_light_helmet],
 			[1, ::Legends.Helmet.Greenskin.orc_young_medium_helmet],
 			[1, ::Legends.Helmet.Greenskin.orc_young_heavy_helmet]

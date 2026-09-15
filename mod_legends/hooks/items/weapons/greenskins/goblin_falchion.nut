@@ -4,7 +4,7 @@
 	o.create = function() {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
-		this.setVariant(this.Math.rand(0, 1));
+		this.setVariant(::Math.rand(0, 1));
 	}
 
 	o.updateVariant <- function() {

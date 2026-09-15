@@ -5,7 +5,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.start <- function (_event) {
-					this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+					this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 				}
 			}
 		}

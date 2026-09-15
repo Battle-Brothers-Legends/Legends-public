@@ -8,8 +8,8 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "With the company\'s captain nearby, this character feels compelled to push onward no matter the danger.";
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 	}
@@ -41,13 +41,13 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 		{
 			return 0;
 		}
 
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 		local bestBravery = 0;
 
 		foreach( ally in allies )
@@ -75,7 +75,7 @@ this.legend_leaderbanner_effect <- this.inherit("scripts/skills/skill", {
 
 		if (bestBravery != 0)
 		{
-			bestBravery = this.Math.min(bestBravery * 0.1, bestBravery - _properties.Bravery * _properties.BraveryMult);
+			bestBravery = ::Math.min(bestBravery * 0.1, bestBravery - _properties.Bravery * _properties.BraveryMult);
 		}
 
 		return bestBravery;

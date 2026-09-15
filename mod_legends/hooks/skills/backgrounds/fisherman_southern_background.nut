@@ -14,8 +14,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Tiny),
 			::Legends.Traits.getID(::Legends.Trait.Fat)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -36,7 +36,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -44,12 +44,12 @@
 		}
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]);
 		items.equip(helm);

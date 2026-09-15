@@ -8,9 +8,9 @@ this.legend_darts <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.Description = "A bag of darts, required to use blow guns of all kinds. Is automatically refilled after each battle if you have enough ammunition.";
 		this.m.Icon = "ammo/legend_dart_01.png";
 		this.m.IconEmpty = "ammo/legend_dart_01_empty.png";
-		this.m.SlotType = this.Const.ItemSlot.Ammo;
-		this.m.ItemType = this.Const.Items.ItemType.Ammo;
-		this.m.AmmoType = this.Const.Items.AmmoType.Darts;
+		this.m.SlotType = ::Const.ItemSlot.Ammo;
+		this.m.ItemType = ::Const.Items.ItemType.Ammo;
+		this.m.AmmoType = ::Const.Items.AmmoType.Darts;
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = false;
 		this.m.Sprite = "bust_quiver_01";

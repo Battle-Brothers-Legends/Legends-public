@@ -7,15 +7,15 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Mauled to death";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc6/hyena_bite", 4);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 		this.m.DirectDamageMult = 0.6;
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 8;
@@ -104,7 +104,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		// Also ensure the final step to the target respects the height difference
-		if (this.Math.abs(_targetTile.Level - current.Level) > 1) {
+		if (::Math.abs(_targetTile.Level - current.Level) > 1) {
 			// ::logDebug("legend_enraged_hyena_bite_skill: validateLeapPath target tile level difference too high: " + _targetTile.Level + " vs " + current.Level);
 			return null;
 		}
@@ -116,7 +116,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		if (_targetTile == null || !_targetTile.IsEmpty || _targetTile.IsOccupiedByActor) {
 			return false;
 		}
-		if (this.Math.abs(_targetTile.Level - _originTile.Level) > 1) {
+		if (::Math.abs(_targetTile.Level - _originTile.Level) > 1) {
 			return false;
 		}
 		return true;
@@ -200,7 +200,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!_actor.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_actor) + " leaps towards " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_actor) + " leaps towards " + ::Const.UI.getColorizedEntityName(target));
 		}
 
 		local tag = {
@@ -231,8 +231,8 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		// Leap to destination
-		_tag.actor.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(_tag.actor, _tag.tile2, null, null, false, 3.0);
+		_tag.actor.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
+		::Tactical.getNavigator().teleport(_tag.actor, _tag.tile2, null, null, false, 3.0);
 
 		// Schedule attack
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, this.onAttackStart.bindenv(this), _tag);
@@ -272,8 +272,8 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		// Retreat to original tile
-		_tag.actor.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(_tag.actor, _tag.originTile, null, null, false, 2.0);
+		_tag.actor.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
+		::Tactical.getNavigator().teleport(_tag.actor, _tag.originTile, null, null, false, 2.0);
 
 		// Schedule drag
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, this.onDragStart.bindenv(this), _tag);
@@ -287,11 +287,11 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		_tag.target.setCurrentMovementType(this.Const.Tactical.MovementType.Involuntary);
-		this.Tactical.getNavigator().teleport(_tag.target, _tag.tile1, null, null, false, 1.0);
+		_tag.target.setCurrentMovementType(::Const.Tactical.MovementType.Involuntary);
+		::Tactical.getNavigator().teleport(_tag.target, _tag.tile1, null, null, false, 1.0);
 
 		if (!_tag.actor.isHiddenToPlayer()) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_tag.actor) + " drags " + this.Const.UI.getColorizedEntityName(_tag.target) + " back!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_tag.actor) + " drags " + ::Const.UI.getColorizedEntityName(_tag.target) + " back!");
 		}
 
 		// Apply grab effect and spawn icon

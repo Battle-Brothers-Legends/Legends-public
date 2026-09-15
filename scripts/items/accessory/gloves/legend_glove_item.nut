@@ -11,8 +11,8 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 	function create()
 	{
 		this.accessory.create();
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Brawler;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Brawler;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
 		this.m.IconLarge = "";
@@ -78,7 +78,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/armor_damage.png",
-				text = "[color=#400080]Hand to Hand[/color] is [color=%damage%]" + this.Math.floor((this.m.ArmorDamageMult + 0.5) * 100) + "%[/color] effective against armor"
+				text = "[color=#400080]Hand to Hand[/color] is [color=%damage%]" + ::Math.floor((this.m.ArmorDamageMult + 0.5) * 100) + "%[/color] effective against armor"
 			});
 		}
 
@@ -88,7 +88,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 				id = 64,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = "[color=#400080]Hand to Hand[/color] has [color=%damage%]" + this.Math.floor((this.m.DirectDamageMult + 0.1) * 100) + "%[/color] armor ignore"
+				text = "[color=#400080]Hand to Hand[/color] has [color=%damage%]" + ::Math.floor((this.m.DirectDamageMult + 0.1) * 100) + "%[/color] armor ignore"
 			});
 		}
 
@@ -106,7 +106,7 @@ this.legend_glove_item <- this.inherit("scripts/items/accessory/accessory", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.InventorySound, this.Const.Sound.Volume.Inventory);
+		::Sound.play(this.m.InventorySound, ::Const.Sound.Volume.Inventory);
 	}
 
 	function getIconOverlay()

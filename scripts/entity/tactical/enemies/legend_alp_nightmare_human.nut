@@ -4,20 +4,20 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	{
 		this.legend_alp_shadow.create();
 
-		local voice = this.Math.rand(0, this.Const.HumanSounds.len() - 1);
-		this.m.Sound[this.Const.Sound.ActorEvent.NoDamageReceived] = this.Const.HumanSounds[voice].NoDamageReceived;
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = this.Const.HumanSounds[voice].DamageReceived;
-		this.m.SoundPitch = this.Math.rand(125, 135) * 0.01;
+		local voice = ::Math.rand(0, ::Const.HumanSounds.len() - 1);
+		this.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = ::Const.HumanSounds[voice].NoDamageReceived;
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Const.HumanSounds[voice].DamageReceived;
+		this.m.SoundPitch = ::Math.rand(125, 135) * 0.01;
 
 		// volumn
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.NoDamageReceived] = 1.2;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 1.15;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 1.25;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.NoDamageReceived] = 1.2;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.15;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 1.25;
 
 		this.m.Flags.set("type", "human");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_melee_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));
-		this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Retreat);
+		this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Retreat);
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -25,9 +25,9 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5
-			? this.Const.Tactical.Actor.BanditMarauder
-			: this.Const.Tactical.Actor.BanditRaider);
+		b.setValues(::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5
+			? ::Const.Tactical.Actor.BanditMarauder
+			: ::Const.Tactical.Actor.BanditRaider);
 
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
@@ -39,7 +39,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		b.IsSpecializedInSpears = true;
 		b.IsSpecializedInCleavers = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -49,8 +49,8 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		this.addSprite("socket").setBrush("bust_base_shadow");
 
 		local blurAlpha = 110;
-		local body_brush = "bust_alp_human_body_0" + this.Math.rand(1, 2);
-		local head_brush = "bust_alp_human_head_0" + this.Math.rand(1, 3);
+		local body_brush = "bust_alp_human_body_0" + ::Math.rand(1, 2);
+		local head_brush = "bust_alp_human_head_0" + ::Math.rand(1, 3);
 		local body = this.addSprite("body");
 		body.setBrush(body_brush);
 		//body.Alpha = 0;
@@ -103,11 +103,11 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 	{
 		local r;
 
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
-			if (this.Const.DLC.Unhold)
+			if (::Const.DLC.Unhold)
 			{
-				r = this.Math.rand(0, 10);
+				r = ::Math.rand(0, 10);
 
 				if (r == 0)
 				{
@@ -164,7 +164,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 						"weapons/legend_reinforced_flail",
 					];
 
-					this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+					this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 					::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 
 					if (::Legends.isLegendaryDifficulty())
@@ -205,7 +205,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 			}
 			else
 			{
-				r = this.Math.rand(0, 4);
+				r = ::Math.rand(0, 4);
 
 				if (r == 0)
 				{
@@ -231,7 +231,7 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 		}
 		else
 		{
-			r = this.Math.rand(2, 10);
+			r = ::Math.rand(2, 10);
 
 			if (r == 2)
 			{
@@ -306,9 +306,9 @@ this.legend_alp_nightmare_human <- this.inherit("scripts/entity/tactical/enemies
 					::Legends.Perks.grant(this, ::Legends.Perk.LegendSmackdown);
 			}
 
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				if (this.Math.rand(1, 100) <= 75)
+				if (::Math.rand(1, 100) <= 75)
 					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
 				else
 					this.m.Items.equip(this.new("scripts/items/shields/legend_tower_shield"));

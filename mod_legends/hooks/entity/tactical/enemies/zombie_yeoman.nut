@@ -19,7 +19,7 @@
 	o.assignRandomEquipment = function ()
 	{
 		local r;
-		r = this.Math.rand(1, 7);
+		r = ::Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -57,18 +57,18 @@
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		];
-		local armor = this.Const.World.Common.pickArmor(aList);
+		local armor = ::Const.World.Common.pickArmor(aList);
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
-			armor.setArmor(this.Math.round(armor.getArmorMax() / 2 - 1));
+			armor.setArmor(::Math.round(armor.getArmorMax() / 2 - 1));
 		}
 
 		this.m.Items.equip(armor);
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap],
 				[1, ::Legends.Helmet.Standard.kettle_hat],
@@ -79,9 +79,9 @@
 			]);
 			if (item != null)
 			{
-				if (this.Math.rand(1, 100) <= 66)
+				if (::Math.rand(1, 100) <= 66)
 				{
-					item.setArmor(this.Math.round(item.getArmorMax() / 2 - 1));
+					item.setArmor(::Math.round(item.getArmorMax() / 2 - 1));
 				}
 				this.m.Items.equip(item);
 			}

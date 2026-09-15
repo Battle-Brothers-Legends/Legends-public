@@ -21,7 +21,7 @@ this.legend_faction_tower_shield <- this.inherit("scripts/items/shields/shield",
 			9,
 			10
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 1000;
 		this.m.MeleeDefense = 25;

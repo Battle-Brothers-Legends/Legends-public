@@ -65,7 +65,7 @@
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]250[/color] Crowns"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]250[/color] Crowns"
 					});
 					this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 				}
@@ -81,10 +81,10 @@
 			party = entity;
 		});
 		spawnReliefForces();
-		party.getLoot().Money = this.Math.rand(100, 300);
-		party.getLoot().ArmorParts = this.Math.rand(10, 35);
-		party.getLoot().Medicine = this.Math.rand(5, 15);
-		party.getLoot().Ammo = this.Math.rand(10, 40);
+		party.getLoot().Money = ::Math.rand(100, 300);
+		party.getLoot().ArmorParts = ::Math.rand(10, 35);
+		party.getLoot().Medicine = ::Math.rand(5, 15);
+		party.getLoot().Ammo = ::Math.rand(10, 40);
 	}
 
 });

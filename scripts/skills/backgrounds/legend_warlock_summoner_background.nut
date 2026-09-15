@@ -31,17 +31,17 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			"the Summoner"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue
 		];
-		this.m.Faces = this.Const.Faces.Necromancer;
-		this.m.Hairs = this.Const.Hair.Vampire;
-		this.m.HairColors = this.Const.HairColors.Zombie;
-		this.m.Beards = this.Const.Beards.Raider;
+		this.m.Faces = ::Const.Faces.Necromancer;
+		this.m.Hairs = ::Const.Hair.Vampire;
+		this.m.HairColors = ::Const.HairColors.Zombie;
+		this.m.Beards = ::Const.Beards.Raider;
 
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 
 		this.m.CustomPerkTree = [
 			[
@@ -122,21 +122,21 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 1;
-		talents[this.Const.Attributes.RangedDefense] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 1;
+		talents[::Const.Attributes.RangedDefense] = 1;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		//items
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.None],
 			[4, ::Legends.Helmet.Standard.witchhunter_hat]
 		]));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));

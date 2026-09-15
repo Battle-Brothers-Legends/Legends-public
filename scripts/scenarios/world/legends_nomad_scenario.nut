@@ -8,7 +8,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Difficulty = 2;
 		this.m.Order = 181;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(5);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(5);
 		this.m.StartingBusinessReputation = -50;
 	}
 
@@ -20,14 +20,14 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			"ambition.defeat_holywar",
 			"ambition.win_x_arena_fights"
 		];
-		if (this.World.State.getPlayer() != null)
-			this.World.State.getPlayer().m.VisionRadius = 670; //500 is default during daytime on normal terrain
+		if (::World.State.getPlayer() != null)
+			::World.State.getPlayer().m.VisionRadius = 670; //500 is default during daytime on normal terrain
 		this.updateFactionActionsDeck();
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 5; i = ++i )
@@ -38,7 +38,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -84,41 +84,41 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[4].setStartValuesEx([::Legends.Background.NomadRanged]);
 		bros[4].getBackground().m.RawDescription = "{Be it rabbit, snake or hyena - little stands a chance against %name% who readily hits their target with all the same precision. The change to conscripts over wildlife came as a challenge at first until they realised they just needed to aim slightly high than usual.}";
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_sturdy_sling"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_sturdy_sling"));
-		// this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 5);
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine * 1.5;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 3;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_sturdy_sling"));
+		// ::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 5);
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine * 1.5;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 3;
 	}
 
 	function onSpawnPlayer()
 	{
 		local spawnTile;
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local nearestVillage;
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(5, this.Const.World.Settings.SizeX - 5);
-			local y = this.Math.rand(5, this.Const.World.Settings.SizeY - 5);
+			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
+			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				if (tile.IsOccupied)
 				{
-				}		//&& tile.Type != this.Const.World.TerrainType.Steppe
-				else if (tile.Type != this.Const.World.TerrainType.Desert)
+				}		//&& tile.Type != ::Const.World.TerrainType.Steppe
+				else if (tile.Type != ::Const.World.TerrainType.Desert)
 				{
 				}
 				else
@@ -131,7 +131,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 						if (d > 6 && d < 15)
 						{
-							local path = this.World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
+							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
 							if (!path.isEmpty())
 							{
@@ -155,37 +155,37 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		while (1);
 
-		local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
+		local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
 
 		foreach( n in oriental )
 		{
 			n.addPlayerRelation(-400.0, "You are an outlaw to the City States");
 		}
 
-		local orientalbandits = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalBandits);
+		local orientalbandits = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits);
 
 		foreach( n in orientalbandits )
 		{
 			n.addPlayerRelation(100.0, "You walk the same path, but should not be seeing this message");
 		}
 
-		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 
 		foreach( n in nobles )
 		{
 			n.addPlayerRelation(-30.0, "You are considered an outlaw");
 		}
 
-		this.m.StaticRelationsToFaction[this.Const.FactionType.OrientalCityState] = true;
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
-		this.World.Assets.updateLook(117);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		this.m.StaticRelationsToFaction[::Const.FactionType.OrientalCityState] = true;
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
+		::World.Assets.updateLook(117);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/gilded_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legends_nomad_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legends_nomad_scenario_intro");
 		}, null);
 	}
 
@@ -222,10 +222,10 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			::Legends.Background.LegendBladedancer,
 			::Legends.Background.Slave
 		)) {
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 		} else {
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.00);
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.00);
 			_bro.getBaseProperties().DailyWageMult *= 1.00;
 			_bro.getSkills().update();
 		}

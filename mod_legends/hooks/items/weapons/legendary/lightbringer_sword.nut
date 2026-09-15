@@ -54,9 +54,9 @@
 	{
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay, function ( _data )
 		{
-			for( local i = 0; i < this.Const.Tactical.LightningParticles.len(); i = ++i )
+			for( local i = 0; i < ::Const.Tactical.LightningParticles.len(); i = ++i )
 			{
-				this.Tactical.spawnParticleEffect(true, this.Const.Tactical.LightningParticles[i].Brushes, _data.TargetTile, this.Const.Tactical.LightningParticles[i].Delay, this.Const.Tactical.LightningParticles[i].Quantity, this.Const.Tactical.LightningParticles[i].LifeTimeQuantity, this.Const.Tactical.LightningParticles[i].SpawnRate, this.Const.Tactical.LightningParticles[i].Stages);
+				::Tactical.spawnParticleEffect(true, ::Const.Tactical.LightningParticles[i].Brushes, _data.TargetTile, ::Const.Tactical.LightningParticles[i].Delay, ::Const.Tactical.LightningParticles[i].Quantity, ::Const.Tactical.LightningParticles[i].LifeTimeQuantity, ::Const.Tactical.LightningParticles[i].SpawnRate, ::Const.Tactical.LightningParticles[i].Stages);
 			}
 		}, _data);
 
@@ -71,10 +71,10 @@
 
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay + 200, function ( _data )
 		{
-			local hitInfo = clone this.Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.Math.rand(10, 20);
+			local hitInfo = clone ::Const.Tactical.HitInfo;
+			hitInfo.DamageRegular = ::Math.rand(10, 20);
 			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = this.Const.BodyPart.Body;
+			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
 			_data.Target.onDamageReceived(_data.User, _data.Skill, hitInfo);
@@ -100,7 +100,7 @@
 		local myTile = user.getTile();
 		if (this.m.SoundOnLightning.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnLightning[this.Math.rand(0, this.m.SoundOnLightning.len() - 1)], this.Const.Sound.Volume.Skill * 2.0, user.getPos());
+			::Sound.play(this.m.SoundOnLightning[::Math.rand(0, this.m.SoundOnLightning.len() - 1)], ::Const.Sound.Volume.Skill * 2.0, user.getPos());
 		}
 
 		if (targetTile != null && _target != null && _target.isAlive() && !_target.isDying())
@@ -146,14 +146,14 @@
 
 		if (potentialTargets.len() != 0)
 		{
-			target = potentialTargets[this.Math.rand(0, potentialTargets.len() - 1)].getEntity();
+			target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
 			selectedTargets.push(target.getID());
 			targetTile = target.getTile();
 		}
 		else
 		{
 			target = null;
-			targetTile = potentialTiles[this.Math.rand(0, potentialTiles.len() - 1)];
+			targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
 		}
 
 		local data = {
@@ -193,14 +193,14 @@
 
 		if (potentialTargets.len() != 0)
 		{
-			target = potentialTargets[this.Math.rand(0, potentialTargets.len() - 1)].getEntity();
+			target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
 			selectedTargets.push(target.getID());
 			targetTile = target.getTile();
 		}
 		else
 		{
 			target = null;
-			targetTile = potentialTiles[this.Math.rand(0, potentialTiles.len() - 1)];
+			targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
 		}
 
 		local data = {

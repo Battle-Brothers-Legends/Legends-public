@@ -37,7 +37,7 @@
 	{
 		local r;
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/hooked_blade",
@@ -56,15 +56,15 @@
 				"weapons/warfork"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -73,9 +73,9 @@
 			[1, ::Legends.Armor.Standard.thick_tunic]
 		]));
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.hood],
 				[1, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_leather_cap]

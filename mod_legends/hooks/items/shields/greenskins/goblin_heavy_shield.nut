@@ -8,7 +8,7 @@
 			2
 		];
 		this.m.Description += " Gains [color=%positive%]5%[/color] of Initiative as Melee Defense, Ranged Defense and Block.";
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.MeleeDefense = 5;
 		this.m.RangedDefense = 10;
 		this.m.Block = 10;
@@ -21,7 +21,7 @@
 	o.onEquip = function () {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBucklerBash);
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendBuckler, function(_effect) {
-			_effect.m.Order = this.Const.SkillOrder.UtilityTargeted + 1;
+			_effect.m.Order = ::Const.SkillOrder.UtilityTargeted + 1;
 			_effect.setItem(this);
 			this.m.SkillPtrs.push(_effect);
 		}.bindenv(this));

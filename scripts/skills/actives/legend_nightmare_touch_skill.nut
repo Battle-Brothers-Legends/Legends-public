@@ -7,8 +7,8 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Died of terror";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 400;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -26,7 +26,7 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 
 	function getDamage( _actor )
 	{
-		return this.Math.max(5, 24 - this.Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
+		return ::Math.max(5, 24 - ::Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
 	}
 
 	function onUse( _user, _targetTile )
@@ -59,7 +59,7 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 		{
 			_properties.DamageRegularMin += this.getDamage(_targetEntity);
 			_properties.DamageRegularMax += this.getDamage(_targetEntity);
-			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		}
 	}
 

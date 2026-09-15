@@ -1,6 +1,6 @@
 ::mods_hookExactClass("events/events/dlc8/anatomist_vs_splinter_event", function(o) {
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local anatomist_candidates = [];
 		local splinter_candidates = [];
 
@@ -27,8 +27,8 @@
 			return;
 		}
 
-		this.m.Anatomist = anatomist_candidates[this.Math.rand(0, anatomist_candidates.len() - 1)];
-		this.m.SplinterBro = splinter_candidates[this.Math.rand(0, splinter_candidates.len() - 1)];
+		this.m.Anatomist = anatomist_candidates[::Math.rand(0, anatomist_candidates.len() - 1)];
+		this.m.SplinterBro = splinter_candidates[::Math.rand(0, splinter_candidates.len() - 1)];
 		this.m.Score = 3 * anatomist_candidates.len();
 	}
 });

@@ -26,10 +26,10 @@ this.legend_undead_scourge_encounter <- this.inherit("scripts/encounters/encount
 	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 		    return false;
 
-        if (!this.World.FactionManager.isUndeadScourge())
+        if (!::World.FactionManager.isUndeadScourge())
             return false;
 
-        if (this.World.Contracts.getActiveContract() == null)
+        if (::World.Contracts.getActiveContract() == null)
             return false;
 
         return !this.isOnCooldown();

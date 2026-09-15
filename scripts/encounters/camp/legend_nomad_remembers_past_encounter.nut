@@ -7,7 +7,7 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 		this.encounter.create();
 		this.m.Type = "encounter.legend_nomad_remembers_past";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 20 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 20 * ::World.getTime().SecondsPerDay;
 	}
 
 	function createScreens() {
@@ -36,11 +36,11 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 	}
 
 	function isVisible() {
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (currentTile.Type != ::Const.World.TerrainType.Desert)
 			return false;
 
-		local towns = this.World.EntityManager.getSettlements();
+		local towns = ::World.EntityManager.getSettlements();
 		foreach(t in towns){
 			if (t.getTile().getDistanceTo(currentTile) <= 4)
 				return false; //if too close to town, disable

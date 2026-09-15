@@ -10,9 +10,9 @@
 		local mint = ::Math.max(1, (this.m.IsTreated ? this.m.HealingTimeMin * 0.5 : this.m.HealingTimeMin) - ::Math.ceil((time - this.m.TimeApplied) / secondsPerDay) + properties.AdditionalHealingDays);
 		local maxt = ::Math.max(1, (this.m.IsTreated ? this.m.HealingTimeMax * 0.5 : this.m.HealingTimeMax) - ::Math.floor((time - this.m.TimeApplied) / secondsPerDay) + properties.AdditionalHealingDays);
 
-		if (("State" in this.World) && this.World.State != null && ::World.Assets.m.ProfessionEffect.LegendFieldSurgery > 0) {
-			mint = this.Math.max(1, mint - 1);
-			maxt = this.Math.max(1, maxt - 1);
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.m.ProfessionEffect.LegendFieldSurgery > 0) {
+			mint = ::Math.max(1, mint - 1);
+			maxt = ::Math.max(1, maxt - 1);
 		}
 
 		return {
@@ -75,7 +75,7 @@
 
 		if (!this.m.IsAlwaysInEffect && !this.getContainer().getActor().getCurrentProperties().IsAffectedByInjuries && this.m.IsHealingMentioned)
 		{
-			if (("State" in this.Tactical) && this.Tactical.State != null)
+			if (("State" in ::Tactical) && ::Tactical.State != null)
 			{
 				_tooltip.push({
 					id = 7,
@@ -95,7 +95,7 @@
 			}
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getMedicine() <= 0 && this.m.IsHealingMentioned)
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getMedicine() <= 0 && this.m.IsHealingMentioned)
 		{
 			_tooltip.push({
 				id = 7,
@@ -167,28 +167,28 @@
 
 	o.onNewDay = function ()
 	{
-		if (!(this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.OathOfSacrifice) && this.m.IsTreatable) && (this.World.Assets.getMedicine() >= this.Const.World.Assets.MedicinePerInjuryDay || !this.m.IsHealingMentioned))
+		if (!(this.getContainer().getActor().getSkills().hasTrait(::Legends.Trait.OathOfSacrifice) && this.m.IsTreatable) && (::World.Assets.getMedicine() >= ::Const.World.Assets.MedicinePerInjuryDay || !this.m.IsHealingMentioned))
 		{
 			if (this.m.IsHealingMentioned)
 			{
-				this.World.Assets.addMedicine(-this.Const.World.Assets.MedicinePerInjuryDay);
+				::World.Assets.addMedicine(-::Const.World.Assets.MedicinePerInjuryDay);
 			}
 
 			local time = this.getTime();
-			local daysPassed = this.Math.ceil((time - this.m.TimeApplied) / this.World.getTime().SecondsPerDay);
+			local daysPassed = ::Math.ceil((time - this.m.TimeApplied) / ::World.getTime().SecondsPerDay);
 			local minTime = this.m.HealingTimeMin * (this.m.IsTreated ? 0.5 : (1.0 - 0.5 * this.getTreatedPercentage()));
 			local maxTime = this.m.HealingTimeMax * (this.m.IsTreated ? 0.5 : (1.0 - 0.5 * this.getTreatedPercentage()));
 
 			if (::World.Assets.m.ProfessionEffect.LegendFieldSurgery > 0)
 			{
-				minTime = this.Math.max(1, minTime - 1);
-				maxTime = this.Math.max(1, maxTime - 1);
+				minTime = ::Math.max(1, minTime - 1);
+				maxTime = ::Math.max(1, maxTime - 1);
 			}
 
 			if (this.getContainer().getActor().getSkills().hasEffect(::Legends.Effect.NachzehrerPotion))
 			{
-				minTime = this.Math.max(1, minTime - 1);
-				maxTime = this.Math.max(1, maxTime - 1);
+				minTime = ::Math.max(1, minTime - 1);
+				maxTime = ::Math.max(1, maxTime - 1);
 			}
 
 			if (daysPassed < minTime)
@@ -198,7 +198,7 @@
 
 			local chance = daysPassed / (maxTime * 1.0) * 100.0;
 
-			if (this.Math.rand(1, 100) <= chance)
+			if (::Math.rand(1, 100) <= chance)
 			{
 				this.removeSelf();
 				return;
@@ -206,7 +206,7 @@
 		}
 		else
 		{
-			this.m.TimeApplied = this.Math.minf(this.Time.getVirtualTimeF(), this.m.TimeApplied + this.World.getTime().SecondsPerDay);
+			this.m.TimeApplied = ::Math.minf(this.Time.getVirtualTimeF(), this.m.TimeApplied + ::World.getTime().SecondsPerDay);
 		}
 	}
 

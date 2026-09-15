@@ -5,14 +5,14 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistShieldSkill);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function isHidden()
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local hasShield = item != null && item.isItemType(this.Const.Items.ItemType.Shield);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		local hasShield = item != null && item.isItemType(::Const.Items.ItemType.Shield);
 		return (this.m.TurnsLeft == 0 || !::Tactical.isActive() || !hasShield)
 	}
 
@@ -52,7 +52,7 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 	{
 		local actor = this.getContainer().getActor();
 		# Check for shield
-		if (this.m.TurnsLeft > 0 && !actor.getSkills().hasEffect(::Legends.Effect.Shieldwall) && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).isItemType(this.Const.Items.ItemType.Shield))
+		if (this.m.TurnsLeft > 0 && !actor.getSkills().hasEffect(::Legends.Effect.Shieldwall) && actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null && actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).isItemType(::Const.Items.ItemType.Shield))
 		{
 			# Check if they have regular shield
 			if (actor.getSkills().hasActive(::Legends.Active.Shieldwall))
@@ -76,9 +76,9 @@ this.perk_legend_specialist_shield_skill <- this.inherit("scripts/skills/skill",
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
+		if (item != null && item.isItemType(::Const.Items.ItemType.Shield))
 		{
 			_properties.DamageReceivedRegularMult *= 0.90;
 		}

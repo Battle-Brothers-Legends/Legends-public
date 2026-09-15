@@ -14,23 +14,23 @@
 				s.start <- function ( _event ) {
 					_event.m.Title = "After the battle...";
 
-					if (this.World.State.getLastLocation() != null)
+					if (::World.State.getLastLocation() != null)
 					{
-						this.World.State.getLastLocation().die();
+						::World.State.getLastLocation().die();
 					}
 
-					this.World.Assets.getStash().makeEmptySlots(1);
+					::World.Assets.getStash().makeEmptySlots(1);
 					local item = this.new("scripts/items/special/black_book_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + item.getName()
 					});
 
-					this.World.Assets.getStash().makeEmptySlots(1);	
+					::World.Assets.getStash().makeEmptySlots(1);	
 					local item = this.new("scripts/items/weapons/legendary/legend_mage_swordstaff");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -38,7 +38,7 @@
 					});
 
 					local scholars = [];
-					foreach (bro in this.World.getPlayerRoster().getAll())
+					foreach (bro in ::World.getPlayerRoster().getAll())
 					{
 						if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
 						{
@@ -46,20 +46,20 @@
 						}
 					}
 
-					this.World.Assets.getStash().makeEmptySlots(1);
+					::World.Assets.getStash().makeEmptySlots(1);
 					local item = this.new("scripts/items/misc/legend_ancient_scroll_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + item.getName()
 					});
 
-					this.World.Assets.getStash().makeEmptySlots(scholars.len());
+					::World.Assets.getStash().makeEmptySlots(scholars.len());
 					foreach (bro in scholars)
 					{
-						this.World.Assets.getStash().makeEmptySlots(1);
-						this.World.Assets.getStash().add(item);
+						::World.Assets.getStash().makeEmptySlots(1);
+						::World.Assets.getStash().add(item);
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
@@ -67,7 +67,7 @@
 						});
 					}
 
-					this.World.Flags.set("IsLorekeeperDefeated", true);
+					::World.Flags.set("IsLorekeeperDefeated", true);
 					this.updateAchievement("Lorekeeper", 1, 1);
 				}
 			}

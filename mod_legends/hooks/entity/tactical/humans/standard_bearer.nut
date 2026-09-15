@@ -28,9 +28,9 @@
 	o.assignRandomEquipment = function () {
 		local banner = 4;
 
-		if (("State" in this.Tactical) && this.Tactical.State != null && !this.Tactical.State.isScenarioMode())
+		if (("State" in ::Tactical) && ::Tactical.State != null && !::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -43,19 +43,19 @@
 		weapon.setVariant(banner);
 		this.m.Items.equip(weapon);
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[2, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local helmet;
 
 			if (banner <= 4)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.kettle_hat],
 					[1, ::Legends.Helmet.Standard.padded_kettle_hat],
 					[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]
@@ -63,7 +63,7 @@
 			}
 			else if (banner <= 7)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail]
@@ -71,7 +71,7 @@
 			}
 			else
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]

@@ -7,7 +7,7 @@ this.perk_legend_anchor <- this.inherit("scripts/skills/skill", {
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendAnchor);
 		this.m.IconMini = "perk_anchor_mini";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getDescription() {
@@ -53,7 +53,7 @@ this.perk_legend_anchor <- this.inherit("scripts/skills/skill", {
 			actor.getFlags().set("CanNotBeStaggered", false);
 		}
 
-		this.m.Stacks = this.Math.min(this.m.Stacks, 5);
+		this.m.Stacks = ::Math.min(this.m.Stacks, 5);
 
 		actor.getFlags().set("CanNotBeStaggered", true);
 		_properties.MeleeSkill += this.m.Bonuses[this.m.Stacks];

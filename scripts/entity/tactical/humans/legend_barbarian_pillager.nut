@@ -2,14 +2,14 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBarbarianPillager;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendBarbarianPillager.XP;
+		this.m.Type = ::Const.EntityType.LegendBarbarianPillager;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendBarbarianPillager.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.WildMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.WildExtended;
+		this.m.Faces = ::Const.Faces.WildMale;
+		this.m.Hairs = ::Const.Hair.WildMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.WildExtended;
 		this.m.SoundPitch = 0.95;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bounty_hunter_ranged_agent");
 		this.m.AIAgent.setActor(this);
@@ -28,23 +28,23 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			6
 		];
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local tattoo_body = this.actor.getSprite("tattoo_body");
 			local body = this.actor.getSprite("body");
-			tattoo_body.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
+			tattoo_body.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			local tattoo_head = this.actor.getSprite("tattoo_head");
-			tattoo_head.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_head");
+			tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 			tattoo_head.Visible = true;
 		}
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBarbarianPillager);
+		b.setValues(::Const.Tactical.Actor.LegendBarbarianPillager);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -81,7 +81,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Barbarians.LegendsMarauderPillagerNewPerksDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.LegendsMarauderPillagerNewPerksDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendPointBlank);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
@@ -101,9 +101,9 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			"scripts/items/weapons/throwing_axe"
 		];
 
-		this.m.Items.equip(this.new(items[this.Math.rand(0, items.len() - 1)]));
+		this.m.Items.equip(this.new(items[::Math.rand(0, items.len() - 1)]));
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
@@ -114,7 +114,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			"scripts/items/weapons/barbarians/blunt_cleaver"
 		];
 
-		this.m.Items.addToBag(this.new(items[this.Math.rand(0, items.len() - 1)]));
+		this.m.Items.addToBag(this.new(items[::Math.rand(0, items.len() - 1)]));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/javelin"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 
@@ -125,9 +125,9 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			[5, ::Legends.Armor.Barbarian.legend_barbarian_southern_armor]
 		];
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 
-		local helmet = this.Const.World.Common.pickHelmet([
+		local helmet = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet],

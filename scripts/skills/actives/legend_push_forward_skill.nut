@@ -5,8 +5,8 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPushForward);
 		this.m.Description = "Advance as one, increasing melee effectiveness of allies nearby.";
 		this.m.SoundOnUse = ["sounds/combat/rally_the_troops_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -65,7 +65,7 @@ this.legend_push_forward_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
 		foreach( a in actors )
 		{

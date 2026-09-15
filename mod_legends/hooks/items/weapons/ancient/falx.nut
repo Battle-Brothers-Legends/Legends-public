@@ -3,7 +3,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.setVariant(this.Math.rand(0, 1));
+		this.setVariant(::Math.rand(0, 1));
 	}
 
 	o.updateVariant <- function() {

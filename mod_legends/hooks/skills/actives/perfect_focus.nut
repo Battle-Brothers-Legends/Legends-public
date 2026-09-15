@@ -7,7 +7,7 @@
 		this.m.Icon = "skills/perfectfocus_square.png";
 		this.m.IconDisabled = "skills/perfectfocus_square_bw.png";
 		this.m.Overlay = "perfectfocus_active";
-		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.ActionPointCost = 0;
 		this.m.FatigueCost = 30;
 	}
@@ -55,7 +55,7 @@
 	}
 
 	o.onTurnStart <- function () {
-		this.m.Counter = this.Math.max(0, this.m.Counter - 1);
+		this.m.Counter = ::Math.max(0, this.m.Counter - 1);
 	}
  
 	o.onCombatStarted <- function() {

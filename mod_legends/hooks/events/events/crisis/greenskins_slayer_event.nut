@@ -6,9 +6,9 @@
 			if (s.ID == "A") {
 				s.Text = "[img]gfx/ui/events/event_35.png[/img]While marching, as stranger crosses paths with the %companyname%. %They_dude% wears light armor while looking aloof and distant at first - as if staring off at something you can\'t see. %SPEECH_ON%Evening, sellswords.%SPEECH_OFF%The warrior waves. There\'s an uncanny air to this character, as though you can barely see %them_dude% while %they_dude% is standing right in front of you. %They_dude% nods and continues speaking.%SPEECH_ON%You seem the greenskin skinnin\' sort, and that\'s the sort of company I\'d be most agreeable to joining.%SPEECH_OFF%%randombrother% exchanges a glance with you and shrugs. %They_randombrother% whispers %Their_randombrother% indifference.%SPEECH_ON%If %they_dude% becomes a problem, we can handle %them_dude%.%SPEECH_OFF%The warrior shakes %their_dude% head.%SPEECH_ON%Oh, I\'ll be no problem. I just want to kill orcs and goblins. What more do you need to know? Shall we get on with killing some greenskins, then?%SPEECH_OFF%";
 				s.start <- function (_event) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legends_rangers") {
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_rangers") {
 						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendDruid]);
 						_event.m.Dude.getBaseProperties().Hitpoints += 5;
 						_event.m.Dude.getBaseProperties().MeleeSkill += 5;
@@ -31,13 +31,13 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.FactionManager.isGreenskinInvasion())
+		if (!::World.FactionManager.isGreenskinInvasion())
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		foreach( bro in roster) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendRanger))
 				return;

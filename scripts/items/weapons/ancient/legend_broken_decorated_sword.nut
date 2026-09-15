@@ -10,9 +10,9 @@ this.legend_broken_decorated_sword <- this.inherit("scripts/items/weapons/weapon
 		this.m.Description = "A broken ceremonial sword with few sharp edges outside of the breakpoint. It is, however, still more than a lethal weapon in the hands of a cunning fighter.";
 		this.m.IconLarge = "weapons/melee/legend_broken_decorated_sword_01.png";
 		this.m.Icon = "weapons/melee/legend_broken_decorated_sword_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Dagger;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

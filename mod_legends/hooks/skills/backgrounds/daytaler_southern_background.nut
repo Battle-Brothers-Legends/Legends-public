@@ -3,11 +3,11 @@
 	o.create = function ()
 	{
 		this.daytaler_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernSkinny;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.SouthernUntidy;
+		this.m.Bodies = ::Const.Bodies.SouthernSkinny;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.SouthernUntidy;
 		this.m.Ethnicity = 1;
 		this.m.BeardChance = 90;
 		this.m.Excluded = [
@@ -18,13 +18,13 @@
 			::Legends.Traits.getID(::Legends.Trait.HateGreenskins),
 			::Legends.Traits.getID(::Legends.Trait.LegendHateNobles),
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 				return "{Working here and there | With no steady work | Working on and off | Doing this and that | Having learned no craft}, %name% is known as a washerwoman, someone to ask whenever the linens need their rinse. {Work had been sparse for a while now, so | There was little work to be a had these past weeks, so | %name% wanted to do something she had not done before, so | Despite having no experience in battle, staring too deep into the bottle made her believe that | %name% considered the fighting profession one that doesn\'t run out of work these days, so | %name% lost her loved one to sickness, as befalls so many these days, and broke down. After weeks blurred by drinking her sorrows away,} a travelling mercenary company seemed a good opportunity {to seek redemption | to earn some coin | to see a bit of the world | to clear her head | to get her to the next village while filling her pockets}.";
 			}
 		else {
@@ -36,7 +36,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -47,12 +47,12 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]);

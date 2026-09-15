@@ -78,8 +78,8 @@ this.legend_prosthetic_hand <- this.inherit("scripts/skills/traits/character_tra
 
 	function newhandShield()
 	{
-		local shield = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
-		return shield != null && shield.isItemType(this.Const.Items.ItemType.Shield);
+		local shield = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		return shield != null && shield.isItemType(::Const.Items.ItemType.Shield);
 	}
 
 	function onUpdate (_properties)

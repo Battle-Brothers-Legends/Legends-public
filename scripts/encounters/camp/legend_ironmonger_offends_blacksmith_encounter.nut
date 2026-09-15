@@ -7,7 +7,7 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 		this.encounter.create();
 		this.m.Type = "event.legends.ironmonger_offends_blacksmith";
 		this.m.Name = ::Const.Strings.randomCampEncounterName();
-		this.m.Cooldown = 60 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60 * ::World.getTime().SecondsPerDay;
 	}
 	function createScreens(){
 		this.m.Screens.push({
@@ -138,7 +138,7 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 		_screen.List.push({
 			id = 10,
 			icon = "ui/icons/asset_supplies.png",
-			text = ::format("You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]%d[/color] Tools and Supplies", toolsSpent)
+			text = ::format("You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]%d[/color] Tools and Supplies", toolsSpent)
 		});
 	}
 

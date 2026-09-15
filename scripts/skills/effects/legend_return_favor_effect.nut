@@ -7,7 +7,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_31.png";
 		this.m.IconMini = "perk_31_mini";
 		this.m.Overlay = "perk_31";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -44,12 +44,12 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isRanged())
 			return;
 
-		if (this.Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned))
+		if (::Math.rand(1, 100) <= 75 && !_attacker.getCurrentProperties().IsImmuneToStun && !_attacker.getSkills().hasEffect(::Legends.Effect.Stunned))
 		{
 			local d = _attacker.getTile().getDistanceTo(user.getTile());
-			local item = user.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+			local item = user.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-			if (d <= 1 || item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && d <= item.getRangeMax())
+			if (d <= 1 || item != null && item.isItemType(::Const.Items.ItemType.Weapon) && d <= item.getRangeMax())
 			{
 				::Legends.Effects.grant(_attacker, ::Legends.Effect.Stunned, function(_effect) {
 					_effect.addTurns(1);
@@ -57,7 +57,7 @@ this.legend_return_favor_effect <- this.inherit("scripts/skills/skill", {
 				::Legends.Effects.grant(_attacker, ::Legends.Effect.Staggered);
 				if (!user.isHiddenToPlayer() && !_attacker.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has stunned and staggered " + this.Const.UI.getColorizedEntityName(_attacker) + " for one turn");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " has stunned and staggered " + ::Const.UI.getColorizedEntityName(_attacker) + " for one turn");
 				}
 			}
 		}

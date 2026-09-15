@@ -17,7 +17,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditLeader);
+		b.setValues(::Const.Tactical.Actor.BanditLeader);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -35,7 +35,7 @@
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		//this.setArmorSaturation(0.85);
 		//this.getSprite("shield_icon").setBrightness(0.85);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
@@ -70,7 +70,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/noble_sword",
@@ -82,7 +82,7 @@
 				"weapons/military_cleaver"
 			];
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 			{
 				weapons.extend([
 					"weapons/greatsword",
@@ -94,29 +94,29 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			local shields = [
 				"shields/wooden_shield",
 				"shields/heater_shield",
 				"shields/kite_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		if (this.Math.rand(1, 100) <= 35)
+		if (::Math.rand(1, 100) <= 35)
 		{
 			local weapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin"
 			];
-			this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body) && this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local armor = [
 				[1, ::Legends.Armor.Standard.coat_of_plates],
@@ -147,14 +147,14 @@
 				[1, ::Legends.Outfit.red_bandit_leader_outfit_00]
 			];
 
-			foreach( item in this.Const.World.Common.pickOutfit(outfits, armor, helmet) )
+			foreach( item in ::Const.World.Common.pickOutfit(outfits, armor, helmet) )
 			{
 				this.m.Items.equip(item);
 			}
 			return;
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
 			local armor = [
 				[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
@@ -166,12 +166,12 @@
 				[1, ::Legends.Armor.Standard.red_bandit_leader_armor]
 			];
 
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.closed_mail_coif],
 				[1, ::Legends.Helmet.Standard.padded_kettle_hat],
 				[1, ::Legends.Helmet.Standard.kettle_hat_with_closed_mail],
@@ -198,12 +198,12 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local shields = clone this.Const.Items.NamedShields;
+		local shields = clone ::Const.Items.NamedShields;
 		shields.extend([
 			"shields/named/named_bandit_kite_shield",
 			"shields/named/named_bandit_heater_shield"
 		]);
-		local r = this.Math.rand(1, 100);
+		local r = ::Math.rand(1, 100);
 
 		if (r < 30)
 		{
@@ -211,23 +211,23 @@
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_battle_whip");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
-			this.getItems().equip(this.Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 		else if (r < 60)
 		{
-			local named = this.Const.Items.NamedArmors;
-			local weightName = this.Const.World.Common.convNameToList(named);
-			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+			local named = ::Const.Items.NamedArmors;
+			local weightName = ::Const.World.Common.convNameToList(named);
+			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
 		}
 		else if (r < 90)
 		{
-			local named = this.Const.Items.NamedHelmets;
-			local weightName = this.Const.World.Common.convNameToList(named);
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+			local named = ::Const.Items.NamedHelmets;
+			local weightName = ::Const.World.Common.convNameToList(named);
+			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
 		}
 		else
 		{
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
 		::Legends.Perks.grant(this, ::Legends.Perk.Underdog);

@@ -6,8 +6,8 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Heal allies on with your music, restoring the health of all allies within 8 tiles. Must be holding a musical instrument to use. Songs apply once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -46,7 +46,7 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -87,12 +87,12 @@ this.legend_drums_of_life_skill <- this.inherit("scripts/skills/skill", {
 		if (mainhand == null)
 			return false;
 
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 			return false;
 
 		local tile = this.getContainer().getActor().getTile();
 
-		return mainhand.isWeaponType(this.Const.Items.WeaponType.Musical) &&
+		return mainhand.isWeaponType(::Const.Items.WeaponType.Musical) &&
 			!tile.hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 

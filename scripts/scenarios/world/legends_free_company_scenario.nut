@@ -8,15 +8,15 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		this.m.Difficulty = 1;
 		this.m.Order = 3;
 		// this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(12);
-		// this.m.RosterTierMax = this.Const.Roster.getTierForSize(22);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(12);
+		// this.m.RosterTierMax = ::Const.Roster.getTierForSize(22);
 		this.m.StartingBusinessReputation = 1150;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 5; i = ++i )
@@ -27,7 +27,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -113,25 +113,25 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			::Legends.Background.CaravanHandSouthern
 		]);
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fish_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
-		// this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 5);
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 3;
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts * 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine * 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 2;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fish_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
+		// ::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 5);
+		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts * 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine * 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 2;
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
 			{
@@ -143,17 +143,17 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -171,16 +171,16 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		// this.World.Assets.updateLook(8);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		// randomVillage.getFactionOfType(this.Const.FactionType.Settlement).addPlayerRelation(25.0, "Just completed a contract for this village");
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		// ::World.Assets.updateLook(8);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
+		// randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(25.0, "Just completed a contract for this village");
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legends_free_company_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legends_free_company_scenario_intro");
 		}, null);
 	}
 

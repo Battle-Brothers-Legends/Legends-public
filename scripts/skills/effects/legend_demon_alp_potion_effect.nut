@@ -6,8 +6,8 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_147.png";
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_147";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -54,15 +54,15 @@ this.legend_demon_alp_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
+			::World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
+		::World.Statistics.getFlags().set("isDemonAlpPotionAcquired", false);
 	}
 
 });

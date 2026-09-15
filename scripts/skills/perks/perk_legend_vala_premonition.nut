@@ -3,8 +3,8 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaPremonition);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast + 9;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast + 9;
 	}
 
 	function isHidden()
@@ -14,7 +14,7 @@ this.perk_legend_vala_premonition <- this.inherit("scripts/skills/skill", {
 
 	function getBonus()
 	{
-		return this.Math.min(33.0, this.Math.round(9.0 + this.getContainer().getActor().getLevel() * 2.0));
+		return ::Math.min(33.0, ::Math.round(9.0 + this.getContainer().getActor().getLevel() * 2.0));
 	}
 
 	function getTooltip()

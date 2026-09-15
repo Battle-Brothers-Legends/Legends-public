@@ -9,14 +9,14 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 	{
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc2/tentacle_hurt_01.wav",
 			"sounds/enemies/dlc2/tentacle_hurt_02.wav",
 			"sounds/enemies/dlc2/tentacle_hurt_03.wav",
 			"sounds/enemies/dlc2/tentacle_hurt_04.wav",
 			"sounds/enemies/dlc2/tentacle_hurt_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
 			"sounds/enemies/dlc2/krake_choke_01.wav",
 			"sounds/enemies/dlc2/krake_choke_02.wav",
 			"sounds/enemies/dlc2/krake_choke_03.wav",
@@ -27,7 +27,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.m.Flags.set("type", "tentacle");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/kraken_tentacle_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));
-		this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Retreat);
+		this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Retreat);
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -35,7 +35,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.KrakenTentacle);
+		b.setValues(::Const.Tactical.Actor.KrakenTentacle);
 
 		b.IsAffectedByNight = false;
 		b.IsMovable = false;
@@ -43,7 +43,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay5)
 		{
 			b.MeleeSkill += 5;
 			b.RangedSkill += 5;
@@ -53,7 +53,7 @@ this.legend_alp_nightmare_tentacle <- this.inherit("scripts/entity/tactical/enem
 		this.addSprite("socket").setBrush("bust_base_shadow");
 
 		local blurAlpha = 110;
-		local body_brush = "bust_alp_kraken_tentacle_0" + (this.Math.rand(1, 100) <= 33 ? 1 : 2);
+		local body_brush = "bust_alp_kraken_tentacle_0" + (::Math.rand(1, 100) <= 33 ? 1 : 2);
 		local body = this.addSprite("body");
 		body.setBrush(body_brush);
 		//body.Alpha = 0;

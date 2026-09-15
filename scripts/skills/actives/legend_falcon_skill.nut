@@ -7,8 +7,8 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendFalcon);
 		this.m.Description = "Use your falcon to gain vision of the surrounding 12 tiles for the duration of the current round. Can be used once per battle.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hawk", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -63,7 +63,7 @@ this.legend_falcon_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedFalconEffect);
-		this.Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
+		::Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
 		return true;
 	}
 

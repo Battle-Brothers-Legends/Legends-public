@@ -26,7 +26,7 @@
 	{
 		local r;
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/shamshir",
@@ -38,7 +38,7 @@
 				"weapons/fighting_spear"
 			];
 
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/oriental/two_handed_scimitar",
@@ -50,7 +50,7 @@
 				]);
 			}
 
-			if (this.Const.DLC.Wildmen && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/two_handed_flail",
@@ -59,10 +59,10 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
 		{
 			local weapons = [
 				"weapons/throwing_axe",
@@ -70,24 +70,24 @@
 				"weapons/throwing_spear"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local offhand = [
 				"tools/throwing_net",
 				"shields/oriental/metal_round_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
 
-		local armor = this.Const.World.Common.pickArmor([
+		local armor = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
-		if (this.Math.rand(1,3) <= 2)
+		if (::Math.rand(1,3) <= 2)
 		{
 			armor.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 		}
@@ -98,7 +98,7 @@
 
 		this.m.Items.equip(armor);
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
 			[1, ::Legends.Helmet.None]
 		]);
@@ -113,16 +113,16 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 
-		local armor = clone this.Const.Items.NamedSouthernArmors;
-		local helmets = clone this.Const.Items.NamedSouthernHelmets;
+		local armor = clone ::Const.Items.NamedSouthernArmors;
+		local helmets = clone ::Const.Items.NamedSouthernHelmets;
 
 		if (r == 1)
 		{
-			if (this.Math.rand(0, 1) == 0)
+			if (::Math.rand(0, 1) == 0)
 			{
-				this.m.Items.equip(this.new("scripts/items/" + this.Const.Items.NamedSouthernMeleeWeapons[this.Math.rand(0, this.Const.Items.NamedSouthernMeleeWeapons.len() - 1)]));
+				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedSouthernMeleeWeapons[::Math.rand(0, ::Const.Items.NamedSouthernMeleeWeapons.len() - 1)]));
 			}
 			else
 			{
@@ -133,29 +133,29 @@
 		}
 		else if (r == 2)
 		{
-			if (this.Math.rand(0, 1) == 0)
+			if (::Math.rand(0, 1) == 0)
 			{
-				this.m.Items.equip(this.new("scripts/items/" + this.Const.Items.NamedSouthernShields[this.Math.rand(0, this.Const.Items.NamedSouthernShields.len() - 1)]));
+				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedSouthernShields[::Math.rand(0, ::Const.Items.NamedSouthernShields.len() - 1)]));
 			}
 			else
 			{
-				this.m.Items.equip(this.new("scripts/items/" + this.Const.Items.NamedShields[this.Math.rand(0, this.Const.Items.NamedShields.len() - 1)]));
+				this.m.Items.equip(this.new("scripts/items/" + ::Const.Items.NamedShields[::Math.rand(0, ::Const.Items.NamedShields.len() - 1)]));
 			}
 		}
 		else if (r == 3)
 		{
-			if (this.Math.rand(0, 1) == 0)
+			if (::Math.rand(0, 1) == 0)
 			{
-				this.m.Items.equip(this.Const.World.Common.pickArmor(
-					this.Const.World.Common.convNameToList(
+				this.m.Items.equip(::Const.World.Common.pickArmor(
+					::Const.World.Common.convNameToList(
 						armor
 					)
 				));
 			}
 			else
 			{
-				this.m.Items.equip(this.Const.World.Common.pickHelmet(
-					this.Const.World.Common.convNameToList(
+				this.m.Items.equip(::Const.World.Common.pickHelmet(
+					::Const.World.Common.convNameToList(
 						helmets
 					)
 				));

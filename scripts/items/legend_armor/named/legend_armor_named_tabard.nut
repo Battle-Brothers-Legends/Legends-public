@@ -11,14 +11,14 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 	{
 		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.named_tabard";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Tabard;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Tabard;
 		this.m.Name = "";
 		this.m.Description = "A luxurious striped tabard made of a sturdy material, reinforced at seams with pure gold.";
 		this.m.ArmorDescription = "Includes a luxurious striped tabard.";
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Variants = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 6000;
 		this.randomizeValues();

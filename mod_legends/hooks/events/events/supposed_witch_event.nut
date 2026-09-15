@@ -8,8 +8,8 @@
 			_screen.Options = [{
 				Text = "Alright, we\'ll take you.",
 				function getResult( _event ) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
@@ -20,22 +20,22 @@
 			}];
 			_screen.start <- function ( _event ) {
 				this.List.push(::Legends.EventList.changeMoralReputation(3));
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 				{
 					_event.m.Dude.getFlags().add("PlayerSkeleton");
 					_event.m.Dude.getFlags().add("undead");
 					_event.m.Dude.getFlags().add("skeleton");
-					_event.m.Dude.setStartValuesEx(this.Const.SupposedWitchBackgrounds, true, 1);
+					_event.m.Dude.setStartValuesEx(::Const.SupposedWitchBackgrounds, true, 1);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				}
 				else
 				{
-					_event.m.Dude.setStartValuesEx(this.Const.SupposedWitchBackgrounds, true, 1);
+					_event.m.Dude.setStartValuesEx(::Const.SupposedWitchBackgrounds, true, 1);
 				}
 
 				_event.m.Dude.setTitle("the Roasted");
@@ -44,9 +44,9 @@
 				this.Characters.push(_event.m.Dude.getImagePath());
 
 				foreach( bro in brothers ) {
-					if (this.Math.rand(1, 100) <= 25) {
-						if (this.Math.rand(1, 100) <= 66) {
-							local injury = bro.addInjury(this.Const.Injury.Brawl);
+					if (::Math.rand(1, 100) <= 25) {
+						if (::Math.rand(1, 100) <= 66) {
+							local injury = bro.addInjury(::Const.Injury.Brawl);
 							this.List.push({
 								id = 10,
 								icon = injury.getIcon(),
@@ -62,13 +62,13 @@
 						}
 					}
 
-					if (this.Math.rand(1, 100) <= 25 && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Witchhunter)) {
+					if (::Math.rand(1, 100) <= 25 && bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Witchhunter)) {
 						bro.improveMood(1.0, "You saved a woman from being burned at the stake");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -84,31 +84,31 @@
 				this.Characters.push(_event.m.Witchhunter.getImagePath());
 
 				_event.m.Witchhunter.improveMood(2.0, "Killed an evil spirit");
-				if (_event.m.Witchhunter.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Witchhunter.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Witchhunter.getMoodState()],
-						text = _event.m.Witchhunter.getName() + this.Const.MoodStateEvent[_event.m.Witchhunter.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Witchhunter.getMoodState()],
+						text = _event.m.Witchhunter.getName() + ::Const.MoodStateEvent[_event.m.Witchhunter.getMoodState()]
 					});
 				}
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Witchhunter, 2));
 				this.List.push(::Legends.EventList.changeInitiative(_event.m.Witchhunter, 1));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers )
 				{
-					if (bro.getID() != _event.m.Witchhunter.getID() && (this.Math.rand(1, 100) <= 25 || ::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)))
+					if (bro.getID() != _event.m.Witchhunter.getID() && (::Math.rand(1, 100) <= 25 || ::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)))
 					{
 						bro.improveMood(1.0, "Saw an evil spirit meet its end");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -121,25 +121,25 @@
 				this.Characters.push(_event.m.Monk.getImagePath());
 
 				_event.m.Monk.improveMood(2.0, "Had a witch burned");
-				if (_event.m.Monk.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Monk.getMoodState() >= ::Const.MoodState.Neutral)
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Monk.getMoodState()],
-						text = _event.m.Monk.getName() + this.Const.MoodStateEvent[_event.m.Monk.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Monk.getMoodState()],
+						text = _event.m.Monk.getName() + ::Const.MoodStateEvent[_event.m.Monk.getMoodState()]
 					});
 
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Monk, ::Math.rand(2, 4)));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach( bro in brothers ) {
 					if (bro.getID() != _event.m.Monk.getID() && (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk) || bro.getSkills().hasTrait(::Legends.Trait.Superstitious))) {
 						bro.improveMood(1.0, "Saw a witch burning at the stake");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 					}
 				}
@@ -151,37 +151,37 @@
 				this.Characters.push(_event.m.Cultist.getImagePath());
 
 				_event.m.Cultist.improveMood(2.0, "Witnessed Davkul\'s power");
-				if (_event.m.Cultist.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Cultist.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Cultist.getMoodState()],
-						text = _event.m.Cultist.getName() + this.Const.MoodStateEvent[_event.m.Cultist.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Cultist.getMoodState()],
+						text = _event.m.Cultist.getName() + ::Const.MoodStateEvent[_event.m.Cultist.getMoodState()]
 					});
 				}
 
 				this.List.push(::Legends.EventList.changeResolve(_event.m.Cultist, 2));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers ) {
-					if (bro.getID() != _event.m.Cultist.getID() && (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))) {
+					if (bro.getID() != _event.m.Cultist.getID() && (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))) {
 						bro.improveMood(1.0, "Witnessed Davkul\'s power");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 					} else if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Witchhunter, ::Legends.Background.Monk)  || bro.getSkills().hasTrait(::Legends.Trait.Superstitious)) {
 						bro.worsenMood(1.0, _event.m.Cultist.getName() + " freed a witch");
 
-						if (bro.getMoodState() < this.Const.MoodState.Neutral)
+						if (bro.getMoodState() < ::Const.MoodState.Neutral)
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 					}
 				}
@@ -190,24 +190,24 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		if (this.World.getTime().Days <= 15)
+		if (::World.getTime().Days <= 15)
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.2)
+		if (::Const.DLC.Desert && currentTile.SquareCoords.Y <= ::World.getMapSize().Y * 0.2)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidate_witchhunter = [];
 		local candidate_monk = [];
 		local candidate_cultist = [];
@@ -219,18 +219,18 @@
 				candidate_monk.push(bro);
 			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) //maybe add this here?
 				candidate_monk.push(bro);
-			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
+			else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
 				candidate_cultist.push(bro);
 		}
 
 		if (candidate_witchhunter.len() != 0)
-			this.m.Witchhunter = candidate_witchhunter[this.Math.rand(0, candidate_witchhunter.len() - 1)];
+			this.m.Witchhunter = candidate_witchhunter[::Math.rand(0, candidate_witchhunter.len() - 1)];
 
 		if (candidate_monk.len() != 0)
-			this.m.Monk = candidate_monk[this.Math.rand(0, candidate_monk.len() - 1)];
+			this.m.Monk = candidate_monk[::Math.rand(0, candidate_monk.len() - 1)];
 
 		if (candidate_cultist.len() != 0)
-			this.m.Cultist = candidate_cultist[this.Math.rand(0, candidate_cultist.len() - 1)];
+			this.m.Cultist = candidate_cultist[::Math.rand(0, candidate_cultist.len() - 1)];
 
 		this.m.Score = 5;
 	}

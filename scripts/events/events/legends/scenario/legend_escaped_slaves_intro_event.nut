@@ -21,7 +21,7 @@ this.legend_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 
 		});
@@ -34,13 +34,13 @@ this.legend_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onPrepareVariables(_vars) {
-		local brothers = this.World.getPlayerRoster().getAll();
-		local settlements = this.World.EntityManager.getSettlements();
+		local brothers = ::World.getPlayerRoster().getAll();
+		local settlements = ::World.EntityManager.getSettlements();
 		local closest;
 		local distance = 9999;
 
 		foreach (s in settlements) {
-			local d = s.getTile().getDistanceTo(this.World.State.getPlayer().getTile());
+			local d = s.getTile().getDistanceTo(::World.State.getPlayer().getTile());
 
 			if (d < distance) {
 				closest = s;
@@ -48,7 +48,7 @@ this.legend_escaped_slaves_intro_event <- this.inherit("scripts/events/event", {
 			}
 		}
 
-		local f = closest.getFactionOfType(this.Const.FactionType.OrientalCityState);
+		local f = closest.getFactionOfType(::Const.FactionType.OrientalCityState);
 		local vizier = f.getRandomCharacter();
 		_vars.push([
 			"bro",

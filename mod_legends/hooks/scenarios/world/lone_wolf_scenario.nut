@@ -7,20 +7,20 @@
 		this.m.Difficulty = 4;
 		this.m.Order = 150;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(1);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(12);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(1);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(12);
 		this.m.StartingBusinessReputation = 1250;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 		this.m.BrotherScaling = 1.66;
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		local bro = roster.create("scripts/entity/tactical/player");
 		bro.m.HireTime = this.Time.getVirtualTimeF();
-		bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+		bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 
 		local bros = roster.getAll(); //starting party
 		bros[0].setStartValuesEx([::Legends.Background.LegendLonewolf]);
@@ -40,29 +40,29 @@
 		bros[0].m.Talents = [];
 		bros[0].m.Attributes = [];
 		local talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeDefense] = 2;
-		talents[this.Const.Attributes.Fatigue] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 3;
-		talents[this.Const.Attributes.RangedSkill] = 2;
-		bros[0].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeDefense] = 2;
+		talents[::Const.Attributes.Fatigue] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 3;
+		talents[::Const.Attributes.RangedSkill] = 2;
+		bros[0].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
 		//---
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money / 3 + ::Legends.Difficulty.LoneWolfStartingMoney[::World.Assets.getEconomicDifficulty()];
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 3;
-		this.World.Assets.m.Ammo = 0;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money / 3 + ::Legends.Difficulty.LoneWolfStartingMoney[::World.Assets.getEconomicDifficulty()];
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine / 3;
+		::World.Assets.m.Ammo = 0;
 	}
 
 	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())
 			{
@@ -76,17 +76,17 @@
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -104,15 +104,15 @@
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(6);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(6);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.lone_wolf_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.lone_wolf_scenario_intro");
 		}, null);
 	}
 
@@ -123,7 +123,7 @@
 
 	o.onCombatFinished <- function ()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -141,7 +141,7 @@
 		local garbage = [];
 		local bros = _roster.getAll();
 
-		local renown = this.World.Assets.getBusinessReputation();
+		local renown = ::World.Assets.getBusinessReputation();
 
 		// Define tier thresholds of allowed backgrounds
 		local tier1 = [ // >1500
@@ -236,7 +236,7 @@
 			// Always keep donkey
 			if (bgID == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 				bro.getBaseProperties().DailyWageMult *= 1.0;
 				bro.getSkills().update();
 				continue;
@@ -265,13 +265,13 @@
 	// {
 	// 	if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Companion))
 	// 	{
-	// 		bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.0); //1.0 = default
+	// 		bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.0); //1.0 = default
 	// 		bro.getBaseProperties().DailyWageMult *= 0.0; //1.0 = default
 	// 		bro.getSkills().update();
 	// 	}
 	// 	else
 	// 	{
-	// 		bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+	// 		bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 	// 		bro.getBaseProperties().DailyWageMult *= 1.0;
 	// 		bro.getSkills().update();
 	// 	}

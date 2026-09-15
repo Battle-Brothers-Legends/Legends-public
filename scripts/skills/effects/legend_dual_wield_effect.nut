@@ -11,7 +11,7 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character is wielding two weapons at once. The weight of the other weapon increases fatigue costs and reduces accuracy.";
 		this.m.Icon = "skills/status_effect_75.png";
 		this.m.IconMini = "";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = false;
@@ -203,7 +203,7 @@ this.legend_dual_wield_effect <- this.inherit("scripts/skills/skill", {
 						Skill = skillToUse
 					});
 				}.bindenv(this), this);
-				//this.Const.SkillCounter++;
+				//::Const.SkillCounter++;
 				/*::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.executeFollowUpAttack.bindenv(this), {
 					TargetTile = _targetTile,
 					Skill = skillToUse

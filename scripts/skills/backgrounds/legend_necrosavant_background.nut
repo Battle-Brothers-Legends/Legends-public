@@ -28,15 +28,15 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 			"The Leech",
 			"the Bat"
 		];
-		this.m.Faces = this.Const.Faces.Vampire;
-		this.m.Hairs = this.Const.Hair.Vampire;
-		this.m.HairColors = this.Const.HairColors.Zombie;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.Vampire;
+		this.m.Hairs = ::Const.Hair.Vampire;
+		this.m.HairColors = ::Const.HairColors.Zombie;
+		this.m.Beards = ::Const.Beards.Tidy;
 
 		this.m.Level = 1;
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 
@@ -54,15 +54,15 @@ this.legend_necrosavant_background <- this.inherit("scripts/skills/backgrounds/c
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Fatigue] = 2;
-		talents[this.Const.Attributes.Hitpoints] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Fatigue] = 2;
+		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.dark_cowl]
 		]));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]));
 		items.equip(this.new("scripts/items/weapons/ancient/khopesh"));

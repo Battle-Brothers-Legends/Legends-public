@@ -12,8 +12,8 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/dlc4/sling_hit", 4);
 		this.m.SoundOnHitShield = ::Legends.S.setSounds("sounds/combat/dlc4/sling_shield_hit", 5);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/dlc4/sling_miss", 6);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.Delay = 500;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -26,15 +26,15 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsWeaponSkill = true;
 		this.m.IsDoingForwardMove = false;
 		this.m.IsHidden = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ActionPointCost = 8;
 		this.m.FatigueCost = 25;
 		this.m.MinRange = 4;
 		this.m.MaxRange = 12;
 		this.m.MaxLevelDifference = 8;
-		this.m.ProjectileType = this.Const.ProjectileType.Stone;
+		this.m.ProjectileType = ::Const.ProjectileType.Stone;
 		this.m.ProjectileTimeScale = 1.2;
 		this.m.IsProjectileRotated = true;
 		this.m.ChanceDecapitate = 0;
@@ -53,7 +53,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 			text = "Has a [color=%negative%]100%[/color] chance to daze a target on a hit to the head"
 		});
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 9,
@@ -71,7 +71,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (this.Tactical.isActive() && actor.isPlacedOnMap())
+		if (::Tactical.isActive() && actor.isPlacedOnMap())
 		{
 			local hasTarget = false;
 			local myTile = actor.getTile();
@@ -85,7 +85,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 				local tile = myTile.getNextTile(i);
 
-				if (this.Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && actor.isAlliedWith(tile.getEntity()) && tile.getEntity().getType() == this.Const.EntityType.LegendCatapult)
+				if (::Math.abs(tile.Level - myTile.Level) <= 1 && tile.IsOccupiedByActor && actor.isAlliedWith(tile.getEntity()) && tile.getEntity().getType() == ::Const.EntityType.LegendCatapult)
 				{
 					hasTarget = true;
 					break;
@@ -114,7 +114,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 //	function isUsable()
 //	{
-//		return !this.Tactical.isActive() || !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+//		return !::Tactical.isActive() || !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 //	}
 
 	function onUpdate( _properties )
@@ -130,7 +130,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 	{
 		this.m.AdditionalAccuracy = _properties.IsSpecializedInSlings ? -60 : -70;
 		this.m.AdditionalHitChance = _properties.IsSpecializedInSlings ? 10 : 5;
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 
@@ -148,7 +148,7 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
 			{
-				_user.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				_user.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
@@ -188,13 +188,13 @@ this.legend_use_catapult_skill <- this.inherit("scripts/skills/skill", {
 		local targetTile = _targetEntity.getTile();
 		local user = this.getContainer().getActor();
 
-		if (_bodyPart == this.Const.BodyPart.Head)
+		if (_bodyPart == ::Const.BodyPart.Head)
 		{
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 			if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 

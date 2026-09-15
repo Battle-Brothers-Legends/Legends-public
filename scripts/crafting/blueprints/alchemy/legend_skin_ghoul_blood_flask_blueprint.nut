@@ -4,7 +4,7 @@ this.legend_skin_ghoul_blood_flask_blueprint <- this.inherit("scripts/crafting/b
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_skin_ghoul_blood_flask";
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = ::Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_skin_ghoul_blood_flask_item");
 		this.m.Cost = 150;
 		local ingredients = [

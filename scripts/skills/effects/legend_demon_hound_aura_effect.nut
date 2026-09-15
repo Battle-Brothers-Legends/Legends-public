@@ -7,8 +7,8 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDemonHoundAura);
 		this.m.Description = "The Höllenhund's presence has sapped the strength from this character\'s limbs, slowing them down.";
 		this.m.Icon = "ui/orientation/hollenhound_orientation.png";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 	}
@@ -40,7 +40,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 		{
 			return 0;
 		}
@@ -51,23 +51,23 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 			return 0;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!("Entities" in ::Tactical))
 		{
 			return 0;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (::Tactical.Entities == null)
 		{
 			return 0;
 		}
 
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 		{
 			return 0;
 		}
 
 		local worstPenalty = 0;
-		local targets = this.Tactical.Entities.getAllInstancesAsArray();
+		local targets = ::Tactical.Entities.getAllInstancesAsArray();
 
 		foreach(t in targets)
 		{
@@ -76,7 +76,7 @@ this.legend_demon_hound_aura_effect <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			if (t.getType() != this.Const.EntityType.LegendDemonHound)
+			if (t.getType() != ::Const.EntityType.LegendDemonHound)
 			{
 				continue;
 			}

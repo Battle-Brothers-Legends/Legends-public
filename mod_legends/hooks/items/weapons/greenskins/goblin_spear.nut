@@ -3,13 +3,13 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Variant = this.Math.rand(1, 2);
+		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
 		this.m.Description = "A long shaft with a sharp metal blade at the top.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Defensive;
 		this.setCategories("Sword/Polearm, Two-Handed");
 		this.m.IsDoubleGrippable = false;
 		this.m.IsAoE = true;

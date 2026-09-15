@@ -35,15 +35,15 @@
 	}
 	// o.fill = function ( _rect, _properties)
 	// {
-	// 	this.Const.World.Buildings.reset();
+	// 	::Const.World.Buildings.reset();
 	// 	this.m.Tiles = [];
-	// 	this.m.Tiles.resize(this.Const.World.TerrainType.COUNT);
+	// 	this.m.Tiles.resize(::Const.World.TerrainType.COUNT);
 
-	// 	for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i )
+	// 	for( local i = 0; i < ::Const.World.TerrainType.COUNT; i = ++i )
 	// 	{
-	// 		if (this.Const.World.TerrainScript[i].len() != 0)
+	// 		if (::Const.World.TerrainScript[i].len() != 0)
 	// 		{
-	// 			this.m.Tiles[i] = this.MapGen.get(this.Const.World.TerrainScript[i]);
+	// 			this.m.Tiles[i] = this.MapGen.get(::Const.World.TerrainScript[i]);
 	// 		}
 	// 	}
 
@@ -68,7 +68,7 @@
 	// 		this.defragmentTerrain(_rect);
 	// 		this.__ping();
 
-	// 		if (this.Const.DLC.Desert && !this.isDesertAcceptable(_rect))
+	// 		if (::Const.DLC.Desert && !this.isDesertAcceptable(_rect))
 	// 		{
 	// 			this.logInfo("World rejected. Creating new one...");
 	// 			this.clearWorld(_rect);
@@ -99,7 +99,7 @@
 	// 	this.buildLabels(_rect);
 	// 	this.__ping();
 
-	// 	if (this.Const.DLC.Desert)
+	// 	if (::Const.DLC.Desert)
 	// 	{
 	// 		this.buildAbandonedFortresses(_rect);
 	// 	}
@@ -107,15 +107,15 @@
 	// 	this.__ping();
 	// }
 	// {
-	// 	this.Const.World.Buildings.reset();
+	// 	::Const.World.Buildings.reset();
 	// 	this.m.Tiles = [];
-	// 	this.m.Tiles.resize(this.Const.World.TerrainType.COUNT);
+	// 	this.m.Tiles.resize(::Const.World.TerrainType.COUNT);
 
-	// 	for( local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i )
+	// 	for( local i = 0; i < ::Const.World.TerrainType.COUNT; i = ++i )
 	// 	{
-	// 		if (this.Const.World.TerrainScript[i].len() != 0)
+	// 		if (::Const.World.TerrainScript[i].len() != 0)
 	// 		{
-	// 			this.m.Tiles[i] = this.MapGen.get(this.Const.World.TerrainScript[i]);
+	// 			this.m.Tiles[i] = this.MapGen.get(::Const.World.TerrainScript[i]);
 	// 		}
 	// 	}
 
@@ -138,7 +138,7 @@
 	// 	this.defragmentTerrain(_rect);
 	// 	this.__ping();
 
-	// 	if (this.Const.DLC.Desert && !this.isDesertAcceptable(_rect))
+	// 	if (::Const.DLC.Desert && !this.isDesertAcceptable(_rect))
 	// 	{
 	// 		//this.logInfo("World rejected. Creating new one...");
 	// 		this.clearWorld(_rect);
@@ -152,7 +152,7 @@
 	//	 if (!this.buildSettlements(_rect, _properties))
 	//	 {
 	// 		this.clearWorld(_rect);
-	// 		//this.World.clearScene();
+	// 		//::World.clearScene();
 	//		 return false;
 	//	 }
 	// 	this.__ping();
@@ -173,7 +173,7 @@
 	// 	this.__ping();
 	// 	this.buildLabels(_rect);
 	// 	this.__ping();
-	// 	if (this.Const.DLC.Desert)
+	// 	if (::Const.DLC.Desert)
 	// 	{
 	// 		this.buildAbandonedFortresses(_rect);
 	// 	}
@@ -319,9 +319,9 @@
 	}
 
 	o.refineSettlements = function (_rect) {
-		local _properties = this.World.State.m.CampaignSettings;
+		local _properties = ::World.State.m.CampaignSettings;
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 
 		foreach (s in settlements) {
 			s.updateProperties();
@@ -330,7 +330,7 @@
 
 		for (local x = _rect.X; x < _rect.X + _rect.W; x = ++x) {
 			for (local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y) {
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				foreach (s in settlements) {
 					local d = s.getTile().getDistanceTo(tile);
@@ -351,7 +351,7 @@
 		while (tries++ < 3000) {
 			local x = ignoreSide ? ::Math.rand(5, _rect.W - 6) : (isLeft ? ::Math.rand(5, _rect.W * 0.6) : ::Math.rand(_rect.W * 0.4, _rect.W - 6));
 			local y = ::Math.rand(5, _rect.H * 0.95);
-			local tile = this.World.getTileSquare(x, y);
+			local tile = ::World.getTileSquare(x, y);
 
 			if (settlementTiles.find(tile.ID) != null) {
 				continue;
@@ -423,7 +423,7 @@
 
 				for (local i = settlementTiles.len() - 1; i >= 0; i--) {
 					local navSettings = ::World.getNavigator().createSettings();
-					navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+					navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 					local path = ::World.getNavigator().findPath(tile, settlementTiles[i], navSettings, 0);
 
 					if (!path.isEmpty()) {
@@ -438,7 +438,7 @@
 			}
 
 			tile.clear();
-			local entity = this.World.spawnLocation(type.Script, tile.Coords);
+			local entity = ::World.spawnLocation(type.Script, tile.Coords);
 			entity.setSize(settlementSize);
 			settlementTiles.push(tile);
 			return settlementTiles;
@@ -526,9 +526,9 @@
 
 	o.guaranteeAllBuildingsInSettlements = function () {
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 
-		if (this.Const.World.Buildings.Fletchers < 2) {
+		if (::Const.World.Buildings.Fletchers < 2) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -537,8 +537,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Fletchers; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Fletchers; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/fletcher_building"));
@@ -549,7 +549,7 @@
 			}
 		}
 
-		if (this.Const.World.Buildings.Temples < 2) {
+		if (::Const.World.Buildings.Temples < 2) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -559,8 +559,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Temples; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Temples; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/temple_building"));
@@ -571,7 +571,7 @@
 			}
 		}
 
-		if (this.Const.World.Buildings.Blackmarket < 2) {
+		if (::Const.World.Buildings.Blackmarket < 2) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -581,8 +581,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Blackmarket; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Blackmarket; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/blackmarket_building"));
@@ -593,7 +593,7 @@
 			}
 		}
 
-		if (this.Const.World.Buildings.Kennels < 2) {
+		if (::Const.World.Buildings.Kennels < 2) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -603,8 +603,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Kennels; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Kennels; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
@@ -615,7 +615,7 @@
 			}
 		}
 
-		if (this.Const.DLC.Unhold && this.Const.World.Buildings.Taxidermists < 2) {
+		if (::Const.DLC.Unhold && ::Const.World.Buildings.Taxidermists < 2) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -625,8 +625,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Taxidermists; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Taxidermists; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/taxidermist_building"));
@@ -637,7 +637,7 @@
 			}
 		}
 
-		if (this.Const.World.Buildings.Stables < 1) {
+		if (::Const.World.Buildings.Stables < 1) {
 			local candidates = [];
 
 			foreach (s in settlements) {
@@ -647,8 +647,8 @@
 				}
 			}
 
-			for (local i = this.Const.World.Buildings.Stables; i <= 2; i = ++i) {
-				local r = this.Math.rand(0, candidates.len() - 1);
+			for (local i = ::Const.World.Buildings.Stables; i <= 2; i = ++i) {
+				local r = ::Math.rand(0, candidates.len() - 1);
 				local s = candidates[r];
 				candidates.remove(r);
 				s.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
@@ -772,7 +772,7 @@
 			Script = "scripts/entity/world/attached_location/workshop_location"
 		};
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		foreach (s in settlements) {
 			foreach (a in s.getAttachedLocations()) {
 				if (a.getTypeID() in locs) {
@@ -788,19 +788,19 @@
 			}
 
 			local ALL = [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra,
-				this.Const.World.TerrainType.Forest,
-				this.Const.World.TerrainType.SnowyForest,
-				this.Const.World.TerrainType.AutumnForest,
-				this.Const.World.TerrainType.LeaveForest
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra,
+				::Const.World.TerrainType.Forest,
+				::Const.World.TerrainType.SnowyForest,
+				::Const.World.TerrainType.AutumnForest,
+				::Const.World.TerrainType.LeaveForest
 			];
 			local tries = 0;
 			while (tries++ < 1000) {
-				local index = this.Math.rand(0, settlements.len() - 1);
+				local index = ::Math.rand(0, settlements.len() - 1);
 				settlements[index].buildAttachedLocation(1, v.Script, ALL, [], 2, false, true, true);
 				if (settlements[index].hasAttachedLocation(k)) {
 					//this.logInfo("Added " + k)

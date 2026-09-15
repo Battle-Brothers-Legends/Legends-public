@@ -21,12 +21,12 @@
 
 	o.onUpdate = function ()
 	{
-		if ("AmmoMaxAdditional" in this.World.Assets.m)
-			this.World.Assets.m.AmmoMaxAdditional = 100;
-		if ("MedicineMaxAdditional" in this.World.Assets.m)
-			this.World.Assets.m.MedicineMaxAdditional  = 50;
-		if ("ArmorPartsMaxAdditional" in this.World.Assets.m)
-			this.World.Assets.m.ArmorPartsMaxAdditional = 50;
+		if ("AmmoMaxAdditional" in ::World.Assets.m)
+			::World.Assets.m.AmmoMaxAdditional = 100;
+		if ("MedicineMaxAdditional" in ::World.Assets.m)
+			::World.Assets.m.MedicineMaxAdditional  = 50;
+		if ("ArmorPartsMaxAdditional" in ::World.Assets.m)
+			::World.Assets.m.ArmorPartsMaxAdditional = 50;
 
 		::Legends.Stash.resize();
 	}

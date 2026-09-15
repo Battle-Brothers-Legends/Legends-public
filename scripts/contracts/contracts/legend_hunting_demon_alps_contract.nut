@@ -5,7 +5,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk = ::Legends.Perk.LegendFavouredEnemyOccult,
-		ValidTypes = this.Const.LegendMod.FavoriteOccult,
+		ValidTypes = ::Const.LegendMod.FavoriteOccult,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -14,8 +14,8 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_demon_alps";
 		this.m.Name = "Ending the Terror Demon (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Alps are nightmares made flesh, yet they can be beaten. These reports though... sound downright demonic.",
 			"Beware these souldrinkers, for they are cunning and elusive, wreathed in the flames of hell.",
@@ -36,9 +36,9 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 	function start()
 	{
-		this.m.Payment.Pool = 1300 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 1300 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 10)
+		if (::Math.rand(1, 100) <= 10)
 		{
 			this.m.Payment.Completion = 0.9;
 			this.m.Payment.Advance = 0.1;
@@ -56,7 +56,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 			"soulblights",
 			"flamewalkers"
 		];
-		this.m.Flags.set("enemyName", names[this.Math.rand(0, names.len() - 1)]);
+		this.m.Flags.set("enemyName", names[::Math.rand(0, names.len() - 1)]);
 		this.contract.start();
 	}
 
@@ -70,7 +70,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					"End the demons stalking " + this.Contract.m.Home.getName() + " at night"
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -82,8 +82,8 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 
 				if (r <= 25)
 				{
@@ -93,7 +93,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -105,32 +105,32 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 			function update()
 			{
-				if (this.World.getTime().IsDaytime)
+				if (::World.getTime().IsDaytime)
 				{
 					this.Contract.m.SpawnAtTime = 0.0;
 				}
-				else if (this.Contract.m.SpawnAtTime == 0.0 && !this.World.getTime().IsDaytime)
+				else if (this.Contract.m.SpawnAtTime == 0.0 && !::World.getTime().IsDaytime)
 				{
-					this.Contract.m.SpawnAtTime = this.Time.getVirtualTimeF() + this.Math.rand(8, 18);
+					this.Contract.m.SpawnAtTime = this.Time.getVirtualTimeF() + ::Math.rand(8, 18);
 				}
 
 				if (this.Flags.get("IsVictory"))
 				{
 					this.Contract.setScreen("Victory");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (this.Contract.m.Target == null && !this.World.getTime().IsDaytime && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Contract.m.SpawnAtTime > 0.0 && this.Time.getVirtualTimeF() >= this.Contract.m.SpawnAtTime)
+				else if (this.Contract.m.Target == null && !::World.getTime().IsDaytime && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Contract.m.SpawnAtTime > 0.0 && this.Time.getVirtualTimeF() >= this.Contract.m.SpawnAtTime)
 				{
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.World.getTime().IsDaytime && (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || this.Contract.m.Target.isHiddenToPlayer()) && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Time.getVirtualTimeF() - this.Flags.get("StartTime") >= 6.0 && this.Math.rand(1, 1000) <= 5)
+				else if (!this.Flags.get("IsBanterShown") && ::World.getTime().IsDaytime && (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || this.Contract.m.Target.isHiddenToPlayer()) && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Time.getVirtualTimeF() - this.Flags.get("StartTime") >= 6.0 && ::Math.rand(1, 1000) <= 5)
 				{
 					this.Flags.set("IsBanterShown", true);
 					this.Contract.setScreen("Banter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -166,7 +166,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -175,8 +175,8 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -198,7 +198,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					Text = "{This doesn\'t sound like mercenary work. | This doesn\'t sound like our kind of work. | That\'s not the kind of work we\'re looking for.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -237,13 +237,13 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					Text = "Charge!",
 					function getResult()
 					{
-						local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						p.CombatID = "Alps";
 						p.Entities = [];
-						p.Music = this.Const.Music.BeastsTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.LegendDemonAlp, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						p.Music = ::Const.Music.BeastsTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.LegendDemonAlp, 200 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 
@@ -280,10 +280,10 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of unnatural nightmares");
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Saviour of the lands");
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of unnatural nightmares");
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Saviour of the lands");
 
 						if (this.Flags.get("IsGoodNightsSleep"))
 						{
@@ -291,7 +291,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 						}
 						else
 						{
-							this.World.Contracts.finishActiveContract();
+							::World.Contracts.finishActiveContract();
 							return 0;
 						}
 					}
@@ -303,7 +303,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 				this.Contract.m.SituationID = this.Contract.resolveSituation(this.Contract.m.SituationID, this.Contract.m.Home, this.List);
 			}
@@ -321,7 +321,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					Text = "I feel refreshed!",
 					function getResult()
 					{
-						this.World.Contracts.finishActiveContract();
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -329,23 +329,23 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 			],
 			function start()
 			{
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers )
 				{
-					if (this.Math.rand(1, 100) <= 75)
+					if (::Math.rand(1, 100) <= 75)
 					{
 						bro.improveMood(1.0, "Refreshed from having a great night\'s sleep");
 						::Legends.Effects.remove(bro, ::Legends.Effect.Exhausted);
 						::Legends.Effects.remove(bro, ::Legends.Effect.Drunk);
 						::Legends.Effects.remove(bro, ::Legends.Effect.Hangover);
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -359,7 +359,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : this.Const.Strings.Direction8[this.World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())]
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())]
 		]);
 		_vars.push([
 			"enemy",
@@ -406,13 +406,13 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 	function onIsValid()
 	{
 		local sumLevels = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
+		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
 				continue;
 
-			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
+			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
 			if (stats.Strength >= this.m.MinStrength)
 				return true;
 		}
@@ -441,7 +441,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 
 		if (!this.m.Flags.has("StartTime"))

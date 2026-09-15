@@ -32,7 +32,7 @@ this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 
 		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
 			local isBuildingPresent = ::World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
-			return ::Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
+			return ::Math.floor(this.item.getSellPrice() * (isBuildingPresent ? ::Const.World.Assets.BaseSellPrice : ::Const.World.Assets.SellPriceNotProducedHere));
 		}
 
 		return this.item.getSellPrice();

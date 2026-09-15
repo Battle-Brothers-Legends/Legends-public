@@ -16,27 +16,27 @@ this.perk_legend_true_believer <- this.inherit("scripts/skills/skill", {
 
 	function getFleeing()
 	{
-		if (!("Entities" in this.Tactical))
+		if (!("Entities" in ::Tactical))
 		{
 			return 0;
 		}
-		if (this.Tactical.Entities == null)
+		if (::Tactical.Entities == null)
 		{
 			return 0;
 		}
 
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 		{
 			return 0;
 		}
 
 		local fleeing = 0;
 
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
 		foreach( a in actors )
 		{
-			if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 			{
 				fleeing += 1;
 

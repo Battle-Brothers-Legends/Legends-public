@@ -3,14 +3,14 @@ this.legend_free_company_archer_low <- this.inherit("scripts/entity/tactical/hum
 		Outfits = [
 			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_01]
 		],
-		PerkList = this.Const.EnemyPerks.FreeCompanyArcher,
+		PerkList = ::Const.EnemyPerks.FreeCompanyArcher,
 		PerkPower = 3
 	},
 	function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanyArcher);
+		b.setValues(::Const.Tactical.Actor.FreeCompanyArcher);
 		b.RangedSkill -= 10;
 		b.MeleeDefense -= 5;
 		b.RangedDefense -= 5;

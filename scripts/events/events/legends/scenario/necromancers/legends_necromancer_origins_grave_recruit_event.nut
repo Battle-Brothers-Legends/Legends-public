@@ -5,7 +5,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 	function create() {
 		this.m.ID = "event.legends_necromancer_origins_grave_recruit";
 		this.m.Title = "Near the mass grave...";
-		this.m.Cooldown = 20.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 20.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//— \n |
 			ID = "A",
@@ -32,40 +32,40 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			Options = [{
 				Text = "Time to dress you up nicely!",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.RawDescription = "You pulled this minion from a mass grave. You know little about who they once were — nor do you care.";
-				_event.m.Dude.setStartValuesEx(this.Const.CharacterBackgroundsRandomForUndead); //see character_backgrounds file
+				_event.m.Dude.setStartValuesEx(::Const.CharacterBackgroundsRandomForUndead); //see character_backgrounds file
 				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
 				});
 
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
 				});
 
-				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-				local settlement = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
-				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
-				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+				local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+				local settlement = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
+				local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
+				local undead = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 
 				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
@@ -93,7 +93,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			}],
 			function start(_event) {
 				local money = ::Math.rand(18, 628);
-				this.World.Assets.addMoney(money);
+				::World.Assets.addMoney(money);
 			}
 
 		});
@@ -118,13 +118,13 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		local locations = this.World.EntityManager.getLocations();
+		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		foreach (v in locations) {
 			if (v.getTypeID() == "location.undead_mass_grave" && v.getTile().getDistanceTo(currentTile) < 5) {

@@ -18,8 +18,8 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 
 	function onResumeUse() {
 		local actor = this.getContainer().getActor();
-		this.Sound.play(this.m.SoundResumeOnUse[this.Math.rand(0, this.m.SoundResumeOnUse.len() - 1)], 1.0, actor.getPos());
-		this.m.TargetTile.clear(this.Const.Tactical.DetailFlag.SpecialOverlay);
+		::Sound.play(this.m.SoundResumeOnUse[::Math.rand(0, this.m.SoundResumeOnUse.len() - 1)], 1.0, actor.getPos());
+		this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
 		this.consumeAmmo();
 		
 		if (!actor.isHiddenToPlayer() || this.m.TargetTile.IsVisibleForPlayer)
@@ -33,7 +33,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
 		
 			if (!actor.isPlayerControlled() && this.m.TargetTile.getEntity().isPlayerControlled()) {		
-				actor.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				actor.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return true;
@@ -46,8 +46,8 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 	function onUse( _user, _targetTile ) {
 		this.m.Prepared = true;
 		this.m.TargetTile = _targetTile;
-		_targetTile.spawnDetail("mortar_target_02", this.Const.Tactical.DetailFlag.SpecialOverlay, false, true);
-		this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " draws the bow to it's maximum and prepares a shot");
+		_targetTile.spawnDetail("mortar_target_02", ::Const.Tactical.DetailFlag.SpecialOverlay, false, true);
+		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " draws the bow to it's maximum and prepares a shot");
 		return true;
 	}
 

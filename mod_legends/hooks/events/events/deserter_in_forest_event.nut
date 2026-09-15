@@ -9,9 +9,9 @@
 			}
 			if (s.ID == "B") {
 				s.start <- function ( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 					{
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");

@@ -4,7 +4,7 @@ this.legend_cooking_spices_02_blueprint <- this.inherit("scripts/crafting/legend
 	{
 		this.legend_food_blueprint.create();
 		this.m.ID = "blueprint.legend_cooking_spices_02";
-		this.m.Type = this.Const.Items.ItemType.TradeGood | this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.TradeGood | ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_cooking_spices_trade_item");
 		local ingredients = [
 			{

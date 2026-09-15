@@ -7,31 +7,31 @@
 			return null;
 		}
 
-		local item = this.Stash.getItemAtIndex(_itemIndex).item;
+		local item = ::Stash.getItemAtIndex(_itemIndex).item;
 
 		if (item.getConditionMax() <= 1 || item.getRepair() >= item.getRepairMax())
 		{
 			return null;
 		}
 
-		local price = (item.getRepairMax() - item.getRepair()) * this.Const.World.Assets.CostToRepairPerPoint;
-		local value = item.getRawValue() * (1.0 - item.getRepair() / item.getRepairMax()) * 0.2 * this.World.State.getCurrentTown().getPriceMult() * this.Const.Difficulty.SellPriceMult[this.World.Assets.getEconomicDifficulty()];
-		price = this.Math.max(price, value);
+		local price = (item.getRepairMax() - item.getRepair()) * ::Const.World.Assets.CostToRepairPerPoint;
+		local value = item.getRawValue() * (1.0 - item.getRepair() / item.getRepairMax()) * 0.2 * ::World.State.getCurrentTown().getPriceMult() * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()];
+		price = ::Math.max(price, value);
 
-		if (this.World.Assets.getMoney() < price)
+		if (::World.Assets.getMoney() < price)
 		{
 			return null;
 		}
 
-		this.World.Assets.addMoney(-price);
+		::World.Assets.addMoney(-price);
 		item.setCondition(item.getRepairMax());
 		item.setToBeRepaired(false, 0);
-		this.Sound.play("sounds/ambience/buildings/blacksmith_hammering_0" + this.Math.rand(0, 6) + ".wav", 1.0);
+		::Sound.play("sounds/ambience/buildings/blacksmith_hammering_0" + ::Math.rand(0, 6) + ".wav", 1.0);
 		local result = {
-			Item = this.UIDataHelper.convertItemToUIData(item, true, this.Const.UI.ItemOwner.Stash),
+			Item = this.UIDataHelper.convertItemToUIData(item, true, ::Const.UI.ItemOwner.Stash),
 			Assets = this.m.Parent.queryAssetsInformation()
 		};
-		this.World.Statistics.getFlags().increment("ItemsRepaired");
+		::World.Statistics.getFlags().increment("ItemsRepaired");
 		return result;
 	}
 
@@ -56,12 +56,12 @@
 			StashSpaceMax = data.stash.getCapacity(),
 			IsRepairOffered = this.m.Shop.isRepairOffered()
 		};
-		this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+		this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
 		return result;
 	}
 
 	o.removeInventoryItemUpgrades <- function (_data) {
-		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		local armor = ::Stash.getItemAtIndex(_data[0]).item;
 		return this.removeAllUpgradesFromItem(armor)
 	}
 
@@ -93,12 +93,12 @@
 		}
 
 		local shopStash = this.m.Shop.getStash();
-		local currentMoney = this.World.Assets.getMoney();
+		local currentMoney = ::World.Assets.getMoney();
 
 		switch(sourceItemOwner)
 		{
 		case ownerPlayer:
-			local sourceItem = this.Stash.getItemAtIndex(sourceItemIdx);
+			local sourceItem = ::Stash.getItemAtIndex(sourceItemIdx);
 
 			if (sourceItem == null)
 			{
@@ -110,9 +110,9 @@
 			{
 				if (sourceItemOwner == targetItemOwner)
 				{
-					if (this.Stash.swap(sourceItemIdx, targetItemIdx))
+					if (::Stash.swap(sourceItemIdx, targetItemIdx))
 					{
-						sourceItem.item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+						sourceItem.item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
 					}
 					else
 					{
@@ -128,19 +128,19 @@
 			}
 			else if (sourceItemOwner == targetItemOwner)
 			{
-				if (!this.Stash.isLastTakenSlot(sourceItemIdx))
+				if (!::Stash.isLastTakenSlot(sourceItemIdx))
 				{
-					local firstEmptySlotIdx = this.Stash.getFirstEmptySlot();
+					local firstEmptySlotIdx = ::Stash.getFirstEmptySlot();
 
 					if (firstEmptySlotIdx != null)
 					{
-						if (this.Stash.swap(sourceItemIdx, firstEmptySlotIdx))
+						if (::Stash.swap(sourceItemIdx, firstEmptySlotIdx))
 						{
-							sourceItem.item.playInventorySound(this.Const.Items.InventoryEventType.PlacedInBag);
+							sourceItem.item.playInventorySound(::Const.Items.InventoryEventType.PlacedInBag);
 
-							// if (sourceItem.item.isItemType(this.Const.Items.ItemType.TradeGood))
+							// if (sourceItem.item.isItemType(::Const.Items.ItemType.TradeGood))
 							// {
-							// 	this.World.Statistics.getFlags().increment("TradeGoodsSold");
+							// 	::World.Statistics.getFlags().increment("TradeGoodsSold");
 							// }
 						}
 						else
@@ -153,19 +153,19 @@
 			}
 			else
 			{
-				local removedItem = this.Stash.removeByIndex(sourceItemIdx);
+				local removedItem = ::Stash.removeByIndex(sourceItemIdx);
 
 				if (removedItem != null)
 				{
 					removedItem.setTransactionPrice(removedItem.getSellPrice());
-					this.World.Assets.addMoney(removedItem.getSellPrice());
+					::World.Assets.addMoney(removedItem.getSellPrice());
 					removedItem.addSettlementToTradeHistory(this.m.Shop.getSettlement());
 					shopStash.add(removedItem);
 					removedItem.setSold(true);
 
-					// if (removedItem.isItemType(this.Const.Items.ItemType.TradeGood))
+					// if (removedItem.isItemType(::Const.Items.ItemType.TradeGood))
 					// {
-					// 	this.World.Statistics.getFlags().increment("TradeGoodsSold");
+					// 	::World.Statistics.getFlags().increment("TradeGoodsSold");
 					// }
 				}
 			}
@@ -175,19 +175,19 @@
 				Assets = this.m.Parent.queryAssetsInformation(),
 				Shop = [],
 				Stash = [],
-				StashSpaceUsed = this.Stash.getNumberOfFilledSlots(),
-				StashSpaceMax = this.Stash.getCapacity(),
+				StashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+				StashSpaceMax = ::Stash.getCapacity(),
 				IsRepairOffered = this.m.Shop.isRepairOffered()
 			};
-			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
 			result.Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter);
 
-			// if (this.World.Statistics.getFlags().has("TradeGoodsSold") && this.World.Statistics.getFlags().get("TradeGoodsSold") >= 10)
+			// if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 10)
 			// {
 			// 	this.updateAchievement("Trader", 1, 1);
 			// }
 
-			// if (this.World.Statistics.getFlags().has("TradeGoodsSold") && this.World.Statistics.getFlags().get("TradeGoodsSold") >= 50)
+			// if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 50)
 			// {
 			// 	this.updateAchievement("MasterTrader", 1, 1);
 			// }
@@ -206,7 +206,7 @@
 			if (currentMoney < sourceItem.item.getBuyPrice())
 			{
 				return {
-					Result = this.Const.UI.Error.NotEnoughMoney
+					Result = ::Const.UI.Error.NotEnoughMoney
 				};
 			}
 
@@ -218,61 +218,61 @@
 				}
 				else
 				{
-					local targetItem = this.Stash.getItemAtIndex(targetItemIdx);
+					local targetItem = ::Stash.getItemAtIndex(targetItemIdx);
 
 					if (targetItem != null && targetItem.item == null)
 					{
 						sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
-						this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
-						this.Stash.insert(sourceItem.item, targetItemIdx);
+						::World.Assets.addMoney(-sourceItem.item.getBuyPrice());
+						::Stash.insert(sourceItem.item, targetItemIdx);
 						shopStash.removeByIndex(sourceItemIdx);
 						sourceItem.item.setBought(true);
 
-						// if (sourceItem.item.isItemType(this.Const.Items.ItemType.TradeGood))
+						// if (sourceItem.item.isItemType(::Const.Items.ItemType.TradeGood))
 						// {
-						// 	this.World.Statistics.getFlags().increment("TradeGoodsBought");
+						// 	::World.Statistics.getFlags().increment("TradeGoodsBought");
 						// }
 					}
-					else if (this.Stash.hasEmptySlot())
+					else if (::Stash.hasEmptySlot())
 					{
 						sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
-						this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
-						this.Stash.add(sourceItem.item);
+						::World.Assets.addMoney(-sourceItem.item.getBuyPrice());
+						::Stash.add(sourceItem.item);
 						shopStash.removeByIndex(sourceItemIdx);
 						sourceItem.item.setBought(true);
 
-						// if (sourceItem.item.isItemType(this.Const.Items.ItemType.TradeGood))
+						// if (sourceItem.item.isItemType(::Const.Items.ItemType.TradeGood))
 						// {
-						// 	this.World.Statistics.getFlags().increment("TradeGoodsBought");
+						// 	::World.Statistics.getFlags().increment("TradeGoodsBought");
 						// }
 					}
 					else
 					{
 						return {
-							Result = this.Const.UI.Error.NotEnoughStashSpace
+							Result = ::Const.UI.Error.NotEnoughStashSpace
 						};
 					}
 				}
 			}
 			else if (sourceItemOwner != targetItemOwner)
 			{
-				if (this.Stash.hasEmptySlot())
+				if (::Stash.hasEmptySlot())
 				{
 					sourceItem.item.setTransactionPrice(sourceItem.item.getBuyPrice());
-					this.World.Assets.addMoney(-sourceItem.item.getBuyPrice());
-					this.Stash.add(sourceItem.item);
+					::World.Assets.addMoney(-sourceItem.item.getBuyPrice());
+					::Stash.add(sourceItem.item);
 					shopStash.removeByIndex(sourceItemIdx);
 					sourceItem.item.setBought(true);
 
-					// if (sourceItem.item.isItemType(this.Const.Items.ItemType.TradeGood))
+					// if (sourceItem.item.isItemType(::Const.Items.ItemType.TradeGood))
 					// {
-					// 	this.World.Statistics.getFlags().increment("TradeGoodsBought");
+					// 	::World.Statistics.getFlags().increment("TradeGoodsBought");
 					// }
 				}
 				else
 				{
 					return {
-						Result = this.Const.UI.Error.NotEnoughStashSpace
+						Result = ::Const.UI.Error.NotEnoughStashSpace
 					};
 				}
 			}
@@ -282,11 +282,11 @@
 				Assets = this.m.Parent.queryAssetsInformation(),
 				Shop = [],
 				Stash = [],
-				StashSpaceUsed = this.Stash.getNumberOfFilledSlots(),
-				StashSpaceMax = this.Stash.getCapacity(),
+				StashSpaceUsed = ::Stash.getNumberOfFilledSlots(),
+				StashSpaceMax = ::Stash.getCapacity(),
 				IsRepairOffered = this.m.Shop.isRepairOffered()
 			};
-			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, this.Const.UI.ItemOwner.Shop);
+			this.UIDataHelper.convertItemsToUIData(this.m.Shop.getStash().getItems(), result.Shop, ::Const.UI.ItemOwner.Shop);
 			result.Stash = this.UIDataHelper.convertStashToUIData(false, this.m.InventoryFilter);
 			return result;
 		}
@@ -300,7 +300,7 @@
 		if (_data[1] != "world-town-screen-shop-dialog-module.stash")
 			return onCanSwapItem(_data);
 
-		local itemWrapper = this.Stash.getItemAtIndex(_data[0]);
+		local itemWrapper = ::Stash.getItemAtIndex(_data[0]);
 		// if item null, use vanilla
 		if (itemWrapper == null)
 			return onCanSwapItem(_data);
@@ -318,8 +318,8 @@
 		local orgIsPrecious = itemWrapper.item.isPrecious;
 		local orgIsUnique = itemWrapper.item.isUnique;
 
-		itemWrapper.item.isPrecious = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsPrecious;
-		itemWrapper.item.isUnique = @() this.isItemType(this.Const.Items.ItemType.Legendary) || this.isItemType(this.Const.Items.ItemType.Quest) || this.m.IsUnique;
+		itemWrapper.item.isPrecious = @() this.isItemType(::Const.Items.ItemType.Legendary) || this.isItemType(::Const.Items.ItemType.Quest) || this.m.IsPrecious;
+		itemWrapper.item.isUnique = @() this.isItemType(::Const.Items.ItemType.Legendary) || this.isItemType(::Const.Items.ItemType.Quest) || this.m.IsUnique;
 
 		itemWrapper.item.isPrecious = orgIsPrecious;
 		itemWrapper.item.isUnique = orgIsUnique;

@@ -2,43 +2,43 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 4.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 4.0 * ::World.getTime().SecondsPerDay;
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Wildmen)
+		if (!::Const.DLC.Wildmen)
 			return;
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.rangers" && this.World.Assets.getOrigin().getID() != "scenario.legends_rangers")
+		if (::World.Assets.getOrigin().getID() != "scenario.rangers" && ::World.Assets.getOrigin().getID() != "scenario.legends_rangers")
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.AutumnForest && currentTile.Type != this.Const.World.TerrainType.SnowyForest)
+		if (currentTile.Type != ::Const.World.TerrainType.Forest && currentTile.Type != ::Const.World.TerrainType.LeaveForest && currentTile.Type != ::Const.World.TerrainType.AutumnForest && currentTile.Type != ::Const.World.TerrainType.SnowyForest)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (!bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			if (!bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))
 				candidates.push(bro);
 		}
 
 		if (candidates.len() == 0)
 			return;
 
-		this.m.Hunter = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Hunter = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = 10;
 	}
 })

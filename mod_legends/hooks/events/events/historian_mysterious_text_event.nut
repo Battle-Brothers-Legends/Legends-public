@@ -20,14 +20,14 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.getTime().Days < 10)
+		if (::World.getTime().Days < 10)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement();
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 8)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_historian = [];
 
 		foreach( bro in brothers ) {
@@ -39,7 +39,7 @@
 		if (candidates_historian.len() == 0)
 			return;
 
-		this.m.Historian = candidates_historian[this.Math.rand(0, candidates_historian.len() - 1)];
+		this.m.Historian = candidates_historian[::Math.rand(0, candidates_historian.len() - 1)];
 		this.m.Score = 5;
 	}
 })

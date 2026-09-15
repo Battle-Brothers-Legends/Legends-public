@@ -1,7 +1,7 @@
 ::mods_hookExactClass("events/events/dlc8/disowned_noble_vs_deserter_event", function(o) {
 	o.onUpdateScore = function ()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local deserter_candidates = [];
 		local disowned_candidates = [];
 
@@ -18,8 +18,8 @@
 			return;
 		}
 
-		this.m.Deserter = deserter_candidates[this.Math.rand(0, deserter_candidates.len() - 1)];
-		this.m.Disowned = disowned_candidates[this.Math.rand(0, disowned_candidates.len() - 1)];
+		this.m.Deserter = deserter_candidates[::Math.rand(0, deserter_candidates.len() - 1)];
+		this.m.Disowned = disowned_candidates[::Math.rand(0, disowned_candidates.len() - 1)];
 		this.m.Score = 3 * disowned_candidates.len() + 3 * deserter_candidates.len();
 	}
 });

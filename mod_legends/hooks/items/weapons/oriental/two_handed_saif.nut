@@ -6,7 +6,7 @@
 		this.m.Value = 2700;
 		this.m.Categories = "Cleaver, Two-Handed";
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.Condition = 62.0;
 		this.m.ConditionMax = 62.0;
 		this.m.RegularDamage = 70;

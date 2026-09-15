@@ -52,7 +52,7 @@
 			]);
 		}
 
-		if (this.m.Settlement.getTile().SquareCoords.Y > this.World.getMapSize().Y * 0.4) {
+		if (this.m.Settlement.getTile().SquareCoords.Y > ::World.getMapSize().Y * 0.4) {
 			list.extend([
 				item(30, 1.0, "weapons/staff_sling"),
 			]);

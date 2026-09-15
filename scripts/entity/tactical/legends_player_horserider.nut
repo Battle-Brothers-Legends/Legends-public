@@ -5,7 +5,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		playerArmor = null,
 		horseArmor = null,
 		horseHelmet = null,
-		LastBodyPartHit = this.Const.BodyPart.Body,
+		LastBodyPartHit = ::Const.BodyPart.Body,
 		Tile = null,
 		RiderSkills = null,
 		HorseSkills = null
@@ -64,7 +64,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 			this.logInfo("horseHP is " + horseHP);
 		local riderHP = this.getRider().getHitpoints();
 			this.logInfo("riderHP is " + riderHP);
-		local totalHP = this.Math.floor((horseHP + riderHP) / 2);
+		local totalHP = ::Math.floor((horseHP + riderHP) / 2);
 		b.Hitpoints = totalHP;
 			this.logInfo("totalHP is " + b.Hitpoints);
 
@@ -147,12 +147,12 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		this.setName(newName);
 
 		local background = this.new("scripts/skills/backgrounds/legend_horserider");
-		background.addBackgroundType(this.Const.BackgroundType.Scenario);
+		background.addBackgroundType(::Const.BackgroundType.Scenario);
 		this.m.Skills.add(background);
 
 		//add horse skills
-		this.m.ActionPointCosts = this.Const.HorseMovementAPCost;
-		this.m.FatigueCosts = clone this.Const.HorseMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.HorseMovementAPCost;
+		this.m.FatigueCosts = clone ::Const.HorseMovementFatigueCost;
 
 		this.getSkills().add(::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick, function (_skill) {}.bindenv(this)));
 		this.getSkills().add(::Legends.Actives.grant(this, ::Legends.Active.LegendHorseCharge, function (_skill) {}.bindenv(this)));
@@ -183,11 +183,11 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 		//add all rider items except for body armor
 		this.getRider().getItems().transferTo(this.m.Items);
-		this.m.playerArmor = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body);
+		this.m.playerArmor = this.m.Items.getItemAtSlot(::Const.ItemSlot.Body);
 		if (this.m.playerArmor != null)
 			this.m.Items.unequip(this.m.playerArmor);
 
-		this.m.horseArmor = this.getHorse().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+		this.m.horseArmor = this.getHorse().getItems().getItemAtSlot(::Const.ItemSlot.Body);
 		if (this.m.horseArmor != null)
 			this.m.Items.equip(this.m.horseArmor);
 
@@ -195,8 +195,8 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		local c = this.m.CurrentProperties;
 		this.m.ActionPoints = c.ActionPoints;
 		this.m.Hitpoints = c.Hitpoints;
-		this.m.Talents.resize(this.Const.Attributes.COUNT, 0);
-		this.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
+		this.m.Talents.resize(::Const.Attributes.COUNT, 0);
+		this.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
 	}
 
 	function getPlaceInFormation()
@@ -204,19 +204,19 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		return this.m.PlaceInFormation
 	}
 
-	function kill( _killer = null, _skill = null, _fatalityType = this.Const.FatalityType.None, _silent = false)
+	function kill( _killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false)
 	{
 		this.player.kill(_killer, _skill, _fatalityType, _silent);
-		local num = this.Tactical.Entities.getAlliesNum();
+		local num = ::Tactical.Entities.getAlliesNum();
 		if (num == 1 || num == 0) //if 1 then only horserider exsts
 		{
-			this.World.getPlayerRoster().remove(this.getRider());
-			this.World.getPlayerRoster().remove(this.getHorse());
+			::World.getPlayerRoster().remove(this.getRider());
+			::World.getPlayerRoster().remove(this.getHorse());
 			return;
 		}
 		local pBody = this.getRider().getSprite("body");
 
-		if (this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
 			if (pBody != null && typeof pBody != "instance")
 				pBody.set("bust_naked_body_03");
@@ -233,33 +233,33 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		this.m.Tile = this.getTile();
 
 		this.player.onDeath(_killer, _skill, _tile, _fatalityType);
-		local num = this.Tactical.Entities.getAlliesNum();
+		local num = ::Tactical.Entities.getAlliesNum();
 		if (num == 1 || num == 0) //if 1 then only horserider exsts
 		{
-			this.World.getPlayerRoster().remove(this.getRider());
-			this.World.getPlayerRoster().remove(this.getHorse());
+			::World.getPlayerRoster().remove(this.getRider());
+			::World.getPlayerRoster().remove(this.getHorse());
 			return;
 		}
 
-		if (this.m.LastBodyPartHit == this.Const.BodyPart.Body)
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Body)
 		{
-			this.getHorse().onDeath(_killer, _skill, null, this.Const.FatalityType.Suicide);
+			this.getHorse().onDeath(_killer, _skill, null, ::Const.FatalityType.Suicide);
 		}
 		else
 		{
-			this.getRider().onDeath(_killer, _skill, null, this.Const.FatalityType.Suicide);
+			this.getRider().onDeath(_killer, _skill, null, ::Const.FatalityType.Suicide);
 		}
 	}
 	function onAfterDeath( _tile )
 	{
-		if (this.Tactical.Entities.getAlliesNum() == 0)
+		if (::Tactical.Entities.getAlliesNum() == 0)
 		{
 			//if left to die
 			return;
 		}
 
 
-		if (this.m.LastBodyPartHit == this.Const.BodyPart.Head)
+		if (this.m.LastBodyPartHit == ::Const.BodyPart.Head)
 		{
 			this.spawnHorse();
 			return;
@@ -272,12 +272,12 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 
 	function spawnHorse()
 	{
-		this.Tactical.addEntityToMap(this.getHorse(), this.m.Tile.Coords.X, this.m.Tile.Coords.Y);
+		::Tactical.addEntityToMap(this.getHorse(), this.m.Tile.Coords.X, this.m.Tile.Coords.Y);
 	}
 
 	function spawnRider()
 	{
-		this.Tactical.addEntityToMap(this.getRider(), this.m.Tile.Coords.X, this.m.Tile.Coords.Y);
+		::Tactical.addEntityToMap(this.getRider(), this.m.Tile.Coords.X, this.m.Tile.Coords.Y);
 		local entity = this.m.Tile.getEntity();
 		this.m.Items.transferTo(this.getRider().getItems());
 	}
@@ -310,7 +310,7 @@ this.legends_player_horserider <- this.inherit("scripts/entity/tactical/player",
 		this.getHorse().setHitpoints( (horseHP * hpMissing > 0) ? (horseHP * hpMissing) : horseHP );
 
 
-		this.World.getPlayerRoster().remove(this);
+		::World.getPlayerRoster().remove(this);
 	}
 
 });

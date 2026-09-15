@@ -3,8 +3,8 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMindOverBody);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
 	function getBonus( _actor = null )
@@ -23,7 +23,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 
 		local resolve = actor.getCurrentProperties().getBravery();
 		local fraction = resolve / 60.0;
-		local normal = this.Math.floor(fraction * 100);
+		local normal = ::Math.floor(fraction * 100);
 		local bonus = normal * 0.01;
 
 		return bonus;
@@ -34,9 +34,9 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		if (bonus > 1)
 		{
-			bonus = this.Math.pow(bonus, 0.5);
+			bonus = ::Math.pow(bonus, 0.5);
 		}
-		local reduction = this.Math.round((1 - 1 / bonus) * 100);
+		local reduction = ::Math.round((1 - 1 / bonus) * 100);
 		local tooltip = this.skill.getTooltip();
 
 		if (bonus > 1)
@@ -66,9 +66,9 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus(_actor);
 		if (bonus > 1)
 		{
-			bonus = this.Math.pow(bonus, 0.5);
+			bonus = ::Math.pow(bonus, 0.5);
 		}
-		local reduction = this.Math.round((1 - 1 / bonus) * 100);
+		local reduction = ::Math.round((1 - 1 / bonus) * 100);
 		local tooltip = [];
 		if (bonus > 1)
 		{
@@ -97,7 +97,7 @@ this.perk_legend_mind_over_body <- this.inherit("scripts/skills/skill", {
 		local bonus = this.getBonus();
 		if (bonus > 1)
 		{
-			bonus = this.Math.pow(bonus, 0.5);
+			bonus = ::Math.pow(bonus, 0.5);
 			_properties.FatigueEffectMult *= 1.0 / bonus;
 		}
 	}

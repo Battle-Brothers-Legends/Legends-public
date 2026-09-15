@@ -32,7 +32,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 7);
+		local r = ::Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -63,9 +63,9 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_ranged_wooden_flail"));
 		}
 
-		if (this.Math.rand(1, 100) <= 66 && this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (::Math.rand(1, 100) <= 66 && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
 				this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 			}
@@ -75,14 +75,14 @@
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Standard.cultist_leather_robe],
 			[3, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Barbarian.animal_hide_armor],
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]);

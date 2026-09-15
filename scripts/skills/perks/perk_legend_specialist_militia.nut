@@ -6,10 +6,10 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 			"weapon.ancient_spear"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Spear
+			::Const.Items.WeaponType.Spear
 		],
 		ExcludedItemTypes = [
-			this.Const.Items.ItemType.RangedWeapon
+			::Const.Items.ItemType.RangedWeapon
 		],
 		BonusMelee = 12,
 		BonusDamage = 10
@@ -58,11 +58,11 @@ this.perk_legend_specialist_militia <- this.inherit("scripts/skills/legend_speci
 	{
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		local actor = this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 			return;
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
-			if (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != actor.getID())
+			if (::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() != actor.getID())
 			{
 				_properties.DamageTotalMult *= 1.0 + 0.01 * this.calculateSpecialistBonus(15, _skill.getItem());
 			}

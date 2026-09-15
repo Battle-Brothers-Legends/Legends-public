@@ -6,7 +6,7 @@ this.legend_apothecary_mushrooms_item <- this.inherit("scripts/items/accessory/a
 		this.m.ID = "accessory.legend_apothecary_mushrooms";
 		this.m.Name = "Apothecary Mushrooms";
 		this.m.Description = "Strange mushrooms that have anyone chewing them enter a trance-like state where they don\'t feel any pain and exhibit significantly decreased aggression. May result in sickness. Eat responsibly.";
-		this.m.SlotType = this.Const.ItemSlot.Bag;
+		this.m.SlotType = ::Const.ItemSlot.Bag;
 		this.m.IsAllowedInBag = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
@@ -24,7 +24,7 @@ this.legend_apothecary_mushrooms_item <- this.inherit("scripts/items/accessory/a
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/cloth_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onEquip()

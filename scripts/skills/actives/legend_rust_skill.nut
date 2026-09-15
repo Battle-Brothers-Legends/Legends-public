@@ -11,8 +11,8 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/crush_armor", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/crush_armor_hit", 3);
 		this.m.SoundVolume = 1.1;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -36,8 +36,8 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 	function getTooltip()
 	{
 		local p = this.getContainer().getActor().getCurrentProperties();
-		local damage_armor_min = this.Math.floor(p.getInitiativeMinDamage());
-		local damage_armor_max = this.Math.floor(p.getInitiativeMaxDamage());
+		local damage_armor_min = ::Math.floor(p.getInitiativeMinDamage());
+		local damage_armor_max = ::Math.floor(p.getInitiativeMaxDamage());
 		local ret = this.getDefaultUtilityTooltip();
 
 			ret.push({
@@ -76,14 +76,14 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 	function getExpectedDamage( _target )
 	{
 		local ret = this.skill.getExpectedDamage(_target);
-		ret.HitpointDamage = this.Math.max(10, ret.HitpointDamage);
-		ret.TotalDamage = this.Math.max(10, ret.TotalDamage);
+		ret.HitpointDamage = ::Math.max(10, ret.HitpointDamage);
+		ret.TotalDamage = ::Math.max(10, ret.TotalDamage);
 		return ret;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local target = _targetTile.getEntity();
 		return this.attackEntity(_user, target);
 	}

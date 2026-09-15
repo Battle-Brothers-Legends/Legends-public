@@ -27,9 +27,9 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAmbitious),
 			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
 	}
 
 	o.getTooltip = function () {
@@ -56,9 +56,9 @@
 
 		local actor = this.getContainer().getActor();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
-			actor.setTitle(this.Const.Strings.PeddlerTitles[this.Math.rand(0, this.Const.Strings.PeddlerTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.PeddlerTitles[::Math.rand(0, ::Const.Strings.PeddlerTitles.len() - 1)]);
 		}
 
 	}
@@ -67,7 +67,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
@@ -83,11 +83,11 @@
 			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));

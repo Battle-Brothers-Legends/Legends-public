@@ -5,11 +5,11 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 			"weapon.short_bow"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Bow
+			::Const.Items.WeaponType.Bow
 		],
 		ValidEntities = [
-			this.Const.EntityType.Wolf,
-			this.Const.EntityType.Hyena
+			::Const.EntityType.Wolf,
+			::Const.EntityType.Hyena
 		],
 		BonusRanged = 12,
 		BonusDamage = 10
@@ -27,7 +27,7 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 		this.legend_specialist_abstract.onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
-			local ammo = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
+			local ammo = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 			if (ammo == null)
 				return;
 			if (::Legends.S.patternIsInText("Piercing", ammo.getName()))
@@ -51,14 +51,14 @@ this.perk_legend_specialist_poacher <- this.inherit("scripts/skills/legend_speci
 		if (this.onAnySkillUsedSpecialistChecks(_skill))
 		{
 			local user = _skill.getContainer().getActor();
-			local ammo = user.getItems().getItemAtSlot(this.Const.ItemSlot.Ammo);
+			local ammo = user.getItems().getItemAtSlot(::Const.ItemSlot.Ammo);
 			if (ammo != null && ::Legends.S.patternIsInText("Broad Head", ammo.getName()))
 			{
 				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect);
 
 				if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer)
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " lacerated " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " lacerated " + ::Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
 				}
 
 				return true;

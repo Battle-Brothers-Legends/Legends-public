@@ -5,16 +5,16 @@
 		local r;
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
 			banner = 13;
 		}
 
-		r = this.Math.rand(1, 2);
+		r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -32,7 +32,7 @@
 			variant = 10;
 		else
 			variant = 8;
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Southern.linothorax, variant],
 			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		]));
@@ -45,7 +45,7 @@
 		else if (banner == 14)
 			variant = 7;
 
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap, variant]
 		]);
 

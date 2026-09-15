@@ -7,22 +7,22 @@
 		this.m.SelectedSkill = null;
 
 		if (::Legends.S.isEntityMovementDisabled(_entity)) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (this.getAgent().getBehavior(this.Const.AI.Behavior.ID.Retreat) != null && this.getAgent().getBehavior(this.Const.AI.Behavior.ID.Retreat).getScore() > 0)
+		if (this.getAgent().getBehavior(::Const.AI.Behavior.ID.Retreat) != null && this.getAgent().getBehavior(::Const.AI.Behavior.ID.Retreat).getScore() > 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _entity.getID())
+		if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _entity.getID())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		foreach( skillID in this.m.PossibleSkills )
@@ -37,15 +37,15 @@
 		}
 
 		if (this.m.SelectedSkill == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local potentialDestinations = [];
 
-		if (this.Const.Tactical.Actor.Alp.TeleportTargets.len() == 0 || this.Const.Tactical.Actor.Alp.TeleportFrame != this.Time.getFrame())
+		if (::Const.Tactical.Actor.Alp.TeleportTargets.len() == 0 || ::Const.Tactical.Actor.Alp.TeleportFrame != this.Time.getFrame())
 		{
-			this.Const.Tactical.Actor.Alp.TeleportTargets = [];
-			this.Const.Tactical.Actor.Alp.TeleportFrame = this.Time.getFrame();
+			::Const.Tactical.Actor.Alp.TeleportTargets = [];
+			::Const.Tactical.Actor.Alp.TeleportFrame = this.Time.getFrame();
 			this.getStrategy().cleanUpKnownOpponents();
 			this.getStrategy().compileKnownOpponents();
 			local targets = this.getAgent().getKnownOpponents();
@@ -71,7 +71,7 @@
 
 				foreach( tile in potentialTiles )
 				{
-					if (!tile.IsEmpty || tile.Type == this.Const.Tactical.TerrainType.Impassable)
+					if (!tile.IsEmpty || tile.Type == ::Const.Tactical.TerrainType.Impassable)
 					{
 						continue;
 					}
@@ -87,7 +87,7 @@
 							continue;
 						}
 
-						if (target.Actor.getMoraleState() == this.Const.MoraleState.Fleeing || target.Actor.getCurrentProperties().IsStunned) {
+						if (target.Actor.getMoraleState() == ::Const.MoraleState.Fleeing || target.Actor.getCurrentProperties().IsStunned) {
 							continue;
 						}
 
@@ -98,7 +98,7 @@
 						}
 					}
 
-					this.Const.Tactical.Actor.Alp.TeleportTargets.push({
+					::Const.Tactical.Actor.Alp.TeleportTargets.push({
 						Tile = tile,
 						Score = score
 					});
@@ -106,9 +106,9 @@
 			}
 		}
 
-		foreach( pd in this.Const.Tactical.Actor.Alp.TeleportTargets )
+		foreach( pd in ::Const.Tactical.Actor.Alp.TeleportTargets )
 		{
-			if (!pd.Tile.IsEmpty || pd.Tile.Type == this.Const.Tactical.TerrainType.Impassable)
+			if (!pd.Tile.IsEmpty || pd.Tile.Type == ::Const.Tactical.TerrainType.Impassable)
 			{
 				continue;
 			}
@@ -124,7 +124,7 @@
 				{
 					local nextTile = pd.Tile.getNextTile(i);
 
-					if (nextTile.IsOccupiedByActor && nextTile.getEntity().getType() == this.Const.EntityType.Alp)
+					if (nextTile.IsOccupiedByActor && nextTile.getEntity().getType() == ::Const.EntityType.Alp)
 					{
 						score = score - 10.0;
 					}
@@ -139,11 +139,11 @@
 
 		if (potentialDestinations.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		potentialDestinations.sort(this.onSortByScore);
 		this.m.TargetTile = potentialDestinations[0].Tile;
-		return this.Const.AI.Behavior.Score.AlpTeleport * score;
+		return ::Const.AI.Behavior.Score.AlpTeleport * score;
 	}
 });

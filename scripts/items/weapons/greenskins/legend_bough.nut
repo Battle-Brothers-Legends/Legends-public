@@ -8,10 +8,10 @@ this.legend_bough <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "Almost a whole tree uprooted, haphazardly reinforced with protruding iron rivets. Too heavy to be used effectively by the average human.";
 		this.m.IconLarge = "weapons/melee/legend_bough_01.png";
 		this.m.Icon = "weapons/melee/legend_bough_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Mace;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Mace;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

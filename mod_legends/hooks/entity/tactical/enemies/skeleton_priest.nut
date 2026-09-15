@@ -26,10 +26,10 @@
 		local armor = [
 			[1, ::Legends.Armor.Ancient.ancient_priest_attire]
 		];
-		local item = this.Const.World.Common.pickArmor(armor);
+		local item = ::Const.World.Common.pickArmor(armor);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[99, ::Legends.Helmet.Ancient.ancient_priest_diadem]
 		]);
 		if (item != null)
@@ -37,8 +37,8 @@
 			this.m.Items.equip(item);
 		}
 		local b = this.m.BaseProperties;	
-		b.Armor[this.Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of ancient priests to vanilla levels while respecting the outfit
-		b.ArmorMax[this.Const.BodyPart.Head] = 50 - item.getArmorMax();
+		b.Armor[::Const.BodyPart.Head] = 50 - item.getArmorMax(); // set head armor of ancient priests to vanilla levels while respecting the outfit
+		b.ArmorMax[::Const.BodyPart.Head] = 50 - item.getArmorMax();
 	}
 
 });

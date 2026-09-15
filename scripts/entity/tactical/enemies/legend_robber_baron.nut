@@ -2,16 +2,16 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendRobberBaron;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendRobberBaron.XP;
+		this.m.Type = ::Const.EntityType.LegendRobberBaron;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendRobberBaron.XP;
 		this.m.Name = this.generateName();
 		this.m.IsGeneratingKillName = false;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bandit_melee_agent_less_flanking");
 		this.m.AIAgent.setActor(this);
 
@@ -27,21 +27,21 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		local vars = [
 			[
 				"randomname",
-				this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+				::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
 			],
 			[
 				"randomtown",
-				this.Const.World.LocationNames.VillageWestern[this.Math.rand(0, this.Const.World.LocationNames.VillageWestern.len() - 1)]
+				::Const.World.LocationNames.VillageWestern[::Math.rand(0, ::Const.World.LocationNames.VillageWestern.len() - 1)]
 			]
 		];
-		return this.buildTextFromTemplate(this.Const.Strings.BanditLeaderNames[this.Math.rand(0, this.Const.Strings.BanditLeaderNames.len() - 1)], vars);
+		return this.buildTextFromTemplate(::Const.Strings.BanditLeaderNames[::Math.rand(0, ::Const.Strings.BanditLeaderNames.len() - 1)], vars);
 	}
 
 	function onInit()
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendRobberBaron);
+		b.setValues(::Const.Tactical.Actor.LegendRobberBaron);
 		b.IsImmuneToDisarm = true;
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
@@ -59,7 +59,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		this.setArmorSaturation(0.6);
 		this.getSprite("shield_icon").setBrightness(0.6);
 		::Legends.Perks.grant(this, ::Legends.Perk.Captain);
@@ -97,26 +97,26 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 	function assignRandomEquipment()
 	{
 		local weightName;
-		local shields = clone this.Const.Items.NamedShields;
+		local shields = clone ::Const.Items.NamedShields;
 		shields.extend([
 			"shields/named/named_bandit_kite_shield",
 			"shields/named/named_bandit_heater_shield"
 		]);
-		local r = this.Math.rand(1, 100);
+		local r = ::Math.rand(1, 100);
 		if (r > 25)
 		{
 			local namedWeaponArray = clone ::Const.Items.NamedMeleeWeapons;
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_dagger");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/named_estoc");
 			::MSU.Array.remove(namedWeaponArray, "weapons/named/");
-			this.getItems().equip(this.Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Const.World.Common.pickItem(namedWeaponArray.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 		else
 		{
-			this.getItems().equip(this.Const.World.Common.pickItem(shields.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Const.World.Common.pickItem(shields.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/noble_sword",
@@ -128,7 +128,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 				"weapons/military_cleaver"
 			];
 
-			if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+			if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 			{
 				weapons.extend([
 					"weapons/legend_zweihander",
@@ -139,10 +139,10 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 					"weapons/legend_battle_glaive"
 				]);
 			}
-			this.getItems().equip(this.Const.World.Common.pickItem(weapons.map(@(_it) [1, _it]), "scripts/items/"));
+			this.getItems().equip(::Const.World.Common.pickItem(weapons.map(@(_it) [1, _it]), "scripts/items/"));
 		}
 
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			this.getItems().equip(::Const.World.Common.pickItem([
 				[1, "shields/wooden_shield"],
@@ -151,21 +151,21 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 			], "scripts/items/"));
 		}
 
-		if (this.Math.rand(1, 100) > 50)
+		if (::Math.rand(1, 100) > 50)
 		{
-			local named = this.Const.Items.NamedArmors;
-			weightName = this.Const.World.Common.convNameToList(named);
-			this.getItems().equip(this.Const.World.Common.pickArmor(weightName));
+			local named = ::Const.Items.NamedArmors;
+			weightName = ::Const.World.Common.convNameToList(named);
+			this.getItems().equip(::Const.World.Common.pickArmor(weightName));
 
 		}
 		else
 		{
-			local named = this.Const.Items.NamedHelmets;
-			weightName = this.Const.World.Common.convNameToList(named);
-			this.getItems().equip(this.Const.World.Common.pickHelmet(weightName));
+			local named = ::Const.Items.NamedHelmets;
+			weightName = ::Const.World.Common.convNameToList(named);
+			this.getItems().equip(::Const.World.Common.pickHelmet(weightName));
 		}
 
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
 			this.getItems().equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.bandit_armor_ultraheavy],
@@ -178,7 +178,7 @@ this.legend_robber_baron <- this.inherit("scripts/entity/tactical/human", {
 			]));
 		}
 
-		if (this.getItems().getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.getItems().getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
 			this.getItems().equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.closed_mail_coif],

@@ -2,28 +2,28 @@
 {
 	o.m.Names = [];
 	o.m.Name <- "";
-	o.m.BackgroundType <- this.Const.BackgroundType.None;
-	o.m.AlignmentMin <- this.Const.LegendMod.Alignment.Dreaded;
-	o.m.AlignmentMax <- this.Const.LegendMod.Alignment.Saintly;
+	o.m.BackgroundType <- ::Const.BackgroundType.None;
+	o.m.AlignmentMin <- ::Const.LegendMod.Alignment.Dreaded;
+	o.m.AlignmentMax <- ::Const.LegendMod.Alignment.Saintly;
 	o.m.Modifiers <- {
-		Ammo = this.Const.LegendMod.ResourceModifiers.Ammo[0],
-		ArmorParts = this.Const.LegendMod.ResourceModifiers.ArmorParts[0],
-		Meds = this.Const.LegendMod.ResourceModifiers.Meds[0],
-		Stash = this.Const.LegendMod.ResourceModifiers.Stash[0],
-		Healing = this.Const.LegendMod.ResourceModifiers.Healing[0],
-		Injury = this.Const.LegendMod.ResourceModifiers.Injury[0],
-		Repair = this.Const.LegendMod.ResourceModifiers.Repair[0],
-		Salvage = this.Const.LegendMod.ResourceModifiers.Salvage[0],
-		Crafting = this.Const.LegendMod.ResourceModifiers.Crafting[0],
-		Haggle = this.Const.LegendMod.ResourceModifiers.Haggle[0],
-		ToolConsumption = this.Const.LegendMod.ResourceModifiers.ToolConsumption[0],
-		MedConsumption = this.Const.LegendMod.ResourceModifiers.MedConsumption[0],
-		Hunting = this.Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
+		Ammo = ::Const.LegendMod.ResourceModifiers.Ammo[0],
+		ArmorParts = ::Const.LegendMod.ResourceModifiers.ArmorParts[0],
+		Meds = ::Const.LegendMod.ResourceModifiers.Meds[0],
+		Stash = ::Const.LegendMod.ResourceModifiers.Stash[0],
+		Healing = ::Const.LegendMod.ResourceModifiers.Healing[0],
+		Injury = ::Const.LegendMod.ResourceModifiers.Injury[0],
+		Repair = ::Const.LegendMod.ResourceModifiers.Repair[0],
+		Salvage = ::Const.LegendMod.ResourceModifiers.Salvage[0],
+		Crafting = ::Const.LegendMod.ResourceModifiers.Crafting[0],
+		Haggle = ::Const.LegendMod.ResourceModifiers.Haggle[0],
+		ToolConsumption = ::Const.LegendMod.ResourceModifiers.ToolConsumption[0],
+		MedConsumption = ::Const.LegendMod.ResourceModifiers.MedConsumption[0],
+		Hunting = ::Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
 		Cooking = ::Const.LegendMod.ResourceModifiers.Cooking[0],
-		Fletching = this.Const.LegendMod.ResourceModifiers.Fletching[0],
-		Scout = this.Const.LegendMod.ResourceModifiers.Scout[0],
-		Gathering = this.Const.LegendMod.ResourceModifiers.Gather[0],
-		Training = this.Const.LegendMod.ResourceModifiers.Training[0],
+		Fletching = ::Const.LegendMod.ResourceModifiers.Fletching[0],
+		Scout = ::Const.LegendMod.ResourceModifiers.Scout[0],
+		Gathering = ::Const.LegendMod.ResourceModifiers.Gather[0],
+		Training = ::Const.LegendMod.ResourceModifiers.Training[0],
 		Enchanting = 0.0,
 		Terrain = [
 			0.0, // ?
@@ -125,7 +125,7 @@
 	{
 		function addToBackgroundType(_type, _constType){
 			if (!_type) return
-			this.m.BackgroundType = this.m.BackgroundType == this.Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
+			this.m.BackgroundType = this.m.BackgroundType == ::Const.BackgroundType.None ? _constType : this.m.BackgroundType | _constType;
 		}
 		this.addToBackgroundType(this.m.IsScenarioOnly, ::Const.BackgroundType.Scenario);
 		this.addToBackgroundType(this.m.IsUntalented, ::Const.BackgroundType.Untalented);
@@ -195,7 +195,7 @@
 
 	o.getIconColored <- function ()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.ConvertedCultist)) {
+		if(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
 			return "ui/backgrounds/background_34.png";
 		}
 		return this.m.Icon;
@@ -203,12 +203,12 @@
 
 	o.isHidden = function ()
 	{
-		return this.skill.isHidden() || this.isBackgroundType(this.Const.BackgroundType.Scenario);
+		return this.skill.isHidden() || this.isBackgroundType(::Const.BackgroundType.Scenario);
 	}
 
 	o.getName = function ()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.ConvertedCultist)) {
+		if(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
 			return "Background: Cultist " + this.m.Name;
 		}
 		return "Background: " + this.m.Name;
@@ -220,7 +220,7 @@
 			return "";
 		}
 		local i = 0;
-		local text = _prefix + " " + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
+		local text = _prefix + " " + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
 		if (i == _p.len() - 1)
 		{
 			return text + ".\n";
@@ -229,14 +229,14 @@
 		i = 1;
 		if (i == _p.len() - 1)
 		{
-			text = text + " and " + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
+			text = text + " and " + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
 			return text + ".\n";
 		}
 
 		text = text + ", ";
 		for (i; i < _p.len(); i++)
 		{
-			text = text + _p[i].Descriptions[this.Math.rand(0, _p[i].Descriptions.len() - 1)];
+			text = text + _p[i].Descriptions[::Math.rand(0, _p[i].Descriptions.len() - 1)];
 			if (i <  _p.len() - 2)
 			{
 				text = text + ", ";
@@ -429,7 +429,7 @@
 						id = 4,
 						type = "hint",
 						icon = c.icon,
-						text = c.name + " " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Modifiers[c.key]) + this.Math.abs(this.m.Modifiers[c.key]), this.m.Modifiers[c.key])
+						text = c.name + " " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Modifiers[c.key]) + ::Math.abs(this.m.Modifiers[c.key]), this.m.Modifiers[c.key])
 					}
 				);
 			}
@@ -1160,12 +1160,12 @@
 
 	o.buildDescription = function( _isFinal = false )
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Scenario))
+		if (this.isBackgroundType(::Const.BackgroundType.Scenario))
 		{
 			return;
 		}
 
-		local villages = this.World.EntityManager.getSettlements();
+		local villages = ::World.EntityManager.getSettlements();
 		local citystates = [];
 		local northern = [];
 
@@ -1181,16 +1181,16 @@
 			}
 		}
 
-		local brother = this.World.getPlayerRoster().getAll();
-		brother = brother.len() != 0 ? brother[this.Math.rand(0, brother.len() - 1)].getName() : "";
+		local brother = ::World.getPlayerRoster().getAll();
+		brother = brother.len() != 0 ? brother[::Math.rand(0, brother.len() - 1)].getName() : "";
 		local vars = [
 			[
 				"townname",
-				this.World.State.getCurrentTown() != null ? this.World.State.getCurrentTown().getNameOnly() : villages[this.Math.rand(0, villages.len() - 1)].getNameOnly()
+				::World.State.getCurrentTown() != null ? ::World.State.getCurrentTown().getNameOnly() : villages[::Math.rand(0, villages.len() - 1)].getNameOnly()
 			],
 			[
 				"randomtown",
-				northern[this.Math.rand(0, northern.len() - 1)].getNameOnly()
+				northern[::Math.rand(0, northern.len() - 1)].getNameOnly()
 			],
 			[
 				"randomcity",
@@ -1198,27 +1198,27 @@
 			],
 			[
 				"randomcitystate",
-				citystates.len() != 0 ? citystates[this.Math.rand(0, citystates.len() - 1)].getNameOnly() : ""
+				citystates.len() != 0 ? citystates[::Math.rand(0, citystates.len() - 1)].getNameOnly() : ""
 			],
 			[
 				"randomname",
-				this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+				::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
 			],
 			[
 				"randomnoble",
-				this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
+				::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]
 			],
 			[
 				"randomvizier",
-				this.Const.Strings.SouthernNames[this.Math.rand(0, this.Const.Strings.SouthernNames.len() - 1)] + " " + this.Const.Strings.VizierTitles[this.Math.rand(0, this.Const.Strings.VizierTitles.len() - 1)]
+				::Const.Strings.SouthernNames[::Math.rand(0, ::Const.Strings.SouthernNames.len() - 1)] + " " + ::Const.Strings.VizierTitles[::Math.rand(0, ::Const.Strings.VizierTitles.len() - 1)]
 			],
 			[
 				"randomnamefemale",
-				this.Const.Strings.CharacterNamesFemale[this.Math.rand(0, this.Const.Strings.CharacterNamesFemale.len() - 1)]
+				::Const.Strings.CharacterNamesFemale[::Math.rand(0, ::Const.Strings.CharacterNamesFemale.len() - 1)]
 			],
 			[
 				"companyname",
-				this.World.Assets.getName()
+				::World.Assets.getName()
 			],
 			[
 				"randombrother",
@@ -1338,9 +1338,9 @@
 	o.getPerkTreeDynamicMins <- function ()
 	{
 		local mins = this.m.PerkTreeDynamicMins;
-		if (this.isBackgroundType(this.Const.BackgroundType.Educated))
+		if (this.isBackgroundType(::Const.BackgroundType.Educated))
 			mins.ProfessionChance += 0.09;
-		if (this.isBackgroundType(this.Const.BackgroundType.Lowborn))
+		if (this.isBackgroundType(::Const.BackgroundType.Lowborn))
 			mins.ClassChance += 0.09;
 		return mins;
 	}
@@ -1379,7 +1379,7 @@
 
 		// THE COMMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
 		// shenanigans are still happening, so I will test some more. -- Midas
-		local origin = this.World.Assets.getOrigin();
+		local origin = ::World.Assets.getOrigin();
 		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet"))
 		{
 			this.getContainer().getActor().getFlags().set("ScenarioPerkSet", true);
@@ -1398,17 +1398,17 @@
 		else
 		{
 			local level = this.getContainer().getActor().getLevel();
-			local wage = this.Math.round(this.m.DailyCost * this.m.DailyCostMult);
-			_properties.DailyWage += wage * this.Math.pow(1.1, this.Math.min(10, level - 1));
+			local wage = ::Math.round(this.m.DailyCost * this.m.DailyCostMult);
+			_properties.DailyWage += wage * ::Math.pow(1.1, ::Math.min(10, level - 1));
 
 			if (level > 12)
 			{
-				local previous = wage * this.Math.pow(1.1, 10);
-				_properties.DailyWage += previous * this.Math.pow(1.03, level - 1 - 10) - previous;
+				local previous = wage * ::Math.pow(1.1, 10);
+				_properties.DailyWage += previous * ::Math.pow(1.03, level - 1 - 10) - previous;
 			}
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
 		{
 			_properties.XPGainMult *= 0.9;
 		}
@@ -1424,10 +1424,10 @@
 		if (_tag == "zombie")
 		{
 			local actor = this.getContainer().getActor();
-			local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
+			local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 
 			local body = actor.getSprite("body");
-			local b = this.m.Bodies[this.Math.rand(0, this.m.Bodies.len() - 1)];
+			local b = this.m.Bodies[::Math.rand(0, this.m.Bodies.len() - 1)];
 			body.setBrush(b);
 			body.Saturation = 0.5;
 			body.varySaturation(0.2);
@@ -1436,18 +1436,18 @@
 			actor.getSprite("injury_body").setBrush("zombify_body_01");
 
 			local head = actor.getSprite("head");
-			head.setBrush(this.m.Faces[this.Math.rand(0, this.m.Faces.len() - 1)]);
+			head.setBrush(this.m.Faces[::Math.rand(0, this.m.Faces.len() - 1)]);
 			head.Saturation = body.Saturation;
 			head.Color = body.Color;
 
 			local hair = actor.getSprite("hair");
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Zombie[this.Math.rand(0, this.Const.Hair.Zombie.len() - 1)]);
+			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Zombie[::Math.rand(0, ::Const.Hair.Zombie.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
-				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.Zombie[this.Math.rand(0, this.Const.Beards.Zombie.len() - 1)]);
+				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.Zombie[::Math.rand(0, ::Const.Beards.Zombie.len() - 1)]);
 				beard.Color = hair.Color;
 
 				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
@@ -1461,10 +1461,10 @@
 		else if (_tag == "skeleton")
 		{
 			local actor = this.getContainer().getActor();
-			local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
+			local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 
 			local body = actor.getSprite("body");
-			body.setBrush("bust_skeleton_body_0" + this.Math.rand(1, 2));
+			body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
 			body.Saturation = 0.8;
 			body.varySaturation(0.2);
 			body.varyColor(0.025, 0.025, 0.025);
@@ -1476,13 +1476,13 @@
 			head.Saturation = body.Saturation;
 
 			local hair = actor.getSprite("hair");
-			hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.ZombieOnly[this.Math.rand(0, this.Const.Hair.ZombieOnly.len() - 1)]);
+			hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.ZombieOnly[::Math.rand(0, ::Const.Hair.ZombieOnly.len() - 1)]);
 			hair.varyColor(0.02, 0.02, 0.02);
 
-			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
-				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieOnly[this.Math.rand(0, this.Const.Beards.ZombieOnly.len() - 1)]);
+				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieOnly[::Math.rand(0, ::Const.Beards.ZombieOnly.len() - 1)]);
 				beard.Color = hair.Color;
 
 				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
@@ -1496,12 +1496,12 @@
 		else
 		{
 			local actor = this.getContainer().getActor();
-			local hairColor = this.m.HairColors[this.Math.rand(0, this.m.HairColors.len() - 1)];
+			local hairColor = this.m.HairColors[::Math.rand(0, this.m.HairColors.len() - 1)];
 
 			if (this.m.Faces != null)
 			{
 				local sprite = actor.getSprite("head");
-				sprite.setBrush(this.m.Faces[this.Math.rand(0, this.m.Faces.len() - 1)]);
+				sprite.setBrush(this.m.Faces[::Math.rand(0, this.m.Faces.len() - 1)]);
 				sprite.Color = this.createColor("#fbffff");
 				sprite.varyColor(0.05, 0.05, 0.05);
 				sprite.varySaturation(0.1);
@@ -1510,7 +1510,7 @@
 				body.Saturation = sprite.Saturation;
 			}
 
-			if (this.m.Hairs != null && this.Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len())
+			if (this.m.Hairs != null && ::Math.rand(0, this.m.Hairs.len()) != this.m.Hairs.len())
 			{
 				local sprite = actor.getSprite("hair");
 				local hair = this.m.Hairs[::Math.rand(0, this.m.Hairs.len() - 1)];
@@ -1525,10 +1525,10 @@
 				}
 			}
 
-			if (this.m.Beards != null && this.Math.rand(1, 100) <= this.m.BeardChance)
+			if (this.m.Beards != null && ::Math.rand(1, 100) <= this.m.BeardChance)
 			{
 				local beard = actor.getSprite("beard");
-				beard.setBrush("beard_" + hairColor + "_" + this.m.Beards[this.Math.rand(0, this.m.Beards.len() - 1)]);
+				beard.setBrush("beard_" + hairColor + "_" + this.m.Beards[::Math.rand(0, this.m.Beards.len() - 1)]);
 				beard.Color = actor.getSprite("hair").Color;
 
 				if (this.doesBrushExist(beard.getBrush().Name + "_top"))
@@ -1541,7 +1541,7 @@
 
 			if (this.m.Bodies != null)
 			{
-				local body = this.m.Bodies[this.Math.rand(0, this.m.Bodies.len() - 1)];
+				local body = this.m.Bodies[::Math.rand(0, this.m.Bodies.len() - 1)];
 				actor.getSprite("body").setBrush(body);
 				actor.getSprite("injury_body").setBrush(body + "_injured");
 			}
@@ -1568,7 +1568,7 @@
 	{
 		if (::Legends.Mod.ModSettings.getSetting("RecruitScaling").getValue())
 		{
-			local roster = this.World.getPlayerRoster().getAll();
+			local roster = ::World.getPlayerRoster().getAll();
 			local levels = 0;
 			local count = 0;
 
@@ -1579,11 +1579,11 @@
 				count = count + 1;
 			}
 
-			local avgLevel = this.Math.floor(levels / count);
-			local busRep = this.World.Assets.getBusinessReputation();
-			local repPoints = this.Math.floor(busRep / 1000);
-			local repLevelAvg = this.Math.floor((avgLevel + repPoints) / 4);
-			local broLevel = this.Math.rand(1, repLevelAvg);
+			local avgLevel = ::Math.floor(levels / count);
+			local busRep = ::World.Assets.getBusinessReputation();
+			local repPoints = ::Math.floor(busRep / 1000);
+			local repLevelAvg = ::Math.floor((avgLevel + repPoints) / 4);
+			local broLevel = ::Math.rand(1, repLevelAvg);
 			return broLevel - 1;
 		}
 		else
@@ -1608,7 +1608,7 @@
 			return;
 		}
 
-		if (("State" in this.Tactical) && this.Tactical.State != null && this.Tactical.State.isScenarioMode())
+		if (("State" in ::Tactical) && ::Tactical.State != null && ::Tactical.State.isScenarioMode())
 		{
 			return;
 		}
@@ -1619,7 +1619,7 @@
 			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 
-		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && this.Math.rand(0, 1) == 1)	{
+		if (actor.getTitle() == "" && this.m.LastNames.len() != 0 && ::Math.rand(0, 1) == 1)	{
 			local lastName = this.m.LastNames[::Math.rand(0, this.m.LastNames.len() - 1)];
 			if (this.getContainer().getActor().getGender()) {
 				lastName = ::String.replace(lastName, "Ibn ", "Bint "); // changes southern "son of" to "daughter of"
@@ -1627,9 +1627,9 @@
 			actor.setTitle(lastName);
 		}
 
-		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && this.Math.rand(0, 3) == 3)
+		if (actor.getTitle() == "" && this.m.Titles.len() != 0 && ::Math.rand(0, 3) == 3)
 		{
-			actor.setTitle(this.m.Titles[this.Math.rand(0, this.m.Titles.len() - 1)]);
+			actor.setTitle(this.m.Titles[::Math.rand(0, this.m.Titles.len() - 1)]);
 		}
 
 		if (actor.getNameOnly() == "")
@@ -1638,31 +1638,31 @@
 
 			if (names == null || this.m.Names.len() == 0)
 			{
-				names = this.Const.Strings.CharacterNames;
+				names = ::Const.Strings.CharacterNames;
 				if (this.m.Ethnicity == 1)
 				{
-					names = this.Const.Strings.SouthernNames;
+					names = ::Const.Strings.SouthernNames;
 				}
 				else if (this.m.Ethnicity == 2)
 				{
-					names = this.Const.Strings.BarbarianNames;
+					names = ::Const.Strings.BarbarianNames;
 				}
 
-				if (this.isBackgroundType(this.Const.BackgroundType.Female))
+				if (this.isBackgroundType(::Const.BackgroundType.Female))
 				{
-					names = this.Const.Strings.CharacterNamesFemale;
+					names = ::Const.Strings.CharacterNamesFemale;
 					if (this.m.Ethnicity == 1)
 					{
-						names = this.Const.Strings.SouthernFemaleNames;
+						names = ::Const.Strings.SouthernFemaleNames;
 					}
 					else if (this.m.Ethnicity == 2)
 					{
-						names = this.Const.Strings.CharacterNamesFemaleNorse;
+						names = ::Const.Strings.CharacterNamesFemaleNorse;
 					}
 				}
 			}
 
-			actor.setName(names[this.Math.rand(0, names.len() - 1)]);
+			actor.setName(names[::Math.rand(0, names.len() - 1)]);
 		}
 
 		//this.m.Level += actor.m.Background.calculateAdditionalRecruitmentLevels(); old recruit scaling option
@@ -1682,13 +1682,13 @@
 				}
 				else
 				{
-					actor.m.PerkPoints = 11 + this.Math.floor((this.m.Level - 12) / this.getContainer().getActor().getVeteranPerks());
+					actor.m.PerkPoints = 11 + ::Math.floor((this.m.Level - 12) / this.getContainer().getActor().getVeteranPerks());
 				}
 			}
 			actor.m.PerkPoints = this.m.Level - 1;
 			actor.m.LevelUps = this.m.Level - 1;
 			actor.m.Level = this.m.Level;
-			actor.m.XP = this.Const.LevelXP[this.m.Level - 1];
+			actor.m.XP = ::Const.LevelXP[this.m.Level - 1];
 		}
 
 	}
@@ -1696,26 +1696,26 @@
 	{
 		local actor = this.getContainer().getActor();
 
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
-			actor.m.Sound[this.Const.Sound.ActorEvent.NoDamageReceived] = [
+			actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = [
 				"sounds/humans/legends/woman_light_01.wav",
 				"sounds/humans/legends/woman_light_02.wav",
 				"sounds/humans/legends/woman_light_03.wav",
 				"sounds/humans/legends/woman_light_04.wav",
 				"sounds/humans/legends/woman_light_05.wav"
 			];
-			actor.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+			actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 				"sounds/humans/legends/woman_injury_01.wav",
 				"sounds/humans/legends/woman_injury_02.wav",
 				"sounds/humans/legends/woman_injury_03.wav"
 			];
-			actor.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+			actor.m.Sound[::Const.Sound.ActorEvent.Death] = [
 				"sounds/humans/legends/woman_death_01.wav",
 				"sounds/humans/legends/woman_death_02.wav",
 				"sounds/humans/legends/woman_death_03.wav"
 			];
-			actor.m.Sound[this.Const.Sound.ActorEvent.Fatigue] = [
+			actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = [
 				"sounds/humans/legends/woman_fatigue_01.wav",
 				"sounds/humans/legends/woman_fatigue_02.wav",
 				"sounds/humans/legends/woman_fatigue_03.wav",
@@ -1724,7 +1724,7 @@
 				"sounds/humans/legends/woman_fatigue_06.wav",
 				"sounds/humans/legends/woman_fatigue_07.wav"
 			];
-			actor.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+			actor.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 				"sounds/humans/legends/woman_flee_01.wav",
 				"sounds/humans/legends/woman_flee_02.wav",
 				"sounds/humans/legends/woman_flee_03.wav",
@@ -1732,7 +1732,7 @@
 				"sounds/humans/legends/woman_flee_05.wav",
 				"sounds/humans/legends/woman_flee_06.wav"
 			];
-			actor.m.SoundPitch = this.Math.rand(105, 115) * 0.01;
+			actor.m.SoundPitch = ::Math.rand(105, 115) * 0.01;
 		}
 	}
 	o.getBackgroundTypes <- function()
@@ -1797,8 +1797,8 @@
 
 	o.Convert <- function()
 	{
-		this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
-		this.addPerkGroup(this.Const.Perks.NinetailsClassTree.Tree);
+		this.addBackgroundType(::Const.BackgroundType.ConvertedCultist);
+		this.addPerkGroup(::Const.Perks.NinetailsClassTree.Tree);
 		this.getContainer().getActor().getFlags().add("cultist");
 	}
 
@@ -1810,8 +1810,8 @@
 		_out.writeU8(this.m.Level);
 		_out.writeBool(this.m.IsNew);
 		_out.writeF32(this.m.DailyCostMult);
-		_out.writeBool(this.isBackgroundType(this.Const.BackgroundType.Female));
-		_out.writeBool(this.isBackgroundType(this.Const.BackgroundType.ConvertedCultist));
+		_out.writeBool(this.isBackgroundType(::Const.BackgroundType.Female));
+		_out.writeBool(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist));
 		if (this.m.CustomPerkTree == null)
 		{
 			_out.writeU8(0);
@@ -1871,7 +1871,7 @@
 
 		if(_in.readBool())
 		{
-			this.addBackgroundType(this.Const.BackgroundType.Female);
+			this.addBackgroundType(::Const.BackgroundType.Female);
 			this.setGender(1);
 		}
 		else
@@ -1881,7 +1881,7 @@
 
 		if (_in.readBool())
 		{
-			this.addBackgroundType(this.Const.BackgroundType.ConvertedCultist);
+			this.addBackgroundType(::Const.BackgroundType.ConvertedCultist);
 		}
 
 		this.m.CustomPerkTree = [];

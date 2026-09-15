@@ -5,8 +5,8 @@ this.legend_inspire_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendInspire);
 		this.m.Description = "You can do it! Inspire an ally to go to their limit and beyond, granting them additional Action Points. Targets can only be inspired once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/inspire", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;

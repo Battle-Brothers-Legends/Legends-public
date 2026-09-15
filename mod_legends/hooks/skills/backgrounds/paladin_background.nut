@@ -45,22 +45,22 @@
 			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.RangedSkill
 
 		];
-		this.m.Level = this.Math.rand(1, 3);
+		this.m.Level = ::Math.rand(1, 3);
 		this.m.PerkTreeDynamicMins.Weapon = 9;
 		this.m.IsCombatBackground = true;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMin;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMin;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
-		local bonus = this.Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
 		ret.push({
 			id = 13,
 			type = "text",
@@ -84,7 +84,7 @@
 	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		local bonus = this.Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
 		_properties.Initiative += bonus;
 		_properties.Hitpoints += bonus;
 		_properties.Stamina += bonus;
@@ -96,14 +96,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 30)
+		if (::Math.rand(1, 100) <= 30)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -134,7 +134,7 @@
 		local items = actor.getItems();
 		local r;
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/arming_sword",
@@ -154,10 +154,10 @@
 				"weapons/bardiche"
 			];
 
-			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand) && this.Math.rand(1, 100) <= 75)
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand) && ::Math.rand(1, 100) <= 75)
 		{
 			local shields = [
 				"shields/wooden_shield",
@@ -165,18 +165,18 @@
 				"shields/heater_shield",
 				"shields/kite_shield"
 			];
-			items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		r = this.Math.rand(0, 5);
+		r = ::Math.rand(0, 5);
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.adorned_mail_shirt],
 			[2, ::Legends.Armor.Standard.adorned_warriors_armor],
 			[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.heavy_mail_coif],
 			[2, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.adorned_full_helm]

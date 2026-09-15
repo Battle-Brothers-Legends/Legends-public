@@ -5,7 +5,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 	function create() {
 		this.m.ID = "event.legends_nomads_convert_slave";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 28.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 28.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_166.png[/img]%slave% has been with you for some time — regardless of where they came from, they have fully embraced the path of the interloper in both blood and spirit. The concept of keeping someone of their kind is an uneasy one for you. They have served in the tribe without much graditude or fair treatment. Perhaps it is time to cut the shackles and bring them into the fold?",
@@ -70,7 +70,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.Slave.resetPerks();
 
 				local mood = ::Legends.EventList.changeMood(_event.m.Slave, 2.0, "Escaped a long life of servitude");
-				if (_event.m.Slave.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Slave.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push(mood);
 				}
 				this.List.extend([
@@ -112,7 +112,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.Slave.resetPerks();
 
 				local mood = ::Legends.EventList.changeMood(_event.m.Slave, 2.0, "Escaped a long life of servitude");
-				if (_event.m.Slave.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Slave.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push(mood);
 				}
 				this.List.extend([
@@ -151,7 +151,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.Slave.resetPerks();
 
 				local mood = ::Legends.EventList.changeMood(_event.m.Slave, 2.0, "Escaped a long life of servitude");
-				if (_event.m.Slave.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Slave.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push(mood);
 				}
 				this.List.extend([
@@ -195,7 +195,7 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 				_event.m.Slave.resetPerks();
 
 				local mood = ::Legends.EventList.changeMood(_event.m.Slave, 2.0, "Escaped a long life of servitude");
-				if (_event.m.Slave.getMoodState() >= this.Const.MoodState.Neutral) {
+				if (_event.m.Slave.getMoodState() >= ::Const.MoodState.Neutral) {
 					this.List.push(mood);
 				}
 				this.List.extend([
@@ -227,11 +227,11 @@ this.legends_nomads_convert_slave_event <- this.inherit("scripts/events/event", 
 	}
 
 	function onUpdateScore() {
-		if (!this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
+		if (!::World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local slave_candidates = [];
 
 		foreach (bro in brothers) {

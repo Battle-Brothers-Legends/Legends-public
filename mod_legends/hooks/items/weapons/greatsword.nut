@@ -15,7 +15,7 @@
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 10;
 		this.m.Variants = [1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

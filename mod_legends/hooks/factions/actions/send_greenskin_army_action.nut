@@ -94,7 +94,7 @@
 			party.addToInventory("supplies/strange_meat_item");
 		}
 
-		if (this.Math.rand(1, 100) <= 25) {
+		if (::Math.rand(1, 100) <= 25) {
 			local loot = [
 				"loot/goblin_carved_ivory_iconographs_item",
 				"loot/goblin_minted_coins_item",

@@ -7,12 +7,12 @@
 		this.m.Difficulty = 2;
 		this.m.Order = 90;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(8);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(8);
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 5; i = i )
@@ -29,7 +29,7 @@
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -44,7 +44,7 @@
 		bros[0].getBaseProperties().MeleeSkill += 10;
 		bros[0].setPlaceInFormation(2);
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/battle_whip"));
 
 		bros[1].setStartValuesEx([::Legends.Background.LegendHusk]); // heavy hitter
@@ -53,7 +53,7 @@
 		bros[1].getBaseProperties().MeleeSkill += 10;
 		bros[1].setPlaceInFormation(3);
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/two_handed_wooden_flail"));
 
 		bros[2].setStartValuesEx([::Legends.Background.Cultist]); //edgyboy 1, hitchance
@@ -62,14 +62,14 @@
 		bros[2].getBaseProperties().MeleeSkill += 10;
 		bros[2].setPlaceInFormation(4);
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]
 		]));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 		bros[3].setStartValuesEx([::Legends.Background.Cultist]); //edgyboy 2, armour
@@ -78,14 +78,14 @@
 		bros[3].getBaseProperties().MeleeSkill += 10;
 		bros[3].setPlaceInFormation(5);
 		local items = bros[3].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.equip(this.new("scripts/items/weapons/pickaxe"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood]
 		]));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 		bros[4].setStartValuesEx([::Legends.Background.LegendLurker]); //ranged support		
@@ -94,12 +94,12 @@
 		bros[4].getBaseProperties().MeleeSkill += 10;
 		bros[4].setPlaceInFormation(6);
 		local items = bros[4].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money + 300;
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money + 300;
 	}
 
 	o.onUpdateHiringRoster <- function ( _roster )
@@ -112,7 +112,7 @@
 
 	o.isCultist <- function ( _background )
 	{
-		return _background.isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist);
+		return _background.isBackgroundType(::Const.BackgroundType.ConvertedCultist | ::Const.BackgroundType.Cultist);
 	}
 
 	o.onHiredByScenario <- function ( _bro ) //cultist hire
@@ -138,7 +138,7 @@
 		//Can't really recruit converted cultists but its here anyway for posterity
 		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendLurker) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHusk) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getBaseProperties().MeleeSkill += 10;
 			::Legends.Traits.remove(bro, ::Legends.Trait.Superstitious); //If cultist, this ID will be removed as True believer is not removing them on hire
@@ -149,7 +149,7 @@
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
 			bro.getBaseProperties().DailyWageMult *= 1.25;
 			bro.getSkills().update();
 		}

@@ -4,7 +4,7 @@
 	{
 		this.paladin_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.PaladinOld);
-		this.m.HairColors = this.Const.HairColors.Old;
+		this.m.HairColors = ::Const.HairColors.Old;
 	}
 
 	o.onSetAppearance = function ()

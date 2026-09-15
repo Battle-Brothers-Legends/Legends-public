@@ -24,7 +24,7 @@
 				{
 					for( local i = 0; i < 2; i = ++i )
 					{
-						local r = this.Math.rand(1, 12);
+						local r = ::Math.rand(1, 12);
 						local item;
 
 						switch(r)
@@ -46,7 +46,7 @@
 							break;
 
 						case 5:
-							item = this.Const.World.Common.pickArmor([
+							item = ::Const.World.Common.pickArmor([
 								[1, ::Legends.Armor.Ancient.ancient_mail],
 							]);
 							break;
@@ -79,16 +79,16 @@
 							local helmet = [
 								[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 							];
-							item = this.Const.World.Common.pickHelmet(helmet);
+							item = ::Const.World.Common.pickHelmet(helmet);
 							break;
 						}
 
 						if (item.getConditionMax() > 1)
 						{
-							item.setCondition(this.Math.max(1, item.getConditionMax() * this.Math.rand(10, 50) * 0.01));
+							item.setCondition(::Math.max(1, item.getConditionMax() * ::Math.rand(10, 50) * 0.01));
 						}
 
-						this.World.Assets.getStash().add(item);
+						::World.Assets.getStash().add(item);
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
@@ -97,12 +97,12 @@
 						});
 					}
 
-					local amount = this.Math.rand(10, 30);
-					this.World.Assets.addArmorParts(amount);
+					local amount = ::Math.rand(10, 30);
+					::World.Assets.addArmorParts(amount);
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_supplies.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]+" + amount + "[/color] Tools and Supplies."
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]+" + amount + "[/color] Tools and Supplies."
 					});
 				}
 			}
@@ -115,15 +115,15 @@
 
 	local spawnEnemy = o.spawnEnemy;
 	o.spawnEnemy = function () {
-		local f = this.World.FactionManager.getFaction(this.m.Flags.get("EnemyID"));
+		local f = ::World.FactionManager.getFaction(this.m.Flags.get("EnemyID"));
 		local party = spawnEnemy();
-		party.getLoot().Money = this.Math.rand(100, 300);
-		party.getLoot().ArmorParts = this.Math.rand(10, 35);
-		party.getLoot().Medicine = this.Math.rand(5, 15);
-		party.getLoot().Ammo = this.Math.rand(10, 40);
-		local r = this.Math.rand(1, 4);
+		party.getLoot().Money = ::Math.rand(100, 300);
+		party.getLoot().ArmorParts = ::Math.rand(10, 35);
+		party.getLoot().Medicine = ::Math.rand(5, 15);
+		party.getLoot().Ammo = ::Math.rand(10, 40);
+		local r = ::Math.rand(1, 4);
 		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"];
-		for(local i = 0; i < this.Math.round(r/2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
+		for(local i = 0; i < ::Math.round(r/2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			party.addToInventory(arr[r-1]);
 		return party;
 	}

@@ -13,28 +13,28 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
-		local partysize = this.Math.rand(4, 6);
-		local broLevelMax = this.Math.floor(8 / partysize);
+		local roster = ::World.getPlayerRoster();
+		local partysize = ::Math.rand(4, 6);
+		local broLevelMax = ::Math.floor(8 / partysize);
 
 
 
 		for( local i = 0; i < partysize; i = ++i )
 		{
-			local broLevel = this.Math.rand(1, broLevelMax);
+			local broLevel = ::Math.rand(1, broLevelMax);
 			local broPerks = broLevel - 1;
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = this.Time.getVirtualTimeF();
 			
-			local r = this.Math.rand(0, 99);
+			local r = ::Math.rand(0, 99);
 			if (r > 98)
 				{
-				bro.setStartValuesEx(this.Const.CharacterPartyBackgrounds);
+				bro.setStartValuesEx(::Const.CharacterPartyBackgrounds);
 				}
 				else
 				{
-				bro.setStartValuesEx(this.Const.CharacterBackgroundsRandom);
+				bro.setStartValuesEx(::Const.CharacterBackgroundsRandom);
 				}
 			bro.m.Level = broLevel;
 			bro.m.LevelUps = broPerks;
@@ -42,36 +42,36 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 		}
 
 		local randomFood;
-		randomFood = this.Math.rand(0, 5);
+		randomFood = ::Math.rand(0, 5);
 		if (randomFood == 0)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
 		}
 		if (randomFood == 1)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
 		}
 		if (randomFood == 2)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
 		}
 		if (randomFood == 3)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/roots_and_berries_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/roots_and_berries_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
 		}
 		if (randomFood == 4)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		}
 		if (randomFood == 5)
 		{
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fish_item"));
-			this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fruits_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fish_item"));
+			::World.Assets.getStash().add(this.new("scripts/items/supplies/dried_fruits_item"));
 		}
 
 	}
@@ -81,9 +81,9 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 		local randomVillage;
 		local northernmostY = 0;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			local v = this.World.EntityManager.getSettlements()[i];
+			local v = ::World.EntityManager.getSettlements()[i];
 
 			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
 			{
@@ -94,22 +94,22 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 
 		randomVillage.setLastSpawnTimeToNow();
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 2), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 2), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -117,7 +117,7 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -152,14 +152,14 @@ this.legend_random_party_scenario <- this.inherit("scripts/scenarios/world/start
 		s.setValidForDays(5);
 		randomVillage.addSituation(s);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/civilians_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_random_party_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_random_party_scenario_intro");
 		}, null);
 
 	}

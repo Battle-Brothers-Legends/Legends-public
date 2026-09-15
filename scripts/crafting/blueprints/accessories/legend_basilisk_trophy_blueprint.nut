@@ -4,7 +4,7 @@ this.legend_basilisk_trophy_blueprint <- this.inherit("scripts/crafting/blueprin
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_basilisk_trophy";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = ::Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_basilisk_trophy_item");
 		this.m.Cost = 1500;
 		local ingredients = [

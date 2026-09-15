@@ -15,9 +15,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Educated;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function () {
@@ -48,12 +48,12 @@
 		this.character_background.onAdded();
 
 		if (::Math.rand(0, 3) == 3) {
-			this.getContainer().getActor().setTitle(this.Const.Strings.MasonTitles[this.Math.rand(0, this.Const.Strings.MasonTitles.len() - 1)]);
+			this.getContainer().getActor().setTitle(::Const.Strings.MasonTitles[::Math.rand(0, ::Const.Strings.MasonTitles.len() - 1)]);
 		}
 	}
 
 	o.onAddEquipment = function () {
-		this.getContainer().getActor().getItems().equip(this.Const.World.Common.pickArmor([
+		this.getContainer().getActor().getItems().equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 	}

@@ -7,14 +7,14 @@
 		this.m.Difficulty = 3;
 		this.m.Order = 89;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(12);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(12);
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 6; i = ++i )
@@ -31,21 +31,21 @@
 		bros[0].getBackground().m.RawDescription = "{In a sense, you don\'t particularly care for %name%. %They%\'s not hateful nor forgiving toward the prisoners of war, criminals, and the like. %They% just handles %their% business. But %they're% also this calm, unwavering way with you, and it\'s a bit bothersome. The %person% has so much potential, which is why you have %them% onboard for the %companyname%, but you just wished %they% showed some passion now and again.}";
 		bros[0].setPlaceInFormation(12);
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
 		::Legends.Actives.grant(bros[0], ::Legends.Active.WhipSlave);
 		bros[0].m.Talents = [];
 		talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.Bravery] = 2;
-		talents[this.Const.Attributes.RangedDefense] = 1;
-		local traits = bros[0].getSkills().getAllSkillsOfType(this.Const.SkillType.Trait);
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.Bravery] = 2;
+		talents[::Const.Attributes.RangedDefense] = 1;
+		local traits = bros[0].getSkills().getAllSkillsOfType(::Const.SkillType.Trait);
 
 		foreach( t in traits )
 		{
-			if (!t.isType(this.Const.SkillType.Special) && !t.isType(this.Const.SkillType.Background))
+			if (!t.isType(::Const.SkillType.Special) && !t.isType(::Const.SkillType.Background))
 			{
 				bros[0].getSkills().remove(t);
 			}
@@ -56,11 +56,11 @@
 		bros[1].getBackground().m.RawDescription = "{%name% is one of the worst people you have ever come to know. %They% is relentlessly brutal on the indebted, even by your measure, and is responsible for outright killing a few of your catches. That said, %their% mean streak will serve the company well. And given that you\'ve already whipped %them% a time or three for losing inventory, you know %they% can take a hit as well as %they% can give it.}";
 		bros[1].setPlaceInFormation(13);
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap]
 		]));
 		items.equip(this.new("scripts/items/weapons/battle_whip"));
@@ -68,10 +68,10 @@
 		bros[1].worsenMood(0.0, "Annoyed by your recent reprimand not to mistreat your captives");
 		bros[1].m.Talents = [];
 		talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Fatigue] = 2;
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.Hitpoints] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Fatigue] = 2;
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.Hitpoints] = 1;
 		bros[2].setStartValuesEx([::Legends.Background.SlaveSouthern]);
 		bros[2].setTitle("the Learned");
 		bros[2].getBackground().m.RawDescription = "{You found %name% being lawed by city guards. It looked like they were gonna play a game of \'catch the scimitar\' with %their% wrists until you intervened, opining that %they% owed the Gilder far before %they% owed any man. You hoped to offload %them% to high-paying Viziers, but none would take %them% as %they% was too \'learned\' and seemed the exact sort of threat to spur an uprising. Unusual to a %person% of %their% standing, %they% does harbor a fair bit of respect for you.}";
@@ -80,9 +80,9 @@
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.Bright);
 		bros[2].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/wooden_stick"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 		]));
 		bros[2].worsenMood(0.0, "Misses his books");
@@ -92,7 +92,7 @@
 		bros[3].setPlaceInFormation(3);
 		bros[3].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[3].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/bludgeon"));
 		bros[3].worsenMood(2.0, "Almost got executed");
 		bros[3].improveMood(2.0, "Relieved that %they% escaped execution");
@@ -103,7 +103,7 @@
 		bros[4].setPlaceInFormation(4);
 		bros[4].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[4].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
 		bros[4].worsenMood(0.5, "Feels cursed to have deserted one army only to end up an indebted in another");
 		bros[5].setStartValuesEx([::Legends.Background.SlaveSouthern]);
@@ -112,28 +112,28 @@
 		bros[5].setPlaceInFormation(5);
 		bros[5].getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		local items = bros[5].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/wooden_stick"));
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/misc/manhunters_ledger_item"));
-		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 9);
-		this.World.Assets.m.Money = this.World.Assets.m.Money;
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/misc/manhunters_ledger_item"));
+		::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 9);
+		::World.Assets.m.Money = ::World.Assets.m.Money;
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine / 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
 	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern())
 			{
@@ -142,22 +142,22 @@
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -165,7 +165,7 @@
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -178,15 +178,15 @@
 		while (1);
 
 		this.countIndebted();
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(18);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(18);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/worldmap_11.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.manhunters_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.manhunters_scenario_intro");
 		}, null);
 	}
 
@@ -194,13 +194,13 @@
 	{
 		if (bro.getBackground().getID() == ::Legends.Background.Slave)
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default (costs nothing)
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSkills().update();
 		}
@@ -209,9 +209,9 @@
 	o.onInit = function ()
 	{
 		this.starting_scenario.onInit();
-		this.World.Assets.m.BrothersMax = 25;
-		this.World.Assets.m.BrothersMaxInCombat = 16;
-		this.World.Assets.m.BrothersScaleMax = 14;
+		::World.Assets.m.BrothersMax = 25;
+		::World.Assets.m.BrothersMaxInCombat = 16;
+		::World.Assets.m.BrothersScaleMax = 14;
 	}
 
 	o.onHired = function ( _bro )
@@ -313,7 +313,7 @@
 
 	o.countIndebted = function ()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local indebted = 0;
 		local nonIndebted = [];
 
@@ -329,8 +329,8 @@
 			}
 		}
 
-		this.World.Statistics.getFlags().set("ManhunterIndebted", indebted);
-		this.World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
+		::World.Statistics.getFlags().set("ManhunterIndebted", indebted);
+		::World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
 	}
 
 });

@@ -2,15 +2,15 @@
 {
 	o.onUpdate = function ( _faction )
 	{
-		this.m.Settlement = _faction.getSettlements()[this.Math.rand(0, _faction.getSettlements().len() - 1)];
+		this.m.Settlement = _faction.getSettlements()[::Math.rand(0, _faction.getSettlements().len() - 1)];
 		this.m.Settlement.updateSituations();
 
-		if (this.Math.rand(1, 100) > 2)
+		if (::Math.rand(1, 100) > 2)
 		{
 			return;
 		}
 
-		if (_faction.getType() == this.Const.FactionType.NobleHouse && !this.m.Settlement.isMilitary())
+		if (_faction.getType() == ::Const.FactionType.NobleHouse && !this.m.Settlement.isMilitary())
 		{
 			return;
 		}
@@ -20,7 +20,7 @@
 			return;
 		}
 
-		if (this.m.Settlement.getTile().getDistanceTo(this.World.State.getPlayer().getTile()) <= 10)
+		if (this.m.Settlement.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 10)
 		{
 			return;
 		}
@@ -32,7 +32,7 @@
 
 		local possible_situations = [];
 
-		if (this.World.FactionManager.isGreaterEvil())
+		if (::World.FactionManager.isGreaterEvil())
 		{
 			possible_situations.push("refugees_situation");
 			possible_situations.push("refugees_situation");
@@ -48,7 +48,7 @@
 				possible_situations.push("cultist_procession_situation");
 				possible_situations.push("archery_contest_situation");
 
-				if (this.World.Assets.getOrigin().getID() == "scenario.cultists")
+				if (::World.Assets.getOrigin().getID() == "scenario.cultists")
 				{
 					possible_situations.push("cultist_procession_situation");
 				}
@@ -97,7 +97,7 @@
 		{
 			possible_situations.push("mustering_troops_situation");
 
-			if (!this.World.FactionManager.isGreaterEvil())
+			if (!::World.FactionManager.isGreaterEvil())
 			{
 				possible_situations.push("disbanded_troops_situation");
 
@@ -155,7 +155,7 @@
 					possible_situations.push("bread_and_games_situation");
 				}
 
-				if (this.World.getTime().Days > 10 && !this.m.Settlement.hasSituation("situation.bread_and_games"))
+				if (::World.getTime().Days > 10 && !this.m.Settlement.hasSituation("situation.bread_and_games"))
 				{
 					possible_situations.push("arena_tournament_situation");
 				}
@@ -167,12 +167,12 @@
 			return;
 		}
 
-		if (this.Math.rand(1, 100) <= 75 - possible_situations.len() * 25)
+		if (::Math.rand(1, 100) <= 75 - possible_situations.len() * 25)
 		{
 			return;
 		}
 
-		this.m.Situation = possible_situations[this.Math.rand(0, possible_situations.len() - 1)];
+		this.m.Situation = possible_situations[::Math.rand(0, possible_situations.len() - 1)];
 		this.m.Score = 1;
 	}
 });

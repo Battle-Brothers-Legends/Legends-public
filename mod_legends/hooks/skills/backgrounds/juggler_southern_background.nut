@@ -4,8 +4,8 @@
 	{
 		this.juggler_background.create();
 		this.m.Ethnicity = 1;
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -20,7 +20,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]));
 	}

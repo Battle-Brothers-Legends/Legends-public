@@ -10,8 +10,8 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -44,7 +44,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -59,12 +59,12 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 
 	function getCursorForTile( _tile ) {
 		if (_tile.ID == this.getContainer().getActor().getTile().ID)
-			return this.Const.UI.Cursor.Drink;
-		return this.Const.UI.Cursor.Give;
+			return ::Const.UI.Cursor.Drink;
+		return ::Const.UI.Cursor.Give;
 	}
 
 	function isUsable() {
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function onVerifyTarget( _originTile, _targetTile ) {
@@ -76,7 +76,7 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 		if (!this.m.Container.getActor().isAlliedWith(target))
 			return false;
 
-		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+		if (target.getID() != _originTile.getEntity().getID() && !target.getItems().hasEmptySlot(::Const.ItemSlot.Bag))
 			return false;
 
 		if (!target.getFlags().has("human"))
@@ -106,18 +106,18 @@ this.legend_drink_alcohol_skill <- this.inherit("scripts/skills/skill", {
 				::Legends.Effects.grant(user, this.m.Effect);
 
 			if (!user.isHiddenToPlayer())
-				this.Tactical.EventLog.log(this.tacticalLogDrink(user));
+				::Tactical.EventLog.log(this.tacticalLogDrink(user));
 
 			if (this.m.Item != null && !this.m.Item.isNull())
 				this.m.Item.removeSelf();
 
-			this.Const.Tactical.Common.checkDrugEffect(user);
+			::Const.Tactical.Common.checkDrugEffect(user);
 		} else {
 			if (!_user.isHiddenToPlayer())
-				this.Tactical.EventLog.log(this.tacticalLogGive(_user, user));
+				::Tactical.EventLog.log(this.tacticalLogGive(_user, user));
 
 			this.spawnIcon("status_effect_93", _targetTile);
-			this.Sound.play("sounds/combat/drink_01.wav", this.Const.Sound.Volume.Inventory);
+			::Sound.play("sounds/combat/drink_01.wav", ::Const.Sound.Volume.Inventory);
 			local item = this.m.Item.get();
 			_user.getItems().removeFromBag(item);
 			user.getItems().addToBag(item);

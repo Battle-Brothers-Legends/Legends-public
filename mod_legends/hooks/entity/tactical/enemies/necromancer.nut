@@ -32,14 +32,14 @@
 			"butchers_cleaver",
 			"scramasax"
 		];
-		this.m.Items.equip(this.new("scripts/items/weapons/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		local item = this.Const.World.Common.pickArmor([
+		this.m.Items.equip(this.new("scripts/items/weapons/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[1, ::Legends.Armor.Standard.thick_dark_tunic]
 		]);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.witchhunter_hat],
 			[1, ::Legends.Helmet.Standard.dark_cowl],
 			[1, ::Legends.Helmet.Standard.hood, 63]
@@ -53,24 +53,24 @@
 		this.m.Gender = _gender;
 		if(this.m.Gender == 1)
 		{
-			this.m.Faces = this.Const.Faces.NecromancerFemale;
+			this.m.Faces = ::Const.Faces.NecromancerFemale;
 			this.m.Beards = null;
-			this.m.Bodies = this.Const.Bodies.NorthernFemale;
+			this.m.Bodies = ::Const.Bodies.NorthernFemale;
 			this.m.BeardChance = 0;
-			this.m.Hairs = this.Const.Hair.AllFemale;
+			this.m.Hairs = ::Const.Hair.AllFemale;
 
 			if (_reroll)
 			{
-				this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
-				this.m.Body = this.Math.rand(0, this.m.Bodies.len() - 1);
+				this.m.VoiceSet = ::Math.rand(0, ::Const.WomanSounds.len() - 1);
+				this.m.Body = ::Math.rand(0, this.m.Bodies.len() - 1);
 			}
 
-			this.m.Sound[this.Const.Sound.ActorEvent.NoDamageReceived] = this.Const.WomanSounds[this.m.VoiceSet].NoDamageReceived;
-			this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = this.Const.WomanSounds[this.m.VoiceSet].DamageReceived;
-			this.m.Sound[this.Const.Sound.ActorEvent.Death] = this.Const.WomanSounds[this.m.VoiceSet].Death;
-			this.m.Sound[this.Const.Sound.ActorEvent.Flee] = this.Const.WomanSounds[this.m.VoiceSet].Flee;
-			this.m.Sound[this.Const.Sound.ActorEvent.Fatigue] = this.Const.WomanSounds[this.m.VoiceSet].Fatigue;
-			this.m.SoundPitch = this.Math.rand(105, 115) * 0.01;
+			this.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = ::Const.WomanSounds[this.m.VoiceSet].NoDamageReceived;
+			this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Const.WomanSounds[this.m.VoiceSet].DamageReceived;
+			this.m.Sound[::Const.Sound.ActorEvent.Death] = ::Const.WomanSounds[this.m.VoiceSet].Death;
+			this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Const.WomanSounds[this.m.VoiceSet].Flee;
+			this.m.Sound[::Const.Sound.ActorEvent.Fatigue] = ::Const.WomanSounds[this.m.VoiceSet].Fatigue;
+			this.m.SoundPitch = ::Math.rand(105, 115) * 0.01;
 		}
 	}
 
@@ -86,7 +86,7 @@
 			"weapons/named/named_dagger"
 		];
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Named.witchhunter_helm],
 		]);
 		this.m.Items.equip(item);
@@ -96,7 +96,7 @@
 			"weapons/named/named_qatal_dagger"
 		]);
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		this.m.ActionPoints = 9;
 		this.m.BaseProperties.ActionPoints = 9;
 		this.m.Skills.update();

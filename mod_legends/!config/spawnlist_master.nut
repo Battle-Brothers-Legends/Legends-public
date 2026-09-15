@@ -1,93 +1,93 @@
 ::Const.World.Spawn.Troops.LegendOrcElite <- {
-	ID = this.Const.EntityType.LegendOrcElite,
+	ID = ::Const.EntityType.LegendOrcElite,
 	Variant = 1,
 	Strength = 80,
 	Cost = 80,
 	Row = 1,
-	NameList = this.Const.Strings.OrcWarlordNames,
-	TitleList = this.Const.Strings.GoblinTitles,
+	NameList = ::Const.Strings.OrcWarlordNames,
+	TitleList = ::Const.Strings.GoblinTitles,
 	Script = "scripts/entity/tactical/enemies/legend_orc_elite"
 };
 
 ::Const.World.Spawn.Troops.LegendOrcTyrant <- {
-	ID = this.Const.EntityType.LegendOrcTyrant,
+	ID = ::Const.EntityType.LegendOrcTyrant,
 	Variant = 10,
 	Strength = 90,
 	Cost = 90,
 	Row = 1,
-	NameList = this.Const.Strings.OrcWarlordNames,
-	TitleList = this.Const.Strings.GoblinTitles,
+	NameList = ::Const.Strings.OrcWarlordNames,
+	TitleList = ::Const.Strings.GoblinTitles,
 	Script = "scripts/entity/tactical/enemies/legend_orc_tyrant"
 };
 
 ::Const.World.Spawn.Troops.LegendOrcMadBerserker <- {
-	ID = this.Const.EntityType.LegendOrcMadBerserker,
+	ID = ::Const.EntityType.LegendOrcMadBerserker,
 	Variant = 1,
 	Strength = 80,
 	Cost = 80,
 	Row = 1,
-	NameList = this.Const.Strings.OrcWarlordNames,
-	TitleList = this.Const.Strings.GoblinTitles,
+	NameList = ::Const.Strings.OrcWarlordNames,
+	TitleList = ::Const.Strings.GoblinTitles,
 	Script = "scripts/entity/tactical/enemies/legend_orc_mad_berserker"
 };
 
 ::Const.World.Spawn.Troops.LegendOrcBehemoth <- {
-	ID = this.Const.EntityType.LegendOrcBehemoth,
+	ID = ::Const.EntityType.LegendOrcBehemoth,
 	Variant = 1,
 	Strength = 70,
 	Cost = 70,
 	Row = 1,
-	NameList = this.Const.Strings.OrcWarlordNames,
-	TitleList = this.Const.Strings.GoblinTitles,
+	NameList = ::Const.Strings.OrcWarlordNames,
+	TitleList = ::Const.Strings.GoblinTitles,
 	Script = "scripts/entity/tactical/enemies/legend_orc_behemoth"
 };
 
 ::Const.World.Spawn.Troops.LegendGoblinHarrier <- {
-	ID = this.Const.EntityType.LegendGoblinHarrier,
+	ID = ::Const.EntityType.LegendGoblinHarrier,
 	Variant = 1,
 	Strength = 40,
 	Cost = 40,
 	Row = 0,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_harrier",
-	NameList = this.Const.Strings.GoblinNames,
-	TitleList = this.Const.Strings.GoblinTitles
+	NameList = ::Const.Strings.GoblinNames,
+	TitleList = ::Const.Strings.GoblinTitles
 };
 
 ::Const.World.Spawn.Troops.LegendGoblinWitchDoctor <- {
-	ID = this.Const.EntityType.LegendGoblinWitchDoctor,
+	ID = ::Const.EntityType.LegendGoblinWitchDoctor,
 	Variant = 1,
 	Strength = 40,
 	Cost = 40,
 	Row = 2,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_witch_doctor",
-	NameList = this.Const.Strings.GoblinNames,
-	TitleList = this.Const.Strings.GoblinTitles
+	NameList = ::Const.Strings.GoblinNames,
+	TitleList = ::Const.Strings.GoblinTitles
 };
 
 ::Const.World.Spawn.Troops.LegendGoblinDirewolfRider <- {
-	ID = this.Const.EntityType.LegendGoblinDirewolfRider,
+	ID = ::Const.EntityType.LegendGoblinDirewolfRider,
 	Variant = 1,
 	Strength = 50,
 	Cost = 50,
 	Row = 1,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_direwolf_rider",
-	NameList = this.Const.Strings.GoblinNames,
-	TitleList = this.Const.Strings.GoblinTitles
+	NameList = ::Const.Strings.GoblinNames,
+	TitleList = ::Const.Strings.GoblinTitles
 };
 
 ::Const.World.Spawn.Troops.LegendGoblinWhiteDirewolfRider <- {
-	ID = this.Const.EntityType.LegendGoblinWhiteDirewolfRider,
+	ID = ::Const.EntityType.LegendGoblinWhiteDirewolfRider,
 	Variant = 1,
 	Strength = 60,
 	Cost = 60,
 	Row = 1,
 	Script = "scripts/entity/tactical/enemies/legend_goblin_white_direwolf_rider",
-	NameList = this.Const.Strings.GoblinNames,
-	TitleList = this.Const.Strings.GoblinTitles
+	NameList = ::Const.Strings.GoblinNames,
+	TitleList = ::Const.Strings.GoblinTitles
 };
 
 ::Const.World.Spawn.Troops.LegendBarbarianPillager <- {
-	ID = this.Const.EntityType.LegendBarbarianPillager,
+	ID = ::Const.EntityType.LegendBarbarianPillager,
 	Variant = 0,
 	Strength = 25,
 	Cost = 25,
@@ -96,7 +96,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBarbarianBloodletter <- {
-	ID = this.Const.EntityType.LegendBarbarianBloodletter,
+	ID = ::Const.EntityType.LegendBarbarianBloodletter,
 	Variant = 0,
 	Strength = 35,
 	Cost = 35,
@@ -105,18 +105,18 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBarbarianRunechosen <- {
-	ID = this.Const.EntityType.LegendBarbarianRunechosen,
+	ID = ::Const.EntityType.LegendBarbarianRunechosen,
 	Variant = 1,
 	Strength = 60,
 	Cost = 60,
 	Row = 1,
 	Script = "scripts/entity/tactical/humans/legend_barbarian_runechosen",
-	NameList = this.Const.Strings.BarbarianNames,
-	TitleList = this.Const.Strings.BarbarianTitles
+	NameList = ::Const.Strings.BarbarianNames,
+	TitleList = ::Const.Strings.BarbarianTitles
 };
 
 ::Const.World.Spawn.Troops.Wolf <- {
-	ID = this.Const.EntityType.Wolf,
+	ID = ::Const.EntityType.Wolf,
 	Variant = 0,
 	Strength = 15,
 	Cost = 20,
@@ -125,7 +125,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBear <- {
-	ID = this.Const.EntityType.LegendBear,
+	ID = ::Const.EntityType.LegendBear,
 	Variant = 0,
 	Strength = 30,
 	Cost = 30,
@@ -134,7 +134,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendGreenwoodSchrat <- {
-	ID = this.Const.EntityType.LegendGreenwoodSchrat,
+	ID = ::Const.EntityType.LegendGreenwoodSchrat,
 	Variant = 0,
 	Strength = 280,
 	Cost = 210,
@@ -143,7 +143,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendGreenwoodSchratSmall <- {
-	ID = this.Const.EntityType.LegendGreenwoodSchratSmall,
+	ID = ::Const.EntityType.LegendGreenwoodSchratSmall,
 	Variant = 0,
 	Strength = 280,
 	Cost = 210,
@@ -152,7 +152,7 @@
 };
 
 ::Const.World.Spawn.Troops.SchratSmall <- {
-	ID = this.Const.EntityType.SchratSmall,
+	ID = ::Const.EntityType.SchratSmall,
 	Variant = 0,
 	Strength = 70,
 	Cost = 70,
@@ -161,7 +161,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendCaravanPolearm <- {
-	ID = this.Const.EntityType.LegendCaravanPolearm,
+	ID = ::Const.EntityType.LegendCaravanPolearm,
 	Variant = 0,
 	Strength = 12,
 	Cost = 12,
@@ -169,18 +169,18 @@
 	Script = "scripts/entity/tactical/humans/legend_caravan_polearm"
 };
 ::Const.World.Spawn.Troops.BanditRabble <- {
-	ID = this.Const.EntityType.BanditRabble,
+	ID = ::Const.EntityType.BanditRabble,
 	Variant = 2,
 	DieRoll = 100000, //100k
 	Strength = 5,
 	Cost = 5,
 	Row = 0,
-	NameList = this.Const.Strings.BanditRabbleNames,
+	NameList = ::Const.Strings.BanditRabbleNames,
 	TitleList = null,
 	Script = "scripts/entity/tactical/enemies/legend_bandit_rabble"
 };
 ::Const.World.Spawn.Troops.BanditRabblePoacher <- {
-	ID = this.Const.EntityType.BanditRabblePoacher,
+	ID = ::Const.EntityType.BanditRabblePoacher,
 	Variant = 0,
 	Strength = 5,
 	Cost = 5,
@@ -189,40 +189,40 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRobberBaron <- {
-	ID = this.Const.EntityType.LegendRobberBaron,
+	ID = ::Const.EntityType.LegendRobberBaron,
 	Variant = 1,
 	Strength = 60,
 	Cost = 50,
 	Row = 2,
 	Script = "scripts/entity/tactical/enemies/legend_robber_baron",
-	NameList = this.Const.Strings.BanditLeaderNames,
+	NameList = ::Const.Strings.BanditLeaderNames,
 	TitleList = null
 };
 
 ::Const.World.Spawn.Troops.LegendBanditExecutioner <- {
-	ID = this.Const.EntityType.LegendBanditExecutioner,
+	ID = ::Const.EntityType.LegendBanditExecutioner,
 	Variant = 1,
 	Strength = 25,
 	Cost = 25,
 	Row = -1,
-	NameList = this.Const.Strings.PeasantButcherNames,
-	TitleList = this.Const.Strings.PeasantButcherTitles,
+	NameList = ::Const.Strings.PeasantButcherNames,
+	TitleList = ::Const.Strings.PeasantButcherTitles,
 	Script = "scripts/entity/tactical/humans/legend_bandit_executioner"
 };
 
 ::Const.World.Spawn.Troops.LegendBanditExecutionerHigh <- {
-	ID = this.Const.EntityType.LegendBanditExecutionerHigh,
+	ID = ::Const.EntityType.LegendBanditExecutionerHigh,
 	Variant = 1,
 	Strength = 45,
 	Cost = 45,
 	Row = -1,
-	NameList = this.Const.Strings.PeasantButcherNames,
-	TitleList = this.Const.Strings.PeasantButcherTitles,
+	NameList = ::Const.Strings.PeasantButcherNames,
+	TitleList = ::Const.Strings.PeasantButcherTitles,
 	Script = "scripts/entity/tactical/humans/legend_bandit_executioner_high"
 };
 
 ::Const.World.Spawn.Troops.BanditOutrider <- {
-	ID = this.Const.EntityType.BanditOutrider,
+	ID = ::Const.EntityType.BanditOutrider,
 	Variant = 0,
 	Strength = 40,
 	Cost = 45,
@@ -231,7 +231,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendWhiteDirewolf <- {
-	ID = this.Const.EntityType.LegendWhiteDirewolf,
+	ID = ::Const.EntityType.LegendWhiteDirewolf,
 	Variant = 0,
 	Strength = 300,
 	Cost = 75,
@@ -240,7 +240,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendWhiteDirewolfBodyguard <- {
-	ID = this.Const.EntityType.LegendWhiteDirewolf,
+	ID = ::Const.EntityType.LegendWhiteDirewolf,
 	Variant = 0,
 	Strength = 300,
 	Cost = 75,
@@ -249,7 +249,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendSkinGhoulLOW <- {
-	ID = this.Const.EntityType.LegendSkinGhoul,
+	ID = ::Const.EntityType.LegendSkinGhoul,
 	Variant = 0,
 	Strength = 50,
 	Cost = 50,
@@ -258,7 +258,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendSkinGhoulMED <- {
-	ID = this.Const.EntityType.LegendSkinGhoul,
+	ID = ::Const.EntityType.LegendSkinGhoul,
 	Variant = 0,
 	Strength = 75,
 	Cost = 100,
@@ -267,7 +267,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendSkinGhoulHIGH <- {
-	ID = this.Const.EntityType.LegendSkinGhoul,
+	ID = ::Const.EntityType.LegendSkinGhoul,
 	Variant = 0,
 	Strength = 100,
 	Cost = 200,
@@ -276,7 +276,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendStollwurm <- {
-	ID = this.Const.EntityType.LegendStollwurm,
+	ID = ::Const.EntityType.LegendStollwurm,
 	Variant = 0,
 	Strength = 270,
 	Cost = 270,
@@ -285,7 +285,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRockUnhold <- {
-	ID = this.Const.EntityType.LegendRockUnhold,
+	ID = ::Const.EntityType.LegendRockUnhold,
 	Variant = 0,
 	Strength = 180,
 	Cost = 180,
@@ -294,7 +294,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRedbackSpider <- {
-	ID = this.Const.EntityType.LegendRedbackSpider,
+	ID = ::Const.EntityType.LegendRedbackSpider,
 	Variant = 0,
 	Strength = 100,
 	Cost = 100,
@@ -303,7 +303,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendRedbackSpiderBodyguard <- {
-	ID = this.Const.EntityType.LegendRedbackSpider,
+	ID = ::Const.EntityType.LegendRedbackSpider,
 	Variant = 0,
 	Strength = 100,
 	Cost = 100,
@@ -312,7 +312,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendDemonAlp <- {
-	ID = this.Const.EntityType.LegendDemonAlp,
+	ID = ::Const.EntityType.LegendDemonAlp,
 	Variant = 0,
 	Strength = 200,
 	Cost = 105,
@@ -321,7 +321,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendHexeLeader <- {
-	ID = this.Const.EntityType.LegendHexeLeader,
+	ID = ::Const.EntityType.LegendHexeLeader,
 	Variant = 0,
 	Strength = 200,
 	Cost = 200,
@@ -330,7 +330,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBanshee <- {
-	ID = this.Const.EntityType.LegendBanshee,
+	ID = ::Const.EntityType.LegendBanshee,
 	Variant = 0,
 	Strength = 70,
 	Cost = 70,
@@ -339,7 +339,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendDemonHound <- {
-	ID = this.Const.EntityType.LegendDemonHound,
+	ID = ::Const.EntityType.LegendDemonHound,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -348,30 +348,30 @@
 };
 
 ::Const.World.Spawn.Troops.LegendVampireLord <- {
-	ID = this.Const.EntityType.LegendVampireLord,
+	ID = ::Const.EntityType.LegendVampireLord,
 	Variant = 1,
 	Strength = 60,
 	Cost = 60,
 	Row = 2,
-	NameList = this.Const.Strings.VampireLordNames,
-	TitleList = this.Const.Strings.FallenHeroTitles,
+	NameList = ::Const.Strings.VampireLordNames,
+	TitleList = ::Const.Strings.FallenHeroTitles,
 	Script = "scripts/entity/tactical/enemies/legend_vampire_lord"
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantButcher <- {
-	ID = this.Const.EntityType.LegendPeasantButcher,
+	ID = ::Const.EntityType.LegendPeasantButcher,
 	Variant = 1,
 	DieRoll = 300,
 	Strength = 5,
 	Cost = 10,
 	Row = -1,
-	NameList = this.Const.Strings.PeasantButcherNames,
-	TitleList = this.Const.Strings.PeasantButcherTitles,
+	NameList = ::Const.Strings.PeasantButcherNames,
+	TitleList = ::Const.Strings.PeasantButcherTitles,
 	Script = "scripts/entity/tactical/humans/legend_peasant_butcher"
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantBlacksmith <- {
-	ID = this.Const.EntityType.LegendPeasantBlacksmith,
+	ID = ::Const.EntityType.LegendPeasantBlacksmith,
 	Variant = 0,
 	Strength = 10,
 	Cost = 20,
@@ -380,7 +380,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantMonk <- {
-	ID = this.Const.EntityType.LegendPeasantMonk,
+	ID = ::Const.EntityType.LegendPeasantMonk,
 	Variant = 0,
 	Strength = 10,
 	Cost = 15,
@@ -389,7 +389,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantFarmhand <- {
-	ID = this.Const.EntityType.LegendPeasantFarmhand,
+	ID = ::Const.EntityType.LegendPeasantFarmhand,
 	Variant = 0,
 	Strength = 5,
 	Cost = 10,
@@ -398,7 +398,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantMinstrel <- {
-	ID = this.Const.EntityType.LegendPeasantMinstrel,
+	ID = ::Const.EntityType.LegendPeasantMinstrel,
 	Variant = 0,
 	Strength = 5,
 	Cost = 10,
@@ -407,7 +407,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantPoacher <- {
-	ID = this.Const.EntityType.LegendPeasantPoacher,
+	ID = ::Const.EntityType.LegendPeasantPoacher,
 	Variant = 0,
 	Strength = 5,
 	Cost = 10,
@@ -416,7 +416,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantWoodsman <- {
-	ID = this.Const.EntityType.LegendPeasantWoodsman,
+	ID = ::Const.EntityType.LegendPeasantWoodsman,
 	Variant = 0,
 	Strength = 5,
 	Cost = 10,
@@ -425,7 +425,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantMiner <- {
-	ID = this.Const.EntityType.LegendPeasantMiner,
+	ID = ::Const.EntityType.LegendPeasantMiner,
 	Variant = 0,
 	Strength = 5,
 	Cost = 10,
@@ -434,7 +434,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantSquire <- {
-	ID = this.Const.EntityType.LegendPeasantSquire,
+	ID = ::Const.EntityType.LegendPeasantSquire,
 	Variant = 0,
 	Strength = 10,
 	Cost = 20,
@@ -443,7 +443,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendPeasantWitchHunter <- {
-	ID = this.Const.EntityType.LegendPeasantWitchHunter,
+	ID = ::Const.EntityType.LegendPeasantWitchHunter,
 	Variant = 0,
 	Strength = 15,
 	Cost = 25,
@@ -452,7 +452,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendHalberdier <- {
-	ID = this.Const.EntityType.LegendHalberdier,
+	ID = ::Const.EntityType.LegendHalberdier,
 	Variant = 0,
 	Strength = 60,
 	Cost = 60,
@@ -461,7 +461,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendSlinger <- {
-	ID = this.Const.EntityType.LegendSlinger,
+	ID = ::Const.EntityType.LegendSlinger,
 	Variant = 0,
 	Strength = 80,
 	Cost = 80,
@@ -470,7 +470,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendFencer <- {
-	ID = this.Const.EntityType.LegendFencer,
+	ID = ::Const.EntityType.LegendFencer,
 	Variant = 0,
 	Strength = 70,
 	Cost = 70,
@@ -479,7 +479,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendCatapult <- {
-	ID = this.Const.EntityType.LegendCatapult,
+	ID = ::Const.EntityType.LegendCatapult,
 	Variant = 0,
 	Strength = 60,
 	Cost = 60,
@@ -488,7 +488,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendHorse <- {
-	ID = this.Const.EntityType.LegendHorse,
+	ID = ::Const.EntityType.LegendHorse,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -497,7 +497,7 @@
 };
 
 ::Const.World.Spawn.Troops.SkeletonGladiator <- {
-	ID = this.Const.EntityType.SkeletonGladiator,
+	ID = ::Const.EntityType.SkeletonGladiator,
 	Variant = 0,
 	Strength = 40,
 	Cost = 40,
@@ -506,7 +506,7 @@
 };
 
 ::Const.World.Spawn.Troops.BanditVermes <- {
-	ID = this.Const.EntityType.BanditVermes,
+	ID = ::Const.EntityType.BanditVermes,
 	Variant = 0,
 	Strength = 7,
 	Cost = 7,
@@ -515,7 +515,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendManhunter <- {
-	ID = this.Const.EntityType.LegendManhunter,
+	ID = ::Const.EntityType.LegendManhunter,
 	Variant = 0,
 	Strength = 20,
 	Cost = 15,
@@ -524,18 +524,18 @@
 };
 
 ::Const.World.Spawn.Troops.LegendManhunterVeteran <- {
-	ID = this.Const.EntityType.LegendManhunterVeteran,
+	ID = ::Const.EntityType.LegendManhunterVeteran,
 	Variant = 1,
 	Strength = 25,
 	Cost = 20,
 	Row = 0,
 	Script = "scripts/entity/tactical/humans/legend_manhunter_veteran"
-	NameList = this.Const.Strings.SouthernNames,
-	TitleList = this.Const.Strings.LegendManhunterVeteranTitles
+	NameList = ::Const.Strings.SouthernNames,
+	TitleList = ::Const.Strings.LegendManhunterVeteranTitles
 };
 
 // ::Const.World.Spawn.Troops.KoboldFighter <- {
-// 	ID = this.Const.EntityType.KoboldFighter,
+// 	ID = ::Const.EntityType.KoboldFighter,
 // 	Variant = 0,
 // 	Strength = 5,
 // 	Cost = 5,
@@ -544,7 +544,7 @@
 // };
 
 // ::Const.World.Spawn.Troops.KoboldWolfrider <- {
-// 	ID = this.Const.EntityType.KoboldWolfrider,
+// 	ID = ::Const.EntityType.KoboldWolfrider,
 // 	Variant = 0,
 // 	Strength = 20,
 // 	Cost = 20,
@@ -553,18 +553,18 @@
 // };
 
 ::Const.World.Spawn.Troops.LegendWicht <- {
-	ID = this.Const.EntityType.LegendWicht,
+	ID = ::Const.EntityType.LegendWicht,
 	Variant = 2,
 	Strength = 40,
 	Cost = 40,
 	Row = 0,
-	NameList = this.Const.Strings.GhostArmorNames,
+	NameList = ::Const.Strings.GhostArmorNames,
 	TitleList = null,
 	Script = "scripts/entity/tactical/enemies/legend_wicht"
 };
 
 ::Const.World.Spawn.Troops.LegendMummyLight <- {
-	ID = this.Const.EntityType.LegendMummyLight,
+	ID = ::Const.EntityType.LegendMummyLight,
 	Variant = 0,
 	Strength = 21,
 	Cost = 21,
@@ -573,7 +573,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendMummyMedium <- {
-	ID = this.Const.EntityType.LegendMummyMedium,
+	ID = ::Const.EntityType.LegendMummyMedium,
 	Variant = 0,
 	Strength = 30,
 	Cost = 30,
@@ -582,28 +582,28 @@
 };
 
 ::Const.World.Spawn.Troops.LegendMummyHeavy <- {
-	ID = this.Const.EntityType.LegendMummyHeavy,
+	ID = ::Const.EntityType.LegendMummyHeavy,
 	Variant = 1,
 	Strength = 45,
 	Cost = 45,
 	Row = 0,
 	Script = "scripts/entity/tactical/enemies/legend_mummy_heavy",
-	NameList = this.Const.Strings.EmbalmedNobleNames,
+	NameList = ::Const.Strings.EmbalmedNobleNames,
 	TitleList = null
 };
 
 ::Const.World.Spawn.Troops.LegendMummyQueen <- {
-	ID = this.Const.EntityType.LegendMummyQueen,
+	ID = ::Const.EntityType.LegendMummyQueen,
 	Variant = 1,
 	Strength = 90,
 	Cost = 90,
 	Row = 2,
-	NameList = this.Const.Strings.SouthernFemaleNames,
-	TitleList = this.Const.Strings.FallenHeroTitles,
+	NameList = ::Const.Strings.SouthernFemaleNames,
+	TitleList = ::Const.Strings.FallenHeroTitles,
 	Script = "scripts/entity/tactical/enemies/legend_mummy_queen"
 };
 ::Const.World.Spawn.Troops.SkeletonLich <- {
-	ID = this.Const.EntityType.SkeletonLich,
+	ID = ::Const.EntityType.SkeletonLich,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -612,7 +612,7 @@
 };
 
 ::Const.World.Spawn.Troops.SkeletonLichMirrorImage <- {
-	ID = this.Const.EntityType.SkeletonLichMirrorImage,
+	ID = ::Const.EntityType.SkeletonLichMirrorImage,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -621,7 +621,7 @@
 };
 
 ::Const.World.Spawn.Troops.SkeletonGladiator <- {
-	ID = this.Const.EntityType.SkeletonGladiator,
+	ID = ::Const.EntityType.SkeletonGladiator,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -630,7 +630,7 @@
 };
 
 ::Const.World.Spawn.Troops.SkeletonPhylactery <- {
-	ID = this.Const.EntityType.SkeletonPhylactery,
+	ID = ::Const.EntityType.SkeletonPhylactery,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -639,7 +639,7 @@
 };
 
 ::Const.World.Spawn.Troops.ZombieTreasureHunter <- {
-	ID = this.Const.EntityType.ZombieTreasureHunter,
+	ID = ::Const.EntityType.ZombieTreasureHunter,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -648,7 +648,7 @@
 };
 
 ::Const.World.Spawn.Troops.FlyingSkull <- {
-	ID = this.Const.EntityType.FlyingSkull,
+	ID = ::Const.EntityType.FlyingSkull,
 	Variant = 0,
 	Strength = 0,
 	Cost = 0,
@@ -657,7 +657,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendMummyPriest <- {
-	ID = this.Const.EntityType.LegendMummyPriest,
+	ID = ::Const.EntityType.LegendMummyPriest,
 	Variant = 0,
 	Strength = 40,
 	Cost = 40,
@@ -666,7 +666,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanySpearman <- {
-	ID = this.Const.EntityType.FreeCompanySpearman,
+	ID = ::Const.EntityType.FreeCompanySpearman,
 	Variant = 0,
 	Strength = 17,
 	Cost = 17,
@@ -675,7 +675,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanySpearmanLow <- {
-	ID = this.Const.EntityType.FreeCompanySpearman,
+	ID = ::Const.EntityType.FreeCompanySpearman,
 	Variant = 0,
 	Strength = 12,
 	Cost = 12,
@@ -684,7 +684,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanySlayer <- {
-	ID = this.Const.EntityType.FreeCompanySlayer,
+	ID = ::Const.EntityType.FreeCompanySlayer,
 	Variant = 0,
 	Strength = 22,
 	Cost = 22,
@@ -693,7 +693,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyFootman <- {
-	ID = this.Const.EntityType.FreeCompanyFootman,
+	ID = ::Const.EntityType.FreeCompanyFootman,
 	Variant = 0,
 	Strength = 22,
 	Cost = 22,
@@ -702,7 +702,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyArcher <- {
-	ID = this.Const.EntityType.FreeCompanyArcher,
+	ID = ::Const.EntityType.FreeCompanyArcher,
 	Variant = 0,
 	Strength = 15,
 	Cost = 15,
@@ -711,7 +711,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyArcherLow <- {
-	ID = this.Const.EntityType.FreeCompanyArcher,
+	ID = ::Const.EntityType.FreeCompanyArcher,
 	Variant = 0,
 	Strength = 10,
 	Cost = 10,
@@ -720,7 +720,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyCrossbow <- {
-	ID = this.Const.EntityType.FreeCompanyCrossbow,
+	ID = ::Const.EntityType.FreeCompanyCrossbow,
 	Variant = 0,
 	Strength = 15,
 	Cost = 15,
@@ -729,7 +729,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyLongbow <- {
-	ID = this.Const.EntityType.FreeCompanyLongbow,
+	ID = ::Const.EntityType.FreeCompanyLongbow,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -738,7 +738,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyBillman <- {
-	ID = this.Const.EntityType.FreeCompanyBillman,
+	ID = ::Const.EntityType.FreeCompanyBillman,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -747,7 +747,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyPikeman <- {
-	ID = this.Const.EntityType.FreeCompanyPikeman,
+	ID = ::Const.EntityType.FreeCompanyPikeman,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -756,7 +756,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyInfantry <- {
-	ID = this.Const.EntityType.FreeCompanyInfantry,
+	ID = ::Const.EntityType.FreeCompanyInfantry,
 	Variant = 0,
 	Strength = 25,
 	Cost = 25,
@@ -765,7 +765,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyLeader <- {
-	ID = this.Const.EntityType.FreeCompanyLeader,
+	ID = ::Const.EntityType.FreeCompanyLeader,
 	Variant = 0,
 	Strength = 30,
 	Cost = 30,
@@ -774,7 +774,7 @@
 };
 
 ::Const.World.Spawn.Troops.FreeCompanyLeaderLow <- {
-	ID = this.Const.EntityType.FreeCompanyLeaderLow,
+	ID = ::Const.EntityType.FreeCompanyLeaderLow,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -783,18 +783,18 @@
 };
 
 ::Const.World.Spawn.Troops.Oathbringer <- {
-	ID = this.Const.EntityType.Oathbringer,
+	ID = ::Const.EntityType.Oathbringer,
 	Variant = 1,
 	Strength = 40,
 	Cost = 40,
 	Row = 1,
 	Script = "scripts/entity/tactical/humans/oathbringer",
-	NameList = this.Const.Strings.OathbringerNames,
+	NameList = ::Const.Strings.OathbringerNames,
 	TitleList = null
 };
 
 ::Const.World.Spawn.Troops.LegendManhunterRanged <- {
-	ID = this.Const.EntityType.LegendManhunterRanged,
+	ID = ::Const.EntityType.LegendManhunterRanged,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -803,18 +803,18 @@
 };
 
 ::Const.World.Spawn.Troops.LegendManhunterVeteranRanged <- {
-	ID = this.Const.EntityType.LegendManhunterVeteranRanged,
+	ID = ::Const.EntityType.LegendManhunterVeteranRanged,
 	Variant = 1,
 	Strength = 25,
 	Cost = 28,
 	Row = 2,
 	Script = "scripts/entity/tactical/humans/legend_manhunter_veteran_ranged",
-	NameList = this.Const.Strings.SouthernNames,
-	TitleList = this.Const.Strings.LegendManhunterVeteranTitles
+	NameList = ::Const.Strings.SouthernNames,
+	TitleList = ::Const.Strings.LegendManhunterVeteranTitles
 };
 
 ::Const.World.Spawn.Troops.LegendNobleGuard<- {
-	ID = this.Const.EntityType.LegendNobleGuard,
+	ID = ::Const.EntityType.LegendNobleGuard,
 	Variant = 0,
 	Strength = 50,
 	Cost = 50,
@@ -823,17 +823,17 @@
 };
 
 ::Const.World.Spawn.Troops.LegendManAtArms <- {
-	ID = this.Const.EntityType.LegendManAtArms,
+	ID = ::Const.EntityType.LegendManAtArms,
 	Variant = 0,
 	Strength = 100,
 	Cost = 100,
 	Row = 1,
 	Script = "scripts/entity/tactical/humans/legend_noble_man_at_arms",
-	NameList = this.Const.Strings.KnightNames
+	NameList = ::Const.Strings.KnightNames
 };
 
 ::Const.World.Spawn.Troops.NobleEliteFootman <- {
-	ID = this.Const.EntityType.NobleEliteFootman,
+	ID = ::Const.EntityType.NobleEliteFootman,
 	Variant = 0,
 	Strength = 35,
 	Cost = 35,
@@ -842,7 +842,7 @@
 };
 
 ::Const.World.Spawn.Troops.NoblePollax <- {
-	ID = this.Const.EntityType.NoblePollax,
+	ID = ::Const.EntityType.NoblePollax,
 	Variant = 0,
 	Strength = 50,
 	Cost = 50,
@@ -851,7 +851,7 @@
 };
 
 ::Const.World.Spawn.Troops.NobleSureshot <- {
-	ID = this.Const.EntityType.NobleSureshot,
+	ID = ::Const.EntityType.NobleSureshot,
 	Variant = 0,
 	Strength = 75,
 	Cost = 75,
@@ -860,7 +860,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBasiliskDrone <- {
-	ID = this.Const.EntityType.LegendBasiliskDrone,
+	ID = ::Const.EntityType.LegendBasiliskDrone,
 	Variant = 0,
 	Strength = 30,
 	Cost = 30,
@@ -869,7 +869,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBasiliskDroneLow <- {
-	ID = this.Const.EntityType.LegendBasiliskDrone,
+	ID = ::Const.EntityType.LegendBasiliskDrone,
 	Variant = 0,
 	Strength = 20,
 	Cost = 20,
@@ -878,7 +878,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendBasiliskSentry <- {
-	ID = this.Const.EntityType.LegendBasiliskSentry,
+	ID = ::Const.EntityType.LegendBasiliskSentry,
 	Variant = 0,
 	Strength = 20,
 	Cost = 35,
@@ -887,7 +887,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendSighthound <- {
-	ID = this.Const.EntityType.LegendSighthound,
+	ID = ::Const.EntityType.LegendSighthound,
 	Variant = 0,
 	Strength = 10,
 	Cost = 10,
@@ -896,7 +896,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendArmoredSighthound <- {
-	ID = this.Const.EntityType.LegendSighthound,
+	ID = ::Const.EntityType.LegendSighthound,
 	Variant = 0,
 	Strength = 10,
 	Cost = 10,
@@ -905,7 +905,7 @@
 };
 
 ::Const.World.Spawn.Troops.LegendEnragedHyena <- {
-	ID = this.Const.EntityType.LegendEnragedHyena,
+	ID = ::Const.EntityType.LegendEnragedHyena,
 	Variant = 0,
 	Strength = 25,
 	Cost = 25,
@@ -936,14 +936,14 @@
 };
 
 ::Const.World.Spawn.Troops.LegendEscapedGladiator <- {
-	ID = this.Const.EntityType.LegendEscapedGladiator,
+	ID = ::Const.EntityType.LegendEscapedGladiator,
 	Variant = 2,
 	Strength = 40,
 	Cost = 40,
 	Row = 0,
 	Script = "scripts/entity/tactical/humans/legend_escaped_gladiator",
-	NameList = this.Const.Strings.SouthernNames,
-	TitleList = this.Const.Strings.GladiatorTitles
+	NameList = ::Const.Strings.SouthernNames,
+	TitleList = ::Const.Strings.GladiatorTitles
 };
 
 ::Const.World.Spawn.CaravanFort <-
@@ -961,7 +961,7 @@
 			MinCount = 3,
 			MaxCount = 5,
 			Weight = 40 //percentage chance after min count is met
-			Type = this.Const.World.Spawn.Troops.CaravanDonkey,
+			Type = ::Const.World.Spawn.Troops.CaravanDonkey,
 			Cost = 0
 		}
 	],
@@ -970,15 +970,15 @@
 			Weight = 100,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.CaravanGuard,
+					Type = ::Const.World.Spawn.Troops.CaravanGuard,
 					Cost = 22
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.MercenaryLOW,
+					Type = ::Const.World.Spawn.Troops.MercenaryLOW,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Mercenary,
+					Type = ::Const.World.Spawn.Troops.Mercenary,
 					Cost = 35
 				}
 			]
@@ -987,7 +987,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendCaravanPolearm,
+					Type = ::Const.World.Spawn.Troops.LegendCaravanPolearm,
 					Cost = 8
 				}
 			]

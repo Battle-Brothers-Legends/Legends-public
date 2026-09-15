@@ -5,8 +5,8 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Concoct a mixture of smells so fetid and noxious, you force your target to retreat just so they can breathe. Targets hit will receive fatigue and may take damage if they are pushed down several levels of height. Shieldwall, Spearwall and Riposte will be canceled for a target that is successfully knocked back. A rooted target can not be knocked back. Uses Ranged Skill.";
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/knockback_hit", 3);
 		this.m.SoundOnMiss = ::Legends.S.setSounds("sounds/combat/impale", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -84,7 +84,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInMusic ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInMusic ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInMusic ? 2 : 3;
 	}
 
@@ -103,9 +103,9 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.Math.rand(1, 100) > this.getHitchance(target)) {
+		if (::Math.rand(1, 100) > this.getHitchance(target)) {
 			if (this.m.SoundOnMiss.len() != 0) {
-				this.Sound.play(this.m.SoundOnMiss[this.Math.rand(0, this.m.SoundOnMiss.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			target.onMissed(this.getContainer().getActor(), this);
@@ -116,7 +116,7 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 
 		if (knockToTile == null) {
 			if (this.m.SoundOnMiss.len() != 0) {
-				this.Sound.play(this.m.SoundOnMiss[this.Math.rand(0, this.m.SoundOnMiss.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			return false;
@@ -126,27 +126,27 @@ this.legend_revolt_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.getCurrentProperties().IsImmuneToKnockBackAndGrab) {
 			if (this.m.SoundOnHit.len() != 0) {
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 			}
 
 			return false;
 		}
 
 		if (!_user.isHiddenToPlayer() && (_targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has knocked back " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has knocked back " + ::Const.UI.getColorizedEntityName(target));
 		}
 
 		if (this.m.SoundOnHit.len() != 0) {
-			this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+			::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
-		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
+		::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, knockToTile, this, null, null);
 		return true;
 	}
 

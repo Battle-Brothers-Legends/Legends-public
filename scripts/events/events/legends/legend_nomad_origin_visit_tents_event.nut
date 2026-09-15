@@ -5,7 +5,7 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 	function create() {
 		this.m.ID = "event.legend_nomad_origin_visit_tents";
 		this.m.Title = "Near another encampment...";
-		this.m.Cooldown = 22.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 22.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//— \'
 			ID = "A",
@@ -54,7 +54,7 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 				{
 					Text = "Purchase the services of a Nomad fighter.",
 					function getResult(_event) {
-						local roster = this.World.getTemporaryRoster();
+						local roster = ::World.getTemporaryRoster();
 						_event.m.Recruit = roster.create("scripts/entity/tactical/player");
 						_event.m.Recruit.onHired();
 						_event.m.Recruit.setStartValuesEx([::Legends.Background.Nomad]);
@@ -64,7 +64,7 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 				{
 					Text = "Purchase the services of a Nomad bowman.",
 					function getResult(_event) {
-						local roster = this.World.getTemporaryRoster();
+						local roster = ::World.getTemporaryRoster();
 						_event.m.Recruit = roster.create("scripts/entity/tactical/player");
 						_event.m.Recruit.onHired();
 						_event.m.Recruit.setStartValuesEx([::Legends.Background.NomadRanged]);
@@ -95,7 +95,7 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 				this.List.push({
 					id = 11,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]%Recruit%[/color] joins you"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]%Recruit%[/color] joins you"
 				});
 			}
 		});
@@ -147,21 +147,21 @@ this.legend_nomad_origin_visit_tents_event <- this.inherit("scripts/events/event
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_nomad") //only happens with this origin
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_nomad") //only happens with this origin
 			return;
 
-		if (this.World.Assets.getMoney() < 1000)
+		if (::World.Assets.getMoney() < 1000)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		local brothers = ::World.getPlayerRoster().getAll();
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		if (this.World.Assets.getStash().getNumberOfEmptySlots() < 1)
+		if (::World.Assets.getStash().getNumberOfEmptySlots() < 1)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
-		local locations = this.World.EntityManager.getLocations();
+		local currentTile = ::World.State.getPlayer().getTile();
+		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
 
 		foreach (v in locations) {

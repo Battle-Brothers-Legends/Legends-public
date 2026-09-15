@@ -7,7 +7,7 @@ this.legend_anatomist_studies_puppet_event <- this.inherit("scripts/events/event
 	function create() {
 		this.m.ID = "event.legend_anatomist_studies_puppet";
 		this.m.Title = "Too Curious...";
-		this.m.Cooldown = 48.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 48.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_05.png[/img]As you check in on your supplies, you overhear a commotion — someone is arguing loudly but receiving no response. Fearing the worst, you hurry to investigate and find %anatomist% and %puppet% in a one-sided standoff. The anatomist is circling the thrall with great interest, making notes within notes to a small stained ledger. %puppet% seems completely unamused, lolling %their_puppet% jaw and only briefly tracking %their_puppet% observer when %they_anatomist% moves slightly too fast and comes across more as prey.%SPEECH_ON%Can you PLEASE just stay still? If only for a moment!?%SPEECH_OFF%%They_anatomist% frustratingly turns and circles counter-clockwise, stopping to see you.%SPEECH_ON%I have never been able to get this close to something like this before! At least not... well...%SPEECH_OFF%You get the strong impression a request is about to follow.%SPEECH_ON%I just need to do a little examination. Just something very small to prove a theory of mine.%SPEECH_OFF%%They_anatomist% subsequently trails off. Another thought has crossed %their_anatomist% mind. %Their_anatomist% eyes light up as %puppet% tracks a bird.%SPEECH_ON%You could let me... you know... 'examine' it further. It won\'t survive of course — but it is already dead, no?%SPEECH_OFF% ",

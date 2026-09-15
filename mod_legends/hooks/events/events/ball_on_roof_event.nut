@@ -30,7 +30,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
@@ -38,7 +38,7 @@
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 4)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3) {
 			return;
 		}
@@ -58,14 +58,14 @@
 			return;
 		}
 
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 
 		if (candidates_surefooted.len() != 0) {
-			this.m.Surefooted = candidates_surefooted[this.Math.rand(0, candidates_surefooted.len() - 1)];
+			this.m.Surefooted = candidates_surefooted[::Math.rand(0, candidates_surefooted.len() - 1)];
 		}
 
 		do {
-			this.m.OtherOther = brothers[this.Math.rand(0, brothers.len() - 1)];
+			this.m.OtherOther = brothers[::Math.rand(0, brothers.len() - 1)];
 		} while (this.m.OtherOther == null || this.m.OtherOther.getID() == this.m.Other.getID());
 
 		this.m.Town = town;

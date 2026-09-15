@@ -6,7 +6,7 @@
 			if (s.ID == "BuyArmor") {
 				s.start <- function (_event) {
 					local item;
-					local stash = this.World.Assets.getStash();
+					local stash = ::World.Assets.getStash();
 					local weapons = [
 						"weapons/arming_sword",
 						"weapons/military_pick",
@@ -14,15 +14,15 @@
 						"weapons/pike",
 						"weapons/warbrand"
 					];
-					item = this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]);
+					item = this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]);
 					item.setCondition(item.getConditionMax() / 3 - 1);
 					stash.add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
-					item = this.Const.World.Common.pickArmor([
+					item = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
@@ -33,7 +33,7 @@
 						imageOverlayPath = item.getIconOverlay(),
 						text = "You gain " + item.makeName()
 					});
-					item = this.Const.World.Common.pickHelmet([
+					item = ::Const.World.Common.pickHelmet([
 						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
@@ -49,7 +49,7 @@
 			}
 			if (s.ID == "Oathtaker") {
 				s.start <- function (_event) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Paladin]);
 					_event.m.Dude.setTitle("the Oathbreaker");
@@ -58,28 +58,28 @@
 					_event.m.Dude.m.PerkPoints = 0;
 					_event.m.Dude.m.LevelUps = 0;
 					_event.m.Dude.m.Level = 1;
-					_event.m.Dude.m.XP = this.Const.LevelXP[_event.m.Dude.m.Level - 1];
+					_event.m.Dude.m.XP = ::Const.LevelXP[_event.m.Dude.m.Level - 1];
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Drunkard);
 					local dudeItems = _event.m.Dude.getItems();
 
-					if (dudeItems.getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+					if (dudeItems.getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 					{
-						dudeItems.getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+						dudeItems.getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 					}
 
-					if (dudeItems.getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+					if (dudeItems.getItemAtSlot(::Const.ItemSlot.Offhand) != null)
 					{
-						dudeItems.getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+						dudeItems.getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 					}
 
-					if (dudeItems.getItemAtSlot(this.Const.ItemSlot.Head) != null)
+					if (dudeItems.getItemAtSlot(::Const.ItemSlot.Head) != null)
 					{
-						dudeItems.getItemAtSlot(this.Const.ItemSlot.Head).removeSelf();
+						dudeItems.getItemAtSlot(::Const.ItemSlot.Head).removeSelf();
 					}
 
-					if (dudeItems.getItemAtSlot(this.Const.ItemSlot.Body) != null)
+					if (dudeItems.getItemAtSlot(::Const.ItemSlot.Body) != null)
 					{
-						dudeItems.getItemAtSlot(this.Const.ItemSlot.Body).removeSelf();
+						dudeItems.getItemAtSlot(::Const.ItemSlot.Body).removeSelf();
 					}
 
 					local weapons = [
@@ -89,15 +89,15 @@
 						"weapons/pike",
 						"weapons/warbrand"
 					];
-					local item = this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]);
+					local item = this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
-					item = this.Const.World.Common.pickHelmet([
+					item = ::Const.World.Common.pickHelmet([
 						[1, ::Legends.Helmet.Standard.adorned_full_helm],
 					]);
 					item.setCondition(item.getRepair() / 3 - 1);
 					dudeItems.equip(item);
-					item = this.Const.World.Common.pickArmor([
+					item = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.adorned_heavy_mail_hauberk],
 					]);
 					item.setCondition(item.getConditionMax() / 3 - 1);

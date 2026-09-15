@@ -5,20 +5,20 @@ this.legend_grand_diviner_robes <- this.inherit("scripts/items/legend_armor/lege
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "armor.body.grand_diviner_robes";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "Robes of Divination";
 		this.m.Description = "The robes worn by the Grand Diviner. The sturdy layers of leather and heavy linen offer excellent protection.";
 		this.m.ArmorDescription = "Includes sturdy robes made of heavy linen and leather.";
 		this.m.Variants = [1,2];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.Value = 5000;
 		this.m.Condition = 60;
 		this.m.ConditionMax = 60;
 		this.m.StaminaModifier = -3;
-		this.m.ItemType = this.Const.Items.ItemType.Cultist | this.Const.Items.ItemType.Legendary;
+		this.m.ItemType = ::Const.Items.ItemType.Cultist | ::Const.Items.ItemType.Legendary;
 	}
 
 	function updateVariant()

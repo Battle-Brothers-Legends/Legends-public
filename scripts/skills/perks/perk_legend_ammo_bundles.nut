@@ -14,22 +14,22 @@ this.perk_legend_ammo_bundles <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-					if (this.World.State.getPlayer() == null)
+					if (::World.State.getPlayer() == null)
 			{
 				return;
 			}
 
-		this.World.State.getPlayer().calculateAmmoModifier();
+		::World.State.getPlayer().calculateAmmoModifier();
 	}
 
 	function onRemoved()
 	{
-					if (this.World.State.getPlayer() == null)
+					if (::World.State.getPlayer() == null)
 			{
 				return;
 			}
 
-		this.World.State.getPlayer().calculateAmmoModifier();
+		::World.State.getPlayer().calculateAmmoModifier();
 	}
 
 	function onUpdate( _properties )

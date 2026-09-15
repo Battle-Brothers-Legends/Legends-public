@@ -46,7 +46,7 @@
 		local ownTile = this.m.Container.getActor().getTile();
 		local soundBackup = [];
 		local skillToApply = this.m.IsChain ? ::Legends.Effect.Dazed : ::Legends.Effect.Stunned;
-		this.spawnAttackEffect(ownTile, this.Const.Tactical.AttackEffectThresh);
+		this.spawnAttackEffect(ownTile, ::Const.Tactical.AttackEffectThresh);
 
 		for( local i = 0; i != 6; i = ++i )
 		{
@@ -57,7 +57,7 @@
 			{
 				local tile = ownTile.getNextTile(i);
 
-				if (!tile.IsEmpty && tile.getEntity().isAttackable() && this.Math.abs(tile.Level - ownTile.Level) <= 1)
+				if (!tile.IsEmpty && tile.getEntity().isAttackable() && ::Math.abs(tile.Level - ownTile.Level) <= 1)
 				{
 					if (ret && soundBackup.len() == 0)
 					{
@@ -70,13 +70,13 @@
 
 					if (_user.isAlive() && !_user.isDying())
 					{
-						if (success && tile.IsOccupiedByActor && this.Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(skillToApply))
+						if (success && tile.IsOccupiedByActor && ::Math.rand(1, 100) <= this.m.StunChance && !tile.getEntity().getCurrentProperties().IsImmuneToBleeding && !tile.getEntity().getSkills().hasEffect(skillToApply))
 						{
 							local effect = ::Legends.Effects.grant(tile.getEntity(), ::Legends.Effect.Dazed);
 
 							if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer)
 							{
-								this.Tactical.EventLog.log(effect.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(_user), this.Const.UI.getColorizedEntityName(_targetTile.getEntity())));
+								::Tactical.EventLog.log(effect.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(_user), ::Const.UI.getColorizedEntityName(_targetTile.getEntity())));
 							}
 						}
 					}

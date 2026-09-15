@@ -28,22 +28,22 @@
 
 	o.onUpdate = function()
 	{
-		if ("ChampionChanceAdditional" in this.World.Assets.m)
-			this.World.Assets.m.ChampionChanceAdditional = this.World.Assets.getOrigin().getID() == "scenario.legends_party" ? 8 : 3;
+		if ("ChampionChanceAdditional" in ::World.Assets.m)
+			::World.Assets.m.ChampionChanceAdditional = ::World.Assets.getOrigin().getID() == "scenario.legends_party" ? 8 : 3;
 	}
 
 	o.onChampionKilled = function( _champion )
 	{
-		if (this.Tactical.State.getStrategicProperties() == null || !this.Tactical.State.getStrategicProperties().IsArenaMode)
+		if (::Tactical.State.getStrategicProperties() == null || !::Tactical.State.getStrategicProperties().IsArenaMode)
 		{
-			this.World.Assets.addMoney(this.Math.floor(_champion.getXPValue()));
+			::World.Assets.addMoney(::Math.floor(_champion.getXPValue()));
 		}
 	}
 
 	o.getNumberOfNamedItems = function()
 	{
 		local n = 0;
-		local items = this.World.Assets.getStash().getItems();
+		local items = ::World.Assets.getStash().getItems();
 
 		foreach( item in items )
 		{
@@ -51,7 +51,7 @@
 				++n;
 		}
 
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{

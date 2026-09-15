@@ -25,27 +25,27 @@
 					this.List.push(::Legends.EventList.changeResolve(_event.m.Monk2, 1));
 
 					_event.m.Monk1.worsenMood(1.0, "Lost composure and resorted to violence");
-					if (_event.m.Monk1.getMoodState() < this.Const.MoodState.Neutral)
+					if (_event.m.Monk1.getMoodState() < ::Const.MoodState.Neutral)
 					{
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Monk1.getMoodState()],
-							text = _event.m.Monk1.getName() + this.Const.MoodStateEvent[_event.m.Monk1.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Monk1.getMoodState()],
+							text = _event.m.Monk1.getName() + ::Const.MoodStateEvent[_event.m.Monk1.getMoodState()]
 						});
 					}
 
 					_event.m.Monk2.worsenMood(1.0, "Lost composure and resorted to violence");
 
-					if (_event.m.Monk2.getMoodState() < this.Const.MoodState.Neutral)
+					if (_event.m.Monk2.getMoodState() < ::Const.MoodState.Neutral)
 					{
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Monk2.getMoodState()],
-							text = _event.m.Monk2.getName() + this.Const.MoodStateEvent[_event.m.Monk2.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Monk2.getMoodState()],
+							text = _event.m.Monk2.getName() + ::Const.MoodStateEvent[_event.m.Monk2.getMoodState()]
 						});
 					}
 
-					if (this.Math.rand(1, 100) <= 50) {
+					if (::Math.rand(1, 100) <= 50) {
 						_event.m.Monk1.addLightInjury();
 						this.List.push({
 							id = 10,
@@ -53,7 +53,7 @@
 							text = _event.m.Monk1.getName() + " suffers light wounds"
 						});
 					} else {
-						local injury = _event.m.Monk1.addInjury(this.Const.Injury.Brawl);
+						local injury = _event.m.Monk1.addInjury(::Const.Injury.Brawl);
 						this.List.push({
 							id = 10,
 							icon = injury.getIcon(),
@@ -61,7 +61,7 @@
 						});
 					}
 
-					if (this.Math.rand(1, 100) <= 50) {
+					if (::Math.rand(1, 100) <= 50) {
 						_event.m.Monk2.addLightInjury();
 						this.List.push({
 							id = 10,
@@ -69,7 +69,7 @@
 							text = _event.m.Monk2.getName() + " suffers light wounds"
 						});
 					} else {
-						local injury = _event.m.Monk2.addInjury(this.Const.Injury.Brawl);
+						local injury = _event.m.Monk2.addInjury(::Const.Injury.Brawl);
 						this.List.push({
 							id = 10,
 							icon = injury.getIcon(),

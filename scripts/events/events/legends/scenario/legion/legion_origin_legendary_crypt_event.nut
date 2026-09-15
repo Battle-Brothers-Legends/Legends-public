@@ -13,7 +13,7 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 	function create() {
 		this.m.ID = "event.legion_origin_legendary_crypt";
 		this.m.Title = "As you approach...";
-		this.m.Cooldown = 40.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 40.0 * ::World.getTime().SecondsPerDay;
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			// \n\n —
@@ -28,8 +28,8 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 			}, {
 				Text = "Let\'s not disturb what rests here.",
 				function getResult(_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setVisited(false);
+					if (::World.State.getLastLocation() != null) {
+						::World.State.getLastLocation().setVisited(false);
 					}
 					return 0;
 				}
@@ -47,13 +47,13 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 			Options = [{
 				Text = "For the Emperor!",
 				function getResult(_event) {
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.OrcsTracks;
+					properties.Music = ::Const.Music.OrcsTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.OrcBoss, ::Math.rand(220), this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.OrcBoss, ::Math.rand(220), ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}],
@@ -73,19 +73,19 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				if (this.World.State.getLastLocation() != null) {
-					this.World.State.getLastLocation().die();
+				if (::World.State.getLastLocation() != null) {
+					::World.State.getLastLocation().die();
 				}
 
-				this.World.Assets.getStash().makeEmptySlots(1);
+				::World.Assets.getStash().makeEmptySlots(1);
 				local item = this.new("scripts/items/weapons/legendary/legend_ram_hammer");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				// this.World.Flags.set("IsMastabaDefeated", true);
+				// ::World.Flags.set("IsMastabaDefeated", true);
 			}
 
 		});
@@ -103,8 +103,8 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				if (this.World.State.getLastLocation() != null) {
-					this.World.State.getLastLocation().setVisited(false);
+				if (::World.State.getLastLocation() != null) {
+					::World.State.getLastLocation().setVisited(false);
 				}
 			}
 
@@ -118,7 +118,7 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 	}
 
 	function onUpdateScore() {
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
@@ -137,9 +137,9 @@ this.legion_origin_legendary_crypt_event <- this.inherit("scripts/events/event",
 			return;
 		}
 
-		local locations = this.World.EntityManager.getLocations();
+		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		foreach (v in locations) {
 			if (v.getTypeID() == "location.goblin_city" && v.getTile().getDistanceTo(currentTile) < 6) {

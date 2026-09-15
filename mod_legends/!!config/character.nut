@@ -45,7 +45,7 @@
 ::Const.addNewBackgroundType <- function( _typeKey )
 {
 	local max = 0;
-	foreach (btype, value in this.Const.BackgroundType)
+	foreach (btype, value in ::Const.BackgroundType)
 	{
 		if (max < value)
 		{
@@ -53,7 +53,7 @@
 		}
 	}
 
-	this.Const.BackgroundType[_typeKey] <- max << 1;
+	::Const.BackgroundType[_typeKey] <- max << 1;
 }
 
 ::Const.ProjectileType.Missile <- ::Const.ProjectileType.COUNT;
@@ -216,10 +216,10 @@
 
 ::Const.CharacterProperties.getInitiativeMinDamage <- function ()
 {
-	return this.DamageInitiativeMin + this.Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
+	return this.DamageInitiativeMin + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
 };
 
 ::Const.CharacterProperties.getInitiativeMaxDamage <- function ()
 {
-	return this.DamageInitiativeMax + this.Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
+	return this.DamageInitiativeMax + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
 };

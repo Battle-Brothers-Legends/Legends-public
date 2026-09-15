@@ -4,10 +4,10 @@
 	{
 		switch (_hitInfo.DamageType)
 		{
-			case this.Const.Damage.DamageType.Piercing:
+			case ::Const.Damage.DamageType.Piercing:
 				_properties.DamageReceivedRegularMult *= 1.3;
 				break;
-			case this.Const.Damage.DamageType.Burning:
+			case ::Const.Damage.DamageType.Burning:
 				_properties.DamageReceivedRegularMult *= 0.5;
 				break;
 			case ::Const.Damage.DamageType.Cutting:

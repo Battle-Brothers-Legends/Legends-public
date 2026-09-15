@@ -6,7 +6,7 @@ this.legend_stollwurm_blood_flask_item <- this.inherit("scripts/items/accessory/
 		this.m.ID = "accessory.legend_stollwurm_blood_flask";
 		this.m.Name = "Flask of Stollwurm Blood";
 		this.m.Description = "This flask holds the blood of a stollwurm, that will grant intense strength and fortitude. Spreading all through your body it will turn your skin to stone for a short time.";
-		this.m.SlotType = this.Const.ItemSlot.Bag;
+		this.m.SlotType = ::Const.ItemSlot.Bag;
 		this.m.IsAllowedInBag = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
@@ -30,7 +30,7 @@ this.legend_stollwurm_blood_flask_item <- this.inherit("scripts/items/accessory/
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/bottle_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onEquip()

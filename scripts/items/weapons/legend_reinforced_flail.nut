@@ -8,12 +8,12 @@ this.legend_reinforced_flail <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A farmer\'s flail that has been bolstered with thicker sections of wood and bound with iron. Sharp spikes protrude from its frame, as if to mockingly imitate it\'s military counterpart.";
 		this.m.IconLarge = "weapons/melee/legend_reinforced_flail_01.png";
 		this.m.Icon = "weapons/melee/legend_reinforced_flail_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Flail;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Cultist;
+		this.m.WeaponType = ::Const.Items.WeaponType.Flail;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Cultist;
 		this.m.IsAoE = true;
-		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;

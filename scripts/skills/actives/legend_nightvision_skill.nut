@@ -5,8 +5,8 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendNightvision);
 		this.m.Description = "Use your superior vision to pick out enemies in the dark and point them out to your mercenaries.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/shaman_skill_nightvision", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -49,7 +49,7 @@ this.legend_nightvision_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 		foreach( a in actors)
 		{
 

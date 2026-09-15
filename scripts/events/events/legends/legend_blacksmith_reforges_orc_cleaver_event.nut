@@ -5,7 +5,7 @@ this.legend_blacksmith_reforges_orc_cleaver_event <- this.inherit("scripts/event
 	function create() {
 		this.m.ID = "event.legend_blacksmith_reforges_orc_cleaver"; //—
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_05.png[/img]While at a short rest, %blacksmith% is ideally amusing %themselves_blacksmith% by digging through the company stash — reorganising various items to be in better order. Eventually %they_blacksmith% come across a worn orc cleaver that has seen better days. %blacksmith% notices you and brings the weapon to your attention. %SPEECH_ON%If I were two foot taller and about half as smart I\'d say this is almost a decent weapon.%SPEECH_OFF% The blacksmith carefully turns the blade in %their_blacksmith% hands, inspecting every angle as an artist would a painting. %SPEECH_ON%There\'s a warp running along the blade and the spine \'as a crack in it, you\'ve got a really bad amount of edge damage around the tip here as well. On top of that — it is far too heavy to swing and I can barely hold it in one hand. If I swung this thing too hard I\'d likely go with it...%SPEECH_OFF% %blacksmith% scratches %their_blacksmith% chin and gently puts the blade back in the cart. %SPEECH_ON%I don\'t know what its made of, but I can have a try at just reforging the whole thing if you give me a thousand crowns to cover my materials and I can start right now — but the blade may already be too far gone...%SPEECH_OFF%",

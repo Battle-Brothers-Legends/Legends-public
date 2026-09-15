@@ -9,8 +9,8 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_61.png";
 		this.m.IconMini = "status_effect_61_mini";
 		this.m.Overlay = "status_effect_61";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -23,7 +23,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 	function addAmount ( _a)
 	{
 		//Subtract how much we've ate.
-		this.m.Amount = this.Math.max(0, this.m.Amount - (15 - this.m.TurnsLeft)) + _a;
+		this.m.Amount = ::Math.max(0, this.m.Amount - (15 - this.m.TurnsLeft)) + _a;
 	}
 
 	function getTurnsLeft()
@@ -48,7 +48,7 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip()
 	{
-		local rate = this.Math.floor(this.m.Amount / 10);
+		local rate = ::Math.floor(this.m.Amount / 10);
 		local turns = this.m.TurnsLeft;
 		local ret = [
 			{
@@ -79,9 +79,9 @@ this.legend_porridge_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		local rate = this.Math.floor(this.m.Amount / 10);
+		local rate = ::Math.floor(this.m.Amount / 10);
 		local actor = this.getContainer().getActor();
-		actor.setHitpoints(this.Math.min(actor.getHitpointsMax(), actor.getHitpoints() + rate));
+		actor.setHitpoints(::Math.min(actor.getHitpointsMax(), actor.getHitpoints() + rate));
 		if (--this.m.TurnsLeft <= 0)
 		{
 			this.removeSelf();

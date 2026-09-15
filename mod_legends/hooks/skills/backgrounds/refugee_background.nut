@@ -33,9 +33,9 @@
 			"the Surbated"
 		];
 		this.m.Ethnicity = ::Math.rand(0, 2);
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 		this.m.PerkTreeDynamicMins.ClassChance += 0.20;
 	}
 
@@ -74,7 +74,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -85,7 +85,7 @@
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.legend_rabble_tunic]

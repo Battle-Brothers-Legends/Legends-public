@@ -22,10 +22,10 @@ this.legend_horse_bridle <- this.inherit("scripts/items/legend_horse_helmets/leg
 			"white_black",
 			"yellow_black"
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 1500;
 		this.m.Condition = 125;
 		this.m.ConditionMax = 125;

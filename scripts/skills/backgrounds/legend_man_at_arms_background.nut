@@ -25,10 +25,10 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			::Legends.Traits.getID(::Legends.Trait.Fat)
 
 		];
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	function setGender(_gender = -1) {
@@ -63,7 +63,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			"weapons/scramasax"
 		];
 
-		items.equip(this.Const.World.Common.pickArmor([ //1 = least likely
+		items.equip(::Const.World.Common.pickArmor([ //1 = least likely
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[2, ::Legends.Armor.Standard.patched_mail_shirt],
 			[3, ::Legends.Armor.Standard.leather_lamellar],
@@ -71,7 +71,7 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[4, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[4, ::Legends.Helmet.None],
 			[3, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.deep_cervelliere],
@@ -79,8 +79,8 @@ this.legend_man_at_arms_background <- this.inherit("scripts/skills/backgrounds/c
 			[2, ::Legends.Helmet.Standard.open_leather_cap],
 			[3, ::Legends.Helmet.Standard.full_leather_cap]
 		]));
-		local rng = this.Math.rand(0, this.Const.Injury.Permanent.len()-1);
-		this.m.Container.add(this.new("scripts/skills/" + this.Const.Injury.Permanent[rng].Script)); //adds random injury
+		local rng = ::Math.rand(0, ::Const.Injury.Permanent.len()-1);
+		this.m.Container.add(this.new("scripts/skills/" + ::Const.Injury.Permanent[rng].Script)); //adds random injury
 	}
 });
 

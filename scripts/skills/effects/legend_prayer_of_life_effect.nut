@@ -10,7 +10,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character has had their vitality restored by a holy chant";
 		this.m.Icon = "ui/perks/prayer_green.png";
 		this.m.Overlay = "prayer_green";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -33,10 +33,10 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			this.m.LastRoundApplied = this.Time.getRound();
 			this.spawnIcon(this.m.Overlay, actor.getTile());
-			local toHeal = this.Math.min(10, this.m.Heal);
+			local toHeal = ::Math.min(10, this.m.Heal);
 			if (actor.getHitpoints() < actor.getHitpointsMax())
 			{
-				actor.setHitpoints(this.Math.max(0, actor.getHitpoints() + toHeal));
+				actor.setHitpoints(::Math.max(0, actor.getHitpoints() + toHeal));
 			}
 			else
 			{
@@ -53,7 +53,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.ceil(this.m.Heal / 10);
+		this.m.TurnsLeft = ::Math.ceil(this.m.Heal / 10);
 		this.applyHealing();
 	}
 

@@ -32,13 +32,13 @@
 
 		this.m.LastCrownlingUpdateTime = this.Time.getVirtualTimeF();
 
-		if (this.m.Crownlings.len() < ::BDP.Crownlings.MaxParties || this.World.FactionManager.isHolyWar() && this.m.Crownlings.len() < ::BDP.Crownlings.MaxPartiesHolyWar)
+		if (this.m.Crownlings.len() < ::BDP.Crownlings.MaxParties || ::World.FactionManager.isHolyWar() && this.m.Crownlings.len() < ::BDP.Crownlings.MaxPartiesHolyWar)
 		{
 			::logInfo("spawning new party");
-			local playerTile = this.World.State.getPlayer().getTile();
+			local playerTile = ::World.State.getPlayer().getTile();
 			local candidateSettlements = [];
 
-			foreach( settlement in this.World.EntityManager.getSettlements() )
+			foreach( settlement in ::World.EntityManager.getSettlements() )
 			{
 				if (settlement.isIsolated())
 				{
@@ -53,11 +53,11 @@
 				candidateSettlements.push(settlement);
 			}
 
-			local selectedSettlement = candidateSettlements[this.Math.rand(0, candidateSettlements.len() - 1)];
-			local party = this.World.spawnEntity("scripts/entity/world/party", selectedSettlement.getTile().Coords);
+			local selectedSettlement = candidateSettlements[::Math.rand(0, candidateSettlements.len() - 1)];
+			local party = ::World.spawnEntity("scripts/entity/world/party", selectedSettlement.getTile().Coords);
 			party.setPos(this.createVec(party.getPos().X - 50, party.getPos().Y - 50));
 			party.setDescription(::BDP.Crownlings.WorldmapDescription);
-			party.setFootprintType(this.Const.World.FootprintsType.Mercenaries);
+			party.setFootprintType(::Const.World.FootprintsType.Mercenaries);
 			party.getFlags().set("IsMercenaries", true);
 			party.getFlags().set("IsCrownlings", true);
 
@@ -67,33 +67,33 @@
 			}
 			else
 			{
-				party.setFaction(selectedSettlement.getFactionOfType(this.Const.FactionType.Settlement).getID());
+				party.setFaction(selectedSettlement.getFactionOfType(::Const.FactionType.Settlement).getID());
 			}
 
-			local r = this.Math.min(::BDP.Crownlings.MaxPartyResources, 150 + this.World.getTime().Days);
-			this.Const.World.Common.assignTroops(party, this.Const.World.Spawn.Crownlings, this.Math.rand(r * 0.8, r), 0);
-			party.getLoot().Money = this.Math.rand(300, 600);
-			party.getLoot().ArmorParts = this.Math.rand(0, 25);
-			party.getLoot().Medicine = this.Math.rand(0, 10);
-			party.getLoot().Ammo = this.Math.rand(0, 50);
+			local r = ::Math.min(::BDP.Crownlings.MaxPartyResources, 150 + ::World.getTime().Days);
+			::Const.World.Common.assignTroops(party, ::Const.World.Spawn.Crownlings, ::Math.rand(r * 0.8, r), 0);
+			party.getLoot().Money = ::Math.rand(300, 600);
+			party.getLoot().ArmorParts = ::Math.rand(0, 25);
+			party.getLoot().Medicine = ::Math.rand(0, 10);
+			party.getLoot().Ammo = ::Math.rand(0, 50);
 
 			for( local i = 0; i < 2; i = ++i )
 			{
-				local r = this.Math.rand(1, 4);
-				party.addToInventory(::BDP.Crownlings.FoodLoot[this.Math.rand(0, ::BDP.Crownlings.FoodLoot.len() - 1)]);
+				local r = ::Math.rand(1, 4);
+				party.addToInventory(::BDP.Crownlings.FoodLoot[::Math.rand(0, ::BDP.Crownlings.FoodLoot.len() - 1)]);
 			}
 
 			party.getSprite("base").setBrush("world_base_07");
-			party.getSprite("body").setBrush("figure_crownling_0" + this.Math.rand(1, 2));
+			party.getSprite("body").setBrush("figure_crownling_0" + ::Math.rand(1, 2));
 			local mercList = [];
 			mercList.extend(this.m.Crownlings);
 			mercList.extend(this.m.Mercenaries);
 
 			while (true)
 			{
-				local name = ::BDP.Crownlings.CrownlingCompanyNames[this.Math.rand(0, ::BDP.Crownlings.CrownlingCompanyNames.len() - 1)];
+				local name = ::BDP.Crownlings.CrownlingCompanyNames[::Math.rand(0, ::BDP.Crownlings.CrownlingCompanyNames.len() - 1)];
 
-				if (name == this.World.Assets.getName())
+				if (name == ::World.Assets.getName())
 				{
 					continue;
 				}
@@ -120,9 +120,9 @@
 
 			while (true)
 			{
-				local banner = this.Const.PlayerBanners[this.Math.rand(0, this.Const.PlayerBanners.len() - 1)];
+				local banner = ::Const.PlayerBanners[::Math.rand(0, ::Const.PlayerBanners.len() - 1)];
 
-				if (banner == this.World.Assets.getBanner())
+				if (banner == ::World.Assets.getBanner())
 				{
 					continue;
 				}
@@ -183,17 +183,17 @@
 					continue;
 				}
 
-				local destination = candidateSettlements[this.Math.rand(0, candidateSettlements.len() - 1)];
+				local destination = candidateSettlements[::Math.rand(0, candidateSettlements.len() - 1)];
 				local controller = crownlingParty.getController();
 				local wait1 = this.new("scripts/ai/world/orders/wait_order");
-				wait1.setTime(this.Math.rand(10, 60) * 1.0);
+				wait1.setTime(::Math.rand(10, 60) * 1.0);
 				controller.addOrder(wait1);
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(destination.getTile());
 				move.setRoadsOnly(false);
 				controller.addOrder(move);
 				local wait2 = this.new("scripts/ai/world/orders/wait_order");
-				wait2.setTime(this.Math.rand(10, 60) * 1.0);
+				wait2.setTime(::Math.rand(10, 60) * 1.0);
 				controller.addOrder(wait2);
 				local mercenary = this.new("scripts/ai/world/orders/mercenary_order");
 				mercenary.setSettlement(destination);
@@ -238,7 +238,7 @@
 
 			for( local i = 0; i != numCrownlings; i = ++i )
 			{
-				local crownling = this.World.getEntityByID(_in.readU32());
+				local crownling = ::World.getEntityByID(_in.readU32());
 
 				if (crownling != null)
 				{
@@ -271,9 +271,9 @@
 		if (_entity.getFlags().get("IsCrownlings"))
 		{
 			_entity.clearTroops();
-			local r = this.Math.min(350, 150 + this.World.getTime().Days);
+			local r = ::Math.min(350, 150 + ::World.getTime().Days);
 			local brush = _entity.getSprite("body").getBrush().Name;
-			this.Const.World.Common.assignTroops(_entity, this.Const.World.Spawn.Crownlings, this.Math.rand(r * 0.8, r), 0);
+			::Const.World.Common.assignTroops(_entity, ::Const.World.Spawn.Crownlings, ::Math.rand(r * 0.8, r), 0);
 			_entity.getSprite("body").setBrush(brush);
 		}
 

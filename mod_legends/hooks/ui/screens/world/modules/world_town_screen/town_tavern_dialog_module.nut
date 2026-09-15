@@ -4,7 +4,7 @@
 	o.queryData = function()
 	{
 		local result = queryData();
-		result.RightInfo = "Pay a round for your mercenaries to get their spirits up ([img]gfx/ui/tooltips/money.png[/img]" + this.Math.round(this.World.getPlayerRoster().getSize() * 5 * this.m.Tavern.getSettlement().getBuyPriceMult()) + ").";
+		result.RightInfo = "Pay a round for your mercenaries to get their spirits up ([img]gfx/ui/tooltips/money.png[/img]" + ::Math.round(::World.getPlayerRoster().getSize() * 5 * this.m.Tavern.getSettlement().getBuyPriceMult()) + ").";
 		
 		return result;
 	}

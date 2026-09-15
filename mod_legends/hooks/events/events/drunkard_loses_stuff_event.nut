@@ -16,7 +16,7 @@
 				s.Options.push({
 					Text = "Sober them up, we will talk it out",
 					function getResult( _event ) {
-						return this.Math.rand(1, 100) <= 25 ? "F" : "G";
+						return ::Math.rand(1, 100) <= 25 ? "F" : "G";
 					}
 				});
 			}
@@ -50,25 +50,25 @@
 					_event.m.Drunkard.worsenMood(2.5, "Was flogged on your orders");
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
-						text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
+						text = _event.m.Drunkard.getName() + ::Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 					});
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
+						if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
 
-						if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+						if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -89,25 +89,25 @@
 					_event.m.Drunkard.worsenMood(2.5, "Was flogged on your orders");
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
-						text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
+						text = _event.m.Drunkard.getName() + ::Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 					});
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
 						if (bro.getID() == _event.m.Drunkard.getID())
 							continue;
 
-						if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
+						if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) || ::Legends.Backgrounds.hasAny(bro, _event.m.CultistBackgrounds))
 							continue;
 
 						bro.worsenMood(1.0, "Appalled by your order to have " + _event.m.Drunkard.getName() + " flogged");
 
-						if (bro.getMoodState() < this.Const.MoodState.Neutral)
+						if (bro.getMoodState() < ::Const.MoodState.Neutral)
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 					}
 				}
@@ -141,8 +141,8 @@
 				_event.m.Drunkard.worsenMood(2.5, "Relived the past and realised the error of their ways");
 				this.List.push({
 					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
-					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
+					icon = ::Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
+					text = _event.m.Drunkard.getName() + ::Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
 			}
 		});
@@ -168,8 +168,8 @@
 				_event.m.Drunkard.worsenMood(1.0, "Lost an item and relived the past");
 				this.List.push({
 					id = 10,
-					icon = this.Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
-					text = _event.m.Drunkard.getName() + this.Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
+					icon = ::Const.MoodStateIcon[_event.m.Drunkard.getMoodState()],
+					text = _event.m.Drunkard.getName() + ::Const.MoodStateEvent[_event.m.Drunkard.getMoodState()]
 				});
 			}
 		});
@@ -194,7 +194,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -211,7 +211,7 @@
 		if (this.getEligibleItems().len() == 0)
 			return;
 
-		this.m.Drunkard = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Drunkard = candidates[::Math.rand(0, candidates.len() - 1)];
 		local other_candidates = [];
 
 		foreach( bro in brothers )
@@ -221,13 +221,13 @@
 		if (other_candidates.len() == 0)
 			return;
 
-		this.m.OtherGuy = other_candidates[this.Math.rand(0, other_candidates.len() - 1)];
+		this.m.OtherGuy = other_candidates[::Math.rand(0, other_candidates.len() - 1)];
 		this.m.Score = candidates.len() * 10;
 	}
 
 	o.onPrepare = function () {
 		local candidates = this.getEligibleItems();
-		this.m.Item = candidates[this.Math.rand(0, candidates.len() - 1)];
-		this.World.Assets.getStash().remove(this.m.Item);
+		this.m.Item = candidates[::Math.rand(0, candidates.len() - 1)];
+		::World.Assets.getStash().remove(this.m.Item);
 	}
 })

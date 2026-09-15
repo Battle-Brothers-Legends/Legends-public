@@ -9,8 +9,8 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Torn Apart";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/crush_armor", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/crush_armor_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -18,8 +18,8 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.HitChanceBonus = 0;
 		this.m.DirectDamageMult = 0.1;
 		this.m.ActionPointCost = 4;
@@ -72,7 +72,7 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 		if (this.m.IsPolearm && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
@@ -88,7 +88,7 @@ this.legend_pry_armor_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectThrust);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectThrust);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

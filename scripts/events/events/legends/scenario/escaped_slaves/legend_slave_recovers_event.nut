@@ -12,7 +12,7 @@ this.legend_slave_recovers_event <- this.inherit("scripts/events/event", {
 
 		this.m.ID = "event.legend_slave_recovers";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 3.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 3.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_05.png[/img]" + EventText1 + EventText2 + EventText3 + EventText4 + EventText5 + EventText6,
@@ -60,11 +60,11 @@ this.legend_slave_recovers_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		local recovered_candidates = [];
 

@@ -5,7 +5,7 @@ this.perk_legend_specialist_prisoner <- this.inherit("scripts/skills/legend_spec
 			"weapon.legend_shiv"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Dagger
+			::Const.Items.WeaponType.Dagger
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

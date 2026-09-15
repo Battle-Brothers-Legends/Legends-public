@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay;
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			_screen.Text = "%townImage%Entering %townname%, it isn\'t long until %troublemaker% is bothering the locals. %They_troublemaker%\'s slapping buckets out of their hands and kicking women into the mud. When an old man confronts %them_troublemaker%, the sellsword draws out %their_troublemaker% weapon. Other peasants beg that you put a stop to this at once.";
 			_screen.start <- function ( _event )
@@ -14,8 +14,8 @@
 					});
 				}
 				this.List.push(::Legends.EventList.changeMoralReputation(-1));
-				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
-				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
+				local f = _event.m.Town.getFactionOfType(::Const.FactionType.Settlement);
+				f.addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
 			}
 		});
@@ -25,15 +25,15 @@
 				this.Characters.push(_event.m.Troublemaker.getImagePath());
 
 				this.List.push(::Legends.EventList.changeMoralReputation(-3));
-				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
-				f.addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
+				local f = _event.m.Town.getFactionOfType(::Const.FactionType.Settlement);
+				f.addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your company caused havoc in town");
 				_event.m.Troublemaker.improveMood(1.0, "Bullied the peasantfolk");
 
-				if (_event.m.Troublemaker.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Troublemaker.getMoodState() >= ::Const.MoodState.Neutral)
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Troublemaker.getMoodState()],
-						text = _event.m.Troublemaker.getName() + this.Const.MoodStateEvent[_event.m.Troublemaker.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Troublemaker.getMoodState()],
+						text = _event.m.Troublemaker.getName() + ::Const.MoodStateEvent[_event.m.Troublemaker.getMoodState()]
 					});
 			}
 		});
@@ -49,36 +49,36 @@
 				this.List.push(::Legends.EventList.changeMoralReputation(-5));
 				this.List.push(::Legends.EventList.changeMoney(::Math.rand(100, 500)));
 
-				local f = _event.m.Town.getFactionOfType(this.Const.FactionType.Settlement);
-				f.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You pillaged the town");
+				local f = _event.m.Town.getFactionOfType(::Const.FactionType.Settlement);
+				f.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You pillaged the town");
 
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach( bro in brothers )
 				{
-					if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+					if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 					{
 						bro.improveMood(1.0, "Enjoyed raiding and pillaging");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
-					else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.OffendedByViolence) && this.Math.rand(1, 100) <= 75)
+					else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.OffendedByViolence) && ::Math.rand(1, 100) <= 75)
 					{
 						bro.worsenMood(1.0, "Was appalled by the company\'s conduct");
 
-						if (bro.getMoodState() < this.Const.MoodState.Neutral)
+						if (bro.getMoodState() < ::Const.MoodState.Neutral)
 						{
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 						}
 					}
@@ -98,7 +98,7 @@
 					icon = "ui/icons/relation.png",
 					text = _event.m.Troublemaker.getName() + " and " + _event.m.Peacekeeper.getName() + " grow distant"
 				});
-				local injury = _event.m.Peacekeeper.addInjury(this.Const.Injury.Knockout);
+				local injury = _event.m.Peacekeeper.addInjury(::Const.Injury.Knockout);
 				this.List.push({
 					id = 10,
 					icon = injury.getIcon(),
@@ -106,11 +106,11 @@
 				});
 				_event.m.Peacekeeper.worsenMood(2.0, "Was humiliated in front of the company");
 
-				if (_event.m.Peacekeeper.getMoodState() < this.Const.MoodState.Neutral) {
+				if (_event.m.Peacekeeper.getMoodState() < ::Const.MoodState.Neutral) {
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Peacekeeper.getMoodState()],
-						text = _event.m.Peacekeeper.getName() + this.Const.MoodStateEvent[_event.m.Peacekeeper.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Peacekeeper.getMoodState()],
+						text = _event.m.Peacekeeper.getName() + ::Const.MoodStateEvent[_event.m.Peacekeeper.getMoodState()]
 					});
 				}
 			}

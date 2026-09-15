@@ -5,7 +5,7 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 	function create() {
 		this.m.ID = "event.legends_necromancer_origins_resurrect_knight";
 		this.m.Title = "A last stand...";
-		this.m.Cooldown = 125.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 125.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//— \n |
 			ID = "A",
@@ -32,15 +32,15 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			Options = [{
 				Text = "You will serve nicely.",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
@@ -62,19 +62,19 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
 				});
 
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
 				});
 
-				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-				local settlement = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
-				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
-				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+				local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+				local settlement = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
+				local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
+				local undead = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 
 				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
@@ -100,15 +100,15 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			Options = [{
 				Text = "Fark it.",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.getFlags().add("PlayerZombie");
 				_event.m.Dude.getFlags().add("undead");
@@ -123,19 +123,19 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.NegativeEventValue + "]Your reputation with everyone has decreased slightly[/color]"
 				});
 
 				this.List.push({
 					id = 16,
 					icon = "ui/icons/special.png",
-					text = "[color=" + this.Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
+					text = "[color=" + ::Const.UI.Color.PositiveEventValue + "]Your reputation with the undead has increased slightly[/color]"
 				});
 
-				local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-				local settlement = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
-				local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
-				local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+				local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+				local settlement = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
+				local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
+				local undead = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 
 				foreach (n in nobles) {
 					n.addPlayerRelation(-5.0, "Became a greater threat");
@@ -163,12 +163,12 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			}],
 			function start(_event) {
 				local money = ::Math.rand(311, 718);
-				this.World.Assets.addMoney(money);
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/loot/jade_broche_item"));
-				this.World.Assets.getStash().add(this.new("scripts/items/loot/signet_ring_item"));
+				::World.Assets.addMoney(money);
+				::World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/loot/jade_broche_item"));
+				::World.Assets.getStash().add(this.new("scripts/items/loot/signet_ring_item"));
 			}
 		});
 	}
@@ -192,13 +192,13 @@ this.legends_necromancer_origins_resurrect_knight_event <- this.inherit("scripts
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (!currentTile.Type == this.Const.World.TerrainType.Forest && !currentTile.Type == this.Const.World.TerrainType.LeaveForest) {
+		if (!currentTile.Type == ::Const.World.TerrainType.Forest && !currentTile.Type == ::Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 

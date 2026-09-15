@@ -5,7 +5,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_cannibal_recruitment";
 		this.m.Title = "Strange Times";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_cannibal_recruitment.png[/img]You halt and turn your nose skyward, a thread of flavour is drifting on the wind — not grain or fruit, but instead more sickly sweet. Following the trail like a hungry pig leads to a ramshackle camp — inhabited by a lonely figure basked in the light of a campfire.\n\n A vast array of utensils is laid out in the same manner as a torturer places his instruments before beginning their work. The figure shuffles slightly, exchanging a ladle for a spoon.\n A branch crunches, the figure twitches somewhat, but does not rise or jump as you would expect.\n\n Their grisly voice drags out towards your hide. %SPEECH_ON%Ther\'s enough fer all of yer\'s %SPEECH_OFF% The figure starts stirring the pot gently with their finger. You emerge into the dim dancing light of the open fire, the smell is stronger now, but there\'s something else in the air that was not there before.\n\n With a hand on your weapon and approaching slowly, you enter the innermost ring of the fire. The light no longer dances, instead moping and tumbling on the stranger\'s face — who is still fixated on the stew mere inches from the tip of their rankling nose. They motion for you to sit down. The stranger, now half illuminated by the tired flame, moves from their spot to fix eyes with you. They stare and wait, as if mentally dissecting you.\n The thickness of the air starts to become noticeable. The stranger hangs a crooked grin. %SPEECH_ON%Yer want somethin\' \'ta eat?\n\nOr are ya lookin\' fer a real artist like merself?%SPEECH_OFF% With a smile the grin becomes uncomfortably wide.",
@@ -16,8 +16,8 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 				{
 					Text = "We could use a good cook in %companyname%.",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Cannibal);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Cannibal);
+						::World.getTemporaryRoster().clear();
 						_event.m.Cannibal.onHired();
 						return 0;
 					}
@@ -26,17 +26,17 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 				{
 					Text = "Leave the cook be.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						return 0;
 					}
 
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Cannibal = roster.create("scripts/entity/tactical/player");
 
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 					_event.m.Cannibal.getFlags().add("PlayerSkeleton");
 					_event.m.Cannibal.getFlags().add("undead");
 					_event.m.Cannibal.getFlags().add("skeleton");
@@ -70,10 +70,10 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
 		this.m.Score = 1;

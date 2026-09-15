@@ -6,14 +6,14 @@
 			popup = false,
 			deletedNum = 0
 		};
-		local capacity = this.Stash.getCapacity();
-		local current = "State" in ::World ? this.World.State.getPlayer().calculateStashModifier(false) : capacity;
+		local capacity = ::Stash.getCapacity();
+		local current = "State" in ::World ? ::World.State.getPlayer().calculateStashModifier(false) : capacity;
 
 		if (capacity > current)
 		{
 			for (local i = current - 1 ; i < capacity - 1; i = ++i)
 			{
-				if (this.Stash.getItemAtIndex(i).item != null)
+				if (::Stash.getItemAtIndex(i).item != null)
 				{
 					ret.deletedNum += 1;
 				}
@@ -25,7 +25,7 @@
 	}
 
 	o.onSortButtonClicked <- function() {
-		this.Stash.sort();
+		::Stash.sort();
 		this.loadStashList();
 	}
 
@@ -48,7 +48,7 @@
 	}
 
 	o.removeInventoryItemUpgrades <- function (_data) {
-		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		local armor = ::Stash.getItemAtIndex(_data[0]).item;
 		return this.removeAllUpgradesFromItem(armor)
 	}
 

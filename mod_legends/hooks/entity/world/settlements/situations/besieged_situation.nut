@@ -18,7 +18,7 @@
 
 		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
 			::Legends.S.extend(_draftList, ::Legends.Background.LegendPuppet, 3);
-		} else if (this.World.Assets.getOrigin().getID() == "scenario.militia") {
+		} else if (::World.Assets.getOrigin().getID() == "scenario.militia") {
 			::Legends.S.extend(_draftList, ::Legends.Background.LegendManAtArms, 3);
 		}
 	}

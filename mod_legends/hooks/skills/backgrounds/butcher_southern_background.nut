@@ -3,15 +3,15 @@
 	o.create = function ()
 	{
 		this.butcher_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.Southern;
 		this.m.Ethnicity = 1;
 		this.m.BeardChance = 60;
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.onBuildDescription <- function ()
@@ -23,7 +23,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r <= 1)
 		{
@@ -34,7 +34,7 @@
 			items.equip(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.butcher_apron]
 		]));
 	}

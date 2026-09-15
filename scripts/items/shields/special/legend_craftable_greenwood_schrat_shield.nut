@@ -7,7 +7,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		this.named_shield.create();
 		this.m.ID = "shield.legend_craftable_greenwood_schrat";
 		this.m.Name = "Living Greenwood Tree Shield";
-		this.m.NameList = this.Const.Strings.ShieldNames;
+		this.m.NameList = ::Const.Strings.ShieldNames;
 		this.m.Description = "This shield carved out of the remains of a living tree slowly regrows if it sustains any damage. At a glance, it almost looks as if its grotesque face is still moving. Once per battle this shield will regenerate to full if destroyed.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;
@@ -44,7 +44,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Regenerates itself by up to [color=%positive%]" + this.Math.floor(this.getConditionMax() * 0.2) + "[/color] of maximum durability each turn."
+			text = "Regenerates itself by up to [color=%positive%]" + ::Math.floor(this.getConditionMax() * 0.2) + "[/color] of maximum durability each turn."
 		});
 		return result;
 	}
@@ -70,24 +70,24 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 		}
 		local actor = this.getContainer().getActor();
 		if (actor.getCurrentProperties().IsSpecializedInShields) {
-			_damage = this.Math.max(1, this.Math.ceil(_damage * 0.5));
+			_damage = ::Math.max(1, ::Math.ceil(_damage * 0.5));
 		}
 
 		local Condition = this.m.Condition;
-		Condition = this.Math.maxf(0.0, this.m.Condition - _damage);
+		Condition = ::Math.maxf(0.0, this.m.Condition - _damage);
 
 		if (Condition == 0) {
 			if (this.m.SoundOnDestroyed.len() != 0) {
-				this.Sound.play(this.m.SoundOnDestroyed[this.Math.rand(0, this.m.SoundOnDestroyed.len() - 1)], this.Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
+				::Sound.play(this.m.SoundOnDestroyed[::Math.rand(0, this.m.SoundOnDestroyed.len() - 1)], ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 			}
 			this.setCondition(this.getConditionMax());
 
 			actor.setDirty(true);
 
 			if (!actor.isHiddenToPlayer()) {
-				this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-				this.Sound.play("sounds/enemies/unhold_regenerate_01.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + "\'s shield regrows to full durability");
+				::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+				::Sound.play("sounds/enemies/unhold_regenerate_01.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + "\'s shield regrows to full durability");
 			}
 		}
 	}
@@ -99,7 +99,7 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 	function onTurnStart()
 	{
 		local shieldMissing = this.getConditionMax() - this.getCondition();
-		local shieldAdded = this.Math.min(shieldMissing, this.Math.floor(this.getConditionMax() * 0.2));
+		local shieldAdded = ::Math.min(shieldMissing, ::Math.floor(this.getConditionMax() * 0.2));
 
 		if (shieldAdded <= 0)
 		{
@@ -112,9 +112,9 @@ this.legend_craftable_greenwood_schrat_shield <- this.inherit("scripts/items/shi
 
 		if (!actor.isHiddenToPlayer())
 		{
-			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play("sounds/enemies/unhold_regenerate_01.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + "\'s shield restores " + shieldAdded + " durability");
+			::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+			::Sound.play("sounds/enemies/unhold_regenerate_01.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + "\'s shield restores " + shieldAdded + " durability");
 		}
 	}
 

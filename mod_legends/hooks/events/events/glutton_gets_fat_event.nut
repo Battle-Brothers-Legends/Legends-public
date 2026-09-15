@@ -38,7 +38,7 @@
 		if (candidates.len() == 0)
 			return;
 
-		this.m.Glutton = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Glutton = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 5;
 	}
 })

@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		this.gladiator_background.create();
-		this.m.HairColors = this.Const.HairColors.Old;
+		this.m.HairColors = ::Const.HairColors.Old;
 		this.m.Level = 3;
 	}
 
@@ -22,11 +22,11 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local a = this.Const.World.Common.pickArmor([
+		local a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
-		local r = this.Math.rand(1, 2);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{

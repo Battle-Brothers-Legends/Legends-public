@@ -6,8 +6,8 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Grant defense to your allies with your chant of holy scripture, granting +20% of your resolve as melee and ranged defense. Adjacent undead and cultists are Baffled.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/ambience/buildings/temple_prayer", 3, 0);
 		this.m.SoundVolume = 1.5;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -52,7 +52,7 @@ this.legend_prayer_of_faith_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
 		foreach( a in actors )
 		{

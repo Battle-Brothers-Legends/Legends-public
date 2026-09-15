@@ -38,13 +38,13 @@
 			function getResult() {
 				::Const.Contracts.Negotiation.addAskMalus(this.Contract, 10, 66);
 				
-				this.Contract.m.Payment.Annoyance += this.Math.maxf(1.0, this.Math.rand(this.Const.Contracts.Settings.NegotiationAnnoyanceGainMin, this.Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
+				this.Contract.m.Payment.Annoyance += ::Math.maxf(1.0, ::Math.rand(::Const.Contracts.Settings.NegotiationAnnoyanceGainMin, ::Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
 
-				if (this.Contract.m.Payment.Annoyance > this.Const.Contracts.Settings.NegotiationMaxAnnoyance) {
+				if (this.Contract.m.Payment.Annoyance > ::Const.Contracts.Settings.NegotiationMaxAnnoyance) {
 					return "Negotiation.Fail";
 				}
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance) {
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance) {
 					this.Contract.m.Payment.IsFinal = true;
 				} else {
 					this.Contract.m.Payment.IsFinal = false;
@@ -59,8 +59,8 @@
 		this.Options.push({
 			Text = "{Forget it, this isn\'t worth it. | What a waste of time. }",
 			function getResult() {
-				this.World.Contracts.removeContract(this.Contract);
-				this.World.State.getTownScreen().updateContracts();
+				::World.Contracts.removeContract(this.Contract);
+				::World.State.getTownScreen().updateContracts();
 				return 0;
 			}
 		});
@@ -71,22 +71,22 @@
 				Text = this.Contract.m.Payment.Advance == 0 ? "We need payment in advance." : "We need more payment in advance.",
 				function getResult()
 				{
-					this.Contract.m.Payment.Annoyance += this.Math.maxf(1.0, this.Math.rand(this.Const.Contracts.Settings.NegotiationAnnoyanceGainMin, this.Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
+					this.Contract.m.Payment.Annoyance += ::Math.maxf(1.0, ::Math.rand(::Const.Contracts.Settings.NegotiationAnnoyanceGainMin, ::Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
 
-					if (this.Contract.m.Payment.Advance >= (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.AdvancePaymentCap : 0.5) || this.Contract.m.Payment.Annoyance > this.Const.Contracts.Settings.NegotiationMaxAnnoyance)
+					if (this.Contract.m.Payment.Advance >= (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.AdvancePaymentCap : 0.5) || this.Contract.m.Payment.Annoyance > ::Const.Contracts.Settings.NegotiationMaxAnnoyance)
 					{
 						return "Negotiation.Fail";
 					}
 
-					if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance)
+					if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance)
 					{
 						this.Contract.m.Payment.IsFinal = true;
 					}
 					else
 					{
 						this.Contract.m.Payment.IsFinal = false;
-						this.Contract.m.Payment.Advance = this.Math.minf(1.0, this.Contract.m.Payment.Advance + 0.25);
-						this.Contract.m.Payment.Completion = this.Math.maxf(0.0, this.Contract.m.Payment.Completion - 0.25);
+						this.Contract.m.Payment.Advance = ::Math.minf(1.0, this.Contract.m.Payment.Advance + 0.25);
+						this.Contract.m.Payment.Completion = ::Math.maxf(0.0, this.Contract.m.Payment.Completion - 0.25);
 					}
 
 					return "Negotiation";
@@ -101,22 +101,22 @@
 				Text = this.Contract.m.Payment.Completion == 0 ? "We need payment once the work is done." : "We need more payment once the work is done.",
 				function getResult()
 				{
-					this.Contract.m.Payment.Annoyance += this.Math.maxf(1.0, this.Math.rand(this.Const.Contracts.Settings.NegotiationAnnoyanceGainMin, this.Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
+					this.Contract.m.Payment.Annoyance += ::Math.maxf(1.0, ::Math.rand(::Const.Contracts.Settings.NegotiationAnnoyanceGainMin, ::Const.Contracts.Settings.NegotiationAnnoyanceGainMax) * (::World.Assets.m.ProfessionEffect.LegendNegotiator > 0 ? ::World.Assets.m.ProfessionEffect.LegendNegotiator.m.NegotiationAnnoyanceMult : 1.0));
 
-					if (this.Contract.m.Payment.Annoyance > this.Const.Contracts.Settings.NegotiationMaxAnnoyance)
+					if (this.Contract.m.Payment.Annoyance > ::Const.Contracts.Settings.NegotiationMaxAnnoyance)
 					{
 						return "Negotiation.Fail";
 					}
 
-					if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance)
+					if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.NegotiationRefuseChance * this.Contract.m.Payment.Annoyance)
 					{
 						this.Contract.m.Payment.IsFinal = true;
 					}
 					else
 					{
 						this.Contract.m.Payment.IsFinal = false;
-						this.Contract.m.Payment.Advance = this.Math.maxf(0.0, this.Contract.m.Payment.Advance - 0.25);
-						this.Contract.m.Payment.Completion = this.Math.minf(1.0, this.Contract.m.Payment.Completion + 0.25);
+						this.Contract.m.Payment.Advance = ::Math.maxf(0.0, this.Contract.m.Payment.Advance - 0.25);
+						this.Contract.m.Payment.Completion = ::Math.minf(1.0, this.Contract.m.Payment.Completion + 0.25);
 					}
 
 					return "Negotiation";

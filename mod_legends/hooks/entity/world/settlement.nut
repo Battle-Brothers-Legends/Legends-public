@@ -43,9 +43,9 @@
 		if (this.m.IsActive) {
 			this.m.HousesType = this.getHousesType();
 			foreach (h in this.m.HousesTiles) {
-				local tile = this.World.getTileSquare(h.X, h.Y);
-				tile.clear(this.Const.World.DetailType.Houses);
-				local d = tile.spawnDetail("world_houses_0" + this.m.HousesType + "_0" + h.V, this.Const.World.ZLevel.Object - 3, this.Const.World.DetailType.Houses);
+				local tile = ::World.getTileSquare(h.X, h.Y);
+				tile.clear(::Const.World.DetailType.Houses);
+				local d = tile.spawnDetail("world_houses_0" + this.m.HousesType + "_0" + h.V, ::Const.World.ZLevel.Object - 3, ::Const.World.DetailType.Houses);
 				d.Scale = 0.85;
 			}
 		}
@@ -90,8 +90,8 @@
 	o.changeSize <- function ( _v )
 	{
 		this.setUpgrading(false);
-		_v = this.Math.max(1, _v);
-		this.setSize(this.Math.min(3, _v));
+		_v = ::Math.max(1, _v);
+		this.setSize(::Math.min(3, _v));
 		this.changeSupportedOrAbandonedAttachedLocations();
 	}
 
@@ -143,7 +143,7 @@
 		local ret = getTooltip();
 		// add noble house flavor tooltip
 		foreach (i in this.m.Factions) {
-			local f = this.World.FactionManager.getFaction(i);
+			local f = ::World.FactionManager.getFaction(i);
 			if (f == null || f.getType() != ::Const.FactionType.NobleHouse) {
 				continue;
 			}
@@ -199,7 +199,7 @@
 				}
 
 				foreach(i, s in situations) {
-					if (s.isValid() && !(s.getValidUntil() == 0 && !this.World.Contracts.hasContractWithSituation(s.getInstanceID()))) {
+					if (s.isValid() && !(s.getValidUntil() == 0 && !::World.Contracts.hasContractWithSituation(s.getInstanceID()))) {
 						local id = s.getID();
 
 						if (!(id in addedSituations)) {
@@ -229,7 +229,7 @@
 				});
 			}
 		}
-		else if (this.World.State.getDistantVisionBonus()) {
+		else if (::World.State.getDistantVisionBonus()) {
 			foreach( s in this.m.Situations )
 			{
 				ret.push({
@@ -240,21 +240,21 @@
 			}
 		}
 
-		if (this.Const.LegendMod.DebugMode)
+		if (::Const.LegendMod.DebugMode)
 			ret.push({
 				id = 6,
 				type = "hint",
 				text = "Resources: " + this.getResources()
 			});
 
-		if (this.Const.LegendMod.DebugMode)
+		if (::Const.LegendMod.DebugMode)
 			ret.push({
 				id = 6,
 				type = "hint",
 				text = "Generating Resources: " + this.getNewResources()
 			});
 
-		if (this.Const.LegendMod.DebugMode || this.m.IsVisited)
+		if (::Const.LegendMod.DebugMode || this.m.IsVisited)
 			ret.extend([
 				{
 					id = 6,
@@ -289,7 +289,7 @@
 
 	o.getWealth <- function ()
 	{
-		return this.Math.round(100.0 * (1.0 * this.getResources() / this.getWealthBaseLevel()));
+		return ::Math.round(100.0 * (1.0 * this.getResources() / this.getWealthBaseLevel()));
 	}
 
 	o.getWealthBaseLevel <- function ()
@@ -471,7 +471,7 @@
 	local getSellPriceMult = o.getSellPriceMult;
 	o.getSellPriceMult = function () {
 		local p = getSellPriceMult();
-		p *= (this.m.Modifiers.SellPriceMult + this.World.State.getPlayer().getHaggleMult()) / this.m.Modifiers.SellPriceMult;
+		p *= (this.m.Modifiers.SellPriceMult + ::World.State.getPlayer().getHaggleMult()) / this.m.Modifiers.SellPriceMult;
 		return p;
 	}
 
@@ -522,11 +522,11 @@
 
 		if (_building.getID() == "building.blackmarket")
 		{
-			++this.Const.World.Buildings.Blackmarket;
+			++::Const.World.Buildings.Blackmarket;
 		}
 		else if (_building.getID() == "building.stables")
 		{
-			++this.Const.World.Buildings.Stables;
+			++::Const.World.Buildings.Stables;
 		}
 	}
 
@@ -808,12 +808,12 @@
 
 	o.onLeave <- function ()
 	{
-		foreach (item in this.World.Assets.getStash().getItems()) {
+		foreach (item in ::World.Assets.getStash().getItems()) {
 			if (item == null)
 				continue;
 			if (item.isBought() && !item.isSold()) {
-				if (item.isItemType(this.Const.Items.ItemType.TradeGood)) {
-					this.World.Statistics.getFlags().increment("TradeGoodsBought");
+				if (item.isItemType(::Const.Items.ItemType.TradeGood)) {
+					::World.Statistics.getFlags().increment("TradeGoodsBought");
 					this.setResources(this.getResources() + item.getResourceValue());
 				}
 			}
@@ -821,7 +821,7 @@
 			item.setTransactionPrice(null);
 		}
 
-		foreach (bro in this.World.getPlayerRoster().getAll())
+		foreach (bro in ::World.getPlayerRoster().getAll())
 			foreach (item in bro.getItems().getAllItems())
 				if (item.isBought()) {
 					item.setBought(false);
@@ -850,12 +850,12 @@
 			}
 		}
 
-		if (this.World.Statistics.getFlags().has("TradeGoodsSold") && this.World.Statistics.getFlags().get("TradeGoodsSold") >= 10)
+		if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 10)
 		{
 			this.updateAchievement("Trader", 1, 1);
 		}
 
-		if (this.World.Statistics.getFlags().has("TradeGoodsSold") && this.World.Statistics.getFlags().get("TradeGoodsSold") >= 50)
+		if (::World.Statistics.getFlags().has("TradeGoodsSold") && ::World.Statistics.getFlags().get("TradeGoodsSold") >= 50)
 		{
 			this.updateAchievement("MasterTrader", 1, 1);
 		}
@@ -949,7 +949,7 @@
 
 	o.numShips <- function ()
 	{
-		local f = this.World.FactionManager.getFaction(this.m.Factions[0]);
+		local f = ::World.FactionManager.getFaction(this.m.Factions[0]);
 
 		if (f == null)
 			return 0;
@@ -1092,7 +1092,7 @@
 		}
 		else
 		{
-			this.World.getRoster(this.getID()).clear();
+			::World.getRoster(this.getID()).clear();
 			this.getSprite("location_banner").Visible = false;
 			this.getLabel("name").Visible = false;
 			this.getSprite("body").setBrush(this.getSpriteName() + "_ruins");
@@ -1105,9 +1105,9 @@
 
 			foreach( h in this.m.HousesTiles )
 			{
-				local tile = this.World.getTileSquare(h.X, h.Y);
-				tile.clear(this.Const.World.DetailType.Houses | this.Const.World.DetailType.Lighting);
-				local d = tile.spawnDetail("world_houses_0" + this.m.HousesType + "_0" + h.V + "_ruins", this.Const.World.ZLevel.Object - 3, this.Const.World.DetailType.Houses);
+				local tile = ::World.getTileSquare(h.X, h.Y);
+				tile.clear(::Const.World.DetailType.Houses | ::Const.World.DetailType.Lighting);
+				local d = tile.spawnDetail("world_houses_0" + this.m.HousesType + "_0" + h.V + "_ruins", ::Const.World.ZLevel.Object - 3, ::Const.World.DetailType.Houses);
 				d.Scale = 0.85;
 				this.spawnFireAndSmoke(tile.Pos);
 			}
@@ -1185,7 +1185,7 @@
 		foreach (e in list) {
 			this.m.SettlementEncounters.push(e);
 		}
-		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * this.World.getTime().SecondsPerDay);*/
+		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * ::World.getTime().SecondsPerDay);*/
 	}
 
 	local onSerialize = o.onSerialize;
@@ -1225,7 +1225,7 @@
 
 		this.m.SettlementEncountersCooldownUntil = _in.readF32();
 		while(_in.readBool()) {
-			local e = this.World.Encounters.getEncounter(_in.readString());
+			local e = ::World.Encounters.getEncounter(_in.readString());
 			if(e != null) {
 				this.m.SettlementEncounters.push(e);
 			}

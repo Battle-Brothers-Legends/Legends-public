@@ -6,9 +6,9 @@
 			if (s.ID == "A") {
 				s.Text = "[img]gfx/ui/events/event_35.png[/img]A figure stops you on the path. You put a hand to your sword and order %them_dude% to announce %their_dude% intentions, all the while keeping your eyes peeled for an ambush. The stranger takes a step forward and removes %their_dude% helm.%SPEECH_ON%I am %crusader%, a fighter from a distant order. My order has been reduced to ruins. I slew the monsters of Dev\'ungrad. I gave peace to the spirits at Shellstaya. When the ancients speak, I listen. And so here I am.%SPEECH_OFF%You take your hand off your sword and ask %them_dude% of the ancients. %They_dude% nods and speak.%SPEECH_ON%The men before men, the ancients were suzerain over all things, having forged an empire that stretched to realms far beyond this one. All this chaos is a mere fragment of their destruction. A man may die, but an empire does not. An empire decays, piece by piece, and takes with it all that it thinks it is owed.%SPEECH_OFF%The stranger puts %their_dude% helmet back on and holds %their_dude% sword up.%SPEECH_ON%The Empire of the Ancients stirs in its grave. I wish to help quiet it. I offer you my sword, mercenary.%SPEECH_OFF%";
 				s.start <- function ( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_crusader") {
 						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendYoungblood]);
 						_event.m.Dude.getBaseProperties().Hitpoints += 5;
 						_event.m.Dude.getBaseProperties().Stamina += 7;
@@ -31,19 +31,19 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
 		}
 
-		if (!this.World.FactionManager.isUndeadScourge())
+		if (!::World.FactionManager.isUndeadScourge())
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_crusader")
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_crusader")
 		{
-			local roster = this.World.getPlayerRoster().getAll();
+			local roster = ::World.getPlayerRoster().getAll();
 			foreach( bro in roster) {
 				if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCrusader))
 					return;

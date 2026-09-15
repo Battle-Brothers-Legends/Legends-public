@@ -23,9 +23,9 @@
 		this.m.Titles = [
 			"the Miller"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
 	o.getTooltip = function () {
@@ -44,7 +44,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{The life as a miller had always been lacking something for %name%, yet the hard work kept her from making any big plans. | Continuing the family tradition, %name% learned the millers trade from her father. | Although just a simple miller, %name% always dreamed about wandering out into the world and bring home tales and pockets full of crowns. | Being a simple lass, %name% did not mind working hard in the mill every day. | %name% always was more ambitious than other people. While her brother was content with running their family\'s mill, she could not shake the feeling that she was destined for more.} {One night he was awoken by a loud thunderstorm. Rushing outside, %name% realised that her mill had been ignited by a lightning strike. | When she caught her promised husband in bed with another woman, she was furious, battering both of them with a hail of blows. Her fists were bruised, people were shouting at her, but the only thing she felt was emptyness where once was her heart. As if in a dream she quickly packed her belongings and set out, never to return. | When her husband was found dead, torn apart by wild beasts in the woods, she did not say a word. Silently she packed her belongings and set out into the world, to start a new life somewhere far away. | After hearing wild tales from a hedge knight in the tavern of %townname%, her imagination was running wild with all the possibilities out there in the world waiting for her. | A drought meant business was running slow for her. When %name% was not able to pay his debts any more her life was threatened by ruthless money collectors. She had to disappear.} {Remembering her cousin, %randomname%, who has made a decent living in the mercenary business, %name% decided to do the same. | While looking for opportunities she met a mercenary recruiter who promised her fame and fortune. | Although she does not know the next thing about fighting, %name% is eager to sign up with a mercenary company hooked by the promise of adventure. | Whether by lack of alternatives or by her free will, %name% stands before you now, ready to swear fealty.}";
 		}
@@ -64,7 +64,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -75,8 +75,8 @@
 			items.equip(this.new("scripts/items/weapons/legend_shovel"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
-			[1, "linen_tunic", this.Math.rand(6, 7)]
+		items.equip(::Const.World.Common.pickArmor([
+			[1, "linen_tunic", ::Math.rand(6, 7)]
 		]));
 
 	}

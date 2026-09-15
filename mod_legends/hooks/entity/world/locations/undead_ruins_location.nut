@@ -13,7 +13,7 @@
 			"loot/golden_chalice_item"
 		];
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			treasure.extend(treasure);
 			treasure.extend(treasure);
@@ -28,7 +28,7 @@
 			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 		}
 
-		this.dropMoney(this.Math.rand(0, 200), _lootTable);
-		this.dropTreasure(this.Math.rand(2, 3), treasure, _lootTable);
+		this.dropMoney(::Math.rand(0, 200), _lootTable);
+		this.dropTreasure(::Math.rand(2, 3), treasure, _lootTable);
 	}
 });

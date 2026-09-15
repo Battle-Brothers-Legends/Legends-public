@@ -1,11 +1,11 @@
 this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical/enemies/legend_goblin_rider_abstract", {
 	m = {
 		Variant = 1,
-		LastBodyPartHit = this.Const.BodyPart.Body,
+		LastBodyPartHit = ::Const.BodyPart.Body,
 		Info = null,
 		AssignAIAgent = "scripts/ai/tactical/agents/goblin_wolfrider_agent",
-		AssignEntityType = this.Const.EntityType.LegendGoblinWhiteDirewolfRider,
-		AssignActor = this.Const.Tactical.Actor.LegendGoblinWhiteDirewolfRider,
+		AssignEntityType = ::Const.EntityType.LegendGoblinWhiteDirewolfRider,
+		AssignActor = ::Const.Tactical.Actor.LegendGoblinWhiteDirewolfRider,
 		WolfScript = "scripts/entity/tactical/legend_white_warwolf",
 		GoblinScript = "scripts/entity/tactical/enemies/legend_goblin_harrier"
 	},
@@ -36,7 +36,7 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 
 	function createSprites()
 	{
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.setAlwaysApplySpriteOffset(true);
 		local offset = this.createVec(8, 14);
 		this.setSpriteOffset("body", offset);
@@ -69,49 +69,49 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 			return;
 		}
 
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		local decal;
 		this.m.IsCorpseFlipped = flip;
-		decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+		decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 		decal.setBrightness(0.9);
 		decal.Scale = 0.95;
-		decal = _tile.spawnDetail("bust_wolf_02_armor_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+		decal = _tile.spawnDetail("bust_wolf_02_armor_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 		decal.setBrightness(0.9);
 		decal.Scale = 0.95;
 
-		if (_fatalityType != this.Const.FatalityType.Decapitated)
+		if (_fatalityType != ::Const.FatalityType.Decapitated)
 		{
-			decal = _tile.spawnDetail(this.getSprite("wolf_head").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(this.getSprite("wolf_head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
 		}
-		else if (_fatalityType == this.Const.FatalityType.Decapitated)
+		else if (_fatalityType == ::Const.FatalityType.Decapitated)
 		{
 			local layers = [
 				this.getSprite("wolf_head").getBrush().Name + "_dead"
 			];
-			local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
+			local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
 			decap[0].setBrightness(0.9);
 			decap[0].Scale = 0.95;
 		}
-		else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+		else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 		{
-			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
 		}
-		else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+		else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 		{
-			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(this.getSprite("wolf").getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Scale = 0.95;
 		}
 
 		this.spawnTerrainDropdownEffect(_tile);
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Whitewolf";
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.IsResurrectable = false;
 		_tile.Properties.set("Corpse", corpse);
-		this.Tactical.Entities.addCorpse(_tile);
+		::Tactical.Entities.addCorpse(_tile);
 	}
 
 	function assignRandomEquipment ()
@@ -123,14 +123,14 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 			"weapons/warbrand"
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			this.m.Items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_medium_armor],
 			[3, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
@@ -138,7 +138,7 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 
 
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_light_helmet],
 			[3, ::Legends.Helmet.Greenskin.goblin_heavy_helmet]
 		]);
@@ -161,7 +161,7 @@ this.legend_goblin_white_direwolf_rider <- this.inherit("scripts/entity/tactical
 			"weapons/named/named_goblin_spear",
 			"weapons/named/named_warbrand"
 		];
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		::Legends.Perks.grant(this, ::Legends.Perk.Nimble);
 		::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		return true;

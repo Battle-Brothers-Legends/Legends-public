@@ -23,7 +23,7 @@
 
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getMoney() <= 200)
+		if (::World.Assets.getMoney() <= 200)
 			return;
 		onUpdateScore();
 	}

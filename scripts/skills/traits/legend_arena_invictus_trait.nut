@@ -12,7 +12,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 		this.m.Icon = "ui/traits/trait_invictus.png";
 		this.m.Description = "With a single fist raised, %fullname% stops the crowd cheering. With both raised, they shout %their% name from the stands. Gladiators rather wrestle a Lindwurm than fight %them% in the arena.";
 		this.m.Overlay = "trait_invictus";
-		this.m.Order = this.Const.SkillOrder.Trait - 1;
+		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
 	function getTooltip()
@@ -90,11 +90,11 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 		if (_targetEntity == null || !_targetEntity.isAlive()) return;
 
-		if (_targetEntity.getMoraleState() == this.Const.MoraleState.Ignore) return;
+		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Ignore) return;
 
-		if ((this.Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == this.Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo)
+		if ((this.Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == ::Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo)
 		{
-			if (_damageInflictedHitpoints >= this.Const.Morale.OnHitMinDamage)
+			if (_damageInflictedHitpoints >= ::Const.Morale.OnHitMinDamage)
 			{
 				this.spawnIcon(this.m.Overlay, _targetEntity.getTile());
 			}
@@ -105,11 +105,11 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 		this.m.LastFrameApplied = this.Time.getFrame();
 		this.m.LastEnemyAppliedTo = _targetEntity.getID();
-		this.m.SkillCount = this.Const.SkillCounter;
+		this.m.SkillCount = ::Const.SkillCounter;
 
-		if (_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < this.Const.Morale.OnHitMinDamage)
+		if (_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < ::Const.Morale.OnHitMinDamage)
 		{
-			_targetEntity.checkMorale(-1, this.Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax()) - this.getContainer().getActor().getCurrentProperties().ThreatOnHit);
+			_targetEntity.checkMorale(-1, ::Const.Morale.OnHitBaseDifficulty * (1.0 - _targetEntity.getHitpoints() / _targetEntity.getHitpointsMax()) - this.getContainer().getActor().getCurrentProperties().ThreatOnHit);
 		}
 	}
 
@@ -124,7 +124,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 	function onAfterUpdate( _properties )
 	{
 		local won = this.getContainer().getActor().getFlags().getAsInt("ArenaFightsWon");
-		_properties.ThreatOnHit += this.Math.min(10, this.Math.floor(won * 0.1));
+		_properties.ThreatOnHit += ::Math.min(10, ::Math.floor(won * 0.1));
 	}
 
 	function onCombatStarted()

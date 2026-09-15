@@ -4,7 +4,7 @@ this.legend_tower_shield_blueprint <- this.inherit("scripts/crafting/blueprint",
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_tower_shield";
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = ::Const.Items.ItemType.Shield;
 		this.m.PreviewCraftable = this.new("scripts/items/shields/legend_tower_shield");
 		this.m.PreviewCraftable.m.Name = "Company Tower Shield";
 		this.m.Cost = 200;

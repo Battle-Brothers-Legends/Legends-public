@@ -56,28 +56,28 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		if (this.World.getTime().Days < 30)
+		if (::World.getTime().Days < 30)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (!currentTile.HasRoad || currentTile.Type == this.Const.World.TerrainType.Snow)
+		if (!currentTile.HasRoad || currentTile.Type == ::Const.World.TerrainType.Snow)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_guildmaster = [];
 		foreach(bro in brothers) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendGuildmaster))
 				candidates_guildmaster.push(bro);
 		}
 		if (candidates_guildmaster.len() != 0) {
-			this.m.Guildmaster = candidates_guildmaster[this.Math.rand(0, candidates_guildmaster.len() - 1)];
+			this.m.Guildmaster = candidates_guildmaster[::Math.rand(0, candidates_guildmaster.len() - 1)];
 		}
 	}
 

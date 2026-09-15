@@ -15,7 +15,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IconMini = "status_effect_81_mini";
 		this.m.Overlay = "status_effect_81";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/nightmare", 8);
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -50,7 +50,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 	function getDamage()
 	{
 		local actor = this.getContainer().getActor();
-		return this.Math.max(10, actor.getHitpointsMax());
+		return ::Math.max(10, actor.getHitpointsMax());
 	}
 
 	function applyDamage()
@@ -58,13 +58,13 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		for ( local i = 0; i < 99; i = ++i )
 		{
-			if (actor.isAlive() && this.Math.rand(1, 6) >= this.Math.max(2, 7 - this.getTurnsCurseofyears()))
+			if (actor.isAlive() && ::Math.rand(1, 6) >= ::Math.max(2, 7 - this.getTurnsCurseofyears()))
 			{
 				this.spawnIcon("status_effect_81", this.getContainer().getActor().getTile());
-				local hitInfo = clone this.Const.Tactical.HitInfo;
+				local hitInfo = clone ::Const.Tactical.HitInfo;
 				hitInfo.DamageRegular = this.getDamage();
 				hitInfo.DamageDirect = 1.0;
-				hitInfo.BodyPart = this.Const.BodyPart.Body;
+				hitInfo.BodyPart = ::Const.BodyPart.Body;
 				hitInfo.BodyDamageMult = 0.02 + this.getTurnsCurseofyears();
 				hitInfo.FatalityChanceMult = 0.0;
 				this.getContainer().getActor().onDamageReceived(this.getContainer().getActor(), this, hitInfo);
@@ -82,7 +82,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 		actor.getFlags().set("Curseofyears", true);
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
 		}
 
 	}
@@ -91,7 +91,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local BreakChance = 6;
 		//local everyoneCurseofyears = true;
-		if (this.Math.rand(1, 9) > BreakChance)
+		if (::Math.rand(1, 9) > BreakChance)
 		{
 			this.removeSelf();
 		}
@@ -102,7 +102,7 @@ this.legend_curseofyears_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnStart() {
 		if (this.m.SoundOnUse.len() != 0) {
-			::Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, this.getContainer().getActor().getPos());
 		}
 	}
 

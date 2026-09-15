@@ -22,7 +22,7 @@
 		}
 
 		if (::World.State.getPlayer() != null && this.m.StashModifier > 0) {
-			this.World.State.getPlayer().calculateStashModifier();
+			::World.State.getPlayer().calculateStashModifier();
 		}
 
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDrinkBeer, function (_skill) {
@@ -33,7 +33,7 @@
 	o.onUnequip <- function () {
 		this.item.onUnequip();
 		if (::World.State.getPlayer() != null && this.m.StashModifier > 0) {
-			this.World.State.getPlayer().calculateStashModifier();
+			::World.State.getPlayer().calculateStashModifier();
 		}
 	}
 });

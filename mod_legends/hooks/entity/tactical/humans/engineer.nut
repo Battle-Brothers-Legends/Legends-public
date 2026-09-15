@@ -22,9 +22,9 @@
 		local r;
 		local banner = 3;
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 
 			if (r == 1)
 			{
@@ -35,10 +35,10 @@
 				this.m.Items.equip(this.new("scripts/items/weapons/wooden_stick"));
 			}
 		}
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.engineer_hat]
 		]);
 		this.m.Items.equip(helm);

@@ -8,7 +8,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 		this.legend_camp_contract.create();
 		this.m.Type = "contract.legend_camp_legion_defend_cemetery";
 		this.m.Name = "Defend burial site";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 10.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 10.0;
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
 		this.m.DifficultyMult = ::Math.rand(95, 125) * 0.01;
 		this.m.DescriptionTemplates = [
@@ -72,7 +72,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 		this.m.Flags.set("DestinationName", this.m.Destination.getName());
 		this.m.Flags.set("DestinationFaction", this.m.Destination.getFaction());
 		this.m.Destination.setFaction(::Const.Faction.PlayerAnimals);
-		this.m.Payment.Pool = 800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 		this.contract.start();
 	}
 
@@ -188,7 +188,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 			}, {
 				Text = "Not interested.",
 				function getResult() {
-					this.World.Contracts.removeContract(this.Contract);
+					::World.Contracts.removeContract(this.Contract);
 					return 0;
 				}
 			}],
@@ -208,8 +208,8 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 					if (!::Legends.S.isNull(this.Contract.m.Destination)) {
 						this.Contract.m.Destination.setFaction(this.Contract.m.Flags.getAsInt("DestinationFaction"));
 					}
-					this.World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
-					this.World.Contracts.finishActiveContract();
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+					::World.Contracts.finishActiveContract();
 					return 0;
 				}
 			}],
@@ -229,8 +229,8 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 					if (!::Legends.S.isNull(this.Contract.m.Destination)) {
 						this.Contract.m.Destination.setFaction(this.m.Flags.getAsInt("DestinationFaction"));
 					}
-					this.World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
-					this.World.Contracts.finishActiveContract(true);
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+					::World.Contracts.finishActiveContract(true);
 					return 0;
 				}
 			}],
@@ -282,14 +282,14 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 		party.setDescription("A party of graverobbers and pillagers.");
 		party.setAttackableByAI(false);
 
-		party.getLoot().Money = this.Math.rand(21, 111);
-		party.getLoot().ArmorParts = this.Math.rand(0, 25);
-		party.getLoot().Medicine = this.Math.rand(0, 3);
-		party.getLoot().Ammo = this.Math.rand(0, 30);
+		party.getLoot().Money = ::Math.rand(21, 111);
+		party.getLoot().ArmorParts = ::Math.rand(0, 25);
+		party.getLoot().Medicine = ::Math.rand(0, 3);
+		party.getLoot().Ammo = ::Math.rand(0, 30);
 
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 
 		local raid = this.new("scripts/ai/world/orders/raid_order");
 		raid.setTime(60.0);

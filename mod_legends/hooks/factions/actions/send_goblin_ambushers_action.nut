@@ -78,7 +78,7 @@
 			party.addToInventory(loot[::Math.rand(0, loot.len() - 1)]);
 		}
 
-		if (this.Math.rand(1, 100) <= 33) {
+		if (::Math.rand(1, 100) <= 33) {
 			local loot = [
 				"loot/goblin_carved_ivory_iconographs_item",
 				"loot/goblin_minted_coins_item",

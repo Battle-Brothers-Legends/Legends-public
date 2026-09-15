@@ -15,17 +15,17 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 	function create()
 	{
 		this.named_weapon.create();
-		this.m.Variant = this.Math.rand(1, 2);
+		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_goblin_crossbow";
-		this.m.NameList = this.Const.Strings.CrossbowNames;
-		this.m.PrefixList = this.Const.Strings.GoblinWeaponPrefix;
+		this.m.NameList = ::Const.Strings.CrossbowNames;
+		this.m.PrefixList = ::Const.Strings.GoblinWeaponPrefix;
 		this.m.Description = "A large and heavy crossbow with menacing spikes in front. It's a mystery how goblins could improve upon a miniature ballista, but here we are. It shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
 		this.m.Categories = "Crossbow, Two-Handed";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive;
-		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive;
+		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = true;
 		this.m.ShowArmamentIcon = true;
@@ -119,7 +119,7 @@ this.legend_named_goblin_crossbow <- this.inherit("scripts/items/weapons/named/n
 		if (item.getID() != this.getID())
 			return;
 
-		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
 		{
 			_properties.DamageRegularMin += 100;
 			_properties.DamageRegularMax += 100;

@@ -13,7 +13,7 @@
 						}
 						_event.m.Deserter.getSkills().onDeath(::Const.FatalityType.None);
 						::Legends.addFallen(_event.m.Deserter, "Deserted the company");
-						this.World.getPlayerRoster().remove(_event.m.Deserter);
+						::World.getPlayerRoster().remove(_event.m.Deserter);
 						_event.m.Deserter = null;
 						_event.m.Other = null;
 						return 0;

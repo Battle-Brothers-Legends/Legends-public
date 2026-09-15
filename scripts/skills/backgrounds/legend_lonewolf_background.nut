@@ -47,7 +47,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 			"the Hedge Knight"
 		];
 
-		this.m.Ethnicity = this.Math.rand(0, 2);
+		this.m.Ethnicity = ::Math.rand(0, 2);
 	}
 
 	function setGender(_gender = -1) {
@@ -81,14 +81,14 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -119,7 +119,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		// local helm = this.getContainer().getActor().getItems();
 		// // local r;
 
-		// // r = this.Math.rand(0, 5);
+		// // r = ::Math.rand(0, 5);
 
 		// // if (r == 0)
 		// // {
@@ -146,7 +146,7 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		// // 	items.equip(this.new("scripts/items/weapons/goedendag"));
 		// // }
 
-		// items.equip(this.Const.World.Common.pickArmor([
+		// items.equip(::Const.World.Common.pickArmor([
 		// 	// [1, ::Legends.Armor.Standard.mail_hauberk],
 		// 	// [1, ::Legends.Armor.Standard.basic_mail_shirt],
 		// 	// [1, ::Legends.Armor.Standard.scale_armor],
@@ -167,6 +167,6 @@ this.legend_lonewolf_background <- this.inherit("scripts/skills/backgrounds/char
 		// // 	helm.push([1, ::Legends.Helmet.Standard.theamson_barbute_helmet])
 		// // }
 
-		// // items.equip(this.Const.World.Common.pickHelmet(helm));
+		// // items.equip(::Const.World.Common.pickHelmet(helm));
 	}
 });

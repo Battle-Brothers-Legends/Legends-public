@@ -17,7 +17,7 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 		local items = this.getContainer().getActor().getItems();
 
 		if (!this.m.IsNew) {
-			items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
+			items.getData()[::Const.ItemSlot.Offhand][0] = -1;
 			return;
 		}
 		local actor = this.getContainer().getActor();
@@ -38,14 +38,14 @@ this.mods_hookExactClass("skills/injury_permanent/missing_hand_injury", function
 			{
 				items.addToBag(itemToUnequip);
 			}
-			else if (this.World.Assets.getStash().hasEmptySlot())
+			else if (::World.Assets.getStash().hasEmptySlot())
 			{
-				this.World.Assets.getStash().add(itemToUnequip);
+				::World.Assets.getStash().add(itemToUnequip);
 			}
 			else
 			{
-				this.World.Assets.getStash().makeEmptySlots(1);
-				this.World.Assets.getStash().add(itemToUnequip);
+				::World.Assets.getStash().makeEmptySlots(1);
+				::World.Assets.getStash().add(itemToUnequip);
 			}
 		}
 		else if (itemToUnequip)

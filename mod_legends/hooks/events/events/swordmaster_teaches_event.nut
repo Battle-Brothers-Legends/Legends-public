@@ -8,7 +8,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3) {
 			return;
@@ -45,8 +45,8 @@
 			return;
 		}
 
-		this.m.Student = student_candidates[this.Math.rand(0, student_candidates.len() - 1)];
-		this.m.Teacher = teacher_candidates[this.Math.rand(0, teacher_candidates.len() - 1)];
+		this.m.Student = student_candidates[::Math.rand(0, student_candidates.len() - 1)];
+		this.m.Teacher = teacher_candidates[::Math.rand(0, teacher_candidates.len() - 1)];
 		this.m.Score = teacher_candidates.len() * 4;
 	}
 })

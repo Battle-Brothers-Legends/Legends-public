@@ -7,15 +7,15 @@ this.legend_wolfsbane_item <- this.inherit("scripts/items/item", {
 		this.m.Name = "Wolfsbane";
 		this.m.Description = "This perenial species of poisonous flower typically grows in mountain meadows. Can be used to craft things with great effect on were creatures.";
 		this.m.Icon = "misc/inventory_wolfsbane.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Misc | this.Const.Items.ItemType.Crafting;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Misc | ::Const.Items.ItemType.Crafting;
 		this.m.IsDroppedAsLoot = true;
 		this.m.Value = 50;
 	}
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 });

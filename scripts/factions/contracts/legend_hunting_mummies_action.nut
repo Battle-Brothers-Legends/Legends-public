@@ -3,7 +3,7 @@ this.legend_hunting_mummies_action <- this.inherit("scripts/factions/faction_act
 	function create()
 	{
 		this.m.ID = "legend_hunting_mummies_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
@@ -11,7 +11,7 @@ this.legend_hunting_mummies_action <- this.inherit("scripts/factions/faction_act
 
 	function onUpdate( _faction )
 	{
-		if (!this.Const.DLC.Desert)
+		if (!::Const.DLC.Desert)
 		{
 			return;
 		}
@@ -21,12 +21,12 @@ this.legend_hunting_mummies_action <- this.inherit("scripts/factions/faction_act
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 800)
+		if (::World.Assets.getBusinessReputation() < 800)
 		{
 			return;
 		}
 
-		if (this.Math.rand(1, 100) > 30)
+		if (::Math.rand(1, 100) > 30)
 		{
 			return;
 		}
@@ -53,7 +53,7 @@ this.legend_hunting_mummies_action <- this.inherit("scripts/factions/faction_act
 		contract.setFaction(_faction.getID());
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

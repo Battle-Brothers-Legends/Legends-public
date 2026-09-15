@@ -25,10 +25,10 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
 		this.m.PerkTreeDynamicMins.Weapon = 9;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
 	}
 
 	o.getTooltip = function ()
@@ -51,14 +51,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 30)
+		if (::Math.rand(1, 100) <= 30)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -87,9 +87,9 @@
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
-			actor.setTitle(this.Const.Strings.SellswordTitles[this.Math.rand(0, this.Const.Strings.SellswordTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 
 	}
@@ -98,7 +98,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 9);
+		r = ::Math.rand(0, 9);
 
 		if (r == 0)
 		{
@@ -142,7 +142,7 @@
 			items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
@@ -151,7 +151,7 @@
 			[1, ::Legends.Armor.Standard.mail_shirt]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],

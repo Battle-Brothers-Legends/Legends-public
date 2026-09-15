@@ -3,7 +3,7 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 	function create()
 	{
 		this.m.ID = "legend_spider_abductions_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
@@ -11,7 +11,7 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 
 	function onUpdate( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_spider_abductions_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_spider_abductions_contract))
 		{
 			return;
 		}
@@ -21,7 +21,7 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 350)
+		if (::World.Assets.getBusinessReputation() < 350)
 		{
 			return;
 		}
@@ -57,7 +57,7 @@ this.legend_spider_abductions_action <- this.inherit("scripts/factions/faction_a
 		contract.setFaction(_faction.getID());
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

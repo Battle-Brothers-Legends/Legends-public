@@ -3,11 +3,11 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendLurker);
-		this.m.Description = this.Const.Strings.PerkDescription.LegendLurker;
+		this.m.Description = ::Const.Strings.PerkDescription.LegendLurker;
 		this.m.Icon = "ui/perks/lurker.png";
 		this.m.IconMini = "perk_61_mini"; //needs a mini at some point
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsSerialized = false;
@@ -60,8 +60,8 @@ this.legend_lurker_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
-		local entites = this.Tactical.Entities.getAllHostilesAsArray();
+		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local entites = ::Tactical.Entities.getAllHostilesAsArray();
 		local isAlone = true;
 
 		foreach( ally in allies )

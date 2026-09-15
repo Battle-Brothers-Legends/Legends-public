@@ -8,7 +8,7 @@
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
@@ -17,9 +17,9 @@
 				{
 					local isTreeAllowed = true;
 
-					if (this.Math.abs(x - _rect.X) <= 0 || this.Math.abs(x - (_rect.X + _rect.W - 1)) <= 0 || this.Math.abs(y - _rect.Y) <= 0 || this.Math.abs(y - (_rect.Y + _rect.H - 1)) <= 0)
+					if (::Math.abs(x - _rect.X) <= 0 || ::Math.abs(x - (_rect.X + _rect.W - 1)) <= 0 || ::Math.abs(y - _rect.Y) <= 0 || ::Math.abs(y - (_rect.Y + _rect.H - 1)) <= 0)
 					{
-						if (_rect.W >= 3 && _rect.H >= 3 && this.Math.rand(1, 100) < 20)
+						if (_rect.W >= 3 && _rect.H >= 3 && ::Math.rand(1, 100) < 20)
 						{
 							continue;
 						}
@@ -27,35 +27,35 @@
 						{
 							isTreeAllowed = false;
 						}
-						else if (this.Math.rand(1, 100) <= 50)
+						else if (::Math.rand(1, 100) <= 50)
 						{
 							isTreeAllowed = false;
 						}
 					}
 
-					if (this.Math.abs(y - (_rect.Y + _rect.H - 1)) <= 1)
+					if (::Math.abs(y - (_rect.Y + _rect.H - 1)) <= 1)
 					{
 						isTreeAllowed = false;
 					}
 
 					local n = 0;
 
-					if (this.Tactical.isValidTileSquare(x - 1, y) && this.Tactical.getTileSquare(x - 1, y).Level == 1)
+					if (::Tactical.isValidTileSquare(x - 1, y) && ::Tactical.getTileSquare(x - 1, y).Level == 1)
 					{
 						n = ++n;
 					}
 
-					if (this.Tactical.isValidTileSquare(x - 1, y + 1) && this.Tactical.getTileSquare(x - 1, y + 1).Level == 1)
+					if (::Tactical.isValidTileSquare(x - 1, y + 1) && ::Tactical.getTileSquare(x - 1, y + 1).Level == 1)
 					{
 						n = ++n;
 					}
 
-					if (this.Tactical.isValidTileSquare(x + 1, y + 1) && this.Tactical.getTileSquare(x + 1, y + 1).Level == 1)
+					if (::Tactical.isValidTileSquare(x + 1, y + 1) && ::Tactical.getTileSquare(x + 1, y + 1).Level == 1)
 					{
 						n = ++n;
 					}
 
-					if (this.Tactical.isValidTileSquare(x, y + 1) && this.Tactical.getTileSquare(x, y + 1).Level == 1)
+					if (::Tactical.isValidTileSquare(x, y + 1) && ::Tactical.getTileSquare(x, y + 1).Level == 1)
 					{
 						n = ++n;
 					}

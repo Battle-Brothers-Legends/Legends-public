@@ -23,9 +23,9 @@
 			"the Kennelmaster",
 			"the Dogkeeper"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Druid;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Druid;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	o.setGender <- function (_gender = -1)	{
@@ -49,7 +49,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
+		if(this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{%name%\'s fondness for dogs started after her father won a pup in a shooting contest. | When a dog saved her from a bear, %name% dedicated her life to the canine lot. | Seeing a dog stave off a would-be robber, %name%\'s fondness for the mutts only grew. | A young, bird-hunting %name% quickly saw the honor, loyalty, and workmanship of a dog. | Once bitten by a wild dog, %name% confronted her fear of canines by learning to train them.} {The houndmaster spent many years working for a local lord. She gave up the post after the liege struck a dog down just for sport. | Quick with training her mongrels, the houndmaster put her dogs into a lucrative traveling tradeshow. | The woman made a great deal of money on the dog-fighting circuits, her mutts renowned for their easily commanded - and unleashed - ferocity. | Employed by lawmen, the houndmaster used her strong-nosed dogs to hunt down many a criminal element. | Used by a local lord, many of the houndmaster\'s dogs found their way onto the battlefield. | For many years, the houndmaster used her dogs to help lift the spirits of orphaned children and the crippled.} {Now, though, %name% seeks a change of vocation. | When she heard word of a mercenary\'s pay, %name% decided to try her hand at being a sellsword. | Approached by a sellsword to buy one of her dogs, %name% became more interested in the prospect of she, herself, becoming a mercenary. | Tired of training dogs for this purpose or that, %name% seeks to train herself for... well, this purpose or that. | An interesting prospect, you can only hope %name% is as loyal as the dogs she once commanded.}";
 		}
@@ -81,11 +81,11 @@
 			items.equip(this.new("scripts/items/accessory/legend_warhound_item"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.open_leather_cap],
 			[1, ::Legends.Helmet.None]
 		]));

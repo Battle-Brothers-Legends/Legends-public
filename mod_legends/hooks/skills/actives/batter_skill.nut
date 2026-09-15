@@ -24,13 +24,13 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
 	o.onAnySkillUsed = function( _skill, _targetEntity, _properties ) {
 		if (_skill == this) {
-			_properties.DamageMinimum = this.Math.max(_properties.DamageMinimum, 10);
+			_properties.DamageMinimum = ::Math.max(_properties.DamageMinimum, 10);
 
 			if (_targetEntity != null && !::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.getContainer().getActor().getTile().getDistanceTo(_targetEntity.getTile()) == 1) {
 				_properties.MeleeSkill -= 15;

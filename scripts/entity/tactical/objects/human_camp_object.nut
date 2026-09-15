@@ -18,7 +18,7 @@ this.human_camp_object <- this.inherit("scripts/entity/tactical/entity", {
 			"03"
 		];
 		local body = this.addSprite("body");
-		body.setBrush("camp_" + variants[this.Math.rand(0, variants.len() - 1)]);
+		body.setBrush("camp_" + variants[::Math.rand(0, variants.len() - 1)]);
 	}
 
 });

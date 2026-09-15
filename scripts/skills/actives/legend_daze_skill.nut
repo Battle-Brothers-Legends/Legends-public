@@ -8,8 +8,8 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -56,29 +56,29 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		local targetEntity = _targetTile.getEntity();
-		local roll = this.Math.rand(1, 100);
+		local roll = ::Math.rand(1, 100);
 		local chance = this.getHitchance(targetEntity);
 
-		local logString = this.Const.UI.getColorizedEntityName(_user) + " tries to stupefy " + this.Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + chance + ", Rolled: " + roll + ")\n";
+		local logString = ::Const.UI.getColorizedEntityName(_user) + " tries to stupefy " + ::Const.UI.getColorizedEntityName(targetEntity) + " (Chance: " + chance + ", Rolled: " + roll + ")\n";
 		if (roll <= chance) {
-			this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 			if (!targetEntity.getCurrentProperties().IsImmuneToStun) {
 
 				if (!::Legends.S.isEntityNullOrDead(targetEntity)) {
 					::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed);
 
 					if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-						this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(_user) + " stupefied " + this.Const.UI.getColorizedEntityName(targetEntity));
+						::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(_user) + " stupefied " + ::Const.UI.getColorizedEntityName(targetEntity));
 					}
 				}
 
 				return true;
 			} else {
-				this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(targetEntity) + " is immune");
+				::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(targetEntity) + " is immune");
 				return false;
 			}
 		} else {
-			this.Tactical.EventLog.log(logString + this.Const.UI.getColorizedEntityName(_user) + " failed to stupefy " + this.Const.UI.getColorizedEntityName(targetEntity));
+			::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(_user) + " failed to stupefy " + ::Const.UI.getColorizedEntityName(targetEntity));
 			return false;
 		}
 

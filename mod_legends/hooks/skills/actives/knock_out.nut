@@ -158,12 +158,12 @@
 		local targetTile = _targetEntity.getTile();
 		local user = this.getContainer().getActor();
 
-		if (_bodyPart == this.Const.BodyPart.Head) {
+		if (_bodyPart == ::Const.BodyPart.Head) {
 			if (!_targetEntity.getCurrentProperties().IsImmuneToStun) {
 				::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
 
 				if (!user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " stunned");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " stunned");
 					return;
 				}
 			}

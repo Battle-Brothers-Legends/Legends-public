@@ -4,12 +4,12 @@
 	o.create = function() {
 		create();
 		this.m.Categories = "Throwing Weapon/Spear, One-Handed";
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.OneHanded;
 		this.m.Value = 200;
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.35;
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {

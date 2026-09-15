@@ -5,7 +5,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		IsPlayerAttacking = false,
 		MinStrength = 10, // player needs to earn 10% of bonus (not including base 5% bonus) for this contract to be valid
 		Perk =  ::Legends.Perk.LegendFavouredEnemyOccult,
-		ValidTypes = this.Const.LegendMod.FavoriteOccult,
+		ValidTypes = ::Const.LegendMod.FavoriteOccult,
 		LevelSumRequiredForRandomSpawn = 50,
 		IsRandomlyAdded = null,
 	},
@@ -14,8 +14,8 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_greenwood_schrats";
 		this.m.Name = "The Heart of the Woods (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"They say that Schrats are the lost souls of the forest, yet this contract sounds like something more. Something far older, something far more terrible.",
 			"A malevolent presence lurks in the heart of the forest, its dark aura spreading like a poison through the trees and soil.",
@@ -36,9 +36,9 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 	function start()
 	{
-		this.m.Payment.Pool = 1800 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 1800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 10)
+		if (::Math.rand(1, 100) <= 10)
 		{
 			this.m.Payment.Completion = 0.9;
 			this.m.Payment.Advance = 0.1;
@@ -61,7 +61,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					"Hunt down what kills people in the woods around " + this.Contract.m.Home.getName()
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -73,8 +73,8 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 
 				if (r <= 20)
 				{
@@ -93,7 +93,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -113,18 +113,18 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
 				{
 					this.Contract.setScreen("Victory");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
 				{
-					local tileType = this.World.State.getPlayer().getTile().Type;
+					local tileType = ::World.State.getPlayer().getTile().Type;
 
-					if (tileType == this.Const.World.TerrainType.Forest || tileType == this.Const.World.TerrainType.LeaveForest || tileType == this.Const.World.TerrainType.AutumnForest)
+					if (tileType == ::Const.World.TerrainType.Forest || tileType == ::Const.World.TerrainType.LeaveForest || tileType == ::Const.World.TerrainType.AutumnForest)
 					{
 						this.Flags.set("IsBanterShown", true);
 						this.Contract.setScreen("Banter");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 				}
 			}
@@ -144,11 +144,11 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 						this.Contract.setScreen("Encounter");
 					}
 
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -168,7 +168,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 				if (this.Contract.isPlayerAt(this.Contract.m.Home))
 				{
 					this.Contract.setScreen("Success");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -177,8 +177,8 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -200,7 +200,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					Text = "{This doesn\'t sound like our kind of work. | This sounds too dangerous. | I don\'t think so. | I say no. We are mercenaries, not lumberjacks.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -257,7 +257,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					Text = "Charge!",
 					function getResult()
 					{
-						this.Contract.addUnitsToEntity(this.Contract.m.Target, this.Const.World.Spawn.HexenAndMore, 70 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+						this.Contract.addUnitsToEntity(this.Contract.m.Target, ::Const.World.Spawn.HexenAndMore, 70 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 						this.Contract.getActiveState().onTargetAttacked(this.Contract.m.Target, this.Contract.m.IsPlayerAttacking);
 						return 0;
 					}
@@ -276,11 +276,11 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					Text = "It\'s done.",
 					function getResult()
 					{
-						if (this.Flags.get("IsGlade") && this.World.Assets.getStash().hasEmptySlot())
+						if (this.Flags.get("IsGlade") && ::World.Assets.getStash().hasEmptySlot())
 						{
 							return "Glade";
 						}
-						else if (this.Flags.get("IsWoodcutter") && this.World.Assets.getStash().hasEmptySlot())
+						else if (this.Flags.get("IsWoodcutter") && ::World.Assets.getStash().hasEmptySlot())
 						{
 							return "DeadWoodcutter";
 						}
@@ -312,28 +312,28 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 			function start()
 			{
 				local item = this.new("scripts/items/trade/quality_wood_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
 				item = this.new("scripts/items/trade/quality_wood_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
 				item = this.new("scripts/items/trade/quality_wood_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
 				item = this.new("scripts/items/trade/quality_wood_item");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -361,7 +361,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 			function start()
 			{
 				local item;
-				local r = this.Math.rand(1, 5);
+				local r = ::Math.rand(1, 5);
 
 				if (r == 1)
 				{
@@ -384,7 +384,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					item = this.new("scripts/items/weapons/legend_infantry_axe");
 				}
 
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -406,14 +406,14 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
-						this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations_item"));
-						this.World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of living trees");
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Killed the heart of the forest");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.Assets.getStash().add(this.new("scripts/items/supplies/beer_item"));
+						::World.Assets.getStash().add(this.new("scripts/items/supplies/cured_rations_item"));
+						::World.Assets.getStash().add(this.new("scripts/items/supplies/medicine_item"));
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of living trees");
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Killed the heart of the forest");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -424,7 +424,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 				this.Contract.m.SituationID = this.Contract.resolveSituation(this.Contract.m.SituationID, this.Contract.m.Home, this.List);
 			}
@@ -434,24 +434,24 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 	function spawnEnemies() {
 		local disallowedTerrain = [];
-		for( local i = 0; i < this.Const.World.TerrainType.COUNT; i++ ) {
-			if (i == this.Const.World.TerrainType.Forest || i == this.Const.World.TerrainType.LeaveForest || i == this.Const.World.TerrainType.AutumnForest)
+		for( local i = 0; i < ::Const.World.TerrainType.COUNT; i++ ) {
+			if (i == ::Const.World.TerrainType.Forest || i == ::Const.World.TerrainType.LeaveForest || i == ::Const.World.TerrainType.AutumnForest)
 				continue;
 			disallowedTerrain.push(i);
 		}
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local mapSize = this.World.getMapSize();
-		local x = this.Math.max(3, playerTile.SquareCoords.X - 11);
-		local x_max = this.Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 11);
-		local y = this.Math.max(3, playerTile.SquareCoords.Y - 11);
-		local y_max = this.Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 11);
+		local playerTile = ::World.State.getPlayer().getTile();
+		local mapSize = ::World.getMapSize();
+		local x = ::Math.max(3, playerTile.SquareCoords.X - 11);
+		local x_max = ::Math.min(mapSize.X - 3, playerTile.SquareCoords.X + 11);
+		local y = ::Math.max(3, playerTile.SquareCoords.Y - 11);
+		local y_max = ::Math.min(mapSize.Y - 3, playerTile.SquareCoords.Y + 11);
 		local numWoods = 0;
 
 		while (x <= x_max) {
 			while (y <= y_max) {
-				local tile = this.World.getTileSquare(x, y);
-				if (tile.Type == this.Const.World.TerrainType.Forest || tile.Type == this.Const.World.TerrainType.LeaveForest || tile.Type == this.Const.World.TerrainType.AutumnForest)
+				local tile = ::World.getTileSquare(x, y);
+				if (tile.Type == ::Const.World.TerrainType.Forest || tile.Type == ::Const.World.TerrainType.LeaveForest || tile.Type == ::Const.World.TerrainType.AutumnForest)
 					numWoods = ++numWoods;
 				y++;
 			}
@@ -459,7 +459,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		}
 
 		local tile = this.getTileToSpawnLocation(playerTile, numWoods >= 12 ? 6 : 3, 11, disallowedTerrain);
-		local party= this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, this.Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		local party= ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Heartwood Schrats", false, ::Const.World.Spawn.LegendGreenwoodSchrat, 200 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("A creature of bark and wood, blending between trees and shambling slowly, its roots digging through the soil.");
 		party.setAttackableByAI(false);
 		party.setFootprintSizeOverride(0.85);
@@ -467,22 +467,22 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 		for( local i = 0; i < 2; i++ ) {
 			local nearTile = this.getTileToSpawnLocation(playerTile, 4, 7, disallowedTerrain);
 			if (nearTile != null)
-				this.Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
+				::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.BeastFootprints, 0.85);
 		}
 
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setPivot(this.m.Home);
 		roam.setMinRange(5);
 		roam.setMaxRange(10);
 		roam.setNoTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Forest, true);
-		roam.setTerrain(this.Const.World.TerrainType.SnowyForest, true);
-		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, true);
-		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, true);
+		roam.setTerrain(::Const.World.TerrainType.Forest, true);
+		roam.setTerrain(::Const.World.TerrainType.SnowyForest, true);
+		roam.setTerrain(::Const.World.TerrainType.LeaveForest, true);
+		roam.setTerrain(::Const.World.TerrainType.AutumnForest, true);
 		c.addOrder(roam);
 		return party;
 	}
@@ -491,7 +491,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : this.Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.Strings.Direction8[this.m.Home.getTile().getDirection8To(this.m.Target.getTile())]
 		]);
 	}
 
@@ -530,13 +530,13 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 	function onIsValid()
 	{
 		local sumLevels = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
+		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			sumLevels += bro.getLevel();
 			if (!bro.getSkills().hasPerk(this.m.Perk))
 				continue;
 
-			local stats = this.Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
+			local stats = ::Const.LegendMod.GetFavoriteEnemyStats(bro, this.m.ValidTypes);
 			if (stats.Strength >= this.m.MinStrength)
 				return true;
 		}
@@ -564,7 +564,7 @@ this.legend_hunting_greenwood_schrats_contract <- this.inherit("scripts/contract
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 		this.m.IsRandomlyAdded = _in.readBool();
 		this.contract.onDeserialize(_in);

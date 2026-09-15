@@ -6,7 +6,7 @@ this.legend_rain_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "The rain obscures vision and makes everything slippery";
 		this.m.Icon = "skills/rain_circle.png";
 		this.m.IconMini = "status_effect_35_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.Special;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.Special;
 		this.m.IsActive = false;
 		this.m.IsSerialized = false;
 		this.m.IsRemovedAfterBattle = true;

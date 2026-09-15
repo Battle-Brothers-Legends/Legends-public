@@ -2,7 +2,7 @@
 {	
 	o.onExecute = function ( _entity, _hasChanged )
 	{
-		// if (!this.World.FactionManager.isCivilWar())
+		// if (!::World.FactionManager.isCivilWar())
 		// {
 		// 	this.getController().popOrder();
 		// 	return true;
@@ -12,7 +12,7 @@
 
 		if (!this.m.IsSafetyOverride)
 		{
-			local activeContract = this.World.Contracts.getActiveContract();
+			local activeContract = ::World.Contracts.getActiveContract();
 
 			if (activeContract != null && activeContract.isTileUsed(myTile))
 			{
@@ -37,7 +37,7 @@
 		}
 		else if (this.Time.getVirtualTimeF() - this.m.Start >= this.m.Time)
 		{
-			local entities = this.World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
+			local entities = ::World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
 
 			foreach( e in entities )
 			{
@@ -45,21 +45,21 @@
 				{
 					if ((e.getOwner() == null || e.getOwner().getID() != _entity.getFaction()) && !e.hasSituation("situation.conquered"))
 					{
-						local news = this.World.Statistics.createNews();
-						news.set("Conqueror", this.World.FactionManager.getFaction(_entity.getFaction()).getName());
+						local news = ::World.Statistics.createNews();
+						news.set("Conqueror", ::World.FactionManager.getFaction(_entity.getFaction()).getName());
 						news.set("Defeated", e.getOwner().getName());
 						news.set("City", e.getName());
-						this.World.Statistics.addNews("crisis_civilwar_town_conquered", news);
+						::World.Statistics.addNews("crisis_civilwar_town_conquered", news);
 						local defeatedFaction = e.getOwner();
 
 						if (e.getOwner() != null)
 						{
-							e.getOwner().removeAlly(e.getFactionOfType(this.Const.FactionType.Settlement).getID());
+							e.getOwner().removeAlly(e.getFactionOfType(::Const.FactionType.Settlement).getID());
 							e.removeFaction(e.getOwner().getID());
 						}
 
-						local conqueringFaction = this.World.FactionManager.getFaction(_entity.getFaction());
-						local settlementFaction = e.getFactionOfType(this.Const.FactionType.Settlement);
+						local conqueringFaction = ::World.FactionManager.getFaction(_entity.getFaction());
+						local settlementFaction = e.getFactionOfType(::Const.FactionType.Settlement);
 						conqueringFaction.addSettlement(e);
 						conqueringFaction.addAlly(settlementFaction.getID());
 						settlementFaction.cloneAlliesFrom(conqueringFaction);
@@ -68,7 +68,7 @@
 						{
 							if (settlementFaction.getPlayerRelation() < 25.0)
 							{
-								settlementFaction.addPlayerRelationEx(this.Math.minf(25.0, 25.0 - settlementFaction.getPlayerRelation()));
+								settlementFaction.addPlayerRelationEx(::Math.minf(25.0, 25.0 - settlementFaction.getPlayerRelation()));
 							}
 						}
 						else if (defeatedFaction.isAlliedWithPlayer() && !conqueringFaction.isAlliedWithPlayer())
@@ -94,7 +94,7 @@
 		if (!this.m.IsBurning)
 		{
 			this.m.IsBurning = true;
-			local entities = this.World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
+			local entities = ::World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
 
 			foreach( e in entities )
 			{

@@ -2,17 +2,17 @@
 {
 	o.isAvailable = function ()
 	{
-		if (this.World.State.getMenuStack().hasBacksteps() || this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible()))
+		if (::World.State.getMenuStack().hasBacksteps() || this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible()))
 		{
 			return;
 		}
 
-		if (("State" in this.Tactical) && this.Tactical.State != null)
+		if (("State" in ::Tactical) && ::Tactical.State != null)
 		{
 			return false;
 		}
 
-		//if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() < 3.0)
+		//if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() < 3.0)
 		//{
 		//	return false;
 		//}
@@ -22,22 +22,22 @@
 			return false;
 		}
 
-		if (this.World.getTime().Days < 2 && this.World.Assets.getOrigin().getID() != "scenario.paladins")
+		if (::World.getTime().Days < 2 && ::World.Assets.getOrigin().getID() != "scenario.paladins")
 		{
 			return false;
 		}
 
-		//if (this.m.Thread == null && this.m.Selection == null && this.Time.getVirtualTimeF() - this.m.LastTime < 1.0 * this.World.getTime().SecondsPerHour)
+		//if (this.m.Thread == null && this.m.Selection == null && this.Time.getVirtualTimeF() - this.m.LastTime < 1.0 * ::World.getTime().SecondsPerHour)
 		//{
 		//	return false;
 		//}
 
-		if (this.World.Contracts.getActiveContract() != null && this.World.Contracts.getActiveContract().getType() == "contract.tutorial")
+		if (::World.Contracts.getActiveContract() != null && ::World.Contracts.getActiveContract().getType() == "contract.tutorial")
 		{
 			return false;
 		}
 
-		//local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+		//local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 		//
 		//foreach( party in parties )
 		//{
@@ -63,7 +63,7 @@
 			this.m.ActiveAmbition = _ambition;
 			this.m.ActiveAmbition.activate();
 			this.setDelay(0);
-			this.World.TopbarAmbitionModule.setText(_ambition.getUIText());
+			::World.TopbarAmbitionModule.setText(_ambition.getUIText());
 		}
 	}
 });

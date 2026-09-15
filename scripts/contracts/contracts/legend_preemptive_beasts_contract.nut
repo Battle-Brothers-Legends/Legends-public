@@ -11,7 +11,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_preemptive_beasts";
 		this.m.Name = "Taking Action";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"Fell beasts have been spotted roaming the hills. The frightened locals are demanding action before attacks occur.",
 			"Amidst the rolling hills, fell beasts lurk in the darkness, their eyes glowing like embers in the night.",
@@ -29,9 +29,9 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 	function start()
 	{
-		this.m.Payment.Pool = 400 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 400 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -54,7 +54,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					"Hunt down the beasts spotted near " + this.Contract.m.Home.getName()
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -66,9 +66,9 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
-				if (r <= 5 && this.World.Assets.getBusinessReputation() > 500)
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
+				if (r <= 5 && ::World.Assets.getBusinessReputation() > 500)
 				{
 					this.Flags.set("IsHumans", true);
 				}
@@ -80,8 +80,8 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
-				this.Flags.set("Cut", this.Contract.beautifyNumber(this.Contract.m.Payment.getOnCompletion() * this.Math.rand(10, 25) * 0.01));
-				this.World.Contracts.setActiveContract(this.Contract);
+				this.Flags.set("Cut", this.Contract.beautifyNumber(this.Contract.m.Payment.getOnCompletion() * ::Math.rand(10, 25) * 0.01));
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -102,7 +102,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					this.Flags.set("IsPoachersDialogShown", true);
 					this.Contract.setScreen("Poachers1");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive())
@@ -110,31 +110,31 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					if (this.Flags.get("IsHumans"))
 					{
 						this.Contract.setScreen("CollectingProof");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsGhouls"))
 					{
 						this.Contract.setScreen("CollectingGhouls");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsSpiders"))
 					{
 						this.Contract.setScreen("CollectingSpiders");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else
 					{
 						this.Contract.setScreen("CollectingPelts");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsTrackingBeastsShown") && this.Contract.m.Target.isHiddenToPlayer() && this.Math.rand(1, 3000) <= 1)
+				else if (!this.Flags.get("IsTrackingBeastsShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 3000) <= 1)
 				{
 					this.Flags.set("IsTrackingBeastsShown", true);
 					this.Contract.setScreen("TrackingBeasts");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -147,16 +147,16 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 					foreach( t in troops )
 					{
-						t.ID = this.Const.EntityType.BanditRaider;
+						t.ID = ::Const.EntityType.BanditRaider;
 					}
 
 					this.Contract.m.IsPlayerAttacking = _isPlayerAttacking;
 					this.Contract.setScreen("Humans");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -169,7 +169,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					{
 						if (_actor.getID() == this.Flags.get("Poacher" + i))
 						{
-							this.World.getGuestRoster().remove(_actor);
+							::World.getGuestRoster().remove(_actor);
 						}
 					}
 				}
@@ -237,7 +237,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 						}
 					}
 
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -250,7 +250,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					{
 						if (_actor.getID() == this.Flags.get("Poacher" + i))
 						{
-							this.World.getGuestRoster().remove(_actor);
+							::World.getGuestRoster().remove(_actor);
 						}
 					}
 				}
@@ -261,8 +261,8 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 	function createScreens()
 	{
-		this.importScreens(this.Const.Contracts.NegotiationDefault);
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.NegotiationDefault);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({
 			ID = "Task",
 			Title = "Negotiations",
@@ -284,7 +284,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "{This doesn\'t sound like our kind of work. | I wish you luck, but we\'ll not be part of this.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -512,10 +512,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of direwolves");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of direwolves");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -526,7 +526,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -543,10 +543,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "Beast, men... what matters is the crowns.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of brigands masquerading as direwolves");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of brigands masquerading as direwolves");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -557,7 +557,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -574,10 +574,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of nachzehrers");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of nachzehrers");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -588,7 +588,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -605,10 +605,10 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 					Text = "A successful hunt.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Rid the town of webknechts");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -619,7 +619,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -692,14 +692,14 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 			function start()
 			{
 				// Pay their price
-				this.World.Assets.addMoney(this.Flags.get("Cut") * -1);
+				::World.Assets.addMoney(this.Flags.get("Cut") * -1);
 
 				// Add 2 poachers to the guest roster
 				local numPoachers = 2;
 				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
-					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
+					local poacher = ::World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
 					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
@@ -788,11 +788,11 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				{
 					this.Text += "{Say what you want about %peddler%, but %they_peddler% somehow managed to pull it off. You quickly pick the coins off the outstretched palms of the very confused-looking poachers before they change their minds. | As the befuddled-looking poachers hand over their precious crowns, you wonder why %peddler% even needed to turn to a life of mercenary work. | To the astonishment of everyone except %peddler%, the poachers hand over a bag of crowns and eagerly fall in line with the %companyname%.}";
 					// Profit
-					this.World.Assets.addMoney(this.Flags.get("Cut"));
+					::World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 
 					this.Contract.m.Peddler.improveMood(::Const.MoodState.Euphoric - ::Math.minf(this.Contract.m.Peddler.getMood(), ::Const.MoodState.Euphoric), "Bamboozled some poachers");
@@ -869,7 +869,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				local freeSlots = ::Legends.S.getEmptySlotsInFormation();
 				for( local i = 0; i != numPoachers; i = ++i )
 				{
-					local poacher = this.World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
+					local poacher = ::World.getGuestRoster().create("scripts/entity/tactical/humans/legend_poacher_guest"); // Test character based off of legend_peasant_poacher stats & perks
 					poacher.setFaction(1);
 					poacher.setPlaceInFormation(freeSlots.pop());
 					poacher.assignRandomEquipment();
@@ -954,15 +954,15 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				if (this.Flags.get("PeddlerPayLater"))
 				{
 					this.Text = "[img]gfx/ui/events/event_10.png[/img]{The poachers excitedly recount to each other the adventure they\'d had, happily handing over a bag of crowns to you before parting ways.}";
-					this.World.Assets.addMoney(this.Flags.get("Cut"));
+					::World.Assets.addMoney(this.Flags.get("Cut"));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 				}
 
-				if (this.Math.rand(1, 100) <= 50)
+				if (::Math.rand(1, 100) <= 50)
 				{
 					this.Text += "{%SPEECH_ON%We'll be sure to let the town know of the good work you\'ve done.%SPEECH_OFF%}";
 					this.Contract.addSituation(this.new("scripts/entity/world/settlements/situations/legend_word_of_mouth_situation"), 3, this.Contract.m.Home, this.List);
@@ -1023,11 +1023,11 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 				if (this.Flags.get("PeddlerPayLater"))
 				{
 					this.Text = "[img]gfx/ui/events/event_10.png[/img]{" + format("The remaining %s %s over their share of the payment promised for the \"once-in-a-lifetime\" experience. For some, the experience did live up to its name.",::Const.LegendMod.Language.pluralize(poachers.len(),"poacher", "poachers"),::Const.LegendMod.Language.pluralize(poachers.len(),"hands", "hand")) + "}";
-					this.World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
+					::World.Assets.addMoney(::Math.ceil(this.Flags.get("Cut") * 1.0 * poachers.len() / this.Flags.get("NumPoachers")));
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_money.png",
-						text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
+						text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Cut") + "[/color] Crowns"
 					});
 				}
 
@@ -1078,37 +1078,37 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 	}
 
 	function spawnEnemies() {
-		local playerTile = this.World.State.getPlayer().getTile();
+		local playerTile = ::World.State.getPlayer().getTile();
 		local tile = this.getTileToSpawnLocation(playerTile, 5, 10);
 		local party;
 
 		if (this.m.Flags.get("IsHumans"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).spawnEntity(tile, "Direwolves", false, ::Const.World.Spawn.BanditsDisguisedAsDirewolves, 100 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
-			party.setFootprintType(this.Const.World.FootprintsType.Direwolves);
-			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Direwolves, 0.75);
+			party.setFootprintType(::Const.World.FootprintsType.Direwolves);
+			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Direwolves, 0.75);
 		}
 		else if (this.m.Flags.get("IsGhouls"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Nachzehrers", false, this.Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Nachzehrers", false, ::Const.World.Spawn.Ghouls, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A flock of scavenging nachzehrers.");
-			party.setFootprintType(this.Const.World.FootprintsType.Ghouls);
-			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Ghouls, 0.75);
+			party.setFootprintType(::Const.World.FootprintsType.Ghouls);
+			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Ghouls, 0.75);
 		}
 		else if (this.m.Flags.get("IsSpiders"))
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Webknechts", false, this.Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Webknechts", false, ::Const.World.Spawn.Spiders, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A swarm of webknechts skittering about.");
-			party.setFootprintType(this.Const.World.FootprintsType.Spiders);
-			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Spiders, 0.75);
+			party.setFootprintType(::Const.World.FootprintsType.Spiders);
+			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Spiders, 0.75);
 		}
 		else
 		{
-			party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Direwolves", false, this.Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+			party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Direwolves", false, ::Const.World.Spawn.Direwolves, 110 * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 			party.setDescription("A pack of ferocious direwolves on the hunt for prey.");
-			party.setFootprintType(this.Const.World.FootprintsType.Direwolves);
-			this.Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), this.Const.BeastFootprints, this.Const.World.FootprintsType.Direwolves, 0.75);
+			party.setFootprintType(::Const.World.FootprintsType.Direwolves);
+			::Const.World.Common.addFootprintsFromTo(this.m.Home.getTile(), party.getTile(), ::Const.BeastFootprints, ::Const.World.FootprintsType.Direwolves, 0.75);
 		}
 
 		party.setAttackableByAI(false);
@@ -1116,15 +1116,15 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setPivot(this.m.Home);
 		roam.setMinRange(2);
 		roam.setMaxRange(8);
 		roam.setAllTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-		roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-		roam.setTerrain(this.Const.World.TerrainType.Mountains, false);
+		roam.setTerrain(::Const.World.TerrainType.Ocean, false);
+		roam.setTerrain(::Const.World.TerrainType.Shore, false);
+		roam.setTerrain(::Const.World.TerrainType.Mountains, false);
 		c.addOrder(roam);
 		return party;
 	}
@@ -1203,7 +1203,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 			this.m.Home.getSprite("selection").Visible = false;
 
-			this.World.getGuestRoster().clear();
+			::World.getGuestRoster().clear();
 			this.m.Peddler = null;
 			this.m.Poacher = null;
 			this.m.ExpertHunter = null;
@@ -1235,7 +1235,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 
 		this.contract.onDeserialize(_in);

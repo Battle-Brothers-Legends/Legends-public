@@ -67,7 +67,7 @@
 	o.getSkillsSortedByItems <- function (_filter, _notFilter = 0) {
 		local ret = [];
 
-		for (local i = 0; i < this.Const.ItemSlot.COUNT; i = i) {
+		for (local i = 0; i < ::Const.ItemSlot.COUNT; i = i) {
 			ret.push([]);
 			i = ++i;
 		}
@@ -80,17 +80,17 @@
 			{
 				if (skill.getItem() != null) {
 					local slotType = skill.getItem().getCurrentSlotType();
-					if (slotType >= 0 && slotType < this.Const.ItemSlot.COUNT) {
+					if (slotType >= 0 && slotType < ::Const.ItemSlot.COUNT) {
 						ret[slotType].push(skill);
 					}
 				} else {
-					ret[this.Const.ItemSlot.Free].push(skill);
+					ret[::Const.ItemSlot.Free].push(skill);
 				}
 			}
 		}
 
-		if (ret[this.Const.ItemSlot.Free].len() > 1) {
-			ret[this.Const.ItemSlot.Free].sort(this.compareSkillsByOrder);
+		if (ret[::Const.ItemSlot.Free].len() > 1) {
+			ret[::Const.ItemSlot.Free].sort(this.compareSkillsByOrder);
 		}
 
 		return ret;

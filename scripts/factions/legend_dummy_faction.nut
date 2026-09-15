@@ -5,7 +5,7 @@ this.legend_dummy_faction <- this.inherit("scripts/factions/faction", {
 	function create()
 	{
 		this.faction.create();
-		this.m.Type = this.Const.FactionType.DummyFaction;
+		this.m.Type = ::Const.FactionType.DummyFaction;
 		// this.setMimicValues(::Const.Faction.None);
 		this.m.PlayerRelation = -200.0; // Always enemy by default
 		this.m.IsHidden = true;
@@ -67,12 +67,12 @@ this.legend_dummy_faction <- this.inherit("scripts/factions/faction", {
 		// local factionType = _faction.getType();
 		// switch ( factionType )
 		// {
-		// 	case this.Const.FactionType.None:
+		// 	case ::Const.FactionType.None:
 		// 		return
-		// 	case this.Const.FactionType.OrientalBandits:
+		// 	case ::Const.FactionType.OrientalBandits:
 		// 		this.m.Base = "world_base_07";
 		// 		this.m.TacticalBase = "bust_base_nomads";
-		// 		this.m.CombatMusic = this.Const.Music.OrientalBanditTracks;
+		// 		this.m.CombatMusic = ::Const.Music.OrientalBanditTracks;
 		// 		return
 		// }
 	}

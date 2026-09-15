@@ -28,12 +28,12 @@
 	{
 		if (this.m.Home == null)
 		{
-			this.setHome(this.World.State.getCurrentTown());
+			this.setHome(::World.State.getCurrentTown());
 		}
 
 		local myTile = this.m.Origin.getTile();
-		local orcs = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getNearestSettlement(myTile);
-		local goblins = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getNearestSettlement(myTile);
+		local orcs = ::World.FactionManager.getFactionOfType(::Const.FactionType.Orcs).getNearestSettlement(myTile);
+		local goblins = ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getNearestSettlement(myTile);
 
 		if(goblins == null)
 		{
@@ -45,7 +45,7 @@
 		}
 		else
 		{
-			if (myTile.getDistanceTo(orcs.getTile()) + this.Math.rand(0, 8) < myTile.getDistanceTo(goblins.getTile()) + this.Math.rand(0, 8))
+			if (myTile.getDistanceTo(orcs.getTile()) + ::Math.rand(0, 8) < myTile.getDistanceTo(goblins.getTile()) + ::Math.rand(0, 8))
 			{
 				this.m.Flags.set("IsOrcs", true);
 			}
@@ -58,7 +58,7 @@
 
 		local bestDist = 9000;
 		local best;
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 
 		foreach( s in settlements )
 		{
@@ -84,14 +84,14 @@
 		if (best != null)
 		{
 			local distance = this.getDistanceOnRoads(best.getTile(), this.m.Origin.getTile());
-			this.m.Flags.set("MerchantReward", this.Math.max(150, distance * 5.0 * this.getPaymentMult()));
+			this.m.Flags.set("MerchantReward", ::Math.max(150, distance * 5.0 * this.getPaymentMult()));
 			this.setObjective(best);
-			this.m.Flags.set("MerchantID", best.getFactionOfType(this.Const.FactionType.Settlement).getRandomCharacter().getID());
+			this.m.Flags.set("MerchantID", best.getFactionOfType(::Const.FactionType.Settlement).getRandomCharacter().getID());
 		}
 
-		this.m.Payment.Pool = 800 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;

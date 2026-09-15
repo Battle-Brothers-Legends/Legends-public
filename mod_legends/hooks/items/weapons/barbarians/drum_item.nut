@@ -9,7 +9,7 @@
 		this.m.IconLarge = "weapons/melee/wildmen_10.png";
 		this.m.Icon = "weapons/melee/wildmen_10_70x70.png";
 		this.m.BreakingSound = "sounds/combat/bash_hit_03.wav";
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.IsDoubleGrippable = false;
 		this.m.IsDroppedAsLoot = true;
 		this.m.RangeMax = 1;

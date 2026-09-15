@@ -5,7 +5,7 @@ this.legend_greenskins_town_razed_event <- this.inherit("scripts/events/event", 
 	function create() {
 		this.m.ID = "event.crisis.greenskins_town_razed";
 		this.m.Title = "Along the road...";
-		this.m.Cooldown = 7.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 7.0 * ::World.getTime().SecondsPerDay;
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",
@@ -22,15 +22,15 @@ this.legend_greenskins_town_razed_event <- this.inherit("scripts/events/event", 
 	}
 
 	function onUpdateScore() {
-		if (!this.World.State.getPlayer().getTile().HasRoad)
+		if (!::World.State.getPlayer().getTile().HasRoad)
 			return;
 		
-		if (this.World.Statistics.hasNews("crisis_greenskins_town_razed"))
+		if (::World.Statistics.hasNews("crisis_greenskins_town_razed"))
 			this.m.Score = 2000;
 	}
 
 	function onPrepare() {
-		this.m.News = this.World.Statistics.popNews("crisis_greenskins_town_razed");
+		this.m.News = ::World.Statistics.popNews("crisis_greenskins_town_razed");
 	}
 
 	function onPrepareVariables(_vars) {

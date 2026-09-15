@@ -32,7 +32,7 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
@@ -41,7 +41,7 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 				{
 					tile.Level = 0;
 
-					if (this.Math.rand(0, 100) > 94)
+					if (::Math.rand(0, 100) > 94)
 					{
 						tile.Level = 1;
 					}
@@ -54,7 +54,7 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 						IsEmpty = x >= 9 && x <= 21 && y >= 9 && y <= 20 ? true : false
 					};
 
-					if (this.Math.rand(0, 100) < 25)
+					if (::Math.rand(0, 100) < 25)
 					{
 						earthTile.fill(rect, _properties);
 					}
@@ -65,14 +65,14 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 				}
 			}
 		}
-		local centerTile = this.Tactical.getTileSquare(_rect.W / 2 + 6, _rect.H / 2);
+		local centerTile = ::Tactical.getTileSquare(_rect.W / 2 + 6, _rect.H / 2);
 		local minDist = 0;
 
 		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				local d = centerTile.getDistanceTo(tile);
 
 				if (d < minDist || d > 7)
@@ -80,7 +80,7 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 				}
 				else if (d == 7)
 				{
-					if (this.Math.rand(1, 100) < 80)
+					if (::Math.rand(1, 100) < 80)
 					{
 						tile.removeObject();
 						local o = tile.spawnObject("entity/tactical/objects/human_camp_wall");
@@ -89,7 +89,7 @@ this.tactical_hill_camp <- this.inherit("scripts/mapgen/tactical_template", {
 				}
 				else if (d < 5 && tile.IsEmpty)
 				{
-					if (this.Math.rand(1, 100) <= 30)
+					if (::Math.rand(1, 100) <= 30)
 					{
 						tile.spawnObject("entity/tactical/objects/human_camp_object");
 					}

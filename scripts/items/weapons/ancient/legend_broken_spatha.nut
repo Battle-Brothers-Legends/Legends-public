@@ -8,9 +8,9 @@ this.legend_broken_spatha <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A broken and heavy sword that has snapped despite it\'s durability. The damage of this blade has only converted it into a killing tool of a different form.";
 		this.m.IconLarge = "weapons/melee/legend_broken_spatha_01.png";
 		this.m.Icon = "weapons/melee/legend_broken_spatha_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Dagger;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Dagger;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

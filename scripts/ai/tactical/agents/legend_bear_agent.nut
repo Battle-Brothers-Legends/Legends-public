@@ -3,8 +3,8 @@ this.legend_bear_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.Bear;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.25;
+		this.m.ID = ::Const.AI.Agent.ID.Bear;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 0.25;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;
@@ -35,7 +35,7 @@ this.legend_bear_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_charge"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_default"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_swing"));
-		this.getBehavior(this.Const.AI.Behavior.ID.Swing).m.MinTargets = 1;
+		this.getBehavior(::Const.AI.Behavior.ID.Swing).m.MinTargets = 1;
 	}
 
 	function onUpdate()

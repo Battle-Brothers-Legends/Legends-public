@@ -11,7 +11,7 @@
 	local create = o.create;
 	o.create <- function () {
 		create();
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+1;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted+1;
 	}
 
 	o.getTooltip <- function () {
@@ -36,7 +36,7 @@
 				id = 4,
 				type = "text",
 				icon = "ui/icons/hitchance.png",
-				text = "Has [color=" + this.Const.UI.Color.NegativeValue + "]-10%[/color] chance to hit"
+				text = "Has [color=" + ::Const.UI.Color.NegativeValue + "]-10%[/color] chance to hit"
 			});
 		}
 
@@ -59,6 +59,6 @@
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 });

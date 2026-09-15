@@ -4,6 +4,6 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 	}
 });

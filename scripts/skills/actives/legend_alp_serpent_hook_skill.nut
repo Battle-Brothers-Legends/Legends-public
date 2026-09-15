@@ -27,7 +27,7 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 
 		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " drags in " + this.Const.UI.getColorizedEntityName(_targetTile.getEntity()));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " drags in " + ::Const.UI.getColorizedEntityName(_targetTile.getEntity()));
 		}
 
 		if (!_user.isHiddenToPlayer() || !target.isHiddenToPlayer())
@@ -53,13 +53,13 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 				Skill = this
 			});
 		}
-		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
+		::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
 		return true;

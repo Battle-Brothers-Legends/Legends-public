@@ -18,7 +18,7 @@
 		local _targetTile = _tag.TargetTile;
 		local _user = _tag.User;
 		local target = _targetTile.getEntity();
-		local time = this.Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
+		local time = ::Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
 		local self = this;
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, time, function ( _e )
 		{
@@ -28,38 +28,38 @@
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " can not be charmed");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " can not be charmed");
 				}
 
 				return false;
 			}
 
 
-			if (target.checkMorale(0, -35 + bonus, this.Const.MoraleCheckType.MentalAttack))
+			if (target.checkMorale(0, -35 + bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
 			}
 
-			if (target.checkMorale(0, -35 + bonus, this.Const.MoraleCheckType.MentalAttack))
+			if (target.checkMorale(0, -35 + bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
 			}
 
-			if (target.getCurrentProperties().IsResistantToAnyStatuses && this.Math.rand(1, 100) <= 50)
+			if (target.getCurrentProperties().IsResistantToAnyStatuses && ::Math.rand(1, 100) <= 50)
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to unnatural physiology");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to unnatural physiology");
 				}
 
 				return false;
@@ -68,13 +68,13 @@
 			this.m.Slaves.push(target.getID());
 
 			::Legends.Effects.grant(target, ::Legends.Effect.Charmed, function(_effect) {
-				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMasterFaction(_user.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : _user.getFaction());
 				_effect.setMaster(self);
 			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is charmed");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is charmed");
 			}
 
 			_user.setCharming(true);

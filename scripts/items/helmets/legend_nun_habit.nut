@@ -13,8 +13,8 @@ this.legend_nun_habit <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.ReplaceSprite = true;
 		this.m.Variant = 510;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 30;
 		this.m.Condition = 30;
 		this.m.ConditionMax = 30;

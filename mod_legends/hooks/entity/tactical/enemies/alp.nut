@@ -15,7 +15,7 @@
 		for(local i = 0; i < rolls; i++)
 		{
 			this.m.OnDeathLootTable.push([1, function () {
-				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 				local rune = ::new(::Legends.Runes.get(selected).Script);
 				rune.setRuneVariant(selected);
 				rune.setRuneBonus(true);
@@ -27,12 +27,12 @@
 
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("SleepTight", 1, 1);
 		}
 
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		local sprite_body = this.getSprite("body");
 		local sprite_head = this.getSprite("head");
 
@@ -42,18 +42,18 @@
 			local skin = this.getSprite("body");
 			skin.Alpha = 255;
 			this.m.IsCorpseFlipped = !flip;
-			decal = _tile.spawnDetail("bust_alp_body_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_alp_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = skin.Color;
 			decal.Saturation = skin.Saturation;
 			decal.Scale = 0.9;
 			decal.setBrightness(0.9);
 
-			if (_fatalityType == this.Const.FatalityType.Decapitated)
+			if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [
 					sprite_head.getBrush().Name + "_dead"
 				];
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-45, 30), 180.0, sprite_head.getBrush().Name + "_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-45, 30), 180.0, sprite_head.getBrush().Name + "_bloodpool");
 
 				foreach( sprite in decap )
 				{
@@ -65,34 +65,34 @@
 			}
 			else
 			{
-				decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = skin.Color;
 				decal.Saturation = skin.Saturation;
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled)
+			if (_fatalityType == ::Const.FatalityType.Disemboweled)
 			{
-				decal = _tile.spawnDetail("bust_alp_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_alp_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
-			else if (_fatalityType == this.Const.FatalityType.Smashed)
+			else if (_fatalityType == ::Const.FatalityType.Smashed)
 			{
-				decal = _tile.spawnDetail("bust_alp_skull", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_alp_skull", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_alp_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_alp_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_alp_body_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
@@ -101,12 +101,12 @@
 			this.spawnFlies(_tile);
 		}
 
-		local allies = this.Tactical.Entities.getInstancesOfFaction(this.getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(this.getFaction());
 		local onlyIllusionsLeft = true;
 
 		foreach( ally in allies )
 		{
-			if (ally.getID() != this.getID() && ally.getType() == this.Const.EntityType.Alp && !this.isKindOf(ally, "legend_alp_shadow"))
+			if (ally.getID() != this.getID() && ally.getType() == ::Const.EntityType.Alp && !this.isKindOf(ally, "legend_alp_shadow"))
 			{
 				onlyIllusionsLeft = false;
 				break;
@@ -117,7 +117,7 @@
 		{
 			foreach( ally in allies )
 			{
-				if (ally.getType() == this.Const.EntityType.Alp && this.isKindOf(ally, "legend_alp_shadow"))
+				if (ally.getType() == ::Const.EntityType.Alp && this.isKindOf(ally, "legend_alp_shadow"))
 				{
 					ally.killSilently();
 				}
@@ -131,12 +131,12 @@
 
 		if (_tile == null)
 		{
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		}
 		else
 		{
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);

@@ -16,7 +16,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2) {
 			return;
@@ -36,7 +36,7 @@
 			return;
 		}
 
-		this.m.Disowned = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Disowned = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 5;
 	}
 });

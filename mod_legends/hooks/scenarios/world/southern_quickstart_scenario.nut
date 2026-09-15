@@ -10,7 +10,7 @@
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 3; i = i )
@@ -22,7 +22,7 @@
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.SouthernNames[this.Math.rand(0, this.Const.Strings.SouthernNames.len() - 1)]);
+				bro.setName(::Const.Strings.SouthernNames[::Math.rand(0, ::Const.Strings.SouthernNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -45,18 +45,18 @@
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
 
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money + 400;
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/rice_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money + 400;
 	}
 
 	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern())
 			{
@@ -67,22 +67,22 @@
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -90,7 +90,7 @@
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -102,15 +102,15 @@
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(13);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(13);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/worldmap_11.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.southern_quickstart_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.southern_quickstart_scenario_intro");
 		}, null);
 	}
 

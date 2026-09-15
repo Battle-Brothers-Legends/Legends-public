@@ -3,7 +3,7 @@ this.legend_skeleton_gladiator_agent <- this.inherit("scripts/ai/tactical/agent"
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.GoblinWolfrider; //needs to be changed //this.m.ID = this.Const.AI.Agent.ID.SkeletonMelee;
+		this.m.ID = ::Const.AI.Agent.ID.GoblinWolfrider; //needs to be changed //this.m.ID = ::Const.AI.Agent.ID.SkeletonMelee;
 		this.m.IsUsingHeat = true;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.4;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.2;

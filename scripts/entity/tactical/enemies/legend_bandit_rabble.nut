@@ -23,20 +23,20 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 	{
 		this.legend_randomized_unit_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditRabble);
+		b.setValues(::Const.Tactical.Actor.BanditRabble);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_bandits");
 
-		if (this.Math.rand(1, 100) <= 10)
+		if (::Math.rand(1, 100) <= 10)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
 			pox.setBrush("bust_head_pox_01");
 		}
-		else if (this.Math.rand(1, 100) <= 15)
+		else if (::Math.rand(1, 100) <= 15)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -48,12 +48,12 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.getSprite("eye_rings").Visible = true;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.LegendsRabbleDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -61,7 +61,7 @@ this.legend_bandit_rabble <- this.inherit("scripts/entity/tactical/legend_random
 		this.setArmorSaturation(0.8);
 		this.getSprite("shield_icon").setBrightness(0.9);
 
-		if (this.World.Assets.getCombatDifficulty() == this.Const.Difficulty.Easy)
+		if (::World.Assets.getCombatDifficulty() == ::Const.Difficulty.Easy)
 			::Legends.Traits.grant(this, ::Legends.Trait.Craven);
 	}
 

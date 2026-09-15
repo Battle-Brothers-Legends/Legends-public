@@ -20,7 +20,7 @@ this.legend_firewood_item <- this.inherit("scripts/items/trade/trading_good_item
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && ::World.State != null && ::World.State.getCurrentTown() != null)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
 		{
 			local isBuildingPresent = ::World.State.getCurrentTown().hasAttachedLocation("attached_location.lumber_camp");
 			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult() * ::World.State.getCurrentTown().getModifiers().BuildingPriceMult * (isBuildingPresent ? ::Const.World.Assets.BaseBuyPrice : ::Const.World.Assets.BuyPriceNotProducedHere)));

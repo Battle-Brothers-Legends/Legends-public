@@ -74,12 +74,12 @@ class Defs:
  "desc" :  "A light cap of quilted linen, providing a layer of padding for the head.",
  "adesc" : "Includes a simple padded cap."
  },
-{"name" : "leather_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 110, "con" : 45, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "leather_hood"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 6, "base" : True, "value" : 110, "con" : 45, "stam" : -2, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Leather Hood",
  "desc" :  "A sturdy hood made of thick leather, padded for extra protection. Counts as a cultist item.",
  "adesc" : "Includes a sturdy leather hood."
  },
-{"name" : "beak_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 150, "con" : 65, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "beak_hood"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "hood", "min" : 1, "max" : 5, "base" : True, "value" : 150, "con" : 65, "stam" : -3, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Beaked Hood",
  "desc" :  "A thick leather hood with a distinctive, bird-like mask. The beak acts as a ventilator, containing sweet-smelling herbs to ward away sickness and disease. Counts as a cultist item.",
  "adesc" : "Includes a thick leather hood with a bird-like mask." 
@@ -636,7 +636,7 @@ class Defs:
  "desc" :  "The helm of a noble house champion bearing the elegant wings of a swan, beautifully designed, yet quite impractical.",
  "adesc" : "Includes a helm adorned with the likeness of a swan."
  },
-{"name" : "skin_helm"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "helm", "lower": True, "min" : 1, "max" : 1, "value" : 20000, "con" : 105, "stam" : -5, "vis" : 0, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "skin_helm"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "helm", "lower": True, "min" : 1, "max" : 1, "value" : 20000, "con" : 105, "stam" : -5, "vis" : 0, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Glimpse of Davkul",
  "desc" :  "The Glimpse of Davkul is a gift bestowed upon man by ancient and dark powers, a helm merged with human skin and bones through the most unspeakable of rituals. A glimpse of a future where man shall become one with creations from a realm beyond. It shall never break, but instead keep regrowing its scarred skin on the spot.",
  "adesc" : "Includes the Glimpse of Davkul."
@@ -674,7 +674,7 @@ class Defs:
  "desc" :  "A distinctive, bird-like mask. The beak acts as a ventilator, containing sweet-smelling herbs to ward away sickness and disease.",
  "adesc" : "Includes a distinctive, bird-like mask."
  },
-{"name" : "orc_horn_mask"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "lower": True, "min" : 1, "max" : 4, "value" : 200, "con" : 60, "stam" : -8, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "orc_horn_mask"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "lower": True, "min" : 1, "max" : 4, "value" : 200, "con" : 60, "stam" : -8, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Orc Horn Mask",
  "desc" :  "A rough horned face mask, worn by young orcs. Counts as a cultist item.",
  "adesc" : "Includes a rough, heavy horned face mask."
@@ -684,7 +684,7 @@ class Defs:
  "desc" :  "A simple, heavy construction of metal plates, worn by young orcs.",
  "adesc" : "Includes a simple, heavy metal mask."
  },
-{"name" : "orc_leather_mask"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "lower": True, "min" : 1, "max" : 4, "value" : 50, "con" : 40, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "orc_leather_mask"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "lower": True, "min" : 1, "max" : 4, "value" : 50, "con" : 40, "stam" : -4, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Orc Leather Mask",
  "desc" :  "A simple, heavy construction of strange leather, worn by young orcs. Counts as a cultist item.",
  "adesc" : "Includes a simple, heavy leather mask."
@@ -709,7 +709,7 @@ class Defs:
  "desc" :  "Thick layers of forest foliage and used to disguise oneself.",
  "adesc" : "Includes a disguise made of foliage."
  },
-{"name" : "goblin_leather_mask"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 7, "value" : 50, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "goblin_leather_mask"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 7, "value" : 50, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Leather Goblin Mask",
  "desc" :  "A primitive mask made of tanned hides and thick stitching. Counts as a cultist item.",
  "adesc" : "Includes a primitive leather mask."
@@ -757,7 +757,7 @@ class Defs:
  "desc" :  "An ancient crown from ages past.",
  "adesc" : "Includes an ancient crown."
  },
-{"name" : "barb_hood_leather"                     ,"itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 4, "value" : 300, "con" : 45, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "barb_hood_leather"                     ,"itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 4, "value" : 300, "con" : 45, "stam" : -4, "vis" : -2, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Barbarian Leather Hood",
  "desc" :  "The crude padded leather hood of a barbarian, it is heavy and surprisingly protective. Counts as a cultist item.",
  "adesc" : "Includes a crude leather hood."
@@ -817,12 +817,12 @@ class Defs:
  "desc" :  "A compact iron jaw guard that doesn't obstruct the user's field of vision.",
  "adesc" : "Includes a compact iron jaw guard."
  },
-{"name" : "cult_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 12, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+{"name" : "cult_hood"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 12, "value" : 60, "con" : 15, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Cult Leather Hood",
  "desc" :  "A rough leather hood commonly used in cultist ceremonies. Counts as a cultist item.",
  "adesc" : "Includes a rough leather hood."
  },
- {"name" : "executioner_hood_full"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 6, "value" : 120, "con" : 25, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
+ {"name" : "executioner_hood_full"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 6, "value" : 120, "con" : 25, "stam" : -1, "vis" : -1, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Executioner\'s Hood",
  "desc" :  "A hood worn by executioners to protect their identity and prevent retaliation. Counts as a cultist item.",
  "adesc" : "Includes a tall leather hood."
@@ -995,7 +995,7 @@ class Defs:
  "desc" :  "A long, oversized hood that keeps the rain off the neck.",
  "adesc" : "Includes a long cloth hood."
  },
-{"name" : "executioner_hood"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
+{"name" : "executioner_hood"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "top", "min" : 1, "max" : 1, "value" : 100, "con" : 10, "stam" : -1, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Executioner's Cowl",
  "desc" :  "A heavy, deep cowl designed to hide the identity of the executioner from the vengeance of those sympathetic to the condemned. Counts as a cultist item.",
  "adesc" : "Includes a heavy cloth hood."
@@ -1030,7 +1030,7 @@ class Defs:
  "desc" :  "A light, feathered cloth with featuring a thin face mask.",
  "adesc" : "Includes a feathered cloth head wrap."
  },
-{"name" : "sack"                     , "itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 13, "value" : 5, "con" : 2, "stam" : 0, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "cloth",
+{"name" : "sack"                     , "itemType" : "::Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 13, "value" : 5, "con" : 2, "stam" : 0, "vis" : -1, "hair" : "true", "beard" : "true", "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Sack",
  "desc" :  "A rough hewn hessian sack with two holes for eyes in it. Counts as a cultist item.",
  "adesc" : "Includes a sack with holes for eyes."
@@ -1337,7 +1337,7 @@ class Defs:
 #  "title" :  "Demon Alp Helm", \
 #  "desc" :  "A trophy made from the face of a demon" \
 # },
-{"name" : "warlock_hood"                     ,"itemType" : "this.Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 5, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
+{"name" : "warlock_hood"                     ,"itemType" : "::Const.Items.ItemType.Cultist", "layer" : "vanity", "min" : 1, "max" : 5, "value" : 100, "con" : 10, "stam" : 0, "vis" : 0, "hair" : "true", "beard" : "false", "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Warlock's Hood",
  "desc" :  "A tattered hood of discolored fabric. Counts as a cultist item.",
  "adesc" : "Includes a tattered hood."

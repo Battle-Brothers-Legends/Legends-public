@@ -5,8 +5,8 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendClimb);
 		this.m.Description = "Allows you to move up or down levels. Does not trigger attacks of opportunity. Can not be used on flat ground.";
 		this.m.SoundOnUse = ["sounds/combat/footwork_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -58,7 +58,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function isUsable() {
-		if (this.Tactical.isActive() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsArenaMode) {
+		if (::Tactical.isActive() && ::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsArenaMode) {
 			return false;
 		}
 
@@ -70,7 +70,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 				} else {
 					local nextTile = myTile.getNextTile(i);
 
-					if (this.Math.abs(nextTile.Level - myTile.Level) < 1) {
+					if (::Math.abs(nextTile.Level - myTile.Level) < 1) {
 					} else {
 						return true;
 					}
@@ -114,7 +114,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (this.Math.abs(_targetTile.Level - _originTile.Level) == 0)
+		if (::Math.abs(_targetTile.Level - _originTile.Level) == 0)
 		{
 			return false;
 		}
@@ -124,7 +124,7 @@ this.legend_climb_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
+		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		return true;
 	}
 

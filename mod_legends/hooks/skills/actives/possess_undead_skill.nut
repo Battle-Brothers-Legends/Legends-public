@@ -9,7 +9,7 @@
 		this.m.IconDisabled = "skills/possess56_square_bw.png";
 		this.m.IsUsingHitchance = false;
 		this.m.MaxRange = 9;
-		this.m.Order = this.Const.SkillOrder.Any +10;
+		this.m.Order = ::Const.SkillOrder.Any +10;
 	}
 
 	o.onAfterUpdate <- function ( _properties )
@@ -24,11 +24,11 @@
 
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " possesses " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " possesses " + ::Const.UI.getColorizedEntityName(target));
 
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill * 1.2, _user.getPos());
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill * 1.2, _user.getPos());
 			}
 		}
 		::Legends.Effects.grant(target, ::Legends.Effect.PossessedUndead, function(_effect) {

@@ -7,7 +7,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_inventor_prosthetic_eye";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 30 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 30 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_inventor_general.png[/img]As you plant your behind on the ground to get some rest, you notice %inventor% darting back and forth between the company, inspecting their eyes. Before long they come running up to you as well.\n%SPEECH_ON%Captain! May I have a look at your eyes?%SPEECH_OFF%Not actually waiting for you to reply, they hastily shift up close to you, grabbing your head and inspecting your eyes from every possible angle.\n%SPEECH_ON%Yes, yes... Yes! I think I\'ve figured out how to do it...%SPEECH_OFF%You\'re just about to ask him what on earth they\'re talking about.\n%SPEECH_ON%Do what, you might wonder. Well, you see, %noeye% over there has been feeling down ever since the incident and I haven\'t been able to stop thinking about his situation. I think I can help him!%SPEECH_OFF%They smile broadly while staring intently at you.\n%SPEECH_ON%I just need a few tools and some coin to make what I need — but this could be dangerous...%SPEECH_OFF%",
@@ -73,7 +73,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
 				local trait = ::Legends.Traits.grant(_event.m.Noeye, ::Legends.Trait.LegendProstheticEye, function (_trait) {
@@ -118,7 +118,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]5[/color] Tools and Supplies"
 				});
 
 				local brain_damage_yum = ::new("scripts/skills/injury_permanent/brain_damage_injury");
@@ -132,8 +132,8 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 					]);
 				}
 
-				_event.m.Inventor.worsenMood(this.Const.MoodChange.PermanentInjury, "Caused " + brain_damage_yum.m.Name + " in " + _event.m.Noeye.m.Name);
-				_event.m.Noeye.worsenMood(this.Const.MoodChange.PermanentInjury, "Suffered " + brain_damage_yum.m.Name + " because of " + _event.m.Inventor.m.Name);
+				_event.m.Inventor.worsenMood(::Const.MoodChange.PermanentInjury, "Caused " + brain_damage_yum.m.Name + " in " + _event.m.Noeye.m.Name);
+				_event.m.Noeye.worsenMood(::Const.MoodChange.PermanentInjury, "Suffered " + brain_damage_yum.m.Name + " because of " + _event.m.Inventor.m.Name);
 			}
 		});
 		this.m.Screens.push({

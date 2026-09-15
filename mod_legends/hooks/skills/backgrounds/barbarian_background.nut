@@ -3,8 +3,8 @@
 	o.m.Tattoo <- 0;
 	o.create = function ()
 	{
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMin;
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Barbarian);
 		this.m.BackgroundDescription = "";
@@ -32,12 +32,12 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendGiftOfPeople),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
-		this.m.Titles = this.Const.Strings.BarbarianTitles;
+		this.m.Titles = ::Const.Strings.BarbarianTitles;
 		this.m.Ethnicity = 0;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Druid | this.Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Notorious;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Druid | ::Const.BackgroundType.ExpertHunter;
 	}
 
 	o.getTooltip = function () {
@@ -64,19 +64,19 @@
 			6
 		];
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
-			this.m.Tattoo = tattoos[this.Math.rand(0, tattoos.len() - 1)];
+			this.m.Tattoo = tattoos[::Math.rand(0, tattoos.len() - 1)];
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("tattoo_0" + this.m.Tattoo + "_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local tattoo_head = actor.getSprite("tattoo_head");
-			tattoo_head.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_head");
+			tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 			tattoo_head.Visible = true;
 		}
 	}
@@ -102,7 +102,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(1, 3);
+		r = ::Math.rand(1, 3);
 
 		if (r == 1)
 		{
@@ -117,14 +117,14 @@
 			items.equip(this.new("scripts/items/weapons/barbarians/blunt_cleaver"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
 			[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor],
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
 			[1, ::Legends.Armor.Barbarian.scrap_metal_armor]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]

@@ -17,7 +17,7 @@ this.legend_ancient_scroll_item <- ::inherit("scripts/items/misc/legend_skill_bo
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsUsable = true;
 		this.m.Value = 5000;
-		this.m.PerkGroupSelection = this.m.PerkGroups[this.Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
+		this.m.PerkGroupSelection = this.m.PerkGroups[::Math.rand(0, this.m.PerkGroups.len() - 1)].Name;
 	}
 
 	function isAbleToUseScroll( _actor ) {

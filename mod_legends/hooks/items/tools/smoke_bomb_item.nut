@@ -10,7 +10,7 @@
 		this.m.OriginalDescription = this.m.Description;
 		this.m.Value = 1000;
 		this.m.OriginalValue = this.m.Value;
-		this.m.ItemType = this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Tool;
+		this.m.ItemType = ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Tool;
 		this.m.Ammo = 1;
 		this.m.AmmoMax = 1;
 		this.m.AmmoCost = 30;

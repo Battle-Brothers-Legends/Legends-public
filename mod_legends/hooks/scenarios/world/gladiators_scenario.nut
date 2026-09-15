@@ -7,15 +7,15 @@
 		this.m.Difficulty = 3;
 		this.m.Order = 130;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(16);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(16);
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		for( local i = 0; i < 3; i = ++i )
 		{
@@ -46,18 +46,18 @@
 		local u;
 		bros[0].setTitle("the Lion");
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.GloriousResolve);
-		bros[0].getTalents().resize(this.Const.Attributes.COUNT, 0);
-		bros[0].getTalents()[this.Const.Attributes.MeleeDefense] = 2;
-		bros[0].getTalents()[this.Const.Attributes.Fatigue] = 2;
-		bros[0].getTalents()[this.Const.Attributes.MeleeSkill] = 3;
-		bros[0].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
-		a = this.Const.World.Common.pickArmor([
+		bros[0].getTalents().resize(::Const.Attributes.COUNT, 0);
+		bros[0].getTalents()[::Const.Attributes.MeleeDefense] = 2;
+		bros[0].getTalents()[::Const.Attributes.Fatigue] = 2;
+		bros[0].getTalents()[::Const.Attributes.MeleeSkill] = 3;
+		bros[0].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
+		a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 
 		bros[0].getItems().equip(a);
-		a = this.Const.World.Common.pickHelmet([
+		a = ::Const.World.Common.pickHelmet([
 			[1, "oriental/gladiator_helmet", 13]
 		]);
 		bros[0].getItems().equip(a);
@@ -67,17 +67,17 @@
 		bros[0].setVeteranPerks(2);
 		bros[1].setTitle("the Bear");
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.GloriousEndurance);
-		bros[1].getTalents().resize(this.Const.Attributes.COUNT, 0);
-		bros[1].getTalents()[this.Const.Attributes.Hitpoints] = 3;
-		bros[1].getTalents()[this.Const.Attributes.Fatigue] = 2;
-		bros[1].getTalents()[this.Const.Attributes.Bravery] = 2;
-		bros[1].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
-		a = this.Const.World.Common.pickArmor([
+		bros[1].getTalents().resize(::Const.Attributes.COUNT, 0);
+		bros[1].getTalents()[::Const.Attributes.Hitpoints] = 3;
+		bros[1].getTalents()[::Const.Attributes.Fatigue] = 2;
+		bros[1].getTalents()[::Const.Attributes.Bravery] = 2;
+		bros[1].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
+		a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
 		bros[1].getItems().equip(a);
-		a = this.Const.World.Common.pickHelmet([
+		a = ::Const.World.Common.pickHelmet([
 			[1, "oriental/gladiator_helmet", 15]
 		]);
 		bros[1].getItems().equip(a);
@@ -87,17 +87,17 @@
 		bros[1].setVeteranPerks(2);
 		bros[2].setTitle("the Viper");
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.GloriousQuickness);
-		bros[2].getTalents().resize(this.Const.Attributes.COUNT, 0);
-		bros[2].getTalents()[this.Const.Attributes.MeleeDefense] = 2;
-		bros[2].getTalents()[this.Const.Attributes.Initiative] = 3;
-		bros[2].getTalents()[this.Const.Attributes.MeleeSkill] = 2;
-		bros[2].fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
-		a = this.Const.World.Common.pickArmor([
+		bros[2].getTalents().resize(::Const.Attributes.COUNT, 0);
+		bros[2].getTalents()[::Const.Attributes.MeleeDefense] = 2;
+		bros[2].getTalents()[::Const.Attributes.Initiative] = 3;
+		bros[2].getTalents()[::Const.Attributes.MeleeSkill] = 2;
+		bros[2].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
+		a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 		bros[2].getItems().equip(a);
-		a = this.Const.World.Common.pickHelmet([
+		a = ::Const.World.Common.pickHelmet([
 			[1, "oriental/gladiator_helmet", 14]
 		]);
 		bros[2].getItems().equip(a);
@@ -112,23 +112,23 @@
 		bros[2].getBackground().m.RawDescription = "{Why are you looking at %fullname%? Captain, it is I, " + bros[1].getName() + ", who is your greatest gladiator. I am the one who swept the legs of a lindwurm and choked it out with its own tail! What you bastards say? You call that a tall tale? Pah! \'Tis a horizontal lizard at best.}";
 		bros[2].getBackground().buildDescription(true);
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() - 9);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money / 2 + ::Legends.Difficulty.GladiatorsStartingMoney[::World.Assets.getEconomicDifficulty()];
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 2;
-		this.World.Assets.m.Ammo = 0;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() - 9);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/dried_lamb_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money / 2 + ::Legends.Difficulty.GladiatorsStartingMoney[::World.Assets.getEconomicDifficulty()];
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine / 2;
+		::World.Assets.m.Ammo = 0;
 	}
 
 	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern() && randomVillage.hasBuilding("building.arena"))
 			{
@@ -140,17 +140,17 @@
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -168,15 +168,15 @@
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(16);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(16);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/worldmap_11.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.gladiators_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.gladiators_scenario_intro");
 		}, null);
 	}
 
@@ -187,7 +187,7 @@
 
 	o.onCombatFinished <- function ()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local gladiators = 0;
 
 		foreach( bro in roster )
@@ -198,9 +198,9 @@
 			}
 		}
 
-		if (gladiators == 2 && !this.World.Flags.get("GladiatorsOriginDeath2"))
+		if (gladiators == 2 && !::World.Flags.get("GladiatorsOriginDeath2"))
 		{
-			this.World.Flags.set("GladiatorsOriginDeath2", true);
+			::World.Flags.set("GladiatorsOriginDeath2", true);
 
 			foreach( bro in roster )
 			{
@@ -211,9 +211,9 @@
 				}
 			}
 		}
-		else if (gladiators == 1 && !this.World.Flags.get("GladiatorsOriginDeath1"))
+		else if (gladiators == 1 && !::World.Flags.get("GladiatorsOriginDeath1"))
 		{
-			this.World.Flags.set("GladiatorsOriginDeath1", true);
+			::World.Flags.set("GladiatorsOriginDeath1", true);
 
 			foreach( bro in roster )
 			{

@@ -11,25 +11,25 @@
 				s.onAIDeployment = function ()
 				{
 					local e;
-					this.Const.Movement.AnnounceDiscoveredEntities = false;
-					e = this.Tactical.spawnEntity("scripts/entity/tactical/humans/bounty_hunter", 16, 16 - 16 / 2);
-					e.setFaction(this.Const.Faction.PlayerAnimals);
+					::Const.Movement.AnnounceDiscoveredEntities = false;
+					e = ::Tactical.spawnEntity("scripts/entity/tactical/humans/bounty_hunter", 16, 16 - 16 / 2);
+					e.setFaction(::Const.Faction.PlayerAnimals);
 					e.setName("One-Eye");
 					e.getSprite("socket").setBrush("bust_base_player");
 					e.assignRandomEquipment();
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
-					e.getItems().getItemAtSlot(this.Const.ItemSlot.Body).setArmor(0);
+					e.getItems().getItemAtSlot(::Const.ItemSlot.Body).setArmor(0);
 
-					if (e.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
+					if (e.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
 					{
-						e.getItems().getItemAtSlot(this.Const.ItemSlot.Head).removeSelf();
+						e.getItems().getItemAtSlot(::Const.ItemSlot.Head).removeSelf();
 					}
 
-					if (e.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+					if (e.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
 					{
-						e.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+						e.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 					}
 
 					e.getBaseProperties().Hitpoints = 5;
@@ -39,14 +39,14 @@
 					e.getBaseProperties().Initiative = 200;
 					e.getSkills().update();
 					e.setHitpoints(5);
-					e = this.Tactical.spawnEntity("scripts/entity/tactical/humans/bounty_hunter", 15, 18 - 15 / 2);
-					e.setFaction(this.Const.Faction.PlayerAnimals);
+					e = ::Tactical.spawnEntity("scripts/entity/tactical/humans/bounty_hunter", 15, 18 - 15 / 2);
+					e.setFaction(::Const.Faction.PlayerAnimals);
 					e.setName("Captain Bernhard");
 					e.getSprite("socket").setBrush("bust_base_player");
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
-					local armor = this.Const.World.Common.pickArmor([
+					local armor = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.mail_hauberk, 32],
 					]);
 					armor.setArmor(0);
@@ -60,33 +60,33 @@
 					e.getBaseProperties().Initiative = 250;
 					e.getSkills().update();
 					e.setHitpoints(5);
-					e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", 18, 17 - 18 / 2);
-					e.setFaction(this.Const.Faction.Enemy);
+					e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", 18, 17 - 18 / 2);
+					e.setFaction(::Const.Faction.Enemy);
 					e.getAIAgent().getProperties().OverallDefensivenessMult = 0.0;
-					e.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.0;
+					e.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.assignRandomEquipment();
 					e.getBaseProperties().Initiative = 300;
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
-					e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", 17, 18 - 17 / 2);
-					e.setFaction(this.Const.Faction.Enemy);
+					e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_thug", 17, 18 - 17 / 2);
+					e.setFaction(::Const.Faction.Enemy);
 					e.getAIAgent().getProperties().OverallDefensivenessMult = 0.0;
-					e.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.0;
+					e.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.assignRandomEquipment();
 					e.getBaseProperties().Initiative = 200;
 					::Legends.Perks.remove(e, ::Legends.Perk.Overwhelm);
 					::Legends.Perks.remove(e, ::Legends.Perk.Nimble);
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
-					e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_raider_low", 19, 17 - 19 / 2);
-					e.setFaction(this.Const.Faction.Enemy);
+					e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_bandit_raider_low", 19, 17 - 19 / 2);
+					e.setFaction(::Const.Faction.Enemy);
 					e.setName(this.Flags.get("BossName"));
 					e.getAIAgent().getProperties().OverallDefensivenessMult = 0.0;
 					e.getAIAgent().addBehavior(this.new("scripts/ai/tactical/behaviors/ai_retreat_always"));
 					local items = e.getItems();
-					items.equip(this.Const.World.Common.pickArmor([
+					items.equip(::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/hunting_bow"));
@@ -100,23 +100,23 @@
 					::Legends.Perks.remove(e, ::Legends.Perk.Dodge);
 					e.getSkills().update();
 					e.setHitpoints(180);
-					e.setMoraleState(this.Const.MoraleState.Wavering);
-					this.Const.Movement.AnnounceDiscoveredEntities = true;
+					e.setMoraleState(::Const.MoraleState.Wavering);
+					::Const.Movement.AnnounceDiscoveredEntities = true;
 				}
 			}
 			if (s.ID == "Finale")
 			{
 				s.onDeployment = function ()
 				{
-					this.Tactical.getTileSquare(21, 17).removeObject();
-					local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/bandit_raider_low", 21, 17 - 21 / 2);
-					e.setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getID());
+					::Tactical.getTileSquare(21, 17).removeObject();
+					local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/bandit_raider_low", 21, 17 - 21 / 2);
+					e.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).getID());
 					e.setName(this.Flags.get("BossName"));
 					e.m.IsGeneratingKillName = false;
-					e.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Retreat] = 0.0;
+					e.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Retreat] = 0.0;
 					e.getFlags().add("IsFinalBoss", true);
 					local items = e.getItems();
-					items.equip(this.Const.World.Common.pickArmor([
+					items.equip(::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.patched_mail_shirt],
 					]));
 					items.equip(this.new("scripts/items/weapons/falchion"));

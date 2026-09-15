@@ -49,15 +49,15 @@
 		this.m.Difficulty = 1;
 		this.m.Order = 190;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(27);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(27);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(27);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 		this.m.StartingBusinessReputation = -100; // Still use default reputation tiers even if starting at negative reputation
 		this.m.BrotherScaling = 0.66;
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 12; i = ++i )
@@ -74,7 +74,7 @@
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -86,15 +86,15 @@
 		bros[0].getBackground().m.RawDescription = "%name% is a farmer\'s child, and presumably wishes to have a child of their own at some point. For now, they are with you — which is quite a regrettable clash between dreams and reality.";
 		bros[0].improveMood(3.0, "Has recently fallen in love");
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/pitchfork"));
 
-		bros[1].setStartValuesEx(this.Const.CharacterVillageBackgrounds);
+		bros[1].setStartValuesEx(::Const.CharacterVillageBackgrounds);
 		bros[1].getBackground().m.RawDescription = "%name% owned a farmstead that has long since gone underfoot of countless passing armies, including the very ones they\'ve fought for. Their \'allegiance\' to you is arguably the result of an empty belly more than anything.";
 		bros[1].worsenMood(0.5, "Was involved in a brawl");
 		bros[1].addLightInjury();
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/warfork"));
 
 		bros[2].setStartValuesEx([::Legends.Background.Poacher]);
@@ -102,14 +102,14 @@
 		bros[2].worsenMood(0.5, "Was involved in a brawl");
 		bros[2].addLightInjury();
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 
 		bros[3].setStartValuesEx([::Legends.Background.Gambler,::Legends.Background.Thief,::Legends.Background.Vagabond]);
 		bros[3].getBackground().m.RawDescription = "You notice that %name% hides from certain noblemen. It is likely that they are a common criminal at large for some petty crime, but so long as they fight well it is no business to you.";
 		bros[3].improveMood(1.5, "Stole someone\'s scramasax");
 		items = bros[3].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/scramasax"));
 
 		bros[4].setStartValuesEx([::Legends.Background.Daytaler, ::Legends.Background.Vagabond]);
@@ -117,11 +117,11 @@
 		bros[4].worsenMood(0.5, "Was involved in a brawl");
 		bros[4].addLightInjury();
 
-		bros[5].setStartValuesEx(this.Const.CharacterVillageBackgrounds);
+		bros[5].setStartValuesEx(::Const.CharacterVillageBackgrounds);
 		bros[5].getBackground().m.RawDescription = "Seeking riches, %name% has come to the right place in your newfound mercenary band. Unfortunately, their background is in farming, milling, and laying stone, particularly none of which they were any good at.";
 		bros[5].improveMood(1.0, "Looks forward to becoming rich as a sellsword");
 		local items = bros[5].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/pitchfork"));
 
 		bros[6].setStartValuesEx([::Legends.Background.Fisherman]);
@@ -138,10 +138,10 @@
 		bros[8].setStartValuesEx([::Legends.Background.Minstrel]);
 		bros[8].getBackground().m.RawDescription = "%name% enjoys carousing ladies at the pub and chasing skirt in the church. You get the sense they\'ve only tagged along to spread their sense of \'fun\' around the world.";
 		local items = bros[8].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/lute"));
 
-		bros[9].setStartValuesEx(this.Const.CharacterVillageBackgrounds);
+		bros[9].setStartValuesEx(::Const.CharacterVillageBackgrounds);
 		bros[9].getBackground().m.RawDescription = "Daytaler, laborer, caravan hand, sailor, militia, %name%\'s done a bit of it all. Hopefully this new foray into mercenary work will stick for them.";
 		bros[9].worsenMood(1.0, "Had their trusty scramasax stolen");
 
@@ -157,17 +157,17 @@
 
 		this.equipAdditional(bros);
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item")); //extra
-		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 9);
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 2;
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item")); //extra
+		::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 9);
+		::World.Assets.m.Money = ::World.Assets.m.Money * 2;
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine / 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
 	// created to avoid some copy paste and have submods like SSU be able to manipulate the brush portion
@@ -188,9 +188,9 @@
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
 			{
@@ -199,34 +199,34 @@
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		this.World.Flags.set("HomeVillage", randomVillage.getName());
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		::World.Flags.set("HomeVillage", randomVillage.getName());
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Plains && tile.Type != this.Const.World.TerrainType.Steppe && tile.Type != this.Const.World.TerrainType.Tundra && tile.Type != this.Const.World.TerrainType.Snow)
+				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
 				{
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -238,16 +238,16 @@
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(8);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		randomVillage.getFactionOfType(this.Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(8);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
+		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.militia_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.militia_scenario_intro");
 		}, null);
 	}
 
@@ -278,7 +278,7 @@
 
 		foreach( _, bro in bros )
 		{
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Stabled)) //keep lowborn and stabled, delete all else.
+			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Stabled)) //keep lowborn and stabled, delete all else.
 			{
 				garbage.push(bro);
 				continue;

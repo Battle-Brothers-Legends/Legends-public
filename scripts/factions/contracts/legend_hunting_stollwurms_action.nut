@@ -3,25 +3,25 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 	function create()
 	{
 		this.m.ID = "legend_hunting_stollwurms_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 	}
 
 	function onUpdate( _faction )
 	{
 
 
-		if (!this.Const.DLC.Unhold || !this.Const.DLC.Lindwurm)
+		if (!::Const.DLC.Unhold || !::Const.DLC.Lindwurm)
 		{
 			return;
 		}
 
 		
 		// For settlement faction
-		if (_faction.getType()==this.Const.FactionType.Settlement && !_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_hunting_stollwurms_contract))
+		if (_faction.getType()==::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_hunting_stollwurms_contract))
 		{
 			return;
 		}
@@ -32,7 +32,7 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 1500)
+		if (::World.Assets.getBusinessReputation() < 1500)
 		{
 			return;
 		}
@@ -49,9 +49,9 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		local minResources = this.Const.World.LegendaryContract.Stollwurm * this.Const.World.ContractCost.StollWurm + this.Const.World.ContractCost.StollWurm;
+		local minResources = ::Const.World.LegendaryContract.Stollwurm * ::Const.World.ContractCost.StollWurm + ::Const.World.ContractCost.StollWurm;
 
-		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * this.Const.World.ContractCost.StollWurm;
+		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.StollWurm;
 
 		if(currentResources < minResources)
 		{
@@ -59,7 +59,7 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 		}
 		else
 		{
-			this.Const.World.LegendaryContract.Stollwurm += 1;
+			::Const.World.LegendaryContract.Stollwurm += 1;
 		}
 
 		this.m.Score = 1;
@@ -75,7 +75,7 @@ this.legend_hunting_stollwurms_action <- this.inherit("scripts/factions/faction_
 		contract.setFaction(_faction.getID());
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

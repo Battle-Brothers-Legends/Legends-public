@@ -8,9 +8,9 @@ this.legend_sickle <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A tool for gathering plants, can also gather ears";
 		this.m.IconLarge = "weapons/melee/legend_sickle_01.png";
 		this.m.Icon = "weapons/melee/legend_sickle_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

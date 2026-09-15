@@ -9,7 +9,7 @@
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
@@ -18,16 +18,16 @@
 				{
 					local isTreeAllowed = true;
 
-					if (this.Math.abs(x - _rect.X) <= 0 || this.Math.abs(x - (_rect.X + _rect.W - 1)) <= 0 || this.Math.abs(y - _rect.Y) <= 0 || this.Math.abs(y - (_rect.Y + _rect.H - 1)) <= 0)
+					if (::Math.abs(x - _rect.X) <= 0 || ::Math.abs(x - (_rect.X + _rect.W - 1)) <= 0 || ::Math.abs(y - _rect.Y) <= 0 || ::Math.abs(y - (_rect.Y + _rect.H - 1)) <= 0)
 					{
-						if (this.Math.rand(1, 100) < 33)
+						if (::Math.rand(1, 100) < 33)
 						{
 						}
 					}
 
 					tile.Level = 0;
 
-					if (this.Math.rand(1, 100) <= 90)
+					if (::Math.rand(1, 100) <= 90)
 					{
 						pondTile.onFirstPass({
 							X = x,

@@ -7,14 +7,14 @@ this.legend_named_military_warscythe <- this.inherit("scripts/items/weapons/name
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_military_warscythe";
-		this.m.NameList = this.Const.Strings.WarscytheNames;
+		this.m.NameList = ::Const.Strings.WarscytheNames;
 		this.m.Description = "A heavy cleaver blade on top of a long shaft, used to deliver deep sweeping strikes over some distance. It might be confused for a simple and crude from weapon a layman, but the artisan who crafted this knew how to balance it perfectly.";
-		this.m.Variant = this.Math.rand(4, 5);
+		this.m.Variant = ::Math.rand(4, 5);
 		this.updateVariant();
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

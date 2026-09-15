@@ -3,22 +3,22 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 	function create()
 	{
 		this.m.ID = "legend_barbarian_prisoner_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 	}
 
 	function onUpdate( _faction )
 	{
-		if (!this.Const.DLC.Wildmen)
+		if (!::Const.DLC.Wildmen)
 		{
 			return;
 		}
 
 		// For settlement faction
-		if (_faction.getType()==this.Const.FactionType.Settlement && !_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_barbarian_prisoner_contract))
+		if (_faction.getType()==::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_barbarian_prisoner_contract))
 		{
 			return;
 		}
@@ -29,7 +29,7 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 1200)
+		if (::World.Assets.getBusinessReputation() < 1200)
 		{
 			return;
 		}
@@ -41,12 +41,12 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 
 		local currentTile = _faction.getSettlements()[0].getTile();
 
-		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.7)
+		if (currentTile.SquareCoords.Y < ::World.getMapSize().Y * 0.7)
 		{
 			return;
 		}
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local mySettlement = _faction.getSettlements()[0];
 		local candidates = 0;
 
@@ -88,9 +88,9 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 			return;
 		}
 
-		local minResources = this.Const.World.LegendaryContract.BarbPrison * this.Const.World.ContractCost.BarbPrison + this.Const.World.ContractCost.BarbPrison;
+		local minResources = ::Const.World.LegendaryContract.BarbPrison * ::Const.World.ContractCost.BarbPrison + ::Const.World.ContractCost.BarbPrison;
 
-		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * this.Const.World.ContractCost.BarbPrison;
+		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.BarbPrison;
 
 		if(currentResources < minResources)
 		{
@@ -98,7 +98,7 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 		}
 		else
 		{
-			this.Const.World.LegendaryContract.BarbPrison += 1;
+			::Const.World.LegendaryContract.BarbPrison += 1;
 		}
 
 		this.m.Score = 1;
@@ -116,7 +116,7 @@ this.legend_barbarian_prisoner_action <- this.inherit("scripts/factions/faction_
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setOrigin(_faction.getSettlements()[0]);
 		contract.setup();
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

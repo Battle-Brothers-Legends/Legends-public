@@ -7,8 +7,8 @@ this.legend_bear_bite_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Ripped to shreds";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/bear_attack", 1);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/enemies/werewolf_claw_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -53,15 +53,15 @@ function getTooltip()
 			damageMax = damageMax * 1.25;
 		}
 
-		local damage_regular_min = this.Math.floor(damageMin * p.DamageRegularMult * p.DamageTotalMult);
-		local damage_regular_max = this.Math.floor(damageMax * p.DamageRegularMult * p.DamageTotalMult);
-		local damage_Armor_min = this.Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
-		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
-		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
+		local damage_regular_min = ::Math.floor(damageMin * p.DamageRegularMult * p.DamageTotalMult);
+		local damage_regular_max = ::Math.floor(damageMax * p.DamageRegularMult * p.DamageTotalMult);
+		local damage_Armor_min = ::Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
+		local damage_Armor_max = ::Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
+		local damage_direct_max = ::Math.floor(damageMax * this.m.DirectDamageMult);
 
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 		{
-			local muscularity = this.Math.floor(bodyHealth * 0.1);
+			local muscularity = ::Math.floor(bodyHealth * 0.1);
 			 damage_regular_max += muscularity;
 			 damage_Armor_max += muscularity;
 			 damage_direct_max += muscularity;
@@ -69,11 +69,11 @@ function getTooltip()
 
 		if (mult != 1.0)
 		{
-			damage_regular_min = this.Math.floor(damage_regular_min * mult);
-			damage_regular_max = this.Math.floor(damage_regular_max * mult);
-			damage_Armor_min = this.Math.floor(damage_Armor_min * mult);
-			damage_Armor_max = this.Math.floor(damage_Armor_max * mult);
-			damage_direct_max = this.Math.floor(damage_direct_max * mult);
+			damage_regular_min = ::Math.floor(damage_regular_min * mult);
+			damage_regular_max = ::Math.floor(damage_regular_max * mult);
+			damage_Armor_min = ::Math.floor(damage_Armor_min * mult);
+			damage_Armor_max = ::Math.floor(damage_Armor_max * mult);
+			damage_direct_max = ::Math.floor(damage_direct_max * mult);
 		}
 
 		local ret = [
@@ -115,7 +115,7 @@ function getTooltip()
 			id = 6,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = " Heals for" + this.Math.floor(bodyHealth/10) + " hitpoints [10% of your maximum hp]"
+			text = " Heals for" + ::Math.floor(bodyHealth/10) + " hitpoints [10% of your maximum hp]"
 		});
 
 		return ret;
@@ -148,14 +148,14 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			if (damageMin > 50)
 			{
 			local minMod = (damageMin - 50);
-			local minFalloff = this.Math.pow(minMod, 0.5);
+			local minFalloff = ::Math.pow(minMod, 0.5);
 			damageMin = 50 + minFalloff;
 			}
 
 			if (damageMax > 50)
 			{
 			local maxMod = (damageMax - 50);
-			local maxFalloff = this.Math.pow(maxMod, 0.5);
+			local maxFalloff = ::Math.pow(maxMod, 0.5);
 			damageMax = 50 + maxFalloff;
 			}
 
@@ -164,7 +164,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 
 			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
-				local muscularity = this.Math.floor(bodyHealth * 0.1);
+				local muscularity = ::Math.floor(bodyHealth * 0.1);
 				damageMax += muscularity;
 			}
 
@@ -173,8 +173,8 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 				damageMin = damageMin * 1.25;
 				damageMax = damageMax * 1.25;
 			}
-			_properties.DamageRegularMin += this.Math.floor(damageMin);
-			_properties.DamageRegularMax += this.Math.floor(damageMax);
+			_properties.DamageRegularMin += ::Math.floor(damageMin);
+			_properties.DamageRegularMax += ::Math.floor(damageMax);
 
 
 			this.m.DirectDamageMult = _properties.IsSpecializedInFists ? 0.5 : 0.1;
@@ -189,7 +189,7 @@ function onAnySkillUsed( _skill, _targetEntity, _properties )
 			local actor = this.getContainer().getActor();
 			local maxHP = actor.getHitpointsMax();
 			local heal = maxHP / 10;
-			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
+			actor.setHitpoints(::Math.min(actor.getHitpoints() + heal, maxHP));
 		}
 		return res;
 

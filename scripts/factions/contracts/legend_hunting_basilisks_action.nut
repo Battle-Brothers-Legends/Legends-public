@@ -3,7 +3,7 @@ this.legend_hunting_basilisks_action <- this.inherit("scripts/factions/faction_a
 	function create()
 	{
 		this.m.ID = "legend_hunting_basilisks_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
@@ -11,17 +11,17 @@ this.legend_hunting_basilisks_action <- this.inherit("scripts/factions/faction_a
 
 	function onUpdate( _faction )
 	{
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 		{
 			return;
 		}
 
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_hunting_basilisks_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_hunting_basilisks_contract))
 		{
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 || this.Math.rand(1, 100) > 30)
+		if (::World.getTime().Days <= 3 || ::Math.rand(1, 100) > 30)
 		{
 			return;
 		}
@@ -51,7 +51,7 @@ this.legend_hunting_basilisks_action <- this.inherit("scripts/factions/faction_a
 		contract.setFaction(_faction.getID());
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

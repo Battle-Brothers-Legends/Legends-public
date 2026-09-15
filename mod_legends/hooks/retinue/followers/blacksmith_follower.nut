@@ -22,10 +22,10 @@
 	{
 		this.follower.onUpdate();
 		// handled in asset_manager and repair_building
-		// if ("RepairSpeedMult" in this.World.Assets.m)
-		// 	this.World.Assets.m.RepairSpeedMult *= 1.33;
-		if ("IsBlacksmithed" in this.World.Assets.m)
-			this.World.Assets.m.IsBlacksmithed = true;
+		// if ("RepairSpeedMult" in ::World.Assets.m)
+		// 	::World.Assets.m.RepairSpeedMult *= 1.33;
+		if ("IsBlacksmithed" in ::World.Assets.m)
+			::World.Assets.m.IsBlacksmithed = true;
 	}
 
 	o.onEvaluate = function () {

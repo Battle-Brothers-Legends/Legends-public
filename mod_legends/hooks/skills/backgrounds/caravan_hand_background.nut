@@ -15,9 +15,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Fat),
 			::Legends.Traits.getID(::Legends.Trait.LegendUnpredictable)
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
 	o.getTooltip = function ()
@@ -43,7 +43,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -66,14 +66,14 @@
 			items.equip(this.new("scripts/items/weapons/shortsword"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.gambeson],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[1, ::Legends.Helmet.Standard.open_leather_cap]
 		]));

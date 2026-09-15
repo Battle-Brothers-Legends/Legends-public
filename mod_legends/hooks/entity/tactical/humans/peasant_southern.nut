@@ -11,7 +11,7 @@
 	o.assignRandomEquipment = function ()
 	{
 		local r;
-		r = this.Math.rand(1, 10);
+		r = ::Math.rand(1, 10);
 
 		if (r == 1)
 		{
@@ -39,16 +39,16 @@
 		}
 
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.apron],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[7, ::Legends.Armor.Southern.cloth_sash]
 		]));
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[2, ::Legends.Helmet.Southern.southern_head_wrap],
 				[1, ::Legends.Helmet.Southern.nomad_head_wrap]
 			]));

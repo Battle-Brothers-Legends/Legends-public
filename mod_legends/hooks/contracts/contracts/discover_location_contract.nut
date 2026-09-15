@@ -18,15 +18,15 @@
 
 	o.setup = function ()
 	{
-		local locations = clone this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements();
-		locations.extend(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements());
+		local locations = clone ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
+		locations.extend(::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements());
 		local lowestDistance = 9000;
 		local best;
 		local myTile = this.m.Home.getTile();
 
 		foreach( b in locations )
 		{
-			if (b.isLocationType(this.Const.World.LocationType.Unique))
+			if (b.isLocationType(::Const.World.LocationType.Unique))
 			{
 				continue;
 			}
@@ -36,7 +36,7 @@
 				continue;
 			}
 
-			local region = this.World.State.getRegion(b.getTile().Region);
+			local region = ::World.State.getRegion(b.getTile().Region);
 
 			if (!region.Center.IsDiscovered)
 			{
@@ -45,7 +45,7 @@
 
 			if (region.Discovered < 0.25)
 			{
-				this.World.State.updateRegionDiscovery(region);
+				::World.State.updateRegionDiscovery(region);
 			}
 
 			if (region.Discovered < 0.25)
@@ -60,7 +60,7 @@
 				continue;
 			}
 
-			if (d + this.Math.rand(0, 5) < lowestDistance)
+			if (d + ::Math.rand(0, 5) < lowestDistance)
 			{
 				lowestDistance = d;
 				best = b;
@@ -74,12 +74,12 @@
 		}
 
 		this.m.Location = this.WeakTableRef(best);
-		this.m.Flags.set("Region", this.World.State.getTileRegion(this.m.Location.getTile()).Name);
+		this.m.Flags.set("Region", ::World.State.getTileRegion(this.m.Location.getTile()).Name);
 		this.m.Flags.set("Location", this.m.Location.getName());
-		this.m.DifficultyMult = this.Math.rand(70, 85) * 0.01;
-		this.m.Payment.Pool = this.Math.max(300, 100 + (this.World.State.m.CampaignSettings ? 100 : 0) + lowestDistance * 15.0 * this.getPaymentMult() * this.Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentLightMult());
+		this.m.DifficultyMult = ::Math.rand(70, 85) * 0.01;
+		this.m.Payment.Pool = ::Math.max(300, 100 + (::World.State.m.CampaignSettings ? 100 : 0) + lowestDistance * 15.0 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentLightMult());
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.75;
 			this.m.Payment.Advance = 0.25;
@@ -89,7 +89,7 @@
 			this.m.Payment.Completion = 1.0;
 		}
 
-		this.m.Flags.set("Bribe", this.beautifyNumber(this.m.Payment.Pool * (this.Math.rand(110, 150) * 0.01)));
+		this.m.Flags.set("Bribe", this.beautifyNumber(this.m.Payment.Pool * (::Math.rand(110, 150) * 0.01)));
 		this.m.Flags.set("HintBribe", this.beautifyNumber(this.m.Payment.Pool * 0.1));
 	}
 
@@ -103,8 +103,8 @@
 			{
 				s.end <- function ()
 				{
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local r = this.Math.rand(1, 100);
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 15)
 					{
@@ -112,9 +112,9 @@
 						this.Flags.set("IsShowingAnotherParty", true);
 					}
 
-					this.Contract.m.LastHelpTime = this.Time.getVirtualTimeF() + this.Math.rand(10, 30);
+					this.Contract.m.LastHelpTime = this.Time.getVirtualTimeF() + ::Math.rand(10, 30);
 					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 		}
@@ -134,27 +134,27 @@
 					Text = "Crowns well deserved.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						local playerRoster = this.World.getPlayerRoster().getAll();
-						local xp = this.Math.round(this.Contract.m.Payment.getOnCompletion() * 0.1 * this.Const.Combat.GlobalXPMult);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						local playerRoster = ::World.getPlayerRoster().getAll();
+						local xp = ::Math.round(this.Contract.m.Payment.getOnCompletion() * 0.1 * ::Const.Combat.GlobalXPMult);
 						foreach( bro in playerRoster ) {
 							bro.addXP(xp);
 							bro.updateLevel();
 						}
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractSuccess, "Hired to find the " + this.Flags.get("Location"));
-						this.World.Contracts.finishActiveContract();
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractSuccess, "Hired to find the " + this.Flags.get("Location"));
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
 				}
 			];
 			_screen.start <- function () {
-				local xpGained = this.Math.round(this.Contract.m.Payment.getOnCompletion() * 0.10 * this.Const.Combat.GlobalXPMult);
+				local xpGained = ::Math.round(this.Contract.m.Payment.getOnCompletion() * 0.10 * ::Const.Combat.GlobalXPMult);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns and [color=" + this.Const.UI.Color.PositiveEventValue + "]" + xpGained + "[/color] Experience"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns and [color=" + ::Const.UI.Color.PositiveEventValue + "]" + xpGained + "[/color] Experience"
 				});
 			}
 		});

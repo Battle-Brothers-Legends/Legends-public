@@ -44,22 +44,22 @@ this.legend_seductive_trait <- this.inherit("scripts/skills/traits/character_tra
 
 	function onAdded()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
 
-		this.World.State.getPlayer().calculateHaggleMult();
+		::World.State.getPlayer().calculateHaggleMult();
 	}
 
 	function onRemoved()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
 
-		this.World.State.getPlayer().calculateHaggleMult();
+		::World.State.getPlayer().calculateHaggleMult();
 	}
 
 });

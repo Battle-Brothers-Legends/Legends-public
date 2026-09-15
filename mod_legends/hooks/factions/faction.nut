@@ -22,7 +22,7 @@
 		if (this.m.PlayerRelation > 50.0) {
 			this.setPlayerRelation(::Math.maxf(50.0, this.m.PlayerRelation - this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayGoodMult * (::World.Assets.m.ProfessionEffect.LegendDiplomacy > 0 ? 0.85 : 1.0))); // relation decay mult kept for escaped slaves
 		} else if (this.m.PlayerRelation < 50.0) {
-			this.setPlayerRelation(this.Math.minf(50.0, this.m.PlayerRelation + this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayBadMult * (::World.Assets.m.ProfessionEffect.LegendDiplomacy > 0 ? 1.15 : 1.0))); // relation decay mult kept for escaped slaves
+			this.setPlayerRelation(::Math.minf(50.0, this.m.PlayerRelation + this.m.RelationDecayPerDay * ::World.Assets.m.RelationDecayBadMult * (::World.Assets.m.ProfessionEffect.LegendDiplomacy > 0 ? 1.15 : 1.0))); // relation decay mult kept for escaped slaves
 		}
 
 		if (this.m.PlayerRelationChanges.len() != 0	&& this.m.PlayerRelationChanges[this.m.PlayerRelationChanges.len() - 1].Time + ::Const.World.Assets.RelationTimeOut < ::Time.getVirtualTimeF())	{
@@ -41,7 +41,7 @@
 		{
 			this.m.PlayerRelation = 1
 		}
-		return this.Const.Strings.Relations[this.Math.min(this.Const.Strings.Relations.len() - 1, this.m.PlayerRelation / 10)];
+		return ::Const.Strings.Relations[::Math.min(::Const.Strings.Relations.len() - 1, this.m.PlayerRelation / 10)];
 	}
 
 	local addContract = o.addContract;
@@ -49,7 +49,7 @@
 	{
 		// Contract Overhaul
 		// For the current phase, we will overhaul the system for Settlement contracts only
-		if (this.getType() == this.Const.FactionType.Settlement)
+		if (this.getType() == ::Const.FactionType.Settlement)
 		{
 			_c.setFaction(this.getID());
 			// During deserialization, if we detect the StoredAsWildcard flag, then we should straightaway push it there and finish
@@ -66,7 +66,7 @@
 			local cat = _c.getCategory();
 
 			// Just push to Wildcard category in case of contracts lacking category or using an unrecognised category (this should help with submod and savegame compatibility)
-			if (cat == "" || cat == null || !(cat in this.Const.Contracts.CategoryLimits))
+			if (cat == "" || cat == null || !(cat in ::Const.Contracts.CategoryLimits))
 			{
 				_c.m.Flags.set("StoredAsWildcard", true);
 				this.m.Contracts.push(_c);
@@ -78,7 +78,7 @@
 			}
 
 			// Push to the contract's corresponding category if there's room
-			if (this.m.ContractsByCategory[cat].len() < this.Const.Contracts.CategoryLimits[cat][tier])
+			if (this.m.ContractsByCategory[cat].len() < ::Const.Contracts.CategoryLimits[cat][tier])
 			{
 				this.m.Contracts.push(_c);
 				this.m.ContractsByCategory[cat].push(_c);
@@ -88,7 +88,7 @@
 				return;
 			}
 			// If not, push to the Wildcard category if there's room
-			else if (this.m.ContractsByCategory["Wildcard"].len() < this.Const.Contracts.CategoryLimits["Wildcard"][tier])
+			else if (this.m.ContractsByCategory["Wildcard"].len() < ::Const.Contracts.CategoryLimits["Wildcard"][tier])
 			{
 				_c.m.Flags.set("StoredAsWildcard", true); // this will be used during deserialization and contract removal to indicate that it should be pushed to/removed from the Wildcard category
 				this.m.Contracts.push(_c);
@@ -120,7 +120,7 @@
 	{
 		removeContract(_c);
 		// Contract Overhaul: Also remove from Contract Category for Settlement factions
-		if (this.getType() == this.Const.FactionType.Settlement)
+		if (this.getType() == ::Const.FactionType.Settlement)
 		{
 			local j = null;
 			// If the contract was stored in the Wildcard slot, we will remove it from there

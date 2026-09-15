@@ -18,8 +18,8 @@ this.legend_wolf_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult()));
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::World.State.getCurrentTown().getFoodPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult()));
 		}
 
 		return this.item.getBuyPrice();
@@ -30,8 +30,8 @@ this.legend_wolf_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getSellPriceMult());
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.floor(this.getValue() * ::World.State.getCurrentTown().getFoodPriceMult() * ::World.State.getCurrentTown().getSellPriceMult());
 		}
 
 		return this.item.getSellPrice();

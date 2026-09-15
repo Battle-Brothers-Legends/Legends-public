@@ -3,14 +3,14 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.CaravanGuard;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.CaravanGuard.XP;
+		this.m.Type = ::Const.EntityType.CaravanGuard;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.CaravanGuard.XP;
 		this.legend_randomized_unit_abstract.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/caravan_melee_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeEnemyGender() == 1) {
@@ -22,7 +22,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 	{
 		this.legend_randomized_unit_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.CaravanGuard);
+		b.setValues(::Const.Tactical.Actor.CaravanGuard);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -55,7 +55,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 	function assignRandomEquipment()
 	{
 		this.legend_randomized_unit_abstract.assignRandomEquipment();
-		if (this.Math.rand(1, 100) <= 35)
+		if (::Math.rand(1, 100) <= 35)
 		{
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/throwing_axe"],

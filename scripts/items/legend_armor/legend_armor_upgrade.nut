@@ -11,8 +11,8 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		ArmorDescription = "",
 		Armor = null,		// Base-Armor that this piece is currently attached to
 		Type = -1,
-		ImpactSound = this.Const.Sound.ArmorLeatherImpact,
-		InventorySound = this.Const.Sound.ArmorLeatherImpact,
+		ImpactSound = ::Const.Sound.ArmorLeatherImpact,
+		InventorySound = ::Const.Sound.ArmorLeatherImpact,
 		IsDestroyedOnRemove = false,
 		Variants = [],
 
@@ -34,8 +34,8 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function create()
 	{
 		this.item.create();
-		this.m.SlotType = this.Const.ItemSlot.Body;
-		this.m.ItemType = this.Const.Items.ItemType.Armor;
+		this.m.SlotType = ::Const.ItemSlot.Body;
+		this.m.ItemType = ::Const.Items.ItemType.Armor;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -48,22 +48,22 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getAmountString()
 	{
-		return "" + this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * 100) + "%";
+		return "" + ::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * 100) + "%";
 	}
 
 	function getAmountColor()
 	{
-		if (this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (this.Const.Items.ConditionColor.len() - 1)) > 4)
+		if (::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (::Const.Items.ConditionColor.len() - 1)) > 4)
 		{
 			return 4;
 		}
 
-		return this.Const.Items.ConditionColor[this.Math.max(0, this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (this.Const.Items.ConditionColor.len() - 1)))];
+		return ::Const.Items.ConditionColor[::Math.max(0, ::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (::Const.Items.ConditionColor.len() - 1)))];
 	}
 
 	function getValue()
 	{
-		return this.Math.floor(this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)));
+		return ::Math.floor(this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)));
 	}
 
 	function getType()
@@ -125,8 +125,8 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		if (this.m.DirectDamageModifier >= 0) return this.m.DirectDamageModifier;
 		if (this.m.Armor == null || this.m.Armor.getContainer() == null || !this.m.Armor.isEquipped()) return this.m.DirectDamageModifier;
-		local percentageRemainingArmor = this.Math.floor(this.m.Armor.getArmor() * 100.0 / this.m.Armor.getArmorMax());
-		return -1 * this.Math.min(percentageRemainingArmor, this.Math.abs(this.m.DirectDamageModifier));
+		local percentageRemainingArmor = ::Math.floor(this.m.Armor.getArmor() * 100.0 / this.m.Armor.getArmorMax());
+		return -1 * ::Math.min(percentageRemainingArmor, ::Math.abs(this.m.DirectDamageModifier));
 	}
 
 	function getInitiativeModifier()
@@ -157,7 +157,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function getCurrentFatigueModifier()	// a positive value is good and is added to the available stamina of the character
 	{
 		if (this.m.Armor == null || this.m.Armor.getContainer() == null) return 0.0;
-		return -1 * this.Math.floor(this.Math.abs(this.m.Armor.getStaminaModifier()) / 100.0 * getFatiguePenaltyMultiplier());
+		return -1 * ::Math.floor(::Math.abs(this.m.Armor.getStaminaModifier()) / 100.0 * getFatiguePenaltyMultiplier());
 	}
 
 	function getIconOverlay()
@@ -174,19 +174,19 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		switch (this.m.Type)
 		{
-			case this.Const.Items.ArmorUpgrades.Chain:
+			case ::Const.Items.ArmorUpgrades.Chain:
 				L.push("layers/layer_1.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Plate:
+			case ::Const.Items.ArmorUpgrades.Plate:
 				L.push("layers/layer_2.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Tabard:
+			case ::Const.Items.ArmorUpgrades.Tabard:
 				L.push("layers/layer_3.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Cloak:
+			case ::Const.Items.ArmorUpgrades.Cloak:
 				L.push("layers/layer_4.png");
 				break;
-			case this.Const.Items.ArmorUpgrades.Attachment:
+			case ::Const.Items.ArmorUpgrades.Attachment:
 				L.push("layers/layer_5.png");
 				break;
 		}
@@ -237,7 +237,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 			});
 		}
 
@@ -247,13 +247,13 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())))
+				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * ::Math.abs(this.getStaminaModifier())))
 			});
 		}
 
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
-		if (this.getOverlayIconLarge() != null && this.m.Type != this.Const.Items.ArmorUpgrades.Rune)
+		if (this.getOverlayIconLarge() != null && this.m.Type != ::Const.Items.ArmorUpgrades.Rune)
 		{
 			result.push({
 				id = 3,
@@ -344,7 +344,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					id = 10,
 					type = "text",
 					icon = "ui/icons/fatigue.png",
-					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+					text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 				});
 			}
 
@@ -363,7 +363,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
+		::Sound.play(this.m.InventorySound[::Math.rand(0, this.m.InventorySound.len() - 1)], ::Const.Sound.Volume.Inventory);
 	}
 
 	function addArmor( _a)
@@ -426,12 +426,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 	function getRepair()
 	{
-		return this.Math.floor(this.getCondition());
+		return ::Math.floor(this.getCondition());
 	}
 
 	function getRepairMax()
 	{
-		return this.Math.floor(this.getConditionMax());
+		return ::Math.floor(this.getConditionMax());
 	}
 
 	function toggleVisible()
@@ -469,7 +469,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			frontSpriteCorpse = "";
 			backSpriteCorpse = "";
 		}
-		else if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
+		else if (this.m.Condition / this.m.ConditionMax <= ::Const.Combat.ShowDamagedArmorThreshold)
 		{
 			frontSprite = this.m.SpriteDamagedFront != null ? this.m.SpriteDamagedFront : this.m.SpriteFront != null ? this.m.SpriteFront : "";
 			backSprite = this.m.SpriteDamagedBack != null ? this.m.SpriteDamagedBack : this.m.SpriteBack != null ? this.m.SpriteBack : "";
@@ -489,11 +489,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		local prefix = "ArmorLayer";
 		
 		switch(this.m.Type) {
-			case this.Const.Items.ArmorUpgrades.Chain:      key = "Chain"; break;
-			case this.Const.Items.ArmorUpgrades.Plate:      key = "Plate"; break;
-			case this.Const.Items.ArmorUpgrades.Tabard:    key = "Tabard"; break;
-			case this.Const.Items.ArmorUpgrades.Cloak:      key = "Cloak"; break;
-			case this.Const.Items.ArmorUpgrades.Attachment: key = "Upgrade"; prefix = "Armor"; break; 
+			case ::Const.Items.ArmorUpgrades.Chain:      key = "Chain"; break;
+			case ::Const.Items.ArmorUpgrades.Plate:      key = "Plate"; break;
+			case ::Const.Items.ArmorUpgrades.Tabard:    key = "Tabard"; break;
+			case ::Const.Items.ArmorUpgrades.Cloak:      key = "Cloak"; break;
+			case ::Const.Items.ArmorUpgrades.Attachment: key = "Upgrade"; prefix = "Armor"; break; 
 		}
 
 		if (key != "") {
@@ -521,14 +521,14 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	{
 		this.item.onUnequip();
 		//if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
-		this.setCurrentSlotType(this.Const.ItemSlot.None);
+		this.setCurrentSlotType(::Const.ItemSlot.None);
 	}
 
 	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
-		local armor = _item == null ? _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body) : _item;
+		local armor = _item == null ? _actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) : _item;
 
 		if (armor == null) return false;
 
@@ -536,7 +536,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		if (success && _playSound)
 		{
-			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
+			::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
 		}
 
 		return success;
@@ -564,7 +564,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			return leftoverDamage;
 		}
 
-		this.m.Condition = this.Math.max(0, this.m.Condition - _damage) * 1.0;
+		this.m.Condition = ::Math.max(0, this.m.Condition - _damage) * 1.0;
 		return 0.0;
 	}
 
@@ -581,7 +581,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getInitiativeModifier()) + this.Math.abs(this.getInitiativeModifier()), this.getInitiativeModifier()) + " Initiative"
+				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getInitiativeModifier()) + ::Math.abs(this.getInitiativeModifier()), this.getInitiativeModifier()) + " Initiative"
 			});
 		}
 
@@ -593,7 +593,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				type = "text",
 				icon = "ui/icons/special.png",
 				text = ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(invertedThreat)) + " the Resolve of any opponent engaged in melee by " +
-					 ::Legends.S.colorize("" + ::Legends.S.getSign(invertedThreat) + this.Math.abs(invertedThreat), invertedThreat)
+					 ::Legends.S.colorize("" + ::Legends.S.getSign(invertedThreat) + ::Math.abs(invertedThreat), invertedThreat)
 			});
 		}
 		if (this.getResolveModifier() != 0)
@@ -602,7 +602,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getResolveModifier()) + this.Math.abs(this.getResolveModifier()), this.getResolveModifier()) + " Resolve"
+				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getResolveModifier()) + ::Math.abs(this.getResolveModifier()), this.getResolveModifier()) + " Resolve"
 			});
 		}
 		if (this.getDirectDamageModifier() != 0)
@@ -612,7 +612,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
 				text = ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(this.getDirectDamageModifier())) + " damage ignoring armor by " +
-					::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + this.Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())
+					::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + ::Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())
 			});
 		}
 		if ("BraveryMult" in this.m) {
@@ -630,7 +630,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				type = "text",
 				icon = "ui/icons/armor_body.png",
 				text = "Body Armor damage taken is " + ::Legends.S.getChangingWord(getDamageReceivedArmorMult()) + "d by " +
-				::Legends.S.colorize("" + ::Legends.S.getSign(this.getDamageReceivedArmorMult()) + this.Math.abs(this.getDamageReceivedArmorMult()) + "%", this.getDamageReceivedArmorMult())
+				::Legends.S.colorize("" + ::Legends.S.getSign(this.getDamageReceivedArmorMult()) + ::Math.abs(this.getDamageReceivedArmorMult()) + "%", this.getDamageReceivedArmorMult())
 			});
 		}
 		if (this.getFatiguePenaltyMultiplier() != 0)
@@ -640,7 +640,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				type = "text",
 				icon = "ui/icons/fatigue.png",
 				text = "Fatigue penalty of wearing body armor is " + ::Legends.S.getChangingWord(getFatiguePenaltyMultiplier()) + "d by " +
-				::Legends.S.colorize("" + ::Legends.S.getSign(this.getFatiguePenaltyMultiplier()) + this.Math.abs(this.getFatiguePenaltyMultiplier()) + "%", this.getFatiguePenaltyMultiplier())
+				::Legends.S.colorize("" + ::Legends.S.getSign(this.getFatiguePenaltyMultiplier()) + ::Math.abs(this.getFatiguePenaltyMultiplier()) + "%", this.getFatiguePenaltyMultiplier())
 			});
 		}
 		if (this.getCurrentFatigueModifier() != 0)
@@ -649,7 +649,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 17,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getCurrentFatigueModifier()) + this.Math.abs(this.getCurrentFatigueModifier()), this.getCurrentFatigueModifier())
+				text = "Fatigue Weight Penalty " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getCurrentFatigueModifier()) + ::Math.abs(this.getCurrentFatigueModifier()), this.getCurrentFatigueModifier())
 			});
 		}
 	}

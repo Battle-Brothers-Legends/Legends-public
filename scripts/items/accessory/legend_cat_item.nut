@@ -60,9 +60,9 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "accessory.legend_cat_item";
-		this.m.Name = this.Const.Strings.LegendCatNames[this.Math.rand(0, this.Const.Strings.LegendCatNames.len() - 1)] + " the Cat";
+		this.m.Name = ::Const.Strings.LegendCatNames[::Math.rand(0, ::Const.Strings.LegendCatNames.len() - 1)] + " the Cat";
 		this.m.Description = "A mysterious cat that seems all too intelligent";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsAllowedInBag = false;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
@@ -72,7 +72,7 @@ this.legend_cat_item <- this.inherit("scripts/items/accessory/accessory", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/enemies/cat_purr_02.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/enemies/cat_purr_02.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function updateVariant()

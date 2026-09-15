@@ -4,17 +4,17 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 	{
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_helmet_jester_hat";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.Name = "Jester's Hat";
 		this.m.Description = "The quintessential hat of performing folk in noble court. Wearing it makes you feel like a fool, but the jingling bells make you an irritating target for all.";
 		this.m.ArmorDescription = "Includes a colorful jester's hat.";
 		this.m.Variants = [];
 		for(local i = 1; i <= 66; i++)
 			this.m.Variants.push(i);
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 200;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
@@ -24,7 +24,7 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 		this.m.HideHair = true;
 		this.m.HideBeard = false;
 		//option for bhc range
-		// this.m.BonusHeadChance = this.Math.rand(this.m.HCMin, this.m.HCMax);
+		// this.m.BonusHeadChance = ::Math.rand(this.m.HCMin, this.m.HCMax);
 	}
 
 	function updateVariant()

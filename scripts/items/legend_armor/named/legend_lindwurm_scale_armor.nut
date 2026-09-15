@@ -9,15 +9,15 @@ this.legend_lindwurm_scale_armor <- this.inherit("scripts/items/legend_armor/leg
 	{
 		this.legend_named_armor_upgrade.create();
 		this.m.ID = "legend_armor.body.legend_lindwurm_scale_armor";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Plate;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Plate;
 		this.m.Name = "";		
 		this.m.Description = "A masterwork leather armor made from overlapping lindwurm scales. Not only do the scales deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
 		this.m.ArmorDescription = "Includes a masterwork leather armor made from overlapping lindwurm scales. Not only do the scales deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
 		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 3000;
 		this.randomizeValues();
 		this.m.NameList = ["Wild Scale", "Wurm Skin", "Dragon Cloak", "Snakeskin", "Wyvern Scale", "Drakenguard"];

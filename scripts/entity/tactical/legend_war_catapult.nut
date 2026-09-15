@@ -27,9 +27,9 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendCatapult;
-		this.m.BloodType = this.Const.BloodType.Wood;
-		this.m.XP = this.Const.Tactical.Actor.LegendCatapult.XP;
+		this.m.Type = ::Const.EntityType.LegendCatapult;
+		this.m.BloodType = ::Const.BloodType.Wood;
+		this.m.XP = ::Const.Tactical.Actor.LegendCatapult.XP;
 		this.actor.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_ranged_agent");
 		this.m.AIAgent.setActor(this);
@@ -52,9 +52,9 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 			_tile.spawnObject("entity/tactical/objects/destroyed_greenskin_catapult");
 			local offset = this.createVec(0, -10);
 
-			for( local i = 0; i < this.Const.Tactical.BurnParticles.len(); i = ++i )
+			for( local i = 0; i < ::Const.Tactical.BurnParticles.len(); i = ++i )
 			{
-				this.Tactical.spawnParticleEffect(false, this.Const.Tactical.BurnParticles[i].Brushes, _tile, this.Const.Tactical.BurnParticles[i].Delay, this.Math.max(1, this.Const.Tactical.BurnParticles[i].Quantity), this.Math.max(1, this.Const.Tactical.BurnParticles[i].LifeTimeQuantity), this.Const.Tactical.BurnParticles[i].SpawnRate, this.Const.Tactical.BurnParticles[i].Stages, offset);
+				::Tactical.spawnParticleEffect(false, ::Const.Tactical.BurnParticles[i].Brushes, _tile, ::Const.Tactical.BurnParticles[i].Delay, ::Math.max(1, ::Const.Tactical.BurnParticles[i].Quantity), ::Math.max(1, ::Const.Tactical.BurnParticles[i].LifeTimeQuantity), ::Const.Tactical.BurnParticles[i].SpawnRate, ::Const.Tactical.BurnParticles[i].Stages, offset);
 			}
 		}
 
@@ -77,9 +77,9 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("body").setHorizontalFlipping(flip);
 
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			local f = this.World.FactionManager.getFaction(this.getFaction());
+			local f = ::World.FactionManager.getFaction(this.getFaction());
 
 			if (f != null)
 			{
@@ -88,7 +88,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		}
 		else
 		{
-			this.getSprite("socket").setBrush(this.Const.FactionBase[this.getFaction()]);
+			this.getSprite("socket").setBrush(::Const.FactionBase[this.getFaction()]);
 		}
 	}
 
@@ -96,14 +96,14 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onActorKilled(_actor, _tile, _skill);
 
-		if (this.getFaction() == this.Const.Faction.Player || this.getFaction() == this.Const.Faction.PlayerAnimals)
+		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			local XPgroup = _actor.getXPValue();
-			local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
 			foreach( bro in brothers )
 			{
-				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
+				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
@@ -112,7 +112,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendCatapult);
+		b.setValues(::Const.Tactical.Actor.LegendCatapult);
 		b.IsImmuneToKnockBackAndGrab = true;
 		b.IsImmuneToStun = true;
 		b.IsImmuneToRoot = true;
@@ -125,8 +125,8 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.CatapultMovementAPCost;
-		this.m.FatigueCosts = this.Const.CatapultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.CatapultMovementAPCost;
+		this.m.FatigueCosts = ::Const.CatapultMovementFatigueCost;
 		local body = this.addSprite("body");
 		body.setBrush("legend_catapult");
 		body.varySaturation(0.25);
@@ -139,7 +139,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		this.setSpriteOffset("status_stunned", this.createVec(0, 10));
 		this.setSpriteOffset("arrow", this.createVec(0, 10));
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 40)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 40)
 		{
 			b.RangedDefense += 5;
 		}
@@ -147,7 +147,7 @@ this.legend_war_catapult <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Actives.grant(this, ::Legends.Active.LegendCatapultBoulder);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendUseCatapult);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 20)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 20)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}

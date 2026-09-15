@@ -35,10 +35,10 @@
 			"the Trophyhunter",
 			"the Hunter"
 		];
-		this.m.Level = this.Math.rand(2, 3);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
+		this.m.Level = ::Math.rand(2, 3);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
 	}
 
 	o.getTooltip = function () {
@@ -69,14 +69,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -87,7 +87,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{
@@ -108,18 +108,18 @@
 			items.equip(this.new("scripts/items/weapons/javelin"));
 		}
 
-		if (this.Math.rand(1, 100) <= 50 && items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (::Math.rand(1, 100) <= 50 && items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			// [1, ::Legends.Helmet.Standard.hunters_hat],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.None]

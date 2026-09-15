@@ -29,11 +29,11 @@
 		local legend_pie = false;
 		local legend_porridge = false;
 		local legend_pudding = false;
-		local items = this.World.Assets.getStash().getItems();
+		local items = ::World.Assets.getStash().getItems();
 
 		foreach( item in items )
 		{
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Food))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Food))
 			{
 				if (item.getID() == "supplies.beer")
 				{
@@ -255,11 +255,11 @@
 		local legend_pie = false;
 		local legend_porridge = false;
 		local legend_pudding = false;
-		local items = this.World.Assets.getStash().getItems();
+		local items = ::World.Assets.getStash().getItems();
 
 		foreach( item in items )
 		{
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Food))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Food))
 			{
 				if (item.getID() == "supplies.beer")
 				{

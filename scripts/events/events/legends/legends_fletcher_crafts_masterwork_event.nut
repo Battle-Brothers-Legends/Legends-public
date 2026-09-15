@@ -5,7 +5,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 	function create() {
 		this.m.ID = "event.legends.fletcher_crafts_masterwork";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_05.png[/img]%bowyer% the fletcher comes to you with a bit of request: %they_bowyer% wish to build a weapon for the ages. Apparently, %bowyer% has been attempting to build a quiver of legendary qualities for many years, but now that %they_bowyer%\'s been on the road %they_bowyer%\'s picked up a few things to fill in the gaps of knowledge. Truly, %bowyer% believes %they_bowyer% can get it right this time. All the mercenary needs is a few resources to help procure the elements needed to construct it. A sum of 500 crowns is humbly requested, and the unhold skin you carry.",
@@ -109,10 +109,10 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getMoney() < 2000)
+		if (::World.Assets.getMoney() < 2000)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
 			return;
 
@@ -125,7 +125,7 @@ this.legends_fletcher_crafts_masterwork_event <- this.inherit("scripts/events/ev
 		if (candidates.len() == 0)
 			return;
 
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local numWood = 0;
 
 		foreach (item in stash) {

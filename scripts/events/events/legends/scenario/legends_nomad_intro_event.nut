@@ -16,7 +16,7 @@ this.legends_nomad_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
 
 		});

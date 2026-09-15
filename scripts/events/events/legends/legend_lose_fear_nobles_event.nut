@@ -5,7 +5,7 @@ this.legend_lose_fear_nobles_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.lose_fear_nobles";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 25.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_26.png[/img]{%fearful% is staring at a pauldron they keep turning over and over in their hands. Dented and bloodstained, it nevertheless appears to be a fine piece, inlaid with gold filigree and a noble sigil. A war trophy. Catching your gaze, they laugh and toss the piece to you.%SPEECH_ON%You can have it Cap. You know, all my life I've been afraid of these posh farks in their shiny plate, yet it turns out they bleed red, same as you and me. \'Aint nothing special about \'em at all.%SPEECH_OFF%}",
@@ -30,13 +30,13 @@ this.legend_lose_fear_nobles_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.NobleHouse).getID())
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.NobleHouse).getID())
 			return;
 
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > this.World.getTime().SecondsPerDay * 1.0)
+		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 2)
 			return;
 

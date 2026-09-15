@@ -4,7 +4,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = ::Const.Items.ItemType.Shield;
 		local preview = ::new("scripts/items/shields/named/named_lindwurm_shield");
 		preview.resetStats();
 		preview.setName("Lindwurm Shield");

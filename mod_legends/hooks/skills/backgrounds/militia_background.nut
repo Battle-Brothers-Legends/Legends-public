@@ -16,10 +16,10 @@
 			::Legends.Traits.getID(::Legends.Trait.Craven),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
-		this.m.Level = this.Math.rand(1, 3);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Level = ::Math.rand(1, 3);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -41,9 +41,9 @@
 		this.character_background.onAdded();
 
 		local actor = this.getContainer().getActor();
-		if (this.Math.rand(0, 4) == 4)
+		if (::Math.rand(0, 4) == 4)
 		{
-			actor.setTitle(this.Const.Strings.MilitiaTitles[this.Math.rand(0, this.Const.Strings.MilitiaTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.MilitiaTitles[::Math.rand(0, ::Const.Strings.MilitiaTitles.len() - 1)]);
 		}
 
 	}
@@ -59,21 +59,21 @@
 			"weapons/shortsword"
 		];
 
-		if (this.Const.DLC.Wildmen)
+		if (::Const.DLC.Wildmen)
 		{
 			weapons.extend([
 				"weapons/warfork"
 			]);
 		}
 
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && this.Math.rand(1, 100) <= 50)
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && ::Math.rand(1, 100) <= 50)
 		{
 			items.equip(this.new("scripts/items/shields/buckler_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
@@ -81,7 +81,7 @@
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],

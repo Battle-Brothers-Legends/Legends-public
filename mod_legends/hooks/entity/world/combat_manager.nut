@@ -120,7 +120,7 @@
 					continue;
 				}
 
-				if (combatant.Party.getFaction() != f && !this.World.FactionManager.isAllied(combatant.Party.getFaction(), f))
+				if (combatant.Party.getFaction() != f && !::World.FactionManager.isAllied(combatant.Party.getFaction(), f))
 				{
 					potentialOpponentFactions.push(f);
 				}
@@ -131,18 +131,18 @@
 				continue;
 			}
 
-			local opponentFaction = potentialOpponentFactions[this.Math.rand(0, potentialOpponentFactions.len() - 1)];
-			local opponentParty = _combat.Factions[opponentFaction][this.Math.rand(0, _combat.Factions[opponentFaction].len() - 1)];
+			local opponentFaction = potentialOpponentFactions[::Math.rand(0, potentialOpponentFactions.len() - 1)];
+			local opponentParty = _combat.Factions[opponentFaction][::Math.rand(0, _combat.Factions[opponentFaction].len() - 1)];
 
 			if (opponentParty == null || opponentParty.isNull() || opponentParty.getTroops().len() == 0)
 			{
 				continue;
 			}
 
-			local opponentIndex = this.Math.rand(0, opponentParty.getTroops().len() - 1);
+			local opponentIndex = ::Math.rand(0, opponentParty.getTroops().len() - 1);
 			local opponent = opponentParty.getTroops()[opponentIndex];
 			attackOccured = true;
-			opponent.Strength -= this.Math.max(1, this.Math.rand(1, combatant.Strength) * this.Const.World.CombatSettings.CombatStrengthMult);
+			opponent.Strength -= ::Math.max(1, ::Math.rand(1, combatant.Strength) * ::Const.World.CombatSettings.CombatStrengthMult);
 
 			if (opponent.Strength <= 0)
 			{
@@ -214,7 +214,7 @@
 
 			for( local p = 0; p < numParties; p = ++p )
 			{
-				local party = this.World.getEntityByID(_in.readU32());
+				local party = ::World.getEntityByID(_in.readU32());
 				// if (party.getFaction() >= combat.len()) {
 				// 	combat.Factions.resize(party.getFaction() + 1);
 				// 	for( local f = party.getFaction(); f != party.getFaction() + 1; f = ++f )

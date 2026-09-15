@@ -6,7 +6,7 @@ this.legend_snake_oil_15_blueprint <- this.inherit("scripts/crafting/blueprint",
 		this.m.ID = "blueprint.snake_oil_15";
 		this.m.PreviewCraftable = this.new("scripts/items/misc/snake_oil_item");
 		this.m.Cost = 50;
-		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.Misc;
 		local ingredients = [
 			{
 				Script = "scripts/items/misc/spider_silk_item",

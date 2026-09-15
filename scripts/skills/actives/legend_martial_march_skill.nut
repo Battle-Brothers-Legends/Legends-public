@@ -8,8 +8,8 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "A good marching melody uplifts the company, granting them temporary AP. Targets can only be inspired once per turn.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc4/wardrums", 3);
 		this.m.SoundVolume = 1.5;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -49,7 +49,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -70,7 +70,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 		{
 			return false;
 		}
@@ -82,7 +82,7 @@ this.legend_martial_march_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(_user.getFaction());
 
 		foreach( a in actors ) {
 			if (_user.getID() == a.getID())

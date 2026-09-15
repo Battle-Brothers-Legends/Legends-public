@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Shortbow;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Shortbow;
 	}
 
 	local onEquip = o.onEquip;

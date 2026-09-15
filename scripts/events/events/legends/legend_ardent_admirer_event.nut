@@ -6,7 +6,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_ardent_admirer";
 		this.m.Title = "On the Road...";
-		this.m.Cooldown = 9999 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 9999 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_12.png[/img]Almost out of nowhere, a peculiar looking figure catches your eye. Clearly, you caught his too, because he smiles like he knows you and eagerly approaches, though if he did he would surely reconsider. Reflexively palming your sword with one hand and halting them with another, you call out and ask what on earth they want.%SPEECH_ON%It\'s - it\'s you! It really IS you! I thought it was, but now I\'m here I can see you up close in all your glory!%SPEECH_OFF%His voice immediately forces an involuntary wince: it harbours an enthusiasm only seen in naive children and the hopelessly lovestruck, though he doesn\'t seem to be either. He\'s practically slack-jawed as he admires %randombrother%, all but worshipping the very ground %they_randombrother% occupies. You ask him who exactly \'we\' are, to which he jolts forward with a burst of sickening glee.%SPEECH_ON%Well, you\'re... I don\'t know your name, actually. That\'s %randombrother% the mighty, over there is %randombrother2% the invincible! But you\'re the captain of the %companyname%, only the most heroic and noble warriors in all the lands, and now you\'re here, standing before me!%SPEECH_OFF%Right. While you wouldn\'t phrase it quite so poetically, the fool is correct about who you are. A number of the men are visibly upset by their presence, his whiny voice and unnaturally upbeat tone clearly triggering some primal unease, like looking at a corpse or someone very, very ill. Mercilessly, his grating voice begins again, this time enchanted with some gross mix of admiration and pleading. He remarks how he could clean and carry some of your equipment, but quickly abandons the prospect when seeing the lethal scowls of the company.%SPEECH_ON%I know! I can spread the word of your glorious deeds to the people of the world! People need to hear of the %companyname%\'s brilliant exploits. Your name will live on through the ages when I regale people of your achievements!%SPEECH_OFF%A useful idiot is still useful, and you could let them go to spread the word of your \'glorious deeds\'. That said, some of the company already resemble hungry wolves, seemingly pushed by the fool\'s hideous voice and energy to a violent boil.",
@@ -54,7 +54,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
 					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, -0.5, "Had to suffer the blabbering of a starstruck fool");
-						if (bro.getMoodState() <= this.Const.MoodState.Neutral) this.List.push(entry);
+						if (bro.getMoodState() <= ::Const.MoodState.Neutral) this.List.push(entry);
 					}
 				}
 			}
@@ -82,7 +82,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 				foreach (bro in ::World.getPlayerRoster().getAll()) {
 					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, 1.0, "Satisfied to see an annoying fool gutted");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push(entry);
 					}
 				}
@@ -110,7 +110,7 @@ this.legend_ardent_admirer_event <- this.inherit("scripts/events/event", {
 						continue;
 					if (::Math.rand(1, 100) <= 75) {
 						local entry = ::Legends.EventList.changeMood(bro, 1.0, "Witnessed an annoying fool get blown up");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push(entry);
 					}
 				}

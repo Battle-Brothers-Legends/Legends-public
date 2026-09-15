@@ -15,8 +15,8 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTranceMalevolent);
 		this.m.Icon = "ui/perks/legend_vala_trance_malevolent_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_malevolent_active_sw.png";
-		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 11;
+		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted + 11;
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -37,7 +37,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 			return false;
 
 		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
@@ -94,7 +94,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			});
 		}
 
-		if (this.Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
 		{
 			ret.push({
 				id = 11,
@@ -110,7 +110,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive)
 		{
@@ -174,11 +174,11 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 
 			local minimumHitChance = ::Legends.Mod.ModSettings.getSetting("MinimumChanceToHit").getValue();
 			local maximumHitChance = ::Legends.Mod.ModSettings.getSetting("MaximumChanceToHit").getValue();
-			expertise = this.Math.max(minimumHitChance, this.Math.min(maximumHitChance, expertise));
+			expertise = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, expertise));
 
 			this.logInfo("MALEVOLENT SPIRITS :: expertise is " + expertise);
 
-			if (this.Math.rand(1, 100) <= expertise)
+			if (::Math.rand(1, 100) <= expertise)
 			{
 				foreach( tar in targets )
 				{
@@ -202,12 +202,12 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 					}
 				}
 
-				this.Sound.play("sounds/combat/legend_vala_malevolent.wav");
+				::Sound.play("sounds/combat/legend_vala_malevolent.wav");
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 			else if (this.isAffordableBasedOnFatigue())
 			{
-				this.Sound.play("sounds/combat/legend_vala_trance.wav");
+				::Sound.play("sounds/combat/legend_vala_trance.wav");
 				this.m.TranceIsActive = true;
 				++this.m.Failures;
 				actor.m.ActionPoints = 0;
@@ -260,7 +260,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
 	{
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID())
 		{
@@ -271,7 +271,7 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 		{
 			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
 			{
-				if (this.Math.rand(1, 100) <= 50)
+				if (::Math.rand(1, 100) <= 50)
 				{
 					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 
@@ -309,11 +309,11 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 			return;
 
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		foreach( tar in targets )
 		{
@@ -369,8 +369,8 @@ this.perk_legend_vala_trance_malevolent <- this.inherit("scripts/skills/skill", 
 			}
 
 			_targetTile.getEntity().getFlags().set("IsSpiritVictim", true);
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");
-			this.Sound.play("sounds/combat/legend_vala_trance.wav");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " trembles and hums as they drift into a trance.");
+			::Sound.play("sounds/combat/legend_vala_trance.wav");
 			actor.m.ActionPoints = 0;
 			this.m.TranceIsActive = true;
 		}

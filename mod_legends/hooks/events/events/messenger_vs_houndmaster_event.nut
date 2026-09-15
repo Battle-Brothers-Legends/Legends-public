@@ -1,6 +1,6 @@
 ::mods_hookExactClass("events/events/messenger_vs_houndmaster_event", function(o) {
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -23,8 +23,8 @@
 		if (houndmaster_candidates.len() == 0)
 			return;
 
-		this.m.Messenger = messenger_candidates[this.Math.rand(0, messenger_candidates.len() - 1)];
-		this.m.Houndmaster = houndmaster_candidates[this.Math.rand(0, houndmaster_candidates.len() - 1)];
+		this.m.Messenger = messenger_candidates[::Math.rand(0, messenger_candidates.len() - 1)];
+		this.m.Houndmaster = houndmaster_candidates[::Math.rand(0, houndmaster_candidates.len() - 1)];
 		this.m.Score = (messenger_candidates.len() + houndmaster_candidates.len()) * 3;
 	}
 })

@@ -8,8 +8,8 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cudgel", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/cudgel_hit", 4);
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -17,8 +17,8 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = false;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.2;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 10;
@@ -32,7 +32,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local ret = this.getDefaultTooltip();
-		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * this.Const.Combat.FatigueReceivedPerHit;
+		local fatPerHit = (this.getContainer().getActor().getCurrentProperties().FatigueDealtPerHitMult + 1) * ::Const.Combat.FatigueReceivedPerHit;
 		ret.push({
 			id = 6,
 			type = "text",
@@ -50,7 +50,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInShields ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 
 		if (this.getContainer().hasPerk(::Legends.Perk.ShieldBash))
 		{
@@ -62,7 +62,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, target);
 
 		if (!_user.isAlive() || _user.isDying())
@@ -76,7 +76,7 @@ this.legend_buckler_bash_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " baffled");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(target) + " baffled");
 			}
 		}
 

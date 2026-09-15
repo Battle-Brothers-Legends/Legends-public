@@ -5,9 +5,9 @@
 		::Legends.Screens.hook(this, "Cultist", function(_screen) {
 			_screen.start <- function ( _event ) {
 				this.Characters.push(_event.m.Cultist.getImagePath());
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 				{
 					_event.m.Dude.getFlags().add("PlayerSkeleton");
 					_event.m.Dude.getFlags().add("undead");
@@ -16,7 +16,7 @@
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				}
-				else if (this.World.Assets.getOrigin().getID() == "scenario.cultists")
+				else if (::World.Assets.getOrigin().getID() == "scenario.cultists")
 				{
 					_event.m.Dude.getBaseProperties().MeleeSkill += 10;
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Cultist]);
@@ -30,14 +30,14 @@
 				_event.m.Dude.getBackground().m.RawDescription = "You found this man as a sacrifice, but he arose from his fate to be a servant of Davkul. He asked to fight for you, and you, for some reason, actually agreed.";
 				_event.m.Dude.getBackground().buildDescription(true);
 
-				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
-					_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
+					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 
-				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
-					_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
+					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 
-				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
-					_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).removeSelf();
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
+					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).removeSelf();
 
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
@@ -45,7 +45,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
 		local town = ::Legends.S.getClosestSettlement();
@@ -56,17 +56,17 @@
 		if (distance < 6 || distance > 12)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_cultist = [];
 		local candidates_other = [];
 
 		foreach( bro in brothers ) {
 			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
 				continue;
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
 				candidates_cultist.push(bro);
 			else if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave))
 				candidates_other.push(bro);
@@ -76,9 +76,9 @@
 			return;
 
 		if (candidates_cultist.len() != 0)
-			this.m.Cultist = candidates_cultist[this.Math.rand(0, candidates_cultist.len() - 1)];
+			this.m.Cultist = candidates_cultist[::Math.rand(0, candidates_cultist.len() - 1)];
 
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		this.m.Score = 3;
 	}
 })

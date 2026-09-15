@@ -18,9 +18,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Bright),
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Notorious;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Notorious;
 	}
 
 	o.getTooltip = function () {
@@ -48,7 +48,7 @@
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		r = this.Math.rand(1, 100);
+		r = ::Math.rand(1, 100);
 
 		if (r <= 40)
 		{
@@ -73,7 +73,7 @@
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
 
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -84,13 +84,13 @@
 			items.addToBag(this.new("scripts/items/weapons/militia_spear"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.ragged_surcoat]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}

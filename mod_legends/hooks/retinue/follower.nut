@@ -162,7 +162,7 @@
 			return false;
 		}
 
-		foreach (bro in this.World.getPlayerRoster().getAll())
+		foreach (bro in ::World.getPlayerRoster().getAll())
 		{
 			if (bro.getSkills().getSkillsByFunction(isCorrectSkill.bindenv(this)).len() != 0)
 			{

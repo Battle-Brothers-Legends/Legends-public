@@ -1,9 +1,9 @@
 this.perk_legend_fashionable <- this.inherit("scripts/skills/skill", {
 	m = {
 		FreeSlotTypes = [
-			this.Const.Items.ArmorUpgrades.Tabard,
-			this.Const.Items.ArmorUpgrades.Cloak,
-			this.Const.Items.HelmetUpgrades.Vanity
+			::Const.Items.ArmorUpgrades.Tabard,
+			::Const.Items.ArmorUpgrades.Cloak,
+			::Const.Items.HelmetUpgrades.Vanity
 		]
 	},
 	function create()

@@ -6,7 +6,7 @@ this.legend_traveling_bard_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_traveling_bard";
 		this.m.Title = "At %townname%";
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//—
 			ID = "A",
@@ -107,15 +107,15 @@ this.legend_traveling_bard_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() <= 3) //fewer than or equal to 3 = event triggers
 			return;
 
-		if (this.World.Assets.getMoney() < 500)
+		if (::World.Assets.getMoney() < 500)
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) t.isAlliedWithPlayer());

@@ -8,15 +8,15 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Difficulty = 2;
 		this.m.Order = 170;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function onSpawnAssets()
 	{
 
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		for( local i = 0; i < 6; i = ++i )
 		{
 			local bro = roster.create("scripts/entity/tactical/player");
@@ -45,8 +45,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[1].setStartValuesEx([::Legends.Background.LegendFootSoldier], false);
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		local r = this.Math.rand(1, 2);
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		local r = ::Math.rand(1, 2);
 		local shield;
 		if (r == 1)
 		{
@@ -84,8 +84,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		bros[3].setStartValuesEx([::Legends.Background.LegendFootSoldier], false);
 		local items = bros[3].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		r = this.Math.rand(1, 2);
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		r = ::Math.rand(1, 2);
 		local shield;
 
 		if (r == 1)
@@ -118,10 +118,10 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addScenarioPerk(bros[4].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
 		bros[4].setPlaceInFormation(12);
 		local items = bros[4].getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat]
 		]));
 		items.equip(this.new("scripts/items/supplies/legend_pudding_item"));
@@ -145,23 +145,23 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		// End arbalester create
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/cured_rations_item"));
 		stash.add(this.new("scripts/items/supplies/wine_item"));
 		stash.add(this.new("scripts/items/loot/signet_ring_item"));
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 3;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads())
 			{
@@ -170,33 +170,33 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 7), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 7));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 7), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 7));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 7), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 7));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 7), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 7));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 4)
 				{
 				}
-				else if (!tile.HasRoad || tile.Type == this.Const.World.TerrainType.Shore)
+				else if (!tile.HasRoad || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -208,29 +208,29 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(101);
-		//this.World.State.m.Player.getSprite("body").setBrush("figure_player_noble");
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		local f = randomVillage.getFactionOfType(this.Const.FactionType.NobleHouse);
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(101);
+		//::World.State.m.Player.getSprite("body").setBrush("figure_player_noble");
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
+		local f = randomVillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		f.addPlayerRelation(-100.0, "You chose the wrong faction");
 		local banner = f.getBanner();
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		//1, 3 are shield brothers
-		brothers[1].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner);
-		brothers[3].getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).setFaction(banner);
+		brothers[1].getItems().getItemAtSlot(::Const.ItemSlot.Offhand).setFaction(banner);
+		brothers[3].getItems().getItemAtSlot(::Const.ItemSlot.Offhand).setFaction(banner);
 
 		foreach( bro in brothers )
 		{
 			local items = bro.getItems();
-			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
+			local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 			local tabards = [
 					[0, ""],
 					[1, "tabard/legend_armor_tabard_noble"]
 				];
-				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
+				local tabard = ::Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
 					tabard.setVariant(banner);
@@ -239,9 +239,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}
 
 		//noble start actually doesnt go thru the generalized place for this and i'm too lazy to change it to do so because then i'd have to redo aarmor equips because there's no banner stuff etc
-		// foreach (bro in this.World.getPlayerRoster().getAll())
+		// foreach (bro in ::World.getPlayerRoster().getAll())
 		// {
-		// 	bro.setCompanyID(this.World.State.addNewID(bro));
+		// 	bro.setCompanyID(::World.State.addNewID(bro));
 		// }
 
 
@@ -249,14 +249,14 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			this.Music.setTrackList([
 				"music/retirement_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_noble_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_noble_scenario_intro");
 		}, null);
 	}
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -272,7 +272,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsNoble", true);
+		::World.Flags.set("IsLegendsNoble", true);
 	}
 
 	function onHiredByScenario( _bro )
@@ -280,11 +280,11 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble))
 		{
 			_bro.improveMood(0.5, "Supports your cause as a usurper, will cost less to maintain.");
 		}
-		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn))
 		{
 			_bro.worsenMood(0.5, "Resents you as nobility, will try to squeeze money from you.");
 		}
@@ -305,7 +305,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		foreach( i, bro in bros )
 		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 			{
 				garbage.push(bro);
 			}
@@ -323,15 +323,15 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Noble))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble))
 		{
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			_bro.getSkills().update();
 		}
-		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn))
 		{
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.5); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.5); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.5; //1.0 = default
 			_bro.getSkills().update();
 		}

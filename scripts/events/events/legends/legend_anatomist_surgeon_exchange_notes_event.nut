@@ -7,7 +7,7 @@ this.legend_anatomist_surgeon_exchange_notes_event <- this.inherit("scripts/even
 	function create() {
 		this.m.ID = "event.legend_anatomist_surgeon_exchange_notes";  //— \n |
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 55.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 55.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_63.png[/img]At a break on the road, you find %anatomist% and %surgeon% in deep conversation about something. The conversations seems to have been going on for quite some time. %SPEECH_ON%...and that is the problem, you don't need to take samples with a knife — if you don't require the specimen whole, you can saw off what you need and stick it into a boiling pot for a few hours. Aside from the consistency the results are mostly the same, and you don't spend hours peeling it off the bone.%SPEECH_OFF%%anatomist% crosses their arms and seems quite satisfied, while %surgeon% makes notes. %SPEECH_ON%In this case, you would only need roughly half a pound of ghoul flesh for this method — in turn meaning you could distill the gut lining with far less time and effort than before.%SPEECH_OFF% The Surgeon makes some final calculations based on the cut.%SPEECH_ON%So yes, I think your theory on using ghoul gut lining as a substitute for a bowstring would indeed work if you boiled it as sinew and made the correct cuts here, here... and, here.%SPEECH_OFF%",

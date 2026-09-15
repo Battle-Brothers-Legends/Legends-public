@@ -8,7 +8,7 @@ this.legend_irritable_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendIrritable);
 		this.m.Description = "Repeated attempts to study have made this character more than irritable. The negative effects will disappear by the next day, but this effect is not treatable and prevents the character from reading books and scrolls.";
 		this.m.Icon = "skills/status_effect_62.png";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = false;

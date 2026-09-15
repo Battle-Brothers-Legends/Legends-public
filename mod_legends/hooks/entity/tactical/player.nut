@@ -49,19 +49,19 @@
 
 	o.getTryoutCost = function ()
 	{
-		local cost = this.Math.max(10, this.Math.min(this.m.HiringCost - 25, 25 + this.m.HiringCost * this.Const.Tryouts.CostMult) * this.World.Assets.m.TryoutPriceMult);
+		local cost = ::Math.max(10, ::Math.min(this.m.HiringCost - 25, 25 + this.m.HiringCost * ::Const.Tryouts.CostMult) * ::World.Assets.m.TryoutPriceMult);
 		if (::World.Assets.m.ProfessionEffect.LegendSilverTongued > 0)
 			cost /= ::World.Assets.m.ProfessionEffect.LegendSilverTongued;
-		return this.Math.ceil(cost);
+		return ::Math.ceil(cost);
 	}
 
 	o.getDailyCost = function () {
-		if (!("State" in this.World)) {
+		if (!("State" in ::World)) {
 			return 0;
 		}
-		local worldMult = ::World.State != null ? this.World.Assets.getDailyWageMult() : 1.0;
+		local worldMult = ::World.State != null ? ::World.Assets.getDailyWageMult() : 1.0;
 		local wageMult = (this.m.CurrentProperties.DailyWageMult * worldMult);
-		return this.Math.max(0, this.m.CurrentProperties.DailyWage * wageMult);
+		return ::Math.max(0, this.m.CurrentProperties.DailyWage * wageMult);
 	}
 
 	o.getDailyFood = function () {
@@ -209,7 +209,7 @@
 			return [];
 		}
 
-		local turnsToGo = this.Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
+		local turnsToGo = ::Tactical.TurnSequenceBar.getTurnsUntilActive(this.getID());
 		local tooltip = [
 			{
 				id = 1,
@@ -240,24 +240,24 @@
 				id = 2,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = this.Tactical.TurnSequenceBar.getActiveEntity() == this ? "Acting right now!" : this.m.IsTurnDone || turnsToGo == null ? "Turn done" : "Acts in " + turnsToGo + (turnsToGo > 1 ? " turns" : " turn")
+				text = ::Tactical.TurnSequenceBar.getActiveEntity() == this ? "Acting right now!" : this.m.IsTurnDone || turnsToGo == null ? "Turn done" : "Acts in " + turnsToGo + (turnsToGo > 1 ? " turns" : " turn")
 			},
 			{
 				id = 3,
 				type = "progressbar",
 				icon = "ui/icons/armor_head.png",
-				value = this.getArmor(this.Const.BodyPart.Head),
-				valueMax = this.getArmorMax(this.Const.BodyPart.Head),
-				text = "" + this.getArmor(this.Const.BodyPart.Head) + " / " + this.getArmorMax(this.Const.BodyPart.Head) + "",
+				value = this.getArmor(::Const.BodyPart.Head),
+				valueMax = this.getArmorMax(::Const.BodyPart.Head),
+				text = "" + this.getArmor(::Const.BodyPart.Head) + " / " + this.getArmorMax(::Const.BodyPart.Head) + "",
 				style = "armor-head-slim"
 			},
 			{
 				id = 4,
 				type = "progressbar",
 				icon = "ui/icons/armor_body.png",
-				value = this.getArmor(this.Const.BodyPart.Body),
-				valueMax = this.getArmorMax(this.Const.BodyPart.Body),
-				text = "" + this.getArmor(this.Const.BodyPart.Body) + " / " + this.getArmorMax(this.Const.BodyPart.Body) + "",
+				value = this.getArmor(::Const.BodyPart.Body),
+				valueMax = this.getArmorMax(::Const.BodyPart.Body),
+				text = "" + this.getArmor(::Const.BodyPart.Body) + " / " + this.getArmorMax(::Const.BodyPart.Body) + "",
 				style = "armor-body-slim"
 			},
 			{
@@ -274,8 +274,8 @@
 				type = "progressbar",
 				icon = "ui/icons/morale.png",
 				value = this.getMoraleState(),
-				valueMax = this.Const.MoraleState.COUNT - 1,
-				text = this.Const.MoraleStateName[this.getMoraleState()],
+				valueMax = ::Const.MoraleState.COUNT - 1,
+				text = ::Const.MoraleStateName[this.getMoraleState()],
 				style = "morale-slim"
 			},
 			{
@@ -288,7 +288,7 @@
 				style = "fatigue-slim"
 			}
 		]);
-		local statusEffects = this.getSkills().query(this.Const.SkillType.StatusEffect | this.Const.SkillType.TemporaryInjury, false, true);
+		local statusEffects = this.getSkills().query(::Const.SkillType.StatusEffect | ::Const.SkillType.TemporaryInjury, false, true);
 
 		foreach( i, statusEffect in statusEffects )
 		{
@@ -398,8 +398,8 @@
 			tooltip.push({
 				id = 4,
 				type = "text",
-				icon = this.Const.MoodStateIcon[this.getMoodState()],
-				text = this.Const.MoodStateName[this.getMoodState()]
+				icon = ::Const.MoodStateIcon[this.getMoodState()],
+				text = ::Const.MoodStateName[this.getMoodState()]
 			});
 
 			if (!this.isInReserves())
@@ -424,11 +424,11 @@
 			tooltip.extend(this.getBackground().getBackgroundDescriptionTooltip(false));
 		}
 
-		local injuries = this.getSkills().query(this.Const.SkillType.Injury | this.Const.SkillType.SemiInjury);
+		local injuries = this.getSkills().query(::Const.SkillType.Injury | ::Const.SkillType.SemiInjury);
 
 		foreach( injury in injuries )
 		{
-			if (injury.isType(this.Const.SkillType.TemporaryInjury))
+			if (injury.isType(::Const.SkillType.TemporaryInjury))
 			{
 				local ht = injury.getHealingTime();
 
@@ -473,7 +473,7 @@
 
 		if (this.getHitpoints() < this.getHitpointsMax())
 		{
-			local ht = this.Math.ceil((this.getHitpointsMax() - this.getHitpoints()) / (this.Const.World.Assets.HitpointsPerHour * (("State" in this.World) && this.World.State != null ? this.World.Assets.m.HitpointsPerHourMult : 1.0)) / 24.0);
+			local ht = ::Math.ceil((this.getHitpointsMax() - this.getHitpoints()) / (::Const.World.Assets.HitpointsPerHour * (("State" in ::World) && ::World.State != null ? ::World.Assets.m.HitpointsPerHourMult : 1.0)) / 24.0);
 
 			if (ht > 1)
 			{
@@ -515,7 +515,7 @@
 			return false;
 		}
 
-		return this.getBackground().isBackgroundType(this.Const.BackgroundType.Stabled);
+		return this.getBackground().isBackgroundType(::Const.BackgroundType.Stabled);
 	}
 
 	local create = o.create;
@@ -541,7 +541,7 @@
 	local onHired = o.onHired;
 	o.onHired = function()
 	{
-		// this.m.CompanyID = this.World.State.addNewID(this);
+		// this.m.CompanyID = ::World.State.addNewID(this);
 
 		onHired();
 
@@ -672,7 +672,7 @@
 	local onDeath = o.onDeath;
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
-		if (this.Tactical.State.isScenarioMode())
+		if (::Tactical.State.isScenarioMode())
 			return onDeath(_killer, _skill, _tile, _fatalityType);
 		local bro = this;
 		if (::Tactical.State.isScenarioMode()) {
@@ -695,19 +695,19 @@
 	o.onActorKilled = function ( _actor, _tile, _skill )
 	{
 		onActorKilled( _actor, _tile, _skill );
-		local XPgroup = _actor.getXPValue() * (1.0 - this.Const.XP.XPForKillerPct);
-		local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		local XPgroup = _actor.getXPValue() * (1.0 - ::Const.XP.XPForKillerPct);
+		local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
 			if (bro.isInReserves() && bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
 			{
-				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
+				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
-		if (this.Tactical.State.isScenarioMode())
+		if (::Tactical.State.isScenarioMode())
 			return;
 
 		if (("State" in ::World) && ::World.State != null && ::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape > 0.0 && this.getLevel() >= 12)
@@ -723,22 +723,22 @@
 
 	o.checkMorale = function ( _change, _difficulty, _type = ::Const.MoraleCheckType.Default, _showIconBeforeMoraleIcon = "", _noNewLine = false )
 	{
-		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && this.m.Skills.hasTrait(::Legends.Trait.Insecure))
+		if (_change > 0 && this.m.MoraleState == ::Const.MoraleState.Steady && this.m.Skills.hasTrait(::Legends.Trait.Insecure))
 		{
 			return false;
 		}
 
-		if (_change > 0 && this.m.MoraleState == this.Const.MoraleState.Steady && ("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin().getID() == "scenario.anatomists")
+		if (_change > 0 && this.m.MoraleState == ::Const.MoraleState.Steady && ("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin().getID() == "scenario.anatomists")
 		{
 			return false;
 		}
 
-		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasEffect(::Legends.Effect.AncientPriestPotion))
+		if (_change < 0 && this.m.MoraleState == ::Const.MoraleState.Breaking && this.m.Skills.hasEffect(::Legends.Effect.AncientPriestPotion))
 		{
 			return false;
 		}
 
-		if (_change < 0 && this.m.MoraleState == this.Const.MoraleState.Breaking && this.m.Skills.hasTrait(::Legends.Trait.OathOfValor))
+		if (_change < 0 && this.m.MoraleState == ::Const.MoraleState.Breaking && this.m.Skills.hasTrait(::Legends.Trait.OathOfValor))
 		{
 			return false;
 		}
@@ -753,13 +753,13 @@
 		}
 		else if (this.m.Skills.hasTrait(::Legends.Trait.Irrational))
 		{
-			_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 10 : -10);
+			_difficulty = _difficulty + (::Math.rand(0, 1) == 0 ? 10 : -10);
 		}
 		// else if (this.m.Skills.hasTrait(::Legends.Trait.Mad))
 		// {
-		// 	_difficulty = _difficulty + (this.Math.rand(0, 1) == 0 ? 15 : -15);
+		// 	_difficulty = _difficulty + (::Math.rand(0, 1) == 0 ? 15 : -15);
 		// }
-		if (_change < 0 && _type == this.Const.MoraleCheckType.MentalAttack && this.m.Skills.hasTrait(::Legends.Trait.Superstitious))
+		if (_change < 0 && _type == ::Const.MoraleCheckType.MentalAttack && this.m.Skills.hasTrait(::Legends.Trait.Superstitious))
 		{
 			_difficulty = _difficulty - 10;
 		}
@@ -770,31 +770,31 @@
 	// overwriting entire function
 	o.addXP = function ( _xp, _scale = true )
 	{
-		local isScenarioMode = !(("State" in this.World) && this.World.State != null);
+		local isScenarioMode = !(("State" in ::World) && ::World.State != null);
 
-		if (this.m.Level >= this.Const.LevelXP.len() || this.isGuest() || !isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.Level >= 7 && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
+		if (this.m.Level >= ::Const.LevelXP.len() || this.isGuest() || !isScenarioMode && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.Level >= 7 && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
 			return;
 
 		if (_scale)
 		{
-			_xp = _xp * this.Const.Combat.GlobalXPMult;
+			_xp = _xp * ::Const.Combat.GlobalXPMult;
 		}
 
 		if (_scale && !isScenarioMode)
 		{
-			_xp = _xp * this.Const.Difficulty.XPMult[this.World.Assets.getDifficulty()];
+			_xp = _xp * ::Const.Difficulty.XPMult[::World.Assets.getDifficulty()];
 		}
 
 		if (this.m.Level >= 12)
 		{
-			_xp = _xp * this.Const.Combat.GlobalXPVeteranLevelMult;
+			_xp = _xp * ::Const.Combat.GlobalXPVeteranLevelMult;
 		}
 
 		if (!isScenarioMode)
 		{
 			if (_scale)
 			{
-				_xp = _xp * this.World.Assets.m.XPMult;
+				_xp = _xp * ::World.Assets.m.XPMult;
 
 				if (this.m.Level < 12) {
 					_xp = _xp * (1 + ::World.Assets.m.ProfessionEffect.LegendDrillSergeant);
@@ -802,27 +802,27 @@
 			}
 
 			// a lil experiment to see if this would make avatar starts more viable
-			// if (this.World.getPlayerRoster().getSize() < 3)
+			// if (::World.getPlayerRoster().getSize() < 3)
 			// {
-			// 	_xp = _xp * (1.0 - (3 - this.World.getPlayerRoster().getSize()) * 0.15);
+			// 	_xp = _xp * (1.0 - (3 - ::World.getPlayerRoster().getSize()) * 0.15);
 			// }
 		}
 
-		if (this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= this.Const.LevelXP[this.Const.LevelXP.len() - 1])
+		if (this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= ::Const.LevelXP[::Const.LevelXP.len() - 1])
 		{
-			this.m.CombatStats.XPGained += this.Const.LevelXP[this.Const.LevelXP.len() - 1] - this.m.XP;
-			this.m.XP = this.Const.LevelXP[this.Const.LevelXP.len() - 1];
+			this.m.CombatStats.XPGained += ::Const.LevelXP[::Const.LevelXP.len() - 1] - this.m.XP;
+			this.m.XP = ::Const.LevelXP[::Const.LevelXP.len() - 1];
 			return;
 		}
-		else if (!isScenarioMode && this.World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= this.Const.LevelXP[6] && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
+		else if (!isScenarioMode && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.m.XP + _xp * this.m.CurrentProperties.XPGainMult >= ::Const.LevelXP[6] && ::Legends.Backgrounds.has(this, ::Legends.Background.Slave))
 		{
-			this.m.CombatStats.XPGained += this.Const.LevelXP[6] - this.m.XP;
-			this.m.XP = this.Const.LevelXP[6];
+			this.m.CombatStats.XPGained += ::Const.LevelXP[6] - this.m.XP;
+			this.m.XP = ::Const.LevelXP[6];
 			return;
 		}
 
-		this.m.XP += this.Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
-		this.m.CombatStats.XPGained += this.Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
+		this.m.XP += ::Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
+		this.m.CombatStats.XPGained += ::Math.floor(_xp * this.m.CurrentProperties.XPGainMult);
 	}
 
 	o.unlockPerk = function ( _id )
@@ -860,9 +860,9 @@
 			++this.m.PerkPoints;
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null)
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null)
 		{
-			this.World.Assets.getOrigin().onUnlockPerk(this, _id);
+			::World.Assets.getOrigin().onUnlockPerk(this, _id);
 		}
 
 		if (_id in this.getPerkPlan()) {
@@ -903,13 +903,13 @@
 	}
 
 	o.updateLevel = function() {
-		while (this.m.Level < this.Const.LevelXP.len() && this.m.XP >= this.Const.LevelXP[this.m.Level])
+		while (this.m.Level < ::Const.LevelXP.len() && this.m.XP >= ::Const.LevelXP[this.m.Level])
 		{
 			++this.m.Level;
 			++this.m.LevelUps;
 			++this.m.ProfessionPoints;
 
-			if (this.m.Level <= this.Const.XP.MaxLevelWithPerkpoints)
+			if (this.m.Level <= ::Const.XP.MaxLevelWithPerkpoints)
 			{
 				++this.m.PerkPoints;
 			}
@@ -919,9 +919,9 @@
 				++this.m.PerkPoints;
 			}
 
-			if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null)
+			if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null)
 			{
-				this.World.Assets.getOrigin().onUpdateLevel(this);
+				::World.Assets.getOrigin().onUpdateLevel(this);
 			}
 
 			if (this.m.Level == 12)
@@ -1003,7 +1003,7 @@
 	o.assignRandomMeleeEquipment = function()
 	{
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.coat_of_plates],
@@ -1028,7 +1028,7 @@
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[6, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.mail_coif],
@@ -1061,7 +1061,7 @@
 			this.m.Items.equip(item);
 		}
 
-		local r = this.Math.rand(1, 17);
+		local r = ::Math.rand(1, 17);
 
 		if (r == 1)
 		{
@@ -1140,7 +1140,7 @@
 
 	o.assignRandomRangedEquipment = function()
 	{
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -1153,7 +1153,7 @@
 			[1, ::Legends.Armor.Standard.thick_tunic],
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
@@ -1168,7 +1168,7 @@
 		}
 
 
-		local r = this.Math.rand(1, 6);
+		local r = ::Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -1202,7 +1202,7 @@
 
 	o.assignRandomThrowingEquipment = function()
 	{
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
@@ -1213,7 +1213,7 @@
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
@@ -1225,7 +1225,7 @@
 			this.m.Items.equip(item);
 		}
 
-		local r = this.Math.rand(1, 2);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -1242,16 +1242,16 @@
 		local b = this.m.BaseProperties;
 		b.ActionPoints = 9;
 		b.Hitpoints = 60;
-		b.Bravery = this.Math.rand(45, 55);
+		b.Bravery = ::Math.rand(45, 55);
 		b.Stamina = 120;
 		b.MeleeSkill = 65;
 		b.RangedSkill = 65;
 		b.MeleeDefense = 10;
 		b.RangedDefense = 10;
 		b.Initiative = 115;
-		this.setName(this.Const.Tactical.Common.getRandomPlayerName());
-		local background = this.new("scripts/skills/backgrounds/" + this.Const.CharacterBackgrounds[this.Math.rand(0, this.Const.CharacterBackgrounds.len() - 1)]);
-		background.addBackgroundType(this.Const.BackgroundType.Scenario);
+		this.setName(::Const.Tactical.Common.getRandomPlayerName());
+		local background = this.new("scripts/skills/backgrounds/" + ::Const.CharacterBackgrounds[::Math.rand(0, ::Const.CharacterBackgrounds.len() - 1)]);
+		background.addBackgroundType(::Const.BackgroundType.Scenario);
 		this.m.Skills.add(background);
 		background.setGender(-1);
 		background.buildDescription();
@@ -1259,8 +1259,8 @@
 		local c = this.m.CurrentProperties;
 		this.m.ActionPoints = c.ActionPoints;
 		this.m.Hitpoints = c.Hitpoints;
-		this.m.Talents.resize(this.Const.Attributes.COUNT, 0);
-		this.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
+		this.m.Talents.resize(::Const.Attributes.COUNT, 0);
+		this.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
 	}
 
 	o.pickTraits <- function ( _backgrounds, _maxTraits )
@@ -1268,7 +1268,7 @@
 		if(_maxTraits <= 0) {return;}
 
 		local available_traits = [];
-		foreach(trait in this.Const.CharacterTraits)
+		foreach(trait in ::Const.CharacterTraits)
 		{
 			local available = 1;
 			foreach(bg in _backgrounds)
@@ -1284,7 +1284,7 @@
 		local picked_traits = [];
 		while(_maxTraits > 0 && available_traits.len() > 0)
 		{
-			local pick = this.Math.rand(0, available_traits.len() - 1);
+			local pick = ::Math.rand(0, available_traits.len() - 1);
 			local picked = available_traits[pick];
 			available_traits.remove(pick);
 			local accept = 1;
@@ -1310,11 +1310,11 @@
 
 	o.setStartValuesEx = function ( _backgrounds, _addTraits = true, _gender = -1, _addEquipment = true )
 	{
-		if (this.isSomethingToSee() && this.World.getTime().Days >= 7) {
-			_backgrounds = this.Const.CharacterPiracyBackgrounds;
+		if (this.isSomethingToSee() && ::World.getTime().Days >= 7) {
+			_backgrounds = ::Const.CharacterPiracyBackgrounds;
 		}
 
-		local r = _backgrounds[this.Math.rand(0, _backgrounds.len() - 1)];
+		local r = _backgrounds[::Math.rand(0, _backgrounds.len() - 1)];
 		local background = typeof r == "integer" ? ::Legends.Backgrounds.new(r) : this.new("scripts/skills/backgrounds/" + r);
 
 		background.setGender(_gender);
@@ -1404,7 +1404,7 @@
 		if (_addTraits)
 		{
 			this.fillTalentValues(3);
-			this.fillAttributeLevelUpValues(this.Const.XP.MaxLevelWithPerkpoints - 1);
+			this.fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
 		}
 
 		this.m.Hiring.Talents=(function(){ local c=[]; for(local i=0;i<::Const.Attributes.COUNT;i++) c.push(i); return c; })();
@@ -1443,9 +1443,9 @@
 
 	o.fillTalentValues = function ( _num, _force = false )
 	{
-		this.m.Talents.resize(this.Const.Attributes.COUNT, 0);
+		this.m.Talents.resize(::Const.Attributes.COUNT, 0);
 
-		if (this.getBackground() != null && this.getBackground().isBackgroundType(this.Const.BackgroundType.Untalented) && !_force)
+		if (this.getBackground() != null && this.getBackground().isBackgroundType(::Const.BackgroundType.Untalented) && !_force)
 		{
 			return;
 		}
@@ -1466,11 +1466,11 @@
 				continue;
 			}
 
-			if (this.getFlags().has("PlayerZombie") && (i == this.Const.Attributes.Bravery || i == this.Const.Attributes.Fatigue || i == this.Const.Attributes.Initiative))
+			if (this.getFlags().has("PlayerZombie") && (i == ::Const.Attributes.Bravery || i == ::Const.Attributes.Fatigue || i == ::Const.Attributes.Initiative))
 			{
 				continue;
 			}
-			else if (this.getFlags().has("PlayerSkeleton") && (i == this.Const.Attributes.Bravery || i == this.Const.Attributes.Fatigue || i == this.Const.Attributes.Hitpoints))
+			else if (this.getFlags().has("PlayerSkeleton") && (i == ::Const.Attributes.Bravery || i == ::Const.Attributes.Fatigue || i == ::Const.Attributes.Hitpoints))
 			{
 				continue;
 			}
@@ -1481,14 +1481,14 @@
 
 		for( local done = 0; done < _num; done = ++done )
 		{
-			local weight = this.Math.rand(1, totalWeight);
+			local weight = ::Math.rand(1, totalWeight);
 			local totalhere = 0;
 
 			for( local i = 0; i < attributes.len(); i = ++i )
 			{
 				if (weight > totalhere && weight <= totalhere + weights[i])
 				{
-					local r = this.Math.rand(1, 100);
+					local r = ::Math.rand(1, 100);
 					local j = attributes[i];
 
 					if (r <= 60)
@@ -1525,14 +1525,14 @@
 
 		if (this.m.Attributes.len() == 0)
 		{
-			this.m.Attributes.resize(this.Const.Attributes.COUNT);
-			for( local i = 0; i != this.Const.Attributes.COUNT; i = ++i )
+			this.m.Attributes.resize(::Const.Attributes.COUNT);
+			for( local i = 0; i != ::Const.Attributes.COUNT; i = ++i )
 			{
 				this.m.Attributes[i] = [];
 			}
 		}
 
-		for( local i = 0; i != this.Const.Attributes.COUNT; i = ++i )
+		for( local i = 0; i != ::Const.Attributes.COUNT; i = ++i )
 		{
 			if (this.m.Attributes[i].len() == 0) {
 				this.m.Attributes[i].push(1);
@@ -1542,28 +1542,28 @@
 		local ret = {
 			hitpoints = b.Hitpoints,
 			hitpointsMax = 150,
-			hitpointsIncrease = this.m.Attributes[this.Const.Attributes.Hitpoints][0],
+			hitpointsIncrease = this.m.Attributes[::Const.Attributes.Hitpoints][0],
 			bravery = b.Bravery,
 			braveryMax = 150,
-			braveryIncrease = this.m.Attributes[this.Const.Attributes.Bravery][0],
+			braveryIncrease = this.m.Attributes[::Const.Attributes.Bravery][0],
 			fatigue = b.Stamina,
 			fatigueMax = 150,
-			fatigueIncrease = this.m.Attributes[this.Const.Attributes.Fatigue][0],
+			fatigueIncrease = this.m.Attributes[::Const.Attributes.Fatigue][0],
 			initiative = b.Initiative,
 			initiativeMax = 200,
-			initiativeIncrease = this.m.Attributes[this.Const.Attributes.Initiative][0],
+			initiativeIncrease = this.m.Attributes[::Const.Attributes.Initiative][0],
 			meleeSkill = b.MeleeSkill,
 			meleeSkillMax = 120,
-			meleeSkillIncrease = this.m.Attributes[this.Const.Attributes.MeleeSkill][0],
+			meleeSkillIncrease = this.m.Attributes[::Const.Attributes.MeleeSkill][0],
 			rangeSkill = b.RangedSkill,
 			rangeSkillMax = 120,
-			rangeSkillIncrease = this.m.Attributes[this.Const.Attributes.RangedSkill][0],
+			rangeSkillIncrease = this.m.Attributes[::Const.Attributes.RangedSkill][0],
 			meleeDefense = b.MeleeDefense,
 			meleeDefenseMax = 100,
-			meleeDefenseIncrease = this.m.Attributes[this.Const.Attributes.MeleeDefense][0],
+			meleeDefenseIncrease = this.m.Attributes[::Const.Attributes.MeleeDefense][0],
 			rangeDefense = b.RangedDefense,
 			rangeDefenseMax = 100,
-			rangeDefenseIncrease = this.m.Attributes[this.Const.Attributes.RangedDefense][0]
+			rangeDefenseIncrease = this.m.Attributes[::Const.Attributes.RangedDefense][0]
 		};
 		return ret;
 	}
@@ -1580,9 +1580,9 @@
 		b.MeleeDefense += _v.meleeDefenseIncrease;
 		b.RangedDefense += _v.rangeDefenseIncrease;
 		b.Initiative += _v.initiativeIncrease;
-		this.m.LevelUps = this.Math.max(0, this.m.LevelUps - 1);
+		this.m.LevelUps = ::Math.max(0, this.m.LevelUps - 1);
 
-		for( local i = 0; i != this.Const.Attributes.COUNT; i = ++i )
+		for( local i = 0; i != ::Const.Attributes.COUNT; i = ++i )
 		{
 			this.m.Attributes[i].remove(0);
 
@@ -1663,12 +1663,12 @@
 		this.m.IsAlive = true;
 		this.m.IsDying = false;
 		this.m.IsAbleToDie = true;
-		this.m.Hitpoints = this.Math.max(1, this.m.Hitpoints);
+		this.m.Hitpoints = ::Math.max(1, this.m.Hitpoints);
 		this.m.MaxEnemiesThisTurn = 1;
 
-		if (this.m.MoraleState != this.Const.MoraleState.Ignore)
+		if (this.m.MoraleState != ::Const.MoraleState.Ignore)
 		{
-			this.setMoraleState(this.Const.MoraleState.Steady);
+			this.setMoraleState(::Const.MoraleState.Steady);
 		}
 
 		this.resetBloodied(false);
@@ -1694,7 +1694,7 @@
 	{
 		local background = this.getBackground();
 		local broStash = background.getModifiers().Stash;
-		local item = this.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
+		local item = this.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
 
 		if (item != null)
 		{
@@ -1764,14 +1764,14 @@
 
 	o.getDeadTraits <- function()
 	{
-		local skills = this.getSkills().query(this.Const.SkillType.Trait, false, true);
+		local skills = this.getSkills().query(::Const.SkillType.Trait, false, true);
 
 		local list_traits = [];
 
-		local Trait = this.Const.SkillType.Trait;
-		local Background = this.Const.SkillType.Background;
-		local StatusEffect = this.Const.SkillType.StatusEffect;
-		local Special = this.Const.SkillType.Special;
+		local Trait = ::Const.SkillType.Trait;
+		local Background = ::Const.SkillType.Background;
+		local StatusEffect = ::Const.SkillType.StatusEffect;
+		local Special = ::Const.SkillType.Special;
 
 		foreach (_, s in skills)
 		{
@@ -1793,7 +1793,7 @@
 		local all_perks = ::Const.Perks.PerkDefObjects;
 
 		local list_perks = [];
-		local PerkType = this.Const.SkillType.Perk;
+		local PerkType = ::Const.SkillType.Perk;
 
 		foreach (_, skill in this.getSkills().query(PerkType, true, true))
 		{
@@ -1820,13 +1820,13 @@
 
 	o.getDeadPermanentInjury <- function()
 	{
-		local PermanentInjury = this.Const.SkillType.PermanentInjury;
+		local PermanentInjury = ::Const.SkillType.PermanentInjury;
 		local skills = this.getSkills().query(PermanentInjury);
 		local list_perminjuries = [];
 
 		foreach (_, s in skills)
 		{
-			if(s.isType(this.Const.SkillType.PermanentInjury))
+			if(s.isType(::Const.SkillType.PermanentInjury))
 			{
 				local injury_data = {
 					id = ::IO.scriptFilenameByHash(s.ClassNameHash),
@@ -1848,20 +1848,20 @@
 
 		local volume = 1.0;
 
-		if (this.getBackground() != null && this.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.getBackground() != null && this.getBackground().isBackgroundType(::Const.BackgroundType.Female))
 		{
-			if (this.m.VoiceSet > this.Const.WomanSounds.len() - 1)
+			if (this.m.VoiceSet > ::Const.WomanSounds.len() - 1)
 			{
-				this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
+				this.m.VoiceSet = ::Math.rand(0, ::Const.WomanSounds.len() - 1);
 			}
-			volume *= this.Const.WomanSounds[this.m.VoiceSet].Volume;
+			volume *= ::Const.WomanSounds[this.m.VoiceSet].Volume;
 		}
 		else
 		{
-			volume *= this.Const.HumanSounds[this.m.VoiceSet].Volume;
+			volume *= ::Const.HumanSounds[this.m.VoiceSet].Volume;
 		}
 
-		this.Sound.play(this.m.Sound[_type][this.Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
+		::Sound.play(this.m.Sound[_type][::Math.rand(0, this.m.Sound[_type].len() - 1)], volume, this.getPos(), _pitch);
 	}
 
 	o.getToggleAccessoryTooltip <- function (_slot, _layer) {
@@ -1887,23 +1887,23 @@
 		switch(_layer)
 		{
 		case 0:
-			title = _slot == this.Const.ItemSlot.Body ? "Chain Mail Layer" : "Helmet Layer";
+			title = _slot == ::Const.ItemSlot.Body ? "Chain Mail Layer" : "Helmet Layer";
 			break;
 
 		case 1:
-			title = _slot == this.Const.ItemSlot.Body ? "Plate Layer" : "Top Layer";
+			title = _slot == ::Const.ItemSlot.Body ? "Plate Layer" : "Top Layer";
 			break;
 
 		case 2:
-			title = _slot == this.Const.ItemSlot.Body ? "Tabard Layer" : "Vanity Layer";
+			title = _slot == ::Const.ItemSlot.Body ? "Tabard Layer" : "Vanity Layer";
 			break;
 
 		case 3:
-			title = _slot == this.Const.ItemSlot.Body ? "Cloak Layer" : "Aesthetic Vanity Layer";
+			title = _slot == ::Const.ItemSlot.Body ? "Cloak Layer" : "Aesthetic Vanity Layer";
 			break;
 
 		case 4:
-			title = _slot == this.Const.ItemSlot.Body ? "Upgrade Attachment Layer" : "Rune Layer";
+			title = _slot == ::Const.ItemSlot.Body ? "Upgrade Attachment Layer" : "Rune Layer";
 			break;
 
 		case 5:
@@ -1924,7 +1924,7 @@
 			tt.push({
 				id = 2,
 				type = "description",
-				text = _slot == this.Const.ItemSlot.Body ? "A base piece of armor, such as a tunic or surcoat, needs to be worn in order to attach a layer" : "A base piece of helmet, such as a hood or scarf, needs to be worn in order to attach a layer"
+				text = _slot == ::Const.ItemSlot.Body ? "A base piece of armor, such as a tunic or surcoat, needs to be worn in order to attach a layer" : "A base piece of helmet, such as a hood or scarf, needs to be worn in order to attach a layer"
 			});
 			return tt;
 		}
@@ -1934,7 +1934,7 @@
 			tt.push({
 				id = 2,
 				type = "description",
-				text = _slot == this.Const.ItemSlot.Body ? "The layer can not be attached to this piece of armor." : "The layer can not be attached to this helmet"
+				text = _slot == ::Const.ItemSlot.Body ? "The layer can not be attached to this piece of armor." : "The layer can not be attached to this helmet"
 			});
 			return tt;
 		}
@@ -2023,9 +2023,9 @@
 	local onDeserialize = o.onDeserialize;
 	o.onDeserialize = function (_in) {
 		onDeserialize(_in);
-		if (this.m.Background != null && this.m.Background.isBackgroundType(this.Const.BackgroundType.Female)) {
+		if (this.m.Background != null && this.m.Background.isBackgroundType(::Const.BackgroundType.Female)) {
 			this.m.Gender = 1;
-			this.m.VoiceSet = this.Math.rand(0, this.Const.WomanSounds.len() - 1);
+			this.m.VoiceSet = ::Math.rand(0, ::Const.WomanSounds.len() - 1);
 		}
 		this.m.HiringCost = _in.readF32();
 		this.m.LifetimeStats.Tags.onDeserialize(_in);

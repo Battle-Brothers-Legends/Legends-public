@@ -9,7 +9,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IconMini = "status_effect_34_mini";
 		this.m.Overlay = "status_effect_34";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/orc_rage", 6);
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsSerialized = false;
 		this.m.IsActive = false;
 	}
@@ -43,7 +43,7 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/melee_defense.png",
-				text = "[color=%positive%]+" + this.Math.minf(70, 2 * this.m.RageStacks) + "%[/color] Damage Reduction"
+				text = "[color=%positive%]+" + ::Math.minf(70, 2 * this.m.RageStacks) + "%[/color] Damage Reduction"
 			},
 			{
 				id = 12,
@@ -71,10 +71,10 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		if (!actor.isHiddenToPlayer()) {
 			if (this.m.SoundOnUse.len() != 0 && this.Time.getVirtualTimeF() - this.m.LastRageSoundTime > 5.0) {
 				this.m.LastRageSoundTime = this.Time.getVirtualTimeF();
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * (this.Math.rand(75, 100) * 0.01), actor.getPos(), this.Math.rand(75, 100) * 0.01);
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * (::Math.rand(75, 100) * 0.01), actor.getPos(), ::Math.rand(75, 100) * 0.01);
 			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " gains rage!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " gains rage!");
 		}
 
 	}
@@ -94,11 +94,11 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		_properties.DamageReceivedTotalMult *= this.Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
+		_properties.DamageReceivedTotalMult *= ::Math.maxf(0.3, 1.0 - 0.02 * this.m.RageStacks);
 	}
 
 	function onTurnStart() {
-		this.m.RageStacks = this.Math.max(0, this.m.RageStacks - 2);
+		this.m.RageStacks = ::Math.max(0, this.m.RageStacks - 2);
 	}
 
 	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor ) {

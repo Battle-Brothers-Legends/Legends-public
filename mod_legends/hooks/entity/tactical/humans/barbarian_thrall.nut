@@ -27,7 +27,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 
 		if (r == 1)
 		{
@@ -42,9 +42,9 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/militia_spear"));
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 40)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 40)
 		{
-			r = this.Math.rand(1, 3);
+			r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -60,19 +60,19 @@
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.thick_furs_armor],
 			[1, ::Legends.Armor.Barbarian.animal_hide_armor],
 			[2, ::Legends.Armor.None]
 		]));
 
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[2, ""]

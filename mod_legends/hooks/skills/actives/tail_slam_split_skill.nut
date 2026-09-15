@@ -2,7 +2,7 @@
 {
 	o.applyEffectToTarget = function ( _user, _target, _targetTile )
 	{
-		local applyEffect = this.Math.rand(1, 3);
+		local applyEffect = ::Math.rand(1, 3);
 
 		if (applyEffect == 1)
 		{
@@ -15,7 +15,7 @@
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has dazed " + this.Const.UI.getColorizedEntityName(_target) + " for two turns");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has dazed " + ::Const.UI.getColorizedEntityName(_target) + " for two turns");
 			}
 		}
 		else if (applyEffect == 2)
@@ -33,7 +33,7 @@
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has stunned " + this.Const.UI.getColorizedEntityName(_target) + " for one turn");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has stunned " + ::Const.UI.getColorizedEntityName(_target) + " for one turn");
 			}
 		}
 	}

@@ -4,7 +4,7 @@ this.legend_sipar_shield_blueprint <- this.inherit("scripts/crafting/blueprint",
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_sipar_shield";
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = ::Const.Items.ItemType.Shield;
 		this.m.PreviewCraftable = this.new("scripts/items/shields/oriental/metal_round_shield");
 		this.m.Cost = 250;
 		local ingredients = [

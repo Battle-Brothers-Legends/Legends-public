@@ -35,10 +35,10 @@
 			"the Veteran",
 			"the Soldier"
 		];
-		this.m.Level = this.Math.rand(2, 3);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.Level = ::Math.rand(2, 3);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.PerkTreeDynamicMins.Defense = 3;
 		this.m.PerkTreeDynamicMins.Enemy = 2;
 	}
@@ -67,7 +67,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -86,21 +86,21 @@
 			items.equip(this.new("scripts/items/weapons/falchion"));
 		}
 
-		r = this.Math.rand(0, 0);
+		r = ::Math.rand(0, 0);
 
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.padded_nasal_helmet],

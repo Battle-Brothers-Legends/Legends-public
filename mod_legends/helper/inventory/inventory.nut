@@ -46,7 +46,7 @@
 			};
 		}
 		if (toRemove.len() > 0) {
-			_item.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
+			_item.playInventorySound(::Const.Items.InventoryEventType.Equipped);
 		}
 		foreach (idx in toRemove) {
 			local upgrade = _item.getUpgrade(idx);
@@ -54,7 +54,7 @@
 			if (upgrade.isDestroyedOnRemove()) {
 				continue;
 			}
-			this.Stash.add(_item.removeUpgrade(idx));
+			::Stash.add(_item.removeUpgrade(idx));
 		}
 		::Legends.Inventory.applyAutomationStateEffects(_item, 0, ::Legends.Inventory.getCompositeAutomationState(_item));
 	}

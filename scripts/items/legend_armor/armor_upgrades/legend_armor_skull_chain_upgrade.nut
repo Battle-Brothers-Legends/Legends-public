@@ -4,15 +4,15 @@ this.legend_armor_skull_chain_upgrade <- this.inherit("scripts/items/legend_armo
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_armor_skull_chain";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Skull Chain";
 		this.m.Description = "A dead man's skull hanging on a heavy chain. An unmistakable mark of a headhunter.";
 		this.m.ArmorDescription = "Includes a human skull on a heavy chain.";
 		this.m.Variants = [1, 2, 3, 4, 5];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 150;
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
@@ -57,7 +57,7 @@ this.legend_armor_skull_chain_upgrade <- this.inherit("scripts/items/legend_armo
 	function onUpdateProperties( _properties )
 	{
 		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 5;
+		_properties.HitChance[::Const.BodyPart.Head] += 5;
 		_properties.MovementFatigueCostAdditional += 1;
 	}
 });

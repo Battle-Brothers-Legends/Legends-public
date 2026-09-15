@@ -4,12 +4,12 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 5;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 5;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.defend_settlement_greenskins_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.defend_settlement_greenskins_contract))
 		{
 			return;
 		}
@@ -19,12 +19,12 @@
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 900)
+		if (::World.Assets.getBusinessReputation() < 900)
 		{
 			return;
 		}
 
-		if (!this.World.FactionManager.isGreenskinInvasion() && this.Math.rand(1, 100) > 10)
+		if (!::World.FactionManager.isGreenskinInvasion() && ::Math.rand(1, 100) > 10)
 		{
 			return;
 		}
@@ -55,7 +55,7 @@
 
 		if (tooFar)
 		{
-			local orcs = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getSettlements();
+			local orcs = ::World.FactionManager.getFactionOfType(::Const.FactionType.Orcs).getSettlements();
 
 			foreach( b in orcs )
 			{
@@ -69,7 +69,7 @@
 
 		if (tooFar)
 		{
-			local goblins = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getSettlements();
+			local goblins = ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getSettlements();
 
 			foreach( b in goblins )
 			{

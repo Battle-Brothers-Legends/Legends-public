@@ -5,8 +5,8 @@
 		this.m.Excluded = [
 			::Legends.Traits.getID(::Legends.Trait.Superstitious)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -33,7 +33,7 @@
 				"weapons/bardiche"
 			]);
 		}
-		items.equip(::new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(::new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]

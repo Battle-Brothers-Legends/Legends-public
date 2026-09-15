@@ -21,75 +21,75 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function create() {
-		this.m.Type = this.Const.EntityType.LegendBear;
-		this.m.XP = this.Const.Tactical.Actor.LegendBear.XP;
-		this.m.BloodType = this.Const.BloodType.Red;
+		this.m.Type = ::Const.EntityType.LegendBear;
+		this.m.XP = ::Const.Tactical.Actor.LegendBear.XP;
+		this.m.BloodType = ::Const.BloodType.Red;
 		this.actor.create();
 		this.m.IsActingImmediately = true;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-4, -25);
 		this.m.DecapitateBloodAmount = 0.5;
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/bear_dead.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 0.7;
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 0.7;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/wardog_agent");
 		this.m.AIAgent.setActor(this);
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		if (_tile != null) {
-			local flip = this.Math.rand(0, 100) < 50;
+			local flip = ::Math.rand(0, 100) < 50;
 			local appearance = this.getItems().getAppearance();
 			local decal;
 			this.m.IsCorpseFlipped = flip;
-			decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.setBrightness(0.9);
 			decal.Scale = 0.95;
 
 			if (appearance.CorpseArmor != "") {
-				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
 			}
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated) {
-				decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
+				decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.setBrightness(0.9);
 				decal.Scale = 0.95;
-			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					this.getSprite("head").getBrush().Name + "_dead"
 				];
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-20, 15), 0.0, "bust_wolf_head_bloodpool");
 				decap[0].setBrightness(0.9);
 				decap[0].Scale = 0.95;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
-				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
+				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
-				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
+				decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
 			this.spawnTerrainDropdownEffect(_tile);
-			local corpse = clone this.Const.Corpse;
+			local corpse = clone ::Const.Corpse;
 			corpse.CorpseName = this.getName();
-			corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+			corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 			corpse.IsResurrectable = false;
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		if (this.m.Item != null && !this.m.Item.isNull()) {
 			this.m.Item.setEntity(null);
 
 			if (this.m.Item.getContainer() != null) {
-				if (this.m.Item.getCurrentSlotType() == this.Const.ItemSlot.Bag) {
+				if (this.m.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
 					this.m.Item.getContainer().removeFromBag(this.m.Item.get());
 				} else {
 					this.m.Item.getContainer().unequip(this.m.Item.get());
@@ -109,28 +109,28 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 		this.getSprite("head").setHorizontalFlipping(flip);
 		this.getSprite("injury").setHorizontalFlipping(flip);
 
-		if (!this.Tactical.State.isScenarioMode()) {
-			local f = this.World.FactionManager.getFaction(this.getFaction());
+		if (!::Tactical.State.isScenarioMode()) {
+			local f = ::World.FactionManager.getFaction(this.getFaction());
 
 			if (f != null) {
 				this.getSprite("socket").setBrush(f.getTacticalBase());
 			}
 		} else {
-			this.getSprite("socket").setBrush(this.Const.FactionBase[this.getFaction()]);
+			this.getSprite("socket").setBrush(::Const.FactionBase[this.getFaction()]);
 		}
 	}
 
 	function onActorKilled(_actor, _tile, _skill) {
 		this.actor.onActorKilled(_actor, _tile, _skill);
 
-		if (this.getFaction() == this.Const.Faction.Player
-			|| this.getFaction() == this.Const.Faction.PlayerAnimals)
+		if (this.getFaction() == ::Const.Faction.Player
+			|| this.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			local XPgroup = _actor.getXPValue();
-			local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
 			foreach (bro in brothers) {
-				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
+				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
@@ -138,14 +138,14 @@ this.legend_warbear <- this.inherit("scripts/entity/tactical/actor", {
 	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBear);
+		b.setValues(::Const.Tactical.Actor.LegendBear);
 		b.TargetAttractionMult = 0.5;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		b.MeleeSkill += 10;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		local variant = 2;
 		this.m.Items.getAppearance().Body = "bear_01";
 		this.addSprite("socket").setBrush("bust_base_player");

@@ -5,7 +5,7 @@
 	{
 		local ret = onTreatInjury(_data);
 		local entityID = _data[0];
-		local entity = this.Tactical.getEntityByID(entityID);
+		local entity = ::Tactical.getEntityByID(entityID);
 		::Legends.Effects.grant(entity, ::Legends.Effect.LegendWellTended);
 		return ret;
 	}

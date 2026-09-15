@@ -37,19 +37,19 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendLight)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
-			this.Const.Attributes.RangedDefense
+			::Const.Attributes.RangedSkill,
+			::Const.Attributes.RangedDefense
 		];
-		this.m.Faces = this.Const.Faces.SmartMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Raider;
+		this.m.Faces = ::Const.Faces.SmartMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Raider;
 
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Muscular;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.Bodies = ::Const.Bodies.Muscular;
 		this.m.Level = 9;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Crusader;
 	}
 
 	o.getTooltip = function ()
@@ -68,14 +68,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -110,7 +110,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/two_handed_hammer"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 	}

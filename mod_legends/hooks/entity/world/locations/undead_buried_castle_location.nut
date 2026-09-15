@@ -3,7 +3,7 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropTreasure(this.Math.rand(3, 4), [
+		this.dropTreasure(::Math.rand(3, 4), [
 			"loot/silverware_item",
 			"loot/silver_bowl_item",
 			"loot/signet_ring_item",

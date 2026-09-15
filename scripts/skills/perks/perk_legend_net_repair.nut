@@ -17,9 +17,9 @@ this.perk_legend_net_repair <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local item = getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Net))
+		if (item != null && item.isItemType(::Const.Items.ItemType.Net))
 			_properties.MeleeDefense += 10;
 	}
 

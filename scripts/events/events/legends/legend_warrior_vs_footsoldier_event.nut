@@ -6,7 +6,7 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 	function create() {
 		this.m.ID = "event.legend_warrior_vs_footsoldier"; //—
 		this.m.Title = "During camp..."; //footsoldier gets more attack, warrior gets more def
-		this.m.Cooldown = 75.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 75.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_26.png[/img]You walk out of your tent to see %noble1h% and %noble2h% in deep discussion with one another and trading point after counterpoint about this and that. While the two warriors have known each other for some time, this discussion goes beyond the usual pleasantries. The two fighters verbally size each other up again, and start on a new thread of discussion. %SPEECH_ON%So, how come you\'d rather not use a shield anyhow? I use \'em all the time and it does me no harm.%SPEECH_OFF%%noble2h% thumbs their jaw for a moment before retorting. %SPEECH_ON%Never really liked the idea of hidin\' behind a slab of wood an\' metal. What you need is less of this prancin\' about and more just hittin\' something one real hard and making sure it stops movin\' after the fact.%SPEECH_OFF%%noble1h% seems confused. %SPEECH_ON%Right. But aren\'t you just a little bit concerned about bein\' hit? With all those squishy bits you got and barely anythin\' \'between?%SPEECH_OFF% %SPEECH_ON% Oh I am, but a wise man once tol\' me that if you get somethin\' in you enough you get \'arder to kill — \'munity it is called. Or somthin\' like that.%SPEECH_OFF%",
@@ -34,7 +34,7 @@ this.legend_warrior_vs_footsoldier_event <- this.inherit("scripts/events/event",
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;

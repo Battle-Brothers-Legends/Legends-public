@@ -6,7 +6,7 @@ this.legend_heartwood_sap_flask_item <- this.inherit("scripts/items/accessory/ac
 		this.m.ID = "accessory.legend_heartwood_sap_flask";
 		this.m.Name = "Flask of Heartwood Sap";
 		this.m.Description = "This flask holds the sap of a heartwood schrat, it will grant a feeling of intense clarity and speed. The sensation takes over your mind and body, placing you in a flow state of pure presence.";
-		this.m.SlotType = this.Const.ItemSlot.Bag;
+		this.m.SlotType = ::Const.ItemSlot.Bag;
 		this.m.IsAllowedInBag = true;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
@@ -30,7 +30,7 @@ this.legend_heartwood_sap_flask_item <- this.inherit("scripts/items/accessory/ac
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/bottle_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onEquip()

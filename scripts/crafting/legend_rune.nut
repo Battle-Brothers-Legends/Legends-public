@@ -27,7 +27,7 @@ this.legend_rune <- this.inherit("scripts/crafting/blueprint", {
 	}
 
 	function isUpgraded() {
-		return this.Stash.hasItem(::Legends.Camp.Tent.Enchant);
+		return ::Stash.hasItem(::Legends.Camp.Tent.Enchant);
 	}
 
 	function getRuneSigilTooltip() {

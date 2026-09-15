@@ -17,7 +17,7 @@
 
 	o.getValue = function ()
 	{
-		return this.Math.floor(this.m.Value * ((1.0 * this.m.Condition) / (1.0 * this.m.ConditionMax)) + (this.m.Upgrade != null ? this.m.Upgrade.getValue() : 0));
+		return ::Math.floor(this.m.Value * ((1.0 * this.m.Condition) / (1.0 * this.m.ConditionMax)) + (this.m.Upgrade != null ? this.m.Upgrade.getValue() : 0));
 	}
 
 	o.removeUpgrade <- function  ( _slot )
@@ -61,9 +61,9 @@
 			return true;
 		}
 
-		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
-		local isLucky = !this.Tactical.State.isScenarioMode() && !isPlayer && this.World.Assets.getOrigin().isDroppedAsLoot(this);
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
+		local isPlayer = this.m.LastEquippedByFaction == ::Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
+		local isLucky = !::Tactical.State.isScenarioMode() && !isPlayer && ::World.Assets.getOrigin().isDroppedAsLoot(this);
+		local isBlacksmithed = isPlayer && !::Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 		if (this.m.Condition > 10 && isPlayer || this.m.Condition > 30 && this.m.Condition / this.m.ConditionMax >= 0.25 || isLucky || isBlacksmithed)
 		{

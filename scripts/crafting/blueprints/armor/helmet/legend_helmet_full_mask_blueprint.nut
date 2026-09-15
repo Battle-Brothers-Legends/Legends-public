@@ -4,7 +4,7 @@ this.legend_helmet_full_mask_blueprint <- this.inherit("scripts/crafting/bluepri
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_helmet_full_mask";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/hood/legend_helmet_full_mask");
 		this.m.Cost = 85;
 		local ingredients = [

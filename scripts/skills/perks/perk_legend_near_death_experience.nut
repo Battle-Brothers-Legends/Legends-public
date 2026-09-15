@@ -10,7 +10,7 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNearDeathExperience);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getDescription() {
@@ -37,7 +37,7 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties ) {
-		this.m.Injuries.extend(this.getContainer().query(this.Const.SkillType.Injury));
+		this.m.Injuries.extend(this.getContainer().query(::Const.SkillType.Injury));
 		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance()) {
 			return;
 		}
@@ -50,15 +50,15 @@ this.perk_legend_near_death_experience <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterDamageReceived() {
-		local num = this.getContainer().query(this.Const.SkillType.Injury).len() - this.m.Injuries.len();
+		local num = this.getContainer().query(::Const.SkillType.Injury).len() - this.m.Injuries.len();
 		if (num > 0) {
 			this.m.InjuriesCountThisBattle += num;
 		}
 	}
 
 	function onUpdate ( _properties ) {
-		this.m.Bonus = this.Math.min(6, this.getContainer().query(this.Const.SkillType.Injury).len());
-		_properties.Bravery += this.Math.floor(this.m.Bonus * 3);
+		this.m.Bonus = ::Math.min(6, this.getContainer().query(::Const.SkillType.Injury).len());
+		_properties.Bravery += ::Math.floor(this.m.Bonus * 3);
 	}
 
 	function onCombatStarted() {

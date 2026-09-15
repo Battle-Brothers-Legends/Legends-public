@@ -10,7 +10,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendFlourish);
 		this.m.Icon = "ui/perks/perk_41.png";
 		this.m.IconMini = "legend_flourish_effect_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -92,7 +92,7 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		if(_damageInflictedHitpoints >= 1 && _damageInflictedHitpoints < Const.Morale.OnHitMinDamage)
 		{
 			local threatOnHit = actor.getCurrentProperties().ThreatOnHit;
-			threatOnHit += this.Math.min(20, Math.max(0, (bonus - 10) * 0.2));
+			threatOnHit += ::Math.min(20, Math.max(0, (bonus - 10) * 0.2));
 			_targetEntity.checkMorale(-1, Const.Morale.OnHitBaseDifficulty * (1.0 - (_targetEntity.getHitpoints() / _targetEntity.getHitpointsMax())) - threatOnHit);
 		}
 	}
@@ -107,10 +107,10 @@ this.legend_flourish_effect <- this.inherit("scripts/skills/skill", {
 		if (bonus == 0)
 			return;
 
-		local r = this.Math.rand(1, 100);
-		local chance = this.Math.min(100, this.Math.floor(bonus * 0.5));
+		local r = ::Math.rand(1, 100);
+		local chance = ::Math.min(100, ::Math.floor(bonus * 0.5));
 		if (r <= chance) {
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(actor) + "\'s " + this.getName() + " completely bypasses " + this.Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses (Chance: " + chance + ", Rolled: " + r + ")");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(actor) + "\'s " + this.getName() + " completely bypasses " + ::Const.UI.getColorizedEntityName(_targetEntity) + "\'s defenses (Chance: " + chance + ", Rolled: " + r + ")");
 			_hitInfo.DamageDirect = 1.0;
 		}
 	}

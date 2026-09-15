@@ -14,13 +14,13 @@
 
 		for( local i = 0; i < 32; i = ++i )
 		{
-			if (this.Const.DLC.Info[i] != null && this.Const.DLC.Info[i].Announce == true)
+			if (::Const.DLC.Info[i] != null && ::Const.DLC.Info[i].Announce == true)
 			{
-				local hasDLC = (this.Const.DLC.Mask & 1 << i) != 0;
+				local hasDLC = (::Const.DLC.Mask & 1 << i) != 0;
 				dlc.push({
-					Image = hasDLC ? this.Const.DLC.Info[i].Icon : this.Const.DLC.Info[i].IconDisabled,
+					Image = hasDLC ? ::Const.DLC.Info[i].Icon : ::Const.DLC.Info[i].IconDisabled,
 					Tooltip = "dlc_" + i,
-					URL = this.Const.DLC.Info[i].URL
+					URL = ::Const.DLC.Info[i].URL
 				});
 			}
 		}
@@ -29,13 +29,13 @@
 		this.m.JSHandle.asyncCall("setDLC", dlc);
 		local missingFiles = this.checkForRequiredFiles();
 		local test = false;
-		if (!this.Const.DLC.Unhold || !this.Const.DLC.Wildmen || !this.Const.DLC.Desert || missingFiles.len() > 0)
+		if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert || missingFiles.len() > 0)
 		{
 			local disabledMotdText = "You are missing critical files!";
-			if (!this.Const.DLC.Unhold || !this.Const.DLC.Wildmen || !this.Const.DLC.Desert) disabledMotdText += "\nLegends extensively uses features and assets from all official DLC. We would not be able to offer this mod experience without all the awesome work from Overhype.";
-			if(!this.Const.DLC.Unhold) disabledMotdText += "\nMissing 'Beasts and Exploration' DLC";
-			if(!this.Const.DLC.Wildmen) disabledMotdText += "\nMissing 'Warriors of the North' DLC'";
-			if(!this.Const.DLC.Desert) disabledMotdText += "\nMissing 'Blazing Deserts' DLC'";
+			if (!::Const.DLC.Unhold || !::Const.DLC.Wildmen || !::Const.DLC.Desert) disabledMotdText += "\nLegends extensively uses features and assets from all official DLC. We would not be able to offer this mod experience without all the awesome work from Overhype.";
+			if(!::Const.DLC.Unhold) disabledMotdText += "\nMissing 'Beasts and Exploration' DLC";
+			if(!::Const.DLC.Wildmen) disabledMotdText += "\nMissing 'Warriors of the North' DLC'";
+			if(!::Const.DLC.Desert) disabledMotdText += "\nMissing 'Blazing Deserts' DLC'";
 			if(missingFiles.len() > 0) {
 				foreach (fileType, fileName in missingFiles){
 					disabledMotdText += format("\nMissing %s file %s", fileType, fileName);
@@ -49,7 +49,7 @@
 
 	o.checkForRequiredFiles <- function (){
 		local missing = {};
-		// local requiredFiles = this.Const.LegendMod.RequiredFiles;
+		// local requiredFiles = ::Const.LegendMod.RequiredFiles;
 		// local filesInData = this.IO.enumerateFiles("");
 		// foreach (fileType, fileName in requiredFiles){
 		// 	if(fileName != "" && filesInData.find(fileName) == null){
@@ -65,7 +65,7 @@
 		{
 			this.Tooltip.hide();
 
-			if (!this.Const.DLC.Unhold && !this.Const.DLC.Wildmen && !this.Const.DLC.Wildmen)
+			if (!::Const.DLC.Unhold && !::Const.DLC.Wildmen && !::Const.DLC.Wildmen)
 			{
 				this.m.JSHandle.asyncCall("noshow", null);
 			}

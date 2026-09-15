@@ -38,11 +38,11 @@
 			"the Swine",
 			"the Slaver"
 		];
-		this.m.Level = this.Math.rand(2, 4);
+		this.m.Level = ::Math.rand(2, 4);
 		this.m.Ethnicity = 1;
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
 	o.getTooltip = function () {
@@ -67,7 +67,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -87,12 +87,12 @@
 		}
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.None]
 		]);

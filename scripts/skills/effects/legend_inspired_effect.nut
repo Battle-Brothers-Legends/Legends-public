@@ -9,7 +9,7 @@ this.legend_inspired_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_28.png";
 		this.m.IconMini = "perk_28_mini";
 		this.m.Overlay = "perk_28";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -30,7 +30,7 @@ this.legend_inspired_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}
@@ -40,7 +40,7 @@ this.legend_inspired_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.m.IsApplied)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + 4));
 			this.m.IsApplied = true;
 		}
 	}

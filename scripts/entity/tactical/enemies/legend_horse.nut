@@ -2,30 +2,30 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendHorse;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendHorse.XP;
+		this.m.Type = ::Const.EntityType.LegendHorse;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendHorse.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-10, -25);
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/misc/donkey_hurt_01.wav",
 			"sounds/misc/donkey_hurt_02.wav",
 			"sounds/misc/donkey_hurt_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/misc/donkey_death_01.wav",
 			"sounds/misc/donkey_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/misc/donkey_idle_01.wav",
 			"sounds/misc/donkey_idle_02.wav",
 			"sounds/misc/donkey_idle_03.wav",
 			"sounds/misc/donkey_idle_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/misc/donkey_idle_01.wav",
 			"sounds/misc/donkey_idle_02.wav",
 			"sounds/misc/donkey_idle_03.wav",
@@ -35,15 +35,15 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/misc/donkey_idle_07.wav",
 			"sounds/misc/donkey_idle_08.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Attack] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
 			"sounds/combat/gallop.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/werewolf_fatigue_01.wav",
 		];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] = 0.8;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 0.7;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] = 0.8;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 0.7;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/direwolf_agent");
 		this.m.AIAgent.setActor(this);
 
@@ -57,9 +57,9 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playAttackSound()
 	{
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			this.playSound(this.Const.Sound.ActorEvent.Attack, this.Const.Sound.Volume.Actor * this.m.SoundVolume[this.Const.Sound.ActorEvent.Attack] * (this.Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
+			this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
 		}
 	}
 
@@ -70,39 +70,39 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
 		{
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
 		if (_tile != null)
 		{
-			local flip = this.Math.rand(0, 100) < 50;
+			local flip = ::Math.rand(0, 100) < 50;
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("horse");
 			local head = this.getSprite("horse_head");
-			decal = _tile.spawnDetail(body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
-				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [
 					head.getBrush().Name + "_dead"
 				];
 
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 0.0, "bust_direwolf_head_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 0.0, "bust_direwolf_head_bloodpool");
 				decap[0].Color = head.Color;
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
@@ -110,14 +110,14 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
@@ -131,10 +131,10 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -142,10 +142,10 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Horse";
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.Tile = _tile;
 		return corpse;
 	}
@@ -154,16 +154,16 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendHorse);
+		b.setValues(::Const.Tactical.Actor.LegendHorse);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
-		local variant = this.Math.rand(0, 7);
+		local variant = ::Math.rand(0, 7);
 		local horse = this.addSprite("horse");
 		horse.setBrush("bust_naked_body_10" + variant);
 		// horse.setHorizontalFlipping(true);

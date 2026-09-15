@@ -4,7 +4,7 @@ this.legend_silk_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_silk";
-		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/silk_item");
 		this.m.Cost = 180;
 		local ingredients = [

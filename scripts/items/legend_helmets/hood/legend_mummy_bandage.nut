@@ -12,7 +12,7 @@ this.legend_mummy_bandage <- this.inherit("scripts/items/legend_helmets/legend_h
 		this.m.HideBeard = false;
 		this.m.ReplaceSprite = true;
 		local variants = [1, 2, 3, 4];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
 		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;

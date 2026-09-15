@@ -11,6 +11,6 @@
 	{
 		if (_actor == null)
 			return;
-		return this.Math.max(5, 25 - this.Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
+		return ::Math.max(5, 25 - ::Math.floor(_actor.getCurrentProperties().getBravery() * 0.25));
 	}
 });

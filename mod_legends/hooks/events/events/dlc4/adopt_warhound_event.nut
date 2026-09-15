@@ -7,7 +7,7 @@
 				s.start <- function ( _event ) {
 					local item = this.new("scripts/items/accessory/legend_warhound_item");
 					item.m.Name = "Warrior the Warhound";
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -24,7 +24,7 @@
 					this.Characters.push(_event.m.Houndmaster.getImagePath());
 					local item = this.new("scripts/items/accessory/legend_warhound_item");
 					item.m.Name = "Warrior the Warhound";
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -37,18 +37,18 @@
 
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Wildmen)
+		if (!::Const.DLC.Wildmen)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.7)
+		if (currentTile.SquareCoords.Y < ::World.getMapSize().Y * 0.7)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers )
@@ -56,7 +56,7 @@
 				candidates.push(bro);
 
 		if (candidates.len() != 0)
-			this.m.Houndmaster = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Houndmaster = candidates[::Math.rand(0, candidates.len() - 1)];
 
 		this.m.Score = 5;
 	}

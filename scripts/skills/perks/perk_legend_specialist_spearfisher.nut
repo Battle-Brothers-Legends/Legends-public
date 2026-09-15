@@ -6,10 +6,10 @@ this.perk_legend_specialist_spearfisher <- this.inherit("scripts/skills/legend_s
 			"weapon.named_javelin"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Throwing
+			::Const.Items.WeaponType.Throwing
 		],
 		ExcludedItemTypes = [
-			this.Const.Items.ItemType.MeleeWeapon
+			::Const.Items.ItemType.MeleeWeapon
 		],
 		BonusRanged = 12,
 		BonusDamage = 10
@@ -35,9 +35,9 @@ this.perk_legend_specialist_spearfisher <- this.inherit("scripts/skills/legend_s
 
 		if (::Legends.S.isNull(item))
 			return;
-		if (!item.isItemType(this.Const.Items.ItemType.Weapon))
+		if (!item.isItemType(::Const.Items.ItemType.Weapon))
 			return;
-		if (!item.isWeaponType(this.Const.Items.WeaponType.Throwing))
+		if (!item.isWeaponType(::Const.Items.WeaponType.Throwing))
 			return;
 
 		this.m.FreeNet = true;

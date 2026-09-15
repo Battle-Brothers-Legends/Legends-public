@@ -17,16 +17,16 @@
 					::new("scripts/items/weapons/lute")
 				], ::World.Assets.getStash()));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach( bro in brothers ) {
 					if (bro.getSkills().hasTrait(::Legends.Trait.Bloodthirsty) || ::Legends.Backgrounds.has(bro, ::Legends.Background.Raider)) {
 						bro.improveMood(1.0, "Enjoyed beating up a traveling troupe");
 
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push({
 								id = 10,
-								icon = this.Const.MoodStateIcon[bro.getMoodState()],
-								text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+								icon = ::Const.MoodStateIcon[bro.getMoodState()],
+								text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 							});
 					}
 				}
@@ -35,17 +35,17 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.Stash.getNumberOfEmptySlots() < 2)
+		if (::Stash.getNumberOfEmptySlots() < 2)
 			return;
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
-		if (this.World.Assets.getMoney() < 40 * brothers.len() + 500) {
+		if (::World.Assets.getMoney() < 40 * brothers.len() + 500) {
 			return;
 		}
 
@@ -70,11 +70,11 @@
 		}
 
 		if (candidates_entertainer.len() != 0) {
-			this.m.Entertainer = candidates_entertainer[this.Math.rand(0, candidates_entertainer.len() - 1)];
+			this.m.Entertainer = candidates_entertainer[::Math.rand(0, candidates_entertainer.len() - 1)];
 		}
 
 		if (candidates_noble.len() != 0) {
-			this.m.Noble = candidates_noble[this.Math.rand(0, candidates_noble.len() - 1)];
+			this.m.Noble = candidates_noble[::Math.rand(0, candidates_noble.len() - 1)];
 		}
 
 		this.m.Payment = 40 * brothers.len();

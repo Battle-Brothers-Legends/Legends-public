@@ -16,10 +16,10 @@ this.legend_greater_flesh_golem_armed <- this.inherit("scripts/entity/tactical/e
 			"weapons/boar_spear",
 			"weapons/arming_sword"
 		];
-		local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 		this.m.Items.equip(this.new("scripts/items/" + weapon));
 		if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			this.m.Items.updateDualWield();
 		}
 	}
@@ -39,10 +39,10 @@ this.legend_greater_flesh_golem_armed <- this.inherit("scripts/entity/tactical/e
 			"weapons/named/named_spear",
 			"weapons/named/named_warhammer"
 		];
-		local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 		this.m.Items.equip(this.new("scripts/items/" + weapon));
 		if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			this.m.Items.updateDualWield();
 		}
 

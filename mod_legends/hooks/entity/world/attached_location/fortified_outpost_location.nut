@@ -13,16 +13,16 @@
 		_list.push(::Legends.Background.LegendBlacksmith);
 		_list.push(::Legends.Background.LegendIronmonger);
 
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendMasterArcher);
 
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendFootSoldier);
 		
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendHouseGuard);
 		
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1)
 			_list.push(::Legends.Background.LegendArbalester);
 		
 		onUpdateDraftList(_list);

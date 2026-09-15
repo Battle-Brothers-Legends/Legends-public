@@ -3,9 +3,9 @@
 	o.onBeforeDamageReceived <- function( _attacker, _skill, _hitInfo, _properties ) {
 		if (_skill != null) {
 			local weapon = _skill.getItem();
-			if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon)) {
+			if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon)) {
 
-				if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow)) {
+				if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow)) {
 					_properties.DamageReceivedRegularMult *= 1.2;
 				}
 				if (weapon.getID() == "weapon.legend_wooden_spear") {

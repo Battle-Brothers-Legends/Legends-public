@@ -8,13 +8,13 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Difficulty = 2;
 		this.m.Order = 280;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
 	}
 
 	function onSpawnAssets()
 	{
-	local roster = this.World.getPlayerRoster();
+	local roster = ::World.getPlayerRoster();
 
 		for( local i = 0; i < 3; i = ++i )
 		{
@@ -32,23 +32,23 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendInquisitionDisciple);
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.leather_helmet]]));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.leather_helmet]]));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		talents[this.Const.Attributes.Hitpoints] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		talents[::Const.Attributes.Hitpoints] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 2;
 		bros[1].setStartValuesEx([::Legends.Background.Witchhunter]);
 
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		talents[this.Const.Attributes.RangedSkill] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		talents[::Const.Attributes.RangedSkill] = 3;
 		bros[1].fillTalentValues(1, true);
 		bros[1].getBaseProperties().RangedSkill += 5;
 		bros[1].getBaseProperties().Bravery += 10;
@@ -64,10 +64,10 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[2].setStartValuesEx([::Legends.Background.Monk], true, 1);
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 3;
 		bros[2].getBaseProperties().Stamina += 10;
 		bros[2].getBaseProperties().MeleeSkill += 10;
 		bros[2].getBaseProperties().Hitpoints += 7;
@@ -80,8 +80,8 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		}.bindenv(this));
 		this.addScenarioPerk(bros[2].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/reinforced_wooden_flail"));
 		local shield = this.new("scripts/items/shields/heater_shield");
 		shield.onPaintSpecificColor(23);
@@ -89,7 +89,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		local cloths = [
 			[1, "cloth/legend_armor_robes_nun"]
 		];
-		local armor = this.Const.World.Common.pickLegendArmor(cloths);
+		local armor = ::Const.World.Common.pickLegendArmor(cloths);
 
 		if (armor != null)
 		{
@@ -98,7 +98,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "chain/legend_armor_mail_shirt_simple"],
 				[1, "chain/legend_armor_short_mail"]
 			];
-			local chain = this.Const.World.Common.pickLegendArmor(chains);
+			local chain = ::Const.World.Common.pickLegendArmor(chains);
 			if (chain != null)
 			{
 				armor.setUpgrade(chain)
@@ -108,7 +108,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "plate/legend_armor_leather_jacket"],
 				[1, "plate/legend_armor_leather_jacket_simple"]
 			];
-			local plate = this.Const.World.Common.pickLegendArmor(plates);
+			local plate = ::Const.World.Common.pickLegendArmor(plates);
 			if (plate != null)
 			{
 				armor.setUpgrade(plate)
@@ -116,7 +116,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			local tabards = [
 						[1, "tabard/legend_armor_tabard", [2,13]]
 					];
-			local tabard = this.Const.World.Common.pickLegendArmor(tabards);
+			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
 			if (tabard != null && armor != null)
 			{
 				armor.setUpgrade(tabard);
@@ -127,11 +127,11 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		foreach( bro in bros )
 		{
 			local items = bro.getItems();
-			local armor = items.getItemAtSlot(this.Const.ItemSlot.Body);
+			local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 			local tabards = [
 					[1, "tabard/legend_armor_tabard", [2,13]]
 				];
-				local tabard = this.Const.World.Common.pickLegendArmor(tabards);
+				local tabard = ::Const.World.Common.pickLegendArmor(tabards);
 				if (tabard != null && armor != null)
 				{
 					armor.setUpgrade(tabard);
@@ -139,31 +139,31 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		}
 
 
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		//this.World.Assets.getStash().add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
-		this.World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		//::World.Assets.getStash().add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
+		::World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
 
 		//unleash the dogs of war
-		this.World.FactionManager.setGreaterEvilType(this.Const.World.GreaterEvilType.Undead);
-		this.World.FactionManager.setGreaterEvilPhase(this.Const.World.GreaterEvilPhase.Live);
-		this.World.FactionManager.addGreaterEvilStrength(this.Const.Factions.GreaterEvilStartStrength); // This constant is equal to 125, previously set to 500. Not sure if there was a particular reason for 500 so will need to double check.
-		this.World.Statistics.addNews("crisis_undead_start", this.World.Statistics.createNews());
+		::World.FactionManager.setGreaterEvilType(::Const.World.GreaterEvilType.Undead);
+		::World.FactionManager.setGreaterEvilPhase(::Const.World.GreaterEvilPhase.Live);
+		::World.FactionManager.addGreaterEvilStrength(::Const.Factions.GreaterEvilStartStrength); // This constant is equal to 125, previously set to 500. Not sure if there was a particular reason for 500 so will need to double check.
+		::World.Statistics.addNews("crisis_undead_start", ::World.Statistics.createNews());
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
 			{
@@ -175,17 +175,17 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 1), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 1), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) == 0)
@@ -203,14 +203,14 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(113);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(113);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
-			], this.Const.Music.CrossFadeTime);
+			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_inquisition_scenario_intro");
 
 			// setup undead crisis
@@ -232,7 +232,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
 		{
 			_bro.improveMood(1.0, "Joined a righteous cause");
 		}
@@ -255,7 +255,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 
 		foreach( i, bro in bros )
 		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 			{
 				garbage.push(bro);
 			}
@@ -272,15 +272,15 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		if (bro.isStabled()) {
 			return;
 		}
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 			bro.getSkills().update();
 		}

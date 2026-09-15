@@ -14,20 +14,20 @@ this.perk_legend_med_packages <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateMedsModifier();
+		::World.State.getPlayer().calculateMedsModifier();
 	}
 
 	function onRemoved()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateMedsModifier();
+		::World.State.getPlayer().calculateMedsModifier();
 	}
 
 	function onUpdate( _properties )

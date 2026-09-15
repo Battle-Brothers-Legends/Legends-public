@@ -14,9 +14,9 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 
 	function getTooltip()
 	{
-	 	local day = this.World.getTime().Days;
+	 	local day = ::World.getTime().Days;
 		local month = day / 28;
-		local monthfloor = this.Math.floor(month);
+		local monthfloor = ::Math.floor(month);
 		local ret = [
 			{
 				id = 1,
@@ -37,7 +37,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		];
 		this.addTooltipHint(ret);
 
-		if (this.World.getTime().IsDaytime && month != monthfloor)
+		if (::World.getTime().IsDaytime && month != monthfloor)
 		{
 			ret.push({
 				id = 20,
@@ -47,7 +47,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			});
 		}
 
-		if (!this.World.getTime().IsDaytime && month != monthfloor)
+		if (!::World.getTime().IsDaytime && month != monthfloor)
 		{
 			ret.push({
 				id = 20,
@@ -106,8 +106,8 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 			}
 		}
 
-		local r = this.Math.rand(1, this.m.Chance);
-		local day = this.World.getTime().Days;
+		local r = ::Math.rand(1, this.m.Chance);
+		local day = ::World.getTime().Days;
 
 		//DEBUG TO ALWAYS ENABLE
 		// actor.getSkills().add(this.new(this.m.Effect));
@@ -121,7 +121,7 @@ this.legend_infected_injury <- this.inherit("scripts/skills/injury_permanent/per
 		}
 
 		//50% chance to turn at night
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			if (r <= 0.5 * this.m.Chance)
 			{

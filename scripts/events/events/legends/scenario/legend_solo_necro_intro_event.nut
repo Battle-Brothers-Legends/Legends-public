@@ -17,7 +17,7 @@ this.legend_solo_necro_intro_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.logInfo("What's the fine for necrophilia in this part of Tamriel?");
-				// this.World.FactionManager.makeZombiesFriendlyToPlayer(); //we ignore undead hunting contracts in the scenario file of this origin (legends_solo_necro_scenario)
+				// ::World.FactionManager.makeZombiesFriendlyToPlayer(); //we ignore undead hunting contracts in the scenario file of this origin (legends_solo_necro_scenario)
 			}
 		});
 	}

@@ -4,15 +4,15 @@ this.legend_pauldron_heavy_upgrade <- this.inherit("scripts/items/legend_armor/l
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_pauldron_heavy";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Heavy Pauldrons";
 		this.m.Description = "Extremely heavy segments of iron plate, but excellent for protecting shoulders and arms. Worn over armor, they can help deflect incoming blows.";
 		this.m.ArmorDescription = "Includes a set of heavy pauldrons.";
 		this.m.Variants = [1,2,3,4,5,6];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 2200;
 		this.m.Condition = 60;
 		this.m.ConditionMax = 60;

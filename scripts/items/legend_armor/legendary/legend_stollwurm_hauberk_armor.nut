@@ -8,7 +8,7 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 	function create()
 	{
 		this.legend_named_armor_upgrade.create();
-		this.m.Type = this.Const.Items.ArmorUpgrades.Chain;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Chain;
 		this.m.ID = "legend_armor.body.legend_stollwurm_hauberk_armor";
 		this.m.Name = "";
         this.m.NameList = ["Heraldic Scale", "Splendor", "Grandiosity", "Pageantry", "Swank", "Full Scale", "Scale Hauberk", "Scalemail", "Duty", "Honor", "Noble Scale"];
@@ -17,8 +17,8 @@ this.legend_stollwurm_hauberk_armor <- this.inherit("scripts/items/legend_armor/
 		this.m.Variants = [1];
 		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 10000;
         this.m.ItemType = this.m.ItemType;
         this.randomizeValues();

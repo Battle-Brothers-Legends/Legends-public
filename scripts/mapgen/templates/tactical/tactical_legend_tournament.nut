@@ -26,7 +26,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			["tactical.tile.earth1", "tactical.tile.earth2", "tactical.tile.grass1", "tactical.tile.grass2"],
 		];
 
-		local p =  patches[this.Math.rand(0, patches.len() -1)];
+		local p =  patches[::Math.rand(0, patches.len() -1)];
 		local Tile1 = this.MapGen.get(p[0]);
 		local Tile2 = this.MapGen.get(p[1]);
 		local Tile3 = this.MapGen.get(p[2]);
@@ -45,7 +45,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.desert",
 			"tactical.patch.autumn_grass"
 		];
-		local StandardPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
+		local StandardPatch = this.MapGen.get(patch[::Math.rand(0, patch.len() -1)]);
 
 		patch = [
 			"tactical.patch.stone_sea",
@@ -59,7 +59,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.forest_mushrooms",
 			"tactical.patch.stone_circle"
 		];
-		local DryPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
+		local DryPatch = this.MapGen.get(patch[::Math.rand(0, patch.len() -1)]);
 
 		patch = [
 			"tactical.patch.autumn_brushes",
@@ -74,7 +74,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.snow",
 			"tactical.patch.forest_fern_sea"
 		];
-		local WetPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
+		local WetPatch = this.MapGen.get(patch[::Math.rand(0, patch.len() -1)]);
 
 		patch = [
 			"tactical.patch.hill_steppe",
@@ -87,7 +87,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 			"tactical.patch.ritual_site",
 			"tactical.patch.forest_snow",
 		];
-		local HillPatch = this.MapGen.get(patch[this.Math.rand(0, patch.len() -1)]);
+		local HillPatch = this.MapGen.get(patch[::Math.rand(0, patch.len() -1)]);
 
 		templates.push(StandardPatch);
 		templates.push(StandardPatch);
@@ -102,9 +102,9 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 		while (patches != 0)
 		{
 			patches = --patches;
-			local selectedTemplate = templates[this.Math.rand(0, templates.len() - 1)];
-			local sizeX = this.Math.rand(this.Math.max(selectedTemplate.getMinX(), this.Math.min(selectedTemplate.getMaxX(), 8)), this.Math.min(selectedTemplate.getMaxX(), 16));
-			local sizeY = this.Math.rand(this.Math.max(selectedTemplate.getMinY(), this.Math.min(selectedTemplate.getMaxY(), 8)), this.Math.min(selectedTemplate.getMaxY(), 16));
+			local selectedTemplate = templates[::Math.rand(0, templates.len() - 1)];
+			local sizeX = ::Math.rand(::Math.max(selectedTemplate.getMinX(), ::Math.min(selectedTemplate.getMaxX(), 8)), ::Math.min(selectedTemplate.getMaxX(), 16));
+			local sizeY = ::Math.rand(::Math.max(selectedTemplate.getMinY(), ::Math.min(selectedTemplate.getMaxY(), 8)), ::Math.min(selectedTemplate.getMaxY(), 16));
 			local rect = {
 				X = 0,
 				Y = 0,
@@ -112,8 +112,8 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 				H = sizeY,
 				IsEmpty = true
 			};
-			rect.X = this.Math.rand(1, _rect.W - sizeX);
-			rect.Y = this.Math.rand(1, _rect.H - sizeY);
+			rect.X = ::Math.rand(1, _rect.W - sizeX);
+			rect.Y = ::Math.rand(1, _rect.H - sizeY);
 			selectedTemplate.fill(rect, _properties);
 		}
 
@@ -121,7 +121,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (x <= _rect.X + 1 || y <= _rect.Y + 1 || x >= _rect.X + _rect.W - 2 || y >= _rect.Y + _rect.H - 2)
 				{
@@ -152,7 +152,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 					}
 					else
 					{
-						local r = this.Math.rand(1, 3);
+						local r = ::Math.rand(1, 3);
 
 						if (r == 1)
 						{

@@ -4,7 +4,7 @@
 		local bestScore = 0.0;
 		local bestTarget;
 		local dotDamage = 0;
-		local effects = _entity.getSkills().getAllSkillsOfType(this.Const.SkillType.DamageOverTime);
+		local effects = _entity.getSkills().getAllSkillsOfType(::Const.SkillType.DamageOverTime);
 
 		foreach (dot in effects) {
 			dotDamage = dotDamage + dot.getDamage();
@@ -25,15 +25,15 @@
 			}
 
 			score = score * (target.getHitpointsPct() * (100.0 / target.getHitpoints()));
-			score = score * (1.0 + target.getLevel() * this.Const.AI.Behavior.HexCharacterLevelMult);
+			score = score * (1.0 + target.getLevel() * ::Const.AI.Behavior.HexCharacterLevelMult);
 
 			if (target.getHitpoints() <= dotDamage) {
-				score = score * this.Const.AI.Behavior.HexDOTCanKillMult;
+				score = score * ::Const.AI.Behavior.HexDOTCanKillMult;
 			}
 
 			if (target.isPlayerControlled()) {
-				if (target.getLevel() <= 2 && this.getStrategy().getAveragePlayerLevel() >= 6 && target.getArmorMax(this.Const.BodyPart.Body) + target.getArmorMax(this.Const.BodyPart.Head) <= this.getStrategy().getAveragePlayerArmor() * 0.4) {
-					score = score * this.Const.AI.Behavior.LikelyPlayerBaitMult;
+				if (target.getLevel() <= 2 && this.getStrategy().getAveragePlayerLevel() >= 6 && target.getArmorMax(::Const.BodyPart.Body) + target.getArmorMax(::Const.BodyPart.Head) <= this.getStrategy().getAveragePlayerArmor() * 0.4) {
+					score = score * ::Const.AI.Behavior.LikelyPlayerBaitMult;
 				}
 			}
 
@@ -43,15 +43,15 @@
 			}
 
 			if (target.getSkills().hasActive(::Legends.Active.Indomitable)) {
-				score = score * this.Const.AI.Behavior.HexAgainstIndomitable;
+				score = score * ::Const.AI.Behavior.HexAgainstIndomitable;
 			}
 
 			if (this.isKindOf(target, "player")	|| this.isKindOf(target, "firstborn") || this.isKindOf(target, "envoy")) {
-				score = score * this.Const.AI.Behavior.HexPreferPlayerMult;
+				score = score * ::Const.AI.Behavior.HexPreferPlayerMult;
 			}
 
 			if ((target.getSkills().hasEffect(::Legends.Effect.Charmed) || target.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed)) && !this.isKindOf(target, "player")) {
-				score = score * this.Const.AI.Behavior.HexNotAGoodTargetMult;
+				score = score * ::Const.AI.Behavior.HexNotAGoodTargetMult;
 			}
 
 			score = score * target.getCurrentProperties().TargetAttractionMult;

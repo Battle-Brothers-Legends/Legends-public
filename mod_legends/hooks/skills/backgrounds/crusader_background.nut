@@ -45,18 +45,18 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
-			this.Const.Attributes.RangedDefense
+			::Const.Attributes.RangedSkill,
+			::Const.Attributes.RangedDefense
 		];
-		this.m.Faces = this.Const.Faces.SmartMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = this.Const.Beards.All;
-		this.m.Bodies = this.Const.Bodies.Muscular;
+		this.m.Faces = ::Const.Faces.SmartMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.Old;
+		this.m.Beards = ::Const.Beards.All;
+		this.m.Bodies = ::Const.Bodies.Muscular;
 		this.m.Level = 9;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.OffendedByViolence;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()
@@ -75,14 +75,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -129,25 +129,25 @@
 			"weapons/flail",
 			"weapons/three_headed_flail"
 		];
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local offhand = [
 				"shields/kite_shield",
 				"shields/heater_shield",
 				"shields/legend_tower_shield",
 			];
-			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+			items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[2, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.scale_armor],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.full_helm],
 			[1, ::Legends.Helmet.Standard.closed_flat_top_helmet]

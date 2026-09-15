@@ -66,7 +66,7 @@
 		_user.setFatigue(::Math.max(0, _user.getFatigue() - getRecoveredFat(m.UsedAP)));
 
 		if (!_user.isHiddenToPlayer()) {
-			_user.playSound(this.Const.Sound.ActorEvent.Fatigue, this.Const.Sound.Volume.Actor * _user.getSoundVolume(this.Const.Sound.ActorEvent.Fatigue));
+			_user.playSound(::Const.Sound.ActorEvent.Fatigue, ::Const.Sound.Volume.Actor * _user.getSoundVolume(::Const.Sound.ActorEvent.Fatigue));
 		}
 
 		m.UsedAP = 0;

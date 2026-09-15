@@ -24,7 +24,7 @@
 				return;
 			}
 
-			if ((_attacker.getFlags().has("body_immune_to_acid") || _attacker.getArmor(this.Const.BodyPart.Body) <= 0) && (_attacker.getFlags().has("head_immune_to_acid") || _attacker.getArmor(this.Const.BodyPart.Head) <= 0)) {
+			if ((_attacker.getFlags().has("body_immune_to_acid") || _attacker.getArmor(::Const.BodyPart.Body) <= 0) && (_attacker.getFlags().has("head_immune_to_acid") || _attacker.getArmor(::Const.BodyPart.Head) <= 0)) {
 				return;
 			}
 

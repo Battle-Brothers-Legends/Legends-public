@@ -8,8 +8,8 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cudgel", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/cudgel_hit", 4);
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -31,7 +31,7 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	function getTooltip()
 	{
 		local p = this.getContainer().getActor().getCurrentProperties();
-		local fatigueDamage = (p.FatigueDealtPerHitMult + 3) * this.Const.Combat.FatigueReceivedPerHit;
+		local fatigueDamage = (p.FatigueDealtPerHitMult + 3) * ::Const.Combat.FatigueReceivedPerHit;
 		return [
 			{
 				id = 1,
@@ -66,15 +66,15 @@ this.legend_magic_stun_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);		
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);		
 
 		if (!::Legends.S.isEntityNullOrDead(target)) {
 			local p = _user.getCurrentProperties();
-        	local fatigueDamage = (p.FatigueDealtPerHitMult + 3.0) * this.Const.Combat.FatigueReceivedPerHit;
-        	target.setFatigue(this.Math.min(target.getFatigueMax(), target.getFatigue() + fatigueDamage));
+        	local fatigueDamage = (p.FatigueDealtPerHitMult + 3.0) * ::Const.Combat.FatigueReceivedPerHit;
+        	target.setFatigue(::Math.min(target.getFatigueMax(), target.getFatigue() + fatigueDamage));
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + this.Const.UI.getColorizedEntityName(target) + " stunned.");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " struck a blow that leaves " + ::Const.UI.getColorizedEntityName(target) + " stunned.");
 			}
 			
 			::Legends.Effects.grant(target, ::Legends.Effect.Stunned);

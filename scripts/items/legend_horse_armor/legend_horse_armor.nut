@@ -3,7 +3,7 @@ this.legend_horse_armor <- this.inherit("scripts/items/legend_armor/legend_armor
 	function create()
 	{
 		this.legend_armor.create();
-		// this.m.ItemType = this.Const.Items.ItemType.HorseArmor;
+		// this.m.ItemType = ::Const.Items.ItemType.HorseArmor;
 	}
 
 	function onSerialize( _out )

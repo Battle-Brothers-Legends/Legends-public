@@ -25,7 +25,7 @@ this.desert_camp_ottoman <- this.inherit("scripts/entity/tactical/entity", {
 			"10"
 		];
 		local body = this.addSprite("body");
-		body.setBrush("desert_camp_ottoman_" + variants[this.Math.rand(0, variants.len() - 1)]);
+		body.setBrush("desert_camp_ottoman_" + variants[::Math.rand(0, variants.len() - 1)]);
 	}
 
 });

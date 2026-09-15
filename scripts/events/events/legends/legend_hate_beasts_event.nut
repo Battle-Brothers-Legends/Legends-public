@@ -14,7 +14,7 @@ this.legend_hate_beasts_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_hate_beasts";
 		this.m.Title = "After the battle...";
-		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 25.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_26.png[/img]Beast corpses litter the ground — their ichor tainting the soil black. With a scowl you realise your clothes and sword are amess as the company survivors around you are busy making certain the beasts are truly dead, that is except for %brother%, who is still frantically swinging their weapon about in lethal arcs.%SPEECH_ON%YOU \'AINT EATING ME YOU FARKS!%SPEECH_OFF%You call out to them, trying to tell them the battle is over, but the wild look in their eyes tells you they did not hear, or perhaps chose not to...%SPEECH_ON%YOU DISGUSTING! FILTHY! ABNORMAL! FARKIN! FREAKS!%SPEECH_OFF%The Company scrambles out of the way of the whirlwind that is %brother%, lest they lose limbs. You gamely follow behind them and were just considering a tackle, when they abruptly turn to start hacking up a particularly monstrous sized beast corpse. Gobbets of flesh rain everywhere, including over you and your up-until-now unsoiled hat. Just farkin\' great. Swearing viciously, you turn and leave, telling your grinning sergeant to let %brother% work it out of their system.}",
@@ -39,25 +39,25 @@ this.legend_hate_beasts_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 30.0) //from 5
+		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5
 			return;
 
-		local fallen = this.World.Statistics.getFallen();
+		local fallen = ::World.Statistics.getFallen();
 
 		if (fallen.len() < 2)
 			return;
 
-		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < this.World.getTime().Days)
+		if (fallen[0].Time < ::World.getTime().Days || fallen[1].Time < ::World.getTime().Days)
 			return;
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID())
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID())
 			return;
 
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 2)
 			return;
 
@@ -77,7 +77,7 @@ this.legend_hate_beasts_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onPrepare() {
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") == this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID()) {
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") == ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID()) {
 			this.m.Image = "[img]gfx/ui/events/event_81.png[/img]";
 		} else {
 			this.m.Image = "[img]gfx/ui/events/event_83.png[/img]";

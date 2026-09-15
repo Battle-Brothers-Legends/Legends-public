@@ -4,7 +4,7 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 	{
 		this.ambition.create();
 		this.m.ID = "ambition.legend_allied_city_states";
-		this.m.Duration = 40.0 * this.World.getTime().SecondsPerDay;
+		this.m.Duration = 40.0 * ::World.getTime().SecondsPerDay;
 		this.m.ButtonText = "We shall earn the trust of a southern city state and become their ally. Surely they will\nshare the fruits of their well-stocked armories with good friends.";
 		this.m.RewardTooltip = "You\'ll be awarded equipment unique to the city state with which you ally";
 		this.m.UIText = "Get to \'Allied\' relations with a southern city state";
@@ -15,19 +15,19 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 
 	function onUpdateScore()
 	{
-		if (this.World.getTime().Days < 30)
+		if (::World.getTime().Days < 30)
 		{
 			return;
 		}
 
 		local hasFriend = false;
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && f.getType() == this.Const.FactionType.OrientalCityState)
+			if (f != null && f.getType() == ::Const.FactionType.OrientalCityState)
 			{
 				if (f.getPlayerRelation() >= 90.0)
 				{
@@ -45,18 +45,18 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 			return;
 		}
 
-		this.m.Score = 1 + this.Math.rand(0, 5);
+		this.m.Score = 1 + ::Math.rand(0, 5);
 	}
 
 	function onCheckSuccess()
 	{
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && f.getType() == this.Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
+			if (f != null && f.getType() == ::Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
 			{
 				return true;
 			}
@@ -67,13 +67,13 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 
 	function onPrepareVariables( _vars )
 	{
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && f.getType() == this.Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
+			if (f != null && f.getType() == ::Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
 			{
 				_vars.push([
 					"citystate",
@@ -86,13 +86,13 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 
 	function onReward()
 	{
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && f.getType() == this.Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
+			if (f != null && f.getType() == ::Const.FactionType.OrientalCityState && f.getPlayerRelation() >= 90.0)
 			{
 				banner = f.getBanner();
 				break;
@@ -100,20 +100,20 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 		}
 
 		local item;
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		item = this.new("scripts/items/weapons/named/named_handgonne");
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 		});
 		item = this.new("scripts/items/ammo/special/large_powder_bag");
 		stash.add(item);
 		this.m.SuccessList.push({
 			id = 10,
 			icon = "ui/items/" + item.getIcon(),
-			text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+			text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 		});
 	}
 
@@ -142,7 +142,7 @@ this.legend_allied_city_states_ambition <- this.inherit("scripts/ambitions/ambit
 //	{
 //		this.ambition.create();
 //		this.m.ID = "ambition.legend_make_city_states_aware";
-//		this.m.Duration = 99999.0 * this.World.getTime().SecondsPerDay;
+//		this.m.Duration = 99999.0 * ::World.getTime().SecondsPerDay;
 //		this.m.ButtonText = "We need to catch the eye of one of the southern city states.\nThey play a dangerous game, but what does it matter as long as the pay is good?";
 //		this.m.RewardTooltip = "You\'ll get better prices on contracts and items in city states, and earn a named handgonne.";
 //		this.m.UIText = "Reach \'Glorious\' renown";

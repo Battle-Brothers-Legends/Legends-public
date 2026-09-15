@@ -14,7 +14,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, this.Math.floor(actor.getHitpointsMax() * 0.10));
+		local healthAdded = ::Math.min(healthMissing, ::Math.floor(actor.getHitpointsMax() * 0.10));
 
 		local ret = [
 			{
@@ -40,7 +40,7 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -54,11 +54,11 @@ this.legend_drink_skin_ghoul_blood_skill <- this.inherit("scripts/skills/actives
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks Skin Ghoul Potion";
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks Skin Ghoul Potion";
 	}
 
 	function tacticalLogGive(_user, _target) {
-		return this.Const.UI.getColorizedEntityName(_user) + " gives Skin Ghoul Potion to " + this.Const.UI.getColorizedEntityName(_target);
+		return ::Const.UI.getColorizedEntityName(_user) + " gives Skin Ghoul Potion to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
 

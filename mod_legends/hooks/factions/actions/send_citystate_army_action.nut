@@ -32,14 +32,14 @@
 			"location.holy_site.meteorite",
 			"location.holy_site.vulcano"
 		];
-		local locations = this.World.EntityManager.getLocations();
-		local activeContract = this.World.Contracts.getActiveContract();
+		local locations = ::World.EntityManager.getLocations();
+		local activeContract = ::World.Contracts.getActiveContract();
 		local target;
 		local closestDist = 9000;
 
 		foreach (v in locations) {
 			foreach (s in sites) {
-				if (v.getTypeID() == s && (v.getFaction() == 0 || !this.World.FactionManager.isAllied(_faction.getID(), v.getFaction())) && (activeContract == null || !activeContract.isTileUsed(v.getTile()))) {
+				if (v.getTypeID() == s && (v.getFaction() == 0 || !::World.FactionManager.isAllied(_faction.getID(), v.getFaction())) && (activeContract == null || !activeContract.isTileUsed(v.getTile()))) {
 					local d = myTile.getDistanceTo(v.getTile());
 
 					if (d < closestDist) {
@@ -57,16 +57,16 @@
 		local num = target.getFaction() == 0 ? 1 : spawnpoints.len();
 
 		for (local i = 0; i < num; i = ++i) {
-			local party = _faction.spawnEntity(spawnpoints[i], "Regiment of " + _faction.getNameOnly(), true, this.Const.World.Spawn.Southern, this.Math.rand(90, 120) * this.getScaledDifficultyMult());
+			local party = _faction.spawnEntity(spawnpoints[i], "Regiment of " + _faction.getNameOnly(), true, ::Const.World.Spawn.Southern, ::Math.rand(90, 120) * this.getScaledDifficultyMult());
 			party.getSprite("body").setBrush(party.getSprite("body").getBrush().Name + "_" + _faction.getBannerString());
 			party.setDescription("Conscripted soldiers loyal to their city state.");
-			party.setFootprintType(this.Const.World.FootprintsType.CityState);
+			party.setFootprintType(::Const.World.FootprintsType.CityState);
 			party.getFlags().set("IsRandomlySpawned", true);
-			party.getLoot().Money = this.Math.rand(50, 200);
-			party.getLoot().ArmorParts = this.Math.rand(0, 25);
-			party.getLoot().Medicine = this.Math.rand(0, 3);
-			party.getLoot().Ammo = this.Math.rand(0, 30);
-			local r = this.Math.rand(1, 4);
+			party.getLoot().Money = ::Math.rand(50, 200);
+			party.getLoot().ArmorParts = ::Math.rand(0, 25);
+			party.getLoot().Medicine = ::Math.rand(0, 3);
+			party.getLoot().Ammo = ::Math.rand(0, 30);
+			local r = ::Math.rand(1, 4);
 
 			if (r <= 2) {
 				party.addToInventory("supplies/rice_item");
@@ -105,14 +105,14 @@
 	}
 
 	o.onPartySpawned <- function(_party) {
-		_party.getLoot().Money = this.Math.rand(100, 300);
-		_party.getLoot().ArmorParts = this.Math.rand(10, 35);
-		_party.getLoot().Medicine = this.Math.rand(5, 15);
-		_party.getLoot().Ammo = this.Math.rand(10, 40);
+		_party.getLoot().Money = ::Math.rand(100, 300);
+		_party.getLoot().ArmorParts = ::Math.rand(10, 35);
+		_party.getLoot().Medicine = ::Math.rand(5, 15);
+		_party.getLoot().Ammo = ::Math.rand(10, 40);
 
-		local r = this.Math.rand(1, 4);
+		local r = ::Math.rand(1, 4);
 		local arr = ["trade/silk_item", "trade/silk_item", "trade/incense_item", "trade/spices_item"];
-		for (local i = 0; i < this.Math.round(r / 2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
+		for (local i = 0; i < ::Math.round(r / 2); i++) //adds either 1 silk, 1 silk, 2 incense, 2 spices
 			_party.addToInventory(arr[r - 1])
 	}
 });

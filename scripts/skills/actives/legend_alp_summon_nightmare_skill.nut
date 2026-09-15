@@ -8,8 +8,8 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 400;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -33,7 +33,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 
 		foreach(id in this.m.MinionIDs)
 		{
-			if (this.Tactical.getEntityByID(id) == null)
+			if (::Tactical.getEntityByID(id) == null)
 				continue;
 
 			new.push(id);
@@ -49,7 +49,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		if (this.Tactical.isActive())
+		if (::Tactical.isActive())
 			return;
 
 		if (this.Time.getRound() >= 1)
@@ -69,7 +69,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
 			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
-				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
+				local nightmare = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);
 				nightmare.assignRandomEquipment();
@@ -80,14 +80,14 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!_user.isHiddenToPlayer() && !_targetTile.getEntity().isHiddenToPlayer())
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + " creates monsters from the shadow");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + " creates monsters from the shadow");
 
 		return true;
 	}
 
 	function getAvailableTiles( _targetTile )
 	{
-		return this.getContainer().getActor().getAIAgent().getBehavior(this.Const.AI.Behavior.ID.AttackDefault).queryDestinationsInRange(_targetTile, 1, 2);
+		return this.getContainer().getActor().getAIAgent().getBehavior(::Const.AI.Behavior.ID.AttackDefault).queryDestinationsInRange(_targetTile, 1, 2);
 	}
 
 });

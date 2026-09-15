@@ -5,7 +5,7 @@ this.perk_legend_specialist_sharpshooter <- this.inherit("scripts/skills/legend_
 			"weapon.named_warbow"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Bow
+			::Const.Items.WeaponType.Bow
 		],
 		ExcludedItemTypes = [],
 		BonusRanged = 12,

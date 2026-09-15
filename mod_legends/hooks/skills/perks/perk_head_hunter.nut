@@ -2,18 +2,18 @@
 	o.m.HeadHitChance <- 0;
 	o.onTargetHit = function ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )
 	{
-		if (_bodyPart == this.Const.BodyPart.Head)
+		if (_bodyPart == ::Const.BodyPart.Head)
 		{
-			if (this.m.Stacks == 0 && this.m.SkillCount != this.Const.SkillCounter)
+			if (this.m.Stacks == 0 && this.m.SkillCount != ::Const.SkillCounter)
 			{
 				this.m.Stacks = 1;
-				this.m.SkillCount = this.Const.SkillCounter;
+				this.m.SkillCount = ::Const.SkillCounter;
 			}
-			else if (this.m.Stacks == 1 && this.m.HeadHitChance > 50 && this.Math.rand(1, 100) <= (this.m.HeadHitChance - 50))
+			else if (this.m.Stacks == 1 && this.m.HeadHitChance > 50 && ::Math.rand(1, 100) <= (this.m.HeadHitChance - 50))
 			{
-				this.Tactical.EventLog.logEx("Head Hunter is refreshed");
+				::Tactical.EventLog.logEx("Head Hunter is refreshed");
 				this.m.Stacks = 1;
-				this.m.SkillCount = this.Const.SkillCounter;
+				this.m.SkillCount = ::Const.SkillCounter;
 			}
 			else
 			{
@@ -26,6 +26,6 @@
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties )
 	{
-		this.m.HeadHitChance = _properties.HitChance[this.Const.BodyPart.Head];
+		this.m.HeadHitChance = _properties.HitChance[::Const.BodyPart.Head];
 	}
 });

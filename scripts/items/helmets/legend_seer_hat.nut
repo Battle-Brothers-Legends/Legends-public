@@ -13,8 +13,8 @@ this.legend_seer_hat <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.ReplaceSprite = true;
 		this.m.Variant = 504;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 150;
 		this.m.Condition = 80;
 		this.m.ConditionMax = 80;

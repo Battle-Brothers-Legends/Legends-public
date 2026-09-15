@@ -15,14 +15,14 @@
 						[1, ::Legends.Helmet.Standard.heavy_mail_coif]
 					]);
 				}
-				item.setCondition(this.Math.max(1, item.getConditionMax() * this.Math.rand(10, 30) * 0.01));
+				item.setCondition(::Math.max(1, item.getConditionMax() * ::Math.rand(10, 30) * 0.01));
 				this.List.push(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach (bro in brothers) {
 					if (::Legends.Backgrounds.has(bro, ::Legends.Background.Paladin)
 						|| !bro.getBackground().isOffendedByViolence()
-						&& this.Math.rand(1, 100) <= 75)
+						&& ::Math.rand(1, 100) <= 75)
 					{
 						local entry = ::Legends.EventList.changeMood(bro, 0.75, "Pleased you slew an Oathbringer heretic");
 						if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
@@ -52,7 +52,7 @@
 						[1, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail]
 					]);
 				}
-				item.setCondition(this.Math.max(1, item.getConditionMax() * this.Math.rand(10, 30) * 0.01));
+				item.setCondition(::Math.max(1, item.getConditionMax() * ::Math.rand(10, 30) * 0.01));
 				this.List.push(::Legends.EventList.addItems([item], ::World.Assets.getStash()));
 
 				local weapon = ::Const.World.Common.pickItem([
@@ -63,13 +63,13 @@
 				], "scripts/items/");
 
 				this.List.push(::Legends.EventList.addItems([weapon], ::World.Assets.getStash()));
-				weapon.setCondition(this.Math.max(1, weapon.getConditionMax() * this.Math.rand(10, 30) * 0.01));
+				weapon.setCondition(::Math.max(1, weapon.getConditionMax() * ::Math.rand(10, 30) * 0.01));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach (bro in brothers) {
 					if (::Legends.Backgrounds.has(bro, ::Legends.Background.Paladin)
 						|| !bro.getBackground().isOffendedByViolence()
-						&& this.Math.rand(1, 100) <= 75)
+						&& ::Math.rand(1, 100) <= 75)
 					{
 						local entry = ::Legends.EventList.changeMood(bro, 1.25, "Tortured an Oathbringer heretic");
 						if (bro.getMoodState() >= ::Const.MoodState.Neutral) {

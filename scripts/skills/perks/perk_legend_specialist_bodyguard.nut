@@ -6,10 +6,10 @@ this.perk_legend_specialist_bodyguard <- this.inherit("scripts/skills/legend_spe
 			"weapon.longsword",
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.TwoHanded
+			::Const.Items.ItemType.TwoHanded
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Sword
+			::Const.Items.WeaponType.Sword
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

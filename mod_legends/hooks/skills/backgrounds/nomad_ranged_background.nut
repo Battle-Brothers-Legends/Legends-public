@@ -21,7 +21,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -33,14 +33,14 @@
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]

@@ -106,9 +106,9 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	}
 
 	function completed() {
-		// local r = this.Math.min(75, 10 * this.Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
+		// local r = ::Math.min(75, 10 * ::Math.pow(this.m.Camp.getCampTimeHours(), mod.Craft/2));
 
-		// if (this.Math.rand(1, 100) > r)
+		// if (::Math.rand(1, 100) > r)
 		// {
 		//	 return;
 		// }

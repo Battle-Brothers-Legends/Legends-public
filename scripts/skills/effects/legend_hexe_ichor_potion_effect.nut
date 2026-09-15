@@ -8,8 +8,8 @@ this.legend_hexe_ichor_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/ichor_potion_circle.png";
 		this.m.IconMini = "status_effect_89_mini";
 		this.m.Overlay = "status_effect_89";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

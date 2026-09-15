@@ -6,8 +6,8 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_132.png";
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_132";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -52,7 +52,7 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 		local body = actor.getSprite("body");
-		body.setBrush("bust_skeleton_body_0" + this.Math.rand(1, 2));
+		body.setBrush("bust_skeleton_body_0" + ::Math.rand(1, 2));
 		body.Saturation = 0.8;
 		body.varySaturation(0.2);
 		body.varyColor(0.025, 0.025, 0.025);
@@ -80,15 +80,15 @@ this.legend_conqueror_potion_effect <- this.inherit("scripts/skills/skill", {
 	
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
+			::World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
+		::World.Statistics.getFlags().set("isConquerorPotionAcquired", false);
 	}
 
 });
