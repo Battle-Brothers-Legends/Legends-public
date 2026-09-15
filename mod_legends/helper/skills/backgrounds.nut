@@ -161,5 +161,5 @@ if (!("Backgrounds" in ::Legends)) {
 			Initiative = [0, 0]
 		};
 	}
-	return ::Legends.BackgroundPerkTrees[name];
+	return ::Legends.BackgroundsStats[name];
 }
