@@ -151,7 +151,7 @@
 		local starsRevealed = 0;
 		local talents = this.getTalents();
 		local attributes = ["Hitpoints", "Bravery", "Stamina", "Initiative", "MeleeSkill", "RangedSkill", "MeleeDefense", "RangedDefense"];
-		local allowedStars = this.m.IsTryoutDone ? 9 : ::Math.max(1, ::World.Assets.m.ProfessionEffect.LegendEyeForTalent);
+		local allowedStars = this.m.IsTryoutDone ? 9 : ::Math.max(0, ::World.Assets.m.ProfessionEffect.LegendEyeForTalent); // can add stars visible by default here instead of 0
 
 		foreach (attrIndex in this.m.Hiring.Talents) {
 			local stars = talents[attrIndex];
@@ -907,6 +907,7 @@
 		{
 			++this.m.Level;
 			++this.m.LevelUps;
+			++this.m.ProfessionPoints;
 
 			if (this.m.Level <= this.Const.XP.MaxLevelWithPerkpoints)
 			{
