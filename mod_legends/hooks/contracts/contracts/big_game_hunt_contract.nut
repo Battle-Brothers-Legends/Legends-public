@@ -19,7 +19,7 @@
 		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null)
-			r = format(r, ::Const.UI.getColorized(::World.FactionManager.getFaction(this.getFaction()).getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			r = format(r, ::Legends.S.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));
 
 		this.m.Description = r;
 	}

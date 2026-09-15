@@ -26,10 +26,10 @@
 
 		switch (count) {
 			case 2:
-				r = format(r, ::Const.UI.getColorized(this.m.Location.getSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()), ::Const.UI.getColorized(this.m.Location.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+				r = format(r, ::Legends.S.highlightForLightBackground(this.m.Location.getSettlement().getName()), ::Legends.S.highlightForLightBackground(this.m.Location.getName()));
 				break;
 			case 1:
-				r = format(r, ::Const.UI.getColorized(::World.FactionManager.getFaction(this.getFaction()).getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+				r = format(r, ::Legends.S.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));
 				break;
 		}
 

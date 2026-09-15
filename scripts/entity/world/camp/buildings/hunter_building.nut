@@ -99,18 +99,18 @@
 		desc += "\n\n";
 		desc += format(
 					"Assigning mercenaries with %s backgrounds increases the %s (based on each character's level), which allows the hunting party to hunt rarer or more dangerous prey.\n",
-					::Const.UI.getColorized("Expert Hunter",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("Hunt Tier",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Expert Hunter"),
+					::Legends.S.highlightForLightBackground("Hunt Tier")
 				);
 		desc += format(
 					"Assigning mercenaries with the %s perk gives a chance to yield %s of the obtained food items.\n",
-					::Const.UI.getColorized("Meal Preparation",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("improved versions",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Meal Preparation"),
+					::Legends.S.highlightForLightBackground("improved versions")
 				);
 		desc += format(
 					"Assigning mercenaries with the %s perk gives a chance to yield %s. ",
-					::Const.UI.getColorized("Alcohol Brewing",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("wine and beer",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Alcohol Brewing"),
+					::Legends.S.highlightForLightBackground("wine and beer")
 				);
 		desc += "\n\n";
 		desc += "Upgrading this tent grants the following effects:\n";
@@ -120,37 +120,37 @@
 				);
 		desc += format(
 					"- Unlock the %s button, allowing you to customize the priorities of the hunting party\n",
-					::Const.UI.getColorized("Hunting Mode",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Hunting Mode")
 				);
 		desc += "- Increases the chance to obtain bonus loot, improved food items, and brewed items\n";
 		desc += format(
 					"- Assigning %s backgrounds increases the %s at a much greater rate\n",
-					::Const.UI.getColorized("Expert Hunter",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("Hunt Tier",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Expert Hunter"),
+					::Legends.S.highlightForLightBackground("Hunt Tier")
 				);
 		desc += format(
 					"- %s have a chance to obtain %s from hunting, such as trophies or crafting ingredients\n",
-					::Const.UI.getColorized("Expert Hunters",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("bonus loot",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Expert Hunters"),
+					::Legends.S.highlightForLightBackground("bonus loot")
 				);
 		desc += format(
 					"- Assigning %s slightly increases the chance to yield %s of obtained food items even without the Meal Preparation perk\n",
-					::Const.UI.getColorized("cooking backgrounds",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("improved versions",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("cooking backgrounds"),
+					::Legends.S.highlightForLightBackground("improved versions")
 				);
 		desc += format(
 					"- Assigning %s slightly increases the chance to yield %s even without the Alcohol Brewing perk\n",
-					::Const.UI.getColorized("cooking backgrounds",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("brewed items",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("cooking backgrounds"),
+					::Legends.S.highlightForLightBackground("brewed items")
 				);
 		desc += format(
 					"- %s can also produce %s\n",
-					::Const.UI.getColorized("Brewers",::Const.UI.Color.getHighlightLightBackgroundValue()),
-					::Const.UI.getColorized("mead",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("Brewers"),
+					::Legends.S.highlightForLightBackground("mead")
 				);
 		desc += format(
 					"- Advanced food can also be made using spices in the %s tent",
-					::Const.UI.getColorized("crafting",::Const.UI.Color.getHighlightLightBackgroundValue())
+					::Legends.S.highlightForLightBackground("crafting")
 				);
 		desc += "\n\n";
 		desc += "Expert Hunter backgrounds: " + ::Const.LegendMod.Language.arrayToText(::Const.HuntingLoot.ExpertHunterBackgrounds.map(function(bg){return ::Const.HuntingLoot.RequiredBackgrounds[bg];}),"and",false) + "\n\n";
@@ -470,7 +470,7 @@
 			res.push({
 				id = 80,
 				icon = item.Icon,
-				text = item.Name + " x" + item.Count + ::Const.UI.getColorized(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")", ::Const.UI.Color.getFadeDarkBackgroundValue())
+				text = item.Name + " x" + item.Count + ::Legends.S.fadeForDarkBackground(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")")
 			});
 		}
 
@@ -486,7 +486,7 @@
 				res.push({
 					id = 78,
 					icon = item.Icon,
-					text = item.Name + " x" + item.Count + ::Const.UI.getColorized(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")", ::Const.UI.Color.getFadeDarkBackgroundValue())
+					text = item.Name + " x" + item.Count + ::Legends.S.fadeForDarkBackground(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")")
 				});
 			}
 		}
@@ -503,7 +503,7 @@
 				res.push({
 					id = 76,
 					icon = item.Icon,
-					text = item.Name + " x" + item.Count + ::Const.UI.getColorized(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")", ::Const.UI.Color.getFadeDarkBackgroundValue())
+					text = item.Name + " x" + item.Count + ::Legends.S.fadeForDarkBackground(" (from " + ::Const.LegendMod.Language.arrayToText(item.Targets, "and", false) + ")")
 				});
 			}
 		}

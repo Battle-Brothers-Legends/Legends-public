@@ -124,7 +124,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 			id = 16,
 			type = "hint",
 			icon = "ui/icons/special.png",
-			text = ::Const.UI.getColorized(stats.Kills,::Const.UI.Color.getHighlightLightBackgroundValue()) + " favored enemy kills"
+			text = ::Legends.S.highlightForLightBackground(stats.Kills) + " favored enemy kills"
 		});
 
 		return resp;
@@ -137,7 +137,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 		local killsText = "";
 		if (stats.Kills > 0)
 		{
-			killsText = format("This character has already made %s favored enemy kills", ::Const.UI.getColorized(stats.Kills,::Const.UI.Color.getHighlightLightBackgroundValue()));
+			killsText = format("This character has already made %s favored enemy kills", ::Legends.S.highlightForLightBackground(stats.Kills));
 		}
 		else
 		{

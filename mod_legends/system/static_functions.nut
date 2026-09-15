@@ -18,6 +18,21 @@
     return (::Legends.S.getSign == "") ? "=" : ::Legends.S.getSign;
 }
 
+::Legends.S.highlightForLightBackground <- function(_text)
+{
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue())	
+}
+
+::Legends.S.highlightForDarkBackground <- function(_text)
+{
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightDarkBackgroundValue())	
+}
+
+::Legends.S.fadeForDarkBackground <- function(_text)
+{
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getFadeDarkBackgroundValue())	
+}
+
 ::Legends.S.getChangingWord <- function( _value )
 {
 	if(_value >= 0) return "increase";

@@ -271,7 +271,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = "Produced in " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()),
+					text = "Produced in " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()),
 					divider = "bottom",
 				});
 			}
@@ -281,7 +281,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()) + " to " + ::Const.UI.getColorized(_item.getTradeHistorySettlements()[0].getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(_item.getTradeHistorySettlements()[0].getName()),
 					divider = "bottom",
 				});
 			}
@@ -293,7 +293,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()) + " to " + ::Const.UI.getColorized(arr[arr.len() - 1], ::Const.UI.Color.getHighlightLightBackgroundValue()) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(arr[arr.len() - 1]) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
 					divider = "bottom",
 				});
 			}

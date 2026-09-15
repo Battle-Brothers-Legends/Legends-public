@@ -21,9 +21,9 @@
 
 		if (r.find("%") != null)
 			if (this.m.Home != null)
-				r = format(r, ::Const.UI.getColorized(this.m.Home.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+				r = format(r, ::Legends.S.highlightForLightBackground(this.m.Home.getName()));
 			else if (this.m.Origin != null)
-				r = format(r, ::Const.UI.getColorized(this.m.Origin.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+				r = format(r, ::Legends.S.highlightForLightBackground(this.m.Origin.getName()));
 
 		this.m.Description = r;
 	}

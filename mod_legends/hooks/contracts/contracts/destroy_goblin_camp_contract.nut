@@ -17,7 +17,7 @@
 		local r = ::MSU.Array.rand(this.m.DescriptionTemplates);
 
 		if (r.find("%") != null) {
-			r = format(r, ::Const.UI.getColorized(this.m.Origin.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			r = format(r, ::Legends.S.highlightForLightBackground(this.m.Origin.getName()));
 		}
 
 		this.m.Description = r;
