@@ -4440,12 +4440,12 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Unknown Character Traits"
+					text = "Unknown Character Trait"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = "This character may have unknown traits. You can pay for a tryout to reveal these."
+					text = "This character has an unknown trait. You can pay for a tryout to reveal these."
 				}
 			];
 

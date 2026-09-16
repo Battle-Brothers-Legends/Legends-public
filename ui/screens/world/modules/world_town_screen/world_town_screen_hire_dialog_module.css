@@ -463,13 +463,11 @@
 
 .world-town-screen > .l-hire-dialog-container .content .details-container .column.is-character-background-container .row.is-top .traits-container
 {
-	left: 25.0rem;
-	right: 0.0rem;
-	top: 0.8rem;
-	bottom: -3.2rem;
+	left: -12.6rem;
+	top: 14.8rem;
 	height: 2.6rem;
 	position: absolute;
-
+	max-width: 12.0rem;
 	line-height: 3.0rem;
 }
 
