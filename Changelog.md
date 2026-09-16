@@ -796,3 +796,4 @@
 - `legend_gold_nugget_item` -> `legend_gold_ore_item`
 - Hunting tent stuff removed / integrated into Gathering, including from background modifiers
 - added a bunch of QoL mods whose functions were superseded by Legends to incompat
+- Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
