@@ -696,31 +696,22 @@
 	}
 
 	local onActorKilled = o.onActorKilled;
-	o.onActorKilled = function ( _actor, _tile, _skill )
-	{
-		onActorKilled( _actor, _tile, _skill );
-		local XPgroup = _actor.getXPValue() * (1.0 - ::Const.XP.XPForKillerPct);
+	o.onActorKilled = function (_actor, _tile, _skill) {
+		onActorKilled(_actor, _tile, _skill);
 		local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
+		local groupXPPerBro = _actor.getXPValue() * (1.0 - ::Const.XP.XPForKillerPct) / brothers.len();
 
-		local roster = ::World.getPlayerRoster().getAll();
-
-		foreach( bro in roster )
-		{
-			if (bro.isInReserves() && bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist))
-			{
-				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
-			}
+		foreach (bro in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.isInReserves() && _bro.getSkills().hasPerk(::Legends.Perk.LegendPacifist)))) {
+				bro.addXP(::Math.max(1, ::Math.floor(groupXPPerBro)));
 		}
-		if (::Tactical.State.isScenarioMode())
-			return;
 
-		if (("State" in ::World) && ::World.State != null && ::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape > 0.0 && this.getLevel() >= 12)
-		{
-			foreach( bro in brothers )
-			{
-				if (!bro.getCurrentProperties().IsAllyXPBlocked && bro.getLevel() < 12)	{
-					bro.addXP(::Math.max(1, ::Math.floor(::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape * XPgroup / brothers.len())));
-				}
+		if (::Tactical.State.isScenarioMode()) {
+			return;
+		}
+
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape > 0.0 && this.getLevel() >= 12) {
+			foreach (bro in brothers.filter(@(_, _bro) (!_bro.getCurrentProperties().IsAllyXPBlocked && _bro.getLevel() < 12))) {
+				bro.addXP(::Math.max(1, ::Math.floor(::World.Assets.m.ProfessionEffect.LegendWhipThemIntoShape * groupXPPerBro)));
 			}
 		}
 	}

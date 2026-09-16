@@ -40,7 +40,7 @@
 		local candidates_historian = [];
 
 		foreach(bro in brothers)
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidates_historian.push(bro);
 			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Thief))
 				candidates_thief.push(bro);

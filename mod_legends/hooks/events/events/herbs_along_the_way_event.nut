@@ -60,7 +60,7 @@
 
 		local herbalists = [];
 		foreach (bro in brothers) {
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendHerbalist) || ::Legends.Perks.has(bro, ::Legends.Perk.LegendGatherer))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendHerbalist) || ::Legends.Professions.has(bro, ::Legends.Perk.LegendForaging))
 				herbalists.push(bro);
 		}
 		if (herbalists.len() > 0)

@@ -41,7 +41,6 @@ this.legend_beggar_commander_op_background <- this.inherit("scripts/skills/backg
 				::Legends.Perk.FastAdaption,
 				::Legends.Perk.CripplingStrikes,
 				::Legends.Perk.Colossus,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.NineLives,
 				::Legends.Perk.Pathfinder,
 				::Legends.Perk.Adrenaline,

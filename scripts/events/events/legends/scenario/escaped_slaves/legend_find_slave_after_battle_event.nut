@@ -374,9 +374,9 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendGruesomeFeast);
 						}
 
-						if (r == 2) {
+						/*if (r == 2) { // can be perhaps converted to profession? unsure
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendInventorAnatomy);
-						}
+						}*/
 
 						if (r == 3) {
 							_event.m.Dude.getSkills().add(this.new("scripts/skills/injury_permanent/traumatized_injury"));

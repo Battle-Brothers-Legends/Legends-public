@@ -53,8 +53,7 @@ this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrou
 			[
 				::Legends.Perk.Adrenaline,
 				::Legends.Perk.NineLives,
-				::Legends.Perk.Recover,
-				::Legends.Perk.BagsAndBelts
+				::Legends.Perk.Recover
 			],
 			[
 				::Legends.Perk.Dodge,

@@ -279,7 +279,7 @@ this.legend_ars_moriendi_event <- this.inherit("scripts/events/event", {
         local candidates_scholar = [];
 
 		foreach (bro in brothers) {
-			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Monk, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) {
+			if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Monk, ::Legends.Background.Historian) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar)) {
 				candidates_scholar.push(bro);
 			}
 		}

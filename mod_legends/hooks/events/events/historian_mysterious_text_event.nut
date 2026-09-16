@@ -31,7 +31,7 @@
 		local candidates_historian = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getLevel() >= 3 && (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))) {
+			if (bro.getLevel() >= 3 && (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendInterpretation))) {
 				candidates_historian.push(bro);
 			}
 		}

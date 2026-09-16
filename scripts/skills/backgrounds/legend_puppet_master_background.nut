@@ -54,7 +54,6 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			[
 				::Legends.Perk.NineLives,
 				::Legends.Perk.CripplingStrikes,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.Student,
 				::Legends.Perk.Recover,
 				::Legends.Perk.LegendBalance,

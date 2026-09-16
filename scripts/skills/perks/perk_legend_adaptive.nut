@@ -122,8 +122,8 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		newTree = this.getOnlyNonExistingTrees(newTree, _actor); // filter out Trees this character already has
 
 		// Give PhilosophyMagicTree if there are still no possible Trees
-		if (newTree == null || newTree.len() < 1)
-			newTree = ::Const.Perks.PhilosophyMagicTree.Tree;
+		//if (newTree == null || newTree.len() < 1)
+			//newTree = ::Const.Perks.PhilosophyMagicTree.Tree;
 
 		return newTree;
 	}

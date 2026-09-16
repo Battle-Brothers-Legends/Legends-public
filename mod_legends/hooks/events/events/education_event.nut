@@ -34,7 +34,7 @@
 				::Legends.Background.Historian,
 				::Legends.Background.LegendInventor,
 				::Legends.Background.LegendSeer
-			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				scholar_candidates.push(bro);
 		}
 

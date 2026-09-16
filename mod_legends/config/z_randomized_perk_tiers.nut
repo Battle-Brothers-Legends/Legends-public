@@ -442,9 +442,7 @@
         ::Const.Perks.LightArmorTree,
         ::Const.Perks.MediumArmorTree
     ],
-    GuaranteedPerks = [
-		::Legends.Perk.BagsAndBelts
-    ],
+    GuaranteedPerks = [],
     LegendaryPerks = [
 		::Legends.Perk.Pathfinder,
 		::Legends.Perk.CripplingStrikes,

@@ -60,8 +60,7 @@ this.legend_horse <- this.inherit("scripts/skills/backgrounds/character_backgrou
 				::Legends.Perk.LegendAmmoBinding,
 				::Legends.Perk.LegendMedPackages,
 				::Legends.Perk.LegendToolsDrawers,
-				::Legends.Perk.LegendHorseImpulsion,
-				::Legends.Perk.LegendHippology
+				::Legends.Perk.LegendHorseImpulsion
 			],
 			[
 				::Legends.Perk.LoneWolf,

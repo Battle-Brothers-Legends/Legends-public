@@ -50,7 +50,6 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 			],
 			[
 				::Legends.Perk.Bullseye,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.QuickHands
 			],
 			[],

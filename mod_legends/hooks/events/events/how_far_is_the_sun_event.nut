@@ -210,7 +210,7 @@
 		local candidate_dervish = [];
 
 		foreach (bro in brothers) {
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar) || ::Legends.Backgrounds.hasAny(bro,
+			if (::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar) || ::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Historian,
 				::Legends.Background.LegendInventor,
 				::Legends.Background.LegendSeer

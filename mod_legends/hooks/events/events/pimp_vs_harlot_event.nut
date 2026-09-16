@@ -80,9 +80,7 @@
 		foreach( bro in brothers ) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel))
 				candidate_minstrel.push(bro);
-			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk))
-				candidate_monk.push(bro);
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidate_monk.push(bro);
 			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Tailor))
 				candidate_tailor.push(bro);

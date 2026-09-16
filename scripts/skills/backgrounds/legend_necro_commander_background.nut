@@ -82,7 +82,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.NineLives,
 					::Legends.Perk.LegendAlert,
 					::Legends.Perk.CripplingStrikes,
-					::Legends.Perk.BagsAndBelts,
 					::Legends.Perk.Recover,
 					::Legends.Perk.LegendWither,
 					::Legends.Perk.LegendSpecialistCultist,
@@ -98,8 +97,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendTrueBeliever,
 					::Legends.Perk.LegendRust,
 					::Legends.Perk.LegendDeathtouch,
-					::Legends.Perk.LegendGatherer,
-					::Legends.Perk.LegendMedPackages,
 					::Legends.Perk.RallyTheTroops
 				],
 				[
@@ -136,7 +133,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendFavouredEnemyOccult,
 					::Legends.Perk.LegendGruesomeFeast,
-					::Legends.Perk.LegendHerbcraft,
 					::Legends.Perk.LegendRebound,
 					::Legends.Perk.LegendSpecCultArmor,
 					::Legends.Perk.Backstabber,

@@ -162,6 +162,42 @@
 - `Lookout` - removed from Slings tree
 - `Anchor` - moved to Slings from Bow to replace `Lookout`
 
+### Removed Perks
+- `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
+- `Lookout` - effect moved to a profession
+- `Skillful Stacking` - effect moved to a profession
+- `Efficient Packing` - effect moved to a profession
+- `Ammo Binding` - effect moved to a profession
+- `Ammo Bundles` - effect moved to a profession
+- `Medical Packages` - effect moved to a profession
+- `Medical Ingredients` - effect moved to a profession
+- `Tools Drawers` - effect moved to a profession
+- `Tools Spares` - effect moved to a profession
+- `Convincing Proposals` - effect moved to a profession
+- `Trustworthy Demeanour` - effect moved to a profession
+- `Off-book Deal` - effect moved to a profession
+- `Inventor Prosthetics` - effect moved to a profession
+- `Gatherer` - effect moved to a profession
+- `Potion Brewer` - effect moved to a profession
+- `Meal Preparation` - effect moved to a profession
+- `Alcohol Brewing` - effect moved to a profession
+- `Hippology` - effect moved to a profession
+- `Camp Cook` - effect moved to a profession
+- `Dog Breeder` - effect moved to a profession
+- `Paymaster` - effect moved to a profession
+- `Quartermaster` - effect moved to a profession
+- `Interpretation` - effect moved to a profession
+- `Scholar` - effect moved to a profession
+- `Herbcraft` - effect moved to a profession
+- `Woodworking` - effect moved to a profession
+- `Ore Hunter` - effect moved to a profession
+- `Wheel Maintenance` - effect moved to a profession
+- `Whip Them In Shape` - effect moved to a profession
+- `Master Trainer` - removed
+- `Greed` - removed
+- `Pacifist` - removed
+
+
 ## Professions
 - introduced a new system connecting the camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree

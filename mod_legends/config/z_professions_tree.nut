@@ -196,7 +196,6 @@ if (!("Professions" in ::Const))
 		[],
 		[],
 		[
-			::Legends.Profession.LegendMasterTrainer,
 			::Legends.Profession.LegendWhipThemInShape
 		]
 	]

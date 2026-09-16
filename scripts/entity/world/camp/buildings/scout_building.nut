@@ -77,7 +77,7 @@ this.scout_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		local scoutingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach (bro in scoutingBros) {
 			ret.Assigned++;
-			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout) * (bro.getSkills().hasPerk(::Legends.Perk.LegendLookout) ? 1.1 : 1.0), bro.getName(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Scout), bro.getName(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);

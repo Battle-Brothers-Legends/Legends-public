@@ -37,14 +37,7 @@
 						text = "You gain " + item.getName()
 					});
 
-					local scholars = [];
-					foreach (bro in ::World.getPlayerRoster().getAll())
-					{
-						if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
-						{
-							scholars.push(bro);
-						}
-					}
+					local scholars = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::Legends.Professions.has(_bro, ::Legends.Profession.LegendScholar)));
 
 					::World.Assets.getStash().makeEmptySlots(1);
 					local item = this.new("scripts/items/misc/legend_ancient_scroll_item");

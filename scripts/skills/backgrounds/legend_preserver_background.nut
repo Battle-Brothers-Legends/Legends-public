@@ -45,12 +45,10 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendSpecialistShepherd,
 			::Legends.Perk.NineLives,
 			::Legends.Perk.CripplingStrikes,
-			::Legends.Perk.BagsAndBelts,
 			::Legends.Perk.LegendSpecialistReaper,
 			::Legends.Perk.LegendSpecialistHerbalist,
 			::Legends.Perk.Student,
 			::Legends.Perk.Recover,
-			::Legends.Perk.LegendMedPackages,
 			::Legends.Perk.LegendAlert
 		],
 		[
@@ -58,14 +56,12 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.HoldOut,
 			::Legends.Perk.FortifiedMind,
 			::Legends.Perk.Gifted,
-			::Legends.Perk.Bullseye,
-			::Legends.Perk.LegendGatherer
+			::Legends.Perk.Bullseye
 		],
 		[
 			::Legends.Perk.Backstabber,
 			::Legends.Perk.LegendDebilitate,
 			::Legends.Perk.LegendFavouredEnemyCivilization,
-			::Legends.Perk.LegendLookout,
 			::Legends.Perk.RallyTheTroops,
 			::Legends.Perk.InspiringPresence,
 			::Legends.Perk.LegendTrueBeliever,
@@ -76,7 +72,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.SpecSword,
 			::Legends.Perk.SpecCleaver,
 			::Legends.Perk.LegendMasteryStaves,
-			::Legends.Perk.LegendPotionBrewer,
 			::Legends.Perk.SpecPolearm,
 			::Legends.Perk.LegendMasterySlings,
 			::Legends.Perk.LegendSpecPoison,
@@ -95,7 +90,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		[
 			::Legends.Perk.LegendClarity,
 			::Legends.Perk.LegendReclamation,
-			::Legends.Perk.LegendHerbcraft,
 			::Legends.Perk.LegendFavouredEnemyOccult,
 			::Legends.Perk.LegendRebound
 		],

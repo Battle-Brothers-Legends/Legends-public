@@ -215,9 +215,7 @@
 		foreach( bro in brothers ) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Witchhunter))
 				candidate_witchhunter.push(bro);
-			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk))
-				candidate_monk.push(bro);
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) //maybe add this here?
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidate_monk.push(bro);
 			else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
 				candidate_cultist.push(bro);

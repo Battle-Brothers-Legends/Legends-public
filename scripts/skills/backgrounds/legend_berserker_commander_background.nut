@@ -59,7 +59,6 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Steadfast,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.LegendAlert
 			],
 			[

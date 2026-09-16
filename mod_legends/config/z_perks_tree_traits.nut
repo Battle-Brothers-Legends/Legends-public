@@ -256,11 +256,11 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.BagsAndBelts, ::Legends.Perk.LegendPacifist],
-		[::Legends.Perk.LegendHelpful],
-		[::Legends.Perk.LegendEfficientPacking],
 		[],
-		[::Legends.Perk.LegendPrepared, ::Legends.Perk.LegendSkillfulStacking],
+		[::Legends.Perk.LegendHelpful],
+		[],
+		[],
+		[::Legends.Perk.LegendPrepared],
 		[],
 		[]
 	]

@@ -115,7 +115,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		return;
 
 		local brothers = ::World.getPlayerRoster().getAll();
-		local inventor_candidates = [];
+		local inventor_candidates = brothers.filter(@(_, _bro) (::Legends.Professions.has(_bro, ::Legends.Profession.LegendProsthetics)));
 		local nohand_candidates = [];
 
 
@@ -124,14 +124,6 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
-			{
-				inventor_candidates.push(bro);
-			}
-		}
 		if (inventor_candidates.len() < 1)
 		{
 			return;

@@ -1,7 +1,7 @@
 this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendManAtArms;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendManAtArms.XP;
@@ -17,8 +17,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendManAtArms);
@@ -52,8 +51,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
@@ -63,24 +61,12 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function assignRandomEquipment()
-	{
-		local r;
-		local banner = 3;
-
-		if (!::Tactical.State.isScenarioMode())
-		{
-			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
-			banner = this.getFaction();
-		}
+	function assignRandomEquipment() {
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 
 		this.m.Surcoat = banner;
 
-		if (::Math.rand(1, 100) <= 90)
-		{
+		if (::Math.rand(1, 100) <= 90) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
@@ -112,9 +98,10 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 		]);
 
-		if (helmet != null)
-		{
-			if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
+		if (helmet != null) {
+			if ("setPlainVariant" in helmet) {
+				helmet.setPlainVariant();
+			}
 			this.m.Items.equip(helmet);
 		}
 	}

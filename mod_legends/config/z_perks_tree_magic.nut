@@ -69,8 +69,8 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendValaChantSenses],
 		[::Legends.Perk.LegendValaChantMastery],
 		[::Legends.Perk.LegendValaChantDisharmony],
-		[::Legends.Perk.LegendHerbcraft],
-		[::Legends.Perk.LegendPotionBrewer, ::Legends.Perk.LegendValaChantFury]
+		[],
+		[::Legends.Perk.LegendValaChantFury]
 	]
 };
 
@@ -86,7 +86,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendValaTranceMalevolent],
 		[],
 		[::Legends.Perk.LegendValaTranceMastery],
-		[::Legends.Perk.LegendGatherer],
+		[],
 		[::Legends.Perk.LegendValaThreads],
 		[]
 	]
@@ -127,25 +127,6 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-::Const.Perks.InventorMagicTree <- {
-	ID = "InventorMagicTree",
-	Name = "Inventor",
-	Icon = "ui/perks/legend_inventor_anatomy.png",
-	Descriptions = [
-		"inventor"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendInventorAnatomy]
-	]
-};
-
-
 ::Const.Perks.RangerHuntMagicTree <- {
 	ID = "RangerHuntMagicTree",
 	Name = "Ranger",
@@ -174,9 +155,9 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[],
 		[],
-		[::Legends.Perk.LegendAmmoBinding],
+		[],
 		[::Legends.Perk.LegendIncoming],
-		[::Legends.Perk.LegendAmmoBundles],
+		[],
 		[::Legends.Perk.LegendCoordinatedVolleys],
 		[]
 	]
@@ -191,7 +172,7 @@ if (!("Perks" in ::Const)) {
 	],
 	Tree = [
 		[::Legends.Perk.LegendBlendIn, ::Legends.Perk.CoupDeGrace],
-		[::Legends.Perk.BagsAndBelts,],
+		[],
 		[],
 		[],
 		[],
@@ -208,7 +189,7 @@ if (!("Perks" in ::Const)) {
 		"Sneaky"
 	],
 	Tree = [
-		[::Legends.Perk.Pathfinder, ::Legends.Perk.BagsAndBelts, ::Legends.Perk.DevastatingStrikes],
+		[::Legends.Perk.Pathfinder, ::Legends.Perk.DevastatingStrikes],
 		[],
 		[::Legends.Perk.HoldOut, ::Legends.Perk.LegendFavouredEnemyOutlaw],
 		[],
@@ -417,23 +398,6 @@ if (!("Perks" in ::Const)) {
 	]
 };
 
-::Const.Perks.PhilosophyMagicTree <- {
-	ID = "PhilosophyMagicTree",
-	Name = "Philosophy",
-	Icon = "ui/perks/scholar_circle.png",
-	Descriptions = [
-		"philosophy"
-	],
-	Tree = [
-		[],
-		[],
-		[],
-		[],
-		[::Legends.Perk.LegendScholar],
-		[::Legends.Perk.LegendScrollIngredients]
-	]
-}
-
 ::Const.Perks.MagicTrees <- {
 	GroupsCategory = "Magic",
 	Tree = [
@@ -449,7 +413,6 @@ if (!("Perks" in ::Const)) {
 		::Const.Perks.IllusionistMagicTree,
 		::Const.Perks.ConjurationMagicTree,
 		::Const.Perks.EvocationMagicTree,
-		::Const.Perks.PhilosophyMagicTree,
 		::Const.Perks.AssassinMagicTree,
 		::Const.Perks.BardMagicTree,
 		::Const.Perks.StavesMagicTree

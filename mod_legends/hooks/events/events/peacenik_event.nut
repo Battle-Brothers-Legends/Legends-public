@@ -9,7 +9,7 @@
 		local candidates = [];
 
 		foreach( bro in brothers ) {
-			if (bro.getLevel() >= 3 && (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar)) )
+			if (bro.getLevel() >= 3 && (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Houndmaster, ::Legends.Background.LegendMuladi) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar)))
 				candidates.push(bro);
 		}
 

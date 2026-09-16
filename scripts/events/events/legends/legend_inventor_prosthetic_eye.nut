@@ -165,7 +165,7 @@ this.legend_inventor_prosthetic_eye <- this.inherit("scripts/events/event", {
 		}
 
 		local brothers = ::World.getPlayerRoster().getAll();
-		local inventor_candidates = brothers.filter(@(_, _bro) (_bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy)));
+		local inventor_candidates = brothers.filter(@(_, _bro) (::Legends.Professions.has(_bro, ::Legends.Profession.LegendProsthetics)));
 
 		if (inventor_candidates.len() > 0) {
 			this.m.Inventor = inventor_candidates[::Math.rand(0, inventor_candidates.len() - 1)];

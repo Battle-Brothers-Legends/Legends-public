@@ -47,7 +47,6 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			[
 				::Legends.Perk.NineLives,
 				::Legends.Perk.CripplingStrikes,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.Student,
 				::Legends.Perk.Recover,
 				::Legends.Perk.LegendBalance,
@@ -65,7 +64,6 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendFavouredEnemyCivilization,
-				::Legends.Perk.LegendLookout,
 				::Legends.Perk.LegendSpecialistSelfdefense,
 				::Legends.Perk.LegendBloodbath
 			],
