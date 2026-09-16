@@ -591,7 +591,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			});
 
 			// Compare Armor value
-			compareMath = this.Math.abs(this.getConditionMax()) - this.Math.abs(_compareLayer.getConditionMax());
+			compareMath = ::Math.abs(this.getConditionMax()) - ::Math.abs(_compareLayer.getConditionMax());
 			if (compareMath != 0) {
 				hasStatDiff = true;
 				compareArmor = {
@@ -608,19 +608,19 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 
 			// Compare Fatigue Weight Penalty
-			compareMath = this.Math.abs(this.getStaminaModifier()) - this.Math.abs(_compareLayer.getStaminaModifier());
+			compareMath = ::Math.abs(this.getStaminaModifier()) - ::Math.abs(_compareLayer.getStaminaModifier());
 			if (compareMath != 0) {
 				hasStatDiff = true;
 
 				local textWeight = "";
-				local textWeightComparison = " (" + this.Math.abs(this.getStaminaModifier()) + " vs " + this.Math.abs(_compareLayer.getStaminaModifier()) + ")"
+				local textWeightComparison = " (" + ::Math.abs(this.getStaminaModifier()) + " vs " + ::Math.abs(_compareLayer.getStaminaModifier()) + ")"
 				
 				if (this.getStaminaModifier() == 0 && _compareLayer.getStaminaModifier() != 0) {
 					textWeight = "No Fatigue Weight Penalty";
 				} else if (this.getStaminaModifier() != 0 && _compareLayer.getStaminaModifier() == 0) {
 					textWeight = "Has Fatigue Weight Penalty";
 				} else {
-					textWeight = ::Legends.S.colorize(this.Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath * -1) + " Weight";
+					textWeight = ::Legends.S.colorize(::Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath * -1) + " Weight";
 				}
 				
 				compareWeight = {
@@ -630,16 +630,16 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					text = "%_diff% (%_this_weight% vs %_compared_weight%)",
 					param = [
 						["_diff", textWeight],
-						["_this_weight", this.Math.abs(this.getStaminaModifier())],
-						["_compared_weight", this.Math.abs(_compareLayer.getStaminaModifier())]
+						["_this_weight", ::Math.abs(this.getStaminaModifier())],
+						["_compared_weight", ::Math.abs(_compareLayer.getStaminaModifier())]
 					]
 				}
 			}
 
 			// Compare Armor per Weight (if applicable)
 			if (::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() && this.getStaminaModifier() < 0 && _compareLayer.getStaminaModifier() < 0) {
-				local thisEfficiency = this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier()));
-				local otherEfficiency = _compareLayer.getConditionMax() / (1.0 * this.Math.abs(_compareLayer.getStaminaModifier()));
+				local thisEfficiency = this.getConditionMax() / (1.0 * ::Math.abs(this.getStaminaModifier()));
+				local otherEfficiency = _compareLayer.getConditionMax() / (1.0 * ::Math.abs(_compareLayer.getStaminaModifier()));
 				compareMath = thisEfficiency - otherEfficiency;
 
 				if (compareMath != 0) {
