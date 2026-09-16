@@ -2,56 +2,40 @@
 
 ::Legends.S.isNull <- ::MSU.isNull;
 
-::Legends.S.colorize <- function(_valueString, _value, _threshold = 0) {
-    local color = (_value >= _threshold) ? ::Const.UI.Color.PositiveValue : ::Const.UI.Color.NegativeValue;
-    return "[color=" + color + "]" + _valueString + "[/color]";
+::Legends.S.colorize <- function (_valueString, _value, _threshold = 0) {
+	return "[color=" + (_value >= _threshold ? "%positive%" : "%negative%") + "]" + _valueString + "[/color]";
 }
 
-::Legends.S.getSign <- function(_value)
-{
-    if(_value == 0) return "";
-    return (_value > 0) ? "+" : "-";
+::Legends.S.getSign <- function (_value) {
+	return (_value == 0 ? "" : (_value > 0 ? "+" : "-"));
 }
 
-::Legends.S.getSignWithEqual <- function(_value)
-{
-    return (::Legends.S.getSign == "") ? "=" : ::Legends.S.getSign;
+::Legends.S.getSignWithEqual <- function (_value) {
+	return (::Legends.S.getSign == "" ? "=" : ::Legends.S.getSign);
 }
 
-::Legends.S.addSign <- function(_value)
-{
-	return ::Legends.S.getSign(_value) + this.Math.abs(_value);
+::Legends.S.addSign <- function (_value) {
+	return ::Legends.S.getSign(_value) + ::Math.abs(_value);
 }
 
-::Legends.S.highlightForLightBackground <- function(_text)
-{
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue())	
+::Legends.S.highlightForLightBackground <- function (_text) {
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightLightBackgroundValue());
 }
 
-::Legends.S.highlightForDarkBackground <- function(_text)
-{
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightDarkBackgroundValue())	
+::Legends.S.highlightForDarkBackground <- function (_text) {
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getHighlightDarkBackgroundValue());
 }
 
-::Legends.S.fadeForDarkBackground <- function(_text)
-{
-	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getFadeDarkBackgroundValue())	
+::Legends.S.fadeForDarkBackground <- function (_text) {
+	return ::Const.UI.getColorized(_text, ::Const.UI.Color.getFadeDarkBackgroundValue());
 }
 
-::Legends.S.getChangingWord <- function( _value )
-{
-	if(_value >= 0) return "increase";
-	return "decrease";
+::Legends.S.getChangingWord <- function (_value) {
+	return (_value >= 0 ? "increase" : "decrease");
 }
 
-::Legends.S.patternIsInText <- function ( pattern, text )
-{
-	if (!pattern || !text)
-	{
-		return false;
-	}
-
-	return this.regexp(pattern).search(text);
+::Legends.S.patternIsInText <- function (pattern, text) {
+	return ((!pattern || !text) ? false : this.regexp(pattern).search(text));
 };
 
 ::Legends.S.pluralize <- function (_value, _text, _irregular = "") {
@@ -60,13 +44,13 @@
 			_text = _irregular;
 		} else {
 			local last = _text.slice(-1).tolower();
-			
+
 			if (last == "y") {
 				local secondLast = _text.slice(-2, -1).tolower();
-				_text = (secondLast != "a" && secondLast != "e" && secondLast != "i"	&& secondLast != "o" && secondLast != "u") ? (_text.slice(0, -1) + "ies") : (_text + "s");
+				_text = (secondLast != "a" && secondLast != "e" && secondLast != "i" && secondLast != "o" && secondLast != "u") ? (_text.slice(0, -1) + "ies") : (_text + "s");
 			} else {
 				local lastTwo = _text.slice(-2).tolower();
-				_text += (last == "s" || last == "x" || last == "z" || lastTwo == "sh"	|| lastTwo == "ch") ? "es" : "s";
+				_text += (last == "s" || last == "x" || last == "z" || lastTwo == "sh" || lastTwo == "ch") ? "es" : "s";
 			}
 		}
 	}
@@ -75,17 +59,15 @@
 }
 
 ::Legends.S.colorizeAndPluralize <- function (_value, _color, _text = "", _percent = false, _irregular = "") {
-	return "[color=%"+ _color + "%]" + _value + (_percent ? "%" : "") + "[/color]" + (_text.len() > 0 ? " " + ::Legends.S.pluralize(_value, _text, _irregular) : "");
+	return "[color=%" + _color + "%]" + _value + (_percent ? "%" : "") + "[/color]" + (_text.len() > 0 ? " " + ::Legends.S.pluralize(_value, _text, _irregular) : "");
 }
 
-::Legends.S.randomizeFractionToInt <- function(_value) {
+::Legends.S.randomizeFractionToInt <- function (_value) {
 	return ((_value * 100).tointeger() + ::Math.rand(0, 99)) / 100;
 }
 
-::Legends.S.isCharacterWeaponSpecialized <- function( _properties, _weapon )
-{
-	switch (true)
-	{
+::Legends.S.isCharacterWeaponSpecialized <- function (_properties, _weapon) {
+	switch (true) {
 		case _weapon.isWeaponType(::Const.Items.WeaponType.Axe) && _properties.IsSpecializedInAxes:
 			return true;
 		case _weapon.isWeaponType(::Const.Items.WeaponType.Bow) && _properties.IsSpecializedInBows:
@@ -127,68 +109,11 @@
 	return _baseLootAmount + (!::Tactical.State.isScenarioMode() && ::Math.rand(1, 100) <= (::World.Assets.getExtraLootChance() + ::World.Assets.m.ProfessionEffect.LegendSkinning) ? 1 : 0);
 }
 
-::Legends.S.getNeighbouringActors <- function (_tile)
-{
-	local actors = [];
-
-	for( local i = 0; i != 6; i = ++i )
-	{
-		if (!_tile.hasNextTile(i))
-		{
-		}
-		else
-		{
-			local next = _tile.getNextTile(i);
-
-			if (next.IsOccupiedByActor && ::Math.abs(next.Level - _tile.Level) <= 1)
-			{
-				actors.push(next.getEntity());
-			}
-		}
-	}
-
-	return actors;
-}
-
-::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor)
-{
-	local firstActorEntities = ::Legends.S.getNeighbouringActors(_actor.getTile());
-	local overlaps = [];
-	foreach (entity in ::Legends.S.getNeighbouringActors(_secondActor.getTile()))
-	{
-		if (firstActorEntities.find(entity) != null);
-		{
-			overlaps.push(entity);
-		}
-	}
-
-	return overlaps;
-}
-
-::Legends.S.isInZocWithActor <- function (_actor, _secondActor)
-{
-	if (::Legends.S.isEntityNullOrDead(_secondActor))
-		return false;
-
-	if (_secondActor.isNonCombatant())
-		return false;
-
-	if (_secondActor.isAlliedWith(_actor))
-		return false;
-
-	if (!_secondActor.m.IsUsingZoneOfControl)
-		return false;
-
-	if (!_secondActor.getCurrentProperties().IsStunned || !_secondActor.isArmedWithRangedWeapon())
-		return false;
-
-	return true;
-}
-
 ::Legends.S.getClosestSettlement <- function (_predicate = @(_, _town) true) {
 	local towns = ::World.EntityManager.getSettlements().filter(_predicate);
-	if (towns.len() == 0)
+	if (towns.len() == 0) {
 		return null;
+	}
 	local playerTile = ::World.State.getPlayer().getTile();
 	towns.sort(@(a, b) playerTile.getDistanceTo(b.getTile()) <=> playerTile.getDistanceTo(a.getTile()));
 	return towns.top();
@@ -196,16 +121,19 @@
 
 ::Legends.S.isEntityMovementDisabled <- function (_entity) {
 	local properties = _entity.getCurrentProperties();
-	return properties.IsStunned	|| properties.IsRooted;
+	return properties.IsStunned || properties.IsRooted;
 }
 
 ::Legends.S.isEntityNullOrDead <- function (_entity, _otherEntity = 0) {
-	if (::Legends.S.isNull(_entity) || !_entity.isAlive() || _entity.isDying())
+	if (::Legends.S.isNull(_entity) || !_entity.isAlive() || _entity.isDying()) {
 		return true;
-	if (_otherEntity == 0)
+	}
+	if (_otherEntity == 0) {
 		return false;
-	if (::Legends.S.isNull(_otherEntity) || !_otherEntity.isAlive() || _otherEntity.isDying())
+	}
+	if (::Legends.S.isNull(_otherEntity) || !_otherEntity.isAlive() || _otherEntity.isDying()) {
 		return true;
+	}
 	return false;
 }
 
@@ -245,31 +173,20 @@
 }
 
 ::Legends.S.applyBleed <- function (_target, _actor, _hpBefore, _soundsA, _soundsB, _damage = 0, _effect = ::Legends.Effect.Bleeding, _bypassHitpointsCheck = false) {
-	local damage = 0;
-	if (_damage > 0) {
-		damage = _damage;
-	}
-	else {
-		damage = _actor.getCurrentProperties().IsSpecializedInCleavers ? 10 : 5;
-	}
+	local damage = (_damage > 0 ? _damage : (_actor.getCurrentProperties().IsSpecializedInCleavers ? 10 : 5));
 
 	if (::Legends.S.isEntityNullOrDead(_target)) {
-		if (_target.getFlags().has("tail") || !_target.getCurrentProperties().IsImmuneToBleeding) {
-			::Sound.play(_soundsA[::Math.rand(0, _soundsA.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
-		}
-		else {
-			::Sound.play(_soundsB[::Math.rand(0, _soundsB.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
-		}
-	}
-	else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
-		::Legends.Effects.grant(_target, _effect, function(_effect) {
-			if (_actor.getFaction() == ::Const.Faction.Player )
+		local sound = ((_target.getFlags().has("tail") || !_target.getCurrentProperties().IsImmuneToBleeding) ? _soundsA[::Math.rand(0, _soundsA.len() - 1)] : _soundsB[::Math.rand(0, _soundsB.len() - 1)]);
+		::Sound.play(sound, ::Const.Sound.Volume.Skill, _actor.getPos());
+	} else if (!_target.getCurrentProperties().IsImmuneToBleeding && (_hpBefore - _target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding || _bypassHitpointsCheck)) {
+		::Legends.Effects.grant(_target, _effect, function (_effect) {
+			if (_actor.getFaction() == ::Const.Faction.Player) {
 				_effect.setActor(_actor);
+			}
 			_effect.setDamage(damage);
 		}.bindenv(this));
 		::Sound.play(_soundsA[::Math.rand(0, _soundsA.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
-	}
-	else {
+	} else {
 		::Sound.play(_soundsB[::Math.rand(0, _soundsB.len() - 1)], ::Const.Sound.Volume.Skill, _actor.getPos());
 	}
 }
@@ -280,8 +197,9 @@
 */
 ::Legends.S.any <- function (_array, _predicate) {
 	foreach (item in _array) {
-		if (_predicate(item))
+		if (_predicate(item)) {
 			return true;
+		}
 	}
 	return false;
 }
@@ -292,8 +210,9 @@
 */
 ::Legends.S.all <- function (_array, _predicate) {
 	foreach (item in _array) {
-		if (!_predicate(item))
+		if (!_predicate(item)) {
 			return false;
+		}
 	}
 	return true; // empty array will also be true
 }
@@ -304,29 +223,33 @@
 		return false;
 	}
 	local arr = vargv;
-	if (typeof vargv[0] == "array")
+	if (typeof vargv[0] == "array") {
 		arr = vargv[0];
+	}
 	return ::Legends.S.any(arr, @(_val) _val == _value);
 }
 
 ::Legends.S.hasItemFlag <- function (_item, _flag) {
-	if (_item == null)
+	if (_item == null) {
 		return false;
+	}
 	return _item.getFlags().has(_flag);
 }
 
 // it's intended to use with .pop() when filling, so the sort is opposite of what it would normally be
 ::Legends.S.getEmptySlotsInFormation <- function () {
-	local formation = ::World.getPlayerRoster().getAll().filter(@(_, _bro) !_bro.isInReserves()).map(@(_bro) _bro.getPlaceInFormation());
+	local formation = ::World.getPlayerRoster().getAll().filter(@(_, _bro) ! _bro.isInReserves()).map(@(_bro) _bro.getPlaceInFormation());
 	local ret = [];
-	for(local i = 0; i < 27; i++) {
-		if (formation.find(i) == null)
+	for (local i = 0; i < 27; i++) {
+		if (formation.find(i) == null) {
 			ret.push(i);
+		}
 	}
 	ret.sort(function (a, b) {
 		local rowA = a / 9, rowB = b / 9, colA = a % 9, colB = b % 9;
-		if (rowA != rowB) // prefer further rows
+		if (rowA != rowB) { // prefer further rows
 			return rowA - rowB;
+		}
 		local distA = ::Math.abs(colA - 4);
 		local distB = ::Math.abs(colB - 4);
 		return distB - distA; // prefer closer to center of row
@@ -335,8 +258,9 @@
 }
 
 ::Legends.S.logArmor <- function (_armor) {
-	if (!_armor.isEquipped())
+	if (!_armor.isEquipped()) {
 		return;
+	}
 
 	::logWarning("Armor Layering");
 	::logWarning("--------------");
@@ -347,56 +271,21 @@
 	local upgText = [];
 	local clothText = "\"cloth/" + split(_armor.getID(), ".")[2] + "\", " + _armor.getVariant();
 
-	if (upgrade[0] == null) {
-		upgText.push("\"\"");
-	}
-	else {
-		upgText.push("\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0));
-	}
-	if (upgrade[1] == null) {
-		upgText.push("\"\"");
-	}
-	else {
-		upgText.push("\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1));
-	}
-	if (upgrade[3] == null) {
-		upgText.push("\"\"");
-	}
-	else {
-		upgText.push("\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3));
-	}
-	if (upgrade[2] == null) {
-		upgText.push("\"\"");
-	}
-	else {
-		upgText.push("\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2));
-	}
-	if (upgrade[4] == null) {
-		upgText.push("\"\"");
-	}
-	else {
-		upgText.push("\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4));
-	}
+	upgText.push(upgrade[0] == null ? "\"\"" : "\"chain/" + split(upgrade[0], ".")[2] + "\", " + _armor.getUpgradeVariant(0));
+	upgText.push(upgrade[1] == null ? "\"\"" : "\"plate/" + split(upgrade[1], ".")[2] + "\", " + _armor.getUpgradeVariant(1));
+	upgText.push(upgrade[3] == null ? "\"\"" : "\"cloak/" + split(upgrade[3], ".")[2] + "\", " + _armor.getUpgradeVariant(3));
+	upgText.push(upgrade[2] == null ? "\"\"" : "\"tabard/" + split(upgrade[2], ".")[2] + "\", " + _armor.getUpgradeVariant(2));
+	upgText.push(upgrade[4] == null ? "\"\"" : "\"armor_upgrades/" + split(upgrade[4], ".")[2] + "\", " + _armor.getUpgradeVariant(4));
 
-	local toPrint = "{"       +
-					"\n\tID = \"CHANGEME\"," +
-					"\n\tScript = \"\"," +
-					"\n\tSets = [{" +
-					"\n\t\tCloth = [[1, "       + clothText  + "]]," +
-					"\n\t\tChain = [[1, "       + upgText[0] + "]]," +
-					"\n\t\tPlate = [[1, "       + upgText[1] + "]]," +
-					"\n\t\tCloak = [[1, "       + upgText[2] + "]]," +
-					"\n\t\tTabard = [[1, "      + upgText[3] + "]]," +
-					"\n\t\tAttachments = [[1, " + upgText[4] + "]]," +
-					"\n\t}]" +
-					"\n},";
+	local toPrint = "{" + "\n\tID = \"CHANGEME\"," + "\n\tScript = \"\"," + "\n\tSets = [{" + "\n\t\tCloth = [[1, " + clothText + "]]," + "\n\t\tChain = [[1, " + upgText[0] + "]]," + "\n\t\tPlate = [[1, " + upgText[1] + "]]," + "\n\t\tCloak = [[1, " + upgText[2] + "]]," + "\n\t\tTabard = [[1, " + upgText[3] + "]]," + "\n\t\tAttachments = [[1, " + upgText[4] + "]]," + "\n\t}]" + "\n},";
 
 	::logWarning(toPrint);
 }
 
 ::Legends.S.logHelmet <- function (_helmet) {
-	if (!_helmet.isEquipped())
+	if (!_helmet.isEquipped()) {
 		return;
+	}
 
 	::logWarning("Helmet Layering");
 	::logWarning("---------------");
@@ -407,23 +296,11 @@
 	local upgText = [];
 	local hoodText = "\"hood/" + split(_helmet.getID(), ".")[2] + "\", " + _helmet.getVariant();
 
-	if (upgrade[0] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0));}
-	if (upgrade[1] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1));}
-	if (upgrade[2] == null) { upgText.push("\"\""); }
-		else {upgText.push("\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2));}
+	upgText.push(upgrade[0] == null ? "\"\"" : "\"helm/" + split(upgrade[0], ".")[2] + "\", " + _helmet.getUpgradeVariant(0));
+	upgText.push(upgrade[1] == null ? "\"\"" : "\"top/" + split(upgrade[1], ".")[2] + "\", " + _helmet.getUpgradeVariant(1));
+	upgText.push(upgrade[2] == null ? "\"\"" : "\"vanity/" + split(upgrade[2], ".")[2] + "\", " + _helmet.getUpgradeVariant(2));
 
-	local toPrint = "{"       +
-					"\n\tID = \"CHANGEME\"," +
-					"\n\tScript = \"\"," +
-					"\n\tSets = [{" +
-					"\n\t\tHoods = [[1, "  + hoodText   + "]]," +
-					"\n\t\tHelms = [[1, "  + upgText[0] + "]]," +
-					"\n\t\tTops = [[1, "   + upgText[1] + "]]," +
-					"\n\t\tVanity = [[1, " + upgText[2] + "]]," +
-					"\n\t}]" +
-					"\n},";
+	local toPrint = "{" + "\n\tID = \"CHANGEME\"," + "\n\tScript = \"\"," + "\n\tSets = [{" + "\n\t\tHoods = [[1, " + hoodText + "]]," + "\n\t\tHelms = [[1, " + upgText[0] + "]]," + "\n\t\tTops = [[1, " + upgText[1] + "]]," + "\n\t\tVanity = [[1, " + upgText[2] + "]]," + "\n\t}]" + "\n},";
 
 	::logWarning(toPrint);
 }
@@ -477,13 +354,16 @@
 
 ::Legends.S.humansOnly <- function (_bro) //excludes the following flags from ALL events unless specified. The reason for this is that none of owners of these flags 'talk' at all or as normal brothers do.
 {
-    if (_bro.getFlags().get("donkey"))
-        return false;
-    if (_bro.getFlags().get("PlayerZombie"))
-        return false;
-    if (_bro.getFlags().get("PlayerSkeleton"))
-        return false;
-    return true;
+	if (_bro.getFlags().get("donkey")) {
+		return false;
+	}
+	if (_bro.getFlags().get("PlayerZombie")) {
+		return false;
+	}
+	if (_bro.getFlags().get("PlayerSkeleton")) {
+		return false;
+	}
+	return true;
 }
 
 ::Legends.S.extend <- @(_array, _item, _count = 1) _array.extend(array(_count, _item));
@@ -492,3 +372,57 @@
 	local i = _startIndex;
 	return array(_count).map(@(_) format(_prefix + "_%02d" + _suffix, i++));
 }
+
+
+// unused
+/*::Legends.S.getNeighbouringActors <- function (_tile) { 
+	local actors = [];
+
+	for (local i = 0; i < 6; i++) {
+		if (_tile.hasNextTile(i)) {
+			local next = _tile.getNextTile(i);
+
+			if (next.IsOccupiedByActor && ::Math.abs(next.Level - _tile.Level) <= 1) {
+				actors.push(next.getEntity());
+			}
+		}
+	}
+
+	return actors;
+}
+
+::Legends.S.getOverlappingNeighbourActors <- function (_actor, _secondActor) {
+	local firstActorEntities = ::Legends.S.getNeighbouringActors(_actor.getTile());
+	local overlaps = [];
+	foreach (entity in ::Legends.S.getNeighbouringActors(_secondActor.getTile())) {
+		if (firstActorEntities.find(entity) != null) {
+			overlaps.push(entity);
+		}
+	}
+
+	return overlaps;
+}
+
+::Legends.S.isInZocWithActor <- function (_actor, _secondActor) {
+	if (::Legends.S.isEntityNullOrDead(_secondActor)) {
+		return false;
+	}
+
+	if (_secondActor.isNonCombatant()) {
+		return false;
+	}
+
+	if (_secondActor.isAlliedWith(_actor)) {
+		return false;
+	}
+
+	if (!_secondActor.m.IsUsingZoneOfControl) {
+		return false;
+	}
+
+	if (!_secondActor.getCurrentProperties().IsStunned || !_secondActor.isArmedWithRangedWeapon()) {
+		return false;
+	}
+
+	return true;
+}*/

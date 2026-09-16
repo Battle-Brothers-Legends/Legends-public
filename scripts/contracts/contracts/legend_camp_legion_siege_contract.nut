@@ -1505,7 +1505,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 
 		if (this.m.DifficultyMult >= 1.25)
 		{
-			numOtherEnemies = this.Math.rand(2, 3);
+			numOtherEnemies = ::Math.rand(2, 3);
 		}
 		else if (this.m.DifficultyMult >= 0.95)
 		{

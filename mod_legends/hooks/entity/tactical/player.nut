@@ -1874,36 +1874,34 @@
 		];
 	}
 
-	o.getRemoveLayerTooltip <- function (_slot, _layer)
-	{
+	o.getRemoveLayerTooltip <- function (_slot, _layer) {
 		local armor = this.getItems().getItemAtSlot(_slot);
 		local title = "";
 
-		switch(_layer)
-		{
-		case 0:
-			title = _slot == ::Const.ItemSlot.Body ? "Chain Mail Layer" : "Helmet Layer";
-			break;
+		switch (_layer) {
+			case 0:
+				title = _slot == ::Const.ItemSlot.Body ? "Chain Mail Layer" : "Helmet Layer";
+				break;
 
-		case 1:
-			title = _slot == ::Const.ItemSlot.Body ? "Plate Layer" : "Top Layer";
-			break;
+			case 1:
+				title = _slot == ::Const.ItemSlot.Body ? "Plate Layer" : "Top Layer";
+				break;
 
-		case 2:
-			title = _slot == ::Const.ItemSlot.Body ? "Tabard Layer" : "Vanity Layer";
-			break;
+			case 2:
+				title = _slot == ::Const.ItemSlot.Body ? "Tabard Layer" : "Vanity Layer";
+				break;
 
-		case 3:
-			title = _slot == ::Const.ItemSlot.Body ? "Cloak Layer" : "Aesthetic Vanity Layer";
-			break;
+			case 3:
+				title = _slot == ::Const.ItemSlot.Body ? "Cloak Layer" : "Aesthetic Vanity Layer";
+				break;
 
-		case 4:
-			title = _slot == ::Const.ItemSlot.Body ? "Upgrade Attachment Layer" : "Rune Layer";
-			break;
+			case 4:
+				title = _slot == ::Const.ItemSlot.Body ? "Upgrade Attachment Layer" : "Rune Layer";
+				break;
 
-		case 5:
-			title = "Rune Layer";
-			break;
+			case 5:
+				title = "Rune Layer";
+				break;
 		}
 
 		local tt = [
@@ -1914,58 +1912,53 @@
 			}
 		];
 
-		if (armor == null)
-		{
+		if (armor == null) {
 			tt.push({
 				id = 2,
 				type = "description",
-				text = _slot == ::Const.ItemSlot.Body ? "A base piece of armor, such as a tunic or surcoat, needs to be worn in order to attach a layer" : "A base piece of helmet, such as a hood or scarf, needs to be worn in order to attach a layer"
+				text = _slot == ::Const.ItemSlot.Body ? "A base piece of armor, such as a tunic or surcoat, needs to be worn in order to attach a layer": "A base piece of helmet, such as a hood or scarf, needs to be worn in order to attach a layer"
 			});
 			return tt;
 		}
 
-		if (armor.upgradeIsBlocked(_layer))
-		{
+		if (armor.upgradeIsBlocked(_layer)) {
 			tt.push({
 				id = 2,
 				type = "description",
-				text = _slot == ::Const.ItemSlot.Body ? "The layer can not be attached to this piece of armor." : "The layer can not be attached to this helmet"
+				text = _slot == ::Const.ItemSlot.Body ? "The layer can not be attached to this piece of armor.": "The layer can not be attached to this helmet"
 			});
 			return tt;
 		}
 
 		local upgrade = armor.getUpgrade(_layer);
 
-		if (upgrade == null)
-		{
+		if (upgrade == null) {
 			tt.push({
 				id = 2,
 				type = "description",
 				text = "This layer is vacant. Right-click or drag a layer piece from the stash to attach it to this armor"
 			});
 			return tt;
-		} else {
-			tt.extend(upgrade.getTooltip());
-			if (!::Tactical.isActive()) {
-				tt.push({
-					id = 1,
-					type = "hint",
-					icon = "ui/icons/mouse_left_button_shift.png",
-					text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
-				});
-				tt.push({
-					id = 2,
-					type = "hint",
-					icon = "ui/icons/mouse_left_button.png",
-					text = "Unequip layer"
-				});
-			}
+		}
+		tt.extend(upgrade.getTooltip());
+		if (!::Tactical.isActive()) {
+			tt.push({
+				id = 1,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button_shift.png",
+				text = (!upgrade.isVisible() ? "Show" : "Hide") + " layer"
+			});
+			tt.push({
+				id = 2,
+				type = "hint",
+				icon = "ui/icons/mouse_left_button.png",
+				text = "Unequip layer"
+			});
+
 		}
 
-		foreach( t in tt )
-		{
-			if (t.id != 65)
-			{
+		foreach (t in tt) {
+			if (t.id != 65) {
 				continue;
 			}
 

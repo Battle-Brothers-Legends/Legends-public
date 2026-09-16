@@ -561,22 +561,22 @@ class Defs:
  "adesc" : "Includes a remarkably well-preserved ancient scale harness."
 },
 {"name": "segmented_breastplate",                      "layer": "plate", "min": 1, "max": 6, "value" : 2000, "con" : 110, "stam" : -13, "impactSound" : "plate", "invSound" : "plate",
- "title" :  "Breastplate Armor",
+ "title" :  "Segmented Breastplate",
  "desc" :  "A heavy breastplate comprised of small steel plates, which allow good movement range and protection.",
  "adesc" : "Includes a breastplate of small steel plates."
 },
 {"name": "plate_chest",                      "layer": "plate", "min": 1, "max": 6, "value" : 2250, "con" : 125, "stam" : -17, "impactSound" : "plate", "invSound" : "plate",
- "title" :  "Breastplate Armor",
+ "title" :  "Breastplate",
  "desc" :  "A heavy breastplate made of solid, plated steel, offering formidable protection at the cost of significant weight.",
  "adesc" : "Includes a breastplate of solid, plated steel."
 },
 {"name": "rotten_plate_chest",               "layer": "plate", "min": 1, "max": 5, "value" : 1250, "con" : 100, "stam" : -16, "impactSound" : "plate", "invSound" : "plate",
- "title" :  "Decayed Breastplate Armor",
+ "title" :  "Decayed Breastplate",
  "desc" :  "A worn breastplate of decaying, plated steel. Long years of neglect have left the metal pitted and brittle, offering only some of its former protection.",
  "adesc" : "Includes a worn breastplate of decaying, plated steel."
 },
 {"name": "plate_cuirass",                    "layer": "plate", "min": 1, "max": 6, "value" : 3500, "con" : 150, "stam" : -21, "impactSound" : "plate", "invSound" : "plate",
- "title" :  "Plate Cuirass Armor",
+ "title" :  "Plate Cuirass",
  "desc" :  "A heavy body vest of solid, plated steel designed for protecting the vitals.",
  "adesc" : "Includes a heavy body vest of solid, plated steel."
 },

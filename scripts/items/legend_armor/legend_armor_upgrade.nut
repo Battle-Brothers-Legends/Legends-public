@@ -369,7 +369,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (_a + this.m.Condition <= this.m.ConditionMax)
 		{
 			this.m.Condition += _a;
-			return 0
+			return 0;
 		}
 
 		local ret = _a - (this.m.ConditionMax - this.m.Condition);
@@ -382,7 +382,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (this.m.Condition - _a >= 0)
 		{
 			this.m.Condition -= _a;
-			return 0
+			return 0;
 		}
 		local delta = _a - this.m.Condition;
 		this.m.Condition = 0;
@@ -402,12 +402,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		}
 		else
 		{
-			this.removeArmor(this.m.Condition - _a)
+			this.removeArmor(this.m.Condition - _a);
 		}
 
 		if (this.m.Armor == null)
 		{
-			return
+			return;
 		}
 
 		if (this.m.Armor.getContainer() != null && this.m.Armor.isEquipped())
@@ -446,7 +446,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			this.updateAppearance(app);
 			this.getContainer().updateAppearance();
 		}
-		return _bool
+		return _bool;
 	}
 
 	function isVisible()
@@ -613,7 +613,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				hasStatDiff = true;
 
 				local textWeight = "";
-				local textWeightComparison = " (" + ::Math.abs(this.getStaminaModifier()) + " vs " + ::Math.abs(_compareLayer.getStaminaModifier()) + ")"
+				local textWeightComparison = " (" + ::Math.abs(this.getStaminaModifier()) + " vs " + ::Math.abs(_compareLayer.getStaminaModifier()) + ")";
 				
 				if (this.getStaminaModifier() == 0 && _compareLayer.getStaminaModifier() != 0) {
 					textWeight = "No Fatigue Weight Penalty";
@@ -685,7 +685,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 
 			if (compareArmorPerWeight != null) {
-				_tooltipList.push(compareArmorPerWeight)
+				_tooltipList.push(compareArmorPerWeight);
 			}
 
 			// TODO: Compare Effects
