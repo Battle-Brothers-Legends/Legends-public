@@ -60,7 +60,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 		],
 		[
 			::Legends.Perk.Backstabber,
-			::Legends.Perk.LegendDebilitate,
 			::Legends.Perk.LegendFavouredEnemyCivilization,
 			::Legends.Perk.RallyTheTroops,
 			::Legends.Perk.InspiringPresence,
@@ -83,7 +82,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendFavouredEnemyBeast,
 			::Legends.Perk.LegendBlendIn,
 			::Legends.Perk.LegendMindOverBody,
-			::Legends.Perk.LegendMedIngredients,
 			::Legends.Perk.LegendConservation,
 			::Legends.Perk.LegendCarnage
 		],

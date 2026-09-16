@@ -5,8 +5,8 @@ this.perk_legend_wither <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAdded() {
-		if (!this.m.Container.hasActive(::Legends.Active.LegendWither)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Wither, function (_skill) {
+		if (!this.m.Container.hasActive(::Legends.Active.Wither)) {
+			::Legends.Actives.grant(this, ::Legends.Active.Wither, function (_skill) {
 				_skill.m.ActionPointCost = 5;
 				_skill.m.FatigueCost = 15;
 				_skill.m.MinRange = 1;
