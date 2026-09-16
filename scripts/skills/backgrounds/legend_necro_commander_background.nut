@@ -124,7 +124,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendSpecStaffStun,
 					::Legends.Perk.LegendFavouredEnemyBeast,
 					::Legends.Perk.LegendViolentDecomposition,
-					::Legends.Perk.LegendMedIngredients,
 					::Legends.Perk.LegendConservation,
 					::Legends.Perk.LegendCarnage,
 					::Legends.Perk.LegendSpawnZombieHigh

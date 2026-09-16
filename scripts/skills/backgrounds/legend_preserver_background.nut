@@ -82,7 +82,6 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendFavouredEnemyBeast,
 			::Legends.Perk.LegendBlendIn,
 			::Legends.Perk.LegendMindOverBody,
-			::Legends.Perk.LegendMedIngredients,
 			::Legends.Perk.LegendConservation,
 			::Legends.Perk.LegendCarnage
 		],
