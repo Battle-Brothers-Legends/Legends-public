@@ -525,6 +525,21 @@
 				}
 			}
 
+			if (::MSU.isKindOf(_item, "legend_armor_upgrade") && _item.getArmor() == null) {
+				tooltip.push({
+					id = 70,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button.png",
+					text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
+				});
+				tooltip.push({
+					id = 71,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button_shift.png",
+					text = "Hold Shift and drag onto an armor in the stash to attach."
+				});
+			}
+
 			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
 			{
 				tooltip.push({

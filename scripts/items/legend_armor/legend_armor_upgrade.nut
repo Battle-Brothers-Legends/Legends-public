@@ -287,35 +287,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		this.applyCompareTooltip(result, equippedLayer);
 
-		// Interaction Tooltips
-		if (this.m.Armor == null) {
-			result.push({
-				id = 70,
-				type = "hint",
-				icon = "ui/icons/mouse_right_button.png",
-				text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
-			});
-			result.push({
-				id = 71,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button_shift.png",
-				text = "Hold Shift and drag onto an armor in the stash to attach."
-			});
-		} else {
-			result.push({
-				id = 1,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button_shift.png",
-				text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
-			});
-			result.push({
-				id = 2,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button.png",
-				text = "Unequip layer"
-			});
-		}
-
 		local rune = ::Legends.Runes.get(this.getRuneVariant());
 		if (rune != null) {
 			result.push({
