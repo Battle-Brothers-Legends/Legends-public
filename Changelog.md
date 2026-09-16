@@ -523,6 +523,7 @@
 > shows the value range for enhanced rolls only
 - added an option to show the recruit stat potential while recruiting
 > shows the min and max value recruits can roll with
+> improvements tied into the profession system
 - added inventory management toggle on items
 > allows setting the item type to be marked for sale, autorepair and sale, autorepair, autosalvage
 > the setting is completely optional
@@ -532,9 +533,6 @@
 > quickly loot items based on value (new button; ignores legendary, named, quest, food)
 > combine items to save inventory space with a single click with respect to automation state
 - sped up inventory load times by loading items in batches
-- recruitment window now shows some extra information about the recruit
-> ability to change between vague immersive text version and numerical values
-> improvements tied into the profession system
 - added a simple perk planning system
 > 3 states
 > shows the level needed to acquire the build
@@ -796,3 +794,5 @@
 - blazing RSW and firefield now use their own fire effects
 - legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
 - `legend_gold_nugget_item` -> `legend_gold_ore_item`
+- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
+- added a bunch of QoL mods whose functions were superseded by Legends to incompat
