@@ -185,11 +185,15 @@
 			} else {
 				local minBound = this.m.Hiring.AttributeLimits[key][0];
 				local maxBound = this.m.Hiring.AttributeLimits[key][1];
-        		local targetSize = ::Math.round((maxBound - minBound) * (1.0 - ::World.Assets.m.ProfessionEffect.LegendSizeThemUp));
-        		local lowestPossibleMin = ::Math.max(minBound, val - targetSize);
-        		local highestPossibleMin = ::Math.min(val, maxBound - targetSize);
+				local targetSize = ::Math.round((maxBound - minBound) * (1.0 - ::World.Assets.m.ProfessionEffect.LegendSizeThemUp));
+				local lowestPossibleMin = ::Math.max(minBound, val - targetSize);
+				local highestPossibleMin = ::Math.min(val, maxBound - targetSize);
 				local displayMin = ::Math.round(lowestPossibleMin + ((highestPossibleMin - lowestPossibleMin) * this.m.Hiring.AttributeBias[key]));
-        		local displayMax = displayMin + targetSize;
+				local displayMax = displayMin + targetSize;
+				if (::World.Assets.m.ProfessionEffect.LegendSizeThemUp == 0 && !::Legends.Mod.ModSettings.getSetting("ShowPotentialOnRecruits").getValue() && !this.m.IsTryoutDone) {
+					displayMin = "?";
+					displayMax = "? ";
+				}
 				ret[key] <- {
 					value = val,
 					min = displayMin,
