@@ -263,6 +263,26 @@
 		}
 
 		local tooltip = [];
+
+		// Compare selected layer with equipped layer if applicable
+		if (::World.State.isInCharacterScreen() &&
+			::MSU.isKindOf(_item, "legend_armor_upgrade") &&
+			_entity != null &&
+			_itemOwner == "character-screen-inventory-list-module.stash") 
+		{
+			local equippedLayer;
+			local armor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+
+			if (armor != null) {
+				equippedLayer = armor.getUpgrade(_item.getType());
+			}
+
+			if (equippedLayer != null) {
+				tooltip.extend(equippedLayer.getCompareTooltip(2));
+				_item.applyCompareHints(tooltip, equippedLayer);
+			}
+		}
+
 		if (::Legends.Mod.ModSettings.getSetting("ShowItemTradeHistory").getValue() && _item.getOriginSettlementID() > 0)
 		{
 			if (_item.getTradeHistorySettlementIDs().len() == 0)

@@ -549,6 +549,7 @@
 - distance scaling now affects aggressive groups in a reduced manner in early game (defender groups remain unchanged)
 - recruit scaling now always off; option removed from new campaign settings - recruitment progression now reflected in professions
 - brothers that weren't with the company for at least 1 day can no longer get compensated while dismissing
+- tooltips in the character screen now compare armor layers with the currently selected character's equipped layer
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

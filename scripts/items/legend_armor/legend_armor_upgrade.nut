@@ -255,18 +255,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
 
-		local equippedLayer = null;
-		if (::World.State.isInCharacterScreen() && this.getContainer() == null) {
-			// equippedLayer is the one equipped by currently selected character in Character Screen
-			local actor = ::World.State.m.CharacterScreen.getSelectedActor();
-			if (actor != null) {
-				local armor = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-				if (armor != null) {
-					equippedLayer = armor.getUpgrade(this.m.Type);
-				}
-			}
-		}	
-		
 		if (this.getOverlayIconLarge() != null && this.m.Type != ::Const.Items.ArmorUpgrades.Rune)
 		{
 			result.push({
@@ -284,8 +272,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				image = this.getIcon()
 			});
 		}
-
-		this.applyCompareTooltip(result, equippedLayer);
 
 		local rune = ::Legends.Runes.get(this.getRuneVariant());
 		if (rune != null) {
@@ -346,6 +332,31 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 		}
 		this.onArmorTooltip(_result);
+	}
+
+	function getCompareTooltip(_section = 1)
+	{
+		local result = [];
+		result.push({
+			id = 1,
+			type = "text",
+			section = _section,
+			text = ::Legends.S.highlightForLightBackground("Currently equipped:\n%_item%"),
+			param = [
+				["_item", this.getName()]
+			],
+			divider = "grandparent-top"
+		});
+		
+		local tooltip =	this.getTooltip(); 
+		foreach (tt in tooltip) {
+			if ("type" in tt && (tt.type == "text" || tt.type == "image" || tt.type == "progressbar")) {
+				tt.section <- _section;
+				result.push(tt);
+			}
+		}
+
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -560,7 +571,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		this.applyEffectTooltips(_result);
 	}
 
-	function applyCompareTooltip ( _tooltipList, _compareLayer)
+	function applyCompareHints ( _tooltipList, _compareLayer)
 	{
 		local compareMath;
 		local compareArmor;
@@ -573,13 +584,19 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		if (_compareLayer != null)
 		{
-			// Compare Armor
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				text = ::Legends.S.highlightForLightBackground("Changes if you equip this layer:")
+			});
+
+			// Compare Armor value
 			compareMath = this.Math.abs(this.getConditionMax()) - this.Math.abs(_compareLayer.getConditionMax());
 			if (compareMath != 0) {
 				hasStatDiff = true;
 				compareArmor = {
 					id = 20,
-					type = "text",
+					type = "hint",
 					icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
 					text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
 					param = [
@@ -608,7 +625,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				
 				compareWeight = {
 					id = 20,
-					type = "text",
+					type = "hint",
 					icon = compareMath > 0 ? "ui/tooltips/negative.png" : "ui/tooltips/positive.png",
 					text = "%_diff% (%_this_weight% vs %_compared_weight%)",
 					param = [
@@ -630,9 +647,9 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 					compareArmorPerWeight = {
 						id = 20,
-						type = "text",
+						type = "hint",
 						icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
-						text = "%_diff% Armor per 1 Weight \n(%_this_efficiency% vs %_other_efficiency%)",
+						text = "%_diff% Armor per 1 Weight (%_this_efficiency% vs %_other_efficiency%)",
 						param = [
 							["_diff", ::Legends.S.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
 							["_this_efficiency", format("%.1f", thisEfficiency)],
@@ -642,7 +659,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				} else if (hasStatDiff) {
 					compareArmorPerWeight = {
 						id = 20,
-						type = "text",
+						type = "hint",
 						icon = "ui/tooltips/money_sw.png",
 						text = "Equal Armor per 1 Weight (%_efficiency%)",
 						param = [["_efficiency", format("%.1f", thisEfficiency)]]
@@ -650,42 +667,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				}
 			}
 
-			_tooltipList.push({
-				id = 20,
-				type = "text",
-				text = "&nbsp;",
-			});
-
-			_tooltipList.push({
-				id = 20,
-				type = "text",
-				text = ::Legends.S.highlightForLightBackground("Comparison with equipped layer"),
-				divider = "top"
-			});
-
-			// Image of Equipped Layer
-			if (_compareLayer.getOverlayIconLarge() != null && _compareLayer.m.Type != this.Const.Items.ArmorUpgrades.Rune)
-			{
-				_tooltipList.push({
-					id = 3,
-					type = "image",
-					image = _compareLayer.getOverlayIconLarge(),
-					isLarge = true
-				});
-			}
-			else
-			{
-				_tooltipList.push({
-					id = 3,
-					type = "image",
-					image = _compareLayer.getIcon()
-				});
-			}
-
 			if (!hasStatDiff) {
 				_tooltipList.push({
 					id = 20,
-					type = "text",
+					type = "hint",
 					icon = "ui/tooltips/money_sw.png",
 					text = "No stat difference",
 				});
@@ -704,6 +689,8 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 
 			// TODO: Compare Effects
+			
+			_tooltipList.top().divider <- "bottom";
 		}
 	}
 
