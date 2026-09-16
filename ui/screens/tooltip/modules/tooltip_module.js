@@ -1984,6 +1984,14 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 				container.addClass('ui-control-tooltip-module-top-devider');
 				container.addClass('ui-control-tooltip-module-bottom-devider');
 			} break;
+			case 'parent-top':
+			{
+				_parentDIV.addClass('ui-control-tooltip-module-top-devider');
+			} break;
+			case 'grandparent-top':
+			{
+				_parentDIV.parent().addClass('ui-control-tooltip-module-top-devider');
+			} break;
 		}
 	}
 
