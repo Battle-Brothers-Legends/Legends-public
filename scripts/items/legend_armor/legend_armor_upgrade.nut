@@ -221,6 +221,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			type = "text",
 			text = this.getValueString()
 		});
+
 		result.push({
 			id = 4,
 			type = "progressbar",
@@ -253,6 +254,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 
 		// Other common stats found on Attachements:
 		this.applyEffectTooltips(result);
+
 		if (this.getOverlayIconLarge() != null && this.m.Type != ::Const.Items.ArmorUpgrades.Rune)
 		{
 			result.push({
@@ -268,35 +270,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 3,
 				type = "image",
 				image = this.getIcon()
-			});
-		}
-
-		// Interaction Tooltips
-		if (this.m.Armor == null) {
-			result.push({
-				id = 70,
-				type = "hint",
-				icon = "ui/icons/mouse_right_button.png",
-				text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
-			});
-			result.push({
-				id = 71,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button_shift.png",
-				text = "Hold Shift and drag onto an armor in the stash to attach."
-			});
-		} else {
-			result.push({
-				id = 1,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button_shift.png",
-				text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
-			});
-			result.push({
-				id = 2,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button.png",
-				text = "Unequip layer"
 			});
 		}
 
@@ -359,6 +332,31 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 		}
 		this.onArmorTooltip(_result);
+	}
+
+	function getCompareTooltip(_section = 1)
+	{
+		local result = [];
+		result.push({
+			id = 1,
+			type = "text",
+			section = _section,
+			text = ::Legends.S.highlightForLightBackground("Currently equipped:\n%_item%"),
+			param = [
+				["_item", this.getName()]
+			],
+			divider = "grandparent-top"
+		});
+		
+		local tooltip =	this.getTooltip(); 
+		foreach (tt in tooltip) {
+			if ("type" in tt && (tt.type == "text" || tt.type == "image" || tt.type == "progressbar")) {
+				tt.section <- _section;
+				result.push(tt);
+			}
+		}
+
+		return result;
 	}
 
 	function playInventorySound( _eventType )
@@ -571,6 +569,129 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function onArmorTooltip( _result )
 	{
 		this.applyEffectTooltips(_result);
+	}
+
+	function applyCompareHints ( _tooltipList, _compareLayer)
+	{
+		local compareMath;
+		local compareArmor;
+		local compareWeight;
+		local compareArmorPerWeight;
+		local compareTextArmor = "";
+		local compareTextWeight = "";
+		local compareTextArmorPerWeight = "";
+		local hasStatDiff = false;
+
+		if (_compareLayer != null)
+		{
+			_tooltipList.push({
+				id = 20,
+				type = "hint",
+				text = ::Legends.S.highlightForLightBackground("Changes if you equip this layer:")
+			});
+
+			// Compare Armor value
+			compareMath = this.Math.abs(this.getConditionMax()) - this.Math.abs(_compareLayer.getConditionMax());
+			if (compareMath != 0) {
+				hasStatDiff = true;
+				compareArmor = {
+					id = 20,
+					type = "hint",
+					icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+					text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
+					param = [
+						["_diff", ::Legends.S.colorize(::Legends.S.addSign(compareMath), compareMath)],
+						["_this_armor", this.getConditionMax()],
+						["_compared_armor", _compareLayer.getConditionMax()]
+					]
+				};
+			}
+
+			// Compare Fatigue Weight Penalty
+			compareMath = this.Math.abs(this.getStaminaModifier()) - this.Math.abs(_compareLayer.getStaminaModifier());
+			if (compareMath != 0) {
+				hasStatDiff = true;
+
+				local textWeight = "";
+				local textWeightComparison = " (" + this.Math.abs(this.getStaminaModifier()) + " vs " + this.Math.abs(_compareLayer.getStaminaModifier()) + ")"
+				
+				if (this.getStaminaModifier() == 0 && _compareLayer.getStaminaModifier() != 0) {
+					textWeight = "No Fatigue Weight Penalty";
+				} else if (this.getStaminaModifier() != 0 && _compareLayer.getStaminaModifier() == 0) {
+					textWeight = "Has Fatigue Weight Penalty";
+				} else {
+					textWeight = ::Legends.S.colorize(this.Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath * -1) + " Weight";
+				}
+				
+				compareWeight = {
+					id = 20,
+					type = "hint",
+					icon = compareMath > 0 ? "ui/tooltips/negative.png" : "ui/tooltips/positive.png",
+					text = "%_diff% (%_this_weight% vs %_compared_weight%)",
+					param = [
+						["_diff", textWeight],
+						["_this_weight", this.Math.abs(this.getStaminaModifier())],
+						["_compared_weight", this.Math.abs(_compareLayer.getStaminaModifier())]
+					]
+				}
+			}
+
+			// Compare Armor per Weight (if applicable)
+			if (::Legends.Mod.ModSettings.getSetting("ShowArmorPerFatigueValue").getValue() && this.getStaminaModifier() < 0 && _compareLayer.getStaminaModifier() < 0) {
+				local thisEfficiency = this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier()));
+				local otherEfficiency = _compareLayer.getConditionMax() / (1.0 * this.Math.abs(_compareLayer.getStaminaModifier()));
+				compareMath = thisEfficiency - otherEfficiency;
+
+				if (compareMath != 0) {
+					hasStatDiff = true;
+
+					compareArmorPerWeight = {
+						id = 20,
+						type = "hint",
+						icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+						text = "%_diff% Armor per 1 Weight (%_this_efficiency% vs %_other_efficiency%)",
+						param = [
+							["_diff", ::Legends.S.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
+							["_this_efficiency", format("%.1f", thisEfficiency)],
+							["_other_efficiency", format("%.1f", otherEfficiency)]
+						]
+					}
+				} else if (hasStatDiff) {
+					compareArmorPerWeight = {
+						id = 20,
+						type = "hint",
+						icon = "ui/tooltips/money_sw.png",
+						text = "Equal Armor per 1 Weight (%_efficiency%)",
+						param = [["_efficiency", format("%.1f", thisEfficiency)]]
+					}
+				}
+			}
+
+			if (!hasStatDiff) {
+				_tooltipList.push({
+					id = 20,
+					type = "hint",
+					icon = "ui/tooltips/money_sw.png",
+					text = "No stat difference",
+				});
+			}
+
+			if (compareArmor != null) {
+				_tooltipList.push(compareArmor);
+			}
+
+			if (compareWeight != null) {
+				_tooltipList.push(compareWeight);
+			}
+
+			if (compareArmorPerWeight != null) {
+				_tooltipList.push(compareArmorPerWeight)
+			}
+
+			// TODO: Compare Effects
+			
+			_tooltipList.top().divider <- "bottom";
+		}
 	}
 
 	function applyEffectTooltips( _tooltipList )

@@ -1944,9 +1944,23 @@
 				text = "This layer is vacant. Right-click or drag a layer piece from the stash to attach it to this armor"
 			});
 			return tt;
+		} else {
+			tt.extend(upgrade.getTooltip());
+			if (!::Tactical.isActive()) {
+				tt.push({
+					id = 1,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button_shift.png",
+					text = "Hold Left-Shift and Left-Click this layer square to toggle it hidden on this character (stats & other benefits will not be affected)."
+				});
+				tt.push({
+					id = 2,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button.png",
+					text = "Unequip layer"
+				});
+			}
 		}
-
-		tt.extend(upgrade.getTooltip());
 
 		foreach( t in tt )
 		{

@@ -1133,18 +1133,18 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 	{
 		_vars.push([
 			"direction",
-			this.m.Target == null || this.m.Target.isNull() ? "" : ::Const.UI.getColorized(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())], ::Const.UI.Color.getHighlightDarkBackgroundValue())
+			this.m.Target == null || this.m.Target.isNull() ? "" : ::Legends.S.highlightForDarkBackground(::Const.Strings.Direction8[::World.State.getPlayer().getTile().getDirection8To(this.m.Target.getTile())])
 		]);
 		_vars.push([ // Will store the cut that the optional characters ask for.
 			"cut",
-			::Const.UI.getColorized(this.m.Flags.get("Cut"), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
+			::Legends.S.highlightForDarkBackground(this.m.Flags.get("Cut")),
 		]);
 
 		if (!::MSU.isNull(this.m.Peddler))
 		{
 			_vars.push([
 				"peddler",
-				::Const.UI.getColorized(this.m.Peddler.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
+				::Legends.S.highlightForDarkBackground(this.m.Peddler.getName()),
 			]);
 		}
 
@@ -1152,7 +1152,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"poacher",
-				::Const.UI.getColorized(this.m.Poacher.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
+				::Legends.S.highlightForDarkBackground(this.m.Poacher.getName()),
 			]);
 		}
 
@@ -1160,7 +1160,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		{
 			_vars.push([
 				"experthunter",
-				::Const.UI.getColorized(this.m.ExpertHunter.getName(), ::Const.UI.Color.getHighlightDarkBackgroundValue()),
+				::Legends.S.highlightForDarkBackground(this.m.ExpertHunter.getName()),
 			]);
 		}
 
@@ -1183,7 +1183,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		}
 		_vars.push([
 			"beasts",
-			::Const.UI.getColorized(beasts, ::Const.UI.Color.getHighlightDarkBackgroundValue()),
+			::Legends.S.highlightForDarkBackground(beasts),
 		])
 	}
 

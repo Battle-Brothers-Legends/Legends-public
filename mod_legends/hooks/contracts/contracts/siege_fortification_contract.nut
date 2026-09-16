@@ -32,9 +32,9 @@
 		}
 
 		if (count == 1)
-			r = this.format(r, ::Const.UI.getColorized(::World.FactionManager.getFaction(this.getFaction()).getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			r = this.format(r, ::Legends.S.highlightForLightBackground(::World.FactionManager.getFaction(this.getFaction()).getName()));
 		else if (count == 2)
-			r = this.format(r, ::Const.UI.getColorized(this.m.Location.getSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()), ::Const.UI.getColorized(this.m.Location.getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()));
+			r = this.format(r, ::Legends.S.highlightForLightBackground(this.m.Location.getSettlement().getName()), ::Legends.S.highlightForLightBackground(this.m.Location.getName()));
 
 		this.m.Description = r;
 	}

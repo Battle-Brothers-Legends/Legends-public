@@ -263,6 +263,26 @@
 		}
 
 		local tooltip = [];
+
+		// Compare selected layer with equipped layer if applicable
+		if (::World.State.isInCharacterScreen() &&
+			::MSU.isKindOf(_item, "legend_armor_upgrade") &&
+			_entity != null &&
+			_itemOwner == "character-screen-inventory-list-module.stash") 
+		{
+			local equippedLayer;
+			local armor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+
+			if (armor != null) {
+				equippedLayer = armor.getUpgrade(_item.getType());
+			}
+
+			if (equippedLayer != null) {
+				tooltip.extend(equippedLayer.getCompareTooltip(2));
+				_item.applyCompareHints(tooltip, equippedLayer);
+			}
+		}
+
 		if (::Legends.Mod.ModSettings.getSetting("ShowItemTradeHistory").getValue() && _item.getOriginSettlementID() > 0)
 		{
 			if (_item.getTradeHistorySettlementIDs().len() == 0)
@@ -271,7 +291,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = "Produced in " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()),
+					text = "Produced in " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()),
 					divider = "bottom",
 				});
 			}
@@ -281,7 +301,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()) + " to " + ::Const.UI.getColorized(_item.getTradeHistorySettlements()[0].getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(_item.getTradeHistorySettlements()[0].getName()),
 					divider = "bottom",
 				});
 			}
@@ -293,7 +313,7 @@
 					id = 50,
 					type = "hint",
 					icon = "ui/icons/settlement_tier_icon.png",
-					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Const.UI.getColorized(_item.getOriginSettlement().getName(), ::Const.UI.Color.getHighlightLightBackgroundValue()) + " to " + ::Const.UI.getColorized(arr[arr.len() - 1], ::Const.UI.Color.getHighlightLightBackgroundValue()) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
+					text = ::Const.UI.getColorized("Imported", ::Const.UI.Color.NegativeValue) + " from " + ::Legends.S.highlightForLightBackground(_item.getOriginSettlement().getName()) + " to " + ::Legends.S.highlightForLightBackground(arr[arr.len() - 1]) + " via " + ::Const.LegendMod.Language.arrayToText(slice, "and"),
 					divider = "bottom",
 				});
 			}
@@ -523,6 +543,21 @@
 						text = "Equip item in offhand"
 					});
 				}
+			}
+
+			if (::MSU.isKindOf(_item, "legend_armor_upgrade") && _item.getArmor() == null) {
+				tooltip.push({
+					id = 70,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button.png",
+					text = "Right-click or left-click and drag onto the armor of the currently selected character to attach."
+				});
+				tooltip.push({
+					id = 71,
+					type = "hint",
+					icon = "ui/icons/mouse_left_button_shift.png",
+					text = "Hold Shift and drag onto an armor in the stash to attach."
+				});
 			}
 
 			if (_item.isChangeableInBattle() == true && _item.isAllowedInBag() && _entity != null && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))

@@ -549,6 +549,7 @@
 - distance scaling now affects aggressive groups in a reduced manner in early game (defender groups remain unchanged)
 - recruit scaling now always off; option removed from new campaign settings - recruitment progression now reflected in professions
 - brothers that weren't with the company for at least 1 day can no longer get compensated while dismissing
+- tooltips in the character screen now compare armor layers with the currently selected character's equipped layer
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover
@@ -796,3 +797,5 @@
 - `legend_gold_nugget_item` -> `legend_gold_ore_item`
 - Hunting tent stuff removed / integrated into Gathering, including from background modifiers
 - added a bunch of QoL mods whose functions were superseded by Legends to incompat
+- Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
+- Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`

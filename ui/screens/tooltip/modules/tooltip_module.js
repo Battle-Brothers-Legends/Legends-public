@@ -933,11 +933,18 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 
 	// container handle
 	var headerContainer       = null;
-	var contentContainer      = null;
-	var leftContentContainer  = null;
-	var rightContentContainer = null;
+	var contentContainers 		= [];
 	var footerContainer       = null;
 	var hintContainer         = null;
+	var sections				= 1;
+
+	for (var i = 0; i < _data.length; i++)
+	{
+		if ('section' in _data[i])
+		{
+			sections = Math.max(sections, _data[i].section + 1); // +1 because of zero-indexing)
+		}
+	}
 
 	if (!shouldBeUpdated)
 	{
@@ -956,13 +963,27 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 		headerContainer = $('<div class="header-container"></div>');
 		this.mScrollWrapper.append(headerContainer);
 
-		contentContainer = $('<div class="content-container"></div>');
-		this.mScrollWrapper.append(contentContainer);
+		for (var i = 0; i < sections; i++)
+		{
+			var contentContainer = $('<div>', {
+				class: 'content-container',
+				id: 'content-container-${i}'
+			});
+			this.mScrollWrapper.append(contentContainer);
 
-		leftContentContainer = $('<div class="left-content-container"></div>');
-		contentContainer.append(leftContentContainer);
-		rightContentContainer = $('<div class="right-content-container"></div>');
-		contentContainer.append(rightContentContainer);
+			var leftContentContainer = $('<div>', {
+				class: 'left-content-container',
+				id: 'left-content-container-${i}'
+			});
+			contentContainer.append(leftContentContainer);
+			var rightContentContainer = $('<div>', {
+				class: 'right-content-container',
+				id: 'right-content-container-${i}'
+			});
+			contentContainer.append(rightContentContainer);
+
+			contentContainers.push(contentContainer);
+		}
 
 		footerContainer = $('<div class="footer-container"></div>');
 		this.mScrollWrapper.append(footerContainer);
@@ -977,22 +998,35 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 	{
 		// acquire: container
 		headerContainer       = this.mScrollWrapper.find('.header-container:first');
-		contentContainer      = this.mScrollWrapper.find('.content-container:first');
-		leftContentContainer  = contentContainer.find('.left-content-container:first');
-		rightContentContainer = contentContainer.find('.right-content-container:first');
 		footerContainer       = this.mScrollWrapper.find('.footer-container:first');
 		hintContainer         = this.mScrollWrapper.find('.hint-container:first');
 
 		// sanity check
 		if (headerContainer.length === 0 ||
-			contentContainer.length === 0 ||
-			leftContentContainer.length === 0 ||
-			rightContentContainer.length === 0 ||
+			contentContainers.length === 0 ||
 			footerContainer.length === 0 ||
 			hintContainer.length === 0)
 		{
 			console.error('ERROR: Failed to update Tooltip. Reason: Tooltip container not found.');
 			return;
+		}
+ 
+		for (var i = 0; i < contentContainers.length; i++)
+		{
+			var contentContainer = contentContainers[i];
+			if (contentContainer.length === 0)
+			{
+				console.error('ERROR: Failed to update Tooltip. Reason: Content container not found.');
+				return;
+			}
+			var leftContentContainer  = contentContainer.find('.left-content-container:first');
+			var rightContentContainer = contentContainer.find('.right-content-container:first');
+
+			if (leftContentContainer.length === 0 || rightContentContainer.length === 0)
+			{
+				console.error('ERROR: Failed to update Tooltip. Reason: Left/Right content container not found.');
+				return;
+			}
 		}
 	}
 
@@ -1020,6 +1054,15 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 	for (var i = 0; i < _data.length; ++i)
 	{
 		var data = _data[i];
+		
+		var section = 0; // default to 0 if data does not specify section
+		if ('section' in data)
+		{
+			section = data.section;
+		}
+		var contentContainer = contentContainers[section];
+		var leftContentContainer = contentContainer.find('.left-content-container:first');
+		var rightContentContainer = contentContainer.find('.right-content-container:first');
 
 		// ignore this entry
 		if ('contentType' in data)
@@ -1261,7 +1304,10 @@ TooltipModule.prototype.buildFromData = function(_data, _shouldBeUpdated, _conte
 
 	if (!hasContent)
 	{
-		contentContainer.addClass('display-none');
+		for (var i = 0; i < contentContainers.length; i++)
+		{
+			contentContainer.addClass('display-none');
+		}
 	}
 
 	if (!hasFooter)
@@ -1917,6 +1963,35 @@ TooltipModule.prototype.addContentTextDiv = function(_parentDIV, _data, _isChild
 		for (var i = 0; i < _data.children.length; ++i)
 		{
 			this.addContentTextDiv(container, _data.children[i], true, useFullWidth);
+		}
+	}
+
+	// add optional dividers
+	if ('divider' in _data)
+	{
+		switch(_data.divider)
+		{
+			case 'top':
+			{
+				container.addClass('ui-control-tooltip-module-top-devider');
+			} break;
+			case 'bottom':
+			{
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
+			case 'both':
+			{
+				container.addClass('ui-control-tooltip-module-top-devider');
+				container.addClass('ui-control-tooltip-module-bottom-devider');
+			} break;
+			case 'parent-top':
+			{
+				_parentDIV.addClass('ui-control-tooltip-module-top-devider');
+			} break;
+			case 'grandparent-top':
+			{
+				_parentDIV.parent().addClass('ui-control-tooltip-module-top-devider');
+			} break;
 		}
 	}
 

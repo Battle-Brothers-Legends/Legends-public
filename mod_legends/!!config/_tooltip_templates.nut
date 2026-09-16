@@ -1,4 +1,4 @@
-local colors = [
+local colors = @() [
 	["rune",  ::Const.UI.Color.RuneColor],
 	["passive",  ::Const.UI.Color.Passive],
 	["active",  ::Const.UI.Color.Active],
@@ -11,10 +11,13 @@ local colors = [
 	["positiveEvent", ::Const.UI.Color.PositiveEventValue],
 	["negativeEvent", ::Const.UI.Color.NegativeEventValue],
 	["damage", ::Const.UI.Color.DamageValue],
-	["positiveLighter", ::Const.UI.Color.PositiveLighter]
+	["positiveLighter", ::Const.UI.Color.PositiveLighter],
+	["highlightLightBg", ::Const.UI.Color.getHighlightLightBackgroundValue()],
+	["highlightDarkBg", ::Const.UI.Color.getHighlightDarkBackgroundValue()],
+	["fadeDarkBg", ::Const.UI.Color.getFadeDarkBackgroundValue()]
 ];
 
 ::Legends.tooltip <- function (_text, _vars = [])  {
-	_vars.extend(colors);
+	_vars.extend(colors());
 	return ::buildTextFromTemplate(::strip(_text), _vars);
 }
