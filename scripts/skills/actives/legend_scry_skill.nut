@@ -5,8 +5,8 @@ this.legend_scry_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendScry);
 		this.m.Description = "Gain vision of the surrounding 12 tiles for the duration of the current round.";
 		this.m.SoundOnUse = ["sounds/combat/scry_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -43,11 +43,11 @@ this.legend_scry_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
+		::Tactical.queryTilesInRange(_user.getTile(), 1, 12, false, [], this.onQueryTile, _user.getFaction());
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null)
+		if (::Tactical.TurnSequenceBar.getActiveEntity() != null)
 		{
-			this.Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
+			::Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
 		}
 
 		return true;

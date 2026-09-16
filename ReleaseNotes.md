@@ -388,7 +388,7 @@ Favoured Enemy - Sword Master
 
 ```
 legend_bandit_warlord.nut -> legend_robber_baron.nut
-this.Const.EntityType.LegendBanditWarlord -> this.Const.EntityType.LegendRobberBaron
+::Const.EntityType.LegendBanditWarlord -> ::Const.EntityType.LegendRobberBaron
 
 ```
 
@@ -5372,7 +5372,7 @@ Fixes bug with legend_cheer_on that prevents switching from lute to other useabl
 
 **Sub Modders**
 in your scenario files, the onBuildPerkTree function signature has changed. You will need to update your mods/edits
-Adding perks looks like this now '''\_tree[0].push(this.Const.Perks.PerkDefs.LegendCampCook);'''
+Adding perks looks like this now '''\_tree[0].push(::Const.Perks.PerkDefs.LegendCampCook);'''
 
 14.0.0.16 Honey, I shrank the town
 
@@ -7811,7 +7811,7 @@ Skeleton gladiators have been reworked slightly, they now has less AP, better de
 - Lurker, Husk and Magister now have temp. art backgrounds to identify them better - these are not intended to stay.
 
 **For modders**
-- Added a standardized system for adding more perks for submods, and for automated listing of perk groups in tooltips. This is accomplished via the function `addPerkDefObjects` and `updatePerkGroupTooltips` in `this.Const.Perks`(see z_perks_defs.nut). You should use the `addPerkDefObjects` function to add your perks when making a Legends submod, and if you change the perk trees in Legends, you should additionally call the `updatePerkGroupTooltips` function at the end of such changes.
+- Added a standardized system for adding more perks for submods, and for automated listing of perk groups in tooltips. This is accomplished via the function `addPerkDefObjects` and `updatePerkGroupTooltips` in `::Const.Perks`(see z_perks_defs.nut). You should use the `addPerkDefObjects` function to add your perks when making a Legends submod, and if you change the perk trees in Legends, you should additionally call the `updatePerkGroupTooltips` function at the end of such changes.
 - Added `removePerk( _perk )` and `removePerkGroup( _group )` functions to character_background to remove perks from the character's perk tree. Note: removing the perk from the perk tree doesn't actually remove the perk skill from the character. For that you should additionally use the removeByID of the skill_container.
 - Added `hasPerk( _perk )` function to character_background. This can be used to check if the character has a certain perk in their perk tree.
 - Added `findPerk( perk )` function to character_background. Checks if the character has the given perk in their perk tree and returns a table containing the Perk and the Row that it belongs to. The return value is a table contaning 3 entries: Row, Perk, PerkDefObject. Returns null if the character doesn't have the given perk.
@@ -7911,7 +7911,7 @@ Skeleton gladiators have been reworked slightly, they now has less AP, better de
 - Leech Peddler: flavor text typo and clarity fixes.
 
 **For Modders**
-- perk_legend_specialist_ninetails_skill & perk_legend_specialist_ninetails_damage files now use this.Const.Items.ItemType.Cultist in all flails and items they affect, rather than listing the items one-by-one.
+- perk_legend_specialist_ninetails_skill & perk_legend_specialist_ninetails_damage files now use ::Const.Items.ItemType.Cultist in all flails and items they affect, rather than listing the items one-by-one.
 - Widow, master archer and berserker background .pngs were not named as they should be, now corrected. (EG. Was: "widow.png" | Now: "background_widow.png").
 - Changed the code of how Legends Settings are handled (settings are now in a table instead of array). See `new_campaign_menu_module.nut` and `new_campaign_menu_module.js`.
 - Updated MSU to v0.6.23.
@@ -8227,9 +8227,9 @@ Hopefully fixed Drums of War recovering 8 fatigue instead of 3.
 Minor fixes for armours that were causing hangs when fighting free company or bandits. If you don't remove your submod for this when updating to this build I will fly to your country, not enjoy your food and then shit on your doorstep. - Luft
 Gathering Tent shouldn't just hand you free raw wood anymore, as we've recently added protection to your battle siblings woods.
   (The actual formulas for calculating Quality Wood/Gem drops are the following)
-  -500.0 / (levels.Woodsman + 60) + 10 > this.Math.rand(1, 100) :: after this procs if you have a collective level of 11 for Woodsmen/Miners it guarantees a Wood/Gem, otherwise it's a 1/3 chance
+  -500.0 / (levels.Woodsman + 60) + 10 > ::Math.rand(1, 100) :: after this procs if you have a collective level of 11 for Woodsmen/Miners it guarantees a Wood/Gem, otherwise it's a 1/3 chance
   (Actual formula for calculating Raw Wood/Peat Bricks)
-  -300.0 / (levels.Woodsman + 60) + 10 > this.Math.rand(1, 100); :: Same 1/3 as above but it requires a collective level of 6 for a guaranteed one
+  -300.0 / (levels.Woodsman + 60) + 10 > ::Math.rand(1, 100); :: Same 1/3 as above but it requires a collective level of 6 for a guaranteed one
 
 **Balance**
 Men at arms now have marginally better stats.

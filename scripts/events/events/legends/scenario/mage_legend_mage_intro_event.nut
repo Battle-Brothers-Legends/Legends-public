@@ -16,9 +16,9 @@ this.mage_legend_mage_intro_event <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 				this.logInfo("Unlocking training");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training], true);
 			}
 
 		});
@@ -33,7 +33,7 @@ this.mage_legend_mage_intro_event <- this.inherit("scripts/events/event", {
 	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
-			this.World.Flags.get("HomeVillage")
+			::World.Flags.get("HomeVillage")
 		]);
 	}
 

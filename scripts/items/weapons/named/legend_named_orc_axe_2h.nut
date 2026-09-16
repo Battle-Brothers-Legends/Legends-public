@@ -7,12 +7,12 @@ this.legend_named_orc_axe_2h <- this.inherit("scripts/items/weapons/named/named_
 		this.m.Name = "Unhold Splitter";
 		this.m.Description = "A huge and sturdy double headed battleaxe too heavy to be used effectively by the average human.";
 		this.m.Variants = [1,2,3];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
-		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

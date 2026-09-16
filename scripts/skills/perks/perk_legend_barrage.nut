@@ -16,7 +16,7 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity.isNonCombatant())
 			return false;
 
-		local headshot = _bodyPart == this.Const.BodyPart.Head;
+		local headshot = _bodyPart == ::Const.BodyPart.Head;
 		local user = this.getContainer().getActor();
 
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlingStone))
@@ -47,6 +47,6 @@ this.perk_legend_barrage <- this.inherit("scripts/skills/skill", {
 		local targetTile = _targetEntity.getTile();
 		::Legends.Effects.grant(_targetEntity, _effect);
 		if (!_user.isHiddenToPlayer() && targetTile.IsVisibleForPlayer)
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " " + _string);
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " " + _string);
 	}
 });

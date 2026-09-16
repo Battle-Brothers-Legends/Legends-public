@@ -67,17 +67,17 @@
 	{
 		local bros = ::World.getPlayerRoster().getAll();
 
-		if (::World.Assets.getMoney() < this.Math.round(bros.len() * 5 * this.m.Settlement.getBuyPriceMult()))
+		if (::World.Assets.getMoney() < ::Math.round(bros.len() * 5 * this.m.Settlement.getBuyPriceMult()))
 		{
 			return null;
 		}
 
-		this.Sound.play(::Const.Sound.TavernRound[this.Math.rand(0, ::Const.Sound.TavernRound.len() - 1)]);
-		::World.Assets.addMoney(this.Math.round(bros.len() * -5 * this.m.Settlement.getBuyPriceMult()));
+		::Sound.play(::Const.Sound.TavernRound[::Math.rand(0, ::Const.Sound.TavernRound.len() - 1)]);
+		::World.Assets.addMoney(::Math.round(bros.len() * -5 * this.m.Settlement.getBuyPriceMult()));
 		++this.m.RoundsGiven;
 		this.m.LastRoundTime = ::Time.getVirtualTimeF();
 		local result = {
-			Intro = ::Const.Strings.PayTavernRoundIntro[this.Math.rand(0, ::Const.Strings.PayTavernRoundIntro.len() - 1)],
+			Intro = ::Const.Strings.PayTavernRoundIntro[::Math.rand(0, ::Const.Strings.PayTavernRoundIntro.len() - 1)],
 			Result = []
 		};
 
@@ -135,7 +135,7 @@
 				drunkChance = 0;
 				if (!b.getSkills().hasTrait(::Legends.Trait.Drunkard))
 				{
-					if (this.Math.rand(1, 100) <= this.m.RoundsGiven + 5)
+					if (::Math.rand(1, 100) <= this.m.RoundsGiven + 5)
 					{
 						::Legends.Traits.grant(b, ::Legends.Trait.Drunkard, function(_trait) {
 							result.Result.push({
@@ -147,7 +147,7 @@
 				}
 			}
 
-			if (this.Math.rand(1, 100) <= drunkChance)
+			if (::Math.rand(1, 100) <= drunkChance)
 			{
 				::Legends.Effects.grant(b, ::Legends.Effect.Drunk, function(_effect) {
 					result.Result.push({
@@ -157,7 +157,7 @@
 				}.bindenv(this));
 			}
 
-			if ((b.getLastDrinkTime() == 0 || ::Time.getVirtualTimeF() - b.getLastDrinkTime() > ::World.getTime().SecondsPerDay) && this.Math.rand(1, 100) <= 35)
+			if ((b.getLastDrinkTime() == 0 || ::Time.getVirtualTimeF() - b.getLastDrinkTime() > ::World.getTime().SecondsPerDay) && ::Math.rand(1, 100) <= 35)
 			{
 				b.setLastDrinkTime(::Time.getVirtualTimeF());
 				b.improveMood(::Const.MoodChange.DrunkAtTavern, "Got drunk with the company");
@@ -173,13 +173,13 @@
 
 	o.getRumor = function (_isPaidFor = false) {
 		if (_isPaidFor) {
-			if (::World.Assets.getMoney() < this.Math.round(20 * this.m.Settlement.getBuyPriceMult())) {
+			if (::World.Assets.getMoney() < ::Math.round(20 * this.m.Settlement.getBuyPriceMult())) {
 				return null;
 			}
 
-			::World.Assets.addMoney(this.Math.round(-20 * this.m.Settlement.getBuyPriceMult()));
+			::World.Assets.addMoney(::Math.round(-20 * this.m.Settlement.getBuyPriceMult()));
 			++this.m.RumorsGiven;
-			this.Sound.play(::Const.Sound.TavernRumor[this.Math.rand(0, ::Const.Sound.TavernRumor.len() - 1)]);
+			::Sound.play(::Const.Sound.TavernRumor[::Math.rand(0, ::Const.Sound.TavernRumor.len() - 1)]);
 		}
 
 		if (this.m.RumorsGiven > ::Math.round(3 * ::World.Assets.m.ProfessionEffect.LegendCarouser)) {
@@ -197,7 +197,7 @@
 					::World.FactionManager.getFaction(this.m.Settlement.getFactions()[0]).addPlayerRelation(0.1);
 				}
 
-				rumor = rumor + ::Const.Strings.PayTavernRumorsIntro[this.Math.rand(0, ::Const.Strings.PayTavernRumorsIntro.len() - 1)];
+				rumor = rumor + ::Const.Strings.PayTavernRumorsIntro[::Math.rand(0, ::Const.Strings.PayTavernRumorsIntro.len() - 1)];
 			} else if (this.m.LastRumor != "") {
 				return this.m.LastRumor;
 			} else {
@@ -205,7 +205,7 @@
 			}
 
 			local candidates = [];
-			local r = ::World.Assets.m.ProfessionEffect.LegendCarouser > 0 ? this.Math.rand(3, 6) : this.Math.rand(1, 6);
+			local r = ::World.Assets.m.ProfessionEffect.LegendCarouser > 0 ? ::Math.rand(3, 6) : ::Math.rand(1, 6);
 
 			if (r <= 2) {
 				if (::World.FactionManager.isGreaterEvil()) {
@@ -264,7 +264,7 @@
 						continue;
 					}
 
-					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - this.Math.rand(1, 10);
+					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - ::Math.rand(1, 10);
 
 					if (d < bestDist) {
 						bestDist = d;
@@ -299,7 +299,7 @@
 						continue;
 					}
 
-					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - this.Math.rand(1, 10);
+					local d = s.getTile().getDistanceTo(this.m.Settlement.getTile()) - ::Math.rand(1, 10);
 
 					if (d > 20) {
 						continue;
@@ -373,7 +373,7 @@
 				}
 
 				if (best != null) {
-					local situation = best.getSituations()[this.Math.rand(0, best.getSituations().len() - 1)];
+					local situation = best.getSituations()[::Math.rand(0, best.getSituations().len() - 1)];
 					candidates.extend(situation.getRumors());
 					this.m.ContractSettlement = this.WeakTableRef(best);
 				} else {
@@ -389,7 +389,7 @@
 				}
 			}
 
-			rumor += "\n\n[color=#bcad8c]\"" + candidates[this.Math.rand(0, candidates.len() - 1)] + "\"[/color]\n\n";
+			rumor += "\n\n[color=#bcad8c]\"" + candidates[::Math.rand(0, candidates.len() - 1)] + "\"[/color]\n\n";
 
 			if (::World.Assets.m.ProfessionEffect.LegendCutToTheChase > 0 && this.m.Location != null && !this.m.Location.isNull()) {
 				if (!this.m.Location.isDiscovered()) {

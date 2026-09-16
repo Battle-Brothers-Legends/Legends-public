@@ -7,47 +7,47 @@
 		this.m.MinY = 1;
 		local t = this.createTileTransition();
 		t.setBlendIntoSockets(false);
-		t.setBrush(this.Const.Direction.N, "transition_desert_07_N");
-		t.setBrush(this.Const.Direction.NE, "transition_desert_07_NE");
-		t.setBrush(this.Const.Direction.SE, "transition_desert_07_SE");
-		t.setBrush(this.Const.Direction.S, "transition_desert_07_S");
-		t.setBrush(this.Const.Direction.SW, "transition_desert_07_SW");
-		t.setBrush(this.Const.Direction.NW, "transition_desert_07_NW");
+		t.setBrush(::Const.Direction.N, "transition_desert_07_N");
+		t.setBrush(::Const.Direction.NE, "transition_desert_07_NE");
+		t.setBrush(::Const.Direction.SE, "transition_desert_07_SE");
+		t.setBrush(::Const.Direction.S, "transition_desert_07_S");
+		t.setBrush(::Const.Direction.SW, "transition_desert_07_SW");
+		t.setBrush(::Const.Direction.NW, "transition_desert_07_NW");
 		t.setSocket("socket_desert");
-		this.Tactical.setTransitions("tile_legend_desert_09", t);
-		this.Tactical.setTransitions("tile_legend_desert_10", t);
-		this.Tactical.setTransitions("tile_legend_desert_11", t);
-		this.Tactical.setTransitions("tile_legend_desert_12", t);
-		this.Tactical.setTransitions("tile_legend_desert_13", t);
-		this.Tactical.setTransitions("tile_legend_desert_14", t);
-		this.Tactical.setTransitions("tile_legend_desert_15", t);
-		this.Tactical.setTransitions("tile_legend_desert_16", t);
-		this.Tactical.setTransitions("tile_legend_desert_17", t);
-		this.Tactical.setTransitions("tile_legend_desert_18", t);
-		this.Tactical.setTransitions("tile_legend_desert_19", t);
-		this.Tactical.setTransitions("tile_legend_desert_20", t);
-		this.Tactical.setTransitions("tile_legend_desert_21", t);
-		this.Tactical.setTransitions("tile_legend_desert_22", t);
-		this.Tactical.setTransitions("tile_legend_desert_23", t);
-		this.Tactical.setTransitions("tile_legend_desert_24", t);
-		this.Tactical.setTransitions("tile_legend_desert_25", t);
+		::Tactical.setTransitions("tile_legend_desert_09", t);
+		::Tactical.setTransitions("tile_legend_desert_10", t);
+		::Tactical.setTransitions("tile_legend_desert_11", t);
+		::Tactical.setTransitions("tile_legend_desert_12", t);
+		::Tactical.setTransitions("tile_legend_desert_13", t);
+		::Tactical.setTransitions("tile_legend_desert_14", t);
+		::Tactical.setTransitions("tile_legend_desert_15", t);
+		::Tactical.setTransitions("tile_legend_desert_16", t);
+		::Tactical.setTransitions("tile_legend_desert_17", t);
+		::Tactical.setTransitions("tile_legend_desert_18", t);
+		::Tactical.setTransitions("tile_legend_desert_19", t);
+		::Tactical.setTransitions("tile_legend_desert_20", t);
+		::Tactical.setTransitions("tile_legend_desert_21", t);
+		::Tactical.setTransitions("tile_legend_desert_22", t);
+		::Tactical.setTransitions("tile_legend_desert_23", t);
+		::Tactical.setTransitions("tile_legend_desert_24", t);
+		::Tactical.setTransitions("tile_legend_desert_25", t);
 	}
 
 	o.onFirstPass = function ( _rect )
 	{
-		local tile = this.Tactical.getTileSquare(_rect.X, _rect.Y);
+		local tile = ::Tactical.getTileSquare(_rect.X, _rect.Y);
 
 		if (tile.Type != 0)
 		{
 			return;
 		}
 
-		tile.Type = this.Const.Tactical.TerrainType.Sand;
-		tile.Subtype = this.Const.Tactical.TerrainSubtype.Desert;
-		tile.BlendPriority = this.Const.Tactical.TileBlendPriority.Desert7;
+		tile.Type = ::Const.Tactical.TerrainType.Sand;
+		tile.Subtype = ::Const.Tactical.TerrainSubtype.Desert;
+		tile.BlendPriority = ::Const.Tactical.TileBlendPriority.Desert7;
 		tile.IsBadTerrain = false;
 
-		local random = this.Math.rand(1, 100);
+		local random = ::Math.rand(1, 100);
 		if (random <= 10)
 		{
 		tile.setBrush("tile_desert_07");
@@ -126,16 +126,16 @@
 			return;
 		}
 
-		if (this.Math.rand(0, 100) < this.m.ChanceToSpawnObject)
+		if (::Math.rand(0, 100) < this.m.ChanceToSpawnObject)
 		{
-			if (!tile.hasNextTile(this.Const.Direction.S) || tile.getNextTile(this.Const.Direction.S).IsEmpty)
+			if (!tile.hasNextTile(::Const.Direction.S) || tile.getNextTile(::Const.Direction.S).IsEmpty)
 			{
-				tile.spawnObject(this.m.Objects[this.Math.rand(0, this.m.Objects.len() - 1)]);
+				tile.spawnObject(this.m.Objects[::Math.rand(0, this.m.Objects.len() - 1)]);
 			}
 		}
-		else if (this.Math.rand(0, 100) < this.m.ChanceToSpawnDetails)
+		else if (::Math.rand(0, 100) < this.m.ChanceToSpawnDetails)
 		{
-			tile.spawnDetail(this.m.Details[this.Math.rand(0, this.m.Details.len() - 1)]);
+			tile.spawnDetail(this.m.Details[::Math.rand(0, this.m.Details.len() - 1)]);
 		}
 	}
 });

@@ -41,7 +41,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 		}]);
 
 		local ammo = 0;
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 		{
 			if (item.getID() == "weapon.holy_water")
 			{
@@ -76,7 +76,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 
 	function isUsable()
 	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function isHidden()
@@ -138,7 +138,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 
 		if (_data.Skill.m.SoundOnHit.len() != 0)
 		{
-			this.Sound.play(_data.Skill.m.SoundOnHit[this.Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, targetEntity.getPos());
+			::Sound.play(_data.Skill.m.SoundOnHit[::Math.rand(0, _data.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, targetEntity.getPos());
 		}
 
 		_data.Skill.applyEffect(targetEntity);
@@ -152,7 +152,7 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 			{
 				local nextTile = _data.TargetTile.getNextTile(i);
 
-				if (this.Math.rand(1, 100) > 33)
+				if (::Math.rand(1, 100) > 33)
 				{
 				}
 				else if (nextTile.Level > _data.TargetTile.Level)
@@ -173,6 +173,6 @@ this.legend_launch_holy_water_skill <- this.inherit("scripts/skills/actives/thro
 	function onAfterUpdate( _properties )
 	{
 		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 });

@@ -7,7 +7,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 	function create() {
 		this.m.ID = "event.legend_blacksmith_crafts_crusadersword";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_05.png[/img]%blacksmith% thumbs their tools in an idle manner, they pick up the iron ingots in the company stash and weigh them with their eyes. You can already tell that there is much more at work here than it seems, at it is only when %Blacksmith% notices you standing there that they put their plan into motion. %SPEECH_ON%I\'ve been ponderin\' this for some time capt\'n, I see you lot running around in yer\' fancy cloaks killin\' all them strange folk comin\' from the ground and it got me thinkin\'. Me da\' used to serve the order way back when — he showed me \'is sword a few times and I think, with your \'elp I could make it work. All I need is your eyes and this \'ere iron.%SPEECH_OFF% You make sustained eye contact with %Blacksmith% %SPEECH_ON%Okay, maybe a few crowns as well.%SPEECH_OFF%",
@@ -66,13 +66,13 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		// 	function start( _event )
 		// 	{
 		// 		this.Characters.push(_event.m.Blacksmith.getImagePath());
-		// 		this.World.Assets.addMoney(-2000);
+		// 		::World.Assets.addMoney(-2000);
 		// 		this.List.push({
 		// 			id = 10,
 		// 			icon = "ui/icons/asset_money.png",
-		// 			text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]2000[/color] Crowns"
+		// 			text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]2000[/color] Crowns"
 		// 		});
-		// 		local stash = this.World.Assets.getStash().getItems();
+		// 		local stash = ::World.Assets.getStash().getItems();
 
 		// 		local numIngots = ::Math.rand(1, 2);
 		// 		foreach (i, item in stash)
@@ -91,7 +91,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 
 		// 		local item = this.new("scripts/items/weapons/legend_zweihander"); //lmao get fucked
 		// 		item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s " + item.m.Name;
-		// 		this.World.Assets.getStash().add(item);
+		// 		::World.Assets.getStash().add(item);
 		// 		this.List.push({
 		// 			id = 10,
 		// 			icon = "ui/items/" + item.getIcon(),
@@ -99,12 +99,12 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		// 		});
 		// 		_event.m.Blacksmith.worsenMood(1.5, "Didn\'t quite get the sword right...");
 
-		// 		if (_event.m.Blacksmith.getMoodState() < this.Const.MoodState.Neutral)
+		// 		if (_event.m.Blacksmith.getMoodState() < ::Const.MoodState.Neutral)
 		// 		{
 		// 			this.List.push({
 		// 				id = 10,
-		// 				icon = this.Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
-		// 				text = _event.m.Blacksmith.getName() + this.Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
+		// 				icon = ::Const.MoodStateIcon[_event.m.Blacksmith.getMoodState()],
+		// 				text = _event.m.Blacksmith.getName() + ::Const.MoodStateEvent[_event.m.Blacksmith.getMoodState()]
 		// 			});
 		// 		}
 		// 	}
@@ -150,13 +150,13 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.legends_crusader")
+		if (::World.Assets.getOrigin().getID() != "scenario.legends_crusader")
 			return;
 
-		if (this.World.Assets.getMoney() < 2500)
+		if (::World.Assets.getMoney() < 2500)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
 			return;
 
@@ -170,7 +170,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 		if (candidates.len() == 0)
 			return;
 
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local numIngots = 0;
 
 		foreach (item in stash) {
@@ -189,7 +189,7 @@ this.legend_blacksmith_crafts_crusadersword <- this.inherit("scripts/events/even
 	}
 
 	function onPrepare() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		foreach (bro in brothers) {
 			if (bro.getID() != this.m.Blacksmith.getID()) {

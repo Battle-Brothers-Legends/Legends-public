@@ -18,9 +18,9 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 		this.addDefaultStatusSprites();
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInCrossbows = true;
@@ -39,11 +39,11 @@ this.legend_goblin_tribe_defender <- this.inherit("scripts/entity/tactical/gobli
 		this.m.Items.equip(::new("scripts/items/ammo/quiver_of_bolts"));
 		this.m.Items.equip(::new("scripts/items/weapons/greenskins/goblin_crossbow"));
 		this.m.Items.addToBag(::new("scripts/items/weapons/greenskins/goblin_falchion"));
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_heavy_armor]
 		]);
 		this.m.Items.equip(item);
-		item = this.Const.World.Common.pickHelmet([
+		item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_leader_helmet]
 		]);
 		this.m.Items.equip(item);

@@ -77,7 +77,7 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 	}
 
 	function playInventorySound(_eventType) {
-		::Sound.play("sounds/bottle_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function consumeAmmo () {

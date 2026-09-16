@@ -1,11 +1,8 @@
-::mods_hookExactClass("entity/world/attached_location/wooden_watchtower_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/wooden_watchtower_location", function (o) {
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 50,
 				P = 1.0,
@@ -32,11 +29,6 @@
 				S = "shields/legend_tower_shield"
 			});
 			_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_scout"
-			});
-			_list.push({
 				R = 30,
 				P = 1.0,
 				S = "weapons/legend_wooden_spear"
@@ -44,8 +36,7 @@
 		}
 	}
 
-	o.getNewResources <- function ()
-	{
+	o.getNewResources <- function () {
 		return 0;
 	}
 });

@@ -41,7 +41,7 @@ this.legend_vala_chant_disharmony_effect <- this.inherit("scripts/skills/effects
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "[color=%negative%]-" + this.Math.round(bonus) + "%[/color] Initiative"
+			text = "[color=%negative%]-" + ::Math.round(bonus) + "%[/color] Initiative"
 		});
 	}
 

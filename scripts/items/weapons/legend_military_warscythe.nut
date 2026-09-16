@@ -7,11 +7,11 @@ this.legend_military_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Name = "Warscythe";
 		this.m.Description = "A sharp curved blade attached to a long pole, used to deliver deep sweeping strikes over some distance. Mass produced for militias and noble armies, the sturdy design still betrays its farming origin.";
 		this.m.Categories = "Cleaver/Polearm, Two-Handed";
-		this.m.Variant = this.Math.rand(2, 3);
+		this.m.Variant = ::Math.rand(2, 3);
 		this.updateVariant();
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

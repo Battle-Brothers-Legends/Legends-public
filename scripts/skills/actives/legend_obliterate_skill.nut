@@ -7,8 +7,8 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Obliterated";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/smash", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/smash_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -16,8 +16,8 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.HitChanceBonus = -75;
 		this.m.DirectDamageMult = 0.6;
 		this.m.ActionPointCost = 6;
@@ -64,13 +64,13 @@ this.legend_obliterate_skill <- this.inherit("scripts/skills/skill", {
 		if (::Legends.Effects.has(_targetEntity, ::Legends.Effect.Staggered)) {
 			local stunned = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Stunned);
 			if (!_targetEntity.isHiddenToPlayer() && targetTile.IsVisibleForPlayer) {
-				this.Tactical.EventLog.log(stunned.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(user), this.Const.UI.getColorizedEntityName(_targetEntity)));
+				::Tactical.EventLog.log(stunned.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(user), ::Const.UI.getColorizedEntityName(_targetEntity)));
 			}
 			return;
 		}
 		local stagger = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Staggered);
 		if (!_targetEntity.isHiddenToPlayer() && targetTile.IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
-			this.Tactical.EventLog.log(stagger.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(user), this.Const.UI.getColorizedEntityName(_targetEntity)));
+			::Tactical.EventLog.log(stagger.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(user), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 	}
 

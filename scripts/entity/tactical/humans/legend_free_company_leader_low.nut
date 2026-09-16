@@ -3,19 +3,19 @@ this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/hum
 		Outfits = [
 			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_00]
 		],
-		PerkList = this.Const.EnemyPerks.FreeCompanyLeader,
+		PerkList = ::Const.EnemyPerks.FreeCompanyLeader,
 		PerkPower = 2
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.FreeCompanyLeaderLow;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.FreeCompanyLeaderLow.XP;
+		this.m.Type = ::Const.EntityType.FreeCompanyLeaderLow;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.FreeCompanyLeaderLow.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -24,7 +24,7 @@ this.legend_free_company_leader_low <- this.inherit("scripts/entity/tactical/hum
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanyLeaderLow);
+		b.setValues(::Const.Tactical.Actor.FreeCompanyLeaderLow);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;

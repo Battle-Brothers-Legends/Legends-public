@@ -4,15 +4,15 @@ this.legend_double_mail_upgrade <- this.inherit("scripts/items/legend_armor/lege
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_double_mail";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Double Mail";
 		this.m.Description = "A set of thick double mail patches worn as shoulderguards. Heavy, but effective in adding to an armor\'s protection.";
 		this.m.ArmorDescription = "Includes a set of thick double mail shoulderguards.";
 		this.m.Variants = [1,2,3,4];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 600;
 		this.m.Condition = 20;
 		this.m.ConditionMax = 20;

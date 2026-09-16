@@ -27,27 +27,27 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.getTime().Days < 10)
+		if (::World.getTime().Days < 10)
 			return;
 
-		if (this.World.getTime().Days < 30 && this.World.Assets.getOrigin().getID() == "scenario.raiders")
+		if (::World.getTime().Days < 30 && ::World.Assets.getOrigin().getID() == "scenario.raiders")
 			return;
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.FactionManager.isGreaterEvil())
+		if (::World.FactionManager.isGreaterEvil())
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.Const.DLC.Desert && currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.18)
+		if (::Const.DLC.Desert && currentTile.SquareCoords.Y <= ::World.getMapSize().Y * 0.18)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		if (brothers.len() < 2)
@@ -70,15 +70,15 @@
 		if (candidates.len() == 0)
 			return;
 
-		this.m.NobleHouse = this.getNearestNobleHouse(this.World.State.getPlayer().getTile());
+		this.m.NobleHouse = this.getNearestNobleHouse(::World.State.getPlayer().getTile());
 
 		if (this.m.NobleHouse == null)
 			return;
 
-		this.m.Criminal = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Criminal = candidates[::Math.rand(0, candidates.len() - 1)];
 
 		do {
-			this.m.OtherBro = brothers[this.Math.rand(0, brothers.len() - 1)];
+			this.m.OtherBro = brothers[::Math.rand(0, brothers.len() - 1)];
 		} while (this.m.OtherBro == null || this.m.OtherBro.getID() == this.m.Criminal.getID());
 
 		this.m.Score = candidates.len() * 5;

@@ -33,8 +33,8 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 		while (pondPatches != 0 && pondAttempts < 3000)
 		{
 			pondAttempts = ++pondAttempts;
-			local sizeX = this.Math.rand(4, 8);
-			local sizeY = this.Math.rand(4, 8);
+			local sizeX = ::Math.rand(4, 8);
+			local sizeY = ::Math.rand(4, 8);
 			local rect = {
 				X = 0,
 				Y = 0,
@@ -42,8 +42,8 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 				H = sizeY,
 				IsEmpty = false
 			};
-			rect.X = this.Math.rand(1, _rect.W - sizeX);
-			rect.Y = this.Math.rand(1, _rect.H - sizeY);
+			rect.X = ::Math.rand(1, _rect.W - sizeX);
+			rect.Y = ::Math.rand(1, _rect.H - sizeY);
 			pondPatch.fill(rect, _properties);
 			pondPatches = --pondPatches;
 		}
@@ -53,9 +53,9 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 		while (patches != 0)
 		{
 			patches = --patches;
-			local selectedTemplate = templates[this.Math.rand(0, templates.len() - 1)];
-			local sizeX = this.Math.rand(this.Math.max(selectedTemplate.getMinX(), this.Math.min(selectedTemplate.getMaxX(), 8)), this.Math.min(selectedTemplate.getMaxX(), 20));
-			local sizeY = this.Math.rand(this.Math.max(selectedTemplate.getMinY(), this.Math.min(selectedTemplate.getMaxY(), 8)), this.Math.min(selectedTemplate.getMaxY(), 20));
+			local selectedTemplate = templates[::Math.rand(0, templates.len() - 1)];
+			local sizeX = ::Math.rand(::Math.max(selectedTemplate.getMinX(), ::Math.min(selectedTemplate.getMaxX(), 8)), ::Math.min(selectedTemplate.getMaxX(), 20));
+			local sizeY = ::Math.rand(::Math.max(selectedTemplate.getMinY(), ::Math.min(selectedTemplate.getMaxY(), 8)), ::Math.min(selectedTemplate.getMaxY(), 20));
 			local rect = {
 				X = 0,
 				Y = 0,
@@ -63,8 +63,8 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 				H = sizeY,
 				IsEmpty = false
 			};
-			rect.X = this.Math.rand(1, _rect.W - sizeX);
-			rect.Y = this.Math.rand(1, _rect.H - sizeY);
+			rect.X = ::Math.rand(1, _rect.W - sizeX);
+			rect.Y = ::Math.rand(1, _rect.H - sizeY);
 			selectedTemplate.fill(rect, _properties);
 		}
 
@@ -74,11 +74,11 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
-					if (tile.BlendPriority == this.Const.Tactical.TileBlendPriority.Swampgreen4)
+					if (tile.BlendPriority == ::Const.Tactical.TileBlendPriority.Swampgreen4)
 					{
 						tile4.fill({
 							X = x,
@@ -100,7 +100,7 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 				else
 				{
 					tile.Level = 0;
-					local n = this.Math.rand(1, 100);
+					local n = ::Math.rand(1, 100);
 
 					if (n < 50)
 					{
@@ -154,14 +154,14 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 		local tile1 = this.MapGen.get("tactical.tile.swampgreen1");
 		local tile2 = this.MapGen.get("tactical.tile.swampgreen2");
 		local tile3 = this.MapGen.get("tactical.tile.swampgreen3");
-		local centerTile = this.Tactical.getTileSquare(_rect.X + _rect.W / 2 + _properties.ShiftX, _rect.Y + _rect.H / 2 + _properties.ShiftY);
-		local radius = this.Const.Tactical.Settings.CampRadius + _properties.AdditionalRadius;
+		local centerTile = ::Tactical.getTileSquare(_rect.X + _rect.W / 2 + _properties.ShiftX, _rect.Y + _rect.H / 2 + _properties.ShiftY);
+		local radius = ::Const.Tactical.Settings.CampRadius + _properties.AdditionalRadius;
 
 		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				local d = centerTile.getDistanceTo(tile);
 
 				if (d <= radius + 1)
@@ -172,7 +172,7 @@ this.tactical_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 					}
 
 					tile.Type = 0;
-					local r = this.Math.rand(1, 3);
+					local r = ::Math.rand(1, 3);
 
 					if (r == 1)
 					{

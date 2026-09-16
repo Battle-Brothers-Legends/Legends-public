@@ -5,7 +5,7 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 		local appearance = this.getItems().getAppearance();
 		local targetBrightness = 0.9;
 		local targetScale = 0.9;
-		local flip = this.Math.rand(1, 100) < 50;
+		local flip = ::Math.rand(1, 100) < 50;
 
 		if (_tile != null) {
 			this.m.IsCorpseFlipped = flip;
@@ -22,14 +22,14 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 			if (this.hasSprite("tattoo_body")) {
 				tattoo_body = this.getSprite("tattoo_body");
 			}
-			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			local decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
 			decal.Scale = targetScale;
 			decal.setBrightness(targetBrightness);
 
 			if (tattoo_body != null && tattoo_body.HasBrush) {
-				decal = _tile.spawnDetail(tattoo_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(tattoo_body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = tattoo_body.Color;
 				decal.Saturation = tattoo_body.Saturation;
 				decal.Scale = targetScale;
@@ -53,7 +53,7 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 
 			foreach (layer in armorLayers) {
 				if (appearance[layer] != "") {
-					local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip);
+					local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = targetScale;
 					decal.setBrightness(targetBrightness);
 				}
@@ -73,17 +73,17 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 				"HelmetLayerVanity2Corpse"
 			];
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated) {
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				foreach (layer in helmetLowerLayers) {
 					if (appearance[layer] != "") {
-						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, !flip);
+						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, !flip);
 						decal.Scale = targetScale;
 						decal.setBrightness(targetBrightness);
 					}
 				}
 
 				if (!appearance.HideCorpseHead) {
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = targetScale;
@@ -91,7 +91,7 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 				}
 
 				if (tattoo_head != null && tattoo_head.HasBrush) {
-					decal = _tile.spawnDetail(tattoo_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(tattoo_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = tattoo_head.Color;
 					decal.Saturation = tattoo_head.Saturation;
 					decal.Scale = targetScale;
@@ -100,12 +100,12 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 
 				foreach (layer in helmetLayers) {
 					if (appearance[layer] != "") {
-						decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, !flip, false, this.createVec(flip ? -25 : 25, 25));
+						decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, !flip, false, this.createVec(flip ? -25 : 25, 25));
 						decal.Scale = targetScale;
 						decal.setBrightness(targetBrightness);
 					}
 				}
-			} else if (_fatalityType == this.Const.FatalityType.Decapitated) {
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [];
 
 				//uncomment this and the one lower if we ever fix offsets on helms to accommodate decap heads having hats
@@ -129,7 +129,7 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 				//	}
 				//}
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, sprite_prefix + "_head_dead_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, sprite_prefix + "_head_dead_bloodpool");
 				local idx = 0;
 
 				//foreach (layer in helmetLowerLayers) {
@@ -165,25 +165,25 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 				//}
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled && sprite_prefix != "bust_orc_04") { // warlords have very heavy armor and no guts sprites
+			if (_fatalityType == ::Const.FatalityType.Disemboweled && sprite_prefix != "bust_orc_04") { // warlords have very heavy armor and no guts sprites
 				if (appearance.CorpseArmor != "") {
-					decal = _tile.spawnDetail(appearance.CorpseArmor + "_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(appearance.CorpseArmor + "_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				} else {
-					decal = _tile.spawnDetail(sprite_prefix + "_body_dead_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_prefix + "_body_dead_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				}
 				decal.Scale = targetScale;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow) {
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				if (appearance.CorpseArmor != "") {
-					decal = _tile.spawnDetail(appearance.CorpseArmor + "_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(appearance.CorpseArmor + "_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				} else {
-					decal = _tile.spawnDetail(sprite_prefix + "_armor_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_prefix + "_armor_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				}
 				decal.Scale = targetScale;
-			} else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin) {
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				if (appearance.CorpseArmor != "") {
-					decal = _tile.spawnDetail(appearance.CorpseArmor + "_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(appearance.CorpseArmor + "_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				} else {
-					decal = _tile.spawnDetail(sprite_prefix + "_armor_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_prefix + "_armor_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				}
 				decal.Scale = targetScale;
 			}
@@ -197,10 +197,10 @@ this.legend_orc <- this.inherit("scripts/entity/tactical/actor", {
 		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		//this.getItems().dropAll(_tile, _killer, flip); //in orc elite, why?

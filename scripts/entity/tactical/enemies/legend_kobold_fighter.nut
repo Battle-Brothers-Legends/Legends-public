@@ -4,8 +4,8 @@
 // 	},
 // 	function create()
 // 	{
-// 		this.m.Type = this.Const.EntityType.KoboldFighter;
-// 		this.m.XP = this.Const.Tactical.Actor.KoboldFighter.XP;
+// 		this.m.Type = ::Const.EntityType.KoboldFighter;
+// 		this.m.XP = ::Const.Tactical.Actor.KoboldFighter.XP;
 // 		this.legend_kobold.create();
 // 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/goblin_ranged_agent");
 // 		this.m.AIAgent.setActor(this);
@@ -16,15 +16,15 @@
 // 	{
 // 		this.legend_kobold.onInit();
 // 		local b = this.m.BaseProperties;
-// 		b.setValues(this.Const.Tactical.Actor.KoboldFighter);
+// 		b.setValues(::Const.Tactical.Actor.KoboldFighter);
 // 		b.DamageDirectMult = 1.4;
 // 		b.TargetAttractionMult = 1.1;
 // 		this.m.ActionPoints = b.ActionPoints;
 // 		this.m.Hitpoints = b.Hitpoints;
 // 		this.m.CurrentProperties = clone b;
-// 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-// 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
-// 		this.getSprite("head").setBrush("bust_goblin_01_head_0" + this.Math.rand(1, 3));
+// 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+// 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
+// 		this.getSprite("head").setBrush("bust_goblin_01_head_0" + ::Math.rand(1, 3));
 // 		//this.getSprite("quiver").Visible = true;
 // 		this.addDefaultStatusSprites();
 
@@ -32,7 +32,7 @@
 // 		{
 // 			b.IsSpecializedInBows = true;
 
-// 			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 180)
+// 			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 180)
 // 			{
 // 				b.DamageDirectMult = 1.5;
 // 			}
@@ -52,9 +52,9 @@
 
 // 	function assignRandomEquipment()
 // 	{
-// 		// if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+// 		// if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 // 		// {
-// 		// 	local r = this.Math.rand(1, 2);
+// 		// 	local r = ::Math.rand(1, 2);
 
 // 		// 	if (r == 1)
 // 		// 	{
@@ -77,7 +77,7 @@
 // 		}
 // 		else
 // 		{
-// 			if (this.Math.rand(1, 100) <= 90)
+// 			if (::Math.rand(1, 100) <= 90)
 // 			{
 // 				this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 // 			}

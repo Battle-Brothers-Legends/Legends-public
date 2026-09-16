@@ -16,8 +16,8 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 
 	function create()
 	{
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -50,7 +50,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.Container == null)
 		{
-			return this.Math.ceil(this.m.FatigueCost * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult);
+			return ::Math.ceil(this.m.FatigueCost * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult);
 		}
 
 		local perkMult = 1.0;
@@ -59,7 +59,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		{
 			perkMult = skill.m.FatigueMult;
 		}
-		return this.Math.round(this.Math.ceil(this.m.FatigueCost * perkMult * this.m.FatigueCostMult * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult) + this.m.Container.getActor().getCurrentProperties().FatigueOnSkillUse);
+		return ::Math.round(::Math.ceil(this.m.FatigueCost * perkMult * this.m.FatigueCostMult * this.m.Container.getActor().getCurrentProperties().FatigueEffectMult) + this.m.Container.getActor().getCurrentProperties().FatigueOnSkillUse);
 	}
 
 	function getCostString()
@@ -102,7 +102,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 	function getNumberOfSpawnsAvailable()
 	{
 		local num = 0;
-		local items = this.World.Assets.getStash().getItems();
+		local items = ::World.Assets.getStash().getItems();
 		foreach( item in items )
 		{
 			if (item == null)
@@ -158,7 +158,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (this.Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference)
+		if (::Math.abs(_targetTile.Level - _originTile.Level) > this.m.MaxLevelDifference)
 		{
 			return false;
 		}
@@ -171,8 +171,8 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			local Dy = (targetPos.Y - myPos.Y) / 2;
 			local x = myPos.X + Dx;
 			local y = myPos.Y + Dy;
-			local tileCoords = this.Tactical.worldToTile(this.createVec(x, y));
-			local tile = this.Tactical.getTile(tileCoords);
+			local tileCoords = ::Tactical.worldToTile(this.createVec(x, y));
+			local tile = ::Tactical.getTile(tileCoords);
 
 			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1))
 			{
@@ -186,7 +186,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local spawnItem = null;
-		local items = this.World.Assets.getStash().getItems();
+		local items = ::World.Assets.getStash().getItems();
 		foreach( item in items )
 		{
 			if (item == null)
@@ -205,7 +205,7 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			}
 
 			spawnItem = item;
-			this.World.Assets.getStash().remove(item);
+			::World.Assets.getStash().remove(item);
 			break;
 		}
 
@@ -214,11 +214,11 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 			return false
 		}
 
-		local entity = this.Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
+		local entity = ::Tactical.spawnEntity(this.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
 
 		if (this.m.IsControlledByPlayer)
 		{
-			entity.setFaction(this.Const.Faction.PlayerAnimals); //summons will always be 'animals' for the purposes of not disabling lone wolf perk or absorbing xp from kills in battle. - Luft 10/7/26.
+			entity.setFaction(::Const.Faction.PlayerAnimals); //summons will always be 'animals' for the purposes of not disabling lone wolf perk or absorbing xp from kills in battle. - Luft 10/7/26.
 		}
 
 		entity.setItem(spawnItem);
@@ -227,13 +227,13 @@ this.legend_spawn_skill <- this.inherit("scripts/skills/skill", {
 		entity.riseFromGround();
 		entity.getFlags().add("IsSummoned", true);
 		entity.getFlags().add("Summoner", _user);
-		entity.setActionPoints(this.Math.round(this.m.APStartMult * entity.getActionPoints()));
+		entity.setActionPoints(::Math.round(this.m.APStartMult * entity.getActionPoints()));
 		spawnItem.setEntity(entity);
 		this.m.Items.push(spawnItem);
 
 		this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
 		local actor = this.getContainer().getActor();
-		actor.setHitpoints(this.Math.max(actor.getHitpoints() - this.m.HPCost, 1));
+		actor.setHitpoints(::Math.max(actor.getHitpoints() - this.m.HPCost, 1));
 
 		return true;
 	}

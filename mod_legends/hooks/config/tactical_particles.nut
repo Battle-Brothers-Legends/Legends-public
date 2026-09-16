@@ -1490,8 +1490,8 @@ foreach (particle in ::Const.Tactical.DustParticles)
 			]
 		}
 	],
-	this.Const.Tactical.BloodSplatters[3],
-	this.Const.Tactical.BloodSplatters[4],
+	::Const.Tactical.BloodSplatters[3],
+	::Const.Tactical.BloodSplatters[4],
 	[
 		{
 			Delay = 0,
@@ -1565,8 +1565,8 @@ foreach (particle in ::Const.Tactical.DustParticles)
 			]
 		}
 	],
-	this.Const.Tactical.BloodSplatters[6],
-	this.Const.Tactical.BloodSplatters[7]
+	::Const.Tactical.BloodSplatters[6],
+	::Const.Tactical.BloodSplatters[7]
 ];
 ::Const.Tactical.SmashSplatters = [
 	[],
@@ -1715,8 +1715,8 @@ foreach (particle in ::Const.Tactical.DustParticles)
 			]
 		}
 	],
-	this.Const.Tactical.BloodSplatters[3],
-	this.Const.Tactical.BloodSplatters[4],
+	::Const.Tactical.BloodSplatters[3],
+	::Const.Tactical.BloodSplatters[4],
 	[
 		{
 			Delay = 0,
@@ -1790,8 +1790,8 @@ foreach (particle in ::Const.Tactical.DustParticles)
 			]
 		}
 	],
-	this.Const.Tactical.BloodSplatters[6],
-	this.Const.Tactical.BloodSplatters[7]
+	::Const.Tactical.BloodSplatters[6],
+	::Const.Tactical.BloodSplatters[7]
 ];
 ::Const.Tactical.TerrainDropdownParticles = [
 	[],

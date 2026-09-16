@@ -14,13 +14,13 @@
 
 	o.onUse = function ( _actor, _item = null )
 	{
-		if (!_actor.getSkills().hasSkillOfType(this.Const.SkillType.Injury) && !_actor.getSkills().hasTrait(::Legends.Trait.Old))
+		if (!_actor.getSkills().hasSkillOfType(::Const.SkillType.Injury) && !_actor.getSkills().hasTrait(::Legends.Trait.Old))
 		{
 			return false;
 		}
 
-		this.Sound.play("sounds/combat/drink_03.wav", this.Const.Sound.Volume.Inventory);
-		_actor.getSkills().removeByType(this.Const.SkillType.Injury);
+		::Sound.play("sounds/combat/drink_03.wav", ::Const.Sound.Volume.Inventory);
+		_actor.getSkills().removeByType(::Const.SkillType.Injury);
 		::Legends.Traits.remove(_actor, ::Legends.Trait.Old);
 		::Legends.Traits.remove(_actor, ::Legends.Trait.Addict);
 		::Legends.Effects.remove(_actor, ::Legends.Effect.Hangover);

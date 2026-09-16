@@ -8,24 +8,24 @@
 		this.m.SelectedSkill = null;
 		local time = this.Time.getExactTime();
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (_entity.getCurrentProperties().IsRooted)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (this.getAgent().getIntentions().IsDefendingPosition)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local skills = [];
@@ -43,22 +43,22 @@
 
 		if (this.m.SelectedSkill == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local masterTile;
-		local instances = this.Tactical.Entities.getAllInstances();
+		local instances = ::Tactical.Entities.getAllInstances();
 
-		for( local f = this.Const.Faction.PlayerAnimals + 1; f != instances.len(); f = ++f )
+		for( local f = ::Const.Faction.PlayerAnimals + 1; f != instances.len(); f = ++f )
 		{
 			for( local p = 0; p != instances[f].len(); p = ++p )
 			{
-				if (instances[f][p].getType() == this.Const.EntityType.Kraken)
+				if (instances[f][p].getType() == ::Const.EntityType.Kraken)
 				{
 					masterTile = instances[f][p].getTile();
 					break;
@@ -91,7 +91,7 @@
 			}
 
 			local zocByAllies = targetTile.getZoneOfControlCountOtherThan(target.getAlliedFactions());
-			local potentialTiles = this.queryDestinationsInRange(targetTile, this.getProperties().EngageRangeMin, this.Math.max(_entity.getIdealRange(), this.getProperties().EngageRangeMax));
+			local potentialTiles = this.queryDestinationsInRange(targetTile, this.getProperties().EngageRangeMin, ::Math.max(_entity.getIdealRange(), this.getProperties().EngageRangeMax));
 			potentialTiles.push(myTile);
 
 			foreach( tile in potentialTiles )
@@ -114,23 +114,23 @@
 
 				local dist = myTile.getDistanceTo(tile);
 				local tileScore = 30.0;
-				tileScore = this.Math.maxf(1.0, score - myTile.getDistanceTo(tile));
+				tileScore = ::Math.maxf(1.0, score - myTile.getDistanceTo(tile));
 
 				if (masterTile != null)
 				{
-					tileScore = this.Math.maxf(1.0, score - masterTile.getDistanceTo(tile));
+					tileScore = ::Math.maxf(1.0, score - masterTile.getDistanceTo(tile));
 				}
 
 				if (target.getCurrentProperties().IsRooted)
 				{
-					tileScore = tileScore * this.Const.AI.Behavior.MoveTentacleTargetAlreadyRooted;
+					tileScore = tileScore * ::Const.AI.Behavior.MoveTentacleTargetAlreadyRooted;
 				}
 
 				local zoc = tile.getZoneOfControlCountOtherThan(_entity.getAlliedFactions());
-				tileScore = tileScore * this.Math.pow(this.Const.AI.Behavior.MoveTentacleZOCMult, zoc - 1);
-				tileScore = tileScore * this.Math.pow(this.Const.AI.Behavior.MoveTentacleAlliesPresentMult, zocByAllies - 1);
+				tileScore = tileScore * ::Math.pow(::Const.AI.Behavior.MoveTentacleZOCMult, zoc - 1);
+				tileScore = tileScore * ::Math.pow(::Const.AI.Behavior.MoveTentacleAlliesPresentMult, zocByAllies - 1);
 				local targetValues = 0.0;
-				local targetsInRange = this.queryTargetsInMeleeRange(this.getProperties().EngageRangeMin, this.Math.max(_entity.getIdealRange(), this.getProperties().EngageRangeMax), 4, tile);
+				local targetsInRange = this.queryTargetsInMeleeRange(this.getProperties().EngageRangeMin, ::Math.max(_entity.getIdealRange(), this.getProperties().EngageRangeMax), 4, tile);
 
 				foreach( pr in targetsInRange )
 				{
@@ -146,12 +146,12 @@
 
 				if (myTile.ID == tile.ID)
 				{
-					tileScore = tileScore * this.Const.AI.Behavior.MoveTentacleMyTileMult;
+					tileScore = tileScore * ::Const.AI.Behavior.MoveTentacleMyTileMult;
 				}
 
 				if (masterTile != null && masterTile.getDistanceTo(tile) == 1)
 				{
-					tileScore = tileScore * this.Const.AI.Behavior.MoveTentacleBlockHeadMult;
+					tileScore = tileScore * ::Const.AI.Behavior.MoveTentacleBlockHeadMult;
 				}
 
 				potentialDestinations.push({
@@ -164,7 +164,7 @@
 
 		if (potentialDestinations.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		potentialDestinations.sort(this.onSortByScore);
@@ -175,7 +175,7 @@
 			if (potentialDestinations[i].Tile.ID == myTile.ID)
 			{
 				this.m.TargetTile = null;
-				return this.Const.AI.Behavior.Score.Zero;
+				return ::Const.AI.Behavior.Score.Zero;
 			}
 			else if (!this.m.SelectedSkill.isUsableOn(potentialDestinations[i].Tile))
 			{
@@ -201,11 +201,11 @@
 
 		if (this.m.TargetTile == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.getAgent().getIntentions().TargetTile = this.m.TargetTile;
-		return this.Const.AI.Behavior.Score.MoveTentacle * score;
+		return ::Const.AI.Behavior.Score.MoveTentacle * score;
 	}
 	o.onExecute = function( _entity )
 	{
@@ -213,7 +213,7 @@
 		{
 			this.m.IsFirstExecuted = false;
 
-			if (this.Const.AI.VerboseMode)
+			if (::Const.AI.VerboseMode)
 			{
 				this.logInfo("* " + _entity.getName() + ": Moving to engage.");
 			}

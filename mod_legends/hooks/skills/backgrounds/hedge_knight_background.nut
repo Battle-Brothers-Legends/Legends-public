@@ -34,8 +34,8 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Initiative,
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.Initiative,
+			::Const.Attributes.RangedSkill
 		];
 		this.m.Titles = [
 			"the Lone Wolf",
@@ -51,10 +51,10 @@
 			"the Knightslayer",
 			"the Hedge Knight"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.Level = this.Math.rand(2, 5);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
+		this.m.Level = ::Math.rand(2, 5);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Crusader;
 	}
 
 	o.getTooltip = function () {
@@ -132,7 +132,7 @@
 			}
 
 			this.m.ExecutingAttack = true;
-			AOO.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
+			AOO.useForFree(targetTiles[::Math.rand(0, targetTiles.len() - 1)]);
 			this.m.ExecutingAttack = false;
 		}).bindenv(this);
 		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);
@@ -158,13 +158,13 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25) {
+		if (::Math.rand(1, 100) <= 25) {
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25) {
+		if (::Math.rand(1, 100) <= 25) {
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
 		}
@@ -198,9 +198,9 @@
 			"weapons/two_handed_flail",
 			"weapons/two_handed_flanged_mace"
 		];
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.scale_armor],
@@ -208,7 +208,7 @@
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],

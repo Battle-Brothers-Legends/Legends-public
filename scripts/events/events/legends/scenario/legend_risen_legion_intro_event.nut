@@ -16,10 +16,10 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 					local locations = ::World.EntityManager.getLocations().filter(@(idx, loc) loc.getTypeID() == "location.black_monolith");
 					if (locations.len() > 0) {
 						local monolith = locations[0];
-						this.World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
+						::World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
 						monolith.getFlags().set("IsEventLocation", true);
 						monolith.setDiscovered(true);
-						// this.World.getCamera().moveTo(monolith); //removed for now, as players were being dragged to spectating the monolith on the other side of the map, leading to confusion.
+						// ::World.getCamera().moveTo(monolith); //removed for now, as players were being dragged to spectating the monolith on the other side of the map, leading to confusion.
 					}
 					return 0;
 				}

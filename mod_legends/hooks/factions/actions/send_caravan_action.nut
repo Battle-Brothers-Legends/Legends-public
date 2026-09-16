@@ -4,8 +4,8 @@
 	{
 		this.faction_action.setFaction(_f);
 
-		if (_f.getType() == this.Const.FactionType.NobleHouse)
-			this.m.Cooldown = this.World.getTime().SecondsPerDay * 2;
+		if (_f.getType() == ::Const.FactionType.NobleHouse)
+			this.m.Cooldown = ::World.getTime().SecondsPerDay * 2;
 	}
 
 	local create = o.create;
@@ -17,22 +17,22 @@
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
 		if (_faction.isEnemyNearby())
 			return;
 
-		local isNobleHouse = _faction.getType() == this.Const.FactionType.NobleHouse;
+		local isNobleHouse = _faction.getType() == ::Const.FactionType.NobleHouse;
 
 		if (!this.isAbleToSpawnCaravan(_faction, isNobleHouse ? 4 : 1))
 			return;
 
 		local mySettlements = this.getFactionSettlememts(_faction, isNobleHouse);
-		local allSettlements = this.World.EntityManager.getSettlements();
+		local allSettlements = ::World.EntityManager.getSettlements();
 		local destinations;
 
-		if (!this.World.FactionManager.isGreaterEvil())
+		if (!::World.FactionManager.isGreaterEvil())
 			destinations = allSettlements;
 		else
 		{
@@ -91,7 +91,7 @@
 
 	o.getReputationToDifficultyLightMult <- function ()
 	{
-		return this.faction_action.getReputationToDifficultyLightMult() * (this.World.FactionManager.isCivilWar() ? 1.1 : 1.0);
+		return this.faction_action.getReputationToDifficultyLightMult() * (::World.FactionManager.isCivilWar() ? 1.1 : 1.0);
 	}
 
 	o.getCaravansRaidedToAdditionalResources <- function ( _faction)
@@ -101,12 +101,12 @@
 
 	o.getResourcesForParty <- function ( _settlement, _faction )
 	{
-		if (_settlement == null) return this.Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
+		if (_settlement == null) return ::Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
 
-		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState)) return (this.Math.rand(85, 130) + this.Math.round(0.12 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult(); // this.m.Start.getResources() * 0.6
+		if (_faction.hasTrait(::Const.FactionTrait.OrientalCityState)) return (::Math.rand(85, 130) + ::Math.round(0.12 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult(); // this.m.Start.getResources() * 0.6
 
 		local extraFromFCR = this.getCaravansRaidedToAdditionalResources(_faction);
-		return (this.Math.rand(45, 95) + this.Math.round(0.1 * ::Math.max(1, _settlement.getResources())) + extraFromFCR) * this.getReputationToDifficultyLightMult(); // this.m.Start.getResources() * 0.5
+		return (::Math.rand(45, 95) + ::Math.round(0.1 * ::Math.max(1, _settlement.getResources())) + extraFromFCR) * this.getReputationToDifficultyLightMult(); // this.m.Start.getResources() * 0.5
 	}
 
 	o.convertBudgetToMult <- function ( _budget )
@@ -114,7 +114,7 @@
 		if (_budget == 0)
 			return 1.0;
 
-		return 1.0 + this.Math.floor(_budget / 900) * 0.125;
+		return 1.0 + ::Math.floor(_budget / 900) * 0.125;
 	}
 
 	o.onExecute = function ( _faction )
@@ -139,7 +139,7 @@
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
 		party.setDescription("A trading caravan from " + this.m.Start.getName() + " that is transporting all manner of goods between settlements.");
-		party.setFootprintType(this.Const.World.FootprintsType.Caravan);
+		party.setFootprintType(::Const.World.FootprintsType.Caravan);
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
 
@@ -154,8 +154,8 @@
 		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
 
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local move = this.new("scripts/ai/world/orders/move_order");
 		move.setDestination(this.m.Dest.getTile());
 		move.setRoadsOnly(true);
@@ -172,22 +172,22 @@
 	// Want forts+ to be able to get mercenaries in regular caravans, and never a lowbie so instead of using MinR values I'm actually swapping around the spawnlists
 	o.pickSpawnList <- function( _settlement, _faction )
 	{
-		if (_faction.hasTrait(this.Const.FactionTrait.OrientalCityState)) return this.Const.World.Spawn.CaravanSouthern;
+		if (_faction.hasTrait(::Const.FactionTrait.OrientalCityState)) return ::Const.World.Spawn.CaravanSouthern;
 
-		if (_settlement.isMilitary()) return this.Const.World.Spawn.CaravanFort;
+		if (_settlement.isMilitary()) return ::Const.World.Spawn.CaravanFort;
 
-		return this.Const.World.Spawn.Caravan;
+		return ::Const.World.Spawn.Caravan;
 	}
 
 	o.addLoot <- function( _party )
 	{
-		if (this.Math.rand(1, 2) <= 1) _party.getLoot().ArmorParts = this.Math.rand(0, 10);
+		if (::Math.rand(1, 2) <= 1) _party.getLoot().ArmorParts = ::Math.rand(0, 10);
 	
-		if (this.Math.rand(1, 2) <= 1) _party.getLoot().Medicine = this.Math.rand(0, 10);
+		if (::Math.rand(1, 2) <= 1) _party.getLoot().Medicine = ::Math.rand(0, 10);
 
-		if (this.Math.rand(1, 2) <= 1) _party.getLoot().Ammo = this.Math.rand(0, 25);
+		if (::Math.rand(1, 2) <= 1) _party.getLoot().Ammo = ::Math.rand(0, 25);
 
-		_party.getLoot().Money = this.Math.rand(0, 100);
+		_party.getLoot().Money = ::Math.rand(0, 100);
 	}
 
 	o.addToPartyInventory <- function( _party )

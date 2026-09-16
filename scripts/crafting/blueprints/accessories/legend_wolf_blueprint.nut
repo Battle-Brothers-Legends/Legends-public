@@ -4,7 +4,7 @@ this.legend_wolf_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_wolf";
-		this.m.Type = this.Const.Items.ItemType.Accessory;
+		this.m.Type = ::Const.Items.ItemType.Accessory;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_wolf_item");
 		this.m.PreviewCraftable.m.Name = "Wolf";
 		this.m.Cost = 120;

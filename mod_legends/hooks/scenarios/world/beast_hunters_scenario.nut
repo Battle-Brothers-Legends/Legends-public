@@ -13,12 +13,12 @@
 		this.m.Order = 40;
 		this.m.IsFixedLook = true;
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 3; i++ )
@@ -31,7 +31,7 @@
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -50,14 +50,14 @@
  		bros[0].getSprite("miniboss").setBrush("bust_miniboss");
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 2;
-		talents[this.Const.Attributes.Initiative] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 2;
+		talents[::Const.Attributes.Initiative] = 2;
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/legend_redback_dagger"));
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 
@@ -72,14 +72,14 @@
  		bros[1].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Fatigue] = 2;
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.MeleeDefense] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Fatigue] = 2;
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.MeleeDefense] = 1;
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
 
 
@@ -87,20 +87,20 @@
 		bros[2].getBackground().m.RawDescription = "Grizzled vets are a rarity in beast slaying, and %name% sure ain\'t one. Instead, the \'slayer\' started the foray into monster hunting by reading books instead of training the sword. Still a good enough warrior at heart, it is the study and preparation that gives %name% the edge in battle.";
 		bros[2].setPlaceInFormation(5);
 		bros[2].setVeteranPerks(2);
-		bros[2].addInjury(this.Const.Injury.Brawl);
+		bros[2].addInjury(::Const.Injury.Brawl);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBeastslayers);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.HateBeasts);
  		bros[2].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.RangedSkill] = 2;
-		talents[this.Const.Attributes.RangedDefense] = 1;
-		talents[this.Const.Attributes.Fatigue] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.RangedSkill] = 2;
+		talents[::Const.Attributes.RangedDefense] = 1;
+		talents[::Const.Attributes.Fatigue] = 1;
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Ammo));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/crossbow"));
 		items.equip(this.new("scripts/items/ammo/legend_armor_piercing_bolts"));
 		items.equip(this.new("scripts/items/accessory/falcon_item"));
@@ -112,16 +112,16 @@
 			bro.m.Level = 2;
 		}
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting], true);
-		//this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
-		this.World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
-		this.World.Assets.getStash().add(this.new("scripts/items/accessory/night_vision_elixir_item"));
-		this.World.Assets.m.Money = this.Math.round(this.World.Assets.m.Money * 0.75);
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting], true);
+		//::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
+		::World.Assets.getStash().add(this.new("scripts/items/tools/legend_broken_throwing_net"));
+		::World.Assets.getStash().add(this.new("scripts/items/accessory/night_vision_elixir_item"));
+		::World.Assets.m.Money = ::Math.round(::World.Assets.m.Money * 0.75);
 	}
 
 	o.onGenerateBro <- function (bro)
@@ -131,10 +131,10 @@
 			return;
 		}
 		local r;
-		r = this.Math.rand(0,5);
+		r = ::Math.rand(0,5);
 		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.8);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.8);
 			bro.getBaseProperties().DailyWageMult *= 0.8;
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
@@ -142,7 +142,7 @@
 		}
 		else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
@@ -150,21 +150,21 @@
 		}
 		else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 0.0;
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Feels at one with nature");
 		}
 		else if (r == 0 || bro.getSkills().hasTrait(::Legends.Trait.HateBeasts))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWageMult *= 0.9;
 			::Legends.Traits.grant(bro, ::Legends.Trait.HateBeasts);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25);
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
 			bro.getBaseProperties().DailyWageMult *= 1.25;
 			bro.worsenMood(2.0, "Has heard worrying things about your kind...");
 		}
@@ -178,10 +178,10 @@
 	o.onInit <- function ()
 	{
 		this.starting_scenario.onInit();
-		this.World.Assets.m.BuyPriceMult = 1.2;
-		this.World.Assets.m.SellPriceMult = 0.8;
-		this.World.Assets.m.ExtraLootChance = 50;
-		this.World.Assets.m.FootprintVision = 1.5;
+		::World.Assets.m.BuyPriceMult = 1.2;
+		::World.Assets.m.SellPriceMult = 0.8;
+		::World.Assets.m.ExtraLootChance = 50;
+		::World.Assets.m.FootprintVision = 1.5;
 	}
 
 	o.onUpdateHiringRoster <- function ( _roster )

@@ -5,7 +5,7 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_slave_finds_company";
 		this.m.Title = "Along the road...";
-		this.m.Cooldown = 15.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 15.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_166.png[/img]{%joiner%, a wandering slave who escaped from slavers on the road, seeks to join the company, apparently understanding it is made up of like-minded folk. | A wanderer by the name of %joiner% greets you, claiming to have heard tales of a mercenary company made of escaped slaves. On the run from manhunters too, the like-minded former slave seeks to join you. | %joiner% trailed the company for days before finally working up the courage to approach you directly. Explaining the way they escaped slavery in the south, the straggler seeks to join the %companyname%. | You are approached by a escaped slave named %joiner%, who has been inspired by tales of a mercenary company of former slaves making a name for themselves in the world. %joiner% asks to join you.}",
@@ -15,8 +15,8 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "Yes, join us!",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
@@ -24,13 +24,13 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 			}, {
 				Text = "Your place is not with us, friend.",
 				function getResult(_event) {
-					this.World.getTemporaryRoster().clear();
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave, ::Legends.Background.SlaveSouthern, ::Legends.Background.SlaveBarbarian]);
 				this.Characters.push(_event.m.Dude.getImagePath());
@@ -40,19 +40,19 @@ this.legend_slave_finds_company_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (!this.Const.DLC.Desert) {
+		if (!::Const.DLC.Desert) {
 			return;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad) {
 			return;

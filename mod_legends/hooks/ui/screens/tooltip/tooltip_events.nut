@@ -4,7 +4,7 @@
 	}
 
 	o.general_queryUIProfessionTooltipData <- function (_entityId, _professionId) {
-		local player = this.Tactical.getEntityByID(_entityId);
+		local player = ::Tactical.getEntityByID(_entityId);
 		local profession = player.getBackground().getProfession(_professionId);
 
 		local vars = [
@@ -91,7 +91,7 @@
 		}
 		else
 		{
-			local p = this.World.Retinue.getFollower(_followerID);
+			local p = ::World.Retinue.getFollower(_followerID);
 			return p.getTooltip();
 		}
 	}
@@ -139,8 +139,8 @@
 
 	o.tactical_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
 	{
-		local entity = this.Tactical.getEntityByID(_entityId);
-		local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
+		local entity = ::Tactical.getEntityByID(_entityId);
+		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 
 		switch(_itemOwner)
 		{
@@ -173,7 +173,7 @@
 
 		case "stash":
 		case "character-screen-inventory-list-module.stash":
-			local result = this.Stash.getItemByInstanceID(_itemId);
+			local result = ::Stash.getItemByInstanceID(_itemId);
 
 			if (result != null)
 			{
@@ -183,7 +183,7 @@
 			return null;
 
 		case "tactical-combat-result-screen.stash":
-			local result = this.Stash.getItemByInstanceID(_itemId);
+			local result = ::Stash.getItemByInstanceID(_itemId);
 
 			if (result != null)
 			{
@@ -193,7 +193,7 @@
 			return null;
 
 		case "tactical-combat-result-screen.found-loot":
-			local result = this.Tactical.CombatResultLoot.getItemByInstanceID(_itemId);
+			local result = ::Tactical.CombatResultLoot.getItemByInstanceID(_itemId);
 
 			if (result != null)
 			{
@@ -208,7 +208,7 @@
 				return null;
 			}
 
-			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Body, _itemId);
+			return entity.getRemoveLayerTooltip(::Const.ItemSlot.Body, _itemId);
 
 		case "paperdoll.remove-helmet-layer":
 			if (entity == null)
@@ -216,13 +216,13 @@
 				return null;
 			}
 
-			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+			return entity.getRemoveLayerTooltip(::Const.ItemSlot.Head, _itemId);
 
 		case "paperdoll.toggle-accessory-visibility":
 			if (entity == null) {
 				return null;
 			}
-			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
+			return entity.getToggleAccessoryTooltip(::Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;
@@ -230,11 +230,11 @@
 
 	o.tactical_helper_getEntityTooltip = function ( _targetedEntity, _activeEntity, _isTileEntity )
 	{
-		if (this.Tactical.State != null && this.Tactical.State.getCurrentActionState() == this.Const.Tactical.ActionState.SkillSelected)
+		if (::Tactical.State != null && ::Tactical.State.getCurrentActionState() == ::Const.Tactical.ActionState.SkillSelected)
 		{
 			if (_activeEntity != null && this.isKindOf(_targetedEntity, "actor") && _activeEntity.isPlayerControlled() && _targetedEntity != null)
 			{
-				local skill = _activeEntity.getSkills().getSkillByID(this.Tactical.State.getSelectedSkillID());
+				local skill = _activeEntity.getSkills().getSkillByID(::Tactical.State.getSelectedSkillID());
 
 				if (skill != null)
 				{
@@ -257,9 +257,9 @@
 	{
 		local stashLocked = true;
 
-		if (this.Stash != null)
+		if (::Stash != null)
 		{
-			stashLocked = this.Stash.isLocked();
+			stashLocked = ::Stash.isLocked();
 		}
 
 		local tooltip = [];
@@ -313,7 +313,7 @@
 					id = 1,
 					type = "hint",
 					icon = "ui/icons/icon_locked.png",
-					text = this.Const.Strings.Tooltip.Tactical.Hint_CannotChangeItemInCombat
+					text = ::Const.Strings.Tooltip.Tactical.Hint_CannotChangeItemInCombat
 				});
 				return tooltip;
 			}
@@ -324,7 +324,7 @@
 					id = 1,
 					type = "hint",
 					icon = "ui/icons/icon_locked.png",
-					text = this.Const.Strings.Tooltip.Tactical.Hint_OnlyActiveCharacterCanChangeItemsInCombat
+					text = ::Const.Strings.Tooltip.Tactical.Hint_OnlyActiveCharacterCanChangeItemsInCombat
 				});
 				return tooltip;
 			}
@@ -348,11 +348,11 @@
 		switch(_itemOwner)
 		{
 		case "entity":
-			if (_item.getCurrentSlotType() == this.Const.ItemSlot.Bag && _item.getSlotType() != this.Const.ItemSlot.None)
+			if (_item.getCurrentSlotType() == ::Const.ItemSlot.Bag && _item.getSlotType() != ::Const.ItemSlot.None)
 			{
 				if (stashLocked == true)
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
+					if (_item.getSlotType() != ::Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -377,7 +377,7 @@
 				}
 				else
 				{
-					if (_item.getSlotType() != this.Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
+					if (_item.getSlotType() != ::Const.ItemSlot.Bag && (_entity.getItems().getItemAtSlot(_item.getSlotType()) == null || _entity.getItems().getItemAtSlot(_item.getSlotType()) == "-1" || _entity.getItems().getItemAtSlot(_item.getSlotType()).isAllowedInBag()))
 					{
 						tooltip.push({
 							id = 1,
@@ -386,10 +386,10 @@
 							text = "Equip item"
 						});
 
-						if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+						if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
 							&& _item.getBlockedSlotType() == null
-							&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
-							&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+							&& _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
+							&& !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)
 							&& _entity.getItems().canDualWield(_entity, _item))
 						{
 							tooltip.push({
@@ -458,7 +458,7 @@
 		case "character-screen-inventory-list-module.ground":
 			if (_item.isChangeableInBattle())
 			{
-				if (_item.getSlotType() != this.Const.ItemSlot.None)
+				if (_item.getSlotType() != ::Const.ItemSlot.None)
 				{
 					tooltip.push({
 						id = 1,
@@ -500,7 +500,7 @@
 					});
 				}
 			}
-			else if (_item.getSlotType() != this.Const.ItemSlot.None && _item.getSlotType() != this.Const.ItemSlot.Bag)
+			else if (_item.getSlotType() != ::Const.ItemSlot.None && _item.getSlotType() != ::Const.ItemSlot.Bag)
 			{
 				tooltip.push({
 					id = 1,
@@ -509,11 +509,11 @@
 					text = "Equip item"
 				});
 
-				if (_item.getSlotType() == this.Const.ItemSlot.Mainhand
+				if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
 					&& _item.getBlockedSlotType() == null
 					&& _entity != null
-					&& _entity.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
-					&& !_entity.getItems().hasBlockedSlot(this.Const.ItemSlot.Offhand)
+					&& _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
+					&& !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)
 					&& _entity.getItems().canDualWield(_entity, _item))
 				{
 					tooltip.push({
@@ -551,7 +551,7 @@
 			}
 
 			local slot = _item.getSlotType();
-			if (_item.getRepair() >= _item.getRepairMax() && ( slot == this.Const.ItemSlot.Body || slot == this.Const.ItemSlot.Head || slot == this.Const.ItemSlot.Mainhand || slot == this.Const.ItemSlot.Offhand ) && !_item.isItemType(::Const.Items.ItemType.Net))
+			if (_item.getRepair() >= _item.getRepairMax() && ( slot == ::Const.ItemSlot.Body || slot == ::Const.ItemSlot.Head || slot == ::Const.ItemSlot.Mainhand || slot == ::Const.ItemSlot.Offhand ) && !_item.isItemType(::Const.Items.ItemType.Net))
 			{
 				tooltip.push({
 					id = 3,
@@ -671,7 +671,7 @@
 			break;
 
 		case "tactical-combat-result-screen.found-loot":
-			if (this.Stash.hasEmptySlot())
+			if (::Stash.hasEmptySlot())
 			{
 				tooltip.push({
 					id = 1,
@@ -702,13 +702,13 @@
 				text = "Sell item for [img]gfx/ui/tooltips/money.png[/img]" + _item.getSellPrice()
 			});
 
-			if (this.World.State.getCurrentTown() != null && this.World.State.getCurrentTown().getCurrentBuilding() != null && this.World.State.getCurrentTown().getCurrentBuilding().isRepairOffered() && _item.getRepairMax() > 1 && _item.getRepair() < _item.getRepairMax())
+			if (::World.State.getCurrentTown() != null && ::World.State.getCurrentTown().getCurrentBuilding() != null && ::World.State.getCurrentTown().getCurrentBuilding().isRepairOffered() && _item.getRepairMax() > 1 && _item.getRepair() < _item.getRepairMax())
 			{
-				local price = (_item.getRepairMax() - _item.getRepair()) * this.Const.World.Assets.CostToRepairPerPoint;
-				local value = _item.getRawValue() * (1.0 - _item.getRepair() / _item.getRepairMax()) * 0.2 * this.World.State.getCurrentTown().getPriceMult() * this.Const.Difficulty.SellPriceMult[this.World.Assets.getEconomicDifficulty()];
-				price = this.Math.max(price, value);
+				local price = (_item.getRepairMax() - _item.getRepair()) * ::Const.World.Assets.CostToRepairPerPoint;
+				local value = _item.getRawValue() * (1.0 - _item.getRepair() / _item.getRepairMax()) * 0.2 * ::World.State.getCurrentTown().getPriceMult() * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()];
+				price = ::Math.max(price, value);
 
-				if (this.World.Assets.getMoney() >= price)
+				if (::World.Assets.getMoney() >= price)
 				{
 					tooltip.push({
 						id = 3,
@@ -733,7 +733,7 @@
 		case "camp-screen-repair-dialog-module.shop":
 		case "camp-screen-workshop-dialog-module.shop":
 		case "world-town-screen-shop-dialog-module.shop":
-			if (this.Stash.hasEmptySlot())
+			if (::Stash.hasEmptySlot())
 			{
 				tooltip.push({
 					id = 1,
@@ -766,7 +766,7 @@
 
 	o.strategic_queryUIItemTooltipData = function ( _entityId, _itemId, _itemOwner )
 	{
-		local entity = _entityId != null ? this.Tactical.getEntityByID(_entityId) : null;
+		local entity = _entityId != null ? ::Tactical.getEntityByID(_entityId) : null;
 
 		switch(_itemOwner)
 		{
@@ -799,14 +799,14 @@
 
 		case "stash":
 		case "character-screen-inventory-list-module.stash":
-			local result = this.Stash.getItemByInstanceID(_itemId);
+			local result = ::Stash.getItemByInstanceID(_itemId);
 
 			if (result != null) {
 				if (entity == null) {
 					try {
-						local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+						local broID = ::World.State.m.CharacterScreen.m.SelectedBrotherID;
 						if (broID != null) {
-							entity = this.Tactical.getEntityByID(broID);
+							entity = ::Tactical.getEntityByID(broID);
 						}
 					} catch (_e) {
 					}
@@ -817,16 +817,16 @@
 			return null;
 
 		case "craft":
-			return this.World.Crafting.getBlueprint(_itemId).getTooltip();
+			return ::World.Crafting.getBlueprint(_itemId).getTooltip();
 
 		case "blueprint":
-			return this.World.Crafting.getBlueprint(_entityId).getTooltipForComponent(_itemId);
+			return ::World.Crafting.getBlueprint(_entityId).getTooltipForComponent(_itemId);
 
 		case "blueprintskill":
-			return this.World.Crafting.getBlueprint(_entityId).getTooltipForSkill(_itemId);
+			return ::World.Crafting.getBlueprint(_entityId).getTooltipForSkill(_itemId);
 
 		case "world-town-screen-shop-dialog-module.stash":
-			local result = this.Stash.getItemByInstanceID(_itemId);
+			local result = ::Stash.getItemByInstanceID(_itemId);
 
 			if (result != null)
 			{
@@ -836,7 +836,7 @@
 			return null;
 
 		case "world-town-screen-shop-dialog-module.shop":
-			local stash = this.World.State.getTownScreen().getShopDialogModule().getShop().getStash();
+			local stash = ::World.State.getTownScreen().getShopDialogModule().getShop().getStash();
 
 			if (stash != null)
 			{
@@ -856,7 +856,7 @@
 				return null;
 			}
 
-			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Body, _itemId);
+			return entity.getRemoveLayerTooltip(::Const.ItemSlot.Body, _itemId);
 
 		case "paperdoll.remove-helmet-layer":
 			if (entity == null)
@@ -864,13 +864,13 @@
 				return null;
 			}
 
-			return entity.getRemoveLayerTooltip(this.Const.ItemSlot.Head, _itemId);
+			return entity.getRemoveLayerTooltip(::Const.ItemSlot.Head, _itemId);
 
 		case "paperdoll.toggle-accessory-visibility":
 			if (entity == null) {
 				return null;
 			}
-			return entity.getToggleAccessoryTooltip(this.Const.ItemSlot.Accessory, _itemId);
+			return entity.getToggleAccessoryTooltip(::Const.ItemSlot.Accessory, _itemId);
 		}
 
 		return null;
@@ -878,7 +878,7 @@
 
 	o.general_queryUIPerkTooltipData = function ( _entityId, _perkId )
 	{
-		local player = this.Tactical.getEntityByID(_entityId);
+		local player = ::Tactical.getEntityByID(_entityId);
 		local perk = player.getBackground().getPerk(_perkId);
 
 		local vars = [
@@ -973,7 +973,7 @@
 
 		if (_entityId != null)
 		{
-			entity = this.Tactical.getEntityByID(_entityId);
+			entity = ::Tactical.getEntityByID(_entityId);
 		}
 
 		switch(_elementId)
@@ -1001,7 +1001,7 @@
 			{
 				foreach( p in entity.getProperties() )
 				{
-					local s = this.World.getEntityByID(p);
+					local s = ::World.getEntityByID(p);
 					ret.push({
 						id = 2,
 						type = "text",
@@ -1050,7 +1050,7 @@
 				brolist.push(L);
 			}
 
-			local time = ::Math.floor(money / this.Math.max(1, dailyMoney));
+			local time = ::Math.floor(money / ::Math.max(1, dailyMoney));
 			local ret = [];
 
 			if (dailyMoney == 0)
@@ -1193,20 +1193,20 @@
 			];
 
 		case "assets.Food":
-			local food = this.World.Assets.getFood();
-			local dailyFood = this.Math.ceil(this.World.Assets.getDailyFoodCost() * this.Const.World.TerrainFoodConsumption[this.World.State.getPlayer().getTile().Type]);
+			local food = ::World.Assets.getFood();
+			local dailyFood = ::Math.ceil(::World.Assets.getDailyFoodCost() * ::Const.World.TerrainFoodConsumption[::World.State.getPlayer().getTile().Type]);
 			local brolist = [];
 
-			foreach( bro in this.World.getPlayerRoster().getAll() )
+			foreach( bro in ::World.getPlayerRoster().getAll() )
 			{
-				local brofood = this.Math.ceil(bro.getDailyFood() * this.Const.World.TerrainFoodConsumption[this.World.State.getPlayer().getTile().Type]);
+				local brofood = ::Math.ceil(bro.getDailyFood() * ::Const.World.TerrainFoodConsumption[::World.State.getPlayer().getTile().Type]);
 				brolist.push([
 					brofood,
 					bro.getName()
 				]);
 			}
 
-			local time = this.Math.floor(food / dailyFood);
+			local time = ::Math.floor(food / dailyFood);
 			local ret = [];
 
 			if (food > 0 && time > 1)
@@ -1309,14 +1309,14 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Assorted arrows, bolts and throwing weapons used to automatically refill quivers after battle. Replacing one arrow or bolt will take up one point of ammunition, replacing one shot of a Handgonne will take up two points, and replacing one throwing weapon or charge of a Fire Lance will take up three. Running out of ammunition will leave your quivers empty and your people with nothing to shoot with. You can carry no more than " + this.World.Assets.getMaxAmmo() + " units at a time."
+					text = "Assorted arrows, bolts and throwing weapons used to automatically refill quivers after battle. Replacing one arrow or bolt will take up one point of ammunition, replacing one shot of a Handgonne will take up two points, and replacing one throwing weapon or charge of a Fire Lance will take up three. Running out of ammunition will leave your quivers empty and your people with nothing to shoot with. You can carry no more than " + ::World.Assets.getMaxAmmo() + " units at a time."
 				}
 			];
 
 		case "assets.Supplies":
 			local desc = "Assorted tools and supplies to keep your weapons, armor, helmets, and shields in good condition. Running out of supplies may result in weapons breaking during combat and will leave your armor damaged and useless. More tools can be purchased in town or salvaged from equipment while camping.";
 			desc += "\n\nItems can be repaired while camping or out in the open. However, in that case, only one item can be repaired at a time per bro.";
-			desc += "\n\nYou can carry [color=%positive%]" + this.World.Assets.getMaxArmorParts() + "[/color] units at most.";
+			desc += "\n\nYou can carry [color=%positive%]" + ::World.Assets.getMaxArmorParts() + "[/color] units at most.";
 			desc += "\n\nTool efficiency when repairing damaged items may be increased by recruiting specialized backgrounds. Tool efficiency is capped at [color=%negative%]50%[/color].";
 			local ret = [
 				{
@@ -1331,7 +1331,7 @@
 				}
 			];
 
-			foreach (bro in this.World.getPlayerRoster().getAll()) {
+			foreach (bro in ::World.getPlayerRoster().getAll()) {
 				local broToolEfficiencyModifier = bro.getToolEfficiencyModifier();
 				if (broToolEfficiencyModifier > 0) {
 					ret.push({
@@ -1349,21 +1349,21 @@
 				id = 3,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = "[color=%positive%]"+ this.Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
+				text = "[color=%positive%]"+ ::Math.round((1 - toolEfficiency) * 100) + "%[/color] Tool Efficiency"
 			});
 			ret.push({
 				id = 4,
 				type = "hint",
 				icon = "ui/icons/asset_supplies.png",
-				text = "[color=%positive%]" + this.Math.round(toolEfficiency * 100) + "%[/color] Tools Usage"
+				text = "[color=%positive%]" + ::Math.round(toolEfficiency * 100) + "%[/color] Tools Usage"
 			});
 
 			return ret;
 
 		case "repairs.Supplies":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local desc = "Number of tools on hand to repair equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition. More tools can be purchased in towns or can be salvaged from equipment while camping ";
-			desc = desc + ("  You can carry " + this.World.Assets.getMaxArmorParts() + " units at most.");
+			desc = desc + ("  You can carry " + ::World.Assets.getMaxArmorParts() + " units at most.");
 			local ret = [
 				{
 					id = 1,
@@ -1379,7 +1379,7 @@
 			return ret;
 
 		case "repairs.Required":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local desc = "Number of tools required to repair the selected equipment. One tool is required to repair " + tent.getConversionRate() + " points of item condition.";
 			local ret = [
 				{
@@ -1396,7 +1396,7 @@
 			return ret;
 
 		case "repairs.Bros":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Repair);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be repaired.";
 			local ret = [
@@ -1449,14 +1449,14 @@
 			return ret;
 
 		case "assets.Medicine":
-			local heal = this.World.Assets.getHealingRequired();
+			local heal = ::World.Assets.getHealingRequired();
 			local desc = "Medical supplies consist of bandages, herbs, salves and the like, and are used to heal the more severe injuries sustained by your fighters in battle. One point of medical supplies is required each day for every injury to improve and ultimately heal. Lost hitpoints heal while encamped.\n\nRunning out of medical supplies will leave your fighters unable to recover from severe injuries.";
 
 			if (heal.MedicineMin > 0)
 			{
 				desc = desc + ("\n\nHealing up all your fighters will take between [color=%positive%]" + heal.DaysMin + "[/color] and [color=%positive%]" + heal.DaysMax + "[/color] days and requires between ");
 
-				if (heal.MedicineMin <= this.World.Assets.getMedicine())
+				if (heal.MedicineMin <= ::World.Assets.getMedicine())
 				{
 					desc = desc + ("[color=%positive%]");
 				}
@@ -1467,7 +1467,7 @@
 
 				desc = desc + (heal.MedicineMin + "[/color] and ");
 
-				if (heal.MedicineMax <= this.World.Assets.getMedicine())
+				if (heal.MedicineMax <= ::World.Assets.getMedicine())
 				{
 					desc = desc + ("[color=%positive%]");
 				}
@@ -1480,7 +1480,7 @@
 			}
 
 			local meds = 0;
-			local stash = this.World.Assets.getStash().getItems();
+			local stash = ::World.Assets.getStash().getItems();
 
 			foreach( item in stash )
 			{
@@ -1497,7 +1497,7 @@
 				desc = desc + (" You need [color=%negative%]" + meds + "[/color] units each day to maintain your supply of flesh and bones for summoning.");
 			}
 
-			desc = desc + ("\n\nYou can carry " + this.World.Assets.getMaxMedicine() + " units at most.");
+			desc = desc + ("\n\nYou can carry " + ::World.Assets.getMaxMedicine() + " units at most.");
 			local ret = [
 				{
 					id = 1,
@@ -1550,15 +1550,15 @@
 			];
 
 
-			local data = this.World.Assets.getRosterDescription();
+			local data = ::World.Assets.getRosterDescription();
 			local id = 4;
 
-			if (this.World.Assets.getOrigin().getRosterTier() < this.World.Assets.getOrigin().getRosterTierMax())
+			if (::World.Assets.getOrigin().getRosterTier() < ::World.Assets.getOrigin().getRosterTierMax())
 			{
 				local nextRenown = 0;
-				foreach (rep in this.World.Assets.getOrigin().getRosterReputationTiers())
+				foreach (rep in ::World.Assets.getOrigin().getRosterReputationTiers())
 				{
-					if (this.World.Assets.getBusinessReputation() < rep)
+					if (::World.Assets.getBusinessReputation() < rep)
 					{
 						nextRenown = rep;
 						break;
@@ -1590,7 +1590,7 @@
 				local name = terrainModifier[0];
 				local speed = terrainModifier[1];
 				// avoid float rounding errors, don't show when 100% speed
-				if (this.Math.abs(speed - 100.0) < 0.01) {
+				if (::Math.abs(speed - 100.0) < 0.01) {
         			continue;
     			}
 				local speedText = ::format("%.2f", speed);
@@ -1613,7 +1613,7 @@
 			ret.push({
 				id = id++,
 				type = "hint",
-				text = "Company Strength: " + this.World.State.getPlayer().getStrength()
+				text = "Company Strength: " + ::World.State.getPlayer().getStrength()
 			});
 
 			local brothersLimit = 12;
@@ -1645,7 +1645,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Renown: " + this.World.Assets.getBusinessReputationAsText() + " (" + this.World.Assets.getBusinessReputation() + ")"
+					text = "Renown: " + ::World.Assets.getBusinessReputationAsText() + " (" + ::World.Assets.getBusinessReputation() + ")"
 				},
 				{
 					id = 2,
@@ -1659,7 +1659,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Reputation: " + this.World.Assets.getMoralReputationAsText() + " (" + this.World.Assets.getMoralReputation() + ")"
+					text = "Reputation: " + ::World.Assets.getMoralReputationAsText() + " (" + ::World.Assets.getMoralReputation() + ")"
 				},
 				{
 					id = 2,
@@ -1669,11 +1669,11 @@
 			];
 
 		case "assets.Ambition":
-			if (this.World.Ambitions.hasActiveAmbition())
+			if (::World.Ambitions.hasActiveAmbition())
 			{
-				local ret = this.World.Ambitions.getActiveAmbition().getButtonTooltip();
+				local ret = ::World.Ambitions.getActiveAmbition().getButtonTooltip();
 
-				if (this.World.Ambitions.getActiveAmbition().isCancelable())
+				if (::World.Ambitions.getActiveAmbition().isCancelable())
 				{
 					ret.push({
 						id = 10,
@@ -2901,7 +2901,7 @@
 		case "tactical-screen.topbar.options-bar-module.FleeButton":
 			local ret = [];
 
-			if (this.Tactical.State.isEnemyRetreatDialogShown())
+			if (::Tactical.State.isEnemyRetreatDialogShown())
 			{
 				ret.extend([
 					{
@@ -2932,7 +2932,7 @@
 				]);
 			}
 
-			if (!this.Tactical.State.isScenarioMode() && this.Tactical.State.getStrategicProperties() != null && this.Tactical.State.getStrategicProperties().IsFleeingProhibited)
+			if (!::Tactical.State.isScenarioMode() && ::Tactical.State.getStrategicProperties() != null && ::Tactical.State.getStrategicProperties().IsFleeingProhibited)
 			{
 				ret.push({
 					id = 3,
@@ -2982,7 +2982,7 @@
 				{
 					id = 2,
 					type = "description",
-					text = "Pause the active character\'s turn and move them to the end of the queue. Waiting this turn will also have you act later (as though you only had" + (this.Const.Combat.InitiativeAfterWaitMult * 100).tointeger() + " % of your initiative) next turn."
+					text = "Pause the active character\'s turn and move them to the end of the queue. Waiting this turn will also have you act later (as though you only had" + (::Const.Combat.InitiativeAfterWaitMult * 100).tointeger() + " % of your initiative) next turn."
 				}
 			];
 
@@ -3839,7 +3839,7 @@
 				}
 			];
 
-			if (!this.World.State.isCampingAllowed())
+			if (!::World.State.isCampingAllowed())
 			{
 				ret.push({
 					id = 9,
@@ -3993,7 +3993,7 @@
 
 		case "world-town-screen.main-dialog-module.Contract":
 
-			local contract = this.World.Contracts.getContractByID(_elementOwner);
+			local contract = ::World.Contracts.getContractByID(_elementOwner);
 
 			local ret = [
 				{
@@ -4021,7 +4021,7 @@
 
 		case "world-town-screen.main-dialog-module.ContractNegotiated":
 
-			local contract = this.World.Contracts.getContractByID(_elementOwner);
+			local contract = ::World.Contracts.getContractByID(_elementOwner);
 
 			local ret = [
 				{
@@ -4056,7 +4056,7 @@
 		case "world-town-screen.main-dialog-module.ContractDisabled":
 
 
-			local contract = this.World.Contracts.getContractByID(_elementOwner);
+			local contract = ::World.Contracts.getContractByID(_elementOwner);
 
 			local ret = [
 				{
@@ -4249,8 +4249,8 @@
 				}
 			];
 
-			if (this.World.State.getCurrentTown() != null) {
-				local ttinfo = this.World.State.getCurrentTown().getBuilding("building.arena").getAttempts();
+			if (::World.State.getCurrentTown() != null) {
+				local ttinfo = ::World.State.getCurrentTown().getBuilding("building.arena").getAttempts();
 				ret.push({
 					id = 3,
 					type = "hint",
@@ -4258,7 +4258,7 @@
 					text = "There are " + ttinfo[0] + " / " + ttinfo[1] + " fights available today."
 				});
 
-				if (this.World.State.getCurrentTown().getBuilding("building.arena").isClosed()) {
+				if (::World.State.getCurrentTown().getBuilding("building.arena").isClosed()) {
 					ret.push({
 						id = 3,
 						type = "hint",
@@ -4268,7 +4268,7 @@
 				}
 			}
 
-			if (this.World.Contracts.getActiveContract() != null && this.World.Contracts.getActiveContract().getType() != "contract.arena" && this.World.Contracts.getActiveContract().getType() != "contract.arena_tournament")
+			if (::World.Contracts.getActiveContract() != null && ::World.Contracts.getActiveContract().getType() != "contract.arena" && ::World.Contracts.getActiveContract().getType() != "contract.arena_tournament")
 			{
 				ret.push({
 					id = 3,
@@ -4277,7 +4277,7 @@
 					text = "You cannot fight in the arena while contracted to do other work"
 				});
 			}
-			else if (this.World.Contracts.getActiveContract() == null && this.World.State.getCurrentTown() != null && this.World.State.getCurrentTown().hasSituation("situation.arena_tournament") && this.World.Assets.getStash().getNumberOfEmptySlots() < 5)
+			else if (::World.Contracts.getActiveContract() == null && ::World.State.getCurrentTown() != null && ::World.State.getCurrentTown().hasSituation("situation.arena_tournament") && ::World.Assets.getStash().getNumberOfEmptySlots() < 5)
 			{
 				ret.push({
 					id = 3,
@@ -4286,7 +4286,7 @@
 					text = "You need at least 5 empty inventory slots to fight in the ongoing tournament"
 				});
 			}
-			else if (this.World.Contracts.getActiveContract() == null && this.World.Assets.getStash().getNumberOfEmptySlots() < 3)
+			else if (::World.Contracts.getActiveContract() == null && ::World.Assets.getStash().getNumberOfEmptySlots() < 3)
 			{
 				ret.push({
 					id = 3,
@@ -4312,7 +4312,7 @@
 				}
 			];
 
-			if (this.World.Contracts.getActiveContract() != null && this.World.Contracts.getActiveContract().getType() == "contract.escort_caravan")
+			if (::World.Contracts.getActiveContract() != null && ::World.Contracts.getActiveContract().getType() == "contract.escort_caravan")
 			{
 				ret.push({
 					id = 3,
@@ -4455,12 +4455,12 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Unknown Character Traits"
+					text = "Unknown Character Trait"
 				},
 				{
 					id = 2,
 					type = "description",
-					text = "This character may have unknown traits. You can pay for a tryout to reveal these."
+					text = "This character has an unknown trait. You can pay for a tryout to reveal these."
 				}
 			];
 
@@ -4674,7 +4674,7 @@
 					text = "Your relations with a faction determine whether they\'ll fight or deal peacefully with you, their willingness to hire you for contracts, as well as the prices they give you and the number of recruits available to you at their settlements.\n\nRelations increase when working successfully for factions, and decrease on failing to do so, betraying or attacking them. Over time, relations slowly trend back towards neutral."
 				}
 			];
-			local changes = this.World.FactionManager.getFaction(_entityId).getPlayerRelationChanges();
+			local changes = ::World.FactionManager.getFaction(_entityId).getPlayerRelationChanges();
 
 			foreach( change in changes )
 			{
@@ -4705,7 +4705,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = this.Const.Strings.InventoryHeader[this.World.Retinue.getInventoryUpgrades()]
+					text = ::Const.Strings.InventoryHeader[::World.Retinue.getInventoryUpgrades()]
 				},
 				{
 					id = 2,
@@ -4714,13 +4714,13 @@
 				}
 			];
 
-			if (this.World.Retinue.getInventoryUpgrades() < this.Const.Strings.InventoryUpgradeHeader.len())
+			if (::World.Retinue.getInventoryUpgrades() < ::Const.Strings.InventoryUpgradeHeader.len())
 			{
 				ret.push({
 					id = 1,
 					type = "hint",
 					icon = "ui/icons/mouse_left_button.png",
-					text = this.Const.Strings.InventoryUpgradeHeader[this.World.Retinue.getInventoryUpgrades()] + " for [img]gfx/ui/tooltips/money.png[/img]" + this.Const.Strings.InventoryUpgradeCosts[this.World.Retinue.getInventoryUpgrades()]
+					text = ::Const.Strings.InventoryUpgradeHeader[::World.Retinue.getInventoryUpgrades()] + " for [img]gfx/ui/tooltips/money.png[/img]" + ::Const.Strings.InventoryUpgradeCosts[::World.Retinue.getInventoryUpgrades()]
 				});
 			}
 
@@ -4740,7 +4740,7 @@
 				}
 			];
 
-			if (this.Const.DLC.Lindwurm == true)
+			if (::Const.DLC.Lindwurm == true)
 			{
 				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
@@ -4771,7 +4771,7 @@
 				}
 			];
 
-			if (this.Const.DLC.Unhold == true)
+			if (::Const.DLC.Unhold == true)
 			{
 				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
@@ -4796,7 +4796,6 @@
 		case "camp.enchanter":
 		case "camp.fletcher":
 		case "camp.healer":
-		//case "camp.hunter":
 		case "camp.kitchen":
 		case "camp.repair":
 		case "camp.rest":
@@ -4805,7 +4804,7 @@
 		case "camp.gatherer":
 		case "camp.workshop":
 		case "camp.painter": //PaintingTent
-			return this.World.Camp.getBuildingByID(_elementId).getTooltip();
+			return ::World.Camp.getBuildingByID(_elementId).getTooltip();
 
 		case "camp-screen.repair.filterbro.button":
 			return [
@@ -4878,7 +4877,7 @@
 			];
 
 		case "workshop.Required":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local desc = "Number of tools that will be salvaged from selected equipment. " + tent.getConversionRate() + " points of item condition equals 1 tool. Once a tools condition reaches zero it will be destroyed.";
 			local ret = [
 				{
@@ -4895,7 +4894,7 @@
 			return ret;
 
 		case "workshop.Bros":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to repair duty. The more assigned, the quicker equipment can be salvaged.";
 			local ret = [
@@ -4947,7 +4946,7 @@
 			return ret;
 
 		case "crafting.Bros":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Crafting);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Crafting);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to crafting duty. The more assigned, the quicker items can be crafted.";
 			local ret = [
@@ -5015,7 +5014,7 @@
 
 		case "healer.Supplies":
 			local desc = "Medicine on hand to heal injuries. Medicine can be purchased in towns or can foraged for while camping ";
-			desc = desc + ("  You can carry " + this.World.Assets.getMaxMedicine() + " units at most.");
+			desc = desc + ("  You can carry " + ::World.Assets.getMaxMedicine() + " units at most.");
 			local ret = [
 				{
 					id = 1,
@@ -5031,7 +5030,7 @@
 			return ret;
 
 		case "healer.Required":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local desc = "Quantity of Medicine required to treat selected injuries.";
 			local ret = [
 				{
@@ -5048,7 +5047,7 @@
 			return ret;
 
 		case "healer.Bros":
-			local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
+			local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer);
 			local repair = tent.getModifiers();
 			local desc = "Number of people assigned to tent duty. The more assigned, the quicker injuries can be treated.";
 			local ret = [
@@ -5128,7 +5127,7 @@
 				}
 			];
 
-			if (this.Const.DLC.Wildmen == true)
+			if (::Const.DLC.Wildmen == true)
 			{
 				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
@@ -5159,7 +5158,7 @@
 				}
 			];
 
-			if (this.Const.DLC.Desert == true)
+			if (::Const.DLC.Desert == true)
 			{
 				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}
@@ -5190,7 +5189,7 @@
 				}
 			];
 
-			if (this.Const.DLC.Paladins == true)
+			if (::Const.DLC.Paladins == true)
 			{
 				ret[1].text += "\n\n[color=%positive%]This DLC has been installed.[/color]";
 			}

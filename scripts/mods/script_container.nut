@@ -19,7 +19,7 @@ this.script_container <- {
 
 	function roll()
 	{
-		local i = this.Math.rand(1, this.m.Total);
+		local i = ::Math.rand(1, this.m.Total);
 		local weight = 0;
 		foreach (pair in this.m.Array)
 		{
@@ -32,7 +32,7 @@ this.script_container <- {
 
 	function rollChance(_chance)
 	{
-		return _chance < this.Math.rand(1, 100) ? this.roll() : null;
+		return _chance < ::Math.rand(1, 100) ? this.roll() : null;
 	}
 
 	function get(_idx)

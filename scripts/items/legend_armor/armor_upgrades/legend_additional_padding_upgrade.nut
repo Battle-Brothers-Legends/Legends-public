@@ -4,15 +4,15 @@ this.legend_additional_padding_upgrade <- this.inherit("scripts/items/legend_arm
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_additional_padding";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Additional Fur Padding";
 		this.m.Description = "An additional set of padding crafted from thick furs. Worn atop armor to make the wearer more resilient against piercing attacks.";
 		this.m.ArmorDescription = "Includes an additional set of fur padding.";
 		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 1200;
 		this.m.Condition = 5;
 		this.m.ConditionMax = 5;
@@ -55,7 +55,7 @@ this.legend_additional_padding_upgrade <- this.inherit("scripts/items/legend_arm
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
 	{
-		if (_hitInfo.BodyPart == this.Const.BodyPart.Body)
+		if (_hitInfo.BodyPart == ::Const.BodyPart.Body)
 		{
 			_properties.DamageReceivedRangedMult *= 0.9;
 		}

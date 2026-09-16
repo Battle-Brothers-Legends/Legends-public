@@ -13,7 +13,7 @@
 		});
 		onExecute(_faction);
 
-		local resources = this.Math.max(1, this.Math.round(0.01 * this.m.Start.getResources()));
+		local resources = ::Math.max(1, ::Math.round(0.01 * this.m.Start.getResources()));
 		this.m.Start.setResources(this.m.Start.getResources() - resources);
 		party.setResources(resources);
 
@@ -38,8 +38,8 @@
 			[1, "supplies/wine_item"]
 		];
 
-		for (local j = this.Math.rand(0, 2); j != 0; j--) {
-			party.addToInventory(this.Const.World.Common.pickItem(items));
+		for (local j = ::Math.rand(0, 2); j != 0; j--) {
+			party.addToInventory(::Const.World.Common.pickItem(items));
 		}
 		// add unload before despawn
 		foreach (i, order in party.getController().getOrders()) {

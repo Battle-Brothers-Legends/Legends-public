@@ -24,18 +24,18 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			::Legends.Traits.getID(::Legends.Trait.Craven)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Initiative
+			::Const.Attributes.Initiative
 		];
-		this.m.Faces = this.Const.Faces.OldFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.Old;
+		this.m.Faces = ::Const.Faces.OldFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.HairColors = ::Const.HairColors.Old;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.m.Level = this.Math.rand(1, 3);
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Female;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Bodies = ::Const.Bodies.NorthernFemale;
+		this.m.Level = ::Math.rand(1, 3);
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Female;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 
@@ -69,10 +69,10 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.PilgrimTitles[this.Math.rand(0, this.Const.Strings.PilgrimTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.PilgrimTitles[::Math.rand(0, ::Const.Strings.PilgrimTitles.len() - 1)]);
 		}
 	}
 
@@ -81,7 +81,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 		if (r <= 2)
 		{
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
@@ -91,7 +91,7 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			items.equip(this.new("scripts/items/shields/kite_shield"));
 		}
 
-		r = this.Math.rand(0, 5);
+		r = ::Math.rand(0, 5);
 		if (r <= 2)
 		{
 			items.equip(this.new("scripts/items/weapons/falchion"));
@@ -109,12 +109,12 @@ this.legend_battle_sister_background <- this.inherit("scripts/skills/backgrounds
 			items.equip(this.new("scripts/items/weapons/hand_axe"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.hood],
 			[2, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.mail_coif],

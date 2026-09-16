@@ -8,7 +8,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		local candidates = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getLevel() > 8	&& (::Legends.Backgrounds.has(_bro, ::Legends.Background.Historian)	|| _bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))));
+		local candidates = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getLevel() > 8	&& (::Legends.Backgrounds.has(_bro, ::Legends.Background.Historian)	|| ::Legends.Professions.has(_bro, ::Legends.Profession.LegendInterpretation))));
 
 		if (candidates.len() == 0) {
 			return;

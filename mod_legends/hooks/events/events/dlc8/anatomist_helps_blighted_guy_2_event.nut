@@ -18,12 +18,12 @@
 					_event.m.MilitiaCaptain.resetPerks();
 					_event.m.MilitiaCaptain.improveMood(1.0, "Recovered from the blight afflicting him");
 
-					if (_event.m.MilitiaCaptain.getMoodState() >= this.Const.MoodState.Neutral)
+					if (_event.m.MilitiaCaptain.getMoodState() >= ::Const.MoodState.Neutral)
 					{
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.MilitiaCaptain.getMoodState()],
-							text = _event.m.MilitiaCaptain.getName() + this.Const.MoodStateEvent[_event.m.MilitiaCaptain.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.MilitiaCaptain.getMoodState()],
+							text = _event.m.MilitiaCaptain.getName() + ::Const.MoodStateEvent[_event.m.MilitiaCaptain.getMoodState()]
 						});
 					}
 

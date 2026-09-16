@@ -10,16 +10,16 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
-			// this.Const.Attributes.RangedSkill,
-			//this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue,
-			this.Const.Attributes.Bravery
+			// ::Const.Attributes.RangedSkill,
+			//::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue,
+			::Const.Attributes.Bravery
 		];
 
-		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
@@ -49,21 +49,21 @@ this.legend_legion_honour_guard_background <- this.inherit("scripts/skills/backg
 			[1, "weapons/ancient/crypt_cleaver"]
 		], "scripts/items/"));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
 			items.equip(::Const.World.Common.pickItem([
 				[2, "shields/ancient/coffin_shield"],
 				[1, "shields/ancient/tower_shield"]
 			], "scripts/items/"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Ancient.ancient_plated_scale_hauberk],
 			[1, ::Legends.Armor.Ancient.ancient_scale_coat],
 			[2, ::Legends.Armor.Ancient.ancient_plate_harness],
 			[1, ::Legends.Armor.Ancient.ancient_plated_mail_hauberk]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Ancient.ancient_honorguard_helmet],
 			[1, ::Legends.Helmet.None]
 		]));

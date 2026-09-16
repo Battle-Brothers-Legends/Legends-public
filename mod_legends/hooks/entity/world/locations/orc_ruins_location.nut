@@ -3,8 +3,8 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropArmorParts(this.Math.rand(25, 50), _lootTable);
-		this.dropMedicine(this.Math.rand(0, 5), _lootTable);
+		this.dropArmorParts(::Math.rand(25, 50), _lootTable);
+		this.dropMedicine(::Math.rand(0, 5), _lootTable);
 		local treasure = [
 			"trade/furs_item",
 			"trade/furs_item",
@@ -17,7 +17,7 @@
 			"loot/silver_bowl_item"
 		];
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			treasure.extend(treasure);
 			treasure.extend(treasure);
@@ -32,7 +32,7 @@
 			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 		}
 
-		this.dropFood(this.Math.rand(3, 6), [
+		this.dropFood(::Math.rand(3, 6), [
 			"strange_meat_item"
 		], _lootTable);
 		this.dropTreasure(1, treasure, _lootTable);

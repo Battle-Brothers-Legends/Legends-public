@@ -9,7 +9,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 	function create() {
 		this.m.ID = "event.legend_northmen_forest_ambush";
 		this.m.Title = "In the forest...";
-		this.m.Cooldown = 80.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 80.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_55.png[/img]{The forests are a quiet place where civilisation gives way to nature — but also to those cast away from society or wish to exclude themselves from it.\n It would not be the first time you ran into {a troupe of otherwise peaceful poachers trying to make ends meet | a lone knight armed to the breeches with a variety of weapons and plate | a wildman completely naked with only their weapon for comfort | two-dozen cultists running about the hills screaming at the top of their lungs about this and that | a group of sickly explorers asking for directions | a well regulated militia | three imposing figures clad in gold | a group of well organised and terrifying cultists}. The world gets much stranger out here — but also much more dangerous.\n\n From the treeline, you hear voices and branches cracking.\n\n You hear the chanting of northmen.}",
@@ -56,13 +56,13 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [{
 				Text = "To arms!",
 				function getResult(_event) {
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.BarbarianTracks;
+					properties.Music = ::Const.Music.BarbarianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(75, 110) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Barbarians, ::Math.rand(75, 110) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 
@@ -78,13 +78,13 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [{
 				Text = "Oh fark.",
 				function getResult(_event) {
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.BarbarianTracks;
+					properties.Music = ::Const.Music.BarbarianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(110, 140) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Barbarians, ::Math.rand(110, 140) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 
@@ -100,7 +100,7 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 			Options = [				{
 					Text = "Well done.",
 					function getResult(_event) {
-						this.World.Assets.addMoralReputation(1);
+						::World.Assets.addMoralReputation(1);
 						return 0;
 					}
 				}			],
@@ -112,14 +112,14 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 					::new("scripts/items/loot/looted_valuables_item")
 				], ::World.Assets.getStash()));
 
-				// _event.m.Rewarditems.getItems().transferToStash(this.World.Assets.getStash());
+				// _event.m.Rewarditems.getItems().transferToStash(::World.Assets.getStash());
 
-				// if (_event.m.Barbarian.getMoodState() >= this.Const.MoodState.Neutral)
+				// if (_event.m.Barbarian.getMoodState() >= ::Const.MoodState.Neutral)
 				// {
 				// 	this.List.push({
 				// 		id = 10,
-				// 		icon = this.Const.MoodStateIcon[_event.m.Barbarian.getMoodState()],
-				// 		text = _event.m.Barbarian.getName() + this.Const.MoodStateEvent[_event.m.Barbarian.getMoodState()]
+				// 		icon = ::Const.MoodStateIcon[_event.m.Barbarian.getMoodState()],
+				// 		text = _event.m.Barbarian.getName() + ::Const.MoodStateEvent[_event.m.Barbarian.getMoodState()]
 				// 	});
 				// }
 
@@ -141,13 +141,13 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 				{
 					Text = "We better go help now.",
 					function getResult(_event) {
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
-						properties.Music = this.Const.Music.BarbarianTracks;
+						properties.Music = ::Const.Music.BarbarianTracks;
 						properties.IsAutoAssigningBases = false;
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(60, 75) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-						this.World.State.startScriptedCombat(properties, false, false, true);
+						::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Barbarians, ::Math.rand(60, 75) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
+						::World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
 
@@ -192,20 +192,20 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 				{
 					Text = "To arms!",
 					function getResult(_event) {
-						local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+						local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 						properties.CombatID = "Event";
-						properties.Music = this.Const.Music.BarbarianTracks;
-						properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-						properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Center;
+						properties.Music = ::Const.Music.BarbarianTracks;
+						properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+						properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Center;
 						properties.IsAutoAssigningBases = false;
 						properties.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Barbarians, ::Math.rand(60, 70) * _event.getReputationToDifficultyLightMult(), this.Const.Faction.Enemy);
-						this.World.State.startScriptedCombat(properties, false, false, true);
+						::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Barbarians, ::Math.rand(60, 70) * _event.getReputationToDifficultyLightMult(), ::Const.Faction.Enemy);
+						::World.State.startScriptedCombat(properties, false, false, true);
 						return 0;
 					}
 
 					function onEntityPlaced(_entity, _tag) {
-						_entity.setMoraleState(this.Const.MoraleState.Fleeing);
+						_entity.setMoraleState(::Const.MoraleState.Fleeing);
 						_entity.getBaseProperties().Bravery = 50;
 					}
 
@@ -222,23 +222,23 @@ this.legend_northmen_forest_ambush_event <- this.inherit("scripts/events/event",
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 5) {
 			return;
 		}
 
-		if (this.World.getTime().Days < 40) {
+		if (::World.getTime().Days < 40) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.SnowyForest && currentTile.Type != this.Const.World.TerrainType.LeaveForest && currentTile.Type != this.Const.World.TerrainType.AutumnForest) {
+		if (currentTile.Type != ::Const.World.TerrainType.Forest && currentTile.Type != ::Const.World.TerrainType.SnowyForest && currentTile.Type != ::Const.World.TerrainType.LeaveForest && currentTile.Type != ::Const.World.TerrainType.AutumnForest) {
 			return;
 		}
 
-		if (!this.World.Assets.getStash().hasEmptySlot()) {
+		if (!::World.Assets.getStash().hasEmptySlot()) {
 			return;
 		}
 

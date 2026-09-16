@@ -26,14 +26,14 @@
 			"the Believer",
 			"the Insane"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.BackgroundType = this.Const.BackgroundType.ConvertedCultist;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.Bodies = this.Const.Bodies.Skinny;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Untidy;
+		this.m.BackgroundType = ::Const.BackgroundType.ConvertedCultist;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
+		this.m.Bodies = ::Const.Bodies.Skinny;
 	}
 
 	o.onBuildDescription <- function ()
@@ -46,7 +46,7 @@
 		local actor = this.getContainer().getActor();
 		local tattoo_body = actor.getSprite("tattoo_body");
 
-		if (!tattoo_body.HasBrush && this.Math.rand(1, 100) <= 50)
+		if (!tattoo_body.HasBrush && ::Math.rand(1, 100) <= 50)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);

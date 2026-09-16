@@ -6,7 +6,7 @@
 		local actor = this.getContainer().getActor();
 		if (_targetEntity.getXPValue() > 0)
 		{
-			this.Const.LegendMod.SetFavoriteEnemyKill(actor, _targetEntity);
+			::Const.LegendMod.SetFavoriteEnemyKill(actor, _targetEntity);
 		}
 		onTargetKilled(_targetEntity, _skill);
 	}

@@ -6,8 +6,8 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Call down bolts of lightning randomly within four tiles.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/lightning", 4);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/electricity", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -16,8 +16,8 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Delay = 1250;
 		this.m.IsShowingProjectile = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.IsAttack = true;
 		this.m.ActionPointCost = 8;
 		this.m.FatigueCost = 50;
@@ -54,13 +54,13 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 	  function isHidden()
 	{
-		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand);
+		return this.m.IsHidden || !this.getContainer().getActor().getItems().hasEmptySlot(::Const.ItemSlot.Mainhand);
 	}
 
 	function onUse( _user, _targetTile )
 	{
 		local myTile = _user.getTile();
-		local actors = this.Tactical.Entities.getInstancesOfFaction(!_user.getFaction());
+		local actors = ::Tactical.Entities.getInstancesOfFaction(!_user.getFaction());
 
 		foreach( a in actors )
 		{
@@ -75,7 +75,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSlash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSlash);
 		local success = this.attackEntity(_user, _targetTile.getEntity());
 		local myTile = _user.getTile();
 
@@ -89,7 +89,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.m.SoundOnLightning.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnLightning[this.Math.rand(0, this.m.SoundOnLightning.len() - 1)], this.Const.Sound.Volume.Skill * 2.0, _user.getPos());
+				::Sound.play(this.m.SoundOnLightning[::Math.rand(0, this.m.SoundOnLightning.len() - 1)], ::Const.Sound.Volume.Skill * 2.0, _user.getPos());
 			}
 
 			if (!targetTile.IsEmpty && targetTile.getEntity().isAlive())
@@ -136,14 +136,14 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 			if (potentialTargets.len() != 0)
 			{
-				target = potentialTargets[this.Math.rand(0, potentialTargets.len() - 1)].getEntity();
+				target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
 				selectedTargets.push(target.getID());
 				targetTile = target.getTile();
 			}
 			else
 			{
 				target = null;
-				targetTile = potentialTiles[this.Math.rand(0, potentialTiles.len() - 1)];
+				targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
 			}
 
 			local data = {
@@ -184,14 +184,14 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 				if (potentialTargets.len() != 0)
 				{
-					target = potentialTargets[this.Math.rand(0, potentialTargets.len() - 1)].getEntity();
+					target = potentialTargets[::Math.rand(0, potentialTargets.len() - 1)].getEntity();
 					selectedTargets.push(target.getID());
 					targetTile = target.getTile();
 				}
 				else
 				{
 					target = null;
-					targetTile = potentialTiles[this.Math.rand(0, potentialTiles.len() - 1)];
+					targetTile = potentialTiles[::Math.rand(0, potentialTiles.len() - 1)];
 				}
 
 				local data = {
@@ -212,9 +212,9 @@ function applyEffect( _data, _delay )
 	{
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay, function ( _data )
 		{
-			for( local i = 0; i < this.Const.Tactical.LightningParticles.len(); i = i )
+			for( local i = 0; i < ::Const.Tactical.LightningParticles.len(); i = i )
 			{
-				this.Tactical.spawnParticleEffect(true, this.Const.Tactical.LightningParticles[i].Brushes, _data.TargetTile, this.Const.Tactical.LightningParticles[i].Delay, this.Const.Tactical.LightningParticles[i].Quantity, this.Const.Tactical.LightningParticles[i].LifeTimeQuantity, this.Const.Tactical.LightningParticles[i].SpawnRate, this.Const.Tactical.LightningParticles[i].Stages);
+				::Tactical.spawnParticleEffect(true, ::Const.Tactical.LightningParticles[i].Brushes, _data.TargetTile, ::Const.Tactical.LightningParticles[i].Delay, ::Const.Tactical.LightningParticles[i].Quantity, ::Const.Tactical.LightningParticles[i].LifeTimeQuantity, ::Const.Tactical.LightningParticles[i].SpawnRate, ::Const.Tactical.LightningParticles[i].Stages);
 				i = ++i;
 			}
 		}, _data);
@@ -226,10 +226,10 @@ function applyEffect( _data, _delay )
 
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay + 200, function ( _data )
 		{
-			local hitInfo = clone this.Const.Tactical.HitInfo;
-			hitInfo.DamageRegular = this.Math.rand(15, 30);
+			local hitInfo = clone ::Const.Tactical.HitInfo;
+			hitInfo.DamageRegular = ::Math.rand(15, 30);
 			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = this.Const.BodyPart.Body;
+			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
 			_data.Target.onDamageReceived(_data.User, _data.Skill, hitInfo);

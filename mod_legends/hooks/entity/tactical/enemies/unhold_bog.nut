@@ -4,19 +4,19 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.UnholdBog);
+		b.setValues(::Const.Tactical.Actor.UnholdBog);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_unhold_body_03";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
@@ -28,7 +28,7 @@
 		injury_body.setBrush("bust_unhold_03_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		if(this.Math.rand(1, 100) < 2)
+		if(::Math.rand(1, 100) < 2)
 		{
 		head.setBrush("bust_unhold_head_05");
 		}
@@ -38,7 +38,7 @@
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 		}

@@ -5,7 +5,7 @@
 	o.create = function () {
 		create();
 		this.m.IsHidden = true;
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect; 
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect; 
 	}
 
 	o.getDescription <- function () {
@@ -22,7 +22,7 @@
 			return;
 		}
 		this.m.IsHidden = false;
-		_properties.DamageReceivedTotalMult *= this.Math.minf(1.0, 1.0 - this.Math.max(0, _properties.RangedDefense) * 0.01);
+		_properties.DamageReceivedTotalMult *= ::Math.minf(1.0, 1.0 - ::Math.max(0, _properties.RangedDefense) * 0.01);
 	}
 
 	o.onAfterDamageReceived <- function () {
@@ -33,7 +33,7 @@
 	}
 
 	o.onCombatStarted <- function () {
-		this.m.Stacks = this.Math.max(1, this.Math.floor(this.getContainer().getActor().getCurrentProperties().Initiative / 100));
+		this.m.Stacks = ::Math.max(1, ::Math.floor(this.getContainer().getActor().getCurrentProperties().Initiative / 100));
 	}
 
 	o.onCombatFinished <- function () {

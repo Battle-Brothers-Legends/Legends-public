@@ -8,10 +8,10 @@ this.legend_infantry_axe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A long, two-handed axe used by footmen in the noble wars";
 		this.m.IconLarge = "weapons/melee/legend_footman_axe_01.png";
 		this.m.Icon = "weapons/melee/legend_footman_axe_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = false;
 		this.m.AddGenericSkill = true;

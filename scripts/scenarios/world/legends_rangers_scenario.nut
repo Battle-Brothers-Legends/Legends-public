@@ -8,16 +8,16 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		this.m.Difficulty = 1;
 		this.m.Order = 230;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 50;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 2; i = i ) //party size = 2 and bust for starters
@@ -30,7 +30,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -61,40 +61,40 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		bros[1].setVeteranPerks(2);
 		bros[1].getBaseProperties().MeleeSkill += 10;
 		local talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.Hitpoints] = 2;
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.Hitpoints] = 2;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/cured_venison_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 2;
 	}
 
 	function onSpawnPlayer() //forest spawn
 	{
 		local spawnTile;
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local nearestVillage;
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(5, this.Const.World.Settings.SizeX - 5);
-			local y = this.Math.rand(5, this.Const.World.Settings.SizeY - 5);
+			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
+			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				if (tile.IsOccupied)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Forest && tile.Type != this.Const.World.TerrainType.SnowyForest && tile.Type != this.Const.World.TerrainType.LeaveForest && tile.Type != this.Const.World.TerrainType.AutumnForest)
+				else if (tile.Type != ::Const.World.TerrainType.Forest && tile.Type != ::Const.World.TerrainType.SnowyForest && tile.Type != ::Const.World.TerrainType.LeaveForest && tile.Type != ::Const.World.TerrainType.AutumnForest)
 				{
 				}
 				else
@@ -107,7 +107,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 						if (d > 6 && d < 15)
 						{
-							local path = this.World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
+							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
 							if (!path.isEmpty())
 							{
@@ -131,23 +131,23 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
-		this.World.Assets.updateLook(103);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
-		local f = nearestVillage.getFactionOfType(this.Const.FactionType.NobleHouse);
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
+		::World.Assets.updateLook(103);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
+		local f = nearestVillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		f.addPlayerRelation(-20.0, "Heard rumors of you poaching in their woods");
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(this.Const.Music.IntroTracks, this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_ranger_scenario_intro");
+			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_ranger_scenario_intro");
 		}, null);
 	}
 
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsHunter", true);
-		this.World.Flags.set("IsLegendsDruid", true);
+		::World.Flags.set("IsLegendsHunter", true);
+		::World.Flags.set("IsLegendsDruid", true);
 	}
 	function getMovementSpeedMult(){
 		return 1.057;
@@ -155,7 +155,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local rangers = 0;
 
 		foreach( bro in roster )
@@ -166,9 +166,9 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 			}
 		}
 
-		if (rangers == 1 && !this.World.Flags.get("rangersOriginDeath1"))
+		if (rangers == 1 && !::World.Flags.get("rangersOriginDeath1"))
 		{
-			this.World.Flags.set("rangersOriginDeath1", true);
+			::World.Flags.set("rangersOriginDeath1", true);
 
 			foreach( bro in roster )
 			{
@@ -199,7 +199,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger))
 		{
 			_bro.improveMood(1.0, "Supports the ranger cause");
 			_bro.getSprite("socket").setBrush("bust_base_beasts");
@@ -215,15 +215,15 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Ranger))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Druid) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Ranger))
 			{
-				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
+				_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 				_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 				_bro.getSkills().update();
 			}
 			else
 			{
-				_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
+				_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.25); //1.0 = default
 				_bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 				_bro.getSkills().update();
 			}
@@ -231,7 +231,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(this.Const.BackgroundType.Druid) || _background.isBackgroundType(this.Const.BackgroundType.Ranger));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Pathfinder, 0, _background.isBackgroundType(::Const.BackgroundType.Druid) || _background.isBackgroundType(::Const.BackgroundType.Ranger));
 	}
 });
 

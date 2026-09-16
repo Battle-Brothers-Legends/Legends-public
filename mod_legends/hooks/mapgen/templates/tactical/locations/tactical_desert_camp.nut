@@ -2,17 +2,17 @@
 {
 	o.fill = function ( _rect, _properties, _pass = 1 )
 	{
-		local centerTile = this.Tactical.getTileSquare(_rect.W / 2 + _properties.ShiftX, _rect.H / 2 + _properties.ShiftY);
+		local centerTile = ::Tactical.getTileSquare(_rect.W / 2 + _properties.ShiftX, _rect.H / 2 + _properties.ShiftY);
 		local minDist = 0;
 		local isOnHill = centerTile.Level == 3;
 		local hasPalisade = _properties.Fortification != 0;
-		local radius = this.Const.Tactical.Settings.CampRadius + _properties.AdditionalRadius;
+		local radius = ::Const.Tactical.Settings.CampRadius + _properties.AdditionalRadius;
 
 		for( local x = _rect.X; x < _rect.X + _rect.W; x = ++x )
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				local d = centerTile.getDistanceTo(tile);
 
 				if (d < minDist || d > radius)
@@ -20,7 +20,7 @@
 				}
 				else
 				{
-					if (this.Math.rand(1, 100) <= (hasPalisade ? 50 : 75))
+					if (::Math.rand(1, 100) <= (hasPalisade ? 50 : 75))
 					{
 						tile.removeObject();
 					}
@@ -40,10 +40,10 @@
 							}
 						}
 
-						if (this.Math.rand(1, 100) <= 3 + n * 3)
+						if (::Math.rand(1, 100) <= 3 + n * 3)
 						{
 							tile.clear();
-							local r = this.Math.rand(1, 3);
+							local r = ::Math.rand(1, 3);
 
 							if (r == 1)
 							{
@@ -63,7 +63,7 @@
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				local d = centerTile.getDistanceTo(tile);
 
 				if (d < minDist || d > radius)
@@ -73,7 +73,7 @@
 				{
 					tile.clear();
 
-					if ((!isOnHill || tile.Level >= 2) && this.Math.rand(1, 100) < 60 + (isOnHill ? -10 : 0))
+					if ((!isOnHill || tile.Level >= 2) && ::Math.rand(1, 100) < 60 + (isOnHill ? -10 : 0))
 					{
 						tile.removeObject();
 						local o = tile.spawnObject("entity/tactical/objects/human_camp_wall");
@@ -110,7 +110,7 @@
 						}
 					}
 
-					if (d <= 5 && (d == 0 || n == 0 && this.Math.rand(1, 100) <= 1))
+					if (d <= 5 && (d == 0 || n == 0 && ::Math.rand(1, 100) <= 1))
 					{
 						tile.clear();
 						tile.spawnObject("entity/tactical/objects/desert_camp_fireplace");
@@ -119,9 +119,9 @@
 					{
 						  // [357]  OP_JMP            0    170    0    0
 					}
-					else if (this.Math.rand(1, 100) <= 1)
+					else if (::Math.rand(1, 100) <= 1)
 					{
-						if (this.Math.rand(1, 100) <= 50)
+						if (::Math.rand(1, 100) <= 50)
 						{
 						tile.clear();
 						tile.spawnObject("entity/tactical/objects/desert_camp_table");
@@ -133,20 +133,20 @@
 
 						}
 					}
-					else if (d >= 6 && this.Math.rand(1, 100) <= 1)
+					else if (d >= 6 && ::Math.rand(1, 100) <= 1)
 					{
 						tile.clear();
 						tile.spawnObject("entity/tactical/objects/desert_camp_marquee");
 					}
-					else if (d >= 6 && this.Math.rand(1, 100) <= 1)
+					else if (d >= 6 && ::Math.rand(1, 100) <= 1)
 					{
 						tile.clear();
 						tile.spawnObject("entity/tactical/objects/desert_camp_standard");
 					}
-					else if (d <= 7 && this.Math.rand(1, 100) <= (hasPalisade ? 12 : 6))
+					else if (d <= 7 && ::Math.rand(1, 100) <= (hasPalisade ? 12 : 6))
 					{
 
-						local rand = this.Math.rand(1, 100);
+						local rand = ::Math.rand(1, 100);
 						 if (rand <= 20)
 						 {
 
@@ -167,7 +167,7 @@
 								"14"
 							];
 							tile.clear();
-							tile.spawnDetail("desert_camp_chair_" + deco[this.Math.rand(0, deco.len() - 1)]);
+							tile.spawnDetail("desert_camp_chair_" + deco[::Math.rand(0, deco.len() - 1)]);
 						}
 						else if (rand >= 21 && rand <= 30)
 						{
@@ -185,17 +185,17 @@
 
 							];
 							tile.clear();
-							tile.spawnDetail("desert_camp_rug_" + deco[this.Math.rand(0, deco.len() - 1)]);
+							tile.spawnDetail("desert_camp_rug_" + deco[::Math.rand(0, deco.len() - 1)]);
 						}
 						else
 						{
 						tile.clear();
-						tile.spawnDetail("desert_camp_rug_" + this.Math.rand(11,60));
+						tile.spawnDetail("desert_camp_rug_" + ::Math.rand(11,60));
 
 						}
 
 					}
-					else if (d <= 7 && this.Math.rand(1, 100) <= (hasPalisade ? 10 : 6))
+					else if (d <= 7 && ::Math.rand(1, 100) <= (hasPalisade ? 10 : 6))
 					{
 						local deco = [
 							"01",
@@ -204,15 +204,15 @@
 							"02"
 						];
 						tile.clear();
-						tile.spawnDetail("camp_" + deco[this.Math.rand(0, deco.len() - 1)]);
+						tile.spawnDetail("camp_" + deco[::Math.rand(0, deco.len() - 1)]);
 					}
-					else if (d >= 7 && this.Math.rand(1, 100) <= 3)
+					else if (d >= 7 && ::Math.rand(1, 100) <= 3)
 					{
 						local deco = [
 							"01"
 						];
 						tile.clear();
-						tile.spawnDetail("goblins_" + deco[this.Math.rand(0, deco.len() - 1)]);
+						tile.spawnDetail("goblins_" + deco[::Math.rand(0, deco.len() - 1)]);
 					}
 				}
 			}

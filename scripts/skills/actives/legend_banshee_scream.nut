@@ -5,8 +5,8 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBansheeScream);
 		this.m.Description = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/banshee_attack", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -25,15 +25,15 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 	{
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " uses Banshee Scream");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " uses Banshee Scream");
 		}
 
 		local target = _targetTile.getEntity();
 		local hit = false;
-		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
-		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
-		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
-		hit = hit || target.checkMorale(-1, 0, this.Const.MoraleCheckType.MentalAttack);
+		hit = hit || target.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack);
+		hit = hit || target.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack);
+		hit = hit || target.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack);
+		hit = hit || target.checkMorale(-1, 0, ::Const.MoraleCheckType.MentalAttack);
 		if (!hit) {
 			return true;
 		}
@@ -41,11 +41,11 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 		//Do some damage!!
 
 		this.spawnIcon("status_effect_81", target.getTile());
-		local dmg = this.Math.max(10, 30 - this.Math.floor(target.getCurrentProperties().getBravery() * 0.25));
-		local hitInfo = clone this.Const.Tactical.HitInfo;
-		hitInfo.DamageRegular = this.Math.max(10, 30 - this.Math.floor(target.getCurrentProperties().getBravery() * 0.25));
+		local dmg = ::Math.max(10, 30 - ::Math.floor(target.getCurrentProperties().getBravery() * 0.25));
+		local hitInfo = clone ::Const.Tactical.HitInfo;
+		hitInfo.DamageRegular = ::Math.max(10, 30 - ::Math.floor(target.getCurrentProperties().getBravery() * 0.25));
 		hitInfo.DamageDirect = 1.0;
-		hitInfo.BodyPart = this.Const.BodyPart.Body;
+		hitInfo.BodyPart = ::Const.BodyPart.Body;
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
@@ -53,7 +53,7 @@ this.legend_banshee_scream <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 		if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is horrified");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is horrified");
 		}
 
 		return true;

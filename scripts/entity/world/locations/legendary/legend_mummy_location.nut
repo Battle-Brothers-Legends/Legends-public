@@ -9,7 +9,7 @@ this.legend_mummy_location <- this.inherit("scripts/entity/world/location", {
 	{
 		this.location.create();
 		this.m.TypeID = "location.legend_mummy";
-		this.m.LocationType = this.Const.World.LocationType.Unique;
+		this.m.LocationType = ::Const.World.LocationType.Unique;
 		this.m.IsShowingDefenders = false;
 		this.m.IsShowingBanner = true;
 		this.m.IsAttackable = false;
@@ -28,7 +28,7 @@ this.legend_mummy_location <- this.inherit("scripts/entity/world/location", {
 	function onDiscovered()
 	{
 		this.location.onDiscovered();
-		this.World.Flags.increment("LegendaryLocationsDiscovered", 1);
+		::World.Flags.increment("LegendaryLocationsDiscovered", 1);
 	}
 
 	function onInit()
@@ -43,8 +43,8 @@ this.legend_mummy_location <- this.inherit("scripts/entity/world/location", {
 	function onDropLootForPlayer ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropArmorParts(this.Math.rand(0, 60), _lootTable);
-		this.dropTreasure(this.Math.rand(3, 4), [
+		this.dropArmorParts(::Math.rand(0, 60), _lootTable);
+		this.dropTreasure(::Math.rand(3, 4), [
 			"loot/white_pearls_item",
 			"loot/jeweled_crown_item",
 			"loot/gemstones_item",

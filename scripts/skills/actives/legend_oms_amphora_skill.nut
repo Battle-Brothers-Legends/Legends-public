@@ -5,8 +5,8 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendOmsAmphora);
 		this.m.Description = "Drink from the Amphora. You can\'t be sure what this might do...";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drink", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -60,8 +60,8 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 
 	function getCursorForTile( _tile )
 	{
-		if (_tile.ID == this.getContainer().getActor().getTile().ID) return this.Const.UI.Cursor.Drink;
-		else return this.Const.UI.Cursor.Give;
+		if (_tile.ID == this.getContainer().getActor().getTile().ID) return ::Const.UI.Cursor.Drink;
+		else return ::Const.UI.Cursor.Give;
 	}
 
 	function onVerifyTarget( _originTile, _targetTile )
@@ -80,14 +80,14 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 		{
 			if (!user.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " drinks from Amphora");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " drinks from Amphora");
 			}
 		}
 		else
 		{
 			if (!_user.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " lets " + this.Const.UI.getColorizedEntityName(user) + " drink from Amphora");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " lets " + ::Const.UI.getColorizedEntityName(user) + " drink from Amphora");
 			}
 		}
 

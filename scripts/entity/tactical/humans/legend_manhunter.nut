@@ -2,15 +2,15 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendManhunter;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendManhunter.XP;
+		this.m.Type = ::Const.EntityType.LegendManhunter;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendManhunter.XP;
 		this.human.create();
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.SouthernUntidy;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.SouthernUntidy;
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_manhunter_melee_agent");
@@ -24,7 +24,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendManhunter);
+		b.setValues(::Const.Tactical.Actor.LegendManhunter);
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -32,7 +32,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_nomads");
 
-		if (this.Math.rand(1, 100) <= 15)
+		if (::Math.rand(1, 100) <= 15)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -44,7 +44,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			dirt.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			this.getSprite("eye_rings").Visible = true;
 		}
@@ -63,7 +63,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 
 	function onOtherActorDeath( _killer, _victim, _skill )
 	{
-		if (_victim.getType() == this.Const.EntityType.Slave && _victim.isAlliedWith(this))
+		if (_victim.getType() == ::Const.EntityType.Slave && _victim.isAlliedWith(this))
 		{
 			return;
 		}
@@ -73,7 +73,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 
 	function onOtherActorFleeing( _actor )
 	{
-		if (_actor.getType() == this.Const.EntityType.Slave && _actor.isAlliedWith(this))
+		if (_actor.getType() == ::Const.EntityType.Slave && _actor.isAlliedWith(this))
 		{
 			return;
 		}
@@ -97,7 +97,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Armor.Southern.southern_mail_shirt]
 		];
 
-		if (this.World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
+		if (::World.getTime().Days > ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
 		{
 			armor.extend([
 				[1, ::Legends.Armor.Standard.mail_shirt],
@@ -105,7 +105,7 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			]);
 		}
 
-		this.getItems().equip(this.Const.World.Common.pickArmor(armor));
+		this.getItems().equip(::Const.World.Common.pickArmor(armor));
 
 		local helmet = [
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
@@ -114,12 +114,12 @@ this.legend_manhunter <- this.inherit("scripts/entity/tactical/human", {
 			[1, ::Legends.Helmet.Southern.spiked_skull_cap_with_mail]
 		];
 
-		if (this.World.getTime().Days <= ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
+		if (::World.getTime().Days <= ::Const.World.Scaling.Nomads.LegendsManhunterBetterArmorDay)
 		{
 			helmet.extend([
 				[1, ::Legends.Helmet.Southern.southern_head_wrap]
 			]);
 		}
-		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
 	}
 });

@@ -49,11 +49,11 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 			"the Rogue",
 			"the Sly"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented;
+		this.m.BackgroundType = ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Combat | ::Const.BackgroundType.Untalented;
 		this.m.CustomPerkTree = [
 			[],
 			[],
@@ -100,7 +100,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -132,22 +132,22 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.RangedSkill] = 1;
-		talents[this.Const.Attributes.Initiative] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.RangedSkill] = 1;
+		talents[::Const.Attributes.Initiative] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/dagger"));
 		items.addToBag(this.new("scripts/items/weapons/legend_slingshot"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 		]));
 	}
@@ -167,7 +167,7 @@ this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgr
 	function onUpdate( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 15; //normal buff is +10
+		_properties.HitChance[::Const.BodyPart.Head] += 15; //normal buff is +10
 	}
 
 });

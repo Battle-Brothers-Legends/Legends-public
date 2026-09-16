@@ -8,7 +8,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_lose_fear_dark_trait";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 40.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 40.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_33.png[/img]You come across %bravebro1% and %bravebro2% sitting with %darkbro%. The two mercenaries are listening to %darkbro% by the fire, regaling a story of how alps almost wiped out their hamlet as a boy. %SPEECH_ON%...and after that, I never really slept right. %bravebro1% and %bravebro2% both scratch their chins in unison. %SPEECH_ON%Right, but what good does it do you to cower in a corner while everyone else gets slaughtered?%SPEECH_OFF% %bravebro2% takes a sip from their mug. %SPEECH_ON%Fark, at that point I'd rather just off me'self than live with the guilt of doin' nothin'%SPEECH_OFF% %bravebro1% acknowledges the valiant words of wisdom from %bravebro2% and directs the conversation to something more meaningful. %SPEECH_ON%What we're sayin' is that was then this is now. You have steel in your hands and us at our back - if something is going to get out from the dark you may as well go down swinging with the rest of us...%SPEECH_OFF% %bravebro2%interjects again with a giggle. %SPEECH_ON%Yeah - and if I die I'm hauntin' both of 'yers!%SPEECH_OFF%",
@@ -50,7 +50,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 
 	function onUpdateScore()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 		{
@@ -78,7 +78,7 @@ this.legend_lose_fear_dark_trait_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		this.m.Darkbro = candidates_darkbro[this.Math.rand(0, candidates_darkbro.len() - 1)];
+		this.m.Darkbro = candidates_darkbro[::Math.rand(0, candidates_darkbro.len() - 1)];
 		this.m.Bravebro1 = candidates_brave[0];
 		this.m.Bravebro2 = candidates_brave[1];
 		this.m.Score = candidates_darkbro.len() * 5;

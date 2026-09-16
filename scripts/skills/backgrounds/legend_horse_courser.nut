@@ -17,8 +17,8 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 			::Legends.Traits.getID(::Legends.Trait.Clumsy),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.CustomPerkTree = [
 				[
 				::Legends.Perk.Colossus,
@@ -52,8 +52,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 				::Legends.Perk.LegendAmmoBinding,
 				::Legends.Perk.LegendMedPackages,
 				::Legends.Perk.LegendToolsDrawers,
-				::Legends.Perk.LegendHorseImpulsion,
-				::Legends.Perk.LegendHippology
+				::Legends.Perk.LegendHorseImpulsion
 			],
 			[
 				::Legends.Perk.LoneWolf,
@@ -102,10 +101,10 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 2;
-		talents[this.Const.Attributes.Initiative] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 2;
+		talents[::Const.Attributes.Initiative] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 
 	}

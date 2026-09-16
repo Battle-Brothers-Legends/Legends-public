@@ -1,20 +1,20 @@
 this.legend_necromancer_employer <- ::inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create() {
-		this.m.Type = this.Const.EntityType.Necromancer;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.Necromancer.XP;
+		this.m.Type = ::Const.EntityType.Necromancer;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.Necromancer.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.Necromancer;
-		this.m.Hairs = this.Const.Hair.Necromancer;
-		this.m.HairColors = this.Const.HairColors.Zombie;
-		this.m.Beards = this.Const.Beards.Raider;
+		this.m.Faces = ::Const.Faces.Necromancer;
+		this.m.Hairs = ::Const.Hair.Necromancer;
+		this.m.HairColors = ::Const.HairColors.Zombie;
+		this.m.Beards = ::Const.Beards.Raider;
 	}
 
 	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Necromancer);
+		b.setValues(::Const.Tactical.Actor.Necromancer);
 		b.TargetAttractionMult = 3.0;
 		b.IsAffectedByNight = false;
 		b.Vision = 8;
@@ -29,13 +29,13 @@ this.legend_necromancer_employer <- ::inherit("scripts/entity/tactical/human", {
 	}
 
 	function assignRandomEquipment() {
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, "ragged_dark_surcoat"],
 			[1, "thick_dark_tunic"]
 		]);
 		this.m.Items.equip(item);
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, "witchhunter_hat"],
 			[1, "dark_cowl"],
 			[1, "hood", 63]

@@ -23,7 +23,7 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Wildman);
+		b.setValues(::Const.Tactical.Actor.Wildman);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -36,17 +36,17 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.WildExtended;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.WildMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.WildExtended;
 		this.m.BeardChance = 80;
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_beasts");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		local body = this.getSprite("body");
-		local tattoo = this.Math.rand(0, 1);
+		local tattoo = ::Math.rand(0, 1);
 		local tattoo_body = this.getSprite("tattoo_body");
 		local tattoo_head = this.getSprite("tattoo_head");
 		tattoo_body.setBrush((tattoo == 0 ? "warpaint_01_" : "scar_02_") + body.getBrush().Name);
@@ -85,7 +85,7 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 			[1, "weapons/two_handed_mace"],
 		], "scripts/items/"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
 	}

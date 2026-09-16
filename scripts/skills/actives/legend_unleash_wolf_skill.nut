@@ -20,8 +20,8 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendUnleashWolf);
 		this.m.Description = "Summon a faithful wolf. Needs a free tile adjacent. Only one per battle.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/wolf_idle", 10, 0);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -40,32 +40,32 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 
 		foreach( r in this.m.Sounds0 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds1 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds2 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds3 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds4 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.Sounds5 )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
@@ -113,13 +113,13 @@ this.legend_unleash_wolf_skill <- this.inherit("scripts/skills/actives/legend_un
 	function onUse( _user, _targetTile )
 	{
 		::Legends.Effects.grant(_user, ::Legends.Effect.LegendSummonedWolfEffect);
-		local entity = this.Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Script, _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setName(this.m.EntityName);
 
 		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
 		{
-			entity.setMoraleState(this.Const.MoraleState.Confident);
+			entity.setMoraleState(::Const.MoraleState.Confident);
 		}
 
 		this.addAnimalSkills(entity);

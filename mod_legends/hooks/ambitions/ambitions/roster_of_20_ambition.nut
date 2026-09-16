@@ -2,34 +2,34 @@
 {
 	o.onUpdateScore = function ()
 	{
-		if (this.World.getTime().Days <= 15)
+		if (::World.getTime().Days <= 15)
 			return;
 
-		if (this.World.Ambitions.getDone() < 2)
+		if (::World.Ambitions.getDone() < 2)
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= 20)
+		if (::World.getPlayerRoster().getSize() >= 20)
 		{
 			this.m.IsDone = true;
 			return;
 		}
 
-		if (this.World.Assets.getBrothersMax() < 20)
+		if (::World.Assets.getBrothersMax() < 20)
 			return;
 
-		local previous = this.World.Ambitions.getAmbition("ambition.roster_of_16");
+		local previous = ::World.Ambitions.getAmbition("ambition.roster_of_16");
 		if (previous.getScore() != 0 && !previous.isDone())
 			return;
 
-		if (!this.World.Ambitions.getAmbition("ambition.roster_of_16").isDone())
+		if (!::World.Ambitions.getAmbition("ambition.roster_of_16").isDone())
 		{
 			return;
 		}
 
-		if (!this.World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
+		if (!::World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
 			return;
 
-		this.m.Score = 1 + this.Math.rand(0, 5);
+		this.m.Score = 1 + ::Math.rand(0, 5);
 	}
 
 });

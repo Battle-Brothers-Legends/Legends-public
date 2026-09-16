@@ -3,7 +3,7 @@ this.legend_stollwurm_tail_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.LegendStollwurm;
+		this.m.ID = ::Const.AI.Agent.ID.LegendStollwurm;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityRandomMult = 0.25;
@@ -26,8 +26,8 @@ this.legend_stollwurm_tail_agent <- this.inherit("scripts/ai/tactical/agent", {
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_swing"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_attack_thresh"));
 		this.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_move_tentacle"));
-		this.getBehavior(this.Const.AI.Behavior.ID.Swing).m.MinTargets = 1;
-		this.getBehavior(this.Const.AI.Behavior.ID.Thresh).m.MinTargets = 3;
+		this.getBehavior(::Const.AI.Behavior.ID.Swing).m.MinTargets = 1;
+		this.getBehavior(::Const.AI.Behavior.ID.Thresh).m.MinTargets = 3;
 	}
 
 });

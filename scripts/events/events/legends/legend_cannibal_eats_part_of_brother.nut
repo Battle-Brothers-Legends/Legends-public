@@ -6,10 +6,10 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 	function create() {
 		this.m.ID = "event.legend_cannibal_eats_part_of_brother";
 		this.m.Title = "At night...";
-		this.m.Cooldown = 55 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 55 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_06.png[/img]A scream pierces the still night. %randombro% hurtles into your tent with news of an attack. By the time you find the problem, you see you are not under attack at all, but instead %cannibal% has helped themselves to a bit of %dinner% for dinner. The happy cannibal gently cooks their haul in a pan over the campfire as their cattle screams in pain. \n\nThey do not move an inch.",
+			Text = "[img]gfx/ui/events/event_06.png[/img]A scream pierces the still night. %randombrother% hurtles into your tent with news of an attack. By the time you find the problem, you see you are not under attack at all, but instead %cannibal% has helped themselves to a bit of %dinner% for dinner. The happy cannibal gently cooks their haul in a pan over the campfire as their cattle screams in pain. \n\nThey do not move an inch.",
 			Image = "",
 			List = [],
 			Characters = [],
@@ -19,7 +19,7 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 			}],
 			function start(_event) {
 				local potential = [];
-				local injuries = this.Const.Injury.Cannibal;
+				local injuries = ::Const.Injury.Cannibal;
 
 				foreach (inj in injuries) {
 					if (inj.ID == "injury.maimed_foot" && !_event.m.Dinner.getSkills().hasSkill("injury.maimed_foot") && !_event.m.Dinner.getSkills().hasTrait(::Legends.Trait.LegendProstheticFoot)) {
@@ -57,12 +57,12 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") return;
-		local brothers = this.World.getPlayerRoster().getAll();
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") return;
+		local brothers = ::World.getPlayerRoster().getAll();
 		local cannibal_candidates = [];
 		local dinner_candidates = [];
 
-		if (this.World.Assets.getFood() > 0 || this.World.getTime().IsDaytime) {
+		if (::World.Assets.getFood() > 0 || ::World.getTime().IsDaytime) {
 			return;
 		}
 

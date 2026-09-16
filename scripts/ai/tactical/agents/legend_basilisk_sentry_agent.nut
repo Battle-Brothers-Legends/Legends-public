@@ -3,7 +3,7 @@ this.legend_basilisk_sentry_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.LegendBasiliskSentry;
+		this.m.ID = ::Const.AI.Agent.ID.LegendBasiliskSentry;
 		this.m.Properties.IsRangedUnit = true;
 
 		this.m.Properties.TargetPriorityHitchanceMult = 6.00;
@@ -39,7 +39,7 @@ this.legend_basilisk_sentry_agent <- this.inherit("scripts/ai/tactical/agent", {
 
 	function onUpdate()
 	{
-		if (this.getActor().getHitpointsPct() < 1.0 && this.Math.rand(1, 100) <= 25)
+		if (this.getActor().getHitpointsPct() < 1.0 && ::Math.rand(1, 100) <= 25)
 		{
 			this.m.Properties.EngageAgainstSpearwallMult = 0.5;
 		}

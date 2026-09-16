@@ -10,15 +10,15 @@ this.legend_named_lindwurm_helmet <- this.inherit("scripts/items/legend_helmets/
 	{
 		this.legend_named_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_named_lindwurm_helmet";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Helm;
 		this.m.Name = "Wild Helmet";
 		this.m.Description = "Covered in the scales of the dreaded Lindwurm, not only does this helmet deflect blows and hits, but they also remain unscathed by the acidic Lindwurm blood.";
 		this.m.ArmorDescription = this.m.Description;
 		this.m.Variants = [1,2,3,4];
-        this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+        this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 3000;
 		this.m.Vision = 0;
 		this.m.Lower = false;

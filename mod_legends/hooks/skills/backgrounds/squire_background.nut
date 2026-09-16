@@ -28,9 +28,9 @@
 			::Legends.Traits.getID(::Legends.Trait.Bleeder),
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Educated;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax; //Neutral-good essentially
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax; //Neutral-good essentially
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 	}
 
 	o.getTooltip = function ()
@@ -45,7 +45,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
+		if(this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{A young squire, %name% dutifully accompanied her knight to many battles. | Squire to a harsh knight, %name% spent her days running errands for her lordship. | Although a squire, %name%\'s life largely meant guarding prisoners of war, much to her chagrin. | Squire to a knight, sure, but %name% mostly cleaned latrines, fed dogs, and got far too much use out of a shinebox.} {One night, strange, shuffling men silhouetted the moonlit horizon. Alarm bells met their moans and an hour later half of %townname% lay in ruin. | While traveling, brigands attacked her lordship\'s wagon-train. Swords were drawn, heads were halved, and when it was all said and done the squire had failed: everyone she was supposed to protect lay dead. | But one evening a horde of ferocious, furred creatures came down upon her lord\'s keep. In desperation, %name% let a group of prisoners free, hoping they would aid her in combat. Instead, they slew her lordship and ran off into the night. The squire, bravely, managed to survive, a dozen husky corpses at her feet, but the battle left her alone and without purpose. | Angered by a horrible crime in %townname%, she took matters into her own hands, personally slaying the criminal. A just act, but also an improper one. The young squire was banished for her insubordination. | When a devilish red knight came to %townname% for a duel, %name%\'s knight proved far too sick to fight. After downing a mug of liquid confidence, %name% donned her lordship\'s armor and faced the red knight herself. With a sword slash so fast it rang the very air, %name% slew her opponent down.} {Now there was only one task left for her - to attain knighthood. | Now the squire seeks the company of good folk with which to again prove herself worthy of being a knight. | As war ravages the land, there is now plenty of opportunity to put her skills to use. | Though a bit too earnest, there is no doubt the world needs women like %name%.}";
 		}
@@ -70,7 +70,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 
 		if (r == 0)
 		{
@@ -89,20 +89,20 @@
 			items.equip(this.new("scripts/items/weapons/boar_spear"));
 		}
 
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.aketon_cap],

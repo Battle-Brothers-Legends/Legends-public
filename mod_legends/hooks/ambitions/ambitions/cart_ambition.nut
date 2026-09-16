@@ -4,29 +4,29 @@
 	{
 		return;
 
-		// if (this.World.Ambitions.getDone() < 2)
+		// if (::World.Ambitions.getDone() < 2)
 		// {
 		// 	return;
 		// }
 
-		// if (!this.World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
+		// if (!::World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
 		// {
 		// 	return;
 		// }
 
-		// this.m.Score = 3 + this.Math.rand(0, 5);
+		// this.m.Score = 3 + ::Math.rand(0, 5);
 
-		// if (this.World.getTime().Days >= 25)
+		// if (::World.getTime().Days >= 25)
 		// {
 		// 	this.m.Score += 1;
 		// }
 
-		// if (this.World.getTime().Days >= 35)
+		// if (::World.getTime().Days >= 35)
 		// {
 		// 	this.m.Score += 1;
 		// }
 
-		// if (this.World.getTime().Days >= 45)
+		// if (::World.getTime().Days >= 45)
 		// {
 		// 	this.m.Score += 1;
 		// }

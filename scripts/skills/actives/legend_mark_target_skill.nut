@@ -8,8 +8,8 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/puncture", 3);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsRanged = true;
@@ -53,7 +53,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 
 		if (target.isAlive() && !target.isDying())
 		{
@@ -61,7 +61,7 @@ this.legend_mark_target_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " calls and singles out " + this.Const.UI.getColorizedEntityName(target) + " leaving them marked");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " calls and singles out " + ::Const.UI.getColorizedEntityName(target) + " leaving them marked");
 			}
 		}
 	}

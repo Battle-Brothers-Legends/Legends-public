@@ -15,18 +15,18 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.AlpShadow;
-		this.m.BloodType = this.Const.BloodType.None;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
-		this.m.XP = this.Const.Tactical.Actor.AlpShadow.XP;
+		this.m.Type = ::Const.EntityType.AlpShadow;
+		this.m.BloodType = ::Const.BloodType.None;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
+		this.m.XP = ::Const.Tactical.Actor.AlpShadow.XP;
 		this.m.IsEmittingMovementSounds = false;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/ghost_death_01.wav",
 			"sounds/enemies/ghost_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [];
-		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [];
+		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.m.Flags.add("alp");
 	}
 
@@ -47,8 +47,8 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		// basic alp skill
 		this.m.Skills.add(this.new("scripts/skills/actives/legend_shadow_alp_teleport_skill"));
@@ -87,7 +87,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpShadowMDefIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpShadowMDefIncreaseDay)
 			b.MeleeDefense += 5;
 
 		if (::Legends.isLegendaryDifficulty())
@@ -167,7 +167,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 				}
 			]
 		};
-		this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+		::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 	}
 
 	function onRender()
@@ -176,7 +176,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (this.m.DistortTargetA == null)
 		{
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 		}
 
@@ -184,12 +184,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
 
 		if (this.m.DistortTargetB == null)
 		{
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 		}
 
@@ -197,12 +197,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
 
 		if (this.m.DistortTargetC == null)
 		{
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 		}
 
@@ -210,12 +210,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
 
 		if (this.m.DistortTargetD == null)
 		{
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 		}
 
@@ -223,7 +223,7 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevD = this.m.DistortTargetD;
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 10) - 5, this.Math.rand(0, 10) - 5);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
 	}
 

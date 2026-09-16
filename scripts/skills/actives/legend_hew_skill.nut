@@ -10,8 +10,8 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Hewed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/overhead_strike", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/execute_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -19,8 +19,8 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = false;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.35;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 15;
@@ -60,13 +60,13 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile ) {
 		local target = _targetTile.getEntity();
 		local hp = target.getHitpoints();
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectChop);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
 		this.m.ApplyHead = true;
 		local success = this.attackEntity(_user, target);
 
@@ -84,15 +84,15 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 		{
 			hp = target.getHitpoints();
 			local p = this.getContainer().buildPropertiesForUse(this, target);
-			local hitInfo = clone this.Const.Tactical.HitInfo;
+			local hitInfo = clone ::Const.Tactical.HitInfo;
 			local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
-			local damageRegular = this.Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageRegularMult;
-			local damageArmor = this.Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageArmorMult;
-			local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
+			local damageRegular = ::Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageRegularMult;
+			local damageArmor = ::Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageArmorMult;
+			local damageDirect = ::Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
 			hitInfo.DamageRegular = damageRegular * damageMult;
 			hitInfo.DamageArmor = damageArmor * damageMult;
 			hitInfo.DamageDirect = damageDirect;
-			hitInfo.BodyPart = this.Const.BodyPart.Body;
+			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 1.0;
 			target.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
@@ -107,11 +107,11 @@ this.legend_hew_skill <- this.inherit("scripts/skills/skill", {
 			return;
 
 		if (this.m.ApplyHead)
-			_properties.HitChance[this.Const.BodyPart.Head] = 100;
+			_properties.HitChance[::Const.BodyPart.Head] = 100;
 		
 		_properties.DamageTooltipMaxMult *= 2.0;
 
-		if (_targetEntity != null && (_targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury) || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Bleeding)) && _properties.IsSpecializedInCleavers)
+		if (_targetEntity != null && (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || ::Legends.Effects.has(_targetEntity, ::Legends.Effect.Bleeding)) && _properties.IsSpecializedInCleavers)
 			_properties.DamageTotalMult *= 0.8;
 		else
 			_properties.DamageTotalMult *= 0.6;

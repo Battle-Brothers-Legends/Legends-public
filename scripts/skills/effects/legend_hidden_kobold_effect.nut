@@ -9,7 +9,7 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character is hidden in terrain and can not be seen by opponents. Removed upon attacking opponents or directly adjacent to them.";
 		this.m.Icon = "skills/status_effect_08.png";
 		this.m.IconMini = "status_effect_08_mini";
-		this.m.Type = this.Const.SkillType.Terrain | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Terrain | ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsSerialized = false;
@@ -102,11 +102,11 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		if (actor.getTile().IsVisibleForPlayer)
 		{
-			if (this.Const.Tactical.HideParticles.len() != 0)
+			if (::Const.Tactical.HideParticles.len() != 0)
 			{
-				for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
+				for( local i = 0; i < ::Const.Tactical.HideParticles.len(); i = ++i )
 				{
-					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
+					::Tactical.spawnParticleEffect(false, ::Const.Tactical.HideParticles[i].Brushes, actor.getTile(), ::Const.Tactical.HideParticles[i].Delay, ::Const.Tactical.HideParticles[i].Quantity, ::Const.Tactical.HideParticles[i].LifeTimeQuantity, ::Const.Tactical.HideParticles[i].SpawnRate, ::Const.Tactical.HideParticles[i].Stages);
 				}
 			}
 		}
@@ -140,11 +140,11 @@ this.legend_hidden_kobold_effect <- this.inherit("scripts/skills/skill", {
 			i.updateAppearance();
 		if (actor.getTile().IsVisibleForPlayer)
 		{
-			if (this.Const.Tactical.HideParticles.len() != 0)
+			if (::Const.Tactical.HideParticles.len() != 0)
 			{
-				for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
+				for( local i = 0; i < ::Const.Tactical.HideParticles.len(); i = ++i )
 				{
-					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
+					::Tactical.spawnParticleEffect(false, ::Const.Tactical.HideParticles[i].Brushes, actor.getTile(), ::Const.Tactical.HideParticles[i].Delay, ::Const.Tactical.HideParticles[i].Quantity, ::Const.Tactical.HideParticles[i].LifeTimeQuantity, ::Const.Tactical.HideParticles[i].SpawnRate, ::Const.Tactical.HideParticles[i].Stages);
 				}
 			}
 		}

@@ -2,22 +2,22 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBear;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendBear.XP;
+		this.m.Type = ::Const.EntityType.LegendBear;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendBear.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(40, -20);
 		this.m.DecapitateBloodAmount = 3.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/bear_dead.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/unhold_confused", 4);
-		this.m.SoundPitch = this.Math.rand(0.9, 1.1);
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = ::Legends.S.setSounds("sounds/enemies/unhold_flee", 4);
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = ::Legends.S.setSounds("sounds/enemies/bear_hit", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = ::Legends.S.setSounds("sounds/enemies/bear_idle", 2);
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = ::Legends.S.setSounds("sounds/enemies/unhold_confused", 4);
+		this.m.SoundPitch = ::Math.rand(0.9, 1.1);
 		this.m.SoundVolumeOverall = 1.25;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_bear_agent");
 		this.m.AIAgent.setActor(this);
@@ -38,14 +38,14 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
-		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
 			return;
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(1, 100) < 50;
+		local flip = ::Math.rand(1, 100) < 50;
 
 		if (_tile != null)
 		{
@@ -55,7 +55,7 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 			local appearance = this.getItems().getAppearance();
 			local sprite_body = this.getSprite("body");
 			local sprite_head = this.getSprite("head");
-			decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = sprite_body.Color;
 			decal.Saturation = sprite_body.Saturation;
 			decal.Scale = 0.9;
@@ -63,16 +63,16 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (appearance.CorpseArmor != "")
 			{
-				decal = _tile.spawnDetail(appearance.CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(appearance.CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 				decal.setBrightness(0.9);
 			}
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
 				if (!appearance.HideCorpseHead)
 				{
-					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(sprite_head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Color = sprite_head.Color;
 					decal.Saturation = sprite_head.Saturation;
 					decal.Scale = 0.9;
@@ -81,12 +81,12 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 
 				if (appearance.HelmetCorpse.len() != 0)
 				{
-					decal = _tile.spawnDetail(appearance.HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
+					decal = _tile.spawnDetail(appearance.HelmetCorpse, ::Const.Tactical.DetailFlag.Corpse, flip);
 					decal.Scale = 0.9;
 					decal.setBrightness(0.9);
 				}
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [];
 
@@ -100,7 +100,7 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 					layers.push(appearance.HelmetCorpse);
 				}
 
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-75, 50), 90.0, sprite_head.getBrush().Name + "_dead_bloodpool");
 				local idx = 0;
 
 				if (!appearance.HideCorpseHead)
@@ -120,19 +120,19 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 				}
 			}
 
-			if (_fatalityType == this.Const.FatalityType.Disemboweled)
+			if (_fatalityType == ::Const.FatalityType.Disemboweled)
 			{
-				decal = _tile.spawnDetail("bust_unhold_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_unhold_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(sprite_body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.9;
 			}
 
@@ -145,10 +145,10 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -156,13 +156,13 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Bear";
 		corpse.Tile = _tile;
 		corpse.IsResurrectable = false;
 		corpse.IsConsumable = true;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		return corpse;
 	}
 
@@ -181,15 +181,15 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBear);
+		b.setValues(::Const.Tactical.Actor.LegendBear);
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay)
 		{
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay2)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsBearDamageIncreaseDay2)
 		{
 			b.DamageTotalMult += 0.2;
 		}
@@ -197,8 +197,8 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		b.MeleeSkill += 10;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bear_01";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
@@ -233,10 +233,10 @@ this.legend_bear <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBattleheart);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			b.Armor[this.Const.BodyPart.Head] += 50;
-			b.ArmorMax[this.Const.BodyPart.Head] += 50;		
-			b.Armor[this.Const.BodyPart.Body] += 120;
-			b.ArmorMax[this.Const.BodyPart.Body] += 120;
+			b.Armor[::Const.BodyPart.Head] += 50;
+			b.ArmorMax[::Const.BodyPart.Head] += 50;		
+			b.Armor[::Const.BodyPart.Body] += 120;
+			b.ArmorMax[::Const.BodyPart.Body] += 120;
 			b.Hitpoints *= 2;			
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

@@ -42,18 +42,18 @@
 	o.updateStrength = function ()
 	{
 		this.m.Strength = 0.0;
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
-		if (roster.len() > this.World.Assets.getBrothersScaleMax())
+		if (roster.len() > ::World.Assets.getBrothersScaleMax())
 		{
 			roster.sort(this.onLevelCompare);
 		}
-		if (roster.len() < this.World.Assets.getBrothersScaleMin())
+		if (roster.len() < ::World.Assets.getBrothersScaleMin())
 		{
 			this.m.Strength += 10.0 * roster.len();
 		}
 
-		if (this.World.Assets.getOrigin() == null)
+		if (::World.Assets.getOrigin() == null)
 		{
 			this.m.Strength * 0.8;
 			return;
@@ -95,7 +95,7 @@
 		//  Scaling based on money and stash - was controversial
 		//	if (::Legends.isLegendaryDifficulty())
 		//	{
-		//		local items = this.World.Assets.getStash().getItems();
+		//		local items = ::World.Assets.getStash().getItems();
 		//
 		//		local itemsvalue = 0;
 		//		foreach( item in items )
@@ -107,13 +107,13 @@
 		//		}
 		//		this.m.Strength += itemsvalue / 1000;
 		//		this.logInfo("Item power " + itemsvalue);
-		//		local cashvalue = this.World.Assets.getMoney();
+		//		local cashvalue = ::World.Assets.getMoney();
 		//		this.logInfo("Gear power " + cashvalue);
 		//		this.m.Strength += cashvalue / 750;
 		//	}
 
 		//When playing a warlock build, we need to account for the summons he can add
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 
 		local zCount = 0;
 		local sCount = 0;
@@ -146,7 +146,7 @@
 
 		if (zCount > 1)
 		{
-			zCount = this.Math.floor(zCount / 2.0);
+			zCount = ::Math.floor(zCount / 2.0);
 			for (local i = 0; i < zCount; i = ++i)
 			{
 				this.m.Strength += 3 + (((zombieSummonLevel / 2) + (zombieSummonLevel - 1)) * 2.0);
@@ -154,7 +154,7 @@
 		}
 		if (sCount > 1)
 		{
-			sCount = this.Math.floor(sCount / 2.0);
+			sCount = ::Math.floor(sCount / 2.0);
 			for (local i = 0; i < sCount; i = ++i)
 			{
 				this.m.Strength += 3 + (((skeletonSummonLevel / 2) + (skeletonSummonLevel - 1)) * 2.0);
@@ -279,7 +279,7 @@
 
 	o.calculateModifiers <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
+		if (::World.State.m.AppropriateTimeToRecalc == 1) //Leonion's fix
 		{
 			this.calculateHaggleMult();
 			this.calculateAmmoModifier();
@@ -291,16 +291,16 @@
 
 	o.calculateHaggleMult <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
+		if (::World.State.m.AppropriateTimeToRecalc != 1)
 			return;
 
 		local haggleMult = 0.0;
-		foreach (bro in this.World.getPlayerRoster().getAll()) {
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			haggleMult += bro.getHaggleModifier();
 		}
 		haggleMult += ::World.Assets.m.ProfessionEffect.LegendConvincingProposals;
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.trader")
+		if (::World.Assets.getOrigin().getID() == "scenario.trader")
 			haggleMult = haggleMult * 1.1;
 
 		this.m.HaggleMultiplier = haggleMult;
@@ -308,11 +308,11 @@
 
 	o.calculateAmmoModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
+		if (::World.State.m.AppropriateTimeToRecalc != 1)
 			return;
 
 		local s = 0;
-		foreach(bro in this.World.getPlayerRoster().getAll())	{
+		foreach(bro in ::World.getPlayerRoster().getAll())	{
 			s += bro.getAmmoModifier();
 		}
 		s += ::World.Assets.m.ProfessionEffect.LegendReserveBundles;
@@ -321,11 +321,11 @@
 
 	o.calculateArmorPartsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
+		if (::World.State.m.AppropriateTimeToRecalc != 1)
 			return;
 
 		local s = 0;
-		foreach(bro in this.World.getPlayerRoster().getAll())	{
+		foreach(bro in ::World.getPlayerRoster().getAll())	{
 			s += bro.getArmorPartsModifier();
 		}
 		s += ::World.Assets.m.ProfessionEffect.LegendToolsDrawers;
@@ -334,11 +334,11 @@
 
 	o.calculateMedsModifier <- function ()
 	{
-		if (this.World.State.m.AppropriateTimeToRecalc != 1)
+		if (::World.State.m.AppropriateTimeToRecalc != 1)
 			return;
 
 		local s = 0;
-		foreach( bro in this.World.getPlayerRoster().getAll() )
+		foreach( bro in ::World.getPlayerRoster().getAll() )
 		{
 			s += bro.getMedsModifier();
 		}

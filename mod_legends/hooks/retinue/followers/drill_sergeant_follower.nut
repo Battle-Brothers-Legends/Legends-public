@@ -33,8 +33,8 @@
 
 	o.onUpdate = function ()
 	{
-		if ("IsDisciplined" in this.World.Assets.m)
-			this.World.Assets.m.IsDisciplined = true;
+		if ("IsDisciplined" in ::World.Assets.m)
+			::World.Assets.m.IsDisciplined = true;
 	}
 
 	o.onEvaluate = function () {

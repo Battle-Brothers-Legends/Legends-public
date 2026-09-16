@@ -4,15 +4,15 @@ this.legend_pauldron_strong_upgrade <- this.inherit("scripts/items/legend_armor/
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_pauldron_strong";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Reinforced Pauldrons";
 		this.m.Description = "Strong segments of iron plate, excellent for protecting shoulders and neck. Worn over armor, they can help deflect incoming blows.";
 		this.m.ArmorDescription = "Includes a set of strong pauldrons.";
 		this.m.Variants = [1, 2, 3, 4, 5, 6];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 2500;
 		this.m.Condition = 55;
 		this.m.ConditionMax = 55;

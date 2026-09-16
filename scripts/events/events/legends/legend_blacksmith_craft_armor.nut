@@ -8,7 +8,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_blacksmith_craft_armor";
 		this.m.Title = "At %townname%";
-		this.m.Cooldown = 99999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 99999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_01.png[/img]While walking around the town shopping you notice %blacksmith% looks like he has his mind on something else.%SPEECH_ON%What\'s the matter %blacksmith%?%SPEECH_OFF%%SPEECH_ON%Sir I don\'t know how to say this but you see we have this tradition in a craft smith community where we compete in the art of craft to prove who is worthy of a name \"King of Craftsmen\" and are proud to hold that title!%SPEECH_OFF% Is he talking about that legendary contest where smiths from all over the world gather and they craft the best items that are worthy to withstand blows of a behemoth?%SPEECH_ON%What is it that you need from me?%SPEECH_OFF%%SPEECH_ON% I need 10,000 to enter the contest to buy the metal and other supplies.%SPEECH_OFF%",
@@ -66,7 +66,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = this.Const.World.Common.pickArmor([
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
@@ -110,7 +110,7 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 			}],
 			function start(_event) {
 				this.Characters.push(_event.m.Blacksmith.getImagePath());
-				local item = this.Const.World.Common.pickArmor([
+				local item = ::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.heavy_lamellar_armor]
 				]);
 				item.m.Name = _event.m.Blacksmith.getNameOnly() + "\'s Failed Masterpiece";
@@ -144,10 +144,10 @@ this.legend_blacksmith_craft_armor <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.Assets.getMoney() < 15000)
+		if (::World.Assets.getMoney() < 15000)
 			return;
 
 		local towns = ::World.EntityManager.getSettlements();

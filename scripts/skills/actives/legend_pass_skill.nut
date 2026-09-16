@@ -5,8 +5,8 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendPass);
 		this.m.Description = "Give the first item in your bag to an adjacent ally. Can not be used while engaged in melee, and anyone receiving the item needs to have a free main hand, off hand or bag slot.";
 		this.m.SoundOnUse = ["sounds/cloth_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -52,7 +52,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -75,13 +75,13 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 	function getCursorForTile( _tile )
 	{
-		return this.Const.UI.Cursor.Give;
+		return ::Const.UI.Cursor.Give;
 
 	}
 
 	function isUsable()
 	{
-		if (!this.Tactical.isActive())
+		if (!::Tactical.isActive())
 		{
 			return false;
 		}
@@ -107,7 +107,7 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 		local target = _targetTile.getEntity();
 		local user = _originTile.getEntity();
-		local item = user.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)[0];
+		local item = user.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)[0];
 
 		if (item == null)
 		{
@@ -121,15 +121,15 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 
 		if (target.getID() != user.getID())
 		{
-			if (item.m.SlotType == this.Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand))
+			if (item.m.SlotType == ::Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(::Const.ItemSlot.Mainhand))
 			{
 				return true;
 			}
-			if (item.m.SlotType == this.Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (item.m.SlotType == ::Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				return true;
 			}
-			if (!target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+			if (!target.getItems().hasEmptySlot(::Const.ItemSlot.Bag))
 			{
 				return false;
 			}
@@ -141,26 +141,26 @@ this.legend_pass_skill <- this.inherit("scripts/skills/skill", {
 	function onUse( _user, _targetTile )
 	{
 		local target = _targetTile.getEntity();
-		local item = _user.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)[0];
+		local item = _user.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)[0];
 		local itemName = item.getName();
 
 		this.spawnIcon("status_helpful", _targetTile);
 
 		if (!_user.isHiddenToPlayer())
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " gives " + itemName + " to " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " gives " + itemName + " to " + ::Const.UI.getColorizedEntityName(target));
 		}
 
-		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/cloth_01.wav", ::Const.Sound.Volume.Inventory);
 
 
 		_user.getItems().removeFromBag(item);
-		if (item.m.SlotType == this.Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (item.m.SlotType == ::Const.ItemSlot.Mainhand && target.getItems().hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			target.getItems().equip(item);
 			return true;
 		}
-		if (item.m.SlotType == this.Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (item.m.SlotType == ::Const.ItemSlot.Offhand && target.getItems().hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			target.getItems().equip(item);
 			return true;

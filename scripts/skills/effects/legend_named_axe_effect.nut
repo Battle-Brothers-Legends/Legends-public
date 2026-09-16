@@ -7,8 +7,8 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Item;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;
@@ -36,7 +36,7 @@ this.legend_named_axe_effect <- this.inherit("scripts/skills/skill", {
 
     function onAnySkillUsed( _skill, _targetEntity, _properties ) {
 		if (_skill.isAttack() && _skill.getItem() != null && this.getItem() != null && _skill.getItem().getInstanceID() == this.getItem().getInstanceID()) {
-			_properties.DamageAgainstMult[this.Const.BodyPart.Head] *= 1 + (this.m.Bonus * 0.01);
+			_properties.DamageAgainstMult[::Const.BodyPart.Head] *= 1 + (this.m.Bonus * 0.01);
 		}
 	}
 });

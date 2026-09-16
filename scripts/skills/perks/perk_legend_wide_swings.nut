@@ -63,7 +63,7 @@ this.perk_legend_wide_swings <- this.inherit("scripts/skills/skill", {
 			}
 
 			this.m.ExecutingAttack = true;
-			_skill.useForFree(targetTiles[this.Math.rand(0, targetTiles.len() - 1)]);
+			_skill.useForFree(targetTiles[::Math.rand(0, targetTiles.len() - 1)]);
 			this.m.ExecutingAttack = false;
 		}).bindenv(this);
 		::Time.scheduleEvent(::TimeUnit.Virtual, 10, executeFollowup, 0);

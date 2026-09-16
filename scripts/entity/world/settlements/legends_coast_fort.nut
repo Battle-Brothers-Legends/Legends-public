@@ -261,7 +261,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			::Legends.Background.LegendHorseCourser
 		]];
 
-		this.m.Rumors = this.Const.Strings.RumorsFishingSettlement;
+		this.m.Rumors = ::Const.Strings.RumorsFishingSettlement;
 
 	}
 
@@ -342,22 +342,22 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 	function buildNewLocation()
 	{
 		local ALL = [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra,
-			this.Const.World.TerrainType.Forest,
-			this.Const.World.TerrainType.SnowyForest,
-			this.Const.World.TerrainType.AutumnForest,
-			this.Const.World.TerrainType.LeaveForest
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra,
+			::Const.World.TerrainType.Forest,
+			::Const.World.TerrainType.SnowyForest,
+			::Const.World.TerrainType.AutumnForest,
+			::Const.World.TerrainType.LeaveForest
 		];
 
 		local items = [
 			[1, {
 				Script = "scripts/entity/world/attached_location/harbor_location",
-				Terrain = [this.Const.World.TerrainType.Shore],
-				NearTerrain = [this.Const.World.TerrainType.Shore, this.Const.World.TerrainType.Ocean],
+				Terrain = [::Const.World.TerrainType.Shore],
+				NearTerrain = [::Const.World.TerrainType.Shore, ::Const.World.TerrainType.Ocean],
 				Distance = 1,
 				Road = false,
 				Clear = false,
@@ -367,7 +367,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			[1, {
 				Script = "scripts/entity/world/attached_location/fishing_huts_location",
 				Terrain = ALL,
-				NearTerrain = [this.Const.World.TerrainType.Shore],
+				NearTerrain = [::Const.World.TerrainType.Shore],
 				Distance = 1,
 				Road = false,
 				Clear = true,
@@ -490,7 +490,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 				[1, {Num = 1,
 					Script = "scripts/entity/world/attached_location/amber_collector_location",
 					Terrain = ALL,
-					NearTerrain = [this.Const.World.TerrainType.Shore],
+					NearTerrain = [::Const.World.TerrainType.Shore],
 					Distance = 1,
 					Road = false,
 					Clear = true,
@@ -502,7 +502,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		}
 
 		items = this.filterNewLocation(items);
-		local item = this.Const.World.Common.pickItem(items);
+		local item = ::Const.World.Common.pickItem(items);
 		return this.buildAttachedLocation(1, item.Script, item.Terrain, item.NearTerrain, item.Distance, item.Road, item.Clear, item.Force);
 	}
 
@@ -512,17 +512,17 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Const.World.Buildings.Kennels == 0)
+		if (::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
-		else if (this.Const.World.Buildings.Stables == 0)
+		else if (::Const.World.Buildings.Stables == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 		}
 		else
 		{
-			local r = this.Math.rand(1, 4);
+			local r = ::Math.rand(1, 4);
 
 			if (r == 1)
 			{
@@ -543,32 +543,32 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		}
 
 		this.buildAttachedLocation(1, "scripts/entity/world/attached_location/harbor_location", [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		], [
-			this.Const.World.TerrainType.Ocean,
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Ocean,
+			::Const.World.TerrainType.Shore
 		], -1, false, false);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], []);
 		this.buildAttachedLocation(1, "scripts/entity/world/attached_location/fishing_huts_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Tundra
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Tundra
 		], [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		]);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], [], 4, true);
 	}
 
@@ -578,7 +578,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		}
@@ -587,17 +587,17 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (!this.Const.World.Buildings.Kennels == 0)
+		if (!::Const.World.Buildings.Kennels == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
 		}
-		else if (this.Const.World.Buildings.Stables == 0)
+		else if (::Const.World.Buildings.Stables == 0)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 		}
 		else
 		{
-			local r = this.Math.rand(1, 4);
+			local r = ::Math.rand(1, 4);
 
 			if (r == 1)
 			{
@@ -617,88 +617,88 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			}
 		}
 
-		if (this.Math.rand(1, 100) <= 70)
+		if (::Math.rand(1, 100) <= 70)
 		{
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/fishing_huts_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Tundra
 			], [
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Shore
 			], 1, true);
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/workshop_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/workshop_location", [
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 1, true);
 		}
 		else
 		{
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/fishing_huts_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Tundra
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/fishing_huts_location", [
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Tundra
 			], [
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Shore
 			], 1, true);
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/workshop_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 1, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 40)
+		if (::Math.rand(1, 100) <= 40)
 		{
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/surface_iron_vein_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 1, true);
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Hills
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Hills
 			], [], 1);
 		}
 		else
 		{
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/surface_iron_vein_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/surface_iron_vein_location", [
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 1, true);
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/leather_tanner_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Hills
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Hills
 			], [], 1);
 		}
 
 		this.buildAttachedLocation(1, "scripts/entity/world/attached_location/harbor_location", [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		], [
-			this.Const.World.TerrainType.Ocean,
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Ocean,
+			::Const.World.TerrainType.Shore
 		], -1, false, false);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], [], 4, true);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/fortified_outpost_location", [
-			this.Const.World.TerrainType.Tundra,
-			this.Const.World.TerrainType.Hills
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/fortified_outpost_location", [
+			::Const.World.TerrainType.Tundra,
+			::Const.World.TerrainType.Hills
 		], [], 2, true);
 	}
 
@@ -712,11 +712,11 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 		if (::Legends.Mod.ModSettings.getSetting("StackCitadels").getValue())
 		{
 			local ALL = [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			];
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
@@ -727,20 +727,20 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/workshop_location", ALL, [], 0, false, true, true);
 
 			this.buildAttachedLocation(2, "scripts/entity/world/attached_location/harbor_location", [
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Shore
 			], [
-				this.Const.World.TerrainType.Ocean,
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Ocean,
+				::Const.World.TerrainType.Shore
 			], 1, false, false);
 
-			this.buildAttachedLocation(this.Math.rand(1, 2), "scripts/entity/world/attached_location/fishing_huts_location", ALL,
+			this.buildAttachedLocation(::Math.rand(1, 2), "scripts/entity/world/attached_location/fishing_huts_location", ALL,
 			[
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Shore
 			]);
 
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/amber_collector_location", ALL,
 			[
-				this.Const.World.TerrainType.Shore
+				::Const.World.TerrainType.Shore
 			]);
 
 			return;
@@ -748,7 +748,7 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/tavern_building"));
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
 		}
@@ -757,97 +757,97 @@ this.legends_coast_fort <- this.inherit("scripts/entity/world/settlements/legend
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/weaponsmith_building"));
 		}
 
-		if (this.Math.rand(1, 100) <= 60)
+		if (::Math.rand(1, 100) <= 60)
 		{
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/stone_watchtower_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 4, true);
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/fortified_outpost_location", [
-				this.Const.World.TerrainType.Tundra,
-				this.Const.World.TerrainType.Hills
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/fortified_outpost_location", [
+				::Const.World.TerrainType.Tundra,
+				::Const.World.TerrainType.Hills
 			], [], 2, true);
 		}
 		else
 		{
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
-				this.Const.World.TerrainType.Plains,
-				this.Const.World.TerrainType.Steppe,
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/stone_watchtower_location", [
+				::Const.World.TerrainType.Plains,
+				::Const.World.TerrainType.Steppe,
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [], 4, true);
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/fortified_outpost_location", [
-				this.Const.World.TerrainType.Tundra,
-				this.Const.World.TerrainType.Hills
+				::Const.World.TerrainType.Tundra,
+				::Const.World.TerrainType.Hills
 			], [], 2, true);
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/ore_smelters_location", [
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [
-				this.Const.World.TerrainType.Hills
+				::Const.World.TerrainType.Hills
 			], 1, true);
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/blast_furnace_location", [
-				this.Const.World.TerrainType.Tundra,
-				this.Const.World.TerrainType.Hills
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/blast_furnace_location", [
+				::Const.World.TerrainType.Tundra,
+				::Const.World.TerrainType.Hills
 			], [
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Tundra
 			], 1, true);
 		}
 		else
 		{
-			this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/ore_smelters_location", [
-				this.Const.World.TerrainType.Snow,
-				this.Const.World.TerrainType.Hills,
-				this.Const.World.TerrainType.Tundra
+			this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/ore_smelters_location", [
+				::Const.World.TerrainType.Snow,
+				::Const.World.TerrainType.Hills,
+				::Const.World.TerrainType.Tundra
 			], [
-				this.Const.World.TerrainType.Hills
+				::Const.World.TerrainType.Hills
 			], 1, true);
 			this.buildAttachedLocation(1, "scripts/entity/world/attached_location/blast_furnace_location", [
-				this.Const.World.TerrainType.Tundra,
-				this.Const.World.TerrainType.Hills
+				::Const.World.TerrainType.Tundra,
+				::Const.World.TerrainType.Hills
 			], [
-				this.Const.World.TerrainType.Tundra
+				::Const.World.TerrainType.Tundra
 			], 1, true);
 		}
 
 		this.buildAttachedLocation(2, "scripts/entity/world/attached_location/harbor_location", [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		], [
-			this.Const.World.TerrainType.Ocean,
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Ocean,
+			::Const.World.TerrainType.Shore
 		], 1, false, false);
-		this.buildAttachedLocation(this.Math.rand(1, 2), "scripts/entity/world/attached_location/fishing_huts_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(1, 2), "scripts/entity/world/attached_location/fishing_huts_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Tundra
 		], [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		]);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/workshop_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/workshop_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], []);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/amber_collector_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/amber_collector_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		]);
 	}
 

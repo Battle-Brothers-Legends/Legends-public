@@ -42,10 +42,10 @@
 					end();
 					foreach (id in this.Contract.m.UnitsSpawned) {
 						local party = ::World.getEntityByID(id);
-						party.getLoot().Money = this.Math.rand(100, 300);
-						party.getLoot().ArmorParts = this.Math.rand(10, 35);
-						party.getLoot().Medicine = this.Math.rand(5, 15);
-						party.getLoot().Ammo = this.Math.rand(10, 40);
+						party.getLoot().Money = ::Math.rand(100, 300);
+						party.getLoot().ArmorParts = ::Math.rand(10, 35);
+						party.getLoot().Medicine = ::Math.rand(5, 15);
+						party.getLoot().Ammo = ::Math.rand(10, 40);
 					}
 				}
 			}

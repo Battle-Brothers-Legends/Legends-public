@@ -7,7 +7,7 @@ this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecSpearWall);
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
 	function onAfterUpdate( _properties ) {
@@ -22,7 +22,7 @@ this.perk_legend_specialist_spearwall <- this.inherit("scripts/skills/skill", {
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
-		if (this.getContainer().hasEffect(::Legends.Effect.Spearwall) && (this.Tactical.TurnSequenceBar.getActiveEntity() == null || this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID()))
+		if (this.getContainer().hasEffect(::Legends.Effect.Spearwall) && (::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID()))
 		{
 			_properties.DamageTotalMult *= 1.25;
 		}

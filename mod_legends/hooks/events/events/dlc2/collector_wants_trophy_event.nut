@@ -14,8 +14,8 @@
 						if (_event.m.Peddler != null)
 							return "Peddler";
 						else {
-							this.World.Assets.addMoney(_event.m.Reward);
-							local stash = this.World.Assets.getStash().getItems();
+							::World.Assets.addMoney(_event.m.Reward);
+							local stash = ::World.Assets.getStash().getItems();
 							foreach( i, item in stash ) {
 								if (item != null && item.getID() == _event.m.Item.getID()) {
 									stash[i] = null;
@@ -49,8 +49,8 @@
 			Options = [{
 				Text = "Deal.",
 				function getResult( _event ) {
-					this.World.Assets.addMoney(_event.m.Reward);
-					local stash = this.World.Assets.getStash().getItems();
+					::World.Assets.addMoney(_event.m.Reward);
+					local stash = ::World.Assets.getStash().getItems();
 					foreach( i, item in stash )
 						if (item != null && item.getID() == _event.m.Item.getID()) {
 							stash[i] = null;
@@ -67,7 +67,7 @@
 			}],
 			function start( _event ) {
 				this.Characters.push(_event.m.Merchant.getImagePath());
-				_event.m.Reward = this.Math.floor(_event.m.Reward * 1.66);
+				_event.m.Reward = ::Math.floor(_event.m.Reward * 1.66);
 			}
 		});
 	}
@@ -78,14 +78,14 @@
 		if (this.m.Score == 0)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_merchant = [];
 		foreach( bro in brothers )
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderPeddler))
 				candidates_merchant.push(bro);
 
 		if (candidates_merchant.len() != 0)
-			this.m.Merchant = candidates_merchant[this.Math.rand(0, candidates_merchant.len() - 1)];
+			this.m.Merchant = candidates_merchant[::Math.rand(0, candidates_merchant.len() - 1)];
 	}
 
 	local onPrepareVariables = o.onPrepareVariables;

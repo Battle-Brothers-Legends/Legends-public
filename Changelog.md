@@ -162,6 +162,42 @@
 - `Lookout` - removed from Slings tree
 - `Anchor` - moved to Slings from Bow to replace `Lookout`
 
+### Removed Perks
+- `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
+- `Lookout` - effect moved to a profession
+- `Skillful Stacking` - effect moved to a profession
+- `Efficient Packing` - effect moved to a profession
+- `Ammo Binding` - effect moved to a profession
+- `Ammo Bundles` - effect moved to a profession
+- `Medical Packages` - effect moved to a profession
+- `Medical Ingredients` - effect moved to a profession
+- `Tools Drawers` - effect moved to a profession
+- `Tools Spares` - effect moved to a profession
+- `Convincing Proposals` - effect moved to a profession
+- `Trustworthy Demeanour` - effect moved to a profession
+- `Off-book Deal` - effect moved to a profession
+- `Inventor Prosthetics` - effect moved to a profession
+- `Gatherer` - effect moved to a profession
+- `Potion Brewer` - effect moved to a profession
+- `Meal Preparation` - effect moved to a profession
+- `Alcohol Brewing` - effect moved to a profession
+- `Hippology` - effect moved to a profession
+- `Camp Cook` - effect moved to a profession
+- `Dog Breeder` - effect moved to a profession
+- `Paymaster` - effect moved to a profession
+- `Quartermaster` - effect moved to a profession
+- `Interpretation` - effect moved to a profession
+- `Scholar` - effect moved to a profession
+- `Herbcraft` - effect moved to a profession
+- `Woodworking` - effect moved to a profession
+- `Ore Hunter` - effect moved to a profession
+- `Wheel Maintenance` - effect moved to a profession
+- `Whip Them In Shape` - effect moved to a profession
+- `Master Trainer` - removed
+- `Greed` - removed
+- `Pacifist` - removed
+
+
 ## Professions
 - introduced a new system connecting the camping system to brothers - profession tree
 - the tree is accessible via character screen, next to the perk tree
@@ -485,6 +521,9 @@
 > shows average values at a glance (min/max ranges are still visible on mouseovering the bros background)
 - added an option to show the named item enhanced stat potential on tooltips
 > shows the value range for enhanced rolls only
+- added an option to show the recruit stat potential while recruiting
+> shows the min and max value recruits can roll with
+> improvements tied into the profession system
 - added inventory management toggle on items
 > allows setting the item type to be marked for sale, autorepair and sale, autorepair, autosalvage
 > the setting is completely optional
@@ -494,9 +533,6 @@
 > quickly loot items based on value (new button; ignores legendary, named, quest, food)
 > combine items to save inventory space with a single click with respect to automation state
 - sped up inventory load times by loading items in batches
-- recruitment window now shows some extra information about the recruit
-> ability to change between vague immersive text version and numerical values
-> improvements tied into the profession system
 - added a simple perk planning system
 > 3 states
 > shows the level needed to acquire the build
@@ -749,7 +785,14 @@
 - `perk_legend_scry_trance` -> deleted
 - `perk_legend_teleport` -> deleted
 - `perk_legend_specialist_shield_push` -> deleted
+- `legend_pie_effect` -> deleted
+- `legend_porridge_effect` -> deleted
+- `legend_pudding_effect` -> deleted
+- `legend_rations_effect` -> deleted
+- food can no longer be placed in bag slots or eaten in combat
 - tile effect `shadows` -> `legend_shadow_mist`
 - blazing RSW and firefield now use their own fire effects
 - legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
 - `legend_gold_nugget_item` -> `legend_gold_ore_item`
+- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
+- added a bunch of QoL mods whose functions were superseded by Legends to incompat

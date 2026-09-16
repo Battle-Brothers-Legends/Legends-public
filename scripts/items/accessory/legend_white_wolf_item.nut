@@ -19,10 +19,10 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 			"sounds/enemies/wolf_idle_08.wav",
 			"sounds/enemies/wolf_idle_09.wav"
 		];
-		this.m.Variant = this.Math.rand(1, 4);
+		this.m.Variant = ::Math.rand(1, 4);
 		this.updateVariant();
 		this.m.ID = "accessory.legend_white_warwolf";
-		this.m.Name = this.Const.Strings.WardogNames[this.Math.rand(0, this.Const.Strings.WardogNames.len() - 1)] + " the White Wolf";
+		this.m.Name = ::Const.Strings.WardogNames[::Math.rand(0, ::Const.Strings.WardogNames.len() - 1)] + " the White Wolf";
 		this.m.Description = "A legendary white wolf, tamed to be a loyal companion in battle. Can be unleashed in battle.";
 		this.m.Value = 6000;
 	}
@@ -57,9 +57,9 @@ this.legend_white_wolf_item <- this.inherit("scripts/items/accessory/legend_acce
 
 	function playInventorySound( _eventType )
 	{
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			this.Sound.play("sounds/enemies/wolf_idle_08.wav", this.Const.Sound.Volume.Inventory);
+			::Sound.play("sounds/enemies/wolf_idle_08.wav", ::Const.Sound.Volume.Inventory);
 		}
 	}
 

@@ -40,7 +40,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 
 		local bonus = 0;
 
-		if (_targetEntity.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+		if (_targetEntity.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))
 		{
 			bonus += 20;
 		}
@@ -74,7 +74,7 @@ this.perk_legend_push_the_advantage <- this.inherit("scripts/skills/skill", {
 			return;
 
 		local bonus = this.calculateBonus(_targetEntity);
-		_properties.DamageAgainstMult[this.Const.BodyPart.Head] += 0.01 * bonus;
-		_properties.HitChance[this.Const.BodyPart.Head] += bonus;
+		_properties.DamageAgainstMult[::Const.BodyPart.Head] += 0.01 * bonus;
+		_properties.HitChance[::Const.BodyPart.Head] += bonus;
 	}
 });

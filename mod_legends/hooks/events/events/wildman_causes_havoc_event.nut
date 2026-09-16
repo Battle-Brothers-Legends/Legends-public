@@ -5,7 +5,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay;
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			_screen.Options = [];
 			_screen.start <- function ( _event ) {
@@ -53,9 +53,9 @@
 						function getResult( _event )
 						{
 							if (_event.m.Berserker != null)
-								this.m.Compensation = this.Math.round(400 + 0.03 * this.World.Assets.getMoney());
+								this.m.Compensation = ::Math.round(400 + 0.03 * ::World.Assets.getMoney());
 							else
-								this.m.Compensation = this.Math.round(300 + 0.02 * this.World.Assets.getMoney());
+								this.m.Compensation = ::Math.round(300 + 0.02 * ::World.Assets.getMoney());
 							return "T";
 						}
 
@@ -73,8 +73,8 @@
 			_screen.Options = [{
 				Text = "To hell with your shop.",
 				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(-1);
-					return this.Math.rand(1, 100) <= 80 ? "E" : 0;
+					::World.Assets.addMoralReputation(-1);
+					return ::Math.rand(1, 100) <= 80 ? "E" : 0;
 				}
 			}];
 			_screen.start <- function ( _event ) {
@@ -84,7 +84,7 @@
 				if (_event.m.Wildman != null && _event.m.Berserker == null)
 					this.Characters.push(_event.m.Wildman.getImagePath());
 
-				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "You refused to pay for damages caused by one of your mercenaries");
+				::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "You refused to pay for damages caused by one of your mercenaries");
 
 				this.List.push(::Legends.EventList.changeMoralReputation(-1, false));
 			}
@@ -122,22 +122,22 @@
 
 				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 
-				_event.m.Wildman.getBaseProperties().DailyWage -= this.Math.floor(_event.m.Wildman.getDailyCost() / 4);
+				_event.m.Wildman.getBaseProperties().DailyWage -= ::Math.floor(_event.m.Wildman.getDailyCost() / 4);
 				_event.m.Wildman.getSkills().update();
-				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
+				::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_daily_money.png",
-					text = _event.m.Wildman.getName() + " is now paid [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Wildman.getDailyCost() + "[/color] crowns a day"
+					text = _event.m.Wildman.getName() + " is now paid [color=" + ::Const.UI.Color.NegativeEventValue + "]" + _event.m.Wildman.getDailyCost() + "[/color] crowns a day"
 				});
 				_event.m.Wildman.worsenMood(2.0, "Got a pay cut");
 
-				if (_event.m.Wildman.getMoodState() < this.Const.MoodState.Neutral)
+				if (_event.m.Wildman.getMoodState() < ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Wildman.getMoodState()],
-						text = _event.m.Wildman.getName() + this.Const.MoodStateEvent[_event.m.Wildman.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Wildman.getMoodState()],
+						text = _event.m.Wildman.getName() + ::Const.MoodStateEvent[_event.m.Wildman.getMoodState()]
 					});
 				}
 				this.List.push(::Legends.EventList.changeMoralReputation(2));
@@ -147,15 +147,15 @@
 			_screen.Options = [{
 				Text = "A shame it had to come to this.",
 				function getResult( _event ) {
-					this.World.Assets.addMoralReputation(-2);
-					this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationBetrayal, "You killed some of the militia");
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					::World.Assets.addMoralReputation(-2);
+					::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationBetrayal, "You killed some of the militia");
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Militia, this.Math.rand(90, 130), this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Militia, ::Math.rand(90, 130), ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}, {
@@ -182,16 +182,16 @@
 
 				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach( bro in brothers ) {
-					if (bro.getBackground().isCombatBackground() && this.Math.rand(1, 100) <= 33)
+					if (bro.getBackground().isCombatBackground() && ::Math.rand(1, 100) <= 33)
 						bro.worsenMood(1.0, "The company backed down from a fight");
 
-					if (bro.getMoodState() < this.Const.MoodState.Neutral)
+					if (bro.getMoodState() < ::Const.MoodState.Neutral)
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+							icon = ::Const.MoodStateIcon[bro.getMoodState()],
+							text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 						});
 				}
 
@@ -216,30 +216,30 @@
 
 				this.List.push(::Legends.EventList.changeMoney(-_event.m.Compensation));
 
-				_event.m.Berserker.getBaseProperties().DailyWage -= this.Math.floor(_event.m.Berserker.getDailyCost() / 4);
+				_event.m.Berserker.getBaseProperties().DailyWage -= ::Math.floor(_event.m.Berserker.getDailyCost() / 4);
 				_event.m.Berserker.getSkills().update();
-				this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
+				::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "One of your mercenaries caused havoc in town");
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_daily_money.png",
-					text = _event.m.Berserker.getName() + " is now paid [color=" + this.Const.UI.Color.NegativeEventValue + "]" + _event.m.Berserker.getDailyCost() + "[/color] crowns a day"
+					text = _event.m.Berserker.getName() + " is now paid [color=" + ::Const.UI.Color.NegativeEventValue + "]" + _event.m.Berserker.getDailyCost() + "[/color] crowns a day"
 				});
 				_event.m.Berserker.worsenMood(2.0, "Got a pay cut");
 
-				if (_event.m.Berserker.getMoodState() < this.Const.MoodState.Neutral) {
+				if (_event.m.Berserker.getMoodState() < ::Const.MoodState.Neutral) {
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Berserker.getMoodState()],
-						text = _event.m.Berserker.getName() + this.Const.MoodStateEvent[_event.m.Berserker.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Berserker.getMoodState()],
+						text = _event.m.Berserker.getName() + ::Const.MoodStateEvent[_event.m.Berserker.getMoodState()]
 					});
 				}
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach( bro in brothers ) {
-					if (this.Math.rand(1, 100) <= 75) {
-						if (this.Math.rand(1, 100) <= 66) {
-							local injury = bro.addInjury(this.Const.Injury.Brawl);
+					if (::Math.rand(1, 100) <= 75) {
+						if (::Math.rand(1, 100) <= 66) {
+							local injury = bro.addInjury(::Const.Injury.Brawl);
 							this.List.push({
 								id = 10,
 								icon = injury.getIcon(),
@@ -283,17 +283,17 @@
 
 
 	o.onUpdateScore = function () {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.Assets.getMoney() < 600)
+		if (::World.Assets.getMoney() < 600)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isMilitary() && !t.isSouthern() && t.isAlliedWithPlayer());
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_wildchars = [];
 		local candidates_berserkers = [];
 		local thetraders = [];
@@ -323,23 +323,23 @@
 		}
 
 		if (hasBerserker && hasWildman) {
-			this.Math.rand(0, candidates_wildchars.len() + candidates_berserkers.len() - 1) < candidates_berserkers.len() ? hasWildman = false : hasBerserker = false;
+			::Math.rand(0, candidates_wildchars.len() + candidates_berserkers.len() - 1) < candidates_berserkers.len() ? hasWildman = false : hasBerserker = false;
 		}
 
 		if (hasBerserker)
 		{
-			this.m.Compensation = this.Math.round(1000 + 0.05 * this.World.Assets.getMoney());
-			this.m.Berserker = candidates_berserkers[this.Math.rand(0, candidates_berserkers.len() - 1)];
+			this.m.Compensation = ::Math.round(1000 + 0.05 * ::World.Assets.getMoney());
+			this.m.Berserker = candidates_berserkers[::Math.rand(0, candidates_berserkers.len() - 1)];
 		}
 
 		if (hasWildman)
 		{
-			this.m.Compensation = this.Math.round(500 + 0.03 * this.World.Assets.getMoney());
-			this.m.Wildman = candidates_wildchars[this.Math.rand(0, candidates_wildchars.len() - 1)];
+			this.m.Compensation = ::Math.round(500 + 0.03 * ::World.Assets.getMoney());
+			this.m.Wildman = candidates_wildchars[::Math.rand(0, candidates_wildchars.len() - 1)];
 		}
 
 		if (thetraders.len() != 0)
-			this.m.Trader = thetraders[this.Math.rand(0, thetraders.len() - 1)];
+			this.m.Trader = thetraders[::Math.rand(0, thetraders.len() - 1)];
 
 		this.m.Town = town;
 		this.m.Score = candidates_wildchars.len() * 10 + candidates_berserkers.len() * 30;

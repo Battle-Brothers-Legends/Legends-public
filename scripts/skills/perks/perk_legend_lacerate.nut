@@ -25,7 +25,7 @@ this.perk_legend_lacerate <- this.inherit("scripts/skills/skill", {
 
 		local user = _skill.getContainer().getActor();
 		if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " lacerated " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " lacerated " + ::Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
 		}
 
 		return true;

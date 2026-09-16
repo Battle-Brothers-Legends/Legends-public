@@ -6,17 +6,17 @@
 		::Legends.Screens.hook(this, "A", function (_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_20.png[/img]The pub is full of drunk denizens sloshing about, cheering, singing, carousing with the womenfolk of either wench or wife or whore. A man with a lute dances and plays and another with metal cymbals crashes overhead while a fat man booms with songs of battles or love, and whether a tale of victory or defeat they provoke rounds of ale and more merriment all the same.\n\n You leave the pub and enter the next building over. The wind whistles down a pew filled nave as you stand at the door. A man sweeping the stone floor looks up for a time then continues with his work. Another man cheerfully crosses the room and asks if you\'d like to pray. You decline and he purses his lips and crosses his arms. The crowd next door roars with drunken delight as though to make a mockery of you both and then he moves on. You stay for a moment longer and then leave and go back out to the town center and squat on a series of steps. It seems there used to be a statue at the top of those steps, but vandals and raiders alike have made short work of another\'s artisanry. You fall asleep there at the foot of impermanence. \n\n Waking from a nap, you find a young %person_dude% at the bottom of the steps. %They_dude% says %they_dude% knows you\'re a knight and %they're_dude% come to offer %their_dude% services as a squire.";
 			_screen.start <- function (_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Squire]);
 				_event.m.Dude.getBackground().m.RawDescription = "You met %name% in " + _event.m.Town.getName() + " where %they% volunteered to be your squire. %They% probably had no idea what %they% was getting into back then.";
 				_event.m.Dude.getBackground().buildDescription(true);
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand));
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand));
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head));
-				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Body));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head));
+				_event.m.Dude.getItems().unequip(_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Body));
 
-				_event.m.Dude.getItems().equip(this.Const.World.Common.pickArmor([
+				_event.m.Dude.getItems().equip(::Const.World.Common.pickArmor([
 					[1, ::Legends.Armor.Standard.linen_tunic],
 				]));
 

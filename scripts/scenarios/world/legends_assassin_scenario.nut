@@ -8,12 +8,12 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		this.m.Difficulty = 2;
 		this.m.Order = 20;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
@@ -28,7 +28,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
  		bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base
 		bro.getSprite("miniboss").setBrush("bust_miniboss_assassin"); //custom bust for avatar only
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/supplies/rice_item"));
@@ -36,9 +36,9 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		stash.add(this.new("scripts/items/loot/signet_ring_item"));
 		stash.add(this.new("scripts/items/loot/jade_broche_item"));
 		stash.add(this.new("scripts/items/accessory/cat_potion_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 0.5;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine * 0.5;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo * 0.5;
+		::World.Assets.m.Money = ::World.Assets.m.Money * 0.5;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine * 0.5;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 0.5;
 
 	}
 
@@ -46,9 +46,9 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
 			{
@@ -57,20 +57,20 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 8), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 8), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 8), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 8), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				if (tile.IsOccupied)
 				{
@@ -83,7 +83,7 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -95,13 +95,13 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(110);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(110);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(this.Const.Music.IntroTracks, this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_assassin_scenario_intro");
+			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_assassin_scenario_intro");
 		}, null);
 
 	}
@@ -109,12 +109,12 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsAssassin", true);
+		::World.Flags.set("IsLegendsAssassin", true);
 	}
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -138,15 +138,15 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 
 	function onGenerateBro(bro)
 	{
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw)) // if bro is NOT an outlaw then....
+		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) // if bro is NOT an outlaw then....
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.0); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
 			bro.getSkills().update();
 		}
 		else
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.5; //1.0 = default
 			bro.getSkills().update();
 		}
@@ -156,11 +156,11 @@ this.legends_assassin_scenario <- this.inherit("scripts/scenarios/world/starting
 	{
 		if (_bro.isStabled())
 			return;
-		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 		{
 			_bro.worsenMood(1.0, "Is uncomfortable with joining an assassin");
 		}
-		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 		{
 			_bro.improveMood(1.0, "Is excited at becoming part of outlaw company");
  			_bro.getSprite("socket").setBrush("bust_base_assassin"); //custom base

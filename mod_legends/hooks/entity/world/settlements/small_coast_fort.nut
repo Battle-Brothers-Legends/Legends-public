@@ -16,12 +16,12 @@
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/marketplace_building"), 2);
 		this.addBuilding(this.new("scripts/entity/world/settlements/buildings/port_building"), 3);
 
-		if (this.Const.World.Buildings.Kennels == 0) {
+		if (::Const.World.Buildings.Kennels == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/kennel_building"));
-		} else if (this.Const.World.Buildings.Stables == 0) {
+		} else if (::Const.World.Buildings.Stables == 0) {
 			this.addBuilding(this.new("scripts/entity/world/settlements/buildings/stables_building"));
 		} else {
-			local r = this.Math.rand(1, 4);
+			local r = ::Math.rand(1, 4);
 
 			if (r == 1) {
 				this.addBuilding(this.new("scripts/entity/world/settlements/buildings/armorsmith_building"));
@@ -35,32 +35,32 @@
 		}
 
 		this.buildAttachedLocation(1, "scripts/entity/world/attached_location/harbor_location", [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		], [
-			this.Const.World.TerrainType.Ocean,
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Ocean,
+			::Const.World.TerrainType.Shore
 		], -1, false, false);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/leather_tanner_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], []);
 		this.buildAttachedLocation(1, "scripts/entity/world/attached_location/fishing_huts_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Tundra
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Tundra
 		], [
-			this.Const.World.TerrainType.Shore
+			::Const.World.TerrainType.Shore
 		]);
-		this.buildAttachedLocation(this.Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
-			this.Const.World.TerrainType.Plains,
-			this.Const.World.TerrainType.Steppe,
-			this.Const.World.TerrainType.Snow,
-			this.Const.World.TerrainType.Hills,
-			this.Const.World.TerrainType.Tundra
+		this.buildAttachedLocation(::Math.rand(0, 1), "scripts/entity/world/attached_location/wooden_watchtower_location", [
+			::Const.World.TerrainType.Plains,
+			::Const.World.TerrainType.Steppe,
+			::Const.World.TerrainType.Snow,
+			::Const.World.TerrainType.Hills,
+			::Const.World.TerrainType.Tundra
 		], [], 4, true);
 	}
 });

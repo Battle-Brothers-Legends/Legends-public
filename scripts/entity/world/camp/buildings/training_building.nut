@@ -79,13 +79,12 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local roster = ::World.getPlayerRoster().getAll();
 
 		local self = this;
-		local hasTrainer = roster.filter(@(_, _bro) _bro.getCampAssignment() == self.m.ID && _bro.getSkills().hasPerk(::Legends.Perk.LegendMasterTrainer)).len() > 0;
 
 		local trainingBros = roster.filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro)));
 		foreach( bro in trainingBros ) {
 			ret.Assigned++;
 			ret.Modifiers.push([
-				this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Training) + (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics) ? 0.1 : 0) + (hasTrainer ? 0.1 : 0),
+				this.m.BaseCraft * (1 + bro.getBackground().getModifiers().Training) + (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics) ? 0.1 : 0),
 				bro.getName(),
 				bro.getBackground().getNameOnly(),
 				bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) ? ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining).isMaxReached() : false
@@ -223,7 +222,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		local icon = "";
 		local properties = bro.getBaseProperties();
 
-		switch(::Math.rand(0, this.Const.Attributes.COUNT - 1))	{
+		switch(::Math.rand(0, ::Const.Attributes.COUNT - 1))	{
 		case 0:
 			properties.Hitpoints += 1;
 			icon = "ui/icons/health.png";

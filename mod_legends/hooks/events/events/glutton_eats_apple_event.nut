@@ -20,7 +20,7 @@
 
 	o.onUpdateScore = function()
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 		{
@@ -52,7 +52,7 @@
 			return;
 		}
 
-		local stash = this.World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local hasItem = false;
 
 		foreach( item in stash )
@@ -69,8 +69,8 @@
 			return;
 		}
 
-		this.m.Glutton = candidates_glutton[this.Math.rand(0, candidates_glutton.len() - 1)];
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Glutton = candidates_glutton[::Math.rand(0, candidates_glutton.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		this.m.Score = candidates_glutton.len() * 5;
 	}
 })

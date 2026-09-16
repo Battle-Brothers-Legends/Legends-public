@@ -30,7 +30,7 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	}
 
 	function queryRosterInformation() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local roster = [];
 
 		foreach (b in brothers) {
@@ -56,10 +56,10 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	}
 
 	function onEntrySelected(_entityID) {
-		local roster = this.World.getTemporaryRoster();
+		local roster = ::World.getTemporaryRoster();
 		roster.clear();
 		local temp = roster.create("scripts/entity/tactical/human");
-		temp.copySpritesFrom(this.Tactical.getEntityByID(_entityID), [
+		temp.copySpritesFrom(::Tactical.getEntityByID(_entityID), [
 			"body",
 			"head",
 			"beard",
@@ -92,10 +92,10 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 		local _entityID = _data[0];
 		local _layerID = _data[1];
 		local _change = _data[2];
-		local temp = this.World.getTemporaryRoster().getAll()[0];
+		local temp = ::World.getTemporaryRoster().getAll()[0];
 		local color;
 
-		local bro = this.Tactical.getEntityByID(_entityID);
+		local bro = ::Tactical.getEntityByID(_entityID);
 		local gender = bro.getGender();
 		local ethnicity = bro.getEthnicity();
 
@@ -271,7 +271,7 @@ this.camp_barber_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 				isMatch = true;
 			} else if (_change == 0 && (_prefix == "hair" || _prefix == "beard")) {
 				// color
-				foreach (c in this.Const.HairColors.All) {
+				foreach (c in ::Const.HairColors.All) {
 					if (currentBrush == _prefix + "_" + c + "_" + s	|| currentBrush == _prefix + "_" + s)
 					{
 						isMatch = true;

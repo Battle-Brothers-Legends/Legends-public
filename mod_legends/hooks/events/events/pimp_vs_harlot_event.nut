@@ -11,11 +11,11 @@
 				this.Characters.push(_event.m.Minstrel.getImagePath());
 				_event.m.Minstrel.improveMood(2.0, "Enchanted by their own poetry");
 
-				if (_event.m.Minstrel.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Minstrel.getMoodState() >= ::Const.MoodState.Neutral)
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Minstrel.getMoodState()],
-						text = _event.m.Minstrel.getName() + this.Const.MoodStateEvent[_event.m.Minstrel.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Minstrel.getMoodState()],
+						text = _event.m.Minstrel.getName() + ::Const.MoodStateEvent[_event.m.Minstrel.getMoodState()]
 					});
 			}
 		});
@@ -27,19 +27,19 @@
 			_screen.start <- function ( _event ) {
 				_event.m.Monk.improveMood(1.0, "Led a man back onto the path of rightenousness");
 
-				if (_event.m.Monk.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Monk.getMoodState() >= ::Const.MoodState.Neutral)
 				{
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Monk.getMoodState()],
-						text = _event.m.Monk.getName() + this.Const.MoodStateEvent[_event.m.Monk.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Monk.getMoodState()],
+						text = _event.m.Monk.getName() + ::Const.MoodStateEvent[_event.m.Monk.getMoodState()]
 					});
 				}
 
 				this.Characters.push(_event.m.Monk.getImagePath());
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 				{
 					_event.m.Dude.getFlags().add("PlayerSkeleton");
 					_event.m.Dude.getFlags().add("undead");
@@ -62,14 +62,14 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) t.getSize() >= 2 && !t.isMilitary() && !t.isSouthern() && t.isAlliedWithPlayer());
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 3)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 3)
 			return;
 
@@ -80,22 +80,20 @@
 		foreach( bro in brothers ) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Minstrel))
 				candidate_minstrel.push(bro);
-			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk))
-				candidate_monk.push(bro);
-			else if (bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Monk) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidate_monk.push(bro);
 			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Tailor))
 				candidate_tailor.push(bro);
 		}
 
 		if (candidate_minstrel.len() != 0)
-			this.m.Minstrel = candidate_minstrel[this.Math.rand(0, candidate_minstrel.len() - 1)];
+			this.m.Minstrel = candidate_minstrel[::Math.rand(0, candidate_minstrel.len() - 1)];
 
 		if (candidate_monk.len() != 0)
-			this.m.Monk = candidate_monk[this.Math.rand(0, candidate_monk.len() - 1)];
+			this.m.Monk = candidate_monk[::Math.rand(0, candidate_monk.len() - 1)];
 
 		if (candidate_tailor.len() != 0)
-			this.m.Tailor = candidate_tailor[this.Math.rand(0, candidate_tailor.len() - 1)];
+			this.m.Tailor = candidate_tailor[::Math.rand(0, candidate_tailor.len() - 1)];
 
 		this.m.Town = town;
 		this.m.Score = 15;

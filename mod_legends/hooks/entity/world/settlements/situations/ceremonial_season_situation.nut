@@ -10,7 +10,7 @@
 		_draftList.push(::Legends.Background.Cultist);
 		_draftList.push(::Legends.Background.Flagellant);
 
-		if (this.World.Assets.getOrigin().getID() == "scenario.cultists") {
+		if (::World.Assets.getOrigin().getID() == "scenario.cultists") {
 			::Legends.S.extend(_draftList, ::Legends.Background.LegendHusk, 2);
 			::Legends.S.extend(_draftList, ::Legends.Background.LegendLurker, 3);
 			_draftList.push(::Legends.Background.LegendMagister);

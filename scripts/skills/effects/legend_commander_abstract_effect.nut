@@ -17,7 +17,7 @@ this.legend_commander_abstract_effect <- this.inherit("scripts/skills/skill", {
 
 	function getCommander()
 	{
-		return this.m.Commander
+		return this.m.Commander;
 	}
 
 	function create()
@@ -27,7 +27,7 @@ this.legend_commander_abstract_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "";
 		this.m.IconMini = "";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -53,7 +53,7 @@ this.legend_commander_abstract_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (this.getCommander() == this.getContainer().getActor())
 		{
-			local actors = this.Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
+			local actors = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 
 			foreach( a in actors )
 			{

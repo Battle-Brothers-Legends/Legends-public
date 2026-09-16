@@ -9,7 +9,7 @@
 	}
 
 	o.onSpawnAssets = function () {
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		for (local i = 0; i < 2; i = ++i) {
 			local bro;
@@ -28,15 +28,15 @@
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Old);
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.RangedDefense] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.RangedDefense] = 2;
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
 
 		local hood = this.new("scripts/items/legend_helmets/hood/legend_helmet_mail_coif");
 		local vanity = this.new("scripts/items/legend_helmets/vanity/legend_helmet_plait");
@@ -53,7 +53,7 @@
 
 		items.equip(this.new("scripts/items/accessory/oathtaker_skull_01_item"));
 		local banner = this.new("scripts/items/tools/player_banner");
-		banner.setVariant(this.World.Assets.getBannerID());
+		banner.setVariant(::World.Assets.getBannerID());
 		items.equip(banner);
 		bros[1].setStartValuesEx([::Legends.Background.Paladin]);
 		bros[1].getBackground().m.RawDescription = "{%name%, like many of the Oathtakers\' more spry members, strives to be like Young Anselm. A youthful, capable man who has yet to let the world\'s horrors and grind wear him down. In moments of honesty, he reminds you of yourself. In moments of reflection, you realize that he will likely one day resemble you as you are now. But until then, to the youth of the world, for the Oaths are certainly not wasted upon them! | When Anselm set out on his quest, it was %name% whom joined him first. Despite the Young Anselm\'s untimely death, %name% still sought to see the young man\'s vision through. He is an ardent believer in the Oaths and can be frequently found idolizing and commemorating Young Anselm\'s skull.}";
@@ -64,15 +64,15 @@
 		bros[1].m.Level = 1;
 		bros[1].m.Talents = [];
 		talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Initiative] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Initiative] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 1;
 		items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Offhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
 
 		local hood = this.new("scripts/items/legend_helmets/hood/legend_helmet_padded_cap");
 		local helm = this.new("scripts/items/legend_helmets/helm/legend_helmet_flat_top_helm");
@@ -99,24 +99,24 @@
 		local shield = this.new("scripts/items/shields/heater_shield");
 		shield.onPaintInCompanyColors();
 		items.equip(shield);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.addMoralReputation(10.0);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.addMoralReputation(10.0);
 
-		if (!this.Const.DLC.Desert) {
-			this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 27);
+		if (!::Const.DLC.Desert) {
+			::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 27);
 		}
 
-		this.World.Assets.m.Money = this.World.Assets.m.Money - 1000;
-		this.World.Assets.m.ArmorParts = this.World.Assets.m.ArmorParts / 2;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine / 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
+		::World.Assets.m.Money = ::World.Assets.m.Money - 1000;
+		::World.Assets.m.ArmorParts = ::World.Assets.m.ArmorParts / 2;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine / 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
 	o.onSpawnPlayer = function () {
 		local randomVillage;
 
 		for (local i = 0; i < ::World.EntityManager.getSettlements().len(); i++) {
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())	{
 				break;
@@ -124,21 +124,21 @@
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do {
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y)) {
+			if (!::World.isValidTileSquare(x, y)) {
 			} else {
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied) {
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
 				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
 				} else {
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty()) {
 						randomVillageTile = tile;
@@ -148,22 +148,22 @@
 			}
 		} while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(19);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(19);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function (_tag) {
-			this.Music.setTrackList(this.Const.Music.IntroTracks, this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.paladins_scenario_intro");
+			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.paladins_scenario_intro");
 		}, null);
 	}
 
 	o.onInit = function () {
-		this.World.Assets.m.BrothersMax = 18;
+		::World.Assets.m.BrothersMax = 18;
 	}
 
 	o.onHired = function (_bro) {
-		if (this.World.Ambitions.hasActiveAmbition()) {
-			switch (this.World.Ambitions.getActiveAmbition().getID()) {
+		if (::World.Ambitions.hasActiveAmbition()) {
+			switch (::World.Ambitions.getActiveAmbition().getID()) {
 				case "ambition.oath_of_humility":
 					::Legends.Traits.grant(_bro, ::Legends.Trait.OathOfHumility);
 					break;
@@ -219,75 +219,75 @@
 	}
 
 	o.onUpdateLevel = function (_bro) {
-		if (!this.World.Ambitions.hasActiveAmbition()) {
+		if (!::World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_distinction") {
+		if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_distinction") {
 			_bro.getFlags().increment("OathtakersDistinctionLevelUps");
 		}
 	}
 
 	o.onActorKilled = function (_actor, _killer, _combatID) {
-		if (!this.World.Ambitions.hasActiveAmbition()) {
+		if (!::World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (_killer == null || _killer.getFaction() != this.Const.Faction.Player && _killer.getFaction() != this.Const.Faction.PlayerAnimals) {
+		if (_killer == null || _killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals) {
 			if (_actor.isPlayerControlled()
-				&& this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
+				&& ::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
 			{
-				this.World.Statistics.getFlags().increment("OathtakersBrosDead");
+				::World.Statistics.getFlags().increment("OathtakersBrosDead");
 			}
 
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_honor") {
+		if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_honor") {
 			if (_actor.getTile().getZoneOfControlCountOtherThan(_actor.getAlliedFactions()) <= 1) {
-				this.World.Statistics.getFlags().increment("OathtakersSoloKills");
+				::World.Statistics.getFlags().increment("OathtakersSoloKills");
 			}
 
 			return;
 		}
 
-		local actorFaction = this.Const.EntityType.getDefaultFaction(_actor.getType());
+		local actorFaction = ::Const.EntityType.getDefaultFaction(_actor.getType());
 
-		if (actorFaction == this.Const.FactionType.Zombies || actorFaction == this.Const.FactionType.Undead) {
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_righteousness") {
-				this.World.Statistics.getFlags().increment("OathtakersUndeadSlain");
+		if (actorFaction == ::Const.FactionType.Zombies || actorFaction == ::Const.FactionType.Undead) {
+			if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_righteousness") {
+				::World.Statistics.getFlags().increment("OathtakersUndeadSlain");
 			}
-		} else if (actorFaction == this.Const.FactionType.Goblins || actorFaction == this.Const.FactionType.Orcs) {
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_vengeance") {
-				this.World.Statistics.getFlags().increment("OathtakersGreenskinsSlain");
+		} else if (actorFaction == ::Const.FactionType.Goblins || actorFaction == ::Const.FactionType.Orcs) {
+			if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_vengeance") {
+				::World.Statistics.getFlags().increment("OathtakersGreenskinsSlain");
 			}
-		} else if (actorFaction == this.Const.FactionType.Beasts || _actor.getType() == this.Const.EntityType.BarbarianUnhold || _actor.getType() == this.Const.EntityType.BarbarianUnholdFrost) {
-			if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_dominion") {
-				this.World.Statistics.getFlags().increment("OathtakersBeastsSlain");
+		} else if (actorFaction == ::Const.FactionType.Beasts || _actor.getType() == ::Const.EntityType.BarbarianUnhold || _actor.getType() == ::Const.EntityType.BarbarianUnholdFrost) {
+			if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_dominion") {
+				::World.Statistics.getFlags().increment("OathtakersBeastsSlain");
 			}
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_wrath") {
-			this.World.Statistics.getFlags().increment("OathtakersWrathSlain");
+		if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_wrath") {
+			::World.Statistics.getFlags().increment("OathtakersWrathSlain");
 		}
 	}
 
 	o.onBattleWon = function (_combatLoot) {
-		if (!this.World.Ambitions.hasActiveAmbition()) {
+		if (!::World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_valor" && this.World.Statistics.getFlags().getAsInt("LastEnemiesDefeatedCount") > this.World.Statistics.getFlags().getAsInt("LastPlayersAtBattleStartCount")) {
-			this.World.Statistics.getFlags().increment("OathtakersDefeatedOutnumbering");
+		if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_valor" && ::World.Statistics.getFlags().getAsInt("LastEnemiesDefeatedCount") > ::World.Statistics.getFlags().getAsInt("LastPlayersAtBattleStartCount")) {
+			::World.Statistics.getFlags().increment("OathtakersDefeatedOutnumbering");
 		}
 
-		if (this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_endurance" && this.World.Statistics.getFlags().getAsInt("LastCombatResult") == 1) {
-			this.World.Statistics.getFlags().increment("OathtakersBattlesWon");
+		if (::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_endurance" && ::World.Statistics.getFlags().getAsInt("LastCombatResult") == 1) {
+			::World.Statistics.getFlags().increment("OathtakersBattlesWon");
 		}
 	}
 
 	o.onContractFinished = function (_contractType, _cancelled) {
-		if (!this.World.Ambitions.hasActiveAmbition()) {
+		if (!::World.Ambitions.hasActiveAmbition()) {
 			return;
 		}
 
@@ -295,8 +295,8 @@
 			return;
 		}
 
-		if (!_cancelled && this.World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_humility") {
-			this.World.Statistics.getFlags().increment("OathtakersContractsComplete");
+		if (!_cancelled && ::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_humility") {
+			::World.Statistics.getFlags().increment("OathtakersContractsComplete");
 		}
 	}
 

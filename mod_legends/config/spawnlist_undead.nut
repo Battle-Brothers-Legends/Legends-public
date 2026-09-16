@@ -23,16 +23,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 65,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyLight,
+					Type = ::Const.World.Spawn.Troops.LegendMummyLight,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyMedium,
+					Type = ::Const.World.Spawn.Troops.LegendMummyMedium,
 					MinR = 200,
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyHeavy,
+					Type = ::Const.World.Spawn.Troops.LegendMummyHeavy,
 					MinR = 500,
 					Cost = 40
 				}
@@ -42,22 +42,22 @@ if (!("Spawn" in ::Const.World))
 			Weight = 30,
 			Types = [
 				// {
-				// 	Type = this.Const.World.Spawn.Troops.VampireLOW,
+				// 	Type = ::Const.World.Spawn.Troops.VampireLOW,
 				// 	Cost = 30
 				// },
 				// {
-				// 	Type = this.Const.World.Spawn.Troops.Vampire,
+				// 	Type = ::Const.World.Spawn.Troops.Vampire,
 				// 	MinR = 400,
 				// 	Cost = 40
 				// },
 				{
 					MinR = 650,
-					Type = this.Const.World.Spawn.Troops.LegendMummyQueen,
+					Type = ::Const.World.Spawn.Troops.LegendMummyQueen,
 					Cost = 70,
 					Roll = true
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyPriest,
+					Type = ::Const.World.Spawn.Troops.LegendMummyPriest,
 					Cost = 40,
 					Roll = true
 				}
@@ -81,16 +81,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 85,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyLight,
+					Type = ::Const.World.Spawn.Troops.LegendMummyLight,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyMedium,
+					Type = ::Const.World.Spawn.Troops.LegendMummyMedium,
 					MinR = 200,
 					Cost = 30
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyHeavy,
+					Type = ::Const.World.Spawn.Troops.LegendMummyHeavy,
 					MinR = 500,
 					Cost = 40
 				}
@@ -99,16 +99,16 @@ if (!("Spawn" in ::Const.World))
 			Weight = 15,
 			Types = [
 				// {
-				// 	Type = this.Const.World.Spawn.Troops.VampireLOW,
+				// 	Type = ::Const.World.Spawn.Troops.VampireLOW,
 				// 	Cost = 30
 				// },
 				// {
-				// 	Type = this.Const.World.Spawn.Troops.Vampire,
+				// 	Type = ::Const.World.Spawn.Troops.Vampire,
 				// 	MinR = 400,
 				// 	Cost = 40
 				// },
 				{
-					Type = this.Const.World.Spawn.Troops.LegendMummyPriest,
+					Type = ::Const.World.Spawn.Troops.LegendMummyPriest,
 					Cost = 40,
 					Roll = true
 				}
@@ -119,11 +119,11 @@ if (!("Spawn" in ::Const.World))
 		// 	Weight = 22,
 		// 	Types = [
 		// 		{
-		// 			Type = this.Const.World.Spawn.Troops.VampireLOW,
+		// 			Type = ::Const.World.Spawn.Troops.VampireLOW,
 		// 			Cost = 30
 		// 		},
 		// 		{
-		// 			Type = this.Const.World.Spawn.Troops.Vampire,
+		// 			Type = ::Const.World.Spawn.Troops.Vampire,
 		// 			MinR = 400,
 		// 			Cost = 40
 		// 		}
@@ -134,7 +134,7 @@ if (!("Spawn" in ::Const.World))
 		// 	MinR = 650,
 		// 	Types = [
 		// 		{
-		// 			Type = this.Const.World.Spawn.Troops.LegendVampireLord,
+		// 			Type = ::Const.World.Spawn.Troops.LegendVampireLord,
 		// 			Cost = 70,
 		// 			Roll = true
 		// 		}

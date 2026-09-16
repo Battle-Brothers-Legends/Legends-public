@@ -19,10 +19,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 			return;
@@ -37,7 +37,7 @@
 				::Legends.Background.Minstrel,
 				::Legends.Background.Juggler,
 				::Legends.Background.Vagabond
-			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			) && !bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))
 				clown_candidates.push(bro);
 		}
 
@@ -57,7 +57,7 @@
 				::Legends.Background.Sellsword,
 				::Legends.Background.Bowyer,
 				::Legends.Background.AdventurousNoble
-			) && bro.getGender() == 1 && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))  {
+			) && bro.getGender() == 1 && !bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))  {
 				archer_candidates.push(bro);
 			}
 		}
@@ -65,12 +65,12 @@
 		if (archer_candidates.len() == 0)
 			return;
 
-		this.m.Clown = clown_candidates[this.Math.rand(0, clown_candidates.len() - 1)];
-		this.m.Archer = archer_candidates[this.Math.rand(0, archer_candidates.len() - 1)];
+		this.m.Clown = clown_candidates[::Math.rand(0, clown_candidates.len() - 1)];
+		this.m.Archer = archer_candidates[::Math.rand(0, archer_candidates.len() - 1)];
 		this.m.Score = clown_candidates.len() * 3;
 
 		do {
-			this.m.OtherGuy = brothers[this.Math.rand(0, brothers.len() - 1)];
+			this.m.OtherGuy = brothers[::Math.rand(0, brothers.len() - 1)];
 		} while (this.m.OtherGuy == null || this.m.OtherGuy.getID() == this.m.Clown.getID() || this.m.OtherGuy.getID() == this.m.Archer.getID());
 	}
 })

@@ -2,18 +2,18 @@
 {
 	o.compileKnownOpponents = function ()
 	{
-		local instances = this.Tactical.Entities.getAllInstances();
+		local instances = ::Tactical.Entities.getAllInstances();
 
 		for( local f = 0; f != instances.len(); f = ++f )
 		{
-			if (this.Tactical.State.isScenarioMode())
+			if (::Tactical.State.isScenarioMode())
 			{
-				if (this.Const.FactionAlliance[this.m.Faction].find(f) != null)
+				if (::Const.FactionAlliance[this.m.Faction].find(f) != null)
 				{
 					continue;
 				}
 			}
-			else if (this.World.FactionManager.isAllied(this.m.Faction, f))
+			else if (::World.FactionManager.isAllied(this.m.Faction, f))
 			{
 				continue;
 			}
@@ -47,7 +47,7 @@
 
 		foreach( i, opponent in this.m.KnownOpponents )
 		{
-			if (opponent.Actor == null || opponent.Actor.isNull() || !opponent.Actor.isAlive() || !opponent.Actor.isPlacedOnMap() || this.Tactical.State.isScenarioMode() && this.Const.FactionAlliance[this.m.Faction].find(opponent.Actor.getFaction()) != null || !this.Tactical.State.isScenarioMode() && this.World.FactionManager.isAllied(this.m.Faction, opponent.Actor.getFaction()))
+			if (opponent.Actor == null || opponent.Actor.isNull() || !opponent.Actor.isAlive() || !opponent.Actor.isPlacedOnMap() || ::Tactical.State.isScenarioMode() && ::Const.FactionAlliance[this.m.Faction].find(opponent.Actor.getFaction()) != null || !::Tactical.State.isScenarioMode() && ::World.FactionManager.isAllied(this.m.Faction, opponent.Actor.getFaction()))
 			{
 				garbage.push(i);
 				continue;

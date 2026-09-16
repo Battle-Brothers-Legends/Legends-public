@@ -15,26 +15,26 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBanshee;
-		this.m.BloodType = this.Const.BloodType.None;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
-		this.m.XP = this.Const.Tactical.Actor.LegendBanshee.XP;
+		this.m.Type = ::Const.EntityType.LegendBanshee;
+		this.m.BloodType = ::Const.BloodType.None;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
+		this.m.XP = ::Const.Tactical.Actor.LegendBanshee.XP;
 		this.m.IsEmittingMovementSounds = false;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/banshee_death_01.wav",
 			"sounds/enemies/banshee_death_02.wav",
 			"sounds/enemies/banshee_death_03.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/banshee_idle_01.wav",
 			"sounds/enemies/banshee_idle_02.wav",
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/banshee_hit_01.wav",
 			"sounds/enemies/banshee_hit_02.wav",
 		];
-		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
+		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/ghost_agent");
 		this.m.AIAgent.setActor(this);
@@ -49,9 +49,9 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(1, 100) < 50;
+		local flip = ::Math.rand(1, 100) < 50;
 
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("OvercomingFear", 1, 1);
 		}
@@ -119,7 +119,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 					}
 				]
 			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+			::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 		}
 
 		local deathLoot = this.getItems().getDroppableLoot(_killer);
@@ -134,7 +134,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBanshee);
+		b.setValues(::Const.Tactical.Actor.LegendBanshee);
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
@@ -143,7 +143,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay)
 		{
 			b.MeleeDefense += 5;
 		}
@@ -151,8 +151,8 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		this.m.Items.getAppearance().Body = "bust_banshee_01";
 		this.addSprite("socket").setBrush("bust_base_undead");
@@ -206,7 +206,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (this.m.DistortTargetA == null)
 		{
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 		}
 
@@ -214,12 +214,12 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetB == null)
 		{
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 		}
 
@@ -227,12 +227,12 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetC == null)
 		{
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 		}
 
@@ -240,12 +240,12 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetD == null)
 		{
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 		}
 
@@ -253,7 +253,7 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevD = this.m.DistortTargetD;
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 	}
 

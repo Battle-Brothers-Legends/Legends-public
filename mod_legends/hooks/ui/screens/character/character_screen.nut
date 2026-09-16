@@ -66,7 +66,7 @@
 			}
 
 			if (payCompensation) {
-				::World.Assets.addMoney(-10 * this.Math.max(1, bro.getDaysWithCompany()));
+				::World.Assets.addMoney(-10 * ::Math.max(1, bro.getDaysWithCompany()));
 
 				if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 					foreach (otherSlave in ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getID() != bro.getID() && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)))){
@@ -122,9 +122,9 @@
 	}
 
 	o.onToggleReserveCharacter <- function (_id) {
-		local bro = this.Tactical.getEntityByID(_id);
+		local bro = ::Tactical.getEntityByID(_id);
 		if (bro != null
-			&& (this.World.State.getBrothersInFrontline() < this.World.Assets.getBrothersMaxInCombat() || !bro.isInReserves()))
+			&& (::World.State.getBrothersInFrontline() < ::World.Assets.getBrothersMaxInCombat() || !bro.isInReserves()))
 		{
 			bro.setInReserves(!bro.isInReserves());
 			this.setRosterLimit();
@@ -135,18 +135,18 @@
 	}
 
 	o.queryRosterSizeData <- function (_shake = false) {
-		local brosInCombat = ("State" in ::World && this.World.State != null) ? ::World.State.getBrothersInFrontline() : 18;
+		local brosInCombat = ("State" in ::World && ::World.State != null) ? ::World.State.getBrothersInFrontline() : 18;
 		local result = {
 			brothersInCombat = brosInCombat,
 			brothersMaxInCombat = 27,
-			brothers = this.World.getPlayerRoster().getSize(),
+			brothers = ::World.getPlayerRoster().getSize(),
 			brothersMax = 27,
 			shake = _shake,
 		};
 
-		if (("Assets" in this.World) && this.World.Assets != null) {
-			result.brothersMaxInCombat = this.World.Assets.getBrothersMaxInCombat();
-			result.brothersMax = this.World.Assets.getBrothersMax();
+		if (("Assets" in ::World) && ::World.Assets != null) {
+			result.brothersMaxInCombat = ::World.Assets.getBrothersMaxInCombat();
+			result.brothersMax = ::World.Assets.getBrothersMax();
 		}
 
 		return result;
@@ -157,20 +157,20 @@
 			brothers = this.onQueryBrothersList()
 		};
 
-		if (("Assets" in this.World) && this.World.Assets != null) {
-			result.formationIndex <- this.World.Assets.getFormationIndex();
-			result.formationName <- this.World.Assets.getFormationName();
-			result.maxBrothers <- this.World.Assets.getBrothersMax();
+		if (("Assets" in ::World) && ::World.Assets != null) {
+			result.formationIndex <- ::World.Assets.getFormationIndex();
+			result.formationName <- ::World.Assets.getFormationName();
+			result.maxBrothers <- ::World.Assets.getBrothersMax();
 			result.frontlineData <- [
-				this.World.State.getBrothersInFrontline(),
-				this.World.Assets.getBrothersMaxInCombat()
+				::World.State.getBrothersInFrontline(),
+				::World.Assets.getBrothersMaxInCombat()
 			];
 		}
 
-		if (this.m.InventoryMode != this.Const.CharacterScreen.InventoryMode.Ground) {
+		if (this.m.InventoryMode != ::Const.CharacterScreen.InventoryMode.Ground) {
 			result.stash <- this.onQueryStashList();
-			result.stashSpaceUsed <- this.Stash.getNumberOfFilledSlots();
-			result.stashSpaceMax <- this.Stash.getCapacity();
+			result.stashSpaceUsed <- ::Stash.getNumberOfFilledSlots();
+			result.stashSpaceMax <- ::Stash.getCapacity();
 		}
 
 		if (this.m.PerkTreesLoaded == false) {
@@ -218,18 +218,18 @@
 			index = 0
 		}
 
-		if (this.Tactical.isActive()) {
+		if (::Tactical.isActive()) {
 			return result;
 		}
 
 		local obj = null;
 		if (entityId != null) {
-			obj = this.Tactical.getEntityByID(entityId).getItems().getItemByInstanceID(itemId);
+			obj = ::Tactical.getEntityByID(entityId).getItems().getItemByInstanceID(itemId);
 			if (obj != null) {
 				result.item = obj;
 			}
 		} else {
-			obj = this.Stash.getItemByInstanceID(itemId);
+			obj = ::Stash.getItemByInstanceID(itemId);
 			if (obj != null) {
 				result.item = obj.item;
 				result.index = obj.index;
@@ -417,13 +417,13 @@
 			return allowed;
 		}
 
-		if (!this.Tactical.isActive() && data.sourceItem.isUsable()) {
+		if (!::Tactical.isActive() && data.sourceItem.isUsable()) {
 			local targetItem = null;
 
 			if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand" && data.sourceItem.getID().find("inscription") != null) {
 				//for equipping runes on offhand with shift
-				targetItem = data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
-				if (targetItem != null && ((targetItem.getItemType() & this.Const.Items.ItemType.Weapon) == 0)) {
+				targetItem = data.inventory.getItemAtSlot(::Const.ItemSlot.Offhand);
+				if (targetItem != null && ((targetItem.getItemType() & ::Const.Items.ItemType.Weapon) == 0)) {
 					targetItem = null;
 				}
 			}
@@ -433,7 +433,7 @@
 				if (typeof result == "table") {
 					data.stash.removeByIndex(result.index);
 					if (result.item != null) {
-						this.World.Assets.getStash().insert(result.item, result.index);
+						::World.Assets.getStash().insert(result.item, result.index);
 					}
 				} else {
 					data.stash.removeByIndex(data.sourceIndex);
@@ -441,14 +441,14 @@
 				data.inventory.getActor().getSkills().update();
 				return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, false, this.m.InventoryFilter);
 			} else {
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipStashItem);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToEquipStashItem);
 			}
 		}
 
 		if (!data.stash.isResizable()
 			&& data.stash.getNumberOfEmptySlots() < targetItems.slotsNeeded - 1)
 		{
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
 		if (targetItems.firstItem != null) {
@@ -457,13 +457,13 @@
 				|| targetItems.firstItem.isInBag()
 				&& !data.inventory.removeFromBag(targetItems.firstItem))
 			{
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 			}
 
 			if (targetItems.secondItem != null) {
 				if (data.inventory.unequip(targetItems.secondItem) == false) {
 					data.inventory.equip(targetItems.firstItem);
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 				}
 			}
 		}
@@ -476,7 +476,7 @@
 					data.inventory.equip(targetItems.secondItem);
 				}
 			}
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 		}
 
 		if (data.inventory.equip(data.sourceItem) == false) {
@@ -489,7 +489,7 @@
 					data.inventory.equip(targetItems.secondItem);
 				}
 			}
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
 		}
 
 		if (targetItems != null && targetItems.firstItem != null) {
@@ -508,7 +508,7 @@
 					if (targetItems.secondItem != null) {
 						data.inventory.equip(targetItems.secondItem);
 					}
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
 				}
 			}
 
@@ -523,19 +523,19 @@
 				if (targetItems.secondItem != null) {
 					data.inventory.equip(targetItems.secondItem);
 				}
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
 			}
 		}
 
-		data.sourceItem.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
+		data.sourceItem.playInventorySound(::Const.Items.InventoryEventType.Equipped);
 		this.helper_payForAction(data.entity, [
 			data.sourceItem,
 			targetItems.firstItem,
 			targetItems.secondItem
 		]);
 
-		if (this.Tactical.isActive()) {
-			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, this.Tactical.TurnSequenceBar.getActiveEntity(), false, this.m.InventoryFilter);
+		if (::Tactical.isActive()) {
+			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, ::Tactical.TurnSequenceBar.getActiveEntity(), false, this.m.InventoryFilter);
 		} else {
 			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, false, this.m.InventoryFilter);
 		}
@@ -547,62 +547,62 @@
 			&& _data.stash.hasEmptySlot() == false
 			&& !_data.stash.isResizable())
 		{
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 		}
 
 		local slotType = _data.sourceItem.getCurrentSlotType();
 
-		if (slotType == this.Const.ItemSlot.None) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotAssignedToAnySlot);
+		if (slotType == ::Const.ItemSlot.None) {
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemIsNotAssignedToAnySlot);
 		}
 
-		if (_data.sourceItem.getCurrentSlotType() == this.Const.ItemSlot.Bag) {
+		if (_data.sourceItem.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
 			if (_data.inventory.removeFromBag(_data.sourceItem) == false) {
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
 			}
 
 			local result = _data.stash.add(_data.sourceItem);
 
 			if (result == null) {
 				_data.inventory.addToBag(_data.sourceItem);
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 			}
 		} else if (_data.targetItemIdx != null) {
 			if (_data.targetItem != null) {
-				if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand
-					|| _data.sourceItem.getSlotType() == this.Const.ItemSlot.Offhand)
+				if (_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand
+					|| _data.sourceItem.getSlotType() == ::Const.ItemSlot.Offhand)
 				{
-					if (_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand) {
+					if (_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand) {
 						local sourceItemIsBlockingOffhand = _data.sourceItem.getBlockedSlotType() != null
-							&& _data.sourceItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
+							&& _data.sourceItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
 						local targetItemIsBlockingOffhand = _data.targetItem.getBlockedSlotType() != null
-							&& _data.targetItem.getBlockedSlotType() == this.Const.ItemSlot.Offhand;
+							&& _data.targetItem.getBlockedSlotType() == ::Const.ItemSlot.Offhand;
 
-						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
-							&& _data.targetItem.getSlotType() == this.Const.ItemSlot.Mainhand
+						if ((sourceItemIsBlockingOffhand == false && _data.inventory.getItemAtSlot(::Const.ItemSlot.Offhand) != null)
+							&& _data.targetItem.getSlotType() == ::Const.ItemSlot.Mainhand
 							&& targetItemIsBlockingOffhand == true)
 						{
-							return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+							return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
 
 						if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()
-							&& !(_data.sourceItem.getSlotType() == this.Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == this.Const.ItemSlot.Offhand))
+							&& !(_data.sourceItem.getSlotType() == ::Const.ItemSlot.Mainhand && sourceItemIsBlockingOffhand && _data.targetItem.getSlotType() == ::Const.ItemSlot.Offhand))
 						{
-							return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+							return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 						}
-					} else if (_data.targetItem.getSlotType() != this.Const.ItemSlot.Offhand) {
-						return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+					} else if (_data.targetItem.getSlotType() != ::Const.ItemSlot.Offhand) {
+						return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 					}
 				} else if (_data.sourceItem.getSlotType() != _data.targetItem.getSlotType()) {
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				} else if (::mods_isClass(_data.targetItem, "legend_armor_upgrade") != null
 					|| ::mods_isClass(_data.targetItem, "legend_helmet_upgrade") != null)
 				{
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
 				if (_data.inventory.unequip(_data.sourceItem) == false) {
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
 				local result = _data.stash.insert(_data.sourceItem, _data.targetItemIdx);
@@ -612,25 +612,25 @@
 				}
 			} else {
 				if (_data.inventory.unequip(_data.sourceItem) == false) {
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 				}
 
 				_data.stash.insert(_data.sourceItem, _data.targetItemIdx);
 			}
 		} else {
 			if (_data.inventory.unequip(_data.sourceItem) == false) {
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromSourceSlot);
 			}
 
 			local result = _data.stash.add(_data.sourceItem);
 
 			if (result == null) {
 				_data.inventory.equip(_data.sourceItem);
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughStashSpace);
 			}
 		}
 
-		_data.sourceItem.playInventorySound(this.Const.Items.InventoryEventType.PlacedInStash);
+		_data.sourceItem.playInventorySound(::Const.Items.InventoryEventType.PlacedInStash);
 		this.helper_payForAction(_data.entity, [
 			_data.sourceItem,
 			_data.targetItem
@@ -639,10 +639,10 @@
 	}
 
 	o.tactical_onQueryBrothersList = function () {
-		local entities = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		local entities = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
 		if (entities != null && entities.len() > 0) {
-			local activeEntity = this.Tactical.TurnSequenceBar.getActiveEntity();
+			local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 			local result = [];
 
 			foreach (entity in entities) {
@@ -706,22 +706,22 @@
 
 	o.onFormationChanged <- function (_data) {
 		local index = _data[0];
-		this.World.Assets.changeFormation(index);
+		::World.Assets.changeFormation(index);
 		this.loadData();
 	}
 
 	o.onFormationClear <- function (_data) {
-		this.World.Assets.clearFormation();
+		::World.Assets.clearFormation();
 		this.loadData();
 	}
 
 	o.removeInventoryItemUpgrades <- function (_data) {
-		local armor = this.Stash.getItemAtIndex(_data[0]).item;
+		local armor = ::Stash.getItemAtIndex(_data[0]).item;
 		return this.removeAllUpgradesFromItem(armor);
 	}
 
 	o.removePaperdollItemUpgrades <- function (_data) {
-		local bro = this.Tactical.getEntityByID(_data[0]);
+		local bro = ::Tactical.getEntityByID(_data[0]);
 		local item = bro.m.Items.getItemByInstanceID(_data[1]);
 		return this.removeAllUpgradesFromItem(item, bro);
 	}
@@ -735,35 +735,35 @@
 	}
 
 	o.onRemoveUpgrade <- function (_data) {
-		if (this.Stash.getNumberOfEmptySlots() <= 0) {
+		if (::Stash.getNumberOfEmptySlots() <= 0) {
 			return {
-				error = this.Const.UI.Error.NotEnoughStashSpace,
-				code = this.Const.UI.Error.NotEnoughStashSpace
+				error = ::Const.UI.Error.NotEnoughStashSpace,
+				code = ::Const.UI.Error.NotEnoughStashSpace
 			};
 		}
-		local bro = this.Tactical.getEntityByID(_data[1]);
+		local bro = ::Tactical.getEntityByID(_data[1]);
 		local upgrade = bro.removeArmorUpgrade(_data[2] == "body"
-			? this.Const.ItemSlot.Body
-			: this.Const.ItemSlot.Head, _data[0]);
+			? ::Const.ItemSlot.Body
+			: ::Const.ItemSlot.Head, _data[0]);
 		if (upgrade != null && !upgrade.isDestroyedOnRemove()) {
-			this.World.Assets.getStash().add(upgrade);
+			::World.Assets.getStash().add(upgrade);
 			bro.getSkills().update();
 			return this.UIDataHelper.convertStashAndEntityToUIData(bro, null, false, this.m.InventoryFilter);
 		}
 	}
 
 	o.onToggleUpgradeVisibility <- function (_data) {
-		local bro = this.Tactical.getEntityByID(_data[1]);
+		local bro = ::Tactical.getEntityByID(_data[1]);
 		local slot;
 		switch (_data[2]) {
 			case "head":
-				slot = this.Const.ItemSlot.Head;
+				slot = ::Const.ItemSlot.Head;
 				break;
 			case "body":
-				slot = this.Const.ItemSlot.Body;
+				slot = ::Const.ItemSlot.Body;
 				break;
 			case "accessory":
-				slot = this.Const.ItemSlot.Accessory;
+				slot = ::Const.ItemSlot.Accessory;
 				break;
 			default:
 				::logError("Unknown slot type: " + _data[2]);
@@ -771,7 +771,7 @@
 		}
 
 		local item = bro.getItems().getItemAtSlot(slot);
-		if (slot == this.Const.ItemSlot.Accessory) {
+		if (slot == ::Const.ItemSlot.Accessory) {
 			// Some items are not visible, like dogs.
 			if (item.m.ShowOnCharacter) {
 				item.toggleAccessoryVisible();
@@ -785,16 +785,16 @@
 
 	o.onUpdateFormationName <- function (_data) {
 		local name = _data[0];
-		this.World.Assets.changeFormationName(name);
-		return this.World.Assets.getFormationName();
+		::World.Assets.changeFormationName(name);
+		return ::World.Assets.getFormationName();
 	}
 
 	o.onAssignRider <- function (_data) {
 		local riderID = _data[0];
 		local horseID = _data[1];
 
-		local rider = this.Tactical.getEntityByID(_data[0]);
-		local horse = this.Tactical.getEntityByID(_data[1]);
+		local rider = ::Tactical.getEntityByID(_data[0]);
+		local horse = ::Tactical.getEntityByID(_data[1]);
 
 		if (rider == null && horse == null) {
 			return this.onQueryBrothersList();
@@ -841,16 +841,16 @@
 
 	local general_onEquipStashItem = o.general_onEquipStashItem;
 	o.general_onEquipStashItem = function (_data) {
-		local entity = this.Tactical.getEntityByID(_data[0]);
+		local entity = ::Tactical.getEntityByID(_data[0]);
 		if (entity == null || !entity.isPlayerControlled()) {
 			return general_onEquipStashItem(_data);
 		}
 
-		if (this.Stash == null) {
+		if (::Stash == null) {
 			return general_onEquipStashItem(_data);
 		}
 
-		local sourceItem = this.Stash.getItemByInstanceID(_data[1]);
+		local sourceItem = ::Stash.getItemByInstanceID(_data[1]);
 		if (sourceItem == null) {
 			return general_onEquipStashItem(_data);
 		}
@@ -859,48 +859,48 @@
 		local inventory = entity.getItems();
 		local slotType = sourceItem.getSlotType();
 		if (inventory.getUnlockedBagSlots() == 0 && slotType == ::Const.ItemSlot.Bag) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
 		}
 
 		// Proceed only if this is a 1h main hand weapon
-		if (slotType != this.Const.ItemSlot.Mainhand || sourceItem.getBlockedSlotType() != null) {
+		if (slotType != ::Const.ItemSlot.Mainhand || sourceItem.getBlockedSlotType() != null) {
 			return general_onEquipStashItem(_data);
 		}
 
 		local inventory = entity.getItems();
-		local mh = inventory.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = inventory.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		local ohBlocked = inventory.hasBlockedSlot(this.Const.ItemSlot.Offhand);
+		local mh = inventory.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = inventory.getItemAtSlot(::Const.ItemSlot.Offhand);
+		local ohBlocked = inventory.hasBlockedSlot(::Const.ItemSlot.Offhand);
 
 		local targetSlot = null;
 		if (typeof _data == "array" && _data.len() >= 4 && _data[3] == "offhand") {
-			targetSlot = this.Const.ItemSlot.Offhand;
+			targetSlot = ::Const.ItemSlot.Offhand;
 		}
 
 		// Equipping to offhand
-		if (targetSlot == this.Const.ItemSlot.Offhand
+		if (targetSlot == ::Const.ItemSlot.Offhand
 			&& !ohBlocked
 			&& inventory.canDualWield(entity, sourceItem))
 		{
 
 			local originalSlotType = sourceItem.m.SlotType;
-			sourceItem.m.SlotType = this.Const.ItemSlot.Offhand;
+			sourceItem.m.SlotType = ::Const.ItemSlot.Offhand;
 
 			general_onEquipStashItem(_data);
 			sourceItem.m.SlotType = originalSlotType;
 
-			this.dualWieldRefresh(entity, this.Const.ItemSlot.Offhand);
+			this.dualWieldRefresh(entity, ::Const.ItemSlot.Offhand);
 
 			entity.getSkills().update();
 			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
 		}
 
 		// Equipping to mainhand while offhand has a dw weapon
-		if (oh != null && oh.getSlotType() == this.Const.ItemSlot.Mainhand) {
+		if (oh != null && oh.getSlotType() == ::Const.ItemSlot.Mainhand) {
 
 			general_onEquipStashItem(_data);
 
-			this.dualWieldRefresh(entity, this.Const.ItemSlot.Mainhand);
+			this.dualWieldRefresh(entity, ::Const.ItemSlot.Mainhand);
 
 			entity.getSkills().update();
 			return this.UIDataHelper.convertStashAndEntityToUIData(entity, null, false, this.m.InventoryFilter);
@@ -965,15 +965,15 @@
 		}
 
 		local items = _entity.getItems();
-		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		if (mh != null && oh != null && mh.getID() != oh.getID()) {
 
-			if (_slot == this.Const.ItemSlot.Offhand) {
+			if (_slot == ::Const.ItemSlot.Offhand) {
 				mh.onUnequip();
 				mh.onEquip();
-			} else if (_slot == this.Const.ItemSlot.Mainhand) {
+			} else if (_slot == ::Const.ItemSlot.Mainhand) {
 				oh.onUnequip();
 				oh.onEquip();
 			}
@@ -982,7 +982,7 @@
 	}
 
 	o.onSwapDualWieldSlots <- function (_data) {
-		local entity = this.Tactical.getEntityByID(_data[0]);
+		local entity = ::Tactical.getEntityByID(_data[0]);
 		if (entity == null || !entity.isPlayerControlled()) {
 			return null;
 		}
@@ -999,12 +999,12 @@
 	o.helper_isActionAllowed = function (_entity, _items, _putIntoBags) {
 		local sourceItem = _items[0];
 		if (sourceItem != null && !::Legends.S.isWarhoundAllowedIntoBags(sourceItem, _entity) && _putIntoBags) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
 		}
 		if (_items.len() > 1) {
 			local targetItem = _items[1];
 			if (sourceItem != null && targetItem != null && sourceItem.isInBag() && !targetItem.isInBag() && !::Legends.S.isWarhoundAllowedIntoBags(targetItem, _entity) && !_putIntoBags) {
-				return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
+				return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemIsNotChangableInBattle);
 			}
 		}
 		return helper_isActionAllowed(_entity, _items, _putIntoBags);
@@ -1030,7 +1030,7 @@
 		}
 
 		if (data.sourceItem.isInBag() == true) {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.ItemAlreadyWithinBag);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.ItemAlreadyWithinBag);
 		}
 
 		local fatigueDifference = data.entity.getFatigueMax() - data.entity.getFatigue();
@@ -1039,20 +1039,20 @@
 			if (targetItem != null) {
 				if (data.inventory.removeFromBagSlot(data.targetItemIdx) == false) {
 					data.inventory.addToBag(targetItem, data.targetItemIdx);
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromBag);
 				}
 
 				if (data.inventory.unequip(data.sourceItem) == false) {
 					// check if unequip was successful and rollback if not
 					data.inventory.addToBag(targetItem, data.targetItemIdx);
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToRemoveItemFromTargetSlot);
 				}
 
 				if (data.inventory.equip(targetItem) == false) {
 					data.inventory.unequip(targetItem);
 					data.inventory.equip(data.sourceItem);
 					data.inventory.addToBag(targetItem, data.targetItemIdx);
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToEquipBagItem);
 				}
 
 				if (data.inventory.addToBag(data.sourceItem, data.targetItemIdx) == false) {
@@ -1060,25 +1060,25 @@
 					data.inventory.unequip(targetItem);
 					data.inventory.equip(data.sourceItem);
 					data.inventory.addToBag(targetItem, data.targetItemIdx);
-					return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
+					return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.FailedToPutItemIntoBag);
 				}
 			} else {
 				data.inventory.unequip(data.sourceItem);
 				data.inventory.addToBag(data.sourceItem, data.targetItemIdx);
 			}
-		} else if (data.inventory.hasEmptySlot(this.Const.ItemSlot.Bag) == true) {
+		} else if (data.inventory.hasEmptySlot(::Const.ItemSlot.Bag) == true) {
 			local result = this.helper_dropItemIntoBag(data, false);
 
 			if (result != null) {
 				return result.error;
 			}
 		} else {
-			return this.helper_convertErrorToUIData(this.Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
+			return this.helper_convertErrorToUIData(::Const.CharacterScreen.ErrorCode.NotEnoughBagSpace);
 		}
 
-		data.sourceItem.playInventorySound(this.Const.Items.InventoryEventType.Equipped);
+		data.sourceItem.playInventorySound(::Const.Items.InventoryEventType.Equipped);
 
-		if (("State" in this.Tactical) && this.Tactical.State != null) {
+		if (("State" in ::Tactical) && ::Tactical.State != null) {
 			data.entity.setFatigue(data.entity.getFatigueMax() - fatigueDifference);
 		}
 
@@ -1087,8 +1087,8 @@
 			targetItem
 		]);
 
-		if (this.Tactical.isActive()) {
-			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, this.Tactical.TurnSequenceBar.getActiveEntity(), true, this.m.InventoryFilter);
+		if (::Tactical.isActive()) {
+			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, ::Tactical.TurnSequenceBar.getActiveEntity(), true, this.m.InventoryFilter);
 		} else {
 			return this.UIDataHelper.convertStashAndEntityToUIData(data.entity, null, true, this.m.InventoryFilter);
 		}

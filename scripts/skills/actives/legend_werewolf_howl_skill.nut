@@ -7,8 +7,8 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = [
 			//"sounds/werewolf_howl.wav"
 		];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -56,7 +56,7 @@ this.legend_werewolf_howl_skill <- this.inherit("scripts/skills/skill", {
 			Self = _user,
 			Skill = this
 		};
-		this.Tactical.queryActorsInRange(_user.getTile(), 1, 6, this.raiseMorale, this.result);
+		::Tactical.queryActorsInRange(_user.getTile(), 1, 6, this.raiseMorale, this.result);
 		return true;
 	}
 

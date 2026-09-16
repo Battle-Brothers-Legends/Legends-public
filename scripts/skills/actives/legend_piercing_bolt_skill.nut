@@ -129,7 +129,7 @@ this.legend_piercing_bolt_skill <- ::inherit("scripts/skills/actives/shoot_bolt"
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
 	{
 		this.shoot_bolt.onAnySkillUsed(_skill, _targetEntity, _properties);
-		_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
+		_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
 		if (_skill == this && m.IsDoingPiercingShot) {
 			_properties.RangedDamageMult *= 0.5;
 		}

@@ -14,7 +14,7 @@
 
 	o.getOrigin <- function ()
 	{
-		return this.getFlags().has("CaravanOrigin") ? this.World.getEntityByID(this.getFlags().get("CaravanOrigin")) : null;
+		return this.getFlags().has("CaravanOrigin") ? ::World.getEntityByID(this.getFlags().get("CaravanOrigin")) : null;
 	}
 
 	local getTooltip = o.getTooltip;
@@ -22,11 +22,11 @@
 	{
 		local ret = getTooltip();
 
-		local f = this.World.FactionManager.getFaction(this.getFaction());
+		local f = ::World.FactionManager.getFaction(this.getFaction());
 
 		if (this.getFlags().has("CaravanOrigin") && f != null)
 		{
-			local town = this.World.getEntityByID(this.getFlags().get("CaravanOrigin"));
+			local town = ::World.getEntityByID(this.getFlags().get("CaravanOrigin"));
 
 			if (town != null)
 			{
@@ -95,7 +95,7 @@
 			}
 		}
 
-		if (this.Const.LegendMod.DebugMode)
+		if (::Const.LegendMod.DebugMode)
 		{
 			ret.extend([
 				{
@@ -126,7 +126,7 @@
 	o.onUpdate = function ()
 	{
 		this.world_entity.onUpdate();
-		local delta = this.Math.maxf(0.0, this.Time.getVirtualTimeF() - this.m.LastUpdateTime);
+		local delta = ::Math.maxf(0.0, this.Time.getVirtualTimeF() - this.m.LastUpdateTime);
 		this.m.LastUpdateTime = this.Time.getVirtualTimeF();
 
 		if (this.isInCombat())
@@ -149,15 +149,15 @@
 		{
 			this.m.IsLeavingFootprints = false;
 
-			if (this.World.getTime().IsDaytime)
+			if (::World.getTime().IsDaytime)
 			{
 				this.m.VisibilityMult = 0.0;
-				this.getController().getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+				this.getController().getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 			}
 			else
 			{
 				this.m.VisibilityMult = 1.0;
-				this.getController().getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(true);
+				this.getController().getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(true);
 			}
 		}
 
@@ -176,7 +176,7 @@
 
 			if (this.m.Path != null)
 			{
-				this.m.Destination = this.World.tileToWorld(this.m.Path.getCurrent());
+				this.m.Destination = ::World.tileToWorld(this.m.Path.getCurrent());
 			}
 		}
 
@@ -205,17 +205,17 @@
 			local myTile = this.getTile();
 			local speed = this.m.BaseMovementSpeed;
 
-			local terrainTable = this.Const.World.TerrainTypeSpeedMult;
-			if (this.getFaction() == this.Const.Faction.Player)
+			local terrainTable = ::Const.World.TerrainTypeSpeedMult;
+			if (this.getFaction() == ::Const.Faction.Player)
 			{
 				local tTable = [];
 				tTable.resize(terrainTable.len(), 0);
 				for (local i=0; i < terrainTable.len() ; ++i)
 				{
-					tTable[i] += this.Const.World.TerrainTypeSpeedMult[i];
+					tTable[i] += ::Const.World.TerrainTypeSpeedMult[i];
 				}
 				local broTable = [];
-				foreach( bro in this.World.getPlayerRoster().getAll() )
+				foreach( bro in ::World.getPlayerRoster().getAll() )
 				{
 					broTable = bro.getBackground().getModifiers().Terrain;
 					if (broTable == null)
@@ -243,13 +243,13 @@
 				terrainTable = tTable;
 			}
 
-			speed = speed * (1.0 - this.Math.minf(0.5, this.m.Troops.len() * this.Const.World.MovementSettings.SlowDownPartyPerTroop));
-			speed = speed * this.Const.World.MovementSettings.GlobalMult;
+			speed = speed * (1.0 - ::Math.minf(0.5, this.m.Troops.len() * ::Const.World.MovementSettings.SlowDownPartyPerTroop));
+			speed = speed * ::Const.World.MovementSettings.GlobalMult;
 			if (!this.isIgnoringCollision())
 			{
 				if (myTile.HasRoad)
 				{
-					speed = speed * this.Math.maxf(terrainTable[myTile.Type] * this.Const.World.MovementSettings.RoadMult, 1.0);
+					speed = speed * ::Math.maxf(terrainTable[myTile.Type] * ::Const.World.MovementSettings.RoadMult, 1.0);
 				}
 				else
 				{
@@ -258,23 +258,23 @@
 
 				if (this.m.IsPlayer)
 				{
-					speed = speed * this.World.Assets.getTerrainTypeSpeedMult(myTile.Type);
+					speed = speed * ::World.Assets.getTerrainTypeSpeedMult(myTile.Type);
 				}
 			}
 
-			if (this.m.IsSlowerAtNight && !this.World.isDaytime())
+			if (this.m.IsSlowerAtNight && !::World.isDaytime())
 			{
-				speed = speed * this.Const.World.MovementSettings.NighttimeMult;
+				speed = speed * ::Const.World.MovementSettings.NighttimeMult;
 			}
 
 			if (myTile.HasRiver)
 			{
-				speed = speed * this.Const.World.MovementSettings.RiverMult;
+				speed = speed * ::Const.World.MovementSettings.RiverMult;
 			}
 
-			if (this.getFaction() != this.Const.Faction.Player)
+			if (this.getFaction() != ::Const.Faction.Player)
 			{
-				speed = speed * this.Const.World.MovementSettings.NotPlayerMult;
+				speed = speed * ::Const.World.MovementSettings.NotPlayerMult;
 			}
 
 			speed = speed * delta;
@@ -287,14 +287,14 @@
 
 					if (this.m.FootprintSizeOverride == 0.0)
 					{
-						scale = this.Math.minf(1.0, this.Math.maxf(0.4, this.m.Troops.len() * 0.05));
+						scale = ::Math.minf(1.0, ::Math.maxf(0.4, this.m.Troops.len() * 0.05));
 					}
 					else
 					{
 						scale = this.m.FootprintSizeOverride;
 					}
 
-					this.World.spawnFootprint(this.createVec(this.getPos().X - 5, this.getPos().Y - 15), this.m.Footprints[this.getDirection8To(this.m.Destination)] + "_0" + this.m.LastFootprintType, scale, this.m.FootprintSizeOverride != 0.0 ? 30.0 : 0.0, this.World.Assets.getFootprintVision(), this.m.FootprintType);
+					::World.spawnFootprint(this.createVec(this.getPos().X - 5, this.getPos().Y - 15), this.m.Footprints[this.getDirection8To(this.m.Destination)] + "_0" + this.m.LastFootprintType, scale, this.m.FootprintSizeOverride != 0.0 ? 30.0 : 0.0, ::World.Assets.getFootprintVision(), this.m.FootprintType);
 					this.m.LastFootprintTime = this.Time.getVirtualTimeF();
 					this.m.LastFootprintType = this.m.LastFootprintType == 1 ? 2 : 1;
 				}
@@ -306,10 +306,10 @@
 			}
 		}
 
-		if (this.m.IdleSoundsIndex != 0 && this.m.LastIdleSound + 10.0 < this.Time.getRealTimeF() && this.Math.rand(1, 100) <= 5 && this.isVisibleToEntity(this.World.State.getPlayer(), 500))
+		if (this.m.IdleSoundsIndex != 0 && this.m.LastIdleSound + 10.0 < this.Time.getRealTimeF() && ::Math.rand(1, 100) <= 5 && this.isVisibleToEntity(::World.State.getPlayer(), 500))
 		{
 			this.m.LastIdleSound = this.Time.getRealTimeF();
-			this.Sound.play(this.Const.SoundPartyAmbience[this.m.IdleSoundsIndex][this.Math.rand(0, this.Const.SoundPartyAmbience[this.m.IdleSoundsIndex].len() - 1)], this.Const.Sound.Volume.Ambience, this.getPos());
+			::Sound.play(::Const.SoundPartyAmbience[this.m.IdleSoundsIndex][::Math.rand(0, ::Const.SoundPartyAmbience[this.m.IdleSoundsIndex].len() - 1)], ::Const.Sound.Volume.Ambience, this.getPos());
 		}
 	}
 
@@ -335,7 +335,7 @@
 			}
 		}
 
-		this.World.EntityManager.onWorldEntityDestroyed(this, false);
+		::World.EntityManager.onWorldEntityDestroyed(this, false);
 		this.world_entity.onCombatLost();
 	}
 
@@ -370,7 +370,7 @@
 
 		if (this.m.Flags.get("IsCaravan"))
 		{
-			this.World.Statistics.getFlags().increment("CaravansRaided");
+			::World.Statistics.getFlags().increment("CaravansRaided");
 
 			local faction = ::World.FactionManager.getFaction(this.getFaction());
 			local faction_flags = faction.getFlags();

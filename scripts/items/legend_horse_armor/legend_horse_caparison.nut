@@ -22,10 +22,10 @@ this.legend_horse_caparison <- this.inherit("scripts/items/legend_horse_armor/le
 			"yellow_black",
 			"yellow_red"
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.InventorySound = this.Const.Sound.ClothEquip;
+		this.m.ImpactSound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.InventorySound = ::Const.Sound.ClothEquip;
 		this.m.Value = 1500;
 		this.m.Condition = 125;
 		this.m.ConditionMax = 125;
@@ -34,9 +34,9 @@ this.legend_horse_caparison <- this.inherit("scripts/items/legend_horse_armor/le
 
 	function updateVariant()
 	{
-		this.m.Sprite = "horse_caparison" + variant;
-		this.m.SpriteDamaged = "horse_caparison" + variant + "_damaged";
-		this.m.SpriteCorpse = "horse_caparison" + variant + "_dead";
+		this.m.Sprite = "horse_caparison" + this.m.Variant;
+		this.m.SpriteDamaged = "horse_caparison" + this.m.Variant + "_damaged";
+		this.m.SpriteCorpse = "horse_caparison" + this.m.Variant + "_dead";
 		this.m.IconLarge = "rune_sigils/rune_stone_1.png";
 		this.m.Icon = "rune_sigils/rune_stone_1.png";
 	}

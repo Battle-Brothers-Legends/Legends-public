@@ -7,8 +7,8 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 		this.m.Icon = "skills/status_effect_67.png";
 		this.m.IconMini = "status_effect_67_mini";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rage", 2);
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -80,11 +80,11 @@ this.legend_apothecary_mushrooms_effect <- this.inherit("scripts/skills/skill", 
 	}
 
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
-		this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Actor, this.getContainer().getActor().getPos(), this.Math.rand(100, 115) * 0.01 * this.getContainer().getActor().getSoundPitch());
+		::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Actor, this.getContainer().getActor().getPos(), ::Math.rand(100, 115) * 0.01 * this.getContainer().getActor().getSoundPitch());
 	}
 
 	function onTargetMissed(_skill, _targetEntity) {
-		this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Actor, this.getContainer().getActor().getPos(), this.Math.rand(100, 115) * 0.01 * this.getContainer().getActor().getSoundPitch());
+		::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Actor, this.getContainer().getActor().getPos(), ::Math.rand(100, 115) * 0.01 * this.getContainer().getActor().getSoundPitch());
 	}
 
 	function onCombatFinished() {

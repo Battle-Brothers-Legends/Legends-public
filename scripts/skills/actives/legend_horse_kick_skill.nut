@@ -14,16 +14,16 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Kicked to death";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
 		this.m.IsStacking = false;
 		this.m.IsAttack = true;
 		this.m.IsSerialized = false;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 5;
@@ -53,15 +53,15 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 			damageMax = damageMax + avgMax;
 		}
 
-		local damage_regular_min = this.Math.floor(damageMin * p.DamageRegularMult * p.DamageTotalMult);
-		local damage_regular_max = this.Math.floor(damageMax * p.DamageRegularMult * p.DamageTotalMult);
-		local damage_Armor_min = this.Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
-		local damage_Armor_max = this.Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
-		local damage_direct_max = this.Math.floor(damageMax * this.m.DirectDamageMult);
+		local damage_regular_min = ::Math.floor(damageMin * p.DamageRegularMult * p.DamageTotalMult);
+		local damage_regular_max = ::Math.floor(damageMax * p.DamageRegularMult * p.DamageTotalMult);
+		local damage_Armor_min = ::Math.floor(damageMin * p.DamageArmorMult * p.DamageTotalMult);
+		local damage_Armor_max = ::Math.floor(damageMax * p.DamageArmorMult * p.DamageTotalMult);
+		local damage_direct_max = ::Math.floor(damageMax * this.m.DirectDamageMult);
 
 		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 		{
-			local muscularity = this.Math.floor(bodyHealth * 0.1);
+			local muscularity = ::Math.floor(bodyHealth * 0.1);
 			damage_regular_max = damage_regular_max + muscularity;
 			damage_Armor_max = damage_Armor_max + muscularity;
 			damage_direct_max = damage_direct_max + muscularity;
@@ -69,11 +69,11 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 
 		if (mult != 1.0)
 		{
-			damage_regular_min = this.Math.floor(damage_regular_min * mult);
-			damage_regular_max = this.Math.floor(damage_regular_max * mult);
-			damage_Armor_min = this.Math.floor(damage_Armor_min * mult);
-			damage_Armor_max = this.Math.floor(damage_Armor_max * mult);
-			damage_direct_max = this.Math.floor(damage_direct_max * mult);
+			damage_regular_min = ::Math.floor(damage_regular_min * mult);
+			damage_regular_max = ::Math.floor(damage_regular_max * mult);
+			damage_Armor_min = ::Math.floor(damage_Armor_min * mult);
+			damage_Armor_max = ::Math.floor(damage_Armor_max * mult);
+			damage_direct_max = ::Math.floor(damage_direct_max * mult);
 		}
 
 		local ret = [
@@ -121,13 +121,13 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 
 	function isUsable()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return mainhand == null && this.skill.isUsable() && !this.m.IsSpent;
 	}
 
 	function isHidden()
 	{
-		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local mainhand = this.m.Container.getActor().getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		return mainhand != null || this.skill.isHidden();
 	}
 
@@ -165,12 +165,12 @@ this.legend_horse_kick_skill <- this.inherit("scripts/skills/skill", {
 
 			if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendMuscularity))
 			{
-				local muscularity = this.Math.floor(bodyHealth * 0.1);
+				local muscularity = ::Math.floor(bodyHealth * 0.1);
 				damageMax = damageMax + muscularity;
 			}
 
-			_properties.DamageRegularMin += this.Math.floor(damageMin);
-			_properties.DamageRegularMax += this.Math.floor(damageMax);
+			_properties.DamageRegularMin += ::Math.floor(damageMin);
+			_properties.DamageRegularMax += ::Math.floor(damageMax);
 			this.m.DirectDamageMult = _properties.IsSpecializedInFists ? 0.6 : 0.3;
 		}
 	}

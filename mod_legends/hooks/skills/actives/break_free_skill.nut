@@ -70,11 +70,11 @@
 	{
 		local actor = this.getContainer().getActor();
 		local skill = this.m.SkillBonus == null ? actor.getCurrentProperties().getMeleeSkill() : this.m.SkillBonus;
-		local toHit = this.Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
+		local toHit = ::Math.min(100, skill - 10 + this.m.ChanceBonus + (actor.getSkills().hasEffect(::Legends.Effect.GoblinShamanPotion) ? 100 : 0));
 		local isBigGhoul = "getSize" in actor && actor.getSize() >= 2;
 		if (actor.getCurrentProperties().IsSpecializedInNets || this.m.IsByNetSpecialist || actor.getSkills().hasPerk(::Legends.Perk.LegendEscapeArtist) || isBigGhoul)
 		{
-			toHit = this.Math.max(99, toHit);
+			toHit = ::Math.max(99, toHit);
 		}
 		return toHit;
 	}
@@ -82,23 +82,23 @@
 	o.onUse = function ( _user, _targetTile )
 	{
 		local toHit = this.getChance();
-		local rolled = this.Math.rand(1, 100);
-		this.Tactical.EventLog.log_newline();
+		local rolled = ::Math.rand(1, 100);
+		::Tactical.EventLog.log_newline();
 
 		if (rolled <= toHit)
 		{
 			if (_user.getCurrentProperties().IsSpecializedInNets)
 			{
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " effortlessly breaks free (Chance: " + toHit + ", Rolled: " + rolled + ")");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " effortlessly breaks free (Chance: " + toHit + ", Rolled: " + rolled + ")");
 			}
 			else
 			{
-				this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " breaks free (Chance: " + toHit + ", Rolled: " + rolled + ")");
+				::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " breaks free (Chance: " + toHit + ", Rolled: " + rolled + ")");
 			}
 
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnHit[this.Math.rand(0, this.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _targetTile.Pos);
+				::Sound.play(this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.Pos);
 			}
 
 			_user.getSprite("status_rooted").Visible = false;
@@ -111,7 +111,7 @@
 
 				if (ourTile.Properties.has("IsItemSpawned") || ourTile.IsCorpseSpawned)
 				{
-					for( local i = 0; i < this.Const.Direction.COUNT; i = ++i )
+					for( local i = 0; i < ::Const.Direction.COUNT; i = ++i )
 					{
 						if (!ourTile.hasNextTile(i))
 						{
@@ -134,7 +134,7 @@
 
 				if (candidates.len() != 0)
 				{
-					local tileToSpawnAt = candidates[this.Math.rand(0, candidates.len() - 1)];
+					local tileToSpawnAt = candidates[::Math.rand(0, candidates.len() - 1)];
 					tileToSpawnAt.spawnDetail(this.m.Decal);
 					tileToSpawnAt.Properties.add("IsItemSpawned");
 				}
@@ -195,11 +195,11 @@
 		}
 		else
 		{
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_user) + " fails to break free (Chance: " + toHit + ", Rolled: " + rolled + ")");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_user) + " fails to break free (Chance: " + toHit + ", Rolled: " + rolled + ")");
 
 			if (this.m.SoundOnMiss.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnMiss[this.Math.rand(0, this.m.SoundOnMiss.len() - 1)], this.Const.Sound.Volume.Skill, _targetTile.Pos);
+				::Sound.play(this.m.SoundOnMiss[::Math.rand(0, this.m.SoundOnMiss.len() - 1)], ::Const.Sound.Volume.Skill, _targetTile.Pos);
 			}
 
 			this.m.ChanceBonus += 10;

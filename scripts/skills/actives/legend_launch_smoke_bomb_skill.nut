@@ -42,7 +42,7 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 		}]);
 
 		local ammo = 0;
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 		{
 			if (item.getID() == "weapon.smoke_bomb")
 			{
@@ -77,7 +77,7 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 
 	function isUsable()
 	{
-		return !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0 && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 
 	function isHidden()
@@ -106,6 +106,6 @@ this.legend_launch_smoke_bomb_skill <- this.inherit("scripts/skills/actives/thro
 	function onAfterUpdate( _properties )
 	{
 		this.m.MaxRange = this.m.MaxRange + (_properties.IsSpecializedInSlings ? 1 : 0);
-		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInSlings ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 });

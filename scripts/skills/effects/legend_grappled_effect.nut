@@ -8,7 +8,7 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/grapple_circle.png";
 		this.m.IconMini = "mini_grapple";
 		this.m.Overlay = "grapple_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -52,12 +52,12 @@ this.legend_grappled_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 	}
 
 	function onRefresh()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		this.spawnIcon("status_effect_87", this.getContainer().getActor().getTile());
 	}
 

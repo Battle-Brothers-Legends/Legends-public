@@ -9,10 +9,10 @@ this.legend_zweihander <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Name = "Zweihander";
 		this.m.Description = "A massive two-handed blade as good for carving swathes through the enemy as for battering them into submission.";
 		this.m.Categories = "Sword, Two-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
@@ -28,7 +28,7 @@ this.legend_zweihander <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	function updateVariant() {

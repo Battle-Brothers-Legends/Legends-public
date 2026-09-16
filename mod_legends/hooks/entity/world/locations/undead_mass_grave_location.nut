@@ -3,9 +3,9 @@
 	o.onDropLootForPlayer = function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropMoney(this.Math.rand(200, 500), _lootTable);
-		this.dropArmorParts(this.Math.rand(0, 40), _lootTable);
-		this.dropAmmo(this.Math.rand(0, 20), _lootTable);
+		this.dropMoney(::Math.rand(200, 500), _lootTable);
+		this.dropArmorParts(::Math.rand(0, 40), _lootTable);
+		this.dropAmmo(::Math.rand(0, 20), _lootTable);
 		local treasure = [
 			"loot/silverware_item",
 			"loot/silver_bowl_item",
@@ -14,7 +14,7 @@
 			"loot/ancient_gold_coins_item"
 		];
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			treasure.extend(treasure);
 			treasure.extend(treasure);
@@ -30,6 +30,6 @@
 			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 		}
 
-		this.dropTreasure(this.Math.rand(0, 1), treasure, _lootTable);
+		this.dropTreasure(::Math.rand(0, 1), treasure, _lootTable);
 	}
 });

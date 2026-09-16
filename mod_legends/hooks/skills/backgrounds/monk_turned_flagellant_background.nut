@@ -18,13 +18,13 @@
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Untidy;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.onBuildDescription <- function ()
@@ -36,13 +36,13 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
 
 			if (actor.getTitle() == "")
 			{
-				actor.setTitle(this.Const.Strings.PilgrimTitles[this.Math.rand(0, this.Const.Strings.PilgrimTitles.len() - 1)]);
+				actor.setTitle(::Const.Strings.PilgrimTitles[::Math.rand(0, ::Const.Strings.PilgrimTitles.len() - 1)]);
 			}
 		}
 	}

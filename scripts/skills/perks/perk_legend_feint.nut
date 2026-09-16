@@ -10,7 +10,7 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 		if (!_targetEntity.isAttackable())
 			return;
 		local actor = this.getContainer().getActor();
-		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.floor(_skill.getFatigueCost() * 0.2)));
+		actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Math.floor(_skill.getFatigueCost() * 0.2)));
 
 		if (::Legends.S.isEntityNullOrDead(_targetEntity))
 			return;
@@ -21,7 +21,7 @@ this.perk_legend_feint <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendParried);
 
 		if (!actor.isHiddenToPlayer() && !_targetEntity.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " feinted " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them exposed!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " feinted " + ::Const.UI.getColorizedEntityName(_targetEntity) + " leaving them exposed!");
 		}
 	}
 

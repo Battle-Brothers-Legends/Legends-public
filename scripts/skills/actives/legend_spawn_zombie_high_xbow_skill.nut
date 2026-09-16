@@ -12,7 +12,7 @@ this.legend_spawn_zombie_high_xbow_skill <- this.inherit("scripts/skills/actives
 		this.m.ActionPointCost = 5;
 		this.m.FatigueCost = 20;
 		this.m.MaxLevelDifference = 4;
-		this.m.Order = this.Const.SkillOrder.NonTargeted + 10;
+		this.m.Order = ::Const.SkillOrder.NonTargeted + 10;
 		this.m.HPCost = 30;
 		this.m.APStartMult = 0.0;
 	}

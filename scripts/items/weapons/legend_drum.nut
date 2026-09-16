@@ -11,10 +11,10 @@ this.legend_drum <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.IconLarge = "weapons/melee/drum_01.png";
 		this.m.Icon = "weapons/melee/drum_01_70x70.png";
 		this.m.BreakingSound = "sounds/combat/bash_hit_03.wav";
-		this.m.WeaponType = this.Const.Items.WeaponType.Musical;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
+		this.m.WeaponType = ::Const.Items.WeaponType.Musical;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

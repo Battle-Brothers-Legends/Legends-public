@@ -42,10 +42,10 @@ this.legend_horse_trait <- this.inherit("scripts/skills/traits/character_trait",
 	function onAdded()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.getData()[this.Const.ItemSlot.Offhand][0] = -1;
-		items.getData()[this.Const.ItemSlot.Mainhand][0] = -1;
-		items.getData()[this.Const.ItemSlot.Head][0] = -1;
-		items.getData()[this.Const.ItemSlot.Ammo][0] = -1;
+		items.getData()[::Const.ItemSlot.Offhand][0] = -1;
+		items.getData()[::Const.ItemSlot.Mainhand][0] = -1;
+		items.getData()[::Const.ItemSlot.Head][0] = -1;
+		items.getData()[::Const.ItemSlot.Ammo][0] = -1;
 		this.getContainer().getActor().getFlags().add("IsHorse");
 	}
 
@@ -53,8 +53,8 @@ this.legend_horse_trait <- this.inherit("scripts/skills/traits/character_trait",
 	{
 		local actor = this.getContainer().getActor();
 		local gt = getroottable();
-		actor.m.ActionPointCosts = this.Const.HorseMovementAPCost;
-		actor.m.FatigueCosts = clone this.Const.HorseMovementFatigueCost;
+		actor.m.ActionPointCosts = ::Const.HorseMovementAPCost;
+		actor.m.FatigueCosts = clone ::Const.HorseMovementFatigueCost;
 		_properties.DailyFood += 4.0;
 	}
 

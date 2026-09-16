@@ -5,7 +5,7 @@
 	local getTooltip = o.getTooltip;
 	o.getTooltip = function ()
 	{
-		local fm = this.Math.ceil(this.getArmorReductionMult() * 100);
+		local fm = ::Math.ceil(this.getArmorReductionMult() * 100);
 		local tooltip = getTooltip();
 
 		if (fm < 100 && this.getContainer().hasPerk(::Legends.Perk.Relentless))
@@ -24,8 +24,8 @@
 	o.getChance = function ()
 	{
 		local fat = 0;
-		local body = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local head = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local body = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		local head = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
 
 		if (body != null)
 		{
@@ -37,8 +37,8 @@
 			fat = fat + head.getStaminaModifier();
 		}
 
-		fat = this.Math.min(0, fat + this.m.NimbleThreshold);
-		local ret = this.Math.minf(1.0, 1.0 - 0.6 + this.Math.pow(this.Math.abs(fat), this.m.SteepnessFactor) * 0.01);
+		fat = ::Math.min(0, fat + this.m.NimbleThreshold);
+		local ret = ::Math.minf(1.0, 1.0 - 0.6 + ::Math.pow(::Math.abs(fat), this.m.SteepnessFactor) * 0.01);
 		return ret;
 	}
 

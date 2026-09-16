@@ -5,38 +5,38 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "B") {
 				s.start <- function( _event ) {
-					local amount = this.Math.rand(10, 20);
-					this.World.Assets.addArmorParts(amount);
+					local amount = ::Math.rand(10, 20);
+					::World.Assets.addArmorParts(amount);
 					this.List.push({
 						id = 10,
 						icon = "ui/icons/asset_supplies.png",
 						text = "You gain [color=%positiveEvent%]+" + amount + "[/color] Tools and Supplies."
 					});
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers )
 					{
-						if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))
+						if (::Legends.Backgrounds.hasAny(bro, ::Legends.Background.Cultist, ::Legends.Background.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist))
 							continue;
 
-						if (bro.getEthnicity() == 1 && this.Math.rand(1, 100) <= 66) {
+						if (bro.getEthnicity() == 1 && ::Math.rand(1, 100) <= 66) {
 							bro.improveMood(1.0, "Approved of your decision to end the suffering of fellow Gilded");
 
-							if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+							if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
-						} else if (bro.getEthnicity() == 0 && this.Math.rand(1, 100) <= 66) {
+						} else if (bro.getEthnicity() == 0 && ::Math.rand(1, 100) <= 66) {
 							bro.worsenMood(0.75, "Disliked that you ended the suffering of southern invaders");
 
-							if (bro.getMoodState() > this.Const.MoodState.Neutral) {
+							if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
 						}

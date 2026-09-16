@@ -2,14 +2,14 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendSlinger;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendSlinger.XP;
+		this.m.Type = ::Const.EntityType.LegendSlinger;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendSlinger.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.Young;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.Young;
+		this.m.Beards = ::Const.Beards.Tidy;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_ranged_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeEnemyGender() == 1) {
@@ -21,7 +21,7 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendSlinger);
+		b.setValues(::Const.Tactical.Actor.LegendSlinger);
 		b.TargetAttractionMult = 1.1;
 		b.IsSpecializedInCrossbows = true;
 		this.m.ActionPoints = b.ActionPoints;
@@ -49,9 +49,9 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 		local r;
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -60,7 +60,7 @@ this.legend_noble_slinger <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= 80)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}

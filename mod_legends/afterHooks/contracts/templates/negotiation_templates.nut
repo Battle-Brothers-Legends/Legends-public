@@ -156,8 +156,8 @@ local OverviewStart = ::Const.Contracts.Overview[0].start;
 	this.Options.push({
 		Text = "Forget it, this isn\'t worth it.",
 		function getResult() {
-			this.World.Contracts.removeContract(this.Contract);
-			this.World.State.getTownScreen().updateContracts();
+			::World.Contracts.removeContract(this.Contract);
+			::World.State.getTownScreen().updateContracts();
 			return 0;
 		}
 	});
@@ -205,8 +205,8 @@ local OverviewStart = ::Const.Contracts.Overview[0].start;
 	this.Options.push({
 		Text = "Forget it, this isn\'t worth it.",
 		function getResult() {
-			this.World.Contracts.removeContract(this.Contract);
-			this.World.State.getTownScreen().updateContracts();
+			::World.Contracts.removeContract(this.Contract);
+			::World.State.getTownScreen().updateContracts();
 			return 0;
 		}
 	});

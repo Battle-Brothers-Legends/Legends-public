@@ -22,7 +22,7 @@
 
 	o.onNewDay = function ()
 	{
-		if (this.Math.rand(1, 100) <= this.m.HealChance)
+		if (::Math.rand(1, 100) <= this.m.HealChance)
 		{
 			this.removeSelf();
 		}

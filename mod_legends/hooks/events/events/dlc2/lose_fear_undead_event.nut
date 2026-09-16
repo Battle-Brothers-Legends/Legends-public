@@ -11,16 +11,16 @@
 
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID() && this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getID())
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getID() && ::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getID())
 			return;
 
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > this.World.getTime().SecondsPerDay * 1.0)
+		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -38,8 +38,8 @@
 		if (candidates.len() == 0 || candidates_other.len() == 0)
 			return;
 
-		this.m.Casualty = candidates[this.Math.rand(0, candidates.len() - 1)];
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Casualty = candidates[::Math.rand(0, candidates.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		this.m.Score = this.m.Casualty.getLifetimeStats().Kills / 10;
 	}
 });

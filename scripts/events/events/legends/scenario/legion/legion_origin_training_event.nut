@@ -3,7 +3,7 @@ this.legion_origin_training_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legion_origin_training";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 55.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 55.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//—
 			ID = "A",
@@ -27,7 +27,7 @@ this.legion_origin_training_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		//see 'static_functions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {

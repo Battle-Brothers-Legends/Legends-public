@@ -30,7 +30,7 @@ this.legend_throw_backup_spear_skill <- this.inherit("scripts/skills/actives/thr
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 9,
 				type = "text",

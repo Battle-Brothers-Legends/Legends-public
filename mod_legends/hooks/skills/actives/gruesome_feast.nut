@@ -10,12 +10,12 @@
 		local actor = _effect.getContainer().getActor();
 		_effect.addFeastStack();
 		_effect.getContainer().update();
-		actor.setHitpoints(this.Math.min(actor.getHitpoints() + 200, actor.getHitpointsMax()));
-		local skills = _effect.getContainer().getAllSkillsOfType(this.Const.SkillType.Injury);
+		actor.setHitpoints(::Math.min(actor.getHitpoints() + 200, actor.getHitpointsMax()));
+		local skills = _effect.getContainer().getAllSkillsOfType(::Const.SkillType.Injury);
 
 		foreach( s in skills )
 		{
-			if(s.isType(this.Const.SkillType.PermanentInjury)) continue;	// Prevents the Legends-Nacho-Mask from healing permanent Injuries. Nachos never receive permanent injuries anyways
+			if(s.isType(::Const.SkillType.PermanentInjury)) continue;	// Prevents the Legends-Nacho-Mask from healing permanent Injuries. Nachos never receive permanent injuries anyways
 			s.removeSelf();
 		}
 	}
@@ -26,17 +26,17 @@
 
 		if (_targetTile.IsVisibleForPlayer)
 		{
-			if (this.Const.Tactical.GruesomeFeastParticles.len() != 0)
+			if (::Const.Tactical.GruesomeFeastParticles.len() != 0)
 			{
-				for( local i = 0; i < this.Const.Tactical.GruesomeFeastParticles.len(); i = ++i )
+				for( local i = 0; i < ::Const.Tactical.GruesomeFeastParticles.len(); i = ++i )
 				{
-					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.GruesomeFeastParticles[i].Brushes, _targetTile, this.Const.Tactical.GruesomeFeastParticles[i].Delay, this.Const.Tactical.GruesomeFeastParticles[i].Quantity, this.Const.Tactical.GruesomeFeastParticles[i].LifeTimeQuantity, this.Const.Tactical.GruesomeFeastParticles[i].SpawnRate, this.Const.Tactical.GruesomeFeastParticles[i].Stages);
+					::Tactical.spawnParticleEffect(false, ::Const.Tactical.GruesomeFeastParticles[i].Brushes, _targetTile, ::Const.Tactical.GruesomeFeastParticles[i].Delay, ::Const.Tactical.GruesomeFeastParticles[i].Quantity, ::Const.Tactical.GruesomeFeastParticles[i].LifeTimeQuantity, ::Const.Tactical.GruesomeFeastParticles[i].SpawnRate, ::Const.Tactical.GruesomeFeastParticles[i].Stages);
 				}
 			}
 
 			if (_user.isDiscovered() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer))
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " feasts on a corpse");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " feasts on a corpse");
 			}
 		}
 

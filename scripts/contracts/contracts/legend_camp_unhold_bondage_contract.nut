@@ -9,7 +9,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 		this.m.Type = "contract.legend_camp_unhold_bondage_contract";
 		this.m.Name = "Capture Unhold";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Barbarians;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(95, 125) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Friendly barbarian tribe seeks unhold line-breakers. This should be interesting.",
@@ -32,7 +32,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 	}
 
 	function start() {
-		this.m.Payment.Pool = 800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), this.Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
+		this.m.Payment.Pool = 800 * this.getPaymentMult() * ::Math.pow(this.getDifficultyMult(), ::Const.World.Assets.ContractRewardPOW) * this.getReputationToPaymentMult();
 
 		if (::Math.rand(1, 100) <= 10) {
 			this.m.Payment.Completion = 0.9;
@@ -61,13 +61,13 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			}
 
 			function end() {
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				local r = ::Math.rand(1, 100);
 
 				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 
 				local count = ::Math.rand(1, 3);
 				while (count--) {
@@ -96,7 +96,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				}
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive()) {
 					this.Contract.setScreen("AfterBattle");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 					if (this.Flags.getAsInt("CapturedUnholds") > 0) {
 						this.Contract.setState("Return");
 					} else {
@@ -109,9 +109,9 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				if (!this.Flags.get("IsEncounterShown")) {
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				} else {
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 		});
@@ -131,7 +131,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			function update() {
 				if (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || !this.Contract.m.Target.isAlive()) {
 					this.Contract.setScreen("Failure");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 
@@ -139,9 +139,9 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				if (!this.Flags.get("IsBarbEncounterShown")) {
 					this.Flags.set("IsBarbEncounterShown", true);
 					this.Contract.setScreen("BarbEncounter");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				} else {
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 		});
@@ -155,7 +155,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 
 			function update() {
 				this.Contract.setScreen("Success");
-				this.World.Contracts.showActiveContract();
+				::World.Contracts.showActiveContract();
 			}
 
 		});
@@ -184,7 +184,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				{
 					Text = "{ The risks are too high - we refuse. | We aren\'t equipped for such a task. | We kill unholds, not capture them. Count us out. }",
 					function getResult() {
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -262,8 +262,8 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			Options = [{
 				Text = "A successful hunt.",
 				function getResult() {
-					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-					this.World.Contracts.finishActiveContract();
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+					::World.Contracts.finishActiveContract();
 					return 0;
 				}
 			}],
@@ -281,8 +281,8 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 			Options = [{
 				Text = "{ Blast it! Let\'s get out of here! | Well, shit. We should leave. | That could have gone better... }",
 				function getResult() {
-					this.World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
-					this.World.Contracts.finishActiveContract();
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+					::World.Contracts.finishActiveContract();
 					return 0;
 				}
 			}]
@@ -291,7 +291,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 	}
 
 	function spawnEnemies() {
-		local playerTile = this.World.State.getPlayer().getTile();
+		local playerTile = ::World.State.getPlayer().getTile();
 		local tile = this.getTileToSpawnLocation(playerTile, 6, 12, [
 			::Const.World.TerrainType.Mountains,
 			::Const.World.TerrainType.Plains,
@@ -300,27 +300,27 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 		]);
 		local nearTile = this.getTileToSpawnLocation(playerTile, 1, 3);
 		local party;
-		party = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, ::Const.World.Spawn.Unhold, ::Math.rand(95, 115) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
+		party = ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).spawnEntity(tile, "Unholds", false, ::Const.World.Spawn.Unhold, ::Math.rand(95, 115) * this.getDifficultyMult() * this.getScaledDifficultyMult(), this.getMinibossModifier());
 		party.setDescription("One or more lumbering giants.");
 		party.setAttackableByAI(false);
 		party.getFlags().set("IsUnholds", true);
-		::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), this.Const.BeastFootprints, 0.85);
+		::Const.World.Common.addFootprintsFromTo(nearTile, party.getTile(), ::Const.BeastFootprints, 0.85);
 		this.m.Target = this.WeakTableRef(party);
 		party.getSprite("banner").setBrush("banner_beasts_01");
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
 		local roam = this.new("scripts/ai/world/orders/roam_order");
 		roam.setPivot(this.m.Home);
 		roam.setMinRange(2);
 		roam.setMaxRange(8);
 		roam.setAllTerrainAvailable();
-		roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-		roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-		roam.setTerrain(this.Const.World.TerrainType.Forest, false);
-		roam.setTerrain(this.Const.World.TerrainType.LeaveForest, false);
-		roam.setTerrain(this.Const.World.TerrainType.SnowyForest, false);
-		roam.setTerrain(this.Const.World.TerrainType.AutumnForest, false);
+		roam.setTerrain(::Const.World.TerrainType.Ocean, false);
+		roam.setTerrain(::Const.World.TerrainType.Shore, false);
+		roam.setTerrain(::Const.World.TerrainType.Forest, false);
+		roam.setTerrain(::Const.World.TerrainType.LeaveForest, false);
+		roam.setTerrain(::Const.World.TerrainType.SnowyForest, false);
+		roam.setTerrain(::Const.World.TerrainType.AutumnForest, false);
 		c.addOrder(roam);
 		return party;
 	}
@@ -401,7 +401,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 	function onDeserialize(_in) {
 		local target = _in.readU32();
 		if (target != 0) {
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 		this.contract.onDeserialize(_in);
 	}

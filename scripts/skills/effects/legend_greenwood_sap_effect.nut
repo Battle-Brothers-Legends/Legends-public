@@ -9,7 +9,7 @@ this.legend_greenwood_sap_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perfectfocus_circle.png";
 		this.m.IconMini = "perk_37_mini";
 		this.m.Overlay = "perk_37";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

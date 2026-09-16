@@ -5,7 +5,7 @@
 	o.onDelayedEffect = function ( _tag )
 	{
 		local mytile = _tag.User.getTile();
-		local actors = this.Tactical.Entities.getAllInstances();
+		local actors = ::Tactical.Entities.getAllInstances();
 		local skill = ::Legends.Actives.get(_tag.User, ::Legends.Active.Warcry);
 
 		foreach( i in actors )
@@ -19,11 +19,11 @@
 
 				if (a.getFaction() == _tag.User.getFaction())
 				{
-					local difficulty = 10 - this.Math.pow(a.getTile().getDistanceTo(mytile), this.Const.Morale.EnemyKilledDistancePow);
+					local difficulty = 10 - ::Math.pow(a.getTile().getDistanceTo(mytile), ::Const.Morale.EnemyKilledDistancePow);
 
-					if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+					if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 					{
-						a.checkMorale(this.Const.MoraleState.Wavering - this.Const.MoraleState.Fleeing, difficulty);
+						a.checkMorale(::Const.MoraleState.Wavering - ::Const.MoraleState.Fleeing, difficulty);
 					}
 					else
 					{
@@ -44,8 +44,8 @@
 				}
 				else if (!a.isAlliedWith(_tag.User))
 				{
-					local difficulty = 5 + this.Math.pow(a.getTile().getDistanceTo(mytile), this.Const.Morale.AllyKilledDistancePow);
-					a.checkMorale(-1, difficulty, this.Const.MoraleCheckType.MentalAttack);
+					local difficulty = 5 + ::Math.pow(a.getTile().getDistanceTo(mytile), ::Const.Morale.AllyKilledDistancePow);
+					a.checkMorale(-1, difficulty, ::Const.MoraleCheckType.MentalAttack);
 				}
 			}
 		}

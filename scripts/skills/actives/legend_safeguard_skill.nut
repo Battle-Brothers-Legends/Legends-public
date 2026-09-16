@@ -5,8 +5,8 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Use your shield to protect an ally, leaving yourself exposed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stab", 3);
 		this.m.SoundOnHit = ["sounds/combat/weapon_break_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -61,7 +61,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 		}.bindenv(this));
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " is safeguarding " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " is safeguarding " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
 		::Legends.Effects.grant(this, ::Legends.Effect.LegendSafeguarding);
@@ -84,7 +84,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate( _properties ) {
-		this.m.FatigueCostMult = (_properties.IsSpecializedInShields || _properties.IsProficientWithShieldSkills) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = (_properties.IsSpecializedInShields || _properties.IsProficientWithShieldSkills) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onRemoved() {

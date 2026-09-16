@@ -2,17 +2,17 @@
 {
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.hunting_hexen_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.hunting_hexen_contract))
 		{
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 900)
+		if (::World.Assets.getBusinessReputation() < 900)
 		{
 			return;
 		}
 
-		if (this.Math.rand(1, 100) > 6)
+		if (::Math.rand(1, 100) > 6)
 		{
 			return;
 		}

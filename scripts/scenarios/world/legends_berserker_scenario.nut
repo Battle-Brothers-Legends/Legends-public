@@ -8,14 +8,14 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		this.m.Difficulty = 2;
 		this.m.Order = 60;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(3);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 	}
 
 
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		for( local i = 0; i < 1; i = i )
 		{
@@ -30,14 +30,14 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.Berserk);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].setVeteranPerks(2);
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
 		stash.removeByID("supplies.ground_grains");
 		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
 		stash.add(this.new("scripts/items/accessory/berserker_mushrooms_item"));
 		stash.add(this.new("scripts/items/supplies/roots_and_berries_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo;
+		::World.Assets.m.Money = ::World.Assets.m.Money;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo;
 	}
 
 	function onSpawnPlayer()
@@ -45,9 +45,9 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		local randomVillage;
 		local northernmostY = 0;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			local v = this.World.EntityManager.getSettlements()[i];
+			local v = ::World.EntityManager.getSettlements()[i];
 
 			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
 			{
@@ -60,22 +60,22 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 
 		randomVillage.setLastSpawnTimeToNow();
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 2), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 2), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -83,7 +83,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -117,7 +117,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		local s = this.new("scripts/entity/world/settlements/situations/raided_situation");
 		s.setValidForDays(5);
 		randomVillage.addSituation(s);
-		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 		local houses = [];
 
 		foreach( n in nobles )
@@ -163,27 +163,27 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		}
 
 		houses[1].Faction.addPlayerRelation(18.0);
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(106);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(106);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/barbarians_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_berserker_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_berserker_scenario_intro");
 		}, null);
 	}
 
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsBerserker", true);
+		::World.Flags.set("IsLegendsBerserker", true);
 	}
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -208,15 +208,15 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		if (bro.isStabled()) {
 			return;
 		}
-		if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) // Added this check for backgrounds like retired soldier
+		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn) && !bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw) && !bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) // Added this check for backgrounds like retired soldier
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
+				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 				bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 				bro.getSkills().update();
 			}
-		else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 		{
-			bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			bro.getSkills().update();
 		}
@@ -228,11 +228,11 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn) && !_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw) && !_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+		if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn) && !_bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw) && !_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 		{
 			_bro.worsenMood(1.5, "Disturbed by your wild and erratic nature");
 		}
-		else if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat) || _bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw))
+		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat) || _bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
 		{
 			_bro.improveMood(1.0, "Excited by your lust for battle");
 		}

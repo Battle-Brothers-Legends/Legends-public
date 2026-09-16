@@ -13,7 +13,7 @@
 				s.Text = "[img]gfx/ui/events/event_35.png[/img]{You\'re enjoying a drink at one of %townname%\'s cozy taverns. Naturally, this comfort doesn\'t last long as a %person_dude% struts into the place with %their_dude% armor clinking and clanking. You make the error of glancing at %them_dude% and catching %their_dude% eye. %They_dude% immediately heads over. Sighing, you put your opposite hand onto your sword and await what this could possibly be. The %person_dude% stomps to the end of your table and straightens up.%SPEECH_ON%Let me introduce myself, in case rumor and myth have not done it already. I am %dragonslayer%. My chosen life in this world is to hunt and slay dragons.%SPEECH_OFF%You take a drink and set it down, telling the %person_dude% that dragons don\'t exist. %They_dude% grins.%SPEECH_ON%That is because my father slew them all. In truth, I am a killer of lindwurms, and I hear you are the captain of the %companyname%, an outfit of some renown, almost as much as renown as yours truly. What would you say to combining our skills and talents, hm? I\'d be willing to join you for %price% crowns.%SPEECH_OFF%}";
 				s.start <- function ( _event )
 				{
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.LindwurmSlayer]);
 					this.Characters.push(_event.m.Dude.getImagePath());
@@ -22,7 +22,7 @@
 			}
 			if (s.ID == "B") {
 				s.start <- function ( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.LindwurmSlayer]);
 					this.Characters.push(_event.m.Dude.getImagePath());

@@ -20,8 +20,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -33,7 +33,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -41,7 +41,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveBarbarian]);
 				local text1 = "{%name% lived in the wilds for many years, eking out an existence in the harsh northern hinterlands. | Captured as a child in a barbarian raid, %name% was raised by the northern savages as a thrall. The child never forgot town though, resolving to escape and return to true home. One day, they did just that. | %name% was a skilled hunter for the tribe. One particularly harsh winter, the life in the hinterlands seemed to all but disappear, and the barbarian had to venture further and further in search of food.}";
@@ -52,7 +52,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -77,8 +77,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			Options = [{
 				Text = "Join us!",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude.m.MoodChanges = [];
 					_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -88,13 +88,13 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			}, {
 				Text = "Be free, friend.",
 				function getResult(_event) {
-					this.World.getTemporaryRoster().clear();
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern]);
 				local text1 = "{A merchant by trade, %name% was tasked with leading a caravan to the north to sell incense and silks. | %name% was a nomad of the south, living outside the influence of the viziers. After being exiled from the tribe for some unknown transgression, the southerner traveled north. | A conscript in one of the many regiments of the south, %name% was tasked with guarding a caravan headed north.}";
@@ -105,7 +105,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -131,8 +131,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -144,7 +144,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -152,7 +152,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveBarbarian]);
 				local text1 = "{%name% was once chief of their own tribe, until an ambitious rival usurped the role. To complete the humiliation, %name% was forced into thralldom. | Chosen by the Old Gods, %name% was sent out from the village to prove martial skills in combat. %name% found his match in another tribe, however, and was defeated, broken, and made a thrall. | %name% was born a thrall, forced to fight for his freedom for as long as memories go back.}";
@@ -162,7 +162,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -188,8 +188,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -201,7 +201,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -209,7 +209,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
 				local text1 = "{%name% was once a scribe in an isolated northern abbey who spent days leisurely poring over tomes and sorting collections. | %name% grew up in one of the many small hamlets that dot the northern hinterlands. | Originally a lumberjack, %name% was content to spend life in the beautiful forests of the north.}";
@@ -220,7 +220,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -246,8 +246,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -259,7 +259,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -267,7 +267,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.SlaveSouthern]);
 				local text1 = "{A conscript in one of the many regiments of the south, %name% was always proud of work. Despite the mandatory nature of service, %name% always felt that protecting the holy city-state was the mandate of the Gilder more than the Vizier. That devotion went unnoticed by the officers, however, who sent the soldier on a doomed scouting mission to ferret out nomads hiding in the ocean of sand outside the city. | %name% used to be a treasure hunter, plumbing the depths of the myriad ruins and detritus of the old empire buried in the sands. One day a sandstorm blew them off-course while hunting for a famed library of old. Not to be deterred, %name%  pressed on after the storm died down, determined to not let the search be in vain. | %name% was a manhunter in a past life, ironically enough.  Making a comfortable living hunting down deserters, convicts, and escaped slaves, until one day they strayed too deep into the desert while hunting a quarry.}";
@@ -279,7 +279,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -306,8 +306,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						_event.m.Dude.improveMood(2.0, "Was rescued from captivity");
@@ -319,7 +319,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -327,7 +327,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
 				local text1 = "{%name% was a hunter in a past life, tracking down dangerous beasts that threatened the village. | Once a monk, %name% was always struck by wanderlust and always volunteered for any tasks that lead outside the cloistered abbey. | A courier by trade, %name% always enjoyed seeing the world and tried to take the scenic route whenever possible.}";
@@ -338,7 +338,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -364,8 +364,8 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Join us!",
 					function getResult(_event) {
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 						_event.m.Dude.m.MoodChanges = [];
 						local r = ::Math.rand(0, 99);
@@ -374,9 +374,9 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendGruesomeFeast);
 						}
 
-						if (r == 2) {
+						/*if (r == 2) { // can be perhaps converted to profession? unsure
 							::Legends.Perks.grant(_event.m.Dude, ::Legends.Perk.LegendInventorAnatomy);
-						}
+						}*/
 
 						if (r == 3) {
 							_event.m.Dude.getSkills().add(this.new("scripts/skills/injury_permanent/traumatized_injury"));
@@ -431,7 +431,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				{
 					Text = "Be free, friend.",
 					function getResult(_event) {
-						this.World.getTemporaryRoster().clear();
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude = null;
 						return 0;
 					}
@@ -439,13 +439,13 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				local cultureResult = ::Math.rand(1, 4);
 				local vars = [
 					[
 						"companyname",
-						this.World.Assets.getName()
+						::World.Assets.getName()
 					],
 					[
 						"name",
@@ -480,41 +480,41 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 	}
 
 	function isValid() {
-		if (!this.Const.DLC.Desert) {
+		if (!::Const.DLC.Desert) {
 			return false;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (!this.World.Statistics.getFlags().get("FindCaptivePostBattle")) {
+		if (!::World.Statistics.getFlags().get("FindCaptivePostBattle")) {
 			return;
 		}
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatID") <= this.m.LastCombatID) {
+		if (::World.Statistics.getFlags().getAsInt("LastCombatID") <= this.m.LastCombatID) {
 			return;
 		}
 
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 5.0 || this.World.Statistics.getFlags().getAsInt("LastCombatResult") != 1) {
+		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 5.0 || ::World.Statistics.getFlags().getAsInt("LastCombatResult") != 1) {
 			return false;
 		}
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return false;
 		}
 
-		local f = this.World.FactionManager.getFaction(this.World.Statistics.getFlags().getAsInt("LastCombatFaction"));
+		local f = ::World.FactionManager.getFaction(::World.Statistics.getFlags().getAsInt("LastCombatFaction"));
 
 		if (f == null) {
 			return false;
 		}
 
-		if (f.getType() != this.Const.FactionType.Zombies && f.getType() != this.Const.FactionType.Bandits && f.getType() != this.Const.FactionType.Barbarians && f.getType() != this.Const.FactionType.OrientalCityState && f.getType() != this.Const.FactionType.OrientalBandits) {
+		if (f.getType() != ::Const.FactionType.Zombies && f.getType() != ::Const.FactionType.Bandits && f.getType() != ::Const.FactionType.Barbarians && f.getType() != ::Const.FactionType.OrientalCityState && f.getType() != ::Const.FactionType.OrientalBandits) {
 			return false;
 		}
 
-		this.m.LastCombatID = this.World.Statistics.getFlags().get("LastCombatID");
+		this.m.LastCombatID = ::World.Statistics.getFlags().get("LastCombatID");
 		return true;
 	}
 
@@ -525,21 +525,21 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 	function onPrepareVariables(_vars) {}
 
 	function onDetermineStartScreen() {
-		local f = this.World.FactionManager.getFaction(this.World.Statistics.getFlags().getAsInt("LastCombatFaction"));
+		local f = ::World.FactionManager.getFaction(::World.Statistics.getFlags().getAsInt("LastCombatFaction"));
 
-		if (f.getType() == this.Const.FactionType.Bandits) {
+		if (f.getType() == ::Const.FactionType.Bandits) {
 			if (::Math.rand(1, 100) <= 40)
 				return "Bandits";
 			return "BanditsSoutherner";
-		} else if (f.getType() == this.Const.FactionType.Barbarians) {
+		} else if (f.getType() == ::Const.FactionType.Barbarians) {
 			if (::Math.rand(1, 100) <= 50)
 				return "Barbarians";
 			return "BarbariansNortherner";
-		} else if (f.getType() == this.Const.FactionType.OrientalBandits) {
+		} else if (f.getType() == ::Const.FactionType.OrientalBandits) {
 			if (::Math.rand(1, 100) <= 60)
 				return "Nomads";
 			return "NomadsNortherner";
-		} else if (f.getType() == this.Const.FactionType.Zombies) {
+		} else if (f.getType() == ::Const.FactionType.Zombies) {
 			return "Undead";
 		}
 	}

@@ -4,7 +4,7 @@ this.legend_warlock_cloak_blueprint <- this.inherit("scripts/crafting/legend_war
 	function create() {
 		this.legend_warlock_blueprint.create();
 		this.m.ID = "blueprint.legend_warlock_cloak";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_armor/legendary/legend_armor_named_warlock_cloak");
 		preview.m.Name = "Warlock Cloak";
 		this.m.PreviewCraftable = preview;

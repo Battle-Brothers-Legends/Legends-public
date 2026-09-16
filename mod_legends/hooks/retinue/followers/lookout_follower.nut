@@ -21,10 +21,10 @@
 
 	o.onUpdate = function ()
 	{
-		if ("VisionRadiusMult" in this.World.Assets.m)
-			this.World.Assets.m.VisionRadiusMult = 1.25;
-		if ("IsShowingExtendedFootprints" in this.World.Assets.m)
-			this.World.Assets.m.IsShowingExtendedFootprints = true;
+		if ("VisionRadiusMult" in ::World.Assets.m)
+			::World.Assets.m.VisionRadiusMult = 1.25;
+		if ("IsShowingExtendedFootprints" in ::World.Assets.m)
+			::World.Assets.m.IsShowingExtendedFootprints = true;
 	}
 
 	o.onEvaluate = function () {

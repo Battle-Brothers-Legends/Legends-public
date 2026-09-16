@@ -9,14 +9,14 @@
 						"legend_mail_patch_upgrade",
 						"legend_double_mail_upgrade"
 					];
-					local item = this.new("scripts/items/legend_armor/armor_upgrades/" + attachmentList[this.Math.rand(0, attachmentList.len() - 1)]);
+					local item = this.new("scripts/items/legend_armor/armor_upgrades/" + attachmentList[::Math.rand(0, attachmentList.len() - 1)]);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						imageOverlayPath = item.getIconOverlay(),
 						text = "You gain " + item.makeName()
 					});
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.Characters.push(_event.m.Anatomist.getImagePath());
 					this.Characters.push(_event.m.Killer.getImagePath());
 				}

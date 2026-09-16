@@ -13,7 +13,7 @@
 	local onButtonPressed = o.onButtonPressed;
 	o.onButtonPressed = function (_buttonID) {
 		if (this.m.IsEncounter) {
-			this.World.Encounters.processInput(_buttonID);
+			::World.Encounters.processInput(_buttonID);
 		} else {
 			onButtonPressed(_buttonID);
 		}

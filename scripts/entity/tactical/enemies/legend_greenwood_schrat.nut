@@ -7,22 +7,22 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendGreenwoodSchrat;
-		this.m.BloodType = this.Const.BloodType.Wood;
-		this.m.XP = this.Const.Tactical.Actor.LegendGreenwoodSchrat.XP;
+		this.m.Type = ::Const.EntityType.LegendGreenwoodSchrat;
+		this.m.BloodType = ::Const.BloodType.Wood;
+		this.m.XP = ::Const.Tactical.Actor.LegendGreenwoodSchrat.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-10, -25);
 		this.m.DecapitateBloodAmount = 1.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc2/schrat_shield_damage_01.wav",
 			"sounds/enemies/dlc2/schrat_shield_damage_02.wav",
 			"sounds/enemies/dlc2/schrat_shield_damage_03.wav",
 			"sounds/enemies/dlc2/schrat_shield_damage_04.wav",
 			"sounds/enemies/dlc2/schrat_shield_damage_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
 			"sounds/enemies/dlc2/schrat_hurt_shield_down_01.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_down_02.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_down_03.wav",
@@ -30,7 +30,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/schrat_hurt_shield_down_05.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_down_06.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other2] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other2] = [
 			"sounds/enemies/dlc2/schrat_hurt_shield_up_01.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_up_02.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_up_03.wav",
@@ -38,7 +38,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/schrat_hurt_shield_up_05.wav",
 			"sounds/enemies/dlc2/schrat_hurt_shield_up_06.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/dlc2/schrat_death_01.wav",
 			"sounds/enemies/dlc2/schrat_death_02.wav",
 			"sounds/enemies/dlc2/schrat_death_03.wav",
@@ -46,7 +46,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/schrat_death_05.wav",
 			"sounds/enemies/dlc2/schrat_death_06.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/dlc2/schrat_idle_01.wav",
 			"sounds/enemies/dlc2/schrat_idle_02.wav",
 			"sounds/enemies/dlc2/schrat_idle_03.wav",
@@ -63,14 +63,14 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/ambience/terrain/forest_branch_crack_04.wav",
 			"sounds/ambience/terrain/forest_branch_crack_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 5.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1] = 5.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Other2] = 5.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 5.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 2.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 2.0;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 5.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Other1] = 5.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Other2] = 5.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 5.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 2.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 2.0;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/schrat_agent");
 		this.m.AIAgent.setActor(this);
 
@@ -81,7 +81,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 				[30, "scripts/items/misc/glowing_resin_item"],
 				[20, "scripts/items/misc/heart_of_the_forest_item"],
 				[20,  function () {
-					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 					local rune = ::new(::Legends.Runes.get(selected).Script);
 					rune.setRuneVariant(selected);
 					rune.setRuneBonus(true);
@@ -94,11 +94,11 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playSound( _type, _volume, _pitch = 1.0 )
 	{
-		if (_type == this.Const.Sound.ActorEvent.DamageReceived)
+		if (_type == ::Const.Sound.ActorEvent.DamageReceived)
 		{
 			if (!this.isArmedWithShield())
 			{
-				_type = this.Const.Sound.ActorEvent.Other1;
+				_type = ::Const.Sound.ActorEvent.Other1;
 			}
 		}
 
@@ -107,8 +107,8 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(0, 100) < 50;
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		local flip = ::Math.rand(0, 100) < 50;
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("ChoppingWood", 1, 1);
 		}
@@ -119,23 +119,23 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
 			local head = this.getSprite("head");
-			decal = _tile.spawnDetail("bust_schrat_green_body_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_schrat_green_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
-			decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = head.Color;
 			decal.Saturation = head.Saturation;
 			decal.Scale = 0.95;
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 			this.spawnTerrainDropdownEffect(_tile);
@@ -147,10 +147,10 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -158,7 +158,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Greenwood Schrat";
 		corpse.IsHeadAttached = true;
 		corpse.Tile = _tile;
@@ -169,7 +169,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 	function onInit()
 	{
 		this.actor.onInit();
-		local clouds = this.Tactical.getWeather().createCloudSettings();
+		local clouds = ::Tactical.getWeather().createCloudSettings();
 		clouds.Type = this.getconsttable().CloudType.Fog;
 		clouds.MinClouds = 20;
 		clouds.MaxClouds = 20;
@@ -179,9 +179,9 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		clouds.MaxAlpha = 0.45;
 		clouds.MinScale = 2.0;
 		clouds.MaxScale = 3.0;
-		this.Tactical.getWeather().buildCloudCover(clouds);
+		::Tactical.getWeather().buildCloudCover(clouds);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendGreenwoodSchrat);
+		b.setValues(::Const.Tactical.Actor.LegendGreenwoodSchrat);
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToRoot = true;
 		b.IsIgnoringArmorOnAttack = true;
@@ -189,7 +189,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay)
 		{
 			b.MeleeSkill += 5;
 		}
@@ -197,8 +197,8 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_schrat_green_body_01");
@@ -206,7 +206,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		body.varyColor(0.05, 0.05, 0.05);
 		this.m.BloodColor = body.Color;
 		local head = this.addSprite("head");
-		head.setBrush("bust_schrat_green_head_0" + this.Math.rand(1, 2));
+		head.setBrush("bust_schrat_green_head_0" + ::Math.rand(1, 2));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");

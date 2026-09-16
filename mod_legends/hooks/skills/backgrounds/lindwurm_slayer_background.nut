@@ -34,12 +34,12 @@
 			::Legends.Traits.getID(::Legends.Trait.Teamplayer),
 			::Legends.Traits.getID(::Legends.Trait.Weasel)
 		];
-		this.m.Level = this.Math.rand(4, 6);
+		this.m.Level = ::Math.rand(4, 6);
 		this.m.PerkTreeDynamicMins.Traits = 8;
 		this.m.PerkTreeDynamicMins.Armor = 3;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
 	}
 
 	o.getTooltip = function () {
@@ -73,7 +73,7 @@
 		local items = actor.getItems();
 		local r;
 
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -83,16 +83,16 @@
 		{
 			items.equip(this.new("scripts/items/weapons/noble_sword"));
 		}
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Named.lindwurm_armor]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Standard.headscarf],
 			[1, ::Legends.Helmet.Standard.mail_coif],

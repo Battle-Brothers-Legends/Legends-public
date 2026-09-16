@@ -5,8 +5,8 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "With a trick of the light, captivate your target in such a way that they can\'t help but approach you.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hook", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hook_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -84,7 +84,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onAfterUpdate(_properties) {
-		this.m.FatigueCostMult = _properties.IsSpecializedInMusic ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInMusic ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.ActionPointCost = _properties.IsSpecializedInMusic ? 5 : 6;
 	}
 
@@ -109,7 +109,7 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 	function onUse(_user, _targetTile) {
 		local target = _targetTile.getEntity();
 
-		if (this.Math.rand(1, 100) > _user.getBravery()) {
+		if (::Math.rand(1, 100) > _user.getBravery()) {
 			return false;
 		}
 
@@ -124,21 +124,21 @@ this.legend_entice_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!_user.isHiddenToPlayer() && pullToTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " hooks in " + this.Const.UI.getColorizedEntityName(target));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " hooks in " + ::Const.UI.getColorizedEntityName(target));
 		}
 
 		::Legends.Effects.grant(target, ::Legends.Effect.Staggered);
 
 		if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has staggered " + this.Const.UI.getColorizedEntityName(target) + " for one turn");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has staggered " + ::Const.UI.getColorizedEntityName(target) + " for one turn");
 		}
 
-		this.Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
+		::Tactical.State.handleInvoluntaryMovement(target, _user, _targetTile, pullToTile, this, null, null);
 
 		return true;
 	}
 	function isUsable() {
-		return !this.Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
+		return !::Tactical.isActive() || this.skill.isUsable() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions());
 	}
 	function onAnySkillUsed(_skill, _targetEntity, _properties) {
 		if (_skill == this) {

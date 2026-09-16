@@ -25,7 +25,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.BeastmasterDodgeDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.BeastmasterDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -35,11 +35,11 @@
 	{
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/thorned_whip"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.beastmasters_headpiece]
 		]));
 	}

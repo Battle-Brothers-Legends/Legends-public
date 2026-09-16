@@ -40,17 +40,17 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getMoney() < 500)
+		if (::World.Assets.getMoney() < 500)
 			return;
 
-		if (this.World.FactionManager.isGreaterEvil())
+		if (::World.FactionManager.isGreaterEvil())
 			return;
 
 		local town = ::Legends.S.getClosestSettlement(@(_, t) !t.isSouthern() && t.isAlliedWithPlayer());
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) > 4)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		if (brothers.len() < 1)
 			return;
 
@@ -70,14 +70,14 @@
 				::Legends.Background.LegendDisownedNobleRanged,
 				::Legends.Background.Bastard,
 				::Legends.Background.HedgeKnight)
-			) && !bro.getSkills().hasSkillOfType(this.Const.SkillType.TemporaryInjury))
+			) && !bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury))
 				candidates.push(bro);
 		}
 
 		if (candidates.len() == 0)
 			return;
 
-		this.m.Jouster = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Jouster = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 25;
 	}
 })

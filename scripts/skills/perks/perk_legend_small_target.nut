@@ -8,7 +8,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSmallTarget);
 		this.m.Description = "Use your physique to minimize your hit profile.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getTooltip()
@@ -71,8 +71,8 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 	function getBonus()
 	{
 		local actor = this.getContainer().getActor();
-		local headItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
-		local bodyItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
+		local headItem = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
+		local bodyItem = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
 		if (bodyItem == null)
 			return 0;
 
@@ -80,20 +80,20 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 		local bodyArmor = 0;
 		local headArmor = 0;
 
-		bodyArmor = actor.getArmor(this.Const.BodyPart.Body);
+		bodyArmor = actor.getArmor(::Const.BodyPart.Body);
 		if (headItem != null)
-			headArmor = actor.getArmor(this.Const.BodyPart.Head);
+			headArmor = actor.getArmor(::Const.BodyPart.Head);
 
 		if (actor.getSkills().hasPerk(::Legends.Perk.LegendFashionable)) {
-			local layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Tabard);
+			local layer = bodyItem.getUpgrade(::Const.Items.ArmorUpgrades.Tabard);
 			if (layer != null)
 				bodyArmor -= layer.getRepair();
-			layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Cloak);
+			layer = bodyItem.getUpgrade(::Const.Items.ArmorUpgrades.Cloak);
 			if (layer != null)
 				bodyArmor -= layer.getRepair();
 
 			if (headItem != null) {
-				layer = headItem.getUpgrade(this.Const.Items.HelmetUpgrades.Vanity);
+				layer = headItem.getUpgrade(::Const.Items.HelmetUpgrades.Vanity);
 				if (layer != null)
 					headArmor -= layer.getRepair();
 			}
@@ -102,7 +102,7 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 				if (bodyItem != null && bodyItem.m.StaminaModifier == 0) {
 					bodyArmor -= bodyItem.m.Condition;
 				}
-				layer = bodyItem.getUpgrade(this.Const.Items.ArmorUpgrades.Attachment);
+				layer = bodyItem.getUpgrade(::Const.Items.ArmorUpgrades.Attachment);
 				if (layer != null)
 					switch (layer.getID()) {
 						case "legend_armor_upgrade.body.legend_armor_white_wolf_pelt":
@@ -117,12 +117,12 @@ this.perk_legend_small_target <- this.inherit("scripts/skills/skill", {
 			}
 		}
 
-		local bonus = this.Math.max(0, baseBonus - bodyArmor - headArmor);
-		return this.Math.floor(bonus);
+		local bonus = ::Math.max(0, baseBonus - bodyArmor - headArmor);
+		return ::Math.floor(bonus);
 	}
 
 	function getCurrentBonus() {
-		return this.Math.floor(this.Math.max(this.getBonus() * this.m.bonusPercentage, 0));
+		return ::Math.floor(::Math.max(this.getBonus() * this.m.bonusPercentage, 0));
 	}
 
 	function onAdded() {

@@ -13,13 +13,13 @@
 		local entities = [];
 		local champions = [];
 		local entityTypes = [];
-		entityTypes.resize(this.Const.EntityType.len(), 0);
+		entityTypes.resize(::Const.EntityType.len(), 0);
 
 		foreach( t in this.m.Troops )
 		{
 			if (t.Script.len() != "")
 			{
-				if (t.Variant != 0 && this.Const.DLC.Wildmen)
+				if (t.Variant != 0 && ::Const.DLC.Wildmen)
 				{
 					champions.push(t);
 				}
@@ -35,7 +35,7 @@
 			entities.push({
 				id = 21,
 				type = "text",
-				icon = "ui/orientation/" + this.Const.EntityIcon[c.ID] + ".png",
+				icon = "ui/orientation/" + ::Const.EntityIcon[c.ID] + ".png",
 				text = c.Name
 			});
 		}
@@ -46,7 +46,7 @@
 			{
 				if (entityTypes[i] == 1)
 				{
-					local start = this.isFirstCharacter(this.Const.Strings.EntityName[i], [
+					local start = this.isFirstCharacter(::Const.Strings.EntityName[i], [
 						"A",
 						"E",
 						"I",
@@ -56,8 +56,8 @@
 					entities.push({
 						id = 20,
 						type = "text",
-						icon = "ui/orientation/" + this.Const.EntityIcon[i] + ".png",
-						text = start + this.removeFromBeginningOfText("The ", this.Const.Strings.EntityName[i])
+						icon = "ui/orientation/" + ::Const.EntityIcon[i] + ".png",
+						text = start + this.removeFromBeginningOfText("The ", ::Const.Strings.EntityName[i])
 					});
 				}
 				else if (::Legends.Mod.ModSettings.getSetting("ExactEngageNumbers").getValue())
@@ -65,8 +65,8 @@
 					entities.push({
 						id = 20,
 						type = "text",
-						icon = "ui/orientation/" + this.Const.EntityIcon[i] + ".png",
-						text = entityTypes[i] + " " + this.Const.Strings.EntityNamePlural[i]
+						icon = "ui/orientation/" + ::Const.EntityIcon[i] + ".png",
+						text = entityTypes[i] + " " + ::Const.Strings.EntityNamePlural[i]
 					});
 				}
 				else
@@ -74,8 +74,8 @@
 					entities.push({
 						id = 20,
 						type = "text",
-						icon = "ui/orientation/" + this.Const.EntityIcon[i] + ".png",
-						text = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i]
+						icon = "ui/orientation/" + ::Const.EntityIcon[i] + ".png",
+						text = this.getEngageNumberNames(entityTypes[i]) + " " + ::Const.Strings.EntityNamePlural[i]
 					});
 				}
 			}
@@ -86,11 +86,11 @@
 
 	o.getEngageNumberNames <- function ( _entityType)
 	{
-		foreach (key, value in this.Const.Strings.EngageEnemyNumbers)
+		foreach (key, value in ::Const.Strings.EngageEnemyNumbers)
 		{
 			if (_entityType >= value[0] && _entityType <= value[1])
 			{
-				return this.Const.Strings.EngageEnemyNumbersNames[key];
+				return ::Const.Strings.EngageEnemyNumbersNames[key];
 			}
 		}
 	}
@@ -102,7 +102,7 @@
 
 	o.setResources <- function (_v)
 	{
-		this.m.Resources = this.Math.max(0, this.Math.round(_v));
+		this.m.Resources = ::Math.max(0, ::Math.round(_v));
 	}
 
 	o.onSerialize = function (_out) {
@@ -111,7 +111,7 @@
 		if (this.m.Troops.len() > 255) {
 			::logError("world_entity.onSerialize: " + this.m.Name + " has " + this.m.Troops.len() + " troops, truncating to 255");
 		}
-		local numTroops = this.Math.min(255, this.m.Troops.len());
+		local numTroops = ::Math.min(255, this.m.Troops.len());
 		_out.writeU8(numTroops);
 
 		// CRITICAL SAVE CORRUPTION BUG: Do not serialize more troops than numTroops !!!!
@@ -124,7 +124,7 @@
 		_out.writeI32(this.m.CombatSeed);
 		_out.writeF32(this.m.VisionRadius);
 		_out.writeF32(this.m.VisibilityMult);
-		local numInventoryItems = this.Math.min(255, this.m.Inventory.len());
+		local numInventoryItems = ::Math.min(255, this.m.Inventory.len());
 		_out.writeU8(numInventoryItems);
 
 		for (local i = 0; i < numInventoryItems; i = ++i) {

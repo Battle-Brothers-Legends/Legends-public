@@ -18,8 +18,8 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsIgnoredAsAOO = false;
 		this.m.IsAOE = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 4;
 		this.m.FatigueCost = 6;
@@ -68,7 +68,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onUse(_user, _targetTile) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectClaws);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectClaws);
 		local ret = false;
 		local myTile = _user.getTile();
 		local target = _targetTile.getEntity();
@@ -82,7 +82,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			TargetTile = _targetTile,
 			Num = 0
 		};
-		this.Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
+		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
 		if (::Legends.S.isEntityNullOrDead(_user)) {
@@ -123,13 +123,13 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 				ret = this.attackEntity(_user, t.getEntity()) || ret;
 				if (::Legends.S.isEntityNullOrDead(_user)) {
 					if (target.getFlags().has("tail") || !target.getCurrentProperties().IsImmuneToBleeding)	{
-						::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+						::Sound.play(this.m.SoundsA[::Math.rand(0, this.m.SoundsA.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 					} else {
-						::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+						::Sound.play(this.m.SoundsB[::Math.rand(0, this.m.SoundsB.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 					}
-				} else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= this.Const.Combat.MinDamageToApplyBleeding) {
+				} else if (!target.getCurrentProperties().IsImmuneToBleeding && hp - target.getHitpoints() >= ::Const.Combat.MinDamageToApplyBleeding) {
 					::Legends.Effects.grant(target, ::Legends.Effect.Bleeding, function (_effect) {
-						if (_user.getFaction() == this.Const.Faction.Player) {
+						if (_user.getFaction() == ::Const.Faction.Player) {
 							_effect.setActor(this.getContainer().getActor());
 						}
 						_effect.setDamage(5 * size);
@@ -195,7 +195,7 @@ this.legend_skin_ghoul_claws <- this.inherit("scripts/skills/skill", {
 			}
 
 			if (!t.IsEmpty && t.getEntity().isAttackable()) {
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, t, t.Pos.X, t.Pos.Y);
 			}
 		}
 	}

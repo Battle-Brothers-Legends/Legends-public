@@ -47,7 +47,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 				foreach (background in backgrounds) {
 					totalWeight += background[0];
 				}
-				local r = this.Math.rand(0, totalWeight);
+				local r = ::Math.rand(0, totalWeight);
 				foreach (background in backgrounds) {
 					r = r - background[0];
 					if (r <= 0) {
@@ -55,7 +55,7 @@ this.legend_recruitment_nomad_encounter <- this.inherit("scripts/encounters/enco
 						break;
 					}
 				}
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Nomad = roster.create("scripts/entity/tactical/player");
 				_event.m.Nomad.setStartValuesEx(result);
 				this.Characters.push(_event.m.Nomad.getImagePath());

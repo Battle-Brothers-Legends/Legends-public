@@ -46,33 +46,33 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function create() {
-		this.m.Type = this.Const.EntityType.LegendStollwurm;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendStollwurm.XP;
+		this.m.Type = ::Const.EntityType.LegendStollwurm;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendStollwurm.XP;
 		this.m.BloodSplatterOffset = this.createVec(0, 0);
 		this.m.DecapitateSplatterOffset = this.createVec(-30, -15);
 		this.m.DecapitateBloodAmount = 2.0;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/lindwurm_hurt_01.wav",
 			"sounds/enemies/lindwurm_hurt_02.wav",
 			"sounds/enemies/lindwurm_hurt_03.wav",
 			"sounds/enemies/lindwurm_hurt_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/lindwurm_death_01.wav",
 			"sounds/enemies/lindwurm_death_02.wav",
 			"sounds/enemies/lindwurm_death_03.wav",
 			"sounds/enemies/lindwurm_death_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/enemies/lindwurm_flee_01.wav",
 			"sounds/enemies/lindwurm_flee_02.wav",
 			"sounds/enemies/lindwurm_flee_03.wav",
 			"sounds/enemies/lindwurm_flee_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/lindwurm_idle_01.wav",
 			"sounds/enemies/lindwurm_idle_02.wav",
 			"sounds/enemies/lindwurm_idle_03.wav",
@@ -85,13 +85,13 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/lindwurm_idle_10.wav",
 			"sounds/enemies/lindwurm_idle_11.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Move] = this.m.Sound[this.Const.Sound.ActorEvent.Idle];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 1.5;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 1.5;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Flee] = 1.5;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 2.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Move] = 1.5;
-		this.m.SoundPitch = this.Math.rand(95, 105) * 0.01;
+		this.m.Sound[::Const.Sound.ActorEvent.Move] = this.m.Sound[::Const.Sound.ActorEvent.Idle];
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 1.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Flee] = 1.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 2.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Move] = 1.5;
+		this.m.SoundPitch = ::Math.rand(95, 105) * 0.01;
 		this.getFlags().add("body_immune_to_acid");
 		this.getFlags().add("head_immune_to_acid");
 		this.getFlags().add("lindwurm");
@@ -111,7 +111,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 				[20, "scripts/items/misc/legend_stollwurm_blood_item"],
 				[30,  "scripts/items/misc/lindwurm_bones_item"],
 				[50,  function () {
-					local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+					local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 					local rune = ::new(::Legends.Runes.get(selected).Script);
 					rune.setRuneVariant(selected);
 					rune.setRuneBonus(true);
@@ -126,7 +126,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function playSound( _type, _volume, _pitch = 0.5 ) {
-		if (_type == this.Const.Sound.ActorEvent.Move && this.Math.rand(1, 100) <= 50)
+		if (_type == ::Const.Sound.ActorEvent.Move && ::Math.rand(1, 100) <= 50)
 		{
 			return;
 		}
@@ -140,44 +140,44 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType ) {
-		local flip = this.Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
 		if (_tile != null)
 		{
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
 			local head = this.getSprite("head");
-			decal = _tile.spawnDetail("bust_stollwurm_body_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail("bust_stollwurm_body_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
-				decal = _tile.spawnDetail("bust_stollwurm_head_01_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_stollwurm_head_01_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [
 					head.getBrush().Name + "_dead"
 				];
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 0.0, "bust_stollwurm_head_01_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 0.0, "bust_stollwurm_head_01_bloodpool");
 				decap[0].Color = head.Color;
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail("bust_stollwurm_body_01_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_stollwurm_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail("bust_stollwurm_body_01_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail("bust_stollwurm_body_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
@@ -190,10 +190,10 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -201,9 +201,9 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Stollwurm";
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.Tile = _tile;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
 		return corpse;
@@ -267,14 +267,14 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendStollwurm);
+		b.setValues(::Const.Tactical.Actor.LegendStollwurm);
 		b.IsAffectedByNight = false;
 		b.IsMovable = false;
 		b.IsImmuneToRoot = true;
 		b.IsImmuneToDisarm = true;
 		b.IsAffectedByRain = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsStollwurmStatIncreaseDay)
 		{
 			b.MeleeSkill += 10;
 			b.DamageTotalMult += 0.1;
@@ -283,24 +283,24 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		body.setBrush("bust_stollwurm_body_0" + this.Math.rand(1, 1));
+		body.setBrush("bust_stollwurm_body_0" + ::Math.rand(1, 1));
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varySaturation(0.2);
 		}
 
-		if (this.Math.rand(0, 100) < 90)
+		if (::Math.rand(0, 100) < 90)
 		{
 			body.varyColor(0.08, 0.08, 0.08);
 		}
 
 		local head = this.addSprite("head");
-		head.setBrush("bust_stollwurm_head_0" + this.Math.rand(1, 1));
+		head.setBrush("bust_stollwurm_head_0" + ::Math.rand(1, 1));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local injury = this.addSprite("injury");
@@ -343,13 +343,13 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 			local myTile = this.getTile();
 			local spawnTile;
 
-			if (myTile.hasNextTile(this.Const.Direction.NE) && myTile.getNextTile(this.Const.Direction.NE).IsEmpty)
+			if (myTile.hasNextTile(::Const.Direction.NE) && myTile.getNextTile(::Const.Direction.NE).IsEmpty)
 			{
-				spawnTile = myTile.getNextTile(this.Const.Direction.NE);
+				spawnTile = myTile.getNextTile(::Const.Direction.NE);
 			}
-			else if (myTile.hasNextTile(this.Const.Direction.SE) && myTile.getNextTile(this.Const.Direction.SE).IsEmpty)
+			else if (myTile.hasNextTile(::Const.Direction.SE) && myTile.getNextTile(::Const.Direction.SE).IsEmpty)
 			{
-				spawnTile = myTile.getNextTile(this.Const.Direction.SE);
+				spawnTile = myTile.getNextTile(::Const.Direction.SE);
 			}
 			else
 			{
@@ -370,7 +370,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 			if (spawnTile != null)
 			{
-				this.m.Tail = this.WeakTableRef(this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_stollwurm_tail", spawnTile.Coords.X, spawnTile.Coords.Y, this.getID()));
+				this.m.Tail = this.WeakTableRef(::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_stollwurm_tail", spawnTile.Coords.X, spawnTile.Coords.Y, this.getID()));
 				this.m.Tail.m.Body = this.WeakTableRef(this);
 				this.m.Tail.getSprite("body").Color = body.Color;
 				this.m.Tail.getSprite("body").Saturation = body.Saturation;
@@ -396,7 +396,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 	function onMovementStep( _tile, _levelDifference ) {
 		local result = this.actor.onMovementStep( _tile, _levelDifference );
 		if(result) {
-			this.m.MovementAPSpent += this.Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult) + (_levelDifference != 0 ? this.m.LevelActionPointCost : 0);
+			this.m.MovementAPSpent += ::Math.max(1, (this.m.ActionPointCosts[_tile.Type] + this.m.CurrentProperties.MovementAPCostAdditional) * this.m.CurrentProperties.MovementAPCostMult) + (_levelDifference != 0 ? this.m.LevelActionPointCost : 0);
 		}
 		return result;
 	}
@@ -407,7 +407,7 @@ this.legend_stollwurm <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (this.m.Tail != null && !this.m.Tail.isNull() && this.m.Tail.isAlive())
 		{
-			this.Tactical.TurnSequenceBar.moveEntityToFront(this.m.Tail.getID());
+			::Tactical.TurnSequenceBar.moveEntityToFront(this.m.Tail.getID());
 		}
 	}
 

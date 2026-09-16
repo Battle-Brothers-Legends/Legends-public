@@ -8,7 +8,7 @@ this.legend_sighthoundtracks_event <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_sighthoundtracks"; //— \'
 		this.m.Title = "Near %townname%";
-		this.m.Cooldown = 60.0 * this.World.getTime().SecondsPerDay; //hound picks up a scent and leads to something, maybe.
+		this.m.Cooldown = 60.0 * ::World.getTime().SecondsPerDay; //hound picks up a scent and leads to something, maybe.
 		this.m.Screens.push({
 			ID = "A",
 			Text = "%townImage%Near %townname%, you sit in your tent and begin planning tomorrow\'s march. A commotion comes from outside, which given the company you keep is not unusual. As you refocus, the interruption comes again at a greater amplification. You move to investigate. \n\nOutside, %houndhandler% yanks the chain on the company sighthound, who is eagerly wrenching the chain this way and that.%SPEECH_ON%Sorry capt\'n I haven\'t a clue wha\' got into \'im%SPEECH_OFF% The mercenary forces the hound to sit, and it seems to get the message this time, although the hound\'s eyes are fixated on something else in the distance. \nYou consider letting it off the chain for a bit, even just to sate your curiosity.",

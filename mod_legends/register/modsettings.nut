@@ -60,8 +60,9 @@ general.addTitle("QoL", "Quality of Life");
 myEnumTooltip = "Define how Blueprints are shown: 'All Ingredients Available' is the Vanilla behavior; 'One Ingredient Available' shows recipes when one ingredient is fully satisfied; 'Always' shows all recipes at all time";
 general.addElement(::MSU.Class.EnumSetting("ShowBlueprintsWhen", "All Ingredients Available", ["All Ingredients Available", "One Ingredient Available", "Always"], "Show Blueprints when", myEnumTooltip));
 //general.addElement(::MSU.Class.BooleanSetting("AutoRepairLayer", false, "Autorepair Layer", "Any Body or Helmet Layer that you strip from a piece of armor is automatically marked as 'to be repaired'.")); // setting disabled with the introduction of inventory management automation
-general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnBars", false, "Show Stat Potential On Bars", "Show brother stat potential at level 12 directly on bars."));
-general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnItems", false, "Show Stat Potential On Items", "Show named items stat potential on named properties."));
+general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnBars", true, "Show Stat Potential On Bars", "Show brother stat potential at level 12 directly on bars."));
+general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnItems", true, "Show Stat Potential On Items", "Show named items stat potential on named properties."));
+general.addElement(::MSU.Class.BooleanSetting("ShowPotentialOnRecruits", true, "Show Stat Potential On Recruits", "Show brother stat potential (ranges) on recruits. Defaults to active when Size Them Up profession is picked."));
 general.addElement(::MSU.Class.BooleanSetting("ClickPresetToSwitch", false, "Faster Camping Preset Switch", "Clicking on the camping preset slot immediately applies the preset"));
 general.addElement(::MSU.Class.BooleanSetting("SellDialogNamed", true, "Sell Famed Dialog", "Should confirmation dialog appear when selling famed items?"));
 general.addTitle("Saves", "Saves");

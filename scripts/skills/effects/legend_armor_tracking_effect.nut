@@ -7,7 +7,7 @@ this.legend_armor_tracking_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/feint_circle.png";
 		this.m.IconMini = "feint_circle_mini";
 		this.m.Overlay = "feint_circle_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = true;
 	}

@@ -42,12 +42,12 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendSlack)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Bravery
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	o.getTooltip = function ()
@@ -98,7 +98,7 @@
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local body = actor.getSprite("body");
 			local tattoo_body = actor.getSprite("tattoo_body");
@@ -112,7 +112,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.indebted_armor_rags],
@@ -125,7 +125,7 @@
 		this.character_background.onUpdate(_properties);
 		_properties.IsContentWithBeingInReserve = true;
 
-		if (("State" in this.World) && this.World.State != null && this.World.Assets.getOrigin() != null && this.World.Assets.getOrigin().getID() == "scenario.manhunters")
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters")
 		{
 			_properties.XPGainMult *= 1.1;
 			_properties.SurviveWithInjuryChanceMult = 0.0;

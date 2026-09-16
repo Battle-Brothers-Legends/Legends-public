@@ -10,16 +10,16 @@
 		if (this.m.TargetTile == null)
 			return score;
 
-		local item = this.m.TargetTile.getEntity().getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local item = this.m.TargetTile.getEntity().getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		if ( item != null && item.getID() == "shield.legend_parrying_dagger" )
 		{
 			this.m.TargetTile = null;
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 		else if ( item != null && item.m.IsIndestructible )
 		{
 			this.m.TargetTile = null;
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 		else
 			return score;

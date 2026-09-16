@@ -8,8 +8,8 @@ this.legend_broken_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 		this.m.Description = "A broken net that may be repaired if you have the knowledge, or sold for scrap";
 		this.m.IconLarge = "tools/inventory_throwing_net_broken.png";
 		this.m.Icon = "tools/throwing_net_broken_70x70.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Misc | this.Const.Items.ItemType.Crafting | this.Const.Items.ItemType.Net;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Misc | ::Const.Items.ItemType.Crafting | ::Const.Items.ItemType.Net;
 		this.m.Value = 5;
 		this.m.IsDroppedAsLoot = true;
 	}
@@ -73,7 +73,7 @@ this.legend_broken_throwing_net <- this.inherit("scripts/items/weapons/weapon", 
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/cloth_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 });

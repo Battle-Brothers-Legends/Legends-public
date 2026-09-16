@@ -16,7 +16,7 @@
 
 		if (target.getID() != _originTile.getEntity().getID())
 		{
-			if (!target.getItems().hasEmptySlot(this.Const.ItemSlot.Bag))
+			if (!target.getItems().hasEmptySlot(::Const.ItemSlot.Bag))
 			{
 				return false;
 			}

@@ -9,7 +9,7 @@
 					this.Options.push({
 						Text = "Alright, I\'ll send a man in.",
 						function getResult( _event ) {
-							return this.Math.rand(1, 100) <= 80 ? "C" : "D";
+							return ::Math.rand(1, 100) <= 80 ? "C" : "D";
 						}
 					});
 
@@ -53,9 +53,9 @@
 			if (s.ID == "Wildman1") {
 				s.Text = "[img]gfx/ui/events/event_100.png[/img]An outstanding capacity for violence is well-suited to a mercenary band. You agree to take the imprisoned wildling on.";
 				s.start <- function ( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");
 						_event.m.Dude.getFlags().add("skeleton");
@@ -70,14 +70,14 @@
 					_event.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you during a confrontation with an animal tamer-turned-enslaver. A sense of gratitude and debt overcomes any language barriers: the once imprisoned wildling serves the company loyally for the rescue.";
 					_event.m.Dude.getBackground().buildDescription(true);
 
-					if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
-						_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+					if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
+						_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 
-					if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
-						_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand).removeSelf();
+					if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
+						_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
 
-					if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
-						_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Head).removeSelf();
+					if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
+						_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).removeSelf();
 
 					this.Characters.push(_event.m.Dude.getImagePath());
 				}
@@ -94,25 +94,25 @@
 					this.Characters.push(_event.m.Monk.getImagePath());
 					_event.m.Monk.worsenMood(1.0, "Shaken by the violence they witnessed");
 
-					if (_event.m.Monk.getMoodState() < this.Const.MoodState.Neutral)
+					if (_event.m.Monk.getMoodState() < ::Const.MoodState.Neutral)
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Monk.getMoodState()],
-							text = _event.m.Monk.getName() + this.Const.MoodStateEvent[_event.m.Monk.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Monk.getMoodState()],
+							text = _event.m.Monk.getName() + ::Const.MoodStateEvent[_event.m.Monk.getMoodState()]
 						});
 				}
 			}
 			if (s.ID == "AnimalsFreed") {
 				s.start <- function( _event ) {
 					local item = this.new("scripts/items/accessory/legend_wardog_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
 						text = "You gain " + item.getName()
 					});
 					item = this.new("scripts/items/accessory/falcon_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -126,7 +126,7 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function ()
 	{
-		if (this.Stash.getNumberOfEmptySlots() < 4)
+		if (::Stash.getNumberOfEmptySlots() < 4)
 			return;
 		onUpdateScore();
 	}

@@ -18,11 +18,11 @@
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_crossbow"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_falchion"));
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.goblin_leader_armor]
 		]);
 		this.m.Items.equip(item);
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Greenskin.goblin_leader_helmet]
 		]);
 		this.m.Items.equip(item);

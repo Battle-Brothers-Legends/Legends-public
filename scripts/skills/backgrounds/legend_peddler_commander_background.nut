@@ -29,11 +29,11 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive),
 			::Legends.Traits.getID(::Legends.Trait.LegendMartial)
 		];
-		this.m.Ethnicity = this.Math.rand(0, 2);
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
-		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
+		this.m.Ethnicity = ::Math.rand(0, 2);
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence;
+		// this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		// this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
 	}
 
 	function setGender(_gender = -1) {
@@ -65,9 +65,9 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 
 		local actor = this.getContainer().getActor();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
-			actor.setTitle(this.Const.Strings.PeddlerTitles[this.Math.rand(0, this.Const.Strings.PeddlerTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.PeddlerTitles[::Math.rand(0, ::Const.Strings.PeddlerTitles.len() - 1)]);
 		}
 	}
 
@@ -75,7 +75,7 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 5);
+		r = ::Math.rand(0, 5);
 
 		if (r == 0)
 		{
@@ -103,14 +103,14 @@ this.legend_peddler_commander_background <- this.inherit("scripts/skills/backgro
 			items.equip(this.new("scripts/items/weapons/oriental/light_southern_mace"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[4, ::Legends.Armor.Standard.linen_tunic],
 			[2, ::Legends.Armor.Southern.cloth_sash],
 			[3, ::Legends.Armor.Standard.noble_tunic],
 			[1, ::Legends.Armor.Standard.noble_gear]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([ //higher number = more likely to spawn
+		items.equip(::Const.World.Common.pickHelmet([ //higher number = more likely to spawn
 			[4, ::Legends.Helmet.None],
 			[2, ::Legends.Helmet.Standard.legend_noble_hood],
 			[1, ::Legends.Helmet.Standard.noble_headgear],

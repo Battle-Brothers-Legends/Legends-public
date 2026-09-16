@@ -7,8 +7,8 @@ this.legend_parried_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/parried_circle.png";
 		this.m.IconMini = "mini_parried_circle";
 		this.m.Overlay = "parried_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

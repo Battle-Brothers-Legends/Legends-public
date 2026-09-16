@@ -6,7 +6,7 @@ this.legend_oms_fate_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.ID = "accessory.legend_oms_fate";
 		this.m.Name = "The \'Book of Fate\'";
 		this.m.Description = "This volume titled \'Book of Fate\' contains a single, thick page between two slabs of old leather from an unknown animal. The page is blank on both sides and stained throughout - some say that if the holder sees only a blank page they are fully in control of their destiny...or soon to die. This is possibly an elaborate scam, but you can\'t deny the item does feel much heavier than it should do.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;

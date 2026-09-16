@@ -151,7 +151,7 @@ local VanillaTree = [
 	{
 		for( local i = 0; i < _custom[row].len(); i = ++i )
 		{
-			pT.addPerk(_custom[row][i], row)
+			pT.addPerk(_custom[row][i], row);
 		}
 	}
 
@@ -280,7 +280,7 @@ local VanillaTree = [
 	local count = _mins.Enemy - _localMap.Enemy.len();
 	for (local i = 0; i <= count; i = ++i)
 	{
-		local r = this.Math.rand(0, 100);
+		local r = ::Math.rand(0, 100);
 		if (r > (_mins.EnemyChance * 100.0))
 		{
 			continue;
@@ -330,7 +330,7 @@ local VanillaTree = [
 	local count = _mins.Class - _localMap.Class.len();
 	for (local i = 0; i <= count; i = ++i)
 	{
-		local r = this.Math.rand(0, 100);
+		local r = ::Math.rand(0, 100);
 		if (r > (_mins.ClassChance * 100.0))
 		{
 			continue;
@@ -346,10 +346,10 @@ local VanillaTree = [
 	}
 
 	//Add Profession
-	local count = _mins.Profession - _localMap.Profession.len();
+	/*local count = _mins.Profession - _localMap.Profession.len();
 	for (local i = 0; i <= count; i = ++i)
 	{
-		local r = this.Math.rand(0, 100);
+		local r = ::Math.rand(0, 100);
 		if (r > (_mins.ProfessionChance * 100.0))
 		{
 			continue;
@@ -362,13 +362,13 @@ local VanillaTree = [
 		local t = ::Const.Perks.ProfessionTrees.getRandom(_exclude);
 		//this.logInfo("Adding Profession perk tree " + t.ID);
 		_localMap.Profession.push(t);
-	}
+	}*/
 
 	//Add Magic
 	local count = _mins.Magic - _localMap.Magic.len();
 	for (local i = 0; i <= count; i = ++i)
 	{
-		local r = this.Math.rand(0, 100);
+		local r = ::Math.rand(0, 100);
 		if (r > (_mins.MagicChance * 100.0))
 		{
 			continue;
@@ -393,7 +393,7 @@ local VanillaTree = [
 					_overflows[i] <- [];
 				}
 
-				foreach(j, p in row)
+				foreach(_, p in row)
 				{
 					if (_totals[i] >= 13 && _allowRearrangement)
 					{
@@ -418,7 +418,7 @@ local VanillaTree = [
 			while (nextIndex < 7 && _totals[nextIndex] >= 13 ) { //assume we start index 6, last row
 				nextIndex++; //attatch to row 7, actually tier 8 of perk tree
 				if (nextIndex > 6) { //adds new index to our tree for this
-					foundIndexToSlot = false //if this is ever false than our starting row and everything past it is overflowed, so we go back one
+					foundIndexToSlot = false; //if this is ever false than our starting row and everything past it is overflowed, so we go back one
 				}
 			}
 			if (foundIndexToSlot == false)

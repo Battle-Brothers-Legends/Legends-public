@@ -6,8 +6,8 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 		this.m.Description = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_nightmare", 6);
 		this.m.IsUsingActorPitch = true;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 400;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -32,7 +32,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 			return false;
 		}
 
-		local b = this.getContainer().getActor().getAIAgent().getBehavior(this.Const.AI.Behavior.ID.AttackDefault);
+		local b = this.getContainer().getActor().getAIAgent().getBehavior(::Const.AI.Behavior.ID.AttackDefault);
 		local targets = b.queryTargetsInMeleeRange(this.getMinRange(), this.getMaxRange());
 		local myTile = this.getContainer().getActor().getTile();
 
@@ -74,7 +74,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
 			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
-				local nightmare = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
+				local nightmare = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);
 				nightmare.assignRandomEquipment();
@@ -83,7 +83,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 		}
 
 		if (!_user.isHiddenToPlayer() && !_targetTile.getEntity().isHiddenToPlayer())
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s nightmare becomes real!");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s nightmare becomes real!");
 
 		if (_targetTile.IsVisibleForPlayer || !_user.isHiddenToPlayer())
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, this.onDelayedEffect.bindenv(this), tag);
@@ -95,15 +95,15 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 
 	function getAvailableTiles( _targetTile )
 	{
-		return this.getContainer().getActor().getAIAgent().getBehavior(this.Const.AI.Behavior.ID.AttackDefault).queryDestinationsInRange(_targetTile, 1, 2);
+		return this.getContainer().getActor().getAIAgent().getBehavior(::Const.AI.Behavior.ID.AttackDefault).queryDestinationsInRange(_targetTile, 1, 2);
 	}
 
 	function onDelayedEffect( _tag )
 	{
-		local hitInfo = clone this.Const.Tactical.HitInfo;
+		local hitInfo = clone ::Const.Tactical.HitInfo;
 		hitInfo.DamageRegular = 5;
 		hitInfo.DamageDirect = 1.0;
-		hitInfo.BodyPart = this.Const.BodyPart.Body;
+		hitInfo.BodyPart = ::Const.BodyPart.Body;
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		_tag.TargetTile.getEntity().onDamageReceived(_tag.User, this, hitInfo);

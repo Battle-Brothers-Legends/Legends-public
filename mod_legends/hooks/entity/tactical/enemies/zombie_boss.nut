@@ -23,21 +23,21 @@
 	o.onDeath = function ( _killer, _skill, _tile, _fatalityType )
 	{
 		onDeath(_killer, _skill, _tile, _fatalityType);
-		local mapSize = this.Tactical.getMapSize();
+		local mapSize = ::Tactical.getMapSize();
 		local attempts = 0;
 		local n = 0;
 
 		while (attempts++ < 250)
 		{
-			local x = this.Math.rand(this.Math.max(0, this.m.Info.Tile.SquareCoords.X - 5), this.Math.min(mapSize.X - 1, this.m.Info.Tile.SquareCoords.X + 5));
-			local y = this.Math.rand(this.Math.max(0, this.m.Info.Tile.SquareCoords.Y - 5), this.Math.min(mapSize.Y - 1, this.m.Info.Tile.SquareCoords.Y + 5));
+			local x = ::Math.rand(::Math.max(0, this.m.Info.Tile.SquareCoords.X - 5), ::Math.min(mapSize.X - 1, this.m.Info.Tile.SquareCoords.X + 5));
+			local y = ::Math.rand(::Math.max(0, this.m.Info.Tile.SquareCoords.Y - 5), ::Math.min(mapSize.Y - 1, this.m.Info.Tile.SquareCoords.Y + 5));
 
-			if (!this.Tactical.isValidTileSquare(x, y))
+			if (!::Tactical.isValidTileSquare(x, y))
 			{
 				continue;
 			}
 
-			local tile = this.Tactical.getTileSquare(x, y);
+			local tile = ::Tactical.getTileSquare(x, y);
 
 			if (!tile.IsEmpty || tile.ID == this.m.Info.Tile.ID)
 			{
@@ -45,7 +45,7 @@
 			}
 
 			this.spawnSpawnEffect(tile);
-			local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_banshee", tile.Coords);
+			local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_banshee", tile.Coords);
 			e.setFaction(this.m.Info.Faction);
 			e.assignRandomEquipment();
 			n = ++n;

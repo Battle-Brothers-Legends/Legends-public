@@ -7,15 +7,15 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.m.Difficulty = 4;
 		this.m.Order = 311;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(4);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(27);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(4);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 		this.m.StartingBusinessReputation = 100;
-		this.setRosterReputationTiers(this.Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster(); //1 necro commander, 2 cultists, 2 puppets and 1 bard
+		local roster = ::World.getPlayerRoster(); //1 necro commander, 2 cultists, 2 puppets and 1 bard
 		local names = [];
 
 		for( local i = 0; i < 6; i = i )
@@ -27,7 +27,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -53,14 +53,14 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
  		bros[1].getBackground().m.RawDescription = "You found %name% down on their luck behind an Inn in the middle of nowhere... they had long since fallen alseep from the dagger between their ribs. But you took pity and offered them a place in your latest scheme. They would be a fool to refuse, after all.";
 		bros[1].getBaseProperties().Hitpoints += 12;
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.wizard_hat]
 		]));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.wizard_robe]
 		]));
 
@@ -71,14 +71,14 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
  		bros[2].getBackground().m.RawDescription = "%name% is a character of stunning vocal range - when you heard them sing in that graveyard you couldn't resist to allure them with the promise of fame and glory on the stage!";
 		bros[2].getBaseProperties().Hitpoints += 12;
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
 		items.equip(this.new("scripts/items/weapons/throwing_axe"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.jesters_hat]
 		]));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
 
@@ -107,24 +107,24 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendDeathlySpectre);
 
 		//Starting stash
-		// this.World.Assets.m.Money = this.World.Assets.m.Money / 1;
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/black_marsh_stew_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/spawns/legend_zombie_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money + 300;
-		this.World.Assets.m.Medicine = this.World.Assets.m.Medicine + 15;
-		this.World.Flags.set("IsLegendNecroOrigin", true);
+		// ::World.Assets.m.Money = ::World.Assets.m.Money / 1;
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/strange_meat_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/black_marsh_stew_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/spawns/legend_zombie_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money + 300;
+		::World.Assets.m.Medicine = ::World.Assets.m.Medicine + 15;
+		::World.Flags.set("IsLegendNecroOrigin", true);
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
 			{
@@ -135,33 +135,33 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 4), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 4), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Plains && tile.Type != this.Const.World.TerrainType.Steppe && tile.Type != this.Const.World.TerrainType.Tundra && tile.Type != this.Const.World.TerrainType.Snow)
+				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
 				{
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -173,47 +173,47 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 		while (1);
 					//Relations: 0 = hostile, 100 = allied
-		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 		foreach( n in nobles )
 		{
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
-		local unwashedPeasants = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
+		local unwashedPeasants = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
 		foreach( n in unwashedPeasants )
 		{
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
-		local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
+		local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
 		foreach( n in oriental )
 		{
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
-		local undead = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+		local undead = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 		foreach( n in undead )
 		{
 			n.addPlayerRelation(50.0, "To whom it may concern, my nuts hang");
 		}
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(104);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(104);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(["music/retirement_02.ogg"], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_solo_necro_intro_event"); //starting event
+			this.Music.setTrackList(["music/retirement_02.ogg"], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_solo_necro_intro_event"); //starting event
 		}, null);
 	}
 
 	function onInit() {
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsNecro", true); //used to unlock puppets in towns
+		::World.Flags.set("IsLegendsNecro", true); //used to unlock puppets in towns
 	}
 
 	function onCombatFinished() {
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		foreach (bro in roster) {
 			if (bro.getFlags().get("IsPlayerCharacter"))
 				return true;
@@ -251,7 +251,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendPuppet, 6);
 		foreach (i, bro in bros) {
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Crusader))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
 				garbage.push(bro); //delete crusader/pious recruits
 		}
 		foreach (g in garbage)
@@ -267,13 +267,13 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 			::Legends.Background.Gravedigger,
 			::Legends.Background.Cultist
 		)) {
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.00); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.00); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
 			_bro.getSkills().update();
 		} else if (::Legends.Backgrounds.has(_bro, ::Legends.Background.LegendPuppet)) {
 			_bro.getBaseProperties().Hitpoints += 12;
 		} else {
-			_bro.m.HiringCost = this.Math.floor(_bro.m.HiringCost * 1.0); //1.0 = default
+			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.0); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default
 			_bro.getSkills().update();
 		}

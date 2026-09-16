@@ -2516,50 +2516,6 @@ activesDefs.push({
 	Overlay = "drums_of_war_square",
 });
 
-::Legends.Active.LegendEatPie <- null;
-activesDefs.push({
-	ID = "actives.legend_eat_pie",
-	Script = "scripts/skills/actives/legend_eat_pie_skill",
-	Const = "LegendEatPie",
-	Name = "Eat or Give Pie",
-	Icon = "skills/pie_square.png",
-	IconDisabled = "skills/pie_square_bw.png",
-	Overlay = "active_144",
-});
-
-::Legends.Active.LegendEatPorridge <- null;
-activesDefs.push({
-	ID = "actives.legend_eat_porridge",
-	Script = "scripts/skills/actives/legend_eat_porridge_skill",
-	Const = "LegendEatPorridge",
-	Name = "Eat or Give Porridge",
-	Icon = "skills/porridge_square.png",
-	IconDisabled = "skills/porridge_square_bw.png",
-	Overlay = "active_144",
-});
-
-::Legends.Active.LegendEatPudding <- null;
-activesDefs.push({
-	ID = "actives.legend_eat_pudding",
-	Script = "scripts/skills/actives/legend_eat_pudding_skill",
-	Const = "LegendEatPudding",
-	Name = "Eat or Give Pudding",
-	Icon = "skills/pudding_square.png",
-	IconDisabled = "skills/pudding_square_bw.png",
-	Overlay = "active_144",
-});
-
-::Legends.Active.LegendEatRations <- null;
-activesDefs.push({
-	ID = "actives.legend_eat_rations",
-	Script = "scripts/skills/actives/legend_eat_rations_skill",
-	Const = "LegendEatRations",
-	Name = "Eat or Give Food",
-	Icon = "skills/rations_square.png",
-	IconDisabled = "skills/rations_square_bw.png",	
-	Overlay = "active_144",
-});
-
 ::Legends.Active.LegendEnragedHyenaBite <- null;
 activesDefs.push({
 	ID = "actives.legend_enraged_hyena_bite",

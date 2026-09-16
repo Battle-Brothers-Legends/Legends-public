@@ -6,7 +6,7 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 		this.m.ID = "accessory.legend_oms_tome";
 		this.m.Name = "Bound Skin Ledger";
 		this.m.Description = "A small ledger that is made of skin, inside the pages are names laid out in rows, some crossed or or with symbols beside them. Closing and opening the book again results in the names and markings changing once again.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;
@@ -76,7 +76,7 @@ this.legend_oms_ledger_item <- this.inherit("scripts/items/accessory/accessory",
 			return;
 		}
 
-		if (this.Tactical.Entities.getInstancesNum(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID()) != 0)
+		if (::Tactical.Entities.getInstancesNum(::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getID()) != 0)
 		{
 			_properties.DamageReceivedMeleeMult *= 0.50;
 		}

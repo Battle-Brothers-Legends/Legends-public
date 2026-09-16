@@ -6,8 +6,8 @@ this.legend_evasion_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendEvasion);
 		this.m.Description = "%name% will move safely through any Zone of Control without incurring any free attacks and the first attack done against you will be automatically evaded. Can only be used if your total armor weight is 30 or less.";
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.NonTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.NonTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;

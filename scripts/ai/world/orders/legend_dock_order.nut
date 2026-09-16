@@ -3,12 +3,12 @@ this.legend_dock_order <- this.inherit("scripts/ai/world/world_behavior", {
 	function create()
 	{
 		this.world_behavior.create();
-		this.m.ID = this.Const.World.AI.Behavior.ID.Dock;
+		this.m.ID = ::Const.World.AI.Behavior.ID.Dock;
 	}
 
 	function onExecute( _entity, _hasChanged )
 	{
-		local entities = this.World.getAllEntitiesAtPos(_entity.getPos(), 1.0);
+		local entities = ::World.getAllEntitiesAtPos(_entity.getPos(), 1.0);
 
 		foreach( loc in entities )
 		{
@@ -39,7 +39,7 @@ this.legend_dock_order <- this.inherit("scripts/ai/world/world_behavior", {
 
 			for( local i = 0; i < settlement.getSize(); i = i )
 			{
-				settlement.addImportedProduce(inv[this.Math.rand(0, inv.len() - 1)]);
+				settlement.addImportedProduce(inv[::Math.rand(0, inv.len() - 1)]);
 				i = ++i;
 			}
 

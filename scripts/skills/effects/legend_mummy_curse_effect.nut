@@ -9,7 +9,7 @@ this.legend_mummy_curse_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/icon_mummy_curse.png";
 		this.m.IconMini = "mini_icon_mummy_curse";
 		this.m.Overlay = "mummy_curse";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

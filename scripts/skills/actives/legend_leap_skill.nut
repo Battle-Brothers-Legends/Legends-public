@@ -8,8 +8,8 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IconDisabled = "skills/leap_square_bw.png";
 		this.m.Overlay = "leap";
 		this.m.SoundOnUse = ["sounds/combat/jump_01.wav"];
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -65,7 +65,7 @@ this.legend_leap_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 		this.m.MaxRange = 2 + (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendBackflip) ? 1 : 0) + (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff) && actor.getCurrentProperties().IsSpecializedInPolearms ? 1 : 0);
 		this.m.FatigueCost = 15 + this.getModifier();
 	}

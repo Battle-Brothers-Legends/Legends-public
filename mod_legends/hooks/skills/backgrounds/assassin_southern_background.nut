@@ -31,8 +31,8 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendPredictable)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue
 		];
 		this.m.Titles = [
 			"the Shadow",
@@ -45,10 +45,10 @@
 			"the Elusive"
 		];
 		this.m.Ethnicity = 1;
-		this.m.Level = this.Math.rand(2, 5);
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw;
+		this.m.Level = ::Math.rand(2, 5);
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -82,7 +82,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
@@ -97,7 +97,7 @@
 			items.equip(this.new("scripts/items/weapons/legend_katar"));
 		}
 
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -108,12 +108,12 @@
 			items.equip(this.new("scripts/items/tools/daze_bomb_item"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.assassin_head_wrap]
 		]));
 	}
@@ -121,6 +121,6 @@
 	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 });

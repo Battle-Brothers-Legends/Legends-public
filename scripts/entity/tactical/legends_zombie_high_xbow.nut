@@ -3,7 +3,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 
 	function onInit()
 	{
-		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieHeavyXbow;
+		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieHeavyXbow;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.FastAdaption);
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
@@ -24,7 +24,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		this.m.Items.equip(this.new("scripts/items/weapons/heavy_crossbow"));
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.worn_mail_shirt],
 			[1, ::Legends.Armor.Standard.patched_mail_shirt],
@@ -32,7 +32,7 @@ this.legends_zombie_high_xbow <- this.inherit("scripts/entity/tactical/legend_zo
 		]));
 
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],

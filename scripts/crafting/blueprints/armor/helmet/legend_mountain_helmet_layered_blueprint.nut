@@ -4,7 +4,7 @@ this.legend_mountain_helmet_layered_blueprint <- this.inherit("scripts/crafting/
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_mountain_helmet_layered";
-		this.m.Type = this.Const.Items.ItemType.Helmet;
+		this.m.Type = ::Const.Items.ItemType.Helmet;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/vanity/legend_helmet_mountain_helm");
 		this.m.Cost = 2500;
 		local ingredients = [

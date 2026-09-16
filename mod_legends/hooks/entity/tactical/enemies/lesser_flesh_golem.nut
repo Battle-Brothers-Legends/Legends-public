@@ -39,10 +39,10 @@
 			"weapons/shortsword",
 			"weapons/hatchet"
 		];
-		local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 		this.m.Items.equip(this.new("scripts/items/" + weapon));
 		if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			this.m.Items.updateDualWield();
 		}
 	}

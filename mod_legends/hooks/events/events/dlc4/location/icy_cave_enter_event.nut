@@ -5,7 +5,7 @@
 		::Legends.Screens.hook(this, "A1", function (_screen) {
 			_screen.start <- function (_event) {
 				_event.m.Title = "As you approach...";
-				local raw_roster = this.World.getPlayerRoster().getAll();
+				local raw_roster = ::World.getPlayerRoster().getAll();
 				local roster = [];
 
 				foreach (bro in raw_roster) {
@@ -22,7 +22,7 @@
 					}
 					return 0;
 				});
-				local e = this.Math.min(4, roster.len());
+				local e = ::Math.min(4, roster.len());
 
 				for (local i = 0; i < e; i++) {
 					local bro = roster[i];
@@ -39,8 +39,8 @@
 					Text = "We should leave this place.",
 
 					function getResult(_event) {
-						if (this.World.State.getLastLocation() != null) {
-							this.World.State.getLastLocation().setVisited(false);
+						if (::World.State.getLastLocation() != null) {
+							::World.State.getLastLocation().setVisited(false);
 						}
 						return 0;
 					}

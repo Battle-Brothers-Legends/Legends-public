@@ -7,7 +7,7 @@ this.legend_necro_vs_witchhunters_event <- this.inherit("scripts/events/event", 
 	function create() {
 		this.m.ID = "event.legend_necro_vs_witchhunters"; //necromancer origins run into witchhunter + mercenaries. Can try and pay them off or threaten them with low moral value
 		this.m.Title = "Along the road...";
-		this.m.Cooldown = 65.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 65.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_07.png[/img]While on the road, you pass by a caravan. They gawk as the caravan guards ready their weapons for impending attack, but seem rather surprised as you pass on by with little more than a prying gaze. Some time later, you are much less lucky — %companyname% finds themselves blocked on the road by several mercenaries and some rather interesting hooded figures. A younger man approaches, leveling a finger of scrutiny at the company. %SPEECH_ON%YOU THERE! WITCH!%SPEECH_OFF% The hooded figures ready their crossbows, some stuff cloth into their ears and another older man douses the tips of his bolts in a jar of liquid.%SPEECH_ON%YOUR TIME HERE IS UP, SURRENDER AND YOU MAY FIND MERCY%SPEECH_OFF% The rest of the cohort seems more reserved. A grizzled rotund man sporting a missing hand and full plate seems disinterested until the younger witch hunter shoots him a fiery look, to which he begrudgingly raises his good hand for the rest of mercenaries, a parity of leather and metal in comparison, to make ready. \n\nInstead of drawing his weapon, he reaches into a pack and resumes eating an apple as a spectator.",

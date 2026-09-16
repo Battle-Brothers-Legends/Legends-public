@@ -12,7 +12,7 @@ foreach (blueprint in blueprints)
 		o.create = function ()
 		{
 			create();
-			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.m.Type = ::Const.Items.ItemType.Usable;
 			this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 		}
 	});

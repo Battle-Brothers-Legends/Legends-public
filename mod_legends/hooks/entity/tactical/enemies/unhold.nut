@@ -4,7 +4,7 @@
 	{
 		onFactionChanged();
 		local flip = this.isAlliedWithPlayer();
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 				continue;
@@ -17,27 +17,27 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Unhold);
+		b.setValues(::Const.Tactical.Actor.Unhold);
 		b.IsImmuneToDisarm = true;
 		b.IsImmuneToRotation = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.UnholdDamageIncreaseDay) {
 			b.DamageTotalMult += 0.1;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsUnholdDamageIncreaseDay2) {
 			b.DamageTotalMult += 0.2;
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_unhold_body_02";
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
-		if (this.Math.rand(1, 100) < 5)
+		if (::Math.rand(1, 100) < 5)
 		{
 			body.setBrush("bust_unhold_body_04");
 		}
@@ -52,7 +52,7 @@
 		injury_body.setBrush("bust_unhold_02_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		if (this.Math.rand(1, 100) < 3)
+		if (::Math.rand(1, 100) < 3)
 		{
 			head.setBrush("bust_unhold_head_04");
 		}
@@ -62,7 +62,7 @@
 		}
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 		}

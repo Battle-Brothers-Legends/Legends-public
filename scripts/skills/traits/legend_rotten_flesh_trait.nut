@@ -1,6 +1,6 @@
 this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_trait", {
 	m = {
-		InjuryType = this.Math.rand(1, 4)
+		InjuryType = ::Math.rand(1, 4)
 	},
 
 	function create() {
@@ -59,8 +59,8 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 	function onAdded() {
 		local actor = this.getContainer().getActor().get();
 		actor.m.rawset("InjuryType", this.m.InjuryType);
-		actor.m.BloodType = this.Const.BloodType.Dark;
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
+		actor.m.BloodType = ::Const.BloodType.Dark;
+		actor.m.MoraleState = ::Const.MoraleState.Ignore;
 		actor.getFlags().add("undead");
 		actor.getFlags().add("zombie_minion");
 
@@ -153,7 +153,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 
 	function onApplyAppearance() {
 		local actor = this.getContainer().getActor();
-		local hairColor = this.Const.HairColors.Zombie[this.Math.rand(0, this.Const.HairColors.Zombie.len() - 1)];
+		local hairColor = ::Const.HairColors.Zombie[::Math.rand(0, ::Const.HairColors.Zombie.len() - 1)];
 		local sprite = actor.getSprite("head");
 		sprite.Saturation = 0.5;
 		sprite.varySaturation(0.2);
@@ -165,16 +165,16 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 		local beard = actor.getSprite("beard");
 		local hair = actor.getSprite("hair");
 
-		if (this.Math.rand(1, 100) <= 50) {
+		if (::Math.rand(1, 100) <= 50) {
 			if (this.m.InjuryType == 4) {
-				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.ZombieExtended[this.Math.rand(0, this.Const.Beards.ZombieExtended.len() - 1)]);
+				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.ZombieExtended[::Math.rand(0, ::Const.Beards.ZombieExtended.len() - 1)]);
 				beard.setBrightness(0.9);
 			} else {
-				beard.setBrush("beard_" + hairColor + "_" + this.Const.Beards.Zombie[this.Math.rand(0, this.Const.Beards.Zombie.len() - 1)]);
+				beard.setBrush("beard_" + hairColor + "_" + ::Const.Beards.Zombie[::Math.rand(0, ::Const.Beards.Zombie.len() - 1)]);
 			}
 
-			if (this.Math.rand(0, this.Const.Hair.Zombie.len()) != this.Const.Hair.Zombie.len()) {
-				hair.setBrush("hair_" + hairColor + "_" + this.Const.Hair.Zombie[this.Math.rand(0, this.Const.Hair.Zombie.len() - 1)]);
+			if (::Math.rand(0, ::Const.Hair.Zombie.len()) != ::Const.Hair.Zombie.len()) {
+				hair.setBrush("hair_" + hairColor + "_" + ::Const.Hair.Zombie[::Math.rand(0, ::Const.Hair.Zombie.len() - 1)]);
 			} else {
 				hair.resetBrush();
 			}
@@ -197,14 +197,14 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 
 	function onCombatStarted() {
 		local actor = this.getContainer().getActor();
-		actor.m.MoraleState = this.Const.MoraleState.Ignore;
-		actor.m.BloodType = this.Const.BloodType.Dark;
-		actor.m.Sound[this.Const.Sound.ActorEvent.NoDamageReceived] = [
+		actor.m.MoraleState = ::Const.MoraleState.Ignore;
+		actor.m.BloodType = ::Const.BloodType.Dark;
+		actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = [
 			"sounds/enemies/zombie_idle_14.wav",
 			"sounds/enemies/zombie_idle_15.wav",
 			"sounds/enemies/zombie_idle_16.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/zombie_hurt_01.wav",
 			"sounds/enemies/zombie_hurt_02.wav",
 			"sounds/enemies/zombie_hurt_03.wav",
@@ -213,7 +213,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			"sounds/enemies/zombie_hurt_06.wav",
 			"sounds/enemies/zombie_hurt_07.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/zombie_death_01.wav",
 			"sounds/enemies/zombie_death_02.wav",
 			"sounds/enemies/zombie_death_03.wav",
@@ -221,17 +221,17 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			"sounds/enemies/zombie_death_05.wav",
 			"sounds/enemies/zombie_death_06.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.Fatigue] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.Fatigue] = [
 			"sounds/enemies/zombie_bite_01.wav",
 			"sounds/enemies/zombie_bite_02.wav",
 			"sounds/enemies/zombie_bite_03.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/enemies/zombie_bite_01.wav",
 			"sounds/enemies/zombie_bite_02.wav",
 			"sounds/enemies/zombie_bite_03.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/zombie_idle_01.wav",
 			"sounds/enemies/zombie_idle_02.wav",
 			"sounds/enemies/zombie_idle_03.wav",
@@ -246,7 +246,7 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 			"sounds/enemies/zombie_idle_12.wav",
 			"sounds/enemies/zombie_idle_13.wav"
 		];
-		actor.m.Sound[this.Const.Sound.ActorEvent.Move] = [
+		actor.m.Sound[::Const.Sound.ActorEvent.Move] = [
 			"sounds/enemies/zombie_bite_01.wav",
 			"sounds/enemies/zombie_bite_02.wav",
 			"sounds/enemies/zombie_bite_03.wav"
@@ -255,8 +255,8 @@ this.legend_rotten_flesh_trait <- this.inherit("scripts/skills/traits/character_
 
 	function onRemoved() {
 		local actor = this.getContainer().getActor();
-		actor.m.BloodType = this.Const.BloodType.Red;
-		actor.m.MoraleState = this.Const.MoraleState.Steady;
+		actor.m.BloodType = ::Const.BloodType.Red;
+		actor.m.MoraleState = ::Const.MoraleState.Steady;
 		actor.getFlags().remove("undead");
 		actor.getFlags().remove("zombie");
 		actor.getFlags().remove("zombie_minion");

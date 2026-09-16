@@ -14,11 +14,11 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
-			local r = this.Math.rand(1, 2);
+			local r = ::Math.rand(1, 2);
 
-			if (r == 1 || !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Goblins.LegendsAmbusherHeavyBowDay)
+			if (r == 1 || !::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Goblins.LegendsAmbusherHeavyBowDay)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/greenskins/goblin_heavy_bow"));
 			}
@@ -31,23 +31,23 @@
 		this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		this.m.Items.addToBag(this.new("scripts/items/weapons/greenskins/goblin_notched_blade"));
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			local item = this.Const.World.Common.pickArmor([
+			local item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Greenskin.goblin_skirmisher_armor]
 			]);
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Greenskin.goblin_skirmisher_helmet]
 			]);
 			this.m.Items.equip(item);
 		}
 
-		if (this.Math.rand(1, 100) <= 10)
+		if (::Math.rand(1, 100) <= 10)
 		{
 			this.m.Items.addToBag(this.new("scripts/items/accessory/poison_item"));
 		}

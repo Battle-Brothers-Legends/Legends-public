@@ -27,12 +27,12 @@
 			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.RangedSkill
 		];
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Kind;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Lowborn;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Kind;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Lowborn;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -66,17 +66,17 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.BrawlerTitles[this.Math.rand(0, this.Const.Strings.BrawlerTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.BrawlerTitles[::Math.rand(0, ::Const.Strings.BrawlerTitles.len() - 1)]);
 		}
 	}
 
 	o.onAddEquipment = function()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps]

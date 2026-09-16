@@ -13,14 +13,14 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			::Legends.Traits.getID(::Legends.Trait.Bright),
 			::Legends.Traits.getID(::Legends.Trait.Asthmatic)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.None;
-		this.m.HairColors = this.Const.HairColors.None;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.None;
+		this.m.HairColors = ::Const.HairColors.None;
 		this.m.Beards = null;
 
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Stabled;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Stabled;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Colossus,
@@ -136,7 +136,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		}
 
 		offset = this.createVec(10,0);
-		local variant = this.Math.rand(0, 7);
+		local variant = ::Math.rand(0, 7);
 		local horse = actor.addSprite("horse_body");
 		horse.setBrush(actor.getHorse().getSprite("body").getBrush().Name);
 		horse.varySaturation(0.15);
@@ -163,9 +163,9 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/armor/noble_tunic"));

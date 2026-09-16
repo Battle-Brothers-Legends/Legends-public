@@ -6,7 +6,7 @@
 			2,
 			3
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Condition = 100;
 		this.m.ConditionMax = 100;

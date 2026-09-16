@@ -44,10 +44,10 @@
 						Text = "We will stay true to our word and leave you in peace. (Increase Moral Reputation)",
 						function getResult()
 						{
-							this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-							this.World.Assets.addMoralReputation(5);
-							this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationCivilianContractFail, "Failed to destroy a barbarian encampment threatening " + this.Contract.m.Home.getName());
-							this.World.Contracts.finishActiveContract(true);
+							::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+							::World.Assets.addMoralReputation(5);
+							::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationCivilianContractFail, "Failed to destroy a barbarian encampment threatening " + this.Contract.m.Home.getName());
+							::World.Contracts.finishActiveContract(true);
 							return 0;
 						}
 
@@ -56,7 +56,7 @@
 						Text = "Everyone, charge! (Decrease Moral Reputation)",
 						function getResult()
 						{
-							this.World.Assets.addMoralReputation(-3);
+							::World.Assets.addMoralReputation(-3);
 							this.Contract.getActiveState().onDestinationAttacked(this.Contract.m.Destination);
 							return 0;
 						}
@@ -102,7 +102,7 @@
 
 		if (destination != 0)
 		{
-			this.m.Destination = this.WeakTableRef(this.World.getEntityByID(destination));
+			this.m.Destination = this.WeakTableRef(::World.getEntityByID(destination));
 		}
 
 		this.contract.onDeserialize(_in);

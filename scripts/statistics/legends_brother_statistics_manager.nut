@@ -109,7 +109,7 @@ this.legends_brother_statistics_manager <- {
 			j = _in.readU8();
 		}
 
-		foreach(bro in this.World.getPlayerRoster().getAll())
+		foreach(bro in ::World.getPlayerRoster().getAll())
 		{
 			this.m.IDToRef[bro.getCompanyID()] = this.WeakTableRef(bro);
 		}

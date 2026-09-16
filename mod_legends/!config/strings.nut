@@ -46,10 +46,10 @@
 
 ::Const.Strings.randomCityEncounterName <- function ()
 {
-	return ::Const.Strings.CityEncounterNames[this.Math.rand(0, ::Const.Strings.CityEncounterNames.len() - 1)];
+	return ::Const.Strings.CityEncounterNames[::Math.rand(0, ::Const.Strings.CityEncounterNames.len() - 1)];
 }
 
 ::Const.Strings.randomCampEncounterName <- function ()
 {
-	return ::Const.Strings.CampEncounterNames[this.Math.rand(0, ::Const.Strings.CampEncounterNames.len() - 1)];
+	return ::Const.Strings.CampEncounterNames[::Math.rand(0, ::Const.Strings.CampEncounterNames.len() - 1)];
 }

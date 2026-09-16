@@ -3,8 +3,8 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 	function create()
 	{
 		this.orc_warlord.create();
-		this.m.Type = this.Const.EntityType.LegendOrcTyrant;
-		this.m.XP = this.Const.Tactical.Actor.LegendOrcTyrant.XP;
+		this.m.Type = ::Const.EntityType.LegendOrcTyrant;
+		this.m.XP = ::Const.Tactical.Actor.LegendOrcTyrant.XP;
 		this.actor.create();
 	}
 
@@ -22,10 +22,10 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 		});
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.BaseProperties.Armor[this.Const.BodyPart.Head] += 100;
-			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Head] += 100;		
-			this.m.BaseProperties.Armor[this.Const.BodyPart.Body] += 350;
-			this.m.BaseProperties.ArmorMax[this.Const.BodyPart.Body] += 350;
+			this.m.BaseProperties.Armor[::Const.BodyPart.Head] += 100;
+			this.m.BaseProperties.ArmorMax[::Const.BodyPart.Head] += 100;		
+			this.m.BaseProperties.Armor[::Const.BodyPart.Body] += 350;
+			this.m.BaseProperties.ArmorMax[::Const.BodyPart.Body] += 350;
 			::Legends.Perks.grant(this, ::Legends.Perk.Steadfast);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
@@ -45,7 +45,7 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 			"weapons/greenskins/legend_bough",
 			"weapons/greenskins/legend_skullbreaker"
 		];
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 		this.getItems().equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
@@ -70,7 +70,7 @@ this.legend_orc_tyrant <- this.inherit("scripts/entity/tactical/enemies/orc_warl
 			"weapons/named/legend_named_orc_flail_2h",
 			"weapons/named/named_orc_axe"
 		];
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		return true;
 	}
 

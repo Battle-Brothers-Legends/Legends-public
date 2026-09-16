@@ -27,8 +27,8 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.Protect;
-		this.m.Order = this.Const.AI.Behavior.Order.Protect;
+		this.m.ID = ::Const.AI.Behavior.ID.Protect;
+		this.m.Order = ::Const.AI.Behavior.Order.Protect;
 		this.m.IsThreaded = true;
 		this.behavior.create();
 	}
@@ -42,41 +42,41 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		this.m.IsWaitingBeforeMove = false;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP || score == 0.0)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP || score == 0.0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (this.m.IsDoneThisTurn)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (_entity.getCurrentProperties().IsRooted)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (this.getStrategy().isDefending() && this.getStrategy().isDefendingCamp())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local myTile = _entity.getTile();
 
 		if (myTile.hasZoneOfControlOtherThan(_entity.getAlliedFactions()))
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (this.m.Target == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local allies = this.getAgent().getKnownAllies();
@@ -95,7 +95,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 		}
 
-		if ((vipStillToMoveAndAdjacent > 0 || vipStillToMoveAndAdjacent == 0 && vipStillToMove >= 2) && this.Tactical.TurnSequenceBar.canEntityWait(_entity))
+		if ((vipStillToMoveAndAdjacent > 0 || vipStillToMoveAndAdjacent == 0 && vipStillToMove >= 2) && ::Tactical.TurnSequenceBar.canEntityWait(_entity))
 		{
 			this.m.IsWaitingBeforeMove = true;
 		}
@@ -110,7 +110,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 			if (this.m.TargetTile == null)
 			{
-				return this.Const.AI.Behavior.Score.Zero;
+				return ::Const.AI.Behavior.Score.Zero;
 			}
 		}
 
@@ -118,7 +118,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		{
 			if (this.m.IsHoldingPosition)
 			{
-				return this.Const.AI.Behavior.Score.Zero;
+				return ::Const.AI.Behavior.Score.Zero;
 			}
 			else
 			{
@@ -126,7 +126,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 		}
 
-		return this.Const.AI.Behavior.Score.Protect * 10 * score;
+		return ::Const.AI.Behavior.Score.Protect * 10 * score;
 	}
 
 	function onTurnStarted()
@@ -156,9 +156,9 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 	{
 		if (this.m.IsWaitingBeforeMove)
 		{
-			if (this.Tactical.TurnSequenceBar.entityWaitTurn(_entity))
+			if (::Tactical.TurnSequenceBar.entityWaitTurn(_entity))
 			{
-				if (this.Const.AI.VerboseMode)
+				if (::Const.AI.VerboseMode)
 				{
 					this.logInfo("* " + _entity.getName() + ": Waiting until others have moved!");
 				}
@@ -173,7 +173,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			return true;
 		}
 
-		local navigator = this.Tactical.getNavigator();
+		local navigator = ::Tactical.getNavigator();
 
 		if (this.m.IsFirstExecuted)
 		{
@@ -184,12 +184,12 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
 			settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
 			settings.AllowZoneOfControlPassing = false;
-			settings.ZoneOfControlCost = this.Const.AI.Behavior.ZoneOfControlAPPenalty;
+			settings.ZoneOfControlCost = ::Const.AI.Behavior.ZoneOfControlAPPenalty;
 			settings.AlliedFactions = _entity.getAlliedFactions();
 			settings.Faction = _entity.getFaction();
 			navigator.findPath(_entity.getTile(), this.m.TargetTile, settings, 0);
 
-			if (this.Const.AI.PathfindingDebugMode)
+			if (::Const.AI.PathfindingDebugMode)
 			{
 				navigator.buildVisualisation(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
 			}
@@ -197,7 +197,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
 			this.m.Agent.adjustCameraToDestination(movement.End);
 
-			if (this.Const.AI.VerboseMode)
+			if (::Const.AI.VerboseMode)
 			{
 				this.logInfo("* " + _entity.getName() + ": Going for protective position.");
 			}
@@ -255,7 +255,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 			else if (dist <= 6)
 			{
-				score = this.Math.maxf(0.0, 1.0 - dist / 6.0);
+				score = ::Math.maxf(0.0, 1.0 - dist / 6.0);
 			}
 			else
 			{
@@ -267,14 +267,14 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 			switch(dir)
 			{
-			case this.Const.Direction8.W:
-				dirs[this.Const.Direction.NW] += 4 * score;
-				dirs[this.Const.Direction.SW] += 4 * score;
+			case ::Const.Direction8.W:
+				dirs[::Const.Direction.NW] += 4 * score;
+				dirs[::Const.Direction.SW] += 4 * score;
 				break;
 
-			case this.Const.Direction8.E:
-				dirs[this.Const.Direction.NE] += 4 * score;
-				dirs[this.Const.Direction.SE] += 4 * score;
+			case ::Const.Direction8.E:
+				dirs[::Const.Direction.NE] += 4 * score;
+				dirs[::Const.Direction.SE] += 4 * score;
 				break;
 
 			default:
@@ -288,7 +288,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 		}
 
-		relevant = this.Math.maxf(1.0, relevant);
+		relevant = ::Math.maxf(1.0, relevant);
 
 		for( local i = 0; i != 6; i = ++i )
 		{
@@ -308,7 +308,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 				{
 					local score = 1;
 					local immediateBonus = 0;
-					score = score + dirs[i] / this.Math.max(1, allOpponents.len()) * this.Const.AI.Behavior.ProtectAllyDirectionMult;
+					score = score + dirs[i] / ::Math.max(1, allOpponents.len()) * ::Const.AI.Behavior.ProtectAllyDirectionMult;
 					score = score - myTile.getDistanceTo(tile);
 					local importantAlliesAtTile = 0;
 
@@ -324,7 +324,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 							if (!adjacentTile.IsOccupiedByActor)
 							{
 							}
-							else if (this.Math.abs(tile.Level - adjacentTile.Level) > 1)
+							else if (::Math.abs(tile.Level - adjacentTile.Level) > 1)
 							{
 							}
 							else
@@ -333,7 +333,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 								if (!_entity.isAlliedWith(other))
 								{
-									immediateBonus = immediateBonus + this.Const.AI.Behavior.ProtectAllyEngagedBonus;
+									immediateBonus = immediateBonus + ::Const.AI.Behavior.ProtectAllyEngagedBonus;
 								}
 								else if (other.getCurrentProperties().TargetAttractionMult > 1.0 && other.getCurrentProperties().TargetAttractionMult > _entity.getCurrentProperties().TargetAttractionMult)
 								{
@@ -345,7 +345,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 					if (tile.Properties.Effect != null && !tile.Properties.Effect.IsPositive && tile.Properties.Effect.Applicable(_entity))
 					{
-						immediateBonus = immediateBonus - this.Const.AI.Behavior.ProtectAllyTileEffectPenalty + 4;
+						immediateBonus = immediateBonus - ::Const.AI.Behavior.ProtectAllyTileEffectPenalty + 4;
 					}
 
 					score = score + immediateBonus;
@@ -355,7 +355,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 					{
 						if (t.Tile.ID == tile.ID)
 						{
-							t.AllyDefendBonus += target.getCurrentProperties().TargetAttractionMult * 10 * this.Const.AI.Behavior.ProtectAllyAttractionBonus;
+							t.AllyDefendBonus += target.getCurrentProperties().TargetAttractionMult * 10 * ::Const.AI.Behavior.ProtectAllyAttractionBonus;
 							t.TileBonus += dirs[i] + immediateBonus;
 							t.Score += score;
 							already_in = true;
@@ -369,7 +369,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 							Tile = tile,
 							Score = score,
 							TileBonus = dirs[i] + immediateBonus,
-							AllyDefendBonus = target.getCurrentProperties().TargetAttractionMult * 10 * this.Const.AI.Behavior.ProtectAllyAttractionBonus
+							AllyDefendBonus = target.getCurrentProperties().TargetAttractionMult * 10 * ::Const.AI.Behavior.ProtectAllyAttractionBonus
 						});
 					}
 				}
@@ -382,7 +382,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			return false;
 		}
 
-		local navigator = this.Tactical.getNavigator();
+		local navigator = ::Tactical.getNavigator();
 		local settings = navigator.createSettings();
 		local myTile = _entity.getTile();
 		local myFaction = _entity.getFaction();
@@ -399,7 +399,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
 		settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
 		settings.AllowZoneOfControlPassing = false;
-		settings.ZoneOfControlCost = this.Const.AI.Behavior.ZoneOfControlAPPenalty;
+		settings.ZoneOfControlCost = ::Const.AI.Behavior.ZoneOfControlAPPenalty;
 		settings.AlliedFactions = _entity.getAlliedFactions();
 		settings.Faction = _entity.getFaction();
 
@@ -416,7 +416,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			local isForNextTurn = false;
 			attempts = ++attempts;
 
-			if (attempts > this.Const.AI.Behavior.DefendMaxAttempts)
+			if (attempts > ::Const.AI.Behavior.DefendMaxAttempts)
 			{
 				break;
 			}
@@ -449,8 +449,8 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			}
 
 			local allyDefendBonus = t.AllyDefendBonus;
-			local TileBonus = t.TileBonus * this.Const.AI.Behavior.ProtectAllyDirectionMult;
-			local score = TileBonus + allyDefendBonus - apCost * this.Const.AI.Behavior.ProtectAllyAPCostMult;
+			local TileBonus = t.TileBonus * ::Const.AI.Behavior.ProtectAllyDirectionMult;
+			local score = TileBonus + allyDefendBonus - apCost * ::Const.AI.Behavior.ProtectAllyAPCostMult;
 
 			if (score > bestScore)
 			{
@@ -463,7 +463,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 
 		if (bestDestination != null && bestIsForNextTurn == false)
 		{
-			if (this.Const.AI.VerboseMode && bestDestination.isSameTileAs(_entity.getTile()))
+			if (::Const.AI.VerboseMode && bestDestination.isSameTileAs(_entity.getTile()))
 			{
 				this.logInfo("* " + _entity.getName() + ": In fact, I would prefer to remain where I am");
 			}

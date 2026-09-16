@@ -64,7 +64,7 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		this.m.TilesUsed = [];
 		local item = _skill.getItem();
-		if (_skill.isRanged() && item != null && !item.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
+		if (_skill.isRanged() && item != null && !item.isWeaponType(::Const.Items.WeaponType.Throwing)) {
 			return;
 		}
 
@@ -95,17 +95,17 @@ this.perk_legend_smackdown <- this.inherit("scripts/skills/skill", {
 		this.m.TilesUsed.push(knockToTile.ID);
 
 		if (!user.isHiddenToPlayer() && (targetTile.IsVisibleForPlayer || knockToTile.IsVisibleForPlayer)) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " has knocked back " + this.Const.UI.getColorizedEntityName(_targetEntity));
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " has knocked back " + ::Const.UI.getColorizedEntityName(_targetEntity));
 		}
 
-		this.Tactical.State.handleInvoluntaryMovement(_targetEntity, user, targetTile, knockToTile, this, this.onKnockedDown, null);
+		::Tactical.State.handleInvoluntaryMovement(_targetEntity, user, targetTile, knockToTile, this, this.onKnockedDown, null);
 		this.m.TilesUsed = [];
 		return true;
 	}
 
 	function onKnockedDown(_entity, _tag) {
 		if (_tag.Skill.m.SoundOnHit.len() != 0) {
-			this.Sound.play(_tag.Skill.m.SoundOnHit[this.Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _entity.getPos());
+			::Sound.play(_tag.Skill.m.SoundOnHit[::Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _entity.getPos());
 		}
 	}
 

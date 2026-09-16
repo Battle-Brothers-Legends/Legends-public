@@ -6,8 +6,8 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBackToBasics);
 		this.m.Description = "Years of practice lead this character to fall back to %their% instincts and basic training under extreme stress.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 	}
 
 	function getTooltip()
@@ -22,7 +22,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 				text = "Gaining an additional [color=%positive%]" + this.m.BasicsStacks * 5 + "[/color] melee defense."
 			});
 		}
-		if (this.getContainer().getActor().getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
 			tooltip.push({
 				id = 6,
@@ -38,7 +38,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	{
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MeleeDefense += 5 * this.m.BasicsStacks;
-		this.m.IsHidden = (this.m.BasicsStacks == 0 || this.getContainer().getActor().getMoraleState() == this.Const.MoraleState.Fleeing);
+		this.m.IsHidden = (this.m.BasicsStacks == 0 || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing);
 	}
 
 	function onTurnStart()
@@ -55,12 +55,12 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 		local a = this.getContainer().getActor();
 		if (!a.getSkills().hasEffect(::Legends.Effect.Rallied))
 		{
-			local difficulty = this.Math.floor(a.getCurrentProperties().getBravery() * 0.5);
+			local difficulty = ::Math.floor(a.getCurrentProperties().getBravery() * 0.5);
 			local morale = a.getMoraleState();
 
-			if (a.getMoraleState() == this.Const.MoraleState.Fleeing)
+			if (a.getMoraleState() == ::Const.MoraleState.Fleeing)
 			{
-				a.checkMorale(this.Const.MoraleState.Wavering - this.Const.MoraleState.Fleeing, difficulty, this.Const.MoraleCheckType.Default, "status_effect_56");
+				a.checkMorale(::Const.MoraleState.Wavering - ::Const.MoraleState.Fleeing, difficulty, ::Const.MoraleCheckType.Default, "status_effect_56");
 			}
 
 			if (morale != a.getMoraleState())

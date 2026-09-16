@@ -1,7 +1,7 @@
 this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistWeaponTypes = [
-			this.Const.Items.WeaponType.Musical
+			::Const.Items.WeaponType.Musical
 		],
 	},
 	function create()
@@ -14,7 +14,7 @@ this.perk_legend_specialist_musician <- this.inherit("scripts/skills/legend_spec
 	function onUpdate( _properties )
 	{
 		local item = this.getContainer().getActor().getMainhandItem();
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Musical))
+		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Musical))
 			_properties.MeleeDefense += 10;
 	}
 });

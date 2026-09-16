@@ -11,36 +11,36 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.getTime().Days < 10)
+		if (::World.getTime().Days < 10)
 			return;
 
-		if (this.World.Assets.getMoney() <= 1500)
+		if (::World.Assets.getMoney() <= 1500)
 			return;
 
-		if (this.World.State.getEscortedEntity() != null)
+		if (::World.State.getEscortedEntity() != null)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (!currentTile.HasRoad)
 			return;
 
-		local bases = this.World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
+		local bases = ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
 		local candidates_location = bases.filter(@(_, b) !b.getLoot().isEmpty() && !b.getFlags().get("IsEventLocation"));
 
 		if (candidates_location.len() == 0)
 			return;
 
-		this.m.Location = candidates_location[this.Math.rand(0, candidates_location.len() - 1)];
-		local brothers = this.World.getPlayerRoster().getAll();
+		this.m.Location = candidates_location[::Math.rand(0, candidates_location.len() - 1)];
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_peddler = [];
 		local candidates_thief = [];
 		local candidates_historian = [];
 
 		foreach(bro in brothers)
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidates_historian.push(bro);
 			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Thief))
 				candidates_thief.push(bro);
@@ -48,15 +48,15 @@
 				candidates_peddler.push(bro);
 
 		if (candidates_historian.len() != 0)
-			this.m.Historian = candidates_historian[this.Math.rand(0, candidates_historian.len() - 1)];
+			this.m.Historian = candidates_historian[::Math.rand(0, candidates_historian.len() - 1)];
 
 		if (candidates_thief.len() != 0)
-			this.m.Thief = candidates_thief[this.Math.rand(0, candidates_thief.len() - 1)];
+			this.m.Thief = candidates_thief[::Math.rand(0, candidates_thief.len() - 1)];
 
 		if (candidates_peddler.len() != 0)
-			this.m.Peddler = candidates_peddler[this.Math.rand(0, candidates_peddler.len() - 1)];
+			this.m.Peddler = candidates_peddler[::Math.rand(0, candidates_peddler.len() - 1)];
 
-		this.m.Cost = this.Math.rand(6, 14) * 100;
+		this.m.Cost = ::Math.rand(6, 14) * 100;
 		this.m.Score = 7;
 	}
 })

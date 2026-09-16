@@ -9,7 +9,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_53.png"; //change later
 		this.m.IconMini = "mini_smackdown_circle"; //change later
 		this.m.Overlay = "active_89"; //change later
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -102,7 +102,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
     function onUpdate( _properties )
     {
         _properties.IsSpecializedInHammers = true;
-        _properties.IsImmuneToDisarm = true
+        _properties.IsImmuneToDisarm = true;
     }
 });
 

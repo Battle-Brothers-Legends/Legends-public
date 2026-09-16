@@ -99,7 +99,7 @@
 	return {
 		id = 10,
 		icon = "ui/icons/xp_received.png",
-		text = _bro.getName() + " gains [color=" + this.Const.UI.Color.PositiveEventValue + "]" + _value + "[/color] Experience"
+		text = _bro.getName() + " gains [color=" + ::Const.UI.Color.PositiveEventValue + "]" + _value + "[/color] Experience"
 	};
 }
 
@@ -147,7 +147,7 @@
 		id = 10,
 		icon = "ui/icons/special.png",
 		text = (_renown > 0) ?
-			::format(::Legends.EventList.RenownGain, this.Const.UI.Color.PositiveEventValue, function(_amount) {
+			::format(::Legends.EventList.RenownGain, ::Const.UI.Color.PositiveEventValue, function(_amount) {
 				if (_amount <= 50)
 					return ::Legends.EventList.Amount[0];
 				if (_amount <= 75)
@@ -157,7 +157,7 @@
 				return ::Legends.EventList.Amount[3];
 			} (_renown))
 			:
-			::format(::Legends.EventList.RenownLose, this.Const.UI.Color.NegativeEventValue, function(_amount) {
+			::format(::Legends.EventList.RenownLose, ::Const.UI.Color.NegativeEventValue, function(_amount) {
 				if (_amount <= 50)
 					return ::Legends.EventList.Amount[0];
 				if (_amount <= 75)

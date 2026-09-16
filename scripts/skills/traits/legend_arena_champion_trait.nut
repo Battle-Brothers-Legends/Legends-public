@@ -7,7 +7,7 @@ this.legend_arena_champion_trait <- this.inherit("scripts/skills/traits/characte
 		this.m.Name = "Arena Champion";
 		this.m.Description = "Every man and woman in the area stand secretly wants to be %fullname%, children play in streets dressed and fighting like %they% does. As they should.";
 		this.m.Icon = "ui/traits/trait_arena_champion.png";
-		this.m.Order = this.Const.SkillOrder.Trait - 1;
+		this.m.Order = ::Const.SkillOrder.Trait - 1;
 	}
 
 	function getTooltip()

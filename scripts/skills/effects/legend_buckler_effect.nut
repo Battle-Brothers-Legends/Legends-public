@@ -6,8 +6,8 @@ this.legend_buckler_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBuckler);
 		this.m.Icon = "ui/perks/perk_02.png";
 		//this.m.IconMini = "perk_02_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsSerialized = false;
 		this.m.IsStacking = false;

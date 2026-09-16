@@ -16,7 +16,7 @@
 				s.Options[0].Text = "We could use someone who knows how to attach limbs for once.";
 				s.start <- function ( _event )
 				{
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.LegendSurgeon]);
 
@@ -25,17 +25,17 @@
 					_event.m.Dude.setHitpointsPct(0.33);
 					_event.m.Dude.improveMood(3.0, "Was rescued from the desert");
 					this.Characters.push(_event.m.Dude.getImagePath());
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
-						if (bro.getEthnicity() == 0 && this.Math.rand(1, 100) <= 66) {
+						if (bro.getEthnicity() == 0 && ::Math.rand(1, 100) <= 66) {
 							bro.improveMood(1.0, "Saved a dying surgeon from the desert");
 
-							if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+							if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
 						}

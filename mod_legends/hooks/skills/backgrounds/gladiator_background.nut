@@ -32,11 +32,11 @@
 			::Legends.Traits.getID(::Legends.Trait.Dastard),
 			::Legends.Traits.getID(::Legends.Trait.Insecure)
 		];
-		this.m.Ethnicity = this.Math.rand(1, 2);
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.Level = this.Math.rand(2, 5);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat;
+		this.m.Ethnicity = ::Math.rand(1, 2);
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.Level = ::Math.rand(2, 5);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
 	o.getTooltip = function ()
@@ -77,14 +77,14 @@
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 30)
+		if (::Math.rand(1, 100) <= 30)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -114,7 +114,7 @@
 
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 		local isAlone = true;
 
 		foreach( ally in allies )
@@ -152,10 +152,10 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(1, 2) == 2)
+		if (::Math.rand(1, 2) == 2)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.GladiatorTitles[this.Math.rand(0, this.Const.Strings.GladiatorTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.GladiatorTitles[::Math.rand(0, ::Const.Strings.GladiatorTitles.len() - 1)]);
 		}
 	}
 
@@ -166,7 +166,7 @@
 		local items = actor.getItems();
 		local r;
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/shamshir",
@@ -183,24 +183,24 @@
 				"weapons/bardiche"
 			];
 
-			items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+		if (items.hasEmptySlot(::Const.ItemSlot.Offhand))
 		{
 			local offhand = [
 				"tools/throwing_net",
 				"shields/oriental/metal_round_shield"
 			];
-			items.equip(this.new("scripts/items/" + offhand[this.Math.rand(0, offhand.len() - 1)]));
+			items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
 
 
-		local a = this.Const.World.Common.pickArmor([
+		local a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
-		r = this.Math.rand(1, 2);
+		r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -212,8 +212,8 @@
 		}
 		items.equip(a);
 
-		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ::Legends.Helmet.Southern.gladiator_helmet, this.Math.rand(13, 15)],
+		items.equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
 			[1, ::Legends.Helmet.None]
 		]));
 

@@ -42,10 +42,10 @@
 			"the Waylayer"
 		];
 		this.m.Ethnicity = ::Math.rand(1, 2);
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.ExpertHunter;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.ExpertHunter;
 	}
 
 	o.getTooltip = function () {
@@ -94,7 +94,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -117,21 +117,21 @@
 			items.equip(this.new("scripts/items/weapons/militia_spear"));
 		}
 
-		r = this.Math.rand(0, 0);
+		r = ::Math.rand(0, 0);
 
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/shields/oriental/southern_light_shield"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.nomad_robe],
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.nomad_head_wrap],
 			[1, ::Legends.Helmet.Southern.nomad_leather_cap],
 			[1, ::Legends.Helmet.Southern.nomad_light_helmet]

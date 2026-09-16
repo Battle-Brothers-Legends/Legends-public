@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_nomad") {
 			this.m.DraftList.push(::Legends.Background.Nomad);
 			this.m.DraftList.push(::Legends.Background.NomadRanged);
 		}

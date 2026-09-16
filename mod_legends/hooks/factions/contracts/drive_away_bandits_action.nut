@@ -2,7 +2,7 @@
 {
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.drive_away_bandits_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.drive_away_bandits_contract))
 		{
 			return;
 		}
@@ -12,7 +12,7 @@
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 33 || this.Math.rand(1, 100) > 25)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 33 || ::Math.rand(1, 100) > 25)
 		{
 			return;
 		}
@@ -22,7 +22,7 @@
 
 		if (tooFar)
 		{
-			local bandits = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getSettlements();
+			local bandits = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).getSettlements();
 
 			foreach( b in bandits )
 			{

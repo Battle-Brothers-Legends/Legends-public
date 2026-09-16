@@ -7,7 +7,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_inventor_prosthetic_hand";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 40 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 40 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_inventor_general.png[/img]As you take in the scenery you find %inventor% sitting by a tree, seemingly deep in thought, startling him as you approach.%SPEECH_ON%Oh, hey there, captain! I didn\'t see you there.%SPEECH_OFF%He stands up and enthusiastically steps up to you.%SPEECH_ON%You know.. I\'ve been thinking of ways to help %nohand% with his problem, and I think I might have come up with a solution.%SPEECH_OFF%He scratches his head nervously as he continues..%SPEECH_ON%I.. will need some coin in order to cover the material cost for this little experiment, however, and any leftover tools that we can spare.%SPEECH_OFF%",
@@ -52,18 +52,18 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 			{
 				this.Characters.push(_event.m.Inventor.getImagePath());
 				this.Characters.push(_event.m.Nohand.getImagePath());
-				this.World.Assets.addMoney(-1750);
+				::World.Assets.addMoney(-1750);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1750[/color] Crowns"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]1750[/color] Crowns"
 				});
 
-				this.World.Assets.addArmorParts(-15);
+				::World.Assets.addArmorParts(-15);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_supplies.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]15[/color] Tools and Supplies"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]15[/color] Tools and Supplies"
 				});
 
 				local trait = ::Legends.Traits.grant(_event.m.Nohand, ::Legends.Trait.LegendProstheticHand, function (_trait) {
@@ -75,7 +75,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 				}.bindenv(this));
 
 				local pros_hand_works = _event.m.Nohand.getItems();
-				pros_hand_works.getData()[this.Const.ItemSlot.Offhand][0] = null;
+				pros_hand_works.getData()[::Const.ItemSlot.Offhand][0] = null;
 
 				local missing_hand_bye = this.new("scripts/skills/injury_permanent/missing_hand_injury");
 				_event.m.Nohand.getSkills().removeByID("injury.missing_hand");
@@ -114,24 +114,16 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		this.m.Score = 0;
 		return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		local inventor_candidates = [];
+		local brothers = ::World.getPlayerRoster().getAll();
+		local inventor_candidates = brothers.filter(@(_, _bro) (::Legends.Professions.has(_bro, ::Legends.Profession.LegendProsthetics)));
 		local nohand_candidates = [];
 
 
-		if (this.World.Assets.getMoney() < 2000 || this.World.Assets.getArmorParts() < 40)
+		if (::World.Assets.getMoney() < 2000 || ::World.Assets.getArmorParts() < 40)
 		{
 			return;
 		}
 
-
-		foreach (bro in brothers)
-		{
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendInventorAnatomy))
-			{
-				inventor_candidates.push(bro);
-			}
-		}
 		if (inventor_candidates.len() < 1)
 		{
 			return;
@@ -159,7 +151,7 @@ this.legend_inventor_prosthetic_hand <- this.inherit("scripts/events/event", {
 		}
 
 
-		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / this.Const.LevelXP.len());
+		this.m.Score = 5.0 + ((this.m.Inventor.getLevel() * 10.0) / ::Const.LevelXP.len());
 	}
 
 	function onPrepare()

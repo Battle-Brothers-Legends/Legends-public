@@ -14,8 +14,8 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 	function create()
 	{
 		this.accessory.create();
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
-		this.m.ItemType = this.Const.Items.ItemType.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
+		this.m.ItemType = ::Const.Items.ItemType.Accessory;
 		this.m.IsUsable = false;
 		this.m.IsAllowedInBag = true;
 		this.m.IsDroppedAsLoot = true;
@@ -48,7 +48,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/inventory/wardog_inventory_0" + this.Math.rand(1, 3) + ".wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/inventory/wardog_inventory_0" + ::Math.rand(1, 3) + ".wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function updateVariant()
@@ -104,7 +104,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 				}
 			}
 
-			local entity = this.Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
+			local entity = ::Tactical.spawnEntity(this.getScript(), _onTile.Coords.X, _onTile.Coords.Y);
 			entity.setItem(this);
 			entity.setName(this.getName());
 			if (entity.setVariant.getinfos().parameters.len()-1 == 1) { // regular pet
@@ -122,7 +122,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 			}
 
 			this.setEntity(entity);
-			entity.setFaction(this.Const.Faction.PlayerAnimals);
+			entity.setFaction(::Const.Faction.PlayerAnimals);
 
 			if (this.m.ArmorScript != null)
 			{
@@ -130,7 +130,7 @@ this.legend_accessory_dog <- this.inherit("scripts/items/accessory/accessory", {
 				entity.getItems().equip(item);
 			}
 
-			this.Sound.play(this.m.UnleashSounds[this.Math.rand(0, this.m.UnleashSounds.len() - 1)], this.Const.Sound.Volume.Skill, _onTile.Pos);
+			::Sound.play(this.m.UnleashSounds[::Math.rand(0, this.m.UnleashSounds.len() - 1)], ::Const.Sound.Volume.Skill, _onTile.Pos);
 		}
 	}
 

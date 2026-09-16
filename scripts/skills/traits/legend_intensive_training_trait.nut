@@ -23,8 +23,8 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 		this.m.Name = "Training progress";
 		this.m.Icon = "ui/traits/IntensiveTraining.png";
 		this.m.Description = "This character has some military training but will take time to find their feet.\n Place them in the training camp to hone their skills. Training progress points will be earned over time.\n At 15 points, this character will gain a perk point and one positive trait relevant to their combat style.\n\n [color=%negative%]You can only gain training progress points with the upgraded training tent in your stash![/color]";
-		this.m.Order = this.Const.SkillOrder.Background + 1;
-		this.m.Type = this.Const.SkillType.Trait;
+		this.m.Order = ::Const.SkillOrder.Background + 1;
+		this.m.Type = ::Const.SkillType.Trait;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -366,7 +366,7 @@ this.legend_intensive_training_trait <- this.inherit("scripts/skills/traits/char
 
 	function onCombatFinished()
 	{
-		if (this.Tactical.isActive()) {
+		if (::Tactical.isActive()) {
 		if (this.m.SettlementTrainingDelay > 0)
 			this.m.SettlementTrainingDelay -= 1;
 		if (this.m.TraitRerollDelay > 0)

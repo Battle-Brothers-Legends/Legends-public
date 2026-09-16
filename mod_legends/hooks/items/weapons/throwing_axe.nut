@@ -4,10 +4,10 @@
 	o.create = function() {
 		create();
 		this.m.Categories = "Throwing Weapon/Axe, One-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Throwing | this.Const.Items.WeaponType.Axe;
+		this.m.WeaponType = ::Const.Items.WeaponType.Throwing | ::Const.Items.WeaponType.Axe;
 		this.m.ArmorDamageMult = 1.3;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
-		this.m.Variant = this.Math.rand(0, 2);
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.OneHanded;
+		this.m.Variant = ::Math.rand(0, 2);
 		this.m.Ammo = 6;
 		this.m.AmmoMax = 6;
 		this.updateVariant();

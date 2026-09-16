@@ -5,7 +5,7 @@ this.legend_muladi_trials2_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legends.muladi.trials2";
 		this.m.Title = "On the outskirts of %settlement%...";
-		this.m.Cooldown = 15.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 15.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_141.png[/img]{Walking the sodden fields of %settlement%, you spy a number of your men up ahead running towards something. Following them round the back of a barn, you\'re met with a cluster of mercenaries, farmhands, and in the middle in a heap on the floor, %muladi% the muladi. You can feel the tension as the company quickly backs up the muladi, barking threats and demands, though the peasants offer firm verbal resistance. You push through to see a swelling puddle of blood and %muladi% curled into a fetal ball, holding their hands to their body. Across, peasants brace with farming tools as makeshift weapons of war, striking a most embarrassing defensive formation against the presence of your men. %SPEECH_ON%They farkin\' jumped %them_mualdi%, captain! Ran \'em through with a pitchfork for nothing!%SPEECH_OFF%One of the peasants produces said pitchfork, blood dripping from one of its rusted metal points. They brandish it against you and the others, declaring they\'ll run you through as well if you interfere.%SPEECH_ON%This freak has humiliated us, us good normal folk! They\'ve been living as one of them southern nomad bastards, the same ones who steal our cattle, our food, our children! Now they think they can slink back here and pretend they\'re like us and not some thieving brigand!%SPEECH_OFF%Their fervour and certainty in your brother\'s perceived crime is only tempered when you draw your sword and posture up against this peasant, who by now is shaking and looking to their peers for support. While you know little of your muladi\'s past, the fact stands that a mob of rabble just tried to murder them in an ambush. You have no doubt your company would make a short and brutal example of the now shaking assailants, but such a massacre would certainly harm any goodwill with the locals. Glancing back, you see %muladi% clutching their wound and groaning, as well as the rage in the company\'s eyes for such a slight. The men crave that one command that would sate their anger and promise them justice. With a sigh, you order the company...}",
@@ -51,7 +51,7 @@ this.legend_muladi_trials2_event <- this.inherit("scripts/events/event", {
 
 					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, 0.5, "Dished out vengeance against violent peasants");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push(entry);
 					}
 				}
@@ -84,7 +84,7 @@ this.legend_muladi_trials2_event <- this.inherit("scripts/events/event", {
 
 					if (::Math.rand(1, 100) <= 50) {
 						local entry = ::Legends.EventList.changeMood(bro, -1.0, "Denied vengeance against violent peasants");
-						if (bro.getMoodState() >= this.Const.MoodState.Neutral)
+						if (bro.getMoodState() >= ::Const.MoodState.Neutral)
 							this.List.push(entry);
 					}
 				}

@@ -28,13 +28,13 @@ this.legend_super_nightmare_skill <- this.inherit("scripts/skills/actives/nightm
 	{
 		local target = _tag.TargetTile.getEntity();
 
-		if (!target.checkMorale(0, -35, this.Const.MoraleCheckType.MentalAttack))
+		if (!target.checkMorale(0, -35, ::Const.MoraleCheckType.MentalAttack))
 		{
 			::Legends.Effects.grant(target, ::Legends.Effect.Horrified);
 
 			if (!_tag.User.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is horrified");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is horrified");
 			}
 		}
 

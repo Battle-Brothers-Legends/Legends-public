@@ -31,7 +31,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 			],
 
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				if(::World.Assets.getOrigin().getID() == "scenario.manhunters"){
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Slave]);
@@ -472,7 +472,7 @@ this.legend_shuckster_encounter <- this.inherit("scripts/encounters/encounter", 
 		}
 
 		if (candidates.len() > 0) {
-			this.m.Catcher = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Catcher = candidates[::Math.rand(0, candidates.len() - 1)];
 		}
 	}
 

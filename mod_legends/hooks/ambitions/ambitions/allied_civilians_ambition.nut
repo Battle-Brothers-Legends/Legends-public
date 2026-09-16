@@ -2,13 +2,13 @@
 {
 	o.onPrepareVariables = function ( _vars )
 	{
-		local allies = this.World.FactionManager.getAlliedFactions(this.Const.Faction.Player);
+		local allies = ::World.FactionManager.getAlliedFactions(::Const.Faction.Player);
 
 		foreach( a in allies )
 		{
-			local f = this.World.FactionManager.getFaction(a);
+			local f = ::World.FactionManager.getFaction(a);
 
-			if (f != null && (f.getType() == this.Const.FactionType.Settlement || f.getType() == this.Const.FactionType.OrientalCityState) && f.getPlayerRelation() >= 70.0)
+			if (f != null && (f.getType() == ::Const.FactionType.Settlement || f.getType() == ::Const.FactionType.OrientalCityState) && f.getPlayerRelation() >= 70.0)
 			{
 				_vars.push([
 					"friendlytown",
@@ -18,7 +18,7 @@
 			}
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() > 1)
 		{
@@ -46,7 +46,7 @@
 
 		foreach( bro in brothers )
 		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 			{
 				_vars.push([
 					"brawler",
@@ -58,7 +58,7 @@
 
 		_vars.push([
 			"brawler",
-			brothers[this.Math.rand(0, brothers.len() - 1)].getName()
+			brothers[::Math.rand(0, brothers.len() - 1)].getName()
 		]);
 	}
 });

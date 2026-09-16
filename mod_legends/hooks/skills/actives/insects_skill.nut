@@ -8,7 +8,7 @@
 	}
 
 	o.getDescription <- function () {
-		return "Conjure a cloud of a thousand black flies to swarm an enemy. The insects seek to crawl into every crack in the armor and every bodily orifice, almost completely overwhelming the target's ability to fight for [color=" + this.Const.UI.Color.NegativeValue + "]" + 3 + "[/color] turns.";
+		return "Conjure a cloud of a thousand black flies to swarm an enemy. The insects seek to crawl into every crack in the armor and every bodily orifice, almost completely overwhelming the target's ability to fight for [color=" + ::Const.UI.Color.NegativeValue + "]" + 3 + "[/color] turns.";
 	}
 
 	o.getTooltip <- function () {
@@ -59,7 +59,7 @@
 				text = "[color=%negative%]-50%[/color] Initiative"
 			}
 		];
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))	{
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))	{
 			ret.push({
 				id = 15,
 				type = "text",

@@ -39,18 +39,17 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 			::Legends.Traits.getID(::Legends.Trait.Loyal)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
-			this.Const.Attributes.RangedDefense
+			::Const.Attributes.RangedSkill,
+			::Const.Attributes.RangedDefense
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Good;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Combat | this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Untalented;
+		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Combat | ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Untalented;
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Student,
 				::Legends.Perk.Pathfinder,
-				::Legends.Perk.BagsAndBelts,
 				// ::Legends.Perk.LegendComposure,
 				::Legends.Perk.Adrenaline,
 				::Legends.Perk.LegendHolyFlame
@@ -99,14 +98,14 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 25)
+		if (::Math.rand(1, 100) <= 25)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -140,15 +139,15 @@ this.legend_crusader_background <- this.inherit("scripts/skills/backgrounds/char
 function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeDefense] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeDefense] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
 		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.mail_hauberk],
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.scale_armor],
@@ -156,7 +155,7 @@ function onAddEquipment()
 			[1, ::Legends.Armor.Standard.worn_mail_shirt]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet],
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],
@@ -165,7 +164,7 @@ function onAddEquipment()
 		]);
 		if (item != null)
 		{
-			item.onPaint(this.Const.Items.Paint.None);
+			item.onPaint(::Const.Items.Paint.None);
 			items.equip(item);
 		}
 

@@ -6,14 +6,14 @@ this.legend_named_heavy_southern_mace <- this.inherit("scripts/items/weapons/nam
 	{
 		this.named_weapon.create();
 		this.m.Variants = [1,2];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() -1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() -1)];
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_heavy_southern_mace";
-		this.m.NameList = this.Const.Strings.MaceNames;
+		this.m.NameList = ::Const.Strings.MaceNames;
 		this.m.Description = "A heavy winged mace from the south. The smith who forged this weapon certainly knew what he was doing.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Mace;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Mace;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

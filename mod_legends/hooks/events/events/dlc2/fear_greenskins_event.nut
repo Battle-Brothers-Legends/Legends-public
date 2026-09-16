@@ -29,23 +29,23 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 			return;
 		}
 
 		local fallen = [];
-		local fallen = this.World.Statistics.getFallen();
+		local fallen = ::World.Statistics.getFallen();
 
 		if (fallen.len() < 2)
 			return;
 
-		if (fallen[0].Time < this.World.getTime().Days || fallen[1].Time < this.World.getTime().Days)
+		if (fallen[0].Time < ::World.getTime().Days || fallen[1].Time < ::World.getTime().Days)
 			return;
 
-		if (this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getID() && this.World.Statistics.getFlags().getAsInt("LastCombatFaction") != this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getID())
+		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Orcs).getID() && ::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getID())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -70,7 +70,7 @@
 		if (candidates.len() == 0)
 			return;
 
-		this.m.Casualty = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Casualty = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = 50;
 	}
 });

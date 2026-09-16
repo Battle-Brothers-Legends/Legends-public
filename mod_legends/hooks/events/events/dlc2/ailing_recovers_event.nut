@@ -19,10 +19,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -48,8 +48,8 @@
 		if (candidates_ailing.len() == 0 || candidates_healer.len() == 0)
 			return;
 
-		this.m.Ailing = candidates_ailing[this.Math.rand(0, candidates_ailing.len() - 1)];
-		this.m.Healer = candidates_healer[this.Math.rand(0, candidates_healer.len() - 1)];
+		this.m.Ailing = candidates_ailing[::Math.rand(0, candidates_ailing.len() - 1)];
+		this.m.Healer = candidates_healer[::Math.rand(0, candidates_healer.len() - 1)];
 		this.m.Score = 5;
 	}
 });

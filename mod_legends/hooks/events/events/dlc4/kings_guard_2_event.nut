@@ -18,11 +18,11 @@
 					_event.m.Dude.resetPerks();
 					_event.m.Dude.improveMood(1.0, "Is %their% former self again");
 
-					if (_event.m.Dude.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.Dude.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Dude.getMoodState()],
-							text = _event.m.Dude.getName() + this.Const.MoodStateEvent[_event.m.Dude.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Dude.getMoodState()],
+							text = _event.m.Dude.getName() + ::Const.MoodStateEvent[_event.m.Dude.getMoodState()]
 						});
 					}
 
@@ -44,6 +44,6 @@
 		if (this.m.Dude == null)
 			return;
 
-		this.m.Score = this.Math.floor(this.m.Dude.getDaysWithCompany() / 2);
+		this.m.Score = ::Math.floor(this.m.Dude.getDaysWithCompany() / 2);
 	}
 })

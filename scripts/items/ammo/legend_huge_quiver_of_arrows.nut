@@ -8,9 +8,9 @@ this.legend_huge_quiver_of_arrows <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.Description = "A huge quiver of arrows, required to use bows of all kinds. Is automatically refilled after each battle if you have enough ammunition.";
 		this.m.Icon = "ammo/quiver_05.png";
 		this.m.IconEmpty = "ammo/quiver_05_empty.png";
-		this.m.SlotType = this.Const.ItemSlot.Ammo;
-		this.m.ItemType = this.Const.Items.ItemType.Ammo;
-		this.m.AmmoType = this.Const.Items.AmmoType.Arrows;
+		this.m.SlotType = ::Const.ItemSlot.Ammo;
+		this.m.ItemType = ::Const.Items.ItemType.Ammo;
+		this.m.AmmoType = ::Const.Items.AmmoType.Arrows;
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";

@@ -21,19 +21,19 @@ this.mods_hookExactClass("skills/injury_permanent/brain_damage_injury", function
 				id = 7,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=" + this.Const.UI.Color.PositiveValue + "]+15%[/color] Resolve"
+				text = "[color=" + ::Const.UI.Color.PositiveValue + "]+15%[/color] Resolve"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/xp_received.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-25%[/color] Experience Gain"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-25%[/color] Experience Gain"
 			},
 			{
 				id = 7,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = "[color=" + this.Const.UI.Color.NegativeValue + "]-25%[/color] Initiative"
+				text = "[color=" + ::Const.UI.Color.NegativeValue + "]-25%[/color] Initiative"
 			},
 			{
 				id = 8,

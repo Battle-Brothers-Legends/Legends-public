@@ -4,15 +4,15 @@ this.legend_armor_chain_and_mail_upgrade <- this.inherit("scripts/items/legend_a
 	{
 		this.legend_armor_upgrade.create();
 		this.m.ID = "legend_armor_upgrade.body.legend_armor_chain_and_mail";
-		this.m.Type = this.Const.Items.ArmorUpgrades.Attachment;
+		this.m.Type = ::Const.Items.ArmorUpgrades.Attachment;
 		this.m.Name = "Amulet Coif";
 		this.m.Description = "An expensive amulet on a gold chain set on a mail collar. Certain to attract attention.";
 		this.m.ArmorDescription = "Includes an expensive chain on a mail collar.";
 		this.m.Variants = [1,2,3,4];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 3000;
 		this.m.Condition = 20;
 		this.m.ConditionMax = 20;

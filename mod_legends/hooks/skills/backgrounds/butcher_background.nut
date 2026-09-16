@@ -22,7 +22,7 @@
 			::Legends.Traits.getID(::Legends.Trait.Optimist)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.RangedSkill
 		];
 		this.m.Titles = [
 			"the Butcher",
@@ -31,9 +31,9 @@
 			"Redmeat",
 			"Bloodeye"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.BackgroundType = this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.BackgroundType = ::Const.BackgroundType.Lowborn;
 	}
 
 	o.getTooltip = function () {
@@ -54,7 +54,7 @@
 
 	o.onBuildDescription <- function ()
 	{
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{After her father\'s death, %name% took over the family butcher shop in %randomtown%. | Growing up poor, %name% quickly learned to kill and strip animals, eventually founding a butcher\'s shop. | With droughts ruining the farmlands, %name%\'s butcher shop took off in %randomtown%. | Always a strange girl, %name% took to butchering not only for profit, but for pleasure. | Grinning ear to ear, %name% never looked so happy as when her shop opened and she got her first order of live pigs in stock. | As a butcher, %name% has spent years squishing guts out of dead rabbits and lopping heads off sometimes-dead fish.} {But rumors of animal torture eventually drove the cleaver-swinger from her business. | Given the terrible rumors of dark arts already going around, it wasn\'t long until people began questioning the source of her meats and drove her out of business. | But killing animals, for one reason or another, didn\'t quite excite her anymore. She sought something new. | After a human finger was found in one of her deer wrappings, the woman was driven from his business. | Some say she most enjoyed butchering for soldiers during the orc invasions and wishes to return to that experience once more. | Unfortunately, the war drove through her shop, leaving behind a number of carcasses she wouldn\'t dare butcher. | Living in a city under siege, she provided meat for the hungry. When it was found out where that meat came from, she was handed over to the besiegers who, unwittingly, let her live. | The woman\'s friendliness with poachers caught up with her, ultimately leaving her on the road with a retinue of the local lords\'s men on her tail. | Butchering a tiny fish became a scandal when it turned out to be a nobleman\'s pet. She fled to save her own scales.} {Something about blood and guts sits just right with %name%. In that case, welcome to the battlefield. | %name% looks at everything as a potential meat sale with breathing, moving packaging. | Many are disturbed by %name%\'s mere presence and all-too-wide eyes. | %name% is known to bite her tongue and savor the blood. | %name%\'s ears perk whenever a pig squeals. The same thing happens when a man screams. Interesting. | %name%\'s a butcher, but apparently has little interest in actually feeding the outfit.}";
 		}
@@ -73,7 +73,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r <= 1)
 		{
@@ -84,7 +84,7 @@
 			items.equip(this.new("scripts/items/weapons/knife"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.butcher_apron]
 		]));
 	}

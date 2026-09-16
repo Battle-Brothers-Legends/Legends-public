@@ -28,45 +28,45 @@
 		local r;
 		local banner = 3;
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
 			local weapons = [
 				"weapons/shamshir",
 				"weapons/oriental/heavy_southern_mace"
 			];
 
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand))
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
 			{
 				weapons.extend([
 					"weapons/oriental/two_handed_scimitar"
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/oriental/metal_round_shield"));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Southern.padded_mail_and_lamellar_hauberk],
 				[1, ::Legends.Armor.Southern.southern_long_mail_with_padding],
 				[1, ::Legends.Armor.Southern.mail_and_lamellar_plating]
 			]));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
 		{
 			local helmet = [
 				[1, ::Legends.Helmet.Southern.turban_helmet],
 				[1, ::Legends.Helmet.Southern.heavy_lamellar_helmet],
 				[1, ::Legends.Helmet.Southern.southern_helmet_with_coif]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
+			this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
 		}
 	}
 
@@ -86,32 +86,32 @@
 			"weapons/named/named_swordlance",
 			"weapons/named/named_polemace"
 		];
-		local shields = this.Const.Items.NamedSouthernShields;
+		local shields = ::Const.Items.NamedSouthernShields;
 
-		local r = this.Math.rand(1, 4);
-		local armor = clone this.Const.Items.NamedSouthernArmors;
-		local helmets = clone this.Const.Items.NamedSouthernHelmets;
+		local r = ::Math.rand(1, 4);
+		local armor = clone ::Const.Items.NamedSouthernArmors;
+		local helmets = clone ::Const.Items.NamedSouthernHelmets;
 
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else if (r == 2)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 		else if (r == 3)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
-				this.Const.World.Common.convNameToList(
+			this.m.Items.equip(::Const.World.Common.pickArmor(
+				::Const.World.Common.convNameToList(
 					armor
 				)
 			));
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
-				this.Const.World.Common.convNameToList(
+			this.m.Items.equip(::Const.World.Common.pickArmor(
+				::Const.World.Common.convNameToList(
 					helmets
 				)
 			));

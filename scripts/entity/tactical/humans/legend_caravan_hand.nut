@@ -3,14 +3,14 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.CaravanHand;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.CaravanHand.XP;
+		this.m.Type = ::Const.EntityType.CaravanHand;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.CaravanHand.XP;
 		this.legend_randomized_unit_abstract.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/caravan_melee_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeEnemyGender() == 1) {
@@ -22,7 +22,7 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.CaravanHand);
+		b.setValues(::Const.Tactical.Actor.CaravanHand);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -47,7 +47,7 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 	}
 	// function assignRandomEquipment()
 	// {
-	// 	local r = this.Math.rand(1, 9);
+	// 	local r = ::Math.rand(1, 9);
 
 	// 	if (r == 1)
 	// 	{
@@ -86,22 +86,22 @@ this.legend_caravan_hand <- this.inherit("scripts/entity/tactical/legend_randomi
 	// 		this.m.Items.equip(this.new("scripts/items/weapons/legend_militia_glaive"));
 	// 	}
 
-	// 	if (this.Math.rand(1, 100) <= 33)
+	// 	if (::Math.rand(1, 100) <= 33)
 	// 	{
 	// 		this.m.Items.equip(this.new("scripts/items/shields/buckler_shield"));
 	// 	}
 
-	// 	local item = this.Const.World.Common.pickArmor([
-	//		[1, ::Legends.Armor.Standard.leather_tunic, this.Math.rand(6,7)],
+	// 	local item = ::Const.World.Common.pickArmor([
+	//		[1, ::Legends.Armor.Standard.leather_tunic, ::Math.rand(6,7)],
 	// 		[1, ::Legends.Armor.Standard.padded_leather],
 	// 		[1, ::Legends.Armor.Standard.padded_surcoat],
 	// 		[1, ::Legends.Armor.Standard.leather_lamellar]
 	// 	]);
 	// 	this.m.Items.equip(item);
 
-	// 	if (this.Math.rand(1, 100) <= 33)
+	// 	if (::Math.rand(1, 100) <= 33)
 	// 	{
-	// 		local item = this.Const.World.Common.pickHelmet([
+	// 		local item = ::Const.World.Common.pickHelmet([
 	// 			[1, ::Legends.Helmet.Standard.hood],
 	// 			[1, ::Legends.Helmet.Standard.aketon_cap]
 	// 		])

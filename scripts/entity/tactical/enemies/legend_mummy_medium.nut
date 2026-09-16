@@ -13,8 +13,8 @@ this.legend_mummy_medium <- this.inherit("scripts/entity/tactical/legend_mummy",
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/skeleton_melee_agent");
 		} else {
 			this.m.AIAgent = this.new("scripts/ai/tactical/agents/bandit_ranged_agent");
-			this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Retreat);
-			this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Flee);
+			this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Retreat);
+			this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Flee);
 		}
 		this.m.AIAgent.setActor(this);
 	}

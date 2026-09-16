@@ -4,16 +4,16 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 	{
 		this.m.ID = "scenario.legends_sisterhood";
 		this.m.Name = "Sisterhood";
-		this.m.Description = "[p=c][img]gfx/ui/events/event_91.png[/img][/p][p]Born into a world dominated by kings and bishops, you have studied the old ways of the wise women. Now you lead a band of powerful women shaping their own destinies. \n\n[color=#bcad8c]Sisterhood:[/color] You can only hire women and each gains the [color=" + this.Const.UI.Color.Perk + "]Resillient[/color] perk.\n[color=#bcad8c]Threads of fate:[/color] Your chants and trances alter the minds of your allies and enemies.\n[color=#bcad8c]Rune stones:[/color] You can craft powerful items imbued with ancient runes.\n[color=#bcad8c]Avatar:[/color] If you die, it is game over.[/p]";
+		this.m.Description = "[p=c][img]gfx/ui/events/event_91.png[/img][/p][p]Born into a world dominated by kings and bishops, you have studied the old ways of the wise women. Now you lead a band of powerful women shaping their own destinies. \n\n[color=#bcad8c]Sisterhood:[/color] You can only hire women and each gains the [color=" + ::Const.UI.Color.Perk + "]Resillient[/color] perk.\n[color=#bcad8c]Threads of fate:[/color] Your chants and trances alter the minds of your allies and enemies.\n[color=#bcad8c]Rune stones:[/color] You can craft powerful items imbued with ancient runes.\n[color=#bcad8c]Avatar:[/color] If you die, it is game over.[/p]";
 		this.m.Difficulty = 2;
 		this.m.Order = 260;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 	}
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		for( local i = 0; i < 6; i = i )
 		{
@@ -48,18 +48,18 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 		bros[5].setStartValuesEx([::Legends.Background.AdventurousNoble], true, 1);
 		bros[5].setPlaceInFormation(14);
-		this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
+		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
 	}
 
 	function onSpawnPlayer()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() <= 1)
 			{
@@ -70,22 +70,22 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 3), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 3));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 3), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 3));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 3), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 3));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 3), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 3));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied)
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
 				{
 				}
 				else if (tile.getDistanceTo(randomVillageTile) <= 1)
@@ -93,7 +93,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -105,26 +105,26 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(108);
-		this.World.spawnLocation("scripts/entity/world/locations/battlefield_location", randomVillageTile.Coords).setSize(1);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(108);
+		::World.spawnLocation("scripts/entity/world/locations/battlefield_location", randomVillageTile.Coords).setSize(1);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(this.Const.Music.CivilianTracks, this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_sisterhood_scenario_intro");
+			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_sisterhood_scenario_intro");
 		}, null);
 	}
 
 	function onInit()
 	{
 		this.starting_scenario.onInit();
-		this.World.Flags.set("IsLegendsVala", true);
+		::World.Flags.set("IsLegendsVala", true);
 	}
 
 	function onHiredByScenario( _bro )
 	{
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Female))
 		{
 			_bro.improveMood(1.0, "Joined the righteous cause of the Sisterhood");
 			_bro.improveMood(0.5, "Learned a new skill");
@@ -145,7 +145,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 				continue;
 			}
 
-			if (!bro.getBackground().isBackgroundType(this.Const.BackgroundType.Female))
+			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Female))
 			{
 				garbage.push(bro);
 			}
@@ -158,7 +158,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onCombatFinished()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -173,7 +173,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onBuildPerkTree( _background )
 	{
-		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(this.Const.BackgroundType.Female));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.HoldOut, 0, _background.isBackgroundType(::Const.BackgroundType.Female));
 	}
 
 });

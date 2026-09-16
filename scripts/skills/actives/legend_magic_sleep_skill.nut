@@ -9,8 +9,8 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Slept";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_sleep", 12);
 		this.m.IsUsingActorPitch = true;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 600;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -48,7 +48,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 	function makeSleepCheck(_target)
 	{
 		local targetResolve = _target.getCurrentProperties().getBravery();
-		local chance = this.Math.round(40 + (this.getCurrentResolve() - targetResolve)/5);
+		local chance = ::Math.round(40 + (this.getCurrentResolve() - targetResolve)/5);
 		if (chance > 100)
 		{
 			chance = 100;
@@ -57,7 +57,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 		{
 			chance = 0;
 		}
-		local roll = this.Math.rand(1, 100);
+		local roll = ::Math.rand(1, 100);
 		local ret = {
 			Roll = roll,
 			Chance = chance,
@@ -133,13 +133,13 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 		foreach( target in targets )
 		{
 			local ret = this.makeSleepCheck(target);
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " tries to put " + this.Const.UI.getColorizedEntityName(target) + " to sleep (Chance: " + ret.Chance + ", Rolled: " + ret.Roll +")");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " tries to put " + ::Const.UI.getColorizedEntityName(target) + " to sleep (Chance: " + ret.Chance + ", Rolled: " + ret.Roll +")");
 
 			if (ret.Result)
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve.");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve.");
 				}
 
 				continue;
@@ -149,7 +149,7 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " falls to sleep");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " falls to sleep");
 			}
 		}
 	}

@@ -53,9 +53,9 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 	{
 		this.skill.onCombatStarted();
 
-		if (this.Math.rand(1, 20) <= 1)
+		if (::Math.rand(1, 20) <= 1)
 		{
-			local allies = this.Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
+			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 			local ownID = this.getContainer().getActor().getID();
 
 			foreach( ally in allies )
@@ -74,7 +74,7 @@ this.legend_double_tongued_trait <- this.inherit("scripts/skills/traits/characte
 
 				local ally_morale = ally.getMoraleState();
 
-				if (ally_morale > this.Const.MoraleState.Fleeing && ally_morale < ::Const.MoraleState.Ignore)
+				if (ally_morale > ::Const.MoraleState.Fleeing && ally_morale < ::Const.MoraleState.Ignore)
 				{
 					ally.setMoraleState(ally_morale - 1);
 				}

@@ -7,7 +7,7 @@ function onCostCompare( _t1, _t2 )
 	return 0;
 }
 
-foreach(k, v in this.Const.World.Spawn)
+foreach(k, v in ::Const.World.Spawn)
 {
 	if (k == "Troops" || k == "Unit" || k == "TroopsMap")
 		continue;
@@ -60,7 +60,7 @@ foreach(k, v in this.Const.World.Spawn)
 			variance += (d * d);
 		}
 		variance = (variance * 1.0) / ( v.Troops[i].SortedTypes.len() * 1.0);
-		deviation = this.Math.pow(variance, 0.5);
+		deviation = ::Math.pow(variance, 0.5);
 
 
 		v.Troops[i].Mean <- mean;

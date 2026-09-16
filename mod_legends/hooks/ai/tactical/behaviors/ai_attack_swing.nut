@@ -31,7 +31,7 @@
 					if (ourTile.hasNextTile(d)) {
 						local tile = ourTile.getNextTile(d);
 
-						if (this.Math.abs(tile.Level - ourTile.Level) <= 1 && tile.IsOccupiedByActor) {
+						if (::Math.abs(tile.Level - ourTile.Level) <= 1 && tile.IsOccupiedByActor) {
 							local targetEntity = tile.getEntity();
 							if (targetEntity.isAlliedWith(_entity)) {
 								combinedValue = combinedValue - (1.0 - this.getProperties().TargetPriorityHittingAlliesMult) * targetEntity.getCurrentProperties().TargetAttractionMult;
@@ -55,7 +55,7 @@
 			}
 		}
 		
-		local score = this.Math.maxf(0.0, bestCombinedValue / 2.0);
+		local score = ::Math.maxf(0.0, bestCombinedValue / 2.0);
 		return {
 			Target = bestTarget,
 			Score = score

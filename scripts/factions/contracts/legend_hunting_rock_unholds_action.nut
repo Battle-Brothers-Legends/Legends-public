@@ -5,22 +5,22 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 	function create()
 	{
 		this.m.ID = "legend_hunting_rock_unholds_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 14;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 14;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
-		this.m.DifficultyMult = this.Math.rand(145, 175) * 0.01;
+		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 	}
 
 	function onUpdate( _faction )
 	{
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 		{
 			return;
 		}
 
 		// For settlement faction
-		if (_faction.getType()==this.Const.FactionType.Settlement && !_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_hunting_rock_unholds_contract))
+		if (_faction.getType()==::Const.FactionType.Settlement && !_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_hunting_rock_unholds_contract))
 		{
 			return;
 		}
@@ -31,7 +31,7 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 700)
+		if (::World.Assets.getBusinessReputation() < 700)
 		{
 			return;
 		}
@@ -60,9 +60,9 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 			return;
 		}
 
-		local minResources = this.Const.World.LegendaryContract.RockUnhold * this.Const.World.ContractCost.RockUnhold + this.Const.World.ContractCost.RockUnhold;
+		local minResources = ::Const.World.LegendaryContract.RockUnhold * ::Const.World.ContractCost.RockUnhold + ::Const.World.ContractCost.RockUnhold;
 
-		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * this.Const.World.ContractCost.RockUnhold;
+		local currentResources = this.getDifficultyMult() * this.getScaledDifficultyMult() * ::Const.World.ContractCost.RockUnhold;
 
 		if(currentResources < minResources)
 		{
@@ -70,7 +70,7 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 		}
 		else
 		{
-			this.Const.World.LegendaryContract.RockUnhold += 1;
+			::Const.World.LegendaryContract.RockUnhold += 1;
 		}
 
 		this.m.Score = 1;
@@ -88,7 +88,7 @@ this.legend_hunting_rock_unholds_action <- this.inherit("scripts/factions/factio
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setEmployerID(_faction.getRandomCharacter().getID());
 		contract.setEnemyType(this.m.EnemyType);
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

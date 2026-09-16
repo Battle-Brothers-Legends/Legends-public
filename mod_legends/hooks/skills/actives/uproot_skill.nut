@@ -46,20 +46,20 @@
 	{
 		local myTile = _user.getTile();
 		local dir = myTile.getDirectionTo(_targetTile);
-		this.Tactical.spawnAttackEffect("uproot", _targetTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
+		::Tactical.spawnAttackEffect("uproot", _targetTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
 
-		for( local i = 0; i < this.Const.Tactical.DustParticles.len(); i = i )
+		for( local i = 0; i < ::Const.Tactical.DustParticles.len(); i = i )
 		{
-			this.Tactical.spawnParticleEffect(false, this.Const.Tactical.DustParticles[i].Brushes, _targetTile, this.Const.Tactical.DustParticles[i].Delay, this.Const.Tactical.DustParticles[i].Quantity * 0.5, this.Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, this.Const.Tactical.DustParticles[i].SpawnRate, this.Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
+			::Tactical.spawnParticleEffect(false, ::Const.Tactical.DustParticles[i].Brushes, _targetTile, ::Const.Tactical.DustParticles[i].Delay, ::Const.Tactical.DustParticles[i].Quantity * 0.5, ::Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, ::Const.Tactical.DustParticles[i].SpawnRate, ::Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
 			i = ++i;
 		}
 
-		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && !(_targetTile.getEntity().getType() == this.Const.EntityType.Schrat || _targetTile.getEntity().getType() == this.Const.EntityType.SchratSmall || _targetTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchrat || _targetTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchratSmall))
+		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && !(_targetTile.getEntity().getType() == ::Const.EntityType.Schrat || _targetTile.getEntity().getType() == ::Const.EntityType.SchratSmall || _targetTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchrat || _targetTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchratSmall))
 		{
 			if (_targetTile.getEntity().m.IsShakingOnHit)
 			{
-				this.Tactical.getShaker().shake(_targetTile.getEntity(), _targetTile, 7);
-				_user.playSound(this.Const.Sound.ActorEvent.Move, 2.0);
+				::Tactical.getShaker().shake(_targetTile.getEntity(), _targetTile, 7);
+				_user.playSound(::Const.Sound.ActorEvent.Move, 2.0);
 			}
 
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _tag )
@@ -76,22 +76,22 @@
 			local forwardTile = _targetTile.getNextTile(dir);
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _tag )
 			{
-				this.Tactical.spawnAttackEffect("uproot", forwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
+				::Tactical.spawnAttackEffect("uproot", forwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
 
-				for( local i = 0; i < this.Const.Tactical.DustParticles.len(); i = i )
+				for( local i = 0; i < ::Const.Tactical.DustParticles.len(); i = i )
 				{
-					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.DustParticles[i].Brushes, forwardTile, this.Const.Tactical.DustParticles[i].Delay, this.Const.Tactical.DustParticles[i].Quantity * 0.5, this.Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, this.Const.Tactical.DustParticles[i].SpawnRate, this.Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
+					::Tactical.spawnParticleEffect(false, ::Const.Tactical.DustParticles[i].Brushes, forwardTile, ::Const.Tactical.DustParticles[i].Delay, ::Const.Tactical.DustParticles[i].Quantity * 0.5, ::Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, ::Const.Tactical.DustParticles[i].SpawnRate, ::Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
 					i = ++i;
 				}
 
 				if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().m.IsShakingOnHit)
 				{
-					this.Tactical.getShaker().shake(forwardTile.getEntity(), forwardTile, 7);
-					_user.playSound(this.Const.Sound.ActorEvent.Move, 2.0);
+					::Tactical.getShaker().shake(forwardTile.getEntity(), forwardTile, 7);
+					_user.playSound(::Const.Sound.ActorEvent.Move, 2.0);
 				}
 			}.bindenv(this), null);
 
-			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - myTile.Level) <= 1 && !(forwardTile.getEntity().getType() == this.Const.EntityType.Schrat || forwardTile.getEntity().getType() == this.Const.EntityType.SchratSmall || forwardTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchrat || forwardTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchratSmall))
+			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && ::Math.abs(forwardTile.Level - myTile.Level) <= 1 && !(forwardTile.getEntity().getType() == ::Const.EntityType.Schrat || forwardTile.getEntity().getType() == ::Const.EntityType.SchratSmall || forwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchrat || forwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchratSmall))
 			{
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, function ( _tag )
 				{
@@ -107,22 +107,22 @@
 				local furtherForwardTile = forwardTile.getNextTile(dir);
 				this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, function ( _tag )
 				{
-					this.Tactical.spawnAttackEffect("uproot", furtherForwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
+					::Tactical.spawnAttackEffect("uproot", furtherForwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
 
-					for( local i = 0; i < this.Const.Tactical.DustParticles.len(); i = i )
+					for( local i = 0; i < ::Const.Tactical.DustParticles.len(); i = i )
 					{
-						this.Tactical.spawnParticleEffect(false, this.Const.Tactical.DustParticles[i].Brushes, furtherForwardTile, this.Const.Tactical.DustParticles[i].Delay, this.Const.Tactical.DustParticles[i].Quantity * 0.5, this.Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, this.Const.Tactical.DustParticles[i].SpawnRate, this.Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
+						::Tactical.spawnParticleEffect(false, ::Const.Tactical.DustParticles[i].Brushes, furtherForwardTile, ::Const.Tactical.DustParticles[i].Delay, ::Const.Tactical.DustParticles[i].Quantity * 0.5, ::Const.Tactical.DustParticles[i].LifeTimeQuantity * 0.5, ::Const.Tactical.DustParticles[i].SpawnRate, ::Const.Tactical.DustParticles[i].Stages, this.createVec(0, -30));
 						i = ++i;
 					}
 
 					if (furtherForwardTile.IsOccupiedByActor && furtherForwardTile.getEntity().m.IsShakingOnHit)
 					{
-						this.Tactical.getShaker().shake(furtherForwardTile.getEntity(), furtherForwardTile, 7);
-						_user.playSound(this.Const.Sound.ActorEvent.Move, 2.0);
+						::Tactical.getShaker().shake(furtherForwardTile.getEntity(), furtherForwardTile, 7);
+						_user.playSound(::Const.Sound.ActorEvent.Move, 2.0);
 					}
 				}.bindenv(this), null);
 
-				if (furtherForwardTile.IsOccupiedByActor && furtherForwardTile.getEntity().isAttackable() && !(furtherForwardTile.getEntity().getType() == this.Const.EntityType.Schrat || furtherForwardTile.getEntity().getType() == this.Const.EntityType.SchratSmall || furtherForwardTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchrat || furtherForwardTile.getEntity().getType() == this.Const.EntityType.LegendGreenwoodSchratSmall))
+				if (furtherForwardTile.IsOccupiedByActor && furtherForwardTile.getEntity().isAttackable() && !(furtherForwardTile.getEntity().getType() == ::Const.EntityType.Schrat || furtherForwardTile.getEntity().getType() == ::Const.EntityType.SchratSmall || furtherForwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchrat || furtherForwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchratSmall))
 				{
 					this.Time.scheduleEvent(this.TimeUnit.Virtual, 600, function ( _tag )
 					{

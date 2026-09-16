@@ -6,7 +6,7 @@ this.legend_summoned_sighthound_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/dawg_circle.png";
 		this.m.IconMini = "mini_dawg_circle";
 		this.m.Overlay = "dawg_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

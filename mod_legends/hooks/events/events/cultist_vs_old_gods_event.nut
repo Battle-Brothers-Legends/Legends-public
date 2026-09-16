@@ -14,10 +14,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.cultists")
+		if (::World.Assets.getOrigin().getID() == "scenario.cultists")
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 3)
 			return;
@@ -25,7 +25,7 @@
 		local cultist_candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
 				cultist_candidates.push(bro);
 
 		if (cultist_candidates.len() == 0)
@@ -40,8 +40,8 @@
 		if (oldgods_candidates.len() == 0)
 			return;
 
-		this.m.Cultist = cultist_candidates[this.Math.rand(0, cultist_candidates.len() - 1)];
-		this.m.OldGods = oldgods_candidates[this.Math.rand(0, oldgods_candidates.len() - 1)];
+		this.m.Cultist = cultist_candidates[::Math.rand(0, cultist_candidates.len() - 1)];
+		this.m.OldGods = oldgods_candidates[::Math.rand(0, oldgods_candidates.len() - 1)];
 		this.m.Score = (cultist_candidates.len() + oldgods_candidates.len()) * 5;
 	}
 })

@@ -27,7 +27,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/giant_spider_poison", 2);
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DamageOverTime;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DamageOverTime;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -44,7 +44,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function resetTime()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
@@ -66,10 +66,10 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 			if (this.m.SoundOnUse.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.0, actor.getPos());
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.0, actor.getPos());
 			}
 			local timeDamage = (this.m.Damage * this.m.TurnsLeft);
-			local hitInfo = clone this.Const.Tactical.HitInfo;
+			local hitInfo = clone ::Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = timeDamage;
 
 			if (::Legends.isLegendaryDifficulty() && !this.getEffectOwner().isPlayerControlled()) {
@@ -78,7 +78,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 			}
 
 			hitInfo.DamageDirect = 1.0;
-			hitInfo.BodyPart = this.Const.BodyPart.Body;
+			hitInfo.BodyPart = ::Const.BodyPart.Body;
 			hitInfo.BodyDamageMult = 1.0;
 			hitInfo.FatalityChanceMult = 0.0;
 			actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
@@ -87,7 +87,7 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{

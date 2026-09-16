@@ -11,7 +11,7 @@
 
 				if (r == 1) {
 					this.Text = "[img]gfx/ui/events/event_19.png[/img]While training, %clumsyguy%, not being the most dexterous fellow, manages to hurt %themselves_clumsyguy% with %their_clumsyguy% own weapon.";
-					injury = _event.m.ClumsyGuy.addInjury(this.Const.Injury.Accident1);
+					injury = _event.m.ClumsyGuy.addInjury(::Const.Injury.Accident1);
 					this.List = [
 						{
 							id = 10,
@@ -29,7 +29,7 @@
 					});
 				} else if (r == 3) {
 					this.Text = "[img]gfx/ui/events/event_34.png[/img]While doing inventory, you ask %clumsyguy% to carry over a quiver of arrows. The short, simple journey ends with the %person_clumsyguy% tripping over a rock and turning %themselves_clumsyguy% into a pincushion.";
-					injury = _event.m.ClumsyGuy.addInjury(this.Const.Injury.Accident2);
+					injury = _event.m.ClumsyGuy.addInjury(::Const.Injury.Accident2);
 					this.List = [
 						{
 							id = 10,
@@ -39,7 +39,7 @@
 					];
 				} else if (r == 4) {
 					this.Text = "[img]gfx/ui/events/event_34.png[/img]You find a rather drunk %clumsyguy% nursing the side of %their_clumsyguy% face. %otherguy1% explains that the idiot tried to dance over a series of rocks, only to fall and bash %themselves_clumsyguy% in the face. Great.";
-					injury = _event.m.ClumsyGuy.addInjury(this.Const.Injury.Accident3);
+					injury = _event.m.ClumsyGuy.addInjury(::Const.Injury.Accident3);
 					this.List = [
 						{
 							id = 10,
@@ -49,7 +49,7 @@
 					];
 				} else if (r == 5) {
 					this.Text = "[img]gfx/ui/events/event_34.png[/img]While %otherguy1% and %otherguy2% train, %clumsyguy% comes in between them, lecturing on how to do it properly while at the same time not watching where %they're_clumsyguy% going. A wayward wooden sword crosses paths with %their_clumsyguy% face and a moment later the idiot is unconscious.";
-					injury = _event.m.ClumsyGuy.addInjury(this.Const.Injury.Accident3);
+					injury = _event.m.ClumsyGuy.addInjury(::Const.Injury.Accident3);
 					this.List = [
 						{
 							id = 10,

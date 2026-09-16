@@ -132,7 +132,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			text = activities[::Math.rand(0, activities.len() - 1)] + " and " + ::Const.MoodStateEvent[bro.getMoodState()]
 		});
 
-		// if (background.isBackgroundType(this.Const.BackgroundType.Combat))
+		// if (background.isBackgroundType(::Const.BackgroundType.Combat))
 		// {
 		// 	local randomItem = ["weapon", "shield", "armor", ];
 		// 	activities.extend([

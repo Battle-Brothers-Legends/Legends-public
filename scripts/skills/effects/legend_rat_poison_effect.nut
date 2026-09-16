@@ -7,7 +7,7 @@ this.legend_rat_poison_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRatPoison);
 		this.m.Icon = "skills/status_effect_54.png";
 		this.m.IconMini = "status_effect_54_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsRemovedAfterBattle = true;
@@ -56,7 +56,7 @@ this.legend_rat_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function resetTime()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
@@ -66,7 +66,7 @@ this.legend_rat_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 10 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 
 		if (this.getContainer().hasTrait(::Legends.Trait.Ailing))
 		{
@@ -76,9 +76,9 @@ this.legend_rat_poison_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		local AP = this.Math.min(1, 1 * (5 - this.m.TurnsLeft));
-		local Init = this.Math.min(1, 5 * (5 - this.m.TurnsLeft));
-		local Vis = this.Math.min(1, 1 * (5 - this.m.TurnsLeft));
+		local AP = ::Math.min(1, 1 * (5 - this.m.TurnsLeft));
+		local Init = ::Math.min(1, 5 * (5 - this.m.TurnsLeft));
+		local Vis = ::Math.min(1, 1 * (5 - this.m.TurnsLeft));
 		_properties.ActionPoints -= AP;
 		_properties.Initiative -= Init;
 		_properties.Vision -= Vis;

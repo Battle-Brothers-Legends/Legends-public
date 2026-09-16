@@ -11,8 +11,8 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		StaminaModifier = 0,
 		Type = -1,
 		Lower = false,
-		ImpactSound = this.Const.Sound.ArmorLeatherImpact,
-		InventorySound = this.Const.Sound.ArmorLeatherImpact,
+		ImpactSound = ::Const.Sound.ArmorLeatherImpact,
+		InventorySound = ::Const.Sound.ArmorLeatherImpact,
 		IsDestroyedOnRemove = false,
 		Variants = [],
 		HideHair = false,
@@ -23,8 +23,8 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	function create()
 	{
 		this.item.create();
-		this.m.SlotType = this.Const.ItemSlot.Head;
-		this.m.ItemType = this.Const.Items.ItemType.Helmet;
+		this.m.SlotType = ::Const.ItemSlot.Head;
+		this.m.ItemType = ::Const.Items.ItemType.Helmet;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -52,22 +52,22 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 	function getAmountString()
 	{
-		return "" + this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * 100) + "%";
+		return "" + ::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * 100) + "%";
 	}
 
 	function getAmountColor()
 	{
-		if (this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (this.Const.Items.ConditionColor.len() - 1)) > 4)
+		if (::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (::Const.Items.ConditionColor.len() - 1)) > 4)
 		{
 			return 4;
 		}
 
-		return this.Const.Items.ConditionColor[this.Math.max(0, this.Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (this.Const.Items.ConditionColor.len() - 1)))];
+		return ::Const.Items.ConditionColor[::Math.max(0, ::Math.floor(this.m.Condition / (this.m.ConditionMax * 1.0) * (::Const.Items.ConditionColor.len() - 1)))];
 	}
 
 	function getValue()
 	{
-		return this.Math.floor(this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)));
+		return ::Math.floor(this.m.Value * (1.0 * this.m.Condition / (1.0 * this.m.ConditionMax)));
 	}
 
 	function getType()
@@ -146,13 +146,13 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		switch (this.m.Type)
 		{
-			case this.Const.Items.HelmetUpgrades.Helm:
+			case ::Const.Items.HelmetUpgrades.Helm:
 				L.push("layers/layer_1.png");
 				break;
-			case this.Const.Items.HelmetUpgrades.Top:
+			case ::Const.Items.HelmetUpgrades.Top:
 				L.push("layers/layer_2.png");
 				break;
-			case this.Const.Items.HelmetUpgrades.Vanity:
+			case ::Const.Items.HelmetUpgrades.Vanity:
 				L.push("layers/layer_3.png");
 				break;
 		}
@@ -192,7 +192,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			text = this.getValueString()
 		});
 
-		if (this.getOverlayIconLarge() != null && this.m.Type != this.Const.Items.HelmetUpgrades.Rune)
+		if (this.getOverlayIconLarge() != null && this.m.Type != ::Const.Items.HelmetUpgrades.Rune)
 		{
 			result.push({
 				id = 3,
@@ -253,7 +253,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+				text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 			});
 		}
 
@@ -263,7 +263,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 5,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * this.Math.abs(this.getStaminaModifier())))
+				text = format("(%.1f Armor per 1 Weight)", this.getConditionMax() / (1.0 * ::Math.abs(this.getStaminaModifier())))
 			});
 		}
 
@@ -273,7 +273,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + this.Math.abs(this.getVision()), this.getVision())
+				text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + ::Math.abs(this.getVision()), this.getVision())
 			});
 		}
 
@@ -330,7 +330,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 						id = 10,
 						type = "text",
 						icon = "ui/icons/fatigue.png",
-						text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + this.Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
+						text = "Fatigue Weight Penalty: " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getStaminaModifier()) + ::Math.abs(this.getStaminaModifier()), this.getStaminaModifier())
 					});
 				}
 			}
@@ -342,7 +342,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				id = 6,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + this.Math.abs(this.getVision()), this.getVision())
+				text = "Vision " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getVision()) + ::Math.abs(this.getVision()), this.getVision())
 			});
 		}
 
@@ -361,7 +361,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play(this.m.InventorySound[this.Math.rand(0, this.m.InventorySound.len() - 1)], this.Const.Sound.Volume.Inventory);
+		::Sound.play(this.m.InventorySound[::Math.rand(0, this.m.InventorySound.len() - 1)], ::Const.Sound.Volume.Inventory);
 	}
 
 	function addArmor( _a)
@@ -419,12 +419,12 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 	function getRepair()
 	{
-		return this.Math.floor(this.getCondition());
+		return ::Math.floor(this.getCondition());
 	}
 
 	function getRepairMax()
 	{
-		return this.Math.floor(this.getConditionMax());
+		return ::Math.floor(this.getConditionMax());
 	}
 
 	function toggleVisible()
@@ -465,16 +465,16 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 		local sprite = "";
 		local spriteCorpse = this.m.SpriteCorpse != null ? this.m.SpriteCorpse : "";
 		local slot = this.m.Type;
-		if (slot == this.Const.Items.HelmetUpgrades.Vanity && this.m.Armor.getUpgrade(slot) != this)
+		if (slot == ::Const.Items.HelmetUpgrades.Vanity && this.m.Armor.getUpgrade(slot) != this)
 		{
-			slot = this.Const.Items.HelmetUpgrades.ExtraVanity;
+			slot = ::Const.Items.HelmetUpgrades.ExtraVanity;
 		}
 		if (this.isVisible() == false || this.getCondition() == 0 && this.m.Armor.m.HideHelmetIfDestroyed)
 		{
 			sprite = "";
 			spriteCorpse = "";
 		}
-		else if (this.m.Condition / this.m.ConditionMax <= this.Const.Combat.ShowDamagedArmorThreshold)
+		else if (this.m.Condition / this.m.ConditionMax <= ::Const.Combat.ShowDamagedArmorThreshold)
 		{
 			sprite = this.m.SpriteDamaged != null ? this.m.SpriteDamaged : "";
 		}
@@ -485,10 +485,10 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 
 		local key = "";
 		switch(slot) {
-			case this.Const.Items.HelmetUpgrades.Helm:        key = "Helm"; break;
-			case this.Const.Items.HelmetUpgrades.Top:         key = "Top"; break;
-			case this.Const.Items.HelmetUpgrades.Vanity:      key = "Vanity"; break;
-			case this.Const.Items.HelmetUpgrades.ExtraVanity: key = "Vanity2"; break;
+			case ::Const.Items.HelmetUpgrades.Helm:        key = "Helm"; break;
+			case ::Const.Items.HelmetUpgrades.Top:         key = "Top"; break;
+			case ::Const.Items.HelmetUpgrades.Vanity:      key = "Vanity"; break;
+			case ::Const.Items.HelmetUpgrades.ExtraVanity: key = "Vanity2"; break;
 		}
 
 		if (key != "") {
@@ -514,21 +514,21 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 	{
 		this.item.onUnequip();
         //if (::Legends.Mod.ModSettings.getSetting("AutoRepairLayer").getValue() && this.getCondition() != this.getConditionMax()) this.setToBeRepaired(true, 0);
-		this.setCurrentSlotType(this.Const.ItemSlot.None);
+		this.setCurrentSlotType(::Const.ItemSlot.None);
 	}
 
 	function onUse( _actor, _item = null, _playSound = true )
 	{
 		if (this.isUsed()) return false;
 
-		local armor = _item == null ? _actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head) : _item;
+		local armor = _item == null ? _actor.getItems().getItemAtSlot(::Const.ItemSlot.Head) : _item;
 		if (armor == null) return false;
 
 		local success = armor.setUpgrade(this);
 
 		if (success && _playSound)
 		{
-			this.Sound.play("sounds/inventory/armor_upgrade_use_01.wav", this.Const.Sound.Volume.Inventory);
+			::Sound.play("sounds/inventory/armor_upgrade_use_01.wav", ::Const.Sound.Volume.Inventory);
 		}
 
 		return success;
@@ -543,7 +543,7 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 			return leftoverDamage;
 		}
 
-		this.m.Condition = this.Math.max(0, this.m.Condition - _damage) * 1.0;
+		this.m.Condition = ::Math.max(0, this.m.Condition - _damage) * 1.0;
 		return 0.0;
 	}
 

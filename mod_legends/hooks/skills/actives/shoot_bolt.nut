@@ -6,7 +6,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted+1;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted+1;
 	}
 
 	o.getTooltip = function ()
@@ -59,7 +59,7 @@
 
 	o.onAfterUpdate = function ( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCrossbows ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.DirectDamageMult = _properties.IsSpecializedInCrossbows ? 0.7 : 0.5;
 		this.m.AdditionalAccuracy = 15 + this.m.Item.getAdditionalAccuracy();
 	}

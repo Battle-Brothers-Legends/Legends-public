@@ -41,8 +41,8 @@ this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				this.Banner = "ui/banners/" + this.World.Assets.getBanner() + "s.png";
-				//this.World.FactionManager.makeNoblesUnfriendlyToPlayer();
+				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
+				//::World.FactionManager.makeNoblesUnfriendlyToPlayer();
 			}
 		});
 	}
@@ -54,18 +54,18 @@ this.legend_beggar_intro_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onPrepareVariables(_vars) {
-		local homevillage = this.World.Flags.get("HomeVillage");
+		local homevillage = ::World.Flags.get("HomeVillage");
 		_vars.push([
 			"home",
 			homevillage
 		]);
-		foreach (s in this.World.EntityManager.getSettlements()) {
+		foreach (s in ::World.EntityManager.getSettlements()) {
 			if (s.getName() == homevillage) {
 				homevillage = s;
 				break;
 			}
 		}
-		local noblehouse = homevillage.getFactionOfType(this.Const.FactionType.NobleHouse);
+		local noblehouse = homevillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		_vars.push([
 			"enemynoble",
 			noblehouse.getName()

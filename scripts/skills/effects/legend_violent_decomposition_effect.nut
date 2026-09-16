@@ -18,7 +18,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 	{
 		if (this.m.ActorID != null)
 		{
-			local e = this.Tactical.getEntityByID(this.m.ActorID);
+			local e = ::Tactical.getEntityByID(this.m.ActorID);
 
 			if (e != null && e.isPlacedOnMap() && e.isAlive() && !e.isDying())
 			{
@@ -33,7 +33,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendViolentDecompositionEffect);
 		this.m.Icon = "skills/status_effect_78.png";
 		this.m.IconMini = "status_effect_78_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/ghoul_death_fullbelly", 3);
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
@@ -73,7 +73,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.25, this.getContainer().getActor().getPos());
 		}
 	}
 
@@ -108,19 +108,19 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 
 			local tile = ownTile.getNextTile(i);
 
-			if (!tile.IsEmpty && tile.getEntity().isAttackable() && this.Math.abs(tile.Level - ownTile.Level) <= 1)
+			if (!tile.IsEmpty && tile.getEntity().isAttackable() && ::Math.abs(tile.Level - ownTile.Level) <= 1)
 			{
-				local damage = this.Math.rand(data.MinDamage, data.MaxDamage) * mult;
-				local hitInfo = clone this.Const.Tactical.HitInfo;
+				local damage = ::Math.rand(data.MinDamage, data.MaxDamage) * mult;
+				local hitInfo = clone ::Const.Tactical.HitInfo;
 				hitInfo.DamageRegular = damage;
 				hitInfo.DamageArmor = damage * data.ArmorDamageMult;
 				hitInfo.DamageDirect = data.DirectDamageMult;
-				hitInfo.BodyPart = this.Const.BodyPart.Body;
+				hitInfo.BodyPart = ::Const.BodyPart.Body;
 				tile.getEntity().onDamageReceived(attacker, this, hitInfo);
 			}
 		}
 
-		actor.kill(null, null, this.Const.FatalityType.Suicide, false);
+		actor.kill(null, null, ::Const.FatalityType.Suicide, false);
 	}
 
 	function onUpdate( _properties )
@@ -210,7 +210,7 @@ this.legend_violent_decomposition_effect <- this.inherit("scripts/skills/skill",
 				}
 			]
 		};
-		this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 50));
+		::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 50));
 	}
 
 });

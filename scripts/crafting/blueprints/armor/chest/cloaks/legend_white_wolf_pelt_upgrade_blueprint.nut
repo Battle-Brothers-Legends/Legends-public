@@ -4,7 +4,7 @@ this.legend_white_wolf_pelt_upgrade_blueprint <- this.inherit("scripts/crafting/
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_white_wolf_pelt_upgrade";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_armor_white_wolf_pelt_cloak");
 		this.m.Cost = 2500;
 		local ingredients = [

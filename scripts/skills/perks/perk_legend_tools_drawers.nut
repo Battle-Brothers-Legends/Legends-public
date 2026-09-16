@@ -19,20 +19,20 @@ this.perk_legend_tools_drawers <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateArmorPartsModifier();
+		::World.State.getPlayer().calculateArmorPartsModifier();
 	}
 
 	function onRemoved()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
-		this.World.State.getPlayer().calculateArmorPartsModifier();
+		::World.State.getPlayer().calculateArmorPartsModifier();
 	}
 
 	function onUpdate( _properties )

@@ -8,7 +8,7 @@ this.legend_stuffed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "";
 		this.m.IconMini = "";
 		this.m.Overlay = "";
-		this.m.Type = this.Const.SkillType.DrugEffect;
+		this.m.Type = ::Const.SkillType.DrugEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

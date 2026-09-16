@@ -10,15 +10,15 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
-			// this.Const.Attributes.RangedSkill,
-			//this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue,
-			this.Const.Attributes.Bravery
+			// ::Const.Attributes.RangedSkill,
+			//::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue,
+			::Const.Attributes.Bravery
 		];
-		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
@@ -50,13 +50,13 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 			[1, "weapons/ancient/broken_ancient_sword"]
 		], "scripts/items/"));
 
-		if (items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null) {
-			if (this.Math.rand(1, 100) <= 50) {
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand) == null) {
+			if (::Math.rand(1, 100) <= 50) {
 				items.equip(this.new("scripts/items/shields/ancient/auxiliary_shield"));
 			}
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[2, ::Legends.Armor.Standard.leather_wraps],
 			[3, ::Legends.Armor.Standard.indebted_armor_rags],
@@ -65,7 +65,7 @@ this.legend_legion_auxiliary_background <- this.inherit("scripts/skills/backgrou
 		]));
 
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Ancient.ancient_household_helmet],
 			[2, ::Legends.Helmet.None]
 		]));

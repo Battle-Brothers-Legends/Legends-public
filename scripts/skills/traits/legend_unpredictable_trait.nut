@@ -48,7 +48,7 @@ this.legend_unpredictable_trait <- this.inherit("scripts/skills/traits/character
 
 	function onUpdate( _properties )
 	{
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 		_properties.Initiative += 5;
 	}
 

@@ -2,8 +2,8 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.SkeletonGladiator;
-		this.m.XP = this.Const.Tactical.Actor.SkeletonGladiator.XP;
+		this.m.Type = ::Const.EntityType.SkeletonGladiator;
+		this.m.XP = ::Const.Tactical.Actor.SkeletonGladiator.XP;
 		this.m.ResurrectionValue = 3.0;
 		this.m.ResurrectWithScript = "scripts/entity/tactical/enemies/legend_skeleton_gladiator";
 		this.skeleton.create();
@@ -15,15 +15,15 @@ this.legend_skeleton_gladiator <- this.inherit("scripts/entity/tactical/skeleton
 	{
 		this.skeleton.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.SkeletonGladiator);
+		b.setValues(::Const.Tactical.Actor.SkeletonGladiator);
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToBleeding = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryNets);
 		::Legends.Perks.grant(this, ::Legends.Perk.SpecThrowing);
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);

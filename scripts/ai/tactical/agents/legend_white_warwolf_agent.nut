@@ -3,7 +3,7 @@ this.legend_white_warwolf_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.LegendWhiteWarwolf;
+		this.m.ID = ::Const.AI.Agent.ID.LegendWhiteWarwolf;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.25;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityDamageMult = 0.25;

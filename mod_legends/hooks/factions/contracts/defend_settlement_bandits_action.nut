@@ -4,12 +4,12 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 5;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 5;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.defend_settlement_bandits_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.defend_settlement_bandits_contract))
 		{
 			return;
 		}
@@ -19,12 +19,12 @@
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 500)
+		if (::World.Assets.getBusinessReputation() < 500)
 		{
 			return;
 		}
 
-		if (this.Math.rand(1, 100) > 10)
+		if (::Math.rand(1, 100) > 10)
 		{
 			return;
 		}
@@ -55,7 +55,7 @@
 
 		if (tooFar)
 		{
-			local bandits = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getSettlements();
+			local bandits = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).getSettlements();
 
 			foreach( b in bandits )
 			{
@@ -69,7 +69,7 @@
 
 		if (tooFar)
 		{
-			local zombies = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements();
+			local zombies = ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements();
 
 			foreach( b in zombies )
 			{

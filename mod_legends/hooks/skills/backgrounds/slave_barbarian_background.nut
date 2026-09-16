@@ -4,11 +4,11 @@
 		this.slave_background.create();
 		this.m.GoodEnding = null;
 		this.m.BadEnding = null;
-		this.m.Faces = this.Const.Faces.WildMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.WildExtended;
-		this.m.Bodies = this.Const.Bodies.AllMale;
+		this.m.Faces = ::Const.Faces.WildMale;
+		this.m.Hairs = ::Const.Hair.WildMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.WildExtended;
+		this.m.Bodies = ::Const.Bodies.AllMale;
 		this.m.Ethnicity = 0;
 		this.m.Titles = [
 			"the Barbarian",
@@ -26,7 +26,7 @@
 			"the Bound"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Bravery
 		];
 	}
 

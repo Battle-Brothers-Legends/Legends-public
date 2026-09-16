@@ -25,7 +25,7 @@
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.DrummerDodgeDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.DrummerDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -33,7 +33,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 2);
+		local r = ::Math.rand(1, 2);
 
 		if (r == 1)
 		{
@@ -46,13 +46,13 @@
 
 		this.m.Items.equip(this.new("scripts/items/weapons/barbarians/drum_item"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Barbarian.thick_furs_armor],
 				[1, ::Legends.Armor.Barbarian.animal_hide_armor],
 				[1, ::Legends.Armor.Barbarian.reinforced_animal_hide_armor]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]);

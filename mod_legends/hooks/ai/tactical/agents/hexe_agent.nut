@@ -9,10 +9,10 @@
 		this.agent.onRoundStarted();
 
 		if (this.Time.getRound() == 1) {
-			local allies = this.Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
+			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
 			foreach (a in allies) {
-				if (a.getType() != this.Const.EntityType.Hexe && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))	{
+				if (a.getType() != ::Const.EntityType.Hexe && !a.isNonCombatant() && !a.getSkills().hasEffect(::Legends.Effect.FakeCharmed) && !a.getSkills().hasEffect(::Legends.Effect.Charmed) && !a.getSkills().hasEffect(::Legends.Effect.LegendIntenselyCharmed))	{
 					::Legends.Effects.grant(a, ::Legends.Effect.FakeCharmed);
 				}
 			}

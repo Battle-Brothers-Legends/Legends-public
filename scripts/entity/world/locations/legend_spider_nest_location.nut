@@ -32,7 +32,7 @@ this.legend_spider_nest_location <- this.inherit("scripts/entity/world/location"
 			"misc/poison_gland_item",
 			"loot/webbed_valuables_item",
 		];
-		this.dropTreasure(this.Math.rand(1, 2), treasure, _lootTable);
+		this.dropTreasure(::Math.rand(1, 2), treasure, _lootTable);
 	}
 
 	function onInit()
@@ -40,7 +40,7 @@ this.legend_spider_nest_location <- this.inherit("scripts/entity/world/location"
 		this.location.onInit();
 		local body = this.addSprite("body");
 		body.setBrush("legend_spider_nest");
-		body.setHorizontalFlipping(this.Math.rand(0, 1) == 1);
+		body.setHorizontalFlipping(::Math.rand(0, 1) == 1);
 	}
 
 });

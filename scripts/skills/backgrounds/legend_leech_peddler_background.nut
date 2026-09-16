@@ -25,9 +25,9 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 			"the Unsound",
 			"the Jarman",
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Lowborn;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Kind;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Lowborn;
 	}
 
 	function setGender(_gender = -1) {
@@ -47,18 +47,18 @@ this.legend_leech_peddler_background <- this.inherit("scripts/skills/backgrounds
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 1) {
 			items.equip(this.new("scripts/items/weapons/wooden_stick"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
-			[1, ::Legends.Armor.Standard.linen_tunic, this.Math.rand(6, 7)]
+			[1, ::Legends.Armor.Standard.linen_tunic, ::Math.rand(6, 7)]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[2, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.Standard.headscarf]

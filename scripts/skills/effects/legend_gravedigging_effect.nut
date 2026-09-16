@@ -9,7 +9,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		// this.m.IconMini = "shovel_01_mini.png";
 		this.m.Overlay = "shovel_01";
 		this.m.Description = "This character gets unnaturally excited about dead bodies and will receive bonuses to Initiative, Resolve and Damage for every 2 corpses on the battlefield. Effect will be capped to 5 stacks for Two Handed Maces, which aren't shovels.";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 	}
 
@@ -54,18 +54,18 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		if (!this.getContainer().getActor().isPlacedOnMap()) return 0;
 		local count = 0;
 
-		local size = this.Tactical.getMapSize();
+		local size = ::Tactical.getMapSize();
 		for ( local x = 0; x < size.X; x = ++x )
 		{
 			for( local y = 0; y < size.Y; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 				if (tile.Properties.get("Corpse"))
 					count += 1;
 			}
 		}
 
-		return this.Math.floor(count / 2);
+		return ::Math.floor(count / 2);
 	}
 
 	function isViableTile( _tile )
@@ -84,7 +84,7 @@ this.legend_gravedigging_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 		local item = actor.getMainhandItem();
 
-		if (item == null || !(item.isWeaponType(this.Const.Items.WeaponType.Mace) && item.isItemType(this.Const.Items.ItemType.TwoHanded)))
+		if (item == null || !(item.isWeaponType(::Const.Items.WeaponType.Mace) && item.isItemType(::Const.Items.ItemType.TwoHanded)))
 		{
 			this.m.GraveStacks = 0;
 			this.m.IsHidden = true;

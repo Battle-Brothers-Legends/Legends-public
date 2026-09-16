@@ -94,8 +94,8 @@
 		local tile = actor.getTile();
 
 		//get the items
-		local bodyItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body);
-		local headItem = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local bodyItem = actor.getItems().getItemAtSlot(::Const.ItemSlot.Body);
+		local headItem = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 
 		//check if the item exists to stop the error: getStaminaModifier does not exist
 
@@ -114,7 +114,7 @@
 
 		local fat = ::Math.abs(head + body);
 
-		local entites = this.Tactical.Entities.getAllHostilesAsArray();
+		local entites = ::Tactical.Entities.getAllHostilesAsArray();
 
 		local outOfEarshot3 = true;
 		if (fat > 15 && fat <= 35) {
@@ -194,11 +194,11 @@
 		//actor.setHidden(true);
 		if (actor.getTile().IsVisibleForPlayer)
 		{
-			if (this.Const.Tactical.HideParticles.len() != 0)
+			if (::Const.Tactical.HideParticles.len() != 0)
 			{
-				for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
+				for( local i = 0; i < ::Const.Tactical.HideParticles.len(); i = ++i )
 				{
-					this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
+					::Tactical.spawnParticleEffect(false, ::Const.Tactical.HideParticles[i].Brushes, actor.getTile(), ::Const.Tactical.HideParticles[i].Delay, ::Const.Tactical.HideParticles[i].Quantity, ::Const.Tactical.HideParticles[i].LifeTimeQuantity, ::Const.Tactical.HideParticles[i].SpawnRate, ::Const.Tactical.HideParticles[i].Stages);
 				}
 			}
 		}
@@ -216,11 +216,11 @@
 	//actor.setHidden(true);
 	if (actor.getTile().IsVisibleForPlayer && this.m.ToRemove == false)
 	{
-		if (this.Const.Tactical.HideParticles.len() != 0)
+		if (::Const.Tactical.HideParticles.len() != 0)
 		{
-			for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
+			for( local i = 0; i < ::Const.Tactical.HideParticles.len(); i = ++i )
 			{
-				this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
+				::Tactical.spawnParticleEffect(false, ::Const.Tactical.HideParticles[i].Brushes, actor.getTile(), ::Const.Tactical.HideParticles[i].Delay, ::Const.Tactical.HideParticles[i].Quantity, ::Const.Tactical.HideParticles[i].LifeTimeQuantity, ::Const.Tactical.HideParticles[i].SpawnRate, ::Const.Tactical.HideParticles[i].Stages);
 			}
 		}
 	}
@@ -245,11 +245,11 @@
 		if (!::Tactical.State.isBattleEnded() && actor.isPlacedOnMap()){
 			if (actor.getTile().IsVisibleForPlayer)
 			{
-				if (this.Const.Tactical.HideParticles.len() != 0)
+				if (::Const.Tactical.HideParticles.len() != 0)
 				{
-					for( local i = 0; i < this.Const.Tactical.HideParticles.len(); i = ++i )
+					for( local i = 0; i < ::Const.Tactical.HideParticles.len(); i = ++i )
 					{
-						this.Tactical.spawnParticleEffect(false, this.Const.Tactical.HideParticles[i].Brushes, actor.getTile(), this.Const.Tactical.HideParticles[i].Delay, this.Const.Tactical.HideParticles[i].Quantity, this.Const.Tactical.HideParticles[i].LifeTimeQuantity, this.Const.Tactical.HideParticles[i].SpawnRate, this.Const.Tactical.HideParticles[i].Stages);
+						::Tactical.spawnParticleEffect(false, ::Const.Tactical.HideParticles[i].Brushes, actor.getTile(), ::Const.Tactical.HideParticles[i].Delay, ::Const.Tactical.HideParticles[i].Quantity, ::Const.Tactical.HideParticles[i].LifeTimeQuantity, ::Const.Tactical.HideParticles[i].SpawnRate, ::Const.Tactical.HideParticles[i].Stages);
 					}
 				}
 			}

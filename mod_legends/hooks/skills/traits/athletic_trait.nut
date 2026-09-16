@@ -8,8 +8,8 @@
 		{
 			this.m.HasMoved = true;
 			local myTile = actor.getTile();			
-			actor.setActionPoints(this.Math.min(actor.getActionPointsMax(), actor.getActionPoints() + this.Math.max(0, actor.getActionPointCosts()[myTile.Type] * _properties.MovementAPCostMult)));
-			actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.max(0, actor.getFatigueCosts()[myTile.Type] * _properties.MovementFatigueCostMult)));			
+			actor.setActionPoints(::Math.min(actor.getActionPointsMax(), actor.getActionPoints() + ::Math.max(0, actor.getActionPointCosts()[myTile.Type] * _properties.MovementAPCostMult)));
+			actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Math.max(0, actor.getFatigueCosts()[myTile.Type] * _properties.MovementFatigueCostMult)));			
 		}*/		
 	}
 		
@@ -19,7 +19,7 @@
 	}
 
 	o.onAdded <- function () {
-		if (("State" in this.Tactical) && this.Tactical.State != null) {
+		if (("State" in ::Tactical) && ::Tactical.State != null) {
 			this.m.HasMoved = false;
 		}
 	}

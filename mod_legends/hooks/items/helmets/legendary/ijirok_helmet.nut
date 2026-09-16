@@ -40,7 +40,7 @@
 	o.onTurnStart = function () {
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, 10); //was 10
+		local healthAdded = ::Math.min(healthMissing, 10); //was 10
 
 		if (healthAdded <= 0)
 			return;
@@ -49,25 +49,25 @@
 		actor.setDirty(true);
 
 		if (!actor.isHiddenToPlayer()) {
-			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play("sounds/enemies/unhold_regenerate_02.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+			::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+			::Sound.play("sounds/enemies/unhold_regenerate_02.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
 		}
 	}
 
 	o.onBeforeDamageReceived <- function ( _attacker, _skill, _hitInfo, _properties ) {
 		switch (_hitInfo.DamageType)
 		{
-			case this.Const.Damage.DamageType.Piercing:
+			case ::Const.Damage.DamageType.Piercing:
 				if (_skill == null) {
 					_properties.DamageReceivedRegularMult *= 1.0;
 				} else {
 					if (_skill.isRanged()) {
 						local weapon = _skill.getItem();
-						if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon)) {
-							if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(this.Const.Items.WeaponType.Bow) || weapon.isWeaponType(this.Const.Items.WeaponType.Firearm))
+						if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon)) {
+							if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow) || weapon.isWeaponType(::Const.Items.WeaponType.Bow) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 								_properties.DamageReceivedRegularMult *= 0.25;
-							else if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing))
+							else if (weapon.isWeaponType(::Const.Items.WeaponType.Throwing))
 								_properties.DamageReceivedRegularMult *= 0.25;
 							else
 								_properties.DamageReceivedRegularMult *= 1.0;
@@ -76,7 +76,7 @@
 				}
 				break;
 
-			case this.Const.Damage.DamageType.Burning:
+			case ::Const.Damage.DamageType.Burning:
 				_properties.DamageReceivedRegularMult *= 1.5;
 				break;
 		}

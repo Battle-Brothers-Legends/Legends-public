@@ -8,8 +8,8 @@ this.legend_named_fencing_sword_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Item;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
         this.m.IsWeaponSkill = true;

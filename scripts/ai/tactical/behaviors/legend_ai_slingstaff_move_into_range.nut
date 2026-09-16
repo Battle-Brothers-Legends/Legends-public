@@ -15,8 +15,8 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 	},
 
 	function create() {
-		this.m.ID = this.Const.AI.Behavior.ID.SlingstaffMoveIntoRange;
-		this.m.Order = this.Const.AI.Behavior.Order.SlingstaffMoveIntoRange;
+		this.m.ID = ::Const.AI.Behavior.ID.SlingstaffMoveIntoRange;
+		this.m.Order = ::Const.AI.Behavior.Order.SlingstaffMoveIntoRange;
 		this.behavior.create();
 	}
 
@@ -25,19 +25,19 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 		local weapon = _entity.getMainhandItem();
 
 		if (weapon == null || this.m.Slingstaffs.find(weapon.getID()) == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP || _entity.getMoraleState() == this.Const.MoraleState.Fleeing) {
-			return this.Const.AI.Behavior.Score.Zero;
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP || _entity.getMoraleState() == ::Const.MoraleState.Fleeing) {
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (::Legends.S.isEntityMovementDisabled(_entity)) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent()) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local myTile = _entity.getTile();
@@ -54,7 +54,7 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
             foreach (skillID in this.m.PossibleSkills) {
                 local skill = _entity.getSkills().getSkillByID(skillID);
                 if (skill != null && skill.isUsable() && dist >= skill.getMinRange() && dist <= skill.getMaxRange() && skill.onVerifyTarget(myTile, targetTile)) {
-                    return this.Const.AI.Behavior.Score.Zero;
+                    return ::Const.AI.Behavior.Score.Zero;
                 }
             }*/
 
@@ -65,19 +65,19 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 		}
 
 		if (bestTargetTile == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.TargetTile = this.findBestTile(_entity, bestTargetTile);
 
 		if (this.m.TargetTile == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
-		return this.Const.AI.Behavior.Score.SlingstaffMoveIntoRange;
+		return ::Const.AI.Behavior.Score.SlingstaffMoveIntoRange;
 	}
 
 	function onExecute(_entity) {
-		local navigator = this.Tactical.getNavigator();
+		local navigator = ::Tactical.getNavigator();
 		if (this.m.IsFirstExecuted) {
 			local settings = navigator.createSettings();
 			settings.ActionPointCosts = _entity.getActionPointCosts();
@@ -86,19 +86,19 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 			settings.ActionPointCostPerLevel = _entity.getLevelActionPointCost();
 			settings.FatigueCostPerLevel = _entity.getLevelFatigueCost();
 			settings.AllowZoneOfControlPassing = false;
-			settings.ZoneOfControlCost = this.Const.AI.Behavior.ZoneOfControlAPPenalty;
+			settings.ZoneOfControlCost = ::Const.AI.Behavior.ZoneOfControlAPPenalty;
 			settings.AlliedFactions = _entity.getAlliedFactions();
 			settings.Faction = _entity.getFaction();
 			navigator.findPath(_entity.getTile(), this.m.TargetTile, settings, 0);
 
-			if (this.Const.AI.PathfindingDebugMode) {
+			if (::Const.AI.PathfindingDebugMode) {
 				navigator.buildVisualisation(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
 			}
 
 			local movement = navigator.getCostForPath(_entity, settings, _entity.getActionPoints(), _entity.getFatigueMax() - _entity.getFatigue());
 			this.m.Agent.adjustCameraToDestination(movement.End);
 
-			if (this.Const.AI.VerboseMode) {
+			if (::Const.AI.VerboseMode) {
 				this.logInfo("* " + _entity.getName() + ": Going for slingstaff attack position.");
 			}
 
@@ -126,13 +126,13 @@ this.legend_ai_slingstaff_move_into_range <- this.inherit("scripts/ai/tactical/b
 			}
 			local nextTile = actorTile.getNextTile(i);
 
-			if (!nextTile.IsEmpty || this.Math.abs(nextTile.Level - actorTile.Level) > 1) {
+			if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - actorTile.Level) > 1) {
 				continue;
 			}
 
 			local apCost = _entity.getActionPointCosts()[nextTile.Type] * properties.MovementAPCostMult;
 			local fatCost = _entity.getFatigueCosts()[nextTile.Type] * properties.MovementFatigueCostMult * properties.FatigueEffectMult;
-			if (this.Math.abs(nextTile.Level - actorTile.Level) == 1) {
+			if (::Math.abs(nextTile.Level - actorTile.Level) == 1) {
 				apCost += _entity.getLevelActionPointCost();
 				fatCost += _entity.getLevelFatigueCost();
 			}

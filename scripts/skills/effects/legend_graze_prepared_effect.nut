@@ -7,7 +7,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendGrazePrepared);
 		this.m.Icon = "skills/graze_circle.png";
 		this.m.IconMini = "mini_graze_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -64,7 +64,7 @@ this.legend_graze_prepared_effect<- this.inherit("scripts/skills/skill", {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 			}
 
-			::Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetEntity) + " is bleeding from grazes");
 		}
 
 		::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendGrazedEffect, function (_effect) {

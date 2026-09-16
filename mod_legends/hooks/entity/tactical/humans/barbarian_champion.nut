@@ -34,23 +34,23 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand)) {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/barbarians/skull_hammer",
 				"weapons/barbarians/two_handed_spiked_mace",
 				"weapons/barbarians/rusty_warblade",
 				"weapons/barbarians/heavy_rusty_axe"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50) {
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
 			local items = [
 				"scripts/items/weapons/barbarians/heavy_javelin",
 				"scripts/items/weapons/barbarians/heavy_throwing_axe"
 			];
 
-			this.m.Items.addToBag(this.new(items[this.Math.rand(0, items.len() - 1)]));
+			this.m.Items.addToBag(this.new(items[::Math.rand(0, items.len() - 1)]));
 		}
 
 		local armor = [
@@ -60,10 +60,10 @@
 			[5, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor]
 		];
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head)) {
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 				[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 				[1, ::Legends.Helmet.Barbarian.crude_metal_helmet]
@@ -78,33 +78,33 @@
 		}
 
 		this.getSprite("miniboss").setBrush("bust_miniboss");
-		local weapons = this.Const.Items.NamedBarbarianWeapons;
-		local armor = this.Const.Items.NamedBarbarianArmors;
-		local helmets = this.Const.Items.NamedBarbarianHelmets;
+		local weapons = ::Const.Items.NamedBarbarianWeapons;
+		local armor = ::Const.Items.NamedBarbarianArmors;
+		local helmets = ::Const.Items.NamedBarbarianHelmets;
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
-		local r = this.Math.rand(1, 4);
-		if (this.Math.rand(1, 100) <= 5) {
-			weapons = this.Const.Items.NamedBarbarianWeaponsHigh;
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		local r = ::Math.rand(1, 4);
+		if (::Math.rand(1, 100) <= 5) {
+			weapons = ::Const.Items.NamedBarbarianWeaponsHigh;
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			return true;
 		}
 		if (r == 1) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else if (r == 2) {
-			local weightName = this.Const.World.Common.convNameToList(armor);
-			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+			local weightName = ::Const.World.Common.convNameToList(armor);
+			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
 		}
 		else if (r == 3) {
 			local weapons = [
 				"weapons/named/legend_named_heavy_throwing_axe",
 				"weapons/named/legend_named_heavy_javelin"
 			];
-			this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else {
-			local weightName = this.Const.World.Common.convNameToList(helmets);
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+			local weightName = ::Const.World.Common.convNameToList(helmets);
+			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
 		}
 
 		return true;

@@ -27,10 +27,10 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		];
 		
 
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.Level = 2;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Noble | this.Const.BackgroundType.Untalented;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Noble | ::Const.BackgroundType.Untalented;
 	}
 
 	function setGender(_gender = -1) {
@@ -39,7 +39,7 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 	}
 
 	function onBuildDescription() {
-		if (this.isBackgroundType(this.Const.BackgroundType.Female)) {
+		if (this.isBackgroundType(::Const.BackgroundType.Female)) {
 			return "{A %viscount% of the realm | As the third in the line of succession | A young and brash noble | A skilled %swordsman%}, %name%\'s life at court {had grown stale for her | was not exciting enough for her with endless studying of court etiquette and family lineage | felt like wasting the best time of her life | was not half as exciting to her as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of her brother | To the frustration of her mother | Finally making a decision to change things}, %name% rode out to {prove herself | make a name for herself | earn glory on the battlefield | test her skills in battle} and {live life to its fullest as she imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn her place in the world | be knighted for her valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
 		} else {
 			return "{A viscount of the realm | As the third in the line of succession | A young and brash noble | A skilled swordsman}, %name%\'s life at court {had grown stale for him | was not exciting enough for him with endless studying of court etiquette and family lineage | felt like wasting the best time of his life | was not half as exciting to him as the tales of adventures, battles, fearsome beasts to vanquish and fair maidens to conquer}. {Wearing the family crest proudly | At the encouragement of his brother | To the frustration of his mother | Finally making a decision to change things}, %name% rode out to {prove himself | make a name for himself | earn glory on the battlefield | test his skills in battle} and {live life to its fullest as he imagined it from behind the castle walls | see all the wonders and exotic places of the world | earn his place in the world | be knighted for his valor | become famous and loved in all the known world | become infamous and feared in all the known world}.";
@@ -58,28 +58,28 @@ this.legend_noble_commander_background <- this.inherit("scripts/skills/backgroun
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_rally_the_troops"));
 		//this.m.Container.add(this.new("scripts/skills/perks/perk_fortified_mind"));
 
-		if (this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (this.isBackgroundType(::Const.BackgroundType.Female))
 		{
-			actor.setName(this.Const.Strings.LadyNames[this.Math.rand(0, this.Const.Strings.LadyNames.len() - 1)]);
+			actor.setName(::Const.Strings.LadyNames[::Math.rand(0, ::Const.Strings.LadyNames.len() - 1)]);
 		}
 		else
 		{
-			actor.setName(this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]);
+			actor.setName(::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]);
 		}
 	}
 
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		talents[this.Const.Attributes.MeleeSkill] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		talents[::Const.Attributes.MeleeSkill] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_noble_hat],
 			[1, ::Legends.Helmet.Standard.legend_noble_crown],
 			[1, ::Legends.Helmet.Standard.legend_noble_floppy_hat],

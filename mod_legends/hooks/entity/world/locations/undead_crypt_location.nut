@@ -11,7 +11,7 @@
 			"loot/ornate_tome_item"
 		];
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
 			treasure.extend(treasure);
 			treasure.extend(treasure);
@@ -27,7 +27,7 @@
 			treasure.push("legend_armor/armor_upgrades/legend_double_mail_upgrade");
 		}
 
-		this.dropMoney(this.Math.rand(100, 400), _lootTable);
-		this.dropTreasure(this.Math.rand(1, 2), treasure, _lootTable);
+		this.dropMoney(::Math.rand(100, 400), _lootTable);
+		this.dropTreasure(::Math.rand(1, 2), treasure, _lootTable);
 	}
 });

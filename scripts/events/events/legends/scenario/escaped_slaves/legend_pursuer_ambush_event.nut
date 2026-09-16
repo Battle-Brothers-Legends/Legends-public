@@ -13,7 +13,7 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 		local ManhuntersText3 = "A group of mean looking men filter out into the path in front of you. You glance over your shoulder and see more of them there, too.%SPEECH_ON%%nemesisviziername% sends his regards, slave.%SPEECH_OFF%One of the men in front of you spits out. Manhunters, then. You order the company to defend themselves as the hunters close in...";
 		this.m.ID = "event.legend_pursuer_ambush";
 		this.m.Title = "Along the way...";
-		this.m.Cooldown = 6.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 6.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "Manhunters",
 			Text = "[img]gfx/ui/events/event_172.png[/img]{" + ManhuntersText1 + " | " + ManhuntersText2 + " | " + ManhuntersText3 + "}",
@@ -23,17 +23,17 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "To arms!",
 				function getResult(_event) {
-					this.World.Statistics.getFlags().set("LegendLastAmbushType", "Manhunters");
-					_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					::World.Statistics.getFlags().set("LegendLastAmbushType", "Manhunters");
+					_event.m.NemesisCityState.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You evaded capture");
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.OrientalBanditTracks;
+					properties.Music = ::Const.Music.OrientalBanditTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
-					properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.LegendManhunters, (100 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
+					properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.LegendManhunters, (100 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, ::Const.Faction.Enemy, _event.m.ChampionChance);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}],
@@ -51,13 +51,13 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "You\'ll regret crossing our path, manhunter.",
 				function getResult(_event) {
-					this.World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
+					::World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
 					return "ManhuntersBribeBattle";
 				}
 			}, {
 				Text = "Perhaps we can work this out. Will %bribe% crowns do?",
 				function getResult(_event) {
-					this.World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
+					::World.Statistics.getFlags().set("LegendLastAmbushType", "ManhuntersBribe");
 					return "ManhuntersBribeSuccess";
 				}
 			}],
@@ -73,16 +73,16 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "To arms!",
 				function getResult(_event) {
-					_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					_event.m.NemesisCityState.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You evaded capture");
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.OrientalBanditTracks;
+					properties.Music = ::Const.Music.OrientalBanditTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
-					properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.LegendManhunters, (115 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy, _event.m.ChampionChance);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
+					properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.LegendManhunters, (115 + _event.m.ResourceBoost) * _event.m.DifficultyMult * _event.m.DifficultyMultScale, ::Const.Faction.Enemy, _event.m.ChampionChance);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}],
@@ -114,17 +114,17 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "To arms!",
 				function getResult(_event) {
-					this.World.Statistics.getFlags().set("LegendLastAmbushType", "Assassins");
-					_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					::World.Statistics.getFlags().set("LegendLastAmbushType", "Assassins");
+					_event.m.NemesisCityState.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You evaded capture");
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.OrientalCityStateTracks;
+					properties.Music = ::Const.Music.OrientalCityStateTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Center;
-					properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Circle;
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.Assassins, 90 * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Center;
+					properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Circle;
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.Assassins, 90 * _event.m.DifficultyMult * _event.m.DifficultyMultScale, ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}],
@@ -141,17 +141,17 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "To arms!",
 				function getResult(_event) {
-					this.World.Statistics.getFlags().set("LegendLastAmbushType", "BountyHunters");
-					_event.m.NemesisCityState.addPlayerRelation(this.Const.World.Assets.RelationAttacked, "You evaded capture");
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					::World.Statistics.getFlags().set("LegendLastAmbushType", "BountyHunters");
+					_event.m.NemesisCityState.addPlayerRelation(::Const.World.Assets.RelationAttacked, "You evaded capture");
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.OrientalCityStateTracks;
+					properties.Music = ::Const.Music.OrientalCityStateTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
-					properties.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-					properties.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
-					this.Const.World.Common.addUnitsToCombat(properties.Entities, this.Const.World.Spawn.BountyHunters, 125 * _event.m.DifficultyMult * _event.m.DifficultyMultScale, this.Const.Faction.Enemy);
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					properties.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+					properties.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
+					::Const.World.Common.addUnitsToCombat(properties.Entities, ::Const.World.Spawn.BountyHunters, 125 * _event.m.DifficultyMult * _event.m.DifficultyMultScale, ::Const.Faction.Enemy);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}],
@@ -161,20 +161,20 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (!this.Const.DLC.Desert) {
+		if (!::Const.DLC.Desert) {
 			return false;
 		}
 
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (this.World.getTime().Days < 12) {
+		if (::World.getTime().Days < 12) {
 			return;
 		}
 
-		local playerTile = this.World.State.getPlayer().getTile();
-		local towns = this.World.EntityManager.getSettlements();
+		local playerTile = ::World.State.getPlayer().getTile();
+		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
 
 		foreach (t in towns) {
@@ -190,7 +190,7 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach (bro in brothers) {
@@ -203,7 +203,7 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		local slaveModifier = ::Math.min(candidates.len(), 12 + this.World.Assets.getCombatDifficulty());
+		local slaveModifier = ::Math.min(candidates.len(), 12 + ::World.Assets.getCombatDifficulty());
 		this.m.Score = ::Math.max(slaveModifier * 7, 15);
 	}
 
@@ -211,20 +211,20 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 		local canBeAssassins = false;
 		local canBeBountyHunters = false;
 		local canBeBribed = false;
-		local currentTile = this.World.State.getPlayer().getTile();
-		local days = this.World.getTime().Days;
-		local renown = this.World.Assets.getBusinessReputation();
-		local lastAmbush = this.World.Statistics.getFlags().get("LegendLastAmbushType");
+		local currentTile = ::World.State.getPlayer().getTile();
+		local days = ::World.getTime().Days;
+		local renown = ::World.Assets.getBusinessReputation();
+		local lastAmbush = ::World.Statistics.getFlags().get("LegendLastAmbushType");
 
-		if (renown >= 2350 && !this.World.getTime().IsDaytime && lastAmbush != "Assassins") {
+		if (renown >= 2350 && !::World.getTime().IsDaytime && lastAmbush != "Assassins") {
 			canBeAssassins = true;
 		}
 
-		if (renown >= 1850 && currentTile.Type != this.Const.World.TerrainType.Desert && currentTile.TacticalType != this.Const.World.TerrainTacticalType.DesertHills && lastAmbush != "BountyHunters") {
+		if (renown >= 1850 && currentTile.Type != ::Const.World.TerrainType.Desert && currentTile.TacticalType != ::Const.World.TerrainTacticalType.DesertHills && lastAmbush != "BountyHunters") {
 			canBeBountyHunters = true;
 		}
 
-		if (this.World.Assets.getMoney() >= this.m.BribeAmount + 500 && lastAmbush != "ManhuntersBribe") {
+		if (::World.Assets.getMoney() >= this.m.BribeAmount + 500 && lastAmbush != "ManhuntersBribe") {
 			canBeBribed = true;
 		}
 
@@ -249,7 +249,7 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 			this.m.BribeAmount = ::Math.round(::Math.rand(800, 2000) * 0.01) * 100.0;
 		}
 
-		this.m.NemesisCityState = this.World.FactionManager.getFaction(this.World.Statistics.getFlags().get("NemesisCityStateID"));
+		this.m.NemesisCityState = ::World.FactionManager.getFaction(::World.Statistics.getFlags().get("NemesisCityStateID"));
 	}
 
 	function onPrepareVariables(_vars) {
@@ -278,9 +278,9 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 	function calcDifficultyMult() {
 		local r;
 
-		if (this.World.getTime().Days < 20) {
+		if (::World.getTime().Days < 20) {
 			r = ::Math.rand(1, 30);
-		} else if (this.World.getTime().Days < 40) {
+		} else if (::World.getTime().Days < 40) {
 			r = ::Math.rand(1, 80);
 		} else {
 			r = ::Math.rand(1, 100);
@@ -301,9 +301,9 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 	}
 
 	function getAdditionalChampionChance() {
-		if (this.World.getTime().Days < 50) {
+		if (::World.getTime().Days < 50) {
 			return 0;
-		} else if (this.World.getTime().Days < 90) {
+		} else if (::World.getTime().Days < 90) {
 			return 1;
 		} else {
 			return 3;
@@ -311,14 +311,14 @@ this.legend_pursuer_ambush_event <- this.inherit("scripts/events/event", {
 	}
 
 	function getScaledDifficultyMult() {
-		local s = ::Math.maxf(0.75, 0.90 * ::Math.pow(0.01 * this.World.State.getPlayer().getStrength(), 0.85));
+		local s = ::Math.maxf(0.75, 0.90 * ::Math.pow(0.01 * ::World.State.getPlayer().getStrength(), 0.85));
 		local d = ::Math.minf(5.0, s);
-		return d * this.Const.Difficulty.EnemyMult[this.World.Assets.getCombatDifficulty()];
+		return d * ::Const.Difficulty.EnemyMult[::World.Assets.getCombatDifficulty()];
 	}
 
 	function calcResourceBoost() {
 		local defaultBoost = -10;
-		local dayModifier = ::Math.min(this.World.getTime().Days / 5, 30);
+		local dayModifier = ::Math.min(::World.getTime().Days / 5, 30);
 
 		return defaultBoost + dayModifier;
 	}

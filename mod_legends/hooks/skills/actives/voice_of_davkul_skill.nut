@@ -2,7 +2,7 @@
 {
 	o.onUse = function ( _user, _targetTile )
 	{
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 
 		foreach( a in actors )
 		{
@@ -12,7 +12,7 @@
 			if (a.getFatigue() == 0)
 				continue;
 
-			if (a.getType() == this.Const.EntityType.Cultist || (::MSU.isKindOf(a, "player") && !::MSU.isNull(a.getBackground()) && (a.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist) || a.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist))))
+			if (a.getType() == ::Const.EntityType.Cultist || (::MSU.isKindOf(a, "player") && !::MSU.isNull(a.getBackground()) && (a.getBackground().isBackgroundType(::Const.BackgroundType.Cultist) || a.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist))))
 				::Legends.Effects.grant(a, ::Legends.Effect.VoiceOfDavkul);
 		}
 

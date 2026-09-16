@@ -4,7 +4,7 @@ this.legend_quiver_of_piercing_arrows_blueprint <- this.inherit("scripts/craftin
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_quiver_of_piercing_arrows";
-		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.m.Type = ::Const.Items.ItemType.Ammo;
 		this.m.PreviewCraftable = this.new("scripts/items/ammo/legend_armor_piercing_arrows");
 		this.m.Cost = 130;
 		local ingredients = [

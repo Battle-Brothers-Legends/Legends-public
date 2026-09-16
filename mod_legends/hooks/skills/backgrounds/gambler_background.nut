@@ -38,9 +38,9 @@
 			"the Cardsharper",
 			"the Gambler"
 		];
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMin;
-		this.m.BackgroundType = this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Performing;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMin;
+		this.m.BackgroundType = ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Performing;
 	}
 
 	o.getTooltip = function () {
@@ -65,13 +65,13 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.noble_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[2, ::Legends.Armor.None]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.None]
 		]));

@@ -5,8 +5,8 @@ this.legend_RSW_feeding <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRswFeeding);
 		this.m.Description = "Rune Sigil: Feeding";
 		this.m.Icon = "ui/rune_sigils/legend_rune_sigil.png";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsActive = false;
 		this.m.IsStacking = true;
 		this.m.IsHidden = true;
@@ -31,7 +31,7 @@ this.legend_RSW_feeding <- this.inherit("scripts/skills/skill", {
 
 		local drain = this.getItem().getRuneBonus1() / 100.0;
 		local actor = this.getContainer().getActor();
-		actor.setFatigue(this.Math.max(0, actor.getFatigue() - this.Math.ceil(_damageInflictedHitpoints * drain)));
-		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " recovers " + this.Math.ceil(_damageInflictedHitpoints * drain) + " fatigue.");
+		actor.setFatigue(::Math.max(0, actor.getFatigue() - ::Math.ceil(_damageInflictedHitpoints * drain)));
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " recovers " + ::Math.ceil(_damageInflictedHitpoints * drain) + " fatigue.");
 	}
 });

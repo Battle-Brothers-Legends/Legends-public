@@ -70,22 +70,22 @@ this.legend_minstrel_performs_at_tavern_encounter <- this.inherit("scripts/encou
 					}
 				],
 				function start(_event) {
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach (bro in brothers) {
-						if (this.Math.rand(1, 100) <= 33) {
+						if (::Math.rand(1, 100) <= 33) {
 							bro.improveMood(0.5, "Had a good brawl");
 
-							if (bro.getMoodState() > this.Const.MoodState.Neutral) {
+							if (bro.getMoodState() > ::Const.MoodState.Neutral) {
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
 						}
 
-						if (this.Math.rand(1, 100) <= 33) {
+						if (::Math.rand(1, 100) <= 33) {
 							bro.addLightInjury();
 							this.List.push({
 								id = 10,

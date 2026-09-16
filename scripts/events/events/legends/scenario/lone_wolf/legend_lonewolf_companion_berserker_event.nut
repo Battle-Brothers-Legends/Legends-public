@@ -5,7 +5,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_berserker";
 		this.m.Title = "Sole Survivor";
-		this.m.Cooldown = 66.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 66.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_36.png[/img]{You have been walking for what feels like forever now.\n\n The blizzard has begun to pick up and you move into the treeline for cover. It has been a long time since you have felt this cold and your body is fully aware of it. You spot black smoke through the tips of the trees and make your way towards it — with any luck the fire it came from is still burning or at least easy enough to rekindle.\n\n In a matter of speaking, the fire still is alive, in the sense that a few dozen huts, burning or collapsed, rise into view as you snap through the treeline on the other side. The settlement is somewhere between a crude camp and an established home where the occasional tent or ramshackle structure breaks up the more uniform and thoughtful huts.\n In the distance, you can hear fighting, and more alarmingly, screaming.}",
@@ -46,8 +46,8 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 			Options = [{
 				Text = "{Good thing I\'m not one of those bloodsuckers.}",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
@@ -84,23 +84,23 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Snow && currentTile.Type != this.Const.World.TerrainType.SnowyForest) {
+		if (currentTile.Type != ::Const.World.TerrainType.Snow && currentTile.Type != ::Const.World.TerrainType.SnowyForest) {
 			return;
 		}
 
@@ -109,7 +109,7 @@ this.legend_lonewolf_companion_berserker_event <- this.inherit("scripts/events/e
 
 	function onPrepareVariables(_vars) {
 		if (this.m.Dude == null) {
-			local roster = this.World.getTemporaryRoster();
+			local roster = ::World.getTemporaryRoster();
 			this.m.Dude = roster.create("scripts/entity/tactical/player");
 			this.m.Dude.setStartValuesEx([::Legends.Background.LegendBerserker]);
 			this.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");

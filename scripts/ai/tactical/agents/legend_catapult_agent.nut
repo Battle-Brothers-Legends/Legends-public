@@ -3,12 +3,12 @@ this.legend_catapult_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.Idle;
+		this.m.ID = ::Const.AI.Agent.ID.Idle;
 		this.m.Properties.OverallMagnetismMult = 10.0;
 		this.m.Properties.OverallDefensivenessMult = 20.0;
 		this.m.Properties.OverallFormationMult = 10.0;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 1.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.0;
 		this.m.Properties.IsRangedUnit = true;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.6;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.2;

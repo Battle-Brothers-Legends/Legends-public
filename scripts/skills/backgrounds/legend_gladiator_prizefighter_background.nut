@@ -38,26 +38,26 @@ this.legend_gladiator_prizefighter_background <- this.inherit("scripts/skills/ba
 		local items = actor.getItems();
 		local r;
 
-		local a = this.Const.World.Common.pickArmor([
+		local a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness]
 		]);
 
-		r = this.Math.rand(1, 5);
+		r = ::Math.rand(1, 5);
 		if (r <= 1) {
 			items.equip(this.new("scripts/items/weapons/oriental/qatal_dagger"));
 		}
 		else if (r == 2) {
 			items.equip(this.new("scripts/items/weapons/legend_katar"));
 		}
-		r = this.Math.rand(1, 5);
+		r = ::Math.rand(1, 5);
 		if (r <= 1)
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
 		items.equip(a);
 
-		items.equip(this.Const.World.Common.pickHelmet([
-			[1, ::Legends.Helmet.Southern.gladiator_helmet, this.Math.rand(13, 15)],
+		items.equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Southern.gladiator_helmet, ::Math.rand(13, 15)],
 			[1, ::Legends.Helmet.None]
 		]));
 

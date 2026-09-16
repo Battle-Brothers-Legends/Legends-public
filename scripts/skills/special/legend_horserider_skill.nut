@@ -4,8 +4,8 @@ this.legend_horserider_skill <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHorseriderSkill);
 		this.m.Icon = "";
-		this.m.Type = this.Const.SkillType.Special;
-		this.m.Order = this.Const.SkillOrder.First;
+		this.m.Type = ::Const.SkillType.Special;
+		this.m.Order = ::Const.SkillOrder.First;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

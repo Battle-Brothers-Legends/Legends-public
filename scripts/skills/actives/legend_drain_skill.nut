@@ -6,8 +6,8 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Pull the essence from your foe, and draw it into yourself.";
 		this.m.KilledString = "Drained";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drain", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Item +10;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Item +10;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -57,8 +57,8 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 	{
 
 		local CurrentInit = this.getContainer().getActor().getInitiative();
-		_properties.DamageRegularMin += this.Math.floor(CurrentInit - 100);
-		_properties.DamageRegularMax += this.Math.floor(CurrentInit - 90);
+		_properties.DamageRegularMin += ::Math.floor(CurrentInit - 100);
+		_properties.DamageRegularMax += ::Math.floor(CurrentInit - 90);
 	}
 
 	function onUse( _user, _targetTile )
@@ -69,7 +69,7 @@ this.legend_drain_skill <- this.inherit("scripts/skills/skill", {
 			local actor = this.getContainer().getActor();
 			local maxHP = actor.getHitpointsMax();
 			local heal = maxHP / 10;
-			actor.setHitpoints(this.Math.min(actor.getHitpoints() + heal, maxHP));
+			actor.setHitpoints(::Math.min(actor.getHitpoints() + heal, maxHP));
 		}
 		return res;
 	}

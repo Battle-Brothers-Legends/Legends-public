@@ -4,10 +4,10 @@ this.legend_sighthound_item <- this.inherit("scripts/items/accessory/legend_acce
 	function create() {
 		this.legend_accessory_dog.create();
 		this.m.Script = "scripts/entity/tactical/legend_sighthound";
-		this.m.Variant = this.Math.rand(1, 2);
+		this.m.Variant = ::Math.rand(1, 2);
 		this.updateVariant();
 		this.m.ID = "accessory.legend_sighthound";
-		this.m.Name = this.Const.Strings.WardogNames[this.Math.rand(0, this.Const.Strings.WardogNames.len() - 1)] + " the Sighthound";
+		this.m.Name = ::Const.Strings.WardogNames[::Math.rand(0, ::Const.Strings.WardogNames.len() - 1)] + " the Sighthound";
 		this.m.Description = "A strong and loyal southern sighthound bred for war. Can be unleashed in battle for scouting, tracking or running down routing enemies.";
 		this.m.Value = 200;
 	}

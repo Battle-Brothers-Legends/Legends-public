@@ -25,9 +25,9 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			::Legends.Traits.getID(::Legends.Trait.Clumsy)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.MeleeSkill
+			::Const.Attributes.MeleeSkill
 		];
-		this.m.Ethnicity = this.Math.rand(0, 2);
+		this.m.Ethnicity = ::Math.rand(0, 2);
 	}
 
 	function setGender(_gender = -1) {
@@ -37,13 +37,13 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		}
 		else if (this.m.Ethnicity == 1) {
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.SouthernFemaleMuscular, Faces = ::Const.Faces.SouthernFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.Young}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.Gladiator, Faces = ::Const.Faces.SouthernMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.Southern, Beards = ::Const.Beards.Southern}, 60);
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 		else if (this.m.Ethnicity == 2) {	
 			_gender ? this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanFemaleMuscular, Faces = ::Const.Faces.AfricanFemale, Hairs = ::Const.Hair.SouthernFemale, HairColors =::Const.HairColors.African}) : this.setBodyCharacteristics(_gender, {Bodies = ::Const.Bodies.AfricanGladiator, Faces = ::Const.Faces.AfricanMale, Hairs = ::Const.Hair.SouthernMale, HairColors = ::Const.HairColors.African, Beards = ::Const.Beards.Southern}, 60);
-			this.m.Names = this.Const.Strings.SouthernNames;
-			this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+			this.m.Names = ::Const.Strings.SouthernNames;
+			this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 		}
 	}
 
@@ -70,14 +70,14 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -88,15 +88,15 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 	{
 		//---
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.RangedSkill] = 1;
-		talents[this.Const.Attributes.RangedDefense] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.RangedSkill] = 1;
+		talents[::Const.Attributes.RangedDefense] = 1;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		//---
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		r = this.Math.rand(0, 16);
+		r = ::Math.rand(0, 16);
 
 		if (r == 0)
 		{
@@ -184,7 +184,7 @@ this.legend_companion_ranged_background <- this.inherit("scripts/skills/backgrou
 			[1, ::Legends.Outfit.mercenary_billman_outfit_00]
 		];
 
-		foreach (item in this.Const.World.Common.pickOutfit(outfits))
+		foreach (item in ::Const.World.Common.pickOutfit(outfits))
 		{
 			items.equip(item);
 		}

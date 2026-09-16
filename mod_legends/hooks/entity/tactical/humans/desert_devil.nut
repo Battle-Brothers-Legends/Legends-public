@@ -24,22 +24,22 @@
 	}
 
 	o.assignRandomEquipment = function () {
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand)) {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/shamshir"
 			];
 
-			if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand)) {
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/oriental/swordlance",
 					"weapons/oriental/swordlance"
 				]);
 			}
 
-			local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+			local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 			this.m.Items.equip(this.new("scripts/items/" + weapon));
 			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)
-				&& this.Math.rand(1, 100) <= 50)
+				&& ::Math.rand(1, 100) <= 50)
 			{
 				this.m.Items.equip(this.new("scripts/items/" + weapon));
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
@@ -47,13 +47,13 @@
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.assassin_robe],
 			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
             // [1, ::Legends.Armor.Standard.leather_scale_armor]
 		]));
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head)) {
-			local helm = this.Const.World.Common.pickHelmet([
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
+			local helm = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Southern.blade_dancer_head_wrap],
 				[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
 			]);
@@ -73,18 +73,18 @@
 			"weapons/named/named_swordlance"
 		];
 
-		if (this.Math.rand(1, 100) <= 75) {
-			local weapon = weapons[this.Math.rand(0, weapons.len() - 1)];
+		if (::Math.rand(1, 100) <= 75) {
+			local weapon = weapons[::Math.rand(0, weapons.len() - 1)];
 			this.m.Items.equip(this.new("scripts/items/" + weapon));
 			if (!this.m.Items.hasBlockedSlot(::Const.ItemSlot.Offhand)
-				&& this.Math.rand(1, 100) <= 50)
+				&& ::Math.rand(1, 100) <= 50)
 			{
 				this.m.Items.equip(this.new("scripts/items/" + weapon));
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 				this.m.Items.updateDualWield();
 			}
 		} else {
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Named.black_leather_armor]
 			]));
 		}

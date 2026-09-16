@@ -18,19 +18,19 @@
 					_event.m.Anatomist.improveMood(1.0, "Acquired an unusual skull to study");
 					_event.m.Thief.improveMood(1.0, "Successfully stole from the peasantry");
 
-					if (_event.m.Anatomist.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.Anatomist.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Anatomist.getMoodState()],
-							text = _event.m.Anatomist.getName() + this.Const.MoodStateEvent[_event.m.Anatomist.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Anatomist.getMoodState()],
+							text = _event.m.Anatomist.getName() + ::Const.MoodStateEvent[_event.m.Anatomist.getMoodState()]
 						});
 					}
 
-					if (_event.m.Thief.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.Thief.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Thief.getMoodState()],
-							text = _event.m.Thief.getName() + this.Const.MoodStateEvent[_event.m.Thief.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Thief.getMoodState()],
+							text = _event.m.Thief.getName() + ::Const.MoodStateEvent[_event.m.Thief.getMoodState()]
 						});
 					}
 
@@ -46,19 +46,19 @@
 						"falchion",
 						"light_crossbow"
 					];
-					local itemAmount = this.Math.rand(1, 2);
+					local itemAmount = ::Math.rand(1, 2);
 
 					for( local i = 0; i < itemAmount; i++) {
-						item = this.new("scripts/items/weapons/" + weaponList[this.Math.rand(0, weaponList.len() - 1)]);
+						item = this.new("scripts/items/weapons/" + weaponList[::Math.rand(0, weaponList.len() - 1)]);
 						this.List.push({
 							id = 10,
 							icon = "ui/items/" + item.getIcon(),
 							text = "You gain " + item.getName()
 						});
-						this.World.Assets.getStash().add(item);
+						::World.Assets.getStash().add(item);
 					}
 
-					itemAmount = this.Math.rand(1, 2);
+					itemAmount = ::Math.rand(1, 2);
 					for(local i = 0; i < itemAmount; i++) {
 						item = ::Const.World.Common.pickArmor([
 							[1, ::Legends.Armor.Standard.leather_tunic],
@@ -73,7 +73,7 @@
 							icon = "ui/items/" + item.getIcon(),
 							text = "You gain " + item.getName()
 						});
-						this.World.Assets.getStash().add(item);
+						::World.Assets.getStash().add(item);
 					}
 
 					this.Characters.push(_event.m.Anatomist.getImagePath());

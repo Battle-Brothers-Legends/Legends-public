@@ -29,7 +29,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 7);
+		local r = ::Math.rand(1, 7);
 
 		if (r == 1)
 		{
@@ -62,9 +62,9 @@
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 			}
 
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				r = this.Math.rand(1, 2);
+				r = ::Math.rand(1, 2);
 
 				if (r == 1)
 				{
@@ -77,13 +77,13 @@
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.basic_mail_shirt],
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.mail_shirt]
 		]));
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[1, ::Legends.Helmet.Standard.feathered_hat],

@@ -4,15 +4,15 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 	{
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_ijirok_helmet";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Helm;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Helm;
 		this.m.Name = "Helmet of the Ijirok";
 		this.m.Description = "Once a barbarian helmet broken in battle, this piece has been bathed in the blood of the legendary Ijirok. Powers beyond your understanding mended it whole again, and will likewise mend any wounds of the wearer as well.";
 		this.m.ArmorDescription = "Includes a barbarian helmet bathed in the blood of the legendary Ijirok.";
 		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 12000;
 		this.m.Condition = 220;
 		this.m.ConditionMax = 220;
@@ -21,7 +21,7 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 		this.m.Lower = true;
 		this.m.HideHair = true;
 		this.m.HideBeard = true;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Legendary;
 	}
 
 	function updateVariant()
@@ -67,7 +67,7 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 	{
 		local actor = this.getContainer().getActor();
 		local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-		local healthAdded = this.Math.min(healthMissing, 10);
+		local healthAdded = ::Math.min(healthMissing, 10);
 
 		if (healthAdded <= 0)
 		{
@@ -79,9 +79,9 @@ this.legend_ijirok_helmet <- this.inherit("scripts/items/legend_helmets/legend_h
 
 		if (!actor.isHiddenToPlayer())
 		{
-			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play("sounds/enemies/unhold_regenerate_02.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+			::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+			::Sound.play("sounds/enemies/unhold_regenerate_02.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
 		}
 	}
 

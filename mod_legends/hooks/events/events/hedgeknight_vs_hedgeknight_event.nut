@@ -30,20 +30,20 @@
 
 					this.List.push(::Legends.EventList.changeMoney(-2000));
 
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 					foreach( bro in brothers ) {
 						if (bro.getID() == _event.m.HedgeKnight1.getID() || bro.getID() == _event.m.HedgeKnight2.getID())
 							continue;
 
 						if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 							bro.worsenMood(2.0, "Angry about you bribing mercenaries to stop their fight");
-						else if (this.Math.rand(1, 100) <= 50)
+						else if (::Math.rand(1, 100) <= 50)
 							bro.worsenMood(1.0, "Concerned about you bribing mercenaries to stop their fight");
 
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[bro.getMoodState()],
-							text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+							icon = ::Const.MoodStateIcon[bro.getMoodState()],
+							text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 						});
 					}
 				}
@@ -62,17 +62,17 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.HedgeKnight2.getName() + " has died"
 					});
-					_event.m.HedgeKnight2.getItems().transferToStash(this.World.Assets.getStash());
-					_event.m.HedgeKnight2.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.getPlayerRoster().remove(_event.m.HedgeKnight2);
-					local injury = _event.m.HedgeKnight1.addInjury(this.Const.Injury.Brawl);
+					_event.m.HedgeKnight2.getItems().transferToStash(::World.Assets.getStash());
+					_event.m.HedgeKnight2.getSkills().onDeath(::Const.FatalityType.None);
+					::World.getPlayerRoster().remove(_event.m.HedgeKnight2);
+					local injury = _event.m.HedgeKnight1.addInjury(::Const.Injury.Brawl);
 					this.List.push({
 						id = 10,
 						icon = injury.getIcon(),
 						text = _event.m.HedgeKnight1.getName() + " suffers " + injury.getNameOnly()
 					});
 
-					if (this.Math.rand(1, 2) == 1) {
+					if (::Math.rand(1, 2) == 1) {
 						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.HedgeKnight1, ::Math.rand(1, 2)));
 					} else {
 						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.HedgeKnight1, ::Math.rand(1, 2)));
@@ -92,17 +92,17 @@
 						icon = "ui/icons/kills.png",
 						text = _event.m.HedgeKnight1.getName() + " has died"
 					});
-					_event.m.HedgeKnight1.getItems().transferToStash(this.World.Assets.getStash());
-					_event.m.HedgeKnight1.getSkills().onDeath(this.Const.FatalityType.None);
-					this.World.getPlayerRoster().remove(_event.m.HedgeKnight1);
-					local injury = _event.m.HedgeKnight2.addInjury(this.Const.Injury.Brawl);
+					_event.m.HedgeKnight1.getItems().transferToStash(::World.Assets.getStash());
+					_event.m.HedgeKnight1.getSkills().onDeath(::Const.FatalityType.None);
+					::World.getPlayerRoster().remove(_event.m.HedgeKnight1);
+					local injury = _event.m.HedgeKnight2.addInjury(::Const.Injury.Brawl);
 					this.List.push({
 						id = 10,
 						icon = injury.getIcon(),
 						text = _event.m.HedgeKnight2.getName() + " suffers " + injury.getNameOnly()
 					});
 
-					if (this.Math.rand(1, 2) == 1) {
+					if (::Math.rand(1, 2) == 1) {
 						this.List.push(::Legends.EventList.changeMeleeSkill(_event.m.HedgeKnight2, ::Math.rand(1, 2)));
 					} else {
 						this.List.push(::Legends.EventList.changeMeleeDefense(_event.m.HedgeKnight2, ::Math.rand(1, 2)));

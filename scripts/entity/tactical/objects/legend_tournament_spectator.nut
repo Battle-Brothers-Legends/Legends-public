@@ -23,10 +23,10 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 
 	function onInit()
 	{
-		local bodies = this.Const.Bodies.AllMale;
-		local heads = this.Const.Faces.AllHuman;
-		local beards = this.Const.Beards.All;
-		local hairs = this.Const.Hair.Barber;
+		local bodies = ::Const.Bodies.AllMale;
+		local heads = ::Const.Faces.AllHuman;
+		local beards = ::Const.Beards.All;
+		local hairs = ::Const.Hair.Barber;
 		local armors = [
 				"bust_desert_noble_01",
 				"bust_desert_noble_02",
@@ -152,7 +152,7 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 			"faction_helmet_11"
 		];
 
-		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && this.Math.rand(1, 100) >= 50)
+		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0 && ::Math.rand(1, 100) >= 50)
 		{
 			beards = null;
 		}
@@ -160,22 +160,22 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 
 
 		local body = this.addSprite("body");
-		body.setBrush(heads[this.Math.rand(0, heads.len() - 1)]);
+		body.setBrush(heads[::Math.rand(0, heads.len() - 1)]);
 		body.varyColor(0.05, 0.05, 0.05);
 		body.varySaturation(0.1);
 		local armor = this.addSprite("armor");
 
-		armor.setBrush(armors[this.Math.rand(0, armors.len() - 1)]);
+		armor.setBrush(armors[::Math.rand(0, armors.len() - 1)]);
 
 		local head = this.addSprite("head");
-		head.setBrush(heads[this.Math.rand(0, heads.len() - 1)]);
+		head.setBrush(heads[::Math.rand(0, heads.len() - 1)]);
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local beard = this.addSprite("beard");
 
-		if (beards != null && this.Math.rand(1, 100) <= 60)
+		if (beards != null && ::Math.rand(1, 100) <= 60)
 		{
-			beard.setBrush("beard_brown_" + beards[this.Math.rand(0, beards.len() - 1)]);
+			beard.setBrush("beard_brown_" + beards[::Math.rand(0, beards.len() - 1)]);
 			beard.Saturation = 0.8;
 			beard.setBrightness(0.4);
 		}
@@ -185,11 +185,11 @@ this.legend_tournament_spectator <- this.inherit("scripts/entity/tactical/entity
 
 		if (!beard.HasBrush)
 		{
-			helmet.setBrush(helmets[this.Math.rand(0, helmets.len() - 1)]);
+			helmet.setBrush(helmets[::Math.rand(0, helmets.len() - 1)]);
 		}
-		else if (this.Math.rand(1, 100) <= 95)
+		else if (::Math.rand(1, 100) <= 95)
 		{
-			hair.setBrush("hair_brown_" + hairs[this.Math.rand(0, hairs.len() - 1)]);
+			hair.setBrush("hair_brown_" + hairs[::Math.rand(0, hairs.len() - 1)]);
 			hair.Saturation = 0.8;
 			hair.setBrightness(0.4);
 		}

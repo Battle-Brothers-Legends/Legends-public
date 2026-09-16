@@ -6,7 +6,7 @@ this.legend_steps_guided <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "A talented ranger has granted this character the skills of a pathfinder.";
 		this.m.Icon = "ui/perks/guided_steps_circle.png";
 		this.m.IconMini = "mini_guided_steps_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -16,8 +16,8 @@ this.legend_steps_guided <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		actor.m.ActionPointCosts = this.Const.PathfinderMovementAPCost;
-		actor.m.FatigueCosts = clone this.Const.PathfinderMovementFatigueCost;
+		actor.m.ActionPointCosts = ::Const.PathfinderMovementAPCost;
+		actor.m.FatigueCosts = clone ::Const.PathfinderMovementFatigueCost;
 		actor.m.LevelActionPointCost = 0;
 	}
 

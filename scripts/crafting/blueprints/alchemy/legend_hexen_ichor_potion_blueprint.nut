@@ -4,7 +4,7 @@ this.legend_hexen_ichor_potion_blueprint <- this.inherit("scripts/crafting/bluep
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_hexen_ichor_potion";
-		this.m.Type = this.Const.Items.ItemType.Usable;
+		this.m.Type = ::Const.Items.ItemType.Usable;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_hexen_ichor_potion_item");
 		this.m.Cost = 2000;
 		local ingredients = [

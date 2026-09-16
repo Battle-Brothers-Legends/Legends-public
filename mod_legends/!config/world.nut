@@ -86,7 +86,7 @@ for (local i = 0; i < ::Const.World.TerrainType.COUNT; i++)
 ::Const.World.Settlements.LegendsWorldMaster <- [
 	{
 		Ratio = 0.20,
-		Types = this.Const.World.Settlements.Legends_villages_coast,
+		Types = ::Const.World.Settlements.Legends_villages_coast,
 		Sizes = [
 			{
 				Ratio = 5,

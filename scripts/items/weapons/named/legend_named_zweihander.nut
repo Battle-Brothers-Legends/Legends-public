@@ -6,13 +6,13 @@ this.legend_named_zweihander <- this.inherit("scripts/items/weapons/named/named_
 		this.named_weapon.create();
 		this.m.Variants = [1, 2, 3, 4];
 		this.m.ID = "weapon.legend_named_zweihander";
-		this.m.NameList = this.Const.Strings.GreatswordNames;
+		this.m.NameList = ::Const.Strings.GreatswordNames;
 		this.m.Description = "This zweihander is a true masterpiece, with a blade that is both flexible and easy to swing, but also delivers devastating blows to whoever is unlucky enough to get in range.";
 		this.m.Categories = "Sword, Two-Handed";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
@@ -28,7 +28,7 @@ this.legend_named_zweihander <- this.inherit("scripts/items/weapons/named/named_
 		this.m.ArmorDamageMult = 1.0;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ChanceToHitHead = 5;
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.randomizeValues();
 	}
 

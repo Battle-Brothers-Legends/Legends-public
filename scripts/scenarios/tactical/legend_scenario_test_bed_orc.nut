@@ -7,8 +7,8 @@ this.legend_scenario_test_bed_orc <- this.inherit("scripts/scenarios/tactical/sc
 		this.initMap();
 		this.initEntities(6, 1);
 		this.initStash();
-		local weather = this.Tactical.getWeather();
-		this.Tactical.getCamera().Level = 0;
+		local weather = ::Tactical.getWeather();
+		::Tactical.getCamera().Level = 0;
 	}
 
 	function initMap()
@@ -16,7 +16,7 @@ this.legend_scenario_test_bed_orc <- this.inherit("scripts/scenarios/tactical/sc
 		local testMap = this.MapGen.get("tactical.steppe");
 		local minX = testMap.getMinX();
 		local minY = testMap.getMinY();
-		this.Tactical.resizeScene(minX, minY);
+		::Tactical.resizeScene(minX, minY);
 		testMap.fill({
 			X = 0,
 			Y = 0,
@@ -40,15 +40,15 @@ this.legend_scenario_test_bed_orc <- this.inherit("scripts/scenarios/tactical/sc
 
 			while (1)
 			{
-				x = this.Math.rand(2, 6);
-				y = this.Math.rand(2, 6) - x / 2;
+				x = ::Math.rand(2, 6);
+				y = ::Math.rand(2, 6) - x / 2;
 
-				if (this.Tactical.getTile(x, y).Level == 3)
+				if (::Tactical.getTile(x, y).Level == 3)
 				{
 					continue;
 				}
 
-				if (this.Tactical.getTile(x, y).IsEmpty)
+				if (::Tactical.getTile(x, y).IsEmpty)
 				{
 					break;
 				}
@@ -63,12 +63,12 @@ this.legend_scenario_test_bed_orc <- this.inherit("scripts/scenarios/tactical/sc
 			items.equip(this.new("scripts/items/weapons/greataxe"));
 			items.equip(this.new("scripts/items/accessory/legend_wardog_item"));
 			items.equip(this.new("scripts/items/shields/wooden_shield"));
-			local r = this.Math.rand(0, 2);
+			local r = ::Math.rand(0, 2);
 			local items = entity.getItems();
 		}
 
 		local entity = this.spawnEntity("scripts/entity/tactical/enemies/orc_berserker");
-		entity.setFaction(this.Const.Faction.Orcs);
+		entity.setFaction(::Const.Faction.Orcs);
 		entity.assignRandomEquipment();
 	}
 
@@ -79,28 +79,28 @@ this.legend_scenario_test_bed_orc <- this.inherit("scripts/scenarios/tactical/sc
 
 		while (1)
 		{
-			x = this.Math.rand(_minX, _maxX);
-			y = this.Math.rand(_minY, _maxY) - x / 2;
+			x = ::Math.rand(_minX, _maxX);
+			y = ::Math.rand(_minY, _maxY) - x / 2;
 
-			if (this.Tactical.getTile(x, y).Level == 3)
+			if (::Tactical.getTile(x, y).Level == 3)
 			{
 				continue;
 			}
 
-			if (this.Tactical.getTile(x, y).IsEmpty)
+			if (::Tactical.getTile(x, y).IsEmpty)
 			{
 				break;
 			}
 		}
 
-		return this.Tactical.spawnEntity(_script, x, y);
+		return ::Tactical.spawnEntity(_script, x, y);
 	}
 
 	function initStash()
 	{
-		this.Stash.clear();
-		this.Stash.resize(63);
-		this.Stash.setLocked(true);
+		::Stash.clear();
+		::Stash.resize(63);
+		::Stash.setLocked(true);
 	}
 
 });

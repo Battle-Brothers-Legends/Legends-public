@@ -36,11 +36,11 @@
 		}
 
 		local fightingBeasts = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Beasts || enemy.getType() == this.Const.EntityType.BarbarianUnhold || enemy.getType() == this.Const.EntityType.BarbarianUnholdFrost)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Beasts || enemy.getType() == ::Const.EntityType.BarbarianUnhold || enemy.getType() == ::Const.EntityType.BarbarianUnholdFrost)
 			{
 				fightingBeasts = true;
 				break;

@@ -8,8 +8,8 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Item;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
         this.m.IsWeaponSkill = true;
@@ -61,7 +61,7 @@ this.legend_named_flail_effect <- this.inherit("scripts/skills/skill", {
 
 			if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + this.Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " struck a hit that leaves " + ::Const.UI.getColorizedEntityName(_targetEntity) + " dazed");
 			}
 		}
 	}

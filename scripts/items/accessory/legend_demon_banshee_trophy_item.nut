@@ -6,7 +6,7 @@ this.legend_demon_banshee_trophy_item <- this.inherit("scripts/items/accessory/a
 		this.m.ID = "accessory.legend_demon_banshee_trophy";
 		this.m.Name = "Demonic Banshee Trophy";
 		this.m.Description = "An eerie trophy that, when worn, provides incredible vigor and speed.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
@@ -71,7 +71,7 @@ this.legend_demon_banshee_trophy_item <- this.inherit("scripts/items/accessory/a
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/cloth_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/cloth_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onUpdateProperties( _properties )

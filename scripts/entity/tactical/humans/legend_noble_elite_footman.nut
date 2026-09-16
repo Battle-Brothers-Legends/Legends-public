@@ -2,9 +2,9 @@ this.legend_noble_elite_footman <- this.inherit("scripts/entity/tactical/legend_
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.NobleEliteFootman; 
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.NobleEliteFootman.XP;
+		this.m.Type = ::Const.EntityType.NobleEliteFootman; 
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.NobleEliteFootman.XP;
 		this.legend_randomized_unit_noble_abstract.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
@@ -19,7 +19,7 @@ this.legend_noble_elite_footman <- this.inherit("scripts/entity/tactical/legend_
 	{
 		this.legend_randomized_unit_noble_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.NobleEliteFootman);
+		b.setValues(::Const.Tactical.Actor.NobleEliteFootman);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;

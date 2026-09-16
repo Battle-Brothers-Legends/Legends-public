@@ -672,13 +672,13 @@
 		}
 		
 		local kraken = function (_action, _nearTile = null) { // added separately as its a bit customized
-			if (!this.World.Flags.get("IsKrakenDefeated")) {
+			if (!::World.Flags.get("IsKrakenDefeated")) {
 				return false;
 			}
 
 			local disallowedTerrain = [];
-			for (local i = 0; i < this.Const.World.TerrainType.COUNT; i = ++i) {
-				if (i == this.Const.World.TerrainType.Swamp) {
+			for (local i = 0; i < ::Const.World.TerrainType.COUNT; i = ++i) {
+				if (i == ::Const.World.TerrainType.Swamp) {
 				} else {
 					disallowedTerrain.push(i);
 				}
@@ -693,13 +693,13 @@
 			local party = _action.getFaction().spawnEntity(tile, "Kraken", false, ::Const.World.Spawn.Kraken, 1000);
 			party.getSprite("banner").setBrush("banner_beasts_01");
 			party.setDescription("A tentacled horror from another age.");
-			party.setFootprintType(this.Const.World.FootprintsType.Kraken);
+			party.setFootprintType(::Const.World.FootprintsType.Kraken);
 			party.setSlowerAtNight(true);
 			party.setUsingGlobalVision(false);
 			party.setLooting(false);
 			local roam = this.new("scripts/ai/world/orders/roam_order");
 			roam.setNoTerrainAvailable();
-			roam.setTerrain(this.Const.World.TerrainType.Swamp, true);
+			roam.setTerrain(::Const.World.TerrainType.Swamp, true);
 			party.getController().addOrder(roam);
 			return true;
 		};

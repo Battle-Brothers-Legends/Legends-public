@@ -4,8 +4,8 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpecialistSelfdefense);
 		this.m.IconMini = "perk_spec_staff_mini";
-		this.m.Type = this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -16,11 +16,11 @@ this.perk_legend_specialist_selfdefense <- this.inherit("scripts/skills/legend_s
 		local bonus = 16;
 		if (item == null)
 			return;
-		if (item.isWeaponType(this.Const.Items.WeaponType.Staff) && item.isWeaponType(this.Const.Items.WeaponType.Sling))
+		if (item.isWeaponType(::Const.Items.WeaponType.Staff) && item.isWeaponType(::Const.Items.WeaponType.Sling))
 			bonus = 8;
-		else if (item.isWeaponType(this.Const.Items.WeaponType.Musical))
+		else if (item.isWeaponType(::Const.Items.WeaponType.Musical))
 			bonus = 8;
-		if (item.isWeaponType(this.Const.Items.WeaponType.Staff) || item.isWeaponType(this.Const.Items.WeaponType.MagicStaff) || item.isWeaponType(this.Const.Items.WeaponType.Musical)) {
+		if (item.isWeaponType(::Const.Items.WeaponType.Staff) || item.isWeaponType(::Const.Items.WeaponType.MagicStaff) || item.isWeaponType(::Const.Items.WeaponType.Musical)) {
 			_properties.MeleeDefense  += bonus;
 			_properties.RangedDefense += bonus;
 			_properties.MeleeSkill += bonus;

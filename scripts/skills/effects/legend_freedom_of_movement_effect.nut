@@ -6,7 +6,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "You are moving with freedom.";
 		this.m.Icon = "ui/perks/freedom_of_movement_circle.png";
 		this.m.IconMini = "freedom_of_movement_circle_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -35,7 +35,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 		if (defenderCurrentInitiative > attackerCurrentInitiative)
 		{
 			local diff = (defenderCurrentInitiative - attackerCurrentInitiative) / 100.0;
-			local diffPoint = this.Math.minf(1, this.Math.pow(diff, 0.4)) * 0.80;
+			local diffPoint = ::Math.minf(1, ::Math.pow(diff, 0.4)) * 0.80;
 			bonus = 1 - diffPoint;
 		}
 
@@ -90,7 +90,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text = ::Const.UI.getColorized("-" + ::Math.round(bonus) + "%", ::Const.UI.Color.NegativeValue) + " damage from " + this.m.Name,
-			})
+			});
 		}
 	}
 });

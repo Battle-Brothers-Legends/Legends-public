@@ -70,8 +70,8 @@
 			{
 				Text = "Welcome to the %companyname%.",
 				function getResult( _event ) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					_event.m.Dude = null;
 					return 0;
@@ -80,14 +80,14 @@
 			{
 				Text = "A pauper is no cousin of mine",
 				function getResult( _event ) {
-					this.World.getTemporaryRoster().clear();
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude = null;
 					return 0;
 				}
 			}
 			],
 			function start( _event ) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.LegendCommanderNoble]);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.Addict);
@@ -98,24 +98,24 @@
 	}
 
 	o.onUpdateScore = function() {
-		if (!this.Const.DLC.Wildmen)
+		if (!::Const.DLC.Wildmen)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
 
-		if (currentTile.SquareCoords.Y <= this.World.getMapSize().Y * 0.2)
+		if (currentTile.SquareCoords.Y <= ::World.getMapSize().Y * 0.2)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_servant = [];
 		local candidates_thief = [];
 		local candidates_noble = [];
@@ -138,16 +138,16 @@
 		if (candidates_other.len() == 0)
 			return;
 
-		this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 
 		if (candidates_servant.len() != 0)
-			this.m.Servant = candidates_servant[this.Math.rand(0, candidates_servant.len() - 1)];
+			this.m.Servant = candidates_servant[::Math.rand(0, candidates_servant.len() - 1)];
 
 		if (candidates_thief.len() != 0)
-			this.m.Thief = candidates_thief[this.Math.rand(0, candidates_thief.len() - 1)];
+			this.m.Thief = candidates_thief[::Math.rand(0, candidates_thief.len() - 1)];
 
 		if (candidates_noble.len() != 0)
-			this.m.Noble = candidates_noble[this.Math.rand(0, candidates_noble.len() - 1)];
+			this.m.Noble = candidates_noble[::Math.rand(0, candidates_noble.len() - 1)];
 
 		this.m.Score = 10;
 	}

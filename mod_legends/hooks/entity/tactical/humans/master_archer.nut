@@ -30,9 +30,9 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Mainhand))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
 		{
-			if (this.Math.rand(1, 100) <= 66)
+			if (::Math.rand(1, 100) <= 66)
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/war_bow"));
 				this.m.Items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
@@ -49,9 +49,9 @@
 			"weapons/scramasax",
 			"weapons/hatchet"
 		];
-		this.m.Items.addToBag(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.addToBag(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body))
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
 		{
 			local armor = [
 				[1, ::Legends.Armor.Standard.thick_tunic],
@@ -61,16 +61,16 @@
 				[1, ::Legends.Armor.Standard.ragged_surcoat],
 				[1, ::Legends.Armor.Standard.basic_mail_shirt]
 			];
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head) && this.Math.rand(1, 100) <= 50)
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head) && ::Math.rand(1, 100) <= 50)
 		{
 			local helmet = [
 				"helmets/hood",
 				"helmets/headscarf"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + helmet[this.Math.rand(0, helmet.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + helmet[::Math.rand(0, helmet.len() - 1)]));
 		}
 	}
 
@@ -93,9 +93,9 @@
 			"armor/named/blue_studded_mail_armor"
 		];
 
-		if (this.Math.rand(1, 100) <= 70)
+		if (::Math.rand(1, 100) <= 70)
 		{
-			local r = this.Math.rand(0, weapons.len() - 1);
+			local r = ::Math.rand(0, weapons.len() - 1);
 
 			foreach( w in weapons[r] )
 			{
@@ -104,8 +104,8 @@
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(
-				this.Const.World.Common.convNameToList(armor)
+			this.m.Items.equip(::Const.World.Common.pickArmor(
+				::Const.World.Common.convNameToList(armor)
 			));
 		}
 

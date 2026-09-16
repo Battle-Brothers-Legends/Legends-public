@@ -10,16 +10,16 @@ this.legend_legion_legate_background <- this.inherit("scripts/skills/backgrounds
 		this.m.Excluded = ::Legends.Legion.excludedTraits();
 
 		this.m.ExcludedTalents = [
-			// this.Const.Attributes.RangedSkill,
-			//this.Const.Attributes.Hitpoints,
-			// this.Const.Attributes.Bravery,
-			this.Const.Attributes.Fatigue
+			// ::Const.Attributes.RangedSkill,
+			//::Const.Attributes.Hitpoints,
+			// ::Const.Attributes.Bravery,
+			::Const.Attributes.Fatigue
 		];
-		// this.m.BackgroundType = this.Const.BackgroundType.Untalented;
-		this.m.LastNames = this.Const.Strings.AncientDeadTitles;
-		this.m.Level = this.Math.rand(5, 7);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		// this.m.BackgroundType = ::Const.BackgroundType.Untalented;
+		this.m.LastNames = ::Const.Strings.AncientDeadTitles;
+		this.m.Level = ::Math.rand(5, 7);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function getTooltip ()

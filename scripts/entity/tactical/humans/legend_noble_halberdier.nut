@@ -2,14 +2,14 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendHalberdier;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendHalberdier.XP;
+		this.m.Type = ::Const.EntityType.LegendHalberdier;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendHalberdier.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.CommonMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.CommonMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Tidy;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeEnemyGender() == 1) {
@@ -21,7 +21,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendHalberdier);
+		b.setValues(::Const.Tactical.Actor.LegendHalberdier);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -61,9 +61,9 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		local r;
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -72,7 +72,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 90)
+		if (::Math.rand(1, 100) <= 90)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
@@ -82,18 +82,18 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			[1, "weapons/legend_battle_glaive"],
 		], "scripts/items/"));
 
-		this.getItems().equip(this.Const.World.Common.pickArmor([
+		this.getItems().equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.seedmaster_noble_armor],
 			[1, ::Legends.Armor.Standard.citreneking_noble_armor],
 		]));
 
-		if (this.Math.rand(1, 100) <= 90)
+		if (::Math.rand(1, 100) <= 90)
 		{
 			local helmet;
 
 			if (banner <= 4)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
@@ -107,7 +107,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else if (banner <= 7)
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.padded_flat_top_helmet],
 					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
@@ -119,7 +119,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 			}
 			else
 			{
-				helmet = this.Const.World.Common.pickHelmet([
+				helmet = ::Const.World.Common.pickHelmet([
 					[1, ::Legends.Helmet.Standard.nasal_helmet],
 					[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 					[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
@@ -140,7 +140,7 @@ this.legend_noble_halberdier <- this.inherit("scripts/entity/tactical/human", {
 		}
 		else
 		{
-			this.getItems().equip(this.Const.World.Common.pickHelmet([
+			this.getItems().equip(::Const.World.Common.pickHelmet([
 				[2, ::Legends.Helmet.Standard.aketon_cap],
 				[1, ::Legends.Helmet.Standard.full_aketon_cap]
 			]))

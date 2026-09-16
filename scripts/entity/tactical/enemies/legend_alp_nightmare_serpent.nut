@@ -4,13 +4,13 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 	{
 		this.legend_alp_shadow.create();
 
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc6/snake_hurt_01.wav",
 			"sounds/enemies/dlc6/snake_hurt_02.wav",
 			"sounds/enemies/dlc6/snake_hurt_03.wav",
 			"sounds/enemies/dlc6/snake_hurt_04.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/dlc6/snake_idle_01.wav",
 			"sounds/enemies/dlc6/snake_idle_02.wav",
 			"sounds/enemies/dlc6/snake_idle_03.wav",
@@ -29,7 +29,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.m.Flags.set("type", "serpent");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/serpent_agent");
 		this.m.AIAgent.addBehavior(this.new("scripts/ai/tactical/behaviors/ai_alp_teleport"));
-		this.m.AIAgent.removeBehavior(this.Const.AI.Behavior.ID.Retreat);
+		this.m.AIAgent.removeBehavior(::Const.AI.Behavior.ID.Retreat);
 		this.m.AIAgent.setActor(this);
 	}
 
@@ -37,19 +37,19 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 	{
 		this.legend_alp_shadow.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.Serpent);
-		b.Initiative += this.Math.rand(40, 50);
+		b.setValues(::Const.Tactical.Actor.Serpent);
+		b.Initiative += ::Math.rand(40, 50);
 		b.IsAffectedByNight = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay1)
 		{
 			b.MeleeDefense += 5;
 
-			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
+			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay3)
 				b.DamageDirectMult += 0.15;
 
-			if (this.World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4)
+			if (::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsAlpNightmareScaleDay4)
 				b.MeleeSkill += 10;
 		}
 
@@ -57,7 +57,7 @@ this.legend_alp_nightmare_serpent <- this.inherit("scripts/entity/tactical/enemi
 		this.addSprite("socket").setBrush("bust_base_shadow");
 
 		local blurAlpha = 110;
-		local body_brush = "bust_alp_snake_0" + this.Math.rand(1, 2);
+		local body_brush = "bust_alp_snake_0" + ::Math.rand(1, 2);
 		local body = this.addSprite("body");
 		body.setBrush(body_brush);
 		//body.Alpha = 0;

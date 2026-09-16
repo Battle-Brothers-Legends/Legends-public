@@ -10,8 +10,8 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 	function create()
 	{
 		// basically a clone of miasma 
-		this.m.ID = this.Const.AI.Behavior.ID.Miasma;
-		this.m.Order = this.Const.AI.Behavior.Order.Miasma;
+		this.m.ID = ::Const.AI.Behavior.ID.Miasma;
+		this.m.Order = ::Const.AI.Behavior.Order.Miasma;
 		this.m.IsThreaded = false;
 		this.behavior.create();
 	}
@@ -23,26 +23,26 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 		this.m.TargetScore = 0;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
 		if (this.m.Skill == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		//score *= this.getFatigueScoreMult(this.m.Skill);
@@ -50,10 +50,10 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 
 		if (this.m.TargetTile == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		return this.Const.AI.Behavior.Score.Miasma * score + this.m.TargetScore;
+		return ::Const.AI.Behavior.Score.Miasma * score + this.m.TargetScore;
 	}
 
 	function onExecute( _entity )
@@ -66,7 +66,7 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 			if (this.m.TargetTile.IsVisibleForPlayer && _entity.isHiddenToPlayer())
 			{
 				_entity.setDiscovered(true);
-				_entity.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				_entity.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return false;
@@ -163,25 +163,25 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 
 				local targetTile = target.getTile();
 				local target_score = _skill.getMaxRange() - _myTile.getDistanceTo(target.getTile());
-				target_score += this.Const.AI.Behavior.MiasmaZOCBonus * target.getTile().getZoneOfControlCountOtherThan(target.getAlliedFactions());
+				target_score += ::Const.AI.Behavior.MiasmaZOCBonus * target.getTile().getZoneOfControlCountOtherThan(target.getAlliedFactions());
 
 				if (::Legends.S.isEntityMovementDisabled(target))
-					target_score -= this.Const.AI.Behavior.MiasmaStunnedBonus;
+					target_score -= ::Const.AI.Behavior.MiasmaStunnedBonus;
 
 				target_score *= target.getCurrentProperties().TargetAttractionMult;
 
 				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "legend_shadow_mist" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
-					target_score *= this.Const.AI.Behavior.MiasmaOneTurnLeftMult;
+					target_score *= ::Const.AI.Behavior.MiasmaOneTurnLeftMult;
 
 				if (!::Legends.S.isEntityMovementDisabled(target) && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
-					target_score *= this.Const.AI.Behavior.MiasmaVSWaitMult;
+					target_score *= ::Const.AI.Behavior.MiasmaVSWaitMult;
 
 				score += target_score;
 				numAffected += 1;
 			}
 
 			if (numAffected > 1)
-				score *= this.Math.pow(this.Const.AI.Behavior.RootNumAffectedPOW, numAffected - 1);
+				score *= ::Math.pow(::Const.AI.Behavior.RootNumAffectedPOW, numAffected - 1);
 
 			if (score <= bestScore)
 				continue;
@@ -194,7 +194,7 @@ this.legend_ai_alp_realm_of_shadow <- this.inherit("scripts/ai/tactical/behavior
 		{
 			this.m.TargetTile = bestTarget;
 			this.m.TargetScore = bestScore;
-			return this.Math.maxf(0.1, bestScore * 0.1);
+			return ::Math.maxf(0.1, bestScore * 0.1);
 		}
 		else
 		{

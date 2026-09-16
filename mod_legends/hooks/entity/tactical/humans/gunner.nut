@@ -31,10 +31,10 @@
 		this.m.Items.equip(this.new("scripts/items/weapons/oriental/handgonne"));
 		this.m.Items.equip(this.new("scripts/items/ammo/powder_bag"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.gunner_hat]
 		]);
 		this.m.Items.equip(helm);

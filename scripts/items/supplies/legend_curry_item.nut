@@ -1,7 +1,7 @@
 this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_curry";
 		this.m.Name = "Curry";
@@ -10,55 +10,31 @@ this.legend_curry_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.m.Value = 250;
 		this.m.Amount = 50.0;
 		this.m.GoodForDays = 7;
-		this.m.IsAllowedInBag = true;
-		this.m.IsDroppedAsLoot = true;
 	}
 
-	function getBuyPrice()
-	{
-		if (this.m.IsSold)
-		{
+	function getBuyPrice() {
+		if (this.m.IsSold) {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? this.Const.World.Assets.BaseBuyPrice : this.Const.World.Assets.BuyPriceNotProducedHere)));
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			local isBuildingPresent = ::World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::World.State.getCurrentTown().getFoodPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult() * (isBuildingPresent ? ::Const.World.Assets.BaseBuyPrice : ::Const.World.Assets.BuyPriceNotProducedHere)));
 		}
 
 		return this.item.getBuyPrice();
 	}
 
-	function getSellPrice()
-	{
-		if (this.m.IsBought)
-		{
+	function getSellPrice() {
+		if (this.m.IsBought) {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
-			return this.Math.floor(this.item.getSellPrice() * (isBuildingPresent ? this.Const.World.Assets.BaseSellPrice : this.Const.World.Assets.SellPriceNotProducedHere));
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			local isBuildingPresent = ::World.State.getCurrentTown().hasAttachedLocation("attached_location.goat_herd");
+			return ::Math.floor(this.item.getSellPrice() * (isBuildingPresent ? ::Const.World.Assets.BaseSellPrice : ::Const.World.Assets.SellPriceNotProducedHere));
 		}
 
 		return this.item.getSellPrice();
 	}
-
-	function onPutIntoBag()
-	{
-		this.onEquip();
-	}
-
-	function onEquip()
-	{
-		this.food_item.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendEatRations, function (_skill) {
-			_skill.setItem(this);
-			_skill.setAmount(this.m.Amount);
-		}.bindenv(this));
-	}
-
 });
-

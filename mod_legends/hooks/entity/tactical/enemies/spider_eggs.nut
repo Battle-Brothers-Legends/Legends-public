@@ -23,8 +23,8 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		local b = this.m.BaseProperties;	
-		b.Armor[this.Const.BodyPart.Body] = 40;
-		b.ArmorMax[this.Const.BodyPart.Body] = 40;
+		b.Armor[::Const.BodyPart.Body] = 40;
+		b.ArmorMax[::Const.BodyPart.Body] = 40;
         this.m.CurrentProperties = clone b;
 	}
 
@@ -35,12 +35,12 @@
 			return;
 		}
 
-		if (!_tile.IsOccupiedByActor || _tile.getEntity().getType() != this.Const.EntityType.SpiderEggs || ::Tactical.TurnSequenceBar.getCurrentRound() < 1 + this.getSpawnDelay())
+		if (!_tile.IsOccupiedByActor || _tile.getEntity().getType() != ::Const.EntityType.SpiderEggs || ::Tactical.TurnSequenceBar.getCurrentRound() < 1 + this.getSpawnDelay())
 		{
 			return;
 		}
 
-		if (this.Tactical.Entities.isEnemyRetreating())
+		if (::Tactical.Entities.isEnemyRetreating())
 		{
 			return;
 		}
@@ -56,7 +56,7 @@
 			{
 				local nextTile = _tile.getNextTile(i);
 
-				if (!nextTile.IsEmpty || this.Math.abs(nextTile.Level - _tile.Level) > 1)
+				if (!nextTile.IsEmpty || ::Math.abs(nextTile.Level - _tile.Level) > 1)
 				{
 				}
 				else
@@ -69,16 +69,16 @@
 
 		if (tile != null)
 		{
-			local spawn = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_spider_cluster", tile.Coords);
-			// spawn.setSize(this.Math.rand(60, 75) * 0.01);
+			local spawn = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_spider_cluster", tile.Coords);
+			// spawn.setSize(::Math.rand(60, 75) * 0.01);
 			spawn.setFaction(this.getFaction());
 			// spawn.m.XP = spawn.m.XP / 2;
 			// spawn.setName(spawn.getName() + " Hatchling");
-			local allies = this.Tactical.Entities.getInstancesOfFaction(this.getFaction());
+			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getFaction());
 
 			foreach( a in allies )
 			{
-				if (a.getType() == this.Const.EntityType.Hexe)
+				if (a.getType() == ::Const.EntityType.Hexe)
 				{
 					::Legends.Effects.grant(spawn, ::Legends.Effect.FakeCharmed);
 					break;

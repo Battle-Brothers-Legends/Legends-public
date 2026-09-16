@@ -77,25 +77,25 @@
 	o.isToBeRepaired = function ()
 	{
 		return this.m.IsToBeRepaired;
-		//return this.m.CurrentSlotType != this.Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
+		//return this.m.CurrentSlotType != ::Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
 	}
 
 	o.isToBeRepairedQ <- function ()
 	{
 		return this.m.IsToBeRepairedQueue;
-		//return this.m.CurrentSlotType != this.Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
+		//return this.m.CurrentSlotType != ::Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
 	}
 
 	o.isToBeSalvaged <- function ()
 	{
 		return this.m.IsToBeSalvaged;
-		//return this.m.CurrentSlotType != this.Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
+		//return this.m.CurrentSlotType != ::Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
 	}
 
 	o.isToBeSalvagedQ <- function ()
 	{
 		return this.m.IsToBeSalvagedQueue;
-		//return this.m.CurrentSlotType != this.Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
+		//return this.m.CurrentSlotType != ::Const.ItemSlot.None && this.getCondition() < this.getConditionMax() || this.m.IsToBeRepaired;
 	}
 
 	o.setToBeRepaired = function ( _r, _idx = 0 )
@@ -126,17 +126,17 @@
 
 	o.canBeSalvaged <- function ()
 	{
-		return ((this.getItemType() & this.Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & this.Const.Items.ItemFilter.Armor) != 0;
+		return ((this.getItemType() & ::Const.Items.ItemType.Weapon) != 0) || (this.getItemType() & ::Const.Items.ItemFilter.Armor) != 0;
 	}
 
 	o.getRepair <- function ()
 	{
-		return this.Math.floor(this.m.Condition);
+		return ::Math.floor(this.m.Condition);
 	}
 
 	o.getRepairMax <- function ()
 	{
-		return this.Math.floor(this.m.ConditionMax);
+		return ::Math.floor(this.m.ConditionMax);
 	}
 
 	o.getRawValue <- function ()
@@ -171,13 +171,13 @@
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
 		{
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getBuyPriceMult() * this.getPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()]));
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getBuyPriceMult() * this.getPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult() * ::Const.Difficulty.BuyPriceMult[::World.Assets.getEconomicDifficulty()]));
 		}
 		else
 		{
-			return this.Math.ceil(this.getValue() * this.getPriceMult());
+			return ::Math.ceil(this.getValue() * this.getPriceMult());
 		}
 	}
 
@@ -189,13 +189,13 @@
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
 		{
-			return this.Math.floor(this.getValue() * this.getSellPriceMult() * this.Const.World.Assets.BaseSellPrice * this.World.State.getCurrentTown().getSellPriceMult() * this.Const.Difficulty.SellPriceMult[this.World.Assets.getEconomicDifficulty()]);
+			return ::Math.floor(this.getValue() * this.getSellPriceMult() * ::Const.World.Assets.BaseSellPrice * ::World.State.getCurrentTown().getSellPriceMult() * ::Const.Difficulty.SellPriceMult[::World.Assets.getEconomicDifficulty()]);
 		}
 		else
 		{
-			return this.Math.floor(this.getValue() * this.Const.World.Assets.BaseSellPrice);
+			return ::Math.floor(this.getValue() * ::Const.World.Assets.BaseSellPrice);
 		}
 	}
 
@@ -208,38 +208,6 @@
 	{
 		this.clearSkills();
 		if (this.m.Container != null && "getActor" in this.m.Container && ("getSkills" in this.getContainer().getActor())) this.getContainer().getActor().getSkills().update();
-		maybeUpdateParryingDaggerSkills();
-	}
-
-	// Parrying dagger may hide its skills when the main hand weapon is stronger.
-	// So when the main hand is unequipped, we check if we have to re-add the skills.
-	function maybeUpdateParryingDaggerSkills() {
-		// Check we are not a parrying dagger (otherwise this will stack overflow)
-		if (isParryingDagger(this)) {
-			return;
-		}
-		local container = getContainer();
-		if (container == null || !("getActor" in container)) {
-			return;
-		}
-		local actor = container.getActor();
-		if (actor == null || !("getOffhandItem" in actor)) {
-			return;
-		}
-		local offhand = actor.getOffhandItem();
-		if (!isParryingDagger(offhand)) {
-			return;
-		}
-		offhand.onUnequip();
-		offhand.onEquip();
-	}
-
-	function isParryingDagger(_item) {
-		if (_item == null || !("m" in _item)) {
-			return false;
-		}
-		return _item.m.ID == "shield.legend_parrying_dagger"
-			|| _item.m.ID == "shield.legend_named_parrying_dagger";
 	}
 
 	o.onEquip = function ()
@@ -369,7 +337,7 @@
 		// }
 		if (this.m.Name.find("(Runed)") == null)
 		{
-			this.m.Name =  this.m.Name + "[color=" + this.Const.UI.Color.RuneColor + "] (Runed)[/color]";
+			this.m.Name =  this.m.Name + "[color=" + ::Const.UI.Color.RuneColor + "] (Runed)[/color]";
 		}
 	}
 
@@ -399,9 +367,9 @@
 
 	o.isNamed <- function ()
 	{
-		if (this.isItemType(this.Const.Items.ItemType.Named))
+		if (this.isItemType(::Const.Items.ItemType.Named))
 			return true;
-		if (this.isItemType(this.Const.Items.ItemType.Legendary))
+		if (this.isItemType(::Const.Items.ItemType.Legendary))
 			return true;
 		return false;
 	}

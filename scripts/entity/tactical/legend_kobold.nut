@@ -2,26 +2,26 @@
 // 	m = {},
 // 	function create()
 // 	{
-// 		this.m.BloodType = this.Const.BloodType.Red;
+// 		this.m.BloodType = ::Const.BloodType.Red;
 // 		this.m.BloodSplatterOffset = this.createVec(-10, 15);
 // 		this.m.DecapitateSplatterOffset = this.createVec(20, -20);
 // 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 // 		this.actor.create();
-// 		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+// 		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 // 			"sounds/enemies/kobold_death_01.wav",
 // 			"sounds/enemies/kobold_death_02.wav",
 // 			"sounds/enemies/kobold_death_03.wav",
 // 			"sounds/enemies/kobold_death_04.wav",
 // 			"sounds/enemies/kobold_death_05.wav"
 // 		];
-// 		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+// 		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 // 			"sounds/enemies/kobold_flee_01.wav",
 // 			"sounds/enemies/kobold_flee_02.wav",
 // 			"sounds/enemies/kobold_flee_03.wav",
 // 			"sounds/enemies/kobold_flee_04.wav",
 // 			"sounds/enemies/kobold_flee_05.wav"
 // 		];
-// 		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+// 		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 // 			"sounds/enemies/kobold_hurt_01.wav",
 // 			"sounds/enemies/kobold_hurt_02.wav",
 // 			"sounds/enemies/kobold_hurt_03.wav",
@@ -43,7 +43,7 @@
 // 			"sounds/enemies/kobold_hurt_19.wav",
 // 			"sounds/enemies/kobold_hurt_20.wav"
 // 		];
-// 		this.m.Sound[this.Const.Sound.ActorEvent.Attack] = [
+// 		this.m.Sound[::Const.Sound.ActorEvent.Attack] = [
 // 			"sounds/enemies/kobold_attack_01.wav",
 // 			"sounds/enemies/kobold_attack_02.wav",
 // 			"sounds/enemies/kobold_attack_03.wav",
@@ -62,7 +62,7 @@
 // 			"sounds/enemies/kobold_attack_16.wav",
 // 			"sounds/enemies/kobold_attack_17.wav"
 // 		];
-// 		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+// 		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 // 			"sounds/enemies/kobold_idle_01.wav",
 // 			"sounds/enemies/kobold_idle_02.wav",
 // 			"sounds/enemies/kobold_idle_03.wav",
@@ -85,35 +85,35 @@
 // 			"sounds/enemies/kobold_idle_20.wav",
 // 			"sounds/enemies/kobold_idle_21.wav"
 // 		];
-// 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Death] = 0.9;
-// 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Flee] = 1.0;
-// 		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 0.5;
-// 		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 1.25;
-// 		this.m.SoundPitch = this.Math.rand(150, 160) * 0.01;
+// 		this.m.SoundVolume[::Const.Sound.ActorEvent.Death] = 0.9;
+// 		this.m.SoundVolume[::Const.Sound.ActorEvent.Flee] = 1.0;
+// 		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 0.5;
+// 		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 1.25;
+// 		this.m.SoundPitch = ::Math.rand(150, 160) * 0.01;
 // 		this.m.Flags.add("goblin");
 // 	}
 
 // 	function onDeath( _killer, _skill, _tile, _fatalityType )
 // 	{
-// 		local flip = this.Math.rand(1, 100) < 50;
+// 		local flip = ::Math.rand(1, 100) < 50;
 
 // 		if (_tile != null)
 // 		{
 // 			this.m.IsCorpseFlipped = flip;
 // 			local decal;
 // 			local skin = this.getSprite("body");
-// 			decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+// 			decal = _tile.spawnDetail(this.getSprite("body").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 // 			decal.Color = skin.Color;
 // 			decal.Saturation = skin.Saturation;
 // 			decal.setBrightness(0.9);
 // 			decal.Scale = 0.95;
-// 			_tile.spawnDetail(this.getItems().getAppearance().CorpseArmor, this.Const.Tactical.DetailFlag.Corpse, flip);
+// 			_tile.spawnDetail(this.getItems().getAppearance().CorpseArmor, ::Const.Tactical.DetailFlag.Corpse, flip);
 
-// 			if (_fatalityType != this.Const.FatalityType.Decapitated)
+// 			if (_fatalityType != ::Const.FatalityType.Decapitated)
 // 			{
 // 				if (!this.getItems().getAppearance().HideCorpseHead)
 // 				{
-// 					decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+// 					decal = _tile.spawnDetail(this.getSprite("head").getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 // 					decal.Color = skin.Color;
 // 					decal.Saturation = skin.Saturation;
 // 					decal.setBrightness(0.9);
@@ -122,18 +122,18 @@
 
 // 				if (this.getItems().getAppearance().HelmetCorpse != "")
 // 				{
-// 					decal = _tile.spawnDetail(this.getItems().getAppearance().HelmetCorpse, this.Const.Tactical.DetailFlag.Corpse, flip);
+// 					decal = _tile.spawnDetail(this.getItems().getAppearance().HelmetCorpse, ::Const.Tactical.DetailFlag.Corpse, flip);
 // 					decal.setBrightness(0.9);
 // 					decal.Scale = 0.95;
 // 				}
 // 			}
-// 			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+// 			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 // 			{
 // 				local layers = [
 // 					this.getSprite("head").getBrush().Name + "_dead",
 // 					this.getItems().getAppearance().HelmetCorpse
 // 				];
-// 				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, this.getSprite("head").getBrush().Name + "_dead_bloodpool");
+// 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(-50, 30), 180.0, this.getSprite("head").getBrush().Name + "_dead_bloodpool");
 // 				decap[0].Color = skin.Color;
 // 				decap[0].Saturation = skin.Saturation;
 // 				decap[0].setBrightness(0.9);
@@ -145,19 +145,19 @@
 // 				}
 // 			}
 
-// 			if (_fatalityType == this.Const.FatalityType.Disemboweled)
+// 			if (_fatalityType == ::Const.FatalityType.Disemboweled)
 // 			{
-// 				local decal = _tile.spawnDetail("bust_goblin_body_dead_guts", this.Const.Tactical.DetailFlag.Corpse, flip);
+// 				local decal = _tile.spawnDetail("bust_goblin_body_dead_guts", ::Const.Tactical.DetailFlag.Corpse, flip);
 // 				decal.Scale = 0.95;
 // 			}
-// 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+// 			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 // 			{
-// 				decal = _tile.spawnDetail("bust_body_19_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+// 				decal = _tile.spawnDetail("bust_body_19_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 // 				decal.Scale = 0.95;
 // 			}
-// 			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+// 			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 // 			{
-// 				decal = _tile.spawnDetail("bust_body_19_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+// 				decal = _tile.spawnDetail("bust_body_19_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 // 				decal.Scale = 0.95;
 // 			}
 
@@ -171,10 +171,10 @@
 // 		this.dropLoot(_tile, tileLoot, !flip);
 
 // 		if (_tile == null) {
-// 			this.Tactical.Entities.addUnplacedCorpse(corpse);
+// 			::Tactical.Entities.addUnplacedCorpse(corpse);
 // 		} else {
 // 			_tile.Properties.set("Corpse", corpse);
-// 			this.Tactical.Entities.addCorpse(_tile);
+// 			::Tactical.Entities.addCorpse(_tile);
 // 		}
 
 // 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -182,13 +182,13 @@
 
 // 	function generateCorpse( _tile, _fatalityType, _killer )
 // 	{
-// 		local corpse = clone this.Const.Corpse;
+// 		local corpse = clone ::Const.Corpse;
 // 		corpse.CorpseName = "A " + this.getName();
 // 		corpse.Tile = _tile;
 // 		corpse.IsResurrectable = false;
 // 		corpse.IsConsumable = true;
 // 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-// 		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+// 		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 // 		return corpse;
 // 	}
 
@@ -207,13 +207,13 @@
 // 	{
 // 		this.actor.onInit();
 // 		local b = this.m.BaseProperties;
-// 		b.setValues(this.Const.Tactical.Actor.GoblinAmbusher);
+// 		b.setValues(::Const.Tactical.Actor.GoblinAmbusher);
 // 		b.IsFleetfooted = true;
 // 		this.m.ActionPoints = b.ActionPoints;
 // 		this.m.Hitpoints = b.Hitpoints;
 // 		this.m.CurrentProperties = clone b;
-// 		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-// 		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+// 		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+// 		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 // 		this.m.Items.getAppearance().Body = "bust_kobold_01";
 // 		this.addSprite("socket").setBrush("bust_base_goblins");
 // 		local quiver = this.addSprite("quiver");

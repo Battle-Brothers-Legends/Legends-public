@@ -34,10 +34,10 @@
 				}
 				s.end <- function ()
 				{
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local f = this.World.FactionManager.getFaction(this.Flags.get("FeudingHouseID"));
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local f = ::World.FactionManager.getFaction(this.Flags.get("FeudingHouseID"));
 					f.addPlayerRelation(-99.0, "Took sides in the war");
-					this.Flags.set("StartDay", this.World.getTime().Days);
+					this.Flags.set("StartDay", ::World.getTime().Days);
 					local nonIsolatedSettlements = [];
 
 					foreach( s in f.getSettlements() )
@@ -55,7 +55,7 @@
 							continue;
 						}
 
-						local obj = a[this.Math.rand(0, a.len() - 1)];
+						local obj = a[::Math.rand(0, a.len() - 1)];
 						this.Contract.m.Objectives.push(this.WeakTableRef(obj));
 						obj.clearTroops();
 
@@ -63,46 +63,46 @@
 						{
 							if (obj.isMilitary())
 							{
-								this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Noble, this.Math.rand(90, 120) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+								this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Noble, ::Math.rand(90, 120) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 							}
 							else
 							{
-								local r = this.Math.rand(1, 100);
+								local r = ::Math.rand(1, 100);
 
 								if (r <= 10)
 								{
-									this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Mercenaries, this.Math.rand(90, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+									this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Mercenaries, ::Math.rand(90, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 								}
 								else
 								{
-									this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Noble, this.Math.rand(70, 100) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+									this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Noble, ::Math.rand(70, 100) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 								}
 							}
 						}
 						else if (obj.isMilitary())
 						{
-							this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Militia, this.Math.rand(80, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+							this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Militia, ::Math.rand(80, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 						}
 						else
 						{
-							local r = this.Math.rand(1, 100);
+							local r = ::Math.rand(1, 100);
 
 							if (r <= 15)
 							{
-								this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Mercenaries, this.Math.rand(80, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+								this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Mercenaries, ::Math.rand(80, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 							}
 							else if (r <= 30)
 							{
 								obj.getFlags().set("HasNobleProtection", true);
-								this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Noble, this.Math.rand(80, 100) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+								this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Noble, ::Math.rand(80, 100) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 							}
 							else if (r <= 70)
 							{
-								this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Militia, this.Math.rand(70, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+								this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Militia, ::Math.rand(70, 110) * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 							}
 							else
 							{
-								this.Contract.addUnitsToEntity(obj, this.Const.World.Spawn.Peasants, this.Math.rand(70, 100));
+								this.Contract.addUnitsToEntity(obj, ::Const.World.Spawn.Peasants, ::Math.rand(70, 100));
 							}
 						}
 
@@ -112,16 +112,16 @@
 						}
 					}
 
-					local origin = nonIsolatedSettlements[this.Math.rand(0, nonIsolatedSettlements.len() - 1)];
-					local party = f.spawnEntity(origin.getTile(), origin.getName() + " Company", true, this.Const.World.Spawn.Noble, 190 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+					local origin = nonIsolatedSettlements[::Math.rand(0, nonIsolatedSettlements.len() - 1)];
+					local party = f.spawnEntity(origin.getTile(), origin.getName() + " Company", true, ::Const.World.Spawn.Noble, 190 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 					party.getSprite("body").setBrush(party.getSprite("body").getBrush().Name + "_" + f.getBannerString());
 					party.setDescription("Professional soldiers in service to local lords.");
 					this.Contract.m.UnitsSpawned.push(party.getID());
-					party.getLoot().Money = this.Math.rand(50, 200);
-					party.getLoot().ArmorParts = this.Math.rand(0, 25);
-					party.getLoot().Medicine = this.Math.rand(0, 3);
-					party.getLoot().Ammo = this.Math.rand(0, 30);
-					local r = this.Math.rand(1, 4);
+					party.getLoot().Money = ::Math.rand(50, 200);
+					party.getLoot().ArmorParts = ::Math.rand(0, 25);
+					party.getLoot().Medicine = ::Math.rand(0, 3);
+					party.getLoot().Ammo = ::Math.rand(0, 30);
+					local r = ::Math.rand(1, 4);
 
 					if (r == 1)
 					{
@@ -144,53 +144,53 @@
 					local wait = this.new("scripts/ai/world/orders/wait_order");
 					wait.setTime(9000.0);
 					c.addOrder(wait);
-					local r = this.Math.rand(1, 100);
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 15)
 					{
-						local rival = this.World.FactionManager.getFaction(this.Flags.get("RivalHouseID"));
+						local rival = ::World.FactionManager.getFaction(this.Flags.get("RivalHouseID"));
 
 						if (!f.getFlags().get("Betrayed"))
 						{
 							this.Flags.set("IsChangingSides", true);
-							local item =  this.new("scripts/items/" + this.Const.Items.NamedWeapons[this.Math.rand(0, this.Const.Items.NamedWeapons.len() - 1)]);
+							local item =  this.new("scripts/items/" + ::Const.Items.NamedWeapons[::Math.rand(0, ::Const.Items.NamedWeapons.len() - 1)]);
 							item.onAddedToStash("");
 							this.Contract.m.Item = item;
 						}
 					}
 
 					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 			if (s.ID == "Running")
 			{
 				s.update <- function ()
 				{
-					if (this.Flags.get("LastUpdateDay") != this.World.getTime().Days)
+					if (this.Flags.get("LastUpdateDay") != ::World.getTime().Days)
 					{
-						if (this.World.getTime().Days - this.Flags.get("StartDay") >= 7)
+						if (::World.getTime().Days - this.Flags.get("StartDay") >= 7)
 						{
 							this.Contract.setScreen("TimeIsUp");
-							this.World.Contracts.showActiveContract();
+							::World.Contracts.showActiveContract();
 						}
 						else
 						{
-							this.Flags.set("LastUpdateDay", this.World.getTime().Days);
+							this.Flags.set("LastUpdateDay", ::World.getTime().Days);
 							this.start();
-							this.World.State.getWorldScreen().updateContract(this.Contract);
+							::World.State.getWorldScreen().updateContract(this.Contract);
 						}
 					}
 
 					if (this.Contract.m.UnitsSpawned.len() != 0 && this.Time.getVirtualTimeF() - this.Contract.m.LastOrderUpdateTime > 2.0)
 					{
 						this.Contract.m.LastOrderUpdateTime = this.Time.getVirtualTimeF();
-						local party = this.World.getEntityByID(this.Contract.m.UnitsSpawned[0]);
-						local playerTile = this.World.State.getPlayer().getTile();
+						local party = ::World.getEntityByID(this.Contract.m.UnitsSpawned[0]);
+						local playerTile = ::World.State.getPlayer().getTile();
 
 						if (party != null && party.getTile().getDistanceTo(playerTile) > 3)
 						{
-							local f = this.World.FactionManager.getFaction(this.Flags.get("FeudingHouseID"));
+							local f = ::World.FactionManager.getFaction(this.Flags.get("FeudingHouseID"));
 							local nearEnemySettlement = false;
 
 							foreach( s in f.getSettlements() )
@@ -207,27 +207,27 @@
 								local c = party.getController();
 								c.clearOrders();
 								local move = this.new("scripts/ai/world/orders/move_order");
-								move.setDestination(this.World.State.getPlayer().getTile());
+								move.setDestination(::World.State.getPlayer().getTile());
 								c.addOrder(move);
 								local wait = this.new("scripts/ai/world/orders/wait_order");
-								wait.setTime(this.World.getTime().SecondsPerDay * 1);
+								wait.setTime(::World.getTime().SecondsPerDay * 1);
 								c.addOrder(wait);
 
 								if (party.getTile().getDistanceTo(playerTile) <= 8 && this.Time.getVirtualTimeF() - this.Flags.get("SearchPartyLastNotificationTime") >= 300.0)
 								{
 									this.Flags.set("SearchPartyLastNotificationTime", this.Time.getVirtualTimeF());
 									this.Contract.setScreen("SearchParty");
-									this.World.Contracts.showActiveContract();
+									::World.Contracts.showActiveContract();
 								}
 							}
 						}
 					}
 
-					if (this.Flags.get("IsChangingSides") && this.Contract.getDistanceToNearestSettlement() >= 5 && this.World.State.getPlayer().getTile().HasRoad && this.Math.rand(1, 1000) <= 1)
+					if (this.Flags.get("IsChangingSides") && this.Contract.getDistanceToNearestSettlement() >= 5 && ::World.State.getPlayer().getTile().HasRoad && ::Math.rand(1, 1000) <= 1)
 					{
 						this.Flags.set("IsChangingSides", false);
 						this.Contract.setScreen("ChangingSides");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 
 					foreach( i, obj in this.Contract.m.Objectives )
@@ -282,7 +282,7 @@
 	{
 		_vars.push([
 			"noblehouse",
-			this.World.FactionManager.getFaction(this.m.Faction).getName()
+			::World.FactionManager.getFaction(this.m.Faction).getName()
 		]);
 		_vars.push([
 			"rivalhouse",
@@ -296,7 +296,7 @@
 			"maxdays",
 			"seven days"
 		]);
-		local days = 7 - (this.World.getTime().Days - this.m.Flags.get("StartDay"));
+		local days = 7 - (::World.getTime().Days - this.m.Flags.get("StartDay"));
 		_vars.push([
 			"days",
 			days > 1 ? "" + days + " days" : "1 day"

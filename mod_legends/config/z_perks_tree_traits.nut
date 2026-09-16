@@ -256,11 +256,11 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.BagsAndBelts, ::Legends.Perk.LegendPacifist],
-		[::Legends.Perk.LegendHelpful],
-		[::Legends.Perk.LegendEfficientPacking],
 		[],
-		[::Legends.Perk.LegendPrepared, ::Legends.Perk.LegendSkillfulStacking],
+		[::Legends.Perk.LegendHelpful],
+		[],
+		[],
+		[::Legends.Perk.LegendPrepared],
 		[],
 		[]
 	]
@@ -365,7 +365,7 @@ if (!("Perks" in ::Const)) {
 			L.push(i);
 		}
 
-		local r = this.Math.rand(0, L.len() - 1);
+		local r = ::Math.rand(0, L.len() - 1);
 		return this.Tree[L[r]];
 	}
 
@@ -378,7 +378,7 @@ if (!("Perks" in ::Const)) {
 			}
 		}
 
-		local r = this.Math.rand(0, L.len() - 1);
+		local r = ::Math.rand(0, L.len() - 1);
 		return L[r];
 	}
 

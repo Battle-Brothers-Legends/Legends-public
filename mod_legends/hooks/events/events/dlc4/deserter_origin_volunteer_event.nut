@@ -2,6 +2,6 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 25.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 25.0 * ::World.getTime().SecondsPerDay;
 	}
 })

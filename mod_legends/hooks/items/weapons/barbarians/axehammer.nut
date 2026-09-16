@@ -4,7 +4,7 @@
 		create();
 		this.m.Categories = "Hammer/Axe, One-Handed";
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 		this.m.Ammo = 1;
 		this.m.AmmoMax = 1;
 		this.m.AmmoCost = 5;
@@ -36,7 +36,7 @@
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;

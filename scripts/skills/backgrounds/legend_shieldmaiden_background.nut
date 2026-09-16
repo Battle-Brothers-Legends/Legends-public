@@ -15,7 +15,7 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 			::Legends.Traits.getID(::Legends.Trait.Tiny)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Initiative
+			::Const.Attributes.Initiative
 		];
 		this.m.Titles = [
 			"the Shieldmaiden",
@@ -23,17 +23,17 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 			"the Wall",
 			"the Ironside"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Faces = ::Const.Faces.AllWhiteFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		this.m.Bodies = ::Const.Bodies.NorthernFemale;
 		this.m.Ethnicity = 0;
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Female | this.Const.BackgroundType.Crusader;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Female | ::Const.BackgroundType.Crusader;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		// this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
@@ -52,21 +52,21 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.open_leather_cap],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.full_leather_cap],
 			[1, ::Legends.Helmet.Standard.full_aketon_cap]
 		]));
 
-		r = this.Math.rand(0, 3);
+		r = ::Math.rand(0, 3);
 		if (r <= 2)
 		{
 			items.equip(this.new("scripts/items/shields/heater_shield"));
@@ -76,7 +76,7 @@ this.legend_shieldmaiden_background <- this.inherit("scripts/skills/backgrounds/
 			items.equip(this.new("scripts/items/shields/legend_tower_shield"));
 		}
 
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 		if (r <= 2)
 		{
 			items.equip(this.new("scripts/items/weapons/militia_spear"));

@@ -32,8 +32,8 @@
 
 	o.onUpdate = function ()
 	{
-		if ("IsBrigand" in this.World.Assets.m)
-			this.World.Assets.m.IsBrigand = true;
+		if ("IsBrigand" in ::World.Assets.m)
+			::World.Assets.m.IsBrigand = true;
 	}
 
 	o.onEvaluate = function () {

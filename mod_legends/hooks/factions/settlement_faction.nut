@@ -10,7 +10,7 @@
 
 	// 	this.m.MaxConcurrentContracts = this.getSettlements()[0].getSize();
 	// 	local delay = 5.0 - (this.getSettlements()[0].getSize() - 1);
-	// 	return this.m.Contracts.len() < this.m.MaxConcurrentContracts && (this.m.LastContractTime == 0 || this.World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + this.World.getTime().SecondsPerDay * delay);
+	// 	return this.m.Contracts.len() < this.m.MaxConcurrentContracts && (this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * delay);
 	// }
 
 	// Contract Overhaul: This is the overloaded method we have added. We now take the contract's Category into account
@@ -24,7 +24,7 @@
 		}
 
 		local tier = this.getSettlements()[0].getSize() - 1;		
-		if ( _category == null || !(_category in this.Const.Contracts.CategoryLimits))
+		if ( _category == null || !(_category in ::Const.Contracts.CategoryLimits))
 		{
 			// if (::Legends.Mod.Debug.isEnabled(::Const.LegendMod.Debug.Flags.ContractCategoriesVerbose))
 			// {
@@ -34,7 +34,7 @@
 			// }
 
 			// If there's no Category (e.g. a contract from a submod, or something we missed) or if the Category is not recognised, then only check if there is enough room in the Wildcard slot
-			if(this.m.ContractsByCategory["Wildcard"].len() >= this.Const.Contracts.CategoryLimits["Wildcard"][tier])
+			if(this.m.ContractsByCategory["Wildcard"].len() >= ::Const.Contracts.CategoryLimits["Wildcard"][tier])
 			{
 				// if (::Legends.Mod.Debug.isEnabled(::Const.LegendMod.Debug.Flags.ContractCategoriesVerbose))
 				// {
@@ -50,7 +50,7 @@
 		else
 		{
 			// There's no room for new contracts if BOTH the contract's potential corresponding Category slots AND the settlement's Wildcard slots are full
-			if (this.m.ContractsByCategory[_category].len() >= this.Const.Contracts.CategoryLimits[_category][tier] && this.m.ContractsByCategory["Wildcard"].len() >= this.Const.Contracts.CategoryLimits["Wildcard"][tier])
+			if (this.m.ContractsByCategory[_category].len() >= ::Const.Contracts.CategoryLimits[_category][tier] && this.m.ContractsByCategory["Wildcard"].len() >= ::Const.Contracts.CategoryLimits["Wildcard"][tier])
 			{
 				// if (::Legends.Mod.Debug.isEnabled(::Const.LegendMod.Debug.Flags.ContractCategoriesVerbose))
 				// {
@@ -66,7 +66,7 @@
 
 		// The remaining checks are based on time-related cooldowns
 		local streak = ::Const.LegendMod.ContractCooldown.getStreak(this); // increase cooldown the more the player consecutively takes contracts from the same settlement
-		return this.m.LastContractTime == 0 || this.World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + this.World.getTime().SecondsPerDay * streak;
+		return this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * streak;
 			
 	}
 });

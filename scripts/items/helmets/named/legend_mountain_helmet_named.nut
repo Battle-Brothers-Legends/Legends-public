@@ -23,13 +23,13 @@ this.legend_mountain_helmet_named <- this.inherit("scripts/items/helmets/named/n
 		this.m.IsIndestructible = false;
 		this.m.Variant = 513;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 10000;
 		this.m.Condition = 300.0;
 		this.m.ConditionMax = 300.0;
 		this.m.StaminaModifier = -24;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Legendary;
 		this.randomizeValues();
 	}
 
@@ -54,9 +54,9 @@ this.legend_mountain_helmet_named <- this.inherit("scripts/items/helmets/named/n
 	function onTurnStart()
 	{
 		local actor = this.getContainer().getActor();
-		local helm = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local helm = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local helmMissing = helm.getArmorMax() - helm.getArmor();
-		local helmAdded = this.Math.min(helmMissing, this.Math.floor(helm.getArmorMax() * 0.1));
+		local helmAdded = ::Math.min(helmMissing, ::Math.floor(helm.getArmorMax() * 0.1));
 
 
 		if (helmAdded <= 0)
@@ -69,9 +69,9 @@ this.legend_mountain_helmet_named <- this.inherit("scripts/items/helmets/named/n
 
 		if (!actor.isHiddenToPlayer())
 		{
-			this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-			this.Sound.play("sounds/enemies/unhold_regenerate_02.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-			this.Tactical.EventLog.log(this.Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + helmAdded + " points");
+			::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+			::Sound.play("sounds/enemies/unhold_regenerate_02.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+			::Tactical.EventLog.log(::Const.UI.getColorized(this.m.Name, "#1e468f") + " heals for " + helmAdded + " points");
 		}
 	}
 

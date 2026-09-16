@@ -138,7 +138,7 @@
 
 	o.showIntroductionScreen <- function ( _tag = null )
 	{
-		this.Music.setTrackList(this.Const.Music.CivilianTracks, this.Const.Music.CrossFadeTime);
+		this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 		::World.Contracts.update(true);
 	}
 
@@ -206,7 +206,7 @@
 		}
 
 		if (::World.Assets.isIronman()) {
-			this.saveCampaign(this.World.Assets.getName() + "_" + this.World.Assets.getCampaignID(), this.World.Assets.getName());
+			this.saveCampaign(::World.Assets.getName() + "_" + ::World.Assets.getCampaignID(), ::World.Assets.getName());
 		} else {
 			local slot = ::World.Flags.getAsInt("Legends_AutosaveSlot") != 0 ? ::World.Flags.getAsInt("Legends_AutosaveSlot") : 1;
 			::World.Flags.set("Legends_AutosaveSlot", (slot % ::Legends.Mod.ModSettings.getSetting("AutosaveSlots").getValue()) + 1);
@@ -258,12 +258,12 @@
 
 	o.getLocalCombatProperties = function ( _pos, _ignoreNoEnemies = false )
 	{
-		local raw_parties = ::World.getAllEntitiesAtPos(_pos, this.Const.World.CombatSettings.CombatPlayerDistance);
+		local raw_parties = ::World.getAllEntitiesAtPos(_pos, ::Const.World.CombatSettings.CombatPlayerDistance);
 		local parties = [];
-		local properties = this.Const.Tactical.CombatInfo.getClone();
+		local properties = ::Const.Tactical.CombatInfo.getClone();
 		local tile = ::World.getTile(::World.worldToTile(_pos));
 		local isAtUniqueLocation = false;
-		properties.TerrainTemplate = this.Const.World.TerrainTacticalTemplate[tile.TacticalType];
+		properties.TerrainTemplate = ::Const.World.TerrainTacticalTemplate[tile.TacticalType];
 		properties.Tile = tile;
 		properties.InCombatAlready = false;
 		properties.IsAttackingLocation = false;
@@ -282,7 +282,7 @@
 				continue;
 			}
 
-			if (party.isLocation() && party.isLocationType(this.Const.World.LocationType.Unique))
+			if (party.isLocation() && party.isLocationType(::Const.World.LocationType.Unique))
 			{
 				isAtUniqueLocation = true;
 				break;
@@ -290,7 +290,7 @@
 
 			if (party.isInCombat())
 			{
-				raw_parties = ::World.getAllEntitiesAtPos(_pos, this.Const.World.CombatSettings.CombatPlayerDistance * 2.0);
+				raw_parties = ::World.getAllEntitiesAtPos(_pos, ::Const.World.CombatSettings.CombatPlayerDistance * 2.0);
 				break;
 			}
 		}
@@ -307,7 +307,7 @@
 				continue;
 			}
 
-			if (isAtUniqueLocation && (!party.isLocation() || !party.isLocationType(this.Const.World.LocationType.Unique)))
+			if (isAtUniqueLocation && (!party.isLocation() || !party.isLocationType(::Const.World.LocationType.Unique)))
 			{
 				continue;
 			}
@@ -409,11 +409,11 @@
 
 	o.getEngageNumberNames <- function ( _entityType)
 	{
-		foreach (key, value in this.Const.Strings.EngageEnemyNumbers)
+		foreach (key, value in ::Const.Strings.EngageEnemyNumbers)
 		{
 			if (_entityType >= value[0] && _entityType <= value[1])
 			{
-				return this.Const.Strings.EngageEnemyNumbersNames[key];
+				return ::Const.Strings.EngageEnemyNumbersNames[key];
 			}
 		}
 	}
@@ -430,20 +430,20 @@
 			this.onCamp();
 			return;
 		}
-		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), this.Const.Music.CrossFadeTime);
+		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), ::Const.Music.CrossFadeTime);
 		this.setPause(true);
 		this.setAutoPause(true);
 		this.Tooltip.hide();
 		this.m.WorldScreen.hide();
 		//this.m.WorldTownScreen.setTown(this.m.LastEnteredTown);
 		this.m.CampScreen.show();
-		this.Cursor.setCursor(this.Const.UI.Cursor.Hand);
-		this.Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceTerrainInSettlement, ::World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
-		//this.Sound.setAmbience(1, this.m.LastEnteredTown.getSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceInSettlement, ::World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
+		this.Cursor.setCursor(::Const.UI.Cursor.Hand);
+		::Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), ::Const.Sound.Volume.Ambience * ::Const.Sound.Volume.AmbienceTerrainInSettlement, ::World.getTime().IsDaytime ? ::Const.Sound.AmbienceMinDelay : ::Const.Sound.AmbienceMinDelayAtNight);
+		//::Sound.setAmbience(1, this.m.LastEnteredTown.getSounds(), ::Const.Sound.Volume.Ambience * ::Const.Sound.Volume.AmbienceInSettlement, ::World.getTime().IsDaytime ? ::Const.Sound.AmbienceMinDelay : ::Const.Sound.AmbienceMinDelayAtNight);
 		this.m.MenuStack.push(function ()
 		{
-			this.Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceTerrain, ::World.getTime().IsDaytime ? this.Const.Sound.AmbienceMinDelay : this.Const.Sound.AmbienceMinDelayAtNight);
-			this.Sound.setAmbience(1, this.getSurroundingLocationSounds(), this.Const.Sound.Volume.Ambience * this.Const.Sound.Volume.AmbienceOutsideSettlement, this.Const.Sound.AmbienceOutsideDelay);
+			::Sound.setAmbience(0, this.getSurroundingAmbienceSounds(), ::Const.Sound.Volume.Ambience * ::Const.Sound.Volume.AmbienceTerrain, ::World.getTime().IsDaytime ? ::Const.Sound.AmbienceMinDelay : ::Const.Sound.AmbienceMinDelayAtNight);
+			::Sound.setAmbience(1, this.getSurroundingLocationSounds(), ::Const.Sound.Volume.Ambience * ::Const.Sound.Volume.AmbienceOutsideSettlement, ::Const.Sound.AmbienceOutsideDelay);
 			::World.getCamera().zoomTo(this.m.CustomZoom, 4.0);
 			// ::World.Assets.consumeItems();
 			// ::World.Assets.refillAmmo();
@@ -455,14 +455,14 @@
 			this.m.CampScreen.clear();
 			this.m.CampScreen.hide();
 			this.m.WorldScreen.show();
-			this.Music.setTrackList(::World.FactionManager.isGreaterEvil() ? this.Const.Music.WorldmapTracksGreaterEvil : this.Const.Music.WorldmapTracks, this.Const.Music.CrossFadeTime);
+			this.Music.setTrackList(::World.FactionManager.isGreaterEvil() ? ::Const.Music.WorldmapTracksGreaterEvil : ::Const.Music.WorldmapTracks, ::Const.Music.CrossFadeTime);
 
 			if (::World.Assets.isIronman())
 			{
 				this.autosave();
 			}
 
-			this.Cursor.setCursor(this.Const.UI.Cursor.Hand);
+			this.Cursor.setCursor(::Const.UI.Cursor.Hand);
 			this.setAutoPause(false);
 			this.setPause(true);
 		}, function ()
@@ -788,7 +788,7 @@
 			{
 				local e = this.m.LastEntityHovered;
 				e.setActive(false);
-				e.getTile().spawnDetail(e.m.Sprite + "_ruins", this.Const.World.ZLevel.Object - 3, 0);
+				e.getTile().spawnDetail(e.m.Sprite + "_ruins", ::Const.World.ZLevel.Object - 3, 0);
 				e.die();
 				return true;
 			}
@@ -808,7 +808,7 @@
 				local name = e.getName();
 				local sprite = e.m.Sprite;
 				e.setActive(false);
-				e.getTile().spawnDetail(e.m.Sprite + "_ruins", this.Const.World.ZLevel.Object - 3, 0, false);
+				e.getTile().spawnDetail(e.m.Sprite + "_ruins", ::Const.World.ZLevel.Object - 3, 0, false);
 				e.fadeOutAndDie();
 				return true;
 			}
@@ -823,8 +823,8 @@
 
 			if (this.m.LastTileHovered != null)
 			{
-				local faction = ::World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits);
-				local party = faction.spawnEntity(this.m.LastTileHovered, "TEST GROUP", false, this.Const.World.Spawn.BanditRoamers, 200);
+				local faction = ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits);
+				local party = faction.spawnEntity(this.m.LastTileHovered, "TEST GROUP", false, ::Const.World.Spawn.BanditRoamers, 200);
 				party.getSprite("banner").setBrush("banner_orcs_04");
 				party.setDescription("A band of menacing orcs, greenskinned and towering any man.");
 				local c = party.getController();
@@ -1205,7 +1205,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(-1500.0 * this.Time.getDelta() * this.Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
+					::World.getCamera().move(-1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
 					return true;
 				}
 
@@ -1220,7 +1220,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(1500.0 * this.Time.getDelta() * this.Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
+					::World.getCamera().move(1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
 					return true;
 				}
 
@@ -1236,7 +1236,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(0, 1500.0 * this.Time.getDelta() * this.Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
+					::World.getCamera().move(0, 1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
 					return true;
 				}
 
@@ -1251,7 +1251,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(0, -1500.0 * this.Time.getDelta() * this.Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
+					::World.getCamera().move(0, -1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
 					return true;
 				}
 
@@ -1259,12 +1259,12 @@
 
 			case 67:
 			case 46:
-				::World.getCamera().zoomBy(-this.Time.getDelta() * this.Math.max(60, this.Time.getFPS()) * 0.15);
+				::World.getCamera().zoomBy(-this.Time.getDelta() * ::Math.max(60, this.Time.getFPS()) * 0.15);
 				break;
 
 			case 68:
 			case 47:
-				::World.getCamera().zoomBy(this.Time.getDelta() * this.Math.max(60, this.Time.getFPS()) * 0.15);
+				::World.getCamera().zoomBy(this.Time.getDelta() * ::Math.max(60, this.Time.getFPS()) * 0.15);
 				break;
 
 			case 96:
@@ -1390,8 +1390,8 @@
 	 */
 	o.showEventScreenFromCamp <- function ( _event, _isContract = false, _playSound = true ) {
 		if (!this.m.EventScreen.isVisible() && !this.m.EventScreen.isAnimating()) {
-			if (_playSound && this.Const.Events.GlobalSound != "") {
-				this.Sound.play(this.Const.Events.GlobalSound, 1.0);
+			if (_playSound && ::Const.Events.GlobalSound != "") {
+				::Sound.play(::Const.Events.GlobalSound, 1.0);
 			}
 
 			this.m.CampScreen.hide();
@@ -1468,7 +1468,7 @@
 		local allyBanners = [];
 		local enemyBanners = [];
 		local hasOpponents = false;
-		local listEntities = _isCombatantsVisible && (_isPlayerInitiated || ::World.Assets.getOrigin().getID() == "scenario.rangers" || this.Const.World.TerrainTypeLineBattle[this.m.Player.getTile().Type] && ::World.getTime().IsDaytime);
+		local listEntities = _isCombatantsVisible && (_isPlayerInitiated || ::World.Assets.getOrigin().getID() == "scenario.rangers" || ::Const.World.TerrainTypeLineBattle[this.m.Player.getTile().Type] && ::World.getTime().IsDaytime);
 
 		if (_pos == null)
 		{
@@ -1491,14 +1491,14 @@
 			_allowFormationPicking = false;
 		}
 
-		if (!_isPlayerInitiated && !this.Const.World.TerrainTypeLineBattle[this.m.Player.getTile().Type])
+		if (!_isPlayerInitiated && !::Const.World.TerrainTypeLineBattle[this.m.Player.getTile().Type])
 		{
 			_allowFormationPicking = false;
 		}
 
 		local champions = [];
 		local entityTypes = [];
-		entityTypes.resize(this.Const.EntityType.len(), 0);
+		entityTypes.resize(::Const.EntityType.len(), 0);
 
 		if (_properties != null)
 		{
@@ -1507,7 +1507,7 @@
 
 		if (_properties == null)
 		{
-			local parties = ::World.getAllEntitiesAtPos(_pos, this.Const.World.CombatSettings.CombatPlayerDistance);
+			local parties = ::World.getAllEntitiesAtPos(_pos, ::Const.World.CombatSettings.CombatPlayerDistance);
 			local isAtUniqueLocation = false;
 
 			if (parties.len() <= 1)
@@ -1537,7 +1537,7 @@
 					});
 				}
 
-				if (party.isLocation() && party.isLocationType(this.Const.World.LocationType.Unique))
+				if (party.isLocation() && party.isLocationType(::Const.World.LocationType.Unique))
 				{
 					isAtUniqueLocation = true;
 					break;
@@ -1545,7 +1545,7 @@
 
 				if (party.isInCombat())
 				{
-					parties = ::World.getAllEntitiesAtPos(_pos, this.Const.World.CombatSettings.CombatPlayerDistance * 2.0);
+					parties = ::World.getAllEntitiesAtPos(_pos, ::Const.World.CombatSettings.CombatPlayerDistance * 2.0);
 					break;
 				}
 			}
@@ -1562,7 +1562,7 @@
 					continue;
 				}
 
-				if (isAtUniqueLocation && (!party.isLocation() || !party.isLocationType(this.Const.World.LocationType.Unique)))
+				if (isAtUniqueLocation && (!party.isLocation() || !party.isLocationType(::Const.World.LocationType.Unique)))
 				{
 					continue;
 				}
@@ -1591,7 +1591,7 @@
 
 				if (party.isLocation() && !party.isShowingDefenders())
 				{
-					entityTypes.resize(this.Const.EntityType.len(), 0);
+					entityTypes.resize(::Const.EntityType.len(), 0);
 					break;
 				}
 
@@ -1638,7 +1638,7 @@
 		{
 			entities.push({
 				Name = c.Name,
-				Icon = this.Const.EntityIcon[c.ID],
+				Icon = ::Const.EntityIcon[c.ID],
 				Overlay = "icons/miniboss.png"
 			});
 		}
@@ -1649,7 +1649,7 @@
 			{
 				if (entityTypes[i] == 1)
 				{
-					local start = this.isFirstCharacter(this.Const.Strings.EntityName[i], [
+					local start = this.isFirstCharacter(::Const.Strings.EntityName[i], [
 						"A",
 						"E",
 						"I",
@@ -1657,24 +1657,24 @@
 						"U"
 					]) ? "An " : "A ";
 					entities.push({
-						Name = start + this.removeFromBeginningOfText("The ", this.Const.Strings.EntityName[i]),
-						Icon = this.Const.EntityIcon[i],
+						Name = start + this.removeFromBeginningOfText("The ", ::Const.Strings.EntityName[i]),
+						Icon = ::Const.EntityIcon[i],
 						Overlay = null
 					});
 				}
 				else if (::Legends.Mod.ModSettings.getSetting("ExactEngageNumbers").getValue())
 				{
 					entities.push({
-						Name = entityTypes[i] + " " + this.Const.Strings.EntityNamePlural[i],
-						Icon = this.Const.EntityIcon[i],
+						Name = entityTypes[i] + " " + ::Const.Strings.EntityNamePlural[i],
+						Icon = ::Const.EntityIcon[i],
 						Overlay = null
 					});
 				}
 				else
 				{
 					entities.push({
-						Name = this.getEngageNumberNames(entityTypes[i]) + " " + this.Const.Strings.EntityNamePlural[i],
-						Icon = this.Const.EntityIcon[i],
+						Name = this.getEngageNumberNames(entityTypes[i]) + " " + ::Const.Strings.EntityNamePlural[i],
+						Icon = ::Const.EntityIcon[i],
 						Overlay = null
 					});
 				}
@@ -1706,7 +1706,7 @@
 		}
 
 		local tile = ::World.getTile(::World.worldToTile(_pos));
-		local image = this.Const.World.TerrainTacticalImage[tile.TacticalType];
+		local image = ::Const.World.TerrainTacticalImage[tile.TacticalType];
 
 		if (!::World.getTime().IsDaytime)
 		{
@@ -1715,7 +1715,7 @@
 
 		image = image + ".png";
 		this.setAutoPause(true);
-		this.Cursor.setCursor(this.Const.UI.Cursor.Hand);
+		this.Cursor.setCursor(::Const.UI.Cursor.Hand);
 		this.m.EngageCombatPos = _pos;
 		this.m.EngageByPlayer = _isPlayerInitiated;
 		this.Tooltip.hide();

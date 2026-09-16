@@ -7,7 +7,7 @@ this.legend_lw_relationship_trait <- this.inherit("scripts/skills/traits/charact
 		this.m.Name = "Relationship";
 		this.m.Icon = "ui/traits/aggressive_trait.png";
 		this.m.Description = "If you can see this something is fucked up";
-		this.m.Type = this.Const.SkillType.Special | this.Const.SkillType.Trait;
+		this.m.Type = ::Const.SkillType.Special | ::Const.SkillType.Trait;
 		this.m.IsHidden = true;
 	}
 

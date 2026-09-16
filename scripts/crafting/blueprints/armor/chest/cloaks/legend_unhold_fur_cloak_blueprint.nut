@@ -4,7 +4,7 @@ this.legend_unhold_fur_cloak_blueprint <- this.inherit("scripts/crafting/bluepri
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_unhold_fur_cloak";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_unhold_fur_cloak");
 
 		this.m.Cost = 500;

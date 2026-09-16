@@ -6,7 +6,7 @@ this.legend_oms_paw_item <- this.inherit("scripts/items/accessory/accessory", {
 		this.m.ID = "accessory.legend_oms_paw";
 		this.m.Name = "Curious Paw";
 		this.m.Description = "A preserved hand that is somewhere between that of a large man and a beast. It has been cleanly cut at the wrist and shows no sign of decay.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsUnique = true;
 		//this.m.ShowOnCharacter = true;

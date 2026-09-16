@@ -5,7 +5,7 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_old_man_sells";
 		this.m.Title = "The wanderer";
-		this.m.Cooldown = 10000000000.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 10000000000.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_76.png[/img]On your travels, an old man sits atop a crumbling wall. Normally this would be of little concern, but their frail body is draped in dark cloth while their face is muzzled by a mush of grey, broken hairs. The figure pulls out a pipe and begins to feebly puff on the smaller end.\n\n Without looking, he beckons you over towards the wall and brushes the moss from the top of it.%SPEECH_ON%Fine day, stranger...%SPEECH_OFF%He puffs some more but otherwise masks his intentions by looking straight through you — as if to peer deeper into your thoughts.%SPEECH_ON%I collect things, sellsword. Many things that you would never see in your life. Things that are lost and found again, by the wrong people.%SPEECH_OFF%He carefully holds aloft an ornate skull, which has been tethered to his belt by a chain thick enough to hold a giant, as if the skull would escape and frolic as soon as it was broken.\n The man puts his pipe down and holds the skull in both hands, casting it to his own eyes and peering deep into the sockets.%SPEECH_ON%My friend here, one of many, says that I carry and collect too many things — that I should share their brilliance with others who may spark an interest in the hunt. I\'m willing to part with one of these objects, for a small sum of two-thousand crowns.%SPEECH_OFF% He places the skull on his lap, which stares intently at you with socketless eyes as a dog would guard it\'s master...",
@@ -94,18 +94,18 @@ this.legend_old_man_sells <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getMoney() < 2500) {
+		if (::World.Assets.getMoney() < 2500) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (currentTile.Type != this.Const.World.TerrainType.Forest && currentTile.Type != this.Const.World.TerrainType.LeaveForest) {
+		if (currentTile.Type != ::Const.World.TerrainType.Forest && currentTile.Type != ::Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
-		local towns = this.World.EntityManager.getSettlements();
-		local playerTile = this.World.State.getPlayer().getTile();
+		local towns = ::World.EntityManager.getSettlements();
+		local playerTile = ::World.State.getPlayer().getTile();
 
 		foreach (t in towns) {
 			if (t.getTile().getDistanceTo(playerTile) <= 6) {

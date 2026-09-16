@@ -5,7 +5,7 @@ this.legend_craftable_kraken_shield <- this.inherit("scripts/items/shields/named
 		this.named_shield.create();
 		this.m.ID = "shield.legend_craftable_kraken";
 		this.m.Name = "Kraken Shield";
-		this.m.NameList = this.Const.Strings.ShieldNames;
+		this.m.NameList = ::Const.Strings.ShieldNames;
 		this.m.Description = "This shield, carved out of a horn plate taken from a giant kraken, is stronger than any common shield.";
 		this.m.AddGenericSkill = true;
 		this.m.ShowOnCharacter = true;

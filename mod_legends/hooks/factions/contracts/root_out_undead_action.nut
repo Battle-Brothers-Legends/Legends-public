@@ -12,29 +12,29 @@
 			return;
 		}
 
-		if (this.World.Assets.getBusinessReputation() < 1500)
+		if (::World.Assets.getBusinessReputation() < 1500)
 		{
 			return;
 		}
 
-		if (!this.World.FactionManager.isUndeadScourge())
+		if (!::World.FactionManager.isUndeadScourge())
 		{
 			return;
 		}
 
-		if (this.Math.rand(1, 100) > 30)
+		if (::Math.rand(1, 100) > 30)
 		{
 			return;
 		}
 
-		if (!this.World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
+		if (!::World.Ambitions.getAmbition("ambition.make_nobles_aware").isDone())
 		{
 			return;
 		}
 
 		this.m.Score = 1;
 		
-		if (this.World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_inquisition")
 		{
 		this.m.Score = 10;
 		}

@@ -8,8 +8,8 @@ this.legend_blooddrinker_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.Icon = "skills/placeholder_circle.png";
 		this.m.IconMini = "mini_placeholder_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Item;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Item;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsWeaponSkill = true;
@@ -25,7 +25,7 @@ this.legend_blooddrinker_effect <- this.inherit("scripts/skills/skill", {
 		if (_skill.isAttack() && _skill.getItem() != null && _skill.getItem().getID() == "weapon.legend_royal_executioner")
 		{
 			local healthMissing = actor.getHitpointsMax() - actor.getHitpoints();
-			local healthAdded = this.Math.min(healthMissing, 0.01 * this.m.HealPct * actor.getHitpointsMax());
+			local healthAdded = ::Math.min(healthMissing, 0.01 * this.m.HealPct * actor.getHitpointsMax());
 
 			if (healthAdded <= 0)
 			{
@@ -37,9 +37,9 @@ this.legend_blooddrinker_effect <- this.inherit("scripts/skills/skill", {
 
 			if (!actor.isHiddenToPlayer())
 			{
-				this.Tactical.spawnIconEffect("status_effect_79", actor.getTile(), this.Const.Tactical.Settings.SkillIconOffsetX, this.Const.Tactical.Settings.SkillIconOffsetY, this.Const.Tactical.Settings.SkillIconScale, this.Const.Tactical.Settings.SkillIconFadeInDuration, this.Const.Tactical.Settings.SkillIconStayDuration, this.Const.Tactical.Settings.SkillIconFadeOutDuration, this.Const.Tactical.Settings.SkillIconMovement);
-				this.Sound.play("sounds/enemies/unhold_regenerate_01.wav", this.Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
+				::Tactical.spawnIconEffect("status_effect_79", actor.getTile(), ::Const.Tactical.Settings.SkillIconOffsetX, ::Const.Tactical.Settings.SkillIconOffsetY, ::Const.Tactical.Settings.SkillIconScale, ::Const.Tactical.Settings.SkillIconFadeInDuration, ::Const.Tactical.Settings.SkillIconStayDuration, ::Const.Tactical.Settings.SkillIconFadeOutDuration, ::Const.Tactical.Settings.SkillIconMovement);
+				::Sound.play("sounds/enemies/unhold_regenerate_01.wav", ::Const.Sound.Volume.RacialEffect * 1.25, actor.getPos());
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " heals for " + healthAdded + " points");
 			}
 		}
 	}

@@ -3,7 +3,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 
 	function onInit()
 	{
-		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieMedium;
+		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieMedium;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
@@ -23,7 +23,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 	function assignRandomEquipment()
 	{
 		local r;
-		r = this.Math.rand(1, 6);
+		r = ::Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -51,7 +51,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 		}
 
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_lamellar],
 			[1, ::Legends.Armor.Standard.leather_scale_armor],
@@ -61,7 +61,7 @@ this.legends_zombie_med <- this.inherit("scripts/entity/tactical/legend_zombie",
 			[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[25, ::Legends.Helmet.None],
 			[11, ::Legends.Helmet.Standard.kettle_hat],
 			[11, ::Legends.Helmet.Standard.aketon_cap],

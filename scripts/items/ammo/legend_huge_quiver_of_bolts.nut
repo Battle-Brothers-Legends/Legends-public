@@ -8,9 +8,9 @@ this.legend_huge_quiver_of_bolts <- this.inherit("scripts/items/ammo/ammo", {
 		this.m.Description = "A huge quiver of bolts, required to use crossbows. Is automatically refilled after each battle if you have enough ammunition.";
 		this.m.Icon = "ammo/quiver_06.png";
 		this.m.IconEmpty = "ammo/quiver_06_empty.png";
-		this.m.SlotType = this.Const.ItemSlot.Ammo;
-		this.m.ItemType = this.Const.Items.ItemType.Ammo;
-		this.m.AmmoType = this.Const.Items.AmmoType.Bolts;
+		this.m.SlotType = ::Const.ItemSlot.Ammo;
+		this.m.ItemType = ::Const.Items.ItemType.Ammo;
+		this.m.AmmoType = ::Const.Items.AmmoType.Bolts;
 		this.m.ShowOnCharacter = true;
 		this.m.ShowQuiver = true;
 		this.m.Sprite = "bust_quiver_01";

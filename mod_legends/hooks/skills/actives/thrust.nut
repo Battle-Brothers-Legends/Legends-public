@@ -18,8 +18,8 @@
 			this.m.ActionPointCost = 6;
 			this.m.DirectDamageMult = 0.4;
 			this.m.FatigueCost = 15;
-			this.m.InjuriesOnBody = this.Const.Injury.BluntAndPiercingBody;
-			this.m.InjuriesOnHead = this.Const.Injury.BluntAndPiercingHead;
+			this.m.InjuriesOnBody = ::Const.Injury.BluntAndPiercingBody;
+			this.m.InjuriesOnHead = ::Const.Injury.BluntAndPiercingHead;
 		}
 	}
 
@@ -38,7 +38,7 @@
 
 	o.onAfterUpdate = function (_properties) {
 		this.m.DazeChance = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? 50 : 25;
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	o.onTargetHit <- function (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
@@ -52,12 +52,12 @@
 
 		local actor = this.getContainer().getActor();
 		if (!_targetEntity.getCurrentProperties().IsImmuneToDaze
-			&& this.Math.rand(1, 100) <= this.m.DazeChance)
+			&& ::Math.rand(1, 100) <= this.m.DazeChance)
 		{
 			local dazed = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Dazed);
 
 			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
-				this.Tactical.EventLog.log(dazed.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
+				::Tactical.EventLog.log(dazed.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
 			}
 		}
 	}
@@ -68,7 +68,7 @@
 			return onUse(_user, _targetTile);
 		}
 
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

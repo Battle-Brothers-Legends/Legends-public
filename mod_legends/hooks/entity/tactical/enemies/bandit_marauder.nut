@@ -14,7 +14,7 @@
 	o.onInit = function() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditMarauder);
+		b.setValues(::Const.Tactical.Actor.BanditMarauder);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -22,7 +22,7 @@
 		this.getSprite("socket").setBrush("bust_base_bandits");
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(150, 255);
+		dirt.Alpha = ::Math.rand(150, 255);
 		this.getSprite("armor").Saturation = 0.85;
 		this.getSprite("helmet").Saturation = 0.85;
 		this.getSprite("helmet_damage").Saturation = 0.85;
@@ -61,7 +61,7 @@
 		local r;
 		local weapons = [];
 
-		if (this.Math.rand(1, 100) <= 55) {
+		if (::Math.rand(1, 100) <= 55) {
 			weapons.extend([
 				"weapons/pike",
 				"weapons/longaxe",
@@ -85,21 +85,21 @@
 				"weapons/military_pick"
 			]);
 
-			if (this.Math.rand(1, 100) <= 50) {
+			if (::Math.rand(1, 100) <= 50) {
 				this.getItems().equip(::Const.World.Common.pickItem([
 					[3, "shields/kite_shield"],
 					[1, "shields/legend_tower_shield"],
 				], "scripts/items/"));
 			}
 		}
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
-		if (this.Math.rand(1, 100) <= 50) {
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
+		if (::Math.rand(1, 100) <= 50) {
 			local secondaryWeapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
 				"weapons/throwing_spear"
 			];
-			this.m.Items.addToBag(this.new("scripts/items/" + secondaryWeapons[this.Math.rand(0, secondaryWeapons.len() - 1)]));
+			this.m.Items.addToBag(this.new("scripts/items/" + secondaryWeapons[::Math.rand(0, secondaryWeapons.len() - 1)]));
 		}
 
 		local armorList = [
@@ -110,7 +110,7 @@
 			[1, ::Legends.Armor.Standard.heavy_lamellar_armor],
 		];
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 60) {
 			armorList.extend([
 				[10, ::Legends.Armor.Standard.pillaged_heavy_lamellar_armor],
 				[3, ::Legends.Armor.Standard.bandit_armor_heavy],
@@ -122,7 +122,7 @@
 
 
 		local helmetList = [];
-		if (this.Math.rand(1, 100) <= 90) {
+		if (::Math.rand(1, 100) <= 90) {
 			helmetList.extend([
 				[10, ::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail],
 				[10, ::Legends.Helmet.Standard.marauder_helmet_with_rusty_mail_cloth],
@@ -138,7 +138,7 @@
 				[1, ::Legends.Helmet.Standard.rusty_mail_coif]
 			]);
 
-			if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= 60) {
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= 60) {
 				helmetList.extend([
 					[10, ::Legends.Helmet.Standard.marauder_helmet_with_closed_mail]
 					//[5, ::Legends.Helmet.Standard.flat_top_with_rusty_mail]

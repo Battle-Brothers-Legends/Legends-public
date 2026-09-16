@@ -7,7 +7,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/perk_slinger_spins.png";
 		this.m.IconMini = "slinger_spins_mini";
 		this.m.Overlay = "slinger_spins_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 	}
@@ -64,7 +64,7 @@ this.legend_prepare_bullet_effect <- this.inherit("scripts/skills/skill", {
 		if (weapon == null)
 			this.removeSelf();
 			return;
-		if (!(weapon.isWeaponType(this.Const.Items.WeaponType.Sling) && weapon.isItemType(this.Const.Items.ItemType.OneHanded)))
+		if (!(weapon.isWeaponType(::Const.Items.WeaponType.Sling) && weapon.isItemType(::Const.Items.ItemType.OneHanded)))
 			this.removeSelf();
 	}
 

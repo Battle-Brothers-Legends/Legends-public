@@ -28,8 +28,8 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_kiss", 4);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.Delay = 500;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -56,12 +56,12 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (_target.getMoraleState() == this.Const.MoraleState.Ignore || _target.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_target.getMoraleState() == ::Const.MoraleState.Ignore || _target.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
 			return false;
 		}
 
-		if (_target.getCurrentProperties().MoraleCheckBraveryMult[this.Const.MoraleCheckType.MentalAttack] >= 1000.0)
+		if (_target.getCurrentProperties().MoraleCheckBraveryMult[::Const.MoraleCheckType.MentalAttack] >= 1000.0)
 		{
 			return false;
 		}
@@ -95,7 +95,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 		local _targetTile = _tag.TargetTile;
 		local _user = _tag.User;
 		local target = _targetTile.getEntity();
-		local time = this.Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
+		local time = ::Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
 		local self = this;
 		this.Time.scheduleEvent(this.TimeUnit.Virtual, time, function ( _e )
 		{
@@ -105,27 +105,27 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " cannot be charmed");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " cannot be charmed");
 				}
 
 				return false;
 			}
 
-			if (target.checkMorale(0, -50 + bonus, this.Const.MoraleCheckType.MentalAttack))
+			if (target.checkMorale(0, -50 + bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
 			}
 
-			if (target.checkMorale(0, -50 + bonus, this.Const.MoraleCheckType.MentalAttack))
+			if (target.checkMorale(0, -50 + bonus, ::Const.MoraleCheckType.MentalAttack))
 			{
 				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 				{
-					this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
+					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists being charmed thanks to high resolve");
 				}
 
 				return false;
@@ -134,13 +134,13 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			this.m.Slaves.push(target.getID());
 
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendIntenselyCharmed, function(_effect) {
-				_effect.setMasterFaction(_user.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : _user.getFaction());
+				_effect.setMasterFaction(_user.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : _user.getFaction());
 				_effect.setMaster(self);
 			}.bindenv(this));
 
 			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
 			{
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(target) + " is intensely charmed");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " is intensely charmed");
 			}
 			_user.setCharming(true);
 		}.bindenv(this), this);
@@ -150,7 +150,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 	{
 		foreach( id in this.m.Slaves )
 		{
-			local e = this.Tactical.getEntityByID(id);
+			local e = ::Tactical.getEntityByID(id);
 
 			if (e != null)
 			{

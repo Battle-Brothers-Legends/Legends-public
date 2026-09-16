@@ -67,7 +67,7 @@
 		}
 
 		if ((::World.Contracts.getActiveContract() == null || ::World.Contracts.getActiveContract().getType() == "contract.arena" || ::World.Contracts.getActiveContract().getType() == "contract.arena_tournament") && ::World.getTime().Days >= this.m.CooldownUntil)	{
-			local f = ::World.FactionManager.getFactionOfType(this.Const.Faction.Arena);
+			local f = ::World.FactionManager.getFactionOfType(::Const.Faction.Arena);
 			local contracts = f.getContracts();
 			local c;
 			if (::World.Contracts.getActiveContract() != null && (::World.Contracts.getActiveContract().getType() == "contract.arena" || ::World.Contracts.getActiveContract().getType() == "contract.arena_tournament")) {

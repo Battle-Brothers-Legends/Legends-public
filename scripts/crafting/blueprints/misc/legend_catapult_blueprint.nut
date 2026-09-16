@@ -4,7 +4,7 @@ this.legend_catapult_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_catapult_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Weapon;
+		this.m.Type = ::Const.Items.ItemType.Weapon;
 		this.m.PreviewCraftable = this.new("scripts/items/accessory/legend_catapult_item");
 		this.m.Cost = 1000;
 		local ingredients = [

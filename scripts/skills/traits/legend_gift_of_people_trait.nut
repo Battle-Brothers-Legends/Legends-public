@@ -41,12 +41,12 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 	{
 		this.skill.onCombatStarted();
 
-		if (this.Math.rand(1, 10) < 10)
+		if (::Math.rand(1, 10) < 10)
 		{
 			return;
 		}
 
-		local allies = this.Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(this.getContainer().getActor().getFaction());
 		local ownID = this.getContainer().getActor().getID();
 
 		foreach( ally in allies )
@@ -57,7 +57,7 @@ this.legend_gift_of_people_trait <- this.inherit("scripts/skills/traits/characte
 			}
 			local ally_morale = ally.getMoraleState();
 
-			if (ally_morale < this.Const.MoraleState.Confident)
+			if (ally_morale < ::Const.MoraleState.Confident)
 			{
 				ally.setMoraleState(ally_morale + 1);
 			}

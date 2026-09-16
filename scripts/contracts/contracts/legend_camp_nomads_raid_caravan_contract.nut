@@ -14,7 +14,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 		this.m.Type = "contract.legend_camp_nomads_raid_caravan";
 		this.m.Name = "Intercept City State Supplies";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Bandits;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + this.World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"A group of Bandits has contacted us about a southern trade caravan.",
 			"A trade caravan is coming from the south, lightly protected and high in value.",
@@ -31,7 +31,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 	{
 		this.m.Payment.Pool = 100 * this.getPaymentMult() * this.getDifficultyMult() * this.getReputationToPaymentMult();
 
-		if (this.Math.rand(1, 100) <= 33)
+		if (::Math.rand(1, 100) <= 33)
 		{
 			this.m.Payment.Completion = 0.9;
 			this.m.Payment.Advance = 0.1;
@@ -41,8 +41,8 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 			this.m.Payment.Completion = 1.0;
 		}
 
-		local myTile = this.World.State.getPlayer().getTile();
-		local enemyFaction = this.World.FactionManager.getFaction(this.m.Flags.get("EnemyCityState"));
+		local myTile = ::World.State.getPlayer().getTile();
+		local enemyFaction = ::World.FactionManager.getFaction(this.m.Flags.get("EnemyCityState"));
 		local settlements = enemyFaction.getSettlements();
 		local lowest_distance = 99999;
 		local highest_distance = 0;
@@ -87,7 +87,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					"Return to %townname%"
 				];
 
-				if (this.Math.rand(1, 100) <= this.Const.Contracts.Settings.IntroChance)
+				if (::Math.rand(1, 100) <= ::Const.Contracts.Settings.IntroChance)
 				{
 					this.Contract.setScreen("Intro");
 				}
@@ -99,15 +99,15 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 
 			function end()
 			{
-				this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-				local r = this.Math.rand(1, 100);
+				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+				local r = ::Math.rand(1, 100);
 				this.Flags.set("Survivors", 0);
 
 				if (r <= 10)
 				{
 					this.Flags.set("IsBribe", true);
-					this.Flags.set("Bribe1", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (this.Math.rand(70, 150) * 0.01)));
-					this.Flags.set("Bribe2", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (this.Math.rand(70, 150) * 0.01)));
+					this.Flags.set("Bribe1", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (::Math.rand(70, 150) * 0.01)));
+					this.Flags.set("Bribe2", this.Contract.beautifyNumber(this.Contract.m.Payment.Pool * (::Math.rand(70, 150) * 0.01)));
 				}
 				else if (r <= 15)
 				{
@@ -128,10 +128,10 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					this.Flags.set("IsSurvivingSlaves", true);
 				}
 
-				local enemyFaction = this.World.FactionManager.getFaction(this.Flags.get("EnemyCityState"));
-				local best_start = this.World.getEntityByID(this.Flags.get("InterceptStart"));
-				local best_dest = this.World.getEntityByID(this.Flags.get("InterceptDest"));
-				local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, this.Const.World.Spawn.CaravanSouthernEscort, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+				local enemyFaction = ::World.FactionManager.getFaction(this.Flags.get("EnemyCityState"));
+				local best_start = ::World.getEntityByID(this.Flags.get("InterceptStart"));
+				local best_dest = ::World.getEntityByID(this.Flags.get("InterceptDest"));
+				local party = enemyFaction.spawnEntity(best_start.getTile(), "Caravan", false, ::Const.World.Spawn.CaravanSouthernEscort, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 				party.getSprite("base").Visible = false;
 				party.getSprite("banner").setBrush(enemyFaction.getBannerSmall());
 				party.setMirrored(true);
@@ -139,17 +139,17 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				party.setImportant(true);
 				party.setDiscovered(true);
 				party.setDescription("A southern caravan with armed escorts transporting something worth protecting between settlements.");
-				party.setFootprintType(this.Const.World.FootprintsType.Caravan);
+				party.setFootprintType(::Const.World.FootprintsType.Caravan);
 				party.getFlags().set("IsCaravan", true);
 				party.setAttackableByAI(false);
 				party.getFlags().add("ContractCaravan");
 				this.Contract.m.Target = this.WeakTableRef(party);
 				this.Contract.m.UnitsSpawned.push(party);
-				party.getLoot().Money = this.Math.rand(100, 150);
-				party.getLoot().ArmorParts = this.Math.rand(5, 20);
-				party.getLoot().Medicine = this.Math.rand(5, 8);
-				party.getLoot().Ammo = this.Math.rand(0, 40);
-				local r = this.Math.rand(1, 6);
+				party.getLoot().Money = ::Math.rand(100, 150);
+				party.getLoot().ArmorParts = ::Math.rand(5, 20);
+				party.getLoot().Medicine = ::Math.rand(5, 8);
+				party.getLoot().Ammo = ::Math.rand(0, 40);
+				local r = ::Math.rand(1, 6);
 
 				if (r == 1)
 				{
@@ -173,8 +173,8 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				}
 
 				local c = party.getController();
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-				c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+				c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+				c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(best_dest.getTile());
 				move.setRoadsOnly(true);
@@ -182,7 +182,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				c.addOrder(move);
 				c.addOrder(despawn);
 				this.Contract.setScreen("Overview");
-				this.World.Contracts.setActiveContract(this.Contract);
+				::World.Contracts.setActiveContract(this.Contract);
 			}
 
 		});
@@ -205,17 +205,17 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					if (this.Flags.get("IsSurvivingSlaves"))
 					{
 						this.Contract.setScreen("SurvivingSlaves1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else
 					{
 						this.Contract.setState("Return");
 					}
 				}
-				else if (this.Contract.isEntityAt(this.Contract.m.Target, this.World.getEntityByID(this.Flags.get("InterceptDest"))))
+				else if (this.Contract.isEntityAt(this.Contract.m.Target, ::World.getEntityByID(this.Flags.get("InterceptDest"))))
 				{
 					this.Contract.setScreen("Failure3");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else if (this.Contract.isPlayerAt(this.Contract.m.Target))
 				{
@@ -232,17 +232,17 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					if (this.Flags.get("IsBribe"))
 					{
 						this.Contract.setScreen("Bribe1");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsMortar"))
 					{
 						this.Contract.setScreen("Mortar");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else if (this.Flags.get("IsAssassinSurprise"))
 					{
 						this.Contract.setScreen("AssassinSurprise");
-						this.World.Contracts.showActiveContract();
+						::World.Contracts.showActiveContract();
 					}
 					else
 					{
@@ -251,10 +251,10 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				}
 				else if (this.Time.getVirtualTimeF() >= this.Contract.m.LastCombatTime + 5.0)
 				{
-					local enemyFaction = this.World.FactionManager.getFaction(this.Flags.get("EnemyCityState"));
+					local enemyFaction = ::World.FactionManager.getFaction(this.Flags.get("EnemyCityState"));
 					enemyFaction.setIsTemporaryEnemy(true);
 					this.Contract.m.LastCombatTime = this.Time.getVirtualTimeF();
-					this.World.Contracts.showCombatDialog(_isPlayerAttacking);
+					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
 
@@ -286,17 +286,17 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				if (this.Flags.get("Survivors") == 0)
 				{
 					this.Contract.setScreen("Success1");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
-				else if (this.Math.rand(1, 100) > this.Flags.get("Survivors") * 15)
+				else if (::Math.rand(1, 100) > this.Flags.get("Survivors") * 15)
 				{
 					this.Contract.setScreen("Failure1");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 				else
 				{
 					this.Contract.setScreen("Failure2");
-					this.World.Contracts.showActiveContract();
+					::World.Contracts.showActiveContract();
 				}
 			}
 		});
@@ -305,7 +305,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 	function createScreens()
 	{
 		this.importScreens(::Const.Contracts.NegotiationItemsOnly());
-		this.importScreens(this.Const.Contracts.Overview);
+		this.importScreens(::Const.Contracts.Overview);
 		this.m.Screens.push({ // \' —
 			ID = "Task",
 			Title = "Negotiations",
@@ -327,7 +327,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "{We can\'t trust these people. | I don\'t think so.}",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -390,13 +390,13 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 			],
 			function start()
 			{
-				this.World.Assets.addMoney(this.Flags.get("Bribe1"));
-				this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail * 2);
-				this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractFail);
+				::World.Assets.addMoney(this.Flags.get("Bribe1"));
+				::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail * 2);
+				::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractFail);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Bribe1") + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Bribe1") + "[/color] Crowns"
 				});
 			}
 
@@ -412,7 +412,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "Payment without having to kill anyone. I can get used to that.",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -420,13 +420,13 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 			],
 			function start()
 			{
-				this.World.Assets.addMoney(this.Flags.get("Bribe2"));
-				this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail * 2);
-				this.World.FactionManager.getFaction(this.Contract.getFaction()).getFlags().set("Betrayed", true);
+				::World.Assets.addMoney(this.Flags.get("Bribe2"));
+				::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail * 2);
+				::World.FactionManager.getFaction(this.Contract.getFaction()).getFlags().set("Betrayed", true);
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Bribe2") + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Flags.get("Bribe2") + "[/color] Crowns"
 				});
 			}
 
@@ -442,7 +442,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "We\'re moving out!",
 					function getResult()
 					{
-						this.World.Contracts.removeContract(this.Contract);
+						::World.Contracts.removeContract(this.Contract);
 						return 0;
 					}
 
@@ -460,14 +460,14 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "To Arms!",
 					function getResult()
 					{
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Mortar
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Mortar
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Engineer
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Engineer
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Engineer
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Engineer
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
 						this.Contract.getActiveState().onTargetAttacked(this.Contract.m.Target, true);
 						return 0;
@@ -486,14 +486,14 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "To Arms!",
 					function getResult()
 					{
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Assassin
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Assassin
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Assassin
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Assassin
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
-						this.Const.World.Common.addTroop(this.Contract.m.Target, {
-							Type = this.Const.World.Spawn.Troops.Assassin
+						::Const.World.Common.addTroop(this.Contract.m.Target, {
+							Type = ::Const.World.Spawn.Troops.Assassin
 						}, true, this.Contract.getDifficultyMult() >= 1.1 ? 5 : 0);
 						this.Contract.getActiveState().onTargetAttacked(this.Contract.m.Target, true);
 						return 0;
@@ -513,7 +513,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "We\'re paid to leave no one alive, so that\'s what we\'ll do.",
 					function getResult()
 					{
-						this.World.Assets.addMoralReputation(-20);
+						::World.Assets.addMoralReputation(-20);
 						return "SurvivingSlaves2";
 					}
 				},
@@ -521,7 +521,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "To hell with it - let them leave.",
 					function getResult()
 					{
-						this.World.Assets.addMoralReputation(5);
+						::World.Assets.addMoralReputation(5);
 						this.Flags.set("Survivors", this.Flags.get("Survivors") + 3);
 						this.Contract.setState("Return");
 						return 0;
@@ -561,10 +561,10 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "Crowns well deserved.",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractSuccess);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractSuccess, "Destroyed a caravan");
-						this.World.Contracts.finishActiveContract();
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractSuccess);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion());
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractSuccess, "Destroyed a caravan");
+						::World.Contracts.finishActiveContract();
 						return 0;
 					}
 
@@ -575,7 +575,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() + "[/color] Crowns"
 				});
 			}
 
@@ -593,10 +593,10 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "Could have been worse...",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion() / 2);
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan without letting anyone escape");
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.Assets.addMoney(this.Contract.m.Payment.getOnCompletion() / 2);
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan without letting anyone escape");
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -607,7 +607,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 				this.List.push({
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You gain [color=" + this.Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() / 2 + "[/color] Crowns"
+					text = "You gain [color=" + ::Const.UI.Color.PositiveEventValue + "]" + this.Contract.m.Payment.getOnCompletion() / 2 + "[/color] Crowns"
 				});
 			}
 
@@ -625,9 +625,9 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "Damn this contract!",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan without letting anyone escape");
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan without letting anyone escape");
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -647,9 +647,9 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 					Text = "It was too good to be true anyway...",
 					function getResult()
 					{
-						this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-						this.World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(this.Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan");
-						this.World.Contracts.finishActiveContract(true);
+						::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+						::World.FactionManager.getFaction(this.Contract.getFaction()).addPlayerRelation(::Const.World.Assets.RelationNobleContractFail, "Failed to destroy a caravan");
+						::World.Contracts.finishActiveContract(true);
 						return 0;
 					}
 
@@ -670,11 +670,11 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 		]);
 		_vars.push([
 			"start",
-			this.World.getEntityByID(this.m.Flags.get("InterceptStart")).getName()
+			::World.getEntityByID(this.m.Flags.get("InterceptStart")).getName()
 		]);
 		_vars.push([
 			"dest",
-			this.World.getEntityByID(this.m.Flags.get("InterceptDest")).getName()
+			::World.getEntityByID(this.m.Flags.get("InterceptDest")).getName()
 		]);
 	}
 
@@ -716,7 +716,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 
 		if (target != 0)
 		{
-			this.m.Target = this.WeakTableRef(this.World.getEntityByID(target));
+			this.m.Target = this.WeakTableRef(::World.getEntityByID(target));
 		}
 
 		this.contract.onDeserialize(_in);

@@ -6,7 +6,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 	function create() {
 		this.m.ID = "event.legend_lonewolf_companion_caravan";
 		this.m.Title = "Encircled";
-		this.m.Cooldown = 47.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 47.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_60.png[/img]As you travel along the road, the narrow, meandering path breaks way into a crossroads where three large wagons are circled around a huge oak tree. It's a peaceful scene, right until a rock appears in the air from the treeline at unnatural speed and deflects off your helmet with a dull ping. As you reel, dazed from the impact, a naked man covered in leaves, mud and filth breaks from the treeline flanked by a half dozen similar fighters — all screaming at the top of their lungs. \n Gagging from the smell of unwashed flesh, you drive your weapon down into a wildwoman\'s torso, pinning her to the floor as she jabbers incessantly. Another comes at you only to be cut to pieces by the rest of the company who rally to your side.\n\n In the distance a group of merchants are standing atop their wagons, firing crossbow bolts into shrieking wildmen while what remains of the caravan guards attempt to claw some space back from the melee throng. Amid the chaos you spot a tailor hiding under a wagon, bravely stabbing a crude-wooden spear at several wildmen who are trying to pull them out from underneath the safety of the cart.",
@@ -68,7 +68,7 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 					], ::World.Assets.getStash()));
 				}
 
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 				foreach (bro in brothers) {
 					if (::Math.rand(1, 100) <= 25) {
 						if (::Math.rand(1, 100) <= 66) {
@@ -90,14 +90,14 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 			Options = [{
 				Text = "After all that, they can\'t be that bad of a fighter.",
 				function getResult(_event) {
-					this.World.getPlayerRoster().add(_event.m.Dude);
-					this.World.getTemporaryRoster().clear();
+					::World.getPlayerRoster().add(_event.m.Dude);
+					::World.getTemporaryRoster().clear();
 					_event.m.Dude.onHired();
 					return 0;
 				}
 			}],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Tailor]);
 				_event.m.Dude.getSprite("miniboss").setBrush("bust_miniboss");
@@ -112,15 +112,15 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 				_event.m.Dude.getBaseProperties().DailyWage = 0;
 				_event.m.Dude.addLightInjury();
 
-				if (_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null) {
-					_event.m.Dude.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).removeSelf();
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
+					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
 				}
 
 				_event.m.Dude.getItems().equip(this.new("scripts/items/weapons/legend_wooden_spear"));
 				_event.m.Dude.getBackground().m.RawDescription = "%name% has been hardened by an experience few of %their% ilk live through — a roadside ambush. While they are unlikely to survive, a little help from %companyname% changed that.";
 				_event.m.Dude.getBackground().buildDescription(true);
 				this.Characters.push(_event.m.Dude.getImagePath());
-				local brothers = this.World.getPlayerRoster().getAll();
+				local brothers = ::World.getPlayerRoster().getAll();
 
 				foreach (bro in brothers) {
 					if (::Math.rand(1, 100) <= 25) {
@@ -148,21 +148,21 @@ this.legend_lonewolf_companion_caravan_event <- this.inherit("scripts/events/eve
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
+		if (::World.Assets.getOrigin().getID() != "scenario.lone_wolf") {
 			return;
 		}
 
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (!currentTile.HasRoad) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax()) {
+		local brothers = ::World.getPlayerRoster().getAll();
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
 		}
 

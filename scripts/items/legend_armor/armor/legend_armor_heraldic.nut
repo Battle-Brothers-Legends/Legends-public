@@ -52,7 +52,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			63,
 			64
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
 		this.m.Value = 850;
 		this.m.Condition = 65;
@@ -96,7 +96,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 				break
 		}
 
-		this.setVariant(this.Math.rand(0, gambesons.len() - 1));
+		this.setVariant(::Math.rand(0, gambesons.len() - 1));
 		local chains = [
 			[0, ""],
 			[0, "chain/legend_armor_mail_shirt"],
@@ -116,7 +116,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "chain/legend_armor_short_mail"]
 		];
 
-		local chain = this.Const.World.Common.pickLegendArmor(chains);
+		local chain = ::Const.World.Common.pickLegendArmor(chains);
 		if (chain != null)
 		{
 			this.setUpgrade(chain);
@@ -154,7 +154,7 @@ this.legend_armor_heraldic <- this.inherit("scripts/items/legend_armor/cloth/leg
 			[0, "plate/legend_armor_rotten_scale_coat"],
 			[0, "plate/legend_armor_scale_shirt"]
 		];
-		local plate = this.Const.World.Common.pickLegendArmor(plates);
+		local plate = ::Const.World.Common.pickLegendArmor(plates);
 		if (plate != null)
 		{
 			this.setUpgrade(plate);

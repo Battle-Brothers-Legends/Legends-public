@@ -160,6 +160,7 @@
 ::Legends.Compat.HardIncompat.add("mod_lessgr", "1.3");
 ::Legends.Compat.HardIncompat.add("mod_legendary_kriegsgeist_boss_location", "1.0.5"); // SSU has more updated version of this now
 ::Legends.Compat.HardIncompat.add("mod_mbpause", null, "Use Legends pause options instead");
+::Legends.Compat.HardIncompat.add("mod_plan_perks", null, "Use Legends perk/profession planning instead");
 ::Legends.Compat.HardIncompat.add("mod_menace", "0.03");
 ::Legends.Compat.HardIncompat.add("mod_more_buildings", "0.5");
 ::Legends.Compat.HardIncompat.add("mod_more_champions_x5");
@@ -206,11 +207,13 @@
 ::Legends.Compat.HardIncompat.add("mod_settlement_situations_tooltip", null, "Use Legends settlement situations instead");
 ::Legends.Compat.HardIncompat.add("mod_settlement_situations_msu", null, "Use Legends settlement situations instead");
 //::Legends.Compat.HardIncompat.add("mod_sellswords", "8.2.9"); // SSU, now Legends V19+ compatible
-::Legends.Compat.HardIncompat.add("mod_smart_recruiter_legends", "1.0", "Use Clever Recruiter instead, found on Nexus");
+::Legends.Compat.HardIncompat.add("mod_smart_recruiter_legends", "1.0", "Use Legends inbuilt option instead");
+::Legends.Compat.HardIncompat.add("mod_clever_recruiter", null, "Use Legends inbuilt option instead");
 ::Legends.Compat.HardIncompat.add("mod_solostart", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_southernNomad", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_standout_enemies", "1.2");
 ::Legends.Compat.HardIncompat.add("mod_swifter", null, "Use Legends speed options instead");
+::Legends.Compat.HardIncompat.add("mod_time_stone", null, "Use Legends speed options instead");
 ::Legends.Compat.HardIncompat.add("mod_talents_reworked", "1");
 ::Legends.Compat.HardIncompat.add("mod_tavern_arena", "1.0");
 ::Legends.Compat.HardIncompat.add("mod_olto_l_temple_remove_injuries", "1.15");
@@ -262,7 +265,6 @@
 //endregion
 
 //region OtherVersionCompat
-::Legends.Compat.OtherVersionCompat.add("mod_plan_perks", ["5.0.0"]);
 //endregion
 
 //region IncompatNotRegistered
@@ -493,7 +495,7 @@
 ]); // The Player NPC Equality Mod
 ::Legends.Compat.IncompatNotRegistered.add("mod_tryout_talents_hooks", [
 	"scripts/!mods_preload/tryout_talents.nut"
-], "Use Clever Recruiter instead"); // Tryout Talents Alternative
+], "Use Legends inbuilt option instead"); // Tryout Talents Alternative
 ::Legends.Compat.IncompatNotRegistered.add("WotN Perks", [
 	"scripts/skills/perks/perk_last_stand.nut",
 	"scripts/skills/perks/perk_lookout.nut",

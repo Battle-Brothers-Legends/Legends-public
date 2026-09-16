@@ -3,7 +3,7 @@ this.legend_butcher_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.LegendButcher;
+		this.m.ID = ::Const.AI.Agent.ID.LegendButcher;
 		this.m.Properties.TargetPriorityHitchanceMult = 1.4;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.25;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;

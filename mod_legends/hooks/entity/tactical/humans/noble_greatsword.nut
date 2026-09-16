@@ -33,9 +33,9 @@
 	o.assignRandomEquipment = function () {
 		local banner = 3;
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
+			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 		}
 		else
 		{
@@ -44,7 +44,7 @@
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
@@ -58,11 +58,11 @@
 			"weapons/legend_zweihander"
 		];
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
 
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.mail_hauberk, 28],
 			[1, ::Legends.Armor.Standard.scale_armor],
 			[1, ::Legends.Armor.Standard.reinforced_mail_hauberk],
@@ -72,7 +72,7 @@
 		]));
 
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			//[1, ::Legends.Helmet.Standard.greatsword_hat],  Only 70 durability
 			[1, ::Legends.Helmet.Standard.rondel_helm],
 			[1, ::Legends.Helmet.Standard.scale_helm],
@@ -96,13 +96,13 @@
 			"weapons/named/legend_named_flamberge"
 		];
 
-		if (this.Math.rand(1, 100) <= 70)
+		if (::Math.rand(1, 100) <= 70)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor([
+			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[2, ::Legends.Armor.Named.black_and_gold_armor],
 				[2, ::Legends.Armor.Named.blue_studded_mail_armor],
 				[2, ::Legends.Armor.Named.golden_scale_armor],

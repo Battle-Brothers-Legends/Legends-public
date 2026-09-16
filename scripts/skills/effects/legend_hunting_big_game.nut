@@ -5,7 +5,7 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendHuntingBigGame);
 		this.m.Icon = "ui/perks/BigGameHunterPerk.png";
 		this.m.IconMini = "mini_big_game_hunter";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.Description = "When fighting beasts, this character gains an additional modifier that deals bonus damage based on the target\'s missing health. When not fighting beasts, they gain [color=%positive%]+10%[/color] ranged weapon damage but no additional modifier. Only works with ranged weapons.";
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -16,7 +16,7 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity == null)
 		{
-			return
+			return;
 		}
 
 		if (!this.getContainer().getActor().isPlacedOnMap())
@@ -28,11 +28,11 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 
 			//If fighting beasts, bro should gain the decap modifier on their ranged weapon attacks.
 		local fightingBeasts = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Beasts || enemy.getType() == this.Const.EntityType.BarbarianUnhold || enemy.getType() == this.Const.EntityType.BarbarianUnholdFrost)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Beasts || enemy.getType() == ::Const.EntityType.BarbarianUnhold || enemy.getType() == ::Const.EntityType.BarbarianUnholdFrost)
 			{
 				fightingBeasts = true;
 				break;

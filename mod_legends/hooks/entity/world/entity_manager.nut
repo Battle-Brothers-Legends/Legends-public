@@ -46,7 +46,7 @@
 
 		this.m.LastFreeCompanyUpdateTime = this.Time.getVirtualTimeF();
 
-		local days = this.World.getTime().Days;
+		local days = ::World.getTime().Days;
 		local companies = 0;
 		// if (days > 0)
 		// 	companies++;
@@ -60,10 +60,10 @@
 
 		if (this.m.FreeCompanies.len() < companies)
 		{
-			local playerTile = this.World.State.getPlayer().getTile();
+			local playerTile = ::World.State.getPlayer().getTile();
 			local candidates = [];
 
-			foreach( s in this.World.EntityManager.getSettlements() )
+			foreach( s in ::World.EntityManager.getSettlements() )
 			{
 				if (s.isIsolated())
 				{
@@ -78,19 +78,19 @@
 				candidates.push(s);
 			}
 
-			// local themeSelect = this.Math.rand(0, this.Const.FreeCompanyCoordinationList.len() - 1);
+			// local themeSelect = ::Math.rand(0, ::Const.FreeCompanyCoordinationList.len() - 1);
 			//just hardcoding themes to be a 1/100 chance of being themed here until i go over this again later, uncomment below if i add another theme before tweaking this
 			local themeSelect;
 			local themeTable;
 			local selectedND = false;
-			if (this.Math.rand(0, 199) == 0 && days > 100)
+			if (::Math.rand(0, 199) == 0 && days > 100)
 			{
 				do {
-					themeSelect = this.Math.rand(0, this.Const.FreeCompanyOneTimeList.len() - 1);
-				} while ( this.m.NonDefaultFreeCompanies.find(themeSelect) && !( this.m.NonDefaultFreeCompanies.len() == this.Const.FreeCompanyOneTimeList.len() ) );
-				if (this.m.NonDefaultFreeCompanies.len() == this.Const.FreeCompanyOneTimeList.len() - 1) //dude it's like 5am and im writing this
+					themeSelect = ::Math.rand(0, ::Const.FreeCompanyOneTimeList.len() - 1);
+				} while ( this.m.NonDefaultFreeCompanies.find(themeSelect) && !( this.m.NonDefaultFreeCompanies.len() == ::Const.FreeCompanyOneTimeList.len() ) );
+				if (this.m.NonDefaultFreeCompanies.len() == ::Const.FreeCompanyOneTimeList.len() - 1) //dude it's like 5am and im writing this
 				{
-					// themeSelect = this.Math.rand(0, this.Const.FreeCompanyCoordinationList.len() - 1); //only go i nhere if we can't select any more nondefaults, it'll break that while loop above too
+					// themeSelect = ::Math.rand(0, ::Const.FreeCompanyCoordinationList.len() - 1); //only go i nhere if we can't select any more nondefaults, it'll break that while loop above too
 				}
 				else
 				{
@@ -100,41 +100,41 @@
 			}
 			if (selectedND)
 			{
-				themeTable = this.Const.FreeCompanyOneTimeList[themeSelect]; //array 0 is our "default"/"example" one
+				themeTable = ::Const.FreeCompanyOneTimeList[themeSelect]; //array 0 is our "default"/"example" one
 			}
 			else
 			{
-				themeTable = this.Const.FreeCompanyCoordinationList[this.Math.rand(0, this.Const.FreeCompanyCoordinationList.len() - 1)];
+				themeTable = ::Const.FreeCompanyCoordinationList[::Math.rand(0, ::Const.FreeCompanyCoordinationList.len() - 1)];
 			}
 
 
-			local start = candidates[this.Math.rand(0, candidates.len() - 1)];
-			local party = this.World.spawnEntity("scripts/entity/world/party", start.getTile().Coords);
+			local start = candidates[::Math.rand(0, candidates.len() - 1)];
+			local party = ::World.spawnEntity("scripts/entity/world/party", start.getTile().Coords);
 			party.setPos(this.createVec(party.getPos().X - 50, party.getPos().Y - 50));
 
 			local description = ("Description" in themeTable) ? themeTable.Description : "A free company, out for their own share of crowns.";
 			party.setDescription(description);
 
 			local footprints = ("FootprintsType" in themeTable) ? themeTable.FootprintsType : "Mercenaries";
-			party.setFootprintType(this.Const.World.FootprintsType[footprints]);
+			party.setFootprintType(::Const.World.FootprintsType[footprints]);
 
 			party.getFlags().set("IsFreeCompany", true);
-			party.setFaction(this.World.FactionManager.getFactionOfType(this.Const.FactionType.FreeCompany).getID());
+			party.setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.FreeCompany).getID());
 
-			// local r = this.Math.min(330, 150 + this.World.getTime().Days);
+			// local r = ::Math.min(330, 150 + ::World.getTime().Days);
 			local spawntype = ("Spawn" in themeTable) ? themeTable.Spawn : "FreeCompany";
-			local r = this.World.State.getPlayer().getStrength();
+			local r = ::World.State.getPlayer().getStrength();
 			if (days > 100) r += 50;
 			else if (days > 75) r += 30;
 			else if (days > 50) r += 10;
 
-			local r = this.Math.rand(r * 0.8, r * 1.5);
+			local r = ::Math.rand(r * 0.8, r * 1.5);
 			if (days < 25) {
-				this.Const.World.Common.assignTroops(party, this.Const.World.Spawn.FreeCompanyLow, r * 0.9);
+				::Const.World.Common.assignTroops(party, ::Const.World.Spawn.FreeCompanyLow, r * 0.9);
 			}
 			else
 			{
-				this.Const.World.Common.assignTroops(party, this.Const.World.Spawn[spawntype], r); //change this to freecompany spawn later
+				::Const.World.Common.assignTroops(party, ::Const.World.Spawn[spawntype], r); //change this to freecompany spawn later
 			}
 
 			if ("UnitOutfits" in themeTable) {
@@ -161,21 +161,21 @@
 				}
 			}
 
-			party.getLoot().Money = this.Math.rand(400, 800);
-			party.getLoot().ArmorParts = this.Math.rand(10, 30);
-			party.getLoot().Medicine = this.Math.rand(5, 15);
-			party.getLoot().Ammo = this.Math.rand(10, 50);
+			party.getLoot().Money = ::Math.rand(400, 800);
+			party.getLoot().ArmorParts = ::Math.rand(10, 30);
+			party.getLoot().Medicine = ::Math.rand(5, 15);
+			party.getLoot().Ammo = ::Math.rand(10, 50);
 
-			local items =  ("LootTable" in themeTable) ? themeTable.LootTable : this.Const.FreeCompanyDefaultLootTable;
+			local items =  ("LootTable" in themeTable) ? themeTable.LootTable : ::Const.FreeCompanyDefaultLootTable;
 
 
 			for( local i = 0; i < 2; i = ++i ) //change to some trade goods, and lower money amount if it picks them
 			{
-				party.addToInventory(items[this.Math.rand(0, items.len() - 1)]);
+				party.addToInventory(items[::Math.rand(0, items.len() - 1)]);
 			}
 
 			party.getSprite("base").setBrush("world_base_07");
-			party.getSprite("body").setBrush("figure_mercenary_0" + this.Math.rand(1, 2));
+			party.getSprite("body").setBrush("figure_mercenary_0" + ::Math.rand(1, 2));
 
 			local nameList = clone themeTable.Names;
 
@@ -183,13 +183,13 @@
 			{
 				if (nameList.len() == 0)
 				{
-					nameList = clone this.Const.Strings.FreeCompanyNames;
+					nameList = clone ::Const.Strings.FreeCompanyNames;
 					break;
 				}
-				local idx = this.Math.rand(0, themeTable.Names.len() - 1);
+				local idx = ::Math.rand(0, themeTable.Names.len() - 1);
 				local name = nameList[idx];
 
-				if (name == this.World.Assets.getName())
+				if (name == ::World.Assets.getName())
 				{
 					nameList.remove(idx);
 					continue;
@@ -218,9 +218,9 @@
 
 			while (true)
 			{
-				local banner = this.Const.PlayerBanners[this.Math.rand(0, this.Const.PlayerBanners.len() - 1)];
+				local banner = ::Const.PlayerBanners[::Math.rand(0, ::Const.PlayerBanners.len() - 1)];
 
-				if (banner == this.World.Assets.getBanner())
+				if (banner == ::World.Assets.getBanner())
 				{
 					continue;
 				}
@@ -281,17 +281,17 @@
 					continue;
 				}
 
-				local dest = candidates[this.Math.rand(0, candidates.len() - 1)];
+				local dest = candidates[::Math.rand(0, candidates.len() - 1)];
 				local c = fc.getController();
 				local wait1 = this.new("scripts/ai/world/orders/wait_order");
-				wait1.setTime(this.Math.rand(10, 60) * 1.0);
+				wait1.setTime(::Math.rand(10, 60) * 1.0);
 				c.addOrder(wait1);
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(dest.getTile());
 				move.setRoadsOnly(false);
 				c.addOrder(move);
 				local wait2 = this.new("scripts/ai/world/orders/wait_order");
-				wait2.setTime(this.Math.rand(10, 60) * 1.0);
+				wait2.setTime(::Math.rand(10, 60) * 1.0);
 				c.addOrder(wait2);
 				local fco = this.new("scripts/ai/world/orders/legend_free_company_order");
 				fco.setSettlement(dest);
@@ -326,12 +326,12 @@
 
 		this.m.LastMercUpdateTime = this.Time.getVirtualTimeF();
 
-		if (this.m.Mercenaries.len() < 3 || this.World.FactionManager.isCivilWar() && this.m.Mercenaries.len() < 4)
+		if (this.m.Mercenaries.len() < 3 || ::World.FactionManager.isCivilWar() && this.m.Mercenaries.len() < 4)
 		{
-			local playerTile = this.World.State.getPlayer().getTile();
+			local playerTile = ::World.State.getPlayer().getTile();
 			local candidates = [];
 
-			foreach( s in this.World.EntityManager.getSettlements() )
+			foreach( s in ::World.EntityManager.getSettlements() )
 			{
 				if (s.isIsolated())
 				{
@@ -346,11 +346,11 @@
 				candidates.push(s);
 			}
 
-			local start = candidates[this.Math.rand(0, candidates.len() - 1)];
-			local party = this.World.spawnEntity("scripts/entity/world/party", start.getTile().Coords);
+			local start = candidates[::Math.rand(0, candidates.len() - 1)];
+			local party = ::World.spawnEntity("scripts/entity/world/party", start.getTile().Coords);
 			party.setPos(this.createVec(party.getPos().X - 50, party.getPos().Y - 50));
 			party.setDescription("A free mercenary company travelling the lands and lending their swords to the highest bidder.");
-			party.setFootprintType(this.Const.World.FootprintsType.Mercenaries);
+			party.setFootprintType(::Const.World.FootprintsType.Mercenaries);
 			party.getFlags().set("IsMercenaries", true);
 
 			if (start.getFactions().len() == 1)
@@ -359,15 +359,15 @@
 			}
 			else
 			{
-				party.setFaction(start.getFactionOfType(this.Const.FactionType.Settlement).getID());
+				party.setFaction(start.getFactionOfType(::Const.FactionType.Settlement).getID());
 			}
 
-			local r = this.Math.min(330, 150 + this.World.getTime().Days);
-			this.Const.World.Common.assignTroops(party, this.Const.World.Spawn.Mercenaries, this.Math.rand(r * 0.8, r));
-			party.getLoot().Money = this.Math.rand(300, 600);
-			party.getLoot().ArmorParts = this.Math.rand(0, 25);
-			party.getLoot().Medicine = this.Math.rand(0, 10);
-			party.getLoot().Ammo = this.Math.rand(0, 50);
+			local r = ::Math.min(330, 150 + ::World.getTime().Days);
+			::Const.World.Common.assignTroops(party, ::Const.World.Spawn.Mercenaries, ::Math.rand(r * 0.8, r));
+			party.getLoot().Money = ::Math.rand(300, 600);
+			party.getLoot().ArmorParts = ::Math.rand(0, 25);
+			party.getLoot().Medicine = ::Math.rand(0, 10);
+			party.getLoot().Ammo = ::Math.rand(0, 50);
 
 			for( local i = 0; i < 2; i = ++i )
 			{
@@ -386,17 +386,17 @@
 					"loot/lindwurm_hoard_item",
 					"loot/silverware_item",
 				];
-				party.addToInventory(loot[this.Math.rand(0, loot.len() - 1 )]);
+				party.addToInventory(loot[::Math.rand(0, loot.len() - 1 )]);
 			}
 
 			party.getSprite("base").setBrush("world_base_07");
-			party.getSprite("body").setBrush("figure_mercenary_0" + this.Math.rand(1, 2));
+			party.getSprite("body").setBrush("figure_mercenary_0" + ::Math.rand(1, 2));
 
 			while (true)
 			{
-				local name = this.Const.Strings.MercenaryCompanyNames[this.Math.rand(0, this.Const.Strings.MercenaryCompanyNames.len() - 1)];
+				local name = ::Const.Strings.MercenaryCompanyNames[::Math.rand(0, ::Const.Strings.MercenaryCompanyNames.len() - 1)];
 
-				if (name == this.World.Assets.getName())
+				if (name == ::World.Assets.getName())
 				{
 					continue;
 				}
@@ -423,9 +423,9 @@
 
 			while (true)
 			{
-				local banner = this.Const.PlayerBanners[this.Math.rand(0, this.Const.PlayerBanners.len() - 1)];
+				local banner = ::Const.PlayerBanners[::Math.rand(0, ::Const.PlayerBanners.len() - 1)];
 
-				if (banner == this.World.Assets.getBanner())
+				if (banner == ::World.Assets.getBanner())
 				{
 					continue;
 				}
@@ -486,17 +486,17 @@
 					continue;
 				}
 
-				local dest = candidates[this.Math.rand(0, candidates.len() - 1)];
+				local dest = candidates[::Math.rand(0, candidates.len() - 1)];
 				local c = merc.getController();
 				local wait1 = this.new("scripts/ai/world/orders/wait_order");
-				wait1.setTime(this.Math.rand(10, 60) * 1.0);
+				wait1.setTime(::Math.rand(10, 60) * 1.0);
 				c.addOrder(wait1);
 				local move = this.new("scripts/ai/world/orders/move_order");
 				move.setDestination(dest.getTile());
 				move.setRoadsOnly(false);
 				c.addOrder(move);
 				local wait2 = this.new("scripts/ai/world/orders/wait_order");
-				wait2.setTime(this.Math.rand(10, 60) * 1.0);
+				wait2.setTime(::Math.rand(10, 60) * 1.0);
 				c.addOrder(wait2);
 				local mercenary = this.new("scripts/ai/world/orders/mercenary_order");
 				mercenary.setSettlement(dest);
@@ -561,7 +561,7 @@
 
 		for( local i = 0; i != numMercs; i = ++i )
 		{
-			local merc = this.World.getEntityByID(_in.readU32());
+			local merc = ::World.getEntityByID(_in.readU32());
 
 			if (merc != null)
 			{
@@ -573,7 +573,7 @@
 
 		for( local i = 0; i != numMercs; i = ++i )
 		{
-			local merc = this.World.getEntityByID(_in.readU32());
+			local merc = ::World.getEntityByID(_in.readU32());
 
 			if (merc != null)
 			{

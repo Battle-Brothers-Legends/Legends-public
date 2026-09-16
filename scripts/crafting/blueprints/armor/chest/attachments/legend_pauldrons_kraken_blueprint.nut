@@ -4,7 +4,7 @@ this.legend_pauldrons_kraken_blueprint <- this.inherit("scripts/crafting/bluepri
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_pauldrons_kraken";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/armor_upgrades/legend_armor_pauldrons_kraken");
 		this.m.Cost = 1000;
 		local ingredients = [

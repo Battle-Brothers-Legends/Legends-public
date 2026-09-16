@@ -12,7 +12,7 @@
 			Weight = 100,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.CultistAmbush,
+					Type = ::Const.World.Spawn.Troops.CultistAmbush,
 					Cost = 15
 				}
 			]
@@ -35,7 +35,7 @@
 			Weight = 85,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Peasant,
+					Type = ::Const.World.Spawn.Troops.Peasant,
 					Cost = 5
 				}
 			]
@@ -45,35 +45,35 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantButcher,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMinstrel,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWoodsman,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantFarmhand,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWitchHunter,
 					Cost = 20,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantBlacksmith,
 					Cost = 20,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantSquire,
 					Cost = 25,
 				}
 			]
@@ -83,7 +83,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
 				}
 			]
@@ -105,7 +105,7 @@
 			Weight = 30,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.PeasantArmed,
+					Type = ::Const.World.Spawn.Troops.PeasantArmed,
 					Cost = 10
 				}
 			]
@@ -114,7 +114,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantButcher,
 					Cost = 16
 				}
 			]
@@ -123,7 +123,7 @@
 			Weight = 15,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantFarmhand,
 					Cost = 15
 				}
 			]
@@ -132,7 +132,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 20
 				}
 			]
@@ -141,7 +141,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantBlacksmith,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantBlacksmith,
 					Cost = 25
 				}
 			]
@@ -150,7 +150,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMinstrel,
 					Cost = 12
 				}
 			]
@@ -159,7 +159,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantPoacher,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantPoacher,
 					Cost = 18
 				}
 			]
@@ -168,7 +168,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWoodsman,
 					Cost = 15
 				}
 			]
@@ -177,7 +177,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 20
 				}
 			]
@@ -186,7 +186,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantSquire,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantSquire,
 					Cost = 35
 				}
 			]
@@ -195,7 +195,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWitchHunter,
 					Cost = 35
 				}
 			]
@@ -218,7 +218,7 @@
 			Weight = 70,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.BountyHunter,
+					Type = ::Const.World.Spawn.Troops.BountyHunter,
 					Cost = 25
 				}
 			]
@@ -227,7 +227,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Wardog,
+					Type = ::Const.World.Spawn.Troops.Wardog,
 					Cost = 8
 				}
 			]
@@ -236,7 +236,7 @@
 			Weight = 20,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.BountyHunterRanged,
+					Type = ::Const.World.Spawn.Troops.BountyHunterRanged,
 					Cost = 20
 				}
 			]
@@ -260,11 +260,11 @@
 			Types = [
 				{
 					MaxR = 400,
-					Type = this.Const.World.Spawn.Troops.MercenaryLOW,
+					Type = ::Const.World.Spawn.Troops.MercenaryLOW,
 					Cost = 18
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Mercenary,
+					Type = ::Const.World.Spawn.Troops.Mercenary,
 					Cost = 25
 				}
 			]
@@ -273,7 +273,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Wardog,
+					Type = ::Const.World.Spawn.Troops.Wardog,
 					Cost = 8
 				}
 			]
@@ -283,11 +283,11 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.MercenaryRanged,
+					Type = ::Const.World.Spawn.Troops.MercenaryRanged,
 					Cost = 25
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.MasterArcher,
+					Type = ::Const.World.Spawn.Troops.MasterArcher,
 					Cost = 40
 				}
 			]
@@ -296,11 +296,11 @@
 			Weight = 5,
 			Types =[
 				{
-					Type = this.Const.World.Spawn.Troops.HedgeKnight,
+					Type = ::Const.World.Spawn.Troops.HedgeKnight,
 					Cost = 40
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Swordmaster,
+					Type = ::Const.World.Spawn.Troops.Swordmaster,
 					Cost = 40
 				}
 			]
@@ -323,11 +323,11 @@
 			Weight = 70,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Militia,
+					Type = ::Const.World.Spawn.Troops.Militia,
 					Cost = 10
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.MilitiaVeteran,
+					Type = ::Const.World.Spawn.Troops.MilitiaVeteran,
 					Cost = 12
 				}
 			]
@@ -336,7 +336,7 @@
 			Weight = 20,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.MilitiaRanged,
+					Type = ::Const.World.Spawn.Troops.MilitiaRanged,
 					Cost = 10
 				}
 			]
@@ -345,7 +345,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.MilitiaCaptain,
+					Type = ::Const.World.Spawn.Troops.MilitiaCaptain,
 					Cost = 20,
 					Roll = true
 				}
@@ -356,27 +356,27 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantButcher,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantButcher,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMinstrel,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMinstrel,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWoodsman,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWoodsman,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMiner,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMiner,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantMonk,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantMonk,
 					Cost = 15,
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantFarmhand,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantFarmhand,
 					Cost = 15,
 				}
 			]
@@ -400,7 +400,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.SouthernPeasant,
+					Type = ::Const.World.Spawn.Troops.SouthernPeasant,
 					Cost = 10
 				}
 			]
@@ -424,11 +424,11 @@
 			Types = [
 				{
 					MaxR = 400,
-					Type = this.Const.World.Spawn.Troops.MercenaryLOW,
+					Type = ::Const.World.Spawn.Troops.MercenaryLOW,
 					Cost = 18
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.Mercenary,
+					Type = ::Const.World.Spawn.Troops.Mercenary,
 					Cost = 25
 				}
 			]
@@ -437,7 +437,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Wardog,
+					Type = ::Const.World.Spawn.Troops.Wardog,
 					Cost = 8
 				}
 			]
@@ -447,11 +447,11 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.MercenaryRanged,
+					Type = ::Const.World.Spawn.Troops.MercenaryRanged,
 					Cost = 60
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWitchHunter,
 					Cost = 25
 				}
 			]
@@ -475,7 +475,7 @@
 			Types = [
 				{
 					MaxR = 400,
-					Type = this.Const.World.Spawn.Troops.LegendPeasantWitchHunter,
+					Type = ::Const.World.Spawn.Troops.LegendPeasantWitchHunter,
 					Cost = 20
 				}
 			]
@@ -484,7 +484,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Wardog,
+					Type = ::Const.World.Spawn.Troops.Wardog,
 					Cost = 5
 				}
 			]

@@ -6,10 +6,10 @@ this.legend_royal_lance <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.ID = "weapon.legend_royal_lance";
 		this.m.Name = "Royal Lance";
 		this.m.Description = "Well crafted and withstanding age this spear manages to impress craftsmen even today. Used for thrusting over some distance and keeping the enemy at bay.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
+		this.m.WeaponType = ::Const.Items.WeaponType.Spear;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Defensive;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;

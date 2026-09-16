@@ -21,9 +21,9 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 			"the Smith",
 			"the Metalsmith"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Noble;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Noble;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	function setGender(_gender = -1) {
@@ -43,7 +43,7 @@ this.legend_blacksmith_background <- this.inherit("scripts/skills/backgrounds/ch
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/legend_hammer"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_blacksmith_apron]
 		]));
 	}

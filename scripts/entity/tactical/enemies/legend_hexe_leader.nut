@@ -9,14 +9,14 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendHexeLeader;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendHexeLeader.XP;
+		this.m.Type = ::Const.EntityType.LegendHexeLeader;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendHexeLeader.XP;
 		this.m.ConfidentMoraleBrush = "icon_confident_orcs";
 		this.m.DecapitateSplatterOffset = this.createVec(-8, -26);
 		this.m.IsUsingZoneOfControl = false;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.DamageReceived] = [
+		this.m.Sound[::Const.Sound.ActorEvent.DamageReceived] = [
 			"sounds/enemies/dlc2/hexe_hurt_01.wav",
 			"sounds/enemies/dlc2/hexe_hurt_02.wav",
 			"sounds/enemies/dlc2/hexe_hurt_03.wav",
@@ -31,21 +31,21 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/hexe_hurt_12.wav",
 			"sounds/enemies/dlc2/hexe_hurt_13.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/dlc2/hexe_death_01.wav",
 			"sounds/enemies/dlc2/hexe_death_02.wav",
 			"sounds/enemies/dlc2/hexe_death_03.wav",
 			"sounds/enemies/dlc2/hexe_death_04.wav",
 			"sounds/enemies/dlc2/hexe_death_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/dlc2/hexe_idle_01.wav",
 			"sounds/enemies/dlc2/hexe_idle_02.wav",
 			"sounds/enemies/dlc2/hexe_idle_03.wav",
 			"sounds/enemies/dlc2/hexe_idle_04.wav",
 			"sounds/enemies/dlc2/hexe_idle_05.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
 			"sounds/enemies/dlc2/hexe_idle_06.wav",
 			"sounds/enemies/dlc2/hexe_idle_07.wav",
 			"sounds/enemies/dlc2/hexe_idle_08.wav",
@@ -73,7 +73,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/hexe_idle_29.wav",
 			"sounds/enemies/dlc2/hexe_idle_30.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Flee] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Flee] = [
 			"sounds/enemies/dlc2/hexe_flee_01.wav",
 			"sounds/enemies/dlc2/hexe_flee_02.wav",
 			"sounds/enemies/dlc2/hexe_flee_03.wav",
@@ -83,15 +83,15 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/dlc2/hexe_flee_07.wav",
 			"sounds/enemies/dlc2/hexe_flee_08.wav"
 		];
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.DamageReceived] = 1.5;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] = 5.0;
-		this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1] = 2.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.DamageReceived] = 1.5;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] = 5.0;
+		this.m.SoundVolume[::Const.Sound.ActorEvent.Other1] = 2.5;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/hexe_agent");
 		this.m.AIAgent.setActor(this);
 
 		this.m.OnDeathLootTable.extend([
 			[20, function () {
-				local selected = this.m.DroppableRunes[this.Math.rand(0, this.m.DroppableRunes.len() - 1)];
+				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 				local rune = ::new(::Legends.Runes.get(selected).Script);
 				rune.setRuneVariant(selected);
 				rune.setRuneBonus(true);
@@ -114,22 +114,22 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 	function playIdleSound()
 	{
-		local r = this.Math.rand(1, 30);
+		local r = ::Math.rand(1, 30);
 
 		if (r <= 5)
 		{
-			this.playSound(this.Const.Sound.ActorEvent.Idle, this.Const.Sound.Volume.Actor * this.Const.Sound.Volume.ActorIdle * this.m.SoundVolume[this.Const.Sound.ActorEvent.Idle] * this.m.SoundVolumeOverall * (this.Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (this.Math.rand(85, 115) * 0.01));
+			this.playSound(::Const.Sound.ActorEvent.Idle, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Idle] * this.m.SoundVolumeOverall * (::Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (::Math.rand(85, 115) * 0.01));
 		}
 		else
 		{
-			this.playSound(this.Const.Sound.ActorEvent.Other1, this.Const.Sound.Volume.Actor * this.Const.Sound.Volume.ActorIdle * this.m.SoundVolume[this.Const.Sound.ActorEvent.Other1] * this.m.SoundVolumeOverall * (this.Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (this.Math.rand(85, 115) * 0.01));
+			this.playSound(::Const.Sound.ActorEvent.Other1, ::Const.Sound.Volume.Actor * ::Const.Sound.Volume.ActorIdle * this.m.SoundVolume[::Const.Sound.ActorEvent.Other1] * this.m.SoundVolumeOverall * (::Math.rand(60, 100) * 0.01) * (this.isHiddenToPlayer ? 0.33 : 1.0), this.m.SoundPitch * (::Math.rand(85, 115) * 0.01));
 		}
 	}
 
 	function onDeath( _killer, _skill, _tile, _fatalityType )
 	{
-		local flip = this.Math.rand(0, 100) < 50;
-		if (!this.Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
+		local flip = ::Math.rand(0, 100) < 50;
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
 		{
 			this.updateAchievement("BagAHag", 1, 1);
 		}
@@ -144,41 +144,41 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			body.Alpha = 255;
 			head.Alpha = 255;
 			hair.Alpha = 255;
-			decal = _tile.spawnDetail(body.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+			decal = _tile.spawnDetail(body.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 			decal.Color = body.Color;
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != this.Const.FatalityType.Decapitated)
+			if (_fatalityType != ::Const.FatalityType.Decapitated)
 			{
-				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
-				decal = _tile.spawnDetail(hair.getBrush().Name + "_dead", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(hair.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-			else if (_fatalityType == this.Const.FatalityType.Decapitated)
+			else if (_fatalityType == ::Const.FatalityType.Decapitated)
 			{
 				local layers = [
 					head.getBrush().Name + "_dead",
 					hair.getBrush().Name + "_dead"
 				];
-				local decap = this.Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 45.0, head.getBrush().Name + "_bloodpool");
+				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 45.0, head.getBrush().Name + "_bloodpool");
 				decap[0].Color = head.Color;
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
 				decap[1].Scale = 0.95;
 			}
 
-			if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Arrow)
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
 			{
-				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_arrows", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
-			else if (_skill && _skill.getProjectileType() == this.Const.ProjectileType.Javelin)
+			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
 			{
-				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_javelin", this.Const.Tactical.DetailFlag.Corpse, flip);
+				decal = _tile.spawnDetail(body.getBrush().Name + "_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
 
@@ -192,10 +192,10 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		this.dropLoot(_tile, tileLoot, !flip);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
@@ -203,10 +203,10 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 
 	function generateCorpse( _tile, _fatalityType, _killer )
 	{
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Hexe";
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 		corpse.Tile = _tile;
 		return corpse;
 	}
@@ -229,14 +229,14 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendHexeLeader);
+		b.setValues(::Const.Tactical.Actor.LegendHexeLeader);
 		b.TargetAttractionMult = 3.0;
 		b.IsImmuneToDisarm = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.addSprite("socket").setBrush("bust_base_beasts");
 		local body = this.addSprite("body");
 		body.setBrush("bust_hexenleader_body_01");
@@ -246,21 +246,21 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		charm_body.setBrush("bust_hexen_charmed_body_01");
 		charm_body.Visible = false;
 		local charm_armor = this.addSprite("charm_armor");
-		charm_armor.setBrush("bust_hexen_charmed_dress_0" + this.Math.rand(1, 3));
+		charm_armor.setBrush("bust_hexen_charmed_dress_0" + ::Math.rand(1, 3));
 		charm_armor.Visible = false;
 		local head = this.addSprite("head");
 		head.setBrush("bust_hexenleader_head_0" + ::Math.rand(1, 3));
 		head.Color = body.Color;
 		head.Saturation = body.Saturation;
 		local charm_head = this.addSprite("charm_head");
-		charm_head.setBrush("bust_hexen_charmed_head_0" + this.Math.rand(1, 2));
+		charm_head.setBrush("bust_hexen_charmed_head_0" + ::Math.rand(1, 2));
 		charm_head.Visible = false;
 		local injury = this.addSprite("injury");
 		injury.setBrush("bust_hexen_01_injured");
 		local hair = this.addSprite("hair");
-		hair.setBrush("bust_hexen_hair_0" + this.Math.rand(1, 4));
+		hair.setBrush("bust_hexen_hair_0" + ::Math.rand(1, 4));
 		local charm_hair = this.addSprite("charm_hair");
-		charm_hair.setBrush("bust_hexen_charmed_hair_0" + this.Math.rand(1, 5));
+		charm_hair.setBrush("bust_hexen_charmed_hair_0" + ::Math.rand(1, 5));
 		charm_hair.Visible = false;
 		this.addDefaultStatusSprites();
 		this.getSprite("status_rooted").Scale = 0.55;
@@ -462,7 +462,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 				}
 			]
 		};
-		this.Tactical.spawnParticleEffect(false, effect.Brushes, this.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+		::Tactical.spawnParticleEffect(false, effect.Brushes, this.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 	}
 
 });

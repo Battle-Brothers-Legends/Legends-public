@@ -5,7 +5,7 @@ this.legend_rune_poison_blueprint <- this.inherit("scripts/crafting/legend_rune"
 		this.m.Rune = ::Legends.Rune.LegendRswPoison;
 		this.legend_rune.create();
 		this.m.ID = "blueprint.legend_rune_poison";
-		this.m.Type = this.Const.Items.ItemType.Misc;
+		this.m.Type = ::Const.Items.ItemType.Misc;
 	}
 
 });

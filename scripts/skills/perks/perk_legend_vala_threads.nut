@@ -3,7 +3,7 @@ this.perk_legend_vala_threads <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaThreads);
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 		this.m.IsHidden = true;
 	}
 
@@ -20,12 +20,12 @@ this.perk_legend_vala_threads <- this.inherit("scripts/skills/skill", {
 		local expertise = actor.getBravery();
 		local minimumHitChance = ::Legends.Mod.ModSettings.getSetting("MinimumChanceToHit").getValue();
 		local maximumHitChance = ::Legends.Mod.ModSettings.getSetting("MaximumChanceToHit").getValue();
-		expertise = this.Math.max(minimumHitChance, this.Math.min(maximumHitChance, expertise));
+		expertise = ::Math.max(minimumHitChance, ::Math.min(maximumHitChance, expertise));
 
-		if (this.Math.rand(1, 100) <= expertise)
+		if (::Math.rand(1, 100) <= expertise)
 		{
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendValaThreadsEffect);
-			this.Sound.play("sounds/combat/legend_vala_threads.wav");
+			::Sound.play("sounds/combat/legend_vala_threads.wav");
 		}
 	}
 });

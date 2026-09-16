@@ -6,9 +6,9 @@
 			party = entity;
 		});
 		onExecute(_faction);
-		party.setOrigin(this.World.State.getCurrentTown());
+		party.setOrigin(::World.State.getCurrentTown());
 
-		local resources = this.Math.max(1, this.Math.round(0.01 * this.m.Start.getResources()));
+		local resources = ::Math.max(1, ::Math.round(0.01 * this.m.Start.getResources()));
 		this.m.Start.setResources(this.m.Start.getResources() - resources);
 		party.setResources(resources);
 		local items = [

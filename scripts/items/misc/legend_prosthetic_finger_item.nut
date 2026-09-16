@@ -7,8 +7,8 @@ this.legend_prosthetic_finger_item <- this.inherit("scripts/items/item", {
 		this.m.Name = "Prosthetic Finger";
 		this.m.Description = "A wooden finger with a joint for the user to force it into whatever position they need. Perfect for pointing fingers at people, but not too much else.";
 		this.m.Icon = "consumables/prosthetic_finger.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = false;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -84,12 +84,12 @@ this.legend_prosthetic_finger_item <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onUse( _actor, _item = null )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.missing_finger"))
 		{
 			::Legends.Traits.grant(_actor, ::Legends.Trait.LegendProstheticFinger);

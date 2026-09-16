@@ -9,7 +9,7 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/patient_hunter.png";
 		this.m.IconMini = "patient_hunter_mini";
 		this.m.Overlay = "patient_hunter_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -45,7 +45,7 @@ this.legend_patient_hunter_effect <- this.inherit("scripts/skills/skill", {
 
 	function onTurnEnd()
 	{
-		this.m.ApBonus = this.Math.min(3, this.getContainer().getActor().getActionPoints());
+		this.m.ApBonus = ::Math.min(3, this.getContainer().getActor().getActionPoints());
 		if (this.m.ApBonus == 0)
 			this.removeSelf();
 	}

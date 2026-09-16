@@ -5,7 +5,7 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 	function create() {
 		this.m.ID = "event.legend_houndmaster_tames_white_wolf";
 		this.m.Title = "Along the way...";
-		this.m.Cooldown = 99999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 99999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_143.png[/img]While traversing the snowy wastelands of the realm\'s north, %houndmaster% the houndmaster has come to befriend a creature that\'s been trailing beside the company\'s march: a wolf. The houndmaster frequently remained in the rearguard, crouched low, hands at his side, locking eyes with the lone wolf for minutes on end. But today  %houndmaster% decided to go one step further. The houndmaster makes attempt to tame wild beast… ",
@@ -59,19 +59,19 @@ this.legend_houndmaster_tames_white_wolf_event <- this.inherit("scripts/events/e
 
 	function onUpdateScore() {
 
-		//if (this.World.Assets.getOrigin().getID() != "scenario.legends_rangers" && this.World.Assets.getOrigin().getID() != "scenario.rangers" && this.World.Assets.getOrigin().getID() != "scenario.legends_druid")
+		//if (::World.Assets.getOrigin().getID() != "scenario.legends_rangers" && ::World.Assets.getOrigin().getID() != "scenario.rangers" && ::World.Assets.getOrigin().getID() != "scenario.legends_druid")
 		//{
 		//	return;
 		//}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (!::Legends.S.oneOf(currentTile.Type, ::Const.World.TerrainType.Snow, ::Const.World.TerrainType.SnowyForest))
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 		foreach (bro in brothers) {
 			if (bro.getLevel() < 5)

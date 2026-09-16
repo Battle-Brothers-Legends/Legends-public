@@ -21,17 +21,17 @@
 			_screen.Text = "[img]gfx/ui/events/event_33.png[/img] You tell the mercenaries to get back to marching. The thief uses a thin arm to wipe their mouth and stands up, wobbling on weak legs to take a few steps after you and asks if maybe they could join the company. %SPEECH_ON%I\'ll give my life for you, if I must, just anything to not have to steal anymore.%SPEECH_OFF%";
 			_screen.Options[1].Text = "We need warriors, not underfed thieves.";
 			_screen.start <- function ( _event ) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
 					_event.m.Dude.getFlags().add("PlayerSkeleton");
 					_event.m.Dude.getFlags().add("undead");
 					_event.m.Dude.getFlags().add("skeleton");
-					_event.m.Dude.setStartValuesEx(this.Const.CharacterThiefBackgrounds);
+					_event.m.Dude.setStartValuesEx(::Const.CharacterThiefBackgrounds);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
 					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				} else {
-					_event.m.Dude.setStartValuesEx(this.Const.CharacterThiefBackgrounds);
+					_event.m.Dude.setStartValuesEx(::Const.CharacterThiefBackgrounds);
 				}
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}

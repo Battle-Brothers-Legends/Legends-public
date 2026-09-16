@@ -9,7 +9,7 @@
 	}
 
 	o.onSpawnAssets = function() {
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 
 		for (local i = 0; i < 4; i++) {
 			local bro = roster.create("scripts/entity/tactical/player");
@@ -27,13 +27,13 @@
 		bros[0].m.Level = 3;
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.Hitpoints] = 2;
-		talents[this.Const.Attributes.Fatigue] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.Hitpoints] = 2;
+		talents[::Const.Attributes.Fatigue] = 1;
 		local items = bros[0].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		local warhound = this.new("scripts/items/accessory/legend_warhound_item");
 		warhound.m.Name = "Fenrir the Warhound";
 		items.equip(warhound);
@@ -41,7 +41,7 @@
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_animal_hide_armor_reinforced");
 		armor.setUpgrade(plate);
 		items.equip(armor);
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		bros[1].setStartValuesEx([::Legends.Background.Barbarian]);
@@ -54,19 +54,19 @@
 		bros[1].m.Level = 3;
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.Hitpoints] = 1;
-		talents[this.Const.Attributes.Fatigue] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.Hitpoints] = 1;
+		talents[::Const.Attributes.Fatigue] = 2;
 		local items = bros[1].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_sackcloth");
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_scrap_metal_armor");
 		armor.setUpgrade(plate);
 		items.equip(armor);
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband]
 		]));
 		bros[2].setStartValuesEx([::Legends.Background.Barbarian]);
@@ -79,18 +79,18 @@
 		bros[2].m.Level = 3;
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 1;
-		talents[this.Const.Attributes.MeleeDefense] = 2;
-		talents[this.Const.Attributes.Hitpoints] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 1;
+		talents[::Const.Attributes.MeleeDefense] = 2;
+		talents[::Const.Attributes.Hitpoints] = 2;
 		local items = bros[2].getItems();
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Body));
-		items.unequip(items.getItemAtSlot(this.Const.ItemSlot.Head));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Body));
+		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
 		local armor = this.new("scripts/items/legend_armor/cloth/legend_armor_sackcloth_patched");
 		local plate = this.new("scripts/items/legend_armor/plate/legend_armor_hide_and_bone_armor");
 		armor.setUpgrade(plate);
 		items.equip(armor);
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_helmet]
 		]));
 		bros[3].setStartValuesEx([::Legends.Background.Monk], true, 0);
@@ -100,24 +100,24 @@
 		bros[3].setVeteranPerks(2);
 		bros[3].m.Talents = [];
 		local talents = bros[3].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = 3;
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.addMoralReputation(-30.0);
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/silverware_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/loot/silver_bowl_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money / 2;
-		this.World.Assets.m.Ammo = this.World.Assets.m.Ammo / 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = 3;
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.addMoralReputation(-30.0);
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/goat_cheese_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/loot/silverware_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/loot/silver_bowl_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money / 2;
+		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
 	o.onSpawnPlayer = function() {
 		local randomVillage;
 		local northernmostY = 0;
 
-		for (local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i) {
-			local v = this.World.EntityManager.getSettlements()[i];
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
+			local v = ::World.EntityManager.getSettlements()[i];
 
 			if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2) {
 				northernmostY = v.getTile().SquareCoords.Y;
@@ -129,21 +129,21 @@
 
 		randomVillage.setLastSpawnTimeToNow();
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do {
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 2), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 2), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 2), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 2));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 2), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 2));
 
-			if (!this.World.isValidTileSquare(x, y)) {
+			if (!::World.isValidTileSquare(x, y)) {
 			} else {
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == this.Const.World.TerrainType.Ocean || tile.Type == this.Const.World.TerrainType.Shore || tile.IsOccupied) {
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
 				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
 				} else {
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty()) {
 						randomVillageTile = tile;
@@ -172,7 +172,7 @@
 		local s = this.new("scripts/entity/world/settlements/situations/raided_situation");
 		s.setValidForDays(5);
 		randomVillage.addSituation(s);
-		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 		local houses = [];
 
 		foreach (n in nobles) {
@@ -207,14 +207,14 @@
 		}
 
 		houses[1].Faction.addPlayerRelation(18.0);
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(5);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(5);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function(_tag) {
 			this.Music.setTrackList([
 				"music/barbarians_02.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.raiders_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.raiders_scenario_intro");
 		}, null);
 	}
 

@@ -27,7 +27,7 @@
 		if (_isNewContract)
 		{
 			_contract.m.ID = this.generateContractID();
-			_contract.m.TimeOut += this.World.getTime().SecondsPerDay * (this.Math.rand(0, 200) - 100) * 0.01;
+			_contract.m.TimeOut += ::World.getTime().SecondsPerDay * (::Math.rand(0, 200) - 100) * 0.01;
 
 			_contract.formatDescription();
 		}
@@ -36,12 +36,12 @@
 
 		if (_contract.getFaction() != 0)
 		{
-			this.World.FactionManager.getFaction(_contract.getFaction()).addContract(_contract);
+			::World.FactionManager.getFaction(_contract.getFaction()).addContract(_contract);
 
 			if (_isNewContract)
 			{
 				local faction = ::World.FactionManager.getFaction(_contract.getFaction());
-				this.World.FactionManager.getFaction(_contract.getFaction()).setLastContractTime(this.Time.getVirtualTimeF() + ::Const.LegendMod.ContractCooldown.getLastContractTimeDelay(faction));
+				::World.FactionManager.getFaction(_contract.getFaction()).setLastContractTime(this.Time.getVirtualTimeF() + ::Const.LegendMod.ContractCooldown.getLastContractTimeDelay(faction));
 			}
 		}
 
@@ -74,13 +74,13 @@
 
 		this.m.Active = _contract;
 		_contract.setActive(true);
-		this.World.State.getWorldScreen().updateContract(this.m.Active);
-		this.World.State.getTownScreen().updateContracts();
-		this.World.State.getCampScreen().updateContracts();
+		::World.State.getWorldScreen().updateContract(this.m.Active);
+		::World.State.getTownScreen().updateContracts();
+		::World.State.getCampScreen().updateContracts();
 
 		if (!_alreadyStarted)
 		{
-			this.Sound.play("sounds/scribble.wav");
+			::Sound.play("sounds/scribble.wav");
 		}
 	}
 

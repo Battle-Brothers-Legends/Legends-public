@@ -22,8 +22,8 @@
 		local actor = this.getContainer().getActor();
 		local missinghand = this.m.Container.getSkillByID("injury.missing_hand");
 		local newhand = ::Legends.Traits.get(this, ::Legends.Trait.LegendProstheticHand);
-		local main = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local off = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local main = actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local off = actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		local hasXbow = off != null && ::MSU.String.endsWith(off.getID(), "_hand_crossbow");
 		local hasNet = off != null && ::MSU.String.endsWith(off.getID(), "_net") && actor.getCurrentProperties().IsSpecializedInNets;
 		return (missinghand == null || newhand != null) && main != null && (off == null || hasXbow || hasNet) && main.isDoubleGrippable();
@@ -46,10 +46,10 @@
 			mod += 50;
 		if (_targetEntity.getCurrentProperties().IsRooted)
 			mod += 25;
-		if (_targetEntity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Fleeing)
 			mod += 50;
 		local chance = _targetEntity.getFatiguePct() * 50;
-		return mod + this.Math.round(chance);
+		return mod + ::Math.round(chance);
 	}
 	
 	o.onAfterUpdate = function ( _properties ) {
@@ -57,7 +57,7 @@
 			this.m.ActionPointCost -= 1;
 		}
 
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0; 
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0; 
 	}
 
 	o.onAnySkillUsed = function ( _skill, _targetEntity, _properties ) {
@@ -70,8 +70,8 @@
 			_properties.DamageArmorMult *= 0.0;
 			_properties.DamageDirectAdd = 0;
 			_properties.IsIgnoringArmorOnAttack = true;
-			_properties.HitChanceMult[this.Const.BodyPart.Head] = 0.0;
-			_properties.HitChanceMult[this.Const.BodyPart.Body] = 1.0;
+			_properties.HitChanceMult[::Const.BodyPart.Head] = 0.0;
+			_properties.HitChanceMult[::Const.BodyPart.Body] = 1.0;
 
 			if (this.canDoubleGrip()) {
 				_properties.DamageTotalMult /= 1.25;

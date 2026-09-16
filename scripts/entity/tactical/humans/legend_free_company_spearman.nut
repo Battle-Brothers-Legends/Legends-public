@@ -4,19 +4,19 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 			[1, ::Legends.Outfit.mercenary_spearman_outfit_00],
 			// [1, ::Legends.Outfit.mercenary_spearman_outfit_01]
 		],
-		PerkList = this.Const.EnemyPerks.FreeCompanySpearman,
+		PerkList = ::Const.EnemyPerks.FreeCompanySpearman,
 		PerkPower = 6
 	},
 	function create()
 	{
 		this.human.create();
-		this.m.Type = this.Const.EntityType.FreeCompanySpearman;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.FreeCompanySpearman.XP;
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Type = ::Const.EntityType.FreeCompanySpearman;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.FreeCompanySpearman.XP;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bounty_hunter_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -25,7 +25,7 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanySpearman);
+		b.setValues(::Const.Tactical.Actor.FreeCompanySpearman);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -62,7 +62,7 @@ this.legend_free_company_spearman <- this.inherit("scripts/entity/tactical/legen
 			[1, "tools/throwing_net"],
 		], "scripts/items/"));
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50) {
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],

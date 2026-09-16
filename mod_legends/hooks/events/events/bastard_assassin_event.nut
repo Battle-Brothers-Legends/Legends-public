@@ -12,7 +12,7 @@
 						::World.getTemporaryRoster().clear();
 						_event.m.Assassin.onHired();
 						_event.m.Bastard.getItems().transferToStash(::World.Assets.getStash());
-						_event.m.Bastard.getSkills().onDeath(this.Const.FatalityType.None);
+						_event.m.Bastard.getSkills().onDeath(::Const.FatalityType.None);
 						::Legends.addFallen(_event.m.Bastard, "Left to claim their birthright");
 						::World.getPlayerRoster().remove(_event.m.Bastard);
 						_event.m.Bastard = null;
@@ -37,11 +37,11 @@
 
 					this.List.push(::Legends.EventList.changeMoralReputation(2));
 
-					if (_event.m.Bastard.getMoodState() >= this.Const.MoodState.Neutral) {
+					if (_event.m.Bastard.getMoodState() >= ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Bastard.getMoodState()],
-							text = _event.m.Bastard.getName() + this.Const.MoodStateEvent[_event.m.Bastard.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Bastard.getMoodState()],
+							text = _event.m.Bastard.getName() + ::Const.MoodStateEvent[_event.m.Bastard.getMoodState()]
 						});
 					}
 
@@ -51,14 +51,14 @@
 						if (bro.getID() == _event.m.Bastard.getID())
 							continue;
 
-						if (this.Math.rand(1, 100) <= 50) {
+						if (::Math.rand(1, 100) <= 50) {
 							bro.improveMood(0.5, "You risked your life for the men");
 
-							if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+							if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
 								this.List.push({
 									id = 10,
-									icon = this.Const.MoodStateIcon[bro.getMoodState()],
-									text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+									icon = ::Const.MoodStateIcon[bro.getMoodState()],
+									text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 								});
 							}
 						}

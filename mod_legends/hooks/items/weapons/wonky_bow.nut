@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Shortbow;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Shortbow;
 		this.m.RangeMax = 6;
 		this.m.RangeIdeal = 6;
 	}

@@ -15,10 +15,10 @@ this.legend_helm_bearded <- this.inherit("scripts/items/helmets/helmet", {
 		local variants = [
 			1
 		];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 3600;
 		this.m.Condition = 350;
 		this.m.ConditionMax = 350;

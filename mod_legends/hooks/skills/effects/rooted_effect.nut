@@ -23,12 +23,12 @@
 
 		local actor = this.getContainer().getActor();
 		local hp = actor.getHitpoints();
-		local damage = this.Math.rand(this.m.DamageMin, this.m.DamageMax);
-		local hitInfo = clone this.Const.Tactical.HitInfo;
+		local damage = ::Math.rand(this.m.DamageMin, this.m.DamageMax);
+		local hitInfo = clone ::Const.Tactical.HitInfo;
 		hitInfo.DamageRegular = damage;
 		hitInfo.DamageArmor = damage;
 		hitInfo.DamageDirect = 0.9;
-		hitInfo.BodyPart = this.Const.BodyPart.Body;
+		hitInfo.BodyPart = ::Const.BodyPart.Body;
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		actor.onDamageReceived(this.getContainer().getActor(), this, hitInfo);
@@ -40,24 +40,24 @@
 		{
 			if (this.m.SoundOnHitHitpoints.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnHitHitpoints[this.Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.2, actor.getPos());
+				::Sound.play(this.m.SoundOnHitHitpoints[::Math.rand(0, this.m.SoundOnHitHitpoints.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.2, actor.getPos());
 			}
 		}
 
 		if (actor.getFlags().has("undead"))
 			return;
 
-		if (actor.getCurrentProperties().IsImmuneToPoison || (hp - actor.getHitpoints()) < this.Const.Combat.PoisonEffectMinDamage || actor.getHitpoints() <= 0)
+		if (actor.getCurrentProperties().IsImmuneToPoison || (hp - actor.getHitpoints()) < ::Const.Combat.PoisonEffectMinDamage || actor.getHitpoints() <= 0)
 			return;
 
 		if (!actor.isHiddenToPlayer())
 		{
 			if (this.m.SoundOnUse.len() != 0)
 			{
-				this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.RacialEffect * 1.5, actor.getPos());
+				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, actor.getPos());
 			}
 
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " is poisoned");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " is poisoned");
 		}
 
 		this.spawnIcon("status_effect_54", actor.getTile());

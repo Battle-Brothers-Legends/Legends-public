@@ -18,13 +18,13 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 		];
 		this.m.ExcludedTalents = [];
 		// this.m.IsGuaranteed = [::Legends.Traits.new(::Legends.Trait.Tough)]
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
 		this.m.BeardChance = 50;
 		this.m.Ethnicity = 1;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat;
 	}
 
 	function onChangeAttributes()
@@ -47,11 +47,11 @@ this.legend_dervish_background <- this.inherit("scripts/skills/backgrounds/chara
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		local armor = this.Const.World.Common.pickArmor([
+		local armor = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[3, ::Legends.Helmet.None]

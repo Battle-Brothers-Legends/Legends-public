@@ -26,10 +26,10 @@
 
 	o.onUpdate = function ()
 	{
-		if ("IsRecoveringAmmo" in this.World.Assets.m)
-			this.World.Assets.m.IsRecoveringAmmo = true;
-		if ("IsRecoveringArmor" in this.World.Assets.m)
-			this.World.Assets.m.IsRecoveringArmor = true;
+		if ("IsRecoveringAmmo" in ::World.Assets.m)
+			::World.Assets.m.IsRecoveringAmmo = true;
+		if ("IsRecoveringArmor" in ::World.Assets.m)
+			::World.Assets.m.IsRecoveringArmor = true;
 	}
 
 	o.onEvaluate = function () {

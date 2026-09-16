@@ -9,8 +9,8 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 	},
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.AttackDefault;
-		this.m.Order = this.Const.AI.Behavior.Order.AttackDefault;
+		this.m.ID = ::Const.AI.Behavior.ID.AttackDefault;
+		this.m.Order = ::Const.AI.Behavior.Order.AttackDefault;
 		this.behavior.create();
 	}
 
@@ -20,26 +20,26 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 		this.m.Skill = null;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasVisibleOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
 		if (this.m.Skill == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		score = score * this.getFatigueScoreMult(this.m.Skill);
@@ -48,7 +48,7 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 
 		if (targets.len() == 0)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		local bestTarget;
@@ -64,11 +64,11 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 
 		if (bestTarget.Target == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.TargetTile = bestTarget.Target.getTile();
-		return this.Const.AI.Behavior.Score.Attack * bestTarget.Score * score;
+		return ::Const.AI.Behavior.Score.Attack * bestTarget.Score * score;
 	}
 
 	function onExecute( _entity )
@@ -82,7 +82,7 @@ this.legend_vala_warden_ai_melee_attack <- this.inherit("scripts/ai/tactical/beh
 
 		if (this.m.TargetTile != null && this.m.TargetTile.IsOccupiedByActor)
 		{
-			if (this.Const.AI.VerboseMode)
+			if (::Const.AI.VerboseMode)
 			{
 				this.logInfo("* " + _entity.getName() + ": Using " + this.m.Skill.getName() + " against " + this.m.TargetTile.getEntity().getName() + "!");
 			}

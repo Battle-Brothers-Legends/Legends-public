@@ -1,7 +1,7 @@
 this.legend_crab_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_crab_meat";
 		this.m.Name = "Crab";
@@ -13,47 +13,27 @@ this.legend_crab_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.m.IsUndesirable = false;
 	}
 
-	function getBuyPrice()
-	{
-		if (this.m.IsSold)
-		{
+	function getBuyPrice() {
+		if (this.m.IsSold) {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getBuyPriceMult()));
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::World.State.getCurrentTown().getFoodPriceMult() * ::World.State.getCurrentTown().getBuyPriceMult()));
 		}
 
 		return this.item.getBuyPrice();
 	}
 
-	function getSellPrice()
-	{
-		if (this.m.IsBought)
-		{
+	function getSellPrice() {
+		if (this.m.IsBought) {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
-		{
-			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getFoodPriceMult() * this.World.State.getCurrentTown().getSellPriceMult());
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.floor(this.getValue() * ::World.State.getCurrentTown().getFoodPriceMult() * ::World.State.getCurrentTown().getSellPriceMult());
 		}
 
 		return this.item.getSellPrice();
-	}
-
-	function onPutIntoBag()
-	{
-		this.onEquip();
-	}
-
-	function onEquip()
-	{
-		this.food_item.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.LegendEatRations, function (_skill) {
-			_skill.setItem(this);
-			_skill.setAmount(this.m.Amount);
-		}.bindenv(this));
 	}
 });

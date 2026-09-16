@@ -5,7 +5,7 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_destroyed_caravan";
 		this.m.Title = "Along the way...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "South",
 			Text = "[img]gfx/ui/events/event_159.png[/img]A caravan stands unmoving on the horizon ahead. As you approach, the reason for its stillness becomes clear - the wagon is a wreck. The pack beast has been gored and the corpses of several caravan hands lie strewn about. Heads, arms, and legs are missing in uneven measure, some seemingly taken by sword swings, others ripped off by the mouth or claws of some creature. The nearby body of a hyena points to the canines as possible culprits, but looking at the wounds you can\'t help but feel something more deadly caused this.\n\nWhatever the case, you can hardly afford to waste this opportunity. You order the company to gather everything of use from the wagon and pack it up.",
@@ -95,20 +95,20 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
+		if (::World.Assets.getOrigin().getID() != "scenario.legend_escaped_slaves") {
 			return;
 		}
 
-		if (this.World.getTime().Days > 20) {
+		if (::World.getTime().Days > 20) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (!currentTile.HasRoad) {
 			return;
 		}
 
-		local towns = this.World.EntityManager.getSettlements();
+		local towns = ::World.EntityManager.getSettlements();
 		local nearTown = false;
 
 		foreach (t in towns) {
@@ -128,10 +128,10 @@ this.legend_destroyed_caravan_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onDetermineStartScreen() {
-		local currentTile = this.World.State.getPlayer().getTile();
-		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.33)
+		local currentTile = ::World.State.getPlayer().getTile();
+		if (currentTile.SquareCoords.Y < ::World.getMapSize().Y * 0.33)
 			return "South";
-		if (currentTile.SquareCoords.Y < this.World.getMapSize().Y * 0.66)
+		if (currentTile.SquareCoords.Y < ::World.getMapSize().Y * 0.66)
 			return "Midland";
 		return "North";
 	}

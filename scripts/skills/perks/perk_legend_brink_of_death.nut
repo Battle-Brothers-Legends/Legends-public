@@ -8,7 +8,7 @@ this.perk_legend_brink_of_death <- this.inherit("scripts/skills/skill", {
 
 	function onCombatStarted()
 	{
-		local actors = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		local actors = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
 		foreach( a in actors )
 		{

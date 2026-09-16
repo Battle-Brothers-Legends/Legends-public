@@ -37,7 +37,7 @@
 		this.m.IsHidden = !::MSU.isNull(this.getItem()) && this.getItem().isItemType(::Const.Items.ItemType.Net) && this.getItem().m.Ammo <= 0;
 
 		if (_properties.IsSpecializedInNets) {
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 			this.m.ActionPointCost = 3;
 		}
 
@@ -76,9 +76,9 @@
 					{
 						local next = _targetTile.getNextTile(i);
 
-						if (next.IsOccupiedByActor && this.Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
+						if (next.IsOccupiedByActor && ::Math.abs(next.Level - _targetTile.Level) <= 1 && !next.getEntity().isAlliedWithPlayer())
 						{
-							if (this.Math.rand(1, 100) < this.Math.floor(chance / (successes + 1.0)))
+							if (::Math.rand(1, 100) < ::Math.floor(chance / (successes + 1.0)))
 							{
 								newRet = onUse(_user, next);
 								if (newRet != false)

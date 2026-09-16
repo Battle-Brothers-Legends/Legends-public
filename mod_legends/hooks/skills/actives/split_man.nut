@@ -40,16 +40,16 @@
 			return false;
 		}
 
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local success = this.attackEntity(_user, targetEntity);
 
 		if (success	&& this.m.ApplyBonusToBodyPart != -1 && !_targetTile.IsEmpty && !::Legends.S.isEntityNullOrDead(_user, targetEntity) && this.getContainer() != null) {
 			local p = this.getContainer().buildPropertiesForUse(this, targetEntity);
-			local hitInfo = clone this.Const.Tactical.HitInfo;
+			local hitInfo = clone ::Const.Tactical.HitInfo;
 			local damageMult = p.MeleeDamageMult * p.DamageTotalMult;
-			local damageRegular = this.Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageRegularMult * 0.5;
-			local damageArmor = this.Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageArmorMult * 0.5;
-			local damageDirect = this.Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
+			local damageRegular = ::Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageRegularMult * 0.5;
+			local damageArmor = ::Math.rand(p.DamageRegularMin, p.DamageRegularMax) * p.DamageArmorMult * 0.5;
+			local damageDirect = ::Math.minf(1.0, p.DamageDirectMult * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
 			hitInfo.DamageRegular = damageRegular * damageMult;
 			hitInfo.DamageArmor = damageArmor * damageMult;
 			hitInfo.DamageDirect = damageDirect;

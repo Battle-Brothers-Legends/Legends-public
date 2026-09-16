@@ -2,7 +2,7 @@
 	o.m.TimeBetweenSpawns <- 150.0;
 
 	function onUpdate(_faction) {
-		if (!(this.World.FactionManager.getGreaterEvilType() == ::Const.World.GreaterEvilType.Undead && ::World.FactionManager.getGreaterEvilPhase() >= ::Const.World.GreaterEvilPhase.Warning)) {
+		if (!(::World.FactionManager.getGreaterEvilType() == ::Const.World.GreaterEvilType.Undead && ::World.FactionManager.getGreaterEvilPhase() >= ::Const.World.GreaterEvilPhase.Warning)) {
 			return;
 		}
 

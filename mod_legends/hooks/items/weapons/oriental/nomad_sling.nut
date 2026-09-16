@@ -5,8 +5,8 @@
 		create();
 		this.m.Description = "A leather sling on a metal-reinforced staff, used to hurl stones at the enemy. It features a bigger pouch for heavier rocks, but trades off precision for damage and range. With rocks abundant everywhere it will never run out of ammunition.";
 		this.m.Categories = "Sling/Staff, Two-Handed";
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.TwoHanded;
-		this.m.WeaponType = this.Const.Items.WeaponType.Sling | this.Const.Items.WeaponType.Staff;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sling | ::Const.Items.WeaponType.Staff;
 		this.m.Value = 800;
 		this.m.RangeMin = 2;
 		this.m.RangeMax = 8;
@@ -19,7 +19,7 @@
 		this.m.Condition = 80.0;
 		this.m.ConditionMax = 80.0;
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
 	o.updateVariant <- function() {
@@ -47,7 +47,7 @@
 	o.onUpdateProperties <- function (_properties)
 	{
 		this.weapon.onUpdateProperties(_properties);
-		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag)) {
+		foreach (item in this.getContainer().getActor().getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag)) {
 			item.onSlingUpdateProperties();
 		}
 	}

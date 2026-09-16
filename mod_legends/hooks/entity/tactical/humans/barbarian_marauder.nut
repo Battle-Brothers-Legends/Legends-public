@@ -24,7 +24,7 @@
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Barbarians.ReaverRelentlessDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Barbarians.ReaverRelentlessDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Relentless);
 		}
@@ -32,7 +32,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 5);
+		local r = ::Math.rand(1, 5);
 
 		if (r == 1)
 		{
@@ -55,9 +55,9 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/barbarians/two_handed_spiked_mace"));
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 40)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 40)
 		{
-			r = this.Math.rand(1, 3);
+			r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -73,7 +73,7 @@
 			}
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && this.Math.rand(1, 100) <= 20)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && ::Math.rand(1, 100) <= 20)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/wooden_shield_old"));
 		}
@@ -85,9 +85,9 @@
 			[5, ::Legends.Armor.Barbarian.legend_barbarian_southern_armor]
 		];
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+		this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.leather_headband],
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece],
 			[1, ::Legends.Helmet.Barbarian.leather_helmet],

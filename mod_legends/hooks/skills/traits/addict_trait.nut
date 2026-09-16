@@ -22,16 +22,16 @@
 		];
 		local time = 0.0;
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCombatStartTime() != 0)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCombatStartTime() != 0)
 		{
-			time = this.World.State.getCombatStartTime();
+			time = ::World.State.getCombatStartTime();
 		}
 		else
 		{
 			time = this.Time.getVirtualTimeF();
 		}
 
-		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 5.0 * this.World.getTime().SecondsPerDay;
+		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 5.0 * ::World.getTime().SecondsPerDay;
 
 		if (isAffected)
 		{
@@ -83,16 +83,16 @@
 	{
 		local time = 0.0;
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCombatStartTime() != 0)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCombatStartTime() != 0)
 		{
-			time = this.World.State.getCombatStartTime();
+			time = ::World.State.getCombatStartTime();
 		}
 		else
 		{
 			time = this.Time.getVirtualTimeF();
 		}
 
-		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 7.0 * this.World.getTime().SecondsPerDay;
+		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 7.0 * ::World.getTime().SecondsPerDay;
 
 		if (isAffected)
 		{

@@ -15,14 +15,14 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_heavy_javelin";
 		this.m.Variants = [1];
-		this.m.PrefixList = this.Const.Strings.BarbarianPrefix;
-		this.m.SuffixList = this.Const.Strings.BarbarianPrefix;
-		this.m.NameList = this.Const.Strings.JavelinNames;
+		this.m.PrefixList = ::Const.Strings.BarbarianPrefix;
+		this.m.SuffixList = ::Const.Strings.BarbarianPrefix;
+		this.m.NameList = ::Const.Strings.JavelinNames;
 		this.m.Description = "A jagged harpoon, that flies true despite it\'s weight and size. Harder to throw and hit with, but more impactful.";
 		this.m.Categories = "Throwing Weapon/Spear, One-Handed";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.WeaponType = this.Const.Items.WeaponType.Throwing | this.Const.Items.WeaponType.Spear;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.Ammo | this.Const.Items.ItemType.Defensive | this.Const.Items.ItemType.OneHanded;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.WeaponType = ::Const.Items.WeaponType.Throwing | ::Const.Items.WeaponType.Spear;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.Ammo | ::Const.Items.ItemType.Defensive | ::Const.Items.ItemType.OneHanded;
 		this.m.AddGenericSkill = true;
 		this.m.ShowArmamentIcon = true;
 		this.m.Value = 1800;
@@ -74,9 +74,9 @@ this.legend_named_heavy_javelin <- inherit("scripts/items/weapons/named/named_we
 		this.item.onPutIntoBag();
 		if (this.m.Name.len() == 0)
 		{
-			if (this.Math.rand(1, 100) <= 25)
+			if (::Math.rand(1, 100) <= 25)
 			{
-				this.setName(this.getContainer().getActor().getName() + "\'s " + this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)]);
+				this.setName(this.getContainer().getActor().getName() + "\'s " + this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)]);
 			}
 			else
 			{

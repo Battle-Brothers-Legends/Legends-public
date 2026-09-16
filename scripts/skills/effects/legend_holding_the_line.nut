@@ -6,7 +6,7 @@ this.legend_holding_the_line <- this.inherit("scripts/skills/effects/legend_comm
 		this.m.Description = "You WILL hold! An inspirational leader has encouraged this character to hold their ground.";
 		this.m.Icon = "ui/perks/holdtheline_circle.png";
 		this.m.IconMini = "mini_holdtheline_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

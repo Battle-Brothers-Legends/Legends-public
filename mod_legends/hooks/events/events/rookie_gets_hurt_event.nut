@@ -22,10 +22,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.Time.getVirtualTimeF() - this.World.Events.getLastBattleTime() > 10.0)
+		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 10.0)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -46,7 +46,7 @@
 		if (candidates.len() < 1)
 			return;
 
-		this.m.Rookie = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Rookie = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Score = candidates.len() * 75;
 	}
 })

@@ -15,7 +15,7 @@ foreach (blueprint in alchemyBlueprints) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.m.Type = ::Const.Items.ItemType.Usable;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendAlchemy)
 			]);
@@ -34,7 +34,7 @@ foreach (blueprint in bombBlueprints) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Ammo;
+			this.m.Type = ::Const.Items.ItemType.Ammo;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendPetardry)
 			]);
@@ -52,7 +52,7 @@ foreach (blueprint in herbalBlueprints) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Usable;
+			this.m.Type = ::Const.Items.ItemType.Usable;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendHerbcraft)
 			]);
@@ -67,7 +67,7 @@ for (local i = 1; i <= 14; i = ++i) {
 		local create = o.create;
 		o.create = function () {
 			create();
-			this.m.Type = this.Const.Items.ItemType.Misc;
+			this.m.Type = ::Const.Items.ItemType.Misc;
 			this.initSkills([
 				::Legends.Professions.new(::Legends.Profession.LegendCharlatan)
 			]);
@@ -87,7 +87,7 @@ for (local i = 1; i <= 14; i = ++i) {
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.m.Type = ::Const.Items.ItemType.Ammo;
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendTailoring)]);
 	}
 });
@@ -96,7 +96,7 @@ for (local i = 1; i <= 14; i = ++i) {
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.m.Type = ::Const.Items.ItemType.Ammo;
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendAlchemy)]);
 	}
 });

@@ -61,7 +61,7 @@ if (!("LegendMod" in ::Const))
 {
 	local capitalized = _neuter[0] < 96;
 	if (capitalized) _neuter = _neuter.tolower();
-	local pronoun = this.Const.LegendMod.PronounTable[_neuter][_gender + 1];
+	local pronoun = ::Const.LegendMod.PronounTable[_neuter][_gender + 1];
 
 	if (capitalized)
 	{

@@ -29,23 +29,23 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendAggressive)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue
 		];
 		this.m.Titles = [
 			"the Owl",
 			"the Studious",
 			"the Historian"
 		];
-		this.m.Faces = this.Const.Faces.SmartMale;
-		this.m.Hairs = this.Const.Hair.TidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.SmartMale;
+		this.m.Hairs = ::Const.Hair.TidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Tidy;
 
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
-		this.m.Bodies = this.Const.Bodies.Skinny;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
+		this.m.Bodies = ::Const.Bodies.Skinny;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated;
 	}
 
 	o.getTooltip = function ()
@@ -76,11 +76,11 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[3, ::Legends.Helmet.None]
 		]));

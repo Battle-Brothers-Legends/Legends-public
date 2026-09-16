@@ -66,8 +66,8 @@
 
 	o.onIsValid = function ()
 	{
-		local nearestBandits = this.getNearestLocationTo(this.m.Home, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Bandits).getSettlements());
-		local nearestZombies = this.getNearestLocationTo(this.m.Home, this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements());
+		local nearestBandits = this.getNearestLocationTo(this.m.Home, ::World.FactionManager.getFactionOfType(::Const.FactionType.Bandits).getSettlements());
+		local nearestZombies = this.getNearestLocationTo(this.m.Home, ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements());
 
 		if ((nearestZombies == null || nearestZombies.getTile().getDistanceTo(this.m.Home.getTile()) > 20) && (nearestBandits == null || nearestBandits.getTile().getDistanceTo(this.m.Home.getTile()) > 20))
 		{

@@ -1646,8 +1646,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_specialist_inventor",
 	Script = "scripts/skills/perks/perk_legend_specialist_inventor",
-	Name = this.Const.Strings.PerkName.LegendSpecialistInventor,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInventor,
+	Name = ::Const.Strings.PerkName.LegendSpecialistInventor,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistInventor,
 	Icon = "ui/perks/perk_spec_firearm.png",
 	IconDisabled = "ui/perks/perk_spec_firearm_bw.png",
 	Const = "LegendSpecialistInventor"
@@ -1657,8 +1657,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_specialist_bodyguard",
 	Script = "scripts/skills/perks/perk_legend_specialist_bodyguard",
-	Name = this.Const.Strings.PerkName.LegendSpecialistBodyguard,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistBodyguard,
+	Name = ::Const.Strings.PerkName.LegendSpecialistBodyguard,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistBodyguard,
 	Icon = "ui/perks/perk_spec_2hsword.png",
 	IconDisabled = "ui/perks/perk_spec_2hsword_bw.png",
 	Const = "LegendSpecialistBodyguard"
@@ -1668,8 +1668,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_specialist_inquisition",
 	Script = "scripts/skills/perks/perk_legend_specialist_inquisition",
-	Name = this.Const.Strings.PerkName.LegendSpecialistInquisition,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistInquisition,
+	Name = ::Const.Strings.PerkName.LegendSpecialistInquisition,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistInquisition,
 	Icon = "ui/perks/perk_spec_xbow.png",
 	IconDisabled = "ui/perks/perk_spec_xbow_bw.png",
 	Const = "LegendSpecialistInquisition"
@@ -1679,8 +1679,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_specialist_club",
 	Script = "scripts/skills/perks/perk_legend_specialist_club",
-	Name = this.Const.Strings.PerkName.LegendSpecialistClub,
-	Tooltip = this.Const.Strings.PerkDescription.LegendSpecialistClub,
+	Name = ::Const.Strings.PerkName.LegendSpecialistClub,
+	Tooltip = ::Const.Strings.PerkDescription.LegendSpecialistClub,
 	Icon = "ui/perks/perk_spec_mace.png",
 	IconDisabled = "ui/perks/perk_spec_mace_bw.png",
 	Const = "LegendSpecialistClub"
@@ -1965,8 +1965,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_barrage",
 	Script = "scripts/skills/perks/perk_legend_barrage",
-	Name = this.Const.Strings.PerkName.LegendBarrage,
-	Tooltip = this.Const.Strings.PerkDescription.LegendBarrage,
+	Name = ::Const.Strings.PerkName.LegendBarrage,
+	Tooltip = ::Const.Strings.PerkDescription.LegendBarrage,
 	Icon = "ui/perks/perk_barrage.png",
 	IconDisabled = "ui/perks/perk_barrage_bw.png",
 	Const = "LegendBarrage"
@@ -1976,8 +1976,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_staff_block",
 	Script = "scripts/skills/perks/perk_legend_staff_block",
-	Name = this.Const.Strings.PerkName.LegendStaffBlock,
-	Tooltip = this.Const.Strings.PerkDescription.LegendStaffBlock,
+	Name = ::Const.Strings.PerkName.LegendStaffBlock,
+	Tooltip = ::Const.Strings.PerkDescription.LegendStaffBlock,
 	Icon = "ui/perks/staff_skill_circle.png",
 	IconDisabled = "ui/perks/staff_skill_circle_bw.png",
 	Const = "LegendStaffBlock"
@@ -3251,8 +3251,8 @@ perkDefObjects.push({
 perkDefObjects.push({
 	ID = "perk.legend_ore_hunter",
 	Script = "scripts/skills/perks/perk_legend_ore_hunter",
-	Name = this.Const.Strings.PerkName.LegendOreHunter,
-	Tooltip = this.Const.Strings.PerkDescription.LegendOreHunter,
+	Name = ::Const.Strings.PerkName.LegendOreHunter,
+	Tooltip = ::Const.Strings.PerkDescription.LegendOreHunter,
 	Icon = "ui/perks/pickaxe_02.png",
 	IconDisabled = "ui/perks/pickaxe_bw.png",
 	Const = "LegendOreHunter"

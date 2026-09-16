@@ -30,7 +30,7 @@
 	}
 
 	o.queryRosterInformation = function() {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local roster = [];
 
 		foreach (b in brothers) {
@@ -39,7 +39,7 @@
 			}
 
 			if (b.getLevel() >= 7
-				&& this.World.Assets.getOrigin().getID() == "scenario.manhunters"
+				&& ::World.Assets.getOrigin().getID() == "scenario.manhunters"
 				&& b.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
 			{
 				continue;
@@ -99,7 +99,7 @@
 			if(trait != null && trait.m.TraitGained != null && trait.m.TraitGained != -1){
 				mercilessRegimenNameBlock = "<div style='display: block; line-height: 18px; margin-top: -8px;'>" +
 												"<span style='font-size: 18px;'>Merciless Regimen</span><br>" +
-												"<span style='color:" + this.Const.UI.Color.PositiveValue + "; font-size: 16px;'>Current: " + this.new(::Legends.Traits.TraitDefObjects[trait.m.TraitGained].Script).getName() + "</span>" +
+												"<span style='color:" + ::Const.UI.Color.PositiveValue + "; font-size: 16px;'>Current: " + this.new(::Legends.Traits.TraitDefObjects[trait.m.TraitGained].Script).getName() + "</span>" +
 											"</div>"
 			}
 			local roster = result.Roster;
@@ -175,7 +175,7 @@
 
 	o.onTrainExt <- function(_data) {
 		local trainingID = _data[1];
-		local entity = this.Tactical.getEntityByID(_data[0]);
+		local entity = ::Tactical.getEntityByID(_data[0]);
 		local trait = ::Legends.Traits.get(entity, ::Legends.Trait.LegendIntensiveTraining);
 		local price = 0;
 
@@ -221,7 +221,7 @@
 				);
 				break;
 		}
-		this.World.Assets.addMoney(-price);
+		::World.Assets.addMoney(-price);
 
 		local roster = this.queryRosterInformation();
 		local info = null;

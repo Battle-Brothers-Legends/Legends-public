@@ -7,8 +7,8 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		this.m.Description = "";
 		this.m.Icon = "";
 		this.m.IconLarge = "";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = true;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -70,11 +70,11 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 		});
 
 		local offhand = null;
-		local broID = this.World.State.m.CharacterScreen.m.SelectedBrotherID;
+		local broID = ::World.State.m.CharacterScreen.m.SelectedBrotherID;
 		if (broID != null) {
-			offhand = this.Tactical.getEntityByID(broID).getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+			offhand = ::Tactical.getEntityByID(broID).getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 		}
-		if (offhand != null && ((offhand.getItemType() & this.Const.Items.ItemType.Weapon) != 0)) {
+		if (offhand != null && ((offhand.getItemType() & ::Const.Items.ItemType.Weapon) != 0)) {
 			result.push({
 				id = 67,
 				type = "hint",
@@ -116,7 +116,7 @@ this.legend_vala_inscription_token <- this.inherit("scripts/items/item", {
 			return false;
 		}
 		if (_playSound)
-			this.Sound.play("sounds/combat/legend_vala_inscribe.wav");
+			::Sound.play("sounds/combat/legend_vala_inscribe.wav");
 		local alreadyRuned = target.isRuned();
 		target.setRuneVariant(this.getRuneVariant());
 		target.setRuneBonus1(this.getRuneBonus1());

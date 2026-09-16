@@ -25,7 +25,7 @@
 			],
 			[
 				"companyname",
-				this.World.Assets.getName()
+				::World.Assets.getName()
 			],
 			[
 				"randombrother",

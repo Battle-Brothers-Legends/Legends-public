@@ -6,8 +6,8 @@ this.legend_werewolf_racial <- this.inherit("scripts/skills/skill", {
 		this.m.Name = "Blind Rage";
 		this.m.Description = "TODO";
 		this.m.Icon = "skills/status_effect_01.png";
-		this.m.Type = this.Const.SkillType.Racial;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.Racial;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;
@@ -16,9 +16,9 @@ this.legend_werewolf_racial <- this.inherit("scripts/skills/skill", {
 	function onUpdate( _properties )
 	{
 		local healthMissing = _properties.Hitpoints - this.getContainer().getActor().getHitpoints();
-		local additionalDamage = this.Math.floor(healthMissing * 0.25);
+		local additionalDamage = ::Math.floor(healthMissing * 0.25);
 		/*if (::Legends.isLegendaryDifficulty()) { // commented out as it didn't work anyway before, to be revisited when actual werewolves come
-			additionalDamage = this.Math.floor(healthMissing * 0.5);
+			additionalDamage = ::Math.floor(healthMissing * 0.5);
 		}*/
 
 		if (additionalDamage > 0) {

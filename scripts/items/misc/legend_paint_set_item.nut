@@ -7,7 +7,7 @@ this.legend_paint_set_item <- this.inherit("scripts/items/trade/trading_good_ite
 		this.m.Name = "Paint Set";
 		this.m.Description = "A palette of several vibrant colors and a set of brushes. An ideal gift for any aspiring painter to use before completely losing interest halfway through.";
 		this.m.Icon = "consumables/paint_set_shields.png";
-		this.m.Culture = this.Const.World.Culture.Neutral;
+		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ProducingBuildings = [
 			"attached_location.dye_maker"

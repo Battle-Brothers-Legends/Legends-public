@@ -18,7 +18,7 @@
 	o.assignRandomEquipment = function ()
 	{
 		local r;
-		r = this.Math.rand(1, 3);
+		r = ::Math.rand(1, 3);
 
 		if (r == 1)
 		{
@@ -33,10 +33,10 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/legend_katar"));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Southern.assassin_robe]
 		]));
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Southern.assassin_head_wrap],
 				[1, ::Legends.Helmet.Southern.assassin_face_mask]
 		]));
@@ -60,13 +60,13 @@
 			[1, "armor/named/black_leather_armor"] //will need more in future
 		];
 
-		if (this.Math.rand(1, 100) <= 70)
+		if (::Math.rand(1, 100) <= 70)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
-			this.m.Items.equip(this.Const.World.Common.pickArmor(armor));
+			this.m.Items.equip(::Const.World.Common.pickArmor(armor));
 		}
 
 		this.m.BaseProperties.DamageDirectMult *= 1.25;

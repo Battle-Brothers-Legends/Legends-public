@@ -21,19 +21,19 @@
 				s.start <- function ( _event ) {
 					this.Characters.push(_event.m.Graverobber.getImagePath());
 					local item;
-					local r = this.Math.rand(1, 3);
+					local r = ::Math.rand(1, 3);
 
 					if (r == 1)
 						item = this.new("scripts/items/weapons/arming_sword");
 					else if (r == 2)
-						item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_full_helm]]);
+						item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.decayed_full_helm]]);
 					else if (r == 3)
-						item = this.Const.World.Common.pickArmor([
+						item = ::Const.World.Common.pickArmor([
 							[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 						]);
 
 					item.setCondition(item.getRepair() / 2);
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
@@ -43,8 +43,8 @@
 					_event.m.Graverobber.improveMood(1.0, "Found treasure while robbing a grave");
 					this.List.push({
 						id = 10,
-						icon = this.Const.MoodStateIcon[_event.m.Graverobber.getMoodState()],
-						text = _event.m.Graverobber.getName() + this.Const.MoodStateEvent[_event.m.Graverobber.getMoodState()]
+						icon = ::Const.MoodStateIcon[_event.m.Graverobber.getMoodState()],
+						text = _event.m.Graverobber.getName() + ::Const.MoodStateEvent[_event.m.Graverobber.getMoodState()]
 					});
 				}
 			}
@@ -54,7 +54,7 @@
 	local onUpdateScore = o.onUpdateScore;
 	o.onUpdateScore = function ()
 	{
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 		onUpdateScore();
 	}

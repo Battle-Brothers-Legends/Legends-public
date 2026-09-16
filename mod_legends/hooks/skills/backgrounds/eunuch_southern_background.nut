@@ -3,10 +3,10 @@
 	o.create = function ()
 	{
 		this.eunuch_background.create();
-		this.m.Bodies = this.Const.Bodies.SouthernThick;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
+		this.m.Bodies = ::Const.Bodies.SouthernThick;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
 		this.m.Beards = null;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
@@ -20,8 +20,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Deathwish),
 			::Legends.Traits.getID(::Legends.Trait.Impatient)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.onBuildDescription <- function ()
@@ -32,7 +32,7 @@
 	o.onAddEquipment = function ()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.padded_vest]
 		]));

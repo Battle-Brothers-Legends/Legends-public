@@ -1,6 +1,6 @@
 this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_glove_item", {
 	m = {
-		PrefixList = this.Const.Strings.RandomArmorPrefix,
+		PrefixList = ::Const.Strings.RandomArmorPrefix,
 		NameList = [],
 		UseRandomName = true,
 		Properties = {}
@@ -8,18 +8,18 @@ this.legend_named_glove <- this.inherit("scripts/items/accessory/gloves/legend_g
 
 	function create() {
 		this.legend_glove_item.create();
-		this.m.ItemType = this.Const.Items.ItemType.Brawler | this.Const.Items.ItemType.Named;
+		this.m.ItemType = ::Const.Items.ItemType.Brawler | ::Const.Items.ItemType.Named;
 	}
 
 	function getRandomCharacterName(_list) {
 		local vars = [
 			[
 				"randomname",
-				this.Const.Strings.CharacterNames[::Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+				::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
 			],
 			[
 				"randomtown",
-				this.Const.World.LocationNames.VillageWestern[::Math.rand(0, this.Const.World.LocationNames.VillageWestern.len() - 1)]
+				::Const.World.LocationNames.VillageWestern[::Math.rand(0, ::Const.World.LocationNames.VillageWestern.len() - 1)]
 			]
 		];
 		return this.buildTextFromTemplate(_list[::Math.rand(0, _list.len() - 1)], vars);

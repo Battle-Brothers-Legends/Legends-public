@@ -119,7 +119,7 @@ this.legend_camp_contract <- ::inherit("scripts/contracts/contract", {
 			],
 			[
 				"employer",
-				this.m.EmployerID != 0 ? this.Tactical.getEntityByID(this.m.EmployerID).getName() : ""
+				this.m.EmployerID != 0 ? ::Tactical.getEntityByID(this.m.EmployerID).getName() : ""
 			],
 			[
 				"faction",

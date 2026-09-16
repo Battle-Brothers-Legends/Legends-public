@@ -25,8 +25,8 @@
 			{
 				s.end <- function ()
 				{
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local r = this.Math.rand(1, 100);
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 20)
 					{
@@ -49,9 +49,9 @@
 
 					this.Contract.setScreen("Overview");
 
-					if (this.World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
+					if (::World.Assets.getOrigin().getID() == "scenario.legend_escaped_slaves")
 					{
-						local brothers = this.World.getPlayerRoster().getAll();
+						local brothers = ::World.getPlayerRoster().getAll();
 						foreach( bro in brothers )
 						{
 							if (::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
@@ -59,7 +59,7 @@
 							}
 						}
 					}
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 		}
@@ -83,22 +83,22 @@
 						Text = "Destroy them!",
 						function getResult()
 						{
-							local tile = this.World.State.getPlayer().getTile();
-							local p = this.Const.Tactical.CombatInfo.getClone();
-							p.Music = this.Const.Music.OrientalBanditTracks;
-							p.TerrainTemplate = this.Const.World.TerrainTacticalTemplate[tile.TacticalType];
-							p.LocationTemplate = clone this.Const.Tactical.LocationTemplate;
+							local tile = ::World.State.getPlayer().getTile();
+							local p = ::Const.Tactical.CombatInfo.getClone();
+							p.Music = ::Const.Music.OrientalBanditTracks;
+							p.TerrainTemplate = ::Const.World.TerrainTacticalTemplate[tile.TacticalType];
+							p.LocationTemplate = clone ::Const.Tactical.LocationTemplate;
 							p.LocationTemplate.Template[0] = "tactical.desert_camp";
-							p.LocationTemplate.Fortification = this.Const.Tactical.FortificationType.None;
+							p.LocationTemplate.Fortification = ::Const.Tactical.FortificationType.None;
 							p.LocationTemplate.CutDownTrees = true;
 							p.Tile = tile;
 							p.CombatID = "SlaveUprisingContract";
 							p.TerrainTemplate = "tactical.desert";
-							p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-							p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
-							this.Const.World.Common.addHostileUnitsToCombat(p.Entities, this.Const.World.Spawn.NomadRaiders, 30 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getID());
-							this.Const.World.Common.addHostileUnitsToCombat(p.Entities, this.Const.World.Spawn.Slaves, 55 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getID());
-							this.World.Contracts.startScriptedCombat(p, false, true, true);
+							p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+							p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
+							::Const.World.Common.addHostileUnitsToCombat(p.Entities, ::Const.World.Spawn.NomadRaiders, 30 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getID());
+							::Const.World.Common.addHostileUnitsToCombat(p.Entities, ::Const.World.Spawn.Slaves, 55 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getID());
+							::World.Contracts.startScriptedCombat(p, false, true, true);
 							return 0;
 						}
 
@@ -110,11 +110,11 @@
 				s.start <- function ()
 				{
 					local cityTile = this.Contract.m.Home.getTile();
-					local nearest_nomads = this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getNearestSettlement(cityTile);
+					local nearest_nomads = ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getNearestSettlement(cityTile);
 					local tile = this.Contract.getTileToSpawnLocation(this.Contract.m.Home.getTile(), 9, 15);
-					local party = this.World.FactionManager.getFaction(nearest_nomads.getFaction()).spawnHostileEntity(tile, "Indebted", false, this.Const.World.Spawn.NomadRaiders, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+					local party = ::World.FactionManager.getFaction(nearest_nomads.getFaction()).spawnHostileEntity(tile, "Indebted", false, ::Const.World.Spawn.NomadRaiders, 110 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 					party.setDescription("A group of indebted that turned to banditry.");
-					party.setFootprintType(this.Const.World.FootprintsType.Nomads);
+					party.setFootprintType(::Const.World.FootprintsType.Nomads);
 					party.getSprite("banner").setBrush(nearest_nomads.getBanner());
 					party.getSprite("body").setBrush("figure_nomad_03");
 					this.Contract.m.UnitsSpawned.push(party);
@@ -124,15 +124,15 @@
 					party.setDiscovered(true);
 					party.setAttackableByAI(false);
 					local c = party.getController();
-					c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+					c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 					local roam = this.new("scripts/ai/world/orders/roam_order");
 					roam.setPivot(this.Contract.m.Home);
 					roam.setMinRange(8);
 					roam.setMaxRange(12);
 					roam.setAllTerrainAvailable();
-					roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-					roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-					roam.setTerrain(this.Const.World.TerrainType.Mountains, false);
+					roam.setTerrain(::Const.World.TerrainType.Ocean, false);
+					roam.setTerrain(::Const.World.TerrainType.Shore, false);
+					roam.setTerrain(::Const.World.TerrainType.Mountains, false);
 					c.addOrder(roam);
 				}
 			}
@@ -143,22 +143,22 @@
 						Text = "To Arms!",
 						function getResult()
 						{
-							local tile = this.World.State.getPlayer().getTile();
-							local p = this.Const.Tactical.CombatInfo.getClone();
-							p.Music = this.Const.Music.OrientalBanditTracks;
-							p.TerrainTemplate = this.Const.World.TerrainTacticalTemplate[tile.TacticalType];
-							p.LocationTemplate = clone this.Const.Tactical.LocationTemplate;
+							local tile = ::World.State.getPlayer().getTile();
+							local p = ::Const.Tactical.CombatInfo.getClone();
+							p.Music = ::Const.Music.OrientalBanditTracks;
+							p.TerrainTemplate = ::Const.World.TerrainTacticalTemplate[tile.TacticalType];
+							p.LocationTemplate = clone ::Const.Tactical.LocationTemplate;
 							p.LocationTemplate.Template[0] = "tactical.desert_camp";
-							p.LocationTemplate.Fortification = this.Const.Tactical.FortificationType.None;
+							p.LocationTemplate.Fortification = ::Const.Tactical.FortificationType.None;
 							p.LocationTemplate.CutDownTrees = true;
 							p.Tile = tile;
 							p.CombatID = "SlaveUprisingContract";
 							p.TerrainTemplate = "tactical.desert";
-							p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-							p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
-							this.Const.World.Common.addHostileUnitsToCombat(p.Entities, this.Const.World.Spawn.NomadRaiders, 30 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getID());
-							this.Const.World.Common.addHostileUnitsToCombat(p.Entities, this.Const.World.Spawn.Slaves, 55 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getID());
-							this.World.Contracts.startScriptedCombat(p, false, true, true);
+							p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+							p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
+							::Const.World.Common.addHostileUnitsToCombat(p.Entities, ::Const.World.Spawn.NomadRaiders, 30 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getID());
+							::Const.World.Common.addHostileUnitsToCombat(p.Entities, ::Const.World.Spawn.Slaves, 55 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getID());
+							::World.Contracts.startScriptedCombat(p, false, true, true);
 							return 0;
 						}
 
@@ -170,11 +170,11 @@
 				s.start <- function ()
 				{
 					local cityTile = this.Contract.m.Home.getTile();
-					local nearest_nomads = this.World.FactionManager.getFactionOfType(this.Const.FactionType.OrientalBandits).getNearestSettlement(cityTile);
+					local nearest_nomads = ::World.FactionManager.getFactionOfType(::Const.FactionType.OrientalBandits).getNearestSettlement(cityTile);
 					local tile = this.Contract.getTileToSpawnLocation(this.Contract.m.Home.getTile(), 9, 15);
-					local party = this.World.FactionManager.getFaction(nearest_nomads.getFaction()).spawnHostileEntity(tile, "Indebted", false, this.Const.World.Spawn.Slaves, 90 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+					local party = ::World.FactionManager.getFaction(nearest_nomads.getFaction()).spawnHostileEntity(tile, "Indebted", false, ::Const.World.Spawn.Slaves, 90 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 					party.setDescription("A group of indebted.");
-					party.setFootprintType(this.Const.World.FootprintsType.Nomads);
+					party.setFootprintType(::Const.World.FootprintsType.Nomads);
 					party.getSprite("banner").setBrush("banner_deserters");
 					this.Contract.m.UnitsSpawned.push(party);
 					this.Contract.m.Target = this.WeakTableRef(party);
@@ -187,9 +187,9 @@
 					local randomVillage;
 					local northernmostY = 0;
 
-					for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = ++i )
+					for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
 					{
-						local v = this.World.EntityManager.getSettlements()[i];
+						local v = ::World.EntityManager.getSettlements()[i];
 
 						if (v.getTile().SquareCoords.Y > northernmostY && !v.isMilitary() && !v.isIsolatedFromRoads() && v.getSize() <= 2)
 						{
@@ -204,7 +204,7 @@
 					local wait = this.new("scripts/ai/world/orders/wait_order");
 					wait.setTime(9000.0);
 					c.addOrder(wait);
-					this.Const.World.Common.addFootprintsFromTo(this.Contract.m.Destination.getTile(), party.getTile(), this.Const.GenericFootprints, this.Const.World.FootprintsType.Nomads, 0.75);
+					::Const.World.Common.addFootprintsFromTo(this.Contract.m.Destination.getTile(), party.getTile(), ::Const.GenericFootprints, ::Const.World.FootprintsType.Nomads, 0.75);
 				}
 			}
 		}

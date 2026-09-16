@@ -8,9 +8,9 @@
 				s.Options[0].Text = "Alright, we\'ll take %them_dude%.";
 				s.Options[1].Text = "No, thanks. %They're_dude% all yours.";
 				s.start <- function ( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 					{
 						_event.m.Dude.getFlags().add("PlayerSkeleton");
 						_event.m.Dude.getFlags().add("undead");

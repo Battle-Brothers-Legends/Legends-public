@@ -7,7 +7,7 @@ this.perk_legend_rebound <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.FatigueRecoveryRate += this.Math.ceil(0.1 * this.getContainer().getActor().getFatigue());
+		_properties.FatigueRecoveryRate += ::Math.ceil(0.1 * this.getContainer().getActor().getFatigue());
 	}
 
 });

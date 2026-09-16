@@ -8,8 +8,8 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaChantDisharmony);
-		this.m.Type = this.Const.SkillType.Active | this.Const.SkillType.Perk;
-		this.m.Order = this.Const.SkillOrder.NonTargeted + 3;
+		this.m.Type = ::Const.SkillType.Active | ::Const.SkillType.Perk;
+		this.m.Order = ::Const.SkillOrder.NonTargeted + 3;
 		this.m.IsSerialized = true;
 		this.m.IsActive = true;
 		this.m.IsTargeted = false;
@@ -79,7 +79,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 
 	function endChant() {
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
@@ -106,7 +106,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 
 	function onDeath( _fatalityType ) {
 		local actor =  this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in this.Tactical) && this.Tactical.State.isBattleEnded())
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
 			return;
 
 		this.endChant();
@@ -125,10 +125,10 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 
 	function onMovementFinished() {
 		local actor = this.getContainer().getActor();
-		local targets = this.Tactical.Entities.getAllInstances();
+		local targets = ::Tactical.Entities.getAllInstances();
 
 		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) && this.m.ChantIsActive) {
-			this.Sound.play("sounds/combat/legend_vala_disharmony.wav");
+			::Sound.play("sounds/combat/legend_vala_disharmony.wav");
 		}
 
 		foreach( tar in targets ) {
@@ -151,7 +151,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 		if (this.isUsable())
 		{
 			local actor = this.getContainer().getActor();
-			local targets = this.Tactical.Entities.getAllInstances();
+			local targets = ::Tactical.Entities.getAllInstances();
 
 			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaCurrentlyChanting);
@@ -171,7 +171,7 @@ this.perk_legend_vala_chant_disharmony <- this.inherit("scripts/skills/skill", {
 				}
 			}
 
-			this.Sound.play("sounds/combat/legend_vala_disharmony.wav");
+			::Sound.play("sounds/combat/legend_vala_disharmony.wav");
 			this.m.ChantIsActive = true;
 		}
 	}

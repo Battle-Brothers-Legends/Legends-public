@@ -8,7 +8,7 @@ this.legend_safeguarded_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "This character is being safeguarded";
 		this.m.Icon = "ui/perks/safeguard_circle.png";//incorrect spelling but don't change I can't be arsed to mess with brush files
 		this.m.IconMini = "mini_safeguard_circle";//incorrect spelling but don't change I can't be arsed to mess with brush files
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

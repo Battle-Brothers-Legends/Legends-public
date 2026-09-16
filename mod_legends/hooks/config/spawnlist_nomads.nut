@@ -14,16 +14,16 @@
 			Weight = 50,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Slave,
+					Type = ::Const.World.Spawn.Troops.Slave,
 					MaxR = 75,
 					Cost = 5
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
+					Type = ::Const.World.Spawn.Troops.NomadCutthroat,
 					Cost = 14
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
+					Type = ::Const.World.Spawn.Troops.NomadOutlaw,
 					MinR = 225,
 					Cost = 20
 				}
@@ -33,7 +33,7 @@
 			Weight = 10,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Type = ::Const.World.Spawn.Troops.LegendSighthound,
 					Cost = 5
 				}
 			]
@@ -42,11 +42,11 @@
 			Weight = 12,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.NomadSlinger,
+					Type = ::Const.World.Spawn.Troops.NomadSlinger,
 					Cost = 12
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadArcher,
+					Type = ::Const.World.Spawn.Troops.NomadArcher,
 					MinR = 250,
 					Cost = 30
 				}
@@ -72,16 +72,16 @@
 			Weight = 60,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Slave,
+					Type = ::Const.World.Spawn.Troops.Slave,
 					MaxR = 75,
 					Cost = 5
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
+					Type = ::Const.World.Spawn.Troops.NomadCutthroat,
 					Cost = 15
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
+					Type = ::Const.World.Spawn.Troops.NomadOutlaw,
 					MinR = 100,
 					Cost = 20
 				}
@@ -91,7 +91,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Type = ::Const.World.Spawn.Troops.LegendSighthound,
 					Cost = 5
 				}
 			]
@@ -101,16 +101,16 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.NomadSlinger,
+					Type = ::Const.World.Spawn.Troops.NomadSlinger,
 					Cost = 15
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadArcher,
+					Type = ::Const.World.Spawn.Troops.NomadArcher,
 					MinR = 120,
 					Cost = 20
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.DesertStalker, //looks like M.Archer
+					Type = ::Const.World.Spawn.Troops.DesertStalker, //looks like M.Archer
 					MinR = 420,
 					Cost = 65,
 					Roll = true
@@ -122,7 +122,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.NomadLeader,
+					Type = ::Const.World.Spawn.Troops.NomadLeader,
 					MinR = 140,
 					Cost = 60,
 					Roll = true
@@ -133,7 +133,7 @@
 			Weight = 3,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Type = ::Const.World.Spawn.Troops.LegendSighthound,
 					Cost = 5
 				}
 			]
@@ -142,7 +142,7 @@
 			Weight = 1,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Assassin,
+					Type = ::Const.World.Spawn.Troops.Assassin,
 					Roll = true,
 					Cost = 45,
 					MinR = 300,
@@ -154,7 +154,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.Executioner,
+					Type = ::Const.World.Spawn.Troops.Executioner,
 					Cost = 65,
 					MinR = 160,
 					Roll = true
@@ -166,7 +166,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.DesertDevil,
+					Type = ::Const.World.Spawn.Troops.DesertDevil,
 					Cost = 65,
 					MinR = 310,
 					Roll = true
@@ -194,11 +194,11 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.NomadCutthroat,
+					Type = ::Const.World.Spawn.Troops.NomadCutthroat,
 					Cost = 13
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadOutlaw,
+					Type = ::Const.World.Spawn.Troops.NomadOutlaw,
 					Cost = 18
 				}
 			]
@@ -207,7 +207,7 @@
 			Weight = 5,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.LegendSighthound,
+					Type = ::Const.World.Spawn.Troops.LegendSighthound,
 					Cost = 5
 				}
 			]
@@ -217,16 +217,16 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.NomadSlinger,
+					Type = ::Const.World.Spawn.Troops.NomadSlinger,
 					Cost = 12
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.NomadArcher,
+					Type = ::Const.World.Spawn.Troops.NomadArcher,
 					MinR = 120,
 					Cost = 15
 				},
 				{
-					Type = this.Const.World.Spawn.Troops.DesertStalker, //looks like M.Archer
+					Type = ::Const.World.Spawn.Troops.DesertStalker, //looks like M.Archer
 					MinR = 420,
 					Cost = 45,
 					Roll = true
@@ -238,7 +238,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.NomadLeader,
+					Type = ::Const.World.Spawn.Troops.NomadLeader,
 					Cost = 40,
 					MinR = 140,
 					Roll = true
@@ -250,7 +250,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.Executioner,
+					Type = ::Const.World.Spawn.Troops.Executioner,
 					Cost = 55,
 					MinR = 365,
 					Roll = true
@@ -261,7 +261,7 @@
 			Weight = 2,
 			Types = [
 				{
-					Type = this.Const.World.Spawn.Troops.Assassin,
+					Type = ::Const.World.Spawn.Troops.Assassin,
 					Roll = true,
 					MinR = 300,
 					Cost = 45
@@ -273,7 +273,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.DesertDevil,
+					Type = ::Const.World.Spawn.Troops.DesertDevil,
 					Cost = 50,
 					MinR = 420,
 					Roll = true
@@ -286,7 +286,7 @@
 			Types =
 			[
 				{
-					Type = this.Const.World.Spawn.Troops.LegendEscapedGladiator,
+					Type = ::Const.World.Spawn.Troops.LegendEscapedGladiator,
 					Cost = 50,
 					Roll = true
 				}

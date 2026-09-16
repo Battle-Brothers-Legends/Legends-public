@@ -15,12 +15,12 @@ this.legend_sisterhood_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				//this.logInfo("Unlocking hunting");
-				//this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
+				this.logInfo("Unlocking cooking");
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Kitchen], true);
 				this.logInfo("Unlocking scouting");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 				this.logInfo("Unlocking gathering");
-				this.World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
+				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 			}
 		});
 	}
@@ -34,7 +34,7 @@ this.legend_sisterhood_intro_event <- this.inherit("scripts/events/event", {
 	function onPrepareVariables(_vars) {
 		_vars.push([
 			"home",
-			this.World.Flags.get("HomeVillage")
+			::World.Flags.get("HomeVillage")
 		]);
 	}
 

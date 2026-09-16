@@ -4,7 +4,7 @@ this.legend_greenwood_schrat_shield_blueprint <- this.inherit("scripts/crafting/
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_greenwood_schrat_shield";
-		this.m.Type = this.Const.Items.ItemType.Shield;
+		this.m.Type = ::Const.Items.ItemType.Shield;
 		local preview = this.new("scripts/items/shields/special/legend_craftable_greenwood_schrat_shield");
 		preview.resetStats();
 		this.m.PreviewCraftable = preview;

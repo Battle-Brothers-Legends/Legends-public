@@ -10,8 +10,8 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hammer_strike", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hammer_strike_hit", 3);
 		this.m.SoundVolume = 1.1;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -19,8 +19,8 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		// this.m.IsTooCloseShown = true;
 		// this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.BluntBody;
-		this.m.InjuriesOnHead = this.Const.Injury.BluntHead;
+		this.m.InjuriesOnBody = ::Const.Injury.BluntBody;
+		this.m.InjuriesOnHead = ::Const.Injury.BluntHead;
 		this.m.DirectDamageMult = 0.5; //ignore armour multi.
 		this.m.HitChanceBonus = 0;
 		this.m.ActionPointCost = 6;
@@ -35,14 +35,14 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 	function getExpectedDamage( _target )
 	{
 		local ret = this.skill.getExpectedDamage(_target);
-		ret.HitpointDamage = this.Math.max(10, ret.HitpointDamage);
-		ret.TotalDamage = this.Math.max(10, ret.TotalDamage);
+		ret.HitpointDamage = ::Math.max(10, ret.HitpointDamage);
+		ret.TotalDamage = ::Math.max(10, ret.TotalDamage);
 		return ret;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectBash);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local target = _targetTile.getEntity();
 		return this.attackEntity(_user, target);
 	}
@@ -51,7 +51,7 @@ this.legend_basilisk_peck_skill <- this.inherit("scripts/skills/skill", {
 	{
 		if (_skill == this)
 		{
-			_properties.DamageMinimum = this.Math.max(_properties.DamageMinimum, 10);
+			_properties.DamageMinimum = ::Math.max(_properties.DamageMinimum, 10);
 			_properties.DamageRegularMin += 50;
 			_properties.DamageRegularMax += 75;
 			_properties.DamageArmorMult *= this.m.DamageArmorMult;

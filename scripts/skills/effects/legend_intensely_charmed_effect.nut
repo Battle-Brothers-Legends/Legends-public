@@ -24,7 +24,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 		this.m.IconMini = "status_effect_85_mini";
 		this.m.Overlay = "status_effect_85";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/hexe_charm_chimes", 4);
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -41,7 +41,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 5 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 5 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 		local actor = this.getContainer().getActor();
 
 		if (actor.isPlayerControlled())
@@ -60,7 +60,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * 1.0, actor.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * 1.0, actor.getPos());
 		}
 
 		local effect = {
@@ -108,7 +108,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 				}
 			]
 		};
-		this.Tactical.spawnParticleEffect(false, effect.Brushes, actor.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+		::Tactical.spawnParticleEffect(false, effect.Brushes, actor.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 	}
 
 	function onRemoved()
@@ -117,7 +117,7 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill * 1.0, actor.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill * 1.0, actor.getPos());
 		}
 
 		if (this.m.OriginalAgent != null)
@@ -163,9 +163,9 @@ this.legend_intensely_charmed_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (this.Tactical.Entities.getInstancesNum(this.Const.Faction.Player) == 0)
+		if (::Tactical.Entities.getInstancesNum(::Const.Faction.Player) == 0)
 		{
-			actor.kill(null, null, this.Const.FatalityType.Suicide);
+			actor.kill(null, null, ::Const.FatalityType.Suicide);
 		}
 
 		this.skill.onCombatFinished();

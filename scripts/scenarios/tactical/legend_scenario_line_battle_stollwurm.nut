@@ -7,10 +7,10 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 		this.initMap();
 		this.initEntities();
 		this.initStash();
-		this.Tactical.Entities.makeEnemiesKnownToAI();
-		this.m.Music = this.Const.Music.BeastsTracks;
-		this.Tactical.getCamera().Level = 1;
-		this.Tactical.CameraDirector.addMoveToTileEvent(0, this.Tactical.getTile(15, 14 - 15 / 2), 1, null, null, 0, 100);
+		::Tactical.Entities.makeEnemiesKnownToAI();
+		this.m.Music = ::Const.Music.BeastsTracks;
+		::Tactical.getCamera().Level = 1;
+		::Tactical.CameraDirector.addMoveToTileEvent(0, ::Tactical.getTile(15, 14 - 15 / 2), 1, null, null, 0, 100);
 	}
 
 	function initMap()
@@ -18,7 +18,7 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 		local testMap = this.MapGen.get("tactical.legend_cave");
 		local minX = testMap.getMinX();
 		local minY = testMap.getMinY();
-		this.Tactical.resizeScene(minX, minY);
+		::Tactical.resizeScene(minX, minY);
 		testMap.fill({
 			X = 0,
 			Y = 0,
@@ -36,30 +36,30 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 		{
 			for( local y = 10; y < 20; y = ++y )
 			{
-				local tile = this.Tactical.getTile(x, y);
+				local tile = ::Tactical.getTile(x, y);
 				tile.removeObject();
 			}
 		}
 
 		entity = this.spawnEntity("scripts/entity/tactical/player", 12, 12, 15, 15);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
 		items.equip(this.new("scripts/items/armor/padded_leather"));
 		items.equip(this.new("scripts/items/weapons/billhook"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 12, 12, 13, 13);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
 		items.equip(this.new("scripts/items/armor/leather_tunic"));
 		items.equip(this.new("scripts/items/weapons/billhook"));
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 11, 11, 14, 14);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
@@ -68,25 +68,25 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 11, 11, 15, 15);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
 		items.equip(this.new("scripts/items/armor/gambeson"));
 		items.equip(this.new("scripts/items/weapons/crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		items.addToBag(this.new("scripts/items/weapons/dagger"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 11, 11);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.sallet_green_helmet]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.sallet_green_helmet]]));
 		items.equip(this.new("scripts/items/armor/lamellar_harness"));
 		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 13, 13);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
@@ -94,47 +94,47 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 		items.equip(this.new("scripts/items/weapons/hand_axe"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 14, 14);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]));
 		items.equip(this.new("scripts/items/armor/named/black_leather_armor"));
 		items.equip(this.new("scripts/items/weapons/boar_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 16, 16);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.norse_helmet]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.norse_helmet]]));
 		items.equip(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
 		items.equip(this.new("scripts/items/weapons/winged_mace"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 		entity = this.spawnEntity("scripts/entity/tactical/player", 13, 13, 17, 17);
-		this.World.getPlayerRoster().add(entity);
+		::World.getPlayerRoster().add(entity);
 		entity.setName(this.getRandomPlayerName());
 		entity.setScenarioValues();
 		items = entity.getItems();
-		items.equip(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
+		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
 		items.equip(this.new("scripts/items/armor/coat_of_plates"));
 		items.equip(this.new("scripts/items/weapons/legend_zweihander"));
 		local x;
 		x = 19;
 		 entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_stollwurm", x, x, 16, 16);
-		 entity.setFaction(this.Const.Faction.Beasts);
+		 entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_rock_unhold", x, x, 13, 13);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_skin_ghoul", x, x, 14, 14);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_white_direwolf", x, x, 15, 15);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_redback_spider", x, x, 12, 12);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_demon_alp", x, x, 17, 17);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 		// entity = this.spawnEntity("scripts/entity/tactical/enemies/legend_greenwood_schrat", x, x, 18, 18);
-		// entity.setFaction(this.Const.Faction.Beasts);
+		// entity.setFaction(::Const.Faction.Beasts);
 	}
 
 	function spawnEntity( _script, _minX = 10, _maxX = 28, _minY = 3, _maxY = 28 )
@@ -145,122 +145,122 @@ this.legend_scenario_line_battle_stollwurm <- this.inherit("scripts/scenarios/ta
 
 		while (1)
 		{
-			x = this.Math.rand(_minX, _maxX);
-			y = this.Math.rand(_minY, _maxY) - x / 2;
+			x = ::Math.rand(_minX, _maxX);
+			y = ::Math.rand(_minY, _maxY) - x / 2;
 
-			if (this.Tactical.getTile(x, y).IsOccupiedByActor)
+			if (::Tactical.getTile(x, y).IsOccupiedByActor)
 			{
 				continue;
 			}
 
-			if (!this.Tactical.getTile(x, y).IsEmpty)
+			if (!::Tactical.getTile(x, y).IsEmpty)
 			{
-				this.Tactical.getTile(x, y).removeObject();
+				::Tactical.getTile(x, y).removeObject();
 			}
 
-			if (this.Tactical.getTile(x, y).IsEmpty)
+			if (::Tactical.getTile(x, y).IsEmpty)
 			{
 				break;
 			}
 		}
 
-		return this.Tactical.spawnEntity(_script, x, y);
+		return ::Tactical.spawnEntity(_script, x, y);
 	}
 
 	function initStash()
 	{
-		this.Stash.clear();
-		this.Stash.resize(117);
-		this.Stash.setLocked(false);
-		this.Stash.add(this.new("scripts/items/weapons/dagger"));
-		this.Stash.add(this.new("scripts/items/weapons/scramasax"));
-		this.Stash.add(this.new("scripts/items/weapons/javelin"));
-		this.Stash.add(this.new("scripts/items/weapons/javelin"));
-		this.Stash.add(this.new("scripts/items/weapons/throwing_axe"));
-		this.Stash.add(this.new("scripts/items/weapons/throwing_axe"));
-		this.Stash.add(this.new("scripts/items/weapons/hatchet"));
-		this.Stash.add(this.new("scripts/items/weapons/hatchet"));
-		this.Stash.add(this.new("scripts/items/weapons/hand_axe"));
-		this.Stash.add(this.new("scripts/items/weapons/hand_axe"));
-		this.Stash.add(this.new("scripts/items/weapons/warhammer"));
-		this.Stash.add(this.new("scripts/items/weapons/warhammer"));
-		this.Stash.add(this.new("scripts/items/weapons/shortsword"));
-		this.Stash.add(this.new("scripts/items/weapons/shortsword"));
-		this.Stash.add(this.new("scripts/items/weapons/falchion"));
-		this.Stash.add(this.new("scripts/items/weapons/falchion"));
-		this.Stash.add(this.new("scripts/items/weapons/arming_sword"));
-		this.Stash.add(this.new("scripts/items/weapons/arming_sword"));
-		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
-		this.Stash.add(this.new("scripts/items/weapons/military_cleaver"));
-		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
-		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
-		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
-		this.Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
-		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
-		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
-		this.Stash.add(this.new("scripts/items/weapons/greataxe"));
-		this.Stash.add(this.new("scripts/items/weapons/billhook"));
-		this.Stash.add(this.new("scripts/items/weapons/billhook"));
-		this.Stash.add(this.new("scripts/items/weapons/billhook"));
-		this.Stash.add(this.new("scripts/items/weapons/militia_spear"));
-		this.Stash.add(this.new("scripts/items/weapons/militia_spear"));
-		this.Stash.add(this.new("scripts/items/weapons/boar_spear"));
-		this.Stash.add(this.new("scripts/items/weapons/boar_spear"));
-		this.Stash.add(this.new("scripts/items/weapons/boar_spear"));
-		this.Stash.add(this.new("scripts/items/weapons/bludgeon"));
-		this.Stash.add(this.new("scripts/items/weapons/bludgeon"));
-		this.Stash.add(this.new("scripts/items/weapons/winged_mace"));
-		this.Stash.add(this.new("scripts/items/weapons/winged_mace"));
-		this.Stash.add(this.new("scripts/items/weapons/winged_mace"));
-		this.Stash.add(this.new("scripts/items/weapons/winged_mace"));
-		this.Stash.add(this.new("scripts/items/weapons/flail"));
-		this.Stash.add(this.new("scripts/items/weapons/flail"));
-		this.Stash.add(this.new("scripts/items/weapons/flail"));
-		this.Stash.add(this.new("scripts/items/weapons/short_bow"));
-		this.Stash.add(this.new("scripts/items/weapons/short_bow"));
-		this.Stash.add(this.new("scripts/items/weapons/hunting_bow"));
-		this.Stash.add(this.new("scripts/items/weapons/hunting_bow"));
-		this.Stash.add(this.new("scripts/items/weapons/crossbow"));
-		this.Stash.add(this.new("scripts/items/weapons/crossbow"));
-		this.Stash.add(this.new("scripts/items/weapons/crossbow"));
-		this.Stash.add(this.new("scripts/items/shields/wooden_shield"));
-		this.Stash.add(this.new("scripts/items/shields/wooden_shield"));
-		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
-		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
-		this.Stash.add(this.new("scripts/items/shields/kite_shield"));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_aketon_cap]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_nasal_helmet]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.closed_mail_coif]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.reinforced_mail_coif]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_kettle_hat]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_helmet]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_with_mail]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
-		this.Stash.add(this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
-		this.Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
-		this.Stash.add(this.new("scripts/items/armor/gambeson"));
-		this.Stash.add(this.new("scripts/items/armor/gambeson"));
-		this.Stash.add(this.new("scripts/items/armor/padded_leather"));
-		this.Stash.add(this.new("scripts/items/armor/padded_leather"));
-		this.Stash.add(this.new("scripts/items/armor/mail_shirt"));
-		this.Stash.add(this.new("scripts/items/armor/mail_shirt"));
-		this.Stash.add(this.new("scripts/items/armor/mail_shirt"));
-		this.Stash.add(this.new("scripts/items/armor/lamellar_harness"));
-		this.Stash.add(this.new("scripts/items/armor/coat_of_plates"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
-		this.Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
+		::Stash.clear();
+		::Stash.resize(117);
+		::Stash.setLocked(false);
+		::Stash.add(this.new("scripts/items/weapons/dagger"));
+		::Stash.add(this.new("scripts/items/weapons/scramasax"));
+		::Stash.add(this.new("scripts/items/weapons/javelin"));
+		::Stash.add(this.new("scripts/items/weapons/javelin"));
+		::Stash.add(this.new("scripts/items/weapons/throwing_axe"));
+		::Stash.add(this.new("scripts/items/weapons/throwing_axe"));
+		::Stash.add(this.new("scripts/items/weapons/hatchet"));
+		::Stash.add(this.new("scripts/items/weapons/hatchet"));
+		::Stash.add(this.new("scripts/items/weapons/hand_axe"));
+		::Stash.add(this.new("scripts/items/weapons/hand_axe"));
+		::Stash.add(this.new("scripts/items/weapons/warhammer"));
+		::Stash.add(this.new("scripts/items/weapons/warhammer"));
+		::Stash.add(this.new("scripts/items/weapons/shortsword"));
+		::Stash.add(this.new("scripts/items/weapons/shortsword"));
+		::Stash.add(this.new("scripts/items/weapons/falchion"));
+		::Stash.add(this.new("scripts/items/weapons/falchion"));
+		::Stash.add(this.new("scripts/items/weapons/arming_sword"));
+		::Stash.add(this.new("scripts/items/weapons/arming_sword"));
+		::Stash.add(this.new("scripts/items/weapons/military_cleaver"));
+		::Stash.add(this.new("scripts/items/weapons/military_cleaver"));
+		::Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		::Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		::Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		::Stash.add(this.new("scripts/items/weapons/legend_zweihander"));
+		::Stash.add(this.new("scripts/items/weapons/greataxe"));
+		::Stash.add(this.new("scripts/items/weapons/greataxe"));
+		::Stash.add(this.new("scripts/items/weapons/greataxe"));
+		::Stash.add(this.new("scripts/items/weapons/billhook"));
+		::Stash.add(this.new("scripts/items/weapons/billhook"));
+		::Stash.add(this.new("scripts/items/weapons/billhook"));
+		::Stash.add(this.new("scripts/items/weapons/militia_spear"));
+		::Stash.add(this.new("scripts/items/weapons/militia_spear"));
+		::Stash.add(this.new("scripts/items/weapons/boar_spear"));
+		::Stash.add(this.new("scripts/items/weapons/boar_spear"));
+		::Stash.add(this.new("scripts/items/weapons/boar_spear"));
+		::Stash.add(this.new("scripts/items/weapons/bludgeon"));
+		::Stash.add(this.new("scripts/items/weapons/bludgeon"));
+		::Stash.add(this.new("scripts/items/weapons/winged_mace"));
+		::Stash.add(this.new("scripts/items/weapons/winged_mace"));
+		::Stash.add(this.new("scripts/items/weapons/winged_mace"));
+		::Stash.add(this.new("scripts/items/weapons/winged_mace"));
+		::Stash.add(this.new("scripts/items/weapons/flail"));
+		::Stash.add(this.new("scripts/items/weapons/flail"));
+		::Stash.add(this.new("scripts/items/weapons/flail"));
+		::Stash.add(this.new("scripts/items/weapons/short_bow"));
+		::Stash.add(this.new("scripts/items/weapons/short_bow"));
+		::Stash.add(this.new("scripts/items/weapons/hunting_bow"));
+		::Stash.add(this.new("scripts/items/weapons/hunting_bow"));
+		::Stash.add(this.new("scripts/items/weapons/crossbow"));
+		::Stash.add(this.new("scripts/items/weapons/crossbow"));
+		::Stash.add(this.new("scripts/items/weapons/crossbow"));
+		::Stash.add(this.new("scripts/items/shields/wooden_shield"));
+		::Stash.add(this.new("scripts/items/shields/wooden_shield"));
+		::Stash.add(this.new("scripts/items/shields/kite_shield"));
+		::Stash.add(this.new("scripts/items/shields/kite_shield"));
+		::Stash.add(this.new("scripts/items/shields/kite_shield"));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.hood]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.aketon_cap]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_aketon_cap]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_nasal_helmet]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.nasal_helmet_with_mail]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.mail_coif]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.closed_mail_coif]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.reinforced_mail_coif]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.padded_kettle_hat]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.kettle_hat_with_mail]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_helmet]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.flat_top_with_mail]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
+		::Stash.add(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Standard.full_helm]]));
+		::Stash.add(this.new("scripts/items/legend_armor/cloth/legend_armor_quilted_aketon"));
+		::Stash.add(this.new("scripts/items/armor/gambeson"));
+		::Stash.add(this.new("scripts/items/armor/gambeson"));
+		::Stash.add(this.new("scripts/items/armor/padded_leather"));
+		::Stash.add(this.new("scripts/items/armor/padded_leather"));
+		::Stash.add(this.new("scripts/items/armor/mail_shirt"));
+		::Stash.add(this.new("scripts/items/armor/mail_shirt"));
+		::Stash.add(this.new("scripts/items/armor/mail_shirt"));
+		::Stash.add(this.new("scripts/items/armor/lamellar_harness"));
+		::Stash.add(this.new("scripts/items/armor/coat_of_plates"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_arrows"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
+		::Stash.add(this.new("scripts/items/ammo/quiver_of_bolts"));
 	}
 
 });

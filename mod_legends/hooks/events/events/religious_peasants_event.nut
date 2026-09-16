@@ -10,22 +10,22 @@
 			_screen.Options = [{
 				Text = "To arms!",
 				function getResult( _event ) {
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
 
 					for( local i = 0; i < 50; i = ++i ) {
-						local unit = clone this.Const.World.Spawn.Troops.Cultist;
-						unit.Faction <- this.Const.Faction.Enemy;
+						local unit = clone ::Const.World.Spawn.Troops.Cultist;
+						unit.Faction <- ::Const.Faction.Enemy;
 						properties.Entities.push(unit);
 					}
 
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
-			}]
+			}];
 		});
 		::Legends.Screens.hook(this, "C", function(_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_12.png[/img]{Obviously, this isn\'t an ordinary sight for you so, curious, you call out to the weary travelers. Words barely leave your lips before the entire line of men stops in an instant and bolts upright. Their cloaks unravel and droop from their heads, and their tomes and sticks and religious imports fall aside in a uniform clatter. The people look around, wide eyes more alive than ever. One screams. Then another. And soon they are all screaming, and some crumple to the ground, clutching their ears as though to silence the horrid howls their mouths had to give, while others wheel in circles, arms out, begging for answers.\n\n Your mere utterance has seemingly broken a spell that was so long over their heads it had brought them here, impoverished, hungry, and insane. Step by step, they were governed by a malicious higher power, and step by step they felt the control in their lives slip away, and with it the sanity all men require to be themselves. Unfortunately, you can hardly ask them what or who did this to them, for some fall over dead while others make naked sprints into the forest. | A curious sight such as this begs questioning, but the second a word leaves your lips the entire troop of religious men bolt upright, the sudden shuffle of clothes and gear clattering in such uniformity it as if a door was slammed shut. The men drop their things and begin screaming. It is a raspy chorus. They all begin to collapse, either buckling on bony knees or clutching their stomachs in pained hunger.\n\n %randombrother% comes up, shaking his head.%SPEECH_ON%Were they cursed? What could have done this?%SPEECH_OFF%You won\'t ever get an answer for a minute later every single one is dead, looking no better than corpses having recently been thawed out of the mountains. The spell must have forcibly piloted their pilgrimage here, straining the human body while keeping it alive by the mere strand of ethereal malevolence. Although they are all dead, you do not regret freeing them of such a horrid curse.}";

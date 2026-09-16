@@ -4,7 +4,7 @@ this.legend_restored_ancient_helm_01 <- this.inherit("scripts/crafting/blueprint
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_restored_ancient_helm_01";
-		this.m.Type = this.Const.Items.ItemType.Helmet;
+		this.m.Type = ::Const.Items.ItemType.Helmet;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_helmets/helm/legend_helmet_ancient_legionary_helm_restored");
 		this.m.Cost = 500;
 		local ingredients = [

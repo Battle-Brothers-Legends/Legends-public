@@ -3,7 +3,7 @@ this.legend_fencer_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.MilitaryMelee;
+		this.m.ID = ::Const.AI.Agent.ID.MilitaryMelee;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.4;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.2;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;
@@ -52,9 +52,9 @@ this.legend_fencer_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onUpdate()
 	{
 		this.setEngageRangeBasedOnWeapon();
-		local item = this.m.Actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand);
+		local item = this.m.Actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand);
 
-		if (item != null && item.isItemType(this.Const.Items.ItemType.Weapon) && item.isAoE())
+		if (item != null && item.isItemType(::Const.Items.ItemType.Weapon) && item.isAoE())
 		{
 			this.m.Properties.EngageTargetMultipleOpponentsMult = 0.75;
 		}
@@ -63,13 +63,13 @@ this.legend_fencer_agent <- this.inherit("scripts/ai/tactical/agent", {
 			this.m.Properties.EngageTargetMultipleOpponentsMult = 1.25;
 		}
 
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Protect] = 0.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Protect] = 0.0;
 
 		if (this.m.KnownAllies.len() >= 10 && this.getActor().getCurrentProperties().TargetAttractionMult <= 1.0)
 		{
-			item = this.m.Actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand);
+			item = this.m.Actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Shield))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Shield))
 			{
 				local myTile = this.getActor().getTile();
 				local priorityAlliesInRange = 0;
@@ -82,7 +82,7 @@ this.legend_fencer_agent <- this.inherit("scripts/ai/tactical/agent", {
 						continue;
 					}
 
-					if (a.getCurrentProperties().TargetAttractionMult <= 1.0 && a.getAIAgent().getProperties().BehaviorMult[this.Const.AI.Behavior.ID.Protect] >= 1.0)
+					if (a.getCurrentProperties().TargetAttractionMult <= 1.0 && a.getAIAgent().getProperties().BehaviorMult[::Const.AI.Behavior.ID.Protect] >= 1.0)
 					{
 						protectors = ++protectors;
 					}
@@ -99,7 +99,7 @@ this.legend_fencer_agent <- this.inherit("scripts/ai/tactical/agent", {
 
 				if (priorityAlliesInRange > 0 && protectors <= this.m.KnownAllies.len() / 18)
 				{
-					this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Protect] = 1.0;
+					this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Protect] = 1.0;
 				}
 			}
 		}

@@ -8,7 +8,7 @@ this.legend_summoned_catapult_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/catapult_circle.png";
 		this.m.IconMini = "mini_catapult_circle";
 		this.m.Overlay = "catapult_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}

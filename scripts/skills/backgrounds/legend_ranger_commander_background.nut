@@ -37,9 +37,9 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 			"Eagle Eye"
 		];
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.ExpertHunter;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.ExpertHunter;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 
 		this.m.CustomPerkTree = [
 			[
@@ -85,9 +85,9 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.RangedSkill] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.RangedSkill] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
@@ -97,7 +97,7 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 		items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 
 
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -108,12 +108,12 @@ this.legend_ranger_commander_background <- this.inherit("scripts/skills/backgrou
 			items.addToBag(this.new("scripts/items/weapons/bludgeon"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood]
 			// [1, ::Legends.Helmet.Standard.hunters_hat]
 		]));

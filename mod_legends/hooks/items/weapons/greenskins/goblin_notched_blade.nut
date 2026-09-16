@@ -3,7 +3,7 @@
 	o.create = function() {
 		create();
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword;
-		this.setVariant(this.Math.rand(0, 1));
+		this.setVariant(::Math.rand(0, 1));
 		this.m.Ammo = 8;
 		this.m.AmmoMax = 8;
 		this.m.AmmoCost = 1;
@@ -15,7 +15,7 @@
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	o.updateVariant <- function() {

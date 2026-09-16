@@ -7,7 +7,7 @@ this.legend_cloak_noble_blueprint <- this.inherit("scripts/crafting/blueprint", 
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_cloak_noble_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_armor_cloak_noble");
 		this.m.Variants = this.m.PreviewCraftable.m.Variants.len();
 		this.m.PreviewCraftable.setVariant(this.m.PreviewCraftable.m.Variants[0]);

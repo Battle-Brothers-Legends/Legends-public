@@ -1,5 +1,5 @@
 ::Const.FactionNobleTraitConfig <- {
-	[this.Const.FactionTrait.Ambitious] = {
+	[::Const.FactionTrait.Ambitious] = {
 		Name = "Ambitious",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house constantly seeks greater influence, usually at the expense of everyone else.",
@@ -19,7 +19,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Arrogant] = {
+	[::Const.FactionTrait.Arrogant] = {
 		Name = "Arrogant",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house believes itself superior to all others.",
@@ -38,7 +38,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Bloodthirsty] = {
+	[::Const.FactionTrait.Bloodthirsty] = {
 		Name = "Bloodthirsty",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house glorifies violence and the power of public executions.",
@@ -58,7 +58,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Bureaucratic] = {
+	[::Const.FactionTrait.Bureaucratic] = {
 		Name = "Bureaucratic",
 		Color = ::Const.UI.Color.Active,
 		Description = "Everything this house does is stifled by protocol and process.",
@@ -75,7 +75,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Chivalrous] = {
+	[::Const.FactionTrait.Chivalrous] = {
 		Name = "Chivalrous",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house upholds knightly ideals. They always honor their agreements.",
@@ -94,7 +94,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Collector] = {
+	[::Const.FactionTrait.Collector] = {
 		Name = "Collector",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house lusts for ancient relics and are willing to pay to acquire them.",
@@ -119,7 +119,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Cosmopolitan] = {
+	[::Const.FactionTrait.Cosmopolitan] = {
 		Name = "Cosmopolitan",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is open towards other customs and peoples.",
@@ -138,7 +138,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Courageous] = {
+	[::Const.FactionTrait.Courageous] = {
 		Name = "Courageous",
 		Color = ::Const.UI.Color.Active,
 		Description = "Members of this house face danger without hesitation.",
@@ -157,7 +157,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Cruel] = {
+	[::Const.FactionTrait.Cruel] = {
 		Name = "Cruel",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house has a dreadful reputation for delivering inhumane fates of their enemies.",
@@ -174,7 +174,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Crusader] = {
+	[::Const.FactionTrait.Crusader] = {
 		Name = "Crusader",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house defends their faith with sword and zeal.",
@@ -194,7 +194,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Cultured] = {
+	[::Const.FactionTrait.Cultured] = {
 		Name = "Cultured",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is commonly known as a patron of arts, music, and literature.",
@@ -211,7 +211,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Cursed] = {
+	[::Const.FactionTrait.Cursed] = {
 		Name = "Cursed",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is said to be plagued by misfortune, with every success followed by a calamity.",
@@ -228,7 +228,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Decadent] = {
+	[::Const.FactionTrait.Decadent] = {
 		Name = "Decadent",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is considered morally lost in excess and luxury.",
@@ -245,7 +245,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Destitute] = {
+	[::Const.FactionTrait.Destitute] = {
 		Name = "Destitute",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "Ruin has come to this family.",
@@ -262,7 +262,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Diplomatic] = {
+	[::Const.FactionTrait.Diplomatic] = {
 		Name = "Diplomatic",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is skilled at forging alliances and negotiation.",
@@ -279,7 +279,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Distrustful] = {
+	[::Const.FactionTrait.Distrustful] = {
 		Name = "Distrustful",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house avoids foreign entanglements and distrusts outsiders.",
@@ -297,7 +297,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Generous] = {
+	[::Const.FactionTrait.Generous] = {
 		Name = "Generous",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is known for rewarding allies and subjects with an open hand.",
@@ -314,7 +314,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Greedy] = {
+	[::Const.FactionTrait.Greedy] = {
 		Name = "Greedy",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house hoards wealth and power, cheats and extorts others.",
@@ -334,7 +334,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Inbred] = {
+	[::Const.FactionTrait.Inbred] = {
 		Name = "Inbred",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is declining due to an obsession with blood purity.",
@@ -350,7 +350,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Industrious] = {
+	[::Const.FactionTrait.Industrious] = {
 		Name = "Industrious",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house builds wealth through discipline and labor.",
@@ -367,7 +367,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Loyal] = {
+	[::Const.FactionTrait.Loyal] = {
 		Name = "Loyal",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house will stand by allies through hardship.",
@@ -385,7 +385,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.ManOfThePeople] = {
+	[::Const.FactionTrait.ManOfThePeople] = {
 		Name = "Man of the People",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house is popular among the common-folk and gentry alike.",
@@ -406,7 +406,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Marauder] = {
+	[::Const.FactionTrait.Marauder] = {
 		Name = "Marauder",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is known to repeatedly raid and plunder their neighbors.",
@@ -429,7 +429,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Martial] = {
+	[::Const.FactionTrait.Martial] = {
 		Name = "Martial",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house values martial excellence and traditions. Service is seen as a duty.",
@@ -448,7 +448,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Mercantile] = {
+	[::Const.FactionTrait.Mercantile] = {
 		Name = "Mercantile",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is focused on commerce and trade.",
@@ -465,7 +465,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Merciful] = {
+	[::Const.FactionTrait.Merciful] = {
 		Name = "Merciful",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house prefers clemency over cruelty.",
@@ -481,7 +481,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Mystical] = {
+	[::Const.FactionTrait.Mystical] = {
 		Name = "Mystical",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is guided by omens, dreams, and prophecies.",
@@ -499,7 +499,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Paranoid] = {
+	[::Const.FactionTrait.Paranoid] = {
 		Name = "Paranoid",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house distrusts everyone. Especially mercenaries.",
@@ -517,7 +517,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Parsimonious] = {
+	[::Const.FactionTrait.Parsimonious] = {
 		Name = "Parsimonious",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is careful and restrained with its resources, even as the populace starves.",
@@ -534,7 +534,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Peaceful] = {
+	[::Const.FactionTrait.Peaceful] = {
 		Name = "Peaceful",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house is seen as a kind and benevolent ruler.",
@@ -551,7 +551,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Pious] = {
+	[::Const.FactionTrait.Pious] = {
 		Name = "Pious",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house is seen as devout and observant.",
@@ -568,7 +568,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Pragmatic] = {
+	[::Const.FactionTrait.Pragmatic] = {
 		Name = "Pragmatic",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house solves problems efficiently with whatever tools are available.",
@@ -586,7 +586,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Prosperous] = {
+	[::Const.FactionTrait.Prosperous] = {
 		Name = "Prosperous",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is exceptionally wealthy and stable.",
@@ -603,7 +603,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Ruthless] = {
+	[::Const.FactionTrait.Ruthless] = {
 		Name = "Ruthless",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house will coldly expend coin and human lives to secure their goals.",
@@ -621,7 +621,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Schemer] = {
+	[::Const.FactionTrait.Schemer] = {
 		Name = "Schemer",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is well-known for devious tactics and treachery.",
@@ -642,7 +642,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Scholarly] = {
+	[::Const.FactionTrait.Scholarly] = {
 		Name = "Scholarly",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is driven by research and knowledge.",
@@ -659,7 +659,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Sheriff] = {
+	[::Const.FactionTrait.Sheriff] = {
 		Name = "Sheriff",
 		Color = ::Const.UI.Color.Active,
 		Description = "This popular house enforces the rule of law in a manner seen as mostly fair and just.",
@@ -678,7 +678,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Spiteful] = {
+	[::Const.FactionTrait.Spiteful] = {
 		Name = "Spiteful",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "Fallen from ancient glory, this house is holds bitter grudges, does not forget insults and does not forgive.",
@@ -694,7 +694,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Stern] = {
+	[::Const.FactionTrait.Stern] = {
 		Name = "Stern",
 		Color = ::Const.UI.Color.Active,
 		Description = "This joyless house is known for its rigid and unforgiving application of law.",
@@ -713,7 +713,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Stewardly] = {
+	[::Const.FactionTrait.Stewardly] = {
 		Name = "Stewardly",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house is known for being excellent administrators of land and resources.",
@@ -730,7 +730,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Traditionalist] = {
+	[::Const.FactionTrait.Traditionalist] = {
 		Name = "Traditionalist",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house values the old ways. Its members are resistant to change.",
@@ -746,7 +746,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Tyrant] = {
+	[::Const.FactionTrait.Tyrant] = {
 		Name = "Tyrant",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house exploits peasants and vassals harshly, ruling with an iron fist.",
@@ -766,7 +766,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Unstable] = {
+	[::Const.FactionTrait.Unstable] = {
 		Name = "Unstable",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house is in slow decline, plagued by political infighting or madness.",
@@ -783,7 +783,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Vigilant] = {
+	[::Const.FactionTrait.Vigilant] = {
 		Name = "Vigilant",
 		Color = ::Const.UI.Color.Active,
 		Description = "This house is rarely caught unprepared.",
@@ -801,7 +801,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Visionary] = {
+	[::Const.FactionTrait.Visionary] = {
 		Name = "Visionary",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house sees opportunities others may miss.",
@@ -821,7 +821,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Warmonger] = {
+	[::Const.FactionTrait.Warmonger] = {
 		Name = "Warmonger",
 		Color = ::Const.UI.Color.NegativeValue,
 		Description = "This house has shown repeated desires towards aggressive territorial expansion.",
@@ -839,7 +839,7 @@
 		LongDescriptionFinish = ""
 	},
 
-	[this.Const.FactionTrait.Wise] = {
+	[::Const.FactionTrait.Wise] = {
 		Name = "Wise",
 		Color = ::Const.UI.Color.PositiveValue,
 		Description = "This house makes careful long-term decisions and rarely acts impulsively.",
@@ -859,8 +859,8 @@
 
 ::Const.GetFactionArchetypesList <- function () {
 	local result = [];
-	for (local i = 0; i < this.Const.FactionArchetypes.len(); i = ++i) {
-		for (local j = 0; j < this.Const.FactionArchetypes[i].len(); j = ++j) {
+	for (local i = 0; i < ::Const.FactionArchetypes.len(); i = ++i) {
+		for (local j = 0; j < ::Const.FactionArchetypes[i].len(); j = ++j) {
 			result.push([i, j]);
 		}
 	}
@@ -868,7 +868,7 @@
 };
 
 ::Const.GetFactionNobleFlavorText <- function (_faction) {
-	if (_faction == null || _faction.getType() != this.Const.FactionType.NobleHouse) {
+	if (_faction == null || _faction.getType() != ::Const.FactionType.NobleHouse) {
 		return "";
 	}
 
@@ -881,8 +881,8 @@
 
 	local formattedTraits = [];
 
-	foreach (key, val in this.Const.FactionTrait) {
-		if (val == this.Const.FactionTrait.NobleHouse) {
+	foreach (key, val in ::Const.FactionTrait) {
+		if (val == ::Const.FactionTrait.NobleHouse) {
 			continue;
 		}
 
@@ -914,14 +914,14 @@
 };
 
 ::Const.GetFactionNobleTraitsForRelationsScreen <- function (_faction) {
-	if (_faction == null || _faction.getType() != this.Const.FactionType.NobleHouse) {
+	if (_faction == null || _faction.getType() != ::Const.FactionType.NobleHouse) {
 		return "";
 	}
 
 	local result = [];
 
-	foreach (key, val in this.Const.FactionTrait) {
-		if (val == this.Const.FactionTrait.NobleHouse) {
+	foreach (key, val in ::Const.FactionTrait) {
+		if (val == ::Const.FactionTrait.NobleHouse) {
 			continue;
 		}
 

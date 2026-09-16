@@ -7,7 +7,7 @@
 		flip = !flip;
 		local v = 1;
 		local v2 = -6;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -22,9 +22,9 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcWarrior);
+		b.setValues(::Const.Tactical.Actor.OrcWarrior);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.WarriorStatIncreaseDay)	{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarriorStatIncreaseDay)	{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -35,8 +35,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_03_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -47,7 +47,7 @@
 		injury_body.setBrush("bust_orc_03_body_injured");
 		this.addSprite("armor");
 		local head = this.addSprite("head");
-		head.setBrush("bust_orc_03_head_0" + this.Math.rand(1, 3));
+		head.setBrush("bust_orc_03_head_0" + ::Math.rand(1, 3));
 		head.Saturation = body.Saturation;
 		head.Color = body.Color;
 		local injury = this.addSprite("injury");
@@ -56,7 +56,7 @@
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 1;
 		local v2 = -6;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 			this.setSpriteOffset(a, this.createVec(v2, v));
@@ -95,22 +95,22 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/greenskins/orc_axe",
 				"weapons/greenskins/legend_skin_flayer",
 				"weapons/greenskins/orc_cleaver"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			this.m.Items.equip(this.new("scripts/items/shields/greenskins/orc_heavy_shield"));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
 			local armor = [
 				[1, ::Legends.Armor.Greenskin.orc_warrior_light_armor],
@@ -118,18 +118,18 @@
 				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor],
 				[1, ::Legends.Armor.Greenskin.orc_warrior_heavy_armor]
 			];
-			local item = this.Const.World.Common.pickArmor(armor);
+			local item = ::Const.World.Common.pickArmor(armor);
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
 			local helmet = [
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_light_helmet],
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_medium_helmet],
 				[1, ::Legends.Helmet.Greenskin.orc_warrior_heavy_helmet]
 			];
-			local item = this.Const.World.Common.pickHelmet(helmet);
+			local item = ::Const.World.Common.pickHelmet(helmet);
 			this.m.Items.equip(item);
 		}
 	}
@@ -150,15 +150,15 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (this.Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= 80)
 		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand));
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.unequip(this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
-			this.m.Items.unequip(this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand));
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.unequip(this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
 		return true;

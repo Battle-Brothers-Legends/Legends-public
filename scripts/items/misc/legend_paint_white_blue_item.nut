@@ -7,7 +7,7 @@ this.legend_paint_white_blue_item <- this.inherit("scripts/items/trade/trading_g
 		this.m.Name = "White and Blue Paint";
 		this.m.Description = "Buckets of white and blue paint. Both highly sought after colours due to their rarity.";
 		this.m.Icon = "consumables/paint_blue_white.png";
-		this.m.Culture = this.Const.World.Culture.Neutral;
+		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ProducingBuildings = [
 			"attached_location.dye_maker"

@@ -3,11 +3,11 @@
 	o.create = function()
 	{
 		this.companion_2h_background.create();
-		this.m.Bodies = this.Const.Bodies.Gladiator;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
-		this.m.Beards = this.Const.Beards.Southern;
+		this.m.Bodies = ::Const.Bodies.Gladiator;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
+		this.m.Beards = ::Const.Beards.Southern;
 		this.m.BeardChance = 90;
 		this.m.Ethnicity = 1;
 		this.m.Excluded = [
@@ -40,36 +40,36 @@
 			::Legends.Traits.getID(::Legends.Trait.Insecure),
 			::Legends.Traits.getID(::Legends.Trait.Dexterous)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.onAddEquipment = function()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 1;
-		talents[this.Const.Attributes.Bravery] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 1;
+		talents[::Const.Attributes.Bravery] = 1;
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 0);
+		r = ::Math.rand(0, 0);
 
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/weapons/two_handed_wooden_hammer"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.thick_nomad_robe],
 			[1, ::Legends.Armor.Southern.padded_vest],
 			[1, ::Legends.Armor.Southern.leather_nomad_robe]
 		]));
 
-		local helm =this.Const.World.Common.pickHelmet([
+		local helm =::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap],
-			[1, ::Legends.Helmet.Southern.southern_head_wrap, this.Math.rand(0, 1) == 1 ? 12 : 8]
+			[1, ::Legends.Helmet.Southern.southern_head_wrap, ::Math.rand(0, 1) == 1 ? 12 : 8]
 		]);
 		items.equip(helm);
 	}

@@ -9,8 +9,8 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Pierced";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/impale", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/impale_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -18,8 +18,8 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsAttack = true;
 		this.m.IsWeaponSkill = true;
 		this.m.IsIgnoredAsAOO = true;
-		this.m.InjuriesOnBody = this.Const.Injury.PiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.PiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.PiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.PiercingHead;
 		this.m.HitChanceBonus = 0;
 		this.m.DirectDamageMult = 0.55;
 		this.m.ActionPointCost = 5;
@@ -73,11 +73,11 @@ this.legend_heartseeker_skill <- this.inherit("scripts/skills/skill", {
 		if ((this.m.IsPolearm || this.m.IsTwoHanded ) && ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile ) {
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectThrust);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectThrust);
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 

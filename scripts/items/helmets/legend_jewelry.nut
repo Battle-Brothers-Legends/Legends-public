@@ -8,10 +8,10 @@ this.legend_jewelry <- this.inherit("scripts/items/helmets/helmet", {
 		this.m.Name = "Southern Coin Veil";
 		this.m.Description = "A southern veil made of coins threaded togther";
 		this.m.Variants = [1];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 500;
 		this.m.Condition = 15;
 		this.m.ConditionMax = 15;

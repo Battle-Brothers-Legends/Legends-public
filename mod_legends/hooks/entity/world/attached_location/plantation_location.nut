@@ -35,16 +35,6 @@
 				S = "supplies/legend_fresh_dates_item"
 			});
 			_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_heal"
-			});
-			_list.push({
-				R = 90,
-				P = 1.0,
-				S = "tents/legend_tent_gather"
-			});
-			_list.push({
 				R = 0,
 				P = 1.0,
 				S = "supplies/legend_medicine_small_item"

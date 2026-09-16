@@ -35,12 +35,12 @@
 			local targetTile = target.Actor.getTile();
 			local realDist = myTile.getDistanceTo(targetTile);
 
-			if (realDist <= this.Const.AI.Behavior.RangedEngageMaxDangerDist
-				&& target.Actor.getMoraleState() != this.Const.MoraleState.Fleeing
+			if (realDist <= ::Const.AI.Behavior.RangedEngageMaxDangerDist
+				&& target.Actor.getMoraleState() != ::Const.MoraleState.Fleeing
 				&& !this.isRangedUnit(target.Actor)
 				&& !target.Actor.isNonCombatant()
-				&& target.Actor.getHitpoints() / target.Actor.getHitpointsMax() >= this.Const.AI.Behavior.RangedEngageMinDangerHitpointsPct
-				&& targetTile.getZoneOfControlCountOtherThan(target.Actor.getAlliedFactions()) < this.Const.AI.Behavior.RangedEngageIgnoreDangerMinZones)
+				&& target.Actor.getHitpoints() / target.Actor.getHitpointsMax() >= ::Const.AI.Behavior.RangedEngageMinDangerHitpointsPct
+				&& targetTile.getZoneOfControlCountOtherThan(target.Actor.getAlliedFactions()) < ::Const.AI.Behavior.RangedEngageIgnoreDangerMinZones)
 			{
 				this.m.PotentialDanger.push(target.Actor);
 				local danger = this.getDangerFromActor(target.Actor, myTile, _entity);
@@ -51,7 +51,7 @@
 			local opponentsAdjacent = 0;
 			local score = this.queryTargetValue(_entity, target.Actor, null);
 
-			for (local i = 0; i < this.Const.Direction.COUNT; i = ++i) {
+			for (local i = 0; i < ::Const.Direction.COUNT; i = ++i) {
 				if (!targetTile.hasNextTile(i)) {
 				} else {
 					local tile = targetTile.getNextTile(i);
@@ -65,15 +65,15 @@
 
 							alliesAdjacent = ++alliesAdjacent;
 						} else {
-							score = score + 1.0 / 6.0 * this.queryTargetValue(_entity, tile.getEntity(), null) * this.Const.AI.Behavior.AttackRangedHitBystandersMult;
+							score = score + 1.0 / 6.0 * this.queryTargetValue(_entity, tile.getEntity(), null) * ::Const.AI.Behavior.AttackRangedHitBystandersMult;
 							opponentsAdjacent = ++opponentsAdjacent;
 						}
 					}
 				}
 			}
 
-			if (targetTile.getZoneOfControlCount(_entity.getFaction()) < this.Const.AI.Behavior.RangedEngageIgnoreDangerMinZones) {
-				score = score * (1.0 + (1.0 - this.Math.minf(1.0, this.queryActorTurnsNearTarget(target.Actor, myTile, _entity).Turns)) * this.Const.AI.Behavior.AttackDangerMult);
+			if (targetTile.getZoneOfControlCount(_entity.getFaction()) < ::Const.AI.Behavior.RangedEngageIgnoreDangerMinZones) {
+				score = score * (1.0 + (1.0 - ::Math.minf(1.0, this.queryActorTurnsNearTarget(target.Actor, myTile, _entity).Turns)) * ::Const.AI.Behavior.AttackDangerMult);
 			}
 
 			this.m.ValidTargets.push({
@@ -81,7 +81,7 @@
 				Tile = targetTile,
 				Distance = realDist,
 				IsRangedUnit = this.isRangedUnit(target.Actor),
-				Score = this.Math.maxf(0.01, score),
+				Score = ::Math.maxf(0.01, score),
 				OpponentsAdjacent = opponentsAdjacent,
 				AlliesAdjacent = alliesAdjacent
 			});

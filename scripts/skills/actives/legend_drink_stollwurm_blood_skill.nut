@@ -35,7 +35,7 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 			}
 		];
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 5,
@@ -49,11 +49,11 @@ this.legend_drink_stollwurm_blood_skill <- this.inherit("scripts/skills/actives/
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks Stollwurm Blood";
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks Stollwurm Blood";
 	}
 
 	function tacticalLogGive(_user, _target) {
-		return this.Const.UI.getColorizedEntityName(_user) + " gives Stollwurm Blood to " + this.Const.UI.getColorizedEntityName(_target);
+		return ::Const.UI.getColorizedEntityName(_user) + " gives Stollwurm Blood to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
 

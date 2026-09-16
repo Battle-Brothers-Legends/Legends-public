@@ -18,27 +18,27 @@
 
 	o.onUpdateScore = function ()
 	{
-		if (this.World.getTime().IsDaytime)
+		if (::World.getTime().IsDaytime)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_graverobber = [];
 		local candidates_historian = [];
 
 		foreach( bro in brothers ) {
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.Graverobber))
 				candidates_graverobber.push(bro);
-			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			else if (::Legends.Backgrounds.has(bro, ::Legends.Background.Historian) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				candidates_historian.push(bro);
 		}
 
 		if (candidates_graverobber.len() == 0)
 			return;
 
-		this.m.Graverobber = candidates_graverobber[this.Math.rand(0, candidates_graverobber.len() - 1)];
+		this.m.Graverobber = candidates_graverobber[::Math.rand(0, candidates_graverobber.len() - 1)];
 
 		if (candidates_historian.len() != 0)
-			this.m.Historian = candidates_historian[this.Math.rand(0, candidates_historian.len() - 1)];
+			this.m.Historian = candidates_historian[::Math.rand(0, candidates_historian.len() - 1)];
 
 		this.m.Score = 5;
 	}

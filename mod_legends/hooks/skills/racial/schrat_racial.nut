@@ -5,16 +5,16 @@
 			return;
 
 		switch (_hitInfo.DamageType) {
-			case this.Const.Damage.DamageType.Piercing:
+			case ::Const.Damage.DamageType.Piercing:
 				if (_skill == null) {
 					_properties.DamageReceivedRegularMult *= 0.25;
 				} else {
 					if (_skill.isRanged()) {
 						local weapon = _skill.getItem();
-						if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon)) {
-							if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow) || weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow)) {
+						if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon)) {
+							if (weapon.isWeaponType(::Const.Items.WeaponType.Bow) || weapon.isWeaponType(::Const.Items.WeaponType.Crossbow)) {
 								_properties.DamageReceivedRegularMult *= 0.25;
-							} else if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing)) {
+							} else if (weapon.isWeaponType(::Const.Items.WeaponType.Throwing)) {
 								_properties.DamageReceivedRegularMult *= 0.5;
 							} else {
 								_properties.DamageReceivedRegularMult *= 0.5;
@@ -26,7 +26,7 @@
 				}
 				break;
 
-			case this.Const.Damage.DamageType.Burning:
+			case ::Const.Damage.DamageType.Burning:
 				_properties.DamageReceivedRegularMult *= 1.33;
 				break;
 		}
@@ -54,8 +54,8 @@
 
 		if (candidates.len() != 0) {
 			local spawnTile = candidates[::Math.rand(0, candidates.len() - 1)];
-			local sapling = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/schrat_small", spawnTile.Coords);
-			sapling.setFaction((actor.getFaction() == this.Const.Faction.Player ? this.Const.Faction.PlayerAnimals : actor.getFaction()));
+			local sapling = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/schrat_small", spawnTile.Coords);
+			sapling.setFaction((actor.getFaction() == ::Const.Faction.Player ? ::Const.Faction.PlayerAnimals : actor.getFaction()));
 			sapling.riseFromGround();
 		}
 	}

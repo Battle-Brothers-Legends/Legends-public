@@ -8,10 +8,10 @@ this.legend_wardog_item <- this.inherit("scripts/items/accessory/legend_accessor
 	{
 		this.legend_accessory_dog.create();
 		this.m.Script = "scripts/entity/tactical/wardog";
-		this.m.Variant = this.Math.rand(1, 4);
+		this.m.Variant = ::Math.rand(1, 4);
 		this.updateVariant();
 		this.m.ID = "accessory.legend_wardog";
-		this.m.Name = this.Const.Strings.WardogNames[this.Math.rand(0, this.Const.Strings.WardogNames.len() - 1)] + " the Wardog";
+		this.m.Name = ::Const.Strings.WardogNames[::Math.rand(0, ::Const.Strings.WardogNames.len() - 1)] + " the Wardog";
 		this.m.Description = "A strong and loyal dog bred for war. Can be unleashed in battle for scouting, tracking or running down routing enemies.";
 		this.m.Value = 200;
 	}

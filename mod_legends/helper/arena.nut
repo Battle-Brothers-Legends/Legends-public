@@ -36,7 +36,7 @@ if (!("Arena" in ::Legends))
 			_list.push({
 				id = 10,
 				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
 			});
 		});
 	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") == 5 && _bro.getSkills().hasTrait(::Legends.Trait.PitFighter)) {
@@ -45,7 +45,7 @@ if (!("Arena" in ::Legends))
 			_list.push({
 				id = 10,
 				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
 			});
 		});
 	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 12 && _bro.getSkills().hasTrait(::Legends.Trait.ArenaFighter)) {
@@ -54,7 +54,7 @@ if (!("Arena" in ::Legends))
 			_list.push({
 				id = 10,
 				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
 			});
 		});
 	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 25 && (_bro.getSkills().hasTrait(::Legends.Trait.ArenaVeteran))) {
@@ -63,7 +63,7 @@ if (!("Arena" in ::Legends))
 			_list.push({
 				id = 10,
 				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
 			});
 		});
 	} else if (_bro.getFlags().getAsInt("ArenaFightsWon") >= 50 && _bro.getSkills().hasTrait(::Legends.Trait.LegendArenaChampion)) {
@@ -72,7 +72,7 @@ if (!("Arena" in ::Legends))
 			_list.push({
 				id = 10,
 				icon = skill.getIcon(),
-				text = _bro.getName() + " is now " + this.Const.Strings.getArticle(skill.getName()) + skill.getName()
+				text = _bro.getName() + " is now " + ::Const.Strings.getArticle(skill.getName()) + skill.getName()
 			});
 		});
 	}

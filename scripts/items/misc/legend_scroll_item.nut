@@ -18,7 +18,7 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 	}
 
 	function randomSelection() {
-		local r = this.Math.rand(0, 100);
+		local r = ::Math.rand(0, 100);
 		if (r < 50)
 			this.m.Selection = 0;
 		else if (r < 55)
@@ -102,11 +102,11 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 			return this.getSellPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.World.State.getCurrentTown().getBeastPartsPriceMult()));
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * ::World.State.getCurrentTown().getBeastPartsPriceMult()));
 		}
 		else {
-			return this.Math.ceil(this.getValue());
+			return ::Math.ceil(this.getValue());
 		}
 	}
 
@@ -119,11 +119,11 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 			return this.getBuyPrice();
 		}
 
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null) {
-			return this.Math.floor(this.getValue() * this.World.State.getCurrentTown().getBeastPartsPriceMult());
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null) {
+			return ::Math.floor(this.getValue() * ::World.State.getCurrentTown().getBeastPartsPriceMult());
 		}
 		else {
-			return this.Math.floor(this.getValue());
+			return ::Math.floor(this.getValue());
 		}
 	}
 
@@ -197,7 +197,7 @@ this.legend_scroll_item <- ::inherit("scripts/items/item", {
 	}
 
 	function gainExperience( _actor ) {
-		_actor.addXP( this.Math.rand(100, 150));
+		_actor.addXP( ::Math.rand(100, 150));
 	}
 
 	function gainTrainingEffect( _actor ) {

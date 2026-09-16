@@ -6,8 +6,8 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_145.png";
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_145";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -35,7 +35,7 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/armor_body.png",
-				text = "Head and Body armor is increased by [color=" + this.Const.UI.Color.PositiveValue + "]15%[/color]"
+				text = "Head and Body armor is increased by [color=" + ::Const.UI.Color.PositiveValue + "]15%[/color]"
 			},
 			{
 				id = 12,
@@ -49,21 +49,21 @@ this.legend_rock_unhold_potion_effect <- this.inherit("scripts/skills/skill", {
 
 	function onUpdate( _properties )
 	{
-		_properties.ArmorMult[this.Const.BodyPart.Head] *= 1.15;
-		_properties.ArmorMult[this.Const.BodyPart.Body] *= 1.15;
+		_properties.ArmorMult[::Const.BodyPart.Head] *= 1.15;
+		_properties.ArmorMult[::Const.BodyPart.Body] *= 1.15;
 	}
 
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isRockUnholdPotionAcquired", false);
+			::World.Statistics.getFlags().set("isRockUnholdPotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isRockUnholdPotionAcquired", false);
+		::World.Statistics.getFlags().set("isRockUnholdPotionAcquired", false);
 	}
 
 });

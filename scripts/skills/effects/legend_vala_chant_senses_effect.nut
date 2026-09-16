@@ -36,7 +36,7 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 				id = 10,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "[color=%positive%]+" + this.Math.round(bonus) + "[/color] Melee and Ranged Defense"
+				text = "[color=%positive%]+" + ::Math.round(bonus) + "[/color] Melee and Ranged Defense"
 			}
 		];
 	}
@@ -113,8 +113,8 @@ this.legend_vala_chant_senses_effect <- this.inherit("scripts/skills/effects/leg
 			bonus *= 0.5;
 		}
 
-		_properties.MeleeDefense += this.Math.round(bonus);
-		_properties.RangedDefense += this.Math.round(bonus);
+		_properties.MeleeDefense += ::Math.round(bonus);
+		_properties.RangedDefense += ::Math.round(bonus);
 
 		this.updateEffect(true);
 	}

@@ -8,10 +8,10 @@
 				s.Options = [{
 					Text = "I\'d hire more if only we could afford it.",
 					function getResult( _event ) {
-						if (this.World.Assets.getMoney() >= 4000) {
+						if (::World.Assets.getMoney() >= 4000) {
 							return "D";
 						} else {
-							return this.Math.rand(1, 100) <= 50 ? "E" : "F";
+							return ::Math.rand(1, 100) <= 50 ? "E" : "F";
 						}
 						return "E";
 					}
@@ -54,13 +54,13 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.lone_wolf" || this.World.Assets.getOrigin().getID() == "scenario.gladiators" || this.World.Assets.getOrigin().getID() == "scenario.legends_beggar" || this.World.Assets.getOrigin().getID() == "scenario.legends_scaling_beggar")
+		if (::World.Assets.getOrigin().getID() == "scenario.lone_wolf" || ::World.Assets.getOrigin().getID() == "scenario.gladiators" || ::World.Assets.getOrigin().getID() == "scenario.legends_beggar" || ::World.Assets.getOrigin().getID() == "scenario.legends_scaling_beggar")
 			return;
 
-		if (this.World.getTime().Days <= 10)
+		if (::World.getTime().Days <= 10)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() == 1 || brothers.len() > 5)
 			return;

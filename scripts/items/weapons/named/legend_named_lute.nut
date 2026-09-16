@@ -8,12 +8,12 @@ this.legend_named_lute <- this.inherit("scripts/items/weapons/named/named_weapon
 		this.m.Variant = 1;
 		this.updateVariant();
 		this.m.ID = "weapon.legend_named_lute";
-		this.m.NameList = this.Const.Strings.LuteNames;
+		this.m.NameList = ::Const.Strings.LuteNames;
 		this.m.Description = "A beautiful lute with a ornate body and strong neck. The artisan who made this instrument certainly knew what they were doing.";
-		this.m.WeaponType = this.Const.Items.WeaponType.Musical | this.Const.Items.WeaponType.Mace;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Musical | ::Const.Items.WeaponType.Mace;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsDoubleGrippable = false;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

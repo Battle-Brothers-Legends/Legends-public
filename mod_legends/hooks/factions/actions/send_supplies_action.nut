@@ -5,7 +5,7 @@
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			return;
 		}
@@ -30,9 +30,9 @@
 		else if (data.Forts.len() > 0)
 		{
 			// ask a fort to send supply to another fort
-			if (data.Forts.len() >= 2 && this.Math.rand(1, 100) <= 50)
+			if (data.Forts.len() >= 2 && ::Math.rand(1, 100) <= 50)
 			{
-				starts.push(data.Forts.remove(this.Math.rand(0, data.Forts.len() - 1)));
+				starts.push(data.Forts.remove(::Math.rand(0, data.Forts.len() - 1)));
 				dests.extend(data.Forts);
 			}
 			// ask small town to send supply to big town
@@ -99,14 +99,14 @@
 
 	o.getReputationToDifficultyLightMult <- function ()
 	{
-		return this.faction_action.getReputationToDifficultyLightMult() * (this.World.FactionManager.isCivilWar() ? 1.1 : 1.0);
+		return this.faction_action.getReputationToDifficultyLightMult() * (::World.FactionManager.isCivilWar() ? 1.1 : 1.0);
 	}
 
 	o.getResourcesForParty <- function ( _settlement, _faction )
 	{
-		if (_settlement == null) return this.Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
+		if (_settlement == null) return ::Math.rand(100, 200) * this.getReputationToDifficultyLightMult();
 
-		return (this.Math.rand(83, 127) + this.Math.round(0.11 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult();
+		return (::Math.rand(83, 127) + ::Math.round(0.11 * ::Math.max(1, _settlement.getResources()))) * this.getReputationToDifficultyLightMult();
 	}
 
 	o.convertBudgetToMult <- function ( _budget )
@@ -114,7 +114,7 @@
 		if (_budget == 0)
 			return 1.0;
 
-		return 1.0 + this.Math.floor(_budget / 900) * 0.01;
+		return 1.0 + ::Math.floor(_budget / 900) * 0.01;
 	}
 
 	o.pickSpawnList <- function ( _settlement, _faction )
@@ -122,13 +122,13 @@
 		switch(::Math.rand(1, 4))
 		{
 		case 1:
-			return this.Const.World.Spawn.Mercenaries;
+			return ::Const.World.Spawn.Mercenaries;
 
 		case 2:
-			return this.Const.World.Spawn.MixedNobleCaravan;
+			return ::Const.World.Spawn.MixedNobleCaravan;
 
 		default:
-			return this.Const.World.Spawn.NobleCaravan;
+			return ::Const.World.Spawn.NobleCaravan;
 		}
 	}
 
@@ -137,18 +137,18 @@
 		switch(::Math.rand(1, 3))
 		{
 		case 1:
-			_party.getLoot().ArmorParts = this.Math.rand(15, 30);
+			_party.getLoot().ArmorParts = ::Math.rand(15, 30);
 			break;
 
 		case 2:
-			_party.getLoot().Medicine = this.Math.rand(20, 40);
+			_party.getLoot().Medicine = ::Math.rand(20, 40);
 			break;
 
 		default:
-			_party.getLoot().Ammo = this.Math.rand(75, 150);
+			_party.getLoot().Ammo = ::Math.rand(75, 150);
 		}
 
-		_party.getLoot().Money = this.Math.floor(this.Math.rand(0, 100) * this.Math.rand(100, 200) * 0.01);
+		_party.getLoot().Money = ::Math.floor(::Math.rand(0, 100) * ::Math.rand(100, 200) * 0.01);
 	}
 
 	o.addToPartyInventory <- function ( _party )
@@ -185,11 +185,11 @@
 
 		local mult = this.convertBudgetToMult(budget);
 		local party = _faction.spawnEntity(this.m.Start.getTile(), "Supply Caravan", false, this.pickSpawnList(this.m.Start, _faction), this.getResourcesForParty(this.m.Start, _faction) * mult);
-		party.getSprite("body").setBrush(this.Const.World.Spawn.NobleCaravan.Body);
+		party.getSprite("body").setBrush(::Const.World.Spawn.NobleCaravan.Body);
 		party.getSprite("base").Visible = false;
 		party.setMirrored(true);
 		party.setDescription("A caravan with armed escorts transporting provisions, supplies and equipment between settlements.");
-		party.setFootprintType(this.Const.World.FootprintsType.Caravan);
+		party.setFootprintType(::Const.World.FootprintsType.Caravan);
 		party.getFlags().set("IsCaravan", true);
 		party.getFlags().set("IsRandomlySpawned", true);
 
@@ -204,8 +204,8 @@
 		::Const.World.Common.WorldEconomy.Trade.setupTrade(party, this.m.Start, this.m.Dest, budget);
 
 		local c = party.getController();
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Attack).setEnabled(false);
-		c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Attack).setEnabled(false);
+		c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 		local move = this.new("scripts/ai/world/orders/move_order");
 		move.setDestination(this.m.Dest.getTile());
 		move.setRoadsOnly(true);

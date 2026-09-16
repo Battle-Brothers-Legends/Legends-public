@@ -22,16 +22,16 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 			"the Alchemist"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.MeleeSkill,
-			this.Const.Attributes.Fatigue
+			::Const.Attributes.MeleeSkill,
+			::Const.Attributes.Fatigue
 		];
-		this.m.Bodies = this.Const.Bodies.SouthernMale;
-		this.m.Faces = this.Const.Faces.SouthernMale;
-		this.m.Hairs = this.Const.Hair.SouthernMale;
-		this.m.HairColors = this.Const.HairColors.Southern;
+		this.m.Bodies = ::Const.Bodies.SouthernMale;
+		this.m.Faces = ::Const.Faces.SouthernMale;
+		this.m.Hairs = ::Const.Hair.SouthernMale;
+		this.m.HairColors = ::Const.HairColors.Southern;
 		this.m.BeardChance = 50;
 		this.m.Ethnicity = 1;
-		this.m.BackgroundType = this.Const.BackgroundType.Educated;
+		this.m.BackgroundType = ::Const.BackgroundType.Educated;
 	}
 
 	function onChangeAttributes() {
@@ -45,11 +45,11 @@ this.legend_alchemist_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[3, ::Legends.Armor.Southern.vizier_gear]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.vizier_headgear],
 			[1, ::Legends.Helmet.Southern.engineer_hat]

@@ -39,19 +39,19 @@
 			::Legends.Traits.getID(::Legends.Trait.LegendSeductive)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill,
-			//this.Const.Attributes.Hitpoints,
-			//this.Const.Attributes.Fatigue
+			::Const.Attributes.RangedSkill,
+			//::Const.Attributes.Hitpoints,
+			//::Const.Attributes.Fatigue
 		];
 		this.m.Titles = [
 			"the Legend",
 			"the Old Guard",
 			"the Master"
 		];
-		this.m.Level = this.Math.rand(3, 5);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.Level = ::Math.rand(3, 5);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 	}
 
 	o.setGender <- function (_gender = -1)
@@ -94,10 +94,10 @@
 	{
 		this.character_background.onAdded();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
 			local actor = this.getContainer().getActor();
-			actor.setTitle(this.Const.Strings.SwordmasterTitles[this.Math.rand(0, this.Const.Strings.SwordmasterTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.SwordmasterTitles[::Math.rand(0, ::Const.Strings.SwordmasterTitles.len() - 1)]);
 		}
 	}
 
@@ -106,9 +106,9 @@
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		if (this.Const.DLC.Unhold)
+		if (::Const.DLC.Unhold)
 		{
-			r = this.Math.rand(0, 2);
+			r = ::Math.rand(0, 2);
 
 			if (r == 0)
 			{
@@ -125,7 +125,7 @@
 		}
 		else
 		{
-			r = this.Math.rand(0, 1);
+			r = ::Math.rand(0, 1);
 
 			if (r == 0)
 			{
@@ -136,13 +136,13 @@
 				items.equip(this.new("scripts/items/weapons/arming_sword"));
 			}
 		}
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_tunic],
 			[1, ::Legends.Armor.Standard.linen_tunic],
 			[1, ::Legends.Armor.Standard.padded_surcoat]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[67, ::Legends.Helmet.None],
 			[33, ::Legends.Helmet.Standard.greatsword_hat]
 		]));

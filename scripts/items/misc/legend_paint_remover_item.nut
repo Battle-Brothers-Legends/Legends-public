@@ -7,7 +7,7 @@ this.legend_paint_remover_item <- this.inherit("scripts/items/trade/trading_good
 		this.m.Name = "Paint Remover";
 		this.m.Description = "A bucket of paint remover. Everyone makes mistakes, and this is a good way for those with shakey hands to cover up their mistakes without looking like a charlatan.";
 		this.m.Icon = "consumables/paint_remover.png";
-		this.m.Culture = this.Const.World.Culture.Neutral;
+		this.m.Culture = ::Const.World.Culture.Neutral;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ProducingBuildings = [
 			"attached_location.dye_maker"

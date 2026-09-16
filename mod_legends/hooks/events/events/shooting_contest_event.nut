@@ -14,13 +14,13 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 			return;
 
-		if (this.World.Assets.getAmmo() <= 80)
+		if (::World.Assets.getAmmo() <= 80)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -43,12 +43,12 @@
 		if (candidates.len() < 2)
 			return;
 
-		this.m.Archer1 = candidates[this.Math.rand(0, candidates.len() - 1)];
+		this.m.Archer1 = candidates[::Math.rand(0, candidates.len() - 1)];
 		this.m.Archer2 = null;
 		this.m.Score = candidates.len() * 5;
 
 		do {
-			this.m.Archer2 = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Archer2 = candidates[::Math.rand(0, candidates.len() - 1)];
 		} while (this.m.Archer2 == null || this.m.Archer2.getID() == this.m.Archer1.getID());
 	}
 })

@@ -51,12 +51,12 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			"the Frenzied"
 		];
 		this.m.Ethnicity = 0;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
-		this.m.Level = this.Math.rand(2, 4);
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Outlaw | this.Const.BackgroundType.Untalented;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMax;
+		this.m.Level = ::Math.rand(2, 4);
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Outlaw | ::Const.BackgroundType.Untalented;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	function getTooltip ()
@@ -102,7 +102,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -127,12 +127,12 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 3;
 		 this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor],
 			[1, ::Legends.Armor.Barbarian.rugged_scale_armor],
 			[1, ::Legends.Armor.Barbarian.scrap_metal_armor],
@@ -141,7 +141,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_faceguard_helmet],
 			[1, ::Legends.Helmet.Barbarian.crude_metal_helmet],
@@ -154,7 +154,7 @@ this.legend_berserker_background <- this.inherit("scripts/skills/backgrounds/cha
 			"weapons/barbarians/heavy_rusty_axe"
 		];
 
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 	}
 
 	function onSerialize( _out )

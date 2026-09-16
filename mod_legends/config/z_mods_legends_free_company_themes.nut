@@ -8,7 +8,7 @@
 	ID = "MyList",
 	UnitOutfits = [
 		{
-			ID = this.Const.EntityType.FreeCompanyLeader,
+			ID = ::Const.EntityType.FreeCompanyLeader,
 			Outfits = ["my_leader_outfit_00", "my_leader_outfit_01"]
 		}
 	]
@@ -19,14 +19,14 @@
 ::Const.FreeCompanyCoordinationList <- [
 	{
 		ID = "Default",															//ID doesn't matter really but it's good to have
-		Names = this.Const.Strings.FreeCompanyNames,							   //Custom name array
+		Names = ::Const.Strings.FreeCompanyNames,							   //Custom name array
 		Description = "An ordinary mercenary company, out for their own crowns.",  //Custom description
 		FootprintsType = "Mercenaries",											//custom footprints type (think raiders having beast tracks)
 		Spawn = "FreeCompany",													 //custom spawnlist
-		LootTable = clone this.Const.FreeCompanyDefaultLootTable				   //Custom loot tables
+		LootTable = clone ::Const.FreeCompanyDefaultLootTable				   //Custom loot tables
 		UnitOutfits = [															//Unit outfits each need a type and an array of outfits
 			// {
-			//	 Type = this.Const.EntityType.FreeCompanyLeader,
+			//	 Type = ::Const.EntityType.FreeCompanyLeader,
 			//	 Outfits = [ [1, ::Legends.Outfit.mercenary_archer_outfit_00] ]
 			// }
 		]														   //Leave this for default outfits
@@ -42,12 +42,12 @@
 	// 	ID = "green",
 	// 	Names = [
 	// 		"Green Power Rangers", "Etc"
-	// 	], //Alternatively can store this in a const in strings and reference this.Const.Strings.GreenCompanyNames
+	// 	], //Alternatively can store this in a const in strings and reference ::Const.Strings.GreenCompanyNames
 	// 	UnitOutfits = [
 	// 		{
-	// 			Type = this.Const.EntityType.FreeCompanyLeader,
+	// 			Type = ::Const.EntityType.FreeCompanyLeader,
 	// 			Outfits = [ "green_leader_outfit_00" ]
-	// 			// Outfits = this.Const.Outfits.GreenFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
+	// 			// Outfits = ::Const.Outfits.GreenFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
 	// 		}
 	// 	]
 	// }
@@ -63,11 +63,11 @@
 		Spawn = "GildedCompany",
 		UnitOutfits = [
 			{
-				Type = this.Const.EntityType.FreeCompanyLeader,
+				Type = ::Const.EntityType.FreeCompanyLeader,
 				Outfits = [
 					::Legends.Outfit.mercenary_leader_outfit_gilded_00
 				]
-				// Outfits = this.Const.Outfits.GildedFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
+				// Outfits = ::Const.Outfits.GildedFreeCompanyLeader //alternatively can store the outfits elsewhere to keep this clean
 			}
 		]
 	}

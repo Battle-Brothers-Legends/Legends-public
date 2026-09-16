@@ -24,11 +24,11 @@
 					});
 					_event.m.Peddler.worsenMood(2, "Failed in a plan and lost a large amount of money");
 
-					if (_event.m.Peddler.getMoodState() < this.Const.MoodState.Neutral) {
+					if (_event.m.Peddler.getMoodState() < ::Const.MoodState.Neutral) {
 						this.List.push({
 							id = 10,
-							icon = this.Const.MoodStateIcon[_event.m.Peddler.getMoodState()],
-							text = _event.m.Peddler.getName() + this.Const.MoodStateEvent[_event.m.Peddler.getMoodState()]
+							icon = ::Const.MoodStateIcon[_event.m.Peddler.getMoodState()],
+							text = _event.m.Peddler.getName() + ::Const.MoodStateEvent[_event.m.Peddler.getMoodState()]
 						});
 					}
 				}

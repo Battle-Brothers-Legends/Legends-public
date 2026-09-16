@@ -14,12 +14,12 @@
 			Types = [
 				{
 					MaxR = 380,
-					Type = this.Const.World.Spawn.Troops.LegendManhunter,
+					Type = ::Const.World.Spawn.Troops.LegendManhunter,
 					Cost = 15
 				},
 				{
 					MinR = 220,
-					Type = this.Const.World.Spawn.Troops.LegendManhunterVeteran,
+					Type = ::Const.World.Spawn.Troops.LegendManhunterVeteran,
 					Cost = 20
 				}
 			]
@@ -29,12 +29,12 @@
 			Types = [
 				{
 					MaxR = 400,
-					Type = this.Const.World.Spawn.Troops.LegendManhunterRanged,
+					Type = ::Const.World.Spawn.Troops.LegendManhunterRanged,
 					Cost = 20
 				},
 				{
 					MinR = 240,
-					Type = this.Const.World.Spawn.Troops.LegendManhunterVeteranRanged,
+					Type = ::Const.World.Spawn.Troops.LegendManhunterVeteranRanged,
 					Cost = 28
 				}
 			]

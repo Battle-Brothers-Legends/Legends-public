@@ -4,7 +4,7 @@ this.legend_lindwurm_scales_cloak_blueprint <- this.inherit("scripts/crafting/bl
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_lindwurm_scales_cloak";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		this.m.PreviewCraftable = this.new("scripts/items/legend_armor/cloak/legend_lindwurm_scales_cloak");
 
 		this.m.Cost = 350;

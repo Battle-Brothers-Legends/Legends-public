@@ -2,9 +2,9 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.NobleSureshot;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.NobleSureshot.XP;
+		this.m.Type = ::Const.EntityType.NobleSureshot;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.NobleSureshot.XP;
 		this.legend_randomized_unit_noble_abstract.create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_ranged_agent");
 		this.m.AIAgent.setActor(this);
@@ -19,7 +19,7 @@ this.legend_noble_sureshot <- this.inherit("scripts/entity/tactical/legend_rando
 	{
 		this.legend_randomized_unit_noble_abstract.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.NobleSureshot);
+		b.setValues(::Const.Tactical.Actor.NobleSureshot);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;

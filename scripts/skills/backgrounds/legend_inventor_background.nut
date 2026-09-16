@@ -24,9 +24,9 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 			"the Eclectic",
 			"the Tinkerer"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Educated;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Notorious;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.BackgroundType = ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Notorious;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 	}
 
 	function getTooltip()
@@ -61,7 +61,7 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 	{
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
-		actor.setTitle(this.Const.Strings.InventorTitles[this.Math.rand(0, this.Const.Strings.InventorTitles.len() - 1)]);
+		actor.setTitle(::Const.Strings.InventorTitles[::Math.rand(0, ::Const.Strings.InventorTitles.len() - 1)]);
 	}
 
 	function onAddEquipment()
@@ -69,16 +69,16 @@ this.legend_inventor_background <- this.inherit("scripts/skills/backgrounds/char
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.apron]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.mouth_piece],
 			[1, ::Legends.Helmet.Standard.headscarf]
 		]));
 
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 		if (r == 0)
 		{
 			items.equip(this.new("scripts/items/weapons/knife"));

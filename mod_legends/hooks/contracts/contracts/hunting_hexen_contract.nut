@@ -24,8 +24,8 @@
 		foreach (s in this.m.States) {
 			if (s.ID == "Offer") {
 				s.end = function () {
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
-					local r = this.Math.rand(1, 100);
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 20) {
 						this.Flags.set("IsSpiderQueen", true);
@@ -38,13 +38,13 @@
 					}
 
 					this.Flags.set("StartTime", this.Time.getVirtualTimeF());
-					this.Flags.set("Delay", this.Math.rand(10, 30) * 1.0);
-					local envoy = this.World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
+					this.Flags.set("Delay", ::Math.rand(10, 30) * 1.0);
+					local envoy = ::World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
 					local items = envoy.getItems();
-					items.equip(this.Const.World.Common.pickArmor([
+					items.equip(::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.linen_tunic]
 					]));
-					items.equip(this.Const.World.Common.pickHelmet([
+					items.equip(::Const.World.Common.pickHelmet([
 						[1, ::Legends.Helmet.Standard.feathered_hat],
 						[3, ::Legends.Helmet.None]
 					]));
@@ -54,7 +54,7 @@
 					this.Flags.set("ProtecteeID", envoy.getID());
 					this.Contract.m.Home.setLastSpawnTimeToNow();
 					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 		}
@@ -75,14 +75,14 @@
 				Text = "To arms!",
 				function getResult()
 				{
-					local p = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local p = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					p.CombatID = "Hexen";
 					p.Entities = [];
-					p.Music = this.Const.Music.CivilianTracks;
+					p.Music = ::Const.Music.CivilianTracks;
 					p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
 					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Random;
-					this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.RandomHexenBeastsNoSpiders, 70 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Beasts).getID());
-					this.World.Contracts.startScriptedCombat(p, false, true, true);
+					::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.RandomHexenBeastsNoSpiders, 70 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.Beasts).getID());
+					::World.Contracts.startScriptedCombat(p, false, true, true);
 					return 0;
 				}
 			}],
@@ -99,14 +99,14 @@
 				}
 
 				local loot = [];
-				local r = this.Math.rand(1, 100);
+				local r = ::Math.rand(1, 100);
 				if (r <= 35)
 					loot.push(this.new("scripts/items/misc/witch_hair_item"));
 				else if (r <= 70)
 					loot.push(this.new("scripts/items/misc/mysterious_herbs_item"));
 				else
 					loot.push(this.new("scripts/items/misc/poisoned_apple_item"));
-				if (this.Math.rand(1, 100) <= 30)
+				if (::Math.rand(1, 100) <= 30)
 					loot.push(this.new("scripts/items/loot/jade_broche_item"));
 				this.List.extend(::Legends.EventList.addItems(loot, ::World.Assets.getStash()));
 			}

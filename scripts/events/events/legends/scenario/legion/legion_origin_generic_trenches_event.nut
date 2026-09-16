@@ -4,7 +4,7 @@ this.legion_origin_generic_trenches_event <- this.inherit("scripts/events/event"
 	function create() {
 		this.m.ID = "event.legion_origin_generic_trenches";
 		this.m.Title = "Along the road...";
-		this.m.Cooldown = 80.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 80.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			//—
 			ID = "A",
@@ -21,7 +21,7 @@ this.legion_origin_generic_trenches_event <- this.inherit("scripts/events/event"
 	}
 
 	function onUpdateScore() {
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
@@ -40,7 +40,7 @@ this.legion_origin_generic_trenches_event <- this.inherit("scripts/events/event"
 			return;
 		}
 
-		local locations = this.World.EntityManager.getLocations();
+		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
 		foreach (v in locations) {
 			if (v.getTile().getDistanceTo(currentTile) < 10) {

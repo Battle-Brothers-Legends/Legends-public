@@ -36,13 +36,13 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 			::Legends.Traits.getID(::Legends.Trait.LegendDoubleTongued)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.RangedSkill
 		];
 		this.m.GoodEnding = "A supporter of your cause from the start, %name%, has joined you in retirement, leaving the company not long after you did. Though %they% was a lowly peasant, %they% proved %themselves% in battle after battle and slowly became as trusted and valued a friend as one can find in a mercenary company.";
 		this.m.BadEnding = "Supporting you from the start, %name% was as loyal as %they% was talented. %They% stayed with the company for a time before eventually leaving to forge out a path for %themselves%. The other day, you received a letter from the mercenary stating that %they% had started %their% own company and was in dire need of help. Unfortunately, the message was dated to nearly a full year ago. When you investigated the existence of %their% company, you learned that it had been completely annihilated in a battle between nobles.";
-		this.m.BackgroundType = this.Const.BackgroundType.Combat;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 		this.m.PerkTreeDynamicMins.Defense = 3;
 	}
 
@@ -58,7 +58,7 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onPrepareVariables( _vars )
 	{
-		_vars.extend(this.World.Assets.getFounderNames());
+		_vars.extend(::World.Assets.getFounderNames());
 	}
 
 	function onChangeAttributes()
@@ -71,9 +71,9 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 		this.character_background.onAdded();
 		local actor = this.getContainer().getActor();
 
-		if (this.Math.rand(0, 3) == 3)
+		if (::Math.rand(0, 3) == 3)
 		{
-			actor.setTitle(this.Const.Strings.SellswordTitles[this.Math.rand(0, this.Const.Strings.SellswordTitles.len() - 1)]);
+			actor.setTitle(::Const.Strings.SellswordTitles[::Math.rand(0, ::Const.Strings.SellswordTitles.len() - 1)]);
 		}
 	}
 
@@ -84,12 +84,12 @@ this.legend_foot_soldier_background <- this.inherit("scripts/skills/backgrounds/
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
 		items.equip(this.new("scripts/items/shields/wooden_shield"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.padded_surcoat],
 			[2, ::Legends.Armor.Standard.basic_mail_shirt]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[10, ::Legends.Helmet.Standard.aketon_cap],
 			[10, ::Legends.Helmet.Standard.open_leather_cap],
 			[10, ::Legends.Helmet.Standard.kettle_hat],

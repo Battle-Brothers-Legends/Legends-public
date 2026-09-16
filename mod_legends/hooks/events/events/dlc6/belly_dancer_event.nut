@@ -13,7 +13,7 @@
 			if (s.ID == "C") {
 				s.Text = "[img]gfx/ui/events/event_163.png[/img]{After the belly dancer takes your crown you wait around for the show to end. You approach as she picks up daggers and coins. She looks at you with a wry smile.%SPEECH_ON%Ah, an admirer. Sorry, only one show tonight, darling.%SPEECH_OFF%You shake your head and ask if she knows anything about fighting. She nods.%SPEECH_ON%The Gilded One\'s gleam is upon us all, but not at all hours or days. Sometimes, we must find our own way through the dark. I take it by your dress that you are a Crownling, putting that blade of yours where it does and sometimes does not belong.%SPEECH_OFF%You nod and ask her if she\'d be interested in joining. She drops, bowlegged, and sinks to the ground like a collapsing truss. She counts her crowns.%SPEECH_ON%I\'m not sure if you have a good eye for the wandering nature of ones such as myself. Perhaps there is a certain... recognition, for those of us willing to kill for what we want. That said, you\'ll have to try harder to get me to go around killing for coin...%SPEECH_OFF%}";
 				s.start <- function( _event ) {
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.BellyDancer]);
 					_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + _event.m.Town.getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit %them%.";

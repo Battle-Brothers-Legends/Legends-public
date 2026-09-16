@@ -35,10 +35,10 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			"the Trophyhunter",
 			"the Hunter"
 		];
-		this.m.Level = this.Math.rand(3, 5);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger;
+		this.m.Level = ::Math.rand(3, 5);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger;
 	}
 
 	function setGender(_gender = -1) {
@@ -78,14 +78,14 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			local body = actor.getSprite("body");
 			tattoo_body.setBrush("scar_02_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 75)
+		if (::Math.rand(1, 100) <= 75)
 		{
 			tattoo_head.setBrush("scar_02_head");
 			tattoo_head.Visible = true;
@@ -96,7 +96,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{
@@ -117,12 +117,12 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			items.equip(this.new("scripts/items/weapons/javelin"));
 		}
 
-		if (this.Math.rand(1, 100) <= 50 && items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (::Math.rand(1, 100) <= 50 && items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			items.equip(this.new("scripts/items/tools/throwing_net"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.ragged_surcoat],
 			[1, ::Legends.Armor.Standard.thick_tunic],
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -130,7 +130,7 @@ this.legend_guildmaster_background <- this.inherit("scripts/skills/backgrounds/c
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Standard.dark_cowl],

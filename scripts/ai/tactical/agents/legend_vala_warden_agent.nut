@@ -3,11 +3,11 @@ this.legend_vala_warden_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function create()
 	{
 		this.agent.create();
-		this.m.ID = this.Const.AI.Agent.ID.Ghost;
+		this.m.ID = ::Const.AI.Agent.ID.Ghost;
 
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Protect] = 1.5;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackBow] = 0.5;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.AttackDefault] = 1.0;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Protect] = 1.5;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.AttackBow] = 0.5;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.AttackDefault] = 1.0;
 		this.m.Properties.TargetPriorityHitchanceMult = 0.5;
 		this.m.Properties.TargetPriorityHitpointsMult = 0.3;
 		this.m.Properties.TargetPriorityRandomMult = 0.0;

@@ -95,8 +95,8 @@
 
 		if (this.m.Condition == 0)
 		{
-			local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || actor != null && !actor.isNull() && this.isKindOf(actor.get(), "player");
-			local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
+			local isPlayer = this.m.LastEquippedByFaction == ::Const.Faction.Player || actor != null && !actor.isNull() && this.isKindOf(actor.get(), "player");
+			local isBlacksmithed = isPlayer && !::Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
 			if (!isBlacksmithed && this.isNamed()) // already dropped from vanilla blacksmithed
 			{
@@ -138,7 +138,7 @@
 				this.m.ConditionMax += this.getFlags().getAsInt(rune.Flag);
 			}
 		}
-		this.m.Condition = this.Math.minf(this.m.ConditionMax, this.m.Condition);
+		this.m.Condition = ::Math.minf(this.m.ConditionMax, this.m.Condition);
 
 		if (this.isRuned())
 		{

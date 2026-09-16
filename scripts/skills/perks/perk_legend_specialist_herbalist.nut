@@ -5,10 +5,10 @@ this.perk_legend_specialist_herbalist <- this.inherit("scripts/skills/legend_spe
 			"weapon.goblin_notched_blade"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.OneHanded
+			::Const.Items.ItemType.OneHanded
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Sword
+			::Const.Items.WeaponType.Sword
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

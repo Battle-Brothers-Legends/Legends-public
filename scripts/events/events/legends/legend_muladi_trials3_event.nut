@@ -5,7 +5,7 @@ this.legend_muladi_trials3_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legends.muladi.trials3";
 		this.m.Title = "At Camp...";
-		this.m.Cooldown = 15.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 15.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "Start",
 			Text = "[img]gfx/ui/events/event_05.png[/img]{You\'re consulting your ledgers in your tent when %muladi% strides in. They\'re looking much better since their myriad injuries from southern bandits and northern peasants alike, and you invite them to sit across from you. Closing your books and meeting the muladi\'s gaze, you see the distress and uncertainty in %their_muladi% expression; they look both deep in thought and completely listless, like a scribe doing battle with their own mind. You ask them what\'s going on, and for a moment energy returns to their eyes.%SPEECH_ON%Captain. I\'ve been thinking a lot lately. About me, my place in the company. About who I am- what I am.%SPEECH_OFF%You can\'t hide your concern as the mercenary-muladi across fidgets and searches their mind for answers they know aren\'t there. %SPEECH_ON%The truth is, I don\'t really know anymore. Before I became what the southerners call \'muladi\', I felt empty, directionless. Like a ship without sails, just swaying to the winds of whatever came its way. In wandering the south of the world, I thought I would discover that purpose, but only found prejudice, anger, fear, and more questions. Whether ploughing fields or hunting hyenas, everything I did felt like an imitation of what I should be doing, of who I should be. Wandering felt like I would make my own path, but I just felt more lost, caught in a storm of confusion where I never felt myself, never felt at home. Then I saw your company recruiting and thought maybe I could get enough crowns to buy my place somewhere, to purchase my own mind back from doubt and unknowing: to figure out who I was.%SPEECH_OFF%You worry perhaps they have and are here to announce their departure from the %company%, but they continue before you can dwell on such concerns.%SPEECH_ON%But I found something else whilst here. I found people who don\'t mock my past, who don\'t fear me for what I am. With the others, I don\'t fear that my life between two worlds dooms me to live amongst neither, because here we are, fighting and living and bleeding in a world of our own making. The longer I spend here, the more I see of the pain in the lands I traverse, the more I feel at peace with my own being, as though my existence isn\'t some aberration or mockery of the life I could or should be leading. And yet, whilst it makes me feel more secure in who I am, it makes me wonder if my life was never amongst the sands or in the settlements of the north, but here, amongst friends who I would fight and die for, and who in turn would fight and die for me. I\'m not sure, captain. To be muladi or mercenary or both, I feel certain my place is here amongst the company, but I don\'t know what that makes me anymore. Does that make sense?%SPEECH_OFF%The place of any man within the world is a scary thing to grapple with, and you understand %them_muladi% all too well. You consider their growth in your band of mercenaries, their skills honed both in battle and across their travels. Thoughtfully, you respond...}",
@@ -39,7 +39,7 @@ this.legend_muladi_trials3_event <- this.inherit("scripts/events/event", {
 				_event.m.Muladi.getBackground().m.RawDescription += this.buildText("\nHaving struggled and bled for their life between two worlds, %muladi% has reaffirmed who they are, spitting in the faces of those who would decry and denounce %them_muladi%. Assured in the path they walk, this muladi promises a most fierce retribution that fuses the calculated cunning of the south, and raw strength of the north.");
 
 				local entry = ::Legends.EventList.changeMood(_event.m.Muladi, 3.0, "Despite everything, It\'s still me.");
-				if (_event.m.Muladi.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Muladi.getMoodState() >= ::Const.MoodState.Neutral)
 					this.List.push(entry);
 
 				local bonusStats = 0;
@@ -82,7 +82,7 @@ this.legend_muladi_trials3_event <- this.inherit("scripts/events/event", {
 				_event.m.Muladi.resetPerks();
 
 				local entry = ::Legends.EventList.changeMood(_event.m.Muladi, 3.0, "Excited to carve out a new life with the company!");
-				if (_event.m.Muladi.getMoodState() >= this.Const.MoodState.Neutral)
+				if (_event.m.Muladi.getMoodState() >= ::Const.MoodState.Neutral)
 					this.List.push(entry);
 
 				local bonusStats = 0;

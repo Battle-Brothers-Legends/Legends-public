@@ -59,7 +59,7 @@ this.perk_legend_ironside <- this.inherit("scripts/skills/skill", {
 		if (myTile == null)
 			return 0;
 
-		this.Tactical.queryActorsInRange(myTile, 0, 1, this.isOpponent, result);
+		::Tactical.queryActorsInRange(myTile, 0, 1, this.isOpponent, result);
 
 		return result.Opponents * 0.05;
 	}

@@ -459,7 +459,7 @@ class Defs:
  "desc" :  "Numerous overlapping leather plates provide decent protection for most of the upper body.",
  "adesc" : "Includes armor of overlapping leather plates."
 },
-{"name": "cult_armor",               "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 30, "value" : 250, "con" : 55, "stam" : -7, "impactSound" : "leather", "invSound" : "leather",
+{"name": "cult_armor",               "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 30, "value" : 250, "con" : 55, "stam" : -7, "impactSound" : "leather", "invSound" : "leather",
  "title" :  "Cultist Leather Armor",
  "desc" :  "Dark, heavy leather armor adorned with occult symbols. It offers sturdy protection and was likely used in grim rituals.",
  "adesc" : "Includes leather armor adorned with occult symbols."
@@ -638,7 +638,7 @@ class Defs:
  "desc" :  "A sturdy yet flexible shirt of small, overlapping metal scales.",
  "adesc" : "Includes body vest with small overlapping metal scales."
 },
-{"name": "animal_hide_armor",                     "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 90, "max": 90, "value" : 100, "con" : 30, "stam" : -4, "impactSound" : "leather", "invSound" : "leather", "vanilla" : "body",
+{"name": "animal_hide_armor",                     "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 90, "max": 90, "value" : 100, "con" : 30, "stam" : -4, "impactSound" : "leather", "invSound" : "leather", "vanilla" : "body",
  "title" :  "Animal Hide Armor",
  "desc" :  "Heavy hides patched together to create a decent makeshift armor.",
  "adesc" : "Includes heavy hides patched together to create a decent makeshift armor."
@@ -648,12 +648,12 @@ class Defs:
  "desc" :  "This armor is made from heavy metal plates, scales and pieces of chain mail. The true armor of a northern warrior.",
  "adesc" : "Includes heavy metal plates, scales and pieces of chain mail. The true armor of a northern warrior."
 },
-{"name": "hide_and_bone_armor",                   "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 92, "max": 92, "value" : 350, "con" : 80, "stam" : -11, "impactSound" : "bone", "invSound" : "leather", "vanilla" : "body",
+{"name": "hide_and_bone_armor",                   "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 92, "max": 92, "value" : 350, "con" : 80, "stam" : -11, "impactSound" : "bone", "invSound" : "leather", "vanilla" : "body",
  "title" :  "Hide and Bone Armor",
  "desc" :  "Hide and bone are common materials in the northern regions. This armor is using both for decent protection.",
  "adesc" : "Includes hide and bone armor that is decent protection."
 },
-{"name": "animal_hide_armor_reinforced",           "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 97, "max": 97, "value" : 175, "con" : 55, "stam" : -9, "impactSound" : "leather", "invSound" : "leather", "vanilla" : "body",
+{"name": "animal_hide_armor_reinforced",           "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 97, "max": 97, "value" : 175, "con" : 55, "stam" : -9, "impactSound" : "leather", "invSound" : "leather", "vanilla" : "body",
  "title" :  "Reinforced Animal Hide Armor",
  "desc" :  "A reinforced animal hide armor fashioned from thick leather pieces with added mail and metal scales.",
  "adesc" : "Includes a reinforced animal hide armor fashioned from thick leather pieces with added mail and metal scales."
@@ -759,13 +759,13 @@ class Defs:
  "desc" :  "A heavy lamellar harness of metal plates that provides good protection, but is very fatiguing to wear.",
  "adesc" : "Includes a heavy lamellar harness of metal plates."
 },
-{"name": "diviner_jacket",           "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 6, "value" : 3000, "con" : 40, "stam" : -3, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "diviner_jacket",           "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 6, "value" : 3000, "con" : 40, "stam" : -3, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Diviner's Jacket",
  "desc" :  "An embellished jacket previously worn by the Diviner. You\'d expect the stench of rotting flesh to cling to it, but it remains pristine.",
  "adesc" : "Includes an embellished jacket.",
  "named" : { "con": { "min" : 35, "max" : 60 }, "fat": { "min" : 4, "max" : 2 }, "names" : ["Heretic\'s Wrap", "Beholder\'s vestments", "Jacket of the Augur", "Empyrian Coat", "Attestor\'s Skin", "Goreflesh Mantle"]  }
 },
-{"name": "fleshcultist_jacket",           "itemType" : "this.Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 6, "value" : 350, "con" : 30, "stam" : -3, "impactSound" : "leather", "invSound" : "cloth",
+{"name": "fleshcultist_jacket",           "itemType" : "::Const.Items.ItemType.Cultist", "layer": "plate", "min": 1, "max": 6, "value" : 350, "con" : 30, "stam" : -3, "impactSound" : "leather", "invSound" : "cloth",
  "title" :  "Faultfinder Jacket",
  "desc" :  "A heavy linen jacket worn by fault finders.",
  "adesc" : "Includes a heavy linen jacket worn by fault finders."

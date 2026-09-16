@@ -46,9 +46,9 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 			"the Sapling"
 		];
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid | this.Const.BackgroundType.Ranger;
-		// this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		// this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Druid | ::Const.BackgroundType.Ranger;
+		// this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		// this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	function setGender(_gender = -1) {
@@ -58,7 +58,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 
 	function onBuildDescription()
 	{
-		if(this.isBackgroundType(this.Const.BackgroundType.Female))
+		if(this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			return "{For some, the wild is a refuge. | It is said that woman is born with the wilderness in her, and that she does wrong by turning her back on it. | Civilization is a stain, one prolonged arming of every next-generation to better battle the ultimate enemy: Mother Nature herself. | In a time of war, it\'s not surprising that many once again seek refuge in the wild. | Some people flee from town to town. Others stop in between, disappearing into the tranquil forests.} {%name% once found a safe register amongst the trees, but that time is over. | Once a mysterious figure to hunters - the famed masskewatsthat - %name% now returns to civilization for reasons unknown. | %name%\'s got the hands of a blacksmith, but the hygiene of a pigsty. | Maybe it was spurned love, or maybe just war, but %name% has spent the last decade far from the rest of mankind. | Possibly a poacher who settled where she hunted, %name%\'s lived amongst the trees for untold years. | With cleverly stitched garb, %name%\'s atavistic appearance perhaps belies a past as a tailor or tanner.} {There is an obvious language barrier with the druid, but for some reason she seems very willing to fight. Let\'s hope his newfound \'calling\' doesn\'t have a darker purpose behind it. | Colorful and permanent ritual rites circle about her body. When asked why she wishes to join a band of mercenaries, she hoots and, with a crooked finger, replicates one of her fleshen arts across the sky. | Wounds, old and fresh, dot her already mottled body. And they are not superficial - this woman had been fighting something fierce in the wild. | One has to wonder if the calamities which chased her into the forests have come to chase her back out. | Judging by her wild grunting, it\'s doubtful she\'s here to rejoin civilization. | Years as a recluse haven\'t made the woman forget what a few crowns can get you. The question is, why did she come back? | She has the strength to wrestle a boar - and her many scars makes you wonder if perhaps she did.}";
 		}
@@ -80,7 +80,7 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -108,13 +108,13 @@ this.legend_druid_background <- this.inherit("scripts/skills/backgrounds/charact
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Fatigue] = 2;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Fatigue] = 2;
 		this.getContainer().getActor().fillTalentValues(2, true);
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.hide_and_bone_armor]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.bear_headpiece]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_staff"));

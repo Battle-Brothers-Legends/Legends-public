@@ -11,7 +11,7 @@ if (!("LegendMod" in ::Const))
 	{
 		// Contract Overhaul Phase 1
 		// For Phase 1, we will overhaul the system for Settlement contracts only
-		if (_faction.getType() == this.Const.FactionType.Settlement)
+		if (_faction.getType() == ::Const.FactionType.Settlement)
 		{
 			local name = _faction.getName();
 			if (::World.Flags.get("LastContractSettlement") == name)
@@ -52,7 +52,7 @@ if (!("LegendMod" in ::Const))
 	{
 		// Contract Overhaul Phase 1
 		// For Phase 1, we will overhaul the system for Settlement contracts only
-		if (_faction.getType() == this.Const.FactionType.Settlement)
+		if (_faction.getType() == ::Const.FactionType.Settlement)
 		{
 			return ::Math.rand(1,2) * ::World.getTime().SecondsPerDay;
 		}

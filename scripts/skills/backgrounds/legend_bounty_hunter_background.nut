@@ -42,11 +42,11 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 			"the Swine"
 		];
 		this.m.Ethnicity = 1;
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
-		this.m.BackgroundType = this.Const.BackgroundType.Outlaw;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
+		this.m.BackgroundType = ::Const.BackgroundType.Outlaw;
 
-		this.m.Level = this.Math.rand(3, 6);
+		this.m.Level = ::Math.rand(3, 6);
 	}
 
 	function setGender(_gender = -1) {
@@ -87,7 +87,7 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0) {
 			items.equip(this.new("scripts/items/weapons/battle_whip"));
@@ -105,13 +105,13 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 		}
 
 		items.equip(this.new("scripts/items/tools/throwing_net"));
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.assassin_robe],
 			[1, ::Legends.Armor.Southern.cloth_sash],
 			[1, ::Legends.Armor.Southern.blade_dancer_armor_00]
 		]));
 
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Southern.assassin_face_mask],
 			[1, ::Legends.Helmet.Standard.theamson_barbute_helmet],
 			[1, ::Legends.Helmet.Southern.blade_dancer_helmet_00]
@@ -121,6 +121,6 @@ this.legend_bounty_hunter_background <- this.inherit("scripts/skills/backgrounds
 
 	function onUpdate(_properties) {
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 });

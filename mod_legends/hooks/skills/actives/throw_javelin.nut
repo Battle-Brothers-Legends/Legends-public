@@ -50,7 +50,7 @@
 			});
 		}
 
-		if (this.Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
+		if (::Tactical.isActive() && this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions())) {
 			tooltip.push({
 				id = 9,
 				type = "text",
@@ -63,7 +63,7 @@
 	}
 
 	o.isUsable = function () {
-		local isUsable = !this.Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
+		local isUsable = !::Tactical.isActive() || this.skill.isUsable() && this.getAmmo() > 0;
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank)) {
 			return isUsable;
 		}
@@ -75,7 +75,7 @@
 		if (this.getContainer().hasPerk(::Legends.Perk.LegendPointBlank))
 			this.m.MinRange = 1;
 
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 		this.m.AdditionalAccuracy = 20 + this.m.Item.getAdditionalAccuracy();
 	}
 

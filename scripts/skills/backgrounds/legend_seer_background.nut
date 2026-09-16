@@ -31,15 +31,15 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 			"the Wise Woman",
 			"the Evoker"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Faces = ::Const.Faces.AllWhiteFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = null;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
+		this.m.Bodies = ::Const.Bodies.NorthernFemale;
 
-		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Educated;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.BackgroundType = ::Const.BackgroundType.Female | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Educated;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 		this.m.Level = 3;
 
 		this.m.CustomPerkTree = [
@@ -50,7 +50,6 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 			],
 			[
 				::Legends.Perk.Bullseye,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.QuickHands
 			],
 			[],
@@ -77,12 +76,12 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 
 	// 	if (_gender != 0) return;
 
-	// 	this.m.Faces = this.Const.Faces.AllWhiteMale;
-	// 	this.m.Hairs = this.Const.Hair.CommonMale;
-	// 	this.m.HairColors = this.Const.HairColors.All;
-	// 	this.m.Beards = this.Const.Beards.All;
-	// 	this.m.Bodies = this.Const.Bodies.Skinny;
-	// 	this.removeBackgroundType(this.Const.BackgroundType.Female);
+	// 	this.m.Faces = ::Const.Faces.AllWhiteMale;
+	// 	this.m.Hairs = ::Const.Hair.CommonMale;
+	// 	this.m.HairColors = ::Const.HairColors.All;
+	// 	this.m.Beards = ::Const.Beards.All;
+	// 	this.m.Bodies = ::Const.Bodies.Skinny;
+	// 	this.removeBackgroundType(::Const.BackgroundType.Female);
 	// }
 
 
@@ -110,15 +109,15 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Initiative] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Initiative] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));

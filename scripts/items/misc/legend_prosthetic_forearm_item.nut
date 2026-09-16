@@ -7,8 +7,8 @@ this.legend_prosthetic_forearm_item <- this.inherit("scripts/items/item", {
 		this.m.Name = "Prosthetic Forearm";
 		this.m.Description = "According to the inventor, this contraption is almost like the real thing. If the real thing had no feeling and control in their forearm, of course. It can hold a weapon, even if the fingers need to be adjusted with the other hand. Mercenaries particularly enjoy setting their new hand to give the one finger salute.";
 		this.m.Icon = "consumables/prosthetic_forearm.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsDroppedAsLoot = false;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
@@ -90,12 +90,12 @@ this.legend_prosthetic_forearm_item <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onUse( _actor, _item = null )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 		if (_actor.getSkills().hasSkill("injury.broken_elbow_joint"))
 		{
 			::Legends.Traits.grant(_actor, ::Legends.Trait.LegendProstheticForearm);

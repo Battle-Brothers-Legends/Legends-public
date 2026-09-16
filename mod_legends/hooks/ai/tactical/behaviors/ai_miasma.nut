@@ -97,28 +97,28 @@
 				}
 
 				local target_score = _skill.getMaxRange() - _myTile.getDistanceTo(target.getTile());
-				target_score = target_score + this.Const.AI.Behavior.MiasmaZOCBonus * target.getTile().getZoneOfControlCountOtherThan(target.getAlliedFactions());
+				target_score = target_score + ::Const.AI.Behavior.MiasmaZOCBonus * target.getTile().getZoneOfControlCountOtherThan(target.getAlliedFactions());
 
 				if (target.getHitpoints() <= 10)
 				{
-					target_score = target_score + this.Const.AI.Behavior.MiasmaAlmostDeadBonus;
+					target_score = target_score + ::Const.AI.Behavior.MiasmaAlmostDeadBonus;
 				}
 
 				if (::Legends.S.isEntityMovementDisabled(target))
 				{
-					target_score = target_score + this.Const.AI.Behavior.MiasmaStunnedBonus;
+					target_score = target_score + ::Const.AI.Behavior.MiasmaStunnedBonus;
 				}
 
 				target_score = target_score * target.getCurrentProperties().TargetAttractionMult;
 
 				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "miasma" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
 				{
-					target_score = target_score * this.Const.AI.Behavior.MiasmaOneTurnLeftMult;
+					target_score = target_score * ::Const.AI.Behavior.MiasmaOneTurnLeftMult;
 				}
 
 				if (!::Legends.S.isEntityMovementDisabled(target) && !target.getTile().hasZoneOfControlOtherThan(target.getAlliedFactions()) && !target.isAbleToWait())
 				{
-					target_score = target_score * this.Const.AI.Behavior.MiasmaVSWaitMult;
+					target_score = target_score * ::Const.AI.Behavior.MiasmaVSWaitMult;
 				}
 
 				score = score + target_score;
@@ -127,7 +127,7 @@
 
 			if (numAffected > 1)
 			{
-				score = score * this.Math.pow(this.Const.AI.Behavior.RootNumAffectedPOW, numAffected - 1);
+				score = score * ::Math.pow(::Const.AI.Behavior.RootNumAffectedPOW, numAffected - 1);
 			}
 
 			if (score > bestScore)
@@ -141,7 +141,7 @@
 		{
 			this.m.TargetTile = bestTarget;
 			this.m.TargetScore = bestScore;
-			return this.Math.maxf(0.1, bestScore * 0.1);
+			return ::Math.maxf(0.1, bestScore * 0.1);
 		}
 		else
 		{

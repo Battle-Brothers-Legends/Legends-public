@@ -3,7 +3,7 @@ this.fangshire <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgra
 	function create()
 	{
 		this.legend_helmet_upgrade.create();
-		this.m.Type = this.Const.Items.HelmetUpgrades.Vanity;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Vanity;
 		this.m.ID = "armor.head.fangshire";
 		this.m.Name = "Fangshire";
 		this.m.Description = "The Fangshire is a northern tiger\'s skull that nestles the faces of men deeply and darkly behind two ferocious fangs. Originally worn by Bjarund the Beastman, a fierce northern raider, it instilled fear into the hearts of his enemies as he went on bloody raids and burned down many a village along the coastline. When Bjarund was finally slain, Fangshire was taken as a trophy and went further south. Rumors proclaim that its wearer\'s eyes glow a sharpened yellow, allowing them to see through the very night.";
@@ -13,8 +13,8 @@ this.fangshire <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgra
 		this.m.ImpactSound = [
 			"sounds/enemies/skeleton_hurt_03.wav"
 		];
-		this.m.InventorySound = this.Const.Sound.ArmorLeatherImpact;
-		this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Legendary;
+		this.m.InventorySound = ::Const.Sound.ArmorLeatherImpact;
+		this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Legendary;
 		this.m.Value = 500;
 		this.m.Condition = 40;
 		this.m.ConditionMax = 40;

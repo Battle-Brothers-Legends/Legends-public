@@ -40,7 +40,7 @@
 							break;
 
 						case 5:
-							item = this.Const.World.Common.pickArmor([
+							item = ::Const.World.Common.pickArmor([
 								[1, ::Legends.Armor.Ancient.ancient_mail],
 							]);
 							break;

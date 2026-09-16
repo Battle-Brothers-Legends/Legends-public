@@ -6,8 +6,8 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Siphon the life force from your foe to yourself - replenishing your health and diminishing theirs.\n\nIt will never kill your victim and you can\'t draw more health than you are missing. Damage drops off over distance and uses Melee Skill to hit.";
 		this.m.KilledString = "Frightened to death";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/drain", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
@@ -79,8 +79,8 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 			local Dy = (targetPos.Y - myPos.Y) / 2;
 			local x = myPos.X + Dx;
 			local y = myPos.Y + Dy;
-			local tileCoords = this.Tactical.worldToTile(this.createVec(x, y));
-			local tile = this.Tactical.getTile(tileCoords);
+			local tileCoords = ::Tactical.worldToTile(this.createVec(x, y));
+			local tile = ::Tactical.getTile(tileCoords);
 
 			if (tile.Level > _originTile.Level && (_originTile.Level - tile.Level < -1 || _targetTile.Level - tile.Level < -1))
 			{
@@ -108,7 +108,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		local max = actor.getHitpointsMax() - actor.getHitpoints();
 
 		local p = 0.3 - (0.05 * (distance - 1));
-		local damage = this.Math.min(max, p * _targetEntity.getHitpoints());
+		local damage = ::Math.min(max, p * _targetEntity.getHitpoints());
 
 		_properties.DamageArmorMult *= 0.0;
 		_properties.DamageDirectAdd = 0;
@@ -125,7 +125,7 @@ this.legend_siphon_skill <- this.inherit("scripts/skills/skill", {
 		}
 		local actor = this.getContainer().getActor();
 		local maxHP = actor.getHitpointsMax();
-		actor.setHitpoints(this.Math.min(actor.getHitpoints() + _damageInflictedHitpoints, maxHP));
+		actor.setHitpoints(::Math.min(actor.getHitpoints() + _damageInflictedHitpoints, maxHP));
 	}
 
 	function onUse( _user, _targetTile )

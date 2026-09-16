@@ -15,7 +15,7 @@
 						location.onDiscovered();
 
 						if (entity.isHiddenToPlayer() && location.getTypeID() != "location.battlefield") {
-							this.World.Statistics.getFlags().increment("LocationsDiscovered");
+							::World.Statistics.getFlags().increment("LocationsDiscovered");
 
 							if (::World.Assets.m.ProfessionEffect.LegendCartographer > 0) {
 								local dist = 9999;
@@ -33,7 +33,7 @@
 
 								::World.Assets.addMoney(reward);
 
-								this.World.Ambitions.onLocationDiscovered(location);
+								::World.Ambitions.onLocationDiscovered(location);
 							}
 						}
 					}

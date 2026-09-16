@@ -117,47 +117,47 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 }
 
 ::Const.EntityType.BanditRabble <-
-	::Const.EntityType.addNew("rabble_orientation", "Bandit Rabble", "Bandit Rabble", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("rabble_orientation", "Bandit Rabble", "Bandit Rabble", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendCat <-
 	::Const.EntityType.addNew("cat_orientation", "Cat", "Cats");
 ::Const.EntityType.LegendOrcElite <-
-	::Const.EntityType.addNew("orc_elite_orientation", "Orc Elite", "Orc Elites", this.Const.FactionType.Orcs);
+	::Const.EntityType.addNew("orc_elite_orientation", "Orc Elite", "Orc Elites", ::Const.FactionType.Orcs);
 ::Const.EntityType.LegendOrcTyrant <-
-	::Const.EntityType.addNew("orc_elite_orientation", "Orc Tyrant", "Orc Tyrant", this.Const.FactionType.Orcs);
+	::Const.EntityType.addNew("orc_elite_orientation", "Orc Tyrant", "Orc Tyrant", ::Const.FactionType.Orcs);
 ::Const.EntityType.LegendOrcBehemoth <-
-	::Const.EntityType.addNew("orc_behemoth_orientation", "Orc Behemoth", "Orc Behemoths", this.Const.FactionType.Orcs);
+	::Const.EntityType.addNew("orc_behemoth_orientation", "Orc Behemoth", "Orc Behemoths", ::Const.FactionType.Orcs);
 ::Const.EntityType.LegendOrcMadBerserker <-
-	::Const.EntityType.addNew("orc_03_orientation", "Orc Mad Berserker", "Orc Mad Berserkers", this.Const.FactionType.Orcs);
+	::Const.EntityType.addNew("orc_03_orientation", "Orc Mad Berserker", "Orc Mad Berserkers", ::Const.FactionType.Orcs);
 ::Const.EntityType.LegendWhiteDirewolf <-
-	::Const.EntityType.addNew("white_direwolf_orientation", "White Direwolf", "White Direwolves", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("white_direwolf_orientation", "White Direwolf", "White Direwolves", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendSkinGhoul <-
-	::Const.EntityType.addNew("skin_ghoul_orientation", "Skin Ghoul", "Skin Ghouls", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("skin_ghoul_orientation", "Skin Ghoul", "Skin Ghouls", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendStollwurm <-
-	::Const.EntityType.addNew("stollwurm_orientation", "Stollwurm", "Stollwurmer", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("stollwurm_orientation", "Stollwurm", "Stollwurmer", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendRockUnhold <-
-	::Const.EntityType.addNew("rock_unhold_orientation", "Rock Unhold", "Rock Unholds", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("rock_unhold_orientation", "Rock Unhold", "Rock Unholds", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendRedbackSpider <-
-	::Const.EntityType.addNew("redback_spider_orientation", "Redback Spider", "Redback Spiders", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("redback_spider_orientation", "Redback Spider", "Redback Spiders", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendSpiderCluster <-
-	::Const.EntityType.addNew("spider_cluster_orientation", "Webknecht Cluster", "Webknecht Clusters", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("spider_cluster_orientation", "Webknecht Cluster", "Webknecht Clusters", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendDemonAlp <-
-	::Const.EntityType.addNew("demonalp_orientation", "Demon Alp", "Demon Alps", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("demonalp_orientation", "Demon Alp", "Demon Alps", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendHexeLeader <-
-	::Const.EntityType.addNew("hexen_leader_orientation", "Hexe Coven Leader", "Hexe Coven Leaders", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("hexen_leader_orientation", "Hexe Coven Leader", "Hexe Coven Leaders", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendGreenwoodSchrat <-
-	::Const.EntityType.addNew("greenwood_schrat_orientation", "Heartwood Schrat", "Heartwood Schrats", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("greenwood_schrat_orientation", "Heartwood Schrat", "Heartwood Schrats", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendGreenwoodSchratSmall <-
-	::Const.EntityType.addNew("greenwood_schrat_small_orientation", "Heartwood Sapling", "Heartwood Saplings", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("greenwood_schrat_small_orientation", "Heartwood Sapling", "Heartwood Saplings", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendWhiteWarwolf <-
-	::Const.EntityType.addNew("white_direwolf_orientation", "White Warwolf", "White Warwolves", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("white_direwolf_orientation", "White Warwolf", "White Warwolves", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendBanshee <-
-	::Const.EntityType.addNew("banshee_orientation_2", "Winselmutter", "Winselmutters", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("banshee_orientation_2", "Winselmutter", "Winselmutters", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendDemonHound <-
-	::Const.EntityType.addNew("hollenhound_orientation", "Höllenhund", "Höllenhunds", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("hollenhound_orientation", "Höllenhund", "Höllenhunds", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendVampireLord <-
-	::Const.EntityType.addNew("vampire_lord_orientation", "Necrosavant Lord", "Necrosavant Lords", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("vampire_lord_orientation", "Necrosavant Lord", "Necrosavant Lords", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendRobberBaron <-
-	::Const.EntityType.addNew("banditwarlord_orientation", "Robber Baron", "Robber Barons", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("banditwarlord_orientation", "Robber Baron", "Robber Barons", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendPeasantButcher <-
 	::Const.EntityType.addNew("butcher_orientation", "Butcher", "Butchers");
 ::Const.EntityType.LegendPeasantBlacksmith <-
@@ -179,43 +179,43 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.LegendPeasantWitchHunter <-
 	::Const.EntityType.addNew("witchhunter_orientation", "Witch Hunter", "Witch Hunters");
 ::Const.EntityType.LegendHalberdier <-
-	::Const.EntityType.addNew("halberdier_orientation", "Halberdier", "Halberdiers", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("halberdier_orientation", "Halberdier", "Halberdiers", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.LegendSlinger <-
-	::Const.EntityType.addNew("slinger_orientation", "Slinger", "Slingers", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("slinger_orientation", "Slinger", "Slingers", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.LegendFencer <-
-	::Const.EntityType.addNew("fencer_orientation", "Fencer", "Fencers", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("fencer_orientation", "Fencer", "Fencers", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.BanditOutrider <-
-	::Const.EntityType.addNew("banditoutrider_orientation", "Bandit Outrider", "Bandit Outriders", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("banditoutrider_orientation", "Bandit Outrider", "Bandit Outriders", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendBear <-
-	::Const.EntityType.addNew("bear_orientation", "Bear", "Bears", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("bear_orientation", "Bear", "Bears", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendCatapult <-
 	::Const.EntityType.addNew("catapult_01_orientation", "Catapult", "Catapults");
 ::Const.EntityType.LegendHorse <-
 	::Const.EntityType.addNew("horse_orientation", "Horse", "Horses");
 ::Const.EntityType.SkeletonGladiator <-
-	::Const.EntityType.addNew("gladiator_orientation", "Ancient Gladiator", "Ancient Gladiators", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("gladiator_orientation", "Ancient Gladiator", "Ancient Gladiators", ::Const.FactionType.Undead);
 ::Const.EntityType.BanditRabblePoacher <-
-	::Const.EntityType.addNew("rabble_poacher_orientation", "Bandit Rabble Poacher", "Bandit Rabble Poachers", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("rabble_poacher_orientation", "Bandit Rabble Poacher", "Bandit Rabble Poachers", ::Const.FactionType.Bandits);
 ::Const.EntityType.BanditVermes <-
-	::Const.EntityType.addNew("bandit_raider_orientation", "Infected Bandit", "Bandit Vermes", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("bandit_raider_orientation", "Infected Bandit", "Bandit Vermes", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendManhunter <-
-	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter", "Manhunters", this.Const.FactionType.OrientalCityState);
+	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter", "Manhunters", ::Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendManhunterVeteran <-
-	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran", "Manhunter Veterans", this.Const.FactionType.OrientalCityState);
+	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran", "Manhunter Veterans", ::Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendMummyLight <-
-	::Const.EntityType.addNew("mummy_light_orientation", "Embalmed Slave", "Embalmed Slaves", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("mummy_light_orientation", "Embalmed Slave", "Embalmed Slaves", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendMummyMedium <-
-	::Const.EntityType.addNew("mummy_medium_orientation", "Embalmed Soldier", "Embalmed Soldiers", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("mummy_medium_orientation", "Embalmed Soldier", "Embalmed Soldiers", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendMummyHeavy <-
-	::Const.EntityType.addNew("mummy_heavy_orientation", "Embalmed Noble", "Embalmed Nobles", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("mummy_heavy_orientation", "Embalmed Noble", "Embalmed Nobles", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendMummyQueen <-
-	::Const.EntityType.addNew("mummy_queen_orientation", "Embalmed Queen", "Embalmed Queens", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("mummy_queen_orientation", "Embalmed Queen", "Embalmed Queens", ::Const.FactionType.Undead);
 // ::Const.EntityType.KoboldFighter <-
-// 	::Const.EntityType.addNew("kobold_fighter_orientation", "Kobold Fighter", "Kobold Fighters", this.Const.FactionType.Goblins);
+// 	::Const.EntityType.addNew("kobold_fighter_orientation", "Kobold Fighter", "Kobold Fighters", ::Const.FactionType.Goblins);
 // ::Const.EntityType.KoboldWolfrider <-
-// 	::Const.EntityType.addNew("kobold_wolfrider_orientation", "Kobold Wolfrider", "Kobold Wolfriders", this.Const.FactionType.Goblins);
+// 	::Const.EntityType.addNew("kobold_wolfrider_orientation", "Kobold Wolfrider", "Kobold Wolfriders", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendMummyPriest <-
-	::Const.EntityType.addNew("mummy_priest_orientation", "Embalmed Priest", "Embalmed Priests", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("mummy_priest_orientation", "Embalmed Priest", "Embalmed Priests", ::Const.FactionType.Undead);
 ::Const.EntityType.FreeCompanySpearman <-
 	::Const.EntityType.addNew("mercenary_orientation", "Free Company Spearman", "Free Company Spearmen");
 ::Const.EntityType.FreeCompanySlayer <-
@@ -239,56 +239,56 @@ for (local i = -1; i < ::Const.EntityIcon.len(); i++) {
 ::Const.EntityType.FreeCompanyLeaderLow <-
 	::Const.EntityType.addNew("mercenary_orientation", "Free Company Ringleader", "Free Company Ringleaders");
 ::Const.EntityType.LegendManhunterRanged <-
-	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter Handgonner", "Manhunter Handgonners", this.Const.FactionType.OrientalCityState);
+	::Const.EntityType.addNew("nomad_02_orientation", "Manhunter Handgonner", "Manhunter Handgonners", ::Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendManhunterVeteranRanged <-
-	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran Handgonner", "Manhunter Veteran Handgonners", this.Const.FactionType.OrientalCityState);
+	::Const.EntityType.addNew("nomad_05_orientation", "Manhunter Veteran Handgonner", "Manhunter Veteran Handgonners", ::Const.FactionType.OrientalCityState);
 ::Const.EntityType.LegendNobleGuard <-
-	::Const.EntityType.addNew("footman_veteran_orientation", "Royal Guard", "Royal Guards", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("footman_veteran_orientation", "Royal Guard", "Royal Guards", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.LegendManAtArms <-
-	::Const.EntityType.addNew("footman_veteran_orientation", "Veteran Knight", "Veteran Knights", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("footman_veteran_orientation", "Veteran Knight", "Veteran Knights", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.LegendBasiliskDrone <-
-	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Drone", "Basilisk Drones", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Drone", "Basilisk Drones", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendBasiliskDroneLow <-
-	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Drone", "Basilisk Drones", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Drone", "Basilisk Drones", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendCaravanPolearm <-
-	::Const.EntityType.addNew("caravan_hand_orientation", "Caravan Polearm", "Caravan Polearms", this.Const.FactionType.Settlement);
+	::Const.EntityType.addNew("caravan_hand_orientation", "Caravan Polearm", "Caravan Polearms", ::Const.FactionType.Settlement);
 ::Const.EntityType.NobleEliteFootman <-
-	::Const.EntityType.addNew("footman_veteran_orientation", "Elite Footman", "Elite Footmen", this.Const.FactionType.NobleHouse);
+	::Const.EntityType.addNew("footman_veteran_orientation", "Elite Footman", "Elite Footmen", ::Const.FactionType.NobleHouse);
 ::Const.EntityType.NoblePollax <-
 	::Const.EntityType.addNew("billman_orientation", "Pollaxe", "Pollaxes");
 ::Const.EntityType.NobleSureshot <-
 	::Const.EntityType.addNew("arbalester_orientation", "Sureshot", "Sureshots");
 ::Const.EntityType.LegendBasiliskSentry <-
-	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentry", "Basilisk Sentries", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("basilisk_drone_orientation", "Basilisk Sentry", "Basilisk Sentries", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendSighthound <-
 	::Const.EntityType.addNew("dawg_orientation", "Sighthound", "Sighthounds");
 ::Const.EntityType.LegendArmoredSighthound <-
 	::Const.EntityType.addNew("dawg_orientation", "Armored Sighthound", "Armored Sighthound");
 ::Const.EntityType.LegendEnragedHyena <-
-	::Const.EntityType.addNew("enraged_hyena_orientation", "Enraged Hyena", "Enraged Hyenas", this.Const.FactionType.Beasts);
+	::Const.EntityType.addNew("enraged_hyena_orientation", "Enraged Hyena", "Enraged Hyenas", ::Const.FactionType.Beasts);
 ::Const.EntityType.LegendGoblinHarrier <-
-	::Const.EntityType.addNew("goblin_harrier_orientation", "Goblin Harrier", "Goblin Harriers", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_harrier_orientation", "Goblin Harrier", "Goblin Harriers", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinFiend <-
 	::Const.EntityType.addNew("goblin_fiend_orientation", "Goblin Fiend", "Goblin Fiends", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinTribeDefender <-
 	::Const.EntityType.addNew("goblin_tribe_defender_orientation", "Goblin Tribe Defender", "Goblin Tribe Defenders", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinDirewolfRider <-
-	::Const.EntityType.addNew("goblin_direwolf_rider_orientation", "Direwolf Rider", "Direwolf Riders", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_direwolf_rider_orientation", "Direwolf Rider", "Direwolf Riders", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinWhiteDirewolfRider <-
-	::Const.EntityType.addNew("goblin_white_direwolf_rider_orientation", "White Direwolf Rider", "White Direwolf Riders", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_white_direwolf_rider_orientation", "White Direwolf Rider", "White Direwolf Riders", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendGoblinWitchDoctor <-
-	::Const.EntityType.addNew("goblin_witchdoctor_orientation", "Goblin Witchdoctor", "Goblin Witchdoctors", this.Const.FactionType.Goblins);
+	::Const.EntityType.addNew("goblin_witchdoctor_orientation", "Goblin Witchdoctor", "Goblin Witchdoctors", ::Const.FactionType.Goblins);
 ::Const.EntityType.LegendBarbarianPillager <-
-	::Const.EntityType.addNew("barbarian_pillager_orientation", "Barbarian Pillager", "Barbarian Pillagers", this.Const.FactionType.Barbarians);
+	::Const.EntityType.addNew("barbarian_pillager_orientation", "Barbarian Pillager", "Barbarian Pillagers", ::Const.FactionType.Barbarians);
 ::Const.EntityType.LegendBarbarianBloodletter <-
-	::Const.EntityType.addNew("barbarian_marauder_orientation", "Barbarian Bloodletter", "Barbarian Bloodletters", this.Const.FactionType.Barbarians);
+	::Const.EntityType.addNew("barbarian_marauder_orientation", "Barbarian Bloodletter", "Barbarian Bloodletters", ::Const.FactionType.Barbarians);
 ::Const.EntityType.LegendBarbarianRunechosen <-
-	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Barbarian Runechosen", "Barbarian Runechosen", this.Const.FactionType.Barbarians);
+	::Const.EntityType.addNew("barbarian_runechosen_orientation", "Barbarian Runechosen", "Barbarian Runechosen", ::Const.FactionType.Barbarians);
 ::Const.EntityType.LegendWicht <-
-	::Const.EntityType.addNew("wicht_orientation", "Wicht", "Wichts", this.Const.FactionType.Undead);
+	::Const.EntityType.addNew("wicht_orientation", "Wicht", "Wichts", ::Const.FactionType.Undead);
 ::Const.EntityType.LegendBanditExecutioner <-
-	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendBanditExecutionerHigh <-
-	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", this.Const.FactionType.Bandits);
+	::Const.EntityType.addNew("bandit_executioner_orientation", "Bandit Executioner", "Bandit Executioners", ::Const.FactionType.Bandits);
 ::Const.EntityType.LegendEscapedGladiator <-
-	::Const.EntityType.addNew("gladiator_orientation", "Escaped Gladiator", "Escaped Gladiators", this.Const.FactionType.OrientalBandits);
+	::Const.EntityType.addNew("gladiator_orientation", "Escaped Gladiator", "Escaped Gladiators", ::Const.FactionType.OrientalBandits);

@@ -7,8 +7,8 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		this.m.KilledString = "Impaled";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/impale", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/impale_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -18,8 +18,8 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsAOE = true;
 		this.m.IsWeaponSkill = true;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 		this.m.DirectDamageMult = 0.3;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 30;
@@ -45,12 +45,12 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSplit);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSplit);
 
 		local ret = false;
 		if (::Legends.S.isEntityNullOrDead(_user)) {
@@ -58,7 +58,7 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local ownTile = _user.getTile();
-		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && this.Math.abs(_targetTile.Level - ownTile.Level) <= 1)
+		if (_targetTile.IsOccupiedByActor && _targetTile.getEntity().isAttackable() && ::Math.abs(_targetTile.Level - ownTile.Level) <= 1)
 		{
 			ret = this.attackEntity(_user, _targetTile.getEntity());
 		}
@@ -69,7 +69,7 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local forwardTile = _targetTile.getNextTile(dir);
 
-			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && this.Math.abs(forwardTile.Level - ownTile.Level) <= 1)
+			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && ::Math.abs(forwardTile.Level - ownTile.Level) <= 1)
 			{
 				ret = this.attackEntity(_user, forwardTile.getEntity()) || ret;
 			}
@@ -79,15 +79,15 @@ this.legend_run_through_skill <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetSelected( _targetTile ) {
-		this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
 		local ownTile = this.m.Container.getActor().getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 
 		if (_targetTile.hasNextTile(dir)) {
 			local forwardTile = _targetTile.getNextTile(dir);
 
-			if (this.Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
+			if (::Math.abs(forwardTile.Level - ownTile.Level) <= 1) {
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, forwardTile, forwardTile.Pos.X, forwardTile.Pos.Y);
 			}
 		}
 	}

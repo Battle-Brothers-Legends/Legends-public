@@ -30,9 +30,9 @@
 			"the Jester",
 			"the Fool"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Performing;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.BackgroundType = ::Const.BackgroundType.Performing;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.getTooltip = function ()
@@ -67,7 +67,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -90,18 +90,18 @@
 			items.equip(this.new("scripts/items/weapons/legend_ranged_wooden_flail"));
 		}
 
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
 			items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.jesters_hat],
 			[1, ::Legends.Helmet.None]
 		]));
@@ -110,7 +110,7 @@
 	o.onUpdate = function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 
 });

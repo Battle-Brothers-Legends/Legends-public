@@ -34,7 +34,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Traits.getID(::Legends.Trait.Fainthearted)
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.MeleeSkill
+			::Const.Attributes.MeleeSkill
 		];
 		this.m.Titles = [
 			"the Cultist",
@@ -49,12 +49,12 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			"the Fanatic",
 			"the Zealot"
 		];
-		this.m.Level = this.Math.rand(1, 2);
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
-		this.m.BackgroundType = this.Const.BackgroundType.Cultist | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.Level = ::Math.rand(1, 2);
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Cultist | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 	}
 
 	function setGender(_gender = -1) {
@@ -77,20 +77,20 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function onSetAppearance()
 	{
-		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (!this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
 			local tattoo_head = actor.getSprite("tattoo_head");
 
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
 				local body = actor.getSprite("body");
 				tattoo_body.setBrush("tattoo_01_" + body.getBrush().Name);
 				tattoo_body.Visible = true;
 			}
 
-			if (this.Math.rand(1, 100) <= 50)
+			if (::Math.rand(1, 100) <= 50)
 			{
 				tattoo_head.setBrush("tattoo_01_head");
 				tattoo_head.Visible = true;
@@ -100,7 +100,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function updateAppearance()
 	{
-		if (!this.isBackgroundType(this.Const.BackgroundType.Female))
+		if (!this.isBackgroundType(::Const.BackgroundType.Female))
 		{
 			local actor = this.getContainer().getActor();
 			local tattoo_body = actor.getSprite("tattoo_body");
@@ -118,9 +118,9 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		local items = this.getContainer().getActor().getItems();
 		local r;
 
-		if (this.Const.DLC.Wildmen)
+		if (::Const.DLC.Wildmen)
 		{
-			r = this.Math.rand(1, 100);
+			r = ::Math.rand(1, 100);
 
 			if (r <= 50)
 			{
@@ -139,7 +139,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 		else
 		{
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
 				items.equip(this.new("scripts/items/weapons/short_bow"));
 			}
@@ -151,7 +151,7 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			items.equip(this.new("scripts/items/ammo/quiver_of_arrows"));
 		}
 
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{
@@ -162,13 +162,13 @@ this.legend_lurker_background <- this.inherit("scripts/skills/backgrounds/charac
 			items.addToBag(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.tattered_sackcloth],
 			[1, ::Legends.Armor.Standard.leather_wraps],
 			[1, ::Legends.Armor.Standard.monk_robe],
 			[1, ::Legends.Armor.Standard.cultist_leather_robe]
 		]));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.cultist_hood],
 			[1, ::Legends.Helmet.Standard.hood],
 			[1, ::Legends.Helmet.Standard.cultist_leather_hood]

@@ -28,10 +28,10 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 			"the Clairvoyant",
 			"the Diviner"
 		];
-		this.m.BackgroundType = this.Const.BackgroundType.Performing | this.Const.BackgroundType.Educated | this.Const.BackgroundType.Untalented;
+		this.m.BackgroundType = ::Const.BackgroundType.Performing | ::Const.BackgroundType.Educated | ::Const.BackgroundType.Untalented;
 		this.m.Level = 1;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Good;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Good;
 	}
 
 	function setGender(_gender = -1) {
@@ -52,15 +52,15 @@ this.legend_illusionist_background <- this.inherit("scripts/skills/backgrounds/c
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.RangedDefense] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.RangedDefense] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_seer_robes]
 		]));
 		items.equip(this.new("scripts/items/weapons/legend_mystic_staff"));
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.legend_seer_hat]
 		]));
 	}

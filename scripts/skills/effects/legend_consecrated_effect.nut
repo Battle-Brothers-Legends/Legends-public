@@ -12,7 +12,7 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/holyfire_circle.png";
 		this.m.IconMini = "mini_fire_circle";
 		this.m.Overlay = "fire_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -53,12 +53,12 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 	{
 		// Commenting this out so that adding this effect via the Holy Flame tile effect will impact the countdown
 		// If adding from any other source, you will need to manually set m.TurnsLeft
-		// this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		// this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 	}
 
 	function onRefresh()
 	{
-		this.m.TurnsLeft = this.Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
+		this.m.TurnsLeft = ::Math.max(1, 2 + this.getContainer().getActor().getCurrentProperties().NegativeStatusEffectDuration);
 	}
 
 	function applyDamage()
@@ -71,7 +71,7 @@ this.legend_consecrated_effect <- this.inherit("scripts/skills/skill", {
 		hitInfo.BodyPart = ::Const.BodyPart.Body;
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
-		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " is burnt by holy flames");
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " is burnt by holy flames");
 		actor.onDamageReceived(this.getEffectOwner(), this, hitInfo);
 	}
 

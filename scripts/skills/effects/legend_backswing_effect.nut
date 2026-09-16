@@ -9,7 +9,7 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/backswing.png";
 		this.m.IconMini = "backswing_mini";
 		this.m.Overlay = "backswing_mini";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsHidden = false;
 		this.m.IsRemovedAfterBattle = true;
@@ -65,7 +65,7 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 	{
 		if (!this.isBackswing())
 			return;
-		local skills = this.getContainer().getAllSkillsOfType(this.Const.SkillType.Active);
+		local skills = this.getContainer().getAllSkillsOfType(::Const.SkillType.Active);
 		foreach (skill in skills)
 		{
 			if (this.m.Skills.find(skill.getID()) != null)

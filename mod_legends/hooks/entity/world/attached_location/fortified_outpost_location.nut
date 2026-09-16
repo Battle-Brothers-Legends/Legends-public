@@ -1,60 +1,50 @@
-::mods_hookExactClass("entity/world/attached_location/fortified_outpost_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/fortified_outpost_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Large barracks housing a host of professional soldiers. Contributes military weapons, armor, soldiers and knights to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list )
-	{
+	o.onUpdateDraftList = function (_list) {
 		_list.push(::Legends.Background.LegendBlacksmith);
 		_list.push(::Legends.Background.LegendIronmonger);
 
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1) {
 			_list.push(::Legends.Background.LegendMasterArcher);
+		}
 
-		if (this.Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1) {
 			_list.push(::Legends.Background.LegendFootSoldier);
-		
-		if (this.Math.rand(0, 9) == 1)
+		}
+
+		if (::Math.rand(0, 9) == 1) {
 			_list.push(::Legends.Background.LegendHouseGuard);
-		
-		if (this.Math.rand(0, 9) == 1)
+		}
+
+		if (::Math.rand(0, 9) == 1) {
 			_list.push(::Legends.Background.LegendArbalester);
-		
+		}
+
 		onUpdateDraftList(_list);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 65,
 				P = 1.0,
 				S = "shields/legend_tower_shield"
 			});
-			_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_train"
-			});
-		}
-		else if (_id == "building.weaponsmith")
-		{
+		} else if (_id == "building.weaponsmith") {
 			_list.push({
 				R = 20,
 				P = 1.0,
 				S = "weapons/legend_infantry_axe"
 			});
-		}
-		else if (_id == "building.armorsmith")
-		{
+		} else if (_id == "building.armorsmith") {
 			_list.push({
 				R = 50,
 				P = 1.0,

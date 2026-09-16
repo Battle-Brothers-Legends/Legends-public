@@ -7,26 +7,26 @@
 				s.Options[1] = {
 					Text = "Alright, I can spare a hand or few.",
 					function getResult( _event ) {
-						this.World.Assets.addMoralReputation(1);
-						return this.Math.rand(1, 100) <= 50 ? "B" : "C";
+						::World.Assets.addMoralReputation(1);
+						return ::Math.rand(1, 100) <= 50 ? "B" : "C";
 					}
 				}
 			}
 			if (s.ID == "B") {
 				s.Options[0].Text = "Don\'t get too used to this kind of work, mercenaries.";
 				s.start <- function ( _event ) {
-					this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationFavor, "You lend some help to build a mill");
+					::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationFavor, "You lend some help to build a mill");
 
 					this.List.push(::Legends.EventList.changeMoney(150));
 
-					local brothers = this.World.getPlayerRoster().getAll();
+					local brothers = ::World.getPlayerRoster().getAll();
 					this.List.push(::Legends.EventList.changeMoralReputation(1, false));
 					foreach( bro in brothers )
 					{
 						local id = bro.getBackground().getID();
 
 						if (id == ::Legends.Backgrounds.getID(::Legends.Background.Daytaler) || id == ::Legends.Backgrounds.getID(::Legends.Background.Mason) || id == ::Legends.Backgrounds.getID(::Legends.Background.Lumberjack) || id == ::Legends.Backgrounds.getID(::Legends.Background.Miller) || id == ::Legends.Backgrounds.getID(::Legends.Background.Farmhand) || id == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger)) {
-							if (this.Math.rand(1, 100) <= 33) {
+							if (::Math.rand(1, 100) <= 33) {
 								::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
 									this.List.push({
 										id = 10,
@@ -36,14 +36,14 @@
 								}.bindenv(this));
 							}
 
-							if (this.Math.rand(1, 100) <= 50) {
+							if (::Math.rand(1, 100) <= 50) {
 								bro.improveMood(0.5, "Helped build a mill");
 
-								if (bro.getMoodState() >= this.Const.MoodState.Neutral) {
+								if (bro.getMoodState() >= ::Const.MoodState.Neutral) {
 									this.List.push({
 										id = 10,
-										icon = this.Const.MoodStateIcon[bro.getMoodState()],
-										text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+										icon = ::Const.MoodStateIcon[bro.getMoodState()],
+										text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 									});
 								}
 							}
@@ -57,14 +57,14 @@
 			}
 			if (s.ID == "E") {
 				s.start <- function ( _event ) {
-					this.World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(this.Const.World.Assets.RelationFavor, "You lend some help to build a mill");
-					local brothers = this.World.getPlayerRoster().getAll();
+					::World.FactionManager.getFaction(_event.m.Town.getFactions()[0]).addPlayerRelation(::Const.World.Assets.RelationFavor, "You lend some help to build a mill");
+					local brothers = ::World.getPlayerRoster().getAll();
 
 					foreach( bro in brothers ) {
 						local id = bro.getBackground().getID();
 
 						if (id == ::Legends.Backgrounds.getID(::Legends.Background.Daytaler) || id == ::Legends.Backgrounds.getID(::Legends.Background.Mason) || id == ::Legends.Backgrounds.getID(::Legends.Background.Lumberjack) || id == ::Legends.Backgrounds.getID(::Legends.Background.Miller) || id == ::Legends.Backgrounds.getID(::Legends.Background.Farmhand) || id == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger)) {
-							if (this.Math.rand(1, 100) <= 33) {
+							if (::Math.rand(1, 100) <= 33) {
 								::Legends.Effects.grant(bro, ::Legends.Effect.Exhausted, function(_effect) {
 									this.List.push({
 										id = 10,
@@ -74,14 +74,14 @@
 								}.bindenv(this));
 							}
 
-							if (this.Math.rand(1, 100) <= 33) {
+							if (::Math.rand(1, 100) <= 33) {
 								bro.worsenMood(1.0, "Helped build a mill without getting paid");
 
-								if (bro.getMoodState() < this.Const.MoodState.Neutral) {
+								if (bro.getMoodState() < ::Const.MoodState.Neutral) {
 									this.List.push({
 										id = 10,
-										icon = this.Const.MoodStateIcon[bro.getMoodState()],
-										text = bro.getName() + this.Const.MoodStateEvent[bro.getMoodState()]
+										icon = ::Const.MoodStateIcon[bro.getMoodState()],
+										text = bro.getName() + ::Const.MoodStateEvent[bro.getMoodState()]
 									});
 								}
 							}

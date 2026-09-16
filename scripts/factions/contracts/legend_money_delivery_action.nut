@@ -3,7 +3,7 @@ this.legend_money_delivery_action <- this.inherit("scripts/factions/faction_acti
 	function create()
 	{
 		this.m.ID = "legend_money_delivery_action";
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 5;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 5;
 		this.m.IsStartingOnCooldown = false;
 		this.m.IsSettlementsRequired = true;
 		this.faction_action.create();
@@ -11,27 +11,27 @@ this.legend_money_delivery_action <- this.inherit("scripts/factions/faction_acti
 
 	function onUpdate( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.legend_deliver_money_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.legend_deliver_money_contract))
 		{
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 20 || this.Math.rand(1, 100) > 10)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 20 || ::Math.rand(1, 100) > 10)
 		{
 			return;
 		}
 
-		if (this.World.Assets.getMoralReputation() < 40)
+		if (::World.Assets.getMoralReputation() < 40)
 		{
 			return;
 		}
 
-		if (this.Math.rand(1, 100) > 20)
+		if (::Math.rand(1, 100) > 20)
 		{
 			return;
 		}
 
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local mySettlement = _faction.getSettlements()[0];
 		local candidates = 0;
 
@@ -88,7 +88,7 @@ this.legend_money_delivery_action <- this.inherit("scripts/factions/faction_acti
 		contract.setHome(_faction.getSettlements()[0]);
 		contract.setOrigin(_faction.getSettlements()[0]);
 		contract.setup();
-		this.World.Contracts.addContract(contract);
+		::World.Contracts.addContract(contract);
 	}
 
 });

@@ -9,8 +9,8 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 	},
 	function create()
 	{
-		this.m.ID = this.Const.AI.Behavior.ID.Corruption;
-		this.m.Order = this.Const.AI.Behavior.Order.Corruption;
+		this.m.ID = ::Const.AI.Behavior.ID.Corruption;
+		this.m.Order = ::Const.AI.Behavior.Order.Corruption;
 		this.m.IsThreaded = true;
 		this.behavior.create();
 	}
@@ -23,31 +23,31 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 		this.m.TargetScore = 0;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP)
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing)
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (this.Tactical.State.isAutoRetreat())
+		if (::Tactical.State.isAutoRetreat())
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
 		if (this.m.Skill == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		score = score * this.getFatigueScoreMult(this.m.Skill);
@@ -61,10 +61,10 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 
 		if (this.m.TargetTile == null)
 		{
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		return this.Const.AI.Behavior.Score.Corruption * score + this.m.TargetScore;
+		return ::Const.AI.Behavior.Score.Corruption * score + this.m.TargetScore;
 	}
 
 	function onExecute( _entity )
@@ -77,7 +77,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			if (this.m.TargetTile.IsVisibleForPlayer && _entity.isHiddenToPlayer())
 			{
 				_entity.setDiscovered(true);
-				_entity.getTile().addVisibilityForFaction(this.Const.Faction.Player);
+				_entity.getTile().addVisibilityForFaction(::Const.Faction.Player);
 			}
 
 			return false;
@@ -108,7 +108,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			myTile
 		];
 		local nearestOpponentDist = 9000;
-		local advancedAI = !this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.AI.LegendsCorruptionAdvancedAIDay;
+		local advancedAI = !::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.AI.LegendsCorruptionAdvancedAIDay;
 
 		foreach( o in _targets )
 		{
@@ -197,7 +197,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 				continue;
 			}
 
-			score = score + (this.m.Skill.getMaxRange() - this.Math.max(1, myTile.getDistanceTo(tile)));
+			score = score + (this.m.Skill.getMaxRange() - ::Math.max(1, myTile.getDistanceTo(tile)));
 
 			for( local i = 0; i < 6; i = ++i )
 			{
@@ -269,7 +269,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 						if (!adjacentTile.IsOccupiedByActor)
 						{
 						}
-						else if (this.Math.abs(affectedTile.Level - adjacentTile.Level) > 1)
+						else if (::Math.abs(affectedTile.Level - adjacentTile.Level) > 1)
 						{
 						}
 						else
@@ -278,7 +278,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 
 							if (entity.isAlliedWith(_entity))
 							{
-								helpScore = helpScore + this.Const.AI.Behavior.CorruptionNearAllyBonus;
+								helpScore = helpScore + ::Const.AI.Behavior.CorruptionNearAllyBonus;
 							}
 							else
 							{
@@ -303,14 +303,14 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 
 					if (myTile.getDistanceTo(targetTile) <= target.getIdealRange())
 					{
-						target_score = target_score + this.Const.AI.Behavior.CorruptionAttackingMeBonus;
+						target_score = target_score + ::Const.AI.Behavior.CorruptionAttackingMeBonus;
 					}
 
-					target_score = target_score * (this.getTargetValue(target.getID(), targetValues) * this.Const.AI.Behavior.CorruptionTargetValueMult);
+					target_score = target_score * (this.getTargetValue(target.getID(), targetValues) * ::Const.AI.Behavior.CorruptionTargetValueMult);
 
 					if (target.isTurnDone())
 					{
-						target_score = target_score * this.Const.AI.Behavior.CorruptionTurnDoneMult;
+						target_score = target_score * ::Const.AI.Behavior.CorruptionTurnDoneMult;
 					}
 
 					score = score + target_score;
@@ -324,12 +324,12 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 
 			if (redundantTiles >= 1.0)
 			{
-				score = score * this.Math.pow(this.Const.AI.Behavior.CorruptionRedundantPOW, redundantTiles);
+				score = score * ::Math.pow(::Const.AI.Behavior.CorruptionRedundantPOW, redundantTiles);
 			}
 
 			if (affectedTargets > 1)
 			{
-				score = score * this.Math.pow(this.Const.AI.Behavior.CorruptionNumAffectedPOW, affectedTargets - 1);
+				score = score * ::Math.pow(::Const.AI.Behavior.CorruptionNumAffectedPOW, affectedTargets - 1);
 			}
 
 			if (score > bestScore)

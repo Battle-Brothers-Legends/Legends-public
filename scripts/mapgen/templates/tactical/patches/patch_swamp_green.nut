@@ -17,22 +17,22 @@ this.patch_swamp_green <- this.inherit("scripts/mapgen/tactical_template", {
 		{
 			for( local y = _rect.Y; y < _rect.Y + _rect.H; y = ++y )
 			{
-				local tile = this.Tactical.getTileSquare(x, y);
+				local tile = ::Tactical.getTileSquare(x, y);
 
 				if (tile.Type != 0)
 				{
 				}
 				else
 				{
-					if (this.Math.abs(x - _rect.X) <= 2 || this.Math.abs(x - (_rect.X + _rect.W - 1)) <= 2 || this.Math.abs(y - _rect.Y) <= 2 || this.Math.abs(y - (_rect.Y + _rect.H - 1)) <= 2)
+					if (::Math.abs(x - _rect.X) <= 2 || ::Math.abs(x - (_rect.X + _rect.W - 1)) <= 2 || ::Math.abs(y - _rect.Y) <= 2 || ::Math.abs(y - (_rect.Y + _rect.H - 1)) <= 2)
 					{
-						if (this.Math.rand(0, 100) < 33)
+						if (::Math.rand(0, 100) < 33)
 						{
 						}
 					}
 
 					tile.Level = 0;
-					local r = this.Math.rand(0, 100);
+					local r = ::Math.rand(0, 100);
 
 					if (r <= 50)
 					{

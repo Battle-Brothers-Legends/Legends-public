@@ -8,11 +8,11 @@ this.legend_slingshot <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A primitive yet effective weapon for troublesome children and grown killers alike. With stones abundant everywhere, it will never run out of ammunition. Can target the head to daze enemies.";
 		this.m.IconLarge = "weapons/ranged/legend_sling_01.png";
 		this.m.Icon = "weapons/ranged/legend_sling_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sling;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.RangedWeapon | this.Const.Items.ItemType.TwoHanded;
-		this.m.EquipSound = this.Const.Sound.ArmorLeatherImpact;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sling;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.RangedWeapon | ::Const.Items.ItemType.TwoHanded;
+		this.m.EquipSound = ::Const.Sound.ArmorLeatherImpact;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;

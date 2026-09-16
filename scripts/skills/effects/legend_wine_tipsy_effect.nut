@@ -8,8 +8,8 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_92.png";
 		this.m.IconMini = "status_effect_92_mini";
 		this.m.Overlay = "status_effect_92";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -98,7 +98,7 @@ this.legend_wine_tipsy_effect <- this.inherit("scripts/skills/skill", {
 
 	function onRemoved()
 	{
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}

@@ -22,10 +22,10 @@
 	o.onUpdate = function ()
 	{	
 		// handled in asset_manager
-		// if ("BusinessReputationRate" in this.World.Assets.m)
-		// 	this.World.Assets.m.BusinessReputationRate *= 1.15;
-		if ("IsNonFlavorRumorsOnly" in this.World.Assets.m)
-			this.World.Assets.m.IsNonFlavorRumorsOnly = true;
+		// if ("BusinessReputationRate" in ::World.Assets.m)
+		// 	::World.Assets.m.BusinessReputationRate *= 1.15;
+		if ("IsNonFlavorRumorsOnly" in ::World.Assets.m)
+			::World.Assets.m.IsNonFlavorRumorsOnly = true;
 	}
 
 	o.onEvaluate = function () {

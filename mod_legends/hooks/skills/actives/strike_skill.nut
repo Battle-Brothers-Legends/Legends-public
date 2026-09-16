@@ -8,16 +8,16 @@
 			this.m.Description = "A thrusting or sweeping strike that can cover the distance of 2 tiles and can be used from behind the frontline, outside the range of most other melee weapons.";
 			this.m.Icon = "skills/glaive_slash.png";
 			this.m.IconDisabled = "skills/glaive_slash_bw.png";
-			this.m.InjuriesOnBody = this.Const.Injury.CuttingAndPiercingBody;
-			this.m.InjuriesOnHead = this.Const.Injury.CuttingAndPiercingHead;
+			this.m.InjuriesOnBody = ::Const.Injury.CuttingAndPiercingBody;
+			this.m.InjuriesOnHead = ::Const.Injury.CuttingAndPiercingHead;
 			this.m.ChanceDecapitate = 0;
 		}
 		if (this.m.IsStaffStrike) {
 			this.m.Description = "A sweeping strike that can cover the distance of 2 tiles and can be used from behind the frontline, outside the range of most other melee weapons.";
 			this.m.Icon = "skills/glaive_slash.png";
 			this.m.IconDisabled = "skills/glaive_slash_bw.png";
-			this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-			this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+			this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+			this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		}
 	}
 
@@ -47,7 +47,7 @@
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 

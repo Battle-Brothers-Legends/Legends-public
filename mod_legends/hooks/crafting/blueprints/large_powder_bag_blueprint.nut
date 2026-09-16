@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.m.Type = ::Const.Items.ItemType.Ammo;
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
 	}
 });

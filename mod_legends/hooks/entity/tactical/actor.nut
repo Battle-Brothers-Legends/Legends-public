@@ -120,7 +120,7 @@
 	local isTurnDone = o.isTurnDone;
 	o.isTurnDone = function()
 	{
-		if (!this.Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
+		if (!::Tactical.getNavigator().isTravelling(this) && this.isPlayerControlled() && !this.m.CurrentProperties.IsStunned && !this.Settings.getGameplaySettings().DontAutoEndTurns)
 		{
 			local usableSkill = false;
 			foreach (skill in this.m.Skills.queryActives())
@@ -131,7 +131,7 @@
 					break;
 				}
 			}
-			return this.m.IsTurnDone || this.m.IsSkippingTurn || this.m.ActionPoints < this.Const.Movement.AutoEndTurnBelowAP && !this.m.Skills.isBusy() && !usableSkill;
+			return this.m.IsTurnDone || this.m.IsSkippingTurn || this.m.ActionPoints < ::Const.Movement.AutoEndTurnBelowAP && !this.m.Skills.isBusy() && !usableSkill;
 		}
 		return isTurnDone();
 	}
@@ -140,8 +140,8 @@
 		this.m.IsMoving = true;
 		this.updateVisibility(_tile, this.m.CurrentProperties.getVision(), this.getFaction());
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getID()) {
-			this.Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
+		if (::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getID()) {
+			::Tactical.TurnSequenceBar.getActiveEntity().updateVisibilityForFaction();
 		}
 
 		this.setZoneOfControl(_tile, this.hasZoneOfControl());
@@ -151,18 +151,18 @@
 			this.m.IsExertingZoneOfOccupation = true;
 		}
 
-		if (this.Const.Tactical.TerrainEffect[_tile.Type].len() > 0 && !this.m.Skills.hasSkill(this.Const.Tactical.TerrainEffectID[_tile.Type])) {
-			this.m.Skills.add(this.new(this.Const.Tactical.TerrainEffect[_tile.Type]));
+		if (::Const.Tactical.TerrainEffect[_tile.Type].len() > 0 && !this.m.Skills.hasSkill(::Const.Tactical.TerrainEffectID[_tile.Type])) {
+			this.m.Skills.add(this.new(::Const.Tactical.TerrainEffect[_tile.Type]));
 		}
 
 		if (_tile.IsHidingEntity) {
-			this.m.Skills.add(this.new(this.Const.Movement.HiddenStatusEffect));
+			this.m.Skills.add(this.new(::Const.Movement.HiddenStatusEffect));
 		}
 
 		local numOfEnemiesAdjacentToMe = _tile.getZoneOfControlCountOtherThan(this.getAlliedFactions());
 
-		if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Default) {
-			if (this.m.MoraleState != this.Const.MoraleState.Fleeing) {
+		if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Default) {
+			if (this.m.MoraleState != ::Const.MoraleState.Fleeing) {
 				for (local i = 0; i != 6; i = ++i) {
 					if (_tile.hasNextTile(i)) {
 						local otherTile = _tile.getNextTile(i);
@@ -171,7 +171,7 @@
 							local numEnemies = otherTile.getZoneOfControlCountOtherThan(otherActor.getAlliedFactions());
 
 							if (otherActor.m.MaxEnemiesThisTurn < numEnemies && !otherActor.isAlliedWith(this) && otherActor.m.CurrentProperties.IsAffectedByMovementMorale) {
-								local difficulty = this.Math.maxf(10.0, 50.0 - this.getXPValue() * 0.1);
+								local difficulty = ::Math.maxf(10.0, 50.0 - this.getXPValue() * 0.1);
 								otherActor.checkMorale(-1, difficulty);
 								otherActor.m.MaxEnemiesThisTurn = numEnemies;
 							}
@@ -179,27 +179,27 @@
 					}
 				}
 			}
-		} else if (this.m.CurrentMovementType == this.Const.Tactical.MovementType.Involuntary) {
+		} else if (this.m.CurrentMovementType == ::Const.Tactical.MovementType.Involuntary) {
 			if (this.m.MaxEnemiesThisTurn < numOfEnemiesAdjacentToMe && this.m.CurrentProperties.IsAffectedByMovementMorale) {
 				local difficulty = 40.0;
 				this.checkMorale(-1, difficulty);
 			}
 		}
 
-		this.m.CurrentMovementType = this.Const.Tactical.MovementType.Default;
-		this.m.MaxEnemiesThisTurn = this.Math.max(1, numOfEnemiesAdjacentToMe);
+		this.m.CurrentMovementType = ::Const.Tactical.MovementType.Default;
+		this.m.MaxEnemiesThisTurn = ::Math.max(1, numOfEnemiesAdjacentToMe);
 
-		if (this.isPlayerControlled() && this.getMoraleState() > this.Const.MoraleState.Breaking &&
-			this.getMoraleState() != this.Const.MoraleState.Ignore &&
+		if (this.isPlayerControlled() && this.getMoraleState() > ::Const.MoraleState.Breaking &&
+			this.getMoraleState() != ::Const.MoraleState.Ignore &&
 			(_tile.SquareCoords.X == 0 || _tile.SquareCoords.Y == 0 || _tile.SquareCoords.X == 31 || _tile.SquareCoords.Y == 31)
 		) {
-			local change = this.getMoraleState() - this.Const.MoraleState.Breaking;
+			local change = this.getMoraleState() - ::Const.MoraleState.Breaking;
 			this.checkMorale(-change, -1000);
 		}
 
-		if (this.m.IsEmittingMovementSounds && this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() != 0) {
-			local sound = this.Const.Tactical.TerrainMovementSound[_tile.Subtype][this.Math.rand(0, this.Const.Tactical.TerrainMovementSound[_tile.Subtype].len() - 1)];
-			this.Sound.play("sounds/" + sound.File, sound.Volume * this.Const.Sound.Volume.TacticalMovement * this.Math.rand(90, 100) * 0.01, this.getPos(), sound.Pitch * this.Math.rand(95, 105) * 0.01);
+		if (this.m.IsEmittingMovementSounds && ::Const.Tactical.TerrainMovementSound[_tile.Subtype].len() != 0) {
+			local sound = ::Const.Tactical.TerrainMovementSound[_tile.Subtype][::Math.rand(0, ::Const.Tactical.TerrainMovementSound[_tile.Subtype].len() - 1)];
+			::Sound.play("sounds/" + sound.File, sound.Volume * ::Const.Sound.Volume.TacticalMovement * ::Math.rand(90, 100) * 0.01, this.getPos(), sound.Pitch * ::Math.rand(95, 105) * 0.01);
 		}
 
 		this.spawnTerrainDropdownEffect(_tile);
@@ -217,13 +217,13 @@
 	o.isArmedWithMagicStaff <- function()
 	{
 		local item = this.getMainhandItem();
-		return item != null && item.isWeaponType(this.Const.Items.WeaponType.MagicStaff);
+		return item != null && item.isWeaponType(::Const.Items.WeaponType.MagicStaff);
 	}
 
 	o.isArmedWithPoleWeapon <- function ()
 	{
-		local item = this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		return item != null && item.isItemType(this.Const.Items.ItemType.MeleeWeapon) && item.m.RangeMax > 1;
+		local item = this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		return item != null && item.isItemType(::Const.Items.ItemType.MeleeWeapon) && item.m.RangeMax > 1;
 	}
 
 	o.equipItem <- function( _item)
@@ -313,8 +313,8 @@
 		::Tactical.getShaker().cancel(_info.Attacker);
 		::Tactical.getShaker().shake(_info.Attacker, _info.Actor.getTile(), 2);
 		local sound = ::Const.Sound.getParrySoundByWeaponType(_info.Skill);
-		// this.Sound.play("sounds/combat/legend_parried_01.wav", ::Const.Sound.Volume.Skill, _info.Actor.getPos())
-		this.Sound.play(sound, ::Const.Sound.Volume.Skill, _info.Actor.getPos());
+		// ::Sound.play("sounds/combat/legend_parried_01.wav", ::Const.Sound.Volume.Skill, _info.Actor.getPos())
+		::Sound.play(sound, ::Const.Sound.Volume.Skill, _info.Actor.getPos());
 		::Legends.Effects.grant(_info.Attacker, ::Legends.Effect.LegendParried);
 		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
 		// Attempt to perform a Riposte after the Parry (with a delay so that it only begins after the Parry animation is finished)
@@ -324,7 +324,7 @@
 	// Preparation to call onRiposte(). Given its own function so it can be easily reused
 	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
 	{
-		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && this.Tactical.TurnSequenceBar.getActiveEntity() != null && this.Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
+		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = this.m.Skills.getAttackOfOpportunity();
 
 			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
@@ -392,7 +392,7 @@
 
 		foreach( skill in skills.m.Skills)
 		{
-			if (!skill.isGarbage() && skill.m.IsSerialized && skill.isType(this.Const.SkillType.Perk) && !skill.isType(this.Const.SkillType.Racial))
+			if (!skill.isGarbage() && skill.m.IsSerialized && skill.isType(::Const.SkillType.Perk) && !skill.isType(::Const.SkillType.Racial))
 			{
 				perks += 1;
 			}
@@ -436,7 +436,7 @@
 		this.m.PerkPoints = 0;
 		this.m.PerkPointsSpent = 0;
 
-		local skillsToRemove = this.getSkills().getSkillsByFunction(@(_skill) _skill.isType(this.Const.SkillType.Perk) && _skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null);
+		local skillsToRemove = this.getSkills().getSkillsByFunction(@(_skill) _skill.isType(::Const.SkillType.Perk) && _skill.m.IsSerialized && nonRefundable.find(_skill.getID()) == null);
 		foreach (s in skillsToRemove)
 		{
 			this.getSkills().removeByID(s.getID());
@@ -542,7 +542,7 @@
 				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 				local ohSprite = this.getSprite("shield_icon");
 				ohSprite.setHorizontalFlipping(!flip);
-				if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded))
+				if (oh != null && oh.isItemType(::Const.Items.ItemType.TwoHanded))
 				{
 					// WIP, not sure if dual-wielding two handed weapons will stay
 					ohSprite.Scale = 0.80;
@@ -576,7 +576,7 @@
 			local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
 			local ohSprite = this.getSprite("shield_icon");
 			ohSprite.setHorizontalFlipping(!flip);
-			if (oh != null && oh.isItemType(this.Const.Items.ItemType.TwoHanded)) {
+			if (oh != null && oh.isItemType(::Const.Items.ItemType.TwoHanded)) {
 				// WIP, not sure if dual-wielding two handed weapons will stay
 				ohSprite.Scale = 0.80;
 				this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
@@ -686,7 +686,7 @@
 
 	local getLootForTile = o.getLootForTile;
 	o.getLootForTile = function (_killer, _loot) {
-		if (!(_killer == null || _killer.getFaction() == this.Const.Faction.Player || _killer.getFaction() == this.Const.Faction.PlayerAnimals))
+		if (!(_killer == null || _killer.getFaction() == ::Const.Faction.Player || _killer.getFaction() == ::Const.Faction.PlayerAnimals))
 			return getLootForTile(_killer, _loot);
 
 		foreach (entry in this.m.OnDeathLootTable) {
@@ -739,7 +739,7 @@
 	local kill = o.kill;
 	o.kill = function (_killer = null, _skill = null, _fatalityType = ::Const.FatalityType.None, _silent = false) {
 		if (!this.isHiddenToPlayer() && this.m.HitInfo)
-			this.Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(this) + "\'s " + this.Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + this.Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
+			::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(this) + "\'s " + ::Const.Strings.BodyPartName[this.m.HitInfo.BodyPart] + " is hit for [b]" + ::Math.floor(this.m.HitInfo.DamageInflictedHitpoints) + "[/b] damage");
 
 		this.m.HitInfo = null; // yeet hit info that was saved earlier
 		if (this.getFlags().has("tail")) // ignore killer when is tail

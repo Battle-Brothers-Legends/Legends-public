@@ -18,7 +18,7 @@
 		flip = !flip;
 		local v = 8;
 		local v2 = -15;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -33,9 +33,9 @@
 	{
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.OrcWarlord);
+		b.setValues(::Const.Tactical.Actor.OrcWarlord);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Orcs.WarlordStatIncreaseDay)	{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Orcs.WarlordStatIncreaseDay)	{
 			b.MeleeSkill += 5;
 			b.DamageTotalMult += 0.1;
 		}
@@ -45,8 +45,8 @@
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_orc_04_body";
 		this.addSprite("socket").setBrush("bust_base_orcs");
 		local body = this.addSprite("body");
@@ -63,14 +63,14 @@
 		local injury = this.addSprite("injury");
 		injury.Visible = false;
 		injury.setBrush("bust_orc_04_head_injured");
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			this.addSprite(a);
 		}
 		this.setAlwaysApplySpriteOffset(true);
 		local v = 8;
 		local v2 = -15;
-		foreach (a in this.Const.CharacterSprites.Helmets)
+		foreach (a in ::Const.CharacterSprites.Helmets)
 		{
 			if (!this.hasSprite(a))
 			{
@@ -121,14 +121,14 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Mainhand) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Mainhand) == null)
 		{
 			local weapons = [
 				"weapons/greenskins/orc_axe",
 				"weapons/greenskins/orc_cleaver"
 			];
 
-			if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+			if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 			{
 				weapons.extend([
 					"weapons/greenskins/orc_axe_2h",
@@ -136,20 +136,20 @@
 				]);
 			}
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Body) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Body) == null)
 		{
-			local item = this.Const.World.Common.pickArmor([
+			local item = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Greenskin.orc_warlord_armor]
 			]);
 			this.m.Items.equip(item);
 		}
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Head) == null)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Head) == null)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Greenskin.orc_warlord_helmet]
 			]);
 			if (item != null)
@@ -177,13 +177,13 @@
 			"shields/named/named_orc_heavy_shield"
 		];
 
-		if (this.Math.rand(1, 100) <= 80)
+		if (::Math.rand(1, 100) <= 80)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
 		::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);

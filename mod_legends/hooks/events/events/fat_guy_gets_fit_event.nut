@@ -11,10 +11,10 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers )
@@ -22,7 +22,7 @@
 				candidates.push(bro);
 
 		if (candidates.len() > 0) {
-			this.m.FatGuy = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.FatGuy = candidates[::Math.rand(0, candidates.len() - 1)];
 			this.m.Score = candidates.len() * 5;
 		}
 	}

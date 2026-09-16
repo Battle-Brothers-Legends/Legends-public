@@ -6,8 +6,8 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Tackle an enemy to the ground. On a hit, decrease their melee defence by 50%, their initiative by 70%, and increases the damage they take by 25%. The more fatigued your target, the more likely the tackle is to succeed.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/hand", 3);
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/combat/hand_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -63,10 +63,10 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		if (this.m.SoundOnUse.len() != 0)
 		{
-			this.Sound.play(this.m.SoundOnUse[this.Math.rand(0, this.m.SoundOnUse.len() - 1)], this.Const.Sound.Volume.Skill, _user.getPos());
+			::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.Skill, _user.getPos());
 		}
 
-		if (this.Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity()))
+		if (::Math.rand(1, 100) > this.getHitchance(_targetTile.getEntity()))
 		{
 			target.onMissed(this.getContainer().getActor(), this);
 			return false;
@@ -75,7 +75,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		{
 			local target = _targetTile.getEntity();
 			::Legends.Effects.grant(target, ::Legends.Effect.LegendTackled);
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " has tackled " + this.Const.UI.getColorizedEntityName(target) + " to the ground for two turns");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " has tackled " + ::Const.UI.getColorizedEntityName(target) + " to the ground for two turns");
 		}
 
 		return true;
@@ -83,7 +83,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInFists ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -92,7 +92,7 @@ this.legend_tackle_skill <- this.inherit("scripts/skills/skill", {
 		{
 			return;
 		}
-		local bonus = this.Math.floor(_targetEntity.getFatiguePct() * 30); // This means that you'll get a +30% boost against an enemy with max fatigue
+		local bonus = ::Math.floor(_targetEntity.getFatiguePct() * 30); // This means that you'll get a +30% boost against an enemy with max fatigue
 		_properties.MeleeSkill += bonus;
 		_properties.DamageTotalMult = 0;
 		if (_properties.IsSpecializedInFists) //Not sure if this is the best way to do it, but this is how it was done in kick

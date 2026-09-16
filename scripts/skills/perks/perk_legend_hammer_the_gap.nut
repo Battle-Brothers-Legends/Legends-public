@@ -29,7 +29,7 @@ this.perk_legend_hammer_the_gap <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local bonus = this.Math.min(10, this.m.Bonus * 5);
+		local bonus = ::Math.min(10, this.m.Bonus * 5);
 		_properties.MeleeSkill += bonus;
 		_properties.RangedSkill += bonus;
 		if (!_skill.isUsingHitchance())

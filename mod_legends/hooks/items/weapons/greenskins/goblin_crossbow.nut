@@ -4,7 +4,7 @@
 	{
 		create();
 		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a minitature ballista, it shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
-		this.setVariant(this.Math.rand(0, 1));
+		this.setVariant(::Math.rand(0, 1));
 	}
 
 	local getTooltip = o.getTooltip;
@@ -77,7 +77,7 @@
 		if (item.getID() != this.getID())
 			return;
 
-		if (_targetEntity != null && (_targetEntity.getType() == this.Const.EntityType.Vampire || _targetEntity.getType() == this.Const.EntityType.LegendVampireLord))
+		if (_targetEntity != null && (_targetEntity.getType() == ::Const.EntityType.Vampire || _targetEntity.getType() == ::Const.EntityType.LegendVampireLord))
 		{
 			_properties.DamageRegularMin += 100;
 			_properties.DamageRegularMax += 100;

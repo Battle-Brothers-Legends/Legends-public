@@ -6,7 +6,7 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legends.adopt_warbear";
 		this.m.Title = "Deep in the forest...";
-		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 50.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/legend_bear.png[/img]%bearTamer% taps you on the shoulder and points out fallen limbs and deep tracks that are typical of a bear's domain. The bear tamer asks your permission to set a trap to try and capture the beast?",
@@ -87,21 +87,21 @@ this.legends_adopt_warbear_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (!this.World.getTime().IsDaytime) {
+		if (!::World.getTime().IsDaytime) {
 			return;
 		}
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
-		if (!currentTile.Type == this.Const.World.TerrainType.Forest && !currentTile.Type == this.Const.World.TerrainType.LeaveForest) {
+		if (!currentTile.Type == ::Const.World.TerrainType.Forest && !currentTile.Type == ::Const.World.TerrainType.LeaveForest) {
 			return;
 		}
 
-		if (!this.World.Assets.getStash().hasEmptySlot()) {
+		if (!::World.Assets.getStash().hasEmptySlot()) {
 			return;
 		}
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 		local bearBros = 0;
 		foreach (bro in brothers) {

@@ -39,7 +39,7 @@
 		if(this.m.Home.hasSituation("situation.bread_and_games"))
 			pay = pay + 100;
 
-		local arenaFights = this.World.Statistics.getFlags().getAsInt("ArenaFightsWon");
+		local arenaFights = ::World.Statistics.getFlags().getAsInt("ArenaFightsWon");
 
 		if (arenaFights <= 3) {
 			twists.push(this.newTwist(10, "IsHyenas", 0));
@@ -88,7 +88,7 @@
 			maxR = maxR + t.R;
 		}
 
-		local r = this.Math.rand(1, maxR);
+		local r = ::Math.rand(1, maxR);
 
 		foreach( t in twists )
 		{
@@ -170,25 +170,25 @@
 						::Legends.Arena.updateTraits(this.List, bro);
 					}
 
-					if (this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") > 0 && this.World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") % 5 == 0)
+					if (::World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") > 0 && ::World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") % 5 == 0)
 					{
 						local r;
 						local a;
 						local u;
 
-						if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 5)
+						if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 5)
 							r = 1;
-						else if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 10)
+						else if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 10)
 							r = 3;
-						else if (this.World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 15)
+						else if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 15)
 							r = 2;
 						else
-							r = this.Math.rand(1, 3);
+							r = ::Math.rand(1, 3);
 
 						switch(r)
 						{
 						case 1:
-							a = this.Const.World.Common.pickArmor([
+							a = ::Const.World.Common.pickArmor([
 									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
@@ -201,7 +201,7 @@
 							break;
 
 						case 2:
-							a = this.Const.World.Common.pickArmor([
+							a = ::Const.World.Common.pickArmor([
 									[1, ::Legends.Armor.Southern.gladiator_harness],
 							]);
 							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
@@ -226,8 +226,8 @@
 							break;
 						}
 
-						this.World.Assets.getStash().makeEmptySlots(1);
-						this.World.Assets.getStash().add(a);
+						::World.Assets.getStash().makeEmptySlots(1);
+						::World.Assets.getStash().add(a);
 					}
 				}
 			}
@@ -240,8 +240,8 @@
 					}
 
 					this.Contract.getHome().getBuilding("building.arena").refreshCooldown();
-					this.World.Assets.addBusinessReputation(this.Const.World.Assets.ReputationOnContractFail);
-					this.World.Contracts.finishActiveContract(true);
+					::World.Assets.addBusinessReputation(::Const.World.Assets.ReputationOnContractFail);
+					::World.Contracts.finishActiveContract(true);
 				}
 			}
 		}

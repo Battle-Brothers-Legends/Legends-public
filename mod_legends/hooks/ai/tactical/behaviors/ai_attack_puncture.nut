@@ -16,7 +16,7 @@
 
 		if (this.m.TargetTile != null && this.m.TargetTile.IsOccupiedByActor)
 		{
-			if (this.Const.AI.VerboseMode)
+			if (::Const.AI.VerboseMode)
 			{
 				this.logInfo("* " + _entity.getName() + ": Using " + this.m.Skill.getName() + " against " + this.m.TargetTile.getEntity().getName() + "!");
 			}
@@ -46,7 +46,7 @@
 				continue;
 			}
 
-			if (target.getArmor(this.Const.BodyPart.Body) <= 25 || target.getArmor(this.Const.BodyPart.Head) <= 15)
+			if (target.getArmor(::Const.BodyPart.Body) <= 25 || target.getArmor(::Const.BodyPart.Head) <= 15)
 			{
 				continue;
 			}
@@ -57,7 +57,7 @@
 			}
 
 			local p = _entity.getCurrentProperties();
-			local armor = target.getArmor(this.Const.BodyPart.Body) * (p.getHitchance(this.Const.BodyPart.Body) / 100.0) + target.getArmor(this.Const.BodyPart.Head) * (p.getHitchance(this.Const.BodyPart.Head) / 100.0);
+			local armor = target.getArmor(::Const.BodyPart.Body) * (p.getHitchance(::Const.BodyPart.Body) / 100.0) + target.getArmor(::Const.BodyPart.Head) * (p.getHitchance(::Const.BodyPart.Head) / 100.0);
 
 			if (armor <= 40 && target.getHitpoints() > _entity.getCurrentProperties().getRegularDamageAverage())
 			{
@@ -65,7 +65,7 @@
 			}
 
 			local score = this.queryTargetValue(_entity, target, _skill);
-			score = score * this.Math.pow(armor / 100.0, 1.1);
+			score = score * ::Math.pow(armor / 100.0, 1.1);
 
 			if (score > bestScore)
 			{

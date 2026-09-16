@@ -22,8 +22,8 @@
 			::Legends.Traits.getID(::Legends.Trait.Deathwish),
 			::Legends.Traits.getID(::Legends.Trait.Bloodthirsty)
 		];
-		this.m.Names = this.Const.Strings.SouthernNames;
-		this.m.LastNames = this.Const.Strings.SouthernNamesLast;
+		this.m.Names = ::Const.Strings.SouthernNames;
+		this.m.LastNames = ::Const.Strings.SouthernNamesLast;
 	}
 
 	o.setGender <- function (_gender = -1) {
@@ -39,7 +39,7 @@
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
@@ -50,16 +50,16 @@
 			items.equip(this.new("scripts/items/weapons/dagger"));
 		}
 
-		local armor = this.Const.World.Common.pickArmor([
+		local armor = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		local helm = this.Const.World.Common.pickHelmet([
+		local helm = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Southern.southern_head_wrap],
 			[1, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[3, ::Legends.Helmet.None]
 		]);
-		items.equip(helm)
+		items.equip(helm);
 	}
 });
 

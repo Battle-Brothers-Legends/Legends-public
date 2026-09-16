@@ -53,13 +53,12 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		];
 		this.m.Ethnicity = 0;
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Lowborn | this.Const.BackgroundType.Untalented;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Cruel;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.NeutralMax;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Untalented;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Cruel;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.NeutralMax;
 		this.m.CustomPerkTree = [
 			[
 				::Legends.Perk.Steadfast,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.LegendAlert
 			],
 			[
@@ -130,7 +129,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 		local actor = this.getContainer().getActor();
 		local dirt = actor.getSprite("dirt");
 		dirt.Visible = true;
-		this.m.Tattoo = this.Math.rand(0, 1);
+		this.m.Tattoo = ::Math.rand(0, 1);
 		local tattoo_body = actor.getSprite("tattoo_body");
 		local tattoo_head = actor.getSprite("tattoo_head");
 		local body = actor.getSprite("body");
@@ -167,12 +166,12 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 3;
-		talents[this.Const.Attributes.Hitpoints] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 3;
+		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.werewolf_hide_armor]
 		]));
 
@@ -186,7 +185,7 @@ this.legend_berserker_commander_background <- this.inherit("scripts/skills/backg
 			"weapons/hatchet"
 		];
 
-		items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		items.equip(this.new("scripts/items/accessory/gloves/legend_hand_wraps_item"));
 		items.addToBag(this.new("scripts/items/weapons/throwing_axe"));
 	}

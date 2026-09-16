@@ -28,19 +28,19 @@ this.legend_belly_dancer_background <- this.inherit("scripts/skills/backgrounds/
 			"of the Dance"
 		];
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Hitpoints,
-			this.Const.Attributes.Fatigue
+			::Const.Attributes.Hitpoints,
+			::Const.Attributes.Fatigue
 		];
 		// this.m.IsGuaranteed = ["seductive_trait"]
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.Young;
+		this.m.Bodies = ::Const.Bodies.SouthernFemale;
+		this.m.Faces = ::Const.Faces.SouthernFemale;
+		this.m.Hairs = ::Const.Hair.SouthernFemale;
+		this.m.HairColors = ::Const.HairColors.Young;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 1;
 
-		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Combat | this.Const.BackgroundType.Performing;
+		this.m.BackgroundType = ::Const.BackgroundType.Female | ::Const.BackgroundType.Combat | ::Const.BackgroundType.Performing;
 	}
 
 	function onChangeAttributes() {
@@ -57,11 +57,11 @@ this.legend_belly_dancer_background <- this.inherit("scripts/skills/backgrounds/
 
 	function onAddEquipment() {
 		local items = this.getContainer().getActor().getItems();
-		local armor = this.Const.World.Common.pickArmor([
+		local armor = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.legend_headband_coin],
 			[1, ::Legends.Helmet.Southern.legend_headress_coin],

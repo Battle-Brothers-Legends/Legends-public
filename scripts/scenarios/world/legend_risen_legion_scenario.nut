@@ -8,8 +8,8 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		this.m.Difficulty = 4;
 		this.m.Order = 140;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(27);
-		this.m.RosterTierMax = this.Const.Roster.getTierForSize(27);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(27);
+		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 	}
 
 	function onInit()
@@ -35,7 +35,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 
 	function onSpawnAssets()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for(local i = 0; i < 8; i++) {
@@ -45,7 +45,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 			bro.m.HireTime = this.Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null) {
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 			names.push(bro.getNameOnly());
 		}
@@ -97,35 +97,35 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		items.addToBag(this.new("scripts/items/weapons/throwing_spear"));
 
 
-		this.World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
-		this.World.Assets.getStash().resize(this.World.Assets.getStash().getCapacity() + 9);
+		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
+		::World.Assets.getStash().resize(::World.Assets.getStash().getCapacity() + 9);
 
 	}
 
 	function onSpawnPlayer()
 	{
 		local spawnTile;
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local nearestVillage;
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(5, this.Const.World.Settings.SizeX - 5);
-			local y = this.Math.rand(5, this.Const.World.Settings.SizeY - 5);
+			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
+			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				if (tile.IsOccupied)
 				{
 				}
-				else if (tile.Type != this.Const.World.TerrainType.Steppe)
+				else if (tile.Type != ::Const.World.TerrainType.Steppe)
 				{
 				}
 				else
@@ -138,7 +138,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 
 						if (d > 6 && d < 15)
 						{
-							local path = this.World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
+							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
 							if (!path.isEmpty())
 							{
@@ -181,47 +181,47 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 			closest.spawnFireAndSmoke();
 		}
 
-		local settlement = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement); //pes. factions
+		local settlement = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement); //pes. factions
 
 		foreach( n in settlement )
 		{
 			n.addPlayerRelation(-400.0, "You are the undead, to be despised");
 		}
 
-		local nobles = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 
 		foreach( n in nobles )
 		{
 			n.addPlayerRelation(-400.0, "You are the undead, to be despised");
 		}
 
-		local oriental = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState);
+		local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
 
 		foreach( n in oriental )
 		{
 			n.addPlayerRelation(-400.0, "You are the undead, to be despised");
 		}
 
-		local skellies = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Undead);
+		local skellies = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
 
 		foreach( n in skellies )
 		{
 			n.addPlayerRelation(400.0, "For the empire!");
 		}
 
-		this.m.StaticRelationsToFaction[this.Const.FactionType.Settlement] = true;
-		this.m.StaticRelationsToFaction[this.Const.FactionType.NobleHouse] = true;
-		this.m.StaticRelationsToFaction[this.Const.FactionType.OrientalCityState] = true;
-		this.m.StaticRelationsToFaction[this.Const.FactionType.Undead] = true;
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", nearestVillage.getTile().Coords.X, nearestVillage.getTile().Coords.Y);
-		this.World.Assets.updateLook(112);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		this.m.StaticRelationsToFaction[::Const.FactionType.Settlement] = true;
+		this.m.StaticRelationsToFaction[::Const.FactionType.NobleHouse] = true;
+		this.m.StaticRelationsToFaction[::Const.FactionType.OrientalCityState] = true;
+		this.m.StaticRelationsToFaction[::Const.FactionType.Undead] = true;
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", nearestVillage.getTile().Coords.X, nearestVillage.getTile().Coords.Y);
+		::World.Assets.updateLook(112);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/undead_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_risen_legion_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_risen_legion_intro");
 		}, null);
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer], true);
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting], true);

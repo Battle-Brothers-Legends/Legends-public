@@ -13,7 +13,7 @@
 			item(0, 1.0, "accessory/legend_armored_wardog_item"),
 		]);
 
-		if (this.m.Settlement.getTile().SquareCoords.Y > this.World.getMapSize().Y * 0.7) {
+		if (this.m.Settlement.getTile().SquareCoords.Y > ::World.getMapSize().Y * 0.7) {
 			list.extend([
 				item(0, 1.0, "accessory/legend_warhound_item"),
 				item(0, 1.0, "accessory/legend_wolf_item"),

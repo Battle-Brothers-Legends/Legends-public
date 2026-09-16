@@ -9,24 +9,24 @@
 		this.m.ScoreBonus = 0.0;
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 
-		if (_entity.getActionPoints() < this.Const.Movement.AutoEndTurnBelowAP) {
-			return this.Const.AI.Behavior.Score.Zero;
+		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP) {
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
-		if (_entity.getMoraleState() == this.Const.MoraleState.Fleeing) {
-			return this.Const.AI.Behavior.Score.Zero;
+		if (_entity.getMoraleState() == ::Const.MoraleState.Fleeing) {
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		if (!this.getAgent().hasKnownOpponent()) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 		if (this.getAgent().getKnownOpponents().len() <= 1) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 		this.m.Skill = this.selectSkill(this.m.PossibleSkills);
 
 		if (this.m.Skill == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		score = score * this.getFatigueScoreMult(this.m.Skill);
@@ -44,11 +44,11 @@
 		}
 
 		if (this.m.TargetTile == null) {
-			return this.Const.AI.Behavior.Score.Zero;
+			return ::Const.AI.Behavior.Score.Zero;
 		}
 
 		this.m.Danger = null;
-		return this.Const.AI.Behavior.Score.Charm * score + this.m.ScoreBonus;
+		return ::Const.AI.Behavior.Score.Charm * score + this.m.ScoreBonus;
 	}
 
 	o.findBestTarget = function(_entity, _targets) {
@@ -75,7 +75,7 @@
 			local distanceToTarget = myTile.getDistanceTo(opponentTile);
 			local isRangedOpponent = this.isRangedUnit(target);
 
-			if (target.getMoraleState() == this.Const.MoraleState.Fleeing || target.getCurrentProperties().IsStunned || !target.getCurrentProperties().IsAbleToUseWeaponSkills)	{
+			if (target.getMoraleState() == ::Const.MoraleState.Fleeing || target.getCurrentProperties().IsStunned || !target.getCurrentProperties().IsAbleToUseWeaponSkills)	{
 				continue;
 			}
 
@@ -87,16 +87,16 @@
 				continue;
 			}
 
-			score = score + target.getLevel() * this.Const.AI.Behavior.CharmLevelMult;
+			score = score + target.getLevel() * ::Const.AI.Behavior.CharmLevelMult;
 
 			if (isRangedOpponent) {
-				score = score + target.getCurrentProperties().getRangedSkill() * this.Const.AI.Behavior.CharmSkillMult;
+				score = score + target.getCurrentProperties().getRangedSkill() * ::Const.AI.Behavior.CharmSkillMult;
 			} else {
-				score = score + target.getCurrentProperties().getMeleeSkill() * this.Const.AI.Behavior.CharmSkillMult;
+				score = score + target.getCurrentProperties().getMeleeSkill() * ::Const.AI.Behavior.CharmSkillMult;
 			}
 
-			score = score + target.getCurrentProperties().getMeleeDefense() * this.Const.AI.Behavior.CharmDefenseSkillMult;
-			score = score - distanceToTarget * this.Const.AI.Behavior.CharmDistanceMult;
+			score = score + target.getCurrentProperties().getMeleeDefense() * ::Const.AI.Behavior.CharmDefenseSkillMult;
+			score = score - distanceToTarget * ::Const.AI.Behavior.CharmDistanceMult;
 			local targets = 0;
 			local targetsInRange = this.queryEnemiesInMeleeRange(1, target.getIdealRange(), target);
 
@@ -108,31 +108,31 @@
 				}
 			}
 
-			score = score + targets * this.Const.AI.Behavior.CharmHelpOther;
-			score = score * this.Math.maxf(0.2, 1.0 - this.Const.AI.Behavior.CharmBraveryMult * target.getBravery() * target.getCurrentProperties().MoraleCheckBraveryMult[this.Const.MoraleCheckType.MentalAttack] * 0.01);
+			score = score + targets * ::Const.AI.Behavior.CharmHelpOther;
+			score = score * ::Math.maxf(0.2, 1.0 - ::Const.AI.Behavior.CharmBraveryMult * target.getBravery() * target.getCurrentProperties().MoraleCheckBraveryMult[::Const.MoraleCheckType.MentalAttack] * 0.01);
 
 			if (target.getCurrentProperties().IsRooted && opponentTile.getZoneOfOccupationCount(target.getFaction()) == 0 && !target.isArmedWithRangedWeapon())	{
-				score = score * this.Const.AI.Behavior.CharmRootedMult;
+				score = score * ::Const.AI.Behavior.CharmRootedMult;
 			}
 
 			if (target.isArmedWithRangedWeapon() && opponentTile.getZoneOfOccupationCount(target.getFaction()) != 0) {
-				score = score * this.Const.AI.Behavior.CharmRangedWouldBeInZOCMult;
+				score = score * ::Const.AI.Behavior.CharmRangedWouldBeInZOCMult;
 			}
 
 			if (distanceToTarget <= target.getIdealRange()) {
-				score = score * this.Const.AI.Behavior.CharmMeleeDangerMult;
+				score = score * ::Const.AI.Behavior.CharmMeleeDangerMult;
 			}
 
 			if (this.m.Danger.Danger <= 2 && this.m.Danger.PotentialDanger.find(target.getID()) != 0) {
-				score = score * this.Const.AI.Behavior.CharmRemoveDangerMult;
+				score = score * ::Const.AI.Behavior.CharmRemoveDangerMult;
 			}
 
-			if (target.getType() == this.Const.EntityType.Wardog || target.getType() == this.Const.EntityType.Warhound)	{
-				score = score * this.Const.AI.Behavior.CharmWardogMult;
+			if (target.getType() == ::Const.EntityType.Wardog || target.getType() == ::Const.EntityType.Warhound)	{
+				score = score * ::Const.AI.Behavior.CharmWardogMult;
 			}
 
-			if (target.getCurrentProperties().MoraleCheckBraveryMult[this.Const.MoraleCheckType.MentalAttack] >= 1000.0) {
-				score = score * this.Const.AI.Behavior.CharmImmuneMult;
+			if (target.getCurrentProperties().MoraleCheckBraveryMult[::Const.MoraleCheckType.MentalAttack] >= 1000.0) {
+				score = score * ::Const.AI.Behavior.CharmImmuneMult;
 			}
 
 			if (!isRangedOpponent) {
@@ -151,48 +151,48 @@
 					}
 				}
 
-				score = score * (1.0 + (targetsScore + targetsNotLockedDown * this.Const.AI.Behavior.CharmTargetLockdownMult) * this.Const.AI.Behavior.CharmTargetsMult);
+				score = score * (1.0 + (targetsScore + targetsNotLockedDown * ::Const.AI.Behavior.CharmTargetLockdownMult) * ::Const.AI.Behavior.CharmTargetsMult);
 
 				if (targets > 1
 					&& target.isArmedWithMeleeWeapon()
-					&& target.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).isAoE())
+					&& target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).isAoE())
 				{
-					score = score * this.Const.AI.Behavior.CharmAoEMult;
+					score = score * ::Const.AI.Behavior.CharmAoEMult;
 				}
 			} else {
-				score = score * this.Const.AI.Behavior.CharmRangedTargetMult;
+				score = score * ::Const.AI.Behavior.CharmRangedTargetMult;
 			}
 
 			local currentZOC = opponentTile.getZoneOfControlCountOtherThan(target.getAlliedFactions());
 
 			if (currentZOC >= 3 || currentZOC >= 2 && target.getHitpointsPct() <= 0.25) {
-				score = score * this.Const.AI.Behavior.CharmEasierToKillMult;
+				score = score * ::Const.AI.Behavior.CharmEasierToKillMult;
 			}
 
 			if (target.isAbleToWait() && !target.isTurnDone()) {
-				score = score * this.Const.AI.Behavior.CharmStillToActMult;
+				score = score * ::Const.AI.Behavior.CharmStillToActMult;
 			} else if (!target.isAbleToWait()
 				&& target.getActionPoints() < target.getActionPointsMax())
 			{
-				score = score * this.Const.AI.Behavior.CharmAlreadyWaitedMult;
+				score = score * ::Const.AI.Behavior.CharmAlreadyWaitedMult;
 			}
 
 			if (!target.isArmed() && target.getTile().Items.len() == 0) {
-				score = score * this.Const.AI.Behavior.CharmTargetUnarmedMult;
+				score = score * ::Const.AI.Behavior.CharmTargetUnarmedMult;
 			}
 
-			if (target.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null
-				&& target.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand).getID() == "weapon.wooden_stick")
+			if (target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
+				&& target.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).getID() == "weapon.wooden_stick")
 			{
 				if (!target.getSkills().hasPerk(::Legends.Perk.QuickHands)) {
-					score = score * this.Const.AI.Behavior.CharmTargetWoodenClubRightNowMult;
+					score = score * ::Const.AI.Behavior.CharmTargetWoodenClubRightNowMult;
 				}
 
-				local items = target.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag);
+				local items = target.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag);
 				local hasWeapon = false;
 
 				foreach (item in items) {
-					if (item.isItemType(this.Const.Items.ItemType.Weapon)
+					if (item.isItemType(::Const.Items.ItemType.Weapon)
 						&& item.getID() != "weapon.wooden_stick")
 					{
 						hasWeapon = true;
@@ -201,14 +201,14 @@
 				}
 
 				if (!hasWeapon) {
-					score = score * this.Const.AI.Behavior.CharmTargetWoodenClubOnlyMult;
+					score = score * ::Const.AI.Behavior.CharmTargetWoodenClubOnlyMult;
 				}
 			}
 
 			score = score * target.getCurrentProperties().TargetAttractionMult;
 
 			if (target.getCurrentProperties().NegativeStatusEffectDuration < 0) {
-				score = score * this.Const.AI.Behavior.CharmLowerDurationMult;
+				score = score * ::Const.AI.Behavior.CharmLowerDurationMult;
 			}
 
 			if (score > bestScore) {

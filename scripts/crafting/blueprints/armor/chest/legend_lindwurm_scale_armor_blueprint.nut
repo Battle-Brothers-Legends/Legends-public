@@ -4,7 +4,7 @@ this.legend_lindwurm_scale_armor_blueprint <- this.inherit("scripts/crafting/blu
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_lindwurm_scale_armor";
-		this.m.Type = this.Const.Items.ItemType.Armor;
+		this.m.Type = ::Const.Items.ItemType.Armor;
 		local preview = this.new("scripts/items/legend_armor/named/legend_lindwurm_scale_armor");
 		preview.m.Name = "Lindwurm Scales";
 		this.m.PreviewCraftable = preview;

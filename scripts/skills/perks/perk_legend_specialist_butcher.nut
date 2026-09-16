@@ -6,10 +6,10 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 			"weapon.butchers_cleaver"
 		],
 		ExcludedWeaponTypes = [
-			this.Const.Items.WeaponType.Whip
+			::Const.Items.WeaponType.Whip
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Cleaver
+			::Const.Items.WeaponType.Cleaver
 		],
 		BonusMelee = 12,
 		BonusDamage = 10
@@ -45,13 +45,13 @@ this.perk_legend_specialist_butcher <- this.inherit("scripts/skills/legend_speci
 
 		local user = _skill.getContainer().getActor();
 		local item = user.getMainhandItem();
-		if (item == null || item.isWeaponType(this.Const.Items.WeaponType.Whip) || !item.isWeaponType(this.Const.Items.WeaponType.Cleaver))
+		if (item == null || item.isWeaponType(::Const.Items.WeaponType.Whip) || !item.isWeaponType(::Const.Items.WeaponType.Cleaver))
 			return;
 
 		_targetEntity.getSkills().add(this.new("scripts/skills/effects/legend_grazed_effect"));
 
 		if (!user.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(user) + " filleted " + this.Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(user) + " filleted " + ::Const.UI.getColorizedEntityName(_targetEntity) + " leaving them grazed");
 		}
 
 		return true;

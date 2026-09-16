@@ -4,7 +4,7 @@ this.legend_free_company_spearman_low <- this.inherit("scripts/entity/tactical/h
 			[1, ::Legends.Outfit.low_tier_unit_catchall_outfit_01],
 			// [1, ::Legends.Outfit.mercenary_spearman_outfit_01]
 		]
-		PerkList = this.Const.EnemyPerks.FreeCompanySpearman,
+		PerkList = ::Const.EnemyPerks.FreeCompanySpearman,
 		PerkPower = 3
 	},
 
@@ -12,7 +12,7 @@ this.legend_free_company_spearman_low <- this.inherit("scripts/entity/tactical/h
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanySpearman);
+		b.setValues(::Const.Tactical.Actor.FreeCompanySpearman);
 		b.MeleeSkill -= 10;
 		b.MeleeDefense -= 5;
 		b.Hitpoints -= 5;

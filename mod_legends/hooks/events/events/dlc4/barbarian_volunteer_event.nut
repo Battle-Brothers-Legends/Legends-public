@@ -2,13 +2,13 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 50.0 * ::World.getTime().SecondsPerDay;
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.Text = "%terrainImage%{Unlike the south, finding travelers on the northern \'roads\' is often a cause for caution. You never know what monstrous man or beastly barbarian you\'ll come across next. This time it is a large %person_dude% limping with a dog beside %them_dude%. You draw your sword halfway out of its sheath and loud enough to gain %their_dude% ear. The %person_dude% looks up and %their_dude% dog rears to the sudden yank of a leash. The northerner can speak a bit of your tongue.%SPEECH_ON%Ahh, fighters. I\'m a fighter myself.%SPEECH_OFF%You ask why %they_dude% is alone. %They_dude% explains that %their_dude% clan had a dispute, and that %they_dude% was to duel another man to decide who would take control. You ask why %they_dude% did not duel this man, you ask if %they_dude% is afraid. The traveler shakes %their_dude% head.%SPEECH_ON%No. The clansman was my brother. And I\'d no desire to kill kin. They gave me this bitch here as both insult and reward and threw me from the tribe. I\'ve no land or people to go to, but if you\'d have me, I\'d surely fight for you just as well as anyone else.%SPEECH_OFF%}";
 				s.start <- function (_event)
 				{
-					local roster = this.World.getTemporaryRoster();
+					local roster = ::World.getTemporaryRoster();
 					_event.m.Dude = roster.create("scripts/entity/tactical/player");
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Barbarian]);
 					_event.m.Dude.getBackground().m.RawDescription = "%name% joined you after being exiled from %their% tribe in the north for refusing to kill %their% brother. They\'ll fight for you as well as for anyone.";

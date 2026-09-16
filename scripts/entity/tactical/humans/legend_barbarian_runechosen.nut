@@ -2,14 +2,14 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 	m = {},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.LegendBarbarianRunechosen;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendBarbarianRunechosen.XP;
+		this.m.Type = ::Const.EntityType.LegendBarbarianRunechosen;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendBarbarianRunechosen.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.WildMale;
-		this.m.Hairs = this.Const.Hair.WildMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.WildExtended;
+		this.m.Faces = ::Const.Faces.WildMale;
+		this.m.Hairs = ::Const.Hair.WildMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.WildExtended;
 		this.m.SoundPitch = 0.95;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/barbarian_melee_agent");
 		this.m.AIAgent.setActor(this);
@@ -33,23 +33,23 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			6
 		];
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
 			local tattoo_body = this.actor.getSprite("tattoo_body");
 			local body = this.actor.getSprite("body");
-			tattoo_body.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
+			tattoo_body.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_" + body.getBrush().Name);
 			tattoo_body.Visible = true;
 		}
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
 			local tattoo_head = this.actor.getSprite("tattoo_head");
-			tattoo_head.setBrush("tattoo_0" + tattoos[this.Math.rand(0, tattoos.len() - 1)] + "_head");
+			tattoo_head.setBrush("tattoo_0" + tattoos[::Math.rand(0, tattoos.len() - 1)] + "_head");
 			tattoo_head.Visible = true;
 		}
 
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBarbarianRunechosen);
+		b.setValues(::Const.Tactical.Actor.LegendBarbarianRunechosen);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
@@ -94,18 +94,18 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 
 	function generateName()
 	{
-		return this.Const.Strings.BarbarianNames[this.Math.rand(0, this.Const.Strings.BarbarianNames.len() - 1)] + " " + this.Const.Strings.BarbarianTitles[this.Math.rand(0, this.Const.Strings.BarbarianTitles.len() - 1)];
+		return ::Const.Strings.BarbarianNames[::Math.rand(0, ::Const.Strings.BarbarianNames.len() - 1)] + " " + ::Const.Strings.BarbarianTitles[::Math.rand(0, ::Const.Strings.BarbarianTitles.len() - 1)];
 	}
 
 	function assignRandomEquipment()
 	{
-		local wepr = this.Math.rand(1, 100);
+		local wepr = ::Math.rand(1, 100);
 		local weapons;
 		if (wepr <= 1) {
-			weapons = this.Const.Items.NamedBarbarianWeaponsHigh;
+			weapons = ::Const.Items.NamedBarbarianWeaponsHigh;
 		}
 		else if (wepr <= 6) {
-			weapons = this.Const.Items.NamedBarbarianWeapons;
+			weapons = ::Const.Items.NamedBarbarianWeapons;
 		}
 		else {
 			weapons = [
@@ -116,9 +116,9 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			];
 		}
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Barbarian.heavy_iron_armor],
 			[1, ::Legends.Armor.Barbarian.thick_plated_barbarian_armor],
 			[1, ::Legends.Armor.Barbarian.reinforced_heavy_iron_armor],
@@ -126,7 +126,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			[1, ::Legends.Armor.Standard.barbarian_chosen_armor_01],
 		]));
 
-		this.m.Items.equip(this.Const.World.Common.pickHelmet([
+		this.m.Items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Barbarian.closed_scrap_metal_helmet],
 			[1, ::Legends.Helmet.Barbarian.heavy_horned_plate_helmet],
 			[1, ::Legends.Helmet.Barbarian.barbarian_ritual_helmet],
@@ -134,7 +134,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_01],
 			[1, ::Legends.Helmet.Standard.barbarian_chosen_helmet_02],
 		]));
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 		local runeSelection = [];
 		if (r == 1 || wepr <= 6) {
 			runeSelection = [
@@ -159,7 +159,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			];
 		}
 
-		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local selected = runeSelection[::Math.rand(0, runeSelection.len() - 1)];
 		local rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);
@@ -182,13 +182,13 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			"weapons/named/legend_named_horn_decorated_mace",
 			"weapons/named/legend_named_rusty_greatsword"
 		];
-		local armor = this.Const.Items.NamedBarbarianArmors;
-		local helmets = this.Const.Items.NamedBarbarianHelmets;
-		local r = this.Math.rand(1, 3);
+		local armor = ::Const.Items.NamedBarbarianArmors;
+		local helmets = ::Const.Items.NamedBarbarianHelmets;
+		local r = ::Math.rand(1, 3);
 		local runeSelection = [];
 		if (r == 1)
 		{
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 			runeSelection = [
 				::Legends.Rune.LegendRswBleeding,
 				::Legends.Rune.LegendRswPoison,
@@ -198,8 +198,8 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		}
 		else if (r == 2)
 		{
-			local weightName = this.Const.World.Common.convNameToList(armor);
-			this.m.Items.equip(this.Const.World.Common.pickArmor(weightName));
+			local weightName = ::Const.World.Common.convNameToList(armor);
+			this.m.Items.equip(::Const.World.Common.pickArmor(weightName));
 			runeSelection = [
 				::Legends.Rune.LegendRshBravery,
 				::Legends.Rune.LegendRsaEndurance,
@@ -208,8 +208,8 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 		}
 		else
 		{
-			local weightName = this.Const.World.Common.convNameToList(helmets);
-			this.m.Items.equip(this.Const.World.Common.pickHelmet(weightName));
+			local weightName = ::Const.World.Common.convNameToList(helmets);
+			this.m.Items.equip(::Const.World.Common.pickHelmet(weightName));
 			runeSelection = [
 				::Legends.Rune.LegendRshClarity,
 				::Legends.Rune.LegendRshBravery,
@@ -217,7 +217,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			];
 		}
 
-		local selected = runeSelection[this.Math.rand(0, runeSelection.len() - 1)];
+		local selected = runeSelection[::Math.rand(0, runeSelection.len() - 1)];
 		local rune = ::new(::Legends.Runes.get(selected).Script);
 		rune.setRuneVariant(selected);
 		rune.setRuneBonus(this.m.IsMiniboss);

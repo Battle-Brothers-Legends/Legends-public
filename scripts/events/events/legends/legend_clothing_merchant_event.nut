@@ -6,7 +6,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legend_clothing_merchant";
 		this.m.Title = "Along the road...";
-		this.m.Cooldown = 50.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 50.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_158.png[/img]{A merchant comes into view, but this one seems to travel alone with various boxes and baggage gently jostling in the back of her cart. The wagon rocks back and fourth along the road like an uneasy animal finding it\'s feet, while two donkeys — one much more worse for wear than the other, pull the cart along.\n The woman is dressed in a mix of southern and northern silks, leather, mail and other parts that are stitched togeather to make something very memorable.%SPEECH_ON%Crownlings, Mercenaries, yes? You look like one or the other but I\'d rather know which i\'m talkin\' to before I tell you what I have — one has more of an urge for robbery than the other. I\'ll let you guess which.%SPEECH_OFF%Before you can muster a reply, she stands on the wagon seat — the whole contrapion rocks and wakes gently as the merchant finds her footing.%SPEECH_ON%I carry some of the finest cloths, silks and rare items you might find. As you can tell from what I wear — the best parts are not for sale. However, there is much more that could be yours. Tell me, are you of the gambling sort?%SPEECH_OFF%}",
@@ -83,7 +83,7 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 					case 2:
 					//donkey bought and joins
 						local
-						roster = this.World.getTemporaryRoster();
+						roster = ::World.getTemporaryRoster();
 						_event.m.Dude = roster.create("scripts/entity/tactical/player");
 						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendDonkey]);
 
@@ -91,8 +91,8 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 						_event.m.Dude.getBaseProperties().Stamina -= 25;
 						_event.m.Dude.getBaseProperties().Initiative -= 40;
 
-						this.World.getPlayerRoster().add(_event.m.Dude);
-						this.World.getTemporaryRoster().clear();
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
 						_event.m.Dude.onHired();
 
 						this.List.push(::Legends.EventList.changeMoney(-2800));
@@ -127,18 +127,18 @@ this.legend_clothing_merchant_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		local brothers = this.World.getPlayerRoster().getAll();
-		if (this.World.getPlayerRoster().getSize() >= this.World.Assets.getBrothersMax())
+		local brothers = ::World.getPlayerRoster().getAll();
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 		if (!currentTile.HasRoad)
 			return;
 
-		if (this.World.Assets.getMoney() < 3500)
+		if (::World.Assets.getMoney() < 3500)
 			return;
 
-		if (this.World.Assets.getStash().getNumberOfEmptySlots() < 1)
+		if (::World.Assets.getStash().getNumberOfEmptySlots() < 1)
 			return;
 
 		this.m.Score = 7;

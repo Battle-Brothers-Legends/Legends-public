@@ -9,7 +9,7 @@
 			3,
 			4
 		];
-		this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+		this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.m.Block = 15;
 		this.m.RegularDamage = 10;
 		this.m.RegularDamage = 25;

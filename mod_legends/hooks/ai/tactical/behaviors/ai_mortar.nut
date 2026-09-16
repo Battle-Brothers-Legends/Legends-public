@@ -50,7 +50,7 @@
 						numTargets = numTargets + 5;
 					}
 				}
-				else if (e.getType() == this.Const.EntityType.Slave)
+				else if (e.getType() == ::Const.EntityType.Slave)
 				{
 					numTargets = numTargets - 10;
 				}
@@ -85,7 +85,7 @@
 								numTargets = numTargets + 5;
 							}
 						}
-						else if (e.getType() == this.Const.EntityType.Slave)
+						else if (e.getType() == ::Const.EntityType.Slave)
 						{
 							numTargets = numTargets - 10;
 						}

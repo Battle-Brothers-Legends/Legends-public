@@ -4,10 +4,10 @@ this.perk_legend_specialist_gravedigger <- this.inherit("scripts/skills/legend_s
 			"weapon.legend_shovel"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.TwoHanded
+			::Const.Items.ItemType.TwoHanded
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Mace
+			::Const.Items.WeaponType.Mace
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

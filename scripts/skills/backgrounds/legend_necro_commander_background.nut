@@ -47,12 +47,12 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 		];
 
 		this.m.Level = 3;
-		this.m.BackgroundType = this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Outlaw;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Dreaded;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Merciless;
+		this.m.BackgroundType = ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Outlaw;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Dreaded;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Merciless;
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.Fatigue,
-			this.Const.Attributes.Bravery
+			::Const.Attributes.Fatigue,
+			::Const.Attributes.Bravery
 		];
 
 		this.m.Modifiers.Terrain = [
@@ -82,7 +82,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.NineLives,
 					::Legends.Perk.LegendAlert,
 					::Legends.Perk.CripplingStrikes,
-					::Legends.Perk.BagsAndBelts,
 					::Legends.Perk.Recover,
 					::Legends.Perk.LegendWither,
 					::Legends.Perk.LegendSpecialistCultist,
@@ -98,8 +97,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendTrueBeliever,
 					::Legends.Perk.LegendRust,
 					::Legends.Perk.LegendDeathtouch,
-					::Legends.Perk.LegendGatherer,
-					::Legends.Perk.LegendMedPackages,
 					::Legends.Perk.RallyTheTroops
 				],
 				[
@@ -136,7 +133,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendFavouredEnemyOccult,
 					::Legends.Perk.LegendGruesomeFeast,
-					::Legends.Perk.LegendHerbcraft,
 					::Legends.Perk.LegendRebound,
 					::Legends.Perk.LegendSpecCultArmor,
 					::Legends.Perk.Backstabber,
@@ -199,12 +195,12 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 3;
 		this.getContainer().getActor().fillTalentValues(2, true);
 		local items = this.getContainer().getActor().getItems();
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.necromancer_hat],
 			[2, ::Legends.Helmet.Standard.dark_cowl],
 			[2, ::Legends.Helmet.Standard.undertaker_hat],
@@ -212,7 +208,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 			[3, ::Legends.Helmet.Standard.physician_mask]
 		]));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.thick_dark_tunic],
 			[1, ::Legends.Armor.Standard.ragged_dark_surcoat],
 			[2, ::Legends.Armor.Standard.undertaker_apron],
@@ -220,7 +216,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 		]));
 
 		local r;
-		r = this.Math.rand(0, 4);
+		r = ::Math.rand(0, 4);
 
 		if (r == 0)
 		{

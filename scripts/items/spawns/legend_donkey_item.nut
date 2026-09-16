@@ -25,12 +25,12 @@ this.legend_donkey_item <- this.inherit("scripts/items/spawns/legend_spawn_item"
 
 	function playInventorySound( _eventType )
 	{
-		local index = this.Math.rand(1, 16);
+		local index = ::Math.rand(1, 16);
 		local variant = "" + index;
 		if (index < 8){
 			variant = "0" + index;
 		}
-		this.Sound.play("sounds/misc/donkey_idle_" +  variant + ".wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/misc/donkey_idle_" +  variant + ".wav", ::Const.Sound.Volume.Inventory);
 	}
 
 });

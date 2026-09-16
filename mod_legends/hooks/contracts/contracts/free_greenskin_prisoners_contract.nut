@@ -33,9 +33,9 @@
 					{
 						this.Contract.m.Destination.die();
 						this.Contract.m.Destination = null;
-						local playerTile = this.World.State.getPlayer().getTile();
-						local nearest_goblins = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getNearestSettlement(playerTile);
-						local nearest_orcs = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getNearestSettlement(playerTile);
+						local playerTile = ::World.State.getPlayer().getTile();
+						local nearest_goblins = ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getNearestSettlement(playerTile);
+						local nearest_orcs = ::World.FactionManager.getFactionOfType(::Const.FactionType.Orcs).getNearestSettlement(playerTile);
 						local camp;
 
 						if(nearest_goblins == null)
@@ -62,19 +62,19 @@
 						if (this.Flags.get("IsEnemyParty"))
 						{
 							local tile = this.Contract.getTileToSpawnLocation(playerTile, 10, 15);
-							local party = this.World.FactionManager.getFaction(camp.getFaction()).spawnEntity(tile, "Greenskin Horde", false, this.Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
+							local party = ::World.FactionManager.getFaction(camp.getFaction()).spawnEntity(tile, "Greenskin Horde", false, ::Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.Contract.getMinibossModifier());
 							party.getSprite("banner").setBrush(camp.getBanner());
 							party.setDescription("A horde of greenskins marching to war.");
-							party.setFootprintType(this.Const.World.FootprintsType.Orcs);
+							party.setFootprintType(::Const.World.FootprintsType.Orcs);
 							this.Contract.m.UnitsSpawned.push(party);
-							party.getLoot().ArmorParts = this.Math.rand(0, 25);
-							party.getLoot().Ammo = this.Math.rand(0, 10);
+							party.getLoot().ArmorParts = ::Math.rand(0, 25);
+							party.getLoot().Ammo = ::Math.rand(0, 10);
 							party.addToInventory("supplies/strange_meat_item");
 							this.Contract.m.Destination = this.WeakTableRef(party);
 							party.setAttackableByAI(false);
 							party.setFootprintSizeOverride(0.75);
 							local c = party.getController();
-							c.getBehavior(this.Const.World.AI.Behavior.ID.Flee).setEnabled(false);
+							c.getBehavior(::Const.World.AI.Behavior.ID.Flee).setEnabled(false);
 							local wait = this.new("scripts/ai/world/orders/wait_order");
 							wait.setTime(15.0);
 							c.addOrder(wait);
@@ -83,9 +83,9 @@
 							roam.setMinRange(5);
 							roam.setMaxRange(10);
 							roam.setAllTerrainAvailable();
-							roam.setTerrain(this.Const.World.TerrainType.Ocean, false);
-							roam.setTerrain(this.Const.World.TerrainType.Shore, false);
-							roam.setTerrain(this.Const.World.TerrainType.Mountains, false);
+							roam.setTerrain(::Const.World.TerrainType.Ocean, false);
+							roam.setTerrain(::Const.World.TerrainType.Shore, false);
+							roam.setTerrain(::Const.World.TerrainType.Mountains, false);
 							c.addOrder(roam);
 						}
 						else
@@ -107,12 +107,12 @@
 									this.Contract.m.Destination.getLoot().clear();
 								}
 
-								camp.setResources(this.Math.min(camp.getResources(), 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult()));
-								this.Contract.addUnitsToEntity(camp, this.Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+								camp.setResources(::Math.min(camp.getResources(), 80 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult()));
+								this.Contract.addUnitsToEntity(camp, ::Const.World.Spawn.GreenskinHorde, 120 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 							}
 						}
 
-						this.Const.World.Common.addFootprintsFromTo(playerTile, this.Contract.m.Destination.getTile(), this.Const.OrcFootprints, this.Const.World.FootprintsType.Orcs, 0.75, 10.0);
+						::Const.World.Common.addFootprintsFromTo(playerTile, this.Contract.m.Destination.getTile(), ::Const.OrcFootprints, ::Const.World.FootprintsType.Orcs, 0.75, 10.0);
 						this.Contract.setState("Pursuit");
 						return 0;
 					}
@@ -124,16 +124,16 @@
 				{
 					option.getResult <- function()
 					{
-						local tile = this.World.State.getPlayer().getTile();
-						local p = this.Const.Tactical.CombatInfo.getClone();
-						p.TerrainTemplate = this.Const.World.TerrainTacticalTemplate[tile.TacticalType];
+						local tile = ::World.State.getPlayer().getTile();
+						local p = ::Const.Tactical.CombatInfo.getClone();
+						p.TerrainTemplate = ::Const.World.TerrainTacticalTemplate[tile.TacticalType];
 						p.Tile = tile;
 						p.CombatID = "Scouts";
-						p.Music = this.Const.Music.GoblinsTracks;
-						p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Line;
-						local nearest_goblins = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getNearestSettlement(tile);
-						local nearest_orcs = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Orcs).getNearestSettlement(tile);
+						p.Music = ::Const.Music.GoblinsTracks;
+						p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Line;
+						local nearest_goblins = ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getNearestSettlement(tile);
+						local nearest_orcs = ::World.FactionManager.getFactionOfType(::Const.FactionType.Orcs).getNearestSettlement(tile);
 						local camp;
 
 						if(nearest_goblins == null)
@@ -158,8 +158,8 @@
 
 						p.EnemyBanners.push(camp.getBanner());
 						p.Entities = [];
-						this.Const.World.Common.addUnitsToCombat(p.Entities, this.Const.World.Spawn.GreenskinHorde, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), this.World.FactionManager.getFactionOfType(this.Const.FactionType.Goblins).getID());
-						this.World.Contracts.startScriptedCombat(p, false, true, true);
+						::Const.World.Common.addUnitsToCombat(p.Entities, ::Const.World.Spawn.GreenskinHorde, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult(), ::World.FactionManager.getFactionOfType(::Const.FactionType.Goblins).getID());
+						::World.Contracts.startScriptedCombat(p, false, true, true);
 						return 0;
 					}
 				}
@@ -169,7 +169,7 @@
 				s.start <- function ()
 				{
 					local item;
-					local r = this.Math.rand(1, 12);
+					local r = ::Math.rand(1, 12);
 
 					if (r == 1)
 					{
@@ -220,12 +220,12 @@
 						item = this.new("scripts/items/weapons/named/legend_named_orc_flail_2h");
 					}
 
-					this.World.Assets.getStash().makeEmptySlots(1);
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().makeEmptySlots(1);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 				}
 			}

@@ -20,10 +20,10 @@
 
 	o.onUpdate = function ()
 	{
-		if ("FoodAdditionalDays" in this.World.Assets.m)
-			this.World.Assets.m.FoodAdditionalDays = 4;
-		//if ("HitpointsPerHourMult" in this.World.Assets.m)
-			//this.World.Assets.m.HitpointsPerHourMult = 1.33;
+		if ("FoodAdditionalDays" in ::World.Assets.m)
+			::World.Assets.m.FoodAdditionalDays = 4;
+		//if ("HitpointsPerHourMult" in ::World.Assets.m)
+			//::World.Assets.m.HitpointsPerHourMult = 1.33;
 	}
 
 	o.onEvaluate = function () {

@@ -2,12 +2,12 @@
 {
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.restore_location_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.restore_location_contract))
 		{
 			return;
 		}
 
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 		{
 			return;
 		}

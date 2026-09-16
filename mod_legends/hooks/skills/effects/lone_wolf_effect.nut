@@ -9,7 +9,7 @@
 
 		local actor = this.getContainer().getActor();
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(actor.getFaction());
+		local allies = ::Tactical.Entities.getInstancesOfFaction(actor.getFaction());
 		local isAlone = true;
 
 		foreach( ally in allies )

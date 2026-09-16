@@ -11,13 +11,13 @@ this.legend_basilisk_drone_low <- this.inherit("scripts/entity/tactical/enemies/
 	{
 		this.legend_basilisk_drone.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBasiliskDroneLow); //weaker version of Drone
+		b.setValues(::Const.Tactical.Actor.LegendBasiliskDroneLow); //weaker version of Drone
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.DefaultMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.DefaultMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		getSkills().update();
 	}
 

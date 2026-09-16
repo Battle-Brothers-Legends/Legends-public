@@ -15,8 +15,8 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_87.png";
 		this.m.IconMini = "status_effect_87_mini";
 		this.m.Overlay = "status_effect_87";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
@@ -59,12 +59,12 @@ this.legend_vala_spiritual_bond_effect <- this.inherit("scripts/skills/skill", {
 
 		local transfer = ::Math.minf(0.5, 0.1 + this.m.ResolveAtCheck);
 		local reduction = ::Math.maxf(0.5, 1.0 - (0.1 + this.m.ResolveAtCheck));
-		local DamageToWarden = this.Math.ceil((_damageHitpoints / reduction) * transfer);
+		local DamageToWarden = ::Math.ceil((_damageHitpoints / reduction) * transfer);
 
-		local hitInfo = clone this.Const.Tactical.HitInfo;
+		local hitInfo = clone ::Const.Tactical.HitInfo;
 		hitInfo.DamageRegular = DamageToWarden;
 		hitInfo.DamageDirect = 1.0;
-		hitInfo.BodyPart = this.Const.BodyPart.Body;
+		hitInfo.BodyPart = ::Const.BodyPart.Body;
 		hitInfo.BodyDamageMult = 1.0;
 		hitInfo.FatalityChanceMult = 0.0;
 		this.m.Vala.m.WardenEntity.onDamageReceived(_attacker, this, hitInfo);

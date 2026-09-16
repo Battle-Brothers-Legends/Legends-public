@@ -40,14 +40,14 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 	{
 		// local citystatefaction = [];
 		local nomadfaction = [];
-		// citystatefaction.extend(this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalCityState)); 
-		nomadfaction.extend(this.World.FactionManager.getFactionsOfType(this.Const.FactionType.OrientalBandits)); 
+		// citystatefaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState)); 
+		nomadfaction.extend(::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalBandits)); 
 
 		// foreach( f in citystatefaction )
 		// { //Relations: 0 = hostile, 100 = allied
 		// 	if (f.m.PlayerRelation > 30) //rests at 30
 		// 	{
-		// 		f.m.PlayerRelation = this.Math.minf(100.0, this.Math.max(0.0, f.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
+		// 		f.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, f.m.PlayerRelation - 0.1));  //-0.1 reputation per day per unit in company.
 		// 		f.updatePlayerRelation();
 		// 	}
 		// }
@@ -55,7 +55,7 @@ this.legend_nomad_trait <- this.inherit("scripts/skills/traits/character_trait",
 		{ //Relations: 0 = hostile, 100 = allied
 			if (f.m.PlayerRelation > 0) //rests at 0
 			{
-				f.m.PlayerRelation = this.Math.minf(100.0, this.Math.max(0.0, f.m.PlayerRelation + 0.1));  //+0.1 reputation per day per unit in company.
+				f.m.PlayerRelation = ::Math.minf(100.0, ::Math.max(0.0, f.m.PlayerRelation + 0.1));  //+0.1 reputation per day per unit in company.
 				f.updatePlayerRelation();
 			}
 		}

@@ -4,14 +4,14 @@ this.legend_named_swordstaff <- this.inherit("scripts/items/weapons/named/named_
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_swordstaff";
-		this.m.NameList = this.Const.Strings.SpetumNames;
+		this.m.NameList = ::Const.Strings.SpetumNames;
 		this.m.Description = "This Swordstaff is especially well-crafted, and its blade would be worthy of even a noble";
 		this.m.IconLarge = "weapons/melee/legend_swordstaff_01_named_01.png";
 		this.m.Icon = "weapons/melee/legend_swordstaff_01_named_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Sword | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Defensive;
+		this.m.WeaponType = ::Const.Items.WeaponType.Sword | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Defensive;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;

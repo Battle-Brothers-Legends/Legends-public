@@ -55,14 +55,14 @@
 			105,
 			106
 		];
-		if (this.Const.DLC.UnholdSupporter)
+		if (::Const.DLC.UnholdSupporter)
 			this.m.Variants.push(34);
-		if (this.Const.DLC.WildmenSupporter)
+		if (::Const.DLC.WildmenSupporter)
 			this.m.Variants.push(37);
-		if (this.Const.DLC.DesertSupporter)
+		if (::Const.DLC.DesertSupporter)
 			this.m.Variants.push(42);
 		this.addVariants();
-		this.m.Variant = this.Math.rand(1, 11); //random one is only 1-11 though
+		this.m.Variant = ::Math.rand(1, 11); //random one is only 1-11 though
 		this.m.Block = 20;
 		this.m.RegularDamage = 15;
 		this.m.RegularDamage = 30;
@@ -88,7 +88,7 @@
 	}
 
 	o.onPaintInCompanyColors = function () {
-		local bannerID = this.World.Assets.getBannerID() >= 50 ? this.World.Assets.getBannerID() : this.World.Assets.getBannerID() + 11;
+		local bannerID = ::World.Assets.getBannerID() >= 50 ? ::World.Assets.getBannerID() : ::World.Assets.getBannerID() + 11;
 		this.setVariant(bannerID);
 		this.updateAppearance();
 	}

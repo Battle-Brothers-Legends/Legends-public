@@ -9,8 +9,8 @@
 		create();
 		this.m.IconMini = "perk_07_mini";
 		this.m.Overlay = "perk_07";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast + 10000;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast + 10000;
 	}
 
 	o.setSpent = function (_f) {

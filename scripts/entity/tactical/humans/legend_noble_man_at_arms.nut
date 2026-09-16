@@ -1,15 +1,15 @@
 this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 	m = {},
-	function create()
-	{
-		this.m.Type = this.Const.EntityType.LegendManAtArms;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.LegendManAtArms.XP;
+
+	function create() {
+		this.m.Type = ::Const.EntityType.LegendManAtArms;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.LegendManAtArms.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.Military;
-		this.m.HairColors = this.Const.HairColors.Old;
-		this.m.Beards = this.Const.Beards.Tidy;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.Military;
+		this.m.HairColors = ::Const.HairColors.Old;
+		this.m.Beards = ::Const.Beards.Tidy;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/military_melee_agent");
 		this.m.AIAgent.setActor(this);
 		if (this.randomizeEnemyGender() == 1) {
@@ -17,11 +17,10 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendManAtArms);
+		b.setValues(::Const.Tactical.Actor.LegendManAtArms);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -52,8 +51,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendImmovableObject);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
@@ -63,24 +61,12 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		}
 	}
 
-	function assignRandomEquipment()
-	{
-		local r;
-		local banner = 3;
-
-		if (!this.Tactical.State.isScenarioMode())
-		{
-			banner = this.World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
-			banner = this.getFaction();
-		}
+	function assignRandomEquipment() {
+		local banner = ::Tactical.State.isScenarioMode() ? this.getFaction() : ::World.FactionManager.getFaction(this.getFaction()).getBanner();
 
 		this.m.Surcoat = banner;
 
-		if (this.Math.rand(1, 100) <= 90)
-		{
+		if (::Math.rand(1, 100) <= 90) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
@@ -97,24 +83,25 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		shield.setFaction(banner);
 		this.m.Items.equip(shield);
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.man_at_arms_noble_armor]
 		]));
-		// this.m.Items.equip(this.Const.World.Common.pickArmor([
+		// this.m.Items.equip(::Const.World.Common.pickArmor([
 		// 	[1, "mail_hauberk", 28],
 		// 	[1, ::Legends.Armor.Standard.mail_shirt],
 		// 	[1, ::Legends.Armor.Standard.basic_mail_shirt]
 		// ]));
 
-		local helmet = this.Const.World.Common.pickHelmet([
+		local helmet = ::Const.World.Common.pickHelmet([
 			[3, ::Legends.Helmet.Standard.stag_helm],
 			[3, ::Legends.Helmet.Standard.swan_helm],
 			[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
 		]);
 
-		if (helmet != null)
-		{
-			if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
+		if (helmet != null) {
+			if ("setPlainVariant" in helmet) {
+				helmet.setPlainVariant();
+			}
 			this.m.Items.equip(helmet);
 		}
 	}

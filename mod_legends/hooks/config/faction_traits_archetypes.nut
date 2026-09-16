@@ -2,9 +2,9 @@
 	[
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Warmonger,
-				this.Const.FactionTrait.Tyrant
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Warmonger,
+				::Const.FactionTrait.Tyrant
 			],
 			Description = "The noble house of %noblehousename% is a proud and unrelenting family with a long and bloodstained history of conquest. Seated in their fortress of %factionfortressname%, they take with arms what they consider theirs by right. An ancestral feud with house %othernoblehouse% provides never ending reasons to keep both hate in the hearts and ore smelters burning.",
 			Mottos = [
@@ -23,9 +23,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Warmonger,
-				this.Const.FactionTrait.Marauder
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Warmonger,
+				::Const.FactionTrait.Marauder
 			],
 			Description = "Disdained for their ruthlessness, brutality and greed, house %noblehousename% has little interaction with other noble families. Their captains and soldiers are known for raiding trade caravans, outlying farms and small settlements from their fortress of %factionfortressname%. A life is not worth much in the realm of house %noblehousename% and many a mercenary on the look for a quick coin only found a quick end here.",
 			Mottos = [
@@ -42,9 +42,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Collector,
-				this.Const.FactionTrait.Warmonger
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Collector,
+				::Const.FactionTrait.Warmonger
 			],
 			Description = "The house of %noblehousename% always has their eyes on the horizon. Always chasing riches from foreign lands, and willing to take them by force.  Missions are launched from %factionfortressname% out to claim a world they believe to be rightfully theirs.",
 			Mottos = [
@@ -61,9 +61,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.ManOfThePeople,
-				this.Const.FactionTrait.Tyrant
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.ManOfThePeople,
+				::Const.FactionTrait.Tyrant
 			],
 			Description = "The noble house of %noblehousename% is a proud and unrelenting family with a long and bloodstained history of total control. Seated in their fortress of %factionfortressname%, their people offer up a tithe consider theirs by birthright. Though their rule is cruel, the people adore them for their staunchness.",
 			Mottos = [
@@ -84,9 +84,9 @@
 	[
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Schemer,
-				this.Const.FactionTrait.Sheriff
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Schemer,
+				::Const.FactionTrait.Sheriff
 			],
 			Description = "House %noblehousename% works in the dark to protect its lands. The agents of %noblehousename%  have eyes in every shady corner and ears in every wall, inside and outside their borders. Peace is maintained through their lands, because %noblehousename% is always watching.",
 			Mottos = [
@@ -105,9 +105,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Collector,
-				this.Const.FactionTrait.Tyrant
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Collector,
+				::Const.FactionTrait.Tyrant
 			],
 			Description = "The house of %noblehousename% is well known for its jealously guarded horde of treasures. The hoarded treasures of %noblehousename% are whispered through the lands, and still they crave more.",
 			Mottos = [
@@ -124,9 +124,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.ManOfThePeople,
-				this.Const.FactionTrait.Schemer
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.ManOfThePeople,
+				::Const.FactionTrait.Schemer
 			],
 			Description = "The house of %noblehousename% subtly manipulates events for the greater good. From their home in %factionfortressname%, they strategise to bring wellbeing to the common man. In a brutal world they are a faint glimmer of a better world.",
 			Mottos = [
@@ -145,9 +145,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.ManOfThePeople,
-				this.Const.FactionTrait.Marauder
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.ManOfThePeople,
+				::Const.FactionTrait.Marauder
 			],
 			Description = "Lauded as providers for their people %noblehousename% creates bounty by raiding their enemies. Their captains and soldiers are known for raiding trade caravans, outlying farms and small settlements from their fortress of %factionfortressname%. They bring supplies back home, to share the bounty among their people.",
 			Mottos = [
@@ -166,9 +166,9 @@
 	[
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Schemer,
-				this.Const.FactionTrait.Collector
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Schemer,
+				::Const.FactionTrait.Collector
 			],
 			Description = "Trading and haggling can be just as fierce as fighting a war, and the house of %noblehousename% is a true master of cunning bargains. Rumor has it that many a profitable deal made by house %noblehousename% is not only based on honest trading but also bribery, extortion and deception. The family resides in the pompous region capitol of %factionfortressname%, but despite their unmeasurable riches they are known to be notoriously close-fisted.",
 			Mottos = [
@@ -182,9 +182,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.ManOfThePeople,
-				this.Const.FactionTrait.Collector
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.ManOfThePeople,
+				::Const.FactionTrait.Collector
 			],
 			Description = "House %noblehousename% claims to have roots in the time when man first claimed this land, and the first king ruled all men. They are but one of many noble houses now, but proud of their long history and with ambitions to continue writing history. As their renown and their resources dwindle in the now, they are said to finance expeditions in an attempt to unearth long lost treasures from the past, in sunken cities and places long forgotten.",
 			Mottos = [
@@ -201,9 +201,9 @@
 		},
 		{
 			Traits = [
-				this.Const.FactionTrait.NobleHouse,
-				this.Const.FactionTrait.Marauder,
-				this.Const.FactionTrait.Schemer
+				::Const.FactionTrait.NobleHouse,
+				::Const.FactionTrait.Marauder,
+				::Const.FactionTrait.Schemer
 			],
 			Description = "Most members of the house of %noblehousename% live secluded behind thick doors and barred windows and some of them have not been seen for years. Rumor has it that their noble blood is plagued with madness and insanity but no ordinary man dares to utter such claims in fear of their vengeance. Other noble houses mainly avoid contact with house %noblehousename% as guests may be greeted with open arms as well as crossbow bolts.",
 			Mottos = [

@@ -6,7 +6,7 @@
 			_screen.start <- function (_event) {
 				local item = this.new("scripts/items/accessory/legend_wardog_item");
 				item.m.Name = "Battle Brother";
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -23,7 +23,7 @@
 				this.Characters.push(_event.m.Houndmaster.getImagePath());
 				local item = this.new("scripts/items/accessory/legend_wardog_item");
 				item.m.Name = "Battle Brother";
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
@@ -42,7 +42,7 @@
 			::Legends.Background.LegendMuladi
 		));
 		if (candidates.len() != 0) {
-			this.m.Houndmaster = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Houndmaster = candidates[::Math.rand(0, candidates.len() - 1)];
 		}
 	}
 })

@@ -13,8 +13,8 @@ this.legend_enclave_vanilla_great_bascinet_01 <- this.inherit("scripts/items/hel
 		this.m.HideBeard = true;
 		this.m.IsDroppedAsLoot = true;
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorHalfplateImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorHalfplateImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorHalfplateImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorHalfplateImpact;
 		this.m.Value = 2600;
 		this.m.Condition = 330;
 		this.m.ConditionMax = 330;

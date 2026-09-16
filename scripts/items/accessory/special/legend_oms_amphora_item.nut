@@ -40,7 +40,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 		this.m.ID = "accessory.legend_oms_amphora";
 		this.m.Name = "Ancient Amphora";
 		this.m.Description = "An ancient glazed pot that has seen much use before your time. It depicts specific characters fighting over ripe fields with the amphora at the centre - a sickly grey mulch resides inside. When emptied, the vessel appears to gradually refill from a second chamber within the walls of the item. The freshness of the drink does not improve.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsAllowedInBag = false;
 		this.m.ShowOnCharacter = false;
 		this.m.IsDroppedAsLoot = true;
@@ -102,7 +102,7 @@ this.legend_oms_amphora_item <- this.inherit("scripts/items/accessory/accessory"
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/bottle_01.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/bottle_01.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function onEquip()

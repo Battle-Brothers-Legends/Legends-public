@@ -4,12 +4,12 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.obtain_item_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.obtain_item_contract))
 		{
 			return;
 		}
@@ -19,7 +19,7 @@
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 30 || this.Math.rand(1, 100) > 15)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 30 || ::Math.rand(1, 100) > 15)
 		{
 			return;
 		}
@@ -29,11 +29,11 @@
 
 		if (tooFar)
 		{
-			local bandits = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements();
+			local bandits = ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
 
 			foreach( b in bandits )
 			{
-				if (b.isLocationType(this.Const.World.LocationType.Unique))
+				if (b.isLocationType(::Const.World.LocationType.Unique))
 				{
 					continue;
 				}

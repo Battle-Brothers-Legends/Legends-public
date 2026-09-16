@@ -48,11 +48,11 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 				}
 			],
 			function start(_event) {
-				this.World.Assets.addMoney(-1);
+				::World.Assets.addMoney(-1);
 				this.List = [{
 					id = 10,
 					icon = "ui/icons/asset_money.png",
-					text = "You spend [color=" + this.Const.UI.Color.NegativeEventValue + "]1[/color] Crown"
+					text = "You spend [color=" + ::Const.UI.Color.NegativeEventValue + "]1[/color] Crown"
 				}];
 			}
 
@@ -75,7 +75,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 				}
 			],
 			function start(_event) {
-				local roster = this.World.getTemporaryRoster();
+				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
 				_event.m.Dude.setStartValuesEx([::Legends.Background.BellyDancer]);
 				_event.m.Dude.getBackground().m.RawDescription = "You found %name% in " + ::Legends.S.getClosestSettlement().getName() + ", masked by green silk and drawing crowds with rhythmic movements and impressively precise fruit slicing. The latter skill is a boon to any mercenary company, and so you didn\'t hesitate to recruit them	.";

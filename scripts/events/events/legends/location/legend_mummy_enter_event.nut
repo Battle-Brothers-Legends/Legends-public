@@ -15,7 +15,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.location.legend_mummy_enter";
 		this.m.Title = "As you approach...";
-		this.m.Cooldown = 999999.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 999999.0 * ::World.getTime().SecondsPerDay;
 		this.m.IsSpecial = true;
 		this.m.Screens.push({
 			ID = "A",
@@ -29,8 +29,8 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			}, {
 				Text = "Let\'s not disturb what rests here.",
 				function getResult(_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setVisited(false);
+					if (::World.State.getLastLocation() != null) {
+						::World.State.getLastLocation().setVisited(false);
 					}
 					return 0;
 				}
@@ -60,30 +60,30 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			Options = [{
 				Text = "The dead are upon us!",
 				function getResult(_event) {
-					if (this.World.State.getLastLocation() != null) {
-						this.World.State.getLastLocation().setVisited(false);
+					if (::World.State.getLastLocation() != null) {
+						::World.State.getLastLocation().setVisited(false);
 					}
 
-					local p = this.Const.Tactical.CombatInfo.getClone();
-					p.LocationTemplate = clone this.Const.Tactical.LocationTemplate;
+					local p = ::Const.Tactical.CombatInfo.getClone();
+					p.LocationTemplate = clone ::Const.Tactical.LocationTemplate;
 					p.CombatID = "Mastaba";
 					p.TerrainTemplate = "tactical.sinkhole";
 					p.LocationTemplate.Template[0] = "tactical.sunken_library";
-					p.Music = this.Const.Music.UndeadTracks;
-					p.PlayerDeploymentType = this.Const.Tactical.DeploymentType.LineBack;
-					p.EnemyDeploymentType = this.Const.Tactical.DeploymentType.Center;
+					p.Music = ::Const.Music.UndeadTracks;
+					p.PlayerDeploymentType = ::Const.Tactical.DeploymentType.LineBack;
+					p.EnemyDeploymentType = ::Const.Tactical.DeploymentType.Center;
 					p.IsWithoutAmbience = true;
 					p.Entities = [];
 
 					for (local i = 0; i < 4; ++i) {
-						p.Entities.push(clone this.Const.World.Spawn.Troops.LegendMummyHeavy);
+						p.Entities.push(clone ::Const.World.Spawn.Troops.LegendMummyHeavy);
 					}
 
 					for (local i = 0; i < 4; ++i) {
-						p.Entities.push(clone this.Const.World.Spawn.Troops.LegendMummyPriest);
+						p.Entities.push(clone ::Const.World.Spawn.Troops.LegendMummyPriest);
 					}
 
-					local f = this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getID();
+					local f = ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getID();
 
 					for (local i = 0; i < p.Entities.len(); ++i) {
 						p.Entities[i].Faction <- f;
@@ -95,7 +95,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						do {
 							local x = ::Math.rand(10, 28);
 							local y = ::Math.rand(4, 28);
-							local tile = this.Tactical.getTileSquare(x, y);
+							local tile = ::Tactical.getTileSquare(x, y);
 
 							if (!tile.IsEmpty) {
 								continue
@@ -113,7 +113,7 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 								continue
 							}
 
-							local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_vampire_lord", tile.Coords);
+							local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_vampire_lord", tile.Coords);
 							e.setFaction(f);
 							e.assignRandomEquipment();
 							light = --light;
@@ -137,13 +137,13 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						do {
 							local x = ::Math.rand(9, 10);
 							local y = ::Math.rand(15, 17);
-							local tile = this.Tactical.getTileSquare(x, y);
+							local tile = ::Tactical.getTileSquare(x, y);
 
 							if (!tile.IsEmpty) {
 								continue
 							}
 
-							local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_queen", tile.Coords);
+							local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_queen", tile.Coords);
 							e.setFaction(f);
 							e.assignRandomEquipment();
 							queen = --queen;
@@ -154,13 +154,13 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						do {
 							local x = ::Math.rand(9, 11);
 							local y = ::Math.rand(11, 21);
-							local tile = this.Tactical.getTileSquare(x, y);
+							local tile = ::Tactical.getTileSquare(x, y);
 
 							if (!tile.IsEmpty) {
 								continue
 							}
 
-							local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_medium", tile.Coords);
+							local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_medium", tile.Coords);
 							e.setFaction(f);
 							e.assignRandomEquipment();
 							treasureHunters = --treasureHunters;
@@ -171,13 +171,13 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						do {
 							local x = ::Math.rand(9, 14);
 							local y = ::Math.rand(8, 20);
-							local tile = this.Tactical.getTileSquare(x, y);
+							local tile = ::Tactical.getTileSquare(x, y);
 
 							if (!tile.IsEmpty) {
 								continue
 							}
 
-							local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_light", tile.Coords);
+							local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_light", tile.Coords);
 							e.setFaction(f);
 							e.assignRandomEquipment();
 							medium = --medium;
@@ -187,25 +187,25 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 						do {
 							local x = ::Math.rand(12, 14);
 							local y = ::Math.rand(12, 26);
-							local tile = this.Tactical.getTileSquare(x, y);
+							local tile = ::Tactical.getTileSquare(x, y);
 
 							if (!tile.IsEmpty) {
 								continue
 							}
 
-							local e = this.Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_heavy", tile.Coords);
+							local e = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_mummy_heavy", tile.Coords);
 							e.setFaction(f);
 							e.assignRandomEquipment();
 							heavy = --heavy;
 						} while (heavy > 0);
 					};
 					p.AfterDeploymentCallback = function() {
-						this.Tactical.getWeather().setAmbientLightingPreset(5);
-						this.Tactical.getWeather().setAmbientLightingSaturation(0.9);
+						::Tactical.getWeather().setAmbientLightingPreset(5);
+						::Tactical.getWeather().setAmbientLightingSaturation(0.9);
 					};
 					_event.addLootToScriptedCombat(p);
 					_event.registerToShowAfterCombat("Victory", "Defeat");
-					this.World.State.startScriptedCombat(p, false, false, false);
+					::World.State.startScriptedCombat(p, false, false, false);
 					return 0;
 				}
 
@@ -229,19 +229,19 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				if (this.World.State.getLastLocation() != null) {
-					this.World.State.getLastLocation().die();
+				if (::World.State.getLastLocation() != null) {
+					::World.State.getLastLocation().die();
 				}
 
-				this.World.Assets.getStash().makeEmptySlots(1);
+				::World.Assets.getStash().makeEmptySlots(1);
 				local item = this.new("scripts/items/weapons/legendary/legend_blooddrinker");
-				this.World.Assets.getStash().add(item);
+				::World.Assets.getStash().add(item);
 				this.List.push({
 					id = 10,
 					icon = "ui/items/" + item.getIcon(),
 					text = "You gain " + item.getName()
 				});
-				this.World.Flags.set("IsMastabaDefeated", true);
+				::World.Flags.set("IsMastabaDefeated", true);
 			}
 
 		});
@@ -258,8 +258,8 @@ this.legend_mummy_enter_event <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				_event.m.Title = "After the battle...";
 
-				if (this.World.State.getLastLocation() != null) {
-					this.World.State.getLastLocation().setVisited(false);
+				if (::World.State.getLastLocation() != null) {
+					::World.State.getLastLocation().setVisited(false);
 				}
 			}
 

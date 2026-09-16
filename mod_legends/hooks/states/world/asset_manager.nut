@@ -22,27 +22,27 @@
 
 	o.getMaxAmmo <- function()
 	{
-		local ammo = this.Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Ammo;
-		//this.Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo + this.m.AmmoMaxAdditional
+		local ammo = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Ammo;
+		//::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo + this.m.AmmoMaxAdditional
 		ammo += this.m.AmmoMaxAdditional;
-		ammo += this.World.State.getPlayer().getAmmoModifier();
+		ammo += ::World.State.getPlayer().getAmmoModifier();
 		return ammo;
 	}
 
 	o.getMaxArmorParts <- function()
 	{
-		local parts = this.Const.LegendMod.MaxResources[this.m.EconomicDifficulty].ArmorParts;
-		parts += this.m.ArmorPartsMaxAdditional; //this.Const.Difficulty.MaxResources[this.m.EconomicDifficulty].ArmorParts + this.m.MedicineMaxAdditional
-		parts += this.World.State.getPlayer().getArmorPartsModifier();
+		local parts = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].ArmorParts;
+		parts += this.m.ArmorPartsMaxAdditional; //::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].ArmorParts + this.m.MedicineMaxAdditional
+		parts += ::World.State.getPlayer().getArmorPartsModifier();
 		return parts;
 	}
 
 	o.getMaxMedicine <- function()
 	{
-		local meds = this.Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Medicine;
-		//this.Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo
+		local meds = ::Const.LegendMod.MaxResources[this.m.EconomicDifficulty].Medicine;
+		//::Const.Difficulty.MaxResources[this.m.EconomicDifficulty].Ammo
 		meds += this.m.MedicineMaxAdditional;
-		meds += this.World.State.getPlayer().getMedsModifier();
+		meds += ::World.State.getPlayer().getMedsModifier();
 		return meds;
 	}
 
@@ -63,17 +63,17 @@
 
 	o.getBrothersMax = function ()
 	{
-		return this.Const.Roster.getSizeForTier(this.World.Assets.getOrigin().getRosterTier());
+		return ::Const.Roster.getSizeForTier(::World.Assets.getOrigin().getRosterTier());
 	}
 
 	o.getBrothersMaxInCombat = function ()
 	{
-		return this.Const.Roster.getInCombatSizeForTier(this.World.Assets.getOrigin().getRosterTierCombat());
+		return ::Const.Roster.getInCombatSizeForTier(::World.Assets.getOrigin().getRosterTierCombat());
 	}
 
 	o.getBrothersScaleMax = function ()
 	{
-		return this.Math.min(25, this.m.BrothersScaleMax);
+		return ::Math.min(25, this.m.BrothersScaleMax);
 	}
 
 	o.getFounderNames <- function ()
@@ -93,7 +93,7 @@
 
 	o.isCamping = function()
 	{
-		return this.World.Camp.isCamping();
+		return ::World.Camp.isCamping();
 	}
 
 	o.setCamping = function( _c )
@@ -103,7 +103,7 @@
 
 	o.setAmmo = function( _f )
 	{
-		this.m.Ammo = this.Math.min(this.Math.max(0, _f), this.getMaxAmmo());
+		this.m.Ammo = ::Math.min(::Math.max(0, _f), this.getMaxAmmo());
 		this.refillAmmo();
 	}
 
@@ -160,16 +160,16 @@
 		if (this.m.Ammo == 0)
 			return;
 
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster ) {
 			local items = bro.getItems().getAllItems();
 			foreach( item in items ) {
-				if ((item.isItemType(this.Const.Items.ItemType.Ammo) || ("getAmmo" in item && "getAmmoMax" in item)) && (item.getAmmo() < item.getAmmoMax())) {
-					local a = this.Math.min(this.m.Ammo, this.Math.ceil(item.getAmmoMax() - item.getAmmo()) * item.getAmmoCost());
+				if ((item.isItemType(::Const.Items.ItemType.Ammo) || ("getAmmo" in item && "getAmmoMax" in item)) && (item.getAmmo() < item.getAmmoMax())) {
+					local a = ::Math.min(this.m.Ammo, ::Math.ceil(item.getAmmoMax() - item.getAmmo()) * item.getAmmoCost());
 
 					if (this.m.Ammo >= a) {
-						item.setAmmo(item.getAmmo() + this.Math.ceil(a / item.getAmmoCost()));
+						item.setAmmo(item.getAmmo() + ::Math.ceil(a / item.getAmmoCost()));
 						this.m.Ammo -= a;
 					}
 				}
@@ -213,39 +213,39 @@
 				break;
 		}
 
-		if (this.World.State.getCurrentTown() != null) {
-			this.World.State.getTownScreen().updateAssets();
+		if (::World.State.getCurrentTown() != null) {
+			::World.State.getTownScreen().updateAssets();
 		}
 	}
 
 	o.setArmorParts = function( _f )
 	{
-		this.m.ArmorParts = this.Math.min(this.Math.max(0, _f), this.getMaxArmorParts());
+		this.m.ArmorParts = ::Math.min(::Math.max(0, _f), this.getMaxArmorParts());
 	}
 
 	o.setMedicine = function( _f )
 	{
-		this.m.Medicine = this.Math.min(this.Math.max(0, _f), this.getMaxMedicine());
+		this.m.Medicine = ::Math.min(::Math.max(0, _f), this.getMaxMedicine());
 	}
 
 	o.addAmmo = function( _f )
 	{
-		this.m.Ammo = this.Math.min(this.Math.max(0, this.m.Ammo + _f), this.getMaxAmmo());
+		this.m.Ammo = ::Math.min(::Math.max(0, this.m.Ammo + _f), this.getMaxAmmo());
 	}
 
 	o.addArmorParts = function( _f )
 	{
-		this.m.ArmorParts = this.Math.min(this.Math.max(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
+		this.m.ArmorParts = ::Math.min(::Math.max(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
 	}
 
 	o.addArmorPartsF <- function( _f )
 	{
-		this.m.ArmorParts = this.Math.minf(this.Math.maxf(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
+		this.m.ArmorParts = ::Math.minf(::Math.maxf(0, this.m.ArmorParts + _f), this.getMaxArmorParts());
 	}
 
 	o.addMedicine = function( _f )
 	{
-		this.m.Medicine = this.Math.min(this.Math.max(0, this.m.Medicine + _f), this.getMaxMedicine());
+		this.m.Medicine = ::Math.min(::Math.max(0, this.m.Medicine + _f), this.getMaxMedicine());
 	}
 
 	local addBusinessReputation = o.addBusinessReputation;
@@ -256,7 +256,7 @@
 			else if (this.m.BusinessReputation >= 250 && this.m.BusinessReputation < 500) _f = ::Math.round(0.5 * _f);
 		}
 		addBusinessReputation(_f);
-		this.m.BusinessReputationMax = this.Math.max(this.m.BusinessReputation, this.m.BusinessReputationMax);
+		this.m.BusinessReputationMax = ::Math.max(this.m.BusinessReputation, this.m.BusinessReputationMax);
 	}
 
 	// overwriting due to certain options
@@ -272,19 +272,19 @@
 		this.calculateStartingStashSize(_settings);
 
 		/* probably don't need this as legendary economic makes all starting resources to be 0 afterall
-		if (_settings.BudgetDifficulty == this.Const.Difficulty.Legendary &&
+		if (_settings.BudgetDifficulty == ::Const.Difficulty.Legendary &&
 			this.m.Money == 0 &&
 			this.m.Ammo == 0 &&
 			this.m.ArmorParts == 0 &&
 			this.m.Medicine == 0
 		) {
-			this.m.Money = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
-			this.m.Ammo = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
-			this.m.ArmorParts = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
-			this.m.Medicine = this.Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
+			this.m.Money = ::Const.LegendMod.StartResources[_settings.BudgetDifficulty].Money;
+			this.m.Ammo = ::Const.LegendMod.StartResources[_settings.BudgetDifficulty].Ammo;
+			this.m.ArmorParts = ::Const.LegendMod.StartResources[_settings.BudgetDifficulty].ArmorParts;
+			this.m.Medicine = ::Const.LegendMod.StartResources[_settings.BudgetDifficulty].Medicine;
 		}
 		*/
-		this.m.LastRosterSize = this.World.getPlayerRoster().getSize();
+		this.m.LastRosterSize = ::World.getPlayerRoster().getSize();
 	}
 
 	o.calculateStartingStashSize <- function( _settings )
@@ -307,11 +307,11 @@
 			Modifiers = [],
 			Injuries = []
 		};
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
-			local injuries = bro.getSkills().query(this.Const.SkillType.TemporaryInjury);
+			local injuries = bro.getSkills().query(::Const.SkillType.TemporaryInjury);
 
 			local ht;
 			if (bro.getSkills().hasSkill("injury.sickness"))
@@ -322,8 +322,8 @@
 			foreach( inj in injuries )
 			{
 				ht = inj.getHealingTime();
-				ret.MedicineMin += ht.Min * this.Const.World.Assets.MedicinePerInjuryDay;
-				ret.MedicineMax += ht.Max * this.Const.World.Assets.MedicinePerInjuryDay;
+				ret.MedicineMin += ht.Min * ::Const.World.Assets.MedicinePerInjuryDay;
+				ret.MedicineMax += ht.Max * ::Const.World.Assets.MedicinePerInjuryDay;
 
 				if (ht.Min > ret.DaysMin)
 				{
@@ -349,10 +349,10 @@
 			ret.Modifier += rm;
 		}
 
-		ret.MedicineMin = this.Math.ceil(ret.MedicineMin);
-		ret.MedicineMax = this.Math.ceil(ret.MedicineMax);
-		ret.DaysMin = this.Math.ceil(ret.DaysMin);
-		ret.DaysMax = this.Math.ceil(ret.DaysMax);
+		ret.MedicineMin = ::Math.ceil(ret.MedicineMin);
+		ret.MedicineMax = ::Math.ceil(ret.MedicineMax);
+		ret.DaysMin = ::Math.ceil(ret.DaysMin);
+		ret.DaysMax = ::Math.ceil(ret.DaysMax);
 		return ret;
 	}
 
@@ -373,7 +373,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		for (local i = 0; i < this.Const.LegendMod.Formations.Count; ++i) {
+		for (local i = 0; i < ::Const.LegendMod.Formations.Count; ++i) {
 			this.m.FormationNames.push(i == 0 ? "Formation 1" : "NULL");
 		}
 		foreach (profession in ::Const.Professions.ProfessionDefObjects) {
@@ -385,11 +385,11 @@
 		local items = this.m.Stash.getItems();
 		local food = [];
 
-		foreach(bro in this.World.getPlayerRoster().getAll())
+		foreach(bro in ::World.getPlayerRoster().getAll())
 		{
-			foreach(item in bro.getItems().getAllItemsAtSlot(this.Const.ItemSlot.Bag))
+			foreach(item in bro.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
-				if (item != null && item.isItemType(this.Const.Items.ItemType.Food) && this.Time.getVirtualTimeF() >= item.getBestBeforeTime())
+				if (item != null && item.isItemType(::Const.Items.ItemType.Food) && this.Time.getVirtualTimeF() >= item.getBestBeforeTime())
 				{
 					item.removeSelf();
 				}
@@ -398,7 +398,7 @@
 
 		foreach( i, item in items )
 		{
-			if (item != null && item.isItemType(this.Const.Items.ItemType.Food))
+			if (item != null && item.isItemType(::Const.Items.ItemType.Food))
 			{
 				if (this.Time.getVirtualTimeF() >= item.getBestBeforeTime())
 				{
@@ -418,9 +418,9 @@
 		}
 
 		food.sort(this.sortFoodByFreshness);
-		local d = this.Math.maxf(0.0, this.Time.getVirtualTimeF() - this.m.LastFoodConsumed);
+		local d = ::Math.maxf(0.0, this.Time.getVirtualTimeF() - this.m.LastFoodConsumed);
 		this.m.LastFoodConsumed = this.Time.getVirtualTimeF();
-		local eaten = d * this.getDailyFoodCost() * this.Const.World.TerrainFoodConsumption[this.World.State.getPlayer().getTile().Type] * this.m.FoodConsumptionMult * this.Const.World.Assets.FoodConsumptionMult;
+		local eaten = d * this.getDailyFoodCost() * ::Const.World.TerrainFoodConsumption[::World.State.getPlayer().getTile().Type] * this.m.FoodConsumptionMult * ::Const.World.Assets.FoodConsumptionMult;
 
 		for( local i = 0; i < food.len();  )
 		{
@@ -456,32 +456,32 @@
 		if (this.isCamping())
 			::World.State.m.Camp.update(_worldState);
 
-		if (this.World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= this.World.getTime().Days)
+		if (::World.Flags.getAsInt("MandatoryShopRefreshDayMark") + 50 <= ::World.getTime().Days)
 		{
-			this.World.Flags.set("MandatoryShopRefreshDayMark", this.World.getTime().Days);
-			foreach( t in this.World.EntityManager.getSettlements() )
+			::World.Flags.set("MandatoryShopRefreshDayMark", ::World.getTime().Days);
+			foreach( t in ::World.EntityManager.getSettlements() )
 			{
 				t.updateShop();
 			}
 		}
 
-		if (this.World.getTime().Days > this.m.LastDayPaid && this.World.getTime().Hours > 8 && this.m.IsConsumingAssets)
+		if (::World.getTime().Days > this.m.LastDayPaid && ::World.getTime().Hours > 8 && this.m.IsConsumingAssets)
 		{
-			this.m.LastDayPaid = this.World.getTime().Days;
+			this.m.LastDayPaid = ::World.getTime().Days;
 
 			if (this.m.BusinessReputation > 0)
 			{
-				this.m.BusinessReputation = this.Math.max(0, this.m.BusinessReputation + this.Const.World.Assets.ReputationDaily);
+				this.m.BusinessReputation = ::Math.max(0, this.m.BusinessReputation + ::Const.World.Assets.ReputationDaily);
 			}
 
-			this.World.Retinue.onNewDay();
+			::World.Retinue.onNewDay();
 
-			if (this.World.Flags.get("IsGoldenGoose") == true)
+			if (::World.Flags.get("IsGoldenGoose") == true)
 			{
 				this.addMoney(50);
 			}
 
-			local roster = this.World.getPlayerRoster().getAll();
+			local roster = ::World.getPlayerRoster().getAll();
 			local mood = 0;
 			local slaves = 0;
 			local nonSlaves = 0;
@@ -501,7 +501,7 @@
 				}
 			}
 
-			local items = this.World.Assets.getStash().getItems();
+			local items = ::World.Assets.getStash().getItems();
 			foreach( item in items )
 			{
 				if (item == null)
@@ -512,14 +512,14 @@
 				item.onNewDay();
 			}
 
-			local companyRep = this.World.Assets.getMoralReputation() / 10;
+			local companyRep = ::World.Assets.getMoralReputation() / 10;
 
 			foreach( bro in roster )
 			{
 				bro.getSkills().onNewDay();
 				bro.updateInjuryVisuals();
 
-				if (this.World.Assets.getOrigin().getID() == "scenario.legends_troupe")
+				if (::World.Assets.getOrigin().getID() == "scenario.legends_troupe")
 				{
 					this.addMoney(10);
 				}
@@ -529,11 +529,11 @@
 				{
 					if (bro.getSkills().hasTrait(::Legends.Trait.Greedy))
 					{
-						bro.worsenMood(this.Const.MoodChange.NotPaidGreedy, "Did not get paid");
+						bro.worsenMood(::Const.MoodChange.NotPaidGreedy, "Did not get paid");
 					}
 					else
 					{
-						bro.worsenMood(this.Const.MoodChange.NotPaid, "Did not get paid");
+						bro.worsenMood(::Const.MoodChange.NotPaid, "Did not get paid");
 					}
 				}
 					// for zombies
@@ -550,16 +550,16 @@
 				// if (bro.getSkills().hasSkill("perk.legend_pacifist"))
 				// {
 					// local hireTime = bro.getHireTime();
-					// local currentTime =  this.World.getTime().Time;
+					// local currentTime =  ::World.getTime().Time;
 					// local servedTime = currentTime - hireTime;
-					// local servedDays = servedTime / this.World.getTime().SecondsPerDay;
+					// local servedDays = servedTime / ::World.getTime().SecondsPerDay;
 					// if ((servedDays * 7) < bro.getLifetimeStats().Kills)
 					// 	{
-					// 		bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Remembers being forced to kill against their wishes");
+					// 		bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Remembers being forced to kill against their wishes");
 					// 	}
 					// if (bro.getLifetimeStats().Battles > bro.getLifetimeStats().BattlesWithoutMe)
 					// {
-					// 	bro.worsenMood(this.Const.MoodChange.BattleWithoutMe, "Took part in too many battles");
+					// 	bro.worsenMood(::Const.MoodChange.BattleWithoutMe, "Took part in too many battles");
 					// }
 				// }
 
@@ -567,15 +567,15 @@
 				{
 					if (bro.getSkills().hasTrait(::Legends.Trait.Spartan))
 					{
-						bro.worsenMood(this.Const.MoodChange.NotEatenSpartan, "Went hungry");
+						bro.worsenMood(::Const.MoodChange.NotEatenSpartan, "Went hungry");
 					}
 					else if (bro.getSkills().hasTrait(::Legends.Trait.Gluttonous))
 					{
-						bro.worsenMood(this.Const.MoodChange.NotEatenGluttonous, "Went hungry");
+						bro.worsenMood(::Const.MoodChange.NotEatenGluttonous, "Went hungry");
 					}
 					else
 					{
-						bro.worsenMood(this.Const.MoodChange.NotEaten, "Went hungry");
+						bro.worsenMood(::Const.MoodChange.NotEaten, "Went hungry");
 					}
 				}
 
@@ -583,7 +583,7 @@
 				{
 					if (bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
 					{
-						bro.worsenMood(this.Const.MoodChange.TooFewSlaves, "Too few indebted in the company");
+						bro.worsenMood(::Const.MoodChange.TooFewSlaves, "Too few indebted in the company");
 					}
 				}
 
@@ -597,32 +597,32 @@
 				settlement.onNewDay();
 			}
 
-			this.Sound.play(this.Const.Sound.MoneyTransaction[this.Math.rand(0, this.Const.Sound.MoneyTransaction.len() - 1)], this.Const.Sound.Volume.Inventory);
-			this.m.AverageMoodState = this.Math.round(mood / roster.len());
+			::Sound.play(::Const.Sound.MoneyTransaction[::Math.rand(0, ::Const.Sound.MoneyTransaction.len() - 1)], ::Const.Sound.Volume.Inventory);
+			this.m.AverageMoodState = ::Math.round(mood / roster.len());
 			_worldState.updateTopbarAssets();
 
 			if (this.m.EconomicDifficulty >= 1 && this.m.CombatDifficulty >= 1)
 			{
-				if (this.World.getTime().Days >= 365)
+				if (::World.getTime().Days >= 365)
 				{
 					this.updateAchievement("Anniversary", 1, 1);
 				}
-				else if (this.World.getTime().Days >= 100)
+				else if (::World.getTime().Days >= 100)
 				{
 					this.updateAchievement("Campaigner", 1, 1);
 				}
-				else if (this.World.getTime().Days >= 10)
+				else if (::World.getTime().Days >= 10)
 				{
 					this.updateAchievement("Survivor", 1, 1);
 				}
 			}
 		}
 
-		if (this.World.getTime().Hours != this.m.LastHourUpdated && this.m.IsConsumingAssets)
+		if (::World.getTime().Hours != this.m.LastHourUpdated && this.m.IsConsumingAssets)
 		{
-			this.m.LastHourUpdated = this.World.getTime().Hours;
+			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.consumeFood();
-			local roster = this.World.getPlayerRoster().getAll();
+			local roster = ::World.getPlayerRoster().getAll();
 			local campMultiplier = this.isCamping() ? this.m.CampingMult : 1.0;
 
 			foreach( bro in roster )
@@ -633,11 +633,11 @@
 			 	{
 					 if (bro.getFlags().has("undead"))
 			 		{
-			 			bro.setHitpoints(this.Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + (this.Const.World.Assets.HitpointsPerHour / 5) * this.Const.Difficulty.HealMult[this.World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult));
+			 			bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + (::Const.World.Assets.HitpointsPerHour / 5) * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult));
 					}
 					else
 					{
-			 			bro.setHitpoints(this.Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + this.Const.World.Assets.HitpointsPerHour * this.Const.Difficulty.HealMult[this.World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult ));
+			 			bro.setHitpoints(::Math.minf(bro.getHitpointsMax(), bro.getHitpoints() + ::Const.World.Assets.HitpointsPerHour * ::Const.Difficulty.HealMult[::World.Assets.getEconomicDifficulty()] * this.m.HitpointsPerHourMult ));
 					}
 			 	}
 
@@ -659,15 +659,15 @@
 
 				foreach (item in items) {
 					if (item.getRepair() < item.getRepairMax()) {
-						local d = this.Math.ceil(this.Math.minf(this.Const.World.Assets.ArmorPerHour * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult, item.getRepairMax() - item.getRepair())); //rounding is crucial because otherwise it repairs nothing but eats tools if below 1, and in any case repair value has to be a round value
+						local d = ::Math.ceil(::Math.minf(::Const.World.Assets.ArmorPerHour * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult, item.getRepairMax() - item.getRepair())); //rounding is crucial because otherwise it repairs nothing but eats tools if below 1, and in any case repair value has to be a round value
 						if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0) {
 							// Round blacksmith bonus for better determinism
-							d = this.Math.ceil(d * (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut));
+							d = ::Math.ceil(d * (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut));
 						}
 						item.onRepair(item.getRepair() + d);
 						// Round to 3 decimal places for better determinism
-						local toolsUsed = this.Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
-						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - toolsUsed);
+						local toolsUsed = ::Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
+						this.m.ArmorParts = ::Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						updateBro = true;
 			 		}
 
@@ -691,7 +691,7 @@
 			 }
 
 			 local items = this.m.Stash.getItems();
-			 local stashmaxrepairpotential = this.Math.ceil(roster.len() * this.Const.Difficulty.RepairMult[this.World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * this.Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
+			 local stashmaxrepairpotential = ::Math.ceil(roster.len() * ::Const.Difficulty.RepairMult[::World.Assets.getEconomicDifficulty()] * this.m.RepairSpeedMult * ::Const.World.Assets.ArmorPerHour); //otherwise fixed version will be too good
 			 if (::World.Assets.m.ProfessionEffect.LegendHammerThemOut > 0)
 				stashmaxrepairpotential *= (1 + ::World.Assets.m.ProfessionEffect.LegendHammerThemOut); // should be taken into account (blacksmith influence)
 			 foreach( item in items )
@@ -717,11 +717,11 @@
 			 	{
 			 		if (item.getRepair() < item.getRepairMax())
 			 		{
-						local d = this.Math.ceil(this.Math.minf(stashmaxrepairpotential, item.getRepairMax() - item.getRepair()));
+						local d = ::Math.ceil(::Math.minf(stashmaxrepairpotential, item.getRepairMax() - item.getRepair()));
 						item.onRepair(item.getRepair() + d);
 						// Round to 3 decimal places for better determinism
-						local toolsUsed = this.Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
-						this.m.ArmorParts = this.Math.maxf(0, this.m.ArmorParts - toolsUsed);
+						local toolsUsed = ::Math.round(d * this.m.ArmorPartsPerArmor * toolEfficiency * 1000.0) / 1000.0;
+						this.m.ArmorParts = ::Math.maxf(0, this.m.ArmorParts - toolsUsed);
 						stashmaxrepairpotential = stashmaxrepairpotential - d;
 			 		}
 
@@ -732,11 +732,11 @@
 			 	}
 			 }
 
-			if (this.World.getTime().Hours % 4 == 0)
+			if (::World.getTime().Hours % 4 == 0)
 			{
 				this.checkDesertion();
-				local towns = this.World.EntityManager.getSettlements();
-				local playerTile = this.World.State.getPlayer().getTile();
+				local towns = ::World.EntityManager.getSettlements();
+				local playerTile = ::World.State.getPlayer().getTile();
 				local town;
 
 				foreach( t in towns )
@@ -752,9 +752,9 @@
 				{
 					bro.recoverMood();
 
-					if (town != null && bro.getMoodState() <= this.Const.MoodState.Neutral)
+					if (town != null && bro.getMoodState() <= ::Const.MoodState.Neutral)
 					{
-						bro.improveMood(this.Const.MoodChange.NearCity, "Has enjoyed the visit to " + town.getName());
+						bro.improveMood(::Const.MoodChange.NearCity, "Has enjoyed the visit to " + town.getName());
 					}
 				}
 			}
@@ -762,11 +762,11 @@
 			_worldState.updateTopbarAssets();
 		}
 
-		if (this.World.getTime().Days > this.m.LastDayResourcesUpdated + 7)
+		if (::World.getTime().Days > this.m.LastDayResourcesUpdated + 7)
 		{
-			this.m.LastDayResourcesUpdated = this.World.getTime().Days;
+			this.m.LastDayResourcesUpdated = ::World.getTime().Days;
 			::Legends.Mod.Debug.printLog(format("Day %s: adding resources to each settlement",::World.getTime().Days.tostring()), ::Const.LegendMod.Debug.Flags.WorldEconomy);
-			foreach( t in this.World.EntityManager.getSettlements() )
+			foreach( t in ::World.EntityManager.getSettlements() )
 			{
 				t.addNewResources();
 			}
@@ -777,11 +777,11 @@
 			"contract.patrol",
 			"contract.escort_envoy"
 		];
-		local activeContract = this.World.Contracts.getActiveContract();
-		if (activeContract && this.World.FactionManager.getFaction(activeContract.getFaction()).m.Type == this.Const.FactionType.NobleHouse && excluded_contracts.find(activeContract.m.Type) == null &&
+		local activeContract = ::World.Contracts.getActiveContract();
+		if (activeContract && ::World.FactionManager.getFaction(activeContract.getFaction()).m.Type == ::Const.FactionType.NobleHouse && excluded_contracts.find(activeContract.m.Type) == null &&
 		(activeContract.getActiveState().ID == "Return" || (activeContract.m.Type == "contract.big_game_hunt" && activeContract.getActiveState().Flags.get("HeadsCollected") != 0)))
 		{
-			local contract_faction = this.World.FactionManager.getFaction(activeContract.getFaction());
+			local contract_faction = ::World.FactionManager.getFaction(activeContract.getFaction());
 			local towns = contract_faction.getSettlements();
 			if (!activeContract.m.Flags.get("UpdatedBulletpoints"))
 			{
@@ -797,7 +797,7 @@
 				{
 					town.getSprite("selection").Visible = true;
 				}
-				this.World.State.getWorldScreen().updateContract(activeContract);
+				::World.State.getWorldScreen().updateContract(activeContract);
 			}
 			foreach (town in towns)
 			{
@@ -814,7 +814,7 @@
 	{
 		local maxSlot = 27, ret = [];
 		ret.resize(maxSlot, null);
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( b in roster )
 		{
@@ -840,11 +840,11 @@
 
 		local lastIndex = this.m.FormationIndex;
 		this.m.FormationIndex = _index;
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		//Temporarily set Stash to be resizeable -- this is to prevent fully loaded bros stripping gear into a
 		//full stash and losing the gear
-		//this.World.Assets.getStash().setResizable(true);
+		//::World.Assets.getStash().setResizable(true);
 		//Save current loadout and strip all gear into stash if moving into a saved formation
 		local toTransfer = [];
 		foreach (b in roster)
@@ -853,7 +853,7 @@
 			b.getItems().transferToList(toTransfer);
 		}
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		stash.setResizable(true);
 		foreach (item in toTransfer)
 		{
@@ -903,7 +903,7 @@
 		local NOT_IN_FORMATION = 255;
 		local formation = [];
 		formation.resize(27, false);
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 		local hasUnplaced = false;
 		local inCombat = 0;
 
@@ -941,7 +941,7 @@
 
 	o.clearFormation <- function ()
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		local toTransfer = [];
 		foreach (b in roster)
@@ -950,7 +950,7 @@
 			b.saveFormation();
 		}
 
-		local stash = this.World.Assets.getStash();
+		local stash = ::World.Assets.getStash();
 		//Temporarily set Stash to be resizeable -- this is to prevent fully loaded bros stripping gear into a
 		//full stash and losing the gear
 		stash.setResizable(true);
@@ -977,7 +977,7 @@
 	o.saveEquipment = function ()
 	{
 		this.m.RestoreEquipment = [];
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -991,7 +991,7 @@
 				Slots = []
 			};
 
-			for( local i = this.Const.ItemSlot.Mainhand; i <= this.Const.ItemSlot.Ammo; i = ++i )
+			for( local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i )
 			{
 				local item = bro.getItems().getItemAtSlot(i);
 
@@ -1012,7 +1012,7 @@
 				{
 					store.Slots.push({
 						Item = item,
-						Slot = this.Const.ItemSlot.Bag
+						Slot = ::Const.ItemSlot.Bag
 					});
 				}
 			}
@@ -1023,10 +1023,10 @@
 
 	o.restoreEquipment = function ()
 	{
-		this.World.State.m.AppropriateTimeToRecalc = 0;	//Leonion's fix
+		::World.State.m.AppropriateTimeToRecalc = 0;	//Leonion's fix
 		foreach( s in this.m.RestoreEquipment )
 		{
-			local bro = this.Tactical.getEntityByID(s.ID);
+			local bro = ::Tactical.getEntityByID(s.ID);
 
 			if (bro == null || !bro.isAlive())
 			{
@@ -1037,7 +1037,7 @@
 			local itemsHandled = [];
 			local overflowItems = [];
 
-			for( local i = this.Const.ItemSlot.Mainhand; i <= this.Const.ItemSlot.Ammo; i = ++i )
+			for( local i = ::Const.ItemSlot.Mainhand; i <= ::Const.ItemSlot.Ammo; i = ++i )
 			{
 				local item = bro.getItems().getItemAtSlot(i);
 
@@ -1059,7 +1059,7 @@
 				{
 					currentItems.push({
 						Item = item,
-						Slot = this.Const.ItemSlot.Bag
+						Slot = ::Const.ItemSlot.Bag
 					});
 					bro.getItems().removeFromBag(item);
 				}
@@ -1083,7 +1083,7 @@
 					continue;
 				}
 
-				if (item.Slot == this.Const.ItemSlot.Bag)
+				if (item.Slot == ::Const.ItemSlot.Bag)
 				{
 					if (!bro.getItems().addToBag(item.Item))
 					{
@@ -1110,7 +1110,7 @@
 					continue;
 				}
 
-				if (item.Item.getCurrentSlotType() == this.Const.ItemSlot.Bag)
+				if (item.Item.getCurrentSlotType() == ::Const.ItemSlot.Bag)
 				{
 					if (!bro.getItems().addToBag(item.Item))
 					{
@@ -1138,8 +1138,8 @@
 		}
 
 		this.m.RestoreEquipment = [];
-		this.World.State.m.AppropriateTimeToRecalc = 1;	//Leonion's fix
-		this.World.State.getPlayer().calculateModifiers();	//Leonion's fix
+		::World.State.m.AppropriateTimeToRecalc = 1;	//Leonion's fix
+		::World.State.getPlayer().calculateModifiers();	//Leonion's fix
 	}
 
 
@@ -1175,11 +1175,11 @@
 			return "";
 		}
 
-		local bro = candidates[this.Math.rand(0, candidates.len() - 1)];
+		local bro = candidates[::Math.rand(0, candidates.len() - 1)];
 		_brothers.remove(bro.Index);
 		_excludedBackgrounds.push(bro.Bro.getBackground().getID());
-		local villages = this.World.EntityManager.getSettlements();
-		local nobleHouses = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
+		local villages = ::World.EntityManager.getSettlements();
+		local nobleHouses = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 		local vars = [
 			[
 				"SPEECH_ON",
@@ -1191,23 +1191,23 @@
 			],
 			[
 				"companyname",
-				this.World.Assets.getName()
+				::World.Assets.getName()
 			],
 			[
 				"randomname",
-				this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]
+				::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]
 			],
 			[
 				"randomnoblehouse",
-				nobleHouses[this.Math.rand(0, nobleHouses.len() - 1)].getName()
+				nobleHouses[::Math.rand(0, nobleHouses.len() - 1)].getName()
 			],
 			[
 				"randomnoble",
-				this.Const.Strings.KnightNames[this.Math.rand(0, this.Const.Strings.KnightNames.len() - 1)]
+				::Const.Strings.KnightNames[::Math.rand(0, ::Const.Strings.KnightNames.len() - 1)]
 			],
 			[
 				"randomtown",
-				villages[this.Math.rand(0, villages.len() - 1)].getNameOnly()
+				villages[::Math.rand(0, villages.len() - 1)].getNameOnly()
 			],
 			[
 				"name",
@@ -1293,10 +1293,10 @@
 		if (_updateTo != -1)
 			this.m.Look = _updateTo;
 
-		this.World.State.getPlayer().setBaseImage(this.m.Look);
+		::World.State.getPlayer().setBaseImage(this.m.Look);
 
-		if ("updateLook" in this.World.Assets.getOrigin())
-			this.World.Assets.getOrigin().updateLook();
+		if ("updateLook" in ::World.Assets.getOrigin())
+			::World.Assets.getOrigin().updateLook();
 	}
 
 	local init = o.init;
@@ -1325,7 +1325,7 @@
 	{
 		onDeserialize(_in);
 		this.m.FormationIndex = _in.readU8();
-		for (local i = 0; i < this.Const.LegendMod.Formations.Count; i++)
+		for (local i = 0; i < ::Const.LegendMod.Formations.Count; i++)
 		{
 			this.setFormationName(i, _in.readString());
 		}

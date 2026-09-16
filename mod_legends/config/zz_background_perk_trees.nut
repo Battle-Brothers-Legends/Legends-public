@@ -48,11 +48,11 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.HerbalistProfessionTree,
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree,
 	],
 	Magic = [
-		::Const.Perks.PhilosophyMagicTree
+		//::Const.Perks.PhilosophyMagicTree
 	]
 };
 
@@ -333,7 +333,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.ChefProfessionTree
+		//::Const.Perks.ChefProfessionTree
 	],
 	Magic = []
 };
@@ -362,7 +362,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.CaravaneerProfessionTree
+		//::Const.Perks.CaravaneerProfessionTree
 	],
 	Magic = []
 };
@@ -674,7 +674,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree
+		//::Const.Perks.BarterProfessionTree
 	],
 	Magic = []
 };
@@ -935,7 +935,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Profession = [],
 	Magic = [
 		// ::Const.Perks.CaptainMagicTree,
-		::Const.Perks.PhilosophyMagicTree
+		//::Const.Perks.PhilosophyMagicTree
 	]
 };
 
@@ -961,7 +961,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HoundmasterClassTree
 	],
 	Profession = [
-		::Const.Perks.DogBreederProfessionTree
+		//::Const.Perks.DogBreederProfessionTree
 	],
 	Magic = []
 };
@@ -1123,7 +1123,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.WoodworkingProfessionTree
+		//::Const.Perks.WoodworkingProfessionTree
 	],
 	Magic = []
 };
@@ -1245,7 +1245,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.ChefProfessionTree
+		//::Const.Perks.ChefProfessionTree
 	],
 	Magic = []
 };
@@ -1271,7 +1271,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.MinerProfessionTree
+		//::Const.Perks.MinerProfessionTree
 	],
 	Magic = []
 };
@@ -1329,7 +1329,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree
+		//::Const.Perks.HealerProfessionTree
 	],
 	Magic = []
 };
@@ -1356,7 +1356,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FaithClassTree
 		],
 	Profession = [
-		::Const.Perks.HealerProfessionTree
+		//::Const.Perks.HealerProfessionTree
 	],
 	Magic = [
 	]
@@ -1459,7 +1459,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FaithClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HealerProfessionTree,
 	],
 	Magic = []
 };
@@ -1539,7 +1539,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [::Const.Perks.OutlawTree],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree
+		//::Const.Perks.BarterProfessionTree
 	],
 	Magic = []
 };
@@ -1566,7 +1566,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 			],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree
+		//::Const.Perks.BarterProfessionTree
 	],
 	Magic = []
 };
@@ -1700,7 +1700,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.FencingTeacherProfessionTree
+		//::Const.Perks.FencingTeacherProfessionTree
 	],
 	Magic = []
 };
@@ -1751,8 +1751,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree,
-		::Const.Perks.ChefProfessionTree
+		//::Const.Perks.BarterProfessionTree,
+		//::Const.Perks.ChefProfessionTree
 	],
 	Magic = []
 };
@@ -1882,7 +1882,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.FencingTeacherProfessionTree
+		//::Const.Perks.FencingTeacherProfessionTree
 	],
 	Magic = []
 };
@@ -1908,7 +1908,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.TailorClassTree
 	],
 	Profession = [
-		::Const.Perks.RepairProfessionTree
+		//::Const.Perks.RepairProfessionTree
 	],
 	Magic = []
 };
@@ -2062,8 +2062,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.PoisonClassTree
 	]
 	Profession = [
-		::Const.Perks.BarterProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.BarterProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	],
 	Magic = []
 };
@@ -2251,7 +2251,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.RepairProfessionTree
+		//::Const.Perks.RepairProfessionTree
 	],
 	Magic = []
 };
@@ -2460,7 +2460,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FaithClassTree
 	],
 	Profession = [
-		::Const.Perks.RepairProfessionTree
+		//::Const.Perks.RepairProfessionTree
 	],
 	Magic = []
 };
@@ -2486,7 +2486,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HealerProfessionTree,
 	],
 	Magic = []
 };
@@ -2545,8 +2545,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	]
 	Magic = [
 		::Const.Perks.DruidMagicTree,
@@ -2633,8 +2633,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	],
 	Magic = []
 };
@@ -2764,12 +2764,12 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.RepairProfessionTree,
-		::Const.Perks.CaravaneerProfessionTree
+		//::Const.Perks.RepairProfessionTree,
+		//::Const.Perks.CaravaneerProfessionTree
 	],
 	Magic = [
-		::Const.Perks.PhilosophyMagicTree,
-		::Const.Perks.InventorMagicTree
+		//::Const.Perks.PhilosophyMagicTree,
+		//::Const.Perks.InventorMagicTree
 	]
 };
 
@@ -2792,7 +2792,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Enemy = [],
 	Class = [],
 	Profession = [
-		::Const.Perks.RepairProfessionTree
+		//::Const.Perks.RepairProfessionTree
 	],
 	Magic = []
 };
@@ -2820,8 +2820,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	],
 	Magic = [
 	]
@@ -3130,8 +3130,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	],
 	Magic = []
 };
@@ -3160,7 +3160,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.FencingTeacherProfessionTree
+		//::Const.Perks.FencingTeacherProfessionTree
 	],
 	Magic = []
 };
@@ -3322,7 +3322,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree
+		//::Const.Perks.BarterProfessionTree
 	],
 	Magic = [
 		::Const.Perks.CaptainMagicTree
@@ -3423,11 +3423,11 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.BarterProfessionTree,
-		::Const.Perks.CaravaneerProfessionTree
+		//::Const.Perks.BarterProfessionTree,
+		//::Const.Perks.CaravaneerProfessionTree
 	],
 	Magic = [
-		::Const.Perks.PhilosophyMagicTree
+		//::Const.Perks.PhilosophyMagicTree
 	]
 };
 
@@ -3591,7 +3591,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	],
 	Class = [],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.HealerProfessionTree,
 	],
 	Magic = [
 		::Const.Perks.SeerMagicTree,
@@ -3650,7 +3650,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree
+		//::Const.Perks.HealerProfessionTree
 	],
 	Magic = []
 };
@@ -3677,8 +3677,8 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.OccultTree
 	],
 	Profession = [
-		::Const.Perks.WoodworkingProfessionTree,
-		::Const.Perks.RepairProfessionTree
+		//::Const.Perks.WoodworkingProfessionTree,
+		//::Const.Perks.RepairProfessionTree
 	],
 	Class = [
 		::Const.Perks.TailorClassTree
@@ -3707,9 +3707,9 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.HealerClassTree
 	],
 	Profession = [
-		::Const.Perks.HealerProfessionTree,
-		::Const.Perks.ChefProfessionTree,
-		::Const.Perks.HerbalistProfessionTree
+		//::Const.Perks.HealerProfessionTree,
+		//::Const.Perks.ChefProfessionTree,
+		//::Const.Perks.HerbalistProfessionTree
 	],
 	Magic = [
 		::Const.Perks.ValaChantMagicTree,
@@ -3779,7 +3779,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 		::Const.Perks.FaithClassTree
 	],
 	Profession = [
-		::Const.Perks.ChefProfessionTree,
+		//::Const.Perks.ChefProfessionTree,
 	],
 	Magic = []
 };

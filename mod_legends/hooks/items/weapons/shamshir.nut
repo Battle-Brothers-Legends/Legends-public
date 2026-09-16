@@ -1,35 +1,31 @@
-::mods_hookExactClass("items/weapons/shamshir", function(o) {
+::mods_hookExactClass("items/weapons/shamshir", function (o) {
 
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		this.m.Variants = [0, 1, 2];
-		this.setVariant(this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)]);
+		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
 	}
 
-	o.updateVariant <- function() {
+	o.updateVariant <- function () {
 		local v = this.getVariant() == 0 ? "" : "_" + this.getVariant();
 		this.m.Icon = "weapons/melee/scimitar_01" + v + "_70x70.png";
 		this.m.IconLarge = "weapons/melee/scimitar_01" + v + ".png";
 		this.m.ArmamentIcon = "icon_scimitar_01" + v;
 	}
 
-	o.addSkill <- function( _skill )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash))
-		{
+	o.addSkill <- function (_skill) {
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Slash)) {
 			::Legends.Actives.grant(this, ::Legends.Active.LegendFlowingSlash);
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendDebilitate);
 	}
-
 });

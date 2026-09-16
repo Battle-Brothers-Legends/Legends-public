@@ -10,11 +10,11 @@ this.legend_drink_beer_skill <- this.inherit("scripts/skills/actives/base/legend
 	}
 
 	function tacticalLogDrink(_user) {
-		return this.Const.UI.getColorizedEntityName(_user) + " drinks beer";
+		return ::Const.UI.getColorizedEntityName(_user) + " drinks beer";
 	}
 
 	function tacticalLogGive(_user, _target) {
-		return this.Const.UI.getColorizedEntityName(_user) + " gives beer to " + this.Const.UI.getColorizedEntityName(_target);
+		return ::Const.UI.getColorizedEntityName(_user) + " gives beer to " + ::Const.UI.getColorizedEntityName(_target);
 	}
 });
 

@@ -8,9 +8,9 @@ this.legend_oxtongue_spear <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A double edged spear with a sleek yet wide profile compared to other spears, it excels at penetrating armour whilst remaining light enough for skirmishing.";
 		this.m.IconLarge = "weapons/melee/legend_oxtongue_spear_01.png";
 		this.m.Icon = "weapons/melee/legend_oxtongue_spear_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Spear;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded | this.Const.Items.ItemType.Defensive;
+		this.m.WeaponType = ::Const.Items.WeaponType.Spear;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded | ::Const.Items.ItemType.Defensive;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

@@ -19,7 +19,7 @@
 				"weapons/legend_sturdy_sling"
 			]
 		];
-		local n = this.Math.rand(0, weapons.len() - 1);
+		local n = ::Math.rand(0, weapons.len() - 1);
 
 		foreach( w in weapons[n] )
 		{
@@ -29,15 +29,15 @@
 		this.m.Items.addToBag(this.new("scripts/items/weapons/knife"));
 
 
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[20, ::Legends.Armor.Standard.leather_wraps]
 		]);
 		this.m.Items.equip(item);
 
 
-		if (this.Math.rand(0,1) == 0)
+		if (::Math.rand(0,1) == 0)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[5, ::Legends.Helmet.Standard.headscarf],
 				[5, ::Legends.Helmet.Standard.mouth_piece]
 			]);

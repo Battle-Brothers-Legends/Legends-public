@@ -6,8 +6,8 @@
 		create();
 		if (::Legends.isLegendaryDifficulty())
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 1.0;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 1.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.0;
 			this.m.Properties.IsRangedUnit = true;
 			this.m.Properties.TargetPriorityHitchanceMult = 0.9;
 			this.m.Properties.TargetPriorityHitpointsMult = 0.5;

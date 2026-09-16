@@ -30,7 +30,7 @@ this.perk_legend_grappler <- this.inherit("scripts/skills/skill", {
 		if (_skill.getID() != ::Legends.Actives.getID(::Legends.Active.HandToHand))
 			return;
 
-		if (this.Math.rand(1, 100) > this.m.GrappleChance)
+		if (::Math.rand(1, 100) > this.m.GrappleChance)
 			return;
 
 		if (::Legends.S.isEntityNullOrDead(_targetEntity))
@@ -40,9 +40,9 @@ this.perk_legend_grappler <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		if (!_targetEntity.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer)
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(actor) + " has grappled " + this.Const.UI.getColorizedEntityName(_targetEntity) + " for two turns");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " has grappled " + ::Const.UI.getColorizedEntityName(_targetEntity) + " for two turns");
 
-		if ((this.Math.rand(1, 100) > this.m.DisarmChance || actor.getCurrentProperties().IsSpecializedInFists) && !_targetEntity.getCurrentProperties().IsImmuneToDisarm)
+		if ((::Math.rand(1, 100) > this.m.DisarmChance || actor.getCurrentProperties().IsSpecializedInFists) && !_targetEntity.getCurrentProperties().IsImmuneToDisarm)
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Disarmed);
 	}
 });

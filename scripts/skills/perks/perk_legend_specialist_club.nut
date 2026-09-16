@@ -5,10 +5,10 @@ this.perk_legend_specialist_club <- this.inherit("scripts/skills/legend_speciali
 			"weapon.bludgeon"
 		],
 		ApplicableItemTypes = [
-			this.Const.Items.ItemType.OneHanded
+			::Const.Items.ItemType.OneHanded
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Mace
+			::Const.Items.WeaponType.Mace
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

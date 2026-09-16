@@ -63,10 +63,10 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 
 
 		// First, try to give a new Tree based on the equipped mainhand item
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) != null)
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
 		{
 			item = actor.getMainhandItem();
-			if (item.isItemType(this.Const.Items.ItemType.Weapon))
+			if (item.isItemType(::Const.Items.ItemType.Weapon))
 				newTree = this.getWeaponPerkTree(item);
 
 			newTree = this.getOnlyNonExistingTrees(newTree, _actor); // filter out Trees this character already has
@@ -74,10 +74,10 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 				return newTree;
 		}
 		// Next, try to give a new Tree based on the equipped offhand item
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) != null)
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
 		{
 			item = actor.getOffhandItem();
-			if (item.isItemType(this.Const.Items.ItemType.Shield))
+			if (item.isItemType(::Const.Items.ItemType.Shield))
 				newTree = this.getShieldPerkTree(item);
 			else
 				newTree = this.getMiscPerkTree(item);
@@ -87,7 +87,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 				return newTree;
 		}
 
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Mainhand) == null && actor.getItems().getItemAtSlot(this.Const.ItemSlot.Offhand) == null)
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) == null && actor.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) == null)
 		{
 			// Attempt to give Unarmed if no weapons are equipped
 			newTree = this.getOnlyNonExistingTrees(::Const.Perks.FistsTree, _actor);
@@ -122,8 +122,8 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		newTree = this.getOnlyNonExistingTrees(newTree, _actor); // filter out Trees this character already has
 
 		// Give PhilosophyMagicTree if there are still no possible Trees
-		if (newTree == null || newTree.len() < 1)
-			newTree = ::Const.Perks.PhilosophyMagicTree.Tree;
+		//if (newTree == null || newTree.len() < 1)
+			//newTree = ::Const.Perks.PhilosophyMagicTree.Tree;
 
 		return newTree;
 	}
@@ -172,7 +172,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		{
 			if(_newTree.len() > 0)
 			{
-				local randomIndex = this.Math.rand(0, _newTree.len()-1);
+				local randomIndex = ::Math.rand(0, _newTree.len()-1);
 				local randomTree = _newTree[randomIndex];
 				actor.getBackground().addPerkGroup(randomTree.Tree);
 			}
@@ -255,7 +255,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	            return ::Const.Perks.KnifeClassTree;
 
 	    //Inventor
-	        case _item.isWeaponType(this.Const.Items.WeaponType.Firearm):
+	        case _item.isWeaponType(::Const.Items.WeaponType.Firearm):
 	            return ::Const.Perks.InventorClassTree;
 
 	    //Bodyguard
@@ -279,11 +279,11 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 	            return ::Const.Perks.ClubClassTree;
 
 	    //Pitchfork
-	        case _item.isItemType(this.Const.Items.ItemType.Pitchfork):
+	        case _item.isItemType(::Const.Items.ItemType.Pitchfork):
 	            return ::Const.Perks.PitchforkClassTree;
 
 	    //Shortbow
-	        case _item.isItemType(this.Const.Items.ItemType.Shortbow):
+	        case _item.isItemType(::Const.Items.ItemType.Shortbow):
 	            return ::Const.Perks.ShortbowClassTree;
 
 	    //Militia
@@ -310,7 +310,7 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 				}
 				foreach (weapon, tree in weaponToPerkMap)
 				{
-					if (_item.isWeaponType(this.Const.Items.WeaponType[weapon])) ret.push(tree);
+					if (_item.isWeaponType(::Const.Items.WeaponType[weapon])) ret.push(tree);
 				}
 				return ret;
 		}
@@ -323,14 +323,14 @@ this.perk_legend_adaptive <- this.inherit("scripts/skills/skill", {
 		local armor_weight = 0;
 		local newTree;
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head) != null)
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
 		{
-			armor_weight += actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head).getStaminaModifier()
+			armor_weight += actor.getItems().getItemAtSlot(::Const.ItemSlot.Head).getStaminaModifier()
 		}
 
-		if (actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body) != null)
+		if (actor.getItems().getItemAtSlot(::Const.ItemSlot.Body) != null)
 		{
-			armor_weight += actor.getItems().getItemAtSlot(this.Const.ItemSlot.Body).getStaminaModifier()
+			armor_weight += actor.getItems().getItemAtSlot(::Const.ItemSlot.Body).getStaminaModifier()
 		}
 
 		if (armor_weight == 0)

@@ -14,7 +14,7 @@ this.legend_cestus_item_named <- this.inherit("scripts/items/accessory/gloves/le
 		this.m.ID = "accessory.legend_cestus_item_named";
 		this.m.Name = "Gladiator\'s Golden Cestus";
 		this.m.Description = "A pair of gloves, made from gilded metal plates and quality leather, enclosing and protecting a fighter\'s lower arm and fist. Used to unleash devastating punches.";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = false;
 		this.m.IconLarge = "";
@@ -22,6 +22,6 @@ this.legend_cestus_item_named <- this.inherit("scripts/items/accessory/gloves/le
 		this.m.Value = 4300;
 		this.randomizeValues();
 		this.m.NameList = ["Gilder's Judgement", "Final Sermon", "Calamity's Grip", "Grand Arena Knuckles", "Titan's Fists", "Devil Grip", "Iron Breakers"];
-		this.m.Name = this.m.NameList[this.Math.rand(0, this.m.NameList.len() - 1)];
+		this.m.Name = this.m.NameList[::Math.rand(0, this.m.NameList.len() - 1)];
 	}
 });

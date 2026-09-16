@@ -23,17 +23,17 @@
 			::Legends.Traits.getID(::Legends.Trait.Dumb)
 		];
 		// this.m.ExcludedTalents = [
-		// 	this.Const.Attributes.Hitpoints,
-		// 	this.Const.Attributes.Fatigue,
-		// 	this.Const.Attributes.Bravery
+		// 	::Const.Attributes.Hitpoints,
+		// 	::Const.Attributes.Fatigue,
+		// 	::Const.Attributes.Bravery
 		// ];
-		this.m.Bodies = this.Const.Bodies.SouthernFemale;
-		this.m.Faces = this.Const.Faces.SouthernFemale;
-		this.m.Hairs = this.Const.Hair.SouthernFemale;
-		this.m.HairColors = this.Const.HairColors.SouthernYoung;
+		this.m.Bodies = ::Const.Bodies.SouthernFemale;
+		this.m.Faces = ::Const.Faces.SouthernFemale;
+		this.m.Hairs = ::Const.Hair.SouthernFemale;
+		this.m.HairColors = ::Const.HairColors.SouthernYoung;
 		this.m.BeardChance = 0;
 		this.m.Ethnicity = 1;
-		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing;
+		this.m.BackgroundType = ::Const.BackgroundType.Female | ::Const.BackgroundType.Performing;
 	}
 
 	function onBuildDescription() {
@@ -57,7 +57,7 @@
 
 	o.onUpdate <- function ( _properties ) {
 		this.character_background.onUpdate(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 10;
+		_properties.HitChance[::Const.BodyPart.Head] += 10;
 	}
 
 	o.onAdded <- function () {
@@ -68,11 +68,11 @@
 
 	o.onAddEquipment = function () {
 		local items = this.getContainer().getActor().getItems();
-		local armor = this.Const.World.Common.pickArmor([
+		local armor = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.cloth_sash]
 		]);
 		items.equip(armor);
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.None],
 			[1, ::Legends.Helmet.Southern.legend_headband_coin],
 			[1, ::Legends.Helmet.Southern.legend_headress_coin],

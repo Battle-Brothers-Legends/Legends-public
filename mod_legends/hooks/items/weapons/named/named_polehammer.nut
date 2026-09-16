@@ -8,7 +8,7 @@
 		create();
 		this.m.Variants = [1, 2, 3];
 		this.setVariant(this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)]);
-		this.m.WeaponType = this.Const.Items.WeaponType.Hammer | this.Const.Items.WeaponType.Polearm;
+		this.m.WeaponType = ::Const.Items.WeaponType.Hammer | ::Const.Items.WeaponType.Polearm;
 		this.setCategories("Hammer/Polearm, Two-Handed");
 	}
 

@@ -23,11 +23,11 @@
 		local ret = this.getDefaultTooltip();
 		ret.remove(3); // damage info shit
 		local p = this.getContainer().buildPropertiesForUse(this, null);
-		local damage_regular_min = this.Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_regular_max = this.Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_min = this.Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_Armor_max = this.Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
-		local damage_direct_max = this.Math.floor(damage_regular_max * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
+		local damage_regular_min = ::Math.floor(p.DamageRegularMin * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
+		local damage_regular_max = ::Math.floor(p.DamageRegularMax * p.DamageRegularMult * p.DamageTotalMult * p.MeleeDamageMult);
+		local damage_Armor_min = ::Math.floor(p.DamageRegularMin * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
+		local damage_Armor_max = ::Math.floor(p.DamageRegularMax * p.DamageArmorMult * p.DamageTotalMult * p.MeleeDamageMult);
+		local damage_direct_max = ::Math.floor(damage_regular_max * (this.m.DirectDamageMult + p.DamageDirectAdd + p.DamageDirectMeleeAdd));
 
 		ret.insert(3, {
 			id = 4,
@@ -59,7 +59,7 @@
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) && this.m.IsScytheDecapitate) {
 			this.m.ActionPointCost -= 1;
 		}
-		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	local onAnySkillUsed = o.onAnySkillUsed;
@@ -78,6 +78,6 @@
 	{
 		onAnySkillUsed(_skill, _targetEntity, _properties);
 		if (_targetEntity != null && _skill == this && this.m.IsTwoHand)
-			_properties.HitChance[this.Const.BodyPart.Head] += this.Math.floor((1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0)) * 100);
+			_properties.HitChance[::Const.BodyPart.Head] += ::Math.floor((1.0 - _targetEntity.getHitpoints() / (_targetEntity.getHitpointsMax() * 1.0)) * 100);
 	}
 });

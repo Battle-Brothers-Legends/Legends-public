@@ -31,19 +31,19 @@
 	{
 		foreach( r in this.m.SoundsA )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 
 		foreach( r in this.m.SoundsB )
 		{
-			this.Tactical.addResource(r);
+			::Tactical.addResource(r);
 		}
 	}
 
 	o.onAfterUpdate = function ( _properties ) {
 		if (::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem())) {
 			this.m.ActionPointCost -= 1;
-			this.m.FatigueCostMult = this.Const.Combat.WeaponSpecFatigueMult;
+			this.m.FatigueCostMult = ::Const.Combat.WeaponSpecFatigueMult;
 		}
 	}
 
@@ -61,7 +61,7 @@
 
 	o.onUse = function ( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing);
 		local ret = false;
 		local myTile = _user.getTile();
 		local myTile = this.m.Container.getActor().getTile();
@@ -72,7 +72,7 @@
 			TargetTile = _targetTile,
 			Num = 0
 		};
-		this.Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
+		::Tactical.queryTilesInRange(myTile, d, d, false, [], this.onQueryTilesHit, result);
 		local tiles = [];
 
 		for( local i = 0; i != result.Tiles.len(); i = ++i )
@@ -107,7 +107,7 @@
 				continue;
 			}
 
-			if (this.Math.abs(t.Level - myTile.Level) > 1 || this.Math.abs(t.Level - _targetTile.Level) > 1)
+			if (::Math.abs(t.Level - myTile.Level) > 1 || ::Math.abs(t.Level - _targetTile.Level) > 1)
 			{
 				continue;
 			}

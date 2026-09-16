@@ -34,9 +34,9 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			"the Kid",
 			"the Bright"
 		];
-		this.m.Level = this.Math.rand(1, 2);
+		this.m.Level = ::Math.rand(1, 2);
 
-		this.m.BackgroundType = this.Const.BackgroundType.Combat | this.Const.BackgroundType.Ranger | this.Const.BackgroundType.Crusader | this.Const.BackgroundType.Educated;
+		this.m.BackgroundType = ::Const.BackgroundType.Combat | ::Const.BackgroundType.Ranger | ::Const.BackgroundType.Crusader | ::Const.BackgroundType.Educated;
 	}
 
 	function setGender(_gender = -1) {
@@ -80,7 +80,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 	{
 		local items = this.getContainer().getActor().getItems();
 		local r;
-		r = this.Math.rand(0, 1);
+		r = ::Math.rand(0, 1);
 
 		if (r == 0)
 		{
@@ -92,14 +92,14 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 		}
 
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
-		r = this.Math.rand(0, 2);
+		r = ::Math.rand(0, 2);
 
 		if (r == 0)
 		{
 			items.addToBag(this.new("scripts/items/weapons/legend_wooden_stake"));
 		}
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Standard.ragged_surcoat],
 			[2, ::Legends.Armor.Standard.padded_leather],
 			[1, ::Legends.Armor.Standard.leather_tunic],
@@ -107,7 +107,7 @@ this.legend_youngblood_background <- this.inherit("scripts/skills/backgrounds/ch
 			[1, ::Legends.Armor.Standard.gambeson]
 		]));
 
-		items.equip(this.Const.World.Common.pickHelmet([
+		items.equip(::Const.World.Common.pickHelmet([
 			[1, ::Legends.Helmet.Standard.full_aketon_cap],
 			[1, ::Legends.Helmet.Standard.aketon_cap],
 			[1, ::Legends.Helmet.Standard.open_leather_cap],

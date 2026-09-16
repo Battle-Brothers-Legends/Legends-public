@@ -14,7 +14,7 @@ this.perk_legend_barter_greed <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendBarterGreed);
 		this.m.Icon = "ui/perks/BarterT1.png";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getDescription()
@@ -85,7 +85,7 @@ this.perk_legend_barter_greed <- this.inherit("scripts/skills/skill", {
 
 	function calculateBonus(_multiplier) //+14 @ 10K
 	{
-		return this.calculateSoftCappedBonus(_multiplier, this.World.Assets.getMoney());
+		return this.calculateSoftCappedBonus(_multiplier, ::World.Assets.getMoney());
 	}
 
 	function calculateSoftCappedBonus(_multiplier, _crowns)
@@ -103,22 +103,22 @@ this.perk_legend_barter_greed <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
 
-		this.World.State.getPlayer().calculateBarterMult();
+		::World.State.getPlayer().calculateBarterMult();
 	}
 
 	function onRemoved()
 	{
-		if (this.World.State.getPlayer() == null)
+		if (::World.State.getPlayer() == null)
 		{
 			return;
 		}
 
-		this.World.State.getPlayer().calculateBarterMult();
+		::World.State.getPlayer().calculateBarterMult();
 	}
 
 

@@ -11,8 +11,8 @@
 				this.getController().addOrderInFront(w);
 			}
 
-			local f = this.World.FactionManager.getFaction(this.getController().getEntity().getFaction());
-			local p = this.World.State.getPlayer().getTile();
+			local f = ::World.FactionManager.getFaction(this.getController().getEntity().getFaction());
+			local p = ::World.State.getPlayer().getTile();
 			local s = clone f.getSettlements();
 			s.sort(function ( _a, _b )
 			{
@@ -30,7 +30,7 @@
 
 				return 0;
 			});
-			local r = this.Math.rand(0, this.Math.max(3, s.len() - 1));
+			local r = ::Math.rand(0, ::Math.max(3, s.len() - 1));
 			this.m.TargetTile = s[r].getTile();
 			return true;
 		}
@@ -53,9 +53,9 @@
 		}
 		else if (_hasChanged || _entity.getPath() == null)
 		{
-			local navSettings = this.World.getNavigator().createSettings();
-			navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost;
-			navSettings.RoadMult = 1.0 / this.Const.World.MovementSettings.RoadMult;
+			local navSettings = ::World.getNavigator().createSettings();
+			navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost;
+			navSettings.RoadMult = 1.0 / ::Const.World.MovementSettings.RoadMult;
 
 			if (this.m.RoadsOnly)
 			{
@@ -67,7 +67,7 @@
 				navSettings.HeatCost = 100;
 			}
 
-			local path = this.World.getNavigator().findPath(_entity.getTile(), this.m.TargetTile, navSettings, 0);
+			local path = ::World.getNavigator().findPath(_entity.getTile(), this.m.TargetTile, navSettings, 0);
 
 			if (!path.isEmpty())
 			{

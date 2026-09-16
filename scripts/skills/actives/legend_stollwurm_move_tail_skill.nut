@@ -19,7 +19,7 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/mo
 		};
 
 		if (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer) {
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " burrows its tail");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " burrows its tail");
 		}
 
 		if (_user.getTile().IsVisibleForPlayer) {
@@ -33,7 +33,7 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/mo
 			this.onTeleportStart(tag);
 		}
 
-		_user.setActionPoints(this.Math.max(0, _user.getActionPoints() - this.Math.max(0, _user.m.Body.m.MovementAPSpent - this.m.ActionPointCost)));
+		_user.setActionPoints(::Math.max(0, _user.getActionPoints() - ::Math.max(0, _user.m.Body.m.MovementAPSpent - this.m.ActionPointCost)));
 		_user.m.Body.m.MovementAPSpent = 0;
 		return true;
 	}
@@ -42,7 +42,7 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/mo
 		_tag.User.storeSpriteColors();
 		_tag.User.fadeTo(this.createColor("ffffff00"), 0);
 
-		this.Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 1000.0);
+		::Tactical.getNavigator().teleport(_tag.User, _tag.TargetTile, _tag.OnDone, _tag, false, 1000.0);
 	}
 
 	function onTeleportDone( _entity, _tag ) {
@@ -53,7 +53,7 @@ this.legend_stollwurm_move_tail_skill <- this.inherit("scripts/skills/actives/mo
 		}
 
 		if (_tag.Skill.m.SoundOnHit.len() > 0) {
-			this.Sound.play(_tag.Skill.m.SoundOnHit[this.Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], this.Const.Sound.Volume.Skill, _entity.getPos());
+			::Sound.play(_tag.Skill.m.SoundOnHit[::Math.rand(0, _tag.Skill.m.SoundOnHit.len() - 1)], ::Const.Sound.Volume.Skill, _entity.getPos());
 		}
 	}
 

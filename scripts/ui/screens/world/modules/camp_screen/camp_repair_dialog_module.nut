@@ -3,7 +3,7 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	m = {
 		Title = "Repairs",
 		Description = "Repair equipment in order left to right, top to bottom. Assign workers in the commanders tent.",
-		InventoryFilter = this.Const.Items.ItemFilter.All
+		InventoryFilter = ::Const.Items.ItemFilter.All
 	},
 	function create()
 	{
@@ -45,8 +45,8 @@ this.camp_repair_dialog_module <- this.inherit("scripts/ui/screens/ui_module", {
 	function assetsInformation()
 	{
 		return {
-			Supplies = this.World.Assets.getArmorParts(),
-			SuppliesMax  = this.World.Assets.getMaxArmorParts(),
+			Supplies = ::World.Assets.getArmorParts(),
+			SuppliesMax  = ::World.Assets.getMaxArmorParts(),
 			SuppliesRequired = this.getTent().getRequiredSupplies(),
 			Time = this.getTent().getRequiredTime(),
 			Brothers = this.getTent().getAssignedBros()

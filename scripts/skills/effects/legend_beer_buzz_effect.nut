@@ -8,8 +8,8 @@ this.legend_beer_buzz_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_92.png";
 		this.m.IconMini = "status_effect_92_mini";
 		this.m.Overlay = "status_effect_92";
-		this.m.Type = this.Const.SkillType.StatusEffect | this.Const.SkillType.DrugEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect | ::Const.SkillType.DrugEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -99,11 +99,11 @@ this.legend_beer_buzz_effect <- this.inherit("scripts/skills/skill", {
 	function onRemoved()
 	{
 		local actor = this.getContainer().getActor();
-		if (this.Math.rand(1, 100) <= 10 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
+		if (::Math.rand(1, 100) <= 10 && !actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}
-		else if (this.Math.rand(1, 100) <= 5 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
+		else if (::Math.rand(1, 100) <= 5 && actor.getSkills().hasTrait(::Legends.Trait.Drunkard))
 		{
 			::Legends.Effects.grant(this, ::Legends.Effect.Hangover);
 		}

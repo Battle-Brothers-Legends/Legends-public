@@ -50,15 +50,15 @@
 			return;
 		}
 
-		if (this.m.SkillCount == this.Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID()) {
+		if (this.m.SkillCount == ::Const.SkillCounter && this.m.LastTargetID == _targetEntity.getID()) {
 			return;
 		}
 
-		this.m.SkillCount = this.Const.SkillCounter;
+		this.m.SkillCount = ::Const.SkillCounter;
 		this.m.LastTargetID = _targetEntity.getID();
 		local debilitate = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Debilitated);
 		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
-			this.Tactical.EventLog.log(debilitate.getLogEntryOnAdded(this.Const.UI.getColorizedEntityName(actor), this.Const.UI.getColorizedEntityName(_targetEntity)));
+			::Tactical.EventLog.log(debilitate.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
 		}
 		this.removeEffectAfterAllTargetsHit(_skill);
 	}

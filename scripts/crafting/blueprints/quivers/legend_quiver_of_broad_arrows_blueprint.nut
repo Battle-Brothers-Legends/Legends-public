@@ -4,7 +4,7 @@ this.legend_quiver_of_broad_arrows_blueprint <- this.inherit("scripts/crafting/b
 	{
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_quiver_of_broad_arrows";
-		this.m.Type = this.Const.Items.ItemType.Ammo;
+		this.m.Type = ::Const.Items.ItemType.Ammo;
 		this.m.PreviewCraftable = this.new("scripts/items/ammo/legend_broad_head_arrows");
 		this.m.Cost = 130;
 		local ingredients = [

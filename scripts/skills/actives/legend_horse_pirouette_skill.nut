@@ -5,8 +5,8 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendHorsePirouette);
 		this.m.Description = "Learning to turn quickly allows the rapid changes in direction required to leave a Zone of Control without triggering free attacks.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rearing", 2);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.Any;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -43,7 +43,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
-		if (this.Tactical.isActive() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
+		if (::Tactical.isActive() && !this.getContainer().getActor().getTile().hasZoneOfControlOtherThan(this.getContainer().getActor().getAlliedFactions()))
 		{
 			ret.push({
 				id = 9,
@@ -81,7 +81,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 				{
 					local nextTile = myTile.getNextTile(i);
 
-					if (!nextTile.IsOccupiedByActor || this.Math.abs(nextTile.Level - myTile.Level) > 1)
+					if (!nextTile.IsOccupiedByActor || ::Math.abs(nextTile.Level - myTile.Level) > 1)
 					{
 					}
 					else
@@ -119,7 +119,7 @@ this.legend_horse_pirouette_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse( _user, _targetTile )
 	{
-		this.Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
+		::Tactical.getNavigator().teleport(_user, _targetTile, null, null, false);
 		return true;
 	}
 

@@ -7,6 +7,6 @@ this.perk_legend_summon_bear <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.World.Assets.getStash().add(this.new("scripts/items/accessory/legend_warbear_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/accessory/legend_warbear_item"));
 	}
 });

@@ -16,7 +16,7 @@ this.legend_read_omens_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/omens_circle.png";
 		this.m.IconMini = "mini_omens_circle";
 		this.m.Overlay = "omens_circle";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 		this.m.IsStacking = true;

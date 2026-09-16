@@ -6,11 +6,11 @@ this.perk_legend_specialist_inquisition <- this.inherit("scripts/skills/legend_s
 			"weapon.goblin_crossbow"
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Crossbow
+			::Const.Items.WeaponType.Crossbow
 		],
 		ValidEntities = [
-			this.Const.EntityType.Hexe,
-			this.Const.EntityType.Alp
+			::Const.EntityType.Hexe,
+			::Const.EntityType.Alp
 		],
 		BonusMelee = 12,
 		BonusRanged = 12,

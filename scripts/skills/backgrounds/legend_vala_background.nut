@@ -23,21 +23,21 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		];
 
 		this.m.ExcludedTalents = [
-			this.Const.Attributes.RangedSkill
+			::Const.Attributes.RangedSkill
 		];
 
 		this.m.Titles = [
 			"the Vala"
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteFemale;
-		this.m.Hairs = this.Const.Hair.AllFemale;
-		this.m.HairColors = this.Const.HairColors.All;
+		this.m.Faces = ::Const.Faces.AllWhiteFemale;
+		this.m.Hairs = ::Const.Hair.AllFemale;
+		this.m.HairColors = ::Const.HairColors.All;
 		this.m.Beards = null;
 		this.m.BeardChance = 0;
-		this.m.Bodies = this.Const.Bodies.NorthernFemale;
-		this.m.BackgroundType = this.Const.BackgroundType.Female | this.Const.BackgroundType.Performing | this.Const.BackgroundType.Untalented | this.Const.BackgroundType.Druid;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Merciless;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Chivalrous;
+		this.m.Bodies = ::Const.Bodies.NorthernFemale;
+		this.m.BackgroundType = ::Const.BackgroundType.Female | ::Const.BackgroundType.Performing | ::Const.BackgroundType.Untalented | ::Const.BackgroundType.Druid;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.Level = 2;
 		this.m.CustomPerkTree = [
 			[::Legends.Perk.LegendSpecialistSelfdefense],
@@ -107,14 +107,14 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		actor.setVeteranPerks(3);
 		local items = actor.getItems();
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Bravery] = this.Math.rand(2, 3);
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Bravery] = ::Math.rand(2, 3);
 		this.getContainer().getActor().fillTalentValues(2, true);
 
 		local items = this.getContainer().getActor().getItems();
 		items.equip(this.new("scripts/items/weapons/legend_staff_vala"));
 
-		items.equip(this.Const.World.Common.pickArmor([
+		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.legend_vala_cloak]
 		]));
 	}

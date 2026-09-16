@@ -17,7 +17,7 @@
 	{
 		local actor = this.getContainer().getActor();		
 		local item = actor.getMainhandItem();
-		if (item != null && item.isWeaponType(this.Const.Items.WeaponType.Staff))
+		if (item != null && item.isWeaponType(::Const.Items.WeaponType.Staff))
 		{
 			if (!actor.getCurrentProperties().IsSpecializedInPolearms)
 			{

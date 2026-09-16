@@ -3,7 +3,7 @@
 // 	function create()
 // 	{
 // 		this.agent.create();
-// 		this.m.ID = this.Const.AI.Agent.ID.KoboldWolfrider;
+// 		this.m.ID = ::Const.AI.Agent.ID.KoboldWolfrider;
 // 		this.m.IsUsingHeat = true;
 // 		this.m.Properties.IsRangedUnit = true;
 // 		this.m.Properties.TargetPriorityHitchanceMult = 0.4;

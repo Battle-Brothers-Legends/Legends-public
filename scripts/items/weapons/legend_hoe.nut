@@ -8,10 +8,10 @@ this.legend_hoe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "An agricultural tool with a thin, flat blade attached to a long handle used to till soil and harvest root crops. The blade has been sharpened as to fashion it into a crude and oddly shaped chopping weapon.";
 		this.m.IconLarge = "weapons/melee/legend_hoe_01.png";
 		this.m.Icon = "weapons/melee/legend_hoe_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Axe;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Pitchfork;
+		this.m.WeaponType = ::Const.Items.WeaponType.Axe;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Pitchfork;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;

@@ -17,7 +17,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "ui/perks/SecondWindPerk.png";
 		this.m.IconMini = "mini_second_wind";
 		this.m.Overlay = "perk_54_active";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -79,7 +79,7 @@ this.legend_second_wind_effect <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (!actor.isHiddenToPlayer()) {
-			actor.playSound(this.Const.Sound.ActorEvent.Fatigue, this.Const.Sound.Volume.Actor * actor.getSoundVolume(this.Const.Sound.ActorEvent.Fatigue));
+			actor.playSound(::Const.Sound.ActorEvent.Fatigue, ::Const.Sound.Volume.Actor * actor.getSoundVolume(::Const.Sound.ActorEvent.Fatigue));
 		}
 	}
 });

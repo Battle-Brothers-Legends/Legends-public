@@ -10,8 +10,8 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Swing both weapons in a wide arc. The right tile is hit by the main hand, the left tile by the off hand, and the middle tile by both weapons.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/swing", 3);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/combat/swing_hit", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.BeforeLast;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.BeforeLast;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -20,8 +20,8 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsIgnoredAsAOO = true;
 		this.m.IsAOE = true;
 		this.m.IsWeaponSkill = false;
-		this.m.InjuriesOnBody = this.Const.Injury.CuttingBody;
-		this.m.InjuriesOnHead = this.Const.Injury.CuttingHead;
+		this.m.InjuriesOnBody = ::Const.Injury.CuttingBody;
+		this.m.InjuriesOnHead = ::Const.Injury.CuttingHead;
 		this.m.DirectDamageMult = 0.25;
 		this.m.ActionPointCost = 6;
 		this.m.FatigueCost = 25;
@@ -50,8 +50,8 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local items = actor.getItems();
-		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		local mhSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, mh);
 		if (mhSkill == null) {
@@ -82,12 +82,12 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate (_properties) {
 		local items = this.getContainer().getActor().getItems();
-		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
-		if (mh != null && mh.isWeaponType(this.Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (mh != null && mh.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
 			this.m.ActionPointCost -= 1;
 		}
-		if (oh != null && oh.isWeaponType(this.Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
+		if (oh != null && oh.isWeaponType(::Const.Items.WeaponType.Dagger) && _properties.IsSpecializedInDaggers) {
 			this.m.ActionPointCost -= 1;
 		}
 	}
@@ -107,14 +107,14 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		local items = actor.getItems();
-		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		local mhSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, mh);
 		local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(actor, oh);
 
 		if (mhSkill != null && ohSkill != null) {
-			return this.Math.max(this.m.FatigueCost, mhSkill.getFatigueCost() + ohSkill.getFatigueCost());
+			return ::Math.max(this.m.FatigueCost, mhSkill.getFatigueCost() + ohSkill.getFatigueCost());
 		}
 
 		return this.skill.getFatigueCost();
@@ -122,13 +122,13 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 
 	function onUse(_user, _targetTile) {
 		this.m.BothHitMiddle = false;
-		//this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing); // removed as the attacks spawn effects individually in onUse
+		//this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing); // removed as the attacks spawn effects individually in onUse
 
 		local ret = false;
 
 		local items = _user.getItems();
-		local mh = items.getItemAtSlot(this.Const.ItemSlot.Mainhand);
-		local oh = items.getItemAtSlot(this.Const.ItemSlot.Offhand);
+		local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+		local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 		local mhSkill = ::Legends.Weapons.findPrimaryAttackSkill(_user, mh);
 		local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(_user, oh);
@@ -144,15 +144,15 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		// Clockwise (right) = mainhand, Counter-clockwise (left) = offhand
 		local tile = _user.getTile();
 		local dir = tile.getDirectionTo(_targetTile);
-		local cwDir = (dir + 1) % this.Const.Direction.COUNT;
-		local ccwDir = dir - 1 >= 0 ? dir - 1 : this.Const.Direction.COUNT - 1;
+		local cwDir = (dir + 1) % ::Const.Direction.COUNT;
+		local ccwDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 
 		// Clockwise tile (right) with mainhand
 		if (tile.hasNextTile(cwDir)) {
 			local cwTile = tile.getNextTile(cwDir);
 			if (cwTile.IsOccupiedByActor
 				&& cwTile.getEntity().isAttackable()
-				&& this.Math.abs(cwTile.Level - tile.Level) <= 1)
+				&& ::Math.abs(cwTile.Level - tile.Level) <= 1)
 			{
 				ret = mhSkill.onUse(_user, cwTile) || ret;
 				if (::Legends.S.isEntityNullOrDead(_user)) {
@@ -166,7 +166,7 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 			local ccwTile = tile.getNextTile(ccwDir);
 			if (ccwTile.IsOccupiedByActor
 				&& ccwTile.getEntity().isAttackable()
-				&& this.Math.abs(ccwTile.Level - tile.Level) <= 1)
+				&& ::Math.abs(ccwTile.Level - tile.Level) <= 1)
 			{
 				ret = ohSkill.onUse(_user, ccwTile) || ret;
 				if (::Legends.S.isEntityNullOrDead(_user)) {
@@ -199,23 +199,23 @@ this.legend_double_swing_skill <- this.inherit("scripts/skills/skill", {
 		local dir = tile.getDirectionTo(_targetTile);
 
 		// Highlight target tile (middle)
-		this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
 
 		// Clockwise (right)
-		local cwDir = (dir + 1) % this.Const.Direction.COUNT;
+		local cwDir = (dir + 1) % ::Const.Direction.COUNT;
 		if (tile.hasNextTile(cwDir)) {
 			local cwTile = tile.getNextTile(cwDir);
-			if (this.Math.abs(cwTile.Level - tile.Level) <= 1) {
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, cwTile, cwTile.Pos.X, cwTile.Pos.Y);
+			if (::Math.abs(cwTile.Level - tile.Level) <= 1) {
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, cwTile, cwTile.Pos.X, cwTile.Pos.Y);
 			}
 		}
 
 		// Counter-clockwise (left)
-		local ccwDir = dir - 1 >= 0 ? dir - 1 : this.Const.Direction.COUNT - 1;
+		local ccwDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 		if (tile.hasNextTile(ccwDir)) {
 			local ccwTile = tile.getNextTile(ccwDir);
-			if (this.Math.abs(ccwTile.Level - tile.Level) <= 1) {
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, ccwTile, ccwTile.Pos.X, ccwTile.Pos.Y);
+			if (::Math.abs(ccwTile.Level - tile.Level) <= 1) {
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, ccwTile, ccwTile.Pos.X, ccwTile.Pos.Y);
 			}
 		}
 	}

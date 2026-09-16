@@ -7,64 +7,64 @@
 
 		for( local i = 0; i < 3; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.Hexe
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.Hexe
 			}, false);
 		}
 
 		for( local i = 0; i < 1; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendHexeLeader
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendHexeLeader
 			}, false);
 		}
 
 		for( local i = 0; i < 1; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendWhiteDirewolfBodyguard
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendWhiteDirewolfBodyguard
 			}, false);
 		}
 
 		for( local i = 0; i < 2; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendRedbackSpiderBodyguard
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendRedbackSpiderBodyguard
 			}, false);
 		}
 
 		for( local i = 0; i < 4; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.DirewolfHIGH
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.DirewolfHIGH
 			}, false);
 		}
 
 		for( local i = 0; i < 1; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendRockUnhold
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendRockUnhold
 			}, false);
 		}
 
 		for( local i = 0; i < 1; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.Unhold
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.Unhold
 			}, false);
 		}
 
 		for( local i = 0; i < 3; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendSkinGhoulLOW
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendSkinGhoulLOW
 			}, false);
 		}
 
 		for( local i = 0; i < 1; i = ++i )
 		{
-			this.Const.World.Common.addTroop(this, {
-				Type = this.Const.World.Spawn.Troops.LegendGreenwoodSchrat
+			::Const.World.Common.addTroop(this, {
+				Type = ::Const.World.Spawn.Troops.LegendGreenwoodSchrat
 			}, false);
 		}
 	}
@@ -72,7 +72,7 @@
 	o.onDropLootForPlayer <- function ( _lootTable )
 	{
 		this.location.onDropLootForPlayer(_lootTable);
-		this.dropTreasure(this.Math.rand(1, 2), [
+		this.dropTreasure(::Math.rand(1, 2), [
 			"misc/legend_masterwork_metal",
 			"misc/legend_masterwork_fabric"
 		], _lootTable);

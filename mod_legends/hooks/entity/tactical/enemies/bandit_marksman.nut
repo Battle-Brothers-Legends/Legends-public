@@ -4,7 +4,7 @@
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.BanditMarksman);
+		b.setValues(::Const.Tactical.Actor.BanditMarksman);
 		b.TargetAttractionMult = 1.1;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -12,7 +12,7 @@
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_bandits");
 
-		if (this.Math.rand(1, 100) <= 20)
+		if (::Math.rand(1, 100) <= 20)
 		{
 			local pox = this.getSprite("tattoo_head");
 			pox.Visible = true;
@@ -22,7 +22,7 @@
 		{
 			local dirt = this.getSprite("dirt");
 			dirt.Visible = true;
-			dirt.Alpha = this.Math.rand(150, 255);
+			dirt.Alpha = ::Math.rand(150, 255);
 		}
 
 		this.setArmorSaturation(0.85);
@@ -36,7 +36,7 @@
 			b.Vision = 8;
 		}
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanStatIncreaseDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.MarksmanStatIncreaseDay)
 		{
 			b.RangedDefense += 5;
 		}
@@ -44,7 +44,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Brigands.MarksmanBullseyeDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Brigands.MarksmanBullseyeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Bullseye);
 		}
@@ -68,7 +68,7 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(1, 6);
+		local r = ::Math.rand(1, 6);
 
 		if (r == 1)
 		{
@@ -99,7 +99,7 @@
 			this.m.Items.equip(this.new("scripts/items/weapons/staff_sling"));
 		}
 
-		r = this.Math.rand(1, 4);
+		r = ::Math.rand(1, 4);
 
 		if (r == 1)
 		{
@@ -118,7 +118,7 @@
 			this.m.Items.addToBag(this.new("scripts/items/weapons/bludgeon"));
 		}
 
-		local item = this.Const.World.Common.pickArmor([
+		local item = ::Const.World.Common.pickArmor([
 			[20, ::Legends.Armor.Standard.thick_tunic],
 			[20, ::Legends.Armor.Standard.padded_surcoat],
 			[20, ::Legends.Armor.Standard.leather_wraps],
@@ -126,9 +126,9 @@
 		]);
 		this.m.Items.equip(item);
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			local item = this.Const.World.Common.pickHelmet([
+			local item = ::Const.World.Common.pickHelmet([
 				[20, ::Legends.Helmet.Standard.hood],
 				[20, ::Legends.Helmet.Standard.open_leather_cap],
 				[20, ::Legends.Helmet.Standard.headscarf],

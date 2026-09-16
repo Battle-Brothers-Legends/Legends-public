@@ -11,7 +11,7 @@ this.legend_free_company_order <- this.inherit("scripts/ai/world/world_behavior"
 	function create()
 	{
 		this.world_behavior.create();
-		this.m.ID = this.Const.World.AI.Behavior.ID.FreeCompany;
+		this.m.ID = ::Const.World.AI.Behavior.ID.FreeCompany;
 	}
 
 	function onSerialize( _out )
@@ -35,7 +35,7 @@ this.legend_free_company_order <- this.inherit("scripts/ai/world/world_behavior"
 
 		if (targetSettlementID != 0)
 		{
-			local target = this.World.getEntityByID(targetSettlementID);
+			local target = ::World.getEntityByID(targetSettlementID);
 
 			if (target != null)
 			{

@@ -2,15 +2,15 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 	m = {},
 	function create() {
 		this.legend_bandit_executioner.create();
-		this.m.Type = this.Const.EntityType.LegendBanditExecutionerHigh;
-		this.m.XP = this.Const.Tactical.Actor.LegendBanditExecutionerHigh.XP;
+		this.m.Type = ::Const.EntityType.LegendBanditExecutionerHigh;
+		this.m.XP = ::Const.Tactical.Actor.LegendBanditExecutionerHigh.XP;
 		this.actor.create();
 	}
 
 	function onInit() {
 		this.legend_bandit_executioner.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendBanditExecutionerHigh);
+		b.setValues(::Const.Tactical.Actor.LegendBanditExecutionerHigh);
 		b.IsSpecializedInCleavers = true;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
@@ -35,11 +35,11 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 			], "scripts/items/"));
 		}
 
-		this.getItems().equip(this.Const.World.Common.pickArmor([
+		this.getItems().equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.bandit_executioner_tunic_high]
 		]));
 
-		this.getItems().equip(this.Const.World.Common.pickHelmet([
+		this.getItems().equip(::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.executioner_hood],
 			[8, ::Legends.Helmet.Standard.bandit_executioner_hood]
 		]));
@@ -65,15 +65,15 @@ this.legend_bandit_executioner_high <- this.inherit("scripts/entity/tactical/hum
 			"armor/named/blue_studded_mail_armor"
 		];
 
-		if (this.Math.rand(1, 100) <= 50)
+		if (::Math.rand(1, 100) <= 50)
 		{
-			this.getItems().equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.getItems().equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 		else
 		{
 			// TODO equip a named item
-			// this.getItems().equip(this.Const.World.Common.pickArmor(
-			// 	this.Const.World.Common.convNameToList(
+			// this.getItems().equip(::Const.World.Common.pickArmor(
+			// 	::Const.World.Common.convNameToList(
 			// 		armor
 			// 	)
 			// ));

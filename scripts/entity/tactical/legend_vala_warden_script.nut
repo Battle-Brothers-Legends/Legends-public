@@ -31,18 +31,18 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.Ghost;
-		this.m.BloodType = this.Const.BloodType.None;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
+		this.m.Type = ::Const.EntityType.Ghost;
+		this.m.BloodType = ::Const.BloodType.None;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
 		this.m.XP = 0;
 		this.m.IsEmittingMovementSounds = false;
 		this.m.IsActingImmediately = true;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/ghost_death_01.wav",
 			"sounds/enemies/ghost_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/geist_idle_13.wav",
 			"sounds/enemies/geist_idle_14.wav",
 			"sounds/enemies/geist_idle_15.wav",
@@ -119,7 +119,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 					}
 				]
 			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+			::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 		}
 
 		if (this.m.Vala != null)
@@ -141,9 +141,9 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		this.getSprite("blur_1").setHorizontalFlipping(flip);
 		this.getSprite("blur_2").setHorizontalFlipping(flip);
 
-		if (!this.Tactical.State.isScenarioMode())
+		if (!::Tactical.State.isScenarioMode())
 		{
-			local f = this.World.FactionManager.getFaction(this.getFaction());
+			local f = ::World.FactionManager.getFaction(this.getFaction());
 
 			if (f != null)
 			{
@@ -152,7 +152,7 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		}
 		else
 		{
-			this.getSprite("socket").setBrush(this.Const.FactionBase[this.getFaction()]);
+			this.getSprite("socket").setBrush(::Const.FactionBase[this.getFaction()]);
 		}
 	}
 
@@ -160,21 +160,21 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 	function onActorKilled( _actor, _tile, _skill )
 	{
 		this.actor.onActorKilled(_actor, _tile, _skill);
-		local XPkiller = this.Math.floor(_actor.getXPValue() * this.Const.XP.XPForKillerPct);
+		local XPkiller = ::Math.floor(_actor.getXPValue() * ::Const.XP.XPForKillerPct);
 
-		if (this.getFaction() == this.Const.Faction.Player || this.getFaction() == this.Const.Faction.PlayerAnimals)
+		if (this.getFaction() == ::Const.Faction.Player || this.getFaction() == ::Const.Faction.PlayerAnimals)
 		{
 			local XPgroup = _actor.getXPValue();
-			local brothers = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+			local brothers = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 
 			foreach( bro in brothers )
 			{
 				if (this.m.Vala != null && bro.getID() == this.m.Vala.getID())
 				{
-					bro.addXP(this.Math.floor(XPkiller * 0.50));
+					bro.addXP(::Math.floor(XPkiller * 0.50));
 				}
 
-				bro.addXP(this.Math.max(1, this.Math.floor(XPgroup / brothers.len())));
+				bro.addXP(::Math.max(1, ::Math.floor(XPgroup / brothers.len())));
 			}
 		}
 	}
@@ -184,15 +184,15 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 	{
 		local NewWardenStats = {
 			XP = 0,
-			Hitpoints = this.Math.ceil(50.0 + (_vala * 1.25)),
+			Hitpoints = ::Math.ceil(50.0 + (_vala * 1.25)),
 			ActionPoints = 9,
 			Bravery = 200,
 			Stamina = 100,
-			MeleeSkill = this.Math.ceil(47.0 + (_vala * 0.25)),
-			RangedSkill = this.Math.ceil(32.0 + (_vala * 0.33)),
-			MeleeDefense = this.Math.ceil(0.0 + (_vala * 0.25)),
-			RangedDefense = this.Math.ceil(10.0 + (_vala * 0.33)),
-			Initiative = this.Math.ceil(50.0 + (_vala * 0.33)),
+			MeleeSkill = ::Math.ceil(47.0 + (_vala * 0.25)),
+			RangedSkill = ::Math.ceil(32.0 + (_vala * 0.33)),
+			MeleeDefense = ::Math.ceil(0.0 + (_vala * 0.25)),
+			RangedDefense = ::Math.ceil(10.0 + (_vala * 0.33)),
+			Initiative = ::Math.ceil(50.0 + (_vala * 0.33)),
 			FatigueEffectMult = 0.0,
 			MoraleEffectMult = 0.0,
 			Armor = [0,	0]
@@ -232,12 +232,12 @@ this.legend_vala_warden_script <- this.inherit("scripts/entity/tactical/actor", 
 		b.IsIgnoringArmorOnAttack = true;
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
-		b.MoraleCheckBraveryMult[this.Const.MoraleCheckType.MentalAttack] *= 10000.0;
+		b.MoraleCheckBraveryMult[::Const.MoraleCheckType.MentalAttack] *= 10000.0;
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.MaxTraversibleLevels = 3;
 		this.m.Items.getAppearance().Body = "bust_warden_01";
 		this.addSprite("socket").setBrush("bust_base_player");

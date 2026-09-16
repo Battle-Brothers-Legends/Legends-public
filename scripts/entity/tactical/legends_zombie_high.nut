@@ -2,7 +2,7 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 	m = {},
 	function onInit()
 	{
-		this.m.SpawnType = this.Const.Tactical.Actor.LegendZombieHeavy;
+		this.m.SpawnType = ::Const.Tactical.Actor.LegendZombieHeavy;
 		this.legend_zombie.onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 		::Legends.Perks.grant(this, ::Legends.Perk.ReachAdvantage);
@@ -24,13 +24,13 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 	function assignRandomEquipment()
 	{
 		local r;
-		r = this.Math.rand(0, 8);
+		r = ::Math.rand(0, 8);
 
 		if (r <= 1)
 		{
-			if (this.Const.DLC.Unhold)
+			if (::Const.DLC.Unhold)
 			{
-				r = this.Math.rand(1, 3);
+				r = ::Math.rand(1, 3);
 
 				if (r == 1)
 				{
@@ -47,7 +47,7 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 			}
 			else
 			{
-				r = this.Math.rand(1, 2);
+				r = ::Math.rand(1, 2);
 
 				if (r == 1)
 				{
@@ -89,7 +89,7 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 			{
 				this.m.Items.equip(this.new("scripts/items/weapons/military_cleaver"));
 			}
-			else if (this.Math.rand(1, 2) == 1)
+			else if (::Math.rand(1, 2) == 1)
 			{
 				this.m.Items.equip(this.new("scripts/items/shields/worn_heater_shield"));
 			}
@@ -99,13 +99,13 @@ this.legends_zombie_high <- this.inherit("scripts/entity/tactical/legend_zombie"
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.decayed_coat_of_plates],
 			[1, ::Legends.Armor.Standard.decayed_coat_of_scales],
 			[1, ::Legends.Armor.Standard.decayed_reinforced_mail_hauberk]
 		]));
 
-		local item = this.Const.World.Common.pickHelmet([
+		local item = ::Const.World.Common.pickHelmet([
 			[2, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.decayed_closed_flat_top_with_sack],
 			[3, ::Legends.Helmet.Standard.decayed_full_helm],

@@ -19,7 +19,7 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 
 	function setAmount( _a )
 	{
-		this.m.Amount = this.Math.floor(_a);
+		this.m.Amount = ::Math.floor(_a);
 	}
 
 	function create()
@@ -28,8 +28,8 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 		this.m.ID = "supplies.legend_medicine_small";
 		this.m.Name = "Small Medical Supplies";
 		this.m.Icon = "supplies/medicine_small.png";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Supply;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Supply;
 		this.m.IsConsumed = true;
 		this.m.Value = 100;
 		this.m.Amount = 10;
@@ -37,15 +37,15 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 
 	function getValue()
 	{
-		return this.Math.floor(this.m.Amount / 10.0 * this.m.Value);
+		return ::Math.floor(this.m.Amount / 10.0 * this.m.Value);
 	}
 
 	function getBuyPrice()
 	{
-		if (("State" in this.World) && this.World.State != null && this.World.State.getCurrentTown() != null)
+		if (("State" in ::World) && ::World.State != null && ::World.State.getCurrentTown() != null)
 		{
-			local isBuildingPresent = this.World.State.getCurrentTown().hasAttachedLocation("attached_location.herbalists_grove") || this.World.State.getCurrentTown().hasAttachedLocation("attached_location.mushroom_grove") || this.World.State.getCurrentTown().hasAttachedLocation("attached_location.gatherers_hut");
-			return this.Math.max(this.getSellPrice(), this.Math.ceil(this.getValue() * this.getPriceMult() * this.Const.Difficulty.BuyPriceMult[this.World.Assets.getEconomicDifficulty()] * this.World.State.getCurrentTown().getBuyPriceMult() * this.World.State.getCurrentTown().getModifiers().MedicalPriceMult * (isBuildingPresent ? 1.0 : 1.5)));
+			local isBuildingPresent = ::World.State.getCurrentTown().hasAttachedLocation("attached_location.herbalists_grove") || ::World.State.getCurrentTown().hasAttachedLocation("attached_location.mushroom_grove") || ::World.State.getCurrentTown().hasAttachedLocation("attached_location.gatherers_hut");
+			return ::Math.max(this.getSellPrice(), ::Math.ceil(this.getValue() * this.getPriceMult() * ::Const.Difficulty.BuyPriceMult[::World.Assets.getEconomicDifficulty()] * ::World.State.getCurrentTown().getBuyPriceMult() * ::World.State.getCurrentTown().getModifiers().MedicalPriceMult * (isBuildingPresent ? 1.0 : 1.5)));
 		}
 
 		return this.item.getBuyPrice();
@@ -94,12 +94,12 @@ this.legend_medicine_small_item <- this.inherit("scripts/items/item", {
 
 	function playInventorySound( _eventType )
 	{
-		this.Sound.play("sounds/combat/armor_leather_impact_03.wav", this.Const.Sound.Volume.Inventory);
+		::Sound.play("sounds/combat/armor_leather_impact_03.wav", ::Const.Sound.Volume.Inventory);
 	}
 
 	function consume()
 	{
-		this.World.Assets.addMedicine(this.m.Amount);
+		::World.Assets.addMedicine(this.m.Amount);
 	}
 
 });

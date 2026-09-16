@@ -51,21 +51,21 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 		local attackerTile = _attacker.getTile();
 		local myTile = actor.getTile();
 
-		if (skill.isUsable() && skill.onVerifyTarget(myTile, attackerTile) && skill.isUsableOn(attackerTile, myTile) && this.Math.rand(1, 100) < chance)
+		if (skill.isUsable() && skill.onVerifyTarget(myTile, attackerTile) && skill.isUsableOn(attackerTile, myTile) && ::Math.rand(1, 100) < chance)
 		{
 			local info = {
 				User = actor,
 				Skill = skill,
 				TargetTile = _attacker.getTile()
 			};
-			local delay = this.Math.max(this.Const.Combat.RiposteDelay, skill.m.Delay);
+			local delay = ::Math.max(::Const.Combat.RiposteDelay, skill.m.Delay);
 			this.Time.scheduleEvent(this.TimeUnit.Virtual, delay, this.onCounterFire.bindenv(this), info);
 		}
 	}
 
 	function onCounterFire(_info) {
-		::Tactical.EventLog.logEx(this.Const.UI.getColorizedEntityName(_info.User) + " has dodged the attack and performing a counter attack.");
-		return skill.onUse(_info.User, _info.TargetTile);
+		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_info.User) + " has dodged the attack and performing a counter attack.");
+		return this.skill.onUse(_info.User, _info.TargetTile);
 	}
 
 });

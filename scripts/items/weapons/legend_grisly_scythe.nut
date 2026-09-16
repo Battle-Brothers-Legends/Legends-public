@@ -8,10 +8,10 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "While looking like a regular agricultural tool from a distance, this scythe has an otherworldy aura that draws you in. Resurrects humans it kills, if they aren\'t too damaged.";
 		this.m.IconLarge = "weapons/melee/legend_scythe_02.png";
 		this.m.Icon = "weapons/melee/legend_scythe_02_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded | this.Const.Items.ItemType.Pitchfork;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded | ::Const.Items.ItemType.Pitchfork;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;
 		this.m.ShowArmamentIcon = true;
@@ -72,12 +72,12 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 		if (_hitInfo.Tile.IsCorpseSpawned && _hitInfo.Tile.Properties.get("Corpse").IsResurrectable)
 		{
 			local corpse = _hitInfo.Tile.Properties.get("Corpse");
-			corpse.Faction = this.Const.Faction.PlayerAnimals;
+			corpse.Faction = ::Const.Faction.PlayerAnimals;
 			corpse.Hitpoints = 1.0;
 			corpse.Items = _target.getItems();
 			corpse.IsConsumable = false;
 			corpse.IsResurrectable = false;
-			this.Time.scheduleEvent(this.TimeUnit.Rounds, 1, this.Tactical.Entities.resurrect, corpse);
+			this.Time.scheduleEvent(this.TimeUnit.Rounds, 1, ::Tactical.Entities.resurrect, corpse);
 		}
 	}
 

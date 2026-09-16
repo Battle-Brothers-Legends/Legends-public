@@ -4,7 +4,7 @@ this.legend_net_blueprint <- this.inherit("scripts/crafting/blueprint", {
 	function create() {
 		this.blueprint.create();
 		this.m.ID = "blueprint.legend_net_blueprint";
-		this.m.Type = this.Const.Items.ItemType.Weapon;
+		this.m.Type = ::Const.Items.ItemType.Weapon;
 		this.m.PreviewCraftable = this.new("scripts/items/tools/throwing_net");
 		this.m.Cost = 10;
 		local ingredients = [

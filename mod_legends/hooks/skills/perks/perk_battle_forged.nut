@@ -11,8 +11,8 @@
 	}
 
 	o.getReductionPercentage <- function () {
-		local armor = this.getContainer().getActor().getArmor(this.Const.BodyPart.Head) + this.getContainer().getActor().getArmor(this.Const.BodyPart.Body);
-		return this.Math.min(this.m.ReductionCapMax, this.Math.floor(armor * this.m.ArmorPercentageAsReduction * 0.01));
+		local armor = this.getContainer().getActor().getArmor(::Const.BodyPart.Head) + this.getContainer().getActor().getArmor(::Const.BodyPart.Body);
+		return ::Math.min(this.m.ReductionCapMax, ::Math.floor(armor * this.m.ArmorPercentageAsReduction * 0.01));
 	}
 
 	o.getTooltip = function () {

@@ -7,8 +7,8 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendPerfectFit);
 		this.m.Description = "Leveraging the superior fit of %their% armor, %name% is gaining increased speed and endurance.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast;
 	}
 
 	function getBonus(_actor = null)
@@ -32,7 +32,7 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 		}
 		else
 		{
-			armorFatPenMult = this.Math.maxf(0, 1 - 0.01 * this.Math.pow(armorFatPen - maxFat / 2.0, 2.44));
+			armorFatPenMult = ::Math.maxf(0, 1 - 0.01 * ::Math.pow(armorFatPen - maxFat / 2.0, 2.44));
 		}
 
 		return this.m.BonusMax * armorFatPenMult;
@@ -40,12 +40,12 @@ this.perk_legend_perfect_fit <- this.inherit("scripts/skills/skill", {
 
 	function getInitiativeBonus(_bonus)
 	{
-		return this.Math.floor(_bonus);
+		return ::Math.floor(_bonus);
 	}
 
 	function getFatCostReductionBonus(_bonus)
 	{
-		return this.Math.floor(_bonus / 2);
+		return ::Math.floor(_bonus / 2);
 	}
 
 	function getTooltip()

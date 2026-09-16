@@ -2,7 +2,7 @@
 {
 	o.onPrepareVariables = function ( _vars )
 	{
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local fearful = [];
 		local lowborn = [];
 
@@ -24,7 +24,7 @@
 			{
 				fearful.push(bro);
 			}
-			else if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Lowborn))
+			else if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn))
 			{
 				lowborn.push(bro);
 			}
@@ -34,15 +34,15 @@
 
 		if (fearful.len() != 0)
 		{
-			fear = fearful[this.Math.rand(0, fearful.len() - 1)];
+			fear = fearful[::Math.rand(0, fearful.len() - 1)];
 		}
 		else if (lowborn.len() != 0)
 		{
-			fear = lowborn[this.Math.rand(0, lowborn.len() - 1)];
+			fear = lowborn[::Math.rand(0, lowborn.len() - 1)];
 		}
 		else
 		{
-			fear = brothers[this.Math.rand(0, brothers.len() - 1)];
+			fear = brothers[::Math.rand(0, brothers.len() - 1)];
 		}
 
 		_vars.push([
@@ -51,7 +51,7 @@
 		]);
 		_vars.push([
 			"recently_destroyed",
-			this.World.Statistics.getFlags().get("LastLocationDestroyedName")
+			::World.Statistics.getFlags().get("LastLocationDestroyedName")
 		]);
 	}
 

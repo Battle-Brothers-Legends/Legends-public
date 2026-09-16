@@ -21,10 +21,10 @@ this.legend_southern_cloth_headress <- this.inherit("scripts/items/helmets/helme
 			7,
 			8
 		];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 50;
 		this.m.Condition = 20;
 		this.m.ConditionMax = 20;

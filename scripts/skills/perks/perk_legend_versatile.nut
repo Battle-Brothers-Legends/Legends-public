@@ -7,8 +7,8 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	},
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendVersatile);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk | this.Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk | ::Const.SkillOrder.Any;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = true;
@@ -72,8 +72,8 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 		local fraction = this.m.Bonus * 0.01;
 
-		_properties.MeleeSkill += this.Math.floor(baseProperties.getRangedSkill() * fraction);
-		_properties.RangedSkill += this.Math.floor(baseProperties.getMeleeSkill() * fraction);
+		_properties.MeleeSkill += ::Math.floor(baseProperties.getRangedSkill() * fraction);
+		_properties.RangedSkill += ::Math.floor(baseProperties.getMeleeSkill() * fraction);
 
 		this.m.IsHidden = this.m.MeleeStacks == 0 || this.m.RangedStacks == 0;
 		if (this.m.MeleeStacks > 0) {
@@ -86,12 +86,12 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetMissed( _skill, _targetEntity ) {
-		if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0 && this.m.SkillCount != this.Const.SkillCounter) {
-			this.m.SkillCount = this.Const.SkillCounter;
-			if (_skill.isRanged() && this.m.SkillCount != this.Const.SkillCounter) {
+		if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0 && this.m.SkillCount != ::Const.SkillCounter) {
+			this.m.SkillCount = ::Const.SkillCounter;
+			if (_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
 				this.m.MeleeStacks += 1;
 			}
-			else if (!_skill.isRanged() && this.m.SkillCount != this.Const.SkillCounter) {
+			else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
 				this.m.RangedStacks -= 1;
 			}
 			if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0) {
@@ -109,15 +109,15 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (_skill.isRanged() && this.m.SkillCount != this.Const.SkillCounter) {
+		if (_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
 			this.m.MeleeStacks += 1;
 			this.m.RangedStacks -= 1;
-			this.m.SkillCount = this.Const.SkillCounter;
+			this.m.SkillCount = ::Const.SkillCounter;
 		}
-		else if (!_skill.isRanged() && this.m.SkillCount != this.Const.SkillCounter) {
+		else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
 			this.m.MeleeStacks -= 1;
 			this.m.RangedStacks += 1;
-			this.m.SkillCount = this.Const.SkillCounter;
+			this.m.SkillCount = ::Const.SkillCounter;
 		}
 
 		this.getContainer().getActor().setDirty(true);

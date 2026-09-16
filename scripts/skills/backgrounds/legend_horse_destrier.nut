@@ -54,8 +54,7 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 				::Legends.Perk.LegendAmmoBinding,
 				::Legends.Perk.LegendMedPackages,
 				::Legends.Perk.LegendToolsDrawers,
-				::Legends.Perk.LegendHorseImpulsion,
-				::Legends.Perk.LegendHippology
+				::Legends.Perk.LegendHorseImpulsion
 			],
 			[
 				::Legends.Perk.LoneWolf,
@@ -105,9 +104,9 @@ this.legend_horse_destrier <- this.inherit("scripts/skills/backgrounds/legend_ho
 	function onAddEquipment()
 	{
 		local talents = this.getContainer().getActor().getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.Hitpoints] = 3;
-		talents[this.Const.Attributes.Fatigue] = 3;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.Hitpoints] = 3;
+		talents[::Const.Attributes.Fatigue] = 3;
 		this.getContainer().getActor().fillTalentValues(1, true);
 
 	}

@@ -11,22 +11,22 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 	{
 		this.legend_named_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_named_warlock_skull";
-		this.m.Type = this.Const.Items.HelmetUpgrades.Top;
+		this.m.Type = ::Const.Items.HelmetUpgrades.Top;
 		this.m.Name = "Warlock Faceplate";
 		this.m.Description = "A skull faceplate fashioned with dark magic and dead bodies. Wearing this makes the wearer feel invulnerable.";
 		this.m.ArmorDescription = "Includes a skull faceplate fashioned with dark magic.";
 		this.m.Variants = [1,2,3];
-        this.m.Variant = this.m.Variants[this.Math.rand(0, this.m.Variants.len() - 1)];
+        this.m.Variant = this.m.Variants[::Math.rand(0, this.m.Variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorBoneImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorBoneImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorBoneImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorBoneImpact;
 		this.m.Value = 2000;
 		this.m.Lower = true;
 		this.m.HideHair = false;
 		this.m.HideBeard = true;
-        this.m.ItemType = this.m.ItemType | this.Const.Items.ItemType.Cultist;
+        this.m.ItemType = this.m.ItemType | ::Const.Items.ItemType.Cultist;
         this.randomizeValues();
-		this.m.NameList = this.Const.Strings.LegendHelmetLayers;
+		this.m.NameList = ::Const.Strings.LegendHelmetLayers;
 	}
 
 	function updateVariant()
@@ -64,10 +64,10 @@ this.legend_named_warlock_skull <- this.inherit("scripts/items/legend_helmets/le
 		if (_attacker.isAlliedWith(this.getContainer().getActor()))
 			return ret;
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity() == null)
+		if (::Tactical.TurnSequenceBar.getActiveEntity() == null)
 			return ret;
 
-		if (this.Tactical.TurnSequenceBar.getActiveEntity().getID() != _attacker.getID())
+		if (::Tactical.TurnSequenceBar.getActiveEntity().getID() != _attacker.getID())
 			return ret;
 
 		++this.m.StackCount;

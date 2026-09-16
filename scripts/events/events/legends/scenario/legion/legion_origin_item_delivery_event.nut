@@ -3,7 +3,7 @@ this.legion_origin_item_delivery_event <- this.inherit("scripts/events/event", {
 	function create() {
 		this.m.ID = "event.legion_origin_item_delivery";
 		this.m.Title = "Along the way...";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay; //cart arrives, delives 3 items chosen from an array. reoccours.
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay; //cart arrives, delives 3 items chosen from an array. reoccours.
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_55.png[/img]A creaking drone emerges in the distance. As you ready yourself and the legion for a battle, a cart makes it\'s way into your midst, driven by a single legionary hunched at the reigns. Their armour drapes their body, years of rain, snow and what else has stripped most of it away, the only remaining fragments held by the enduring posture of it's inhabitant. Arrows pock the cart, the legionary and the skeletal horse itself, none of these parties, especially the cart, seem fazed by this.\n\n Without a word, the legionary dismounts, pulling a large crate from the back of the cart with an even more resounding thud. Without a word, the driver takes the helm once more back where they came as a leisurely pace.\n\n Looking at the crate, you find a piece of parchment nailed to the exterior — all traces of the origin and purpose of this shipment have faded, save for your name, which appears foreign even to you.\n Cracking open the casing, many of the weapons inside have eroded away from a lack of protection or care, except for a few items in the middle that were shielded by the unlucky many...",

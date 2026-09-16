@@ -30,7 +30,7 @@
 
 	o.onUpdate = function ( _properties )
 	{
-		_properties.MeleeSkillMult = this.Math.maxf(0.0, _properties.MeleeSkillMult - 0.05 * this.m.Count);
-		_properties.RangedSkillMult = this.Math.maxf(0.0, _properties.RangedSkillMult - 0.05 * this.m.Count);
+		_properties.MeleeSkillMult = ::Math.maxf(0.0, _properties.MeleeSkillMult - 0.05 * this.m.Count);
+		_properties.RangedSkillMult = ::Math.maxf(0.0, _properties.RangedSkillMult - 0.05 * this.m.Count);
 	}
 });

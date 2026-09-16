@@ -56,7 +56,7 @@ if (!("World" in ::Const))
 			PreferMax = 6,
 			function IsValid( _item, _shopID )
 			{
-				if (!_item.isItemType(this.Const.Items.ItemType.TradeGood))
+				if (!_item.isItemType(::Const.Items.ItemType.TradeGood))
 					return 0;
 
 				return _item.getValue() * 0.65;
@@ -85,7 +85,7 @@ if (!("World" in ::Const))
 			PreferMax = 10,
 			function IsValid( _item, _shopID )
 			{
-				if (!_item.isItemType(this.Const.Items.ItemType.Supply))
+				if (!_item.isItemType(::Const.Items.ItemType.Supply))
 					return 0;
 
 				return _item.getValue() * 1.25;
@@ -99,10 +99,10 @@ if (!("World" in ::Const))
 			PreferMax = 8,
 			function IsValid( _item, _shopID )
 			{
-				if (_item.isItemType(this.Const.Items.ItemType.Ammo))
+				if (_item.isItemType(::Const.Items.ItemType.Ammo))
 					return _item.getValue() * 1.33;
 
-				if (_item.isItemType(this.Const.Items.ItemType.Weapon))
+				if (_item.isItemType(::Const.Items.ItemType.Weapon))
 					return _item.getValue() * 0.70;
 
 				return 0;
@@ -116,10 +116,10 @@ if (!("World" in ::Const))
 			PreferMax = 8,
 			function IsValid( _item, _shopID )
 			{
-				if (_item.isItemType(this.Const.Items.ItemType.Armor) || _item.isItemType(this.Const.Items.ItemType.Helmet))
+				if (_item.isItemType(::Const.Items.ItemType.Armor) || _item.isItemType(::Const.Items.ItemType.Helmet))
 					return _item.getValue() * 0.70;
 
-				if (_item.isItemType(this.Const.Items.ItemType.Shield))
+				if (_item.isItemType(::Const.Items.ItemType.Shield))
 					return _item.getValue() * 0.82;
 
 				return 0;
@@ -133,7 +133,7 @@ if (!("World" in ::Const))
 			PreferMax = 10,
 			function IsValid( _item, _shopID )
 			{
-				if (_shopID == "building.alchemist" && _item.isItemType(this.Const.Items.ItemType.Tool))
+				if (_shopID == "building.alchemist" && _item.isItemType(::Const.Items.ItemType.Tool))
 					return _item.getValue() * 0.70;
 
 				return _item.getValue();
@@ -606,17 +606,17 @@ if (!("World" in ::Const))
 			foreach( party in _partyList )
 			{
 				best = party;
-				if (this.Math.abs(_resources - party.Cost) > bestCost)
+				if (::Math.abs(_resources - party.Cost) > bestCost)
 				{
 					break;
 				}
-				bestCost = this.Math.abs(_resources - party.Cost);
+				bestCost = ::Math.abs(_resources - party.Cost);
 			}
 			p = best;
 		}
 		else if (_weightMode == this.WeightMode.Random)
 		{
-			p = potential[this.Math.rand(0, potential.len() - 1)];
+			p = potential[::Math.rand(0, potential.len() - 1)];
 		}
 		else if (_weightMode == this.WeightMode.Strongest || _weightMode == this.WeightMode.Weakest)
 		{
@@ -625,7 +625,7 @@ if (!("World" in ::Const))
 		else if (_weightMode == this.WeightMode.Weighted)
 		{
 			p = best;
-			local pick = this.Math.rand(1, total_weight);
+			local pick = ::Math.rand(1, total_weight);
 			foreach( party in potential )
 			{
 				p = party;
@@ -639,9 +639,9 @@ if (!("World" in ::Const))
 		}
 	}
 
-	_party.setMovementSpeed(p.MovementSpeedMult * this.Const.World.MovementSettings.Speed);
+	_party.setMovementSpeed(p.MovementSpeedMult * ::Const.World.MovementSettings.Speed);
 	_party.setVisibilityMult(p.VisibilityMult);
-	_party.setVisionRadius(this.Const.World.Settings.Vision * p.VisionMult);
+	_party.setVisionRadius(::Const.World.Settings.Vision * p.VisionMult);
 	_party.getSprite("body").setBrush(p.Body);
 
 	local minibossChanceMap = this.getMinibossChances(p, _minibossify);
@@ -666,18 +666,18 @@ if (!("World" in ::Const))
 	if (troop.Variant > 0)
 	{
 		local upperBound = ("DieRoll" in troop) ? troop.DieRoll : 100;
-		if (!this.Const.DLC.Wildmen || this.Math.rand(1, upperBound) > troop.Variant + _minibossify)
+		if (!::Const.DLC.Wildmen || ::Math.rand(1, upperBound) > troop.Variant + _minibossify)
 		{
 			troop.Variant = 0;
 		}
 		else
 		{
-			troop.Strength = this.Math.round(troop.Strength * 1.35);
-			troop.Variant = this.Math.rand(1, 255);
+			troop.Strength = ::Math.round(troop.Strength * 1.35);
+			troop.Variant = ::Math.rand(1, 255);
 
 			if ("NameList" in _troop.Type)
 			{
-				troop.Name = this.generateName(_troop.Type.NameList) + ((_troop.Type.TitleList != null) ? " " + _troop.Type.TitleList[this.Math.rand(0, _troop.Type.TitleList.len() - 1)] : "");
+				troop.Name = this.generateName(_troop.Type.NameList) + ((_troop.Type.TitleList != null) ? " " + _troop.Type.TitleList[::Math.rand(0, _troop.Type.TitleList.len() - 1)] : "");
 			}
 		}
 	}
@@ -717,7 +717,7 @@ if (!("World" in ::Const))
 }
 
 ::Const.World.Common.deserializeTroop <- function (_in) {
-	local troop = clone this.Const.World.Spawn.Unit;
+	local troop = clone ::Const.World.Spawn.Unit;
 	troop.ID = _in.readU16();
 	troop.Variant = _in.readU8();
 	troop.Strength = _in.readF32();
@@ -752,7 +752,7 @@ if (!("World" in ::Const))
 
 	if (typeof(_partyList) == "table")
 	{
-		p = this.Const.World.Common.buildDynamicTroopList(_partyList, _resources);
+		p = ::Const.World.Common.buildDynamicTroopList(_partyList, _resources);
 	}
 	else
 	{
@@ -782,10 +782,10 @@ if (!("World" in ::Const))
 
 			foreach( party in _partyList )
 			{
-				if (this.Math.abs(_resources - party.Cost) <= bestCost)
+				if (::Math.abs(_resources - party.Cost) <= bestCost)
 				{
 					best = party;
-					bestCost = this.Math.abs(_resources - party.Cost);
+					bestCost = ::Math.abs(_resources - party.Cost);
 				}
 			}
 
@@ -793,7 +793,7 @@ if (!("World" in ::Const))
 		}
 		else
 		{
-			local pick = this.Math.rand(1, total_weight);
+			local pick = ::Math.rand(1, total_weight);
 
 			foreach( party in potential )
 			{
@@ -820,18 +820,18 @@ if (!("World" in ::Const))
 			if (unit.Variant > 0)
 			{
 				local upperBound = ("DieRoll" in unit) ? unit.DieRoll : 100;
-				if (this.Math.rand(1, upperBound) > unit.Variant + minibossChanceMap[t.Type.ID])
+				if (::Math.rand(1, upperBound) > unit.Variant + minibossChanceMap[t.Type.ID])
 				{
 					unit.Variant = 0;
 				}
 				else
 				{
-					unit.Strength = this.Math.round(unit.Strength * 1.35);
-					unit.Variant = this.Math.rand(1, 255);
+					unit.Strength = ::Math.round(unit.Strength * 1.35);
+					unit.Variant = ::Math.rand(1, 255);
 
 					if ("NameList" in unit)
 					{
-						unit.Name = this.generateName(unit.NameList) + (unit.TitleList != null ? " " + unit.TitleList[this.Math.rand(0, unit.TitleList.len() - 1)] : "");
+						unit.Name = this.generateName(unit.NameList) + (unit.TitleList != null ? " " + unit.TitleList[::Math.rand(0, unit.TitleList.len() - 1)] : "");
 					}
 				}
 			}
@@ -903,7 +903,7 @@ if (!("World" in ::Const))
 		candidates.push(t);
 	}
 
-	local r = this.Math.rand(1, totalWeight);
+	local r = ::Math.rand(1, totalWeight);
 	foreach (t in candidates)
 	{
 		local w = 0;
@@ -949,8 +949,8 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
-					if (this.Math.rand(1, 100) > chance)
+					local chance = 1.0 / (1.0 + ::Math.pow(_map[key].Num, 0.5)) * 100;
+					if (::Math.rand(1, 100) > chance)
 					{
 						continue;
 					}
@@ -980,7 +980,7 @@ if (!("World" in ::Const))
 						w = troop.Weight;
 					}
 
-					if (this.Math.rand(0, 100) < w)
+					if (::Math.rand(0, 100) < w)
 					{
 						_credits -= troop.Cost;
 						local key = troop.Type.Script;
@@ -1010,13 +1010,13 @@ if (!("World" in ::Const))
 				{
 					weight = troop.MaxGuardsWeight;
 				}
-				local r = this.Math.rand(0, 100);
+				local r = ::Math.rand(0, 100);
 				if (weight < r && i >= minCount)
 				{
 					continue;
 				}
 
-				_credits = this.Const.World.Common.dynamicSelectTroop(troop.Guards, _resources, _scale, _map, _credits);
+				_credits = ::Const.World.Common.dynamicSelectTroop(troop.Guards, _resources, _scale, _map, _credits);
 
 				if (_credits < 0)
 				{
@@ -1039,7 +1039,7 @@ if (!("World" in ::Const))
 		if (troop.SortedTypes.len() > 1)
 		{
 			local meanScaled = troop.MinMean + _scale * (troop.MaxMean - troop.MinMean);
-			points = this.Math.max(points, this.Const.LegendMod.BoxMuller.BoxMuller(meanScaled, troop.Deviation));
+			points = ::Math.max(points, ::Const.LegendMod.BoxMuller.BoxMuller(meanScaled, troop.Deviation));
 			//this.logInfo(cat + " Mean " + meanScaled + " : Deviation " + troops.Deviation + " : Points " + points)
 		}
 
@@ -1051,7 +1051,7 @@ if (!("World" in ::Const))
 				continue;
 			}
 
-			local index = this.Math.rand(0, troop.SortedTypes[i].Types.len() - 1);
+			local index = ::Math.rand(0, troop.SortedTypes[i].Types.len() - 1);
 
 			if ("MaxR" in troop.SortedTypes[i].Types[index] && _resources > troop.SortedTypes[i].Types[index].MaxR)
 			{
@@ -1096,8 +1096,8 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
-					if (this.Math.rand(1, 100) > chance)
+					local chance = 1.0 / (1.0 + ::Math.pow(_map[key].Num, 0.5)) * 100;
+					if (::Math.rand(1, 100) > chance)
 					{
 						continue;
 					}
@@ -1112,8 +1112,8 @@ if (!("World" in ::Const))
 				}
 				else
 				{
-					local chance = 1.0 / (1.0 + this.Math.pow(_map[key].Num, 0.5)) * 100;
-					if (this.Math.rand(1, 100) > chance)
+					local chance = 1.0 / (1.0 + ::Math.pow(_map[key].Num, 0.5)) * 100;
+					if (::Math.rand(1, 100) > chance)
 					{
 						continue;
 					}
@@ -1127,7 +1127,7 @@ if (!("World" in ::Const))
 
 			if ("Guards" in troop.SortedTypes[i].Types[index])
 			{
-				_credits = this.Const.World.Common.dynamicSelectTroop(troop.SortedTypes[i].Types[index].Guards, _resources, _scale, _map, _credits);
+				_credits = ::Const.World.Common.dynamicSelectTroop(troop.SortedTypes[i].Types[index].Guards, _resources, _scale, _map, _credits);
 			}
 			break;
 		}
@@ -1145,7 +1145,7 @@ if (!("World" in ::Const))
 	getCredits = function(_template, _resources) {
 		local credits = _resources;
 		if ("MinR" in _template)
-			credits = this.Math.max(_template.MinR, credits);
+			credits = ::Math.max(_template.MinR, credits);
 		return credits;
 	},
 	// Defines scaling of party composition
@@ -1210,7 +1210,7 @@ if (!("World" in ::Const))
 ::Const.World.Common.getArenaBros <- function()
 {
 	return ::World.getPlayerRoster().getAll().filter(function (bro) {
-		local item = bro.getItems().getItemAtSlot(this.Const.ItemSlot.Accessory);
+		local item = bro.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
 		return item != null && item.getID() == "accessory.legend_arena_collar";
 	});
 }
@@ -1230,12 +1230,12 @@ if (!("World" in ::Const))
 		local v2 = 0.0;
 		while (s >= 1.0 || s == 0.0)
 		{
-			v1 = 2.0 * this.Math.rand(0, 1000) / 1000 - 1.0;
-			v2 = 2.0 * this.Math.rand(0, 1000) / 1000 - 1.0;
+			v1 = 2.0 * ::Math.rand(0, 1000) / 1000 - 1.0;
+			v2 = 2.0 * ::Math.rand(0, 1000) / 1000 - 1.0;
 			s = v1 * v1 + v2 * v2;
 		}
 
-		s = this.Math.pow(-2.0 * log(s) / s, 0.5);
+		s = ::Math.pow(-2.0 * log(s) / s, 0.5);
 		this.NextValue = v2 * s;
 		this.UseLast = true;
 		return v1 * s;
@@ -1263,9 +1263,9 @@ if (!("World" in ::Const))
 {
 	local fact = _faction;
 	if (::World.FactionManager.isAlliedWithPlayer(_faction)) {
-		fact = this.World.FactionManager.getFactionOfType(this.Const.FactionType.DummyFaction).getID();
+		fact = ::World.FactionManager.getFactionOfType(::Const.FactionType.DummyFaction).getID();
 	}
-	this.Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify);
+	::Const.World.Common.addUnitsToCombat(_into, _partyList, _resources, fact, _minibossify);
 }
 
 //Perks array is [weight, perk name, cost]
@@ -1319,19 +1319,19 @@ if (!("World" in ::Const))
 // 	[1, ["perk_battle_forged", "perk_nimble"], 3]
 // ]
 
-// local perksPicked = this.Const.World.Common.pickPerks(testArray, 5)
+// local perksPicked = ::Const.World.Common.pickPerks(testArray, 5)
 // foreach(p in perksPicked)
 // {
 // 	this.logInfo("Selected the perk: " + p.getID())
 // }
 // this.logInfo("----------------------")
-// local perksPicked = this.Const.World.Common.pickPerks(testArray, 20)
+// local perksPicked = ::Const.World.Common.pickPerks(testArray, 20)
 // foreach(p in perksPicked)
 // {
 // 	this.logInfo("Selected the perk: " + p.getID())
 // }
 // this.logInfo("----------------------")
-// local perksPicked = this.Const.World.Common.pickPerks(testArray, 0)
+// local perksPicked = ::Const.World.Common.pickPerks(testArray, 0)
 // foreach(p in perksPicked)
 // {
 // 	this.logInfo("Selected the perk: " + p.getID())
@@ -1339,7 +1339,7 @@ if (!("World" in ::Const))
 
 
 // TESTING
-// foreach(k,v in this.Const.World.Spawn)
+// foreach(k,v in ::Const.World.Spawn)
 // {
 // 	if (k == "Troops" || k == "Unit" || k == "TroopsMap")
 // 	{
@@ -1378,7 +1378,7 @@ if (!("World" in ::Const))
 // local weight = [30, 100, 160, 200];
 // local pList = [
 
-// 	this.Const.World.Spawn.Peasants
+// 	::Const.World.Spawn.Peasants
 
 // ];
 // foreach ( p in pList )

@@ -11,7 +11,7 @@
 				{
 					Text = "That\'s not going to happen.",
 					function getResult( _event ) {
-						this.World.Assets.addMoralReputation(1);
+						::World.Assets.addMoralReputation(1);
 						return 0;
 					}
 				}];

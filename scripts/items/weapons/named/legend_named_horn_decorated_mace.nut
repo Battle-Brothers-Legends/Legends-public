@@ -4,16 +4,16 @@ this.legend_named_horn_decorated_mace <- this.inherit("scripts/items/weapons/nam
 	{
 		this.named_weapon.create();
 		this.m.ID = "weapon.legend_named_horn_decorated_mace";
-		this.m.NameList = this.Const.Strings.MaceNames;
-		this.m.PrefixList = this.Const.Strings.BarbarianPrefix;
-		this.m.SuffixList = this.Const.Strings.BarbarianSuffix;
+		this.m.NameList = ::Const.Strings.MaceNames;
+		this.m.PrefixList = ::Const.Strings.BarbarianPrefix;
+		this.m.SuffixList = ::Const.Strings.BarbarianSuffix;
 		this.m.Description = "A huge club decorated with skulls and horns, woven in patterns that betray strange meaning. For the average mercenary you just need to know that a blow will leave a person reeling and struggling for breath.";
 		this.m.Categories = "Mace, Two-Handed";
 		this.m.IconLarge = "weapons/melee/horn_decorated_mace_01.png";
 		this.m.Icon = "weapons/melee/horn_decorated_mace_01_70x70.png";
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Named | this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Named | ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAgainstShields = true;
 		this.m.IsAoE = false;
 		this.m.AddGenericSkill = true;

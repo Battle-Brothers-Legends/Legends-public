@@ -5,13 +5,13 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		//this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		//this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.Icon = "skills/status_effect_57.png";
 		//this.m.IconMini = "status_effect_57_mini";
 		//this.m.Overlay = "status_effect_57";
 
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -24,22 +24,22 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function inBattleHiddenCheck()
 	{
-		if (!("State" in this.Tactical) || this.Tactical.State == null) //don't bother hiding the skill when it's not in combat
+		if (!("State" in ::Tactical) || ::Tactical.State == null) //don't bother hiding the skill when it's not in combat
 		{
 			return false;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!("Entities" in ::Tactical))
 		{
 			return false;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (::Tactical.Entities == null)
 		{
 			return false;
 		}
 
-		local instances = this.Tactical.Entities.getAllInstancesAsArray();
+		local instances = ::Tactical.Entities.getAllInstancesAsArray();
 		local myFaction = this.getContainer().getActor().getFaction();
 
 		foreach( idx in instances )
@@ -117,7 +117,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/bravery.png",
-				text = "[color=%positive%]+" + this.Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
+				text = "[color=%positive%]+" + ::Math.floor((this.m.BraveryMult - 1.0) * 100.0) + "%[/color] Resolve due to being a favored enemy"
 			})
 		}
 		resp.push({
@@ -184,7 +184,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTotalKillStats(_actor = null) {
 		local actor = _actor != null ? _actor : this.getContainer().getActor();
-		return this.Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
+		return ::Const.LegendMod.GetFavoriteEnemyStats(actor, this.m.ValidTypes);
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )
@@ -215,17 +215,17 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		if (!("Entities" in this.Tactical))
+		if (!("Entities" in ::Tactical))
 		{
 			return;
 		}
 
-		if (this.Tactical.Entities == null)
+		if (::Tactical.Entities == null)
 		{
 			return;
 		}
 
-		local actors = this.Tactical.Entities.getAllInstancesAsArray();
+		local actors = ::Tactical.Entities.getAllInstancesAsArray();
 		foreach( a in actors )
 		{
 			foreach (vt in this.m.ValidTypes)
@@ -241,7 +241,7 @@ this.legend_favoured_enemy_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID)
+		::Const.LegendMod.FavEnemyPerkMap.addEnemies(this.m.ValidTypes, this.m.ID)
 	}
 
 	// Requires MSU; this will add tooltips to display bonuses when targeting an enemy

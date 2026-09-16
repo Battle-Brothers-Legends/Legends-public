@@ -7,7 +7,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendInTheZone);
 		this.m.Description = "%name% utilizes %their% armor\'s blend of protection and mobility to deal increased damage and gain increased accuracy when foes miss attacks against %them%.";
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
 	function getTooltip()
@@ -77,7 +77,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 
 			if (actor.getInitiative() >= 2*armorFat)
 			{
-				this.m.Stacks = this.Math.min(this.m.MaxStacks, this.Math.max(0, armorFat - 15));
+				this.m.Stacks = ::Math.min(this.m.MaxStacks, ::Math.max(0, armorFat - 15));
 			}
 		}
 
@@ -99,7 +99,7 @@ this.perk_legend_in_the_zone <- this.inherit("scripts/skills/skill", {
 	{
 		if (_attacker != null && _skill != null && _skill.isAttack() && !_skill.isRanged())
 		{
-			this.m.Stacks = this.Math.min(this.m.MaxStacks, this.m.Stacks + 1);
+			this.m.Stacks = ::Math.min(this.m.MaxStacks, this.m.Stacks + 1);
 		}
 	}
 

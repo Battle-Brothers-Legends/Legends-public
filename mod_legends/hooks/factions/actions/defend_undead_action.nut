@@ -1,6 +1,6 @@
 ::mods_hookExactClass("factions/actions/defend_undead_action", function (o) {
 	o.onUpdate = function (_faction) {
-		if (this.World.getTime().IsDaytime) {
+		if (::World.getTime().IsDaytime) {
 			return;
 		}
 

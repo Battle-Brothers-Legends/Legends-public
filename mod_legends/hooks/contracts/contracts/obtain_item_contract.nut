@@ -136,9 +136,9 @@
 		foreach (s in this.m.States) {
 			if (s.ID == "Offer") {
 				s.end <- function () {
-					this.World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
+					::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 					this.Contract.m.Destination.clearTroops();
-					this.Contract.addUnitsToEntity(this.Contract.m.Destination, this.Const.World.Spawn.UndeadArmy, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
+					this.Contract.addUnitsToEntity(this.Contract.m.Destination, ::Const.World.Spawn.UndeadArmy, 100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 					this.Contract.m.Destination.setLootScaleBasedOnResources(100 * this.Contract.getDifficultyMult() * this.Contract.getScaledDifficultyMult());
 
 					if (this.Contract.getDifficultyMult() <= 1.15
@@ -149,8 +149,8 @@
 
 					this.Contract.m.Destination.setDiscovered(true);
 					this.Contract.m.Destination.m.IsShowingDefenders = false;
-					this.World.uncoverFogOfWar(this.Contract.m.Destination.getTile().Pos, 500.0);
-					local r = this.Math.rand(1, 100);
+					::World.uncoverFogOfWar(this.Contract.m.Destination.getTile().Pos, 500.0);
+					local r = ::Math.rand(1, 100);
 
 					if (r <= 10) {
 						this.Flags.set("IsRiskReward", true);
@@ -164,12 +164,12 @@
 							"weapons/ancient/bladed_pike"
 						];
 
-						local item = this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]);
+						local item = this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]);
 						this.Contract.m.RiskItem = item;
 					}
 
 					this.Contract.setScreen("Overview");
-					this.World.Contracts.setActiveContract(this.Contract);
+					::World.Contracts.setActiveContract(this.Contract);
 				}
 			}
 		}

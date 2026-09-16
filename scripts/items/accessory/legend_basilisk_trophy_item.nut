@@ -6,7 +6,7 @@ this.legend_basilisk_trophy_item <- this.inherit("scripts/items/accessory/access
 		this.m.ID = "accessory.legend_basilisk_trophy";
 		this.m.Name = "Basilisk Trophy Necklace";
 		this.m.Description = "This trophy fashioned from an eye and feathers of a Basilisk stares blankly at those next to die on the battlefield";
-		this.m.SlotType = this.Const.ItemSlot.Accessory;
+		this.m.SlotType = ::Const.ItemSlot.Accessory;
 		this.m.IsDroppedAsLoot = true;
 		this.m.ShowOnCharacter = true;
 		this.m.IconLarge = "";
@@ -71,19 +71,19 @@ this.legend_basilisk_trophy_item <- this.inherit("scripts/items/accessory/access
 
 	function getSellPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::World.State.getCurrentTown().getBeastPartsPriceMult();
 	}
 
 	function getBuyPriceMult()
 	{
-		return this.World.State.getCurrentTown().getBeastPartsPriceMult();
+		return ::World.State.getCurrentTown().getBeastPartsPriceMult();
 	}
 
 	function onUpdateProperties( _properties )
 	{
 		this.accessory.onUpdateProperties(_properties);
-		_properties.HitChance[this.Const.BodyPart.Head] += 5;
-		_properties.DamageAgainstMult[this.Const.BodyPart.Head] += 0.2;
+		_properties.HitChance[::Const.BodyPart.Head] += 5;
+		_properties.DamageAgainstMult[::Const.BodyPart.Head] += 0.2;
 	}
 
 });

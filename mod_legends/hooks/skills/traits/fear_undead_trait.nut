@@ -43,11 +43,11 @@
 		}
 
 		local fightingUndead = false;
-		local enemies = this.Tactical.Entities.getAllHostilesAsArray();
+		local enemies = ::Tactical.Entities.getAllHostilesAsArray();
 
 		foreach( enemy in enemies )
 		{
-			if (this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Zombies || this.Const.EntityType.getDefaultFaction(enemy.getType()) == this.Const.FactionType.Undead)
+			if (::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Zombies || ::Const.EntityType.getDefaultFaction(enemy.getType()) == ::Const.FactionType.Undead)
 			{
 				fightingUndead = true;
 				break;

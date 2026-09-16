@@ -8,9 +8,9 @@ this.legend_bone_carver <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A sharpened stone head secured to a large bone. Not well suited for human hands.";
 		this.m.IconLarge = "weapons/melee/legend_bone_carver_01.png";
 		this.m.Icon = "weapons/melee/legend_bone_carver_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.OneHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.OneHanded;
 		this.m.IsDoubleGrippable = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

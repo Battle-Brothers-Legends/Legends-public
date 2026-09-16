@@ -14,10 +14,10 @@ this.legend_mummy_crown <- this.inherit("scripts/items/helmets/helmet", {
 		local variants = [
 			1
 		];
-		this.m.Variant = variants[this.Math.rand(0, variants.len() - 1)];
+		this.m.Variant = variants[::Math.rand(0, variants.len() - 1)];
 		this.updateVariant();
-		this.m.ImpactSound = this.Const.Sound.ArmorChainmailImpact;
-		this.m.InventorySound = this.Const.Sound.ArmorChainmailImpact;
+		this.m.ImpactSound = ::Const.Sound.ArmorChainmailImpact;
+		this.m.InventorySound = ::Const.Sound.ArmorChainmailImpact;
 		this.m.Value = 1000;
 		this.m.Condition = 150;
 		this.m.ConditionMax = 150;

@@ -6,8 +6,8 @@ this.legend_balanced_rucksack_item <- this.inherit("scripts/items/item", {
 		this.m.ID = "misc.legend_balanced_rucksack";
 		this.m.Name = "Balanced Rucksack";
 		this.m.Description = "A backpack worn by journeying sellswords, which allows easily reachable weapons and tools should their travels demand it.";
-		this.m.SlotType = this.Const.ItemSlot.None;
-		this.m.ItemType = this.Const.Items.ItemType.Usable;
+		this.m.SlotType = ::Const.ItemSlot.None;
+		this.m.ItemType = ::Const.Items.ItemType.Usable;
 		this.m.IsAllowedInBag = false;
 		this.m.IsUsable = true;
 		this.m.Icon = "consumables/legend_balanced_rucksack.png";

@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		this.m.Cooldown = 30.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 30.0 * ::World.getTime().SecondsPerDay;
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
 				s.Text = "[img]gfx/ui/events/event_15.png[/img]During your travels, %scholar% has taken some interest in %dumbguy%\'s intellectual shortcomings. %scholar_short% says that, with some time, %they_scholar% could teach the %person_dumbguy% a thing or two. %dumbguy_short% can put one foot in front of the other - and sometimes quite confidently - but you think that\'s about where %their_dumbguy% aptitude for all things comes to an end. Not only that, but %scholar_short% has gotten easily frustrated in the past. Teaching the dumb %sibling_dumbguy% might just be an exercise in self-inflating %their_scholar% own ego.";
@@ -18,7 +18,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
@@ -34,15 +34,15 @@
 				::Legends.Background.Historian,
 				::Legends.Background.LegendInventor,
 				::Legends.Background.LegendSeer
-			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || bro.getSkills().hasPerk(::Legends.Perk.LegendScholar))
+			) && !bro.getSkills().hasTrait(::Legends.Trait.Hesitant) || ::Legends.Professions.has(bro, ::Legends.Profession.LegendScholar))
 				scholar_candidates.push(bro);
 		}
 
 		if (dumb_candidates.len() == 0 || scholar_candidates.len() == 0)
 			return;
 
-		this.m.DumbGuy = dumb_candidates[this.Math.rand(0, dumb_candidates.len() - 1)];
-		this.m.Scholar = scholar_candidates[this.Math.rand(0, scholar_candidates.len() - 1)];
+		this.m.DumbGuy = dumb_candidates[::Math.rand(0, dumb_candidates.len() - 1)];
+		this.m.Scholar = scholar_candidates[::Math.rand(0, scholar_candidates.len() - 1)];
 		this.m.Score = 5;
 	}
 })

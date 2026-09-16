@@ -2,7 +2,7 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 	m = {
 		Title = "Workshop",
 		Description = "Salvage equipment to produce tools in order left to right, top to bottom. Assign workers in the commanders tent.",
-		InventoryFilter = this.Const.Items.ItemFilter.All
+		InventoryFilter = ::Const.Items.ItemFilter.All
 	},
 	function create()
 	{
@@ -46,8 +46,8 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 	{
 		local tent = this.getTent();
 		return {
-			Supplies = this.World.Assets.getArmorParts(),
-			SuppliesMax  = this.World.Assets.getMaxArmorParts(),
+			Supplies = ::World.Assets.getArmorParts(),
+			SuppliesMax  = ::World.Assets.getMaxArmorParts(),
 			SuppliesRequired = tent.getRequiredSupplies(),
 			Time = tent.getRequiredTime(),
 			Brothers = tent.getAssignedBros()
@@ -62,16 +62,16 @@ this.camp_workshop_dialog_module <- this.inherit("scripts/ui/screens/ui_module",
 
 	function onSortButtonClicked()
 	{
-		if (this.Tactical.isActive())
+		if (::Tactical.isActive())
 		{
 			this.getroottable().Stash.sort();
 		}
 		else
 		{
-			this.World.Assets.getStash().sort();
+			::World.Assets.getStash().sort();
 		}
 
-		local tent = this.World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
+		local tent = ::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Workshop);
 		tent.onInit();
 		this.loadStashList();
 	}

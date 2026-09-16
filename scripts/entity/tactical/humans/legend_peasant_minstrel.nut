@@ -24,14 +24,14 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendPeasantMinstrel);
+		b.setValues(::Const.Tactical.Actor.LegendPeasantMinstrel);
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
 		this.setAppearance();
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
-		dirt.Alpha = this.Math.rand(0, 255);
+		dirt.Alpha = ::Math.rand(0, 255);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMusician);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendManipulative);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendDaze);
@@ -62,14 +62,14 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 			[3, null],
 		], "scripts/items/"));
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.sackcloth],
 			[9, ::Legends.Armor.Standard.linen_tunic]
 		]));
 
-		if (this.Math.rand(1, 100) <= 66)
+		if (::Math.rand(1, 100) <= 66)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[3, ::Legends.Helmet.Standard.feathered_hat],
 				[1, ::Legends.Helmet.Standard.hood]
 			]));

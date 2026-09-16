@@ -8,8 +8,8 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/rupture_blood", 3);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -39,42 +39,42 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? this.Const.Combat.WeaponSpecFatigueMult : 1.0;
+		this.m.FatigueCostMult = _properties.IsSpecializedInCleavers ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
 	function onTargetSelected( _targetTile )
 	{
 		local ownTile = this.m.Container.getActor().getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
-		this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
-		local nextDir = dir - 1 >= 0 ? dir - 1 : this.Const.Direction.COUNT - 1;
+		::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, _targetTile, _targetTile.Pos.X, _targetTile.Pos.Y);
+		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 
 		if (ownTile.hasNextTile(nextDir))
 		{
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
+			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
 			}
 		}
 
-		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : this.Const.Direction.COUNT - 1;
+		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : ::Const.Direction.COUNT - 1;
 
 		if (ownTile.hasNextTile(nextDir))
 		{
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
+			if (::Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
-				this.Tactical.getHighlighter().addOverlayIcon(this.Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
+				::Tactical.getHighlighter().addOverlayIcon(::Const.Tactical.Settings.AreaOfEffectIcon, nextTile, nextTile.Pos.X, nextTile.Pos.Y);
 			}
 		}
 	}
 
 	function onUse( _user, _targetTile )
 	{
-		this.spawnAttackEffect(_targetTile, this.Const.Tactical.AttackEffectSwing);
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectSwing);
 		local ownTile = _user.getTile();
 		local dir = ownTile.getDirectionTo(_targetTile);
 		local target = _targetTile.getEntity();
@@ -85,16 +85,16 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		local nextDir = dir - 1 >= 0 ? dir - 1 : this.Const.Direction.COUNT - 1;
+		local nextDir = dir - 1 >= 0 ? dir - 1 : ::Const.Direction.COUNT - 1;
 
 		if (ownTile.hasNextTile(nextDir))
 		{
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
+			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
 				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " flogged " + this.Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " flogged " + ::Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}
 
@@ -103,16 +103,16 @@ this.legend_flogging_skill <- this.inherit("scripts/skills/skill", {
 			return;
 		}
 
-		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : this.Const.Direction.COUNT - 1;
+		nextDir = nextDir - 1 >= 0 ? nextDir - 1 : ::Const.Direction.COUNT - 1;
 
 		if (ownTile.hasNextTile(nextDir))
 		{
 			local nextTile = ownTile.getNextTile(nextDir);
 
-			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && this.Math.abs(nextTile.Level - ownTile.Level) <= 1)
+			if (nextTile.IsOccupiedByActor && nextTile.getEntity().isAttackable() && ::Math.abs(nextTile.Level - ownTile.Level) <= 1)
 			{
 				::Legends.Effects.grant(nextTile.getEntity(), ::Legends.Effect.LegendGrazedEffect);
-				this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " flogged " + this.Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
+				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " flogged " + ::Const.UI.getColorizedEntityName(nextTile.getEntity()) + " leaving them bleeding");
 			}
 		}
 	}

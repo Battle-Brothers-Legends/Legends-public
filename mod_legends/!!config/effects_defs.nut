@@ -1230,14 +1230,6 @@ effectsDefs.push({
 	Const = "LegendDemonHoundBiteEffect"
 });
 
-::Legends.Effect.LegendRationsEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_rations_effect",
-	Script = "scripts/skills/effects/legend_rations_effect",
-	Name = "Satiated",
-	Const = "LegendRationsEffect"
-});
-
 ::Legends.Effect.LegendSatiatedEffect <- null;
 effectsDefs.push({
 	ID = "effects.legend_satiated_effect",
@@ -1662,36 +1654,12 @@ effectsDefs.push({
 	Const = "LegendPeacefulReassured"
 });
 
-::Legends.Effect.LegendPieEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_pie_effect",
-	Script = "scripts/skills/effects/legend_pie_effect",
-	Name = "Satiated",
-	Const = "LegendPieEffect"
-});
-
-::Legends.Effect.LegendPorridgeEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_porridge_effect",
-	Script = "scripts/skills/effects/legend_porridge_effect",
-	Name = "Porridge",
-	Const = "LegendPorridgeEffect"
-});
-
 ::Legends.Effect.LegendPrayerOfFaith <- null;
 effectsDefs.push({
 	ID = "effects.legend_prayer_of_faith",
 	Script = "scripts/skills/effects/legend_prayer_of_faith_effect",
 	Name = "Prayer of Faith",
 	Const = "LegendPrayerOfFaith"
-});
-
-::Legends.Effect.LegendPuddingEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_pudding_effect",
-	Script = "scripts/skills/effects/legend_pudding_effect",
-	Name = "Satiated",
-	Const = "LegendPuddingEffect"
 });
 
 ::Legends.Effect.LegendRatPoison <- null;

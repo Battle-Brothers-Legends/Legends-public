@@ -6,8 +6,8 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 		this.m.Icon = "skills/status_effect_136.png";
 		this.m.IconMini = "";
 		this.m.Overlay = "status_effect_136";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Perk;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Perk;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = false;
 		this.m.IsStacking = false;
@@ -35,7 +35,7 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 				id = 11,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue damage inflicted from successful hits is increased by [color=" + this.Const.UI.Color.PositiveValue + "]50%[/color]"
+				text = "Fatigue damage inflicted from successful hits is increased by [color=" + ::Const.UI.Color.PositiveValue + "]50%[/color]"
 			},
 			{
 				id = 12,
@@ -54,15 +54,15 @@ this.legend_fallen_betrayer_potion_effect <- this.inherit("scripts/skills/skill"
 
 	function onDeath( _fatalityType )
 	{
-		if (_fatalityType != this.Const.FatalityType.Unconscious)
+		if (_fatalityType != ::Const.FatalityType.Unconscious)
 		{
-			this.World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
+			::World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
 		}
 	}
 
 	function onDismiss()
 	{
-		this.World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
+		::World.Statistics.getFlags().set("isFallenBetrayerPotionAcquired", false);
 	}
 
 });

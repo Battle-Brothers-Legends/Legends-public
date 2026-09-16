@@ -1,10 +1,10 @@
 this.perk_legend_specialist_farmhand <- this.inherit("scripts/skills/legend_specialist_abstract", {
 	m = {
 		SpecialistItemTypes = [
-			this.Const.Items.ItemType.Pitchfork
+			::Const.Items.ItemType.Pitchfork
 		],
 		ApplicableWeaponTypes = [
-			this.Const.Items.WeaponType.Polearm
+			::Const.Items.WeaponType.Polearm
 		],
 		BonusMelee = 12,
 		BonusDamage = 10

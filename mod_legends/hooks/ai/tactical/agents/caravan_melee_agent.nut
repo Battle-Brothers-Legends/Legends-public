@@ -4,16 +4,16 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 1.5;
-		this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 0.5;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 1.5;
+		this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 0.5;
 		this.m.Properties.TargetPriorityFinishOpponentMult = 5.0;
 		this.m.Properties.OverallDefensivenessMult = 1.25;
 		this.m.Properties.EngageTargetMultipleOpponentsMult = 1.0;
 		this.m.Properties.EngageTargetAlreadyBeingEngagedMult = 1.5;
 		if(::Legends.isLegendaryDifficulty())
 		{
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.EngageMelee] = 0.5;
-			this.m.Properties.BehaviorMult[this.Const.AI.Behavior.ID.Defend] = 2.0;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.EngageMelee] = 0.5;
+			this.m.Properties.BehaviorMult[::Const.AI.Behavior.ID.Defend] = 2.0;
 			this.m.Properties.TargetPriorityHitchanceMult = 0.9;
 			this.m.Properties.TargetPriorityHitpointsMult = 0.6;
 			this.m.Properties.TargetPriorityRandomMult = 0.0;

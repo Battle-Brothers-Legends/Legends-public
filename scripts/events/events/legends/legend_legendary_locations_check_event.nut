@@ -3,7 +3,7 @@ this.legend_legendary_locations_check_event <- this.inherit("scripts/events/even
     function create() {
         this.m.ID = "event.legend_legendary_locations_check";
         this.m.Title = "Your friendly legendary location check";
-        this.m.Cooldown = 600000 * this.World.getTime().SecondsPerDay;
+        this.m.Cooldown = 600000 * ::World.getTime().SecondsPerDay;
         this.m.Score = 0;
         this.m.Screens.push({
             ID = "A",

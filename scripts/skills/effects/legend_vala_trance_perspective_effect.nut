@@ -22,8 +22,8 @@ this.legend_vala_trance_perspective_effect <- this.inherit("scripts/skills/skill
 		this.m.Icon = "skills/status_effect_52.png";
 		this.m.IconMini = "status_effect_52_mini";
 		this.m.Overlay = "status_effect_52";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.Last;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.Last;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;

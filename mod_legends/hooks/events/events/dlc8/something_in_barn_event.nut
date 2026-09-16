@@ -6,7 +6,7 @@
 			if (s.ID == "B") {
 				s.start <- function ( _event ) {
 					local item = this.new("scripts/items/accessory/legend_wardog_item");
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),

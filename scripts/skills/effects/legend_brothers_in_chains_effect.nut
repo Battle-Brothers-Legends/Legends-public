@@ -14,7 +14,7 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendBrothersInChains);
 		this.m.Description = "Fighting with other escaped slaves drives this character to succeed.";
 		this.m.Icon = "ui/settlement_status/settlement_effect_40.png";
-		this.m.Type = this.Const.SkillType.StatusEffect;
+		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;
 		this.m.IsRemovedAfterBattle = true;
 	}
@@ -69,14 +69,14 @@ this.legend_brothers_in_chains_effect <- this.inherit("scripts/skills/skill", {
 	{
 		local actor = this.getContainer().getActor();
 
-		if (!actor.isPlacedOnMap() || actor.getFaction() != this.Const.Faction.Player)
+		if (!actor.isPlacedOnMap() || actor.getFaction() != ::Const.Faction.Player)
 		{
 			this.m.IsHidden = true;
 			return;
 		}
 
 		local myTile = actor.getTile();
-		local allies = this.Tactical.Entities.getInstancesOfFaction(this.Const.Faction.Player);
+		local allies = ::Tactical.Entities.getInstancesOfFaction(::Const.Faction.Player);
 		local numSlaves = 0;
 
 		foreach( ally in allies )

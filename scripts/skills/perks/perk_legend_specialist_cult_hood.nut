@@ -6,16 +6,16 @@ this.perk_legend_specialist_cult_hood <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getCultistPieces(){
-		local item = this.getContainer().getActor().getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local item = this.getContainer().getActor().getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local cultItems = [];
 		if (item != null)
 		{
-			if (item.isItemType(this.Const.Items.ItemType.Cultist)) {
+			if (item.isItemType(::Const.Items.ItemType.Cultist)) {
 				cultItems.push(item)
 			}
 			foreach( upgrade in item.m.Upgrades )
 			{
-				if (upgrade != null && upgrade.isItemType(this.Const.Items.ItemType.Cultist)){
+				if (upgrade != null && upgrade.isItemType(::Const.Items.ItemType.Cultist)){
 					cultItems.push(upgrade);
 				}
 			}
@@ -26,13 +26,13 @@ this.perk_legend_specialist_cult_hood <- this.inherit("scripts/skills/skill", {
 	function onAfterUpdate( _properties )
 	{
 		local actor = this.getContainer().getActor();
-		local item = actor.getItems().getItemAtSlot(this.Const.ItemSlot.Head);
+		local item = actor.getItems().getItemAtSlot(::Const.ItemSlot.Head);
 		local resolve = actor.getCurrentProperties().getBravery();
 
 		if (this.getCultistPieces().len() > 0){
 
-			_properties.MeleeDefense += this.Math.floor(resolve * 0.15);
-			_properties.RangedDefense += this.Math.floor(resolve * 0.15);
+			_properties.MeleeDefense += ::Math.floor(resolve * 0.15);
+			_properties.RangedDefense += ::Math.floor(resolve * 0.15);
 		}
 	}
 

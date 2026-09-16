@@ -12,22 +12,22 @@
 			if (s.ID == "Observe2") {
 				s.Options[0].getResult <- function ( _event )
 				{
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
 
 					for( local i = 0; i < 20; i = ++i ) {
-						local unit = clone this.Const.World.Spawn.Troops.Cultist;
-						unit.Faction <- this.Const.Faction.Enemy;
+						local unit = clone ::Const.World.Spawn.Troops.Cultist;
+						unit.Faction <- ::Const.Faction.Enemy;
 						properties.Entities.push(unit);
 					}
 
 					properties.Loot = [
-						this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.mask_of_davkul]])
+						::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Legendary.mask_of_davkul]])
 					];
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 			}
@@ -50,20 +50,20 @@
 			if (s.ID == "Attack1") {
 				s.Options[0].getResult <- function ( _event )
 				{
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
 
 					for( local i = 0; i < 20; i = ++i )
 					{
-						local unit = clone this.Const.World.Spawn.Troops.Cultist;
-						unit.Faction <- this.Const.Faction.Enemy;
+						local unit = clone ::Const.World.Spawn.Troops.Cultist;
+						unit.Faction <- ::Const.Faction.Enemy;
 						properties.Entities.push(unit);
 					}
 
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 				s.start <- function ( _event ) {
@@ -74,20 +74,20 @@
 			if (s.ID == "Attack2") {
 				s.Options[0].getResult <- function ( _event )
 				{
-					local properties = this.World.State.getLocalCombatProperties(this.World.State.getPlayer().getPos());
+					local properties = ::World.State.getLocalCombatProperties(::World.State.getPlayer().getPos());
 					properties.CombatID = "Event";
-					properties.Music = this.Const.Music.CivilianTracks;
+					properties.Music = ::Const.Music.CivilianTracks;
 					properties.IsAutoAssigningBases = false;
 					properties.Entities = [];
 
 					for( local i = 0; i < 20; i = ++i )
 					{
-						local unit = clone this.Const.World.Spawn.Troops.Cultist;
-						unit.Faction <- this.Const.Faction.Enemy;
+						local unit = clone ::Const.World.Spawn.Troops.Cultist;
+						unit.Faction <- ::Const.Faction.Enemy;
 						properties.Entities.push(unit);
 					}
 
-					this.World.State.startScriptedCombat(properties, false, false, true);
+					::World.State.startScriptedCombat(properties, false, false, true);
 					return 0;
 				}
 				s.start <-	function ( _event ) {
@@ -100,7 +100,7 @@
 
 
 	o.onUpdateScore = function () {
-		if (this.World.getTime().Days <= 200)
+		if (::World.getTime().Days <= 200)
 			return;
 
 		local town = ::Legends.S.getClosestSettlement();
@@ -111,21 +111,21 @@
 		if (distance < 4 || distance > 10)
 			return;
 
-		if (!this.World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot())
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates = [];
 
 		foreach( bro in brothers )
-			if (bro.getLevel() >= 11 && (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(this.Const.BackgroundType.Cultist)))
+			if (bro.getLevel() >= 11 && (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist)))
 				candidates.push(bro);
 
 		if (candidates.len() < 2)
 			return;
 
 		if (candidates.len() != 0)
-			this.m.Cultist = candidates[this.Math.rand(0, candidates.len() - 1)];
+			this.m.Cultist = candidates[::Math.rand(0, candidates.len() - 1)];
 
 		this.m.Score = 3;
 	}

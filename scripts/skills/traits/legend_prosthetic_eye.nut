@@ -9,7 +9,7 @@ this.legend_prosthetic_eye <- this.inherit("scripts/skills/traits/character_trai
 		this.m.Name = "Prosthetic Eye";
 		this.m.Icon = "ui/traits/legend_prosthetic_eye.png";
 		this.m.Description = "My, what pretty eyes! This one seems a bit off, however, and the owner has to constantly shift their pupil back into position to look straight.";
-		// if (this.World.Flags.get("Item Identified"))
+		// if (::World.Flags.get("Item Identified"))
 		// {
 		// 	this.m.Name = "Enhanced Prosthetic Eye";
 		// 	this.m.Description = "There isn\'t really much you can improve on a fake eye, but the pupil stabilizes itself, unlike the previous iteration. The clear, expensive crystal conveys light directly to the missing eye organ and the prosthetic looks like the user is constantly mad.";

@@ -58,7 +58,7 @@ this.legend_bandit_raider_wolf <- this.inherit("scripts/entity/tactical/enemies/
 		item.setUpgrade(this.new("scripts/items/legend_armor/cloak/legend_direwolf_pelt_cloak"));
 		this.getItems().equip(item);
 
-		if (this.Math.rand(1, 100) <= 75) {
+		if (::Math.rand(1, 100) <= 75) {
 			local item = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.nasal_helmet],
 				[1, ::Legends.Helmet.Standard.dented_nasal_helmet],

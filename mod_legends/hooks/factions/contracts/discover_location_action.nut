@@ -4,49 +4,49 @@
 	o.create = function()
 	{
 		create();
-		this.m.Cooldown = this.World.getTime().SecondsPerDay * 7;
+		this.m.Cooldown = ::World.getTime().SecondsPerDay * 7;
 	}
 
 	o.onUpdate = function ( _faction )
 	{
-		if (this.World.State.getRegions().len() == 0)
+		if (::World.State.getRegions().len() == 0)
 		{
 			return;
 		}
 
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 		{
 			return;
 		}
 
-		if (!_faction.isReadyForContract(this.Const.Contracts.ContractCategoryMap.discover_location_contract))
+		if (!_faction.isReadyForContract(::Const.Contracts.ContractCategoryMap.discover_location_contract))
 		{
 			return;
 		}
 
-		if (this.World.getTime().Days <= 3 && this.Math.rand(1, 100) < 20 || this.Math.rand(1, 100) > 10)
+		if (::World.getTime().Days <= 3 && ::Math.rand(1, 100) < 20 || ::Math.rand(1, 100) > 10)
 		{
 			return;
 		}
 
-		local locations = clone this.World.FactionManager.getFactionOfType(this.Const.FactionType.Undead).getSettlements();
-		locations.extend(this.World.FactionManager.getFactionOfType(this.Const.FactionType.Zombies).getSettlements());
+		local locations = clone ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getSettlements();
+		locations.extend(::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getSettlements());
 		local myTile = _faction.getSettlements()[0].getTile();
 		local lowestDistance = 9000;
 
 		foreach( b in locations )
 		{
-			if (b.isDiscovered() || b.isLocationType(this.Const.World.LocationType.Unique))
+			if (b.isDiscovered() || b.isLocationType(::Const.World.LocationType.Unique))
 			{
 				continue;
 			}
 
-			if (!this.World.State.getRegion(b.getTile().Region).Center.IsDiscovered)
+			if (!::World.State.getRegion(b.getTile().Region).Center.IsDiscovered)
 			{
 				continue;
 			}
 
-			local region = this.World.State.getRegion(b.getTile().Region);
+			local region = ::World.State.getRegion(b.getTile().Region);
 
 			if (!region.Center.IsDiscovered)
 			{
@@ -55,7 +55,7 @@
 
 			if (region.Discovered < 0.25)
 			{
-				this.World.State.updateRegionDiscovery(region);
+				::World.State.updateRegionDiscovery(region);
 			}
 
 			if (region.Discovered < 0.25)

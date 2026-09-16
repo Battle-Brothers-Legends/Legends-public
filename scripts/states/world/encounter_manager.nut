@@ -60,27 +60,27 @@ this.encounter_manager <- {
     function processInput(_buttonID) {
         if (this.m.ActiveEvent != null) {
             if (this.m.ActiveEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveEvent);
+                ::World.State.getEventScreen().show(this.m.ActiveEvent);
                 return false;
             } else {
                 if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
                     this.m.ActiveEvent.clear();
                     this.m.ActiveEvent = null;
                 }
-                this.World.State.getMenuStack().pop(true);
+                ::World.State.getMenuStack().pop(true);
                 return true;
             }
         }
         if (this.m.ActiveCampEvent != null) {
             if (this.m.ActiveCampEvent.processInput(_buttonID)) {
-                this.World.State.getEventScreen().show(this.m.ActiveCampEvent);
+                ::World.State.getEventScreen().show(this.m.ActiveCampEvent);
                 return false;
             } else {
                 if (::World.Events.m.VictoryScreen == null && ::World.Events.m.DefeatScreen == null) {
                     this.m.ActiveCampEvent.clear();
                     this.m.ActiveCampEvent = null;
                 }
-                this.World.State.getMenuStack().pop(true);
+                ::World.State.getMenuStack().pop(true);
                 return true;
             }
         }
@@ -89,15 +89,15 @@ this.encounter_manager <- {
 
     function canFireEvent() {
         if (
-            this.World.State.getMenuStack().hasBacksteps() ||
+            ::World.State.getMenuStack().hasBacksteps() ||
             this.LoadingScreen != null && (this.LoadingScreen.isAnimating() || this.LoadingScreen.isVisible()) ||
-            this.World.State.m.EventScreen.isVisible() ||
-            this.World.State.m.EventScreen.isAnimating()
+            ::World.State.m.EventScreen.isVisible() ||
+            ::World.State.m.EventScreen.isAnimating()
         ) {
             return false;
         }
 
-        if (("State" in this.Tactical) && this.Tactical.State != null) {
+        if (("State" in ::Tactical) && ::Tactical.State != null) {
             return false;
         }
 
@@ -109,7 +109,7 @@ this.encounter_manager <- {
             return false;
         }
 
-        local parties = this.World.getAllEntitiesAtPos(this.World.State.getPlayer().getPos(), 400.0);
+        local parties = ::World.getAllEntitiesAtPos(::World.State.getPlayer().getPos(), 400.0);
 
         foreach(party in parties) {
             if (!party.isAlliedWithPlayer()) {

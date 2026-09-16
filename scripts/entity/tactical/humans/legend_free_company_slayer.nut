@@ -3,19 +3,19 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 		Outfits = [
 			[1, ::Legends.Outfit.mercenary_spearman_outfit_00]
 		],
-		PerkList = this.Const.EnemyPerks.FreeCompanySlayer,
+		PerkList = ::Const.EnemyPerks.FreeCompanySlayer,
 		PerkPower = 12
 	},
 	function create()
 	{
-		this.m.Type = this.Const.EntityType.FreeCompanySlayer;
-		this.m.BloodType = this.Const.BloodType.Red;
-		this.m.XP = this.Const.Tactical.Actor.FreeCompanySlayer.XP;
+		this.m.Type = ::Const.EntityType.FreeCompanySlayer;
+		this.m.BloodType = ::Const.BloodType.Red;
+		this.m.XP = ::Const.Tactical.Actor.FreeCompanySlayer.XP;
 		this.human.create();
-		this.m.Faces = this.Const.Faces.AllMale;
-		this.m.Hairs = this.Const.Hair.AllMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.All;
+		this.m.Faces = ::Const.Faces.AllMale;
+		this.m.Hairs = ::Const.Hair.AllMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.All;
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/bounty_hunter_melee_agent");
 		this.m.AIAgent.setActor(this);
 	}
@@ -24,7 +24,7 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 	{
 		this.human.onInit();
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.FreeCompanySlayer);
+		b.setValues(::Const.Tactical.Actor.FreeCompanySlayer);
 		b.IsSpecializedInSwords = true;
 		b.IsSpecializedInAxes = true;
 		b.IsSpecializedInMaces = true;
@@ -62,7 +62,7 @@ this.legend_free_company_slayer <- this.inherit("scripts/entity/tactical/legend_
 			[4, "tools/throwing_net"],
 		], "scripts/items/"));
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
 		{
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/throwing_axe"],

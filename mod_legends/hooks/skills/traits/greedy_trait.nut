@@ -34,7 +34,7 @@
 	{
 		_properties.DailyWageMult *= 1.25;
 		local dailyCost = this.getContainer().getActor().getDailyCost();
-		this.m.Bonus = this.Math.floor(dailyCost / this.Math.pow(10, (1.2 + this.Math.minf(dailyCost / 1000.0, 0.5))));
+		this.m.Bonus = ::Math.floor(dailyCost / ::Math.pow(10, (1.2 + ::Math.minf(dailyCost / 1000.0, 0.5))));
 		_properties.Hitpoints += this.m.Bonus;
 		_properties.Bravery += this.m.Bonus;
 		_properties.Stamina += this.m.Bonus;

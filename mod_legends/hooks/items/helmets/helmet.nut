@@ -12,7 +12,7 @@
 	}
 
 	o.getValue = function () {
-		return this.Math.floor(this.m.Value * ((1.0 * this.m.Condition) / (1.0 * this.m.ConditionMax)));
+		return ::Math.floor(this.m.Value * ((1.0 * this.m.Condition) / (1.0 * this.m.ConditionMax)));
 	}
 
 	o.getTooltip = function () {
@@ -56,9 +56,9 @@
 			id = 4,
 			type = "progressbar",
 			icon = "ui/icons/armor_head.png",
-			value = this.Math.floor(this.m.Condition),
-			valueMax = this.Math.floor(this.m.ConditionMax),
-			text = "" + this.Math.floor(this.getArmor()) + " / " + this.Math.floor(this.getArmorMax()) + "",
+			value = ::Math.floor(this.m.Condition),
+			valueMax = ::Math.floor(this.m.ConditionMax),
+			text = "" + ::Math.floor(this.getArmor()) + " / " + ::Math.floor(this.getArmorMax()) + "",
 			style = "armor-head-slim"
 		});
 
@@ -112,11 +112,11 @@
 		if (this.isNamed())
 			return true;
 
-		local isPlayer = this.m.LastEquippedByFaction == this.Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
-		local isLucky = !this.Tactical.State.isScenarioMode() && !isPlayer && this.World.Assets.getOrigin().isDroppedAsLoot(this);
-		local isBlacksmithed = isPlayer && !this.Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
+		local isPlayer = this.m.LastEquippedByFaction == ::Const.Faction.Player || this.getContainer() != null && this.getContainer().getActor() != null && !this.getContainer().getActor().isNull() && this.isKindOf(this.getContainer().getActor().get(), "player");
+		local isLucky = !::Tactical.State.isScenarioMode() && !isPlayer && ::World.Assets.getOrigin().isDroppedAsLoot(this);
+		local isBlacksmithed = isPlayer && !::Tactical.State.isScenarioMode() && ::World.Assets.m.ProfessionEffect.LegendMaterialist > 0;
 
-		if (this.m.Condition > 15 && isPlayer || this.m.Condition > 30 && this.m.Condition / this.m.ConditionMax >= 0.25 && (isLucky || this.Math.rand(1, 100) <= 70) || isBlacksmithed)
+		if (this.m.Condition > 15 && isPlayer || this.m.Condition > 30 && this.m.Condition / this.m.ConditionMax >= 0.25 && (isLucky || ::Math.rand(1, 100) <= 70) || isBlacksmithed)
 			return true;
 
 		return false;
@@ -135,9 +135,9 @@
 			staminaMult = 0.7;
 		}
 
-		_properties.Armor[this.Const.BodyPart.Head] += this.m.Condition;
-		_properties.ArmorMax[this.Const.BodyPart.Head] += this.m.ConditionMax;
-		_properties.Stamina += this.Math.ceil(this.m.StaminaModifier * staminaMult);
+		_properties.Armor[::Const.BodyPart.Head] += this.m.Condition;
+		_properties.ArmorMax[::Const.BodyPart.Head] += this.m.ConditionMax;
+		_properties.Stamina += ::Math.ceil(this.m.StaminaModifier * staminaMult);
 		_properties.Vision += this.getVision();
 	}
 

@@ -4,13 +4,13 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Order = this.Const.SkillOrder.Last + 5;
+		this.m.Order = ::Const.SkillOrder.Last + 5;
 	}
 
 	o.onUse = function ( _user, _targetTile )
 	{
-		local entity = this.Tactical.spawnEntity(this.m.Item.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
-		entity.setFaction(this.Const.Faction.PlayerAnimals);
+		local entity = ::Tactical.spawnEntity(this.m.Item.getScript(), _targetTile.Coords.X, _targetTile.Coords.Y);
+		entity.setFaction(::Const.Faction.PlayerAnimals);
 		entity.setItem(this.m.Item);
 		entity.setName(this.m.Item.getName());
 		entity.setVariant(this.m.Item.getVariant());
@@ -24,12 +24,12 @@
 
 		if (this.getContainer().hasSkill(::Legends.Backgrounds.getID(::Legends.Background.Houndmaster)))
 		{
-			entity.setMoraleState(this.Const.MoraleState.Confident);
+			entity.setMoraleState(::Const.MoraleState.Confident);
 		}
 
 		this.addAnimalSkills(entity);
 
-		if (!this.World.getTime().IsDaytime)
+		if (!::World.getTime().IsDaytime)
 		{
 			::Legends.Effects.grant(entity, ::Legends.Effect.Night);
 		}

@@ -10,8 +10,8 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendViolentDecomposition);
 		this.m.SoundOnUse = ["sounds/combat/violent_decomposition.wav"];
 		this.m.SoundOnHit = ::Legends.S.setSounds("sounds/enemies/necromancer", 3);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.UtilityTargeted + 105;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.UtilityTargeted + 105;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -87,7 +87,7 @@ this.legend_violent_decomposition_skill <- this.inherit("scripts/skills/skill", 
 			});
 			_effect.setActorID(_user.getID());
 		}.bindenv(this));
-		this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(_user) + " sets " + this.Const.UI.getColorizedEntityName(target) + "to violently explode next turn");
+		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " sets " + ::Const.UI.getColorizedEntityName(target) + "to violently explode next turn");
 	}
 
 	function onAnySkillUsed( _skill, _targetEntity, _properties )

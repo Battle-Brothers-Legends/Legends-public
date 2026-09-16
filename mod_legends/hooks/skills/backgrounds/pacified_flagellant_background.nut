@@ -17,13 +17,13 @@
 			::Legends.Traits.getID(::Legends.Trait.Greedy),
 			::Legends.Traits.getID(::Legends.Trait.Gluttonous)
 		];
-		this.m.Faces = this.Const.Faces.AllWhiteMale;
-		this.m.Hairs = this.Const.Hair.UntidyMale;
-		this.m.HairColors = this.Const.HairColors.All;
-		this.m.Beards = this.Const.Beards.Untidy;
-		this.m.BackgroundType = this.Const.BackgroundType.OffendedByViolence;
-		this.m.AlignmentMin = this.Const.LegendMod.Alignment.Kind;
-		this.m.AlignmentMax = this.Const.LegendMod.Alignment.Saintly;
+		this.m.Faces = ::Const.Faces.AllWhiteMale;
+		this.m.Hairs = ::Const.Hair.UntidyMale;
+		this.m.HairColors = ::Const.HairColors.All;
+		this.m.Beards = ::Const.Beards.Untidy;
+		this.m.BackgroundType = ::Const.BackgroundType.OffendedByViolence;
+		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Kind;
+		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Saintly;
 	}
 
 	o.onBuildDescription <- function ()

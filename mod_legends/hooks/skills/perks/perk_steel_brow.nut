@@ -1,20 +1,18 @@
-::mods_hookExactClass("skills/perks/perk_steel_brow", function(o) {
+::mods_hookExactClass("skills/perks/perk_steel_brow", function (o) {
 	local create = o.create;
-	o.create = function()
-	{
+	o.create = function () {
 		create();
-		this.m.Type = this.m.Type | this.Const.SkillType.StatusEffect;
+		this.m.Type = this.m.Type | ::Const.SkillType.StatusEffect;
 		this.m.Description = "Will turn any stun attacks made against you into dazes instead.";
 		this.m.IconMini = "mini_steel_brow";
 	}
 
-	o.getTooltip <- function()
-	{
+	o.getTooltip <- function () {
 		return [
 			{
 				id = 1,
 				type = "title",
-				text = getName()
+				text = this.getName()
 			},
 			{
 				id = 10,
@@ -25,10 +23,9 @@
 		];
 	}
 
-	o.onBeforeDamageReceived <- function( _attacker, _skill, _hitInfo, _properties )
-	{
-		if (_hitInfo.BodyPart == ::Const.BodyPart.Head)
+	o.onBeforeDamageReceived <- function (_attacker, _skill, _hitInfo, _properties) {
+		if (_hitInfo.BodyPart == ::Const.BodyPart.Head) {
 			_hitInfo.BodyDamageMult = _hitInfo.BodyDamageMultBeforeSteelBrow * 0.67;
+		}
 	}
-
 });

@@ -7,12 +7,12 @@
 		this.m.Difficulty = 1;
 		this.m.Order = 300;
 		this.m.IsFixedLook = true;
-		this.m.StartingRosterTier = this.Const.Roster.getTierForSize(6);
+		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 	}
 
 	o.onSpawnAssets = function ()
 	{
-		local roster = this.World.getPlayerRoster();
+		local roster = ::World.getPlayerRoster();
 		local names = [];
 
 		for( local i = 0; i < 2; i = i )
@@ -24,7 +24,7 @@
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
-				bro.setName(this.Const.Strings.CharacterNames[this.Math.rand(0, this.Const.Strings.CharacterNames.len() - 1)]);
+				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
@@ -48,30 +48,30 @@
 		bros[1].getBackground().m.RawDescription = "You found %name% being thrown out of a pub and at first glance thought that was little more than a drunken miscreant. But you watched as off three would-be muggers were soon on the ground. They still managed to take off with a coin purse in the end, sure, but they could not truly defeat %name%. Impressed, you took the newly-impoverished fighter on as a caravan hand.";
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
-		talents.resize(this.Const.Attributes.COUNT, 0);
-		talents[this.Const.Attributes.MeleeSkill] = 2;
-		talents[this.Const.Attributes.MeleeDefense] = 1;
-		talents[this.Const.Attributes.Hitpoints] = 1;
+		talents.resize(::Const.Attributes.COUNT, 0);
+		talents[::Const.Attributes.MeleeSkill] = 2;
+		talents[::Const.Attributes.MeleeDefense] = 1;
+		talents[::Const.Attributes.Hitpoints] = 1;
 
 		//starting stash
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/amber_shards_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/cloth_rolls_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/dies_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
-		this.World.Assets.getStash().add(this.new("scripts/items/trade/salt_item"));
-		this.World.Assets.m.Money = this.World.Assets.m.Money * 3;
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/amber_shards_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/cloth_rolls_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/dies_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/furs_item"));
+		::World.Assets.getStash().add(this.new("scripts/items/trade/salt_item"));
+		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
 	o.onSpawnPlayer = function ()
 	{
 		local randomVillage;
 
-		for( local i = 0; i != this.World.EntityManager.getSettlements().len(); i = i )
+		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
 		{
-			randomVillage = this.World.EntityManager.getSettlements()[i];
+			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
 			{
@@ -82,20 +82,20 @@
 		}
 
 		local randomVillageTile = randomVillage.getTile();
-		local navSettings = this.World.getNavigator().createSettings();
-		navSettings.ActionPointCosts = this.Const.World.TerrainTypeNavCost_Flat;
+		local navSettings = ::World.getNavigator().createSettings();
+		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
 		do
 		{
-			local x = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.X - 8), this.Math.min(this.Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
-			local y = this.Math.rand(this.Math.max(2, randomVillageTile.SquareCoords.Y - 8), this.Math.min(this.Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
+			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 8), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
+			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 8), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
 
-			if (!this.World.isValidTileSquare(x, y))
+			if (!::World.isValidTileSquare(x, y))
 			{
 			}
 			else
 			{
-				local tile = this.World.getTileSquare(x, y);
+				local tile = ::World.getTileSquare(x, y);
 
 				if (tile.IsOccupied)
 				{
@@ -108,7 +108,7 @@
 				}
 				else
 				{
-					local path = this.World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
+					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
 					if (!path.isEmpty())
 					{
@@ -120,30 +120,30 @@
 		}
 		while (1);
 
-		this.World.State.m.Player = this.World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
-		this.World.Assets.updateLook(9);
-		this.World.getCamera().setPos(this.World.State.m.Player.getPos());
+		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
+		::World.Assets.updateLook(9);
+		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"
-			], this.Const.Music.CrossFadeTime);
-			this.World.Events.fire("event.legend_trader_scenario_intro");
+			], ::Const.Music.CrossFadeTime);
+			::World.Events.fire("event.legend_trader_scenario_intro");
 		}, null);
 	}
 
 	o.onInit = function ()
 	{
 		this.starting_scenario.onInit();
-		// this.World.Assets.m.BusinessReputationRate = 0.5;
-		// this.World.Assets.m.BuyPriceMult = 0.9;
-		// this.World.Assets.m.SellPriceMult = 1.1;
-		this.World.Flags.set("IsLegendsTrader", true);
+		// ::World.Assets.m.BusinessReputationRate = 0.5;
+		// ::World.Assets.m.BuyPriceMult = 0.9;
+		// ::World.Assets.m.SellPriceMult = 1.1;
+		::World.Flags.set("IsLegendsTrader", true);
 	}
 
 	o.onCombatFinished <- function () //is kill?
 	{
-		local roster = this.World.getPlayerRoster().getAll();
+		local roster = ::World.getPlayerRoster().getAll();
 
 		foreach( bro in roster )
 		{
@@ -158,11 +158,11 @@
 
 	o.onHiredByScenario <- function ( _bro )
 	{
-		if (_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 		{
 			_bro.worsenMood(1.0, "Unhappy they will need to do all the fighting");
 		}
-		else if (!_bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat)) //anyone but combat background
+		else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) //anyone but combat background
 		{
 			_bro.improveMood(0.5, "Glad to be out of the fighting line");
 			_bro.getSprite("socket").setBrush("bust_base_caravan");
@@ -175,7 +175,7 @@
 		local garbage = [];
 		foreach( i, bro in bros )
 		{
-			if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Outlaw)) //no outlaws
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) //no outlaws
 			{
 				garbage.push(bro);
 			}
@@ -194,13 +194,13 @@
 
 	o.onGenerateBro <- function (bro)
 	{
-		if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.Combat))
+		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 1.25);
+				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
 				bro.getBaseProperties().DailyWageMult *= 1.25;
 				bro.getSkills().update();
 				local r;
-				r = this.Math.rand(0, 5); //randomly assigned mald generator (TM)
+				r = ::Math.rand(0, 5); //randomly assigned mald generator (TM)
 
 				if (r == 0)
 				{
@@ -235,7 +235,7 @@
 
 			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Peddler) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
 			{
-				bro.m.HiringCost = this.Math.floor(bro.m.HiringCost * 0.75);
+				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75);
 				bro.getBaseProperties().DailyWageMult *= 1.25;
 				bro.getSkills().update();
 			}
@@ -244,7 +244,7 @@
 
 	o.onBuildPerkTree <- function ( _background )
 	{
-		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(this.Const.BackgroundType.Combat));
+		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(::Const.BackgroundType.Combat));
 	}
 });
 

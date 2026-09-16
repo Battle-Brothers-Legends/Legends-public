@@ -11,8 +11,8 @@ this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 		this.m.Icon = "skills/status_effect_53.png";
 		this.m.IconMini = "status_effect_53_mini";
 		this.m.Overlay = "status_effect_53";
-		this.m.Type = this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast + 7;
+		this.m.Type = ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast + 7;
 		this.m.IsActive = false;
 		this.m.IsStacking = false;
 		this.m.IsHidden = false;
@@ -53,9 +53,9 @@ this.legend_vala_in_trance <- this.inherit("scripts/skills/skill", {
 			skill.resetTrance();
 		}
 
-		if (this.Tactical.isActive())
+		if (::Tactical.isActive())
 		{
-			this.Tactical.EventLog.log(this.Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " returns to this realm.");
+			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this.getContainer().getActor()) + " returns to this realm.");
 		}
 
 		this.getContainer().getActor().m.IsUsingZoneOfControl = true;

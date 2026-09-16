@@ -298,8 +298,8 @@
 			return;
 		}
 
-		if (_item.getCurrentSlotType() == this.Const.ItemSlot.None
-			|| _item.getCurrentSlotType() == this.Const.ItemSlot.Bag)
+		if (_item.getCurrentSlotType() == ::Const.ItemSlot.None
+			|| _item.getCurrentSlotType() == ::Const.ItemSlot.Bag)
 		{
 			this.logWarning("Attempted to unequip item " + _item.getName() + ", but is not equipped");
 			return false;
@@ -309,7 +309,7 @@
 			if (this.m.Items[_item.getSlotType()][i] == _item) {
 				// _item.onUnequip();
 				// _item.setContainer(null);
-				// _item.setCurrentSlotType(this.Const.ItemSlot.None);
+				// _item.setCurrentSlotType(::Const.ItemSlot.None);
 				this.m.Items[_item.getSlotType()][i] = null;
 
 				if (_item.getBlockedSlotType() != null) {
@@ -328,7 +328,7 @@
 	}
 
 	o.transferToList <- function (_stash) {
-		for (local i = 0; i < this.Const.ItemSlot.COUNT; i = ++i) {
+		for (local i = 0; i < ::Const.ItemSlot.COUNT; i = ++i) {
 			for (local j = 0; j < this.m.Items[i].len(); j = ++j) {
 				if (this.m.Items[i][j] == null || this.m.Items[i][j] == -1) {
 					continue;
@@ -342,7 +342,7 @@
 				}
 				_stash.push(item);
 				// this.logInfo("Transferred " + item.m.Name + " : " + item.getInstanceID())
-				// local res = this.Stash.getItemByInstanceID(item.getInstanceID());
+				// local res = ::Stash.getItemByInstanceID(item.getInstanceID());
 				// if (res == null) {
 				//	 this.logInfo("saveFormation::could not find item for " + item.getInstanceID());
 				//	 continue

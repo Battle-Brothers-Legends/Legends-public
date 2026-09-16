@@ -5,8 +5,8 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "H") {
 				s.start <- function ( _event ) {
-					if (this.World.Assets.getMedicine() >= 2) {
-						this.World.Assets.addMedicine(-2);
+					if (::World.Assets.getMedicine() >= 2) {
+						::World.Assets.addMedicine(-2);
 						this.List.push({
 							id = 10,
 							icon = "ui/icons/asset_medicine.png",
@@ -14,22 +14,22 @@
 						});
 					}
 
-					local r = this.Math.rand(1, 4);
+					local r = ::Math.rand(1, 4);
 					local item = null;
 					if (r == 1)
 						item = this.new("scripts/items/weapons/named/named_axe");
 					else if (r == 2)
 						item = this.new("scripts/items/weapons/named/named_spear");
 					else if (r == 3)
-						item = this.Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]);
+						item = ::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Named.wolf_helmet]]);
 					else if (r == 4) {
-						item = this.Const.World.Common.pickArmor([
+						item = ::Const.World.Common.pickArmor([
 							[1, ::Legends.Armor.Named.black_leather_armor],
 						]);
 					}
 
-					this.World.Assets.getStash().makeEmptySlots(1);
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().makeEmptySlots(1);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),

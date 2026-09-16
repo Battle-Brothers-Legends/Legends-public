@@ -19,10 +19,10 @@
 
 	o.update = function ( _ignoreDelay = false )
 	{
-		if (this.m.LastRelationUpdateDay != this.World.getTime().Days)
+		if (this.m.LastRelationUpdateDay != ::World.getTime().Days)
 		{
-			this.m.LastRelationUpdateDay = this.World.getTime().Days;
-			local StaticRelations = this.World.Assets.getOrigin().getStaticRelations();
+			this.m.LastRelationUpdateDay = ::World.getTime().Days;
+			local StaticRelations = ::World.Assets.getOrigin().getStaticRelations();
 
 			foreach( f in this.m.Factions )
 			{
@@ -51,7 +51,7 @@
 	{
 		runSimulation();
 
-		foreach(settlement in this.World.EntityManager.getSettlements() )
+		foreach(settlement in ::World.EntityManager.getSettlements() )
 		{
 			settlement.updateShop(true);
 		}
@@ -83,7 +83,7 @@
 		f.setID(this.m.Factions.len());
 		f.setName("Free Companies");
 		f.setDiscovered(true);
-		f.addTrait(this.Const.FactionTrait.FreeCompany);
+		f.addTrait(::Const.FactionTrait.FreeCompany);
 		this.m.Factions.push(f);
 	}
 
@@ -93,7 +93,7 @@
 		f.setID(this.m.Factions.len());
 		f.setName("Dummy Faction");
 		f.setDiscovered(true);
-		f.addTrait(this.Const.FactionTrait.DummyFaction);
+		f.addTrait(::Const.FactionTrait.DummyFaction);
 		this.m.Factions.push(f);
 	}
 
@@ -104,17 +104,17 @@
 		local names = [];
 		local nobleHouses = [];
 
-		local houses = this.Const.GetFactionArchetypesList();
+		local houses = ::Const.GetFactionArchetypesList();
 		for (local i = 0; i < _num; i = ++i)
 		{
-			local index = houses.remove(this.Math.rand(0, houses.len() - 1));
-			local a = this.Const.FactionArchetypes[index[0]][index[1]];
+			local index = houses.remove(::Math.rand(0, houses.len() - 1));
+			local a = ::Const.FactionArchetypes[index[0]][index[1]];
 			local f = this.new("scripts/factions/noble_faction");
 			local banner;
 
 			do
 			{
-				banner = this.Math.rand(2, 10);
+				banner = ::Math.rand(2, 10);
 			}
 			while (banners.find(banner) != null);
 
@@ -123,14 +123,14 @@
 
 			do
 			{
-				name = this.Const.Strings.NobleHouseNames[this.Math.rand(0, this.Const.Strings.NobleHouseNames.len() - 1)];
+				name = ::Const.Strings.NobleHouseNames[::Math.rand(0, ::Const.Strings.NobleHouseNames.len() - 1)];
 			}
 			while (names.find(name) != null);
 
 			names.push(name);
 			f.setID(this.m.Factions.len());
 			f.setName(name);
-			f.setMotto("\"" + a.Mottos[this.Math.rand(0, a.Mottos.len() - 1)] + "\"");
+			f.setMotto("\"" + a.Mottos[::Math.rand(0, a.Mottos.len() - 1)] + "\"");
 			f.setDescription(a.Description);
 			f.setBanner(banner);
 			f.setDiscovered(true);
@@ -149,7 +149,7 @@
 
 	o.assignSettlementsToNobleHouses = function ( _nobleHouses )
 	{
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		local military = [];
 		local civilian = [];
 
@@ -174,7 +174,7 @@
 			local other;
 			do
 			{
-				other = this.Math.rand(0, _nobleHouses.len() - 1);
+				other = ::Math.rand(0, _nobleHouses.len() - 1);
 			}
 			while (other == i);
 
@@ -233,8 +233,8 @@
 			}
 		}
 
-		local mapSize = this.World.getMapSize();
-		local northernTile = this.World.getTileSquare(mapSize.X / 2, mapSize.Y - 1);
+		local mapSize = ::World.getMapSize();
+		local northernTile = ::World.getTileSquare(mapSize.X / 2, mapSize.Y - 1);
 		local houses = [];
 
 		foreach( n in _nobleHouses )
@@ -286,7 +286,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Goblins)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Goblins)
 			{
 				if (this.m.Factions[i].getPlayerRelation() < 30)
 				{
@@ -304,7 +304,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Bandits)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Bandits)
 			{
 				if (this.m.Factions[i].getPlayerRelation() < 30)
 				{
@@ -322,7 +322,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Zombies)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Zombies)
 			{
 				if (this.m.Factions[i].getPlayerRelation() < 30)
 				{
@@ -340,7 +340,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Undead)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Undead)
 			{
 				if (this.m.Factions[i].getPlayerRelation() < 30)
 				{
@@ -358,7 +358,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Beasts)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Beasts)
 			{
 				if (this.m.Factions[i].getPlayerRelation() < 30)
 				{
@@ -376,7 +376,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.NobleHouse)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.NobleHouse)
 			{
 				if (this.m.Factions[i].getPlayerRelation() > -80)
 				{
@@ -389,31 +389,31 @@
 
 	o.makeRandomNoblesFriendlyToPlayer <- function ()
 	{
-		local nobleHouses = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-		local randomHouseID = nobleHouses[this.Math.rand(0, nobleHouses.len() - 1)].getID();
-		//	local camp = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse).getNearestSettlement(this.World.State.getPlayer().getTile());
+		local nobleHouses = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+		local randomHouseID = nobleHouses[::Math.rand(0, nobleHouses.len() - 1)].getID();
+		//	local camp = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse).getNearestSettlement(::World.State.getPlayer().getTile());
 		//	local nearestHouseID = nearestSettlement.getOwner().getID();
 		//	local destination = this.WeakTableRef(camp);
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		foreach( s in settlements )
 		{
 		if (s.getOwner() != null && s.getOwner().getID() == randomHouseID && s.isMilitary())
 			{
 			s.setDiscovered(true);
-			this.World.uncoverFogOfWar(s.getTile().Pos, 500.0);
+			::World.uncoverFogOfWar(s.getTile().Pos, 500.0);
 			}
 		}
 
-		this.World.FactionManager.getFaction(randomHouseID).setPlayerRelation(80.0);
+		::World.FactionManager.getFaction(randomHouseID).setPlayerRelation(80.0);
 		this.logInfo("Making a noble house friendly");
 
 	}
 
 	o.makeRandomNoblesUnfriendlyToPlayer <- function ()
 	{
-		local nobleHouses = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.NobleHouse);
-		local randomHouseID = nobleHouses[this.Math.rand(0, nobleHouses.len() - 1)].getID();
-		this.World.FactionManager.getFaction(randomHouseID).setPlayerRelation(-80.0);
+		local nobleHouses = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
+		local randomHouseID = nobleHouses[::Math.rand(0, nobleHouses.len() - 1)].getID();
+		::World.FactionManager.getFaction(randomHouseID).setPlayerRelation(-80.0);
 		this.logInfo("Making a noble house unfriendly");
 	}
 
@@ -425,7 +425,7 @@
 			if (this.m.Factions[i] == null)
 			{
 			}
-			else if (this.m.Factions[i].getType() == this.Const.FactionType.Settlement)
+			else if (this.m.Factions[i].getType() == ::Const.FactionType.Settlement)
 			{
 				if (this.m.Factions[i].getPlayerRelation() > -80)
 				{
@@ -437,17 +437,17 @@
 	}
 
 	o.makeRandomSettlementFriendlyToPlayer <- function () {
-		local settlements = this.World.FactionManager.getFactionsOfType(this.Const.FactionType.Settlement);
-		local randomSettlementID = settlements[this.Math.rand(0, settlements.len() - 1)].getID();
-		this.World.FactionManager.getFaction(randomSettlementID).setPlayerRelation(50.0);
+		local settlements = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
+		local randomSettlementID = settlements[::Math.rand(0, settlements.len() - 1)].getID();
+		::World.FactionManager.getFaction(randomSettlementID).setPlayerRelation(50.0);
 		this.logInfo("Making a settlement friendly");
-		local settlements = this.World.EntityManager.getSettlements();
+		local settlements = ::World.EntityManager.getSettlements();
 		foreach( s in settlements )
 		{
 		if (s.getOwner() != null && s.getOwner().getID() == this.randomHsettlementID)
 			{
 			s.setDiscovered(true);
-			this.World.uncoverFogOfWar(s.getTile().Pos, 500.0);
+			::World.uncoverFogOfWar(s.getTile().Pos, 500.0);
 			}
 		}
 	}

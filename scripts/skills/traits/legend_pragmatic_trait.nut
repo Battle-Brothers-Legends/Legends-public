@@ -61,7 +61,7 @@ this.legend_pragmatic_trait <- this.inherit("scripts/skills/traits/character_tra
 
 	function onUpdate( _properties )
 	{
-		_properties.HitChance[this.Const.BodyPart.Head] -= 10;
+		_properties.HitChance[::Const.BodyPart.Head] -= 10;
 		_properties.MeleeSkillMult *= 1.05;
 		_properties.RangedSkillMult *= 1.05;
 	}

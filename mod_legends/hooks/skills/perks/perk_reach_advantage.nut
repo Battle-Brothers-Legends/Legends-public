@@ -4,7 +4,7 @@
 	{
 		onUpdate(_properties);
 		local actor = this.getContainer().getActor();
-		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(this.Const.Items.WeaponType.Staff))
+		if (actor.getMainhandItem() == null || !actor.getMainhandItem().isWeaponType(::Const.Items.WeaponType.Staff))
 			return;
 		if (_properties.IsImmuneToSurrounding == true || actor.getSkills().hasPerk(::Legends.Perk.Underdog))
 		{

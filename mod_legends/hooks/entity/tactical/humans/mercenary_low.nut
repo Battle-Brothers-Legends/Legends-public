@@ -32,11 +32,11 @@
 
 	o.assignRandomEquipment = function ()
 	{
-		local r = this.Math.rand(0, 7);
+		local r = ::Math.rand(0, 7);
 
 		if (r <= 1)
 		{
-			r = this.Math.rand(1, 3);
+			r = ::Math.rand(1, 3);
 
 			if (r == 1)
 			{
@@ -53,7 +53,7 @@
 		}
 		else
 		{
-			r = this.Math.rand(1, 6);
+			r = ::Math.rand(1, 6);
 
 			if (r == 1)
 			{
@@ -80,9 +80,9 @@
 				this.m.Items.equip(this.new("scripts/items/weapons/flail"));
 			}
 
-			if (this.Math.rand(1, 100) <= 75)
+			if (::Math.rand(1, 100) <= 75)
 			{
-				r = this.Math.rand(0, 2);
+				r = ::Math.rand(0, 2);
 
 				if (r == 0)
 				{
@@ -103,9 +103,9 @@
 			}
 		}
 
-		if (this.getIdealRange() == 1 && this.Math.rand(1, 100) <= 50)
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
 		{
-			r = this.Math.rand(1, 2);
+			r = ::Math.rand(1, 2);
 
 			if (r == 1)
 			{
@@ -117,7 +117,7 @@
 			}
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[5, ::Legends.Armor.Standard.gambeson],
 			[2, ::Legends.Armor.Standard.werewolf_mail_armor],
 			[1, ::Legends.Armor.Standard.northern_mercenary_armor_00],
@@ -128,9 +128,9 @@
 			[4, ::Legends.Armor.Standard.mail_hauberk]
 		]));
 
-		if (this.Math.rand(1, 100) <= 90)
+		if (::Math.rand(1, 100) <= 90)
 		{
-			this.m.Items.equip(this.Const.World.Common.pickHelmet([
+			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.padded_nasal_helmet],
 				[1, ::Legends.Helmet.Standard.rondel_helm],
 				[1, ::Legends.Helmet.Standard.scale_helm],

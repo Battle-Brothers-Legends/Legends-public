@@ -6,8 +6,8 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaWarden);
-		this.m.Type = this.Const.SkillType.Perk | this.Const.SkillType.StatusEffect;
-		this.m.Order = this.Const.SkillOrder.VeryLast + 10;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
+		this.m.Order = ::Const.SkillOrder.VeryLast + 10;
 		this.m.IsSerialized = true;
 		this.m.IsTargeted = false;
 	}
@@ -32,7 +32,7 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 			local WardenRangedSkill = this.m.WardenEntity.m.CurrentProperties.RangedSkill;
 			local WardenRangedDefense = this.m.WardenEntity.m.CurrentProperties.RangedDefense;
 			local WardenInitiative = this.m.WardenEntity.m.CurrentProperties.Initiative;
-			local SpiritualBondReduction = this.Math.round(10.0 + (this.getContainer().getActor().getBravery() / 4.0));
+			local SpiritualBondReduction = ::Math.round(10.0 + (this.getContainer().getActor().getBravery() / 4.0));
 
 			if (SpiritualBondReduction >= 50)
 			{
@@ -99,10 +99,10 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
         	}
     	};
 		
-		this.Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);	
+		::Tactical.queryTilesInRange(actor.getTile(), 1, 3, false, [], populateTiles, EmptyTiles);	
 
 		if (EmptyTiles.len() != 0) {
-			return EmptyTiles[this.Math.rand(0, EmptyTiles.len() - 1)];
+			return EmptyTiles[::Math.rand(0, EmptyTiles.len() - 1)];
 		}
 
 		return null;
@@ -117,9 +117,9 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 
 			if (WardenSpawnTile != null)
 			{
-				local entity = this.Tactical.spawnEntity("scripts/entity/tactical/legend_vala_warden_script", WardenSpawnTile.Coords.X, WardenSpawnTile.Coords.Y);
+				local entity = ::Tactical.spawnEntity("scripts/entity/tactical/legend_vala_warden_script", WardenSpawnTile.Coords.X, WardenSpawnTile.Coords.Y);
 				entity.setName(this.getContainer().getActor().m.Name + "\'s Warden");
-				entity.setFaction(this.Const.Faction.PlayerAnimals);
+				entity.setFaction(::Const.Faction.PlayerAnimals);
 				entity.setVala(this);
 				entity.setWardenStats(this.getContainer().getActor().getBravery());
 				this.m.WardenEntity = ::MSU.asWeakTableRef(entity);
@@ -199,8 +199,8 @@ this.perk_legend_vala_warden <- this.inherit("scripts/skills/skill", {
 						}
 					]
 				};
-				this.Tactical.spawnParticleEffect(false, effect.Brushes, this.m.WardenEntity.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
-				this.Sound.play("sounds/enemies/ghost_death_01.wav");
+				::Tactical.spawnParticleEffect(false, effect.Brushes, this.m.WardenEntity.getTile(), effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+				::Sound.play("sounds/enemies/ghost_death_01.wav");
 			}
 		}
 	}

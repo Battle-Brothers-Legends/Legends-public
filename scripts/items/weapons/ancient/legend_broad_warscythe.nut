@@ -8,10 +8,10 @@ this.legend_broad_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.Description = "A broad and heavy warscythe, characterised by a much longer blade. This weapon demands much room to use and is difficult to wield, but the havoc it can cause against attackers on both two legs or four is unparalleled.";
 		this.m.IconLarge = "weapons/melee/legend_broad_warscythe_01.png";
 		this.m.Icon = "weapons/melee/legend_broad_warscythe_01_70x70.png";
-		this.m.WeaponType = this.Const.Items.WeaponType.Cleaver | this.Const.Items.WeaponType.Polearm;
-		this.m.SlotType = this.Const.ItemSlot.Mainhand;
-		this.m.BlockedSlotType = this.Const.ItemSlot.Offhand;
-		this.m.ItemType = this.Const.Items.ItemType.Weapon | this.Const.Items.ItemType.MeleeWeapon | this.Const.Items.ItemType.TwoHanded;
+		this.m.WeaponType = ::Const.Items.WeaponType.Cleaver | ::Const.Items.WeaponType.Polearm;
+		this.m.SlotType = ::Const.ItemSlot.Mainhand;
+		this.m.BlockedSlotType = ::Const.ItemSlot.Offhand;
+		this.m.ItemType = ::Const.Items.ItemType.Weapon | ::Const.Items.ItemType.MeleeWeapon | ::Const.Items.ItemType.TwoHanded;
 		this.m.IsAoE = true;
 		this.m.AddGenericSkill = true;
 		this.m.ShowQuiver = false;

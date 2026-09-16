@@ -10,7 +10,7 @@
 
 		switch (_hitInfo.DamageType)
 		{
-			case this.Const.Damage.DamageType.Piercing:
+			case ::Const.Damage.DamageType.Piercing:
 				if (_skill == null)
 				{
 					_properties.DamageReceivedRegularMult *= 0.2;
@@ -18,17 +18,17 @@
 				else if (_skill.isRanged())
 				{
 					local weapon = _skill.getItem();		
-					if (weapon != null && weapon.isItemType(this.Const.Items.ItemType.Weapon))
+					if (weapon != null && weapon.isItemType(::Const.Items.ItemType.Weapon))
 					{
-						if (weapon.isWeaponType(this.Const.Items.WeaponType.Bow))
+						if (weapon.isWeaponType(::Const.Items.WeaponType.Bow))
 						{
 							_properties.DamageReceivedRegularMult *= 0.1;
 						}
-						else if (weapon.isWeaponType(this.Const.Items.WeaponType.Crossbow))
+						else if (weapon.isWeaponType(::Const.Items.WeaponType.Crossbow))
 						{
 							_properties.DamageReceivedRegularMult *= 0.33;
 						}
-						else if (weapon.isWeaponType(this.Const.Items.WeaponType.Throwing) || weapon.isWeaponType(this.Const.Items.WeaponType.Firearm))
+						else if (weapon.isWeaponType(::Const.Items.WeaponType.Throwing) || weapon.isWeaponType(::Const.Items.WeaponType.Firearm))
 						{
 							_properties.DamageReceivedRegularMult *= 0.25;
 						}
@@ -48,7 +48,7 @@
 				}
 				break;
 
-			case this.Const.Damage.DamageType.Burning:				
+			case ::Const.Damage.DamageType.Burning:				
 				_properties.DamageReceivedRegularMult *= 0.1;
 				break;
 		}

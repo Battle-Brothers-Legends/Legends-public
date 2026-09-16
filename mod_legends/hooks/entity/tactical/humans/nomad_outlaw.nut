@@ -14,7 +14,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= this.Const.World.Scaling.Nomads.LegendsOutlawDodgeDay)
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Nomads.LegendsOutlawDodgeDay)
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
 		}
@@ -36,23 +36,23 @@
 		];
 
 		if (::Const.DLC.Unhold) {
-			if (!::Tactical.State.isScenarioMode() && this.World.getTime().Days > this.Const.World.Scaling.Nomads.OutlawThreeHeadedFlailDay) {
+			if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days > ::Const.World.Scaling.Nomads.OutlawThreeHeadedFlailDay) {
 				weapons.push("weapons/three_headed_flail");
 			}
 		}
 
-		this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 
-		if (this.m.Items.getItemAtSlot(this.Const.ItemSlot.Offhand) == null && this.Math.rand(1, 100) <= 66)
+		if (this.m.Items.getItemAtSlot(::Const.ItemSlot.Offhand) == null && ::Math.rand(1, 100) <= 66)
 		{
 			local shields = [
 				"shields/oriental/southern_light_shield",
 				"shields/oriental/metal_round_shield"
 			];
-			this.m.Items.equip(this.new("scripts/items/" + shields[this.Math.rand(0, shields.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + shields[::Math.rand(0, shields.len() - 1)]));
 		}
 
-		this.m.Items.equip(this.Const.World.Common.pickArmor([
+		this.m.Items.equip(::Const.World.Common.pickArmor([
 			[2, ::Legends.Armor.Southern.stitched_nomad_armor],
 			[1, ::Legends.Armor.Southern.plated_nomad_mail],
 			[1, ::Legends.Armor.Standard.citrene_nomad_cutthroat_armor_00],
@@ -69,6 +69,6 @@
 			[2, ::Legends.Helmet.Southern.nomad_reinforced_helmet],
 			[1, ::Legends.Helmet.Southern.leather_head_wrap]
 		];
-		this.m.Items.equip(this.Const.World.Common.pickHelmet(helmet));
+		this.m.Items.equip(::Const.World.Common.pickHelmet(helmet));
 	}
 });

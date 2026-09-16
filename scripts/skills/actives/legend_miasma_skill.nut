@@ -6,8 +6,8 @@ this.legend_miasma_skill <- this.inherit("scripts/skills/skill", {
 		this.m.Description = "Release a cloud of noxious gasses that affect living beings.";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/miasma_spell", 3);
 		this.m.SoundOnHitHitpoints = ::Legends.S.setSounds("sounds/humans/human_coughing", 4);
-		this.m.Type = this.Const.SkillType.Active;
-		this.m.Order = this.Const.SkillOrder.OffensiveTargeted + 5;
+		this.m.Type = ::Const.SkillType.Active;
+		this.m.Order = ::Const.SkillOrder.OffensiveTargeted + 5;
 		this.m.Delay = 0;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;

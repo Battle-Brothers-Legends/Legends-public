@@ -16,23 +16,23 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 	},
 
 	function create() {
-		this.m.Type = this.Const.EntityType.LegendWicht;
-		this.m.BloodType = this.Const.BloodType.None;
-		this.m.MoraleState = this.Const.MoraleState.Ignore;
-		this.m.XP = this.Const.Tactical.Actor.LegendWicht.XP;
+		this.m.Type = ::Const.EntityType.LegendWicht;
+		this.m.BloodType = ::Const.BloodType.None;
+		this.m.MoraleState = ::Const.MoraleState.Ignore;
+		this.m.XP = ::Const.Tactical.Actor.LegendWicht.XP;
 		this.actor.create();
-		this.m.Sound[this.Const.Sound.ActorEvent.Death] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Death] = [
 			"sounds/enemies/ghost_death_01.wav",
 			"sounds/enemies/ghost_death_02.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Idle] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Idle] = [
 			"sounds/enemies/geist_idle_13.wav",
 			"sounds/enemies/geist_idle_14.wav",
 			"sounds/enemies/geist_idle_15.wav",
 			"sounds/enemies/geist_idle_16.wav",
 			"sounds/enemies/geist_idle_17.wav"
 		];
-		this.m.Sound[this.Const.Sound.ActorEvent.Other1] = [
+		this.m.Sound[::Const.Sound.ActorEvent.Other1] = [
 			"sounds/enemies/wicht_movement_01.wav",
 			"sounds/enemies/wicht_movement_02.wav",
 			"sounds/enemies/wicht_movement_03.wav",
@@ -57,7 +57,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 			"sounds/enemies/wicht_movement_22.wav",
 			"sounds/enemies/wicht_movement_23.wav"
 		];
-		this.m.SoundPitch = this.Math.rand(90, 110) * 0.01;
+		this.m.SoundPitch = ::Math.rand(90, 110) * 0.01;
 		this.getFlags().add("undead");
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/zombie_agent");
 		this.m.AIAgent.setActor(this);
@@ -66,11 +66,11 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 	function onMovementFinish(_tile) {
 		this.actor.onMovementFinish(_tile);
 
-		this.Sound.play(this.m.Sound[this.Const.Sound.ActorEvent.Other1][this.Math.rand(0, this.m.Sound[this.Const.Sound.ActorEvent.Other1].len() - 1)], this.Const.Sound.Volume.TacticalMovement * this.Math.rand(90, 100) * 0.02, this.getPos(), this.m.SoundPitch);
+		::Sound.play(this.m.Sound[::Const.Sound.ActorEvent.Other1][::Math.rand(0, this.m.Sound[::Const.Sound.ActorEvent.Other1].len() - 1)], ::Const.Sound.Volume.TacticalMovement * ::Math.rand(90, 100) * 0.02, this.getPos(), this.m.SoundPitch);
 	}
 
 	function onDeath(_killer, _skill, _tile, _fatalityType) {
-		if (!this.Tactical.State.isScenarioMode()
+		if (!::Tactical.State.isScenarioMode()
 			&& _killer != null
 			&& _killer.isPlayerControlled())
 		{
@@ -141,7 +141,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 					}
 				]
 			};
-			this.Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
+			::Tactical.spawnParticleEffect(false, effect.Brushes, _tile, effect.Delay, effect.Quantity, effect.LifeTimeQuantity, effect.SpawnRate, effect.Stages, this.createVec(0, 40));
 
 			local appearance = this.getItems().getAppearance();
 			local targetScale = 0.9;
@@ -162,12 +162,12 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 
 			foreach (layer in armorLayers) {
 				if (appearance[layer] != "") {
-					local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+					local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 					decal.Scale = targetScale;
 				}
 			}
 
-			if (!appearance.HideCorpseHead && _fatalityType != this.Const.FatalityType.Decapitated)
+			if (!appearance.HideCorpseHead && _fatalityType != ::Const.FatalityType.Decapitated)
 			{
 				local helmetLayers = [
 					"HelmetLayerVanityLowerCorpse",
@@ -182,14 +182,14 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 				];
 				foreach (layer in helmetLayers) {
 					if (appearance[layer] != "") {
-						local decal = _tile.spawnDetail(appearance[layer], this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+						local decal = _tile.spawnDetail(appearance[layer], ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 						decal.Scale = targetScale;
 					}
 				}
 			}
 
 			if (appearance.CorpseArmorUpgradeFront != "") {
-				local decal = _tile.spawnDetail(appearance.CorpseArmorUpgradeFront, this.Const.Tactical.DetailFlag.Corpse, flip, false, this.Const.Combat.HumanCorpseOffset);
+				local decal = _tile.spawnDetail(appearance.CorpseArmorUpgradeFront, ::Const.Tactical.DetailFlag.Corpse, flip, false, ::Const.Combat.HumanCorpseOffset);
 				decal.Scale = targetScale;
 			}
 
@@ -201,21 +201,21 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		local corpse = this.generateCorpse(_tile, _fatalityType, _killer);
 
 		if (_tile == null) {
-			this.Tactical.Entities.addUnplacedCorpse(corpse);
+			::Tactical.Entities.addUnplacedCorpse(corpse);
 		} else {
 			_tile.Properties.set("Corpse", corpse);
-			this.Tactical.Entities.addCorpse(_tile);
+			::Tactical.Entities.addCorpse(_tile);
 		}
 
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
 	function generateCorpse(_tile, _fatalityType, _killer) {
-		local corpse = clone this.Const.Corpse;
+		local corpse = clone ::Const.Corpse;
 		corpse.IsResurrectable = false;
 		corpse.IsConsumable = false;
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
-		corpse.IsHeadAttached = _fatalityType != this.Const.FatalityType.Decapitated;
+		corpse.IsHeadAttached = _fatalityType != ::Const.FatalityType.Decapitated;
 
 		if (_tile != null) {
 			corpse.Tile = _tile;
@@ -261,7 +261,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onInit();
 		this.setRenderCallbackEnabled(true);
 		local b = this.m.BaseProperties;
-		b.setValues(this.Const.Tactical.Actor.LegendWicht);
+		b.setValues(::Const.Tactical.Actor.LegendWicht);
 		b.IsImmuneToBleeding = true;
 		b.IsImmuneToPoison = true;
 		b.IsImmuneToStun = true;
@@ -273,15 +273,15 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByNight = false;
 		b.IsAffectedByInjuries = false;
 
-		if (!this.Tactical.State.isScenarioMode() && this.World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay) {
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Undead.LegendsUndeadHighMDefIncreaseDay) {
 			b.MeleeDefense += 5;
 		}
 
 		this.m.ActionPoints = b.ActionPoints;
 		this.m.Hitpoints = b.Hitpoints;
 		this.m.CurrentProperties = clone b;
-		this.m.ActionPointCosts = this.Const.SameMovementAPCost;
-		this.m.FatigueCosts = this.Const.DefaultMovementFatigueCost;
+		this.m.ActionPointCosts = ::Const.SameMovementAPCost;
+		this.m.FatigueCosts = ::Const.DefaultMovementFatigueCost;
 		this.m.Items.getAppearance().Body = "bust_ghost_body_01";
 		this.addSprite("socket").setBrush("bust_base_undead");
 		local body = this.addSprite("body");
@@ -359,47 +359,47 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onRender();
 
 		if (this.m.DistortTargetA == null) {
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA)) {
 			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
-			this.m.DistortTargetA = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetA = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetB == null) {
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB)) {
 			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
-			this.m.DistortTargetB = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetB = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetC == null) {
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("body", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC)) {
 			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
-			this.m.DistortTargetC = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetC = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 
 		if (this.m.DistortTargetD == null) {
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevD, this.m.DistortTargetD, 5.5999999, this.m.DistortAnimationStartTimeD)) {
 			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
 			this.m.DistortTargetPrevD = this.m.DistortTargetD;
-			this.m.DistortTargetD = this.createVec(this.Math.rand(0, 8) - 4, this.Math.rand(0, 8) - 4);
+			this.m.DistortTargetD = this.createVec(::Math.rand(0, 8) - 4, ::Math.rand(0, 8) - 4);
 		}
 	}
 
@@ -408,7 +408,7 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	function assignRandomEquipment() {
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Offhand)) {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			local weapons = [
 				"weapons/legend_zweihander",
 				"weapons/greataxe",
@@ -419,25 +419,25 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 				"weapons/bardiche"
 			];
 
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
 		local b = this.m.BaseProperties;
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Body)) {
-			local armor = this.Const.World.Common.pickArmor([
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
+			local armor = ::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Standard.ghost_armor]
 			]);
-			b.Armor[0] = this.Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
-			b.ArmorMax[0] = this.Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.Armor[0] = ::Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.ArmorMax[0] = ::Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
 			this.m.Items.equip(armor);
 		}
 
-		if (this.m.Items.hasEmptySlot(this.Const.ItemSlot.Head)) {
-			local helmet = this.Const.World.Common.pickHelmet([
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
+			local helmet = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Standard.ghost_helmet]
 			]);
-			b.Armor[1] = this.Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
-			b.ArmorMax[1] = this.Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.Armor[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.ArmorMax[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
 			this.m.Items.equip(helmet);
 		}
 	}
@@ -461,23 +461,23 @@ this.legend_wicht <- this.inherit("scripts/entity/tactical/actor", {
 			"weapons/named/named_two_handed_flail"
 		];
 
-		local r = this.Math.rand(1, 3);
+		local r = ::Math.rand(1, 3);
 		if (r == 1) {
-			local armor = this.Const.World.Common.pickArmor([
+			local armor = ::Const.World.Common.pickArmor([
 				[2, ::Legends.Armor.Named.ghost_armor_named_01],
 				[1, ::Legends.Armor.Named.ghost_armor_named_02]
 			]);
-			b.Armor[0] = this.Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
-			b.ArmorMax[0] = this.Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.Armor[0] = ::Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.ArmorMax[0] = ::Math.round(armor.getArmorMax() * this.m.ArmorDifficultyMult);
 			this.m.Items.equip(armor);
 		} else if (r == 2) {
-			this.m.Items.equip(this.new("scripts/items/" + weapons[this.Math.rand(0, weapons.len() - 1)]));
+			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		} else {
-			local helmet = this.Const.World.Common.pickHelmet([
+			local helmet = ::Const.World.Common.pickHelmet([
 				[1, ::Legends.Helmet.Named.ghost_helmet_named]
 			]);
-			b.Armor[1] = this.Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
-			b.ArmorMax[1] = this.Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.Armor[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
+			b.ArmorMax[1] = ::Math.round(helmet.getArmorMax() * this.m.ArmorDifficultyMult);
 			this.m.Items.equip(helmet);
 		}
 		::Legends.Perks.grant(this, ::Legends.Perk.NineLives);

@@ -28,13 +28,13 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		if (!this.Const.DLC.Unhold)
+		if (!::Const.DLC.Unhold)
 			return;
 
-		local currentTile = this.World.State.getPlayer().getTile();
+		local currentTile = ::World.State.getPlayer().getTile();
 
 		if (!currentTile.HasRoad)
 			return;
@@ -43,12 +43,12 @@
 		if (town == null || town.getTile().getDistanceTo(::World.State.getPlayer().getTile()) <= 5)
 			return;
 
-		local brothers = this.World.getPlayerRoster().getAll();
+		local brothers = ::World.getPlayerRoster().getAll();
 
 		if (brothers.len() < 2)
 			return;
 
-		if (this.World.Assets.getMedicine() < brothers.len())
+		if (::World.Assets.getMedicine() < brothers.len())
 			return;
 
 		local candidates_tailor = [];
@@ -73,12 +73,12 @@
 		}
 
 		if (candidates_tailor.len() != 0 && candidates_other.len() != 0) {
-			this.m.Tailor = candidates_tailor[this.Math.rand(0, candidates_tailor.len() - 1)];
-			this.m.Other = candidates_other[this.Math.rand(0, candidates_other.len() - 1)];
+			this.m.Tailor = candidates_tailor[::Math.rand(0, candidates_tailor.len() - 1)];
+			this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		}
 
 		if (candidates_vagabond.len() != 0)
-			this.m.Vagabond = candidates_vagabond[this.Math.rand(0, candidates_vagabond.len() - 1)];
+			this.m.Vagabond = candidates_vagabond[::Math.rand(0, candidates_vagabond.len() - 1)];
 
 		this.m.Score = 5;
 	}

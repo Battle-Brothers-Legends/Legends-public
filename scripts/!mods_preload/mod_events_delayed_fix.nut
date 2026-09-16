@@ -31,7 +31,7 @@
             {
                 if (!(this.m.Player.getTile().isSameTileAs(this.m.AutoEnterLocation.getTile())
                       && this.m.Player.getDistanceTo(this.m.AutoEnterLocation.get())
-                         <= this.Const.World.CombatSettings.CombatPlayerDistance))
+                         <= ::Const.World.CombatSettings.CombatPlayerDistance))
                 {
                     doUpdates();
                 }
@@ -40,7 +40,7 @@
                      && this.m.AutoAttack.isAlive() && !this.m.AutoAttack.isHiddenToPlayer())
             {
                 if (!(this.m.Player.getDistanceTo(this.m.AutoAttack.get())
-                      <= this.Const.World.CombatSettings.CombatPlayerDistance))
+                      <= ::Const.World.CombatSettings.CombatPlayerDistance))
                 {
                     doUpdates();
                 }
@@ -72,7 +72,7 @@
                         // a chance to fire event and update LastCheckTime. WTF.
                         // Anyway we don't want to update LastCheckTime in vain and postpone stuff.
                         this.m.LastCheckTime = this.m.LastBattleTime
-                            + 5.0 - this.World.getTime().SecondsPerHour * 2;
+                            + 5.0 - ::World.getTime().SecondsPerHour * 2;
                     }
                     return true;
                 }

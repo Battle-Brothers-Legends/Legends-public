@@ -8,7 +8,7 @@ this.legend_barbarian_vs_shieldmaiden <- this.inherit("scripts/events/event", {
 	{
 		this.m.ID = "event.legend_barbarian_vs_shieldmaiden";
 		this.m.Title = "During camp...";
-		this.m.Cooldown = 45.0 * this.World.getTime().SecondsPerDay;
+		this.m.Cooldown = 45.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_06.png[/img]You find %barbarian% and %shieldmaiden% arguing with one another. The Barbarian\'s voice is raised.%SPEECH_ON%The best defence is the good offence! That\'s why I rush to a battle first!%SPEECH_OFF%Also raising her voice, and clenching a shield at her side, the Shieldmaiden shakes her head.%SPEECH_ON%Why are you even talking to me? I have no desire to get to know someone who is only going to get killed by rushing into battle before thinking!%SPEECH_OFF%The fighting words kick off a scuffle.\n\n",

@@ -8,20 +8,20 @@
 				s.start <- function (_event) {
 					this.Characters.push(_event.m.Killer.getImagePath());
 					local item = this.new("scripts/items/weapons/morning_star");
-					item.setCondition(this.Math.rand(5, 30) * 1.0);
-					this.World.Assets.getStash().add(item);
+					item.setCondition(::Math.rand(5, 30) * 1.0);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
-						text = "You gain " + this.Const.Strings.getArticle(item.getName()) + item.getName()
+						text = "You gain " + ::Const.Strings.getArticle(item.getName()) + item.getName()
 					});
 
-					item = this.Const.World.Common.pickArmor([
+					item = ::Const.World.Common.pickArmor([
 						[1, ::Legends.Armor.Standard.basic_mail_shirt],
 					]);
-					item.setCondition(this.Math.rand(0.25 * item.getConditionMax(), 0.60 * item.getConditionMax()) * 1.0);
+					item.setCondition(::Math.rand(0.25 * item.getConditionMax(), 0.60 * item.getConditionMax()) * 1.0);
 
-					this.World.Assets.getStash().add(item);
+					::World.Assets.getStash().add(item);
 					this.List.push({
 						id = 10,
 						icon = "ui/items/" + item.getIcon(),
