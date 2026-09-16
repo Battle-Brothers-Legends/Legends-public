@@ -268,7 +268,7 @@ this.camp_building <- {
 			bro.bannerImage <- assignedBuilding.getBanner(b);
 			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
 			bro.Modifier <- this.m.ModName != "" ? b.getBackground().getModifiers()[this.m.ModName] : 0;
-			bro.IsUnableToWork <- !::World.Camp.canBuildingWorkCurrently(assignedBuilding) || this.isRecovering(b);
+			bro.IsUnableToWork <- (::World.Camp.m.IsEscorting && assignedBuilding.isWorkDangerous()) || this.isRecovering(b);
 			roster.push(bro);
 		}
 
