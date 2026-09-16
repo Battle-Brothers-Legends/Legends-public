@@ -101,7 +101,6 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 				],
 				[
 					::Legends.Perk.LegendMiasma,
-					::Legends.Perk.LegendDebilitate,
 					::Legends.Perk.LegendFavouredEnemyCivilization,
 					::Legends.Perk.LegendSpawnZombieMed,
 					::Legends.Perk.LegendChanneledPower,

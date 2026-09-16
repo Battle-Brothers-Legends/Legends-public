@@ -62,7 +62,6 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			],
 			[
 				::Legends.Perk.Backstabber,
-				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.LegendSpecialistSelfdefense,
 				::Legends.Perk.LegendBloodbath

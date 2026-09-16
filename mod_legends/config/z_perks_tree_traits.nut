@@ -91,7 +91,7 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[::Legends.Perk.CripplingStrikes],
 		[],
-		[::Legends.Perk.LegendDebilitate],
+		[],
 		[],
 		[::Legends.Perk.Berserk],
 		[::Legends.Perk.LegendAssuredConquest],

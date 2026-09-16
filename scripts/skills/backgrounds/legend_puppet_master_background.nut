@@ -70,7 +70,6 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 			],
 			[
 				::Legends.Perk.Backstabber,
-				::Legends.Perk.LegendDebilitate,
 				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.Brawny,
 				::Legends.Perk.LegendRust,
