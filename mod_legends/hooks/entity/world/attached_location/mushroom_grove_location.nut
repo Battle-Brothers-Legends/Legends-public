@@ -1,34 +1,24 @@
-::mods_hookExactClass("entity/world/attached_location/mushroom_grove_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/mushroom_grove_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Hidden in the mud and reed, the expert gatherer can find groves and caves full of precious mushrooms like these. Contributes spices, mushrooms, cultists, herbalists, wildmen and their tools to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
-	o.onUpdateProduce = function ( _list )
-	{
+	o.onUpdateProduce = function (_list) {
 		onUpdateProduce(_list);
 		_list.push("trade/legend_cooking_spices_trade_item");
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 10,
 				P = 1.0,
 				S = "weapons/legend_sickle"
-			});
-			_list.push({
-				R = 90,
-				P = 1.0,
-				S = "tents/legend_tent_gather"
 			});
 			_list.push({
 				R = 30,

@@ -1,15 +1,12 @@
-::mods_hookExactClass("entity/world/settlements/buildings/fletcher_building", function(o) {
+::mods_hookExactClass("entity/world/settlements/buildings/fletcher_building", function (o) {
 	local getDefaultShopList = o.getDefaultShopList;
-	o.getDefaultShopList = function() {
+	o.getDefaultShopList = function () {
 		local item = @(r, p, s) {
 			R = r,
 			P = p,
 			S = s
 		}
 		local list = getDefaultShopList();
-		list.extend([
-			item(80, 1.0, "tents/legend_tent_fletcher"),
-		]);
 		list.extend([
 			item(10, 1.0, "weapons/legend_slingshot"),
 			item(10, 1.0, "weapons/legend_dilapidated_sling"),

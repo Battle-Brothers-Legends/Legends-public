@@ -1,15 +1,12 @@
-::mods_hookExactClass("entity/world/attached_location/silk_farm_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/silk_farm_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Description = "In these huts the precious silk is spun from cocoons of small insects by secret methods. Contributes silk, daytalers and qiyan to the local town.";
+		this.m.Description = "In these huts the precious silk is spun from cocoons of small insects by secret methods. Contributes silk, daytalers and belly dancers to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list )
-	{
+	o.onUpdateDraftList = function (_list) {
 		if (::Legends.Mod.ModSettings.getSetting("FemaleGenderPercent").getValue() > 0) {
 			_list.push(::Legends.Background.LegendBellyDancer);
 			_list.push(::Legends.Background.LegendBellyDancer);
@@ -18,27 +15,7 @@
 		onUpdateDraftList(_list);
 	}
 
-	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
-		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
-			_list.push({
-				R = 90,
-				P = 1.0,
-				S = "tents/legend_tent_scrap"
-			});
-			_list.push({
-				R = 90,
-				P = 1.0,
-				S = "tents/legend_tent_repair"
-			});
-		}
-	}
-
-	o.getNewResources <- function ()
-	{
+	o.getNewResources <- function () {
 		return 2;
 	}
 });

@@ -1,42 +1,18 @@
-::mods_hookExactClass("entity/world/attached_location/wool_spinner_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/wool_spinner_location", function (o) {
 	local onUpdateProduce = o.onUpdateProduce;
-	o.onUpdateProduce = function ( _list )
-	{
+	o.onUpdateProduce = function (_list) {
 		onUpdateProduce(_list);
 		_list.push("trade/salt_item");
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 20,
 				P = 1.0,
 				S = "supplies/legend_fresh_milk_item"
-			});
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "tents/legend_tent_heal"
-			});
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "tents/legend_tent_fletcher"
-			});
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "tents/legend_tent_enchant"
-			});
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "tents/legend_tent_craft"
 			});
 			_list.push({
 				R = 10,
@@ -113,9 +89,7 @@
 				P = 2.0,
 				S = "misc/legend_masterwork_fabric"
 			});
-		}
-		else if (_id == "building.armorsmith")
-		{
+		} else if (_id == "building.armorsmith") {
 			_list.push({
 				R = 50,
 				P = 1.0,

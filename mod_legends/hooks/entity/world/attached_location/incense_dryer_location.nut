@@ -1,26 +1,21 @@
-::mods_hookExactClass("entity/world/attached_location/incense_dryer_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/incense_dryer_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Tree sap is gathered from the surrounding trees and dried in the sun to create valuable incense. Contributes incense, spices, medicine and daytalers to the local town.";
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list )
-	{
+	o.onUpdateDraftList = function (_list) {
 		_list.push(::Legends.Background.LegendDervish);
 		_list.push(::Legends.Background.LegendAlchemist);
 		onUpdateDraftList(_list);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 0,
 				P = 1.0,
@@ -30,16 +25,6 @@
 				R = 0,
 				P = 1.0,
 				S = "supplies/legend_armor_parts_small_item"
-			});
-			_list.push({
-				R = 95,
-				P = 1.0,
-				S = "tents/legend_tent_enchant"
-			});
-			_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_craft"
 			});
 			_list.push({
 				R = 0,

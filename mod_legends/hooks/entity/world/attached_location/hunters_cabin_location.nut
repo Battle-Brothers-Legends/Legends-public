@@ -1,63 +1,34 @@
-::mods_hookExactClass("entity/world/attached_location/hunters_cabin_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/hunters_cabin_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "Hunters take shelter in these small huts while on the hunt. Chopped up game, venison and hides hung up to dry in the sun surround the huts. Contributes meat, furs, bows, poachers and hunters to the local town.";
 	}
 
 	local onUpdateProduce = o.onUpdateProduce;
-	o.onUpdateProduce = function ( _list )
-	{
+	o.onUpdateProduce = function (_list) {
 		onUpdateProduce(_list);
 		_list.push("trade/furs_item");
 		_list.push("trade/legend_small_furs_item");
 	}
 
 	local onUpdateDraftList = o.onUpdateDraftList;
-	o.onUpdateDraftList = function ( _list )
-	{
+	o.onUpdateDraftList = function (_list) {
 		_list.push(::Legends.Background.Poacher);
 		_list.push(::Legends.Background.Poacher);
 		_list.push(::Legends.Background.LegendTaxidermist);
 
-		if (::Math.rand(0, 9) == 1)
+		if (::Math.rand(0, 9) == 1) {
 			_list.push(::Legends.Background.LegendMasterArcher);
+		}
 
-		// todo delete it - chopeks
-//		if(this.LegendsMod.Configs().LegendMagicEnabled())
-//		{
-//			local r;
-//
-//			if  ( ::World.Assets.getOrigin().getID() == "scenario.legends_rangers")
-//			{
-//				r = ::Math.rand(0, 9);
-//				if (r == 1)
-//				{
-//				_list.push(::Legends.Background.LegendMasterArcher);
-//				_list.push(::Legends.Background.LegendRanger);
-//				}
-//			}
-//			else
-//			{
-//			r = ::Math.rand(0, 9);
-//				if (r == 1)
-//				{
-//				_list.push(::Legends.Background.LegendMasterArcher);
-//				}
-//			}
-//
-//		}
 		onUpdateDraftList(_list);
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 0,
 				P = 1.0,
@@ -93,11 +64,6 @@
 				P = 1.0,
 				S = "weapons/knife"
 			});
-			/*_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_hunter"
-			});*/
 		}
 	}
 });

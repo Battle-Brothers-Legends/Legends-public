@@ -1,32 +1,18 @@
-::mods_hookExactClass("entity/world/attached_location/guarded_checkpoint_location", function(o)
-{
+::mods_hookExactClass("entity/world/attached_location/guarded_checkpoint_location", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "A road checkpoint manned by professional soldiers. Contributes military weapons, armor and soldiers to the local town.";
 	}
 
 	local onUpdateShopList = o.onUpdateShopList;
-	o.onUpdateShopList = function ( _id, _list )
-	{
+	o.onUpdateShopList = function (_id, _list) {
 		onUpdateShopList(_id, _list);
-		if (_id == "building.marketplace")
-		{
+		if (_id == "building.marketplace") {
 			_list.push({
 				R = 65,
 				P = 1.0,
 				S = "shields/legend_tower_shield"
-			});
-			_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_train"
-			});
-				_list.push({
-				R = 80,
-				P = 1.0,
-				S = "tents/legend_tent_scout"
 			});
 			_list.push({
 				R = 30,
@@ -41,8 +27,7 @@
 		}
 	}
 
-	o.getNewResources <- function ()
-	{
+	o.getNewResources <- function () {
 		return 0;
 	}
 });

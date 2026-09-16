@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/world/settlements/buildings/weaponsmith_building", function(o) {
+::mods_hookExactClass("entity/world/settlements/buildings/weaponsmith_building", function (o) {
 	local getDefaultShopList = o.getDefaultShopList;
-	o.getDefaultShopList = function() {
+	o.getDefaultShopList = function () {
 		local item = @(r, p, s) {
 			R = r,
 			P = p,
@@ -8,7 +8,6 @@
 		}
 		local list = getDefaultShopList();
 		list.extend([
-			item(80, 1.0, "tents/legend_tent_repair"),
 			item(60, 1.0, "weapons/legend_zweihander"),
 			item(70, 1.0, "weapons/legend_battle_glaive"),
 			item(80, 1.0, "weapons/legend_swordstaff"),
