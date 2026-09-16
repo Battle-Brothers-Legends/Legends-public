@@ -536,7 +536,8 @@ if (!("Perks" in ::Const))
 		::Const.Perks.JugglerClassTree,
 		::Const.Perks.HoundmasterClassTree,
 		::Const.Perks.PoisonClassTree,
-		::Const.Perks.TailorClassTree
+		::Const.Perks.TailorClassTree,
+		::Const.Perks.ConArtistTree
 		// ::Const.Perks.KnifeClassTree,
 		// ::Const.Perks.ButcherClassTree,
 		// ::Const.Perks.HammerClassTree,

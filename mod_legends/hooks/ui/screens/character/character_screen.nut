@@ -952,7 +952,7 @@
 			this.dualWieldRefresh(_entityItemData.entity, equipOH ? ::Const.ItemSlot.Offhand : ::Const.ItemSlot.Mainhand);
 			_entityItemData.entity.getSkills().update();
 
-			return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.isActive ? ::Tactical.TurnSequenceBar.getActiveEntity() : null, true, this.m.InventoryFilter);
+			return ::UIDataHelper.convertStashAndEntityToUIData(_entityItemData.entity, ::Tactical.isActive() ? ::Tactical.TurnSequenceBar.getActiveEntity() : null, true, this.m.InventoryFilter);
 		}
 
 		return general_onEquipBagItem(_data);

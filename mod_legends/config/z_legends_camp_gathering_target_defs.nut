@@ -76,6 +76,7 @@
 	},
 	DryHerbs = {
 		Name = "Dry Herbs",
+		Difficulty = 300,
 		Loot = "scripts/items/supplies/legend_nuts_and_seeds_item",
 		ExtraLoot = [
 			[80, ""],

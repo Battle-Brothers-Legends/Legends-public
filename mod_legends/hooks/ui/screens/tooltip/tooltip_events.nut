@@ -406,12 +406,7 @@
 							text = "Equip item"
 						});
 
-						if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
-							&& _item.getBlockedSlotType() == null
-							&& _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
-							&& !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)
-							&& _entity.getItems().canDualWield(_entity, _item))
-						{
+						if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getBlockedSlotType() == null && !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand) && _entity.getItems().canDualWield(_entity, _item)) {
 							tooltip.push({
 								id = 1,
 								type = "hint",
@@ -529,13 +524,7 @@
 					text = "Equip item"
 				});
 
-				if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
-					&& _item.getBlockedSlotType() == null
-					&& _entity != null
-					&& _entity.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null
-					&& !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand)
-					&& _entity.getItems().canDualWield(_entity, _item))
-				{
+				if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getBlockedSlotType() == null && _entity != null && !_entity.getItems().hasBlockedSlot(::Const.ItemSlot.Offhand) && _entity.getItems().canDualWield(_entity, _item)) {
 					tooltip.push({
 						id = 1,
 						type = "hint",
