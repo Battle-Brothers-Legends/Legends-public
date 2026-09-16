@@ -1,7 +1,7 @@
 this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendHorse;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.LegendHorse.XP;
@@ -48,36 +48,31 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[100, "scripts/items/supplies/strange_meat_item"]
 			]);
 		}
 	}
 
-	function playAttackSound()
-	{
-		if (::Math.rand(1, 100) <= 50)
-		{
+	function playAttackSound() {
+		if (::Math.rand(1, 100) <= 50) {
 			this.playSound(::Const.Sound.ActorEvent.Attack, ::Const.Sound.Volume.Actor * this.m.SoundVolume[::Const.Sound.ActorEvent.Attack] * (::Math.rand(75, 100) * 0.01), this.m.SoundPitch * 1.15);
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
+	function playSound(_type, _volume, _pitch = 1.0) {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged())
-		{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled() && _skill != null && !_skill.isRanged()) {
 			this.updateAchievement("Ulfhednar", 1, 1);
 		}
 
-		if (_tile != null)
-		{
-			local flip = ::Math.rand(0, 100) < 50;
+		local flip = ::Math.rand(0, 100) < 50;
+		if (_tile != null) {
+
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("horse");
@@ -87,36 +82,27 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = body.Saturation;
 			decal.Scale = 0.95;
 
-			if (_fatalityType != ::Const.FatalityType.Decapitated)
-			{
+			if (_fatalityType != ::Const.FatalityType.Decapitated) {
 				decal = _tile.spawnDetail(head.getBrush().Name + "_dead", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Color = head.Color;
 				decal.Saturation = head.Saturation;
 				decal.Scale = 0.95;
 
-			}
-			else if (_fatalityType == ::Const.FatalityType.Decapitated)
-			{
+			} else if (_fatalityType == ::Const.FatalityType.Decapitated) {
 				local layers = [
 					head.getBrush().Name + "_dead"
 				];
-
 
 				local decap = ::Tactical.spawnHeadEffect(this.getTile(), layers, this.createVec(0, 0), 0.0, "bust_direwolf_head_bloodpool");
 				decap[0].Color = head.Color;
 				decap[0].Saturation = head.Saturation;
 				decap[0].Scale = 0.95;
-
-
 			}
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail("bust_direwolf_01_body_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
@@ -140,8 +126,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Horse";
 		corpse.Items = this.getItems().prepareItemsForCorpse(_killer);
@@ -150,8 +135,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.LegendHorse);
@@ -185,8 +169,7 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorseCharge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendHorsePirouette);
 
-		if (::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -194,13 +177,10 @@ this.legend_horse <- this.inherit("scripts/entity/tactical/actor", {
 	}
 
 	//used for horse riders
-	function setVariant( _v )
-	{
+	function setVariant(_v) {
 		local body = this.getSprite("horse");
 		body.setBrush("bust_naked_body_10" + _v);
 		local head = this.getSprite("horse_head");
 		head.setBrush("bust_head_10" + _v);
 	}
-
 });
-

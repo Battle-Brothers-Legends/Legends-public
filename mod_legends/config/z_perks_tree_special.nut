@@ -145,7 +145,7 @@ function getRandomPerk()
 	{
 		return 0;
 	}
-	if (_actor.getBaseProperties.MeleeDefense < 12)
+	if (_player.getBaseProperties().MeleeDefense < 12)
 	{
 		return 0;
 	}

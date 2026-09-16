@@ -90,7 +90,7 @@ this.legend_freedom_of_movement_effect <- this.inherit("scripts/skills/skill", {
 				type = "text",
 				icon = "ui/icons/damage_dealt.png",
 				text = ::Const.UI.getColorized("-" + ::Math.round(bonus) + "%", ::Const.UI.Color.NegativeValue) + " damage from " + this.m.Name,
-			})
+			});
 		}
 	}
 });

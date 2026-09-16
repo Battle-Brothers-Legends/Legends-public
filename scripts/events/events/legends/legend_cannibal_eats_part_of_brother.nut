@@ -9,7 +9,7 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 		this.m.Cooldown = 55 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_06.png[/img]A scream pierces the still night. %randombro% hurtles into your tent with news of an attack. By the time you find the problem, you see you are not under attack at all, but instead %cannibal% has helped themselves to a bit of %dinner% for dinner. The happy cannibal gently cooks their haul in a pan over the campfire as their cattle screams in pain. \n\nThey do not move an inch.",
+			Text = "[img]gfx/ui/events/event_06.png[/img]A scream pierces the still night. %randombrother% hurtles into your tent with news of an attack. By the time you find the problem, you see you are not under attack at all, but instead %cannibal% has helped themselves to a bit of %dinner% for dinner. The happy cannibal gently cooks their haul in a pan over the campfire as their cattle screams in pain. \n\nThey do not move an inch.",
 			Image = "",
 			List = [],
 			Characters = [],

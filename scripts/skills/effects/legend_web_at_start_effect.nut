@@ -25,7 +25,7 @@ this.legend_web_at_start_effect <- this.inherit("scripts/skills/skill", {
 				type = "description",
 				text = this.getDescription()
 			}
-		]
+		];
 	}
 
 	function onCombatStarted() {

@@ -749,6 +749,11 @@
 - `perk_legend_scry_trance` -> deleted
 - `perk_legend_teleport` -> deleted
 - `perk_legend_specialist_shield_push` -> deleted
+- `legend_pie_effect` -> deleted
+- `legend_porridge_effect` -> deleted
+- `legend_pudding_effect` -> deleted
+- `legend_rations_effect` -> deleted
+- food can no longer be placed in bag slots or eaten in combat
 - tile effect `shadows` -> `legend_shadow_mist`
 - blazing RSW and firefield now use their own fire effects
 - legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently

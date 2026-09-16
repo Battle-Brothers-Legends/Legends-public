@@ -71,7 +71,7 @@
 
 	o.onTargetSelected <- function ( _targetTile )
 	{
-		local knockToTile = this.getPulledToTile(getContainer().getActor().getTile(), _targetTile);
+		local knockToTile = this.getPulledToTile(this.getContainer().getActor().getTile(), _targetTile);
 
 		if (knockToTile == null)
 			return;
@@ -81,7 +81,7 @@
 
 	o.getHitchance <- function ( _targetEntity )
 	{
-		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(getContainer().getActor()))
+		if ((::Legends.Traits.has(this, ::Legends.Trait.Teamplayer) || ::Legends.Perks.has(this, ::Legends.Perk.Taunt)) && _targetEntity.isAlliedWith(this.getContainer().getActor()))
 			return 100;
 
 		return this.skill.getHitchance(_targetEntity);

@@ -59,7 +59,7 @@
 			[1, ::Legends.Helmet.Standard.legend_noble_southern_hat],
 			[3, ::Legends.Helmet.None]
 		]);
-		items.equip(helm)
+		items.equip(helm);
 	}
 });
 

@@ -65,7 +65,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 
 	function onCounterFire(_info) {
 		::Tactical.EventLog.logEx(::Const.UI.getColorizedEntityName(_info.User) + " has dodged the attack and performing a counter attack.");
-		return skill.onUse(_info.User, _info.TargetTile);
+		return this.skill.onUse(_info.User, _info.TargetTile);
 	}
 
 });

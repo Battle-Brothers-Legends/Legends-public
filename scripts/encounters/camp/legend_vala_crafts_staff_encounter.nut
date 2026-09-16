@@ -133,7 +133,7 @@ this.legend_vala_crafts_staff_encounter <- this.inherit("scripts/encounters/enco
 		this.m.RandomBrother = randomBros.remove(::Math.rand(0, randomBros.len() - 1));
 		this.m.RandomBrother2 = randomBros[::Math.rand(0, randomBros.len() - 1)];
 
-		local stash = World.Assets.getStash().getItems();
+		local stash = ::World.Assets.getStash().getItems();
 		local staves = 0;
 		foreach (item in stash)
 		{

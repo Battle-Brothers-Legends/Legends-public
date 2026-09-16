@@ -48,14 +48,6 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 			[5, "misc/legend_ancient_scroll_item"],
 			[2, "misc/legend_map_legendary_item"],
 		];
-
-		// optionally, offer just tent, starts at 50% chance, lowers with each tent you have
-		local stash = ::World.Assets.getStash();
-		local missingTents = ::Legends.Camp.Tents.filter(@(_, _tent) !stash.hasItem(_tent.ID));
-		if (missingTents.len() > 0 && ::Math.rand(0, ::Legends.Camp.Tents.len() * 2) < missingTents.len()) {
-			this.m.Payment.IsSingleItem = true;
-			this.m.Payment.Items = [::Const.World.Common.pickItem(missingTents.map(@(_def) [_def.ID == ::Legends.Camp.Tent.Enchant ? 1 : 10, _def.Script]), "scripts/items/")];
-		}
 	}
 
 	function setDestination(_d) {

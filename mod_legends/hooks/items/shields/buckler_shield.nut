@@ -18,7 +18,7 @@
 			return;
 		}
 
-		shield.addSkill(_skill);
+		this.shield.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;

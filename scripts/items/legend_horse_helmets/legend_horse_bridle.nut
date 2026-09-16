@@ -34,9 +34,9 @@ this.legend_horse_bridle <- this.inherit("scripts/items/legend_horse_helmets/leg
 
 	function updateVariant()
 	{
-		this.m.Sprite = "horse_armor_hood_" + variant;
-		this.m.SpriteDamaged = "horse_armor_hood_" + variant + "_damaged";
-		this.m.SpriteCorpse = "horse_armor_hood_" + variant + "_dead";
+		this.m.Sprite = "horse_armor_hood_" + this.m.Variant;
+		this.m.SpriteDamaged = "horse_armor_hood_" + this.m.Variant + "_damaged";
+		this.m.SpriteCorpse = "horse_armor_hood_" + this.m.Variant + "_dead";
 		this.m.IconLarge = "rune_sigils/rune_stone_1.png";
 		this.m.Icon = "rune_sigils/rune_stone_1.png";
 	}

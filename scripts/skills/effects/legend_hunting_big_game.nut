@@ -16,7 +16,7 @@ this.legend_hunting_big_game <- this.inherit("scripts/skills/skill", {
 	{
 		if (_targetEntity == null)
 		{
-			return
+			return;
 		}
 
 		if (!this.getContainer().getActor().isPlacedOnMap())

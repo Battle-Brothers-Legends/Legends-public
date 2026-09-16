@@ -24,7 +24,7 @@
 				id = 7,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Current Fatigue is reduced by [color=%positive%]" + getRecoveredFat(getActionPointCost()) + "%[/color] of maximum fatigue"
+				text = "Current Fatigue is reduced by [color=%positive%]" + this.getRecoveredFat(this.getActionPointCost()) + "%[/color] of maximum fatigue"
 			}
 		];
 
@@ -45,11 +45,11 @@
 	}
 
 	o.isUsable <- function () {
-		return skill.isUsable() && this.m.IsFirstSkill;
+		return this.skill.isUsable() && this.m.IsFirstSkill;
 	}
 
 	o.getActionPointCost <- function () {
-		return getContainer().getActor().getActionPoints();
+		return this.getContainer().getActor().getActionPoints();
 	}
 	
 	o.onAnySkillExecuted <- function(_skill, _targetTile, _targetEntity, _forFree)
@@ -58,23 +58,23 @@
 	}
 
 	o.use <- function (_targetTile, _forFree = false) {
-		m.UsedAP = getActionPointCost();
-		return skill.use(_targetTile, _forFree);
+		this.m.UsedAP = this.getActionPointCost();
+		return this.skill.use(_targetTile, _forFree);
 	}
 
 	o.onUse = function (_user, _targetTile) {
-		_user.setFatigue(::Math.max(0, _user.getFatigue() - getRecoveredFat(m.UsedAP)));
+		_user.setFatigue(::Math.max(0, _user.getFatigue() - this.getRecoveredFat(this.m.UsedAP)));
 
 		if (!_user.isHiddenToPlayer()) {
 			_user.playSound(::Const.Sound.ActorEvent.Fatigue, ::Const.Sound.Volume.Actor * _user.getSoundVolume(::Const.Sound.ActorEvent.Fatigue));
 		}
 
-		m.UsedAP = 0;
+		this.m.UsedAP = 0;
 		return true;
 	}
 
 	o.getRecoveredFat <- function (_usedAP) {
-		return _usedAP * m.FatPerAP * getContainer().getActor().getFatigueMax();
+		return _usedAP * this.m.FatPerAP * this.getContainer().getActor().getFatigueMax();
 	}
 	
 	o.onCombatFinished <- function()

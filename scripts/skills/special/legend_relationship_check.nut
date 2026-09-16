@@ -5,8 +5,8 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		// RCBravery = 0,
 		// RCStaminaMult = 1.0
 	},
-	function create()
-	{
+
+	function create() {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendRelationshipCheck);
 		this.m.Icon = "skills/status_effect_01.png";
 		this.m.IconMini = "";
@@ -18,95 +18,77 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		this.m.IsStacking = true;
 	}
 
-	function relationStringHelper( _name, _relTab )
-	{
+	function relationStringHelper(_name, _relTab) {
 		local relNum = _relTab.RelationNum;
 		local returnString = "";
 		returnString += _name + " relation gives: ";
-		if ( relNum <= -10 )
-		{
+		if (relNum <= -10) {
 			returnString += "-5 Resolve";
 		}
-		if ( relNum <= -20 )
-		{
+		if (relNum <= -20) {
 			returnString += ", -5 Ranged Defense";
 		}
-		if ( relNum <= -30 )
-		{
+		if (relNum <= -30) {
 			returnString += ", -5 Melee Defense";
 		}
-		if ( relNum > -10 && relNum <= 10)
-		{
-			returnString += "No Bonuses"
+		if (relNum > -10 && relNum <= 10) {
+			returnString += "No Bonuses";
 		}
-		if ( relNum > 10 )
-		{
+		if (relNum > 10) {
 			returnString += "+5 Resolve";
 		}
-		if ( relNum > 20 )
-		{
+		if (relNum > 20) {
 			returnString += ", +5 Ranged Defense";
 		}
-		if ( relNum > 30 )
-		{
+		if (relNum > 30) {
 			returnString += ", +5 Melee Defense";
 		}
 		returnString += ".\n";
 		return returnString;
 	}
 
-	function getCombatTooltip()
-	{
+	function getCombatTooltip() {
 		local actor = this.getContainer().getActor();
 		local targetTile = actor.getTile();
 		local returnString = "";
 
-			for (local i = 0; i != 6; ++i)
-			{
-				if (!targetTile.hasNextTile(i)) {}
-				else
-				{
-					local tile = targetTile.getNextTile(i);
-					if (tile.IsOccupiedByActor && tile.getEntity().getMoraleState() != ::Const.MoraleState.Fleeing)
-					{
+		for (local i = 0; i != 6; ++i) {
+			if (!targetTile.hasNextTile(i)) {
+			} else {
+				local tile = targetTile.getNextTile(i);
+				if (tile.IsOccupiedByActor && tile.getEntity().getMoraleState() != ::Const.MoraleState.Fleeing) {
 
-						if (tile.getEntity().getFaction() == ::Const.Faction.Player)
-						{
-							if (tile.getEntity().getCompanyID() == -1)
-							{
-								continue;
-							}
-
-							if (actor.getCompanyID() == -1)
-							{
-								continue;
-							}
-
-							local relB = ::World.State.getRefFromID(actor.getCompanyID());
-							if (relB == null)
-							{
-								continue
-							}
-
-							local relTab = relB.getActiveRelationshipWith(tile.getEntity());
-							if (relTab == null)
-							{
-								continue;
-							}
-
-							returnString += relationStringHelper(tile.getEntity().getName(), relTab);
+					if (tile.getEntity().getFaction() == ::Const.Faction.Player) {
+						if (tile.getEntity().getCompanyID() == -1) {
+							continue;
 						}
 
+						if (actor.getCompanyID() == -1) {
+							continue;
+						}
+
+						local relB = ::World.State.getRefFromID(actor.getCompanyID());
+						if (relB == null) {
+							continue;
+						}
+
+						local relTab = relB.getActiveRelationshipWith(tile.getEntity());
+						if (relTab == null) {
+							continue;
+						}
+
+						returnString += relationStringHelper(tile.getEntity().getName(), relTab);
 					}
+
 				}
 			}
+		}
 
-			if (returnString == "")
-			{
-				returnString = "No Bonuses"
-			}
+		if (returnString == "") {
+			returnString = "No Bonuses";
+		}
 
-			return [
+		return [
 			{
 				id = 1,
 				type = "title",
@@ -120,25 +102,19 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function checkPosition ( _roster, _actor, _position )
-	{
-		foreach (bro in _roster)
-		{
-			if (bro.getPlaceInFormation() == _position)
-			{
-				if (bro.getCompanyID() == -1)
-				{
+	function checkPosition(_roster, _actor, _position) {
+		foreach (bro in _roster) {
+			if (bro.getPlaceInFormation() == _position) {
+				if (bro.getCompanyID() == -1) {
 					return "";
 				}
 
 				local relB = ::World.State.getRefFromID(bro.getCompanyID());
-				if (relB == null)
-				{
+				if (relB == null) {
 					return "";
 				}
-				local relTab = relB.getActiveRelationshipWith(tile.getEntity());
-				if (relTab == null)
-				{
+				local relTab = relB.getActiveRelationshipWith(bro.getTile().getEntity());
+				if (relTab == null) {
 					return "";
 				}
 
@@ -148,8 +124,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		return ""; //Will get tooltip reading similar to NULL(0x000000) etc without this because it'll return null but it puts that into the retString
 	}
 
-	function getNormalTooltip()
-	{
+	function getNormalTooltip() {
 		local actor = this.getContainer().getActor();
 		local position = actor.getPlaceInFormation();
 		local roster = ::World.getPlayerRoster().getAll();
@@ -166,8 +141,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 				returnString += checkPosition(roster, actor, position + 1);
 			}
 			returnString += checkPosition(roster, actor, position + 9);
-		}
-		else if (position <= 17) //check up and down (-+9)
+		} else if (position <= 17) //check up and down (-+9)
 		{
 			if (position != 9) //don't check to left (-1)
 			{
@@ -179,8 +153,7 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 			}
 			returnString += checkPosition(roster, actor, position - 9);
 			returnString += checkPosition(roster, actor, position + 9);
-		}
-		else //position <= 26 : check only up (-9)
+		} else //position <= 26 : check only up (-9)
 		{
 			if (position != 18) //don't check left (-1)
 			{
@@ -207,15 +180,11 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 		];
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 
-		if (("State" in ::Tactical) && ::Tactical.State != null)
-		{
+		if (("State" in ::Tactical) && ::Tactical.State != null) {
 			return getCombatTooltip();
-		}
-		else
-		{
+		} else {
 			return getNormalTooltip();
 		}
 	}
@@ -248,8 +217,6 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	// 	properties.RangedDefense += this.m.RCRangedDefense;
 	// 	properties.MeleeDefense += this.m.RCMeleeDefense;
 	// }
-
-
 
 	// function computeModifiers( _properties = null )
 	// {
@@ -363,7 +330,6 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	// 	// properties.RangedDefense += this.m.RCRangedDefense;
 	// 	// properties.MeleeDefense += this.m.RCMeleeDefense;
 
-
 	// }
 
 	// function onTurnStart()
@@ -380,4 +346,3 @@ this.legend_relationship_check <- this.inherit("scripts/skills/skill", {
 	// }
 
 });
-

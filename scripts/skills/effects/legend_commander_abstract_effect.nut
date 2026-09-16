@@ -17,7 +17,7 @@ this.legend_commander_abstract_effect <- this.inherit("scripts/skills/skill", {
 
 	function getCommander()
 	{
-		return this.m.Commander
+		return this.m.Commander;
 	}
 
 	function create()

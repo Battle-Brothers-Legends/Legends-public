@@ -2,43 +2,50 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 	m = {
 		Dude = null
 	},
+
 	function create() {
 		this.m.ID = "event.legends_necromancer_origins_grave_recruit";
 		this.m.Title = "Near the mass grave...";
 		this.m.Cooldown = 20.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
-			//— \n |
 			ID = "A",
-			Text = "[img]gfx/ui/events/event_132.png[/img]{While on the road, you notice a corpse face first in the dirt. After some time another appears. Then another — and another. The decaying human breadcrumbs culminate into a large battlefield boasting a hasily dug pit filled with corpses, presumably not the victor\'s... \n\n...if indeed there was one. \n\nCircling the site the battle appeared to be recent, some corpses are remarkably fresh in what appears to be a mix between an ambush, a counter ambush and a third party that was in the wrong place at the wrong time.}",
+			Text = "[img]gfx/ui/events/event_132.png[/img]{While on the road, you notice a corpse face first in the dirt. After some time another appears. Then another — and another. The decaying human breadcrumbs culminate into a large battlefield boasting a hastily dug pit filled with corpses, presumably not the victor\'s... \n\n...if indeed there was one. \n\nCircling the site the battle appeared to be recent, some corpses are remarkably fresh in what appears to be a mix between an ambush, a counter ambush and a third party that was in the wrong place at the wrong time.}",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Try to raise something.",
-				getResult = @(_event) "B"
-			}, {
-				Text = "Loot the battlefield.",
-				getResult = @(_event) "C"
-			}],
+			Options = [
+				{
+					Text = "Try to raise something.",
+					getResult = @(_event)"B"
+				},
+				{
+					Text = "Loot the battlefield.",
+					getResult = @(_event)"C"
+				}
+			],
+
 			function start(_event) {}
 
 		});
 		this.m.Screens.push({
 			ID = "B",
-			Text = "[img]gfx/ui/events/event_29.png[/img]{Seeing oppertunity, a ritual is performed — and you manage to pull a new recruit from the grip of death before they became a mindless thrall to another. You looked deep into them, and name them %joiner%.}",
+			Text = "[img]gfx/ui/events/event_29.png[/img]{Seeing opportunity, a ritual is performed — and you manage to pull a new recruit from the grip of death before they became a mindless thrall to another. You looked deep into them, and name them %joiner%.}",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Time to dress you up nicely!",
-				function getResult(_event) {
-					::World.getPlayerRoster().add(_event.m.Dude);
-					::World.getTemporaryRoster().clear();
-					_event.m.Dude.onHired();
-					_event.m.Dude = null;
-					return 0;
+			Options = [
+				{
+					Text = "Time to dress you up nicely!",
+					function getResult(_event) {
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
+						_event.m.Dude.onHired();
+						_event.m.Dude = null;
+						return 0;
+					}
 				}
-			}],
+			],
+
 			function start(_event) {
 				local roster = ::World.getTemporaryRoster();
 				_event.m.Dude = roster.create("scripts/entity/tactical/player");
@@ -46,7 +53,7 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 				_event.m.Dude.getFlags().add("undead");
 				_event.m.Dude.getFlags().add("zombie_minion");
 				_event.m.RawDescription = "You pulled this minion from a mass grave. You know little about who they once were — nor do you care.";
-				_event.m.Dude.setStartValuesEx(::Const.CharacterBackgroundsRandomForUndead); //see character_backgrounds file
+				_event.m.Dude.setStartValuesEx(::Const.CharacterBackgroundsRandomForUndead);
 				::Legends.Traits.grant(this, ::Legends.Trait.LegendRottenFlesh);
 				::Legends.Perks.grant(this, ::Legends.Perk.LegendZombieBite);
 				this.Characters.push(_event.m.Dude.getImagePath());
@@ -87,34 +94,22 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "We shouldn\'t draw attention to ourselves.",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "We shouldn\'t draw attention to ourselves.",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {
-				local money = ::Math.rand(18, 628);
-				::World.Assets.addMoney(money);
+				this.List.push(::Legends.EventList.changeMoney(::Math.rand(18, 628)));
 			}
 
 		});
 	}
 
 	function onUpdateScore() {
-		//see 'static_functions' ::Legends.S.humansOnly for more details.
-		local originID = ::World.Assets.getOrigin().getID();
-		if (originID != "scenario.legends_solo_necro" && originID != "scenario.legends_necro") {
-			return;
-		}
-
-		local hasZombie = false;
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getFlags().has("PlayerZombie")) {
-				hasZombie = true;
-				break;
-			}
-		}
-
-		if (!hasZombie) {
+		if (::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_necro", "scenario.legends_solo_necro")) {
 			return;
 		}
 
@@ -122,18 +117,11 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 			return;
 		}
 
-		local locations = ::World.EntityManager.getLocations();
-		local nearSite = false;
-		local currentTile = ::World.State.getPlayer().getTile();
-
-		foreach (v in locations) {
-			if (v.getTypeID() == "location.undead_mass_grave" && v.getTile().getDistanceTo(currentTile) < 5) {
-				nearSite = true;
-				break;
-			}
+		if (::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getFlags().has("PlayerZombie"))).len() == 0) {
+			return;
 		}
 
-		if (!nearSite) {
+		if (::World.EntityManager.getLocations().filter(@(_, _loc)(_loc.getTypeID() == "location.undead_mass_grave" && _loc.getTile().getDistanceTo(::World.State.getPlayer().getTile()) < 5)).len() == 0) {
 			return;
 		}
 
@@ -152,6 +140,4 @@ this.legends_necromancer_origins_grave_recruit_event <- this.inherit("scripts/ev
 	function onClear() {
 		this.m.Dude = null;
 	}
-
 });
-

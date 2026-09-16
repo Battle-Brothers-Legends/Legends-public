@@ -49,13 +49,13 @@
 
 		local rand = ::Math.rand(1, 2) == 1 ? -1 : 1;
 		if (morale == ::Const.MoraleState.Fleeing || morale == ::Const.MoraleState.Breaking) {
-			a.checkMorale(1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
+			actor.checkMorale(1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		else if (morale == ::Const.MoraleState.Confident) {
-			a.checkMorale(-1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
+			actor.checkMorale(-1, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		else {
-			a.checkMorale(rand, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
+			actor.checkMorale(rand, ::Math.rand(-15, 15), ::Const.MoraleCheckType.Default);
 		}
 		local newMorale = actor.getMoraleState();
 		if (morale != ::Const.MoraleState.Fleeing && morale != newMorale) { // it'll say he rallied so no point spamming the log

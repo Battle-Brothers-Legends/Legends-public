@@ -16,7 +16,7 @@ this.legend_compromised_armor_effect <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "This character has their armor compromised from a recent strike. Increase damage ignoring armor and armor damage done by [color=%positive%]20%[/color]."
+		return "This character has their armor compromised from a recent strike. Increase damage ignoring armor and armor damage done by [color=%positive%]20%[/color].";
 	}
 
 	function onUpdate( _properties )

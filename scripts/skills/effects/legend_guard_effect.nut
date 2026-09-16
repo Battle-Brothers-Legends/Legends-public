@@ -29,7 +29,6 @@ this.legend_guard_effect <- this.inherit("scripts/skills/skill", {
 
 		local actor = this.getContainer().getActor();
 		local ai = actor.getAIAgent();
-		local i = null;
 		ai.removeBehavior(::Const.AI.Behavior.ID.Protect);
 		ai.removeBehavior(::Const.AI.Behavior.ID.Rotation);
 		local order = this.new("scripts/ai/tactical/behaviors/legend_ai_protect_target");

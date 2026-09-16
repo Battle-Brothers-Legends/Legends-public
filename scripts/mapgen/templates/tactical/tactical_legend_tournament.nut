@@ -156,7 +156,7 @@ this.tactical_legend_tournament <- this.inherit("scripts/mapgen/tactical_templat
 
 						if (r == 1)
 						{
-							steppeTile1.fill({
+							Tile1.fill({
 								X = x,
 								Y = y,
 								W = 1,

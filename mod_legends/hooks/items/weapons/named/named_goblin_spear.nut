@@ -1,7 +1,6 @@
-::mods_hookExactClass("items/weapons/named/named_goblin_spear", function(o) {
+::mods_hookExactClass("items/weapons/named/named_goblin_spear", function (o) {
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Description = "A masterfully crafted goblin glaive. Accurate, fast and deadly in the hands of any skilled fighter.";
 		this.m.WeaponType = ::Const.Items.WeaponType.Sword | ::Const.Items.WeaponType.Polearm;
@@ -17,19 +16,17 @@
 		this.m.RangeIdeal = 1;
 	}
 
-	o.randomizeValues <- function ()
-	{
+	o.randomizeValues <- function () {
 		this.m.StaminaModifier = -10;
 		this.m.Condition = 48.0;
 		this.m.ConditionMax = 48.0;
 		this.m.RegularDamage = 35;
 		this.m.RegularDamageMax = 65;
 
-		named_weapon.randomizeValues();
+		this.named_weapon.randomizeValues();
 	}
 
-	o.onEquip = function ()
-	{
+	o.onEquip = function () {
 		this.named_weapon.onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
 			_skill.m.IsGreatBreachSlash = true;
@@ -37,12 +34,10 @@
 		::Legends.Actives.grant(this, ::Legends.Active.Rupture, function (_skill) {
 			_skill.m.IsMeleeRupture = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendRunThrough, function (_skill)
-		{
+		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendRunThrough, function (_skill) {
 			_skill.m.Icon = "skills/skewer_general.png";
 			_skill.m.IconDisabled = "skills/skewer_general_bw.png";
 			_skill.m.Overlay = "skewer_general";
 		}.bindenv(this));
 	}
-
 });

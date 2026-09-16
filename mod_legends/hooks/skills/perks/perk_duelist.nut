@@ -1,14 +1,12 @@
-::mods_hookExactClass("skills/perks/perk_duelist", function(o) {
-	o.m.AllowedWeapons <-
-	[
-		"_parrying_dagger",
+::mods_hookExactClass("skills/perks/perk_duelist", function (o) {
+	o.m.AllowedWeapons <- [
+		//"_parrying_dagger",
 		// "_hand_crossbow",
 		"buckler",
 		"legend_mummy_shield"
 	];
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.Icon = "ui/perks/perk_41.png";
 		this.m.Type = ::Const.SkillType.Perk;
@@ -43,63 +41,59 @@
 	// 	return tooltip;
 	// }
 
-	o.onAdded <- function ()
-	{
-		if (!this.m.Container.hasActive(::Legends.Active.LegendFlourish))
-		{
+	o.onAdded <- function () {
+		if (!this.m.Container.hasActive(::Legends.Active.LegendFlourish)) {
 			::Legends.Actives.grant(this, ::Legends.Active.LegendFlourish);
 		}
 	}
 
-	o.onRemoved <- function ()
-	{
+	o.onRemoved <- function () {
 		::Legends.Actives.remove(this, ::Legends.Active.LegendFlourish);
 	}
 
-	o.isValid <- function ( _mainhand, _offhand )
-	{
-		if (_mainhand == null && _offhand == null)
+	o.isValid <- function (_mainhand, _offhand) {
+		if (_mainhand == null && _offhand == null) {
 			return false;
+		}
 
 		return true;
 	}
 
-	o.isValidOffhand <- function ( _mainhand, _offhand )
-	{
-		if (_offhand == null)
+	o.isValidOffhand <- function (_mainhand, _offhand) {
+		if (_offhand == null) {
 			return false;
+		}
 
-		foreach( valid in m.AllowedWeapons )
-		{
-			if (::MSU.String.endsWith(_offhand.getID(), valid))
+		foreach (valid in this.m.AllowedWeapons) {
+			if (::MSU.String.endsWith(_offhand.getID(), valid)) {
 				return true;
+			}
 		}
 
 		return false;
 	}
 
 	// you can just hook this or isValid/isFullEffect/isPartialEffect and the tooltip will auto calculate without needing to replace anything
-	o.getBonus <- function()
-	{
-		local main = getContainer().getActor().getMainhandItem();
-		local off = getContainer().getActor().getOffhandItem();
-		if (!isValid(main, off))
+	o.getBonus <- function () {
+		local main = this.getContainer().getActor().getMainhandItem();
+		local off = this.getContainer().getActor().getOffhandItem();
+		if (!this.isValid(main, off)) {
 			return 0;
+		}
 
-		if (isValidOffhand(main, off))
+		if (this.isValidOffhand(main, off)) {
 			return 0.25;
+		}
 
 		return 0;
 	}
 
-	o.onAnySkillUsed <- function ( _skill, _targetEntity, _properties )
-	{
-		if (_skill.isRanged())
+	o.onAnySkillUsed <- function (_skill, _targetEntity, _properties) {
+		if (_skill.isRanged()) {
 			return;
+		}
 		_properties.DamageDirectAdd += this.getBonus();
 	}
 
-	o.onUpdate = function ( _properties )
-	{
-	}
+	o.onUpdate = function (_properties) {}
 });

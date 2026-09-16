@@ -109,7 +109,7 @@ this.legend_rat_bite_event <- this.inherit("scripts/events/event", {
 			return;
 		}
 
-		this.m.Ratman = ratman_candidates[::Math.rand(0, hedge_knight_candidates.len() - 1)];
+		this.m.Ratman = ratman_candidates[::Math.rand(0, ratman_candidates.len() - 1)];
 		this.m.Bitten = bitten_candidates[::Math.rand(0, this.raider_candidates.len() - 1)];
 		this.m.Score = ratman_candidates.len() * 3;
 	}

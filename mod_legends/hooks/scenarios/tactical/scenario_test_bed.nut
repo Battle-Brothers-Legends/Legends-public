@@ -1,24 +1,18 @@
-::mods_hookExactClass("scenarios/tactical/scenario_test_bed", function(o)
-{
-	o.initEntities = function ()
-	{
-		for( local i = 0; i < _numPlayer; i = ++i )
-		{
+::mods_hookExactClass("scenarios/tactical/scenario_test_bed", function (o) {
+	o.initEntities = function (_numPlayer, _numEnemy) {
+		for (local i = 0; i < _numPlayer; i = ++i) {
 			local x = 0;
 			local y = 0;
 
-			while (1)
-			{
+			while (1) {
 				x = ::Math.rand(2, 6);
 				y = ::Math.rand(2, 6) - x / 2;
 
-				if (::Tactical.getTile(x, y).Level == 3)
-				{
+				if (::Tactical.getTile(x, y).Level == 3) {
 					continue;
 				}
 
-				if (::Tactical.getTile(x, y).IsEmpty)
-				{
+				if (::Tactical.getTile(x, y).IsEmpty) {
 					break;
 				}
 			}
@@ -32,18 +26,14 @@
 			];
 			items.equip(::Const.World.Common.pickHelmet(helmet));
 
-
 			local r = ::Math.rand(1, 3);
 			local a = this.new("scripts/items/armor/oriental/southern_gladiator_harness");
 			local u;
 			r = ::Math.rand(1, 2);
 
-			if (r == 1)
-			{
+			if (r == 1) {
 				u = this.new("scripts/items/armor_upgrades/light_gladiator_upgrade");
-			}
-			else if (r == 2)
-			{
+			} else if (r == 2) {
 				u = this.new("scripts/items/armor_upgrades/heavy_gladiator_upgrade");
 			}
 

@@ -7,7 +7,7 @@
 	local create = o.create;
 	o.create = function() {
 		create();
-		m.ID = "perk.shield_bash_legend"; // change id for greater purpose
+		this.m.ID = "perk.shield_bash_legend"; // change id for greater purpose
 	}
 
 	o.onTriggeredMovement = function(_skill, _targetEntity, _hitInfo) {

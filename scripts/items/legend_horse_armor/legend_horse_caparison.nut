@@ -34,9 +34,9 @@ this.legend_horse_caparison <- this.inherit("scripts/items/legend_horse_armor/le
 
 	function updateVariant()
 	{
-		this.m.Sprite = "horse_caparison" + variant;
-		this.m.SpriteDamaged = "horse_caparison" + variant + "_damaged";
-		this.m.SpriteCorpse = "horse_caparison" + variant + "_dead";
+		this.m.Sprite = "horse_caparison" + this.m.Variant;
+		this.m.SpriteDamaged = "horse_caparison" + this.m.Variant + "_damaged";
+		this.m.SpriteCorpse = "horse_caparison" + this.m.Variant + "_dead";
 		this.m.IconLarge = "rune_sigils/rune_stone_1.png";
 		this.m.Icon = "rune_sigils/rune_stone_1.png";
 	}

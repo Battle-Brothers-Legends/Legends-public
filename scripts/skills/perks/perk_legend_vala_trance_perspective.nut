@@ -4,13 +4,12 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		Failures = 0,
 		Difficulty = 1.0
 	},
-	function resetTrance()
-	{
+
+	function resetTrance() {
 		this.m.TranceIsActive = false;
 		this.m.Failures = 0;
 	}
-	function create()
-	{
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendValaTrancePerspective);
 		this.m.Icon = "ui/perks/legend_vala_trance_perspective_active.png";
 		this.m.IconDisabled = "ui/perks/legend_vala_trance_perspective_active_sw.png";
@@ -26,41 +25,41 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		this.m.FatigueCost = 20;
 	}
 
-
-	function isUsable()
-	{
+	function isUsable() {
 		local actor = this.getContainer().getActor();
 
-		if (!::Tactical.isActive())
+		if (!::Tactical.isActive()) {
 			return false;
+		}
 
-		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
+		if (actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			return false;
+		}
 
-		if (!this.skill.isUsable())
+		if (!this.skill.isUsable()) {
 			return false;
+		}
 
-		if (this.m.TranceIsActive)
+		if (this.m.TranceIsActive) {
 			return false;
+		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting) || actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 			return false;
+		}
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			return false;
+		}
 
 		return true;
 	}
 
-
-	function getCostString()
-	{
+	function getCostString() {
 		return "[i]Costs [b][color=%negative%]all (at least 6) AP[/color][/b] to use and builds up " + (this.isAffordableBasedOnFatiguePreview() ? "[b][color=%positive%]" + this.getFatigueCost() : "[b][color=%negative%]" + this.getFatigueCost()) + " Fatigue[/color][/b][/i]\n";
 	}
 
-
-	function getTooltip()
-	{
+	function getTooltip() {
 		local actor = this.getContainer().getActor();
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -70,8 +69,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			text = "Enter a trance and bla bla bla."
 		});
 
-		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff"))
-		{
+		if (!::Legends.S.hasItemFlag(actor.getMainhandItem(), "vala_staff")) {
 			ret.push({
 				id = 9,
 				type = "text",
@@ -80,8 +78,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			});
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaCurrentlyChanting)) {
 			ret.push({
 				id = 10,
 				type = "text",
@@ -90,8 +87,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 			});
 		}
 
-		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()))
-		{
+		if (::Tactical.isActive() && actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions())) {
 			ret.push({
 				id = 11,
 				type = "text",
@@ -103,27 +99,20 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		return ret;
 	}
 
-
-	function onTurnStart()
-	{
+	function onTurnStart() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive)
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance) && this.m.TranceIsActive) {
 			local expertise = actor.getBravery() / this.m.Difficulty;
 			expertise += this.m.Failures * 20.0 / this.m.Difficulty;
 
 			local everyone = ::Tactical.Entities.getAllInstances();
-			foreach (ever in everyone)
-			{
-				foreach (e in ever)
-				{
+			foreach (ever in everyone) {
+				foreach (e in ever) {
 					local distance = e.getTile().getDistanceTo(actor.getTile());
 
-					if (distance <= 3 && t.isAlliedWith(actor))
-					{
-						switch (distance)
-						{
+					if (distance <= 3 && e.isAlliedWith(actor)) {
+						switch (distance) {
 							case 1:
 								expertise += 2.0 / this.m.Difficulty;
 								break;
@@ -137,14 +126,13 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 								break;
 
 							default:
-								break
+								break;
 						}
 					}
 				}
 			}
 
-			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-			{
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
 				expertise += 15.0 / this.m.Difficulty;
 
 			}
@@ -160,15 +148,12 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				expertise += 10.0;
 
 				local targets = ::Tactical.Entities.getAllInstances();
-				foreach (tar in targets)
-				{
-					foreach (t in tar)
-					{
-						if (!t.isAlliedWith(actor))
-						{
+				foreach (tar in targets) {
+					foreach (t in tar) {
+						if (!t.isAlliedWith(actor)) {
 							if (::Math.rand(1, 100) <= expertise)  // APPLICATION SUCCESS
 							{
-								::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect, function(_effect) {
+								::Legends.Effects.grant(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect, function (_effect) {
 									_effect.setVala(this);
 								}.bindenv(this));
 							}
@@ -177,10 +162,9 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 				}
 
 				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(actor) + " returns to this realm.");
-//				::Sound.play("sounds/combat/legend_vala_perspective.wav");
+				//				::Sound.play("sounds/combat/legend_vala_perspective.wav");
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
-			}
-			else  // TRANCE FAILURE
+			} else  // TRANCE FAILURE
 			{
 				if (this.isAffordableBasedOnFatigue())  //  STAY IN TRANCE AND GAIN A STACKING BONUS SUCCESS CHANCE FOR NEXT TURN
 				{
@@ -189,8 +173,7 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 					++this.m.Failures;
 					actor.m.ActionPoints = 0;
 					actor.setFatigue(actor.getFatigue() + this.getFatigueCost());
-				}
-				else  //  CANCEL TRANCE BECAUSE OF FATIGUE
+				} else  //  CANCEL TRANCE BECAUSE OF FATIGUE
 				{
 					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
@@ -198,91 +181,68 @@ this.perk_legend_vala_trance_perspective <- this.inherit("scripts/skills/skill",
 		}
 	}
 
-
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 			::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 		}
 
 		this.resetTrance();
 	}
 
-
-	function onAfterUpdate( _properties )
-	{
+	function onAfterUpdate(_properties) {
 		local actor = this.getContainer().getActor();
 
-		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-		{
+		if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
 			this.m.FatigueCostMult = 0.75;
-		}
-		else
-		{
+		} else {
 			this.m.FatigueCostMult = 1.0;
 		}
 	}
 
-
-	function onDamageReceived( _attacker, _damageHitpoints, _damageArmor )
-	{
+	function onDamageReceived(_attacker, _damageHitpoints, _damageArmor) {
 		local actor = this.getContainer().getActor();
 
-		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID())
-		{
+		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID()) {
 			return;
 		}
 
-		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-		{
-			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery))
-			{
+		if (actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
+			if (actor.getSkills().hasPerk(::Legends.Perk.LegendValaTranceMastery)) {
 				if (::Math.rand(1, 100) <= 50)  //  MASTERY GRANTS A 50% CHANCE TO AVOID DROPPING OUT OF TRANCE
 				{
 					::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 				}
-			}
-			else
-			{
+			} else {
 				::Legends.Effects.remove(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 		}
 	}
 
-
-	function onDeath( _fatalityType )
-	{
-		local actor =  this.getContainer().getActor();
-		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded())
+	function onDeath(_fatalityType) {
+		local actor = this.getContainer().getActor();
+		if (!actor.isPlacedOnMap() || ("State" in ::Tactical) && ::Tactical.State.isBattleEnded()) {
 			return;
+		}
 
 		local actor = this.getContainer().getActor();
 		local targets = ::Tactical.Entities.getAllInstances();
 
-		foreach (tar in targets)
-		{
-			foreach (t in tar)
-			{
-				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTrancePerspectiveEffect))
-				{
+		foreach (tar in targets) {
+			foreach (t in tar) {
+				if (t.getSkills().hasEffect(::Legends.Effect.LegendValaTrancePerspectiveEffect)) {
 					::Legends.Effects.remove(t, ::Legends.Effect.LegendValaTrancePerspectiveEffect);
 				}
 			}
 		}
 	}
 
-
-	function onUse(_user, _targetTile)
-	{
-		if (this.isUsable())
-		{
+	function onUse(_user, _targetTile) {
+		if (this.isUsable()) {
 			local actor = this.getContainer().getActor();
 
-			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance))
-			{
+			if (!actor.getSkills().hasEffect(::Legends.Effect.LegendValaInTrance)) {
 				::Legends.Effects.grant(actor, ::Legends.Effect.LegendValaInTrance);
 			}
 

@@ -102,7 +102,7 @@ this.legend_ram_hammer_effect <- this.inherit("scripts/skills/skill", {
     function onUpdate( _properties )
     {
         _properties.IsSpecializedInHammers = true;
-        _properties.IsImmuneToDisarm = true
+        _properties.IsImmuneToDisarm = true;
     }
 });
 
