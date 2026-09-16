@@ -136,7 +136,11 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 		if (this.getAssignedBros() != 0) {
 			local hours = ::Math.ceil((::Time.getVirtualTimeF() - this.m.TargetStartTime) / (::World.getTime().SecondsPerDay / 24)) + 1;
-			text.push((this.m.CurrentTarget != null ? (::Const.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) : (::String.replace(::Const.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!")) + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+			if (this.m.CurrentTarget != null) {
+				text.push((::Const.Professions.ProfessionDefObjects[this.m.CurrentTarget.Profession].Name + " " + this.m.CurrentTarget.Name) + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+			} else if (this.m.PreviousTarget != null) {
+				text.push((::String.replace(::Const.Professions.ProfessionDefObjects[this.m.PreviousTarget.Profession].Name, "ing", "ed ") + this.m.PreviousTarget.Name + "!") + " ... " + hours + " " + ::Legends.S.pluralize(hours, "hour"));
+			}			
 		}
 
 		return text;
