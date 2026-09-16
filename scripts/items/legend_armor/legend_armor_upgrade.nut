@@ -620,7 +620,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				} else if (this.getStaminaModifier() != 0 && _compareLayer.getStaminaModifier() == 0) {
 					textWeight = "Has Fatigue Weight Penalty";
 				} else {
-					textWeight = ::Legends.S.colorize(::Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath * -1) + " Weight";
+					textWeight = ::Legends.S.colorize(::Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath) + " Weight";
 				}
 				
 				compareWeight = {
