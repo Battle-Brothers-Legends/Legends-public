@@ -19,7 +19,6 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		local crafting = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting]) == true;
 		local training = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training]) == true;
 		local fletching = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Fletcher]) == true;
-		//local hunting = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter]) == true;
 		local cooking = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Kitchen]) == true;
 		local gathering = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer]) == true;
 		local scrapping = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop]) == true;
@@ -35,9 +34,6 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		if (!gathering) {
 			ret += "\n- Gathering";
 		}
-		/*if (!hunting) {
-			ret += "\n- Hunting";
-		}*/
 		if (!cooking) {
 			ret += "\n- Cooking";
 		}
@@ -57,7 +53,6 @@ this.legend_have_all_camp_activities_ambition <- this.inherit("scripts/ambitions
 		local crafting = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting]) == true;
 		local training = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Training]) == true;
 		local fletching = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Fletcher]) == true;
-		//local hunting = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter]) == true;
 		local cooking = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Kitchen]) == true;
 		local gathering = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Gatherer]) == true;
 		local scrapping = ::World.Flags.get(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Workshop]) == true;

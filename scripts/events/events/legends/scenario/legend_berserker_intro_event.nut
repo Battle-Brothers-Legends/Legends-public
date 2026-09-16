@@ -15,8 +15,6 @@ this.legend_berserker_intro_event <- this.inherit("scripts/events/event", {
 				getResult = @(_event) 0
 			}],
 			function start(_event) {
-				//this.logInfo("Unlocking hunting");
-				//::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
 				this.logInfo("Unlocking scouting");
 				::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 				this.logInfo("Unlocking gathering");

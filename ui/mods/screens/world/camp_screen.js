@@ -728,7 +728,6 @@ CampScreen.prototype.getModule = function (_name)
 		case 'CampFletcherDialogModule': return this.mFletcherDialogModule;
 		case 'CampGathererDialogModule': return this.mGathererDialogModule;
 		case 'CampHealerDialogModule': return this.mHealerDialogModule;
-		//case 'CampHunterDialogModule': return this.mHunterDialogModule;
 		case 'CampKitchenDialogModule': return this.mKitchenDialogModule;
 		case 'CampPainterDialogModule': return this.mPainterDialogModule;
 		case 'CampRepairDialogModule': return this.mRepairDialogModule;
@@ -752,7 +751,6 @@ CampScreen.prototype.getModules = function ()
 		{ name:  'CampFletcherDialogModule', module:  this.mFletcherDialogModule },
 		{ name:  'CampGathererDialogModule', module: this.mGathererDialogModule },
 		{ name:  'CampHealerDialogModule', module: this.mHealerDialogModule },
-		//{ name:  'CampHunterDialogModule', module:  this.mHunterDialogModule },
 		{ name:  'CampKitchenDialogModule', module:  this.mKitchenDialogModule },
 		{ name:  'CampPainterDialogModule', module: this.mPainterDialogModule },
 		{ name:  'CampRepairDialogModule', module:  this.mRepairDialogModule },

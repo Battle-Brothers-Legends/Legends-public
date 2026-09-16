@@ -18,7 +18,6 @@
 		Haggle = ::Const.LegendMod.ResourceModifiers.Haggle[0],
 		ToolConsumption = ::Const.LegendMod.ResourceModifiers.ToolConsumption[0],
 		MedConsumption = ::Const.LegendMod.ResourceModifiers.MedConsumption[0],
-		Hunting = ::Const.LegendMod.ResourceModifiers.Hunting[0], //MFD
 		Cooking = ::Const.LegendMod.ResourceModifiers.Cooking[0],
 		Fletching = ::Const.LegendMod.ResourceModifiers.Fletching[0],
 		Scout = ::Const.LegendMod.ResourceModifiers.Scout[0],
@@ -491,11 +490,6 @@
 				name = "Gathering Supplies"
 				icon = "ui/icons/banner_gather_icon.png"
 			},
-			/*{
-				key = "Hunting",
-				name = "Hunting",
-				icon = "ui/icons/banner_hunt_icon.png"
-			},*/
 			{
 				key = "Cooking",
 				name = "Cooking",

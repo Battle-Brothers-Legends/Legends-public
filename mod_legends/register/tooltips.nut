@@ -48,37 +48,46 @@
 		ButtonAssignAll = ::MSU.Class.BasicTooltip("Assign All","Assign all mercenaries to the current tent"),
 		ButtonConfigure = ::MSU.Class.CustomTooltip(function(_data){
 			local ret = [];
-			/*switch(_data.tent)
+			switch(_data.tent)
 			{
-				case ::Legends.Camp.CampBuildings.Hunter:
-					if (::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Hunter).getUpgraded())
-					{
+				case ::Legends.Camp.CampBuildings.Healer:
+					if (::World.Camp.getBuildingByID(::Legends.Camp.CampBuildings.Healer).getUpgraded()) {
 						ret.push({
 							id = 0,
 							type = "title",
-							text = "Hunting Mode",
+							text = "Configure Mass Intensive Care",
 						});
 						ret.push({
 							id = 1,
 							type = "description",
-							text = "Customize the priorities of the hunting party."
-						})
-					}
-					else
-					{
+							text = "Set Intensive Care setting for the entire company On or Off."
+						});
+					} else {
 						ret.push({
 							id = 0,
 							type = "title",
-							text = "Hunting Mode",
+							text = "Configure Mass Intensive Care",
 						});
 						ret.push({
 							id = 1,
 							type = "description",
-							text = "Customize the priorities of the hunting party.\n\n" + ::Const.UI.getColorized("Requires the Kitchen Tent upgrade",::Const.UI.Color.NegativeValue),
-						})
+							text = "Set Intensive Care setting for the entire company On or Off.\n\n [color=%negative%]Requires the Surgeon Table upgrade.[/color]",
+						});
 					}
 					break;
-				default:*/
+				case ::Legends.Camp.CampBuildings.Gatherer:
+					ret.push({
+						id = 0,
+						type = "title",
+						text = "Gathering Mode",
+					});
+					ret.push({
+						id = 1,
+						type = "description",
+						text = "Customize the priorities of the gathering party."
+					});
+					break;
+				default:
 					ret.push({
 						id = 0,
 						type = "title",
@@ -89,7 +98,7 @@
 						type = "description",
 						text = "There are no special configurations for this tent."
 					});
-			//}
+			}
 			return ret;
 		}),
 	},
