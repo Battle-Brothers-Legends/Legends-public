@@ -1,7 +1,7 @@
 this.stables_building <- this.inherit("scripts/entity/world/settlements/buildings/building", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.building.create();
 		this.m.ID = "building.stables";
 		this.m.Name = "Stables";
@@ -10,197 +10,46 @@ this.stables_building <- this.inherit("scripts/entity/world/settlements/building
 		this.m.UIImageNight = "ui/settlements/building_14_night";
 		this.m.Tooltip = "world-town-screen.main-dialog-module.Stables";
 		this.m.TooltipIcon = "ui/icons/buildings/stables.png";
-		this.m.Sounds = [
-			{
-				File = "ambience/buildings/kennel_cage_00.wav",
+		this.m.Sounds = []; // should probably use horses or donkeys rather than dogs at one point
+		for (local i = 0; i <= 2; i++) {
+			this.m.Sounds.push({
+				File = format("ambience/buildings/kennel_cage_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_cage_01.wav",
+			});
+		}
+		for (local i = 0; i <= 12; i++) {
+			this.m.Sounds.push({
+				File = format("ambience/buildings/kennel_dog_%02d.wav", i),
 				Volume = 1.0,
 				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_cage_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_00.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_01.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_02.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_03.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_04.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_05.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_06.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_07.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_08.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_09.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_10.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_11.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_12.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		this.m.SoundsAtNight = [
-			{
-				File = "ambience/buildings/kennel_cage_00.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_cage_01.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_cage_02.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_00.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_01.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_02.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_03.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_04.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_05.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_06.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_07.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_08.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_09.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_10.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_11.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			},
-			{
-				File = "ambience/buildings/kennel_dog_12.wav",
-				Volume = 0.5,
-				Pitch = 1.0
-			}
-		];
+			});
+		}
+		this.m.SoundsAtNight = this.m.Sounds.map(@(s) {
+			File = s.File,
+			Volume = 0.5,
+			Pitch = s.Pitch
+		});
 	}
 
-	function onClicked( _townScreen )
-	{
+	function onClicked(_townScreen) {
 		_townScreen.getStablesDialogModule().setRosterID(this.m.Settlement.getID());
 		_townScreen.showStablesDialog();
 		this.pushUIMenuStack();
 	}
 
-	function onSettlementEntered()
-	{
-	}
+	function onSettlementEntered() {}
 
-	function onUpdateStablesList( _list )
-	{
+	function onUpdateStablesList(_list) {
 		_list.push(::Legends.Background.LegendHorseRouncey);
-		_list.push(::Legends.Background.LegendDonkey)
+		_list.push(::Legends.Background.LegendDonkey);
 	}
 
-	function onSerialize( _out )
-	{
+	function onSerialize(_out) {
 		this.building.onSerialize(_out);
 	}
 
-	function onDeserialize( _in )
-	{
+	function onDeserialize(_in) {
 		this.building.onDeserialize(_in);
 	}
 });
-

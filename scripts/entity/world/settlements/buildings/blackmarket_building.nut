@@ -2,6 +2,7 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 	m = {
 		Stash = null
 	},
+
 	function getStash() {
 		return this.m.Stash;
 	}
@@ -55,16 +56,15 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		this.m.Stash = this.new("scripts/items/stash_container");
 		this.m.Stash.setID("shop");
 		this.m.Stash.setResizable(true);
-		local sounds = [];
-		for (local i = 1; i <= 30; i++)	{
-			sounds.push({
+		this.m.Sounds = [];
+		for (local i = 1; i <= 30; i++) {
+			this.m.Sounds.push({
 				File = format("ambience/blackmarket/blackmarket_%02d.ogg", i),
 				Volume = 0.2,
 				Pitch = 1.0
 			});
 		}
-		this.m.Sounds = sounds;
-		this.m.SoundsAtNight = sounds; //change these sounds at some point
+		this.m.SoundsAtNight = this.m.Sounds; //change these sounds at some point
 	}
 
 	function isHidden() {
@@ -181,7 +181,6 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 			item(80, 3.0, "accessory/gloves/legend_spiked_gauntlets_item"),
 		]);
 
-
 		foreach (i in ::Const.Items.NamedMeleeWeapons) {
 			if (::Math.rand(1, 100) <= 50) {
 				list.push(item(99, 2.0, i));
@@ -205,6 +204,4 @@ this.blackmarket_building <- this.inherit("scripts/entity/world/settlements/buil
 		this.building.onDeserialize(_in);
 		this.m.Stash.onDeserialize(_in);
 	}
-
 });
-

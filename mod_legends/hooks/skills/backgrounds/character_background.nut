@@ -1367,11 +1367,11 @@
 			this.rebuildPerkTree(this.m.CustomPerkTree);
 		}
 
-		//When deserializing, the scenario isn't set yet, so it will be null - in this case, the sceario should
+		//When deserializing, the scenario isn't set yet, so it will be null - in this case, the scenario should
 		//already have added its perks so we should be ok. This will fail though loading an old save
 		//and we've added new perks to a scenario...
 
-		// THE COMMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
+		// THE COMMENT ABOVE IS PROBABLY WRONG. Scenario doesn't seem to be null here on deserialize. But some weird
 		// shenanigans are still happening, so I will test some more. -- Midas
 		local origin = ::World.Assets.getOrigin();
 		if (origin != null && this.getContainer() != null && !this.getContainer().getActor().getFlags().get("ScenarioPerkSet"))
@@ -1383,27 +1383,21 @@
 		return a;
 	}
 
-	o.onUpdate = function ( _properties )
-	{
-		if (this.m.DailyCost == 0 || this.getContainer().hasTrait(::Legends.Trait.Player))
-		{
+	o.onUpdate = function (_properties) {
+		if (this.m.DailyCost == 0 || this.getContainer().hasTrait(::Legends.Trait.Player)) {
 			_properties.DailyWage = 0;
-		}
-		else
-		{
+		} else {
 			local level = this.getContainer().getActor().getLevel();
 			local wage = ::Math.round(this.m.DailyCost * this.m.DailyCostMult);
 			_properties.DailyWage += wage * ::Math.pow(1.1, ::Math.min(10, level - 1));
 
-			if (level > 12)
-			{
+			if (level > 12) {
 				local previous = wage * ::Math.pow(1.1, 10);
 				_properties.DailyWage += previous * ::Math.pow(1.03, level - 1 - 10) - previous;
 			}
 		}
 
-		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-		{
+		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 			_properties.XPGainMult *= 0.9;
 		}
 	}

@@ -168,6 +168,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Meds = 13,
 };
 
+::Legends.BackgroundModifiers.ButcherSouthern <- clone ::Legends.BackgroundModifiers.Butcher;
+
 ::Legends.BackgroundModifiers.CaravanHand <- {
 	Scout = 0.2,
 	Stash = 8,
@@ -1743,6 +1745,27 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	MedConsumption = 0.20,
 	Crafting = 0.50,
 	Gathering = 0.30,
+	Terrain = [
+		0.0, // ?
+		0.0, //ocean
+		0.0, //plains
+		0.15, //swamp
+		0.0, //hills
+		0.10, //forest
+		0.10, //forest
+		0.10, //forest_leaves
+		0.10, //autumn_forest
+		0.0, //mountains
+		0.0, // ?
+		0.0, //farmland
+		0.0, // snow
+		0.0, // badlands
+		0.0, //highlands
+		0.0, //steppes
+		0.0, //ocean
+		0.0, //desert
+		0.0 //oasis
+	]
 };
 
 ::Legends.BackgroundModifiers.LegendNecromancer <- {

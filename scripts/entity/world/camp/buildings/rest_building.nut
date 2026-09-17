@@ -10,15 +10,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		this.m.Name = "Rest";
 		this.m.Description = "Company personnel who have not been assigned a task will rest and relax here.";
 		this.m.BannerImage = "ui/buttons/banner_rest.png";
-		local sounds = [
-			{
-				File = "ambience/camp/camp_rest_campfire.wav",
-				Volume = 1.0,
-				Pitch = 1.0
-			}
-		];
-		sounds.extend(this.getCampSounds(9, "rest_general"));
-		sounds.extend(this.getCampSounds(3, "rest_laugh"));
+		local sounds = this.getCampSounds(13, "rest");
 		this.m.Sounds = sounds;
 		this.m.SoundsAtNight = sounds;
 		this.m.SoundsAtNight.extend(this.getCampSounds(3, "rest_snore"));
@@ -28,7 +20,6 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 	function init() {
 		this.m.Results = [];
 	}
-
 
 	function isHidden() {
 		return false;
@@ -88,26 +79,33 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 			bro.getName() + " makes a makeshift flail with a stick and some onions"
 		];
 
-		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk))
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Monk)) {
 			activities.push(bro.getName() + " enthusiastically lectured the camp on the importance of living a holy life");
+		}
 
-		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Flagellant))
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Flagellant)) {
 			activities.push(bro.getName() + " spends their time in front of an idol of the Old Gods, slowly offering a flesh sacrifice");
+		}
 
-		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Cultist), ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)))
+		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Cultist), ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist))) {
 			activities.push(bro.getName() + " enthusiastically spends their free time raving to the camp about the glories of Davkul");
+		}
 
-		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gladiator))
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gladiator)) {
 			activities.push(bro.getName() + " decides the best use of free time is to flex freshly oiled muscles");
+		}
 
-		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Ratcatcher))
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Ratcatcher)) {
 			activities.push(bro.getName() + " plays with a captured rat");
+		}
 
-		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Nomad), ::Legends.Backgrounds.getID(::Legends.Background.LegendConscript)))
+		if (::Legends.S.oneOf(background.getID(), ::Legends.Backgrounds.getID(::Legends.Background.Nomad), ::Legends.Backgrounds.getID(::Legends.Background.LegendConscript))) {
 			activities.push(bro.getName() + " spends their time filling their pockets with sand");
+		}
 
-		if (background.isBackgroundType(::Const.BackgroundType.Performing))
+		if (background.isBackgroundType(::Const.BackgroundType.Performing)) {
 			activities.push(bro.getName() + " sings and dances, to the entertainment of the entire camp");
+		}
 
 		if (bro.getSkills().hasSkillOfType(::Const.SkillType.TemporaryInjury) || bro.getSkills().hasSkillOfType(::Const.SkillType.SemiInjury)) {
 			activities.extend([

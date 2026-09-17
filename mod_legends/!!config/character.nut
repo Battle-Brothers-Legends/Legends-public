@@ -42,13 +42,10 @@
 	ExpertHunter = 65536,
 };
 
-::Const.addNewBackgroundType <- function( _typeKey )
-{
+::Const.addNewBackgroundType <- function (_typeKey) {
 	local max = 0;
-	foreach (btype, value in ::Const.BackgroundType)
-	{
-		if (max < value)
-		{
+	foreach (_, value in ::Const.BackgroundType) {
+		if (max < value) {
 			max = value;
 		}
 	}
@@ -84,15 +81,15 @@
 ]);
 
 ::Const.ZombieMovementAPCost <- [
-	0,		// none
-	3,		// paved ground
-	3,		// flat ground
-	4,		// rough ground
-	4,		// forest
-	5,		// rocks
-	5,		// swamp
-	3,		// sand
-	5		// shallow water
+	0,  // none
+	3,  // paved ground
+	3,  // flat ground
+	4,  // rough ground
+	4,  // forest
+	5,  // rocks
+	5,  // swamp
+	3,  // sand
+	5  // shallow water
 ];
 
 ::Const.HorseMovementAPCost <- [
@@ -214,12 +211,10 @@
 ::Const.CharacterProperties.FatigueDealtAsPercentOfMaxFatigue <- 0.0;
 ::Const.CharacterProperties.Modifiers <- {};
 
-::Const.CharacterProperties.getInitiativeMinDamage <- function ()
-{
+::Const.CharacterProperties.getInitiativeMinDamage <- function () {
 	return this.DamageInitiativeMin + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
 };
 
-::Const.CharacterProperties.getInitiativeMaxDamage <- function ()
-{
+::Const.CharacterProperties.getInitiativeMaxDamage <- function () {
 	return this.DamageInitiativeMax + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);
 };

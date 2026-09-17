@@ -7,6 +7,8 @@ if (!("Background" in ::Legends)) {
 }
 
 ::Legends.Backgrounds.BackgroundDefObjects <- [];
+::Legends.Backgrounds.BackgroundDefs <- {};
+::Legends.Backgrounds.LookupMap <- {};
 
 ::Legends.Backgrounds.addBackgroundDefObjects <- function (_backgroundDefObjects) {
     local size = ::Legends.Backgrounds.BackgroundDefObjects.len();
@@ -17,6 +19,8 @@ if (!("Background" in ::Legends)) {
         } else {
             ::Legends.Background[backgroundDefObject.Const] <- size + i;
         }
+        ::Legends.Backgrounds.BackgroundDefs[backgroundDefObject.Const] <- size + i;
+        ::Legends.Backgrounds.LookupMap[backgroundDefObject.ID] <- backgroundDefObject;
     }
 }
 
@@ -24,6 +28,15 @@ if (!("Background" in ::Legends)) {
 ::Legends.Backgrounds.getID <- function (_def) {
 	return ::Legends.Backgrounds.BackgroundDefObjects[_def].ID;
 }
+
+::Legends.Backgrounds.findById <- function (_backgroundID) {
+	if (_backgroundID != null && _backgroundID in  ::Legends.Backgrounds.LookupMap) {
+		return  ::Legends.Backgrounds.LookupMap[_backgroundID];
+	}
+
+	return null;
+};
+
 
 local backgroundDefs = [];
 
