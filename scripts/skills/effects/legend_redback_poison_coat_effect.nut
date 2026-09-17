@@ -41,6 +41,13 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 		this.m.AttacksLeft = 4;
 	}
 
+	function onAdded () {
+		if (::Legends.Perks.has(this.getContainer().getActor(),::Legends.Perk.LegendPoisoner)) {
+			this.m.AttacksLeft += 2;
+		}
+	}
+
+
 	function onTargetHit (_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		--this.m.AttacksLeft;
 

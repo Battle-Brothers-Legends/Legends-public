@@ -10,6 +10,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Training = 0.2,
 };
 
+::Legends.BackgroundModifiers.LegendAdventurousNobleRanged <- clone ::Legends.BackgroundModifiers.AdventurousNoble;
+
 ::Legends.BackgroundModifiers.Anatomist <- {
 	Meds = 34,
 	Healing = 0.30,
@@ -304,6 +306,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.2,
 };
 
+::Legends.BackgroundModifiers.LegendDisownedNobleRanged <- clone ::Legends.BackgroundModifiers.DisownedNoble;
+
 ::Legends.BackgroundModifiers.Eunuch <- {
 	Meds = 13,
 	Stash = 5,
@@ -370,6 +374,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Haggle = 0.005,
 };
 
+::Legends.BackgroundModifiers.GamblerSouthern <- clone ::Legends.BackgroundModifiers.Gambler;
+
 ::Legends.BackgroundModifiers.Gladiator <- {
 	Ammo = 13,
 	ArmorParts = 5,
@@ -420,6 +426,8 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Healing = 0.10,
 	Training = 0.2,
 };
+
+::Legends.BackgroundModifiers.HistorianSouthern <- clone ::Legends.BackgroundModifiers.Historian;
 
 ::Legends.BackgroundModifiers.Houndmaster <- {
 	Scout = 0.3,
@@ -983,7 +991,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.LegendCommanderBeggarScaling <- clone ::Legends.BackgroundModifiers.LegendCommanderBeggar;
 
 ::Legends.BackgroundModifiers.LegendBellyDancer <- {
-	Barter = 0.02,
+	Haggle = 0.02,
 	Stash = 8,
 	Scout = 0.1,
 };

@@ -41,7 +41,7 @@
 						local entity = nextTile.getEntity();
 
 						if (!entity.getCurrentProperties().IsStunned && !entity.isAlliedWith(actor)) {
-							this.m.isFootwork = true;
+							this.m.IsFootwork = true;
 							break;
 						}
 					}

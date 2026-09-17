@@ -1,4 +1,3 @@
-local gt = this.getroottable();
 if (!("Perks" in ::Const))
 {
 	::Const.Perks <- {};

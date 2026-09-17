@@ -849,15 +849,15 @@ perkDefObjects.push({
 	Const = "LegendFlux"
 });
 
-::Legends.Perk.LegendSpecPoison <- null;
+::Legends.Perk.LegendPoisoner <- null;
 perkDefObjects.push({
-	ID = "perk.legend_mastery_poison",
-	Script = "scripts/skills/perks/perk_legend_mastery_poison",
-	Name = ::Const.Strings.PerkName.LegendSpecPoison,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSpecPoison,
-	Icon = "ui/perks/mastery_poison.png",
-	IconDisabled = "ui/perks/mastery_poison_bw.png",
-	Const = "LegendSpecPoison"
+	ID = "perk.legend_poisoner",
+	Script = "scripts/skills/perks/perk_legend_poisoner",
+	Name = ::Const.Strings.PerkName.LegendPoisoner,
+	Tooltip = ::Const.Strings.PerkDescription.LegendPoisoner,
+	Icon = "ui/perks/legend_poisoner.png",
+	IconDisabled = "ui/perks/legend_poisoner_bw.png",
+	Const = "LegendPoisoner"
 });
 
 ::Legends.Perk.LegendPointBlank <- null;

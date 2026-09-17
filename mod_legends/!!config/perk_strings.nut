@@ -147,9 +147,9 @@
 ::Const.Strings.PerkName.LegendVersatile <- "Versatile";
 ::Const.Strings.PerkName.LegendWideSwings <- "Wide Swings";
 ::Const.Strings.PerkName.LegendNearDeathExperience <- "Near Death Experience";
+::Const.Strings.PerkName.LegendPoisoner <- "Poisoner";
 
 //MASTERIES - skills that have a unified effect on their weapon class
-::Const.Strings.PerkName.LegendSpecPoison <- "Poison Mastery";
 ::Const.Strings.PerkName.LegendSpecBandage <- "Bandage Mastery";
 ::Const.Strings.PerkName.LegendMasteryStaves <- "Magic Staff Mastery";
 ::Const.Strings.PerkName.LegendMasteryMusic <- "Music Mastery";
@@ -546,21 +546,13 @@ You're a well-rounded athlete!
 • Reduce the Fatigue cost of all your skills and movement by a percentage equal to [color=%negative%]20%[/color] of your maximum usable Fatigue after gear weight is accounted for.
 ";
 
-::Const.Strings.PerkDescription.LegendSpecPoison <- @"
-Unlock the deadly art of poisoning and be able to lick your poisoned weapon without dying.
+::Const.Strings.PerkDescription.LegendPoisoner <- @"
+ Intimate familiarity with poisonous substances allows this one to apply just the right amount to the unwitting victims.
 
 [color=%passive%][u]Passive:[/u][/color]
 • Renders the character immune to poison.
 
-• Unlocks the [color=%skill%]Use Poison[/color] skill which allows you to coat your weapons with poison for your next four attacks.
-
-• [color=%status%]Poisoned[/color] enemies have their AP and Vision reduced by [color=%negative%]1[/color] per turns left on the status effect. It also lowers Initiative by [color=%negative%]10[/color] per turns left on the status effect.
-
-• Base [color=%status%]Poison[/color] duration is three turns.
-
-• AP cost is reduced to [color=%negative%]0[/color] on first round of combat.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]15[/color] Fatigue.
+• Increases the number of charges applied while coating a weapon in poison by 2.
 ";
 
 ::Const.Strings.PerkDescription.LegendEvasion <- @"
