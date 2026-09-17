@@ -110,18 +110,22 @@
 	}
 
 
-	o.requirementsMet <- function ( _ids )
-	{
+	o.requirementsMet <- function (_ids) {
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			foreach( id in _ids )
-			{
-				if (bro.getSkills().hasSkill(id))
-				{
+		foreach (bro in roster) {
+			foreach (id in _ids) {
+				if (bro.getSkills().hasSkill(id)) {
 					return true;
 				}
+			}
+		}
+
+		local town = ::World.State.getCurrentTown();
+		if (town != null) {
+			local taxidermist = town.getBuilding("building.taxidermist");
+			if(taxidermist != null && _ids.filter(@(_, _id) (_id == ::Legends.Professions.getID(taxidermist.m.TaxidermistSpecialization))).len() > 0) {
+				return true;
 			}
 		}
 

@@ -4178,7 +4178,7 @@
 				{
 					id = 1,
 					type = "title",
-					text = "Taxidermist"
+					text = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding("building.taxidermist").m.TaxidermistSpecialization].Name + ")"
 				},
 				{
 					id = 2,

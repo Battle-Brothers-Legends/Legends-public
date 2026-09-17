@@ -13,6 +13,7 @@
 	o.queryBlueprints = function()
 	{
 		local result = queryBlueprints();
+		result.Title = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding("building.taxidermist").m.TaxidermistSpecialization].Name + ")" ;
 		result.SubTitle = "A taxidermist can create useful items from all kinds of beast trophies that you bring";
 
 		local bps = ::World.Crafting.getQualifiedBlueprintsForUI(this.m.InventoryFilter);
