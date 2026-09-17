@@ -15,6 +15,6 @@ this.profession_legend_scrapping <- this.inherit("scripts/skills/legend_professi
 	}
 
 	function onUpdate(_properties){
-		_properties.Modifiers.Scrapping += 0.1;
+		_properties.Modifiers.Salvage += 0.1;
 	}
 });
