@@ -16,7 +16,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	}
 
 	function isHidden() {
-		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getBackground().getModifiers().Enchanting > 0).len() == 0;
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) _bro.getCurrentProperties().Modifiers.Enchanting > 0).len() == 0;
 	}
 
 	function getDescription() {
@@ -32,7 +32,7 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 		local self = this;
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
-			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Enchanting;
+			local rm = this.m.BaseCraft * bro.getCurrentProperties().Modifiers.Enchanting;
 			if (bro.getLevel() >= 12) {
 				rm *= 1.3;
 			}
@@ -49,6 +49,6 @@ this.enchanter_building <- this.inherit("scripts/entity/world/camp/item_crafting
 	}
 
 	function onBroEnter ( _bro ) {
-		return _bro.getBackground().getModifiers().Enchanting > 0;
+		return _bro.getCurrentProperties().Modifiers.Enchanting > 0;
 	}
 });

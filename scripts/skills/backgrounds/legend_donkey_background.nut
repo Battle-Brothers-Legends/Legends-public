@@ -119,7 +119,8 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 
 	function getTooltip() {
 		local ret = this.character_background.getTooltip();
-		local stashModifier = this.m.Modifiers.Stash + this.getModifier();
+		local modifiers = this.getContainer().getActor().getCurrentProperties().Modifiers;
+		local stashModifier = modifiers.Stash + this.getModifier();
 		ret.push({
 			id = 10,
 			type = "text",
@@ -142,7 +143,7 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Donkeys provide [color=%positive%]+" + stashModifier + "[/color] stash space, [color=%positive%]+" + this.m.Modifiers.Ammo + "[/color] maximum ammunition storage, [color=%positive%]+" + this.m.Modifiers.Meds + "[/color] maximum medicine capacity,  [color=%positive%]+" + this.m.Modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
+			text = "Donkeys provide [color=%positive%]+" + stashModifier + "[/color] stash space, [color=%positive%]+" + modifiers.Ammo + "[/color] maximum ammunition storage, [color=%positive%]+" + modifiers.Meds + "[/color] maximum medicine capacity,  [color=%positive%]+" + modifiers.ArmorParts + "[/color] maximum armor parts. These can be increased with perks (may take a moment for the increases to register). "
 		});
 		return ret;
 	}

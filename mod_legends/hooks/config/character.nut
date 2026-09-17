@@ -111,6 +111,14 @@ for( local i = 1; i < 88; i = ++i )
 	return ::Math.floor(this.Initiative * (this.InitiativeMult >= 0 ? this.InitiativeMult : 1.0 / this.InitiativeMult));
 };
 
+local getClone = ::Const.CharacterProperties.getClone;
+::Const.CharacterProperties.getClone = function() {
+    local c = getClone();
+    c.Modifiers = clone this.Modifiers;
+    c.Modifiers.Terrain = clone this.Modifiers.Terrain;
+    return c;
+}
+
 local onSerialize = ::Const.CharacterProperties.onSerialize;
 ::Const.CharacterProperties.onSerialize = function ( _out )
 {

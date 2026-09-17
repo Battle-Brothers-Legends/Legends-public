@@ -1685,19 +1685,16 @@
 		}
 	}
 
-	o.getStashModifier <- function ()
-	{
-		local background = this.getBackground();
-		local broStash = background.getModifiers().Stash;
+	o.getStashModifier <- function () {
+		local broStash = this.getCurrentProperties().Modifiers.Stash;
 		local item = this.getItems().getItemAtSlot(::Const.ItemSlot.Accessory);
 
-		if (item != null)
-		{
-			broStash = broStash + item.getStashModifier();
+		if (item != null) {
+			broStash += item.getStashModifier();
 		}
 
-		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
-		{
+		local background = this.getBackground();
+		if (background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)) {
 			broStash += background.getModifier();
 		}
 
@@ -1705,30 +1702,24 @@
 	}
 
 	o.getAmmoModifier <- function () {
-		return this.getBackground().getModifiers().Ammo;
+		return this.getCurrentProperties().Modifiers.Ammo;
 	}
 
 	o.getArmorPartsModifier <- function () {
-		return this.getBackground().getModifiers().ArmorParts;
+		return this.getCurrentProperties().Modifiers.ArmorParts;
 	}
 
 	// Means repair efficiency
 	o.getToolEfficiencyModifier <- function () {
-		return this.getBackground().getModifiers().ToolConsumption * 100;
+		return this.getCurrentProperties().Modifiers.ToolConsumption * 100;
 	}
 
 	o.getMedsModifier <- function () {
-		return this.getBackground().getModifiers().Meds;
+		return this.getCurrentProperties().Modifiers.Meds;
 	}
 
-	o.getHaggleModifier <- function ()
-	{
-		local bg = this.getBackground();
-		if (bg == null)
-		{
-			return 0;
-		}
-		local mod = this.getBackground().getModifiers().Haggle;
+	o.getHaggleModifier <- function () {
+		local mod = this.getCurrentProperties().Modifiers.Haggle;
 
 		local skill = ::Legends.Traits.get(this, ::Legends.Trait.LegendSeductive);
 		if (skill != null) {

@@ -24,7 +24,7 @@ this.kitchen_building <- this.inherit("scripts/entity/world/camp/item_crafting_b
 		local self = this;
 		local assignedBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID));
 		foreach (bro in assignedBros) {
-			local rm = this.m.BaseCraft * bro.getBackground().getModifiers().Cooking;
+			local rm = this.m.BaseCraft * bro.getCurrentProperties().Modifiers.Cooking;
 			ret.Craft += rm;
 			++ret.Assigned;
 			ret.Modifiers.push([rm, bro.getName(), bro.getBackground().getNameOnly()]);

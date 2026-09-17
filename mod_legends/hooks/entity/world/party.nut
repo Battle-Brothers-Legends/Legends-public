@@ -217,7 +217,7 @@
 				local broTable = [];
 				foreach( bro in ::World.getPlayerRoster().getAll() )
 				{
-					broTable = bro.getBackground().getModifiers().Terrain;
+					broTable = bro.getCurrentProperties().Modifiers.Terrain;
 					if (broTable == null)
 					{
 						continue;

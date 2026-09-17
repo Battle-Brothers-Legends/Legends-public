@@ -341,7 +341,7 @@
 				ret.Injuries.push([ht.Min, ht.Max, bro.getName()]);
 			}
 
-			local rm = bro.getBackground().getModifiers().Healing * 100.0;
+			local rm = bro.getCurrentProperties().Modifiers.Healing * 100.0;
 			if (rm > 0)
 			{
 				ret.Modifiers.push([rm, bro.getName(), bro.getBackground().getNameOnly()]);
@@ -1248,7 +1248,7 @@
 		}
 
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			local terrains = bro.getBackground().getModifiers().Terrain;
+			local terrains = bro.getCurrentProperties().Modifiers.Terrain;
 			for (local i = 0; i < terrainIDs.len(); ++i) {
             	ret.TerrainModifiers[i][1] += terrains[terrainIDs[i]];
         	}

@@ -243,7 +243,7 @@ this.camp_building <- {
 			// If the character is skilled, they will contribute the BaseCraft value + the bonuses from their modifiers. The bonuses are further multiplied by the tent's ModMod value
 			// A higher ModMod value means that skilled characters will have a more significant impact on the output
 			++ret.Assigned;
-			ret.Modifiers.push([this.m.BaseCraft + this.m.BaseCraft * bro.getBackground().getModifiers()[this.m.ModName] * this.m.ModMod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
+			ret.Modifiers.push([this.m.BaseCraft + this.m.BaseCraft * bro.getCurrentProperties().Modifiers[this.m.ModName] * this.m.ModMod, bro.getNameOnly(), bro.getBackground().getNameOnly()]);
 		}
 
 		ret.Modifiers.sort(this.sortModifiers);
@@ -267,7 +267,7 @@ this.camp_building <- {
 			local assignedBuilding = ::World.Camp.getBuildingByID(b.getCampAssignment());
 			bro.bannerImage <- assignedBuilding.getBanner(b);
 			bro.IsSelected <- b.getCampAssignment() == this.m.ID;
-			bro.Modifier <- this.m.ModName != "" ? b.getBackground().getModifiers()[this.m.ModName] : 0;
+			bro.Modifier <- this.m.ModName != "" ? b.getCurrentProperties().Modifiers[this.m.ModName] : 0;
 			bro.IsUnableToWork <- (::World.Camp.m.IsEscorting && assignedBuilding.isWorkDangerous()) || this.isRecovering(b);
 			roster.push(bro);
 		}

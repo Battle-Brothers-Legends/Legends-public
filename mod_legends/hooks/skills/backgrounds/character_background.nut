@@ -5,47 +5,6 @@
 	o.m.BackgroundType <- ::Const.BackgroundType.None;
 	o.m.AlignmentMin <- ::Const.LegendMod.Alignment.Dreaded;
 	o.m.AlignmentMax <- ::Const.LegendMod.Alignment.Saintly;
-	o.m.Modifiers <- {
-		Ammo = ::Const.LegendMod.ResourceModifiers.Ammo[0],
-		ArmorParts = ::Const.LegendMod.ResourceModifiers.ArmorParts[0],
-		Meds = ::Const.LegendMod.ResourceModifiers.Meds[0],
-		Stash = ::Const.LegendMod.ResourceModifiers.Stash[0],
-		Healing = ::Const.LegendMod.ResourceModifiers.Healing[0],
-		Injury = ::Const.LegendMod.ResourceModifiers.Injury[0],
-		Repair = ::Const.LegendMod.ResourceModifiers.Repair[0],
-		Salvage = ::Const.LegendMod.ResourceModifiers.Salvage[0],
-		Crafting = ::Const.LegendMod.ResourceModifiers.Crafting[0],
-		Haggle = ::Const.LegendMod.ResourceModifiers.Haggle[0],
-		ToolConsumption = ::Const.LegendMod.ResourceModifiers.ToolConsumption[0],
-		MedConsumption = ::Const.LegendMod.ResourceModifiers.MedConsumption[0],
-		Cooking = ::Const.LegendMod.ResourceModifiers.Cooking[0],
-		Fletching = ::Const.LegendMod.ResourceModifiers.Fletching[0],
-		Scout = ::Const.LegendMod.ResourceModifiers.Scout[0],
-		Gathering = ::Const.LegendMod.ResourceModifiers.Gather[0],
-		Training = ::Const.LegendMod.ResourceModifiers.Training[0],
-		Enchanting = 0.0,
-		Terrain = [
-			0.0, // ?
-			0.0, //ocean
-			0.0,//plains
-			0.0, //swamp
-			0.0, //hills
-			0.0, //forest (pine?)
-			0.0, //forest (snow?)
-			0.0, //forest_leaves
-			0.0, //autumn_forest
-			0.0, //mountains
-			0.0, // ?
-			0.0, //farmland
-			0.0, // snow
-			0.0, // badlands
-			0.0, //highlands
-			0.0, //steppes
-			0.0, //ocean
-			0.0, //desert
-			0.0 //oasis
-		]
-	};
 	o.m.PerkTreeDynamicMins <- {
 		Weapon = 8,
 		Defense = 2,
@@ -188,10 +147,6 @@
 		return isLowborn() || this.isBackgroundType(::Const.BackgroundType.Lowborn);
 	}
 
-	o.getModifiers <- function() {
-		return this.m.Modifiers;
-	}
-
 	o.getIconColored <- function ()
 	{
 		if(this.isBackgroundType(::Const.BackgroundType.ConvertedCultist)) {
@@ -272,7 +227,8 @@
 		}
 
 		local mtext = "";
-		foreach (k, v in this.m.Modifiers)
+		local modifiers = this.getContainer().getActor().getCurrentProperties().Modifiers;
+		foreach (k, v in modifiers)
 		{
 			if (k == "Terrain")
 			{
@@ -304,7 +260,7 @@
 			text += "\n" + mtext;
 		}
 
-		local terrains = this.m.Modifiers.Terrain;
+		local terrains = modifiers.Terrain;
 		local val = 0.0;
 		local ttext = "";
 		val = terrains[2] * 100.0;
@@ -407,9 +363,10 @@
 		];
 
 		local capacityTitle = true;
+		local modifiers = this.getContainer().getActor().getCurrentProperties().Modifiers;
 		foreach (c in capacities)
 		{
-			if (this.m.Modifiers[c.key] != 0)
+			if (modifiers[c.key] != 0)
 			{
 				if (capacityTitle)
 				{
@@ -428,7 +385,7 @@
 						id = 4,
 						type = "hint",
 						icon = c.icon,
-						text = c.name + " " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.m.Modifiers[c.key]) + ::Math.abs(this.m.Modifiers[c.key]), this.m.Modifiers[c.key])
+						text = c.name + " " + ::Legends.S.colorize("" + ::Legends.S.getSign(modifiers[c.key]) + ::Math.abs(modifiers[c.key]), modifiers[c.key])
 					}
 				);
 			}
@@ -510,7 +467,7 @@
 		local skillsTitle = true;
 		foreach (s in skills)
 		{
-			if (this.m.Modifiers[s.key] != 0)
+			if (modifiers[s.key] != 0)
 			{
 				if (skillsTitle)
 				{
@@ -529,7 +486,7 @@
 						id = 5,
 						type = "hint",
 						icon = s.icon,
-						text = s.name + " " + ::Legends.S.colorize("" + ((this.m.Modifiers[s.key] > 0) ? "+" : "-") + (this.m.Modifiers[s.key] * 100) + "%", this.m.Modifiers[s.key])
+						text = s.name + " " + ::Legends.S.colorize("" + ((modifiers[s.key] > 0) ? "+" : "-") + (modifiers[s.key] * 100) + "%", modifiers[s.key])
 					}
 				);
 			}
@@ -588,7 +545,7 @@
 		local terrainTitle = true;
 		foreach (t in terrain)
 		{
-			if (this.m.Modifiers.Terrain[t.key] != 0)
+			if (modifiers.Terrain[t.key] != 0)
 			{
 				if (terrainTitle)
 				{
@@ -607,7 +564,7 @@
 						id = 6,
 						type = "hint",
 						icon = "ui/icons/tracking_disabled.png",
-						text = t.name + " " + ::Legends.S.colorize("" + ((this.m.Modifiers.Terrain[t.key] > 0) ? "+" : "-") + (this.m.Modifiers.Terrain[t.key] * 100) + "%", this.m.Modifiers.Terrain[t.key])
+						text = t.name + " " + ::Legends.S.colorize("" + ((modifiers.Terrain[t.key] > 0) ? "+" : "-") + (modifiers.Terrain[t.key] * 100) + "%", modifiers.Terrain[t.key])
 					}
 				);
 			}
@@ -1399,6 +1356,16 @@
 
 		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.manhunters" && this.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 			_properties.XPGainMult *= 0.9;
+		}
+
+		foreach(k, v in ::Legends.BackgroundModifiers[::Legends.Backgrounds.findById(this.getID()).Const]) {
+			if (k != "Terrain") {
+				_properties.Modifiers[k] += v;
+			} else {
+				foreach(idx, value in v) {
+					_properties.Modifiers[k][idx] += value;
+				}
+			}
 		}
 	}
 
