@@ -73,7 +73,7 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.LegendMasteryStaves,
 			::Legends.Perk.SpecPolearm,
 			::Legends.Perk.LegendMasterySlings,
-			::Legends.Perk.LegendSpecPoison,
+			::Legends.Perk.LegendPoisoner,
 			::Legends.Perk.LegendSpecBandage
 		],
 		[

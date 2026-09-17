@@ -138,7 +138,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendSummonHound],
 		[::Legends.Perk.LegendNightvision],
 		[::Legends.Perk.LegendSummonFalcon, ::Legends.Perk.DevastatingStrikes],
-		[::Legends.Perk.LegendSpecPoison],
+		[::Legends.Perk.LegendPoisoner],
 		[::Legends.Perk.LegendSummonWolf],
 		[],
 		[::Legends.Perk.LegendBigGameHunter,]

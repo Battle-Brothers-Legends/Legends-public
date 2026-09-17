@@ -82,7 +82,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.SpecCleaver,
 				::Legends.Perk.SpecThrowing,
 				::Legends.Perk.LegendMasteryStaves,
-				::Legends.Perk.LegendSpecPoison,
+				::Legends.Perk.LegendPoisoner,
 				::Legends.Perk.LegendLacerate
 			],
 			[

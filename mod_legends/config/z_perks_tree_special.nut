@@ -123,7 +123,7 @@ function getRandomPerk()
 	return _chance;
 });
 
-::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendSpecPoison, 4, "Poison Mastery", function( _player, _chance ) {
+::Const.Perks.SpecialTrees.addSpecialPerk(1, ::Legends.Perk.LegendPoisoner, 4, "Poison Mastery", function( _player, _chance ) {
 
 	local talents = _player.getTalents();
 	local tl = talents.len() == 0 ? 0 : talents[::Const.Attributes.Hitpoints];

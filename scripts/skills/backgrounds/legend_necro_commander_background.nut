@@ -93,7 +93,7 @@ this.legend_necro_commander_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.SpecCleaver,
 					::Legends.Perk.LegendMasteryStaves,
 					::Legends.Perk.SpecPolearm,
-					::Legends.Perk.LegendSpecPoison,
+					::Legends.Perk.LegendPoisoner,
 					::Legends.Perk.LegendSpecBandage,
 					::Legends.Perk.LegendExtendedAura
 				],

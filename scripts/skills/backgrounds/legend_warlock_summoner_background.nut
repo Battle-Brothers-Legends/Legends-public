@@ -72,7 +72,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.SpecCleaver,
 				::Legends.Perk.SpecPolearm,
 				::Legends.Perk.LegendMasteryStaves,
-				::Legends.Perk.LegendSpecPoison,
+				::Legends.Perk.LegendPoisoner,
 				::Legends.Perk.LegendLacerate,
 				::Legends.Perk.LegendSpawnZombieMed
 			],

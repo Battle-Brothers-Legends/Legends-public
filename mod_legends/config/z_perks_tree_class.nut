@@ -14,7 +14,7 @@ if (!("Perks" in ::Const))
 		[],
 		[],
 		[],
-		[::Legends.Perk.LegendSpecPoison],
+		[::Legends.Perk.LegendPoisoner],
 		[],
 		[],
 		[]
