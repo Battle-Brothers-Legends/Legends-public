@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Provisions. Fish is a common and filling food in coastal regions. It is dried to preserve it. Can be eaten in battle to provide up to 2 healing and fatigue recovery over ten turns, based on the amount remaining. Will be used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Fish is a common and filling food in coastal regions. It is dried to preserve it.";
 		this.m.Amount = 20.0;
 	}
 });

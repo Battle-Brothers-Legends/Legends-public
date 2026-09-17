@@ -5,7 +5,7 @@ this.legend_fresh_mushrooms_item <- this.inherit("scripts/items/supplies/food_it
 		this.food_item.create();
 		this.m.ID = "supplies.legend_fresh_mushrooms";
 		this.m.Name = "Fresh Mushrooms";
-		this.m.Description = "Provisions. Mushrooms are aplenty in swampy regions. They will last much longer if preserved. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Mushrooms are aplenty in swampy regions. They will last much longer if preserved.";
 		this.m.Icon = "supplies/legend_fresh_mushrooms.png";
 		this.m.Amount = 10;
 		this.m.Value = 20;

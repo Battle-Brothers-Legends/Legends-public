@@ -5,7 +5,7 @@ this.legend_pie_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_pie";
 		this.m.Name = "Pie";
-		this.m.Description = "A large pie made from freshly sourced ingredients. Can be eaten in battle to provide up to 4 healing and fatigue recovery each turn for five turns, based on the amount remaining. Will be used as provisions if left in the company stash.";
+		this.m.Description = "A large pie made from freshly sourced ingredients.";
 		this.m.Icon = "supplies/legend_pie.png";
 		this.m.Value = 250;
 		this.m.GoodForDays = 11;

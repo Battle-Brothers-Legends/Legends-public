@@ -5,7 +5,7 @@ this.legend_boar_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_boar_meat";
 		this.m.Name = "Boar Meat";
-		this.m.Description = "Provisions. The rewards of a good hunt, savory meat from a wild boar. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. The rewards of a good hunt, savory meat from a wild boar.";
 		this.m.Icon = "supplies/legend_boar_meat.png";
 		this.m.Amount = 20;
 		this.m.Value = 40;

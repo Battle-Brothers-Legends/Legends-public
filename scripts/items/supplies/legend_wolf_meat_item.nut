@@ -5,7 +5,7 @@ this.legend_wolf_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_wolf_meat";
 		this.m.Name = "Wolf Meat";
-		this.m.Description = "Provisions. Foul smelling meat from the howling bane of shepherds. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Foul smelling meat from the howling bane of shepherds.";
 		this.m.Icon = "supplies/legend_fresh_meat.png"; // credit to Emo
 		this.m.Amount = 15;
 		this.m.Value = 30;

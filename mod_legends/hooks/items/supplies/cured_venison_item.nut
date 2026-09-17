@@ -2,7 +2,7 @@
 	local create = o.create;
 	o.create = function () {
 		create();
-		this.m.Description = "Provisions. A cured chunk of venison preserved by salt. Fine food for a travelling sellsword. Can be eaten in battle to provide healing and fatigue recovery over ten turns. Will be used as provisions if left in the company stash";
+		this.m.Description = "Provisions. A cured chunk of venison preserved by salt. Fine food for a travelling sellsword.";
 		this.m.Value = 100;
 		this.m.Amount = 30.0;
 		this.m.GoodForDays = 8;

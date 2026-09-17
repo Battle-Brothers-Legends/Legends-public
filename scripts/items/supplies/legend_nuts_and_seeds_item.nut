@@ -5,7 +5,7 @@ this.legend_nuts_and_seeds_item <- this.inherit("scripts/items/supplies/food_ite
 		this.food_item.create();
 		this.m.ID = "supplies.legend_nuts_and_seeds";
 		this.m.Name = "Nuts and Seeds";
-		this.m.Description = "Provisions. Feast for a squirrel, well kept snack for any wayward traveller. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Feast for a squirrel, well kept snack for any wayward traveler.";
 		this.m.Icon = "supplies/legend_nuts_and_seeds.png";
 		this.m.Amount = 10;
 		this.m.Value = 10;

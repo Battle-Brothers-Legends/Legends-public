@@ -5,7 +5,7 @@ this.legend_bear_meat_item <- this.inherit("scripts/items/supplies/food_item", {
 		this.food_item.create();
 		this.m.ID = "supplies.legend_bear_meat";
 		this.m.Name = "Bear Meat";
-		this.m.Description = "Provisions. Large chunks of foul smelling meat from a ferocious bear. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Large chunks of foul smelling meat from a ferocious bear.";
 		this.m.Icon = "supplies/legend_bear_meat.png";
 		this.m.Amount = 20;
 		this.m.Value = 45;

@@ -5,7 +5,7 @@ this.legend_fresh_roots_and_berries_item <- this.inherit("scripts/items/supplies
 		this.food_item.create();
 		this.m.ID = "supplies.legend_fresh_roots_and_berries";
 		this.m.Name = "Fresh Roots and Berries";
-		this.m.Description = "Provisions. Fresh roots and berries are easy to find and fairly common, but require preservation to last longer. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Fresh roots and berries are easy to find and fairly common, but require preservation to last longer.";
 		this.m.Icon = "supplies/inventory_provisions_04.png";
 		this.m.Amount = 15;
 		this.m.Value = 20;

@@ -5,7 +5,7 @@ this.legend_rabbit_meat_item <- this.inherit("scripts/items/supplies/food_item",
 		this.food_item.create();
 		this.m.ID = "supplies.legend_rabbit_meat";
 		this.m.Name = "Rabbit Meat";
-		this.m.Description = "Provisions. Common game meat, the perfect meal for peasant and poacher alike. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Common game meat, the perfect meal for peasant and poacher alike.";
 		this.m.Icon = "supplies/legend_rabbit_meat.png";
 		this.m.Amount = 10;
 		this.m.Value = 15;

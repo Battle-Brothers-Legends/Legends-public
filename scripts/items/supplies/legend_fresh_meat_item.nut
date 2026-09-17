@@ -5,7 +5,7 @@ this.legend_fresh_meat_item <- this.inherit("scripts/items/supplies/food_item", 
 		this.food_item.create();
 		this.m.ID = "supplies.legend_fresh_meat";
 		this.m.Name = "Fresh Meat";
-		this.m.Description = "Provisions. Freshly caught and butchered, this meat tastes good but will not last long without curing. Can be eaten in battle to provide up to 1 healing and fatigue recovery over ten turns, based on the amount remaining. Will be gradually used as provisions if left in the company stash.";
+		this.m.Description = "Provisions. Freshly caught and butchered, this meat tastes good but will not last long without curing.";
 		this.m.Icon = "supplies/legend_fresh_game.png";
 		this.m.Amount = 15.0;
 		this.m.Value = 30;
