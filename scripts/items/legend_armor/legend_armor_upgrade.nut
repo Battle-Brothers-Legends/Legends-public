@@ -672,7 +672,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					id = 20,
 					type = "hint",
 					icon = "ui/tooltips/money_sw.png",
-					text = "No stat difference",
+					text = "No armor stat difference",
 				});
 			}
 
@@ -689,8 +689,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 
 			// TODO: Compare Effects
-			
-			_tooltipList.top().divider <- "bottom";
 		}
 	}
 

@@ -23,6 +23,14 @@ This item has the power of the rune sigil of Endurance:
 	EffectValues = [
 		[0, 2],
 		[3, 6]
+	],
+	ShortTooltip = @"
+[color=%positive%]+%bonus1%[/color] Fatigue recovery per turn
+[color=%negative%]%bonus2%%[/color] reduced Fatigue cost for skills
+	",
+	CompareTooltip = [
+		"%diff% [color=%positive%]+%bonus1%[/color] Fatigue recovery (%new% vs %old%)",
+		"%diff% [color=%negative%]%bonus2%%[/color] reduced Fatigue cost (%new% vs %old%)"
 	]
 });
 
@@ -47,6 +55,14 @@ This item has the power of the rune sigil of Safety:
 	EffectValues = [
 		[3, 6],
 		[3, 6]
+	],
+	ShortTooltip = @"
+[color=%positive%]+%bonus1%%[/color] Hitpoints
+[color=%negative%]-%bonus2%%[/color] Damage received
+	",
+	CompareTooltip = [
+		"%diff% [color=%positive%]+%bonus1%%[/color] Hitpoints (%new% vs %old%)",
+		"%diff% [color=%negative%]-%bonus2%%[/color] Damage received (%new% vs %old%)"
 	]
 });
 
