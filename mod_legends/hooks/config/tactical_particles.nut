@@ -1,5 +1,4 @@
-foreach (particle in ::Const.Tactical.DustParticles)
-{
+foreach (particle in ::Const.Tactical.DustParticles) {
 	particle.Quantity = 60;
 	particle.LifeTimeQuantity = 60;
 	particle.SpawnRate = 1200;
@@ -2463,6 +2462,84 @@ foreach (particle in ::Const.Tactical.DustParticles)
 				VelocityMax = 0,
 				ForceMin = this.createVec(0, -80),
 				ForceMax = this.createVec(0, -80)
+			}
+		]
+	}
+];
+
+::Const.Tactical.LightningParticlesCaster <- [
+	{
+		Delay = 0,
+		Quantity = 10,
+		LifeTimeQuantity = 10,
+		SpawnRate = 300,
+		Brushes = [
+			"effect_lightning_01",
+			"effect_lightning_02",
+			"effect_lightning_03"
+		],
+		Stages = [
+			{
+				LifeTimeMin = 0.1,
+				LifeTimeMax = 0.1,
+				ColorMin = this.createColor("fffffff00"),
+				ColorMax = this.createColor("fffffff00"),
+				ScaleMin = 0.25,
+				ScaleMax = 0.75,
+				RotationMin = 80,
+				RotationMax = 100,
+				VelocityMin = 30,
+				VelocityMax = 60,
+				DirectionMin = this.createVec(0.9, 0.1),
+				DirectionMax = this.createVec(1.0, 0.3),
+				SpawnOffsetMin = this.createVec(10, 30),
+				SpawnOffsetMax = this.createVec(30, 50),
+				ForceMin = this.createVec(50, 10),
+				ForceMax = this.createVec(80, 15)
+			},
+			{
+				LifeTimeMin = 0.1,
+				LifeTimeMax = 0.3,
+				ColorMin = this.createColor("fffffffe0"),
+				ColorMax = this.createColor("ffffffff0"),
+				ScaleMin = 0.5,
+				ScaleMax = 1.0,
+				RotationMin = 80,
+				RotationMax = 100,
+				VelocityMin = 30,
+				VelocityMax = 60,
+				DirectionMin = this.createVec(0.9, 0.1),
+				DirectionMax = this.createVec(1.0, 0.3),
+				ForceMin = this.createVec(50, 10),
+				ForceMax = this.createVec(80, 15)
+			},
+			{
+				LifeTimeMin = 0.1,
+				LifeTimeMax = 0.3,
+				ColorMin = this.createColor("ffffffe0"),
+				ColorMax = this.createColor("ffffffe0"),
+				ScaleMin = 0.5,
+				ScaleMax = 1.0,
+				RotationMin = 80,
+				RotationMax = 100,
+				VelocityMin = 30,
+				VelocityMax = 60,
+				ForceMin = this.createVec(50, 10),
+				ForceMax = this.createVec(80, 15)
+			},
+			{
+				LifeTimeMin = 0.1,
+				LifeTimeMax = 0.2,
+				ColorMin = this.createColor("ffffff00"),
+				ColorMax = this.createColor("ffffff00"),
+				ScaleMin = 0.75,
+				ScaleMax = 1.5,
+				RotationMin = 80,
+				RotationMax = 100,
+				VelocityMin = 30,
+				VelocityMax = 60,
+				ForceMin = this.createVec(50, 10),
+				ForceMax = this.createVec(80, 15)
 			}
 		]
 	}

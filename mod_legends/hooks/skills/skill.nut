@@ -412,7 +412,7 @@
 			});
 		}
 
-		if (_targetTile.Level < this.m.Container.getActor().getTile().Level)
+		if ((!("HeightReversed" in this.m) && _targetTile.Level < this.m.Container.getActor().getTile().Level) || ("HeightReversed" in this.m && _targetTile.Level > this.m.Container.getActor().getTile().Level))
 		{
 			ret.push({
 				icon = "ui/tooltips/positive.png",
@@ -472,7 +472,7 @@
 			});
 		}
 
-		if (_targetTile.Level > myTile.Level)
+		if ((!("HeightReversed" in this.m) && _targetTile.Level > myTile.Level) || ("HeightReversed" in this.m && _targetTile.Level < myTile.Level))
 		{
 			ret.push({
 				icon = "ui/tooltips/negative.png",
@@ -521,8 +521,8 @@
 			if (this.m.IsUsingHitchance)
 			{
 				local blockedTiles = ::Const.Tactical.Common.getBlockedTiles(myTile, _targetTile, user.getFaction(), true);
-
-				if (blockedTiles.len() != 0)
+				local blockChance = ::Const.Combat.RangedAttackBlockedChance * this.getContainer().buildPropertiesForUse(this, targetEntity).RangedAttackBlockedChanceMult;
+				if (blockedTiles.len() != 0 && blockChance != 0.0)
 				{
 					ret.push({
 						icon = "ui/tooltips/negative.png",
@@ -719,13 +719,15 @@
 		};
 		modifier["Height advantage"] <- function ( row, description )
 		{
-			row.text = green(::Const.Combat.LevelDifferenceToHitBonus + "%") + " " + description;
+			local levelDifference = ::Math.abs(myTile.Level - _targetTile.Level);
+			local bonus = ::Const.Combat.LevelDifferenceToHitBonus * levelDifference;
+			row.text = green(bonus + "%") + " " + description;
 		};
 		modifier["Height disadvantage"] <- function ( row, description )
 		{
-			local levelDifference = myTile.Level - _targetTile.Level;
+			local levelDifference = ::Math.abs(myTile.Level - _targetTile.Level);
 			local malus = ::Const.Combat.LevelDifferenceToHitMalus * levelDifference;
-			row.text = red(malus + "%") + " " + description;
+			row.text = red("-" + malus + "%") + " " + description;
 		};
 
 		modifier["Target on bad terrain"] <- function ( row, description )
@@ -1759,10 +1761,6 @@
 	{
 		local sound = this.m.Sound[::Math.rand(0, this.m.Sound.len() - 1)];
 		::Sound.play(sound, ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
-	}
-
-	o.getItem <- function () {
-		return this.m.Item;
 	}
 
 	local setItem = o.setItem;

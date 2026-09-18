@@ -162,6 +162,7 @@
 - `Lookout` - removed from Slings tree
 - `Anchor` - moved to Slings from Bow to replace `Lookout`
 - `Poisoner` - renamed from `Poison Mastery`, moved to tier 5, now increases the number of attacks on poison coats, active removed
+- `Chain Lightning` - reworked graphical effects, executes faster, is now inversely affected by height difference, doesn't get blocked by cover anymore
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
