@@ -46,30 +46,7 @@ if (!("Actives" in ::Legends)) {
 	local container = ::Legends.Actives.getContainer(_target, "on grant");
 	local skillDef = ::Legends.Actives.ActiveDefObjects[_def];
 
-	local skill = null;
-	local hasSkill = container.hasSkill(skillDef.ID);
-
-	// When granting to an item, always create a new skill instance so each weapon
-	// has its own skill in m.SkillPtrs. This handles dual wielding (both identical
-	// weapons and different weapons that share skills).
-	if (::MSU.isKindOf(_target, "item")) {
-		skill = ::new(skillDef.Script);
-		if (skill == null) {
-			return null;
-		}
-		if (_applyFn != null) {
-			_applyFn(skill);
-		}
-		_target.addSkill(skill);
-		skill.setContainer(container);
-		return skill;
-	}
-
-	if (hasSkill) {
-		skill = container.getSkillByID(skillDef.ID);
-	} else {
-		skill = ::new(skillDef.Script);
-	}
+	local skill = ::isKindOf(_target, "item") || !container.hasSkill(skillDef.ID) ? ::new(skillDef.Script) : container.getSkillByID(skillDef.ID);
 	// Prevents an issue when deserializing dual wield weapons and having ambidextrous
 	// which grants double swing active - not sure how to fix it properly yet
 	if (skill == null) {
@@ -78,7 +55,16 @@ if (!("Actives" in ::Legends)) {
 	if (_applyFn != null) {
 		_applyFn(skill);
 	}
-	container.add(skill);
+	// When granting to an item, always create a new skill instance so each weapon
+	// has its own skill in m.SkillPtrs. This handles dual wielding (both identical
+	// weapons and different weapons that share skills).
+	if (::isKindOf(_target, "item")) {
+		_target.addSkill(skill);
+		skill.setItem(_target);
+		skill.setContainer(container);
+	} else {
+		container.add(skill);
+	}
 	return skill;
 }
 

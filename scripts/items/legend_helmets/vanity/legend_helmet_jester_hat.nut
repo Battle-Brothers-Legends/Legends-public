@@ -77,12 +77,18 @@ this.legend_helmet_jester_hat <- this.inherit("scripts/items/legend_helmets/lege
 		_properties.TargetAttractionMult *= 1.2; // 1.0 = normal aggression, 0.1 = minimal aggression
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.legend_helmet_upgrade.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.Taunt))
-		{
+		if (!::Legends.Perks.has(this, ::Legends.Perk.Taunt)) {
 			::Legends.Actives.grant(this, ::Legends.Active.Taunt);
+		}
+	}
+
+	function onUnequip() {
+		local actor = this.getContainer().getActor();
+		this.legend_helmet_upgrade.onUnequip();
+		if (::Legends.Perks.has(actor, ::Legends.Perk.Taunt) && !::Legends.Actives.has(actor, ::Legends.Active.Taunt)) {
+			::Legends.Actives.grant(actor, ::Legends.Active.Taunt);
 		}
 	}
 });
