@@ -1761,6 +1761,10 @@
 		::Sound.play(sound, ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 	}
 
+	o.getItem <- function () {
+		return this.m.Item;
+	}
+
 	local setItem = o.setItem;
 	o.setItem = function (_i) {
 		setItem(_i);
