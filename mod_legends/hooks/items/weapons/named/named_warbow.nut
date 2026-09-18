@@ -11,7 +11,7 @@
 
 	o.addSkill <- function (_skill) {
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.AimedShot)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendFullDraw);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendFullDraw);
 			::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 			return;
 		}

@@ -44,7 +44,7 @@ this.legend_named_military_warscythe <- this.inherit("scripts/items/weapons/name
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill)
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill)
 		{
 			_skill.m.IsScytheCleave = true;
 		}.bindenv(this));

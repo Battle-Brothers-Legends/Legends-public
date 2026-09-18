@@ -24,7 +24,7 @@
 	o.onEquip = function ()
 	{
 		onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendFullDraw);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendFullDraw);
 		::Legends.Actives.grant(this, ::Legends.Active.LegendMarkTarget);
 	}
 });

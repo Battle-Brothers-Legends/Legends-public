@@ -43,9 +43,9 @@ this.legend_named_barbdiche <- this.inherit("scripts/items/weapons/named/named_w
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitMan);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitAxe);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.SplitMan);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitAxe);
+		::Legends.Actives.grant(this, ::Legends.Active.SplitShield, function (_skill) {
 			_skill.setApplyAxeMastery(true);
 			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
 		}.bindenv(this));

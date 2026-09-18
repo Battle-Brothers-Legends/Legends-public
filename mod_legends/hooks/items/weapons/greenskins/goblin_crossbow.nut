@@ -3,7 +3,7 @@
 	o.create = function ()
 	{
 		create();
-		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a minitature ballista, it shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
+		this.m.Description = "A large and heavy crossbow with menacing spikes in front. More like a miniature ballista, it shoots stakes with enough force to knock back a target hit. Very effective against vampires.";
 		this.setVariant(::Math.rand(0, 1));
 	}
 
@@ -30,18 +30,11 @@
 		}
 	}
 
-	o.addSkill <- function( _skill )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake))
-		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.ShootStake, function (_skill)
-			{
-				_skill.m.Name = "Shoot Stake";
-			}.bindenv(this));
-			return;
-		}
-
+	o.addSkill <- function (_skill) {
 		this.weapon.addSkill(_skill);
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake)) {
+			_skill.m.Name = "Shoot Stake";
+		}
 	}
 
 	local onEquip = o.onEquip;

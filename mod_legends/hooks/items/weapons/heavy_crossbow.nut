@@ -17,20 +17,6 @@
 		this.m.ArmamentIcon = "icon_crossbow_03" + v;
 	}
 
-	o.addSkill <- function( _skill )
-	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.ShootStake))
-		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.ShootStake, function (_skill)
-			{
-				_skill.m.Name = "Shoot Heavy Bolt";
-			}.bindenv(this));
-			return;
-		}
-
-		this.weapon.addSkill(_skill);
-	}
-
 	local onEquip = o.onEquip;
 	o.onEquip = function ()
 	{

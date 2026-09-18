@@ -11,7 +11,7 @@
 
 	o.addSkill <- function (_skill) {
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Strike)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill) {
+			::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
 				_skill.m.Icon = "skills/active_200.png";
 				_skill.m.IconDisabled = "skills/active_200_sw.png";
 				_skill.m.Overlay = "active_200";

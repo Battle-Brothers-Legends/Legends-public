@@ -37,21 +37,21 @@ this.legend_royal_lance <- this.inherit("scripts/items/weapons/weapon", {
 	function onEquip()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Prong, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.Prong, function (_skill) {
 			_skill.m.Icon = "skills/active_54.png";
 			_skill.m.IconDisabled = "skills/active_54_sw.png";
 			_skill.m.Overlay = "active_54";
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker, function (_skill) {
 			_skill.m.IsTwoHanded = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendRunThrough, function (_skill)
+		::Legends.Actives.grant(this, ::Legends.Active.LegendRunThrough, function (_skill)
 		{
 			_skill.m.Icon = "skills/skewer_spetum.png";
 			_skill.m.IconDisabled = "skills/skewer_spetum_bw.png";
 			_skill.m.Overlay = "skewer_spetum";
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall, function (_skill) {
 			_skill.m.Icon = "skills/active_54.png";
 			_skill.m.IconDisabled = "skills/active_54_sw.png";
 			_skill.m.Overlay = "active_54";

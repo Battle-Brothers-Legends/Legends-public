@@ -7,9 +7,9 @@
 			_skill.m.IconDisabled = "skills/active_54_sw.png";
 			_skill.m.Overlay = "active_54";
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker, function (_skill) {
 			_skill.m.IsPolearm = true;
 		}.bindenv(this));
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Repel);
+		::Legends.Actives.grant(this, ::Legends.Active.Repel);
 	}
 });

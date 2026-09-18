@@ -12,7 +12,7 @@
 
 	o.addSkill <- function (_skill) {
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBackstab);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBackstab);
 			return;
 		}
 
@@ -38,6 +38,6 @@
 	o.onEquip = function () {
 		onEquip();
 		::Legends.Actives.grant(this, ::Legends.Active.Deathblow);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowKnife);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowKnife);
 	}
 });

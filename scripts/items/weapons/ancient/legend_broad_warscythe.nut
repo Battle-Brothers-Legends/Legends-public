@@ -1,7 +1,7 @@
 this.legend_broad_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.weapon.create();
 		this.m.ID = "weapon.legend_broad_warscythe";
 		this.m.Name = "Ancient Broad Warscythe";
@@ -34,14 +34,11 @@ this.legend_broad_warscythe <- this.inherit("scripts/items/weapons/weapon", {
 		this.m.FatigueOnSkillUse = 5;
 	}
 
-	function onEquip()
-	{
+	function onEquip() {
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Cleave, function (_skill)
-			{
-				_skill.m.IsScytheCleave = true;
-			}.bindenv(this));
+		::Legends.Actives.grant(this, ::Legends.Active.Cleave, function (_skill) {
+			_skill.m.IsScytheCleave = true;
+		}.bindenv(this));
 		::Legends.Actives.grant(this, ::Legends.Active.Reap);
 	}
-
 });

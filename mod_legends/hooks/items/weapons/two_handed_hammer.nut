@@ -10,17 +10,11 @@
 
 	o.addSkill <- function( _skill )
 	{
-		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SplitShield))
-		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.SplitShield, function (_skill)
-			{
-				_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
-				_skill.m.IsHammer = true;
-			}.bindenv(this));
-			return;
-		}
-
 		this.weapon.addSkill(_skill);
+		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SplitShield)) {
+			_skill.setFatigueCost(_skill.getFatigueCostRaw() + 5);
+			_skill.m.IsHammer = true;
+		}
 	}
 
 	o.updateVariant <- function() {

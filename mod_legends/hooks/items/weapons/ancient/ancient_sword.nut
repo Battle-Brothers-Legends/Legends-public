@@ -18,7 +18,7 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Riposte))
 		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendGut);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendGut);
 			return;
 		}
 

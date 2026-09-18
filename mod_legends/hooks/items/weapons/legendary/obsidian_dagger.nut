@@ -15,11 +15,11 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab))
 		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendBackstab);
+			::Legends.Actives.grant(this, ::Legends.Active.LegendBackstab);
 			return;
 		}
 
-		weapon.addSkill(_skill);
+		this.weapon.addSkill(_skill);
 	}
 
 	local onEquip = o.onEquip;

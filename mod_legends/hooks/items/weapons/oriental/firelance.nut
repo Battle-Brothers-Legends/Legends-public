@@ -45,10 +45,10 @@
 	o.onEquip = function()
 	{
 		this.weapon.onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Thrust);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendHeartseeker);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.IgniteFirelance);
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.Spearwall);
+		::Legends.Actives.grant(this, ::Legends.Active.Thrust);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendHeartseeker);
+		::Legends.Actives.grant(this, ::Legends.Active.IgniteFirelance);
+		::Legends.Actives.grant(this, ::Legends.Active.Spearwall);
 	}
 
 });

@@ -29,7 +29,7 @@
 	o.onEquip = function()
 	{
 		onEquip();
-		::Legends.Actives.grant(this.weapon, ::Legends.Active.LegendThrowBackupAxe);
+		::Legends.Actives.grant(this, ::Legends.Active.LegendThrowBackupAxe);
 	}
 
 });

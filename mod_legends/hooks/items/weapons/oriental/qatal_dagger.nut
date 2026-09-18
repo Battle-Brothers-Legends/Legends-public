@@ -27,20 +27,13 @@
 	}
 
 	o.addSkill <- function (_skill) {
+		this.weapon.addSkill(_skill);
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Deathblow)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Deathblow, function (_skill) {
-				_skill.m.DeathblowBonus = true;
-			}.bindenv(this));
-			return;
+			_skill.m.DeathblowBonus = true;
 		}
 
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.Stab)) {
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Stab, function (_skill) {
-				_skill.m.IsQatalStab = true;
-			}.bindenv(this));
-			return;
+			_skill.m.IsQatalStab = true;
 		}
-
-		this.weapon.addSkill(_skill);
 	}
 });

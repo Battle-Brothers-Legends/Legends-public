@@ -27,7 +27,7 @@
 	{
 		if (_skill.getID() == ::Legends.Actives.getID(::Legends.Active.SlashLightning))
 		{
-			::Legends.Actives.grant(this.weapon, ::Legends.Active.Slash);
+			::Legends.Actives.grant(this, ::Legends.Active.Slash);
 			return;
 		}
 
