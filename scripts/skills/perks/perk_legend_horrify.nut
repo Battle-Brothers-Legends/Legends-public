@@ -11,6 +11,8 @@ this.perk_legend_horrify <- this.inherit("scripts/skills/skill", {
 				_skill.m.ActionPointCost = 6;
 				_skill.m.FatigueCost = 30;
 				_skill.m.MaxRange = 4;
+				_skill.m.Icon = "skills/legend_horrific_scream.png";
+				_skill.m.IconDisabled = "skills/legend_horrific_scream_bw.png";
 			}.bindenv(this));
 		}
 	}
