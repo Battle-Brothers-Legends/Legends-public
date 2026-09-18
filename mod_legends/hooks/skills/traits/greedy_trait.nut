@@ -25,7 +25,7 @@
 				id = 10,
 				type = "text",
 				icon = "ui/icons/vision.png",
-				text = "[color=%positive%]" + this.m.Bonus + "[/color] to every attribute"
+				text = "[color=%positive%]" + ::Legends.S.addSign(this.m.Bonus) + "[/color] to every attribute"
 			}
 		];
 	}
