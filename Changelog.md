@@ -144,7 +144,7 @@
 - `Hammer the Gap` - Grants a stacking +5% to hit as long as you attack the same tile. The bonus is capped at 10%.
 
 ### Perk Changes
-> the bonus is now additive multiplier
+- `Bloody Harvest` - the bonus is now additive multiplier
 - `Carnage` - no longer grants `Prepare Graze` and `Prepare Bleed`
 - `Heightened Reflexes` - the damage bonus is an additive multiplier
 - `Muscularity` - bonus from fatigue dropped to 10% and the bonus is now an additive multiplier
