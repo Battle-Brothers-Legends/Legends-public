@@ -110,7 +110,7 @@ this.legend_cultist_converts_to_puppet_event <- this.inherit("scripts/events/eve
 		}
 
 		local candidates_cultist = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(!::Legends.Traits.has(_bro, ::Legends.Trait.Player) && _bro.getLevel() >= 9 && ::Legends.Backgrounds.has(_bro, ::Legends.Background.Cultist)));
-		if (candidates_cultist.len() > 0) {
+		if (candidates_cultist.len() == 0) {
 			return;
 		}
 
