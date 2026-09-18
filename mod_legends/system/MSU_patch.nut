@@ -24,16 +24,19 @@ this.MSU.Tile.canResurrectOnTile = function( _tile, _force = false )
 	}
 }*/
 // Disable MSU keybinds we hook on game startup
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("character_closeCharacterScreen").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("character_openCharacterScreen").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_closeCampfireScreen").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_toggleRelationScreen").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_toggleObituarysScreen").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_toggleCamping").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_toggleRetinueButton").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_pause").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_speedNormal").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_speedFast").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_speedVeryFast").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_quicksave").set("");
-::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID()).getSetting("world_quickload").set("");
+local panel = ::MSU.System.ModSettings.getPanel(::MSU.Vanilla.Keybinds.Mod.getID());
+panel.getSetting("character_closeCharacterScreen").set("");
+panel.getSetting("character_openCharacterScreen").set("");
+panel.getSetting("world_closeCampfireScreen").set("");
+panel.getSetting("world_toggleRelationScreen").set("");
+panel.getSetting("world_toggleObituarysScreen").set("");
+panel.getSetting("world_toggleCamping").set("");
+panel.getSetting("world_toggleRetinueButton").set("");
+panel.getSetting("world_pause").set("");
+panel.getSetting("world_speedNormal").set("");
+panel.getSetting("world_speedFast").set("");
+panel.getSetting("world_speedVeryFast").set("");
+panel.getSetting("world_quicksave").set("");
+panel.getSetting("world_quickload").set("");
+panel.getSetting("tactical_hideCharacterScreen").set("");
+panel.getSetting("toggleMenuScreen").set("");
