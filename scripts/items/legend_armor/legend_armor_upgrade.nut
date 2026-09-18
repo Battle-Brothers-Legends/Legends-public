@@ -700,7 +700,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 10,
 				type = "text",
 				icon = "ui/icons/initiative.png",
-				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getInitiativeModifier()) + ::Math.abs(this.getInitiativeModifier()), this.getInitiativeModifier()) + " Initiative"
+				text = "%initMod% Initiative",
+				param = [
+					["initMod", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getInitiativeModifier()) + ::Math.abs(this.getInitiativeModifier()), this.getInitiativeModifier())]
+				]
 			});
 		}
 
@@ -711,8 +714,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 11,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(invertedThreat)) + " the Resolve of any opponent engaged in melee by " +
-					 ::Legends.S.colorize("" + ::Legends.S.getSign(invertedThreat) + ::Math.abs(invertedThreat), invertedThreat)
+				text = "%changingWord% the Resolve of any opponent engaged in melee by %modifier%",
+				param = [
+					["changingWord", ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(invertedThreat))],
+					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(invertedThreat) + ::Math.abs(invertedThreat), invertedThreat)]
+				]
 			});
 		}
 		if (this.getResolveModifier() != 0)
@@ -721,7 +727,10 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 12,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = ::Legends.S.colorize("" + ::Legends.S.getSign(this.getResolveModifier()) + ::Math.abs(this.getResolveModifier()), this.getResolveModifier()) + " Resolve"
+				text = "%resolveMod% Resolve",
+				param = [
+					["resolveMod", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getResolveModifier()) + ::Math.abs(this.getResolveModifier()), this.getResolveModifier())]
+				]
 			});
 		}
 		if (this.getDirectDamageModifier() != 0)
@@ -730,8 +739,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 15,
 				type = "text",
 				icon = "ui/icons/direct_damage.png",
-				text = ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(this.getDirectDamageModifier())) + " damage ignoring armor by " +
-					::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + ::Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())
+				text = "%changingWord% damage ignoring armor by %modifier%",
+				param = [
+					["changingWord", ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(this.getDirectDamageModifier()))],
+					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + ::Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())]
+				]
 			});
 		}
 		if ("BraveryMult" in this.m) {
@@ -748,8 +760,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 16,
 				type = "text",
 				icon = "ui/icons/armor_body.png",
-				text = "Body Armor damage taken is " + ::Legends.S.getChangingWord(getDamageReceivedArmorMult()) + "d by " +
-				::Legends.S.colorize("" + ::Legends.S.getSign(this.getDamageReceivedArmorMult()) + ::Math.abs(this.getDamageReceivedArmorMult()) + "%", this.getDamageReceivedArmorMult())
+				text = "Body Armor damage taken is %changingWord%d by %modifier%",
+				param = [
+					["changingWord", ::Legends.S.getChangingWord(getDamageReceivedArmorMult())],
+					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getDamageReceivedArmorMult()) + ::Math.abs(this.getDamageReceivedArmorMult()) + "%", this.getDamageReceivedArmorMult())]
+				]
 			});
 		}
 		if (this.getFatiguePenaltyMultiplier() != 0)
@@ -758,8 +773,11 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				id = 17,
 				type = "text",
 				icon = "ui/icons/fatigue.png",
-				text = "Fatigue penalty of wearing body armor is " + ::Legends.S.getChangingWord(getFatiguePenaltyMultiplier()) + "d by " +
-				::Legends.S.colorize("" + ::Legends.S.getSign(this.getFatiguePenaltyMultiplier()) + ::Math.abs(this.getFatiguePenaltyMultiplier()) + "%", this.getFatiguePenaltyMultiplier())
+				text = "Fatigue penalty of wearing body armor is %changingWord%d by %modifier%",
+				param = [
+					["changingWord", ::Legends.S.getChangingWord(getFatiguePenaltyMultiplier())],
+					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getFatiguePenaltyMultiplier()) + ::Math.abs(this.getFatiguePenaltyMultiplier()) + "%", this.getFatiguePenaltyMultiplier())]
+				]
 			});
 		}
 		if (this.getCurrentFatigueModifier() != 0)
