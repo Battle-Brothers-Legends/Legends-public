@@ -146,7 +146,7 @@
 	}
 
 	o.getUpgrade <- function ( _slot = -1 ) {
-		return null
+		return null;
 	}
 
 	local onDeserialize = o.onDeserialize;

@@ -601,6 +601,8 @@
 - fixed athletic sometimes using a different path than the calculated one
 - fixed escorting not restricting certain camping activities; expanded the number of available ones so only gathering, scouting and training aren't available
 - fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
+- fixed identical bag items losing track of active skills after unequipping the source of the active skill (usually first equipped item)
+- fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -800,3 +802,4 @@
 - added a bunch of QoL mods whose functions were superseded by Legends to incompat
 - Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
+- background modifiers moved to character properties

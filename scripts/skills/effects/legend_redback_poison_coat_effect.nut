@@ -35,7 +35,7 @@ this.legend_redback_poison_coat_effect <- this.inherit("scripts/skills/skill", {
 	function resetTime() {
 		local actor = this.getContainer().getActor();
 		if (actor.isPlacedOnMap()) {
-			this.spawnIcon("status_effect_legend_redback_poison_coat", actor.getTile());
+			this.spawnIcon("status_effect_54", actor.getTile());
 		}
 
 		this.m.AttacksLeft = 4;

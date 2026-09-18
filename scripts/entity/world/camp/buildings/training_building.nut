@@ -84,7 +84,7 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach( bro in trainingBros ) {
 			ret.Assigned++;
 			ret.Modifiers.push([
-				this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Training) + (bro.getSkills().hasPerk(::Legends.Perk.LegendBackToBasics) ? 0.1 : 0),
+				this.m.BaseCraft * (1 + bro.getCurrentProperties().Modifiers.Training),
 				bro.getName(),
 				bro.getBackground().getNameOnly(),
 				bro.getSkills().hasTrait(::Legends.Trait.LegendIntensiveTraining) ? ::Legends.Traits.get(bro, ::Legends.Trait.LegendIntensiveTraining).isMaxReached() : false

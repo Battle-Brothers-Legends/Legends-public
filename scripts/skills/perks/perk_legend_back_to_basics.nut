@@ -38,6 +38,7 @@ this.perk_legend_back_to_basics <- this.inherit("scripts/skills/skill", {
 	{
 		_properties.IsAffectedByLosingHitpoints = false;
 		_properties.MeleeDefense += 5 * this.m.BasicsStacks;
+		_properties.Modifiers.Training += 0.1;
 		this.m.IsHidden = (this.m.BasicsStacks == 0 || this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing);
 	}
 

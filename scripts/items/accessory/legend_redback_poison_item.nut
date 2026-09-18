@@ -105,6 +105,10 @@ this.legend_redback_poison_item <- this.inherit("scripts/items/accessory/accesso
 		return this.m.AmmoMax;
 	}
 
+	function getAmmoCost() {
+		return this.m.AmmoCost;
+	}
+
 	function setAmmo (_a) {
 		this.m.Ammo = _a;
 

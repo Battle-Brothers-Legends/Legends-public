@@ -89,6 +89,10 @@
 		return this.m.AmmoMax;
 	}
 
+	o.getAmmoCost <- function () {
+		return this.m.AmmoCost;
+	}
+
 	o.setAmmo <- function (_a) {
 		this.m.Ammo = _a;
 
