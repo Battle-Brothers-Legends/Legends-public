@@ -4181,11 +4181,13 @@
 			];
 
 		case "world-town-screen.main-dialog-module.Taxidermist":
+			local town = ::World.State.getCurrentTown();
+			local building = town.hasBuilding("building.taxidermist") ? town.getBuilding("building.taxidermist") : town.getBuilding("building.taxidermist_oriental");
 			return [
 				{
 					id = 1,
 					type = "title",
-					text = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[::World.State.getCurrentTown().getBuilding("building.taxidermist").m.TaxidermistSpecialization].Name + ")"
+					text = "Taxidermist (" + ::Const.Professions.ProfessionDefObjects[building.m.TaxidermistSpecialization].Name + ")"
 				},
 				{
 					id = 2,
