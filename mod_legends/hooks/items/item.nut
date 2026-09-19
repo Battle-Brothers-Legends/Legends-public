@@ -234,7 +234,7 @@
 			local removedSkills = this.m.SkillPtrs.filter(@(_, _skill)(_skill.getID() != ""));
 			this.clearSkills();
 
-			if (actor != null && removedSkills.len() > 0) {
+			if (actor != null && ::MSU.isKindOf(actor, "player") && removedSkills.len() > 0) {
 				local skills = actor.getSkills();
 
 				foreach (skill in removedSkills) {
