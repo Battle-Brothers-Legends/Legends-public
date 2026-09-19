@@ -36,7 +36,6 @@ this.camp_manager <- {
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/training_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/fletcher_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/gatherer_building"));
-		//this.addBuilding(this.new("scripts/entity/world/camp/buildings/hunter_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/kitchen_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/enchanter_building"));
 		this.addBuilding(this.new("scripts/entity/world/camp/buildings/barber_building"));
@@ -62,7 +61,7 @@ this.camp_manager <- {
 
 	function init() {
 		foreach( b in this.m.Tents ) {
-			if (this.canBuildingWorkCurrently(b)) {
+			if (this.canBuildingWorkCurrently(b, true, true)) {
 				b.init();
 			}
 		}
@@ -84,8 +83,8 @@ this.camp_manager <- {
 		return null;
 	}
 
-	function canBuildingWorkCurrently (_building) {
-		return (this.m.IsCamping && _building.Camping() && !this.m.IsEscorting) || this.m.IsEscorting && !_building.isWorkDangerous();
+	function canBuildingWorkCurrently (_building, _requireCamping = false, _notDangerous = false) {
+		return ((this.isCamping() || !_requireCamping) && _building.Camping() && !this.m.IsEscorting) || (this.m.IsEscorting && (_notDangerous || !_building.isWorkDangerous()));
 	}
 
 	function isCamping()
@@ -196,7 +195,7 @@ this.camp_manager <- {
 			this.m.StopTime = ::Time.getVirtualTimeF();
 
 			foreach( b in this.m.Tents ) {
-				if (b.Camping() && !b.isWorkDangerous()) {
+				if (this.canBuildingWorkCurrently(b)) {
 					b.completed();
 				}
 			}
@@ -239,7 +238,7 @@ this.camp_manager <- {
     	}
 
 		foreach( b in this.m.Tents ) {
-			if (this.canBuildingWorkCurrently(b)) {
+			if (this.canBuildingWorkCurrently(b, true)) {
 				b.updateTick(this.getElapsedHours());
 			}
 		}
@@ -268,7 +267,7 @@ this.camp_manager <- {
 		updates.push("----------------------------------");
 
 		foreach( b in this.m.Tents ) {
-			if (this.canBuildingWorkCurrently(b)) {
+			if (this.canBuildingWorkCurrently(b, true)) {
 				text = b.update();
 
 				if (text && typeof text == "string") {
@@ -606,7 +605,7 @@ this.camp_manager <- {
 		this.m.StopTime = ::Time.getVirtualTimeF();
 
 		foreach (b in this.m.Tents)	{
-			if (b.Camping()) {
+			if (this.canBuildingWorkCurrently(b)) {
 				b.completed();
 			}
 		}
