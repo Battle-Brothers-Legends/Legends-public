@@ -1,8 +1,9 @@
 this.legend_debilitate_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
+
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDebilitate);
-		this.m.Description = "A weak attack which aims to weaken your opponent.";
+		this.m.Description = "Deliver a biting strike that leaves your opponent weakened.";
 		this.m.KilledString = "Cleaved";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/cleave", 3);
 		this.m.Type = ::Const.SkillType.Active;
@@ -36,26 +37,32 @@ this.legend_debilitate_skill <- this.inherit("scripts/skills/skill", {
 		return ret;
 	}
 
-	function onAfterUpdate( _properties ) {
+	function onAfterUpdate(_properties) {
 		this.m.FatigueCostMult = ::Legends.S.isCharacterWeaponSpecialized(_properties, this.getItem()) ? ::Const.Combat.WeaponSpecFatigueMult : 1.0;
 	}
 
-	function onTargetHit ( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
-		local actor = this.getContainer().getActor();
-		if (::Legends.S.isEntityNullOrDead(actor, _targetEntity))
-			return;
-
-		local debilitate = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Debilitated);
-		if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail"))
-			::Tactical.EventLog.log(debilitate.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+	function onUse( _user, _targetTile ) {
+		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectChop);
+		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties ) {
-		if (_skill != this)
-			return;
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
+		if (_skill == this) {
+			local actor = this.getContainer().getActor();
+			if (::Legends.S.isEntityNullOrDead(actor, _targetEntity)) {
+				return;
+			}
 
-		_properties.DamageTotalMult *= 0.5;
+			local debilitate = ::Legends.Effects.grant(_targetEntity, ::Legends.Effect.Debilitated);
+			if (!actor.isHiddenToPlayer() && _targetEntity.getTile().IsVisibleForPlayer && !_targetEntity.getFlags().has("tail")) {
+				::Tactical.EventLog.log(debilitate.getLogEntryOnAdded(::Const.UI.getColorizedEntityName(actor), ::Const.UI.getColorizedEntityName(_targetEntity)));
+			}
+		}
 	}
 
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
+			_properties.DamageTotalMult *= 0.5;
+		}
+	}
 });
-
