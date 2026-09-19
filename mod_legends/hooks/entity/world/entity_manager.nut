@@ -39,12 +39,12 @@
 			this.m.FreeCompanies.remove(g);
 		}
 
-		if (this.m.LastFreeCompanyUpdateTime + 3.0 > this.Time.getVirtualTimeF())
+		if (this.m.LastFreeCompanyUpdateTime + 3.0 > ::Time.getVirtualTimeF())
 		{
 			return;
 		}
 
-		this.m.LastFreeCompanyUpdateTime = this.Time.getVirtualTimeF();
+		this.m.LastFreeCompanyUpdateTime = ::Time.getVirtualTimeF();
 
 		local days = ::World.getTime().Days;
 		local companies = 0;
@@ -319,12 +319,12 @@
 			this.m.Mercenaries.remove(g);
 		}
 
-		if (this.m.LastMercUpdateTime + 3.0 > this.Time.getVirtualTimeF())
+		if (this.m.LastMercUpdateTime + 3.0 > ::Time.getVirtualTimeF())
 		{
 			return;
 		}
 
-		this.m.LastMercUpdateTime = this.Time.getVirtualTimeF();
+		this.m.LastMercUpdateTime = ::Time.getVirtualTimeF();
 
 		if (this.m.Mercenaries.len() < 3 || ::World.FactionManager.isCivilWar() && this.m.Mercenaries.len() < 4)
 		{

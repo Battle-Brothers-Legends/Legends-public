@@ -111,7 +111,7 @@ this.legend_sling_heavy_stone_skill <- this.inherit("scripts/skills/skill", {
 				User = _user,
 				TargetTile = _targetTile
 			};
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, this.onPerformAttack, tag);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 250, this.onPerformAttack, tag);
 
 			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
 			{

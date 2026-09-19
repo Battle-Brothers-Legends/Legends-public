@@ -126,7 +126,7 @@ this.legend_vala_chant_fury_effect <- this.inherit("scripts/skills/effects/legen
 					Container = this.getContainer(),
 					StartingTile = actor.getTile()
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onPerformPaypack.bindenv(this), attackinfo);
 			}
 		}
 	}

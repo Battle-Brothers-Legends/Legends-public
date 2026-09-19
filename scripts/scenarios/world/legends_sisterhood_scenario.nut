@@ -19,7 +19,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			::Legends.Perks.grant(bro, ::Legends.Perk.HoldOut);
 			bro.m.PerkPointsSpent += 1;
 			i = ++i;
@@ -109,7 +109,7 @@ this.legends_sisterhood_scenario <- this.inherit("scripts/scenarios/world/starti
 		::World.Assets.updateLook(108);
 		::World.spawnLocation("scripts/entity/world/locations/battlefield_location", randomVillageTile.Coords).setSize(1);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_sisterhood_scenario_intro");

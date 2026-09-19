@@ -28,7 +28,7 @@ this.legend_grow_greenwood_shield_skill <- this.inherit("scripts/skills/skill", 
 	function onUse( _user, _targetTile )
 	{
 		local actor = this.getContainer().getActor();
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 250, function ( _idk )
+		::Time.scheduleEvent(::TimeUnit.Virtual, 250, function ( _idk )
 		{
 			actor.getItems().equip(this.new("scripts/items/shields/beasts/legend_greenwood_schrat_shield"));
 			actor.getSprite("shield_icon").Alpha = 0;

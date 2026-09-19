@@ -10,7 +10,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_basilisks";
 		this.m.Name = "Basilisk Infestation";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"An ominous clucking floats across the fields at dawn. Locals tell tales of a bloodthirsty beast standing taller than a man.",
 			"Underestimate these giant chickens at your peril. A single one can either kill or feed an entire company.",
@@ -81,7 +81,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					this.Flags.set("IsSurvivor", true);
 				}
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
@@ -120,7 +120,7 @@ this.legend_hunting_basilisks_contract <- this.inherit("scripts/contracts/contra
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= ::Time.getVirtualTimeF())
 				{
 					local tileType = ::World.State.getPlayer().getTile().Type;
 

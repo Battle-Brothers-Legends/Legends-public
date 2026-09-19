@@ -16,7 +16,7 @@
 	{
 		this.unhold_frost.onTurnStart();
 
-		if (this.Time.getRound() >= 2 && !this.m.HasTurned && !this.m.HasBeenWhipped && !::Tactical.State.isAutoRetreat())
+		if (::Time.getRound() >= 2 && !this.m.HasTurned && !this.m.HasBeenWhipped && !::Tactical.State.isAutoRetreat())
 		{
 			this.m.Skills.getSkillByID("racial.unhold").spawnIcon("status_effect_107", this.getTile());
 

@@ -31,7 +31,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		bro.setVeteranPerks(2);
 		bro.getFlags().set("IsPlayerCharacter", true);
 		bro.getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
-		bro.m.HireTime = this.Time.getVirtualTimeF();
+		bro.m.HireTime = ::Time.getVirtualTimeF();
 
 		local stash = ::World.Assets.getStash();
 		stash.removeByID("supplies.ground_grains");
@@ -93,7 +93,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(105);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/noble_02.ogg"

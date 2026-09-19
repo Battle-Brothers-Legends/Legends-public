@@ -14,7 +14,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_demon_alps";
 		this.m.Name = "Ending the Terror Demon (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Alps are nightmares made flesh, yet they can be beaten. These reports though... sound downright demonic.",
@@ -91,7 +91,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 				}
 
 				this.Contract.m.Home.setLastSpawnTimeToNow();
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.setScreen("Overview");
 				::World.Contracts.setActiveContract(this.Contract);
 			}
@@ -111,7 +111,7 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 				}
 				else if (this.Contract.m.SpawnAtTime == 0.0 && !::World.getTime().IsDaytime)
 				{
-					this.Contract.m.SpawnAtTime = this.Time.getVirtualTimeF() + ::Math.rand(8, 18);
+					this.Contract.m.SpawnAtTime = ::Time.getVirtualTimeF() + ::Math.rand(8, 18);
 				}
 
 				if (this.Flags.get("IsVictory"))
@@ -120,13 +120,13 @@ this.legend_hunting_demon_alps_contract <- this.inherit("scripts/contracts/contr
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (this.Contract.m.Target == null && !::World.getTime().IsDaytime && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Contract.m.SpawnAtTime > 0.0 && this.Time.getVirtualTimeF() >= this.Contract.m.SpawnAtTime)
+				else if (this.Contract.m.Target == null && !::World.getTime().IsDaytime && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Contract.m.SpawnAtTime > 0.0 && ::Time.getVirtualTimeF() >= this.Contract.m.SpawnAtTime)
 				{
 					this.Flags.set("IsEncounterShown", true);
 					this.Contract.setScreen("Encounter");
 					::World.Contracts.showActiveContract();
 				}
-				else if (!this.Flags.get("IsBanterShown") && ::World.getTime().IsDaytime && (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || this.Contract.m.Target.isHiddenToPlayer()) && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && this.Time.getVirtualTimeF() - this.Flags.get("StartTime") >= 6.0 && ::Math.rand(1, 1000) <= 5)
+				else if (!this.Flags.get("IsBanterShown") && ::World.getTime().IsDaytime && (this.Contract.m.Target == null || this.Contract.m.Target.isNull() || this.Contract.m.Target.isHiddenToPlayer()) && this.Contract.isPlayerNear(this.Contract.m.Home, 600) && ::Time.getVirtualTimeF() - this.Flags.get("StartTime") >= 6.0 && ::Math.rand(1, 1000) <= 5)
 				{
 					this.Flags.set("IsBanterShown", true);
 					this.Contract.setScreen("Banter");

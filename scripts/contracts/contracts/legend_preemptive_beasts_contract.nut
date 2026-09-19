@@ -11,7 +11,7 @@ this.legend_preemptive_beasts_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_preemptive_beasts";
 		this.m.Name = "Taking Action";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"Fell beasts have been spotted roaming the hills. The frightened locals are demanding action before attacks occur.",
 			"Amidst the rolling hills, fell beasts lurk in the darkness, their eyes glowing like embers in the night.",

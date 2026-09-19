@@ -20,7 +20,7 @@
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.getSprite("socket").setBrush("bust_base_orcs");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			::Legends.Traits.grant(bro, ::Legends.Trait.CultistFanatic);
 			::Legends.Traits.remove(bro, ::Legends.Trait.Superstitious); //If cultist, this ID will be removed as True believer is not removing them on start
 			::Legends.Traits.remove(bro, ::Legends.Trait.Dastard); //If cultist, this ID will be removed as True believer is not removing them on start

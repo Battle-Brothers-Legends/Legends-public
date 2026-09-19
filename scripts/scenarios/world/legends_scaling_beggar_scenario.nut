@@ -23,7 +23,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.worsenMood(1.5, "Saw something awful");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -110,7 +110,7 @@ this.legends_scaling_beggar_scenario <- this.inherit("scripts/scenarios/world/st
 		::World.Assets.updateLook(111);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"

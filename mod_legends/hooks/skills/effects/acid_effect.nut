@@ -1,9 +1,9 @@
 ::mods_hookExactClass("skills/effects/acid_effect", function(o) {
 	o.applyDamage = function ()
 	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
+		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
-			this.m.LastRoundApplied = this.Time.getRound();
+			this.m.LastRoundApplied = ::Time.getRound();
 			local actor = this.getContainer().getActor();
 			local head_affected = !actor.getFlags().has("head_immune_to_acid");
 			local body_affected = !actor.getFlags().has("body_immune_to_acid");

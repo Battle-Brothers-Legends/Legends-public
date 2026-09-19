@@ -28,7 +28,7 @@
 		}
 		else
 		{
-			time = this.Time.getVirtualTimeF();
+			time = ::Time.getVirtualTimeF();
 		}
 
 		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 5.0 * ::World.getTime().SecondsPerDay;
@@ -89,7 +89,7 @@
 		}
 		else
 		{
-			time = this.Time.getVirtualTimeF();
+			time = ::Time.getVirtualTimeF();
 		}
 
 		local isAffected = time - this.getContainer().getActor().getFlags().get("PotionLastUsed") >= 7.0 * ::World.getTime().SecondsPerDay;

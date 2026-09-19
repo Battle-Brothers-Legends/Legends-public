@@ -11,7 +11,7 @@
             this.m.Events.update();
             this.m.Ambitions.update();
 
-            if (this.Time.getRealTimeF() - this.m.LastMusicUpdate > 60.0)
+            if (::Time.getRealTimeF() - this.m.LastMusicUpdate > 60.0)
             {
                 this.setWorldmapMusic(true);
             }

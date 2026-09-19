@@ -265,7 +265,7 @@ this.legend_swordmaster_fav_enemy_event <- this.inherit("scripts/events/event", 
 		this.m.Candidates = candidates;
 		this.m.Stats = ::Math.floor(maxStrength);
 
-		this.m.isValidForEncounter = maxStrength >= 0 && this.Time.getVirtualTimeF() > this.m.CooldownUntil; // set maxStrength threshold higher if necessary
+		this.m.isValidForEncounter = maxStrength >= 0 && ::Time.getVirtualTimeF() > this.m.CooldownUntil; // set maxStrength threshold higher if necessary
 		this.m.Score = 0; // this disables event from happening normally
 	}
 

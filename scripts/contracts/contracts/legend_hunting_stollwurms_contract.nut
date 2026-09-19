@@ -14,7 +14,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_stollwurms";
 		this.m.Name = "Hunting Stollwurms (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"You have to be either brave or foolish to fight a Lindwurm, the old saying goes. Looking at these especially monstrous specimens through your spyglass, you decide to add \'insane or desperate\' to that list.",
@@ -91,7 +91,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 					this.Flags.set("IsMerchantInDistress", true);
 				}
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
@@ -133,7 +133,7 @@ this.legend_hunting_stollwurms_contract <- this.inherit("scripts/contracts/contr
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 15.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 15.0 <= ::Time.getVirtualTimeF())
 				{
 					this.Flags.set("IsBanterShown", true);
 					this.Contract.setScreen("Banter");

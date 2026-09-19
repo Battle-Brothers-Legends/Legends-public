@@ -9,7 +9,7 @@ this.legend_spider_abductions_contract <- this.inherit("scripts/contracts/contra
 		this.contract.create();
 		this.m.Type = "contract.legend_spider_abductions";
 		this.m.Name = "Horror In The Woods";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"Few things elicit such horror as the Webknechts, especially when they grow large enough to start abducting fully-grown townsfolk.",
 			"Spider abductions is yet another nightmare come to life, with local reports of hapless victims ensnared in webs being dragged away into the darkness.",

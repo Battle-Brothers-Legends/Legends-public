@@ -41,7 +41,7 @@ this.encounter_event <- this.inherit("scripts/encounters/encounter", {
             event.fire();
         }
 
-        this.m.CooldownUntil = this.Time.getVirtualTimeF() + this.m.Cooldown;
+        this.m.CooldownUntil = ::Time.getVirtualTimeF() + this.m.Cooldown;
 	}
 
 	function getEncounterEvent() {

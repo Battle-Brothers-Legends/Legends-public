@@ -13,7 +13,7 @@
 				continue;
 			}
 
-			if (s.getLastSpawnTime() + 300.0 > this.Time.getVirtualTimeF()) {
+			if (s.getLastSpawnTime() + 300.0 > ::Time.getVirtualTimeF()) {
 				continue;
 			}
 

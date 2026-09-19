@@ -8,7 +8,7 @@
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 		}
 
 		local bros = roster.getAll();

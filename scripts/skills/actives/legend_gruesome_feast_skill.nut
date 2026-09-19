@@ -128,7 +128,7 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 
 		if (!_user.isHiddenToPlayer())
 		{
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onRemoveCorpse, _targetTile);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onRemoveCorpse, _targetTile);
 		}
 		else
 		{

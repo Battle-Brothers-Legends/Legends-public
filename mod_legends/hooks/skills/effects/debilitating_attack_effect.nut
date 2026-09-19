@@ -73,7 +73,7 @@
 			this.removeSelf();
 			actor.setDirty(true);
 		} else {
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 10, function (_effect) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, 10, function (_effect) {
 				_effect.removeSelf();
 				actor.setDirty(true);
 			}, this);

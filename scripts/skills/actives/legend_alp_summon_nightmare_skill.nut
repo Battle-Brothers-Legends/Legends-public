@@ -52,7 +52,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 		if (::Tactical.isActive())
 			return;
 
-		if (this.Time.getRound() >= 1)
+		if (::Time.getRound() >= 1)
 			return;
 
 		_properties.Vision -= 6;
@@ -68,7 +68,7 @@ this.legend_alp_summon_nightmare_skill <- this.inherit("scripts/skills/skill", {
 			local tile = potential.remove(::Math.rand(0, potential.len() - 1));
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
-			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
+			//::Time.scheduleEvent(::TimeUnit.Virtual, 100 * i, function(_a) {
 				local nightmare = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);

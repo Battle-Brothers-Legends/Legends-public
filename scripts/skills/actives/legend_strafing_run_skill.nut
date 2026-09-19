@@ -203,7 +203,7 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 						if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1 && tile.getDistanceTo(actor.getTile()) > 1) {
 							if (_entity.isAlive() && !_entity.isDying()) {
 								_tag.TargetTile = tile;
-								this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
+								::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
 							}
 
 							if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
@@ -223,7 +223,7 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 							if (tile.IsEmpty && ::Math.abs(tile.Level - myTile.Level) <= 1) {
 								if (_entity.isAlive() && !_entity.isDying()) {
 									_tag.TargetTile = tile;
-									this.Time.scheduleEvent(this.TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
+									::Time.scheduleEvent(::TimeUnit.Virtual, 50, _tag.OnRepelled, _tag);
 								}
 
 								if (_tag.OldTile.IsVisibleForPlayer || myTile.IsVisibleForPlayer) {
@@ -294,7 +294,7 @@ this.legend_strafing_run_skill <- this.inherit("scripts/skills/skill", {
 			local sound = this.m.ShotSounds[::Math.rand(0, this.m.Sound.len() - 1)];
 			::Sound.play(sound, ::Const.Sound.Volume.Skill, this.getContainer().getActor().getPos());
 			local delay = ::Math.max(::Const.Combat.RiposteDelay, skill.m.Delay);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, delay, this.onAfterTeleport.bindenv(this), info);
+			::Time.scheduleEvent(::TimeUnit.Virtual, delay, this.onAfterTeleport.bindenv(this), info);
 		}
 	}
 

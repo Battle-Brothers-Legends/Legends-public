@@ -10,7 +10,7 @@ this.legend_deliver_money_contract <- this.inherit("scripts/contracts/contract",
 		this.m.DifficultyMult = ::Math.rand(90, 110) * 0.01;
 		this.m.Type = "contract.deliver_money";
 		this.m.Name = "Treasury Transfer";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"Shipments of coin between settlements can be dangerous, albeit lucrative work.",
 			"Transport the gold securely, profit from your delivery. Or get murdered along the way.",

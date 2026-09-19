@@ -23,7 +23,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -175,7 +175,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		// ::World.Assets.updateLook(8);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		// randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(25.0, "Just completed a contract for this village");
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"

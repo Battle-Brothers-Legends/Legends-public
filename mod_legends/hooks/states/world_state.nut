@@ -1205,7 +1205,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(-1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
+					::World.getCamera().move(-1500.0 * ::Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
 					return true;
 				}
 
@@ -1220,7 +1220,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
+					::World.getCamera().move(1500.0 * ::Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66), 0);
 					return true;
 				}
 
@@ -1236,7 +1236,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(0, 1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
+					::World.getCamera().move(0, 1500.0 * ::Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
 					return true;
 				}
 
@@ -1251,7 +1251,7 @@
 						this.m.WorldScreen.getTopbarOptionsModule().onCameraLockButtonPressed();
 					}
 
-					::World.getCamera().move(0, -1500.0 * this.Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
+					::World.getCamera().move(0, -1500.0 * ::Time.getDelta() * ::Math.maxf(1.0, ::World.getCamera().Zoom * 0.66));
 					return true;
 				}
 
@@ -1259,12 +1259,12 @@
 
 			case 67:
 			case 46:
-				::World.getCamera().zoomBy(-this.Time.getDelta() * ::Math.max(60, this.Time.getFPS()) * 0.15);
+				::World.getCamera().zoomBy(-::Time.getDelta() * ::Math.max(60, ::Time.getFPS()) * 0.15);
 				break;
 
 			case 68:
 			case 47:
-				::World.getCamera().zoomBy(this.Time.getDelta() * ::Math.max(60, this.Time.getFPS()) * 0.15);
+				::World.getCamera().zoomBy(::Time.getDelta() * ::Math.max(60, ::Time.getFPS()) * 0.15);
 				break;
 
 			case 96:

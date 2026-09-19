@@ -389,7 +389,7 @@
 		{
 			foreach(item in bro.getItems().getAllItemsAtSlot(::Const.ItemSlot.Bag))
 			{
-				if (item != null && item.isItemType(::Const.Items.ItemType.Food) && this.Time.getVirtualTimeF() >= item.getBestBeforeTime())
+				if (item != null && item.isItemType(::Const.Items.ItemType.Food) && ::Time.getVirtualTimeF() >= item.getBestBeforeTime())
 				{
 					item.removeSelf();
 				}
@@ -400,7 +400,7 @@
 		{
 			if (item != null && item.isItemType(::Const.Items.ItemType.Food))
 			{
-				if (this.Time.getVirtualTimeF() >= item.getBestBeforeTime())
+				if (::Time.getVirtualTimeF() >= item.getBestBeforeTime())
 				{
 					items[i] = null;
 				}
@@ -413,13 +413,13 @@
 
 		if (!this.m.IsUsingProvisions)
 		{
-			this.m.LastFoodConsumed = this.Time.getVirtualTimeF();
+			this.m.LastFoodConsumed = ::Time.getVirtualTimeF();
 			return;
 		}
 
 		food.sort(this.sortFoodByFreshness);
-		local d = ::Math.maxf(0.0, this.Time.getVirtualTimeF() - this.m.LastFoodConsumed);
-		this.m.LastFoodConsumed = this.Time.getVirtualTimeF();
+		local d = ::Math.maxf(0.0, ::Time.getVirtualTimeF() - this.m.LastFoodConsumed);
+		this.m.LastFoodConsumed = ::Time.getVirtualTimeF();
 		local eaten = d * this.getDailyFoodCost() * ::Const.World.TerrainFoodConsumption[::World.State.getPlayer().getTile().Type] * this.m.FoodConsumptionMult * ::Const.World.Assets.FoodConsumptionMult;
 
 		for( local i = 0; i < food.len();  )

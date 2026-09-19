@@ -70,7 +70,7 @@
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendPeasant); //IMPORTANT
 			bro.getSprite("socket").setBrush("bust_base_militia");
 			///---
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -242,7 +242,7 @@
 		::World.Assets.updateLook(8);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"

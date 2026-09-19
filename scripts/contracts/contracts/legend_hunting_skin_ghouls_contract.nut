@@ -14,7 +14,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_skin_ghouls";
 		this.m.Name = "Hunger Pangs (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Corpse-eaters... always wretched, malevolent, yet predictable. However there is an intelligence being hinted in these disturbing reports that gives you pause.",
@@ -75,7 +75,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 			{
 				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				local r = ::Math.rand(1, 100);
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
@@ -102,7 +102,7 @@ this.legend_hunting_skin_ghouls_contract <- this.inherit("scripts/contracts/cont
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= ::Time.getVirtualTimeF())
 				{
 					local tileType = ::World.State.getPlayer().getTile().Type;
 					this.Flags.set("IsBanterShown", true);

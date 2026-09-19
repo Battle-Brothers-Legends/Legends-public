@@ -8,7 +8,7 @@
 	o.onRoundStarted = function() {
 		this.agent.onRoundStarted();
 
-		if (this.Time.getRound() == 1) {
+		if (::Time.getRound() == 1) {
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
 			foreach (a in allies) {

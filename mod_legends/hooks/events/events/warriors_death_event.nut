@@ -1,6 +1,6 @@
 ::mods_hookExactClass("events/events/warriors_death_event", function(o) {
 	o.onUpdateScore = function () {
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 6.0)
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 6.0)
 			return;
 
 		local fallen = [];

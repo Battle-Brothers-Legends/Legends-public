@@ -73,7 +73,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 			local tile = potential.remove(::Math.rand(0, potential.len() - 1));
 			local type = ::MSU.Array.rand(["direwolf","human","serpent","tentacle"]);
 
-			//this.Time.scheduleEvent(this.TimeUnit.Virtual, 100 * i, function(_a) {
+			//::Time.scheduleEvent(::TimeUnit.Virtual, 100 * i, function(_a) {
 				local nightmare = ::Tactical.spawnEntity("scripts/entity/tactical/enemies/legend_alp_nightmare_" + type, tile.Coords.X, tile.Coords.Y);
 				nightmare.setFaction(_user.getFaction());
 				nightmare.spawnSpecialEffect(tile);
@@ -86,7 +86,7 @@ this.legend_alp_nightmare_manifestation_skill <- this.inherit("scripts/skills/sk
 			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_targetTile.getEntity()) + "\'s nightmare becomes real!");
 
 		if (_targetTile.IsVisibleForPlayer || !_user.isHiddenToPlayer())
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, this.onDelayedEffect.bindenv(this), tag);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 400, this.onDelayedEffect.bindenv(this), tag);
 		else
 			this.onDelayedEffect(tag);
 

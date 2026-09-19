@@ -18,7 +18,7 @@ this.legend_barbarian_prisoner_contract <- this.inherit("scripts/contracts/contr
 		this.contract.create();
 		this.m.Type = "contract.legend_barbarian_prisoner";
 		this.m.Name = "Facing Justice (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 120.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 120.0;
 		this.m.MakeAllSpawnsAttackableByAIOnceDiscovered = true;
 		this.m.DescriptionTemplates = [
 			"A barbarian prisoner, shackled and guarded, awaits transport to face judgment. His kin will not this make this easy.",

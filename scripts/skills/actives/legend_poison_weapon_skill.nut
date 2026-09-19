@@ -67,7 +67,7 @@ this.legend_poison_weapon_skill <- this.inherit("scripts/skills/skill", {
 
 	function onAfterUpdate( _properties )
 	{
-		if (this.Time.getRound() == 1)
+		if (::Time.getRound() == 1)
 		{
 			this.m.ActionPointCost = 0;
 		}

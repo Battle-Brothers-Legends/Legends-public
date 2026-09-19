@@ -9,7 +9,7 @@ this.legend_camp_legion_hunt_barbarians_contract <- this.inherit("scripts/contra
 		this.m.Type = "contract.legend_camp_legion_hunt_barbarians_contract";
 		this.m.Name = "Hunt: Northmen";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(70, 110) * 0.01;
 		this.m.DescriptionTemplates = [
 			"A barbarian king is hunting our patrols down, make sure he is seen to.",
@@ -91,7 +91,7 @@ this.legend_camp_legion_hunt_barbarians_contract <- this.inherit("scripts/contra
 			function end()
 			{
 				local r = ::Math.rand(1, 100);
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.setScreen("Overview");
 				::World.Contracts.setActiveContract(this.Contract);

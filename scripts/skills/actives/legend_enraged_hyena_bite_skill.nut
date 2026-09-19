@@ -235,7 +235,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Tactical.getNavigator().teleport(_tag.actor, _tag.tile2, null, null, false, 3.0);
 
 		// Schedule attack
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, this.onAttackStart.bindenv(this), _tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 200, this.onAttackStart.bindenv(this), _tag);
 	}
 
 	function onAttackStart(_tag) {
@@ -252,7 +252,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		}
 
 		// Schedule retreat
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 300, this.onRetreatStart.bindenv(this), _tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 300, this.onRetreatStart.bindenv(this), _tag);
 	}
 
 	function onRetreatStart(_tag) {
@@ -276,7 +276,7 @@ this.legend_enraged_hyena_bite_skill <- this.inherit("scripts/skills/skill", {
 		::Tactical.getNavigator().teleport(_tag.actor, _tag.originTile, null, null, false, 2.0);
 
 		// Schedule drag
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, this.onDragStart.bindenv(this), _tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 100, this.onDragStart.bindenv(this), _tag);
 	}
 
 	function onDragStart(_tag) {

@@ -177,12 +177,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (this.m.DistortTargetA == null)
 		{
 			this.m.DistortTargetA = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 3.8, this.m.DistortAnimationStartTimeA))
 		{
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
 			this.m.DistortTargetA = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
@@ -190,12 +190,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (this.m.DistortTargetB == null)
 		{
 			this.m.DistortTargetB = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
-			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeB = ::Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("blur_1", this.m.DistortTargetPrevB, this.m.DistortTargetB, 4.9000001, this.m.DistortAnimationStartTimeB))
 		{
-			this.m.DistortAnimationStartTimeB = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeB = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
 			this.m.DistortTargetB = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
@@ -203,12 +203,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (this.m.DistortTargetC == null)
 		{
 			this.m.DistortTargetC = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
-			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeC = ::Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("body", this.m.DistortTargetPrevC, this.m.DistortTargetC, 4.3, this.m.DistortAnimationStartTimeC))
 		{
-			this.m.DistortAnimationStartTimeC = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeC = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevC = this.m.DistortTargetC;
 			this.m.DistortTargetC = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}
@@ -216,12 +216,12 @@ this.legend_alp_shadow <- this.inherit("scripts/entity/tactical/actor", {
 		if (this.m.DistortTargetD == null)
 		{
 			this.m.DistortTargetD = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
-			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeD = ::Time.getVirtualTimeF();
 		}
 
 		if (this.moveSpriteOffset("blur_2", this.m.DistortTargetPrevD, this.m.DistortTargetD, 5.5999999, this.m.DistortAnimationStartTimeD))
 		{
-			this.m.DistortAnimationStartTimeD = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeD = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevD = this.m.DistortTargetD;
 			this.m.DistortTargetD = this.createVec(::Math.rand(0, 10) - 5, ::Math.rand(0, 10) - 5);
 		}

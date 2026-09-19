@@ -27,10 +27,10 @@
 
 	o.applyDamage = function ()
 	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
+		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
 			local actor = this.getContainer().getActor();
-			this.m.LastRoundApplied = this.Time.getRound();
+			this.m.LastRoundApplied = ::Time.getRound();
 			this.spawnIcon("status_effect_54", actor.getTile());
 
 			if (actor.getCurrentProperties().IsImmuneToPoison) {

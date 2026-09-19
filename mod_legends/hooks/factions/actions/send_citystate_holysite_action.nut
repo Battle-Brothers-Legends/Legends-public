@@ -5,7 +5,7 @@
 		local potential_origins = [];
 
 		foreach (s in _faction.getSettlements()) {
-			if (s.getLastSpawnTime() + 300.0 > this.Time.getVirtualTimeF())
+			if (s.getLastSpawnTime() + 300.0 > ::Time.getVirtualTimeF())
 				continue;
 
 			potential_origins.push({

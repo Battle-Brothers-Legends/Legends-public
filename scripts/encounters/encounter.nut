@@ -351,7 +351,7 @@ this.encounter <- {
         if (this.m.Screens.len() > 0) {
             this.setScreen(this.m.Screens[0]);
         }
-        this.m.CooldownUntil = this.Time.getVirtualTimeF() + this.m.Cooldown;
+        this.m.CooldownUntil = ::Time.getVirtualTimeF() + this.m.Cooldown;
     }
 
     function onSerialize(_out) {

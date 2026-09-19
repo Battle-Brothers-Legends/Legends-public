@@ -9,7 +9,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 		this.contract.create();
 		this.m.Type = "contract.hunting_mummies";
 		this.m.Name = "The Ancient Dead";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"The fleshed dead have been seen roaming the desert, their purpose long since lost to the sands of time.",
 			"Amongst the shifting sands, the embalmed dead wander aimlessly, their mummified forms driven by an insatiable thirst for the life they lost centuries ago.",
@@ -60,7 +60,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				local r = ::Math.rand(1, 100);
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
@@ -87,7 +87,7 @@ this.legend_hunting_mummies_contract <- this.inherit("scripts/contracts/contract
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= ::Time.getVirtualTimeF())
 				{
 					local tileType = ::World.State.getPlayer().getTile().Type;
 

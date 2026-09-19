@@ -8,7 +8,7 @@ this.legend_camp_legion_defend_cemetery_contract <- ::inherit("scripts/contracts
 		this.legend_camp_contract.create();
 		this.m.Type = "contract.legend_camp_legion_defend_cemetery";
 		this.m.Name = "Defend burial site";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 10.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 10.0;
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
 		this.m.DifficultyMult = ::Math.rand(95, 125) * 0.01;
 		this.m.DescriptionTemplates = [

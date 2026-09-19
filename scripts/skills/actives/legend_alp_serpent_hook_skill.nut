@@ -46,7 +46,7 @@ this.legend_alp_serpent_hook_skill <- this.inherit("scripts/skills/actives/serpe
 			rooted_back.Visible = true;
 			rooted_back.Alpha = 0;
 			rooted_back.fadeIn(50);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 900, this.onDone, {
+			::Time.scheduleEvent(::TimeUnit.Virtual, 900, this.onDone, {
 				User = _user,
 				Target = target,
 				ScaleBackup = scaleBackup,

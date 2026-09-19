@@ -17,7 +17,7 @@
 		this.addSpecialEvent("event.legends.retinue_brother_lost");
 		this.addSpecialEvent("event.helped_caravan");
 		this.addSpecialEvent("event.legend_legendary_locations_check");
-		this.m.LastEventTime = this.Time.getVirtualTimeF();
+		this.m.LastEventTime = ::Time.getVirtualTimeF();
 	}
 
 	o.addSpecialEvent = function ( _e ) {
@@ -37,7 +37,7 @@
 				}
 				else
 				{
-					this.Time.scheduleEvent(this.TimeUnit.Real, 4000, function ( _tag )
+					::Time.scheduleEvent(::TimeUnit.Real, 4000, function ( _tag )
 					{
 						if (::World.Events.canFireEvent(true, true) && ::World.Events.getEvent(e).canFire()) {
 							::World.Events.fire(e);
@@ -133,7 +133,7 @@
 			return;
 		}
 
-		local timeF = this.Time.getVirtualTimeF();
+		local timeF = ::Time.getVirtualTimeF();
 		local newsDelay = ::World.getTime().SecondsPerHour * 0.25;
 
 		if (this.m.Thread != null) {
@@ -200,7 +200,7 @@
 		// Function is a generator.
 		local score = 0;
 		local eventToFire;
-		local timeF = this.Time.getVirtualTimeF();
+		local timeF = ::Time.getVirtualTimeF();
 		local limit = ::Math.max(1, ::World.getSpeedMult()) * 3;
 		local allowNewsOnly = this.m.AllowNewsOnly || (timeF - this.m.LastEventTime < ::Const.Events.GlobalMinDelay);
 		local recentBattleCheck = timeF - this.m.LastBattleTime < 5.0;
@@ -277,7 +277,7 @@
 		}
 
 		if (this.m.ActiveEvent.getScore() < 2000) {
-			this.m.LastEventTime = this.Time.getVirtualTimeF();
+			this.m.LastEventTime = ::Time.getVirtualTimeF();
 		}
 
 		this.m.ActiveEvent.fire();

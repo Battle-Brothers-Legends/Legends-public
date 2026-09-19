@@ -42,7 +42,7 @@
 
 		if (!_user.isHiddenToPlayer())
 		{
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onRemoveCorpse, _targetTile);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onRemoveCorpse, _targetTile);
 		}
 		else
 		{
@@ -54,7 +54,7 @@
 		local effect = ::Legends.Effects.grant(_user, ::Legends.Effect.GruesomeFeast);
 
 		if (!_user.isHiddenToPlayer())
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onFeasted, effect);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onFeasted, effect);
 		else
 			this.onFeasted(effect);
 

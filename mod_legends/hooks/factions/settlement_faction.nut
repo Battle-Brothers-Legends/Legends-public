@@ -10,7 +10,7 @@
 
 	// 	this.m.MaxConcurrentContracts = this.getSettlements()[0].getSize();
 	// 	local delay = 5.0 - (this.getSettlements()[0].getSize() - 1);
-	// 	return this.m.Contracts.len() < this.m.MaxConcurrentContracts && (this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * delay);
+	// 	return this.m.Contracts.len() < this.m.MaxConcurrentContracts && (this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || ::Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * delay);
 	// }
 
 	// Contract Overhaul: This is the overloaded method we have added. We now take the contract's Category into account
@@ -66,7 +66,7 @@
 
 		// The remaining checks are based on time-related cooldowns
 		local streak = ::Const.LegendMod.ContractCooldown.getStreak(this); // increase cooldown the more the player consecutively takes contracts from the same settlement
-		return this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * streak;
+		return this.m.LastContractTime == 0 || ::World.getTime().Days <= 1 || ::Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * streak;
 			
 	}
 });

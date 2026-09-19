@@ -77,7 +77,7 @@ this.legend_grisly_scythe <- this.inherit("scripts/items/weapons/weapon", {
 			corpse.Items = _target.getItems();
 			corpse.IsConsumable = false;
 			corpse.IsResurrectable = false;
-			this.Time.scheduleEvent(this.TimeUnit.Rounds, 1, ::Tactical.Entities.resurrect, corpse);
+			::Time.scheduleEvent(::TimeUnit.Rounds, 1, ::Tactical.Entities.resurrect, corpse);
 		}
 	}
 

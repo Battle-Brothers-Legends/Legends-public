@@ -58,7 +58,7 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 
 	function onAdded()
 	{
-		this.m.TimeAdded = this.Time.getVirtualTimeF();
+		this.m.TimeAdded = ::Time.getVirtualTimeF();
 	}
 
 	function onAfterUpdate(_properties)
@@ -81,7 +81,7 @@ this.legend_backswing_effect <- this.inherit("scripts/skills/skill", {
 		if (_targetEntity == null || !_targetEntity.isAttackable())
 			return;
 
-		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < this.Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
+		if (!this.m.IsGarbage && this.m.TimeAdded + 0.1 < ::Time.getVirtualTimeF() && !_targetEntity.isAlliedWith(this.getContainer().getActor()))
 			this.removeSelf();
 	}
 

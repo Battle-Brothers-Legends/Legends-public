@@ -1090,7 +1090,7 @@
 		// 	// _targetEntity.getTile().removeObject()
 		// 	if (this.m.SoundOnHit.len() != 0)
 		// 	{
-		// 		this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+		// 		::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 		// 			Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 		// 			Pos = _targetEntity.getPos()
 		// 		});
@@ -1112,7 +1112,7 @@
 		// 	}
 		// 	if (this.m.SoundOnHit.len() != 0)
 		// 	{
-		// 		this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+		// 		::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 		// 			Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 		// 			Pos = _targetEntity.getPos()
 		// 		});
@@ -1187,7 +1187,7 @@
 			}
 			if (this.m.SoundOnHit.len() != 0)
 			{
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+				::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 					Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 					Pos = _targetEntity.getPos()
 				});
@@ -1203,7 +1203,7 @@
 		// {
 		// 	if (this.m.SoundOnHit.len() != 0)
 		// 	{
-		// 		this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+		// 		::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 		// 			Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 		// 			Pos = _targetEntity.getPos()
 		// 		});
@@ -1233,7 +1233,7 @@
 
 		// 	if (this.m.SoundOnHit.len() != 0)
 		// 	{
-		// 		this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+		// 		::Time.scheduleEvent(::TimeUnit.Virtual, this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 		// 			Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 		// 			Pos = _targetEntity.getPos()
 		// 		});
@@ -1495,11 +1495,11 @@
 			{
 				local flip = !this.m.IsProjectileRotated && _targetEntity.getPos().X > _user.getPos().X;
 				local time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetEntity.getTile(), 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, time, this.onScheduledTargetHit, info);
+				::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onScheduledTargetHit, info);
 
 				if (this.m.SoundOnHit.len() != 0)
 				{
-					this.Time.scheduleEvent(this.TimeUnit.Virtual, time + this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
+					::Time.scheduleEvent(::TimeUnit.Virtual, time + this.m.SoundOnHitDelay, this.onPlayHitSound.bindenv(this), {
 						Sound = this.m.SoundOnHit[::Math.rand(0, this.m.SoundOnHit.len() - 1)],
 						Pos = _targetEntity.getPos()
 					});
@@ -1579,7 +1579,7 @@
 						time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), divertTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
 					}
 
-					this.Time.scheduleEvent(this.TimeUnit.Virtual, time, this.onShieldHit, info);
+					::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onShieldHit, info);
 				}
 				else
 				{

@@ -31,7 +31,7 @@
 			&& result.entity.isPlacedOnMap())
 		{
 			this.Tooltip.reloadDataIfEqual(_entityId);
-			this.Time.scheduleEvent(this.TimeUnit.Real, 10, function (_tag) {
+			::Time.scheduleEvent(::TimeUnit.Real, 10, function (_tag) {
 
 				if (_tag.bar == null || _tag.bar.m.CurrentEntities.len() == 0) {
 					return;
@@ -71,7 +71,7 @@
 				return;
 			}
 		}
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 10, function (_tag) {
+		::Time.scheduleEvent(::TimeUnit.Virtual, 10, function (_tag) {
 			if (this.getCurrentEntities().len() == 0 && !this.m.IsInitNextRound) {
 				this.m.IsLocked = false;
 				//this.m.IsInitNextRound = true; //alternative fix, but setting isLocked to false allows the check to go on naturally

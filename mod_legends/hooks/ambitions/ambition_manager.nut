@@ -12,12 +12,12 @@
 			return false;
 		}
 
-		//if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() < 3.0)
+		//if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() < 3.0)
 		//{
 		//	return false;
 		//}
 
-		if (this.Time.getVirtualTimeF() < this.m.DelayUntil)
+		if (::Time.getVirtualTimeF() < this.m.DelayUntil)
 		{
 			return false;
 		}
@@ -27,7 +27,7 @@
 			return false;
 		}
 
-		//if (this.m.Thread == null && this.m.Selection == null && this.Time.getVirtualTimeF() - this.m.LastTime < 1.0 * ::World.getTime().SecondsPerHour)
+		//if (this.m.Thread == null && this.m.Selection == null && ::Time.getVirtualTimeF() - this.m.LastTime < 1.0 * ::World.getTime().SecondsPerHour)
 		//{
 		//	return false;
 		//}

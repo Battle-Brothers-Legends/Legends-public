@@ -24,7 +24,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_white_direwolf";
 		this.m.Name = "Hunting the white wolf (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Northern tribal folklore speaks of the White Wolves, beings of pure malice who will one day devour both men and gods alike.",
@@ -91,7 +91,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 					this.Flags.set("IsSignsOfAFight", true);
 				}
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.m.Home.setLastSpawnTimeToNow();
 				this.Contract.setScreen("Overview");
@@ -126,7 +126,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 					::World.Contracts.showActiveContract();
 					this.Contract.setState("Return");
 				}
-				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && this.Contract.m.Target.isHiddenToPlayer() && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 10.0 <= ::Time.getVirtualTimeF())
 				{
 					this.Flags.set("IsBanterShown", true);
 					this.Contract.setScreen("Banter");

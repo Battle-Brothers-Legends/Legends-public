@@ -37,7 +37,7 @@
 						this.Flags.set("IsSinisterDeal", true);
 					}
 
-					this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+					this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 					this.Flags.set("Delay", ::Math.rand(10, 30) * 1.0);
 					local envoy = ::World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
 					local items = envoy.getItems();

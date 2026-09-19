@@ -11,7 +11,7 @@
 		this.m.TargetDistance = 0;
 		this.m.IsIgnoringZOC = _entity.getCurrentProperties().IsImmuneToZoneOfControl;
 		this.m.IsWaitingBeforeMove = false;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
@@ -188,7 +188,7 @@
 				if (this.isAllottedTimeReached(time))
 				{
 					yield null;
-					time = this.Time.getExactTime();
+					time = ::Time.getExactTime();
 				}
 
 				local allyTile = a.getTile();
@@ -420,7 +420,7 @@
 					if (this.isAllottedTimeReached(time))
 					{
 						yield null;
-						time = this.Time.getExactTime();
+						time = ::Time.getExactTime();
 					}
 
 					if (tile.isSameTileAs(myTile) || tile.Type == ::Const.Tactical.TerrainType.Impassable)
@@ -726,7 +726,7 @@
 		if (this.isAllottedTimeReached(time))
 		{
 			yield null;
-			time = this.Time.getExactTime();
+			time = ::Time.getExactTime();
 		}
 
 		local hasShieldWall = _entity.getSkills().hasEffect(::Legends.Effect.Shieldwall);
@@ -785,7 +785,7 @@
 				if (this.isAllottedTimeReached(time))
 				{
 					yield null;
-					time = this.Time.getExactTime();
+					time = ::Time.getExactTime();
 				}
 
 				local acceptableDistanceFromDest = 0;
@@ -1159,7 +1159,7 @@
 		if (this.isAllottedTimeReached(time))
 		{
 			yield null;
-			time = this.Time.getExactTime();
+			time = ::Time.getExactTime();
 		}
 
 		if (bestTarget != null && bestTiles != 0 && bestTarget.ID != myTile.ID)
@@ -1205,7 +1205,7 @@
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			this.m.TargetTile = bestTarget;
@@ -1323,7 +1323,7 @@
 				if (this.isAllottedTimeReached(time))
 				{
 					yield null;
-					time = this.Time.getExactTime();
+					time = ::Time.getExactTime();
 				}
 
 				if (this.m.Skill == null || this.m.Skill.isSpearwallRelevant())

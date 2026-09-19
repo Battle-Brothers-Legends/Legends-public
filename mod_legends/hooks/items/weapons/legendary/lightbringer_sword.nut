@@ -52,7 +52,7 @@
 
 	o.applyEffect <- function ( _data, _delay )
 	{
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay, function ( _data )
+		::Time.scheduleEvent(::TimeUnit.Virtual, _delay, function ( _data )
 		{
 			for( local i = 0; i < ::Const.Tactical.LightningParticles.len(); i = ++i )
 			{
@@ -69,7 +69,7 @@
 		if (_data.Target.isDying())
 			return;
 
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay + 200, function ( _data )
+		::Time.scheduleEvent(::TimeUnit.Virtual, _delay + 200, function ( _data )
 		{
 			local hitInfo = clone ::Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = ::Math.rand(10, 20);

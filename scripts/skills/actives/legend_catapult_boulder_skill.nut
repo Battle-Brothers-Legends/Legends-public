@@ -97,7 +97,7 @@ this.legend_catapult_boulder_skill <- this.inherit("scripts/skills/skill", {
 				User = _user,
 				TargetTile = _targetTile
 			};
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
+			::Time.scheduleEvent(::TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
 
 			if (!_user.isPlayerControlled() && _targetTile.getEntity().isPlayerControlled())
 			{

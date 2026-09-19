@@ -14,7 +14,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 		this.m.Type = "contract.legend_camp_nomads_raid_caravan";
 		this.m.Name = "Intercept City State Supplies";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Bandits;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DescriptionTemplates = [
 			"A group of Bandits has contacted us about a southern trade caravan.",
 			"A trade caravan is coming from the south, lightly protected and high in value.",
@@ -249,11 +249,11 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 						this.onTargetAttacked(_dest, true);
 					}
 				}
-				else if (this.Time.getVirtualTimeF() >= this.Contract.m.LastCombatTime + 5.0)
+				else if (::Time.getVirtualTimeF() >= this.Contract.m.LastCombatTime + 5.0)
 				{
 					local enemyFaction = ::World.FactionManager.getFaction(this.Flags.get("EnemyCityState"));
 					enemyFaction.setIsTemporaryEnemy(true);
-					this.Contract.m.LastCombatTime = this.Time.getVirtualTimeF();
+					this.Contract.m.LastCombatTime = ::Time.getVirtualTimeF();
 					::World.Contracts.showCombatDialog(_isPlayerAttacking);
 				}
 			}
@@ -268,7 +268,7 @@ this.legend_camp_nomads_raid_caravan_contract <- ::inherit("scripts/contracts/le
 
 			function onRetreatedFromCombat( _combatID )
 			{
-				this.Contract.m.LastCombatTime = this.Time.getVirtualTimeF();
+				this.Contract.m.LastCombatTime = ::Time.getVirtualTimeF();
 			}
 
 		});

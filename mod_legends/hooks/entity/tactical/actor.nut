@@ -344,7 +344,7 @@
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
 
 				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword)
 					&& ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword))
@@ -358,7 +358,7 @@
 								Skill = ohSkill,
 								TargetTile = _attacker.getTile()
 							};
-							this.Time.scheduleEvent(this.TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onOffhandRiposte.bindenv(this), ohInfo);
+							::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onOffhandRiposte.bindenv(this), ohInfo);
 						}
 					}
 				}

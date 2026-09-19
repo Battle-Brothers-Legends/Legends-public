@@ -102,7 +102,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 		local bestScore = -9000.0;
 		local bestTarget;
 		local knownAllies = this.getAgent().getKnownAllies();
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local targetValues = [];
 		local possibleTiles = [
 			myTile
@@ -115,7 +115,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local opponentTile = o.Actor.getTile();
@@ -184,7 +184,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local score = 0.0;
@@ -222,7 +222,7 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			{
 				affectedTiles.push(tile);
 			}
-			else if (tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "legend_alp_shadow") && tile.Properties.Effect.Timeout - this.Time.getRound() == 1)
+			else if (tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "legend_alp_shadow") && tile.Properties.Effect.Timeout - ::Time.getRound() == 1)
 			{
 				affectedTiles.push(tile);
 			}
@@ -236,12 +236,12 @@ this.legend_ai_corruption <- this.inherit("scripts/ai/tactical/behavior", {
 			{
 				if (affectedTile.Properties.Effect != null)
 				{
-					if (affectedTile.Properties.Effect.Timeout - this.Time.getRound() >= 2)
+					if (affectedTile.Properties.Effect.Timeout - ::Time.getRound() >= 2)
 					{
 						redundantTiles = redundantTiles + 1.0;
 						continue;
 					}
-					else if (affectedTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
+					else if (affectedTile.Properties.Effect.Timeout - ::Time.getRound() == 1)
 					{
 						if (advancedAI && tile.IsOccupiedByActor && this.isKindOf(tile.getEntity(), "legend_alp_shadow"))
 						{

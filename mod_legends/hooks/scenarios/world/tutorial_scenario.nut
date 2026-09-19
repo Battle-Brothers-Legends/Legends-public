@@ -19,7 +19,7 @@
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.worsenMood(0.5, "Lost most of the company");
 
 			while (names.find(bro.getNameOnly()) != null)
@@ -103,7 +103,7 @@
 		c.start();
 		::World.Contracts.addContract(c);
 		::World.Contracts.setActiveContract(c, true);
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 			::World.Contracts.update(true);

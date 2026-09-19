@@ -15,7 +15,7 @@
 		_bro.setStartValuesEx([::Legends.Background.Deserter]);
 		_bro.worsenMood(1.0, "Was dragged from one bloody battle to the next");
 		_bro.improveMood(1.5, "Deserted from the army");
-		_bro.m.HireTime = this.Time.getVirtualTimeF();
+		_bro.m.HireTime = ::Time.getVirtualTimeF();
 		_bro.m.Talents = [];
 		_bro.m.Attributes = [];
 		_bro.m.Talents.resize(::Const.Attributes.COUNT, 0);
@@ -202,7 +202,7 @@
 		items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_02.ogg"

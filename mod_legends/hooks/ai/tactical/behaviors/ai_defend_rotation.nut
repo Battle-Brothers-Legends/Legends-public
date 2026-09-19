@@ -6,7 +6,7 @@
 		this.m.TargetTile = null;
 		this.m.Skill = null;
 		local scoreMult = this.getProperties().BehaviorMult[this.m.ID];
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
@@ -156,7 +156,7 @@
 
 			if (this.isAllottedTimeReached(time)) {
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 				if (::Legends.S.isEntityNullOrDead(ally) || !ally.isPlacedOnMap()) continue;
         		if (::Legends.S.isEntityNullOrDead(_entity) || !_entity.isPlacedOnMap()) return ::Const.AI.Behavior.Score.Zero;
 			}

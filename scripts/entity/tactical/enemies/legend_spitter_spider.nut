@@ -97,7 +97,7 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
 			this.m.DistortTargetB = !this.m.IsFlipping ? this.createVec(-0.5 * this.m.Size, 0) : this.createVec(0.5 * this.m.Size, 0);
 			this.m.DistortTargetC = !this.m.IsFlipping ? this.createVec(0.5 * this.m.Size, 0) : this.createVec(-0.5 * this.m.Size, 0);
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
 		}
 
 		this.moveSpriteOffset("legs_back", this.m.DistortTargetPrevB, this.m.DistortTargetB, 1.0, this.m.DistortAnimationStartTimeA);
@@ -107,7 +107,7 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 
 		if (this.moveSpriteOffset("head", this.m.DistortTargetPrevA, this.m.DistortTargetA, 1.0, this.m.DistortAnimationStartTimeA))
 		{
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
@@ -148,12 +148,12 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 					local corpse_data = {
 						Body = body_decal,
 						Head = head_decal,
-						Start = this.Time.getRealTimeF(),
+						Start = ::Time.getRealTimeF(),
 						Vector = this.createVec(0.0, -1.0),
 						Iterations = 0,
 						function onCorpseEffect( _data )
 						{
-							if (this.Time.getRealTimeF() - _data.Start > 0.2)
+							if (::Time.getRealTimeF() - _data.Start > 0.2)
 							{
 								if (++_data.Iterations > 5)
 								{
@@ -161,17 +161,17 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 								}
 
 								_data.Vector = this.createVec(::Math.rand(-100, 100) * 0.01, ::Math.rand(-100, 100) * 0.01);
-								_data.Start = this.Time.getRealTimeF();
+								_data.Start = ::Time.getRealTimeF();
 							}
 
-							local f = (this.Time.getRealTimeF() - _data.Start) / 0.2;
+							local f = (::Time.getRealTimeF() - _data.Start) / 0.2;
 							_data.Body.setOffset(this.createVec(0.0 + 0.5 * _data.Vector.X * f, 30.0 + 1.0 * _data.Vector.Y * f));
 							_data.Head.setOffset(this.createVec(0.0 + 0.5 * _data.Vector.X * f, 30.0 + 1.0 * _data.Vector.Y * f));
-							this.Time.scheduleEvent(this.TimeUnit.Real, 10, _data.onCorpseEffect, _data);
+							::Time.scheduleEvent(::TimeUnit.Real, 10, _data.onCorpseEffect, _data);
 						}
 
 					};
-					this.Time.scheduleEvent(this.TimeUnit.Real, 10, corpse_data.onCorpseEffect, corpse_data);
+					::Time.scheduleEvent(::TimeUnit.Real, 10, corpse_data.onCorpseEffect, corpse_data);
 				}
 			}
 			else if (_fatalityType == ::Const.FatalityType.Decapitated)

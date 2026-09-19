@@ -33,9 +33,9 @@
 
 		if (this.m.Start == 0.0)
 		{
-			this.m.Start = this.Time.getVirtualTimeF();
+			this.m.Start = ::Time.getVirtualTimeF();
 		}
-		else if (this.Time.getVirtualTimeF() - this.m.Start >= this.m.Time)
+		else if (::Time.getVirtualTimeF() - this.m.Start >= this.m.Time)
 		{
 			local entities = ::World.getAllEntitiesAndOneLocationAtPos(_entity.getPos(), 1.0);
 

@@ -320,7 +320,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			if (!_instant)
 			{
 				this.setRenderCallbackEnabled(true);
-				this.m.ScaleStartTime = this.Time.getVirtualTimeF();
+				this.m.ScaleStartTime = ::Time.getVirtualTimeF();
 			}
 
 			this.m.DecapitateSplatterOffset = this.createVec(33, -26);
@@ -342,7 +342,7 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 			if (!_instant)
 			{
 				this.setRenderCallbackEnabled(true);
-				this.m.ScaleStartTime = this.Time.getVirtualTimeF();
+				this.m.ScaleStartTime = ::Time.getVirtualTimeF();
 			}
 
 			this.m.DecapitateSplatterOffset = this.createVec(35, -26);
@@ -365,8 +365,8 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 
 		if (this.m.Size == 2)
 		{
-			this.getSprite("body").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((this.Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
-			this.getSprite("head").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((this.Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
+			this.getSprite("body").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
+			this.getSprite("head").Scale = ::Math.minf(1.0, 0.96 + 0.04 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.moveSpriteOffset("body", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime);
 
 			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime))
@@ -376,8 +376,8 @@ this.legend_skin_ghoul <- this.inherit("scripts/entity/tactical/actor", {
 		}
 		else if (this.m.Size == 3)
 		{
-			this.getSprite("body").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((this.Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
-			this.getSprite("head").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((this.Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
+			this.getSprite("body").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
+			this.getSprite("head").Scale = ::Math.minf(1.0, 0.94 + 0.06 * ((::Time.getVirtualTimeF() - this.m.ScaleStartTime) / 0.3));
 			this.moveSpriteOffset("body", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime);
 
 			if (this.moveSpriteOffset("head", this.createVec(0, -1), this.createVec(0, 0), 0.3, this.m.ScaleStartTime))

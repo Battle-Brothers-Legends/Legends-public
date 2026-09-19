@@ -355,7 +355,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			sprite.fadeOutAndHide(t);
 			sprite = this.getSprite("injury");
 			sprite.fadeOutAndHide(t);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, t + 100, function ( _e )
+			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function ( _e )
 			{
 				if (!_e.isAlive())
 				{
@@ -397,7 +397,7 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 			sprite = this.getSprite("injury");
 			sprite.fadeIn(t);
 			this.onUpdateInjuryLayer();
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, t + 100, function ( _e )
+			::Time.scheduleEvent(::TimeUnit.Virtual, t + 100, function ( _e )
 			{
 				if (!_e.isAlive())
 				{

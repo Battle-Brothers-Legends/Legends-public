@@ -42,7 +42,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 			local bro = roster.create("scripts/entity/tactical/player");
 			bro.setVeteranPerks(3);
 			bro.getSprite("socket").setBrush("bust_base_undead");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
@@ -216,7 +216,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", nearestVillage.getTile().Coords.X, nearestVillage.getTile().Coords.Y);
 		::World.Assets.updateLook(112);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/undead_01.ogg"

@@ -47,7 +47,7 @@ this.legend_hexe_leader_agent <- this.inherit("scripts/ai/tactical/agent", {
 	function onRoundStarted() {
 		this.agent.onRoundStarted();
 
-		if (this.Time.getRound() == 1) {
+		if (::Time.getRound() == 1) {
 			local allies = ::Tactical.Entities.getInstancesOfFaction(this.getActor().getFaction());
 
 			foreach (a in allies) {

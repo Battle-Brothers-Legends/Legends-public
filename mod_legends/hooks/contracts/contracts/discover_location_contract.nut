@@ -112,7 +112,7 @@
 						this.Flags.set("IsShowingAnotherParty", true);
 					}
 
-					this.Contract.m.LastHelpTime = this.Time.getVirtualTimeF() + ::Math.rand(10, 30);
+					this.Contract.m.LastHelpTime = ::Time.getVirtualTimeF() + ::Math.rand(10, 30);
 					this.Contract.setScreen("Overview");
 					::World.Contracts.setActiveContract(this.Contract);
 				}

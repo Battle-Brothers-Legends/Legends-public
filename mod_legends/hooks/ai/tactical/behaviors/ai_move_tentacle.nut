@@ -6,7 +6,7 @@
 		local score = this.getProperties().BehaviorMult[this.m.ID];
 		this.m.TargetTile = null;
 		this.m.SelectedSkill = null;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		if (_entity.getActionPoints() < ::Const.Movement.AutoEndTurnBelowAP)
 		{
@@ -76,7 +76,7 @@
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			if (t.Actor.isNull())

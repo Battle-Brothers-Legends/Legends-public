@@ -67,7 +67,7 @@
 
 		this.consumeAmmo();
 
-		this.Time.scheduleEvent(this.TimeUnit.Real, 250, this.onApply.bindenv(this), {
+		::Time.scheduleEvent(::TimeUnit.Real, 250, this.onApply.bindenv(this), {
 			Skill = this,
 			User = _user,
 			TargetTile = _targetTile

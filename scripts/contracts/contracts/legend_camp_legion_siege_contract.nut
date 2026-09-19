@@ -9,7 +9,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
 		this.m.Type = "contract.legend_camp_legion_siege";
 		this.m.Name = "Siege";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.MakeAllSpawnsResetOrdersOnContractEnd = false;
 
 		this.m.DescriptionTemplates = [
@@ -172,7 +172,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					return;
 				}
 
-				if (this.Time.getVirtualTimeF() < this.Flags.get("WaitUntil")) {
+				if (::Time.getVirtualTimeF() < this.Flags.get("WaitUntil")) {
 					return;
 				}
 
@@ -233,7 +233,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					return;
 				}
 
-				if (this.Time.getVirtualTimeF() < this.Flags.get("WaitUntil")) {
+				if (::Time.getVirtualTimeF() < this.Flags.get("WaitUntil")) {
 					return;
 				}
 
@@ -316,7 +316,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					return;
 				}
 
-				if (this.Time.getVirtualTimeF() < this.Flags.get("WaitUntil") || ::World.getTime().IsDaytime) {
+				if (::Time.getVirtualTimeF() < this.Flags.get("WaitUntil") || ::World.getTime().IsDaytime) {
 					return;
 				}
 
@@ -697,7 +697,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 				{
 					Text = "The %companyname% will be ready.",
 					function getResult() {
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
+						this.Flags.set("WaitUntil", ::Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}
@@ -934,7 +934,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 							this.Contract.setState("Running_NighttimeEncounter");
 						} else if (this.Flags.get("IsReliefAttack")) {
 							this.Flags.set("IsReliefAttackForced", true);
-							this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
+							this.Flags.set("WaitUntil", ::Time.getVirtualTimeF() + ::Math.rand(15, 30));
 							this.Contract.setState("Running_Wait");
 						}
 						return 0;
@@ -985,7 +985,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 						this.Flags.set("IsNighttimeEncounterLost", false);
 						this.Flags.set("IsNighttimeEncounter", false);
 						this.Flags.set("IsReliefAttack", true);
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
+						this.Flags.set("WaitUntil", ::Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						return 0;
 					}
 				}
@@ -1073,7 +1073,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 					function getResult() {
 						this.Flags.set("IsSecretPassage", false);
 						this.Flags.set("IsReliefAttackForced", true);
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(15, 30));
+						this.Flags.set("WaitUntil", ::Time.getVirtualTimeF() + ::Math.rand(15, 30));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}
@@ -1113,7 +1113,7 @@ this.legend_camp_legion_siege_contract <- ::inherit("scripts/contracts/legend_ca
 						} else if (this.Flags.get("IsDefendersSallyForth")) {
 							this.Flags.set("IsDefendersSallyForthForced", true);
 						}
-						this.Flags.set("WaitUntil", this.Time.getVirtualTimeF() + ::Math.rand(10, 20));
+						this.Flags.set("WaitUntil", ::Time.getVirtualTimeF() + ::Math.rand(10, 20));
 						this.Contract.setState("Running_Wait");
 						return 0;
 					}

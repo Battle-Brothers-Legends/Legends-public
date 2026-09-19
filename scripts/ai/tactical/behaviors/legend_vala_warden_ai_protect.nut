@@ -173,7 +173,7 @@ this.legend_vala_warden_ai_protect <- this.inherit("scripts/ai/tactical/behavior
 	function selectBestTargetTile( _entity )
 	{
 		// Function is a generator.
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local myTile = _entity.getTile();
 		local AllBrothers = ::World.getPlayerRoster().getAll();
 		local allOpponents = this.getAgent().getKnownOpponents();
@@ -194,7 +194,7 @@ this.legend_vala_warden_ai_protect <- this.inherit("scripts/ai/tactical/behavior
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local importantAlly = a;
@@ -349,7 +349,7 @@ this.legend_vala_warden_ai_protect <- this.inherit("scripts/ai/tactical/behavior
 		local myFaction = _entity.getFaction();
 		potential_tiles.sort(this.onSortByScore);
 		local attempts = 0;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local bestDestination;
 		local bestScore = -9000;
 		local bestIsForNextTurn = false;
@@ -369,7 +369,7 @@ this.legend_vala_warden_ai_protect <- this.inherit("scripts/ai/tactical/behavior
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local apCost = 0;

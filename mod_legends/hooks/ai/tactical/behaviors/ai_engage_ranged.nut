@@ -20,7 +20,7 @@
 		this.m.PotentialDanger = [];
 		this.m.CurrentDanger = 0.0;
 		local myTile = _entity.getTile();
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		foreach (target in _targets) {
 			if (::Legends.S.isEntityNullOrDead(target.Actor) || !target.Actor.isPlacedOnMap()) {
@@ -29,7 +29,7 @@
 
 			if (this.isAllottedTimeReached(time)) {
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local targetTile = target.Actor.getTile();

@@ -182,9 +182,9 @@
 						}
 					}
 
-					if (this.Contract.m.UnitsSpawned.len() != 0 && this.Time.getVirtualTimeF() - this.Contract.m.LastOrderUpdateTime > 2.0)
+					if (this.Contract.m.UnitsSpawned.len() != 0 && ::Time.getVirtualTimeF() - this.Contract.m.LastOrderUpdateTime > 2.0)
 					{
-						this.Contract.m.LastOrderUpdateTime = this.Time.getVirtualTimeF();
+						this.Contract.m.LastOrderUpdateTime = ::Time.getVirtualTimeF();
 						local party = ::World.getEntityByID(this.Contract.m.UnitsSpawned[0]);
 						local playerTile = ::World.State.getPlayer().getTile();
 
@@ -213,9 +213,9 @@
 								wait.setTime(::World.getTime().SecondsPerDay * 1);
 								c.addOrder(wait);
 
-								if (party.getTile().getDistanceTo(playerTile) <= 8 && this.Time.getVirtualTimeF() - this.Flags.get("SearchPartyLastNotificationTime") >= 300.0)
+								if (party.getTile().getDistanceTo(playerTile) <= 8 && ::Time.getVirtualTimeF() - this.Flags.get("SearchPartyLastNotificationTime") >= 300.0)
 								{
-									this.Flags.set("SearchPartyLastNotificationTime", this.Time.getVirtualTimeF());
+									this.Flags.set("SearchPartyLastNotificationTime", ::Time.getVirtualTimeF());
 									this.Contract.setScreen("SearchParty");
 									::World.Contracts.showActiveContract();
 								}

@@ -26,7 +26,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 			bro = roster.create("scripts/entity/tactical/player");
  			bro.getSprite("socket").setBrush("bust_base_wildmen_01");
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -136,7 +136,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		local f = nearestVillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		f.addPlayerRelation(-20.0, "Heard rumors of you poaching in their woods");
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_ranger_scenario_intro");

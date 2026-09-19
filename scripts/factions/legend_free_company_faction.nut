@@ -13,7 +13,7 @@ this.legend_free_company_faction <- this.inherit("scripts/factions/faction", {
 	}
 
 	function isReadyForContract() {
-		return this.m.Contracts.len() < 3 && (this.m.LastContractTime == 0 || this.Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * 4.0)
+		return this.m.Contracts.len() < 3 && (this.m.LastContractTime == 0 || ::Time.getVirtualTimeF() > this.m.LastContractTime + ::World.getTime().SecondsPerDay * 4.0)
 	}
 
 	function onUpdateRoster() {

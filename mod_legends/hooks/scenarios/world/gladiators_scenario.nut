@@ -32,7 +32,7 @@
 			bro.setPlaceInFormation(3 + i);
 			bro.getFlags().set("IsPlayerCharacter", true);
 			bro.getSprite("miniboss").setBrush("bust_miniboss_gladiators");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.m.PerkPoints = 2;
 			bro.m.LevelUps = 2;
 			bro.m.Level = 3;
@@ -171,7 +171,7 @@
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(16);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/worldmap_11.ogg"

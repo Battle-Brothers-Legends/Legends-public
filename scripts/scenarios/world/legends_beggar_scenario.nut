@@ -16,7 +16,7 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 	function onSpawnAssets() {
 		local bro;
 		bro = ::World.getPlayerRoster().create("scripts/entity/tactical/player");
-		bro.m.HireTime = this.Time.getVirtualTimeF();
+		bro.m.HireTime = ::Time.getVirtualTimeF();
 		bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 		bro.setStartValuesEx([::Legends.Background.LegendCommanderBeggar]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
@@ -93,7 +93,7 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		::World.Assets.updateLook(111);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"

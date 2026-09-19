@@ -230,7 +230,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 			User = _user,
 			TargetTile = _targetTile
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
 		this.getItem().setLoaded(false);
 		return true;
 	}
@@ -268,7 +268,7 @@ this.legend_line_them_up_skill <- this.inherit("scripts/skills/skill", {
 			User = user,
 			Targets = affectedTiles
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, this.applyEffectToTargets.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 200, this.applyEffectToTargets.bindenv(this), tag);
 		return true;
 	}
 

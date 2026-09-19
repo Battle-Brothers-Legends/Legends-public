@@ -33,7 +33,7 @@ this.legend_lose_fear_nobles_event <- this.inherit("scripts/events/event", {
 		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.NobleHouse).getID())
 			return;
 
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
 			return;
 
 		local brothers = ::World.getPlayerRoster().getAll();

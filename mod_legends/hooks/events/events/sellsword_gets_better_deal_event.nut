@@ -53,7 +53,7 @@
 				continue;
 			if (bro.getLevel() < 4 && bro.getLevel() > 9)
 				continue;
-			if (this.Time.getVirtualTimeF() - bro.getHireTime() < ::World.getTime().SecondsPerDay * 25.0)
+			if (::Time.getVirtualTimeF() - bro.getHireTime() < ::World.getTime().SecondsPerDay * 25.0)
 				continue;
 			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist))
 				continue;

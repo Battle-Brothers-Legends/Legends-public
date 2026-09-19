@@ -210,7 +210,7 @@ this.legend_call_lightning_skill <- this.inherit("scripts/skills/skill", {
 
 function applyEffect( _data, _delay )
 	{
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay, function ( _data )
+		::Time.scheduleEvent(::TimeUnit.Virtual, _delay, function ( _data )
 		{
 			for( local i = 0; i < ::Const.Tactical.LightningParticles.len(); i = i )
 			{
@@ -224,7 +224,7 @@ function applyEffect( _data, _delay )
 			return;
 		}
 
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, _delay + 200, function ( _data )
+		::Time.scheduleEvent(::TimeUnit.Virtual, _delay + 200, function ( _data )
 		{
 			local hitInfo = clone ::Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = ::Math.rand(15, 30);

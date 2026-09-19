@@ -183,7 +183,7 @@
 			resources = resources * ::Const.Difficulty.EnemyMult[::World.Assets.getCombatDifficulty()];
 		}
 
-		if (this.Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
+		if (::Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
 		{
 			resources = resources * 0.75;
 		}
@@ -253,7 +253,7 @@
 
 		this.m.Troops = [];
 
-		if (this.Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
+		if (::Time.getVirtualTimeF() - this.m.LastSpawnTime <= 60.0)
 		{
 			this.m.DefenderSpawnDay = ::World.getTime().Days - 7;
 		}

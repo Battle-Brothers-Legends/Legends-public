@@ -69,8 +69,8 @@ this.legend_berserker_rage_effect <- this.inherit("scripts/skills/skill", {
 		local actor = this.getContainer().getActor();
 
 		if (!actor.isHiddenToPlayer()) {
-			if (this.m.SoundOnUse.len() != 0 && this.Time.getVirtualTimeF() - this.m.LastRageSoundTime > 5.0) {
-				this.m.LastRageSoundTime = this.Time.getVirtualTimeF();
+			if (this.m.SoundOnUse.len() != 0 && ::Time.getVirtualTimeF() - this.m.LastRageSoundTime > 5.0) {
+				this.m.LastRageSoundTime = ::Time.getVirtualTimeF();
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * (::Math.rand(75, 100) * 0.01), actor.getPos(), ::Math.rand(75, 100) * 0.01);
 			}
 

@@ -56,12 +56,12 @@
 		local myTile = _entity.getTile();
 		local bestScore = 0.0;
 		local bestTarget;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		foreach (opponent in _targets) {
 			if (this.isAllottedTimeReached(time)) {
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local target = opponent.Actor;

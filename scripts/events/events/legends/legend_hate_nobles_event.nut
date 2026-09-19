@@ -39,7 +39,7 @@ this.legend_hate_nobles_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5
 			return;
 
 		local fallen = ::World.Statistics.getFallen();

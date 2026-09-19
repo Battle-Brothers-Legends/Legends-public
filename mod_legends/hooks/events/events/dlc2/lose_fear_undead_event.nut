@@ -17,7 +17,7 @@
 		if (::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getID() && ::World.Statistics.getFlags().getAsInt("LastCombatFaction") != ::World.FactionManager.getFactionOfType(::Const.FactionType.Zombies).getID())
 			return;
 
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > ::World.getTime().SecondsPerDay * 1.0)
 			return;
 
 		local brothers = ::World.getPlayerRoster().getAll();

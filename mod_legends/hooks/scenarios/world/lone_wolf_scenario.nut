@@ -19,7 +19,7 @@
 		local roster = ::World.getPlayerRoster();
 
 		local bro = roster.create("scripts/entity/tactical/player");
-		bro.m.HireTime = this.Time.getVirtualTimeF();
+		bro.m.HireTime = ::Time.getVirtualTimeF();
 		bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 
 		local bros = roster.getAll(); //starting party
@@ -32,7 +32,7 @@
 		bros[0].setPlaceInFormation(4);
 		bros[0].getFlags().set("IsPlayerCharacter", true);
 		bros[0].getSprite("miniboss").setBrush("bust_miniboss_lone_wolf");
-		bros[0].m.HireTime = this.Time.getVirtualTimeF();
+		bros[0].m.HireTime = ::Time.getVirtualTimeF();
 		bros[0].m.PerkPoints = 3;
 		bros[0].m.LevelUps = 3;
 		bros[0].m.Level = 4;
@@ -107,7 +107,7 @@
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(6);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/noble_02.ogg"

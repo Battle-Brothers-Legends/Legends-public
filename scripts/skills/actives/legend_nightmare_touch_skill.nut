@@ -35,7 +35,7 @@ this.legend_nightmare_touch_skill <- this.inherit("scripts/skills/skill", {
 			User = _user,
 			TargetTile = _targetTile
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, this.onDelayedEffect.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 400, this.onDelayedEffect.bindenv(this), tag);
 		return true;
 	}
 

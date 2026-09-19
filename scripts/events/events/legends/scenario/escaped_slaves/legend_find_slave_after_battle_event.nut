@@ -496,7 +496,7 @@ this.legend_find_slave_after_battle_event <- this.inherit("scripts/events/event"
 			return;
 		}
 
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 5.0 || ::World.Statistics.getFlags().getAsInt("LastCombatResult") != 1) {
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 5.0 || ::World.Statistics.getFlags().getAsInt("LastCombatResult") != 1) {
 			return false;
 		}
 

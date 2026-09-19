@@ -62,7 +62,7 @@
 				_user.playSound(::Const.Sound.ActorEvent.Move, 2.0);
 			}
 
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _tag )
+			::Time.scheduleEvent(::TimeUnit.Virtual, 200, function ( _tag )
 			{
 				if (this.attackEntity(_user, _targetTile.getEntity()) && !_targetTile.IsEmpty)
 				{
@@ -74,7 +74,7 @@
 		if (_targetTile.hasNextTile(dir))
 		{
 			local forwardTile = _targetTile.getNextTile(dir);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 200, function ( _tag )
+			::Time.scheduleEvent(::TimeUnit.Virtual, 200, function ( _tag )
 			{
 				::Tactical.spawnAttackEffect("uproot", forwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
 
@@ -93,7 +93,7 @@
 
 			if (forwardTile.IsOccupiedByActor && forwardTile.getEntity().isAttackable() && ::Math.abs(forwardTile.Level - myTile.Level) <= 1 && !(forwardTile.getEntity().getType() == ::Const.EntityType.Schrat || forwardTile.getEntity().getType() == ::Const.EntityType.SchratSmall || forwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchrat || forwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchratSmall))
 			{
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, function ( _tag )
+				::Time.scheduleEvent(::TimeUnit.Virtual, 400, function ( _tag )
 				{
 					if (this.attackEntity(_user, forwardTile.getEntity()) && !forwardTile.IsEmpty)
 					{
@@ -105,7 +105,7 @@
 			if (forwardTile.hasNextTile(dir))
 			{
 				local furtherForwardTile = forwardTile.getNextTile(dir);
-				this.Time.scheduleEvent(this.TimeUnit.Virtual, 400, function ( _tag )
+				::Time.scheduleEvent(::TimeUnit.Virtual, 400, function ( _tag )
 				{
 					::Tactical.spawnAttackEffect("uproot", furtherForwardTile, 0, -50, 100, 300, 100, this.createVec(0, 90), 200, this.createVec(0, -90), true);
 
@@ -124,7 +124,7 @@
 
 				if (furtherForwardTile.IsOccupiedByActor && furtherForwardTile.getEntity().isAttackable() && !(furtherForwardTile.getEntity().getType() == ::Const.EntityType.Schrat || furtherForwardTile.getEntity().getType() == ::Const.EntityType.SchratSmall || furtherForwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchrat || furtherForwardTile.getEntity().getType() == ::Const.EntityType.LegendGreenwoodSchratSmall))
 				{
-					this.Time.scheduleEvent(this.TimeUnit.Virtual, 600, function ( _tag )
+					::Time.scheduleEvent(::TimeUnit.Virtual, 600, function ( _tag )
 					{
 						if (this.attackEntity(_user, furtherForwardTile.getEntity()) && !furtherForwardTile.IsEmpty)
 						{

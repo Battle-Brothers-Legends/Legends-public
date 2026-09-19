@@ -70,7 +70,7 @@
 				{
 					local nextTile = tile.getNextTile(i);
 
-					if (nextTile.Properties.Effect != null && nextTile.Properties.Effect.Timeout - this.Time.getRound() >= 2)
+					if (nextTile.Properties.Effect != null && nextTile.Properties.Effect.Timeout - ::Time.getRound() >= 2)
 					{
 						continue;
 					}
@@ -111,7 +111,7 @@
 
 				target_score = target_score * target.getCurrentProperties().TargetAttractionMult;
 
-				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "miasma" && targetTile.Properties.Effect.Timeout - this.Time.getRound() == 1)
+				if (targetTile.Properties.Effect != null && targetTile.Properties.Effect.Type == "miasma" && targetTile.Properties.Effect.Timeout - ::Time.getRound() == 1)
 				{
 					target_score = target_score * ::Const.AI.Behavior.MiasmaOneTurnLeftMult;
 				}

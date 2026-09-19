@@ -59,7 +59,7 @@ this.perk_legend_return_favor <- this.inherit("scripts/skills/skill", {
 				TargetTile = _attacker.getTile()
 			};
 			local delay = ::Math.max(::Const.Combat.RiposteDelay, skill.m.Delay);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, delay, this.onCounterFire.bindenv(this), info);
+			::Time.scheduleEvent(::TimeUnit.Virtual, delay, this.onCounterFire.bindenv(this), info);
 		}
 	}
 

@@ -25,12 +25,12 @@
 			this.m.Crownlings.remove(crownlingParty);
 		}
 
-		if (this.m.LastCrownlingUpdateTime + 3.0 > this.Time.getVirtualTimeF())
+		if (this.m.LastCrownlingUpdateTime + 3.0 > ::Time.getVirtualTimeF())
 		{
 			return;
 		}
 
-		this.m.LastCrownlingUpdateTime = this.Time.getVirtualTimeF();
+		this.m.LastCrownlingUpdateTime = ::Time.getVirtualTimeF();
 
 		if (this.m.Crownlings.len() < ::BDP.Crownlings.MaxParties || ::World.FactionManager.isHolyWar() && this.m.Crownlings.len() < ::BDP.Crownlings.MaxPartiesHolyWar)
 		{

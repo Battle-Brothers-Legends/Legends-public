@@ -24,7 +24,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
  			bro.getSprite("socket").setBrush("bust_base_undead"); //base bust for starters
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 
 			while (names.find(bro.getNameOnly()) != null)
 			{
@@ -139,7 +139,7 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(104);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_necro_intro_event"); //starting event

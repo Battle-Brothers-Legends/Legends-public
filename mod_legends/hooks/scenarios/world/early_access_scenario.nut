@@ -17,7 +17,7 @@
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.improveMood(1.5, "Joined a mercenary company");
 
 			while (names.find(bro.getNameOnly()) != null)
@@ -101,7 +101,7 @@
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.early_access_scenario_intro");

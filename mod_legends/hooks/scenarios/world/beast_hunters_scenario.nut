@@ -25,7 +25,7 @@
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.improveMood(1.0, "Has slain a dangerous witch");
 			bro.worsenMood(2.5, "Lost most of the company in a betrayal");
 

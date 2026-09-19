@@ -41,7 +41,7 @@
 			if (_isNewContract)
 			{
 				local faction = ::World.FactionManager.getFaction(_contract.getFaction());
-				::World.FactionManager.getFaction(_contract.getFaction()).setLastContractTime(this.Time.getVirtualTimeF() + ::Const.LegendMod.ContractCooldown.getLastContractTimeDelay(faction));
+				::World.FactionManager.getFaction(_contract.getFaction()).setLastContractTime(::Time.getVirtualTimeF() + ::Const.LegendMod.ContractCooldown.getLastContractTimeDelay(faction));
 			}
 		}
 

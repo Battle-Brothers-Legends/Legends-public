@@ -22,7 +22,7 @@
 		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
 			return;
 
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5
 			return;
 
 		local fallen = ::World.Statistics.getFallen();

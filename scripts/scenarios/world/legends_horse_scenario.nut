@@ -25,7 +25,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		{
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.worsenMood(0.5, "Encountered another caravan slaughtered by greenskins");
 
 			while (names.find(bro.getNameOnly()) != null)
@@ -118,7 +118,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(9);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/retirement_01.ogg"

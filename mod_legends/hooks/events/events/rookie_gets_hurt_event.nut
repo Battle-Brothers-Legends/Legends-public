@@ -22,7 +22,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (this.Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 10.0)
+		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 10.0)
 			return;
 
 		local brothers = ::World.getPlayerRoster().getAll();

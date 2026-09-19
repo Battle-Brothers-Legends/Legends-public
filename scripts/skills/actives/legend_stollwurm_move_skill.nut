@@ -53,7 +53,7 @@ this.legend_stollwurm_move_skill <- this.inherit("scripts/skills/skill", {
 		if (_user.getTile().IsVisibleForPlayer)
 		{
 			_user.sinkIntoGround(0.75);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 800, this.onTeleportStart, tag);
+			::Time.scheduleEvent(::TimeUnit.Virtual, 800, this.onTeleportStart, tag);
 		}
 		else if (_targetTile.IsVisibleForPlayer)
 		{

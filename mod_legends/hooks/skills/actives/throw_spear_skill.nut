@@ -129,7 +129,7 @@
 			}
 			local flip = !this.m.IsProjectileRotated && target.getPos().X > _user.getPos().X;
 			local time = ::Tactical.spawnProjectileEffect(::Const.ProjectileSprite[this.m.ProjectileType], _user.getTile(), _targetTile, 1.0, this.m.ProjectileTimeScale, this.m.IsProjectileRotated, flip);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, time, this.onApplyShieldDamage.bindenv(this), {
+			::Time.scheduleEvent(::TimeUnit.Virtual, time, this.onApplyShieldDamage.bindenv(this), {
 				User = _user,
 				Skill = this,
 				TargetTile = _targetTile,

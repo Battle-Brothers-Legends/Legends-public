@@ -11,7 +11,7 @@
 
 	o.addNews = function (_type, _news) {
 		_news.Type <- _type;
-		_news.Time <- this.Time.getVirtualTimeF();
+		_news.Time <- ::Time.getVirtualTimeF();
 
 		if (this.m.News.len() >= 10) {
 			this.m.News.remove(0);

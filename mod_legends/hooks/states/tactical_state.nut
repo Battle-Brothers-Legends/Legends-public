@@ -239,7 +239,7 @@
 		local activeEntity = ::Tactical.TurnSequenceBar.getActiveEntity();
 
 		if (activeEntity != null && activeEntity.getAIAgent().isEvaluating()) {
-			if (this.Time.getVirtualTime() < activeEntity.getAIAgent().m.NextEvaluationTime) {
+			if (::Time.getVirtualTime() < activeEntity.getAIAgent().m.NextEvaluationTime) {
             	return;
         	}
 
@@ -430,7 +430,7 @@
 		if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode)
 		{
 			::Sound.play(::Const.Sound.ArenaEnd[::Math.rand(0, ::Const.Sound.ArenaEnd.len() - 1)], ::Const.Sound.Volume.Tactical);
-			this.Time.scheduleEvent(this.TimeUnit.Real, 4500, function ( _t )
+			::Time.scheduleEvent(::TimeUnit.Real, 4500, function ( _t )
 			{
 				::Sound.play(::Const.Sound.ArenaOutro[::Math.rand(0, ::Const.Sound.ArenaOutro.len() - 1)], ::Const.Sound.Volume.Tactical);
 			}, null);
@@ -438,14 +438,14 @@
 
 		this.gatherBrothers(isVictory);
 		this.gatherLoot();
-		this.Time.scheduleEvent(this.TimeUnit.Real, 800, this.onBattleEndedDelayed.bindenv(this), isVictory);
+		::Time.scheduleEvent(::TimeUnit.Real, 800, this.onBattleEndedDelayed.bindenv(this), isVictory);
 	}
 
 	o.onBattleEndedDelayed = function ( _isVictory )
 	{
 		if (this.m.MenuStack.hasBacksteps())
 		{
-			this.Time.scheduleEvent(this.TimeUnit.Real, 50, this.onBattleEndedDelayed.bindenv(this), _isVictory);
+			::Time.scheduleEvent(::TimeUnit.Real, 50, this.onBattleEndedDelayed.bindenv(this), _isVictory);
 			return;
 		}
 
@@ -778,7 +778,7 @@
 	o.turnsequencebar_onNextRound = function ( _round )
 	{
 		this.logDebug("INFO: Next round issued: " + _round);
-		this.Time.setRound(_round);
+		::Time.setRound(_round);
 
 		if (this.m.StrategicProperties != null && this.m.StrategicProperties.IsArenaMode)
 		{
@@ -827,7 +827,7 @@
 			this.m.MenuStack.pop();
 			this.m.TacticalDialogScreen.hide();
 			this.m.TacticalScreen.hide();
-			this.Time.clearEvents();
+			::Time.clearEvents();
 			this.setPause(true);
 			this.flee();
 		} else if (!this.m.IsAutoRetreat) {

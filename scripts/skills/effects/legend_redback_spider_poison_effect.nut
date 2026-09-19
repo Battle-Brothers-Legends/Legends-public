@@ -54,10 +54,10 @@ this.legend_redback_spider_poison_effect <- this.inherit("scripts/skills/skill",
 
 	function applyDamage()
 	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
+		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
 			local actor = this.getContainer().getActor();
-			this.m.LastRoundApplied = this.Time.getRound();
+			this.m.LastRoundApplied = ::Time.getRound();
 			this.spawnIcon("status_effect_54", this.getContainer().getActor().getTile());
 
 			if (actor.getCurrentProperties().IsImmuneToPoison) {

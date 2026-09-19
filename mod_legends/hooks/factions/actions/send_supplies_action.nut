@@ -45,7 +45,7 @@
 					if (s.isIsolatedFromRoads())
 						continue;
 
-					if (!s.isMilitary() && !(s.getLastSpawnTime() + 300.0 > this.Time.getVirtualTimeF()))
+					if (!s.isMilitary() && !(s.getLastSpawnTime() + 300.0 > ::Time.getVirtualTimeF()))
 						starts.push(s);
 				}
 			}

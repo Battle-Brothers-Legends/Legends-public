@@ -9,7 +9,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 		this.m.Type = "contract.legend_camp_legion_hunt_nobles_contract";
 		this.m.Name = "Hunt: Nobles";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Legion;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(95, 125) * 0.01;
 		this.m.DescriptionTemplates = [
 			"A Noble house patrol is too close to discovering a nearby camp of ours.",
@@ -88,7 +88,7 @@ this.legend_camp_legion_hunt_nobles_contract <- this.inherit("scripts/contracts/
 
 			function end()
 			{
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.setScreen("Overview");
 				::World.Contracts.setActiveContract(this.Contract);

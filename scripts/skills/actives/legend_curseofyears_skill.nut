@@ -110,7 +110,7 @@ this.legend_curseofyears_skill <- this.inherit("scripts/skills/skill", {
 			User = _user,
 			TargetTile = _targetTile
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
 		this.m.Cooldown = 4;
 		return true;
 	}

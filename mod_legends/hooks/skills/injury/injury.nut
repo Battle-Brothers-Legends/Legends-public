@@ -206,7 +206,7 @@
 		}
 		else
 		{
-			this.m.TimeApplied = ::Math.minf(this.Time.getVirtualTimeF(), this.m.TimeApplied + ::World.getTime().SecondsPerDay);
+			this.m.TimeApplied = ::Math.minf(::Time.getVirtualTimeF(), this.m.TimeApplied + ::World.getTime().SecondsPerDay);
 		}
 	}
 

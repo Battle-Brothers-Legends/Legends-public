@@ -42,10 +42,10 @@
 
 		local potentialDestinations = [];
 
-		if (::Const.Tactical.Actor.Alp.TeleportTargets.len() == 0 || ::Const.Tactical.Actor.Alp.TeleportFrame != this.Time.getFrame())
+		if (::Const.Tactical.Actor.Alp.TeleportTargets.len() == 0 || ::Const.Tactical.Actor.Alp.TeleportFrame != ::Time.getFrame())
 		{
 			::Const.Tactical.Actor.Alp.TeleportTargets = [];
-			::Const.Tactical.Actor.Alp.TeleportFrame = this.Time.getFrame();
+			::Const.Tactical.Actor.Alp.TeleportFrame = ::Time.getFrame();
 			this.getStrategy().cleanUpKnownOpponents();
 			this.getStrategy().compileKnownOpponents();
 			local targets = this.getAgent().getKnownOpponents();

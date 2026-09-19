@@ -14,7 +14,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 		this.contract.create();
 		this.m.Type = "contract.legend_hunting_coven_leader";
 		this.m.Name = "A Cavort with the Coven (Legendary)";
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 30.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 30.0;
 		this.m.DifficultyMult = ::Math.rand(145, 175) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Dark rituals, flawless beauty, a nobleman\'s ardor. Twisted and maniacal, you must face the coven of witches.",
@@ -94,7 +94,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 					this.Flags.set("IsSinisterDeal", true);
 				}
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Flags.set("Delay", ::Math.rand(10, 30) * 1.0);
 				local envoy = ::World.getGuestRoster().create("scripts/entity/tactical/humans/firstborn");
 				local items = envoy.getItems();
@@ -180,7 +180,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 
 					::World.Contracts.showActiveContract();
 				}
-				else if (!this.TempFlags.has("IsEncounterShown") && this.Flags.get("StartTime") + this.Flags.get("Delay") <= this.Time.getVirtualTimeF())
+				else if (!this.TempFlags.has("IsEncounterShown") && this.Flags.get("StartTime") + this.Flags.get("Delay") <= ::Time.getVirtualTimeF())
 				{
 					this.TempFlags.set("IsEncounterShown", true);
 
@@ -199,7 +199,7 @@ this.legend_hunting_coven_leader_contract <- this.inherit("scripts/contracts/con
 
 					::World.Contracts.showActiveContract();
 				}
-				else if (!this.Flags.get("IsBanterShown") && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 6.0 <= this.Time.getVirtualTimeF())
+				else if (!this.Flags.get("IsBanterShown") && ::Math.rand(1, 1000) <= 1 && this.Flags.get("StartTime") + 6.0 <= ::Time.getVirtualTimeF())
 				{
 					this.Flags.set("IsBanterShown", true);
 					this.Contract.setScreen("Banter");

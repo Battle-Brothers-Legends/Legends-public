@@ -9,7 +9,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 		this.m.Type = "contract.legend_camp_unhold_bondage_contract";
 		this.m.Name = "Capture Unhold";
 		this.m.EmployerFaction = ::Legends.CampContracts.EmployerFaction.Barbarians;
-		this.m.TimeOut = this.Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
+		this.m.TimeOut = ::Time.getVirtualTimeF() + ::World.getTime().SecondsPerDay * 7.0;
 		this.m.DifficultyMult = ::Math.rand(95, 125) * 0.01;
 		this.m.DescriptionTemplates = [
 			"Friendly barbarian tribe seeks unhold line-breakers. This should be interesting.",
@@ -64,7 +64,7 @@ this.legend_camp_unhold_bondage_contract <- this.inherit("scripts/contracts/lege
 				::World.Assets.addMoney(this.Contract.m.Payment.getInAdvance());
 				local r = ::Math.rand(1, 100);
 
-				this.Flags.set("StartTime", this.Time.getVirtualTimeF());
+				this.Flags.set("StartTime", ::Time.getVirtualTimeF());
 				this.Contract.spawnEnemies();
 				this.Contract.setScreen("Overview");
 				::World.Contracts.setActiveContract(this.Contract);

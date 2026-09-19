@@ -92,7 +92,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 		if (_targetEntity.getMoraleState() == ::Const.MoraleState.Ignore) return;
 
-		if ((this.Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == ::Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo)
+		if ((::Time.getFrame() == this.m.LastFrameApplied || this.m.SkillCount == ::Const.SkillCounter) && _targetEntity.getID() == this.m.LastEnemyAppliedTo)
 		{
 			if (_damageInflictedHitpoints >= ::Const.Morale.OnHitMinDamage)
 			{
@@ -103,7 +103,7 @@ this.legend_arena_invictus_trait <- this.inherit("scripts/skills/traits/characte
 
 		if (_damageInflictedHitpoints >= 1) this.spawnIcon(this.m.Overlay, _targetEntity.getTile());
 
-		this.m.LastFrameApplied = this.Time.getFrame();
+		this.m.LastFrameApplied = ::Time.getFrame();
 		this.m.LastEnemyAppliedTo = _targetEntity.getID();
 		this.m.SkillCount = ::Const.SkillCounter;
 

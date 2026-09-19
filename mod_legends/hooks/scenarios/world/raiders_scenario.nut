@@ -13,7 +13,7 @@
 
 		for (local i = 0; i < 4; i++) {
 			local bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 		}
 
 		local bros = roster.getAll();
@@ -210,7 +210,7 @@
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(5);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function(_tag) {
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function(_tag) {
 			this.Music.setTrackList([
 				"music/barbarians_02.ogg"
 			], ::Const.Music.CrossFadeTime);

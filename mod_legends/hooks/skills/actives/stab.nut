@@ -45,7 +45,7 @@
 		if (::Tactical.TurnSequenceBar.getActiveEntity().getID() == _user.getID() && (!_user.isHiddenToPlayer() || _targetTile.IsVisibleForPlayer)) {
 			this.m.IsDoingAttackMove = false;
 			this.getContainer().setBusy(true);
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, 100, function ( _skill ) {
+			::Time.scheduleEvent(::TimeUnit.Virtual, 100, function ( _skill ) {
 				if (target.isAlive()) {
 					_skill.attackEntity(_user, target);
 					_skill.m.IsDoingAttackMove = true;

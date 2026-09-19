@@ -40,9 +40,9 @@ this.legend_disintegrating_effect <- this.inherit("scripts/skills/skill", {
 
 	function applyDamage()
 	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
+		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
-			this.m.LastRoundApplied = this.Time.getRound();
+			this.m.LastRoundApplied = ::Time.getRound();
 			this.spawnIcon("status_effect_01", this.getContainer().getActor().getTile());
 			local hitInfo = clone ::Const.Tactical.HitInfo;
 			hitInfo.DamageRegular = this.m.Damage;

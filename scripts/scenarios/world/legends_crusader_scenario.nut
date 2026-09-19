@@ -30,7 +30,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		bro.getFlags().set("IsPlayerCharacter", true);
 		bro.getSprite("socket").setBrush("bust_base_crusader"); //custom base
 		bro.getSprite("miniboss").setBrush("bust_miniboss_crusader"); //custom bust
-		bro.m.HireTime = this.Time.getVirtualTimeF();
+		bro.m.HireTime = ::Time.getVirtualTimeF();
 		::World.Assets.addMoralReputation(20);
 		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		::World.Assets.m.Ammo = 0;
@@ -84,7 +84,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		::World.Assets.updateLook(102);
 		//::World.State.m.Player.getSprite("body").setBrush("figure_player_crusader");
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function (_tag) {
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			this.Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);

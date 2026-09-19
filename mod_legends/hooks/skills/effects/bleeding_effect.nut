@@ -13,9 +13,9 @@
 
 	o.applyDamage = function ()
 	{
-		if (this.m.LastRoundApplied != this.Time.getRound())
+		if (this.m.LastRoundApplied != ::Time.getRound())
 		{
-			this.m.LastRoundApplied = this.Time.getRound();
+			this.m.LastRoundApplied = ::Time.getRound();
 			local actor = this.getContainer().getActor();
 			this.spawnIcon("status_effect_01", actor.getTile());
 			local hitInfo = clone ::Const.Tactical.HitInfo;

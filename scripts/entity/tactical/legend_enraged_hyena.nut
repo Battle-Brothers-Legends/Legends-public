@@ -149,8 +149,8 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 			// Initialize breathing animation targets
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
 			this.m.DistortTargetB = this.m.IsFlipping ? this.createVec(0, 1.0 * this.m.Size) : this.createVec(0, -1.0 * this.m.Size);
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
-			this.m.LastSmokeTime = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF() - ::Math.rand(10, 100) * 0.01;
+			this.m.LastSmokeTime = ::Time.getVirtualTimeF();
 		}
 
 		// Apply breathing animation to body and head
@@ -161,7 +161,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		local breathCycleComplete = this.moveSpriteOffset("head", this.m.DistortTargetPrevB, this.m.DistortTargetB, 1.8, this.m.DistortAnimationStartTimeA);
 		if (breathCycleComplete) {
 			// Reset animation cycle
-			this.m.DistortAnimationStartTimeA = this.Time.getVirtualTimeF();
+			this.m.DistortAnimationStartTimeA = ::Time.getVirtualTimeF();
 			this.m.DistortTargetPrevA = this.m.DistortTargetA;
 			this.m.DistortTargetA = this.m.IsFlipping ? this.createVec(0, 1.5 * this.m.Size) : this.createVec(0, -1.5 * this.m.Size);
 			this.m.DistortTargetPrevB = this.m.DistortTargetB;
@@ -170,7 +170,7 @@ this.legend_enraged_hyena <- this.inherit("scripts/entity/tactical/enemies/hyena
 		}
 
 		// Breath effects should be synchronized with body movement
-		local currentTime = this.Time.getVirtualTimeF();
+		local currentTime = ::Time.getVirtualTimeF();
 		if (breathCycleComplete && currentTime - this.m.LastSmokeTime > 2.0) {
 			this.m.LastSmokeTime = currentTime;
 

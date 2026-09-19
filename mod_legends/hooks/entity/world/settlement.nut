@@ -1156,7 +1156,7 @@
 			this.m.SettlementEncounters = this.m.SettlementEncounters.filter(@(_, _encounter) _encounter.isValid(self) && _encounter.isVisible());
 		}
 		// below can be removed if above turns out to work fine
-		/*if (this.m.SettlementEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+		/*if (this.m.SettlementEncountersCooldownUntil > ::Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (e in this.m.SettlementEncounters) {
 				if (!e.isValid(this))
@@ -1185,7 +1185,7 @@
 		foreach (e in list) {
 			this.m.SettlementEncounters.push(e);
 		}
-		this.m.SettlementEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * ::World.getTime().SecondsPerDay);*/
+		this.m.SettlementEncountersCooldownUntil = ::Time.getVirtualTimeF() + (::Legends.Encounters.SettlementCooldown * ::World.getTime().SecondsPerDay);*/
 	}
 
 	local onSerialize = o.onSerialize;

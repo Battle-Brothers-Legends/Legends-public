@@ -84,7 +84,7 @@
 			corpse.Items = _targetEntity.getItems();
 			corpse.IsConsumable = false;
 			corpse.IsResurrectable = false;
-			this.Time.scheduleEvent(this.TimeUnit.Rounds, ::Math.rand(1, 1), ::Tactical.Entities.resurrect, corpse);
+			::Time.scheduleEvent(::TimeUnit.Rounds, ::Math.rand(1, 1), ::Tactical.Entities.resurrect, corpse);
 		}
 	}
 

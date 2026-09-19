@@ -100,12 +100,12 @@ this.camp_manager <- {
 
 	function getElapsedTime()
 	{
-		return this.Time.getVirtualTimeF() - this.m.StartTime;
+		return ::Time.getVirtualTimeF() - this.m.StartTime;
 	}
 
 	function getElapsedHours()
 	{
-		return (this.Time.getVirtualTimeF() - this.m.StartTime) / (::World.getTime().SecondsPerDay / 24);
+		return (::Time.getVirtualTimeF() - this.m.StartTime) / (::World.getTime().SecondsPerDay / 24);
 	}
 
 	function getCampTime()
@@ -158,13 +158,13 @@ this.camp_manager <- {
 
 		if (this.m.IsEscorting)
 		{
-			this.m.StartTime = this.Time.getVirtualTimeF();
+			this.m.StartTime = ::Time.getVirtualTimeF();
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
 		}
 		else
 		{
-			this.m.StopTime = this.Time.getVirtualTimeF();
+			this.m.StopTime = ::Time.getVirtualTimeF();
 
 			foreach( b in this.m.Tents )
 			{
@@ -187,13 +187,13 @@ this.camp_manager <- {
 
 		if (this.m.IsCamping)
 		{
-			this.m.StartTime = this.Time.getVirtualTimeF();
+			this.m.StartTime = ::Time.getVirtualTimeF();
 			this.m.LastHourUpdated = ::World.getTime().Hours;
 			this.init();
 		}
 		else
 		{
-			this.m.StopTime = this.Time.getVirtualTimeF();
+			this.m.StopTime = ::Time.getVirtualTimeF();
 
 			foreach( b in this.m.Tents ) {
 				if (b.Camping() && !b.isWorkDangerous()) {
@@ -306,7 +306,7 @@ this.camp_manager <- {
 		else
 		{
 			local me = this;
-			this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _t )
+			::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _t )
 			{
 				me.fireEvent(_eventID, _name);
 			}, null);
@@ -366,7 +366,7 @@ this.camp_manager <- {
 		encounters.extend(::World.Encounters.m.CampEncounters.filter(@(_, _encounter) (_encounter.isValid(self) && _encounter.isVisible() && _encounter.checkAvailability())));
 		this.m.CampEncounters = encounters;
 		// below can be removed if above turns out to work fine
-		/*if (this.m.CampEncountersCooldownUntil > this.Time.getVirtualTimeF()) {
+		/*if (this.m.CampEncountersCooldownUntil > ::Time.getVirtualTimeF()) {
 			local notValid = [];
 			foreach (i, e in this.m.CampEncounters) {
 				if (i > 0 && !e.isValid(this))
@@ -394,7 +394,7 @@ this.camp_manager <- {
 		foreach (e in list) {
 			this.m.CampEncounters.push(e);
 		}
-		this.m.CampEncountersCooldownUntil = this.Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);*/
+		this.m.CampEncountersCooldownUntil = ::Time.getVirtualTimeF() + (::Legends.Encounters.CampCooldown * ::World.getTime().SecondsPerDay);*/
 	}
 
 	function getContracts() {

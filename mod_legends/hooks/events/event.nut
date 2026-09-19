@@ -343,7 +343,7 @@
 	local update = o.update;
 	o.update = function () {
 		if("isValidForEncounter" in this.m) {
-			if (this.Time.getVirtualTimeF() < this.m.CooldownUntil) {
+			if (::Time.getVirtualTimeF() < this.m.CooldownUntil) {
 				this.m.isValidForEncounter = false; // it might be true here and show up not ready encounter
 				return;
 			}

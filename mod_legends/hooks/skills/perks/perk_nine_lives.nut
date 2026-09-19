@@ -28,7 +28,7 @@
 			::Legends.Effects.grant(this, ::Legends.Effect.NineLives);
 		}
 		this.m.IsSpent = _f;
-		this.m.LastFrameUsed = this.Time.getFrame();
+		this.m.LastFrameUsed = ::Time.getFrame();
 	}
 
 	local onCombatFinished = o.onCombatFinished;

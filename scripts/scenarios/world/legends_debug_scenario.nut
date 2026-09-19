@@ -27,7 +27,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			local broPerks = broLevel - 1;
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
-			bro.m.HireTime = this.Time.getVirtualTimeF();
+			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.setStartValuesEx(::Const.CharacterBackgroundsRandom);
 			bro.m.Level = broLevel;
 			bro.m.LevelUps = broPerks;
@@ -41,7 +41,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		 	local broPerks = broLevel - 1;
 		 	local bro;
 		 	bro = roster.create("scripts/entity/tactical/player");
-		 	bro.m.HireTime = this.Time.getVirtualTimeF();
+		 	bro.m.HireTime = ::Time.getVirtualTimeF();
 		 	bro.setStartValuesEx(::Const.HorseBackgrounds);
 		 	bro.m.Level = broLevel;
 		 	bro.m.LevelUps = broPerks;
@@ -1000,7 +1000,7 @@ this.legends_debug_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		this.Time.scheduleEvent(this.TimeUnit.Real, 1000, function ( _tag )
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
 			this.Music.setTrackList([
 				"music/civilians_01.ogg"

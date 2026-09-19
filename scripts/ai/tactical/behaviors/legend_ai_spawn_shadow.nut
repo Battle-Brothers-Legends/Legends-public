@@ -16,7 +16,7 @@ this.legend_ai_spawn_shadow <- this.inherit("scripts/ai/tactical/behavior", {
 		// Function is a generator.
 		this.m.Tiles = [];
 		local scoreMult = this.getProperties().BehaviorMult[this.m.ID];
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 
 		if (this.m.IsSpent)
 		{
@@ -69,7 +69,7 @@ this.legend_ai_spawn_shadow <- this.inherit("scripts/ai/tactical/behavior", {
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			for( local i = 0; i < 6; i = ++i )
@@ -109,7 +109,7 @@ this.legend_ai_spawn_shadow <- this.inherit("scripts/ai/tactical/behavior", {
 				}
 			}
 
-			if (t.Tile.Properties.Effect.Timeout - this.Time.getRound() <= 1)
+			if (t.Tile.Properties.Effect.Timeout - ::Time.getRound() <= 1)
 			{
 				score = score * 0.5;
 			}

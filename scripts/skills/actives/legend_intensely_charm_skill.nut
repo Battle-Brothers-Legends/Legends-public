@@ -86,7 +86,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 			User = _user,
 			TargetTile = _targetTile
 		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
+		::Time.scheduleEvent(::TimeUnit.Virtual, 500, this.onDelayedEffect.bindenv(this), tag);
 		return true;
 	}
 
@@ -97,7 +97,7 @@ this.legend_intensely_charm_skill <- this.inherit("scripts/skills/skill", {
 		local target = _targetTile.getEntity();
 		local time = ::Tactical.spawnProjectileEffect("effect_heart_01", _user.getTile(), _targetTile, 0.33, 2.0, false, false);
 		local self = this;
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, time, function ( _e )
+		::Time.scheduleEvent(::TimeUnit.Virtual, time, function ( _e )
 		{
 			local bonus = _targetTile.getDistanceTo(_user.getTile()) == 1 ? -5 : 0;
 

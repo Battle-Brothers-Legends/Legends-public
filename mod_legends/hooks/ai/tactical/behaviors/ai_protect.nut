@@ -3,7 +3,7 @@
 	o.selectBestTargetTile = function ( _entity )
 	{
 		// Function is a generator.
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local myTile = _entity.getTile();
 		local allAllies = this.getAgent().getKnownAllies();
 		local allOpponents = this.getAgent().getKnownOpponents();
@@ -24,7 +24,7 @@
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local importantAlly = a;
@@ -182,7 +182,7 @@
 		local myTile = _entity.getTile();
 		potential_tiles.sort(this.onSortByScore);
 		local attempts = 0;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local bestDestination;
 		local bestScore = -9000;
 		local bestIsForNextTurn = false;
@@ -202,7 +202,7 @@
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local apCost = 0;

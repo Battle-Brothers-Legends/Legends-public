@@ -218,7 +218,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 	function selectBestTargetTile( _entity )
 	{
 		// Function is a generator.
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local myTile = _entity.getTile();
 		local allAllies = this.getAgent().getKnownAllies();
 		local target = this.m.Target;
@@ -228,7 +228,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		if (this.isAllottedTimeReached(time))
 		{
 			yield null;
-			time = this.Time.getExactTime();
+			time = ::Time.getExactTime();
 		}
 
 		local importantAlly = target;
@@ -388,7 +388,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 		local myFaction = _entity.getFaction();
 		potential_tiles.sort(this.onSortByScore);
 		local attempts = 0;
-		local time = this.Time.getExactTime();
+		local time = ::Time.getExactTime();
 		local bestDestination;
 		local bestScore = -9000;
 		local bestIsForNextTurn = false;
@@ -408,7 +408,7 @@ this.legend_ai_protect_target <- this.inherit("scripts/ai/tactical/behavior", {
 			if (this.isAllottedTimeReached(time))
 			{
 				yield null;
-				time = this.Time.getExactTime();
+				time = ::Time.getExactTime();
 			}
 
 			local apCost = 0;

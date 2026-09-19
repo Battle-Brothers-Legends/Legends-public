@@ -22,7 +22,7 @@
 			::Math.seedRandom(::World.State.getCombatSeed());
 		}
 
-		this.Time.setRound(0);
+		::Time.setRound(0);
 		::World.Assets.updateFormation();
 		local all_players = _properties.IsUsingSetPlayers ? _properties.Players : ::World.getPlayerRoster().getAll();
 
@@ -461,7 +461,7 @@
 			player.onCombatStart();
 		}
 
-		::Math.seedRandom(this.Time.getRealTime());
+		::Math.seedRandom(::Time.getRealTime());
 	}
 
 	o.placePlayersAtBorder = function (_players) {

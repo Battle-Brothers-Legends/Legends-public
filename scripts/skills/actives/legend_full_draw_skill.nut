@@ -30,7 +30,7 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 				User = actor,
 				TargetTile = this.m.TargetTile
 			};
-			this.Time.scheduleEvent(this.TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
+			::Time.scheduleEvent(::TimeUnit.Virtual, this.m.Delay, this.onPerformAttack, tag);
 		
 			if (!actor.isPlayerControlled() && this.m.TargetTile.getEntity().isPlayerControlled()) {		
 				actor.getTile().addVisibilityForFaction(::Const.Faction.Player);
