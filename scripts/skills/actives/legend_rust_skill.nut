@@ -1,7 +1,7 @@
 this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_magic_skill.create();
 		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
@@ -33,14 +33,13 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		this.m.ChanceSmash = 0;
 	}
 
-	function getTooltip()
-	{
+	function getTooltip() {
 		local p = this.getContainer().getActor().getCurrentProperties();
 		local damage_armor_min = ::Math.floor(p.getInitiativeMinDamage());
 		local damage_armor_max = ::Math.floor(p.getInitiativeMaxDamage());
 		local ret = this.getDefaultUtilityTooltip();
 
-			ret.push({
+		ret.push({
 			id = 5,
 			type = "text",
 			icon = "ui/icons/armor_damage.png",
@@ -73,30 +72,25 @@ this.legend_rust_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 		return ret;
 	}
 
-	function getExpectedDamage( _target )
-	{
+	function getExpectedDamage(_target) {
 		local ret = this.skill.getExpectedDamage(_target);
 		ret.HitpointDamage = ::Math.max(10, ret.HitpointDamage);
 		ret.TotalDamage = ::Math.max(10, ret.TotalDamage);
 		return ret;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local target = _targetTile.getEntity();
 		return this.attackEntity(_user, target);
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		this.legend_magic_skill.onAnySkillUsed(_skill, _targetEntity, _properties );
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		this.legend_magic_skill.onAnySkillUsed(_skill, _targetEntity, _properties);
+		if (_skill == this) {
 			_properties.DamageMinimum = 10;
 			_properties.DamageArmorMult = 1.0;
 			_properties.DamageTotalMult = 1.0;
 		}
 	}
-
 });

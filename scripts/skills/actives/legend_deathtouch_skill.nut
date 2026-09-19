@@ -1,7 +1,7 @@
 this.legend_deathtouch_skill <- this.inherit("scripts/skills/legend_magic_skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_magic_skill.create();
 		this.m.AdditionalAccuracy = 10;
 		this.m.DamageInitiativeMin = 15;
@@ -24,8 +24,8 @@ this.legend_deathtouch_skill <- this.inherit("scripts/skills/legend_magic_skill"
 		this.m.MinRange = 1;
 		this.m.MaxRange = 1;
 	}
-		function getTooltip()
-	{
+
+	function getTooltip() {
 		local ret = this.getDefaultTooltip();
 		ret.push({
 			id = 6,
@@ -36,18 +36,14 @@ this.legend_deathtouch_skill <- this.inherit("scripts/skills/legend_magic_skill"
 		return ret;
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		this.legend_magic_skill.onAnySkillUsed(_skill, _targetEntity, _properties );
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		this.legend_magic_skill.onAnySkillUsed(_skill, _targetEntity, _properties);
+		if (_skill == this) {
 			_properties.IsIgnoringArmorOnAttack = true;
 		}
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
-
 });

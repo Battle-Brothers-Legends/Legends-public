@@ -1,17 +1,15 @@
 this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
-	m = {
-	},
+	m = {},
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicSleep);
-		this.m.Description = "Use soothing vapours to lull an enemy to sleep. The chance of success is determined by the resolves of the user and target.";
+		this.m.Description = "Use soothing vapours to lull an enemy to sleep.";
 		this.m.KilledString = "Slept";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/enemies/dlc2/alp_sleep", 12);
 		this.m.IsUsingActorPitch = true;
 		this.m.Type = ::Const.SkillType.Active;
 		this.m.Order = ::Const.SkillOrder.UtilityTargeted;
-		this.m.Delay = 600;
+		this.m.Delay = 300;
 		this.m.IsSerialized = false;
 		this.m.IsActive = true;
 		this.m.IsTargeted = true;
@@ -24,16 +22,22 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 		this.m.IsUsingHitchance = false;
 		this.m.IsDoingForwardMove = false;
 		this.m.IsVisibleTileNeeded = false;
-
-		this.m.MinRange = 0;
+		this.m.MinRange = 1;
 		this.m.MaxRange = 5;
-
 		this.m.ActionPointCost = 9;
 		this.m.FatigueCost = 70;
 	}
 
-	function getTooltip()
-	{
+	function isUsable() {
+		local actor = this.getContainer().getActor();
+		if (!actor.isArmedWithMagicStaff()) {
+			return false;
+		}
+
+		return this.skill.isUsable() && (!::Tactical.isActive() || !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()));
+	}
+
+	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
 			id = 7,
@@ -41,115 +45,63 @@ this.legend_magic_sleep_skill <- this.inherit("scripts/skills/skill", {
 			icon = "ui/icons/special.png",
 			text = "Chance to apply to all enemies within 1 range of target tile."
 		});
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Hit chance based on the difference of Resolve between the user and the target."
+		});
 		return ret;
 	}
 
-	// Return true if _target actor would be put to sleep.
-	function makeSleepCheck(_target)
-	{
-		local targetResolve = _target.getCurrentProperties().getBravery();
-		local chance = ::Math.round(40 + (this.getCurrentResolve() - targetResolve)/5);
-		if (chance > 100)
-		{
-			chance = 100;
-		}
-		if (chance < 0)
-		{
-			chance = 0;
-		}
-		local roll = ::Math.rand(1, 100);
-		local ret = {
-			Roll = roll,
-			Chance = chance,
-			Result = (roll <= chance)
-		}
-		return ret;
+	function getHitchance(_targetEntity) {
+		local chance = ::Math.round(40 + (this.getContainer().getActor().getCurrentProperties().getBravery() - _targetEntity.getCurrentProperties().getBravery()) / 5);
+		return ::Math.max(0, ::Math.min(100, chance));
 	}
 
-	function onUse( _user, _targetTile )
-	{
-		local tag = {
+	function onUse(_user, _targetTile) {
+		::Time.scheduleEvent(::TimeUnit.Virtual, 300, this.onDelayedEffect.bindenv(this), {
 			User = _user,
 			TargetTile = _targetTile
-		};
-		this.Time.scheduleEvent(this.TimeUnit.Virtual, 600, this.onDelayedEffect.bindenv(this), tag);
+		});
 		return true;
 	}
 
-	function canBeSlept(_user, _actor)
-	{
-		if (_user.isAlliedWith(_actor))
-		{
-			return false;
-		}
-		if (_actor.getFlags().has("undead"))
-		{
-			return false;
-		}
-		return true;
+	function canBePutToSleep(_user, _targetTile) {
+		return _targetTile.IsOccupiedByActor && !_targetTile.getEntity().isNonCombatant() && !_user.isAlliedWith(_targetTile.getEntity()) && !_targetTile.getEntity().getFlags().has("undead");
 	}
 
-	function canBeSleptTile(_user, _targetTile)
-	{
-		if (_targetTile.IsOccupiedByActor)
-		{
-			local entity = _targetTile.getEntity();
-			if (!entity.isNonCombatant())
-			{
-				if (this.canBeSlept(_user, entity))
-				{
-					return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	function onDelayedEffect(_tag)
-	{
-		local targets = [];
+	function onDelayedEffect(_tag) {
+		local targetTiles = [];
 		local _targetTile = _tag.TargetTile;
 		local _user = _tag.User;
 
-		if (this.canBeSleptTile(_user, _targetTile))
-		{
-			targets.push(_targetTile.getEntity());
+		if (this.canBePutToSleep(_user, _targetTile)) {
+			targetTiles.push(_targetTile);
 		}
 
-		for (local i = 0; i < 6; i++)
-		{
-			if (_targetTile.hasNextTile(i))
-			{
-				local nextTile = _targetTile.getNextTile(i);
-				if (this.canBeSleptTile(_user, nextTile))
-				{
-					targets.push(nextTile.getEntity());
+		local self = this;
+		targetTiles.extend([0, 1, 2, 3, 4, 5].filter(@(_, _direction)(_targetTile.hasNextTile(_direction))).map(@(_direction)(_targetTile.getNextTile(_direction))).filter(@(_, _nextTile)(self.canBePutToSleep(_user, _nextTile))));
+
+		foreach (tile in targetTiles) {
+			local target = tile.getEntity();
+			local roll = ::Math.rand(1, 100);
+			local chance = this.getHitchance(target);
+
+			local logString = ::Const.UI.getColorizedEntityName(_user) + " tries to put " + ::Const.UI.getColorizedEntityName(target) + " to sleep (Chance: " + chance + ", Rolled: " + roll + ")\n";
+
+			if (roll <= chance) {
+				::Legends.Effects.grant(target, ::Legends.Effect.Sleeping, function (_effect) {
+					_effect.m.TurnsLeft = ::Math.max(1, 4 + this.getCurrentProperties().NegativeStatusEffectDuration);
+				}.bindenv(target));
+
+				if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
+					::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(target) + " falls into a magical sleep.");
 				}
-			}
-		}
-
-		local myTile = _user.getTile();
-
-		foreach( target in targets )
-		{
-			local ret = this.makeSleepCheck(target);
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_user) + " tries to put " + ::Const.UI.getColorizedEntityName(target) + " to sleep (Chance: " + ret.Chance + ", Rolled: " + ret.Roll +")");
-
-			if (ret.Result)
-			{
-				if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
-				{
-					::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " resists the urge to sleep thanks to high resolve.");
+			} else {
+				if (!_user.isHiddenToPlayer() && tile.IsVisibleForPlayer) {
+					::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(target) + " resists the urge to fall asleep.");
 				}
-
-				continue;
-			}
-
-			::Legends.Effects.grant(target, ::Legends.Effect.Sleeping);
-
-			if (!_user.isHiddenToPlayer() && !target.isHiddenToPlayer())
-			{
-				::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(target) + " falls to sleep");
 			}
 		}
 	}

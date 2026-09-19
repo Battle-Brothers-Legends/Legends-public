@@ -3,7 +3,7 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 
 	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicDaze);
-		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage. Requires a staff.";
+		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively.";
 		this.m.KilledString = "Dazed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
@@ -22,6 +22,15 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 		this.m.MaxRange = 4;
 	}
 
+	function isUsable() {
+		local actor = this.getContainer().getActor();
+		if (!actor.isArmedWithMagicStaff()) {
+			return false;
+		}
+
+		return this.skill.isUsable() && (!::Tactical.isActive() || !actor.getTile().hasZoneOfControlOtherThan(actor.getAlliedFactions()));
+	}
+
 	function getTooltip() {
 		local ret = this.getDefaultUtilityTooltip();
 		ret.push({
@@ -34,13 +43,21 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Hit chance based on Resolve"
+			text = "Hit chance based on the difference of Resolve between the user and the target."
 		});
+		if (!this.getContainer().getActor().isArmedWithMagicStaff()) {
+			ret.push({
+				id = 10,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Can only be used while wielding a magic staff[/color]"
+			});
+		}
 		return ret;
 	}
 
 	function getHitchance(_targetEntity) {
-		local chance = ::Math.round(40 + (this.getCurrentResolve() - _targetEntity.getCurrentProperties().getBravery()) / 2);
+		local chance = ::Math.round(40 + (this.getContainer().getActor().getCurrentProperties().getBravery() - _targetEntity.getCurrentProperties().getBravery()) / 2);
 		return ::Math.max(0, ::Math.min(100, chance));
 	}
 
