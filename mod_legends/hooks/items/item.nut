@@ -229,25 +229,27 @@
 	}
 
 	o.onUnequip = function () {
-		local actor = this.getContainer().getActor();
-		local removedSkills = this.m.SkillPtrs.filter(@(_, _skill)(_skill.getID() != ""));
-		this.clearSkills();
+		if (this.getContainer() != null) {
+			local actor = this.getContainer().getActor();
+			local removedSkills = this.m.SkillPtrs.filter(@(_, _skill)(_skill.getID() != ""));
+			this.clearSkills();
 
-		if (actor != null && removedSkills.len() > 0) {
-			local skills = actor.getSkills();
+			if (actor != null && removedSkills.len() > 0) {
+				local skills = actor.getSkills();
 
-			foreach (skill in removedSkills) {
-				local skillID = skill.getID();
-				if (!skills.hasSkill(skillID)) {
-					local self = this;
-					foreach (otherItem in actor.getItems().getAllItems().filter(@(_, _item)(_item != self))) {
-						foreach (itemSkill in otherItem.m.SkillPtrs.filter(@(_, _skillPtr)(_skillPtr.getID() == skillID && _skillPtr.getItem().get() == otherItem))) {
-							skills.add(itemSkill);
-							break;
-						}
+				foreach (skill in removedSkills) {
+					local skillID = skill.getID();
+					if (!skills.hasSkill(skillID)) {
+						local self = this;
+						foreach (otherItem in actor.getItems().getAllItems().filter(@(_, _item)(_item != self))) {
+							foreach (itemSkill in otherItem.m.SkillPtrs.filter(@(_, _skillPtr)(_skillPtr.getID() == skillID && _skillPtr.getItem().get() == otherItem))) {
+								skills.add(itemSkill);
+								break;
+							}
 
-						if (skills.hasSkill(skillID)) {
-							break;
+							if (skills.hasSkill(skillID)) {
+								break;
+							}
 						}
 					}
 				}

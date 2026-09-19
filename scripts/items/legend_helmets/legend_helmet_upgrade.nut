@@ -223,19 +223,6 @@ this.legend_helmet_upgrade <- this.inherit("scripts/items/item", {
 				icon = "ui/icons/mouse_right_button_shift_drag.png",
 				text = "Hold Shift and drag onto a helmet in the stash to attach."
 			});
-		} else {
-			result.push({
-				id = 1,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button_shift.png",
-				text = (!this.isVisible() ? "Show" : "Hide") + " layer"
-			});
-			result.push({
-				id = 2,
-				type = "hint",
-				icon = "ui/icons/mouse_left_button.png",
-				text = "Unequip layer"
-			});
 		}
 		result.push({
 			id = 4,
