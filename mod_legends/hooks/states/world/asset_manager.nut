@@ -1228,29 +1228,19 @@
 	}
 
 	o.getRosterDescription <- function () {
-		local terrainIDs = [2, 3, 4, 5, 9, 11, 12, 14, 15, 17, 18];
-
 		local ret = {
-			TerrainModifiers = [
-				["Plains", ::Const.World.TerrainTypeSpeedMult[2]],
-            	["Swamp", ::Const.World.TerrainTypeSpeedMult[3]],
-            	["Hills", ::Const.World.TerrainTypeSpeedMult[4]],
-            	["Forests", ::Const.World.TerrainTypeSpeedMult[5]],
-            	["Mountains", ::Const.World.TerrainTypeSpeedMult[9]],
-            	["Farmland", ::Const.World.TerrainTypeSpeedMult[11]],
-            	["Snow", ::Const.World.TerrainTypeSpeedMult[12]],
-            	["Highlands", ::Const.World.TerrainTypeSpeedMult[14]],
-            	["Steppes", ::Const.World.TerrainTypeSpeedMult[15]],
-            	["Deserts", ::Const.World.TerrainTypeSpeedMult[17]],
-            	["Oases", ::Const.World.TerrainTypeSpeedMult[18]]
-			],
+			TerrainModifiers = [],
 			Brothers = []
+		}
+
+		foreach (id in ::Const.CharacterProperties.TerrainTypeTooltipIDs) {
+			ret.TerrainModifiers.push([::Const.CharacterProperties.TerrainTypes[id], ::Const.World.TerrainTypeSpeedMult[id]]);
 		}
 
 		foreach (bro in ::World.getPlayerRoster().getAll()) {
 			local terrains = bro.getCurrentProperties().Modifiers.Terrain;
-			for (local i = 0; i < terrainIDs.len(); ++i) {
-            	ret.TerrainModifiers[i][1] += terrains[terrainIDs[i]];
+			for (local i = 0; i < ::Const.CharacterProperties.TerrainTypeTooltipIDs.len(); i++) {
+            	ret.TerrainModifiers[i][1] += terrains[::Const.CharacterProperties.TerrainTypes[::Const.CharacterProperties.TerrainTypeTooltipIDs[i]]];
         	}
 
 			ret.Brothers.push({
@@ -1262,8 +1252,8 @@
 		}
 
 		if (::World.Assets.m.ProfessionEffect.LegendTrailblazer > 0) {
-			for (local i = 0; i < terrainIDs.len(); ++i) {
-				local terrainBaseSpeed = ::Const.World.TerrainTypeSpeedMult[terrainIDs[i]];
+			for (local i = 0; i < ::Const.CharacterProperties.TerrainTypeTooltipIDs.len(); i++) {
+				local terrainBaseSpeed = ::Const.World.TerrainTypeSpeedMult[::Const.CharacterProperties.TerrainTypeTooltipIDs[i]];
 				if (terrainBaseSpeed <= 1.0 && terrainBaseSpeed > 0.0) {
 					ret.TerrainModifiers[i][1] *= ::Math.minf(1.0, (terrainBaseSpeed + ::World.Assets.m.ProfessionEffect.LegendTrailblazer)) / terrainBaseSpeed;
 				}
@@ -1274,17 +1264,7 @@
             terrain[1] *= (1 + ::World.Assets.m.ProfessionEffect.LegendWheelMaintenance) * 100.0;
         }
 
-		local sortfn = function (first, second)
-		{
-			if (first.Level == second.Level) {
-				return 0;
-			}
-			if (first.Level > second.Level)	{
-				return -1;
-			}
-			return 1;
-		}
-		ret.Brothers.sort(sortfn);
+		ret.Brothers.sort(@(a, b) b.Level - a.Level);
 		return ret;
 	}
 

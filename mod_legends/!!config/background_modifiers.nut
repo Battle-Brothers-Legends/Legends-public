@@ -18,27 +18,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Injury = 0.06,
 	Gathering = 0.30,
 	MedConsumption = 0.05,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.02, //swamp
-		0.03, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.02,
+		Hills = 0.03,
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Mountains = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.Apprentice <- {
@@ -56,54 +44,26 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.AssassinSouthern <- {
 	Scout = 0.3,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.02, // badlands
-		0.0, //highlands
-		0.04, //steppes
-		0.0, //ocean
-		0.05, //desert
-		0.05 //oasis
-	],
+	Terrain = {
+		Badlands = 0.02,
+		Steppe = 0.04,
+		Desert = 0.05,
+		Oasis = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.Barbarian <- {
 	Training = 0.2,
 	Scout = 0.2,
 	Gathering = 0.50,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.00, //swamp
-		0.00, //hills
-		0.05, //forest
-		0.05, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.05, // snow
-		0.00, // badlands
-		0.05, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Snow = 0.05,
+		Tundra = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.Bastard <- {
@@ -116,27 +76,17 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Gathering = 0.50,
 	Crafting = 0.75,
 	Scout = 0.2,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.025, //swamp
-		0.0, //hills
-		0.025, //forest
-		0.025, //forest
-		0.025, //forest_leaves
-		0.025, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.00, //farmland
-		0.015, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Forest = 0.025,
+		SnowyForest = 0.025,
+		LeaveForest = 0.025,
+		AutumnForest = 0.025,
+		Mountains = 0.01,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015
+	}
 };
 
 ::Legends.BackgroundModifiers.Beggar <- {
@@ -175,27 +125,23 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.CaravanHand <- {
 	Scout = 0.2,
 	Stash = 8,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.CaravanHandSouthern <- clone ::Legends.BackgroundModifiers.CaravanHand;
@@ -269,27 +215,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Repair = 0.10,
 	Stash = 8,
 	ToolConsumption = 0.01,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Farmland = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.DaytalerSouthern <- clone ::Legends.BackgroundModifiers.Daytaler;
@@ -333,27 +261,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Farmhand <- {
 	Gathering = 0.50,
 	Stash = 5,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Farmland = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.Fisherman <- {
@@ -381,27 +291,11 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	ArmorParts = 5,
 	Meds = 8,
 	Training = 0.3,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.05, //steppes
-		0.0, //ocean
-		0.1, //desert
-		0.1 //oasis
-	],
+	Terrain = {
+		Steppe = 0.05,
+		Desert = 0.1,
+		Oasis = 0.1
+	}
 };
 
 ::Legends.BackgroundModifiers.GladiatorOrigin <- clone ::Legends.BackgroundModifiers.Gladiator;
@@ -440,27 +334,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Gathering = 0.50,
 	Fletching = 0.2,
 	Scout = 0.2,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.Juggler <- {
@@ -489,28 +371,17 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Gathering = 0.30,
 	Scout = 0.1,
 	Training = 0.1,
-
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.025, //swamp
-		0.0, //hills
-		0.025, //forest
-		0.025, //forest
-		0.025, //forest_leaves
-		0.025, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.00, //farmland
-		0.015, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Forest = 0.025,
+		SnowyForest = 0.025,
+		LeaveForest = 0.025,
+		AutumnForest = 0.025,
+		Mountains = 0.01,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015
+	}
 };
 
 ::Legends.BackgroundModifiers.Lumberjack <- {
@@ -519,27 +390,12 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Salvage = 0.30,
 	ToolConsumption = 0.01,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.Manhunter <- {
@@ -557,27 +413,23 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Messenger <- {
 	Scout = 0.3,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.1, //plains
-		0.03, //swamp
-		0.05, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.03, //mountains
-		0.0, // ?
-		0.1, //farmland
-		0.03, // snow
-		0.03, // badlands
-		0.07, //highlands
-		0.1, //steppes
-		0.0, //ocean
-		0.03, //desert
-		0.1 //oasis
-	],
+	Terrain = {
+		Plains = 0.1,
+		Swamp = 0.03,
+		Hills = 0.05,
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Mountains = 0.03,
+		Farmland = 0.1,
+		Snow = 0.03,
+		Badlands = 0.03,
+		Tundra = 0.07,
+		Steppe = 0.1,
+		Desert = 0.03,
+		Oasis = 0.1
+	}
 };
 
 ::Legends.BackgroundModifiers.Militia <- {
@@ -594,27 +446,10 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 8,
 	Salvage = 0.30,
 	ToolConsumption = 0.01,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.1, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.075, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Hills = 0.1,
+		Mountains = 0.075
+	}
 };
 
 ::Legends.BackgroundModifiers.Minstrel <- {
@@ -638,27 +473,12 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.Nomad <- {
 	Scout = 0.2,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.1, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.1, //steppes
-		0.0, //ocean
-		0.1, //desert
-		0.1 //oasis
-	],
+	Terrain = {
+		Plains = 0.1,
+		Steppe = 0.1,
+		Desert = 0.1,
+		Oasis = 0.1
+	}
 };
 
 ::Legends.BackgroundModifiers.NomadRanged <- clone ::Legends.BackgroundModifiers.Nomad;
@@ -670,27 +490,17 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Scout = 0.1,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.025, //swamp
-		0.0, //hills
-		0.025, //forest
-		0.025, //forest
-		0.025, //forest_leaves
-		0.025, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.00, //farmland
-		0.015, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Forest = 0.025,
+		SnowyForest = 0.025,
+		LeaveForest = 0.025,
+		AutumnForest = 0.025,
+		Mountains = 0.01,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015
+	}
 };
 
 ::Legends.BackgroundModifiers.PacifiedFlagellant <- {
@@ -707,28 +517,12 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Salvage = 0.10,
 	ToolConsumption = 0.01,
 	Training = 0.2,
-
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.05, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.03, //farmland
-		0.0, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Plains = 0.05,
+		Farmland = 0.03,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.PaladinOld <- clone ::Legends.BackgroundModifiers.Paladin;
@@ -754,27 +548,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Scout = 0.2,
 	Gathering = 0.50,
-	Terrain = [
-		0.0, // ?
-		0.0, //CompanionSouthernRanged
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.Raider <- {
@@ -840,27 +622,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 ::Legends.BackgroundModifiers.Slave <- {
 	Stash = 13,
 	Salvage = 0.10,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.01, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.01 //oasis
-	],
+	Terrain = {
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.01,
+		Desert = 0.01,
+		Oasis = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.SlaveBarbarian <- clone ::Legends.BackgroundModifiers.Slave;
@@ -913,27 +683,14 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Scout = 0.1,
 	Gathering = 1.0,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.025, //swamp
-		0.025, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.025, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.025, // snow
-		0.025, // badlands
-		0.025, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Hills = 0.025,
+		Mountains = 0.025,
+		Snow = 0.025,
+		Badlands = 0.025,
+		Tundra = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.Witchhunter <- {
@@ -941,27 +698,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Gathering = 0.50,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.025, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendAlchemist <- {
@@ -1000,54 +739,28 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 5,
 	Scout = 0.2,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.025, //swamp
-		0.025, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.025, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.025, // snow
-		0.025, // badlands
-		0.025, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Hills = 0.025,
+		Mountains = 0.025,
+		Snow = 0.025,
+		Badlands = 0.025,
+		Tundra = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderBerserker <- {
 	Stash = 8,
 	Scout = 0.2,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.025, //swamp
-		0.025, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.025, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.025, // snow
-		0.025, // badlands
-		0.025, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.025,
+		Hills = 0.025,
+		Mountains = 0.025,
+		Snow = 0.025,
+		Badlands = 0.025,
+		Tundra = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendBlacksmith <- {
@@ -1071,27 +784,20 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 5,
 	Injury = 0.03,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.01, //plains
-		0.02, //swamp
-		0.01, //hills
-		0.02, //forest
-		0.02, //forest
-		0.02, //forest_leaves
-		0.02, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.02, // badlands
-		0.02, //highlands
-		0.05, //steppes
-		0.0, //ocean
-		0.05, //desert
-		0.05 //oasis
-	],
+	Terrain = {
+		Plains = 0.01,
+		Swamp = 0.02,
+		Hills = 0.01,
+		Forest = 0.02,
+		SnowyForest = 0.02,
+		LeaveForest = 0.02,
+		AutumnForest = 0.02,
+		Badlands = 0.02,
+		Tundra = 0.02,
+		Steppe = 0.05,
+		Desert = 0.05,
+		Oasis = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendCompanionMelee <- {
@@ -1122,27 +828,12 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Stash = 5,
 	Training = 0.2,
 	Scout = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.05, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.1, //steppes
-		0.0, //ocean
-		0.1, //desert
-		0.2 //oasis
-	],
+	Terrain = {
+		Plains = 0.05,
+		Steppe = 0.1,
+		Desert = 0.1,
+		Oasis = 0.2
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendConscriptRanged <- clone ::Legends.BackgroundModifiers.LegendConscript;
@@ -1168,54 +859,41 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	ArmorParts = 55,
 	Meds = 55,
 	Stash = 34,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendDruid <- {
 	Stash = 8,
 	Scout = 0.3,
 	Gathering = 1.0,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.05, //swamp
-		0.05, //hills
-		0.1, //forest
-		0.1, //forest
-		0.1, //forest_leaves
-		0.0, //autumn_forest
-		0.05, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.05, // snow
-		0.05, // badlands
-		0.05, //highlands
-		0.05, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.05,
+		Hills = 0.05,
+		Forest = 0.1,
+		SnowyForest = 0.1,
+		LeaveForest = 0.1,
+		Mountains = 0.05,
+		Snow = 0.05,
+		Badlands = 0.05,
+		Tundra = 0.05,
+		Steppe = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendGladiatorPrizefighter <- clone ::Legends.BackgroundModifiers.Gladiator;
@@ -1225,27 +903,21 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 0.75,
 	Training = 0.2,
 	Enchanting = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.030, //swamp
-		0.01, //hills
-		0.030, //forest
-		0.030, //forest
-		0.030, //forest_leaves
-		0.030, //autumn_forest
-		0.03, //mountains
-		0.0, // ?
-		0.00, //farmland
-		0.020, // snow
-		0.020, // badlands
-		0.020, //highlands
-		0.01, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.01 //oasis
-	],
+	Terrain = {
+		Swamp = 0.03,
+		Hills = 0.01,
+		Forest = 0.03,
+		SnowyForest = 0.03,
+		LeaveForest = 0.03,
+		AutumnForest = 0.03,
+		Mountains = 0.03,
+		Snow = 0.02,
+		Badlands = 0.02,
+		Tundra = 0.02,
+		Steppe = 0.01,
+		Desert = 0.01,
+		Oasis = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendHerbalist <- {
@@ -1256,27 +928,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 0.50,
 	MedConsumption = 0.10,
 	Gathering = 1.0,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendHorse <- {
@@ -1284,27 +944,23 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	ArmorParts = 34,
 	Meds = 34,
 	Stash = 21,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.05, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.05, //farmland
-		0.015, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.05, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.05 //oasis
-	],
+	Terrain = {
+		Plains = 0.05,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.05,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.05,
+		Desert = 0.01,
+		Oasis = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendHorseCourser <- {
@@ -1333,27 +989,23 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	ArmorParts = 34,
 	Meds = 34,
 	Stash = 21,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.05, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.05, //farmland
-		0.015, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.05, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.05 //oasis
-	],
+	Terrain = {
+		Plains = 0.05,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.05,
+		Snow = 0.015,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.05,
+		Desert = 0.01,
+		Oasis = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendHusk <- {
@@ -1397,54 +1049,31 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	MedConsumption = 0.10,
 	Gathering = 0.50,
 	Haggle = 0.005,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.04, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, //snow
-		0.0, //badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.04
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionAuxiliary <- {
 	Stash = 5,
 	Scout = 0.1,
 	// Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.01, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.01, //farmland
-		0.01, //snow
-		0.01, //badlands
-		0.01, //highlands
-		0.01, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.01 //oasis
-	],
+	Terrain = {
+		Plains = 0.01,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Farmland = 0.01,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01,
+		Steppe = 0.01,
+		Desert = 0.01,
+		Oasis = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionCenturion <- {
@@ -1454,55 +1083,47 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Training = 0.3, // 0.0, 0.1, 0.2, 0.3
 	ArmorParts = 21, // 5, 8, 13, 21, 34, 55
 	ToolConsumption = 0.03, // 0.0, 0.05, 0.10, 0.20
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.02, //plains
-		0.02, //swamp
-		0.02, //hills
-		0.02, //forest
-		0.02, //forest
-		0.02, //forest_leaves
-		0.02, //autumn_forest
-		1.0, //mountains - hannibal time
-		0.0, // ?
-		0.02, //farmland
-		0.02, //snow
-		0.02, //badlands
-		0.02, //highlands
-		0.02, //steppes
-		0.0, //ocean
-		0.02, //desert
-		0.02 //oasis
-	],
+	Terrain = {
+		Plains = 0.02,
+		Swamp = 0.02,
+		Hills = 0.02,
+		Forest = 0.02,
+		SnowyForest = 0.02,
+		LeaveForest = 0.02,
+		AutumnForest = 0.02,
+		Mountains = 1.0, // I get its a hannibal reference but kinda gamebreaking
+		Farmland = 0.02,
+		Snow = 0.02,
+		Badlands = 0.02,
+		Tundra = 0.02,
+		Steppe = 0.02,
+		Desert = 0.02,
+		Oasis = 0.02
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionGladiator <- {
 	Stash = 5,
 	Ammo = 21,
 	Fletching = 0.1,
-	Training = 0.2, // 0.0, 0.1, 0.2, 0.3
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.15, //plains
-		0.15, //swamp
-		0.15, //hills
-		0.15, //forest
-		0.15, //forest
-		0.15, //forest_leaves
-		0.15, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.15, //farmland
-		0.15, //snow
-		0.15, //badlands
-		0.15, //highlands
-		0.15, //steppes
-		0.0, //ocean
-		0.15, //desert
-		0.15 //oasis
-	],
+	Training = 0.2,
+	Terrain = {
+		Plains = 0.15,
+		Swamp = 0.15,
+		Hills = 0.15,
+		Forest = 0.15,
+		SnowyForest = 0.15,
+		LeaveForest = 0.15,
+		AutumnForest = 0.15,
+		Mountains = 0.01,
+		Farmland = 0.15,
+		Snow = 0.15,
+		Badlands = 0.15,
+		Tundra = 0.15,
+		Steppe = 0.15,
+		Desert = 0.15,
+		Oasis = 0.15
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionHonourGuard <- {
@@ -1511,135 +1132,93 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Ammo = 21,
 	Fletching = 0.1,
 	Training = 0.2,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionLegate <- {
-	Training = 0.3, // 0.0, 0.1, 0.2, 0.3
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	Training = 0.3,
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionLegionary <- {
 	// Stash = 5,
 	Scout = 0.2,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionPrefect <- {
 	Stash = 5,
 	Ammo = 21,
-	ArmorParts = 21, // 5, 8, 13, 21, 34, 55
-	ToolConsumption = 0.03, // 0.0, 0.05, 0.10, 0.20
-	Repair = 0.30, // 0.0, 0.10, 0.30, 0.50, 1.0
-	Salvage = 0.30, // 0.0, 0.10, 0.30, 0.50
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.01, //desert
-		0.025 //oasis
-	],
+	ArmorParts = 21,
+	ToolConsumption = 0.03,
+	Repair = 0.30,
+	Salvage = 0.30,
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025,
+		Desert = 0.01,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendLegionSlave <- {
 	Stash = 5,
-	ArmorParts = 34, // 5, 8, 13, 21, 34, 55
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, //snow
-		0.0, //badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	ArmorParts = 34
 };
 
 ::Legends.BackgroundModifiers.LegendLonewolf <- {
@@ -1653,27 +1232,14 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Scout = 0.1,
 	Meds = 13,
 	MedConsumption = 0.05,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.00, //plains
-		0.10, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.05, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.10,
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Farmland = 0.05
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendMagister <- {
@@ -1694,27 +1260,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Gathering = 0.30,
 	Fletching = 0.3,
 	Scout = 0.3,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.25, //forest
-		0.25, //forest
-		0.25, //forest_leaves
-		0.25, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.25,
+		SnowyForest = 0.25,
+		LeaveForest = 0.25,
+		AutumnForest = 0.25,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendMuladi <- {
@@ -1722,27 +1276,14 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.1,
 	Scout = 0.2,
 	Gathering = 0.50,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.0, //swamp
-		0.025, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.01, //steppes
-		0.0, //ocean
-		0.025, //desert
-		0.025 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Hills = 0.025,
+		Mountains = 0.01,
+		Steppe = 0.01,
+		Desert = 0.025,
+		Oasis = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderNecro <- {
@@ -1753,27 +1294,13 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	MedConsumption = 0.20,
 	Crafting = 0.50,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.15, //swamp
-		0.0, //hills
-		0.10, //forest
-		0.10, //forest
-		0.10, //forest_leaves
-		0.10, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	]
+	Terrain = {
+		Swamp = 0.15,
+		Forest = 0.10,
+		SnowyForest = 0.10,
+		LeaveForest = 0.10,
+		AutumnForest = 0.10
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendNecromancer <- {
@@ -1794,27 +1321,13 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendNightwatch <- {
 	Scout = 0.2,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.015, //plains
-		0.0, //swamp
-		0.01, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.015, //farmland
-		0.0, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Plains = 0.015,
+		Hills = 0.01,
+		Farmland = 0.015,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendHouseGuard <- {
@@ -1832,27 +1345,21 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Haggle = 0.005,
 	ToolConsumption = 0.01,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.025, //plains
-		0.01, //swamp
-		0.01, //hills
-		0.01, //forest
-		0.01, //forest
-		0.01, //forest_leaves
-		0.01, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.025, //farmland
-		0.011, // snow
-		0.015, // badlands
-		0.015, //highlands
-		0.025, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Plains = 0.025,
+		Swamp = 0.01,
+		Hills = 0.01,
+		Forest = 0.01,
+		SnowyForest = 0.01,
+		LeaveForest = 0.01,
+		AutumnForest = 0.01,
+		Mountains = 0.01,
+		Farmland = 0.025,
+		Snow = 0.011,
+		Badlands = 0.015,
+		Tundra = 0.015,
+		Steppe = 0.025
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendArbalester <- {
@@ -1873,27 +1380,11 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Meds = 13,
 	Stash = 13,
 	Haggle = 0.03,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.2, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.1, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.1  //oasis
-	],
+	Terrain = {
+		Plains = 0.2,
+		Farmland = 0.1,
+		Oasis = 0.1
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendPilgrim <- {
@@ -1902,27 +1393,19 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Repair = 0.10,
 	Salvage = 0.10,
 	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.01, //plains
-		0.0, //swamp
-		0.02, //hills
-		0.02, //forest
-		0.02, //forest
-		0.02, //forest_leaves
-		0.02, //autumn_forest
-		0.01, //mountains
-		0.0, // ?
-		0.01, //farmland
-		0.0, // snow
-		0.02, // badlands
-		0.02, //highlands
-		0.02, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Plains = 0.01,
+		Hills = 0.02,
+		Forest = 0.02,
+		SnowyForest = 0.02,
+		LeaveForest = 0.02,
+		AutumnForest = 0.02,
+		Mountains = 0.01,
+		Farmland = 0.01,
+		Badlands = 0.02,
+		Tundra = 0.02,
+		Steppe = 0.02
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendPreserver <- {
@@ -1933,78 +1416,23 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Crafting = 0.50,
 	MedConsumption = 0.20,
 	Gathering = 1.0,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.10, //forest
-		0.10, //forest
-		0.10, //forest_leaves
-		0.10, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.02, // snow
-		0.02, // badlands
-		0.02, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.10,
+		SnowyForest = 0.10,
+		LeaveForest = 0.10,
+		AutumnForest = 0.10,
+		Snow = 0.02,
+		Badlands = 0.02,
+		Tundra = 0.02
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendPuppet <- {
 	Stash = 5,
-	Gathering = 0.30,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, //snow
-		0.0, //badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Gathering = 0.30
 };
 
-::Legends.BackgroundModifiers.LegendPuppetMaster <- {
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
-};
+::Legends.BackgroundModifiers.LegendPuppetMaster <- {};
 
 ::Legends.BackgroundModifiers.LegendRanger <- {
 	Ammo = 55,
@@ -2013,27 +1441,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.2,
 	Scout = 0.3,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendCommanderRanger <- {
@@ -2043,27 +1459,15 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Fletching = 0.2,
 	Scout = 0.3,
 	Training = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.0, //swamp
-		0.0, //hills
-		0.05, //forest
-		0.05, //forest
-		0.05, //forest_leaves
-		0.05, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.01, // snow
-		0.01, // badlands
-		0.01, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Forest = 0.05,
+		SnowyForest = 0.05,
+		LeaveForest = 0.05,
+		AutumnForest = 0.05,
+		Snow = 0.01,
+		Badlands = 0.01,
+		Tundra = 0.01
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendShieldmaiden <- {
@@ -2105,27 +1509,9 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Meds = 13,
 	Stash = 5,
 	MedConsumption = 0.05,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.1, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.1
+	}
 };
 
 ::Legends.BackgroundModifiers.LegendSeer <- {
@@ -2142,25 +1528,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 	Gathering = 0.50,
 	ToolConsumption = 0.01,
 	Fletching = 0.1,
-	Terrain = [
-		0.0, // ?
-		0.0, //ocean
-		0.0, //plains
-		0.015, //swamp
-		0.0, //hills
-		0.0, //forest
-		0.0, //forest
-		0.0, //forest_leaves
-		0.0, //autumn_forest
-		0.0, //mountains
-		0.0, // ?
-		0.0, //farmland
-		0.0, // snow
-		0.0, // badlands
-		0.0, //highlands
-		0.0, //steppes
-		0.0, //ocean
-		0.0, //desert
-		0.0 //oasis
-	],
+	Terrain = {
+		Swamp = 0.015
+	}
 };

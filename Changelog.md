@@ -804,3 +804,4 @@
 - Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
 - background modifiers moved to character properties
+- background modifiers: terrain are now using objects instead of arrays

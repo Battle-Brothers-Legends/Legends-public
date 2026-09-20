@@ -206,30 +206,26 @@
 			local speed = this.m.BaseMovementSpeed;
 
 			local terrainTable = ::Const.World.TerrainTypeSpeedMult;
-			if (this.getFaction() == ::Const.Faction.Player)
-			{
+			if (this.getFaction() == ::Const.Faction.Player) {
 				local tTable = [];
 				tTable.resize(terrainTable.len(), 0);
-				for (local i=0; i < terrainTable.len() ; ++i)
-				{
+				for (local i = 0; i < terrainTable.len(); i++) {
 					tTable[i] += ::Const.World.TerrainTypeSpeedMult[i];
 				}
 				local broTable = [];
-				foreach( bro in ::World.getPlayerRoster().getAll() )
-				{
+				foreach (bro in ::World.getPlayerRoster().getAll()) {
 					broTable = bro.getCurrentProperties().Modifiers.Terrain;
-					if (broTable == null)
-					{
+					if (broTable == null) {
 						continue;
 					}
-					for (local i = 0; i < broTable.len(); ++i)
-					{
-						tTable[i] += broTable[i];
+					for (local i = 0; i < terrainTable.len(); i++) {
+						if (i in ::Const.CharacterProperties.TerrainTypes) {
+							tTable[i] += broTable[::Const.CharacterProperties.TerrainTypes[i]];
+						}
 					}
 				}
 				if (::World.Assets.m.ProfessionEffect.LegendTrailblazer > 0) {
-					for (local i = 0; i < terrainTable.len(); ++i)
-					{
+					for (local i = 0; i < terrainTable.len(); i++) {
 						if (::Const.World.TerrainTypeSpeedMult[i] <= 1.0 && ::Const.World.TerrainTypeSpeedMult[i] > 0.0) {
 							tTable[i] *= ::Math.minf(1.0, (::Const.World.TerrainTypeSpeedMult[i] + ::World.Assets.m.ProfessionEffect.LegendTrailblazer)) / ::Const.World.TerrainTypeSpeedMult[i];
 						}
@@ -243,41 +239,33 @@
 				terrainTable = tTable;
 			}
 
-			speed = speed * (1.0 - ::Math.minf(0.5, this.m.Troops.len() * ::Const.World.MovementSettings.SlowDownPartyPerTroop));
-			speed = speed * ::Const.World.MovementSettings.GlobalMult;
-			if (!this.isIgnoringCollision())
-			{
-				if (myTile.HasRoad)
-				{
-					speed = speed * ::Math.maxf(terrainTable[myTile.Type] * ::Const.World.MovementSettings.RoadMult, 1.0);
-				}
-				else
-				{
-					speed = speed * terrainTable[myTile.Type];
+			speed *= (1.0 - ::Math.minf(0.5, this.m.Troops.len() * ::Const.World.MovementSettings.SlowDownPartyPerTroop));
+			speed *= ::Const.World.MovementSettings.GlobalMult;
+			if (!this.isIgnoringCollision()) {
+				if (myTile.HasRoad) {
+					speed *=::Math.maxf(terrainTable[myTile.Type] * ::Const.World.MovementSettings.RoadMult, 1.0);
+				} else {
+					speed *= terrainTable[myTile.Type];
 				}
 
-				if (this.m.IsPlayer)
-				{
-					speed = speed * ::World.Assets.getTerrainTypeSpeedMult(myTile.Type);
+				if (this.m.IsPlayer) {
+					speed *= ::World.Assets.getTerrainTypeSpeedMult(myTile.Type);
 				}
 			}
 
-			if (this.m.IsSlowerAtNight && !::World.isDaytime())
-			{
-				speed = speed * ::Const.World.MovementSettings.NighttimeMult;
+			if (this.m.IsSlowerAtNight && !::World.isDaytime()) {
+				speed *= ::Const.World.MovementSettings.NighttimeMult;
 			}
 
-			if (myTile.HasRiver)
-			{
-				speed = speed * ::Const.World.MovementSettings.RiverMult;
+			if (myTile.HasRiver) {
+				speed *= ::Const.World.MovementSettings.RiverMult;
 			}
 
-			if (this.getFaction() != ::Const.Faction.Player)
-			{
-				speed = speed * ::Const.World.MovementSettings.NotPlayerMult;
+			if (this.getFaction() != ::Const.Faction.Player) {
+				speed *= ::Const.World.MovementSettings.NotPlayerMult;
 			}
 
-			speed = speed * delta;
+			speed *= delta;
 
 			if (this.m.IsLeavingFootprints && !myTile.IsOccupied)
 			{

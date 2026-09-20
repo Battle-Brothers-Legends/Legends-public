@@ -228,28 +228,28 @@
 	Gathering = 0.0,
 	Training = 0.0,
 	Enchanting = 0.0,
-	Terrain = [ // sometimes soon change this to an object for readability
-		0.0, //Impassable
-		0.0, //Ocean
-		0.0, //Plains
-		0.0, //Swamp
-		0.0, //Hills
-		0.0, //Forest
-		0.0, //SnowyForest
-		0.0, //LeaveForest
-		0.0, //AutumnForest
-		0.0, //Mountains
-		0.0, //Urban
-		0.0, //Farmland
-		0.0, //Snow
-		0.0, //Badlands
-		0.0, //Tundra
-		0.0, //Steppe
-		0.0, //Shore
-		0.0, //Desert
-		0.0  //Oasis
-	]
+	Terrain = function() {
+        local ret = {};
+        foreach (k, _ in ::Const.World.TerrainType) {
+            if (k != "COUNT" && k != "Land") {
+                ret[k] <- 0.0;
+            }
+        }
+        return ret;
+    }()
 };
+
+::Const.CharacterProperties.TerrainTypes <- function() {
+    local ret = {};
+    foreach (k, id in ::Const.World.TerrainType) {
+        if (k != "COUNT" && k != "Land") {
+            ret[id] <- k;
+        }
+    }
+    return ret;
+}();
+
+::Const.CharacterProperties.TerrainTypeTooltipIDs <- [2, 3, 4, 5, 9, 11, 12, 14, 15, 17, 18];
 
 ::Const.CharacterProperties.getInitiativeMinDamage <- function () {
 	return this.DamageInitiativeMin + ::Math.max(0, this.getInitiative() - this.DamageInitiativeCutoff);

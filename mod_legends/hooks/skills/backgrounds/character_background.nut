@@ -217,7 +217,7 @@
 	}
 
 	// Deprecated. New approach uses getBackgroundDescriptionTooltip
-	o.getBackgroundDescription = function ( _desc )
+	/*o.getBackgroundDescription = function ( _desc )
 	{
 		local text = "";
 		if (_desc)
@@ -317,14 +317,12 @@
 		 	text += "\nTerrain Movement Modifiers:" + ttext;
 		}
 		return text;
-	}
+	}*/
 
-	o.getBackgroundDescriptionTooltip <- function ( _desc )
-	{
+	o.getBackgroundDescriptionTooltip <- function (_desc) {
 		local tooltip = [];
 
-		if (_desc)
-		{
+		if (_desc) {
 			tooltip.extend([
 				{
 					id = 2,
@@ -362,32 +360,26 @@
 			}
 		];
 
-		local capacityTitle = true;
+		local addCapacityTitle = true;
 		local modifiers = this.getContainer().getActor().getCurrentProperties().Modifiers;
-		foreach (c in capacities)
-		{
-			if (modifiers[c.key] != 0)
-			{
-				if (capacityTitle)
-				{
-					tooltip.push(
-						{
-							id = 4,
-							type = "hint",
-							text = "[u]Company Capacity[/u]"
-						}
-					);
-					capacityTitle = false;
-				}
-
-				tooltip.push(
-					{
+		foreach (c in capacities) {
+			local val = modifiers[c.key];
+			if (val != 0) {
+				if (addCapacityTitle) {
+					tooltip.push({
 						id = 4,
 						type = "hint",
-						icon = c.icon,
-						text = c.name + " " + ::Legends.S.colorize("" + ::Legends.S.getSign(modifiers[c.key]) + ::Math.abs(modifiers[c.key]), modifiers[c.key])
-					}
-				);
+						text = "[u]Company Capacity[/u]"
+					});
+					addCapacityTitle = false;
+				}
+
+				tooltip.push({
+					id = 4,
+					type = "hint",
+					icon = c.icon,
+					text = c.name + " " + ::Legends.S.colorize(::Legends.S.addSign(val), val)
+				});
 			}
 		}
 
@@ -464,109 +456,51 @@
 			}
 		];
 
-		local skillsTitle = true;
-		foreach (s in skills)
-		{
-			if (modifiers[s.key] != 0)
-			{
-				if (skillsTitle)
-				{
-					tooltip.push(
-						{
-							id = 5,
-							type = "hint",
-							text = "[u]Company Skills[/u]"
-						}
-					);
-					skillsTitle = false;
-				}
-
-				tooltip.push(
-					{
+		local addSkillsTitle = true;
+		foreach (s in skills) {
+			local val = modifiers[s.key];
+			if (val != 0) {
+				if (addSkillsTitle) {
+					tooltip.push({
 						id = 5,
 						type = "hint",
-						icon = s.icon,
-						text = s.name + " " + ::Legends.S.colorize("" + ((modifiers[s.key] > 0) ? "+" : "-") + (modifiers[s.key] * 100) + "%", modifiers[s.key])
-					}
-				);
+						text = "[u]Company Skills[/u]"
+					});
+					addSkillsTitle = false;
+				}
+
+				tooltip.push({
+					id = 5,
+					type = "hint",
+					icon = s.icon,
+					text = s.name + " " + ::Legends.S.colorize(::Legends.S.addSign(val * 100) + "%", val)
+				});
 			}
 		}
 
-		local terrain = [
-			{
-				key = 2,
-				name = "Plains"
-			},
-			{
-				key = 3,
-				name = "Swamps"
-			},
-			{
-				key = 4,
-				name = "Hills"
-			},
-			{
-				key = 5,
-				name = "Forests"
-			},
-			{
-				key = 9,
-				name = "Mountains"
-			},
-			{
-				key = 11,
-				name = "Farmland"
-			},
-			{
-				key = 12,
-				name = "Snow"
-			},
-			{
-				key = 13,
-				name = "Badlands"
-			},
-			{
-				key = 14,
-				name = "Highlands"
-			},
-			{
-				key = 15,
-				name = "Steppes"
-			},
-			{
-				key = 17,
-				name = "Deserts"
-			},
-			{
-				key = 18,
-				name = "Oases"
-			}
-		];
-		local terrainTitle = true;
-		foreach (t in terrain)
-		{
-			if (modifiers.Terrain[t.key] != 0)
-			{
-				if (terrainTitle)
-				{
-					tooltip.push(
-						{
+		local addTerrainTitle = true;
+		foreach (id in ::Const.CharacterProperties.TerrainTypeTooltipIDs) {
+			if (id in ::Const.CharacterProperties.TerrainTypes) {
+				local key = ::Const.CharacterProperties.TerrainTypes[id];
+				local val = modifiers.Terrain[key];
+
+				if (val != 0) {
+					if (addTerrainTitle) {
+						tooltip.push({
 							id = 6,
 							type = "hint",
 							text = "[u]Terrain Movement Modifiers[/u]"
-						}
-					);
-					terrainTitle = false;
-				}
+						});
+						addTerrainTitle = false;
+					}
 
-				tooltip.push(
-					{
+					tooltip.push({
 						id = 6,
 						type = "hint",
 						icon = "ui/icons/tracking_disabled.png",
-						text = t.name + " " + ::Legends.S.colorize("" + ((modifiers.Terrain[t.key] > 0) ? "+" : "-") + (modifiers.Terrain[t.key] * 100) + "%", modifiers.Terrain[t.key])
-					}
-				);
+						text = key + " " + ::Legends.S.colorize(::Legends.S.addSign(val * 100) + "%", val)
+					});
+				}
 			}
 		}
 
