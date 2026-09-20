@@ -1,4 +1,6 @@
 ::mods_hookExactClass("states/tactical_state", function(o) {
+	o.m.TilesReservedForTeleport <- {};
+
 	local setPause = o.setPause;
 	o.setPause = function (_f) {
 		setPause(_f);

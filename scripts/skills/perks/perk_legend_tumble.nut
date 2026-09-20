@@ -42,7 +42,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 			if (myTile.hasNextTile(i)) {
 				local nextTile = myTile.getNextTile(i);
 
-				if (nextTile.IsEmpty && ::Math.abs(nextTile.Level - myTile.Level) <= 1) {
+				if (nextTile.IsEmpty && !(nextTile.ID in ::Tactical.State.m.TilesReservedForTeleport) && ::Math.abs(nextTile.Level - myTile.Level) <= 1) {
 					freeTiles.push(nextTile);
 				}
 			}
@@ -60,6 +60,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.m.IsTumbling = true;
+		::Tactical.State.m.TilesReservedForTeleport[_targetTile.ID] <- true;
 
 		local tag = {
 			Skill = this,
@@ -113,6 +114,7 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTeleportDone(_entity, _tag) {
+		delete ::Tactical.State.m.TilesReservedForTeleport[_entity.getTile().ID];
 		local myTile = _entity.getTile();
 		local ZOC = [];
 
