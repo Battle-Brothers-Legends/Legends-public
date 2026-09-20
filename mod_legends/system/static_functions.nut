@@ -15,7 +15,7 @@
 }
 
 ::Legends.S.addSign <- function (_value) {
-	return ::Legends.S.getSign(_value) + ::Math.abs(_value);
+	return (_value > 0 ? "+" : "") + _value;
 }
 
 ::Legends.S.highlightForLightBackground <- function (_text) {
