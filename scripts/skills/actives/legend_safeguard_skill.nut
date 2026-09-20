@@ -23,7 +23,7 @@ this.legend_safeguard_skill <- this.inherit("scripts/skills/skill", {
 
 	function getTooltip() {
 		local ret = this.skill.getDefaultUtilityTooltip();
-		local block = this.getContainer().getActor().getCurrentProperties().getBlock();
+		local block = this.getContainer().getActor().getBlock();
 		ret.push({
 			id = 6,
 			type = "text",

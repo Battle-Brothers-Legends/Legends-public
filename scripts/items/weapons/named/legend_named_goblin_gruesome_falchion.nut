@@ -38,7 +38,7 @@ this.legend_named_goblin_gruesome_falchion <- this.inherit("scripts/items/weapon
 	function onEquip()
 	{
 		this.named_weapon.onEquip();
-		::Legends.Actives.grant(this, ::Legends.Active.Breach, function (_skill) {
+		::Legends.Actives.grant(this, ::Legends.Active.LegendBreach, function (_skill) {
 			_skill.m.Icon = "skills/active_78.png";
 			_skill.m.IconDisabled = "skills/active_78_sw.png";
 			_skill.m.Overlay = "active_78";
