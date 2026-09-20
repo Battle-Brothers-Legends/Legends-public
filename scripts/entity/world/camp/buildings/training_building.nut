@@ -323,14 +323,14 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 		foreach(bro in assignedBros) {
 			this.addNegativeSideEffects(bro, campHours);
 
+			local succeeded = false;
 			if (::Math.rand(1, 100) < ::Math.min(95, 100 * ::Math.pow(campHours / 12.0, 0.6 + 0.1 * bro.getLevel()))) {
+				succeeded = true;
 				if (bro.getLevel() < 12) {
 					this.getTrained(bro);
 				} else {
 					this.getTrainedAfter11(bro);
 				}
-			} else {
-				this.getFailed(bro);
 			}
 
 			if (this.getUpgraded())	{
@@ -338,12 +338,17 @@ this.training_building <- this.inherit("scripts/entity/world/camp/camp_building"
 					local r = ::Math.rand(1, 100);
 
 					if (r <= hours + mod.Craft * hours)	{
+						succeeded = true;
 						this.getBonus(bro);
 						hours -= r;
 					} else {
 						break;
 					}
 				}
+			}
+
+			if (!succeeded) {
+				this.getFailed(bro);
 			}
 		}
 	}
