@@ -60,7 +60,6 @@ this.perk_legend_tumble <- this.inherit("scripts/skills/skill", {
 		}
 
 		this.m.IsTumbling = true;
-		_targetTile.IsEmpty = false;
 
 		local tag = {
 			Skill = this,
