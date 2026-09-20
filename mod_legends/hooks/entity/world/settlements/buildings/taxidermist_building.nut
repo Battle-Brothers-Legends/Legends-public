@@ -13,6 +13,11 @@
 		this.m.TaxidermistSpecialization = craftingProfessions[::Math.rand(0, craftingProfessions.len() - 1)];
 	}
 
+	o.getName <- function () {
+		local name = this.building.getName();
+		return name + " (" + ::Const.Professions.ProfessionDefObjects[this.m.TaxidermistSpecialization].Name + ")";
+	}
+
 	o.onSerialize = function (_out) {
 		this.building.onSerialize(_out);
 		_out.writeI8(this.m.TaxidermistSpecialization);
