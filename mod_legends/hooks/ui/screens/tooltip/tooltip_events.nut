@@ -372,9 +372,23 @@
 			}
 		}
 
-		switch(_itemOwner)
-		{
+		switch(_itemOwner) {
 		case "entity":
+			if(_item.getCurrentSlotType() == ::Const.ItemSlot.Mainhand && _item.getContainer().canDualWield(_entity, _item)){
+				tooltip.push({
+					id = 1,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_shift.png",
+					text = "Equip item in offhand"
+				});
+			} else if (_item.getCurrentSlotType() == ::Const.ItemSlot.Offhand && _item.getSlotType() == ::Const.ItemSlot.Mainhand) {
+				tooltip.push({
+					id = 1,
+					type = "hint",
+					icon = "ui/icons/mouse_right_button_shift.png",
+					text = "Equip item in mainhand"
+				});
+			}
 			if (_item.getCurrentSlotType() == ::Const.ItemSlot.Bag && _item.getSlotType() != ::Const.ItemSlot.None)
 			{
 				if (stashLocked == true)
@@ -430,11 +444,8 @@
 						text = "Place item in stash"
 					});
 				}
-			}
-			else if (stashLocked == true)
-			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag)  && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
-				{
+			} else if (stashLocked == true) {
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
 					tooltip.push({
 						id = 1,
 						type = "hint",
@@ -453,11 +464,8 @@
 						_item
 					]) + "[/color][/b] AP)"
 				});
-			}
-			else
-			{
-				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity))
-				{
+			} else {
+				if (_item.isChangeableInBattle() && _item.isAllowedInBag() && _entity.getItems().hasEmptySlot(::Const.ItemSlot.Bag) && ::Legends.S.isWarhoundAllowedIntoBags(_item, _entity)) {
 					tooltip.push({
 						id = 1,
 						type = "hint",

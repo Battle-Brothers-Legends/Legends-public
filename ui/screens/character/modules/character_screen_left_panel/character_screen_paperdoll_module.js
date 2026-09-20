@@ -1193,15 +1193,10 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 		var itemId = data !== null && "itemId" in data ? data.itemId : null;
 		//var itemIdx = (data !== null && 'index' in data) ? data.index : null;
 		var entityId = data !== null && "entityId" in data ? data.entityId : null;
-		var dropIntoInventory =
-			KeyModiferConstants.CtrlKey in _event &&
-			_event[KeyModiferConstants.CtrlKey] === true;
-		var repairItem =
-			KeyModiferConstants.AltKey in _event &&
-			_event[KeyModiferConstants.AltKey] === true;
-		var unequipAllLayers =
-			KeyModiferConstants.ShiftKey in _event &&
-			_event[KeyModiferConstants.ShiftKey] === true;
+		var slotType = data !== null && "containerSlotType" in data ? data.containerSlotType : null;
+		var dropIntoInventory = KeyModiferConstants.CtrlKey in _event && _event[KeyModiferConstants.CtrlKey] === true;
+		var repairItem = KeyModiferConstants.AltKey in _event && _event[KeyModiferConstants.AltKey] === true;
+		var shiftClickAction = KeyModiferConstants.ShiftKey in _event && _event[KeyModiferConstants.ShiftKey] === true;
 
 		if (
 			isEmpty === false &&
@@ -1224,8 +1219,21 @@ CharacterScreenPaperdollModule.prototype.createEquipmentSlot = function (
 				//console.info('drop item: ' + itemId);
 				self.mDataSource.dropPaperdollItem(entityId, itemId, null);
 			}
-			else if (unequipAllLayers === true) {
-				self.mDataSource.notifyBackendRemovePaperdollItemUpgrades(entityId, itemId);
+			else if (shiftClickAction === true) {
+				if (slotType === CharacterScreenIdentifier.ItemSlot.Mainhand || slotType === CharacterScreenIdentifier.ItemSlot.Offhand) {
+					SQ.call(self.mDataSource.mSQHandle, 'onSwapDualWieldSlots', [entityId], function (data) {
+						if (data !== null && typeof data === 'object') {
+							if (CharacterScreenIdentifier.QueryResult.Brother in data) {
+								var brotherData = data[CharacterScreenIdentifier.QueryResult.Brother];
+								if (CharacterScreenIdentifier.Entity.Id in brotherData) {
+									self.mDataSource.updateBrother(brotherData);
+								}
+							}
+						}
+					});
+				} else {
+					self.mDataSource.notifyBackendRemovePaperdollItemUpgrades(entityId, itemId);
+				}
 			}
 			else if (data.isAllowedInBag === true) {
 				//console.info('drop item into bag: ' + itemId);

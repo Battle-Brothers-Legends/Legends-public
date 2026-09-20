@@ -160,10 +160,13 @@
 			return;
 		}
 
+		// mute the warning that's unnecessary log clutter
+		if (_item.getCurrentSlotType() == ::Const.ItemSlot.None || _item.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
+			return false;
+		}
+
 		// Unequip dual-wielded mainhand weapons in offhand slot
-		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand
-			&& _item.getCurrentSlotType() == ::Const.ItemSlot.Offhand)
-		{
+		if (_item.getSlotType() == ::Const.ItemSlot.Mainhand && _item.getCurrentSlotType() == ::Const.ItemSlot.Offhand) {
 			if (this.getItemAtSlot(::Const.ItemSlot.Offhand) == _item) {
 				_item.onUnequip();
 				_item.setContainer(null);
@@ -193,10 +196,7 @@
 
 		local result = unequip(_item);
 		local slot = _item.getSlotType();
-		if (result
-			&& (slot == ::Const.ItemSlot.Mainhand || slot == ::Const.ItemSlot.Offhand)
-			&& !::Legends.S.isEntityNullOrDead(this.m.Actor))
-		{
+		if (result && (slot == ::Const.ItemSlot.Mainhand || slot == ::Const.ItemSlot.Offhand) && !::Legends.S.isEntityNullOrDead(this.m.Actor)) {
 			// Unequipping the mh may remove skill instances that the offhand also uses
 			// (same fix as the offhand case above)
 			if (slot == ::Const.ItemSlot.Mainhand) {
@@ -257,38 +257,53 @@
 		local mh = this.getItemAtSlot(::Const.ItemSlot.Mainhand);
 		local oh = this.getItemAtSlot(::Const.ItemSlot.Offhand);
 
-		if (mh == null || oh == null) {
+		if (mh == null && oh == null) {
 			return false;
 		}
-		if (oh.getSlotType() != ::Const.ItemSlot.Mainhand) {
-			return false;
+		if (oh != null) {
+			if (oh.getSlotType() != ::Const.ItemSlot.Mainhand) {
+				return false;
+			}
+			if (oh.getCurrentSlotType() != ::Const.ItemSlot.Offhand) {
+				return false;
+			}
 		}
-		if (oh.getCurrentSlotType() != ::Const.ItemSlot.Offhand) {
-			return false;
-		}
-		if (!this.canDualWield(this.m.Actor, mh)) {
-			return false;
+		if (mh != null) {
+			if (!this.canDualWield(this.m.Actor, mh)) {
+				return false;
+			}
 		}
 
 		// Clear skills for both weapons
-		mh.onUnequip();
-		oh.onUnequip();
+		if (mh != null) {
+			mh.onUnequip();
+		}
+		if (oh != null) {
+			oh.onUnequip();
+		}
 
 		// Swap slot contents
 		this.m.Items[::Const.ItemSlot.Mainhand][0] = oh;
 		this.m.Items[::Const.ItemSlot.Offhand][0] = mh;
 
-		oh.setCurrentSlotType(::Const.ItemSlot.Mainhand);
-		mh.setCurrentSlotType(::Const.ItemSlot.Offhand);
-
 		// Re equip both
-		oh.onEquip();
-		mh.onEquip();
+		if (oh != null) {
+			oh.setCurrentSlotType(::Const.ItemSlot.Mainhand);
+			oh.onEquip();
+		}
+		if (mh != null) {
+			mh.setCurrentSlotType(::Const.ItemSlot.Offhand);
+			mh.onEquip();
+		}
 
 		this.m.Actor.getSkills().update();
 		this.updateDualWield();
 
-		oh.playInventorySound(::Const.Items.InventoryEventType.Equipped);
+		if (oh != null) {
+			oh.playInventorySound(::Const.Items.InventoryEventType.Equipped);
+		} else if (mh != null) {
+			mh.playInventorySound(::Const.Items.InventoryEventType.Equipped);
+		}
 
 		return true;
 	}
@@ -298,9 +313,7 @@
 			return;
 		}
 
-		if (_item.getCurrentSlotType() == ::Const.ItemSlot.None
-			|| _item.getCurrentSlotType() == ::Const.ItemSlot.Bag)
-		{
+		if (_item.getCurrentSlotType() == ::Const.ItemSlot.None || _item.getCurrentSlotType() == ::Const.ItemSlot.Bag) {
 			this.logWarning("Attempted to unequip item " + _item.getName() + ", but is not equipped");
 			return false;
 		}
