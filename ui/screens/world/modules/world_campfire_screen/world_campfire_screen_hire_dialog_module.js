@@ -78,7 +78,7 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	// create: containers (init hidden!)
 	this.mContainer = $('<div class="l-hire-dialog-container display-none opacity-none"/>');
 	_parentDiv.append(this.mContainer);
-	this.mDialogContainer = this.mContainer.createDialog('Hire Follower', null, '', true, 'dialog-1024-768');
+	this.mDialogContainer = this.mContainer.createDialog('Purchase Camp Tools', null, '', true, 'dialog-1024-768');
 
 	// create tabs
 	var tabButtonsContainer = $('<div class="l-tab-container"/>');
@@ -200,7 +200,7 @@ WorldCampfireScreenHireDialogModule.prototype.createDIV = function (_parentDiv)
 	this.mDetailsPanel.Container.append(detailsRow);
 	var hireButtonLayout = $('<div class="l-hire-button"/>');
 	detailsRow.append(hireButtonLayout);
-	this.mDetailsPanel.HireButton = hireButtonLayout.createTextButton("Hire", function()
+	this.mDetailsPanel.HireButton = hireButtonLayout.createTextButton("Purchase", function()
 	{
 		if(self.mSelectedEntry !== null)
 		{
@@ -485,7 +485,7 @@ WorldCampfireScreenHireDialogModule.prototype.bindTooltips = function ()
 {
 	this.mAssets.bindTooltips();
 	this.mLeaveButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.LeaveButton });
-	this.mDetailsPanel.HireButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.HireButton });
+	this.mDetailsPanel.HireButton.bindTooltip({ contentType: 'ui-element', elementId: TooltipIdentifier.WorldTownScreen.HireDialogModule.PurchaseCampToolsButton });
 };
 
 WorldCampfireScreenHireDialogModule.prototype.unbindTooltips = function ()

@@ -4468,6 +4468,20 @@
 				}
 			];
 
+		case "world-town-screen.hire-dialog-module.PurchaseCampToolsButton":
+			return [
+				{
+					id = 1,
+					type = "title",
+					text = "Purchase Tools"
+				},
+				{
+					id = 2,
+					type = "description",
+					text = "Purchase the selected tools for your camp."
+				}
+			];
+
 		case "world-town-screen.hire-dialog-module.UnknownTraits":
 			return [
 				{

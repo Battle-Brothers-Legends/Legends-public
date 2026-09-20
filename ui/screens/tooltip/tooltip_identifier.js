@@ -282,7 +282,8 @@ var TooltipIdentifier =
 			LeaveButton: 'world-town-screen.hire-dialog-module.LeaveButton',
 			UnknownTraits: 'world-town-screen.hire-dialog-module.UnknownTraits',
 			UnknownPerks: 'world-town-screen.hire-dialog-module.UnknownPerks',
-			KnownPerks: 'world-town-screen.hire-dialog-module.KnownPerks'
+			KnownPerks: 'world-town-screen.hire-dialog-module.KnownPerks',
+			PurchaseCampToolsButton: 'world-town-screen.hire-dialog-module.PurchaseCampToolsButton'
 		},
 
 		ShopDialogModule:
