@@ -1,4 +1,4 @@
-this.legend_wood_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_wood_blueprint <- this.inherit("scripts/crafting/legend_trading_good_blueprint", {
 	m = {},
 	function create()
 	{
@@ -7,6 +7,7 @@ this.legend_wood_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.Type = ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/quality_wood_item");
 		this.m.Cost = 90;
+		this.m.ItemScript = "scripts/items/trade/quality_wood_item";
 		local ingredients = [
 			{
 				Script = "scripts/items/trade/legend_raw_wood_item",

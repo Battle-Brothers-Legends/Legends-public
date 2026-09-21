@@ -1,4 +1,4 @@
-this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/legend_trading_good_blueprint", {
 	m = {},
 
 	function create() {
@@ -7,6 +7,7 @@ this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		this.m.Type = ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/furs_item");
 		this.m.Cost = 150;
+		this.m.ItemScript = "scripts/items/trade/furs_item";
 		local ingredients = [
 			{
 				Script = "scripts/items/misc/werewolf_pelt_item",
@@ -19,10 +20,6 @@ this.legend_furs_03_blueprint <- this.inherit("scripts/crafting/blueprint", {
 		];
 		this.init(ingredients);
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)]);
-	}
-
-	function onCraft(_stash) {
-		_stash.add(this.new("scripts/items/trade/furs_item"));
 	}
 
 });

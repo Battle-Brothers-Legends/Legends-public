@@ -1,4 +1,4 @@
-this.legend_silver_ingot_04_blueprint <- this.inherit("scripts/crafting/blueprint", {
+this.legend_silver_ingot_04_blueprint <- this.inherit("scripts/crafting/legend_trading_good_blueprint", {
 	m = {},
 
 	function create() {
@@ -7,6 +7,7 @@ this.legend_silver_ingot_04_blueprint <- this.inherit("scripts/crafting/blueprin
 		this.m.Type = ::Const.Items.ItemType.Misc;
 		this.m.PreviewCraftable = this.new("scripts/items/trade/legend_silver_ingots_item");
 		this.m.Cost = 900;
+		this.m.ItemScript = "scripts/items/trade/legend_silver_ingots_item";
 		local ingredients = [
 			{
 				Script = "scripts/items/loot/goblin_minted_coins_item",
@@ -15,10 +16,6 @@ this.legend_silver_ingot_04_blueprint <- this.inherit("scripts/crafting/blueprin
 		];
 		this.init(ingredients);
 		this.initSkills([::Legends.Professions.new(::Legends.Profession.LegendMetalworking)]);
-	}
-
-	function onCraft(_stash) {
-		_stash.add(this.new("scripts/items/trade/legend_silver_ingots_item"));
 	}
 
 });

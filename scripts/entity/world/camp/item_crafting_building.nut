@@ -210,6 +210,9 @@ this.item_crafting_building <- this.inherit("scripts/entity/world/camp/camp_buil
 
 			if (r.Points >= r.Blueprint.getCostForCraft()) {
 				r.Blueprint.craft();
+				if (::MSU.isKindOf(r.Blueprint, "legend_trading_good_blueprint")) {
+					::Legends.LastCraftedTradeGood.setCraftedPrice(0); // do this so that the tooltip for the crafted item will not show that it was crafted for any monetary cost
+				}
 				r.Blueprint.onEnchant(this.getUpgraded()); // will do nothing if not a rune
 				this.m.ItemsCrafted.push(r.Blueprint);
 				if (r.Forever) {
