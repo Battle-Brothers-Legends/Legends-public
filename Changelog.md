@@ -336,11 +336,11 @@
 - Auxiliary Shield - now has 15 Block, 10-25 Damage
 - Buckler Shield - now has 10 Block, 5-10 Damage
 - Wooden Skirmisher (Goblin) Shield - now has 4 Mdef, 8 Rdef, 14 condition, 8 Block, 5-10 Damage
-> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+> classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
 - Reinforced Skirmisher (Goblin) Shield - now has 5 Mdef, 10 Rdef, 18 condition, 10 Block, 5-10 Damage
-> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+> classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
 - Ancient Southern (Mummy) Shield - 12 Block, 5-10 Damage, 18 Condition
-> classified as a bucker and gains `Buckler Bash` and `Buckler Effect`
+> classified as a buckler and gains `Buckler Bash` and `Buckler Effect`
 
 - Heater Shield - now has 20 Block, 15-30 Damage
 - Kite Shield - now has 20 Block, 10-25 Damage
@@ -552,6 +552,7 @@
 - recruit scaling now always off; option removed from new campaign settings - recruitment progression now reflected in professions
 - brothers that weren't with the company for at least 1 day can no longer get compensated while dismissing
 - tooltips in the character screen now compare armor layers with the currently selected character's equipped layer
+- buckler bash skill now uses the buckler bash overlay in battle (the icon that plays over the character's head) instead of mace overlay
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

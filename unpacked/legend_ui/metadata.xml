@@ -233,6 +233,7 @@
 	<sprite id="staff_bash" ic="FF1B293C" img="skills\staff_bash.png" />
 	<sprite id="rain" ic="FF1B293C" img="skills\rain.png" />
 	<sprite id="tackle" ic="FF1B293C" img="skills\tackle.png" />
+	<sprite id="buckler_bash_square" ic="FF1B293C" img="skills\buckler_bash_square.png" />
 	<!-- Orientation below -->
 
 

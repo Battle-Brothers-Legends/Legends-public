@@ -2205,7 +2205,7 @@ activesDefs.push({
 	Name = "Buckler Bash",
 	Icon = "skills/buckler_bash_square.png",
 	IconDisabled = "skills/buckler_bash_square_bw.png",
-	Overlay = "active_133",
+	Overlay = "buckler_bash_square",
 });
 
 ::Legends.Active.LegendCallLightning <- null;
