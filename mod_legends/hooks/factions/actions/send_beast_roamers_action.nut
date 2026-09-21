@@ -492,6 +492,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendGreenwoodSchrat,
 				Description = "A creature of bark and wood, blending between trees and shambling slowly, its roots digging through the soil.",
+				Footprints = ::Const.World.FootprintsType.Schrats,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Forest, true);
@@ -521,6 +522,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendRockUnhold,
 				Description = "One or more lumbering giants whose skin is as hard as rock and virtually impenetrable save for the best weapons.",
+				Footprints = ::Const.World.FootprintsType.Unholds,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Mountains, true);
@@ -550,6 +552,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendRedbackSpider,
 				Description = "A black-red spider whose poison is known to be especially deadly.",
+				Footprints = ::Const.World.FootprintsType.Spiders,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Forest, true);
@@ -578,6 +581,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendSkinGhouls,
 				Description = "A terrifying creature, which seems to be wearing the skin of other beings upon its own.",
+				Footprints = ::Const.World.FootprintsType.Ghouls,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Steppe, true);
@@ -603,6 +607,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendStollwurm,
 				Description = "A Stollwurm - a wingless bipedal dragon resembling a giant snake.",
+				Footprints = ::Const.World.FootprintsType.Lindwurms,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Hills, true);
@@ -632,6 +637,7 @@
 				DistanceScalingMult = 2.0,
 				Spawn = ::Const.World.Spawn.LegendWhiteDirewolf,
 				Description = "A magnificent creature whose pristine white fur can fetch a high price at a collector's.",
+				Footprints = ::Const.World.FootprintsType.Direwolves,
 				SetRoam = function(_roam) {
 					_roam.setNoTerrainAvailable();
 					_roam.setTerrain(::Const.World.TerrainType.Snow, true);

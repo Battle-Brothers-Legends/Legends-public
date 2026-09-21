@@ -45,7 +45,7 @@ this.gatherer_building <- this.inherit("scripts/entity/world/camp/camp_building"
 
 	function getHuntingLevel() {
 		local self = this;
-		local numBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro, true))).len();
+		local numBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro)(_bro.getCampAssignment() == self.m.ID && !self.isRecovering(_bro))).len();
 		return ::World.Assets.m.ProfessionEffect.LegendHunting > 0 ? (::World.Assets.m.ProfessionEffect.LegendHunting * numBros) : (0.1 * numBros);
 	}
 

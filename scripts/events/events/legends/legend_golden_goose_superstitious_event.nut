@@ -241,7 +241,7 @@ this.legend_golden_goose_superstitious_event <- this.inherit("scripts/events/eve
 		if (candidates_thief.len() > 0) {
 			this.m.Thief = candidates_thief[::Math.rand(0, candidates_thief.len() - 1)];
 		}
-		this.m.Score = 1000;
+		this.m.Score = 10;
 	}
 
 	function onPrepare() {}
