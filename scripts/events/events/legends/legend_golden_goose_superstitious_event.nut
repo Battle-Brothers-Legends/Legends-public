@@ -1,4 +1,4 @@
-this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
+this.legend_golden_goose_superstitious_event <- this.inherit("scripts/events/event", {
 	m = {
 		Superstitious = null,
 		Other = null,
@@ -97,7 +97,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 						getResult = @(_event)"F"
 					});
 				}
-				if (_event.m.GreedyBro != null) {
+				if (_event.m.Greedy != null) {
 					this.Options.insert(1, {
 						Text = "Let's see what %greedybro% thinks about this curiosity.",
 						getResult = @(_event)"G"
@@ -121,7 +121,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 			function start(_event) {
 				this.Characters.push(_event.m.Superstitious.getImagePath());
 				local entry = ::Legends.EventList.changeMood(_event.m.Superstitious, -0.5, "Felt bad about the Golden Goose business");
-				if (_event.m.Superstitious.getMoodState() > ::Const.MoodState.Neutral) {
+				if (_event.m.Superstitious.getMoodState() < ::Const.MoodState.Neutral) {
 					this.List.push(entry);
 				}
 
@@ -182,7 +182,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 		});
 
 		this.m.Screens.push({
-			ID = "G",
+			ID = "H",
 			Text = "[img]gfx/ui/events/event_33.png[/img]Before the night is over, curiosity gets the better of %superstitiousbro%. You hear a muffled yelp from inside the tent, followed by a loud stream of curses. You and several other brothers, including a grinning %thief%, gather around the entrance.\n\nInside, %superstitiousbro% is frantically sorting through %their_superstitious% sack, which is now half-filled with crushed eggshells and polished river stones. \n\n%SPEECH_ON%The luck! They took me coin and left me with garbage!%SPEECH_OFF%%They_superstitious% wails. The gathered mercenaries erupt into roaring laughter. %thief% tosses you a pouch with a wink, having already secured a tidy profit for %themselves_thief%.",
 			Image = "",
 			List = [],
@@ -195,20 +195,20 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 			],
 
 			function start(_event) {
-				this.Characters.push(_event.m.SuperstitiousBro.getImagePath());
+				this.Characters.push(_event.m.Superstitious.getImagePath());
 				this.Characters.push(_event.m.Thief.getImagePath());
 
-				local entry = ::Legends.EventList.changeMood(_event.m.SuperstitiousBro, -1.0, "Lost money during the Golden Goose business");
-				if (_event.m.SuperstitiousBro.getMoodState() > ::Const.MoodState.Neutral) {
+				local entry = ::Legends.EventList.changeMood(_event.m.Superstitious, -1.0, "Lost money during the Golden Goose business");
+				if (_event.m.Superstitious.getMoodState() < ::Const.MoodState.Neutral) {
 					this.List.push(entry);
 				}
 
 				entry = ::Legends.EventList.changeMood(_event.m.Thief, 1.0, "Pulled a profitable prank");
-				if (_event.m.SuperstitiousBro.getMoodState() > ::Const.MoodState.Neutral) {
+				if (_event.m.Thief.getMoodState() > ::Const.MoodState.Neutral) {
 					this.List.push(entry);
 				}
 
-				this.List.push(::Legends.EventList.changeMoney(::Math.max(50, _event.m.SuperstitiousBro.getDailyCost() * _event.m.SuperstitiousBro.getDaysWithCompany() / 10)));
+				this.List.push(::Legends.EventList.changeMoney(::Math.max(50, (_event.m.Superstitious.getDailyCost() * _event.m.Superstitious.getDaysWithCompany()) / 10)));
 			}
 		});
 	}
@@ -229,7 +229,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 		this.m.Superstitious = candidates_superstitious[::Math.rand(0, candidates_superstitious.len() - 1)];
 
 		local self = this;
-		local brothersWithoutSuperstitious = brothers.filter(@(_, _bro)(_bro.getID() != self.m.SuperstitiousBro.getID()));
+		local brothersWithoutSuperstitious = brothers.filter(@(_, _bro)(_bro.getID() != self.m.Superstitious.getID()));
 		this.m.Other = brothersWithoutSuperstitious[::Math.rand(0, brothersWithoutSuperstitious.len() - 1)];
 
 		local candidates_greedy = brothers.filter(@(_, _bro)(::Legends.Traits.has(_bro, ::Legends.Trait.Greedy)));
@@ -241,7 +241,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 		if (candidates_thief.len() > 0) {
 			this.m.Thief = candidates_thief[::Math.rand(0, candidates_thief.len() - 1)];
 		}
-		this.m.Score = 10;
+		this.m.Score = 1000;
 	}
 
 	function onPrepare() {}
