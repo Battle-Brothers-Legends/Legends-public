@@ -99,7 +99,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 				}
 				if (_event.m.GreedyBro != null) {
 					this.Options.insert(1, {
-						Text = "Let's see what %greedybro% thinks about this curiousity.",
+						Text = "Let's see what %greedybro% thinks about this curiosity.",
 						getResult = @(_event)"G"
 					});
 				}
@@ -189,7 +189,7 @@ this.legend_golden_goose_superstitious <- this.inherit("scripts/events/event", {
 			Characters = [],
 			Options = [
 				{
-					Text = "A fool and his money are easily parted.",
+					Text = "A fool and %their_superstitious% money are easily parted.",
 					getResult = @(_event)0
 				}
 			],
