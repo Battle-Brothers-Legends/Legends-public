@@ -1,4 +1,7 @@
-::Legends.Items <- {};
+if (!("Items" in ::Legends)) {
+	::Legends.Items <- {};
+}
+
 ::Legends.Items.Named <- {};
 ::Legends.Items.Named.randomizeRanges <- {
     Condition               = [110, 140],

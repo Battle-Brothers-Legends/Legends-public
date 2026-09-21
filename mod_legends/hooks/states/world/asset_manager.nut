@@ -478,7 +478,7 @@
 
 			if (::World.Flags.get("IsGoldenGoose") == true)
 			{
-				this.addMoney(50);
+				this.addMoney(::Legends.Items.Effects.GoldenGooseGoldPerDay);
 			}
 
 			local roster = ::World.getPlayerRoster().getAll();

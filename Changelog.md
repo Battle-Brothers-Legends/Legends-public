@@ -439,6 +439,7 @@
 - Implemented a game-wide check that prohibits donkeys, undead ('untalkables') and skeletons ('origin-locked') from interacting in events unless SPECIFICALLY mentioned.
 - added a new town encounter during drought
 - added a new event requiring a well read person
+- added a new event involving the Golden Goose
 - Added an event involving a sighthound
 - Added an event involving a northern warhound
 - Removed moral rep. hit from children crusade event
