@@ -187,5 +187,14 @@ this.perk_legend_ambidextrous <- this.inherit("scripts/skills/skill", {
 			_properties.MeleeDefense += 10;
 			_properties.MeleeSkill += 5;
 		}
+
+		if (!::MSU.isNull(off)
+			&& off.isItemType(::Const.Items.ItemType.Shield)
+			&& off.hasSkill(::Legends.Actives.getID(::Legends.Active.LegendBucklerBash)))
+		{
+			this.m.offHandSkill = ::Legends.Actives.get(this, ::Legends.Active.LegendBucklerBash);
+		} else {
+			this.m.offHandSkill = null;
+		}
 	}
 });

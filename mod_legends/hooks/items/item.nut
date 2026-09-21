@@ -458,6 +458,12 @@
 	// for items that slings are able to throw
 	o.onSlingUpdateProperties <- function () {}
 
+	o.hasSkill <- function ( _id )
+	{
+		local filtered = this.m.SkillPtrs.filter(@(_, _skill)(_skill.getID() == _id));
+		return filtered.len() > 0;
+	}
+
 	local onSerialize = o.onSerialize;
 	o.onSerialize = function ( _out )
 	{
