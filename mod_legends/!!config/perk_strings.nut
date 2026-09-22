@@ -209,7 +209,7 @@
 
 //MAGIC - skills that have a magical or mystical element to them.
 ::Const.Strings.PerkName.LegendMagicChainLightning <- "Chain Lightning";
-::Const.Strings.PerkName.LegendMagicDaze <- "Stupefy";
+::Const.Strings.PerkName.LegendStupefy <- "Stupefy";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
 ::Const.Strings.PerkName.LegendMagicSleep <- "Sleep";
 ::Const.Strings.PerkName.LegendMasteryChainLightning <- "Polarized";
@@ -230,7 +230,7 @@
 ::Const.Strings.PerkName.LegendDeathtouch <- "Death Touch";
 ::Const.Strings.PerkName.LegendMiasma <- "Miasma";
 ::Const.Strings.PerkName.LegendDarkflight <- "Darkflight";
-::Const.Strings.PerkName.LegendDaze <- "Stupefy";
+::Const.Strings.PerkName.LegendCacophony <- "Cacophony";
 ::Const.Strings.PerkName.LegendMagicStun <- "Stun";
 ::Const.Strings.PerkName.LegendHorrify <- "Horrify";
 ::Const.Strings.PerkName.LegendManipulative <- "Manipulative";
@@ -617,17 +617,17 @@ Disapparate from your current location and reappear on the other side of the bat
 • Costs [color=%negative%]4[/color] AP and [color=%negative%]40[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendDaze <- @"
-Assault the senses of your target with a flurry of colorful movement and sounds.
+::Const.Strings.PerkDescription.LegendCacophony <- @"
+Assault the senses of your target with a wild clamor and noise from your instrument leave them distracted.
 
 [color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Daze[/color] skill which applies the [color=%status%]Stupefied[/color] effect on hit.
+• Unlocks the [color=%skill%]Cacophony[/color] skill which applies the [color=%status%]Distracted[/color] effect on hit.
 
 • Chance to hit is based on Ranged Skill and has a range of six tiles.
 
-• [color=%status%]Stupefied[/color] enemies have their Initiative, Fatigue, and damage reduced by [color=%negative%]-50%[/color].
+• [color=%status%]Distracted[/color] enemies have their Initiative, Damage reduced by [color=%negative%]35%[/color].
 
-• If you have the [color=%perk%]Battlefield Control[/color] perk, the chance to hit is [color=%positive%]doubled[/color].
+• If you have the [color=%perk%]Manipulative[/color] perk, the chance to hit is [color=%positive%]doubled[/color].
 
 • Costs [color=%negative%]5[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
@@ -2742,7 +2742,7 @@ The ability to cut and shape wood is a craft few master.
 • Fire a bolt of lightning at an enemy that can arc to two adjacent enemies.
 ";
 
-::Const.Strings.PerkDescription.LegendMagicDaze <- @"
+::Const.Strings.PerkDescription.LegendStupefy <- @"
 [color=%active%][u]Active:[/u][/color]
 • Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too [color=%status%]Bewildered[/color] to fight effectively.
 

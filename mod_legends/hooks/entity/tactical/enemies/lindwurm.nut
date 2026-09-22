@@ -7,7 +7,7 @@
 	o.m.EffectsSharedWithTail <- [
 		::Legends.Effect.Staggered,
 		::Legends.Effect.Dazed,
-		::Legends.Effect.LegendDazed,
+		::Legends.Effect.LegendStupefied,
 		::Legends.Effect.LegendBaffled,
 		::Legends.Effect.Withered,
 		::Legends.Effect.InsectSwarm

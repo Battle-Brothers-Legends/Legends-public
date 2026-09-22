@@ -5,7 +5,7 @@ this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
 	},
 	function create()
 	{
-		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendDazed);
+		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendStupefied);
 		this.m.Icon = "ui/perks/daze56_circle.png";
 		this.m.IconMini = "mini_daze56_circle";
 		this.m.Overlay = "status_daze56_circle";

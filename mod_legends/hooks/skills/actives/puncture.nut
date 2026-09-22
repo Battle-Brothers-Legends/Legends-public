@@ -34,7 +34,7 @@
 			return 0;
 
 		local mod = 0;
-		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendDazed))
+		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendStupefied))
 			mod += 10;
 		if (_targetEntity.getSkills().hasEffect(::Legends.Effect.LegendParried))
 			mod += 10;

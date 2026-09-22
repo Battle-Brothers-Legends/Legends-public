@@ -1,8 +1,8 @@
-this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
+this.legend_stupefy_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendMagicDaze);
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendStupefy);
 		this.m.Description = "Assault the senses of your target with a conjured flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively.";
 		this.m.KilledString = "Dazed";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
@@ -72,7 +72,7 @@ this.legend_magic_daze_skill <- this.inherit("scripts/skills/skill", {
 			this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 
 			if (!::Legends.S.isEntityNullOrDead(targetEntity)) {
-				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed, function (_effect) {
+				::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendStupefied, function (_effect) {
 					_effect.m.TurnsLeft = ::Math.max(1, 1 + this.getCurrentProperties().NegativeStatusEffectDuration);
 				}.bindenv(targetEntity));
 

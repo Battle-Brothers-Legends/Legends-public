@@ -558,6 +558,9 @@
 - divided and reorganized the starting scenarios thematically; slowed scrolling speed so its easier to navigate
 
 ## Bug Fixes
+- tile effect `shadows` -> `legend_shadow_mist`
+- blazing RSW and firefield now use their own fire effects
+- legend tile effects moved to tactical_state so they can be spawned by other sources more conveniently
 - black market in town screens can now be highlighted on mouseover
 - various text fixes
 - graphical/ui fixes
@@ -794,6 +797,7 @@
 - `perk_legend_scry_trance` -> deleted
 - `perk_legend_teleport` -> deleted
 - `perk_legend_specialist_shield_push` -> deleted
+<<<<<<< HEAD
 - `legend_pie_effect` -> deleted
 - `legend_porridge_effect` -> deleted
 - `legend_pudding_effect` -> deleted
@@ -811,3 +815,15 @@
 - background modifiers: terrain are now using objects instead of arrays
 - added `legend_player_legion` that sets all the relevant traits of a legion brother
 - `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
+=======
+- `legend_commander_abstract_effect` -> moved to skills from skills/effects
+- `legend_backswing_effect` -> deleted
+- `legend_graze_prepared_effect` -> deleted
+- `perk_legend_magic_daze` -> `perk_legend_stupefy`
+- `legend_magic_daze_skill` -> `legend_stupefy_skill`
+- `legend_daze_effect` -> `legend_stupefy_effect`
+- `legend_daze_skill` -> `legend_cacophony_skill`
+- `perk_legend_daze` -> `perk_legend_cacophony`
+- `perk_legend_curseofyears` -> deleted
+- `legend_curseofyears_skill` -> deleted
+>>>>>>> 97341b687b (rearrange effect defs alphabetically, some effect/actives work)

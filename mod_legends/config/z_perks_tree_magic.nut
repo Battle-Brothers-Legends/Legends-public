@@ -11,7 +11,7 @@ if (!("Perks" in ::Const)) {
 	],
 	Tree = [
 		[::Legends.Perk.LegendCheerOn, ::Legends.Perk.LegendSpecialistMusician],
-		[::Legends.Perk.LegendDaze],
+		[::Legends.Perk.LegendCacophony],
 		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendMasteryMusic],
 		[],
@@ -300,7 +300,7 @@ if (!("Perks" in ::Const)) {
 	],
 	Tree = [
 		[::Legends.Perk.LegendManipulative],
-		[::Legends.Perk.LegendMagicDaze],
+		[::Legends.Perk.LegendStupefy],
 		[],
 		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendMagicStun],
 		[::Legends.Perk.LegendTerrifyingVisage],

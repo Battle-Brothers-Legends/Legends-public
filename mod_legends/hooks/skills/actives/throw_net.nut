@@ -120,7 +120,7 @@
 			if (::isKindOf(target, "unhold") || ::isKindOf(target, "unhold_bog") || ::isKindOf(target, "unhold_frost")) {
 				return target.getHitpoints() <= target.getHitpointsMax() / 4
 					|| target.getSkills().hasEffect(::Legends.Effect.LegendBaffled)
-					|| target.getSkills().hasEffect(::Legends.Effect.LegendDazed)
+					|| target.getSkills().hasEffect(::Legends.Effect.LegendStupefied)
 					|| target.getSkills().hasEffect(::Legends.Effect.Dazed);
 			}
 			return false;

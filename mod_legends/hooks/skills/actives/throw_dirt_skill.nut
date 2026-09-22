@@ -4,7 +4,18 @@
 		create();
 		this.m.Description = "Throws dirt to distract the enemy. Reduces inititive and damage output of the target by 35% for one turn. Can only be used once per battle.";
 		this.m.IconDisabled = "skills/active_215_sw.png";
-		this.m.IsUsingHitchance = true;
+	}
+
+	o.getTooltip <- function () {
+		local ret = this.getDefaultUtilityTooltip();
+		ret.push({
+			id = 7,
+			type = "text",
+			icon = "ui/icons/special.png",
+			text = "Leave your opponent [color=%effect]Distracted[/color], which will reduce Damage and Initiative [color=%negative%]35%[/color]"
+		});
+
+		return ret;
 	}
 
 	o.getTooltip <- function() {

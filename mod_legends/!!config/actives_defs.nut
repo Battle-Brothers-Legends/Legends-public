@@ -2318,22 +2318,11 @@ activesDefs.push({
 	Overlay = "coordinated_volleys_square",
 });
 
-::Legends.Active.LegendCurseofyears <- null;
+::Legends.Active.LegendCacophony <- null;
 activesDefs.push({
-	ID = "actives.legend_curseofyears",
-	Script = "scripts/skills/actives/legend_curseofyears_skill",
-	Const = "LegendCurseofyears",
-	Name = "Decrepify",
-	Icon = "skills/active_117.png",
-	IconDisabled = "skills/active_117_sw.png",
-	Overlay = "active_117",
-});
-
-::Legends.Active.LegendDaze <- null;
-activesDefs.push({
-	ID = "actives.legend_daze",
-	Script = "scripts/skills/actives/legend_daze_skill",
-	Const = "LegendDaze",
+	ID = "actives.legend_cacophony",
+	Script = "scripts/skills/actives/legend_cacophony_skill",
+	Const = "LegendCacophony",
 	Name = "Stupefy",
 	Icon = "skills/daze_square.png",
 	IconDisabled = "skills/daze_square_bw.png",
@@ -2934,11 +2923,11 @@ activesDefs.push({
 	Overlay = "active_203",
 });
 
-::Legends.Active.LegendMagicDaze <- null;
+::Legends.Active.LegendStupefy <- null;
 activesDefs.push({
-	ID = "actives.legend_magic_daze",
-	Script = "scripts/skills/actives/legend_magic_daze_skill",
-	Const = "LegendMagicDaze",
+	ID = "actives.legend_stupefy",
+	Script = "scripts/skills/actives/legend_stupefy_skill",
+	Const = "LegendStupefy",
 	Name = "Stupefy",
 	Icon = "skills/daze_square.png",
 	IconDisabled = "skills/daze_square_bw.png",

@@ -161,7 +161,7 @@ this.legend_gruesome_feast_skill <- this.inherit("scripts/skills/skill", {
 				continue;
 			}
 
-			::Legends.Effects.grant(a, ::Legends.Effect.LegendDazed);
+			::Legends.Effects.grant(a, ::Legends.Effect.LegendStupefied);
 			a.worsenMood(2.0, "Witnessed someone eat a corpse");
 		}
 

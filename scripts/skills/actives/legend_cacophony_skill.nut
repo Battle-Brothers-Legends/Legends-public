@@ -1,10 +1,10 @@
-this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
+this.legend_cacophony_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
 
 	function create() {
-		::Legends.Actives.onCreate(this, ::Legends.Active.LegendDaze);
-		this.m.Description = "Assault the senses of your target with a flurry of colorful sparks, whirs, and pops. Such an astonishing display is sure to leave anyone too bewildered to fight effectively. Does no damage.";
-		this.m.KilledString = "Dazed";
+		::Legends.Actives.onCreate(this, ::Legends.Active.LegendCacophony);
+		this.m.Description = "Assault the senses of your target with a wild clamor and noise from your instrument leave them distracted. Does no damage and requires an instrument.";
+		this.m.KilledString = "";
 		this.m.SoundOnUse = ::Legends.S.setSounds("sounds/combat/stupefy", 5);
 		this.m.SoundOnHit = ["sounds/humans/0/human_fatigue_01.wav"];
 		this.m.SoundVolume = 1.25;
@@ -28,13 +28,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Leave your opponent stupefied, halving their Damage, Fatigue and Initiative"
-		});
-		ret.push({
-			id = 7,
-			type = "text",
-			icon = "ui/icons/special.png",
-			text = "Hit chance based on ranged skill and doubled if you also have the Battlefield Control perk"
+			text = "Leave your opponent [color=%effect]Distracted[/color], which will reduce Damage and Initiative [color=%negative%]35%[/color]"
 		});
 
 		return ret;
@@ -47,7 +41,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 
 		local chance = getContainer().getActor().getCurrentProperties().getRangedSkill() - _targetEntity.getCurrentProperties().getRangedDefense();
 
-		if (getContainer().hasPerk(::Legends.Perk.Taunt)) {
+		if (getContainer().hasPerk(::Legends.Perk.LegendManipulative)) {
 			chance *= 2;
 		}
 
@@ -65,7 +59,7 @@ this.legend_daze_skill <- this.inherit("scripts/skills/skill", {
 			if (!targetEntity.getCurrentProperties().IsImmuneToStun) {
 
 				if (!::Legends.S.isEntityNullOrDead(targetEntity)) {
-					::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendDazed);
+					::Legends.Effects.grant(targetEntity, ::Legends.Effect.LegendStupefied);
 
 					if (!_user.isHiddenToPlayer() && _targetTile.IsVisibleForPlayer) {
 						::Tactical.EventLog.log(logString + ::Const.UI.getColorizedEntityName(_user) + " stupefied " + ::Const.UI.getColorizedEntityName(targetEntity));

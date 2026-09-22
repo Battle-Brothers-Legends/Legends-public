@@ -34,7 +34,7 @@ this.legend_peasant_minstrel <- this.inherit("scripts/entity/tactical/human", {
 		dirt.Alpha = ::Math.rand(0, 255);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistMusician);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendManipulative);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendDaze);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendCacophony);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendMinnesanger);
 
 		this.getSprite("socket").setBrush("bust_base_militia");

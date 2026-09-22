@@ -3,7 +3,7 @@
 	o.m.DeathblowBonus <- false;
 	o.m.ApplicableSkills <- [
 		::Legends.Effect.Dazed,
-		::Legends.Effect.LegendDazed,
+		::Legends.Effect.LegendStupefied,
 		::Legends.Effect.Debilitated,
 		::Legends.Effect.Distracted,
 		::Legends.Effect.LegendGrappled,

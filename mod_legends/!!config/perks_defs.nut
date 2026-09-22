@@ -717,15 +717,15 @@ perkDefObjects.push({
 	Const = "LegendReturnFavor"
 });
 
-::Legends.Perk.LegendDaze <- null;
+::Legends.Perk.LegendCacophony <- null;
 perkDefObjects.push({
-	ID = "perk.legend_daze",
-	Script = "scripts/skills/perks/perk_legend_daze",
-	Name = ::Const.Strings.PerkName.LegendDaze,
-	Tooltip = ::Const.Strings.PerkDescription.LegendDaze,
+	ID = "perk.legend_cacophony",
+	Script = "scripts/skills/perks/perk_legend_cacophony",
+	Name = ::Const.Strings.PerkName.LegendCacophony,
+	Tooltip = ::Const.Strings.PerkDescription.LegendCacophony,
 	Icon = "ui/perks/daze56_circle.png",
 	IconDisabled = "ui/perks/daze56_circle_bw.png",
-	Const = "LegendDaze"
+	Const = "LegendCacophony"
 });
 
 ::Legends.Perk.LegendMagicStun <- null;
@@ -3269,15 +3269,15 @@ perkDefObjects.push({
 	Const = "LegendMagicChainLightning"
 });
 
-::Legends.Perk.LegendMagicDaze <- null;
+::Legends.Perk.LegendStupefy <- null;
 perkDefObjects.push({
-	ID = "perk.legend_magic_daze",
-	Script = "scripts/skills/perks/perk_legend_magic_daze",
-	Name = ::Const.Strings.PerkName.LegendMagicDaze,
-	Tooltip = ::Const.Strings.PerkDescription.LegendMagicDaze,
+	ID = "perk.legend_stupefy",
+	Script = "scripts/skills/perks/perk_legend_stupefy",
+	Name = ::Const.Strings.PerkName.LegendStupefy,
+	Tooltip = ::Const.Strings.PerkDescription.LegendStupefy,
 	Icon = "ui/perks/daze56_circle.png",
 	IconDisabled = "ui/perks/daze56_circle_bw.png",
-	Const = "LegendMagicDaze"
+	Const = "LegendStupefy"
 });
 
 ::Legends.Perk.LegendChainLightning <- null;

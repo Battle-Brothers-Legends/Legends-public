@@ -100,7 +100,7 @@ this.legend_oms_amphora_skill <- ::inherit("scripts/skills/skill", {
 
 			[0.4, ::Legends.Effect.CatPotion],
 			[0.4, ::Legends.Effect.LionheartPotion],
-			[0.4, ::Legends.Effect.LegendDazed],
+			[0.4, ::Legends.Effect.LegendStupefied],
 
 			[0.3, ::Legends.Effect.RecoveryPotion],
 			[0.3, ::Legends.Effect.Chilled],

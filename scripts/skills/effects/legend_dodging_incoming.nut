@@ -1,4 +1,4 @@
-this.legend_dodging_incoming <- this.inherit("scripts/skills/effects/legend_commander_abstract_effect", {
+this.legend_dodging_incoming <- this.inherit("scripts/skills/legend_commander_abstract_effect", {
 	m = {},
 	function create()
 	{

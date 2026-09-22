@@ -19,7 +19,7 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([::Legends.Background.LegendSeer]);
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
-		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicDaze);
+		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendStupefy);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.Student);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.LegendMagicMissile);
 		bro.m.PerkPointsSpent += 3;
