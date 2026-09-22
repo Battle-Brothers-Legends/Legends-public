@@ -163,7 +163,7 @@ this.encounter <- {
     }
 
     function buildText(_text, _full = true) {
-        local brothers = ::Legends.Roster.getHumans();
+        local brothers = ::Legends.Roster.getHumans(true);
         local brother1;
         local brother2;
         local notnagel;

@@ -307,7 +307,7 @@
 
 	o.buildText <- function(_text)
 	{
-		local brothers = ::Legends.Roster.getHumans();
+		local brothers = ::Legends.Roster.getHumans(true);
 		local brother1 = ::Math.rand(0, brothers.len() - 1);
 		local brother2 = ::Math.rand(0, brothers.len() - 1);
 

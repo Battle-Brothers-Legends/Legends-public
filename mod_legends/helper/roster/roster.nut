@@ -15,7 +15,7 @@ if (!("Roster" in ::Legends)) {
 	return result;
 }
 
-::Legends.Roster.getHumans <- function () {
+::Legends.Roster.getHumans <- function (_returnFullRosterIfEmpty=false) {
 	local result = [];
 	local roster = ::World.getPlayerRoster().getAll();
 
@@ -23,6 +23,10 @@ if (!("Roster" in ::Legends)) {
 		if (::Legends.S.humansOnly(b)) {
 			result.push(b);
 		}
+	}
+
+	if (_returnFullRosterIfEmpty && result.len() == 0) {
+		return ::World.getPlayerRoster().getAll();
 	}
 
 	return result;
