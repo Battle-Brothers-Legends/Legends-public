@@ -3,8 +3,7 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		DamageArmorMult = 0.75,
 	},
 
-	function create()
-	{
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendBasiliskSentryInject);
 		this.m.Description = "no touch poison birb";
 		this.m.KilledString = "Pecked to death";
@@ -33,25 +32,21 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		this.m.ChanceSmash = 0;
 	}
 
-	function getExpectedDamage( _target )
-	{
+	function getExpectedDamage(_target) {
 		local ret = this.skill.getExpectedDamage(_target);
 		ret.HitpointDamage = ::Math.max(10, ret.HitpointDamage);
 		ret.TotalDamage = ::Math.max(10, ret.TotalDamage);
 		return ret;
 	}
 
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		this.spawnAttackEffect(_targetTile, ::Const.Tactical.AttackEffectBash);
 		local target = _targetTile.getEntity();
 		return this.attackEntity(_user, target);
 	}
 
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			_properties.DamageMinimum = ::Math.max(_properties.DamageMinimum, 10);
 			_properties.DamageRegularMin += 50;
 			_properties.DamageRegularMax += 70;
@@ -65,32 +60,26 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor )//logic to determine poison applying on hit
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) //logic to determine poison applying on hit
 	{
-		if (_skill != this)
-		{
-			return
-		}
-
-		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints <= ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0)
-		{
+		if (_skill != this) {
 			return;
 		}
 
-		if (!_targetEntity.isAlive())
-		{
+		if (_targetEntity.getCurrentProperties().IsImmuneToPoison || _damageInflictedHitpoints <= ::Const.Combat.PoisonEffectMinDamage || _targetEntity.getHitpoints() <= 0) {
 			return;
 		}
 
-		if (_targetEntity.getFlags().has("undead"))
-		{
+		if (!_targetEntity.isAlive()) {
 			return;
 		}
 
-		if (!_targetEntity.isHiddenToPlayer())
-		{
-			if (this.m.SoundOnUse.len() != 0)
-			{
+		if (_targetEntity.getFlags().has("undead")) {
+			return;
+		}
+
+		if (!_targetEntity.isHiddenToPlayer()) {
+			if (this.m.SoundOnUse.len() != 0) {
 				::Sound.play(this.m.SoundOnUse[::Math.rand(0, this.m.SoundOnUse.len() - 1)], ::Const.Sound.Volume.RacialEffect * 1.5, _targetEntity.getPos());
 			}
 
@@ -100,15 +89,10 @@ this.legend_basilisk_sentry_inject_skill <- this.inherit("scripts/skills/skill",
 		this.spawnIcon("status_effect_54", _targetEntity.getTile());
 		local poison = ::Legends.Effects.get(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
 
-		if (poison == null)
-		{
+		if (poison == null) {
 			::Legends.Effects.grant(_targetEntity, ::Legends.Effect.LegendBasiliskPoison);
-		}
-		else
-		{
+		} else {
 			poison.resetTime();
 		}
 	}
-
 });
-

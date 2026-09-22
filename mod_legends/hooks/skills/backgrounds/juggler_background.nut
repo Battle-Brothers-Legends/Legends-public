@@ -43,7 +43,7 @@
 				id = 15,
 				type = "text",
 				icon = "ui/icons/chance_to_hit_head.png",
-				text = "Higher Chance To Hit Head"
+				text = "[color=%positive%]+10%[/color] Chance To Hit Head"
 			}
 		);
 		return ret;

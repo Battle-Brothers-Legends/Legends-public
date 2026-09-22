@@ -58,7 +58,7 @@ this.rest_building <- this.inherit("scripts/entity/world/camp/camp_building", {
 		}
 
 		local self = this;
-		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay)));
+		local restingBros = ::World.getPlayerRoster().getAll().filter(@(_, _bro) (_bro.getCampAssignment() == self.m.ID && (_bro.getLastCampTime() == 0 || ::Time.getVirtualTimeF() - _bro.getLastCampTime() > ::World.getTime().SecondsPerDay) && _bro.getMoraleState() != ::Const.MoraleState.Ignore));
 		foreach (bro in restingBros) {
 			this.getRested(bro);
 			bro.improveMood(mood, "Was able to rest in camp");
