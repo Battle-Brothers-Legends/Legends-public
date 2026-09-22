@@ -14,3 +14,16 @@ if (!("Roster" in ::Legends)) {
 
 	return result;
 }
+
+::Legends.Roster.getHumans <- function () {
+	local result = [];
+	local roster = ::World.getPlayerRoster().getAll();
+
+	foreach (b in roster) {
+		if (::Legends.S.humansOnly(b)) {
+			result.push(b);
+		}
+	}
+
+	return result;
+}
