@@ -1,7 +1,7 @@
 this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		::Legends.Actives.onCreate(this, ::Legends.Active.LegendValaWardenPaleTouch);
 		this.m.Description = "";
 		this.m.KilledString = "Frightened to death";
@@ -20,31 +20,16 @@ this.legend_vala_warden_pale_touch_skill <- this.inherit("scripts/skills/skill",
 		this.m.MaxRange = 1;
 	}
 
-
-	function onUse( _user, _targetTile )
-	{
+	function onUse(_user, _targetTile) {
 		return this.attackEntity(_user, _targetTile.getEntity());
 	}
 
-
-	function onAnySkillUsed( _skill, _targetEntity, _properties )
-	{
-		if (_skill == this)
-		{
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (_skill == this) {
 			local scaling = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaWardenDamage);
 			local fury = ::Legends.Effects.get(this, ::Legends.Effect.LegendValaChantFuryEffect);
-			local bonus1 = 0;
-			local bonus2 = 0;
-
-			if (scaling != null)
-			{
-				bonus1 = scaling.getDamageBonus();
-			}
-
-			if (fury != null)
-			{
-				bonus2 = fury.getWardenDamage();
-			}
+			local bonus1 = (scaling != null) ? scaling.getDamageBonus() : 0;
+			local bonus2 = (fury != null) ? fury.getWardenDamage() : 0;
 
 			_properties.DamageRegularMin += 10 + ::Math.round(bonus1 * 0.67) + ::Math.round(bonus2 * 0.67);
 			_properties.DamageRegularMax += 15 + ::Math.round(bonus1) + ::Math.round(bonus2);
