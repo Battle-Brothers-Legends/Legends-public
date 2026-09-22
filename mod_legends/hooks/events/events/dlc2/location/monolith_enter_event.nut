@@ -7,7 +7,7 @@
 				if (::World.State.getLastLocation() != null) 
 				{
 					::World.State.getLastLocation().setAttackable(true);
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") 
+					if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion") 
 					{
 						::World.State.getLastLocation().setAttackable(false);
 						::World.State.getLastLocation().setFaction(::World.FactionManager.getFactionOfType(::Const.FactionType.Undead).getID());

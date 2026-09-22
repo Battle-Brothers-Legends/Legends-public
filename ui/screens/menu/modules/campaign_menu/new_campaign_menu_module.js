@@ -582,7 +582,7 @@ NewCampaignMenuModule.prototype.createDIV = function (_parentDiv)
 
 		var listContainerLayout = $('<div class="l-list-container"/>');
 		row.append(listContainerLayout);
-		this.mScenarioListContainer = listContainerLayout.createList(5, null, true);
+		this.mScenarioListContainer = listContainerLayout.createList(3, null, true);
 		this.mScenarioListScrollContainer = this.mScenarioListContainer.findListScrollContainer();
 
 		var row = $('<div class="row4" />');
@@ -1038,18 +1038,40 @@ NewCampaignMenuModule.prototype.setBanners = function(_data)
 }
 
 
-NewCampaignMenuModule.prototype.setStartingScenarios = function (_data)
-{
-	if (_data !== null && jQuery.isArray(_data))
-	{
+NewCampaignMenuModule.prototype.setStartingScenarios = function (_data) {
+	if (_data !== null && jQuery.isArray(_data)) {
 		this.mScenarios = _data;
+		var currentGroup = -1;
 
-		for (var i = 0; i < _data.length; ++i)
-		{
+		for (var i = 0; i < _data.length; ++i) {
+			var group = Math.floor(_data[i].Order / 100);
+
+			if (group !== currentGroup) {
+				currentGroup = group;
+				this.addScenarioHeader(group, this.mScenariosRow);
+			}
+
 			this.addStartingScenario(i, _data[i], this.mScenariosRow);
 		}
 	}
-}
+};
+
+NewCampaignMenuModule.prototype.addScenarioHeader = function (_group, _row) {
+	var headerText = "";
+
+	switch (_group) {
+		case 0: headerText = 'Difficulty: <img src="' + Path.GFX + 'ui/images/difficulty_easy.png"/>'; break;
+		case 1: headerText = 'Difficulty: <img src="' + Path.GFX + 'ui/images/difficulty_medium.png"/>'; break;
+		case 2: headerText = 'Difficulty: <img src="' + Path.GFX + 'ui/images/difficulty_hard.png"/>'; break;
+		case 3: headerText = 'Solo Avatar'; break;
+		case 4: headerText = 'Special'; break;
+		case 5: headerText = 'Random'; break;
+		default: return;
+	}
+
+	var header = $('<div class="title title-font-big font-color-title">' + headerText + '</div>');
+	_row.append(header);
+};
 
 
 NewCampaignMenuModule.prototype.setCrusadeCampaignVisible = function (_data)

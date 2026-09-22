@@ -11,7 +11,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return;
 
 		local brothers = ::World.getPlayerRoster().getAll();

@@ -555,6 +555,7 @@
 - tooltips in the character screen now compare armor layers with the currently selected character's equipped layer
 - buckler bash skill now uses the buckler bash overlay in battle (the icon that plays over the character's head) instead of mace overlay
 - added a functionality allowing various weapon swapping with 1h weapons with tooltips
+- divided and reorganized the starting scenarios thematically; slowed scrolling speed so its easier to navigate
 
 ## Bug Fixes
 - black market in town screens can now be highlighted on mouseover

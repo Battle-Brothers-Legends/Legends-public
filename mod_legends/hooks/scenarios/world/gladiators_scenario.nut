@@ -1,26 +1,22 @@
 ::mods_hookExactClass("scenarios/world/gladiators_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.gladiators";
 		this.m.Name = "Gladiators";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_155.png[/img][/p][p]You\'ve fought in the arenas of the south for years. First for your freedom, then for crowns, and finally to become immortal. What else does fate have in stock for you?\n\n[color=#bcad8c]Gladiators:[/color] Start with three experienced gladiators with good equipment, but very high daily wages.\n[color=#bcad8c]Legends of the Arena:[/color] Each gladiator has a unique trait in combat.\n[color=#bcad8c]Glorious Three:[/color] You can never have more than 16 fighters in your roster, and if all of your three starting men should die, your campaign ends.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 130;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.RosterTierMax = ::Const.Roster.getTierForSize(16);
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 
-		for( local i = 0; i < 3; i = ++i )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 3; i = ++i) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			bro.setStartValuesEx([::Legends.Background.GladiatorOrigin]);
 			::Legends.Traits.remove(bro, ::Legends.Trait.Survivor);
 			::Legends.Traits.remove(bro, ::Legends.Trait.Greedy);
@@ -42,8 +38,6 @@
 		}
 
 		local bros = roster.getAll();
-		local a;
-		local u;
 		bros[0].setTitle("the Lion");
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.GloriousResolve);
 		bros[0].getTalents().resize(::Const.Attributes.COUNT, 0);
@@ -51,7 +45,7 @@
 		bros[0].getTalents()[::Const.Attributes.Fatigue] = 2;
 		bros[0].getTalents()[::Const.Attributes.MeleeSkill] = 3;
 		bros[0].fillAttributeLevelUpValues(::Const.XP.MaxLevelWithPerkpoints - 1);
-		a = ::Const.World.Common.pickArmor([
+		local a = ::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Southern.gladiator_harness],
 		]);
 		a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
@@ -122,57 +116,41 @@
 		::World.Assets.m.Ammo = 0;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern() && randomVillage.hasBuilding("building.arena"))
-			{
+			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern() && randomVillage.hasBuilding("building.arena")) {
 				break;
 			}
 		}
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(16);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/worldmap_11.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -180,45 +158,34 @@
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 	}
 
-	o.onCombatFinished <- function ()
-	{
+	o.onCombatFinished <- function () {
 		local roster = ::World.getPlayerRoster().getAll();
 		local gladiators = 0;
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				gladiators = ++gladiators;
 			}
 		}
 
-		if (gladiators == 2 && !::World.Flags.get("GladiatorsOriginDeath2"))
-		{
+		if (gladiators == 2 && !::World.Flags.get("GladiatorsOriginDeath2")) {
 			::World.Flags.set("GladiatorsOriginDeath2", true);
 
-			foreach( bro in roster )
-			{
-				if (bro.getFlags().get("IsPlayerCharacter"))
-				{
+			foreach (bro in roster) {
+				if (bro.getFlags().get("IsPlayerCharacter")) {
 					bro.getBackground().m.RawDescription = "{%fullname% is somber about the passing of a good friend, but he looks to the future knowing that he has someone behind him at all times. Behind him in a brotherly way, that is. And spiritually. Brotherly and spiritually, only.}";
 					bro.getBackground().buildDescription(true);
 				}
 			}
-		}
-		else if (gladiators == 1 && !::World.Flags.get("GladiatorsOriginDeath1"))
-		{
+		} else if (gladiators == 1 && !::World.Flags.get("GladiatorsOriginDeath1")) {
 			::World.Flags.set("GladiatorsOriginDeath1", true);
 
-			foreach( bro in roster )
-			{
-				if (bro.getFlags().get("IsPlayerCharacter"))
-				{
+			foreach (bro in roster) {
+				if (bro.getFlags().get("IsPlayerCharacter")) {
 					bro.getBackground().m.RawDescription = "{You should know something, captain. I\'m glad you stay out of the fray. I haven\'t felt this alive in what must be ten years. And if you see me out there about to go down, you stay right where you are, because I\'ll be right where I want to be.}";
 					bro.getBackground().buildDescription(true);
 				}
@@ -227,6 +194,4 @@
 
 		return gladiators != 0;
 	}
-
 });
-

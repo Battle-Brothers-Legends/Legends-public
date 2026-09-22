@@ -232,3 +232,19 @@
 	margin-left: auto;
 	margin-right: auto;
 }
+
+.new-campaign-menu-module > .dialog .content .row4 .title {
+	display: flex;
+	justify-content: space-between;
+	height: 2.0rem;
+	margin-bottom: 2.0rem;
+	line-height: 2.0rem;
+	border-image: url("coui://gfx/ui/skin/line_gold.png") 0% 0% 100% 0%;
+	border-image-outset: 0 0 0.5rem 0;
+}
+
+.new-campaign-menu-module > .dialog .content .row4 .title img {
+	height: 2.4rem;
+	vertical-align: top;
+	margin-top: -0.2rem;
+}

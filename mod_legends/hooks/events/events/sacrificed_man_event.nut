@@ -5,7 +5,7 @@
 		::Legends.Screens.hook(this, "Cultist", function (_screen) {
 			_screen.start <- function (_event) {
 				this.Characters.push(_event.m.Cultist.getImagePath());
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				if (::World.Assets.getOrigin().getID() == "scenario.cultists") {
 					_event.m.Dude.getBaseProperties().MeleeSkill += 10;
 				}

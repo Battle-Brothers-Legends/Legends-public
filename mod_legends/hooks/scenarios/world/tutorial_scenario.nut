@@ -1,29 +1,24 @@
 ::mods_hookExactClass("scenarios/world/tutorial_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.tutorial";
 		this.m.Name = "(Tutorial)";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_21.png[/img][/p][p]You are second-in-command in a mercenary company that has been tracking a brigand named Hoggart for some time now. An unexpected turn of events leaves the company in shatters, and you in charge to rebuild it to its former glory.\n\n[color=#bcad8c]Recommended for new players as it includes some helpful guidance in the beginning.[/color][/p]";
 		this.m.Difficulty = 1;
-		this.m.Order = 2;
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 3; i = ++i )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 3; i++) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.worsenMood(0.5, "Lost most of the company");
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -44,16 +39,13 @@
 		::World.Assets.m.Money = ::World.Assets.m.Money * 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1) {
 				break;
 			}
 		}
@@ -62,40 +54,27 @@
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 8), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 8), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 3)
-				{
-				}
-				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
-				{
-				}
-				else
-				{
+				if (tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 3) {
+				} else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
@@ -103,12 +82,10 @@
 		c.start();
 		::World.Contracts.addContract(c);
 		::World.Contracts.setActiveContract(c, true);
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 			::World.Contracts.update(true);
 		}, null);
 	}
 
 });
-

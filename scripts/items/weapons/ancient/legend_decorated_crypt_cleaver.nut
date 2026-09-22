@@ -34,7 +34,7 @@ this.legend_decorated_crypt_cleaver <- this.inherit("scripts/items/weapons/weapo
 	function onUpdateProperties ( _properties )
 	{
 		this.weapon.onUpdateProperties(_properties);
-		if (::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin() != null && ::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			_properties.Bravery += this.m.Bravery;
 	}
 

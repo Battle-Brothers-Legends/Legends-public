@@ -6,11 +6,11 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		this.m.Name = "Ranger";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_115.png[/img][/p][p]Originally hailing from far afield, the rangers are sworn to protect their ancestral woodlands. Increasing intrusions have led the rangers to these lands. \n\n[color=#bcad8c]Outdoorsmen:[/color] Not everyone is cut out for the Rangers, some love nature and are eager to join, others will need more coin to convince. Outdoor recruits gain Pathfinder.\n[color=#bcad8c]Expert Scouts:[/color] You move faster on the campaign map and can always get a scouting report for any enemies near you.\n[color=#bcad8c]Guardians:[/color] If your ranger and druid die, its game over.[/p]";
 		this.m.Difficulty = 1;
-		this.m.Order = 230;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 50;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
 

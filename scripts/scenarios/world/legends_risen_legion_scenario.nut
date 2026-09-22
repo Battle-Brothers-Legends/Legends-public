@@ -1,15 +1,15 @@
-this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
+this.legends_risen_legion_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
 
 	function create() {
-		this.m.ID = "scenario.legend_risen_legion";
+		this.m.ID = "scenario.legends_risen_legion";
 		this.m.Name = "Risen Legion";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_73.png[/img][/p]An ancient legion risen from the dead with orders to reclaim the world.\n\n[color=#bcad8c]Dreaded:[/color] All towns will begin and stay hostile to you.\n[color=#bcad8c]Fighting Legion:[/color] Higher than average marching speed across difficult terrain, begin with 8 fighters and field up to 25.\n[color=#bcad8c]Dead Walking:[/color] You cannot hire in towns, but you may find recruits by patrolling near Mass graves, Sunken Castles and The Monolith. Ancient dead are allied to you.\n";
 		this.m.Difficulty = 4;
-		this.m.Order = 140;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(27);
 		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
+		this.starting_scenario.create();
 	}
 
 	function onInit() {
@@ -100,7 +100,7 @@ this.legend_risen_legion_scenario <- this.inherit("scripts/scenarios/world/start
 	}
 
 	function onSpawnPlayer() {
-		local towns = ::World.EntityManager.getSettlements().filter(@(_, s) ! s.isMilitary() && s.getAttachedLocations().filter(@(_,_loc) (_loc.getTypeID() != "attached_location.harbor")).len() > 0);
+		local towns = ::World.EntityManager.getSettlements().filter(@(_, s) ! s.isMilitary() && s.getAttachedLocations().filter(@(_, _loc)(_loc.getTypeID() != "attached_location.harbor")).len() > 0);
 		local nearestVillage = null;
 
 		local priorities = [

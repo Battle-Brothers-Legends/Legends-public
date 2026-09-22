@@ -7,7 +7,7 @@
 		});
 		::Legends.Screens.hook(this, "C", function (_screen) {
 			_screen.start <- function (_event) {
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Dude.setStartValuesEx(::Const.CharacterLaborerBackgrounds);
 
 				this.Characters.push(_event.m.Dude.getImagePath());

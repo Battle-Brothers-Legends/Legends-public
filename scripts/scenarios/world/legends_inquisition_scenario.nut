@@ -1,23 +1,21 @@
 this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_inquisition";
 		this.m.Name = "The Inquisition";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_40.png[/img][/p]There is a great evil in the world, the undead walk the earth and cultists hide in every town. The holy must purge the filth.\n\n[color=#bcad8c]Endless Dead:[/color] Begins with the Undead Crisis already underway, and it can repeat \n\n[color=#bcad8c]Righteous Cause:[/color] Can\'t recruit outlaw backgrounds but more holy backgrounds available to hire\n[color=#bcad8c]Penitence:[/color] Anyone you hire gains the Mind over Body perk.\n";
 		this.m.Difficulty = 2;
-		this.m.Order = 280;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
+		this.starting_scenario.create();
 	}
 
-	function onSpawnAssets()
-	{
-	local roster = ::World.getPlayerRoster();
+	function onSpawnAssets() {
+		local roster = ::World.getPlayerRoster();
 
-		for( local i = 0; i < 3; i = ++i )
-		{
+		for (local i = 0; i < 3; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
@@ -33,7 +31,9 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[0].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Head));
-		items.equip(::Const.World.Common.pickHelmet([[1, ::Legends.Helmet.Barbarian.leather_helmet]]));
+		items.equip(::Const.World.Common.pickHelmet([
+			[1, ::Legends.Helmet.Barbarian.leather_helmet]
+		]));
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_cat_o_nine_tails"));
 		bros[0].m.Talents = [];
@@ -75,8 +75,7 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		bros[2].getBackground().m.RawDescription = "{%name% is a huge figure, who spent many years in a temple healing and carrying the sick, learning the power of both strength and compassion. It was clear the ills of the world must be sought out and healed at their source. While healing a witch hunter, %name% was convinced to join the hunt to heal the world. }";
 		bros[2].setPlaceInFormation(5);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendHeavy, function (_trait) {
-			foreach(skill in _trait.m.Excluded)
-				bros[2].getSkills().removeByID(skill);
+			foreach (skill in _trait.m.Excluded) bros[2].getSkills().removeByID(skill);
 		}.bindenv(this));
 		this.addScenarioPerk(bros[2].getBackground(), ::Const.Perks.PerkDefs.LegendMindOverBody);
 		local items = bros[2].getItems();
@@ -91,17 +90,15 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		];
 		local armor = ::Const.World.Common.pickLegendArmor(cloths);
 
-		if (armor != null)
-		{
+		if (armor != null) {
 			local chains = [
 				[1, "chain/legend_armor_mail_shirt"],
 				[1, "chain/legend_armor_mail_shirt_simple"],
 				[1, "chain/legend_armor_short_mail"]
 			];
 			local chain = ::Const.World.Common.pickLegendArmor(chains);
-			if (chain != null)
-			{
-				armor.setUpgrade(chain)
+			if (chain != null) {
+				armor.setUpgrade(chain);
 			}
 
 			local plates = [
@@ -109,35 +106,30 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 				[1, "plate/legend_armor_leather_jacket_simple"]
 			];
 			local plate = ::Const.World.Common.pickLegendArmor(plates);
-			if (plate != null)
-			{
-				armor.setUpgrade(plate)
+			if (plate != null) {
+				armor.setUpgrade(plate);
 			}
 			local tabards = [
-						[1, "tabard/legend_armor_tabard", [2,13]]
-					];
+				[1, "tabard/legend_armor_tabard", [2, 13]]
+			];
 			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
-			if (tabard != null && armor != null)
-			{
+			if (tabard != null && armor != null) {
 				armor.setUpgrade(tabard);
 			}
 			items.equip(armor);
 		}
 
-		foreach( bro in bros )
-		{
+		foreach (bro in bros) {
 			local items = bro.getItems();
 			local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 			local tabards = [
-					[1, "tabard/legend_armor_tabard", [2,13]]
-				];
-				local tabard = ::Const.World.Common.pickLegendArmor(tabards);
-				if (tabard != null && armor != null)
-				{
-					armor.setUpgrade(tabard);
-				}
+				[1, "tabard/legend_armor_tabard", [2, 13]]
+			];
+			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
+			if (tabard != null && armor != null) {
+				armor.setUpgrade(tabard);
+			}
 		}
-
 
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
@@ -157,57 +149,41 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		::World.Statistics.addNews("crisis_undead_start", ::World.Statistics.createNews());
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3) {
 				break;
 			}
 		}
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(113);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -221,30 +197,23 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 	}
 
-
-	function onHiredByScenario( _bro )
-	{
+	function onHiredByScenario(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 			_bro.improveMood(1.0, "Joined a righteous cause");
-		}
-		else
-		{
+		} else {
 			_bro.worsenMood(1.0, "Dislikes your sermons");
 		}
 		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.Crusader, 8);
@@ -253,43 +222,34 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 		this.addBroToRoster(_roster, ::Legends.Background.Witchhunter, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendYoungblood, 4);
 
-		foreach( i, bro in bros )
-		{
-			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
-			{
+		foreach (i, bro in bros) {
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
 				garbage.push(bro);
 			}
 		}
 
-		foreach( g in garbage )
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 
-	function onGenerateBro(bro)
-	{
+	function onGenerateBro(bro) {
 		if (bro.isStabled()) {
 			return;
 		}
-		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
-		{
+		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			bro.getSkills().update();
-		}
-		else
-		{
+		} else {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.25; //1.0 = default
 			bro.getSkills().update();
 		}
 	}
 
-	function onBuildPerkTree( _background )
-	{
+	function onBuildPerkTree(_background) {
 		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendMindOverBody);
 	}
 
 });
-

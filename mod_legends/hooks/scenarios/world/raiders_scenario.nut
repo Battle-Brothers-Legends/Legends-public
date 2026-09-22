@@ -1,14 +1,14 @@
-::mods_hookExactClass("scenarios/world/raiders_scenario", function(o) {
-	o.create = function() {
+::mods_hookExactClass("scenarios/world/raiders_scenario", function (o) {
+	o.create = function () {
 		this.m.ID = "scenario.raiders";
 		this.m.Name = "Northern Raiders";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_135.png[/img][/p][p]For all your adult life you have been raiding and pillaging in these lands. But with the local peasantry poor as mice, you may want to finally expand into the profitable field of mercenary work - that is, if your potential employers are willing to forgive your past transgressions.\n[color=#bcad8c]Warband:[/color] Start with three experienced barbarians, and increased chance of finding [color=#c90000]bloodthirsty brutes, barbarians, killers and assassins[/color].\n[color=#bcad8c]Pillagers:[/color] [color=%positive%]15%[/color] chance to get any items from slain enemies, that might not otherwise be available to loot.\n[color=#bcad8c]Outlaws:[/color] Start with [color=#c90000]perks for hunting civilians[/color], bad relations to most human factions, only other outlaws are keen to work for you.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 180;
 		this.m.StartingBusinessReputation = -50; // Still use default reputation tiers even if starting at negative reputation
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function() {
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 
 		for (local i = 0; i < 4; i++) {
@@ -112,7 +112,7 @@
 		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
-	o.onSpawnPlayer = function() {
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 		local northernmostY = 0;
 
@@ -194,11 +194,13 @@
 			});
 		}
 
-		houses.sort(function(_a, _b) {
-			if (_a.Dist > _b.Dist)
+		houses.sort(function (_a, _b) {
+			if (_a.Dist > _b.Dist) {
 				return 1;
-			if (_a.Dist < _b.Dist)
+			}
+			if (_a.Dist < _b.Dist) {
 				return -1;
+			}
 			return 0;
 		});
 
@@ -210,7 +212,7 @@
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(5);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function(_tag) {
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/barbarians_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -218,11 +220,11 @@
 		}, null);
 	}
 
-	o.isDroppedAsLoot = function(_item) {
+	o.isDroppedAsLoot = function (_item) {
 		return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (100 * ::World.Assets.m.ProfessionEffect.LegendFerretItOut + 15) : ::Math.rand(1, 100) < 15;
 	}
 
-	o.onHiredByScenario <- function(_bro) {
+	o.onHiredByScenario <- function (_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
@@ -233,14 +235,14 @@
 		}
 	}
 
-	o.onUpdateHiringRoster <- function(_roster) {
+	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Assassin, 7);
 		this.addBroToRoster(_roster, ::Legends.Background.Barbarian, 5);
 		this.addBroToRoster(_roster, ::Legends.Background.KillerOnTheRun, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.Thief, 4);
 	}
 
-	o.onGenerateBro <- function(bro) {
+	o.onGenerateBro <- function (bro) {
 		if (bro.isStabled()) {
 			return;
 		}
@@ -265,4 +267,3 @@
 	}
 
 });
-

@@ -4,33 +4,28 @@
 		::Legends.Perk.LegendFavouredEnemyBeast,
 	];
 
-	o.create <- function ()
-	{
+	o.create <- function () {
 		this.m.ID = "scenario.beast_hunters";
 		this.m.Name = "Beast Slayers";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_122.png[/img][/p][p]You and your kind make your living by hunting down the many beasts that beset villages on the fringes of civilization. It is dangerous work, but it pays well enough and there is always a bigger beast to slay and more crowns to earn.\n\n[color=#bcad8c]Beast Slayers:[/color] Start with three Beast Slayers and decent equipment, as well as some beast trophies. Beast Slayers gain a unique trait when fighting beasts. Chance to find others that support your cause.\n[color=#bcad8c]Expert Skulkers:[/color] See tracks from further away. Recruits gain a random Favoured Beast Enemy perk.\n[color=#bcad8c]Expert Skinners:[/color] Each beast you slay has a 50% chance to drop an additional trophy.\n[color=#bcad8c]Prejudice:[/color] Most people do not trust your kind, get 20% worse prices.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 40;
 		this.m.IsFixedLook = true;
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 3; i++ )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 3; i++) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.improveMood(1.0, "Has slain a dangerous witch");
 			bro.worsenMood(2.5, "Lost most of the company in a betrayal");
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -39,7 +34,6 @@
 
 		local bros = roster.getAll();
 
-
 		bros[0].setStartValuesEx([::Legends.Background.LegendGuildmaster]);
 		bros[0].getBackground().m.RawDescription = "%name% saved you in the brigand\'s ambush that destroyed your band of slayers. The Guildmaster does not hang this fact over you, for you have saved %name% many a times yourself. This slayer of beasts suffers no emotion that does not bid well in this world, and that alone makes for a sound mercenary.";
 		bros[0].setPlaceInFormation(3);
@@ -47,7 +41,7 @@
 		bros[0].addLightInjury();
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.LegendBeastslayers);
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.HateBeasts);
- 		bros[0].getSprite("miniboss").setBrush("bust_miniboss");
+		bros[0].getSprite("miniboss").setBrush("bust_miniboss");
 		bros[0].m.Talents = [];
 		local talents = bros[0].getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
@@ -61,7 +55,6 @@
 		items.equip(this.new("scripts/items/weapons/legend_redback_dagger"));
 		items.equip(this.new("scripts/items/tools/throwing_net"));
 
-
 		bros[1].setStartValuesEx([::Legends.Background.BeastSlayer]);
 		bros[1].getBackground().m.RawDescription = "A young whelp from the city, %name% got a start in beast slaying by rooting out the warrens of \'vicious rabbits\', as one puts it. You are not sure how true that is, but regardless %name% has demonstrated greats feats of arms on the battlefield more times than you can count.";
 		bros[1].setPlaceInFormation(4);
@@ -69,7 +62,7 @@
 		bros[1].addLightInjury();
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.LegendBeastslayers);
 		::Legends.Traits.grant(bros[1], ::Legends.Trait.HateBeasts);
- 		bros[1].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
+		bros[1].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[1].m.Talents = [];
 		local talents = bros[1].getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
@@ -82,7 +75,6 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Ammo));
 		items.equip(this.new("scripts/items/weapons/woodcutters_axe"));
 
-
 		bros[2].setStartValuesEx([::Legends.Background.BeastSlayer]);
 		bros[2].getBackground().m.RawDescription = "Grizzled vets are a rarity in beast slaying, and %name% sure ain\'t one. Instead, the \'slayer\' started the foray into monster hunting by reading books instead of training the sword. Still a good enough warrior at heart, it is the study and preparation that gives %name% the edge in battle.";
 		bros[2].setPlaceInFormation(5);
@@ -90,7 +82,7 @@
 		bros[2].addInjury(::Const.Injury.Brawl);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.LegendBeastslayers);
 		::Legends.Traits.grant(bros[2], ::Legends.Trait.HateBeasts);
- 		bros[2].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
+		bros[2].getSprite("socket").setBrush("bust_base_beasthunters"); //custom base
 		bros[2].m.Talents = [];
 		local talents = bros[2].getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
@@ -105,8 +97,7 @@
 		items.equip(this.new("scripts/items/ammo/legend_armor_piercing_bolts"));
 		items.equip(this.new("scripts/items/accessory/falcon_item"));
 
-		foreach( bro in bros )
-		{
+		foreach (bro in bros) {
 			bro.m.PerkPoints = 1;
 			bro.m.LevelUps = 1;
 			bro.m.Level = 2;
@@ -114,7 +105,6 @@
 
 		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Crafting], true);
-		//::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Hunter], true);
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/misc/witch_hair_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/misc/spider_silk_item"));
@@ -124,46 +114,36 @@
 		::World.Assets.m.Money = ::Math.round(::World.Assets.m.Money * 0.75);
 	}
 
-	o.onGenerateBro <- function (bro)
-	{
+	o.onGenerateBro <- function (bro) {
 		if (bro.isStabled()) {
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
 			return;
 		}
 		local r;
-		r = ::Math.rand(0,5);
-		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer))
-		{
+		r = ::Math.rand(0, 5);
+		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.8);
 			bro.getBaseProperties().DailyWageMult *= 0.8;
 			bro.getSprite("socket").setBrush("bust_base_beasthunters");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
-		}
-		else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster))
-		{
+		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendGuildmaster)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSprite("miniboss").setBrush("bust_miniboss");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Excited to teach the new blood");
-		}
-		else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid))
-		{
+		} else if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDruid)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 0.0;
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendBeastslayers);
 			bro.improveMood(1.5, "Feels at one with nature");
-		}
-		else if (r == 0 || bro.getSkills().hasTrait(::Legends.Trait.HateBeasts))
-		{
+		} else if (r == 0 || bro.getSkills().hasTrait(::Legends.Trait.HateBeasts)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWageMult *= 0.9;
 			::Legends.Traits.grant(bro, ::Legends.Trait.HateBeasts);
 			bro.improveMood(1.5, "Hates beasts as much as you do");
-		}
-		else
-		{
+		} else {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
 			bro.getBaseProperties().DailyWageMult *= 1.25;
 			bro.worsenMood(2.0, "Has heard worrying things about your kind...");
@@ -175,8 +155,7 @@
 		bro.getSkills().update();
 	}
 
-	o.onInit <- function ()
-	{
+	o.onInit <- function () {
 		this.starting_scenario.onInit();
 		::World.Assets.m.BuyPriceMult = 1.2;
 		::World.Assets.m.SellPriceMult = 0.8;
@@ -184,16 +163,13 @@
 		::World.Assets.m.FootprintVision = 1.5;
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.BeastSlayer, 7);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendGuildmaster, 10);
 	}
 
-	o.onBuildPerkTree <- function ( _background )
-	{
+	o.onBuildPerkTree <- function (_background) {
 		local perk = ::MSU.Array.rand(this.m.FavouredEnemyPerks);
 		this.addScenarioPerk(_background, perk);
 	}
 });
-

@@ -57,7 +57,7 @@ this.legend_cannibal_eats_part_of_brother <- this.inherit("scripts/events/event"
 	}
 
 	function onUpdateScore() {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") return;
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion") return;
 		local brothers = ::World.getPlayerRoster().getAll();
 		local cannibal_candidates = [];
 		local dinner_candidates = [];

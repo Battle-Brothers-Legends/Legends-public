@@ -1,21 +1,19 @@
 ::mods_hookExactClass("scenarios/world/lone_wolf_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.lone_wolf";
 		this.m.Name = "Lone Wolf";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_35.png[/img][/p][p]You have been traveling for a long time, taking part in tourneys and sparring with young nobles. A hedge knight as tall as a tree, you never needed anybody for long. Is it true still?\n\n[color=#bcad8c]Lone Wolf:[/color] Start with a single experienced hedge knight with great equipment but low funds. All encounters are two-thirds harder than normal.\n[color=#bcad8c]Elite Few:[/color] Can never have more than 12 fighters in your roster. You may encounter other champions and special allies through events to join your cause.\n[color=#bcad8c]Avatar:[/color] If your lone wolf dies, the campaign ends.\n[color=#c90000]Living Legend:[/color] As your renown grows, the more recruits will be present in towns. Higher renown increases quality of hires, but you will start with being unable to hire anyone.[/p]";
 		this.m.Difficulty = 4;
-		this.m.Order = 150;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(1);
 		this.m.RosterTierMax = ::Const.Roster.getTierForSize(12);
 		this.m.StartingBusinessReputation = 1250;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
 		this.m.BrotherScaling = 1.66;
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 
 		local bro = roster.create("scripts/entity/tactical/player");
@@ -56,59 +54,41 @@
 		::World.Assets.m.Ammo = 0;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i++) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern()) {
 				break;
 			}
-
-			i = ++i;
 		}
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(6);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -116,19 +96,15 @@
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 	}
 
-	o.onCombatFinished <- function ()
-	{
+	o.onCombatFinished <- function () {
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
@@ -136,8 +112,7 @@
 		return false;
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
 
@@ -222,20 +197,28 @@
 
 		// Combine tiers based on current renown
 		local allowed = [];
-		if (renown > 1500) allowed.extend(tier1);
-		if (renown > 2000) allowed.extend(tier2);
-		if (renown > 2650) allowed.extend(tier3);
-		if (renown > 3500) allowed.extend(tier4);
-		if (renown > 4500) allowed.extend(tier5);
+		if (renown > 1500) {
+			allowed.extend(tier1);
+		}
+		if (renown > 2000) {
+			allowed.extend(tier2);
+		}
+		if (renown > 2650) {
+			allowed.extend(tier3);
+		}
+		if (renown > 3500) {
+			allowed.extend(tier4);
+		}
+		if (renown > 4500) {
+			allowed.extend(tier5);
+		}
 
 		// Now process roster
-		foreach (i, bro in bros)
-		{
+		foreach (i, bro in bros) {
 			local bgID = bro.getBackground().getID();
 
 			// Always keep donkey
-			if (bgID == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
-			{
+			if (bgID == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)) {
 				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 				bro.getBaseProperties().DailyWageMult *= 1.0;
 				bro.getSkills().update();
@@ -243,20 +226,18 @@
 			}
 
 			// If not allowed by renown threshold, remove
-			if (allowed.find(bgID) == null)
-			{
+			if (allowed.find(bgID) == null) {
 				garbage.push(bro);
 			}
 		}
 
 		// Remove unqualified hires
-		foreach (g in garbage)
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 
-	o.onHiredByScenario <- function ( _bro ) //recruits via events
+	o.onHiredByScenario <- function (_bro) //recruits via events
 	{
 		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
@@ -277,9 +258,7 @@
 	// 	}
 	// }
 
-	o.setupBro <- function ( _bro )
-	{
+	o.setupBro <- function (_bro) {
 		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendLWRelationship);
 	}
 });
-

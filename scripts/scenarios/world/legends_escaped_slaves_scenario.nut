@@ -1,34 +1,30 @@
 this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legend_escaped_slaves";
 		this.m.Name = "Escaped Slaves";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_166.png[/img][/p][p]You lead a group of slaves trying to escape their cruel fate, but you cannot run forever. Can you keep your band intact and start a new life as mercenaries?\n\n[color=#bcad8c]Escapees:[/color] Start with five escaped Indebted and find others held in captivity.\n[color=#bcad8c]Brothers in Chains:[/color] Your newfound family of Indebted are stronger together and gain skill based on how many you field.\n[color=#bcad8c]Downtrodden and Discarded:[/color] Good relations with any faction decay 15% faster and bad relations recover 15% slower.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 120;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(12);
+		this.starting_scenario.create();
 	}
 
-	function isValid()
-	{
+	function isValid() {
 		return ::Const.DLC.Desert;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		::World.Assets.m.RelationDecayGoodMult += 0.15;
 		::World.Assets.m.RelationDecayBadMult -= 0.15;
 		::World.Events.addSpecialEvent("event.legend_find_slave_after_battle");
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 
-		for( local i = 0; i < 5; i = i )
-		{
+		for (local i = 0; i < 5; i = i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
@@ -49,8 +45,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::Legends.Traits.remove(bros[0], ::Legends.Trait.Insecure);
 		::Legends.Traits.remove(bros[0], ::Legends.Trait.Fragile);
 
-		if (bros[0].getBaseProperties().Bravery <= 30)
-		{
+		if (bros[0].getBaseProperties().Bravery <= 30) {
 			bros[0].getBaseProperties().Bravery += 5;
 		}
 
@@ -71,8 +66,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		bros[1].setStartValuesEx([::Legends.Background.SlaveBarbarian]);
 		bros[1].getBackground().m.RawDescription = "A truly massive figure, %name% hulks like a boulder and has a face about as pretty. The night you escaped, you personally witnessed the savage rip a nomad\'s arm out of its socket and beat an ifrit to rubble with it. When you asked the barbarian what the newly-earned freedom meant, %name% simply responded  \'I must slay a god. Fight with you for now.\' You decided it was prudent not to press for details.";
 
-		if (::Math.rand(1, 100 <= 50))
-		{
+		if (::Math.rand(1, 100 <= 50)) {
 			local potentialTitles = [
 				"the Quiet",
 				"the Reticent",
@@ -97,38 +91,25 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		local hasMeleeSkill = talents[::Const.Attributes.MeleeSkill] != 0;
 		local hasFatigue = talents[::Const.Attributes.Fatigue] != 0;
 
-		if (hasRangedSkill)
-		{
-			if (!hasMeleeDefense)
-			{
+		if (hasRangedSkill) {
+			if (!hasMeleeDefense) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.MeleeDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasMeleeSkill)
-			{
+			} else if (!hasMeleeSkill) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.MeleeSkill] = ::Math.rand(2, 3);
-			}
-			else if (!hasFatigue)
-			{
+			} else if (!hasFatigue) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.Fatigue] = ::Math.rand(2, 3);
 			}
-		}
-		else if (hasRangedDefense)
-		{
-			if (!hasMeleeDefense)
-			{
+		} else if (hasRangedDefense) {
+			if (!hasMeleeDefense) {
 				talents[::Const.Attributes.RangedDefense] = 0;
 				talents[::Const.Attributes.MeleeDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasMeleeSkill)
-			{
+			} else if (!hasMeleeSkill) {
 				talents[::Const.Attributes.RangedDefense] = 0;
 				talents[::Const.Attributes.MeleeSkill] = ::Math.rand(2, 3);
-			}
-			else if (!hasFatigue)
-			{
+			} else if (!hasFatigue) {
 				talents[::Const.Attributes.RangedDefense] = 0;
 				talents[::Const.Attributes.Fatigue] = ::Math.rand(2, 3);
 			}
@@ -190,38 +171,25 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		local hasInitiative = talents[::Const.Attributes.Initiative] != 0;
 		local hasFatigue = talents[::Const.Attributes.Fatigue] != 0;
 
-		if (hasRangedSkill)
-		{
-			if (!hasMeleeDefense)
-			{
+		if (hasRangedSkill) {
+			if (!hasMeleeDefense) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.MeleeDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasRangedDefense)
-			{
+			} else if (!hasRangedDefense) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.RangedDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasFatigue)
-			{
+			} else if (!hasFatigue) {
 				talents[::Const.Attributes.RangedSkill] = 0;
 				talents[::Const.Attributes.Fatigue] = ::Math.rand(2, 3);
 			}
-		}
-		else if (hasInitiative)
-		{
-			if (!hasMeleeDefense)
-			{
+		} else if (hasInitiative) {
+			if (!hasMeleeDefense) {
 				talents[::Const.Attributes.Initiative] = 0;
 				talents[::Const.Attributes.MeleeDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasRangedDefense)
-			{
+			} else if (!hasRangedDefense) {
 				talents[::Const.Attributes.Initiative] = 0;
 				talents[::Const.Attributes.RangedDefense] = ::Math.rand(2, 3);
-			}
-			else if (!hasFatigue)
-			{
+			} else if (!hasFatigue) {
 				talents[::Const.Attributes.Initiative] = 0;
 				talents[::Const.Attributes.Fatigue] = ::Math.rand(2, 3);
 			}
@@ -237,8 +205,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::World.Assets.m.Money = ::Math.max(::World.Assets.m.Money - 600, 150);
 	}
 
-	function addRandomEquipment( items, shieldSpecific = false )
-	{
+	function addRandomEquipment(items, shieldSpecific = false) {
 		local getsArmor = ::Math.rand(1, 100) <= 50 ? true : false;
 		local getsHelmet = ::Math.rand(1, 100) <= (50 + (getsArmor ? -17 : 17)) ? true : false;
 		local getsWeapon = ::Math.rand(1, 100) <= (50 + (getsArmor ? -17 : 17) + (getsHelmet ? -17 : 17)) ? true : false;
@@ -256,8 +223,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 			]));
 			local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 
-			if (armor != null)
-			{
+			if (armor != null) {
 				armor.setCondition(::Math.rand(armor.getConditionMax() * 0.4, armor.getConditionMax()) * 1.0);
 			}
 		}
@@ -273,8 +239,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 			]));
 			local helmet = items.getItemAtSlot(::Const.ItemSlot.Head);
 
-			if (helmet != null)
-			{
+			if (helmet != null) {
 				helmet.setCondition(::Math.rand(helmet.getConditionMax() * 0.4, helmet.getConditionMax()) * 1.0);
 			}
 		}
@@ -283,8 +248,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 			local weaponRoll = ::Math.rand(1, 100);
 			local weapons = [];
 
-			if (weaponRoll <= 10)
-			{
+			if (weaponRoll <= 10) {
 				weapons.extend([
 					"shields/oriental/metal_round_shield",
 					"weapons/scimitar",
@@ -293,9 +257,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 					"weapons/oriental/light_southern_mace",
 					"weapons/oriental/firelance"
 				]);
-			}
-			else if (weaponRoll >= 11 && weaponRoll <= 60)
-			{
+			} else if (weaponRoll >= 11 && weaponRoll <= 60) {
 				weapons.extend([
 					"shields/oriental/southern_light_shield",
 					"weapons/oriental/saif",
@@ -303,9 +265,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 					"weapons/oriental/nomad_mace",
 					"weapons/legend_chain"
 				]);
-			}
-			else
-			{
+			} else {
 				weapons.extend([
 					"weapons/legend_shovel",
 					"weapons/legend_shiv",
@@ -326,16 +286,13 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern() && !randomVillage.hasBuilding("building.arena"))
-			{
+			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern() && !randomVillage.hasBuilding("building.arena")) {
 				break;
 			}
 
@@ -346,37 +303,26 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 2)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 2) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		local cityStateFaction = randomVillage.getOwner();
 		cityStateFaction.addPlayerRelation(-99.0, "You escaped before repaying your debts to the Gilder");
@@ -385,10 +331,8 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::World.Statistics.getFlags().set("LegendLastAmbushType", "");
 		local cityStates = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
 
-		foreach( c in cityStates )
-		{
-			if (c.getID() != cityStateFaction.getID())
-			{
+		foreach (c in cityStates) {
+			if (c.getID() != cityStateFaction.getID()) {
 				c.addPlayerRelation(-30.0, "You are rumored to be escaped Indebted");
 			}
 		}
@@ -396,8 +340,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(116);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/worldmap_11.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -405,15 +348,11 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		}, null);
 	}
 
-	function setRetireText( _bro )
-	{
-		if (_bro.getBackground().getEthnicity() == 1)
-		{
+	function setRetireText(_bro) {
+		if (_bro.getBackground().getEthnicity() == 1) {
 			_bro.getBackground().m.GoodEnding = "You freed the indebted %name% and helped them find a new life as a sellsword. %name% did become an effective fighter, no doubt believing it was better to fight and live free than to fight and die. After your departure, you heard that the %companyname% traveled south on a campaign and the indebted got a good chance to exact a fair bit of revenge on a number of enemies from the past. You count yourself lucky to have served in the same company.";
 			_bro.getBackground().m.BadEnding = "You found %name% as an indebted and after your retiring, they went on with the %companyname%. Word of the mercenary band\'s problems have trickled in, but nothing about the indebted\'s current situation. Knowing how this world works, the slave has either been put into the vanguard as fodder or forced out to distract manhunters on the company\'s trail. Either way, the world isn\'t easy on a sellsword, and it isn\'t easy on an indebted, and this mercenary is unfortunately both.";
-		}
-		else if (_bro.getBackground().getEthnicity() != 1)
-		{
+		} else if (_bro.getBackground().getEthnicity() != 1) {
 			_bro.getBackground().m.GoodEnding = "%name% the indebted has had a rough life and you\'ve both contributed to that and helped alleviate it in some way. You found them as a slave, far from family and home, and put them to work as a sellsword. After you left the %companyname%, they stayed on and has been rising through its ranks ever since. You hear they were so ferocious in a battle with manhunters that the city-states have reconsidered sending men after the company at all, fearing what might happen if %name% took the fight to them more directly.";
 			_bro.getBackground().m.BadEnding = "With your retiring from the unsuccessful %companyname%, %name% the indebted from the north carried on with the company for a time. You got wind that the mercenary band ran into troubles with manhunters and had to leave behind both \'man and material\' to escape. %name%\'s time with the company presumably ended sometime there. You hope %name%\'s time as a slave never started again.";
 		}

@@ -49,7 +49,7 @@ this.legend_nomad_remembers_past_encounter <- ::inherit("scripts/encounters/enco
 	}
 
 	function isValid(_camp) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return false;
 
 		local bros = ::World.getPlayerRoster().getAll();

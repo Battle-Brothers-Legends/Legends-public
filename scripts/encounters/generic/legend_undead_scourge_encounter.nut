@@ -23,7 +23,7 @@ this.legend_undead_scourge_encounter <- this.inherit("scripts/encounters/encount
     }
 
     function isValid(_settlement) {
-	    if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+	    if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 		    return false;
 
         if (!::World.FactionManager.isUndeadScourge())

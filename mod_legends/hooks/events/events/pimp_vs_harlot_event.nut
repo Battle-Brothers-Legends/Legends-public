@@ -37,7 +37,7 @@
 				}
 
 				this.Characters.push(_event.m.Monk.getImagePath());
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Dude.setStartValuesEx([::Legends.Background.Pimp]);
 
 				_event.m.Dude.setTitle("the Pimp");

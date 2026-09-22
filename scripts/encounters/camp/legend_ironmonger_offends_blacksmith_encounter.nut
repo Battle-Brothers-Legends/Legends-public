@@ -143,7 +143,7 @@ this.legend_ironmonger_offends_blacksmith_encounter <- this.inherit("scripts/enc
 	}
 
 	function isValid(_camp) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return false;
 		if (::World.Assets.getArmorParts() < 20)
 			return false;

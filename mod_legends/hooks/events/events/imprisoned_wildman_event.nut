@@ -53,7 +53,7 @@
 			if (s.ID == "Wildman1") {
 				s.Text = "[img]gfx/ui/events/event_100.png[/img]An outstanding capacity for violence is well-suited to a mercenary band. You agree to take the imprisoned wildling on.";
 				s.start <- function ( _event ) {
-					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
 					
 					_event.m.Dude.setTitle("the Animal");

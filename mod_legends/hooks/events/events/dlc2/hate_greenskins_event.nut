@@ -19,7 +19,7 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return;
 
 		if (::Time.getVirtualTimeF() - ::World.Events.getLastBattleTime() > 30.0) //from 5

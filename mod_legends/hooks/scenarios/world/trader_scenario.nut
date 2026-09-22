@@ -1,29 +1,25 @@
 ::mods_hookExactClass("scenarios/world/trader_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.trader";
 		this.m.Name = "Trading Caravan";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_41.png[/img][/p]You are running a small trading caravan and have most of your crowns invested into trading goods. But the roads have become dangerous - brigands and greenskins lay in ambush, and there are rumors of even worse things out there.\n\n [color=#bcad8c]Not a Warrior:[/color] Start with no renown, every non-combat recruit gains the Peaceable perk. Professional soldiers will cost 25% more and have a high chance of having additional bad traits and be less eager to stick around if things get tough. Cannot recruit outlaws.\n [color=#bcad8c]Avatar:[/color] Start with a cunning and wealthy merchant, the caravan will be dissolved if they die.\n [color=#bcad8c]Bribery:[/color] Pay off human enemies instead of fighting them. Peddlers cost 25% less.\n\n";
 		this.m.Difficulty = 1;
-		this.m.Order = 300;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 2; i = i )
-		{
+		for (local i = 0; i < 2; i = i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 			bro.worsenMood(0.5, "Encountered another caravan slaughtered by greenskins");
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -42,7 +38,7 @@
 		this.addScenarioPerk(bros[0].getBackground(), ::Const.Perks.PerkDefs.LegendPeaceful);
 		bros[0].m.PerkPointsSpent += 1;
 
-		bros[1].setStartValuesEx([::Legends.Background.CaravanHand,::Legends.Background.CaravanHandSouthern]);
+		bros[1].setStartValuesEx([::Legends.Background.CaravanHand, ::Legends.Background.CaravanHandSouthern]);
 		bros[1].setPlaceInFormation(5);
 		bros[1].getSprite("socket").setBrush("bust_base_caravan");
 		bros[1].getBackground().m.RawDescription = "You found %name% being thrown out of a pub and at first glance thought that was little more than a drunken miscreant. But you watched as off three would-be muggers were soon on the ground. They still managed to take off with a coin purse in the end, sure, but they could not truly defeat %name%. Impressed, you took the newly-impoverished fighter on as a caravan hand.";
@@ -65,16 +61,13 @@
 		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3) {
 				break;
 			}
 
@@ -85,46 +78,32 @@
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 8), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 8));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 8), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 8));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 5)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 5) {
+				} else if (!tile.HasRoad) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(9);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/retirement_01.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -132,8 +111,7 @@
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 		// ::World.Assets.m.BusinessReputationRate = 0.5;
 		// ::World.Assets.m.BuyPriceMult = 0.9;
@@ -145,10 +123,8 @@
 	{
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
@@ -156,25 +132,20 @@
 		return false;
 	}
 
-	o.onHiredByScenario <- function ( _bro )
-	{
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
-		{
+	o.onHiredByScenario <- function (_bro) {
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) {
 			_bro.worsenMood(1.0, "Unhappy they will need to do all the fighting");
-		}
-		else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) //anyone but combat background
+		} else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) //anyone but combat background
 		{
 			_bro.improveMood(0.5, "Glad to be out of the fighting line");
 			_bro.getSprite("socket").setBrush("bust_base_caravan");
 		}
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		local bros = _roster.getAll();
 		local garbage = [];
-		foreach( i, bro in bros )
-		{
+		foreach (i, bro in bros) {
 			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) //no outlaws
 			{
 				garbage.push(bro);
@@ -186,65 +157,52 @@
 		this.addBroToRoster(_roster, ::Legends.Background.Peddler, 2);
 		this.addBroToRoster(_roster, ::Legends.Background.Sellsword, 7);
 
-		foreach( g in garbage )
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 
-	o.onGenerateBro <- function (bro)
-	{
-		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
-			{
-				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
-				bro.getBaseProperties().DailyWageMult *= 1.25;
-				bro.getSkills().update();
-				local r;
-				r = ::Math.rand(0, 5); //randomly assigned mald generator (TM)
+	o.onGenerateBro <- function (bro) {
+		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) {
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
+			bro.getBaseProperties().DailyWageMult *= 1.25;
+			bro.getSkills().update();
+			local r;
+			r = ::Math.rand(0, 5); //randomly assigned mald generator (TM)
 
-				if (r == 0)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.Disloyal);
-				}
-
-				if (r == 1)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.Greedy);
-				}
-
-				if (r == 2)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.Weasel);
-				}
-
-				if (r == 3)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.LegendSlack);
-				}
-
-				if (r == 4)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.LegendDoubleTongued);
-				}
-
-				if (r == 5)
-				{
-					::Legends.Traits.grant(bro, ::Legends.Trait.Dastard);
-				}
+			if (r == 0) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.Disloyal);
 			}
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Peddler) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey))
-			{
-				bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75);
-				bro.getBaseProperties().DailyWageMult *= 1.25;
-				bro.getSkills().update();
+			if (r == 1) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.Greedy);
 			}
+
+			if (r == 2) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.Weasel);
+			}
+
+			if (r == 3) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.LegendSlack);
+			}
+
+			if (r == 4) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.LegendDoubleTongued);
+			}
+
+			if (r == 5) {
+				::Legends.Traits.grant(bro, ::Legends.Trait.Dastard);
+			}
+		}
+
+		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Peddler) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendDonkey)) {
+			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75);
+			bro.getBaseProperties().DailyWageMult *= 1.25;
+			bro.getSkills().update();
+		}
 	}
 
-
-	o.onBuildPerkTree <- function ( _background )
-	{
+	o.onBuildPerkTree <- function (_background) {
 		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendPeaceful, 0, !_background.isBackgroundType(::Const.BackgroundType.Combat));
 	}
 });
-

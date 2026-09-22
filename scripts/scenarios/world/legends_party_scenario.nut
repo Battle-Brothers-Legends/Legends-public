@@ -6,7 +6,7 @@ this.legends_party_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Name = "Adventuring Party";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_134.png[/img][/p][p]After an unlikely meeting in a tavern, an unlikely group of strangers has formed an adventuring party. They have set out in search of both dragons and dungeons.\n\n[color=#bcad8c]A party of six overpowered adventurers, each with their own skills and increased chances of encountering hostile champions[/color][/p]";
 		this.m.Difficulty = 1;
-		this.m.Order = 10;
+		this.starting_scenario.create();
 	}
 
 	function onSpawnAssets()

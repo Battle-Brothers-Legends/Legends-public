@@ -1,22 +1,19 @@
 this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_seer";
 		this.m.Name = "Seer";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_120.png[/img][/p][p]After studying alchemy and mystic secrets for years, you have set out to confront the evils of the world \n\n[color=#bcad8c]Bookworm:[/color] Educated people want to work for you, the uneducated find you boring to be around.\n[color=#bcad8c]Teacher[/color] Anyone you fight with gains the Student perk.\n[color=#bcad8c]Avatar:[/color] If your seer dies, the campaign ends.[/p]";
-		this.m.Difficulty = 3;
-		this.m.Order = 250;
+		this.m.Difficulty = 1;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-
-
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
@@ -42,16 +39,13 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		::World.Assets.m.Ammo = 0;
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3) {
 				break;
 			}
 
@@ -60,41 +54,28 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(105);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -102,20 +83,16 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		::World.Flags.set("IsLegendsSeer", true);
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
@@ -123,61 +100,47 @@ this.legends_seer_scenario <- this.inherit("scripts/scenarios/world/starting_sce
 		return false;
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Apprentice, 4);
 	}
 
-	function onHiredByScenario( _bro )
-	{
+	function onHiredByScenario(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated)) {
 			_bro.improveMood(1.0, "Excited to study from you");
-		}
-		else
-		{
+		} else {
 			_bro.worsenMood(1.0, "Wishes you would stop using big words");
 		}
 
-		if (_bro.getSkills().hasTrait(::Legends.Trait.Bright))
-		{
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Bright)) {
 			_bro.improveMood(0.5, "Keen to learn from a master");
 		}
 
-		if (_bro.getSkills().hasTrait(::Legends.Trait.Dumb))
-		{
+		if (_bro.getSkills().hasTrait(::Legends.Trait.Dumb)) {
 			_bro.worsenMood(0.5, "Thinks you are a boring nerd");
 		}
 
 		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
-
-	function onGenerateBro(_bro)
-	{
+	function onGenerateBro(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Bright)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.9); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.9; //1.0 = default
 			_bro.getSkills().update();
-		}
-		else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb))
-		{
+		} else if (!_bro.getBackground().isBackgroundType(::Const.BackgroundType.Educated) || _bro.getSkills().hasTrait(::Legends.Trait.Dumb)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.1); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.1; //1.0 = default
 			_bro.getSkills().update();
 		}
 	}
 
-	function onBuildPerkTree( _background )
-	{
+	function onBuildPerkTree(_background) {
 		this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.Student);
 	}
 });
-

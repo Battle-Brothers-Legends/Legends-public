@@ -26,7 +26,7 @@
 		[::Const.Perks.KnifeClassTree, ::Const.Perks.DaggerTree],
 		[::Const.Perks.ButcherClassTree, ::Const.Perks.CleaverTree],
 		[::Const.Perks.HammerClassTree, ::Const.Perks.HammerTree],
-		[::Const.Perks.MilitiaClassTree,  ::Const.Perks.SpearTree],
+		[::Const.Perks.MilitiaClassTree, ::Const.Perks.SpearTree],
 		[::Const.Perks.PickaxeClassTree, ::Const.Perks.HammerTree],
 		[::Const.Perks.PitchforkClassTree, ::Const.Perks.PolearmTree],
 		[::Const.Perks.ShortbowClassTree, ::Const.Perks.BowTree],
@@ -41,27 +41,24 @@
 		[::Const.Perks.StaffClassTree, ::Const.Perks.PolearmTree],
 		[::Const.Perks.SlingClassTree, ::Const.Perks.SlingTree]
 	];
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.militia";
 		this.m.Name = "Peasant Militia";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_141.png[/img][/p][p]It started as a ragtag militia made up of anyone brave or desperate enough to volunteer for defending their homes, but has grown into a small army. An army that needs to be fed each day. \n[color=#bcad8c]Peasant Army:[/color] Start with a roster of 12 poorly equipped peasants.\n[color=#bcad8c]Human Wave:[/color] Take up to [color=#c90000]22[/color] men into battle at once, with no need to build renown.\n[color=#bcad8c]Dirty Peasants:[/color] Can only hire lowborn peasants, lose reputation with nobles faster. \n[color=#c90000]Reduced scaling:[/color] Each member of your company only counts for two thirds of a person in scaling. \n[color=#c90000]Class warfare:[/color] Each person you hire gains a hatred of nobles[/p]";
-		this.m.Difficulty = 1;
-		this.m.Order = 190;
+		this.m.Difficulty = 2;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(27);
 		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 		this.m.StartingBusinessReputation = -100; // Still use default reputation tiers even if starting at negative reputation
 		this.m.BrotherScaling = 0.66;
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 12; i = ++i )
-		{
+		for (local i = 0; i < 12; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.worsenMood(1.5, "Lost many a friend in battle");
@@ -72,8 +69,7 @@
 			///---
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -105,7 +101,7 @@
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
 		items.equip(this.new("scripts/items/weapons/legend_dilapidated_sling"));
 
-		bros[3].setStartValuesEx([::Legends.Background.Gambler,::Legends.Background.Thief,::Legends.Background.Vagabond]);
+		bros[3].setStartValuesEx([::Legends.Background.Gambler, ::Legends.Background.Thief, ::Legends.Background.Vagabond]);
 		bros[3].getBackground().m.RawDescription = "You notice that %name% hides from certain noblemen. It is likely that they are a common criminal at large for some petty crime, but so long as they fight well it is no business to you.";
 		bros[3].improveMood(1.5, "Stole someone\'s scramasax");
 		items = bros[3].getItems();
@@ -171,12 +167,10 @@
 	}
 
 	// created to avoid some copy paste and have submods like SSU be able to manipulate the brush portion
-	o.equipAdditional <- function (_brothers)
-	{
-		foreach (bro in _brothers)
-		{
+	o.equipAdditional <- function (_brothers) {
+		foreach (bro in _brothers) {
 			bro.getSprite("accessory_special").setBrush("bust_militia_band_01");
-			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles) ) {
+			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles)) {
 				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
 				bro.pickTraits([bro.getBackground()], 1);
 			}
@@ -184,16 +178,13 @@
 		}
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1) {
 				break;
 			}
 		}
@@ -203,47 +194,33 @@
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 1)
-				{
-				}
-				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
+				} else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(8);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(40.0, "Considered local heroes for keeping the village safe");
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/retirement_01.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -251,59 +228,49 @@
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 	}
 
-
-	o.onHiredByScenario <- function ( _bro ) {
+	o.onHiredByScenario <- function (_bro) {
 		::Legends.Traits.grant(_bro, ::Legends.Trait.LegendPeasant);
 		_bro.getSprite("socket").setBrush("bust_base_militia");
 	}
 
-	o.onBuildPerkTree <- function ( _background )
-	{
+	o.onBuildPerkTree <- function (_background) {
 		local perk = ::MSU.Array.rand(this.m.PeasantPerks);
 		this.addScenarioPerk(_background, perk);
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.LegendLeechPeddler, 3);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendManAtArms, 7);
 		this.addBroToRoster(_roster, ::Legends.Background.Nightwatch, 5);
 
-		foreach( _, bro in bros )
-		{
+		foreach (_, bro in bros) {
 			if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn | ::Const.BackgroundType.Stabled)) //keep lowborn and stabled, delete all else.
 			{
 				garbage.push(bro);
 				continue;
 			}
 
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendManAtArms))
-			{
+			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendManAtArms)) {
 				bro.getSprite("accessory_special").setBrush("bust_militia_band_02"); //blue
-			}
-			else
-			{
+			} else {
 				bro.getSprite("accessory_special").setBrush("bust_militia_band_01"); //red
 			}
 
-			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles) ) {
+			while (::Legends.Traits.get(bro, ::Legends.Trait.LegendFearNobles)) {
 				::Legends.Traits.remove(bro, ::Legends.Trait.LegendFearNobles);
 				bro.pickTraits([bro.getBackground()], 1);
 			}
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendHateNobles);
 		}
 
-		foreach( g in garbage )
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 });
-

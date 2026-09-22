@@ -4,8 +4,8 @@
 		this.m.Name = "Oathtakers";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_180.png[/img][/p][p]Oathtakers are knightly warriors beholden not to liege lords, but to the ideals and teachings of their founder, Young Anselm. The order now finds itself in dire straits, and they\'ve turned to you to reverse their fortunes. Can you teach these zealots to become successful mercenaries?\n\n[color=#bcad8c]Paladins:[/color] Start with two battle-hardened warriors and good equipment.\n[color=#bcad8c]Oathtakers:[/color] Sworn to Young Anselm\'s teachings, you must take oaths that confer various advantages and disadvantages until fulfilled.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 40;
 		this.m.IsFixedLook = true;
+		this.starting_scenario.create();
 	}
 
 	o.onSpawnAssets = function () {
@@ -118,7 +118,7 @@
 		for (local i = 0; i < ::World.EntityManager.getSettlements().len(); i++) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern())	{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3 && !randomVillage.isSouthern()) {
 				break;
 			}
 		}
@@ -234,9 +234,7 @@
 		}
 
 		if (_killer == null || _killer.getFaction() != ::Const.Faction.Player && _killer.getFaction() != ::Const.Faction.PlayerAnimals) {
-			if (_actor.isPlayerControlled()
-				&& ::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification")
-			{
+			if (_actor.isPlayerControlled() && ::World.Ambitions.getActiveAmbition().getID() == "ambition.oath_of_fortification") {
 				::World.Statistics.getFlags().increment("OathtakersBrosDead");
 			}
 

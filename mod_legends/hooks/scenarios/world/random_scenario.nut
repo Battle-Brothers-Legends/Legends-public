@@ -4,6 +4,7 @@
 	{
 		create();
 		this.m.Description = "[p=c][img]gfx/ui/events/event_74.png[/img][/p][p]Start a campaign with a randomly picked origin. How exciting![/p] [p]Tip: move the scroll bar slowly to view all scenarios[/p]";
+		this.starting_scenario.create();
 	}
 });
 

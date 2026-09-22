@@ -6,7 +6,7 @@
 			if (s.ID == "A") {
 				s.Text = "%terrainImage%{The snowy wastes are home to not much of anything, so to find someone half-naked in its frigid geography is rather unusual. That the frozen figure is actually alive even more so. You crouch beside the frigid body, their eyes are hollow and rime frosts make blinking them a struggle, lips are jagged and purple and nose a deep red bordering on black. You ask if the pitiful wretch can speak, and are greeted with nods.%SPEECH_ON%Barbarians. Took. Me.%SPEECH_OFF%You ask where the kidnappers are, the figure shrugs and continues the cold cadence.%SPEECH_ON%They. Got. Bored. And. Left.%SPEECH_OFF%It does seem in tune with the primitives to up and leave a prisoner in the ice. The shivering prisoner explains they were once a sturdy swordfighter. A smile squeezes through the pain.%SPEECH_ON%A. King\'s. Guard. In. The. Kingless. Land. Things. Could. Be. Worse?%SPEECH_OFF%}";
 				s.start <- function (_event) {
-					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Cripple], false);
 
 					_event.m.Dude.setTitle("");

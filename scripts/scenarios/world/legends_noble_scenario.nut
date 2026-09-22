@@ -1,27 +1,24 @@
 this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_noble";
 		this.m.Name = "Noble";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_96.png[/img][/p][p] You are a noble on the run from your house with your retainers. \n\n[color=#bcad8c]Usurper:[/color] Can unlock noble contracts from the start.\n[color=#bcad8c]Highborn:[/color] Nobles will cost 25% less, lowborns will cost 50% more, can\'t hire outlaws\n[color=#bcad8c]Trained leader:[/color] Your studies at the academy gave tactical skills, everyone begins with Tactical Maneuvers and future hires have Tactical Maneuvers as well.\n[color=#bcad8c]Avatar:[/color] if your character dies, it is game over.[/p]";
-		this.m.Difficulty = 2;
-		this.m.Order = 170;
+		this.m.Difficulty = 1;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(6);
 		this.m.StartingBusinessReputation = 1100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 
 		local roster = ::World.getPlayerRoster();
-		for( local i = 0; i < 6; i = ++i )
-		{
+		for (local i = 0; i < 6; i = ++i) {
 			local bro = roster.create("scripts/entity/tactical/player");
-			if (i != 0)
-			{
+			if (i != 0) {
 				bro.fillTalentValues(3); //quick way to skip noble commander's fill talent values
 			}
 		}
@@ -48,12 +45,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Offhand));
 		local r = ::Math.rand(1, 2);
 		local shield;
-		if (r == 1)
-		{
+		if (r == 1) {
 			shield = this.new("scripts/items/shields/faction_kite_shield");
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			shield = this.new("scripts/items/shields/faction_heater_shield");
 		}
 		items.equip(shield);
@@ -88,12 +82,9 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		r = ::Math.rand(1, 2);
 		local shield;
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			shield = this.new("scripts/items/shields/faction_kite_shield");
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			shield = this.new("scripts/items/shields/faction_heater_shield");
 		}
 		items.equip(shield);
@@ -137,8 +128,8 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.Teamplayer);
 		::Legends.Traits.grant(bros[5], ::Legends.Trait.LegendPredictable);
 		this.addScenarioPerk(bros[5].getBackground(), ::Legends.Perk.LegendTacticalManeuvers);
-		if (bros[5].getBaseProperties().RangedSkill  <= 60) {
-			bros[5].getBaseProperties().RangedSkill  += 5;
+		if (bros[5].getBaseProperties().RangedSkill <= 60) {
+			bros[5].getBaseProperties().RangedSkill += 5;
 		}
 
 		bros[5].setPlaceInFormation(14);
@@ -155,16 +146,13 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads())
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads()) {
 				break;
 			}
 		}
@@ -173,40 +161,27 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 7), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 7));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 7), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 7));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 4)
-				{
-				}
-				else if (!tile.HasRoad || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 4) {
+				} else if (!tile.HasRoad || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(101);
@@ -222,20 +197,18 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		brothers[1].getItems().getItemAtSlot(::Const.ItemSlot.Offhand).setFaction(banner);
 		brothers[3].getItems().getItemAtSlot(::Const.ItemSlot.Offhand).setFaction(banner);
 
-		foreach( bro in brothers )
-		{
+		foreach (bro in brothers) {
 			local items = bro.getItems();
 			local armor = items.getItemAtSlot(::Const.ItemSlot.Body);
 			local tabards = [
-					[0, ""],
-					[1, "tabard/legend_armor_tabard_noble"]
-				];
-				local tabard = ::Const.World.Common.pickLegendArmor(tabards);
-				if (tabard != null && armor != null)
-				{
-					tabard.setVariant(banner);
-					armor.setUpgrade(tabard);
-				}
+				[0, ""],
+				[1, "tabard/legend_armor_tabard_noble"]
+			];
+			local tabard = ::Const.World.Common.pickLegendArmor(tabards);
+			if (tabard != null && armor != null) {
+				tabard.setVariant(banner);
+				armor.setUpgrade(tabard);
+			}
 		}
 
 		//noble start actually doesnt go thru the generalized place for this and i'm too lazy to change it to do so because then i'd have to redo aarmor equips because there's no banner stuff etc
@@ -244,9 +217,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		// 	bro.setCompanyID(::World.State.addNewID(bro));
 		// }
 
-
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/retirement_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -254,14 +225,11 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		}, null);
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
@@ -269,30 +237,24 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		return false;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 		::World.Flags.set("IsLegendsNoble", true);
 	}
 
-	function onHiredByScenario( _bro )
-	{
+	function onHiredByScenario(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble)) {
 			_bro.improveMood(0.5, "Supports your cause as a usurper, will cost less to maintain.");
-		}
-		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn))
-		{
+		} else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn)) {
 			_bro.worsenMood(0.5, "Resents you as nobility, will try to squeeze money from you.");
 		}
 		_bro.improveMood(0.5, "Learned a new skill");
 	}
 
-	function onUpdateHiringRoster( _roster )
-	{
+	function onUpdateHiringRoster(_roster) {
 		local garbage = [];
 		local bros = _roster.getAll();
 		this.addBroToRoster(_roster, ::Legends.Background.AdventurousNoble, 8);
@@ -303,43 +265,33 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.addBroToRoster(_roster, ::Legends.Background.LegendArbalester, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendFootSoldier, 4);
 
-		foreach( i, bro in bros )
-		{
-			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw))
-			{
+		foreach (_, bro in bros) {
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Outlaw)) {
 				garbage.push(bro);
 			}
 		}
 
-
-		foreach( g in garbage )
-		{
+		foreach (g in garbage) {
 			_roster.remove(g);
 		}
 	}
 
-	function onGenerateBro(_bro)
-	{
+	function onGenerateBro(_bro) {
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble))
-		{
+		if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Noble)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 0.75); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
 			_bro.getSkills().update();
-		}
-		else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn))
-		{
+		} else if (_bro.getBackground().isBackgroundType(::Const.BackgroundType.Lowborn)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.5); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.5; //1.0 = default
 			_bro.getSkills().update();
 		}
 	}
 
-
-	function onBuildPerkTree( _background )
-	{
+	function onBuildPerkTree(_background) {
 		this.addScenarioPerk(_background, ::Legends.Perk.LegendTacticalManeuvers);
 	}
 });

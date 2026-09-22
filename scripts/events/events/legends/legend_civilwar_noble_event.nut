@@ -27,7 +27,7 @@ this.legend_civilwar_noble_event <- this.inherit("scripts/events/event", {
 				}
 			}],
 			function start(_event) {
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Dude.setStartValuesEx([::Legends.Background.LegendCommanderNoble]);
 				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendHateNobles);
 				this.Characters.push(_event.m.Dude.getImagePath());

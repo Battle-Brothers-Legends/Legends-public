@@ -50,7 +50,7 @@ this.legend_belly_dancer_dances_encounter <- this.inherit("scripts/encounters/en
 	}
 
 	function isValid(_camp) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion") {
 			return false;
 		}
 

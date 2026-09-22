@@ -1,30 +1,24 @@
 ::mods_hookExactClass("scenarios/world/rangers_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.rangers";
 		this.m.Name = "Band of Poachers";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_10.png[/img][/p][p]For years you have made a decent living by poaching in the local woods, evading your lord\'s men by being quick on your feet. But pickings have become slimmer and slimmer, and you are faced with a decision - how to make a living when all you know is how to use a bow?\n\n[color=#bcad8c]Hunters:[/color] Start with a group of three woodsmen.\n[color=#bcad8c]Expert Scouts:[/color] You move faster and can always get a scouting report for any enemies near you.\n[color=#bcad8c]Travel Light:[/color] You can carry fewer items in your company\'s inventory.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 30;
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-
-
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 3; i = i )
-		{
+		for (local i = 0; i < 3; i = i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -82,46 +76,33 @@
 		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local spawnTile;
 		local settlements = ::World.EntityManager.getSettlements();
 		local nearestVillage;
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(5, ::Const.World.Settings.SizeX - 5);
 			local y = ::Math.rand(5, ::Const.World.Settings.SizeY - 5);
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.IsOccupied)
-				{
-				}
-				else if (tile.Type != ::Const.World.TerrainType.Forest && tile.Type != ::Const.World.TerrainType.SnowyForest && tile.Type != ::Const.World.TerrainType.LeaveForest && tile.Type != ::Const.World.TerrainType.AutumnForest)
-				{
-				}
-				else
-				{
+				if (tile.IsOccupied) {
+				} else if (tile.Type != ::Const.World.TerrainType.Forest && tile.Type != ::Const.World.TerrainType.SnowyForest && tile.Type != ::Const.World.TerrainType.LeaveForest && tile.Type != ::Const.World.TerrainType.AutumnForest) {
+				} else {
 					local next = true;
 
-					foreach( s in settlements )
-					{
+					foreach (s in settlements) {
 						local d = s.getTile().getDistanceTo(tile);
 
-						if (d > 6 && d < 15)
-						{
+						if (d > 6 && d < 15) {
 							local path = ::World.getNavigator().findPath(tile, s.getTile(), navSettings, 0);
 
-							if (!path.isEmpty())
-							{
+							if (!path.isEmpty()) {
 								next = false;
 								nearestVillage = s;
 								break;
@@ -129,40 +110,32 @@
 						}
 					}
 
-					if (next)
-					{
-					}
-					else
-					{
+					if (next) {
+					} else {
 						spawnTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", spawnTile.Coords.X, spawnTile.Coords.Y);
 		::World.Assets.updateLook(10);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		local f = nearestVillage.getFactionOfType(::Const.FactionType.NobleHouse);
 		f.addPlayerRelation(-20.0, "Heard rumors of you poaching in their woods");
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.rangers_scenario_intro");
 		}, null);
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 
-		if (::World.State.getPlayer() != null)
-		{
+		if (::World.State.getPlayer() != null) {
 			::World.State.getPlayer().m.BaseMovementSpeed = 111;
 		}
 	}
 
 });
-

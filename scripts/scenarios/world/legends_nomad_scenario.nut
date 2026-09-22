@@ -6,10 +6,10 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Name = "Nomad Tribe";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_170.png[/img][/p][p]Displaced from your land, take control of 4 nomads and a conscript in the desert. \n[color=#bcad8c]Hunted:[/color] Start in the desert away from civilisation. City States will start and remain hostile. Northern Nobles will have a cold relationship with you but will not decline. Other Nomads are friendly to you.\n[color=#bcad8c]Nomadic:[/color] Vision radius is increased by 30% on the world map. Steppe settlements may contain Nomads displaced from their lands willing to fight for you. Nomads, Muladis, Indebted and Bladedancers cost 25% less to hire and upkeep.\n[color=#bcad8c]The Path of the Interloper:[/color] Nomads and Muladis gain the \'Wind Reader\' perk when recruited. Bladedancers gain the \'Dodge\' perk. Indebted gain \'Colossus\'.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 181;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(5);
 		this.m.StartingBusinessReputation = -50;
+		this.starting_scenario.create();
 	}
 
 	function onInit()

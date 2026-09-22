@@ -1,32 +1,29 @@
 this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.m.ID = "scenario.legends_free_company";
 		this.m.Name = "The Free Company";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_65.png[/img][/p][p]No desperate circumstances or fates to be rewritten. Take control of a successful mercenary company on the brink of becoming famous. \n[color=#bcad8c]Professional Army:[/color] Start with a roster of 5 experienced fighters in a well rounded company.\n[color=#bcad8c]Almost famous:[/color] Start with a larger roster size and professional renown.\n[color=#bcad8c]Soldiers of fortune:[/color] Can recruit everyone except unique backgrounds from other origins. No effect on trade, recruiting or upkeep.\n[color=#bcad8c]Recommended for newer players fresh from vanilla or who want a jump start.[/color][/p]";
 		this.m.Difficulty = 1;
-		this.m.Order = 3;
 		// this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(12);
 		// this.m.RosterTierMax = ::Const.Roster.getTierForSize(22);
 		this.m.StartingBusinessReputation = 1150;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 5; i = ++i )
-		{
+		for (local i = 0; i < 5; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
@@ -125,58 +122,42 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		::World.Assets.m.Ammo = ::World.Assets.m.Ammo * 2;
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1) {
 				break;
 			}
 		}
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		// ::World.Assets.updateLook(8);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		// randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(25.0, "Just completed a contract for this village");
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/retirement_01.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -184,12 +165,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		}, null);
 	}
 
-	function onHiredByScenario( _bro )
-	{
-	}
+	function onHiredByScenario(_bro) {}
 
-	function onUpdateHiringRoster( _roster )
-	{
-	}
+	function onUpdateHiringRoster(_roster) {}
 });
-

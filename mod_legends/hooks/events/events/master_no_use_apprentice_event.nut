@@ -8,7 +8,7 @@
 				s.Options[0].Text = "Alright, we\'ll take %them_dude%.";
 				s.Options[1].Text = "No, thanks. %They're_dude% all yours.";
 				s.start <- function (_event) {
-					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Apprentice]);
 
 					_event.m.Dude.getBackground().m.RawDescription = "An impatient student of a Swordmaster, %name% didn\'t have the mental aptitude to stick with the trials and tribulations of becoming a master of the blade %themselves%. But what %they% lacks in mental fortitude %they% more than makes up for in effort. You \'hired\' %them% simply by taking %them% off the old man\'s hands.";

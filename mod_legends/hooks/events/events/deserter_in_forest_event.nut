@@ -9,8 +9,8 @@
 			}
 			if (s.ID == "B") {
 				s.start <- function (_event) {
-					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
-					_event.m.Dude.setStartValuesEx([(::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? ::Legends.Background.Butcher : ::Legends.Background.Deserter)]);
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude.setStartValuesEx([(::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? ::Legends.Background.Butcher : ::Legends.Background.Deserter)]);
 
 					_event.m.Dude.getBackground().m.RawDescription = "You found %name% the deserter being chased through the forest. Though bounty hunters were hot on the trail, you elected to defend the fugitive and for that swore an oath to you.";
 					_event.m.Dude.getBackground().buildDescription(true);

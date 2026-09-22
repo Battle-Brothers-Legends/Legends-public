@@ -1,25 +1,21 @@
-this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
+this.legends_random_solo_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
-	function create()
-	{
-		this.m.ID = "scenario.legend_random_solo";
+
+	function create() {
+		this.m.ID = "scenario.legends_random_solo";
 		this.m.Name = "Random Solo";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_35.png[/img][/p][p]Striking out on your own, who knows what the world has in store?\n\n[color=#bcad8c]Random Backgrounds:[/color] Your background will be different each time you start.\n[color=#bcad8c]Random Equipment:[/color] The equipment you begin with is different each time.\n[color=#bcad8c]Avatar:[/color] If you die, it is game over.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 210;
 		this.m.IsFixedLook = true;
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-
-
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster();
 
-		for( local i = 0; i < 1; i = i )
-		{
+		for (local i = 0; i < 1; i = i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
@@ -40,16 +36,13 @@ this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starti
 		::World.Assets.m.Money = ::World.Assets.m.Money * 3;
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3)
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3) {
 				break;
 			}
 
@@ -58,41 +51,28 @@ this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starti
 
 		local randomVillageTile = randomVillage.getTile();
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) == 0)
-				{
-				}
-				else if (!tile.HasRoad)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
+				} else if (!tile.HasRoad) {
+				} else {
 					randomVillageTile = tile;
 					break;
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(6);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -100,25 +80,19 @@ this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starti
 		}, null);
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.starting_scenario.onInit();
 	}
 
-	function onCombatFinished()
-	{
+	function onCombatFinished() {
 		local roster = ::World.getPlayerRoster().getAll();
 
-		foreach( bro in roster )
-		{
-			if (bro.getFlags().get("IsPlayerCharacter"))
-			{
+		foreach (bro in roster) {
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
 			}
 		}
 
 		return false;
 	}
-
 });
-

@@ -3,12 +3,12 @@ this.legends_beggar_scenario <- this.inherit("scripts/scenarios/world/starting_s
 	function create()
 	{
 		this.m.ID = "scenario.legends_beggar";
-		this.m.Name = "Original Beggar Challenge";
+		this.m.Name = "Beggar";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_70.png[/img][/p][p]A lowly unskilled beggar, you witnessed something in an alley and now a noble house wants you dead. This is a challenge run with a very weak starting character. \n\n[color=#bcad8c]Knows Too Much:[/color] All noble houses hate you.\n[color=#bcad8c]Begin alone Avatar[/color]: If the beggar dies, the campaign ends.\n[color=#bcad8c]Dirty Peasant[/color]: You can only hire lowerborn backgrounds.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 50;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(1);
 		this.m.StartingBusinessReputation = -200; // Still use default reputation tiers even if starting at negative reputation
+		this.starting_scenario.create();
 	}
 
 

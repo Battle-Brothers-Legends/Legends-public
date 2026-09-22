@@ -1,11 +1,14 @@
 ::mods_hookExactClass("scenarios/world/anatomists_scenario", function (o) {
-	o.onSpawnAssets <- function ()
-	{
-		local roster = ::World.getPlayerRoster();
-		local names = [];
+	local create = o.create;
+	o.create = function () {
+		create();
+		this.starting_scenario.create();
+	}
 
-		for( local i = 0; i < 3; i = ++i )
-		{
+	o.onSpawnAssets <- function () {
+		local roster = ::World.getPlayerRoster();
+
+		for (local i = 0; i < 3; i = ++i) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
@@ -66,8 +69,6 @@
 		hood.setUpgrade(vanity);
 		items.equip(hood);
 
-
-
 		items.equip(this.new("scripts/items/weapons/dagger"));
 		bros[2].setStartValuesEx([::Legends.Background.Anatomist]);
 		bros[2].getBackground().m.RawDescription = "{Though our quotidian dialogues are no doubt drollery, beneath the banausic surface I must admit I feel a touch of serotinous savagery lurking within you, coming to the fore as if my words be fire. Even our most desultory talks has me on edge, the way you stare at me with such hateful eyes. Well, know this, bounty hunter, I am no casuist, I speak in earnest. You are too fine a specimen-I mean captain to be lofting some sapskull\'s brickbats at. Understand?}";
@@ -96,7 +97,6 @@
 		items.equip(hood);
 
 		items.equip(this.new("scripts/items/weapons/militia_spear"));
-
 
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/smoked_ham_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/mead_item"));
@@ -156,8 +156,7 @@
 		::World.Assets.m.Money = ::World.Assets.m.Money + 700;
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Anatomist, 4);
 	}
 });

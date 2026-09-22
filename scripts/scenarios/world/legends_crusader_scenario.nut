@@ -6,11 +6,11 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		this.m.Name = "Crusader";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_35.png[/img][/p][p]Sent on a holy quest to rid the world of undead, you walk a righteous path. \n\n[color=#bcad8c]Pure of Heart:[/color] You cannot recruit outlaw backgrounds, while pious recruits and squires cost less.\n[color=#bcad8c]Strict Sermons:[/color] You will grant the Fortified Mind perk to any pious background that joins you. Find Pilgrims to aid you on your journey.\n[color=#bcad8c]Avatar:[/color] If your crusader dies, the campaign ends.[/p]";
 		this.m.Difficulty = 1;
-		this.m.Order = 70;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 		this.m.StartingBusinessReputation = 1150;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
 	function onSpawnAssets() {
@@ -18,7 +18,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		local bro;
 		bro = roster.create("scripts/entity/tactical/player");
 		bro.setStartValuesEx([::Legends.Background.LegendCrusader]);
-		 //skills on start
+		//skills on start
 		::Legends.Traits.grant(bro, ::Legends.Trait.Player);
 		::Legends.Traits.grant(bro, ::Legends.Trait.LegendUndeadKiller);
 		this.addScenarioPerk(bro.getBackground(), ::Const.Perks.PerkDefs.FortifiedMind);
@@ -50,10 +50,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary()
-				&& !randomVillage.isIsolatedFromRoads()
-				&& randomVillage.getSize() >= 3)
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() >= 3) {
 				break;
 			}
 		}
@@ -68,9 +65,7 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean
-					|| tile.Type == ::Const.World.TerrainType.Shore)
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
 				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
 				} else if (!tile.HasRoad) {
 				} else {
@@ -144,8 +139,9 @@ this.legends_crusader_scenario <- this.inherit("scripts/scenarios/world/starting
 	}
 
 	function onGenerateBro(bro) {
-		if (bro.isStabled())
+		if (bro.isStabled()) {
 			return;
+		}
 
 		if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default

@@ -1,22 +1,19 @@
 ::mods_hookExactClass("scenarios/world/cultists_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.cultists";
 		this.m.Name = "Davkul Cultists";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_140.png[/img][/p][p]Davkul awaits. You lead a small flock devoted to the elder god, and it is time to spread the word. Find more followers, acquire riches, and please Davkul with sacrifices.\n\n[color=#bcad8c]Cultists:[/color] Start with a group of five cultists and encounter fanatical special cultists in towns.\n[color=#bcad8c]Sacrifices:[/color] Davkul will occasionally demand sacrifices from you, but also bestow boons upon those loyal to him. Davkul will not sacrifice his chosen elite. Cultists cost 25% less to hire and maintain.\n[color=#c90000]Let the Blood Flow:[/color] All cultists gain bonus melee skill and the [color=#008060]True Believer[/color] perk.[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 90;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(8);
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
 		local names = [];
 
-		for( local i = 0; i < 5; i = i )
-		{
+		for (local i = 0; i < 5; i++) {
 			local bro;
 			bro = roster.create("scripts/entity/tactical/player");
 			bro.getSprite("socket").setBrush("bust_base_orcs");
@@ -27,13 +24,11 @@
 			::Legends.Traits.remove(bro, ::Legends.Trait.Insecure); //If cultist, this ID will be removed as True believer is not removing them on start
 			::Legends.Traits.remove(bro, ::Legends.Trait.Craven); //If cultist, this ID will be removed as True believer is not removing them on start
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
-			i = ++i;
 		}
 
 		local bros = roster.getAll();
@@ -88,7 +83,7 @@
 		items.equip(::Const.World.Common.pickArmor([
 			[1, ::Legends.Armor.Standard.leather_wraps]
 		]));
-		bros[4].setStartValuesEx([::Legends.Background.LegendLurker]); //ranged support		
+		bros[4].setStartValuesEx([::Legends.Background.LegendLurker]); //ranged support
 		bros[4].getBackground().m.RawDescription = "%name% banded with you outside a tavern. The first time you saw the cultist, there were scars running up %name%\'s arms and across veins that could not be survived. But each morning it appears as though the scars move, slowly creeping in one direction: toward the forehead.";
 		this.addScenarioPerk(bros[4].getBackground(), ::Const.Perks.PerkDefs.LegendTrueBeliever);
 		bros[4].getBaseProperties().MeleeSkill += 10;
@@ -102,41 +97,40 @@
 		::World.Assets.m.Money = ::World.Assets.m.Money + 300;
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Cultist, 3);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendHusk, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendLurker, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendMagister, 8);
 	}
 
-	o.isCultist <- function ( _background )
-	{
+	o.isCultist <- function (_background) {
 		return _background.isBackgroundType(::Const.BackgroundType.ConvertedCultist | ::Const.BackgroundType.Cultist);
 	}
 
-	o.onHiredByScenario <- function ( _bro ) //cultist hire
+	o.onHiredByScenario <- function (_bro) //cultist hire
 	{
 		if (_bro.isStabled()) {
 			return;
 		}
-		if (this.isCultist(_bro.getBackground()))
-		{
+		if (this.isCultist(_bro.getBackground())) {
 			_bro.improveMood(2.0, "Embraced by Davkul");
 			_bro.getSprite("socket").setBrush("bust_base_orcs");
-		}
-		else
-		{
+		} else {
 			_bro.worsenMood(2.0, "What madness have I walked into!?");
 		}
 	}
 
-	o.onGenerateBro <- function (bro)
-	{
-		if (bro.isStabled())
+	o.onGenerateBro <- function (bro) {
+		if (bro.isStabled()) {
 			return;
+		}
 		//Can't really recruit converted cultists but its here anyway for posterity
-		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendLurker) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHusk) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister))
+		if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist)
+			|| bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist)
+			|| bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendLurker)
+			|| bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHusk)
+			|| bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister))
 		{
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.75); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 0.75; //1.0 = default
@@ -146,17 +140,14 @@
 			::Legends.Traits.remove(bro, ::Legends.Trait.Insecure); //If cultist, this ID will be removed as True believer is not removing them on hire
 			::Legends.Traits.remove(bro, ::Legends.Trait.Craven); //If cultist, this ID will be removed as True believer is not removing them on hire
 			bro.getSkills().update();
-		}
-		else
-		{
+		} else {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.25);
 			bro.getBaseProperties().DailyWageMult *= 1.25;
 			bro.getSkills().update();
 		}
 	}
 
-	o.onGetBackgroundTooltip <- function ( _background, _tooltip )
-	{
+	o.onGetBackgroundTooltip <- function (_background, _tooltip) {
 		if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Cultist) || _background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.ConvertedCultist) || _background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendLurker)) // Removed husk and magister from this if
 		{
 			//_tooltip.pop();
@@ -168,8 +159,7 @@
 			});
 		}
 
-		if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHusk) || _background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister))
-		{
+		if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendHusk) || _background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMagister)) {
 			//_tooltip.pop();
 			_tooltip.push({
 				id = 16,
@@ -180,12 +170,10 @@
 		}
 	}
 
-	o.onBuildPerkTree <- function ( _background ) //give true believer
+	o.onBuildPerkTree <- function (_background) //give true believer
 	{
-		if (this.isCultist(_background))
-		{
+		if (this.isCultist(_background)) {
 			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendTrueBeliever);
 		}
 	}
 });
-

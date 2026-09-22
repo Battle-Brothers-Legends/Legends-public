@@ -198,7 +198,7 @@ this.legend_bros_cure_traumatized_encounter <- this.inherit("scripts/encounters/
 	}
 
 	function isValid(_camp) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return false;
 		if (::World.getPlayerRoster().getSize() < 3)
 			return false;

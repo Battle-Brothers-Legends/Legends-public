@@ -1,26 +1,20 @@
 ::mods_hookExactClass("scenarios/world/manhunters_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.manhunters";
 		this.m.Name = "Manhunters";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_172.png[/img][/p][p]Constant conflict between city states and nomads makes for good business. The bulk of your outfit are captives, forced to fight to earn their freedom, and their ranks grow after each battle.\n\n[color=#bcad8c]Army of Captives:[/color] Start with two manhunters and four indebted. Take up to 16 men into battle at once. Having equal or fewer indebted than non-indebted will make your men dissatisfied.\n[color=#bcad8c]Overseers:[/color] All non-indebted can whip indebted in combat to reset their morale and buff their stats.\n[color=#bcad8c]Captives:[/color] Indebted earn 10% more experience, are capped at level 7, and will die if struck down. However, they are 50% cheaper to buy in towns.[/p]";
 		this.m.Difficulty = 3;
-		this.m.Order = 89;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(12);
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		local roster = ::World.getPlayerRoster();
-		local names = [];
-
-		for( local i = 0; i < 6; i = ++i )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 6; i++) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 		}
 
@@ -43,10 +37,8 @@
 		talents[::Const.Attributes.RangedDefense] = 1;
 		local traits = bros[0].getSkills().getAllSkillsOfType(::Const.SkillType.Trait);
 
-		foreach( t in traits )
-		{
-			if (!t.isType(::Const.SkillType.Special) && !t.isType(::Const.SkillType.Background))
-			{
+		foreach (t in traits) {
+			if (!t.isType(::Const.SkillType.Special) && !t.isType(::Const.SkillType.Background)) {
 				bros[0].getSkills().remove(t);
 			}
 		}
@@ -127,16 +119,13 @@
 		::World.Assets.m.Ammo = ::World.Assets.m.Ammo / 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern())
-			{
+			if (!randomVillage.isIsolatedFromRoads() && randomVillage.isSouthern()) {
 				break;
 			}
 		}
@@ -145,44 +134,32 @@
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 1)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		this.countIndebted();
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(18);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/worldmap_11.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -190,72 +167,55 @@
 		}, null);
 	}
 
-	o.onGenerateBro <- function (bro)
-	{
-		if (bro.getBackground().getID() == ::Legends.Background.Slave)
-		{
+	o.onGenerateBro <- function (bro) {
+		if (bro.getBackground().getID() == ::Legends.Background.Slave) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.5); //1.0 = default
 			bro.getBaseProperties().DailyWageMult *= 1.0; //1.0 = default (costs nothing)
 			bro.getSkills().update();
-		}
-		else
-		{
+		} else {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 1.0);
 			bro.getBaseProperties().DailyWageMult *= 1.0;
 			bro.getSkills().update();
 		}
 	}
 
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		this.starting_scenario.onInit();
 		::World.Assets.m.BrothersMax = 25;
 		::World.Assets.m.BrothersMaxInCombat = 16;
 		::World.Assets.m.BrothersScaleMax = 14;
 	}
 
-	o.onHired = function ( _bro )
-	{
-		if (_bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-		{
+	o.onHired = function (_bro) {
+		if (_bro.getBackground().getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 			::Legends.Actives.grant(_bro, ::Legends.Active.WhipSlave);
-		}
-		else
-		{
+		} else {
 			_bro.getSprite("miniboss").setBrush("bust_miniboss_indebted");
 		}
 
 		this.countIndebted();
 	}
 
-	o.onCombatFinished <- function ()
-	{
+	o.onCombatFinished <- function () {
 		this.countIndebted();
 		return true;
 	}
 
-	o.onUnlockPerk = function ( _bro, _perkID )
-	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave) && _perkID == ::Legends.Perks.getID(::Legends.Perk.Student))
-		{
+	o.onUnlockPerk = function (_bro, _perkID) {
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave) && _perkID == ::Legends.Perks.getID(::Legends.Perk.Student)) {
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}
 	}
 
-	o.onUpdateLevel = function ( _bro )
-	{
-		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave) && _bro.getSkills().hasPerk(::Legends.Perk.Student))
-		{
+	o.onUpdateLevel = function (_bro) {
+		if (_bro.getLevel() == 7 && _bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave) && _bro.getSkills().hasPerk(::Legends.Perk.Student)) {
 			_bro.setPerkPoints(_bro.getPerkPoints() + 1);
 		}
 	}
 
-	o.onGetBackgroundTooltip = function ( _background, _tooltip )
-	{
-		if (_background.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-		{
-			if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman))
-			{
+	o.onGetBackgroundTooltip = function (_background, _tooltip) {
+		if (_background.getID() != ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
+			if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman)) {
 				_tooltip.pop();
 				_tooltip.push({
 					id = 16,
@@ -263,13 +223,9 @@
 					icon = "ui/icons/xp_received.png",
 					text = "[color=%negative%]-25%[/color] Experience Gain"
 				});
-			}
-			else if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Apprentice))
-			{
+			} else if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Apprentice)) {
 				_tooltip.pop();
-			}
-			else if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian))
-			{
+			} else if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Historian)) {
 				_tooltip.pop();
 				_tooltip.push({
 					id = 16,
@@ -277,9 +233,7 @@
 					icon = "ui/icons/xp_received.png",
 					text = "[color=%positive%]+5%[/color] Experience Gain"
 				});
-			}
-			else
-			{
+			} else {
 				_tooltip.push({
 					id = 16,
 					type = "text",
@@ -287,9 +241,7 @@
 					text = "[color=%negative%]-10%[/color] Experience Gain"
 				});
 			}
-		}
-		else
-		{
+		} else {
 			_tooltip.push({
 				id = 16,
 				type = "text",
@@ -311,20 +263,15 @@
 		}
 	}
 
-	o.countIndebted = function ()
-	{
+	o.countIndebted = function () {
 		local roster = ::World.getPlayerRoster().getAll();
 		local indebted = 0;
 		local nonIndebted = [];
 
-		foreach( bro in roster )
-		{
-			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave))
-			{
+		foreach (bro in roster) {
+			if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Slave)) {
 				indebted++;
-			}
-			else
-			{
+			} else {
 				nonIndebted.push(bro);
 			}
 		}
@@ -332,6 +279,4 @@
 		::World.Statistics.getFlags().set("ManhunterIndebted", indebted);
 		::World.Statistics.getFlags().set("ManhunterNonIndebted", nonIndebted.len());
 	}
-
 });
-

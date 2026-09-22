@@ -10,7 +10,7 @@ this.legend_camp_legion_defend_cemetery_action <- this.inherit("scripts/factions
 	}
 
 	function onUpdate(_faction) {
-		if (!::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legend_risen_legion"))
+		if (!::Legends.S.oneOf(::World.Assets.getOrigin().getID(), "scenario.legends_risen_legion"))
 			return;
 
 		if (::World.State.getRegions().len() == 0)

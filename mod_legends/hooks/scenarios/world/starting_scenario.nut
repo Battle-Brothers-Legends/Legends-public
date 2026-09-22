@@ -15,6 +15,10 @@
 	o.m.ExcludedAmbitions <- []; // set in onInit, it's not serialized and doesn't need to be
 	o.m.BrotherScaling <- 1.0;
 
+	o.create <- function() {
+		this.m.Order = ::Legends.Scenarios.Order[this.m.ID];
+	}
+
 	o.isDroppedAsLoot = function (_item) {
 		 return ::World.Assets.m.ProfessionEffect.LegendFerretItOut > 0 ? ::Math.rand(1, 100) < (::World.Assets.m.ProfessionEffect.LegendFerretItOut * 100) : false;
 	}

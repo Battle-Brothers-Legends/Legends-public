@@ -6,7 +6,7 @@ this.legends_horse_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		this.m.Name = "Horse party";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_41.png[/img][/p][p]You are running a small trading caravan and have most of your crowns invested into trading goods. But the roads have become dangerous - brigands and greenskins lay in ambush, and there are rumors of even worse things out there.\n\n[color=#bcad8c]Caravan:[/color] Start with a trader and a donkey.\n[color=#bcad8c]Trader:[/color] Get 10% better prices for buying and selling.\n[color=#bcad8c]Not a Warrior:[/color] Start with no renown, and gain renown at half the normal rate.\n[color=#bcad8c]Bribery:[/color] Pay off human enemies instead of fighting them[/p]";
 		this.m.Difficulty = 2;
-		this.m.Order = 11;
+		this.m.Order = 99;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(3);
 	}
 

@@ -1,37 +1,33 @@
 this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starting_scenario", {
 	m = {},
+
 	function create() {
 		this.m.ID = "scenario.legends_solo_necro";
 		this.m.Name = "Master Necromancer";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_29.png[/img][/p][p] What is there to do when you have reached the top? Perhaps more dangers and intrigue await? \n\n[color=#bcad8c]Dark Sway:[/color] Start with a master necromancer, two undead and three mortals. The master necromancer gains experience faster, but the story ends if he dies. Puppets under your control gain bonus health..\n[color=#bcad8c]Morbid Company:[/color] Cultists, Gravediggers, Graverobbers and Anatomists will flock to join you and gain the \'Siphon\' skill. Cannot hire pious backgrounds and other mortals will get sick under your command.There is a chance mortals in your party will be risen again as undead if killed.\n[color=#bcad8c]A Terrible Reputation:[/color] Recruits cannot hate undead, relationships are poor with all factions and degrade slowly each day. Undead are passive towards you, and will steadily gain in relationship over time if betrayed.[/p]";
 		this.m.Difficulty = 4;
-		this.m.Order = 311;
 		this.m.IsFixedLook = true;
 		this.m.StartingRosterTier = ::Const.Roster.getTierForSize(4);
 		this.m.RosterTierMax = ::Const.Roster.getTierForSize(27);
 		this.m.StartingBusinessReputation = 100;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	function onSpawnAssets()
-	{
+	function onSpawnAssets() {
 		local roster = ::World.getPlayerRoster(); //1 necro commander, 2 cultists, 2 puppets and 1 bard
 		local names = [];
 
-		for( local i = 0; i < 6; i = i )
-		{
-			local bro;
-			bro = roster.create("scripts/entity/tactical/player");
+		for (local i = 0; i < 6; i++) {
+			local bro = roster.create("scripts/entity/tactical/player");
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendNecromancer);  //IMPORTANT - dictates relationship loss/gain
 			bro.m.HireTime = ::Time.getVirtualTimeF();
 
-			while (names.find(bro.getNameOnly()) != null)
-			{
+			while (names.find(bro.getNameOnly()) != null) {
 				bro.setName(::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)]);
 			}
 
 			names.push(bro.getNameOnly());
-			i = ++i;
 		}
 
 		local bros = roster.getAll();
@@ -49,8 +45,8 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[1].setStartValuesEx([::Legends.Background.LegendPuppet]); //ur a wizard, Harold
 		bros[1].setPlaceInFormation(5);
 		bros[1].setVeteranPerks(2);
- 		bros[1].getSprite("socket").setBrush("bust_base_undead");
- 		bros[1].getBackground().m.RawDescription = "You found %name% down on their luck behind an Inn in the middle of nowhere... they had long since fallen alseep from the dagger between their ribs. But you took pity and offered them a place in your latest scheme. They would be a fool to refuse, after all.";
+		bros[1].getSprite("socket").setBrush("bust_base_undead");
+		bros[1].getBackground().m.RawDescription = "You found %name% down on their luck behind an Inn in the middle of nowhere... they had long since fallen alseep from the dagger between their ribs. But you took pity and offered them a place in your latest scheme. They would be a fool to refuse, after all.";
 		bros[1].getBaseProperties().Hitpoints += 12;
 		local items = bros[1].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -67,8 +63,8 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[2].setStartValuesEx([::Legends.Background.LegendPuppet]);
 		bros[2].setPlaceInFormation(3);
 		bros[2].setVeteranPerks(2);
- 		bros[2].getSprite("socket").setBrush("bust_base_undead");
- 		bros[2].getBackground().m.RawDescription = "%name% is a character of stunning vocal range - when you heard them sing in that graveyard you couldn't resist to allure them with the promise of fame and glory on the stage!";
+		bros[2].getSprite("socket").setBrush("bust_base_undead");
+		bros[2].getBackground().m.RawDescription = "%name% is a character of stunning vocal range - when you heard them sing in that graveyard you couldn't resist to allure them with the promise of fame and glory on the stage!";
 		bros[2].getBaseProperties().Hitpoints += 12;
 		local items = bros[2].getItems();
 		items.unequip(items.getItemAtSlot(::Const.ItemSlot.Mainhand));
@@ -118,16 +114,13 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::World.Flags.set("IsLegendNecroOrigin", true);
 	}
 
-	function onSpawnPlayer()
-	{
+	function onSpawnPlayer() {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1)
-			{
+			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1) {
 				break;
 			}
 
@@ -138,70 +131,52 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 4), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 4));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 4), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 4));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 1)
-				{
-				}
-				else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 1) {
+				} else if (tile.Type != ::Const.World.TerrainType.Plains && tile.Type != ::Const.World.TerrainType.Steppe && tile.Type != ::Const.World.TerrainType.Tundra && tile.Type != ::Const.World.TerrainType.Snow) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
-					//Relations: 0 = hostile, 100 = allied
+		} while (1);
+		//Relations: 0 = hostile, 100 = allied
 		local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
-		foreach( n in nobles )
-		{
+		foreach (n in nobles) {
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local unwashedPeasants = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Settlement);
-		foreach( n in unwashedPeasants )
-		{
+		foreach (n in unwashedPeasants) {
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local oriental = ::World.FactionManager.getFactionsOfType(::Const.FactionType.OrientalCityState);
-		foreach( n in oriental )
-		{
+		foreach (n in oriental) {
 			n.addPlayerRelation(-20.0, "Wary of necromancers");
 		}
 
 		local undead = ::World.FactionManager.getFactionsOfType(::Const.FactionType.Undead);
-		foreach( n in undead )
-		{
+		foreach (n in undead) {
 			n.addPlayerRelation(50.0, "To whom it may concern, my nuts hang");
 		}
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(104);
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList(["music/retirement_02.ogg"], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_solo_necro_intro_event"); //starting event
 		}, null);
@@ -215,20 +190,15 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 	function onCombatFinished() {
 		local roster = ::World.getPlayerRoster().getAll();
 		foreach (bro in roster) {
-			if (bro.getFlags().get("IsPlayerCharacter"))
+			if (bro.getFlags().get("IsPlayerCharacter")) {
 				return true;
+			}
 		}
 		return false;
 	}
 
 	function onHiredByScenario(_bro) {
-		if (::Legends.Backgrounds.getID(_bro,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Cultist,
-			::Legends.Background.Anatomist,
-			::Legends.Background.ConvertedCultist
-		)) {
+		if (::Legends.Backgrounds.getID(_bro, ::Legends.Background.Graverobber, ::Legends.Background.Gravedigger, ::Legends.Background.Cultist, ::Legends.Background.Anatomist, ::Legends.Background.ConvertedCultist)) {
 			_bro.improveMood(1.5, "I feel strange...but better!");
 			_bro.getSprite("socket").setBrush("bust_base_undead");
 			::Legends.Traits.grant(_bro, ::Legends.Trait.LegendDeathlySpectre);
@@ -251,22 +221,19 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		this.addBroToRoster(_roster, ::Legends.Background.Graverobber, 4);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendPuppet, 6);
 		foreach (i, bro in bros) {
-			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader))
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.Crusader)) {
 				garbage.push(bro); //delete crusader/pious recruits
+			}
 		}
-		foreach (g in garbage)
-			_roster.remove(g);
+		foreach (g in garbage) _roster.remove(g);
 	}
 
 	function onGenerateBro(_bro) {
-		if (_bro.isStabled())
+		if (_bro.isStabled()) {
 			return;
+		}
 
-		if (::Legends.Backgrounds.hasAny(_bro,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Cultist
-		)) {
+		if (::Legends.Backgrounds.hasAny(_bro, ::Legends.Background.Graverobber, ::Legends.Background.Gravedigger, ::Legends.Background.Cultist)) {
 			_bro.m.HiringCost = ::Math.floor(_bro.m.HiringCost * 1.00); //1.0 = default
 			_bro.getBaseProperties().DailyWageMult *= 1.00; //1.0 = default
 			_bro.getSkills().update();
@@ -291,12 +258,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 	}
 
 	function onBuildPerkTree(_background) {
-		if (::Legends.Backgrounds.hasAny(_background,
-			::Legends.Background.Gravedigger,
-			::Legends.Background.Graverobber,
-			::Legends.Background.Cultist,
-			::Legends.Background.Anatomist
-		)) {
+		if (::Legends.Backgrounds.hasAny(_background, ::Legends.Background.Gravedigger, ::Legends.Background.Graverobber, ::Legends.Background.Cultist, ::Legends.Background.Anatomist)) {
 			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendSiphon);
 		}
 	}
@@ -316,4 +278,3 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		}
 	}
 });
-

@@ -180,7 +180,7 @@ this.legend_belly_dancer_encounter <- this.inherit("scripts/encounters/encounter
 	}
 
 	function isValid(_settlement) {
-		if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
+		if (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion")
 			return false;
 
 		if (!_settlement.isSouthern())

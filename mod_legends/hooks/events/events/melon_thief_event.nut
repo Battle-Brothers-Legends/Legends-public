@@ -11,7 +11,7 @@
 		foreach (s in this.m.Screens) {
 			if (s.ID == "E") {
 				s.start <- function (_event) {
-					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 					_event.m.Dude.setStartValuesEx([::Legends.Background.Thief], true, 0);
 
 					_event.m.Dude.setTitle("the Melon Mugger");

@@ -1,17 +1,15 @@
 ::mods_hookExactClass("scenarios/world/deserters_scenario", function (o) {
-	o.create = function ()
-	{
+	o.create = function () {
 		this.m.ID = "scenario.deserters";
 		this.m.Name = "Deserters";
 		this.m.Description = "[p=c][img]gfx/ui/events/event_88.png[/img][/p][p]For too long have you been dragged from one bloody battle to another at the whim of lords sitting in high towers. Last night, you absconded from camp together with three others. You\'re dressed like soldiers still, but you\'re deserters, and the noose will be your end if you stay here for too long.\n[color=#bcad8c]Deserters:[/color] Start with three deserters and decent armor, but lower funds, you can only be joined by outlaws or combat backgrounds, and a noble house that wants to hunt you down.\n[color=#bcad8c]First to Run:[/color] Your men always are first to act in the very first round of combat.\n[color=#c90000]Like Minded:[/color] Increased chance of finding craven dastards, deserters and the disowned. [/p]";
-		this.m.Difficulty = 2;
-		this.m.Order = 100;
+		this.m.Difficulty = 3;
 		this.m.StartingBusinessReputation = 150;
 		this.setRosterReputationTiers(::Const.Roster.createReputationTiers(this.m.StartingBusinessReputation));
+		this.starting_scenario.create();
 	}
 
-	o.setupBro <- function ( _bro, _faction )
-	{
+	o.setupBro <- function (_bro, _faction) {
 		_bro.setStartValuesEx([::Legends.Background.Deserter]);
 		_bro.worsenMood(1.0, "Was dragged from one bloody battle to the next");
 		_bro.improveMood(1.5, "Deserted from the army");
@@ -20,12 +18,9 @@
 		_bro.m.Attributes = [];
 		_bro.m.Talents.resize(::Const.Attributes.COUNT, 0);
 
-		if (::Math.rand(1, 100) <= 50)
-		{
+		if (::Math.rand(1, 100) <= 50) {
 			_bro.addHeavyInjury();
-		}
-		else if (::Math.rand(1, 100) <= 50)
-		{
+		} else if (::Math.rand(1, 100) <= 50) {
 			_bro.addLightInjury();
 		}
 
@@ -35,13 +30,11 @@
 		shield.setFaction(_faction.getBanner());
 		items.equip(shield);
 
-		if (::Math.rand(1, 100) <= 33 && items.getItemAtSlot(::Const.ItemSlot.Head) != null)
-		{
+		if (::Math.rand(1, 100) <= 33 && items.getItemAtSlot(::Const.ItemSlot.Head) != null) {
 			items.getItemAtSlot(::Const.ItemSlot.Head).setCondition(items.getItemAtSlot(::Const.ItemSlot.Head).getRepairMax() * 0.5);
 		}
 
-		if (::Math.rand(1, 100) <= 33 && items.getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
-		{
+		if (::Math.rand(1, 100) <= 33 && items.getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
 			items.getItemAtSlot(::Const.ItemSlot.Mainhand).setCondition(items.getItemAtSlot(::Const.ItemSlot.Mainhand).getRepairMax() * 0.5);
 		}
 
@@ -56,24 +49,20 @@
 		items.equip(armor);
 	}
 
-	o.onSpawnAssets = function ()
-	{
+	o.onSpawnAssets = function () {
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		::World.Assets.getStash().add(this.new("scripts/items/supplies/ground_grains_item"));
 		::World.Assets.addBusinessReputation(this.m.StartingBusinessReputation);
 		::World.Assets.m.Money = ::World.Assets.m.Money / 2;
 	}
 
-	o.onSpawnPlayer = function ()
-	{
+	o.onSpawnPlayer = function () {
 		local randomVillage;
 
-		for( local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i )
-		{
+		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = i) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
-			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && !randomVillage.isSouthern())
-			{
+			if (randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && !randomVillage.isSouthern()) {
 				break;
 			}
 
@@ -84,40 +73,27 @@
 		local navSettings = ::World.getNavigator().createSettings();
 		navSettings.ActionPointCosts = ::Const.World.TerrainTypeNavCost_Flat;
 
-		do
-		{
+		do {
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 7), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 7));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 7), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 7));
 
-			if (!::World.isValidTileSquare(x, y))
-			{
-			}
-			else
-			{
+			if (!::World.isValidTileSquare(x, y)) {
+			} else {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied)
-				{
-				}
-				else if (tile.getDistanceTo(randomVillageTile) <= 4)
-				{
-				}
-				else if (!tile.HasRoad || tile.Type == ::Const.World.TerrainType.Shore)
-				{
-				}
-				else
-				{
+				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore || tile.IsOccupied) {
+				} else if (tile.getDistanceTo(randomVillageTile) <= 4) {
+				} else if (!tile.HasRoad || tile.Type == ::Const.World.TerrainType.Shore) {
+				} else {
 					local path = ::World.getNavigator().findPath(tile, randomVillageTile, navSettings, 0);
 
-					if (!path.isEmpty())
-					{
+					if (!path.isEmpty()) {
 						randomVillageTile = tile;
 						break;
 					}
 				}
 			}
-		}
-		while (1);
+		} while (1);
 
 		::World.State.m.Player = ::World.spawnEntity("scripts/entity/world/player_party", randomVillageTile.Coords.X, randomVillageTile.Coords.Y);
 		::World.Assets.updateLook(12);
@@ -126,14 +102,11 @@
 		f.addPlayerRelation(-200.0, "You and your men deserted");
 		local names = [];
 
-		for( local i = 0; i < 3; i = i )
-		{
-			while (true)
-			{
+		for (local i = 0; i < 3; i = i) {
+			while (true) {
 				local n = ::Const.Strings.CharacterNames[::Math.rand(0, ::Const.Strings.CharacterNames.len() - 1)];
 
-				if (names.find(n) == null)
-				{
+				if (names.find(n) == null) {
 					names.push(n);
 					break;
 				}
@@ -144,8 +117,7 @@
 
 		local roster = ::World.getPlayerRoster();
 
-		for( local i = 0; i < 3; i = i )
-		{
+		for (local i = 0; i < 3; i = i) {
 			local bro = roster.create("scripts/entity/tactical/player");
 			bro.setName(names[i]);
 			bro.setPlaceInFormation(3 + i);
@@ -202,8 +174,7 @@
 		items.equip(this.new("scripts/items/weapons/light_crossbow"));
 		items.equip(this.new("scripts/items/ammo/quiver_of_bolts"));
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
-		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
-		{
+		::Time.scheduleEvent(::TimeUnit.Real, 1000, function (_tag) {
 			::Music.setTrackList([
 				"music/retirement_02.ogg"
 			], ::Const.Music.CrossFadeTime);
@@ -211,8 +182,7 @@
 		}, null);
 	}
 
-	o.onUpdateHiringRoster <- function ( _roster )
-	{
+	o.onUpdateHiringRoster <- function (_roster) {
 		this.addBroToRoster(_roster, ::Legends.Background.Bastard, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Deserter, 3);
 		this.addBroToRoster(_roster, ::Legends.Background.DisownedNoble, 8);
@@ -222,53 +192,43 @@
 		this.addBroToRoster(_roster, ::Legends.Background.Swordmaster, 6);
 	}
 
-
-	o.onGenerateBro <- function (bro)
-	{
+	o.onGenerateBro <- function (bro) {
 		if (bro.isStabled()) {
 			return;
 		}
 		local r = ::Math.rand(0, 9);
-		if (r == 0)
-		{
+		if (r == 0) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.Dastard);
 		}
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.Craven);
 		}
 
-		if (r == 2)
-		{
+		if (r == 2) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.LegendFearNobles);
 		}
 
-		if (r == 3)
-		{
+		if (r == 3) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.Pessimist);
 		}
 
-		if (r == 4)
-		{
+		if (r == 4) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.Paranoid);
 		}
 
-		if (r == 5)
-		{
+		if (r == 5) {
 			::Legends.Traits.grant(bro, ::Legends.Trait.Superstitious);
 		}
 
-		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat))
-		{
+		if (!bro.getBackground().isBackgroundType(::Const.BackgroundType.Combat)) {
 			bro.m.HiringCost = ::Math.floor(bro.m.HiringCost * 0.9);
 			bro.getBaseProperties().DailyWage = ::Math.floor(bro.getBaseProperties().DailyWage * 0.9);
 			bro.improveMood(1.5, "Is excited at becoming a deserter");
 		}
 	}
 
-	o.onGetBackgroundTooltip = function ( _background, _tooltip )
-	{
+	o.onGetBackgroundTooltip = function (_background, _tooltip) {
 		_tooltip.push({
 			id = 16,
 			type = "text",
@@ -278,4 +238,3 @@
 	}
 
 });
-
