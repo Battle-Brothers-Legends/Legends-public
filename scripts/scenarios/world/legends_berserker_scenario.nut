@@ -168,7 +168,7 @@ this.legends_berserker_scenario <- this.inherit("scripts/scenarios/world/startin
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/barbarians_02.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_berserker_scenario_intro");

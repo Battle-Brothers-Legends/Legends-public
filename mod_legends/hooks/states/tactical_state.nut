@@ -267,7 +267,7 @@
 
 		if (isVictory)
 		{
-			this.Music.setTrackList(::Const.Music.VictoryTracks, ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(::Const.Music.VictoryTracks, ::Const.Music.CrossFadeTime);
 
 			if (!this.isScenarioMode())
 			{
@@ -369,7 +369,7 @@
 		}
 		else
 		{
-			this.Music.setTrackList(::Const.Music.DefeatTracks, ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(::Const.Music.DefeatTracks, ::Const.Music.CrossFadeTime);
 
 			if (!this.isScenarioMode())
 			{

@@ -398,7 +398,7 @@ this.legends_escaped_slaves_scenario <- this.inherit("scripts/scenarios/world/st
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/worldmap_11.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_escaped_slaves_scenario_intro");

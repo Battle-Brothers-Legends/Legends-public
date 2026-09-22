@@ -247,7 +247,7 @@ this.legends_noble_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/retirement_02.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_noble_scenario_intro");

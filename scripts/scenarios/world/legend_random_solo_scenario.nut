@@ -93,7 +93,7 @@ this.legend_random_solo_scenario <- this.inherit("scripts/scenarios/world/starti
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/noble_02.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_random_solo_scenario_intro");

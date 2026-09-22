@@ -177,7 +177,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 		// randomVillage.getFactionOfType(::Const.FactionType.Settlement).addPlayerRelation(25.0, "Just completed a contract for this village");
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/retirement_01.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legends_free_company_scenario_intro");

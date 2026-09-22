@@ -111,7 +111,7 @@ this.legends_custom_scenario <- this.inherit("scripts/scenarios/world/starting_s
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/civilians_01.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_custom_scenario_intro");

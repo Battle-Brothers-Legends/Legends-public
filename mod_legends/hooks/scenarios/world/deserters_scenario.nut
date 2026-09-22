@@ -204,7 +204,7 @@
 		::World.Flags.set(::Legends.Camp.Flag[::Legends.Camp.CampBuildings.Scout], true);
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/retirement_02.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.deserters_scenario_intro");

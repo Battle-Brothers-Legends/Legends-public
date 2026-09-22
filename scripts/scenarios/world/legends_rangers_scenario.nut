@@ -138,7 +138,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		f.addPlayerRelation(-20.0, "Heard rumors of you poaching in their woods");
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(::Const.Music.IntroTracks, ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_ranger_scenario_intro");
 		}, null);
 	}

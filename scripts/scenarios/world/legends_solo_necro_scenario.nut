@@ -202,7 +202,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(["music/retirement_02.ogg"], ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(["music/retirement_02.ogg"], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legend_solo_necro_intro_event"); //starting event
 		}, null);
 	}

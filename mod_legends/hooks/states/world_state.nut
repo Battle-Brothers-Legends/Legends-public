@@ -138,7 +138,7 @@
 
 	o.showIntroductionScreen <- function ( _tag = null )
 	{
-		this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
+		::Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 		::World.Contracts.update(true);
 	}
 
@@ -430,7 +430,7 @@
 			this.onCamp();
 			return;
 		}
-		//this.Music.setTrackList(this.m.LastEnteredTown.getMusic(), ::Const.Music.CrossFadeTime);
+		//::Music.setTrackList(this.m.LastEnteredTown.getMusic(), ::Const.Music.CrossFadeTime);
 		this.setPause(true);
 		this.setAutoPause(true);
 		this.Tooltip.hide();
@@ -455,7 +455,7 @@
 			this.m.CampScreen.clear();
 			this.m.CampScreen.hide();
 			this.m.WorldScreen.show();
-			this.Music.setTrackList(::World.FactionManager.isGreaterEvil() ? ::Const.Music.WorldmapTracksGreaterEvil : ::Const.Music.WorldmapTracks, ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(::World.FactionManager.isGreaterEvil() ? ::Const.Music.WorldmapTracksGreaterEvil : ::Const.Music.WorldmapTracks, ::Const.Music.CrossFadeTime);
 
 			if (::World.Assets.isIronman())
 			{

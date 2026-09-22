@@ -105,7 +105,7 @@
 		::World.Contracts.setActiveContract(c, true);
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
+			::Music.setTrackList(::Const.Music.CivilianTracks, ::Const.Music.CrossFadeTime);
 			::World.Contracts.update(true);
 		}, null);
 	}

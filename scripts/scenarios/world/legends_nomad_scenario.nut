@@ -182,7 +182,7 @@ this.legends_nomad_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		::World.getCamera().setPos(::World.State.m.Player.getPos());
 		::Time.scheduleEvent(::TimeUnit.Real, 1000, function ( _tag )
 		{
-			this.Music.setTrackList([
+			::Music.setTrackList([
 				"music/gilded_01.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legends_nomad_scenario_intro");
