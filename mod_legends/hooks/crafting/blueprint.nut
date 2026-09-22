@@ -123,7 +123,8 @@
 
 		local town = ::World.State.getCurrentTown();
 		if (town != null) {
-			local taxidermist = town.getBuilding("building.taxidermist");
+			local buildingID = ::MSU.isKindOf(town, "city_state") ? "building.taxidermist_oriental" : "building.taxidermist";
+			local taxidermist = town.getBuilding(buildingID);
 			if(taxidermist != null && _ids.filter(@(_, _id) (_id == ::Legends.Professions.getID(taxidermist.m.TaxidermistSpecialization))).len() > 0) {
 				return true;
 			}
