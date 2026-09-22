@@ -56,7 +56,7 @@ this.legend_possession_skill <- this.inherit("scripts/skills/skill", {
 			return false;
 		}
 
-		if (!target.getFlags().has("IsSummoned") && !target.getFlags().has("PlayerZombie") && !target.getFlags().has("PlayerSkeleton") && !target.getFlags().has("zombie_minion"))
+		if (!target.getFlags().has("IsSummoned") && !target.getFlags().has("PlayerZombie") && !::MSU.isKindOf(target, "legend_player_legion") && !target.getFlags().has("zombie_minion"))
 		{
 			return false;
 		}

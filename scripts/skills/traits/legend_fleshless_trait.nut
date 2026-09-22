@@ -65,10 +65,6 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 
 		if (this.m.IsNew) {
 			this.onApplyAppearance();
-			actor.m.Flags.add("PlayerSkeleton");
-			actor.m.Flags.add("skeleton");
-			actor.m.Flags.add("undead");
-			::Legends.Traits.grant(this, ::Legends.Trait.RacialSkeleton);
 			this.m.IsNew = false;
 		}
 
@@ -164,10 +160,6 @@ this.legend_fleshless_trait <- this.inherit("scripts/skills/traits/character_tra
 		local actor = this.getContainer().getActor();
 		actor.m.BloodType = ::Const.BloodType.Bones;
 		actor.m.MoraleState = ::Const.MoraleState.Steady;
-		::Legends.Traits.remove(actor, ::Legends.Trait.RacialSkeleton);
-		actor.getFlags().remove("undead");
-		actor.getFlags().remove("skeleton");
-		actor.getFlags().remove("PlayerSkeleton");
 		// Clear excluded injuries list
 		actor.m.ExcludedInjuries = [];
 		// Restore appearance

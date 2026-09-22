@@ -1,5 +1,6 @@
-this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
+this.legend_risen_legion_intro_event <- this.inherit("scripts/events/events/legends/scenario/legion/legion_event", {
 	m = {},
+
 	function create() {
 		this.m.ID = "event.legend_risen_legion_intro";
 		this.m.IsSpecial = true;
@@ -10,20 +11,23 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 			Banner = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Orders are orders...",
-				function getResult(_event) {
-					local locations = ::World.EntityManager.getLocations().filter(@(idx, loc) loc.getTypeID() == "location.black_monolith");
-					if (locations.len() > 0) {
-						local monolith = locations[0];
-						::World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
-						monolith.getFlags().set("IsEventLocation", true);
-						monolith.setDiscovered(true);
-						// ::World.getCamera().moveTo(monolith); //removed for now, as players were being dragged to spectating the monolith on the other side of the map, leading to confusion.
+			Options = [
+				{
+					Text = "Orders are orders...",
+					function getResult(_event) {
+						local locations = ::World.EntityManager.getLocations().filter(@(idx, loc) loc.getTypeID() == "location.black_monolith");
+						if (locations.len() > 0) {
+							local monolith = locations[0];
+							::World.uncoverFogOfWar(monolith.getTile().Pos, 700.0);
+							monolith.getFlags().set("IsEventLocation", true);
+							monolith.setDiscovered(true);
+							// ::World.getCamera().moveTo(monolith); //removed for now, as players were being dragged to spectating the monolith on the other side of the map, leading to confusion.
+						}
+						return 0;
 					}
-					return 0;
 				}
-			}],
+			],
+
 			function start(_event) {
 				this.Banner = "ui/banners/" + ::World.Assets.getBanner() + "s.png";
 			}
@@ -31,13 +35,7 @@ this.legend_risen_legion_intro_event <- this.inherit("scripts/events/event", {
 		});
 	}
 
-	function onUpdateScore() {}
-
 	function onPrepare() {
 		this.m.Title = "The Endless March";
 	}
-
-	function onPrepareVariables(_vars) {}
-	function onClear() {}
-
 });

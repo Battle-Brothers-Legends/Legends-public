@@ -78,8 +78,7 @@ this.legend_animated_player_properties <- this.inherit("scripts/skills/skill", {
 				"sounds/enemies/zombie_bite_03.wav"
 			];
 		}
-		else if (actor.getFlags().has("PlayerSkeleton"))
-		{
+		else if (::MSU.isKindOf(actor, "legend_player_legion")) {
 			actor.m.BloodType = ::Const.BloodType.Bones;
 			actor.m.Sound[::Const.Sound.ActorEvent.NoDamageReceived] = [
 				"sounds/enemies/skeleton_idle_06.wav"

@@ -360,7 +360,7 @@
 	if (_bro.getFlags().get("PlayerZombie")) {
 		return false;
 	}
-	if (_bro.getFlags().get("PlayerSkeleton")) {
+	if (::MSU.isKindOf(_bro, "legend_player_legion")) {
 		return false;
 	}
 	return true;

@@ -5,19 +5,7 @@ this.legion_event <- this.inherit("scripts/events/event", {
 		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 			return false;
 		}
-
-		local hasSkeleton = false;
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getFlags().has("PlayerSkeleton")) {
-				hasSkeleton = true;
-				break;
-			}
-		}
-
-		if (!hasSkeleton) {
-			return false;
-		}
-
-		return true;
+		
+		return ::World.getPlayerRoster().getAll().filter(@(_, _bro) (::MSU.isKindOf(_bro, "legend_player_legion"))).len() > 0;
 	}
 });

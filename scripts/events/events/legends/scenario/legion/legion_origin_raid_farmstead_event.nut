@@ -173,7 +173,7 @@ this.legion_origin_raid_farmstead_event <- this.inherit("scripts/events/events/l
 			return;
 		}
 
-		local candidates = brothers.filter(@(_, _bro)(_bro.getFlags().has("PlayerSkeleton")));
+		local candidates = brothers.filter(@(_, _bro)(::MSU.isKindOf(_bro, "legend_player_legion")));
 		if (candidates.len() < 2) {
 			return;
 		}

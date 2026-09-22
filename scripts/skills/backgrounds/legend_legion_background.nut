@@ -54,7 +54,6 @@ this.legend_legion_background <- this.inherit("scripts/skills/backgrounds/charac
 		}
 
 		this.onApplyAppearance();
-		actor.getFlags().add("PlayerSkeleton");
 		actor.getFlags().add("skeleton");
 		actor.getFlags().add("undead");
 		actor.getFlags().add("legion_can_command"); //justifies if this background is subject to the Legion command skill

@@ -1335,7 +1335,7 @@
 
 		if (this.getFlags().has("PlayerZombie")) {
 			this.m.StarWeights = background.buildAttributes(::Legends.Backgrounds.Tag.Zombie, attributes);
-		} else if (this.getFlags().has("PlayerSkeleton")) {
+		} else if (::MSU.isKindOf(this, "legend_player_legion")) {
 			this.m.StarWeights = background.buildAttributes(::Legends.Backgrounds.Tag.Skeleton, attributes);
 		} else {
 			this.m.StarWeights = background.buildAttributes(null, attributes);
@@ -1378,16 +1378,11 @@
 			background.addEquipment();
 		}
 
-		if (this.getFlags().has("PlayerZombie"))
-		{
+		if (this.getFlags().has("PlayerZombie")) {
 			background.setAppearance("zombie");
-		}
-		else if (this.getFlags().has("PlayerSkeleton"))
-		{
+		} else if (::MSU.isKindOf(this, "legend_player_legion")) {
 			background.setAppearance("skeleton");
-		}
-		else
-		{
+		} else {
 			background.setAppearance();
 		}
 
@@ -1465,8 +1460,7 @@
 			{
 				continue;
 			}
-			else if (this.getFlags().has("PlayerSkeleton") && (i == ::Const.Attributes.Bravery || i == ::Const.Attributes.Fatigue || i == ::Const.Attributes.Hitpoints))
-			{
+			else if (::MSU.isKindOf(this, "legend_player_legion") && (i == ::Const.Attributes.Bravery || i == ::Const.Attributes.Fatigue || i == ::Const.Attributes.Hitpoints)) {
 				continue;
 			}
 			attributes.push(i);
