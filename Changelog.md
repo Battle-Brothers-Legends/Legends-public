@@ -607,7 +607,6 @@
 - fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
 - fixed identical bag items losing track of active skills after unequipping the source of the active skill (usually first equipped item)
 - fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
-- donkeys will no longer be picked as random brothers during conversations in contracts/events/encounters. Note that they may still be selected as the main brother in events/encounters that specifically select a brother from the roster
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
