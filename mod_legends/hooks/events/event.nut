@@ -58,7 +58,7 @@
 
 	o.buildText = function ( _text )
 	{
-		local brothers = ::World.getPlayerRoster().getAll();
+		local brothers = ::Legends.Roster.getNonDonkeys();
 		local brother1;
 		local brother2;
 		local notnagel;

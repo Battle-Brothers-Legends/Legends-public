@@ -163,7 +163,7 @@ this.encounter <- {
     }
 
     function buildText(_text, _full = true) {
-        local brothers = ::World.getPlayerRoster().getAll();
+        local brothers = ::Legends.Roster.getNonDonkeys();
         local brother1;
         local brother2;
         local notnagel;
