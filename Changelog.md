@@ -797,7 +797,6 @@
 - `perk_legend_scry_trance` -> deleted
 - `perk_legend_teleport` -> deleted
 - `perk_legend_specialist_shield_push` -> deleted
-<<<<<<< HEAD
 - `legend_pie_effect` -> deleted
 - `legend_porridge_effect` -> deleted
 - `legend_pudding_effect` -> deleted
@@ -815,7 +814,6 @@
 - background modifiers: terrain are now using objects instead of arrays
 - added `legend_player_legion` that sets all the relevant traits of a legion brother
 - `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
-=======
 - `legend_commander_abstract_effect` -> moved to skills from skills/effects
 - `legend_backswing_effect` -> deleted
 - `legend_graze_prepared_effect` -> deleted
@@ -826,11 +824,40 @@
 - `perk_legend_daze` -> `perk_legend_cacophony`
 - `perk_legend_curseofyears` -> deleted
 - `legend_curseofyears_skill` -> deleted
-<<<<<<< HEAD
->>>>>>> 97341b687b (rearrange effect defs alphabetically, some effect/actives work)
-=======
 - `legend_drums_of_life_skill` -> `legend_song_of_life_skill`
 - `legend_drums_of_life_effect` -> `legend_song_of_life_effect`
 - `legend_war_chant_skill` -> `legend_war_chant_skill`
 - `legend_war_chant_effect` -> `legend_war_chant_effect`
->>>>>>> 0c76897b8a (rename songs to proper names)
+- `wolfsbane_necklace_blueprint` -> deleted
+- `legend_wolfsbane_necklace_item` -> deleted
+- `legend_wolfsbane_item` -> deleted
+- `scripts/skills/actives/legend_eat_pie_skill` -> deleted
+- `scripts/skills/actives/legend_eat_porridge_skill` -> deleted
+- `scripts/skills/actives/legend_eat_pudding_skill` -> deleted
+- `scripts/skills/actives/legend_eat_rations_skill` -> deleted
+- `scripts/skills/effects/legend_dazed_effect` -> deleted
+- `scripts/skills/effects/legend_guard_effect` -> deleted
+- `scripts/skills/effects/legend_guarded_effect` -> deleted
+- `scripts/skills/effects/legend_hunting_big_game` -> deleted
+- `scripts/skills/effects/legend_imbue_effect` -> deleted
+- `scripts/skills/effects/legend_leaderbanner_effect` -> deleted
+- `scripts/skills/effects/legend_levitating_effect` -> deleted
+- `scripts/skills/effects/legend_marked_effect` -> deleted
+- `scripts/skills/effects/legend_motivated_effect` -> deleted
+- `scripts/skills/effects/legend_overwatch_effect` -> deleted
+- `scripts/skills/effects/legend_pie_effect` -> deleted
+- `scripts/skills/effects/legend_porridge_effect` -> deleted
+- `scripts/skills/effects/legend_pudding_effect` -> deleted
+- `scripts/skills/effects/legend_rat_poison_effect` -> deleted
+- `scripts/skills/effects/legend_rations_effect` -> deleted
+- `scripts/skills/effects/legend_read_omens_effect` -> deleted
+- `scripts/skills/effects/legend_satiated_effect` -> deleted
+- `scripts/skills/effects/legend_scroll_effect` -> deleted
+- `scripts/skills/effects/legend_sprint_effect` -> deleted
+- `scripts/skills/effects/legend_staff_riposte_effect` -> deleted
+- `scripts/skills/effects/legend_steps_guided` -> deleted
+- `scripts/skills/effects/legend_stuffed_effect` -> deleted
+- `scripts/skills/effects/legend_wolfsbane_effect` -> deleted
+- `scripts/skills/injury_permanent/legend_infected_injury` -> deleted
+- `scripts/skills/perks/perk_legend_sprint` -> deleted
+- `scripts/skills/special/legend_animated_player_properties` -> deleted

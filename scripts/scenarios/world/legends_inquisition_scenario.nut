@@ -131,16 +131,15 @@ this.legends_inquisition_scenario <- this.inherit("scripts/scenarios/world/start
 			}
 		}
 
-		::World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
-		::World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
-		//::World.Assets.getStash().add(this.new("scripts/items/accessory/legend_wolfsbane_necklace_item"));
-		::World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
-		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
-		::World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
-		::World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
+		this.World.Assets.getStash().add(this.new("scripts/items/supplies/bread_item"));
+		this.World.Assets.getStash().add(this.new("scripts/items/supplies/wine_item"));
+		this.World.Assets.getStash().add(this.new("scripts/items/tools/holy_water_item"));
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_wooden_stake"));
+		this.World.Assets.getStash().add(this.new("scripts/items/weapons/legend_hand_crossbow"));
+		this.World.Assets.getStash().add(this.new("scripts/items/ammo/quiver_of_bolts"));
 
 		//unleash the dogs of war
 		::World.FactionManager.setGreaterEvilType(::Const.World.GreaterEvilType.Undead);

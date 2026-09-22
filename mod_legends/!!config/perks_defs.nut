@@ -805,17 +805,6 @@ perkDefObjects.push({
 	Const = "LegendLookout"
 });
 
-::Legends.Perk.LegendSprint <- null;
-perkDefObjects.push({
-	ID = "perk.legend_sprint",
-	Script = "scripts/skills/perks/perk_legend_sprint",
-	Name = ::Const.Strings.PerkName.LegendSprint,
-	Tooltip = ::Const.Strings.PerkDescription.LegendSprint,
-	Icon = "ui/perks/perk_sprint.png",
-	IconDisabled = "ui/perks/perk_sprint_sw.png",
-	Const = "LegendSprint"
-});
-
 ::Legends.Perk.LegendQuickStep <- null;
 perkDefObjects.push({
 	ID = "perk.legend_quick_step",
@@ -1882,17 +1871,6 @@ perkDefObjects.push({
 	Icon = "ui/perks/scry_perk.png",
 	IconDisabled = "ui/perks/scry_perk_bw.png",
 	Const = "LegendScry"
-});
-
-::Legends.Perk.LegendLevitate <- null;
-perkDefObjects.push({
-	ID = "perk.legend_levitation",
-	Script = "scripts/skills/perks/perk_legend_levitation",
-	Name = ::Const.Strings.PerkName.LegendLevitate,
-	Tooltip = ::Const.Strings.PerkDescription.LegendLevitate,
-	Icon = "ui/perks/levitate.png",
-	IconDisabled = "ui/perks/levitate_bw.png",
-	Const = "LegendLevitate"
 });
 
 ::Legends.Perk.LegendSpecialistShieldSkill <- null;

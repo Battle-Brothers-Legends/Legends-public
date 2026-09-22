@@ -192,7 +192,6 @@ this.legend_banshee <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.Fearsome);
 			::Legends.Perks.grant(this, ::Legends.Perk.Dodge);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouch);
 			::Legends.Actives.grant(this, ::Legends.Active.LegendNightmareTouchZoc);
 			::Legends.Perks.grant(this, ::Legends.Perk.Footwork);

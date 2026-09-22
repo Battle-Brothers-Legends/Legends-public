@@ -1,4 +1,4 @@
-this.legend_dazed_effect <- this.inherit("scripts/skills/skill", {
+this.legend_stupefied_effect <- this.inherit("scripts/skills/skill", {
 	m = {
 		TurnsLeft = 2
 		// , IsForced = false

@@ -278,7 +278,6 @@ this.legend_hexe_leader <- this.inherit("scripts/entity/tactical/actor", {
 		{
 			::Legends.Traits.grant(this, ::Legends.Trait.RacialSchrat);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);

@@ -308,7 +308,6 @@ this.legend_spitter_spider <- this.inherit("scripts/entity/tactical/enemies/spid
 		::Legends.Traits.grant(this, ::Legends.Trait.RacialLegendRedbackSpider);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendLevitate);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.InspiringPresence);

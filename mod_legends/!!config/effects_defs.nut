@@ -867,6 +867,32 @@ effectsDefs.push({
 	Const = "Trained"
 });
 
+// legends world effects in order
+
+::Legends.Effect.LegendHeadache <- null;
+effectsDefs.push({
+	ID = "effects.legend_headache",
+	Script = "scripts/skills/effects_world/legend_headache_effect",
+	Name = "Headache",
+	Const = "LegendHeadache"
+});
+
+::Legends.Effect.LegendIrritable <- null;
+effectsDefs.push({
+	ID = "effects.legend_irritable",
+	Script = "scripts/skills/effects_world/legend_irritable_effect",
+	Name = "Irritable",
+	Const = "LegendIrritable"
+});
+
+::Legends.Effect.LegendWellTended <- null;
+effectsDefs.push({
+	ID = "effects.legend_well_tended",
+	Script = "scripts/skills/effects_world/legend_well_tended_effect",
+	Name = "Well Tended",
+	Const = "LegendWellTended"
+});
+
 // legends effects in order
 
 ::Legends.Effect.LegendAlpRealmOfShadow <- null;
@@ -1069,404 +1095,29 @@ effectsDefs.push({
 	Const = "LegendDodgingIncoming"
 });
 
-::Legends.Effect.LegendSongOfLife <- null;
+::Legends.Effect.LegendDualWield <- null;
 effectsDefs.push({
-	ID = "effects.legend_song_of_life",
-	Script = "scripts/skills/effects/legend_song_of_life_effect",
-	Name = "Drums of Life",
-	Const = "LegendSongOfLife"
-});
-
-::Legends.Effect.LegendWarChant <- null;
-effectsDefs.push({
-	ID = "effects.legend_war_chant",
-	Script = "scripts/skills/effects/legend_war_chant_effect",
-	Name = "Drums of War",
-	Const = "LegendWarChant"
+	ID = "effects.legend_dual_wield",
+	Script = "scripts/skills/effects/legend_dual_wield_effect",
+	Name = "Dual Wielding",
+	Const = "LegendDualWield"
 });
 
 
-// insert here
-
-::Legends.Effect.LegendRedbackPoisonCoat <- null;
+::Legends.Effect.LegendEnragedHyenaBite <- null;
 effectsDefs.push({
-	ID = "effects.legend_redback_poison_coat",
-	Script = "scripts/skills/effects/legend_redback_poison_coat_effect",
-	Name = "Weapon coated with poison",
-	Const = "LegendRedbackPoisonCoat"
+	ID = "effects.legend_enraged_hyena_bite",
+	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
+	Const = "LegendEnragedHyenaBite",
+	Name = "Locked in Jaws",
 });
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-::Legends.Effect.LegendOrcBehemothPotion <- null;
+::Legends.Effect.LegendEnragedHyenaGrip <- null;
 effectsDefs.push({
-	ID = "effects.legend_orc_behemoth_potion",
-	Script = "scripts/skills/effects/legend_orc_behemoth_potion_effect",
-	Name = "Unchained Fury",
-	Const = "LegendOrcBehemothPotion"
-});
-
-::Legends.Effect.LegendOrcElitePotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_orc_elite_potion",
-	Script = "scripts/skills/effects/legend_orc_elite_potion_effect",
-	Name = "Brutal Savage",
-	Const = "LegendOrcElitePotion"
-});
-
-::Legends.Effect.LegendGreenwoodSchratPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_greenwood_schrat_potion",
-	Script = "scripts/skills/effects/legend_greenwood_schrat_potion_effect",
-	Name = "Mutated Brawny Muscles",
-	Const = "LegendGreenwoodSchratPotion"
-});
-
-
-
-::Legends.Effect.LegendFallenBetrayerPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_fallen_betrayer_potion",
-	Script = "scripts/skills/effects/legend_fallen_betrayer_potion_effect",
-	Name = "Serum of Resentment",
-	Const = "LegendFallenBetrayerPotion"
-});
-
-
-
-::Legends.Effect.LegendHexeLeaderPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_hexe_leader_potion",
-	Script = "scripts/skills/effects/legend_hexe_leader_potion_effect",
-	Name = "Uplifting Touch",
-	Const = "LegendHexeLeaderPotion"
-});
-
-::Legends.Effect.LegendRedbackPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_redback_potion",
-	Script = "scripts/skills/effects/legend_redback_potion_effect",
-	Name = "Hyper-Mutated Circulatory System",
-	Const = "LegendRedbackPotion"
-});
-
-::Legends.Effect.LegendSkinGhoulPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_skinghoul_potion",
-	Script = "scripts/skills/effects/legend_skinghoul_potion_effect",
-	Name = "Malice Unguis",
-	Const = "LegendSkinGhoulPotion"
-});
-
-::Legends.Effect.LegendNecrosavantLordPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_necrosavant_lord_potion",
-	Script = "scripts/skills/effects/legend_necrosavant_lord_potion_effect",
-	Name = "Dustmourn Coating",
-	Const = "LegendNecrosavantLordPotion"
-});
-
-
-
-::Legends.Effect.LegendRockUnholdPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_rock_unhold_potion",
-	Script = "scripts/skills/effects/legend_rock_unhold_potion_effect",
-	Name = "Titan's Power",
-	Const = "LegendRockUnholdPotion"
-});
-
-::Legends.Effect.LegendStollwurmPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_stollwurm_potion",
-	Script = "scripts/skills/effects/legend_stollwurm_potion_effect",
-	Name = "Thorny Dragonhide",
-	Const = "LegendStollwurmPotion"
-});
-
-::Legends.Effect.LegendWhiteDirewolfPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_white_direwolf_potion",
-	Script = "scripts/skills/effects/legend_white_direwolf_potion_effect",
-	Name = "Unflagging Energy",
-	Const = "LegendWhiteDirewolfPotion"
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-::Legends.Effect.LegendWineTipsyEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_wine_tipsy_effect",
-	Script = "scripts/skills/effects/legend_wine_tipsy_effect",
-	Name = "Tipsy",
-	Const = "LegendWineTipsyEffect"
-});
-
-::Legends.Effect.LegendMeadWarmthEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_mead_warmth_effect",
-	Script = "scripts/skills/effects/legend_mead_warmth_effect",
-	Name = "Warmth",
-	Const = "LegendMeadWarmthEffect"
-});
-
-::Legends.Effect.LegendLiquorBurnEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_liquor_burn_effect",
-	Script = "scripts/skills/effects/legend_liquor_burn_effect",
-	Name = "Liquor Burn",
-	Const = "LegendLiquorBurnEffect"
-});
-
-::Legends.Effect.LegendReturnFavor <- null;
-effectsDefs.push({
-	ID = "effects.legend_return_favor",
-	Script = "scripts/skills/effects/legend_return_favor_effect",
-	Name = "Return Favor",
-	Const = "LegendReturnFavor"
-});
-
-::Legends.Effect.LegendValaChantDisharmonyEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_chant_disharmony_effect",
-	Script = "scripts/skills/effects/legend_vala_chant_disharmony_effect",
-	Name = "Disharmony",
-	Const = "LegendValaChantDisharmonyEffect"
-});
-
-::Legends.Effect.LegendValaChantFuryEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_chant_fury_effect",
-	Script = "scripts/skills/effects/legend_vala_chant_fury_effect",
-	Name = "Fury",
-	Const = "LegendValaChantFuryEffect"
-});
-
-::Legends.Effect.LegendValaChantSensesEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_chant_senses_effect",
-	Script = "scripts/skills/effects/legend_vala_chant_senses_effect",
-	Name = "Heightened Senses",
-	Const = "LegendValaChantSensesEffect"
-});
-
-::Legends.Effect.LegendValaCurrentlyChanting <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_currently_chanting",
-	Script = "scripts/skills/effects/legend_vala_currently_chanting",
-	Name = "Currently Chanting",
-	Const = "LegendValaCurrentlyChanting"
-});
-
-::Legends.Effect.LegendValaInTrance <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_in_trance",
-	Script = "scripts/skills/effects/legend_vala_in_trance",
-	Name = "In Trance",
-	Const = "LegendValaInTrance"
-});
-
-
-
-::Legends.Effect.LegendSanctifiedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_sanctified_effect",
-	Script = "scripts/skills/effects/legend_sanctified_effect",
-	Name = "Sanctified",
-	Const = "LegendSanctifiedEffect"
-});
-
-::Legends.Effect.LegendParried <- null;
-effectsDefs.push({
-	ID = "effects.legend_parried",
-	Script = "scripts/skills/effects/legend_parried_effect",
-	Name = "Parried",
-	Const = "LegendParried"
-});
-
-::Legends.Effect.LegendGrazedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_grazed_effect",
-	Script = "scripts/skills/effects/legend_grazed_effect",
-	Name = "Bleeding from Grazes",
-	Const = "LegendGrazedEffect"
-});
-
-::Legends.Effect.LegendIntenselyCharmed <- null;
-effectsDefs.push({
-	ID = "effects.legend_intensely_charmed",
-	Script = "scripts/skills/effects/legend_intensely_charmed_effect",
-	Name = "Infatuated",
-	Const = "LegendIntenselyCharmed"
-});
-
-
-
-::Legends.Effect.LegendTackled <- null;
-effectsDefs.push({
-	ID = "effects.legend_tackled",
-	Script = "scripts/skills/effects/legend_tackled_effect",
-	Name = "Knocked Over",
-	Const = "LegendTackled"
-});
-
-::Legends.Effect.LegendRedbackSpiderPoison <- null;
-effectsDefs.push({
-	ID = "effects.legend_redback_spider_poison",
-	Script = "scripts/skills/effects/legend_redback_spider_poison_effect",
-	Name = "Poisoned (redback)",
-	Const = "LegendRedbackSpiderPoison"
-});
-
-::Legends.Effect.LegendPerfectFocus <- null;
-effectsDefs.push({
-	ID = "effects.legend_perfect_focus",
-	Script = "scripts/skills/effects/legend_perfect_focus_effect",
-	Name = "Perfect Focus",
-	Const = "LegendPerfectFocus"
-});
-
-::Legends.Effect.LegendStupefied <- null;
-effectsDefs.push({
-	ID = "effects.legend_stupefied",
-	Script = "scripts/skills/effects/legend_stupefied_effect",
-	Name = "Stupefied",
-	Const = "LegendStupefied"
-});
-
-::Legends.Effect.LegendGrappled <- null;
-effectsDefs.push({
-	ID = "effects.legend_grappled",
-	Script = "scripts/skills/effects/legend_grappled_effect",
-	Name = "Grappled",
-	Const = "LegendGrappled"
-});
-
-::Legends.Effect.LegendSafeguarding <- null;
-effectsDefs.push({
-	ID = "effects.legend_safeguarding",
-	Script = "scripts/skills/effects/legend_safeguarding_effect",
-	Name = "Safeguarding",
-	Const = "LegendSafeguarding"
-});
-
-::Legends.Effect.LegendThrewSandEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_threw_sand_effect",
-	Script = "scripts/skills/effects/legend_threw_sand_effect",
-	Name = "Threw Sand",
-	Const = "LegendThrewSandEffect"
-});
-
-::Legends.Effect.LegendRswPoisonEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_RSW_poison_effect",
-	Script = "scripts/skills/rune_sigils/legend_RSW_poison_effect",
-	Name = "Poisoned (rune)",
-	Const = "LegendRswPoisonEffect"
-});
-
-::Legends.Effect.LegendWolfsbane <- null;
-effectsDefs.push({
-	ID = "effects.legend_wolfsbane",
-	Script = "scripts/skills/effects/legend_wolfsbane_effect",
-	Name = "Wolfsbane Scent",
-	Const = "LegendWolfsbane"
-});
-
-::Legends.Effect.LegendCompromisedArmor <- null;
-effectsDefs.push({
-	ID = "effects.legend_compromised_armor",
-	Script = "scripts/skills/effects/legend_compromised_armor_effect",
-	Const = "LegendCompromisedArmor",
-	Name = "Compromised Armor",
-});
-
-::Legends.Effect.LegendConquerorPotion <- null;
-effectsDefs.push({
-	ID = "effects.legend_conqueror_potion",
-	Script = "scripts/skills/effects/legend_conqueror_potion_effect",
-	Name = "Thick Skin",
-	Const = "LegendConquerorPotion"
-});
-
-::Legends.Effect.LegendConsecratedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_consecrated_effect",
-	Script = "scripts/skills/effects/legend_consecrated_effect",
-	Name = "Consecrated",
-	Const = "LegendConsecratedEffect"
-});
-
-::Legends.Effect.LegendConstrained <- null;
-effectsDefs.push({
-	ID = "effects.legend_constrained",
-	Script = "scripts/skills/effects/legend_constrained_effect",
-	Name = "Constrained",
-	Const = "LegendConstrained"
-});
-
-::Legends.Effect.LegendCoordinatingVolleys <- null;
-effectsDefs.push({
-	ID = "effects.legend_coordinating_volleys",
-	Script = "scripts/skills/effects/legend_coordinating_volleys",
-	Name = "Coordinated Volleys",
-	Const = "LegendCoordinatingVolleys"
-});
-
-::Legends.Effect.LegendMotivatedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_motivated_effect",
-	Script = "scripts/skills/effects/legend_motivated_effect",
-	Name = "Motivated",
-	Const = "LegendMotivatedEffect"
-});
-
-
-
-::Legends.Effect.LegendSatiatedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_satiated_effect",
-	Script = "scripts/skills/effects/legend_satiated_effect",
-	Name = "Satiated",
-	Const = "LegendSatiatedEffect"
-});
-
-::Legends.Effect.LegendStuffedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_stuffed_effect",
-	Script = "scripts/skills/effects/legend_stuffed_effect",
-	Name = "Stuffed",
-	Const = "LegendStuffedEffect"
+	ID = "effects.legend_enraged_hyena_grip",
+	Script = "scripts/skills/effects/legend_enraged_hyena_grip_effect",
+	Const = "LegendEnragedHyenaGrip",
+	Name = "Predatory Grip",
 });
 
 ::Legends.Effect.LegendEvasion <- null;
@@ -1477,166 +1128,53 @@ effectsDefs.push({
 	Const = "LegendEvasion"
 });
 
-::Legends.Effect.LegendSummonedFalconEffect <- null;
+::Legends.Effect.LegendFallenBetrayerPotion <- null;
 effectsDefs.push({
-	ID = "effects.legend_summoned_falcon_effect",
-	Script = "scripts/skills/effects/legend_summoned_falcon_effect",
-	Name = "Summoned a Falcon",
-	Const = "LegendSummonedFalconEffect"
+	ID = "effects.legend_fallen_betrayer_potion",
+	Script = "scripts/skills/effects/legend_fallen_betrayer_potion_effect",
+	Name = "Serum of Resentment",
+	Const = "LegendFallenBetrayerPotion"
 });
 
-::Legends.Effect.LegendStepsGuided <- null;
+::Legends.Effect.LegendFlourish <- null;
 effectsDefs.push({
-	ID = "effects.legend_steps_guided",
-	Script = "scripts/skills/effects/legend_steps_guided",
-	Name = "Steps Guided",
-	Const = "LegendStepsGuided"
+	ID = "effects.legend_flourish",
+	Script = "scripts/skills/effects/legend_flourish_effect",
+	Const = "LegendFlourish",
+	Name = "Flourish",
 });
 
-::Legends.Effect.LegendHoldingTheLine <- null;
+::Legends.Effect.LegendFreedomOfMovement <- null;
 effectsDefs.push({
-	ID = "effects.legend_holding_the_line",
-	Script = "scripts/skills/effects/legend_holding_the_line",
-	Name = "Holding the Line",
-	Const = "LegendHoldingTheLine"
+	ID = "effects.legend_freedom_of_movement",
+	Script = "scripts/skills/effects/legend_freedom_of_movement_effect",
+	Const = "LegendFreedomOfMovement",
+	Name = "Freedom of Movement",
 });
 
-
-::Legends.Effect.LegendInspired <- null;
+::Legends.Effect.LegendGrappled <- null;
 effectsDefs.push({
-	ID = "effects.legend_inspired",
-	Script = "scripts/skills/effects/legend_inspired_effect",
-	Name = "Inspired",
-	Const = "LegendInspired"
+	ID = "effects.legend_grappled",
+	Script = "scripts/skills/effects/legend_grappled_effect",
+	Name = "Grappled",
+	Const = "LegendGrappled"
 });
 
-::Legends.Effect.LegendLevitating <- null;
+::Legends.Effect.LegendGravedigging <- null;
 effectsDefs.push({
-	ID = "effects.legend_levitating",
-	Script = "scripts/skills/effects/legend_levitating_effect",
-	Name = "Levitating",
-	Const = "LegendLevitating"
+	ID = "effects.legend_gravedigging",
+	Script = "scripts/skills/effects/legend_gravedigging_effect",
+	Const = "LegendGravedigging",
+	Name = "Gravedigging",
 });
 
-::Legends.Effect.LegendPossession <- null;
+::Legends.Effect.LegendGrazedEffect <- null;
 effectsDefs.push({
-	ID = "effects.legend_possession",
-	Script = "scripts/skills/effects/legend_possession_effect",
-	Name = "Possessed",
-	Const = "LegendPossession"
+	ID = "effects.legend_grazed_effect",
+	Script = "scripts/skills/effects/legend_grazed_effect",
+	Name = "Bleeding from Grazes",
+	Const = "LegendGrazedEffect"
 });
-
-::Legends.Effect.LegendPrayerOfLife <- null;
-effectsDefs.push({
-	ID = "effects.legend_prayer_of_life",
-	Script = "scripts/skills/effects/legend_prayer_of_life_effect",
-	Name = "Prayer of Hope",
-	Const = "LegendPrayerOfLife"
-});
-
-
-::Legends.Effect.LegendKnockbackPrepared <- null;
-effectsDefs.push({
-	ID = "effects.legend_knockback_prepared",
-	Script = "scripts/skills/effects/legend_knockback_prepared_effect",
-	Name = "Prepared to Inflict Knockback.",
-	Const = "LegendKnockbackPrepared"
-});
-
-::Legends.Effect.LegendGuardedEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_guarded_effect",
-	Script = "scripts/skills/effects/legend_guarded_effect",
-	Name = "Guarded",
-	Const = "LegendGuardedEffect"
-});
-
-::Legends.Effect.LegendGuard <- null;
-effectsDefs.push({
-	ID = "effects.legend_guard",
-	Script = "scripts/skills/effects/legend_guard_effect",
-	Name = "Guarding",
-	Const = "LegendGuard"
-});
-
-::Legends.Effect.LegendPushingForward <- null;
-effectsDefs.push({
-	ID = "effects.legend_pushing_forward",
-	Script = "scripts/skills/effects/legend_pushing_forward",
-	Name = "Pushing Forward",
-	Const = "LegendPushingForward"
-});
-
-::Legends.Effect.LegendReadOmens <- null;
-effectsDefs.push({
-	ID = "effects.legend_read_omens",
-	Script = "scripts/skills/effects/legend_read_omens_effect",
-	Name = "Omens Foretold",
-	Const = "LegendReadOmens"
-});
-
-::Legends.Effect.LegendSafeguarded <- null;
-effectsDefs.push({
-	ID = "effects.legend_safeguarded",
-	Script = "scripts/skills/effects/legend_safeguarded_effect",
-	Name = "Safeguarded",
-	Const = "LegendSafeguarded"
-});
-
-::Legends.Effect.LegendSummonedBearEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_bear_effect",
-	Script = "scripts/skills/effects/legend_summoned_bear_effect",
-	Name = "Summoned a Bear",
-	Const = "LegendSummonedBearEffect"
-});
-
-::Legends.Effect.LegendSummonedCatapultEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_catapult_effect",
-	Script = "scripts/skills/effects/legend_summoned_catapult_effect",
-	Name = "Summoned a Catapult",
-	Const = "LegendSummonedCatapultEffect"
-});
-
-::Legends.Effect.LegendSummonedHoundEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_hound_effect",
-	Script = "scripts/skills/effects/legend_summoned_hound_effect",
-	Name = "Summoned a Hound",
-	Const = "LegendSummonedHoundEffect"
-});
-
-::Legends.Effect.LegendSummonedWolfEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_wolf_effect",
-	Script = "scripts/skills/effects/legend_summoned_wolf_effect",
-	Name = "Summoned a Wolf",
-	Const = "LegendSummonedWolfEffect"
-});
-
-::Legends.Effect.LegendSummonedSighthoundEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_sighthound_effect",
-	Script = "scripts/skills/effects/legend_summoned_sighthound_effect",
-	Name = "Summoned a Sighthound",
-	Const = "LegendSummonedSighthoundEffect"
-});
-
-::Legends.Effect.LegendSummonedHoundEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_summoned_hound_effect",
-	Script = "scripts/skills/effects/legend_summoned_hound_effect",
-	Name = "Summoned a Hound",
-	Const = "LegendSummonedHoundEffect"
-});
-
-
-
-
-
-
-
 
 ::Legends.Effect.LegendGreenwoodSap <- null;
 effectsDefs.push({
@@ -1644,6 +1182,14 @@ effectsDefs.push({
 	Script = "scripts/skills/effects/legend_greenwood_sap_effect",
 	Name = "Heartwood Focus",
 	Const = "LegendGreenwoodSap"
+});
+
+::Legends.Effect.LegendGreenwoodSchratPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_greenwood_schrat_potion",
+	Script = "scripts/skills/effects/legend_greenwood_schrat_potion_effect",
+	Name = "Mutated Brawny Muscles",
+	Const = "LegendGreenwoodSchratPotion"
 });
 
 ::Legends.Effect.LegendHexeIchorPotion <- null;
@@ -1654,28 +1200,60 @@ effectsDefs.push({
 	Const = "LegendHexeIchorPotion"
 });
 
-::Legends.Effect.LegendHuntingBigGame <- null;
+::Legends.Effect.LegendHexeLeaderPotion <- null;
 effectsDefs.push({
-	ID = "effects.legend_hunting_big_game",
-	Script = "scripts/skills/effects/legend_hunting_big_game",
-	Name = "Hunting Big Game",
-	Const = "LegendHuntingBigGame"
+	ID = "effects.legend_hexe_leader_potion",
+	Script = "scripts/skills/effects/legend_hexe_leader_potion_effect",
+	Name = "Uplifting Touch",
+	Const = "LegendHexeLeaderPotion"
 });
 
-::Legends.Effect.LegendImbueEffect <- null;
+::Legends.Effect.LegendHiddenKobold <- null; // purposefully leaving because kobolds are dead but the effect is cool
 effectsDefs.push({
-	ID = "effects.legend_imbue_effect",
-	Script = "scripts/skills/effects/legend_imbue_effect",
-	Name = "Imbued",
-	Const = "LegendImbueEffect"
+	ID = "effects.legend_hidden_kobold",
+	Script = "scripts/skills/effects/legend_hidden_kobold_effect",
+	Name = "Hidden",
+	Const = "LegendHiddenKobold"
 });
 
-::Legends.Effect.LeaderbannerEffect <- null;
+::Legends.Effect.LegendHoldingTheLine <- null;
 effectsDefs.push({
-	ID = "effects.leaderbanner_effect",
-	Script = "scripts/skills/effects/legend_leaderbanner_effect",
-	Name = "For the Captain!",
-	Const = "LeaderbannerEffect"
+	ID = "effects.legend_holding_the_line",
+	Script = "scripts/skills/effects/legend_holding_the_line",
+	Name = "Holding the Line",
+	Const = "LegendHoldingTheLine"
+});
+
+::Legends.Effect.LegendInspired <- null;
+effectsDefs.push({
+	ID = "effects.legend_inspired",
+	Script = "scripts/skills/effects/legend_inspired_effect",
+	Name = "Inspired",
+	Const = "LegendInspired"
+});
+
+::Legends.Effect.LegendIntenselyCharmed <- null;
+effectsDefs.push({
+	ID = "effects.legend_intensely_charmed",
+	Script = "scripts/skills/effects/legend_intensely_charmed_effect",
+	Name = "Infatuated",
+	Const = "LegendIntenselyCharmed"
+});
+
+::Legends.Effect.LegendKnockbackPrepared <- null;
+effectsDefs.push({
+	ID = "effects.legend_knockback_prepared",
+	Script = "scripts/skills/effects/legend_knockback_prepared_effect",
+	Name = "Prepared to Inflict Knockback.",
+	Const = "LegendKnockbackPrepared"
+});
+
+::Legends.Effect.LegendLiquorBurnEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_liquor_burn_effect",
+	Script = "scripts/skills/effects/legend_liquor_burn_effect",
+	Name = "Liquor Burn",
+	Const = "LegendLiquorBurnEffect"
 });
 
 ::Legends.Effect.LegendLurker <- null;
@@ -1694,20 +1272,28 @@ effectsDefs.push({
 	Const = "LegendLwRelationship"
 });
 
-::Legends.Effect.LegendMarked <- null;
-effectsDefs.push({
-	ID = "effects.legend_marked_target",
-	Script = "scripts/skills/effects/legend_marked_effect",
-	Name = "Marked",
-	Const = "LegendMarked"
-});
-
 ::Legends.Effect.LegendMarkedTarget <- null;
 effectsDefs.push({
 	ID = "effects.legend_marked_target",
 	Script = "scripts/skills/effects/legend_marked_target_effect",
 	Name = "Marked",
 	Const = "LegendMarkedTarget"
+});
+
+::Legends.Effect.LegendMartialMarch <- null;
+effectsDefs.push({
+	ID = "effects.legend_martial_march",
+	Script = "scripts/skills/effects/legend_martial_march_effect",
+	Const = "LegendMartialMarch",
+	Name = "Martial March",
+});
+
+::Legends.Effect.LegendMeadWarmthEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_mead_warmth_effect",
+	Script = "scripts/skills/effects/legend_mead_warmth_effect",
+	Name = "Warmth",
+	Const = "LegendMeadWarmthEffect"
 });
 
 ::Legends.Effect.LegendMummyCurse <- null;
@@ -1790,7 +1376,45 @@ effectsDefs.push({
 	Const = "LegendWhipFeint"
 });
 
+::Legends.Effect.LegendNecrosavantLordPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_necrosavant_lord_potion",
+	Script = "scripts/skills/effects/legend_necrosavant_lord_potion_effect",
+	Name = "Dustmourn Coating",
+	Const = "LegendNecrosavantLordPotion"
+});
 
+::Legends.Effect.LegendOrcBehemothPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_orc_behemoth_potion",
+	Script = "scripts/skills/effects/legend_orc_behemoth_potion_effect",
+	Name = "Unchained Fury",
+	Const = "LegendOrcBehemothPotion"
+});
+
+::Legends.Effect.LegendOrcElitePotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_orc_elite_potion",
+	Script = "scripts/skills/effects/legend_orc_elite_potion_effect",
+	Name = "Brutal Savage",
+	Const = "LegendOrcElitePotion"
+});
+
+::Legends.Effect.LegendParried <- null;
+effectsDefs.push({
+	ID = "effects.legend_parried",
+	Script = "scripts/skills/effects/legend_parried_effect",
+	Name = "Parried",
+	Const = "LegendParried"
+});
+
+::Legends.Effect.LegendPatientHunter <- null;
+effectsDefs.push({
+	ID = "effects.legend_patient_hunter",
+	Script = "scripts/skills/effects/legend_patient_hunter_effect",
+	Const = "LegendPatientHunter",
+	Name = "Patient Hunter",
+});
 
 ::Legends.Effect.LegendPeacefulReassured <- null;
 effectsDefs.push({
@@ -1798,6 +1422,22 @@ effectsDefs.push({
 	Script = "scripts/skills/effects/legend_peaceful_reassured_effect",
 	Name = "Reassured",
 	Const = "LegendPeacefulReassured"
+});
+
+::Legends.Effect.LegendPerfectFocus <- null;
+effectsDefs.push({
+	ID = "effects.legend_perfect_focus",
+	Script = "scripts/skills/effects/legend_perfect_focus_effect",
+	Name = "Perfect Focus",
+	Const = "LegendPerfectFocus"
+});
+
+::Legends.Effect.LegendPossession <- null;
+effectsDefs.push({
+	ID = "effects.legend_possession",
+	Script = "scripts/skills/effects/legend_possession_effect",
+	Name = "Possessed",
+	Const = "LegendPossession"
 });
 
 ::Legends.Effect.LegendPrayerOfFaith <- null;
@@ -1808,12 +1448,36 @@ effectsDefs.push({
 	Const = "LegendPrayerOfFaith"
 });
 
-::Legends.Effect.LegendRatPoison <- null;
+::Legends.Effect.LegendPrayerOfLife <- null;
 effectsDefs.push({
-	ID = "effects.legend_rat_poison",
-	Script = "scripts/skills/effects/legend_rat_poison_effect",
-	Name = "Infected",
-	Const = "LegendRatPoison"
+	ID = "effects.legend_prayer_of_life",
+	Script = "scripts/skills/effects/legend_prayer_of_life_effect",
+	Name = "Prayer of Hope",
+	Const = "LegendPrayerOfLife"
+});
+
+::Legends.Effect.LegendPrepareBullet <- null;
+effectsDefs.push({
+	ID = "effects.legend_prepare_bullet",
+	Script = "scripts/skills/effects/legend_prepare_bullet_effect",
+	Const = "LegendPrepareBullet",
+	Name = "Prepare Bullet",
+});
+
+::Legends.Effect.LegendPushingForward <- null;
+effectsDefs.push({
+	ID = "effects.legend_pushing_forward",
+	Script = "scripts/skills/effects/legend_pushing_forward",
+	Name = "Pushing Forward",
+	Const = "LegendPushingForward"
+});
+
+::Legends.Effect.LegendRamHammer <- null;
+effectsDefs.push({
+	ID = "effects.legend_ram_hammer",
+	Script = "scripts/skills/effects/legend_ram_hammer_effect",
+	Const = "LegendRamHammer",
+	Name = "Ram Hammer",
 });
 
 ::Legends.Effect.LegendRealmOfNightmares <- null;
@@ -1824,12 +1488,68 @@ effectsDefs.push({
 	Const = "LegendRealmOfNightmares"
 });
 
-::Legends.Effect.Scroll <- null;
+::Legends.Effect.LegendRedbackPoisonCoat <- null;
 effectsDefs.push({
-	ID = "effects.scroll",
-	Script = "scripts/skills/effects/legend_scroll_effect",
-	Name = "Scroll Effect",
-	Const = "Scroll"
+	ID = "effects.legend_redback_poison_coat",
+	Script = "scripts/skills/effects/legend_redback_poison_coat_effect",
+	Name = "Weapon coated with poison",
+	Const = "LegendRedbackPoisonCoat"
+});
+
+::Legends.Effect.LegendRedbackPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_redback_potion",
+	Script = "scripts/skills/effects/legend_redback_potion_effect",
+	Name = "Hyper-Mutated Circulatory System",
+	Const = "LegendRedbackPotion"
+});
+
+::Legends.Effect.LegendRedbackSpiderPoison <- null;
+effectsDefs.push({
+	ID = "effects.legend_redback_spider_poison",
+	Script = "scripts/skills/effects/legend_redback_spider_poison_effect",
+	Name = "Poisoned (redback)",
+	Const = "LegendRedbackSpiderPoison"
+});
+
+::Legends.Effect.LegendReturnFavor <- null;
+effectsDefs.push({
+	ID = "effects.legend_return_favor",
+	Script = "scripts/skills/effects/legend_return_favor_effect",
+	Name = "Return Favor",
+	Const = "LegendReturnFavor"
+});
+
+::Legends.Effect.LegendRockUnholdPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_rock_unhold_potion",
+	Script = "scripts/skills/effects/legend_rock_unhold_potion_effect",
+	Name = "Titan's Power",
+	Const = "LegendRockUnholdPotion"
+});
+
+::Legends.Effect.LegendSafeguarded <- null;
+effectsDefs.push({
+	ID = "effects.legend_safeguarded",
+	Script = "scripts/skills/effects/legend_safeguarded_effect",
+	Name = "Safeguarded",
+	Const = "LegendSafeguarded"
+});
+
+::Legends.Effect.LegendSafeguarding <- null;
+effectsDefs.push({
+	ID = "effects.legend_safeguarding",
+	Script = "scripts/skills/effects/legend_safeguarding_effect",
+	Name = "Safeguarding",
+	Const = "LegendSafeguarding"
+});
+
+::Legends.Effect.LegendSanctifiedEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_sanctified_effect",
+	Script = "scripts/skills/effects/legend_sanctified_effect",
+	Name = "Sanctified",
+	Const = "LegendSanctifiedEffect"
 });
 
 ::Legends.Effect.LegendSecondWind <- null;
@@ -1848,12 +1568,28 @@ effectsDefs.push({
 	Const = "LegendSkinGhoulBlood"
 });
 
-::Legends.Effect.LegendSprint <- null;
+::Legends.Effect.LegendSkinGhoulPotion <- null;
 effectsDefs.push({
-	ID = "effects.legend_sprint",
-	Script = "scripts/skills/effects/legend_sprint_effect",
-	Name = "Sprinting",
-	Const = "LegendSprint"
+	ID = "effects.legend_skinghoul_potion",
+	Script = "scripts/skills/effects/legend_skinghoul_potion_effect",
+	Name = "Malice Unguis",
+	Const = "LegendSkinGhoulPotion"
+});
+
+::Legends.Effect.LegendSongOfLife <- null;
+effectsDefs.push({
+	ID = "effects.legend_song_of_life",
+	Script = "scripts/skills/effects/legend_song_of_life_effect",
+	Name = "Drums of Life",
+	Const = "LegendSongOfLife"
+});
+
+::Legends.Effect.LegendStollwurmPotion <- null;
+effectsDefs.push({
+	ID = "effects.legend_stollwurm_potion",
+	Script = "scripts/skills/effects/legend_stollwurm_potion_effect",
+	Name = "Thorny Dragonhide",
+	Const = "LegendStollwurmPotion"
 });
 
 ::Legends.Effect.LegendStollwurmBlood <- null;
@@ -1862,6 +1598,126 @@ effectsDefs.push({
 	Script = "scripts/skills/effects/legend_stollwurm_blood_effect",
 	Name = "Stollwurm Vigor",
 	Const = "LegendStollwurmBlood"
+});
+
+::Legends.Effect.LegendStupefied <- null;
+effectsDefs.push({
+	ID = "effects.legend_stupefied",
+	Script = "scripts/skills/effects/legend_stupefied_effect",
+	Name = "Stupefied",
+	Const = "LegendStupefied"
+});
+
+::Legends.Effect.LegendSummonedBearEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_bear_effect",
+	Script = "scripts/skills/effects/legend_summoned_bear_effect",
+	Name = "Summoned a Bear",
+	Const = "LegendSummonedBearEffect"
+});
+
+::Legends.Effect.LegendSummonedCatapultEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_catapult_effect",
+	Script = "scripts/skills/effects/legend_summoned_catapult_effect",
+	Name = "Summoned a Catapult",
+	Const = "LegendSummonedCatapultEffect"
+});
+
+::Legends.Effect.LegendSummonedFalconEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_falcon_effect",
+	Script = "scripts/skills/effects/legend_summoned_falcon_effect",
+	Name = "Summoned a Falcon",
+	Const = "LegendSummonedFalconEffect"
+});
+
+::Legends.Effect.LegendSummonedHoundEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_hound_effect",
+	Script = "scripts/skills/effects/legend_summoned_hound_effect",
+	Name = "Summoned a Hound",
+	Const = "LegendSummonedHoundEffect"
+});
+
+::Legends.Effect.LegendSummonedHoundEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_hound_effect",
+	Script = "scripts/skills/effects/legend_summoned_hound_effect",
+	Name = "Summoned a Hound",
+	Const = "LegendSummonedHoundEffect"
+});
+
+::Legends.Effect.LegendSummonedSighthoundEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_sighthound_effect",
+	Script = "scripts/skills/effects/legend_summoned_sighthound_effect",
+	Name = "Summoned a Sighthound",
+	Const = "LegendSummonedSighthoundEffect"
+});
+
+::Legends.Effect.LegendSummonedWolfEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_summoned_wolf_effect",
+	Script = "scripts/skills/effects/legend_summoned_wolf_effect",
+	Name = "Summoned a Wolf",
+	Const = "LegendSummonedWolfEffect"
+});
+
+::Legends.Effect.LegendTackled <- null;
+effectsDefs.push({
+	ID = "effects.legend_tackled",
+	Script = "scripts/skills/effects/legend_tackled_effect",
+	Name = "Knocked Over",
+	Const = "LegendTackled"
+});
+
+::Legends.Effect.LegendThrewSandEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_threw_sand_effect",
+	Script = "scripts/skills/effects/legend_threw_sand_effect",
+	Name = "Threw Sand",
+	Const = "LegendThrewSandEffect"
+});
+
+::Legends.Effect.LegendValaChantDisharmonyEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_disharmony_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_disharmony_effect",
+	Name = "Disharmony",
+	Const = "LegendValaChantDisharmonyEffect"
+});
+
+::Legends.Effect.LegendValaChantFuryEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_fury_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_fury_effect",
+	Name = "Fury",
+	Const = "LegendValaChantFuryEffect"
+});
+
+::Legends.Effect.LegendValaChantSensesEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_vala_chant_senses_effect",
+	Script = "scripts/skills/effects/legend_vala_chant_senses_effect",
+	Name = "Heightened Senses",
+	Const = "LegendValaChantSensesEffect"
+});
+
+::Legends.Effect.LegendValaCurrentlyChanting <- null;
+effectsDefs.push({
+	ID = "effects.legend_vala_currently_chanting",
+	Script = "scripts/skills/effects/legend_vala_currently_chanting",
+	Name = "Currently Chanting",
+	Const = "LegendValaCurrentlyChanting"
+});
+
+::Legends.Effect.LegendValaInTrance <- null;
+effectsDefs.push({
+	ID = "effects.legend_vala_in_trance",
+	Script = "scripts/skills/effects/legend_vala_in_trance",
+	Name = "In Trance",
+	Const = "LegendValaInTrance"
 });
 
 ::Legends.Effect.LegendValaSpiritualBondEffect <- null;
@@ -1920,62 +1776,20 @@ effectsDefs.push({
 	Const = "LegendViolentDecompositionEffect"
 });
 
+::Legends.Effect.LegendWarChant <- null;
+effectsDefs.push({
+	ID = "effects.legend_war_chant",
+	Script = "scripts/skills/effects/legend_war_chant_effect",
+	Name = "Drums of War",
+	Const = "LegendWarChant"
+});
+
 ::Legends.Effect.LegendWebAtStart <- null;
 effectsDefs.push({
 	ID = "effects.legend_web_at_start",
 	Script = "scripts/skills/effects/legend_web_at_start_effect",
 	Name = "Start Combat Trapped in Web",
 	Const = "LegendWebAtStart"
-});
-
-::Legends.Effect.LegendZombiePoison <- null;
-effectsDefs.push({
-	ID = "effects.legend_zombie_poison",
-	Script = "scripts/skills/effects/legend_zombie_poison_effect",
-	Name = "Infected",
-	Const = "LegendZombiePoison"
-});
-
-
-
-::Legends.Effect.LegendHeadache <- null;
-effectsDefs.push({
-	ID = "effects.legend_headache",
-	Script = "scripts/skills/effects_world/legend_headache_effect",
-	Name = "Headache",
-	Const = "LegendHeadache"
-});
-
-::Legends.Effect.LegendIrritable <- null;
-effectsDefs.push({
-	ID = "effects.legend_irritable",
-	Script = "scripts/skills/effects_world/legend_irritable_effect",
-	Name = "Irritable",
-	Const = "LegendIrritable"
-});
-
-::Legends.Effect.LegendWellTended <- null;
-effectsDefs.push({
-	ID = "effects.legend_well_tended",
-	Script = "scripts/skills/effects_world/legend_well_tended_effect",
-	Name = "Well Tended",
-	Const = "LegendWellTended"
-});
-
-::Legends.Effect.LegendRssRadianceEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_RSS_radiance_effect",
-	Script = "scripts/skills/rune_sigils/legend_RSS_radiance_effect",
-	Name = "Blinded",
-	Const = "LegendRssRadianceEffect"
-});
-
-::Legends.Effect.LegendRswBleedingEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_RSW_bleeding_effect",
-	Script = "scripts/skills/rune_sigils/legend_RSW_bleeding_effect",
-	Name = "Bleeding",
-	Const = "LegendRswBleedingEffect"
 });
 
 ::Legends.Effect.LegendVeteranLevels <- null;
@@ -1986,36 +1800,38 @@ effectsDefs.push({
 	Const = "LegendVeteranLevels"
 });
 
-::Legends.Effect.LegendHiddenKobold <- null; // purposefully leaving because kobolds are dead but the effect is cool
+::Legends.Effect.LegendWhiteDirewolfPotion <- null;
 effectsDefs.push({
-	ID = "effects.legend_hidden_kobold",
-	Script = "scripts/skills/effects/legend_hidden_kobold_effect",
-	Name = "Hidden",
-	Const = "LegendHiddenKobold"
+	ID = "effects.legend_white_direwolf_potion",
+	Script = "scripts/skills/effects/legend_white_direwolf_potion_effect",
+	Name = "Unflagging Energy",
+	Const = "LegendWhiteDirewolfPotion"
 });
 
-::Legends.Effect.Night <- null;
+::Legends.Effect.LegendWineTipsyEffect <- null;
 effectsDefs.push({
-	ID = "special.night",
-	Script = "scripts/skills/special/night_effect",
-	Const = "Night",
-	Name = "Nighttime",
+	ID = "effects.legend_wine_tipsy_effect",
+	Script = "scripts/skills/effects/legend_wine_tipsy_effect",
+	Name = "Tipsy",
+	Const = "LegendWineTipsyEffect"
 });
 
-::Legends.Effect.OathOfFortificationWarning <- null;
+::Legends.Effect.LegendZombiePoison <- null;
 effectsDefs.push({
-	ID = "special.oath_of_fortification_warning",
-	Script = "scripts/skills/special/oath_of_fortification_warning",
-	Const = "OathOfFortificationWarning",
-	Name = "Fortifying!",
+	ID = "effects.legend_zombie_poison",
+	Script = "scripts/skills/effects/legend_zombie_poison_effect",
+	Name = "Infected",
+	Const = "LegendZombiePoison"
 });
 
-::Legends.Effect.OathOfHonorWarning <- null;
+// vanilla special effects in order
+
+::Legends.Effect.BagFatigue <- null;
 effectsDefs.push({
-	ID = "special.oath_of_honor_warning",
-	Script = "scripts/skills/special/oath_of_honor_warning",
-	Const = "OathOfHonorWarning",
-	Name = "Honorable Combat!",
+	ID = "special.bag_fatigue",
+	Script = "scripts/skills/special/bag_fatigue",
+	Const = "BagFatigue",
+	Name = "Bag Fatigue",
 });
 
 ::Legends.Effect.DoubleGrip <- null;
@@ -2034,12 +1850,20 @@ effectsDefs.push({
 	Name = "Mood Check",
 });
 
-::Legends.Effect.Check <- null;
+::Legends.Effect.MoraleCheck <- null;
 effectsDefs.push({
 	ID = "special.morale.check",
 	Script = "scripts/skills/special/morale_check",
 	Const = "Check",
 	Name = "Morale Check",
+});
+
+::Legends.Effect.Night <- null;
+effectsDefs.push({
+	ID = "special.night",
+	Script = "scripts/skills/special/night_effect",
+	Const = "Night",
+	Name = "Nighttime",
 });
 
 ::Legends.Effect.NoAmmoWarning <- null;
@@ -2050,12 +1874,46 @@ effectsDefs.push({
 	Name = "No Ammunition!",
 });
 
+::Legends.Effect.OathOfFortificationWarning <- null;
+effectsDefs.push({
+	ID = "special.oath_of_fortification_warning",
+	Script = "scripts/skills/special/oath_of_fortification_warning",
+	Const = "OathOfFortificationWarning",
+	Name = "Fortifying!",
+});
+
+::Legends.Effect.OathOfHonorWarning <- null;
+effectsDefs.push({
+	ID = "special.oath_of_honor_warning",
+	Script = "scripts/skills/special/oath_of_honor_warning",
+	Const = "OathOfHonorWarning",
+	Name = "Honorable Combat!",
+});
+
+::Legends.Effect.StatsCollector <- null;
+effectsDefs.push({
+	ID = "special.stats_collector",
+	Script = "scripts/skills/special/stats_collector",
+	Const = "StatsCollector",
+	Name = "Stats Collector",
+});
+
 ::Legends.Effect.WeaponBreakingWarning <- null;
 effectsDefs.push({
 	ID = "special.weapon_breaking_warning",
 	Script = "scripts/skills/special/weapon_breaking_warning",
 	Const = "WeaponBreakingWarning",
 	Name = "Weapon in poor condition!",
+});
+
+// legend special effects in order
+
+::Legends.Effect.LegendHorseriderSkill <- null;
+effectsDefs.push({
+	ID = "special.legend_horserider_skill",
+	Script = "scripts/skills/special/legend_horserider_skill",
+	Const = "LegendHorseriderSkill",
+	Name = "",
 });
 
 ::Legends.Effect.LegendRain <- null;
@@ -2065,6 +1923,16 @@ effectsDefs.push({
 	Const = "LegendRain",
 	Name = "Raining",
 });
+
+::Legends.Effect.LegendRelationshipCheck <- null;
+effectsDefs.push({
+	ID = "special.legend_relationship_check",
+	Script = "scripts/skills/special/legend_relationship_check",
+	Const = "LegendRelationshipCheck",
+	Name = "Relationship Check",
+});
+
+// legend runes
 
 ::Legends.Effect.LegendRsaEndurance <- null;
 effectsDefs.push({
@@ -2130,14 +1998,6 @@ effectsDefs.push({
 	Name = "Rune Sigil: Defense",
 });
 
-::Legends.Effect.LegendRssRadiance <- null;
-effectsDefs.push({
-	ID = "special.legend_RSS_radiance",
-	Script = "scripts/skills/rune_sigils/legend_RSS_radiance",
-	Const = "LegendRssRadiance",
-	Name = "Rune Sigil: Radiance",
-});
-
 ::Legends.Effect.LegendRssDurability <- null;
 effectsDefs.push({
 	ID = "special.legend_RSS_durability",
@@ -2146,12 +2006,36 @@ effectsDefs.push({
 	Name = "Rune Sigil: Durability",
 });
 
+::Legends.Effect.LegendRssRadiance <- null;
+effectsDefs.push({
+	ID = "special.legend_RSS_radiance",
+	Script = "scripts/skills/rune_sigils/legend_RSS_radiance",
+	Const = "LegendRssRadiance",
+	Name = "Rune Sigil: Radiance",
+});
+
+::Legends.Effect.LegendRssRadianceEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_RSS_radiance_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSS_radiance_effect",
+	Name = "Blinded",
+	Const = "LegendRssRadianceEffect"
+});
+
 ::Legends.Effect.LegendRswAccuracy <- null;
 effectsDefs.push({
 	ID = "special.legend_RSW_accuracy",
 	Script = "scripts/skills/rune_sigils/legend_RSW_accuracy",
 	Const = "LegendRswAccuracy",
 	Name = "Rune Sigil: Accuracy",
+});
+
+::Legends.Effect.LegendRswBleedingEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_RSW_bleeding_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSW_bleeding_effect",
+	Name = "Bleeding",
+	Const = "LegendRswBleedingEffect"
 });
 
 ::Legends.Effect.LegendRswBleeding <- null;
@@ -2170,20 +2054,28 @@ effectsDefs.push({
 	Name = "Rune Sigil: Feeding",
 });
 
-::Legends.Effect.LegendRswBlazing <- null;
-effectsDefs.push({
-	ID = "special.legend_RSW_blazing",
-	Script = "scripts/skills/rune_sigils/legend_RSW_blazing",
-	Const = "LegendRswBlazing",
-	Name = "Rune Sigil: Blazing",
-});
-
 ::Legends.Effect.LegendRswPoison <- null;
 effectsDefs.push({
 	ID = "special.legend_RSW_poison",
 	Script = "scripts/skills/rune_sigils/legend_RSW_poison",
 	Const = "LegendRswPoison",
 	Name = "Rune Sigil: Poison",
+});
+
+::Legends.Effect.LegendRswPoisonEffect <- null;
+effectsDefs.push({
+	ID = "effects.legend_RSW_poison_effect",
+	Script = "scripts/skills/rune_sigils/legend_RSW_poison_effect",
+	Name = "Poisoned (rune)",
+	Const = "LegendRswPoisonEffect"
+});
+
+::Legends.Effect.LegendRswBlazing <- null;
+effectsDefs.push({
+	ID = "special.legend_RSW_blazing",
+	Script = "scripts/skills/rune_sigils/legend_RSW_blazing",
+	Const = "LegendRswBlazing",
+	Name = "Rune Sigil: Blazing",
 });
 
 ::Legends.Effect.LegendRswPower <- null;
@@ -2201,117 +2093,5 @@ effectsDefs.push({
 	Const = "LegendRswUnbreaking",
 	Name = "Rune Sigil: Unbreaking",
 });
-
-::Legends.Effect.LegendRelationshipCheck <- null;
-effectsDefs.push({
-	ID = "special.legend_relationship_check",
-	Script = "scripts/skills/special/legend_relationship_check",
-	Const = "LegendRelationshipCheck",
-	Name = "Relationship Check",
-});
-
-::Legends.Effect.LegendAnimatedPlayerProperties <- null;
-effectsDefs.push({
-	ID = "special.legend_animated_player_properties",
-	Script = "scripts/skills/special/legend_animated_player_properties",
-	Const = "LegendAnimatedPlayerProperties",
-	Name = "",
-});
-
-::Legends.Effect.LegendHorseriderSkill <- null;
-effectsDefs.push({
-	ID = "special.legend_horserider_skill",
-	Script = "scripts/skills/special/legend_horserider_skill",
-	Const = "LegendHorseriderSkill",
-	Name = "",
-});
-
-::Legends.Effect.LegendGravedigging <- null;
-effectsDefs.push({
-	ID = "effects.legend_gravedigging",
-	Script = "scripts/skills/effects/legend_gravedigging_effect",
-	Const = "LegendGravedigging",
-	Name = "Gravedigging",
-});
-
-::Legends.Effect.LegendMartialMarch <- null;
-effectsDefs.push({
-	ID = "effects.legend_martial_march",
-	Script = "scripts/skills/effects/legend_martial_march_effect",
-	Const = "LegendMartialMarch",
-	Name = "Martial March",
-});
-
-::Legends.Effect.LegendPrepareBullet <- null;
-effectsDefs.push({
-	ID = "effects.legend_prepare_bullet",
-	Script = "scripts/skills/effects/legend_prepare_bullet_effect",
-	Const = "LegendPrepareBullet",
-	Name = "Prepare Bullet",
-});
-
-
-
-::Legends.Effect.LegendRamHammer <- null;
-effectsDefs.push({
-	ID = "effects.legend_ram_hammer",
-	Script = "scripts/skills/effects/legend_ram_hammer_effect",
-	Const = "LegendRamHammer",
-	Name = "Ram Hammer",
-});
-
-
-
-::Legends.Effect.LegendFlourish <- null;
-effectsDefs.push({
-	ID = "effects.legend_flourish",
-	Script = "scripts/skills/effects/legend_flourish_effect",
-	Const = "LegendFlourish",
-	Name = "Flourish",
-});
-
-::Legends.Effect.LegendFreedomOfMovement <- null;
-effectsDefs.push({
-	ID = "effects.legend_freedom_of_movement",
-	Script = "scripts/skills/effects/legend_freedom_of_movement_effect",
-	Const = "LegendFreedomOfMovement",
-	Name = "Freedom of Movement",
-});
-
-::Legends.Effect.LegendEnragedHyenaBite <- null;
-effectsDefs.push({
-	ID = "effects.legend_enraged_hyena_bite",
-	Script = "scripts/skills/effects/legend_enraged_hyena_bite_effect",
-	Const = "LegendEnragedHyenaBite",
-	Name = "Locked in Jaws",
-});
-
-::Legends.Effect.LegendEnragedHyenaGrip <- null;
-effectsDefs.push({
-	ID = "effects.legend_enraged_hyena_grip",
-	Script = "scripts/skills/effects/legend_enraged_hyena_grip_effect",
-	Const = "LegendEnragedHyenaGrip",
-	Name = "Predatory Grip",
-});
-
-::Legends.Effect.LegendPatientHunter <- null;
-effectsDefs.push({
-	ID = "effects.legend_patient_hunter",
-	Script = "scripts/skills/effects/legend_patient_hunter_effect",
-	Const = "LegendPatientHunter",
-	Name = "Patient Hunter",
-});
-
-
-
-::Legends.Effect.LegendDualWield <- null;
-effectsDefs.push({
-	ID = "effects.legend_dual_wield",
-	Script = "scripts/skills/effects/legend_dual_wield_effect",
-	Name = "Dual Wielding",
-	Const = "LegendDualWield"
-});
-
-
 
 ::Legends.Effects.addEffectDefObjects(effectsDefs);

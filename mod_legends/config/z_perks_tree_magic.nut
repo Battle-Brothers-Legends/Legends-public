@@ -375,7 +375,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[::Legends.Perk.LegendMagicMissileFocus],
 		[::Legends.Perk.LegendChainLightning, ::Legends.Perk.LegendMagicSleep],
-		[::Legends.Perk.LegendLevitate, ::Legends.Perk.LegendScry],
+		[::Legends.Perk.LegendScry],
 		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
 	]
 };

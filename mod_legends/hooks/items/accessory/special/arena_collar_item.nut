@@ -1,5 +1,5 @@
 ::mods_hookExactClass("items/accessory/special/arena_collar_item", function(o) {
-	o.m.affectedSkills <- ["legend_leap_skill", "legend_climb_skill", "legend_levitating_skill"];
+	o.m.affectedSkills <- ["legend_leap_skill", "legend_climb_skill"];
 
 	local create = o.create;
 	o.create = function()

@@ -27,7 +27,6 @@
 ::Const.Strings.PerkName.LegendBloodyHarvest <- "Bloody Harvest";
 ::Const.Strings.PerkName.LegendPerfectFocus <- "Perfect Focus";
 ::Const.Strings.PerkName.LegendReturnFavor <- "Return Favor";
-::Const.Strings.PerkName.LegendSprint <- "Sprint";
 ::Const.Strings.PerkName.LegendInspire <- "Inspire";
 ::Const.Strings.PerkName.LegendAthlete <- "Athlete";
 ::Const.Strings.PerkName.LegendQuickStep <- "Quick Step";
@@ -250,7 +249,6 @@
 ::Const.Strings.PerkName.LegendGruesomeFeast <- "Gruesome Feast";
 ::Const.Strings.PerkName.LegendResurrectionist <- "Resurrectionist";
 ::Const.Strings.PerkName.LegendScry <- "Scry";
-::Const.Strings.PerkName.LegendLevitate <- "Levitate";
 ::Const.Strings.PerkName.LegendTerrifyingVisage <- "Terrifying Visage";
 ::Const.Strings.PerkName.LegendMagicMissile <- "Magic Missile";
 ::Const.Strings.PerkName.LegendBrinkOfDeath <- "Brink of Death"; //66% chance to return a fallen bro as a zombie, needs functionality check.
@@ -518,16 +516,6 @@ Push your allies beyond their limits!
 • Costs [color=%negative%]8[/color] AP and [color=%negative%]30[/color] Fatigue.
 ";
 
-::Const.Strings.PerkDescription.LegendSprint <- @"
-Burst forth like a bolt of lightning, leaving all in your wake.
-
-[color=%active%][u]Active:[/u][/color]
-• Unlocks the [color=%skill%]Sprint[/color] skill which allows you to quickly cover 4 tiles in a straight line
-• does not work across rough terrain or through enemy zones of control.
-
-• Costs [color=%negative%]5[/color] AP and [color=%negative%]25[/color] Fatigue.
-";
-
 ::Const.Strings.PerkDescription.LegendQuickStep <- @"
 Exert yourself to move one tile at an unusually quick speed.
 
@@ -683,13 +671,6 @@ Unleash a raging inferno at the target location that explodes and then sets the 
 [color=%passive%][u]Passive:[/u][/color]Allows you to boost the attacks of an undead minion.
 
 • Costs [color=%negative%]3[/color] AP and [color=%negative%]10[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendSprint <- @"
-Run as fast as you can!
-
-[color=%active%][u]Active:[/u][/color]
-• For the remainder of this turn, the Action Point cost for movement is reduced by [color=%positive%]1[/color] for each tile, but the Fatigue cost is doubled.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecBandage <- @"
@@ -1614,15 +1595,6 @@ Use your extraordinary senses to notice things no one else can.
 • Unlocks the [color=%skill%]Scry[/color] skill which reveals everything within twelve tiles.
 
 • Costs [color=%negative%]3[/color] AP and [color=%negative%]15[/color] Fatigue.
-";
-
-::Const.Strings.PerkDescription.LegendLevitate <- @"
-Levitate a person above the ground, making movement across any terrain cost less.
-
-[color=%active%][u]Active:[/u][/color]
-• Movement across any terrain cost [color=%negative%]1[/color] AP and [color=%negative%]2[/color] Fatigue per tile.
-
-• Costs [color=%negative%]4[/color] AP and [color=%negative%]20[/color] Fatigue.
 ";
 
 ::Const.Strings.PerkDescription.LegendSpecialistShieldSkill <- @"
@@ -2559,7 +2531,8 @@ The old gods have allowed you to wield their light.
 
 • When activated imbues a tile and its surrounding tiles with the Sanctified Ground effect for two turns.
 
-• Human allies within the area become [color=%status%]Sanctified[/color], gaining immunity to [color=%status%]Injuries[/color], [color=%status%]Bleeding[/color], [color=%status%]Poisoned[/color], and [color=%status%]Morale checks[/color] when taking damage.
+• Human allies within the area become [color=%status%]Sanctified[/color], gaining immunity to [color=%status%]Injuries[/color], [color=%status%]Bleeding[/color], [color=%status%]
+ed[/color], and [color=%status%]Morale checks[/color] when taking damage.
 
 • Cultists and Undead become [color=%status%]Consecrated[/color], taking [color=%damage%]10[/color] to [color=%damage%]20[/color] damage each turn, and lose any immunity to [color=%status%]Injuries[/color], [color=%status%]Bleeding[/color], and [color=%status%]Poison[/color].
 

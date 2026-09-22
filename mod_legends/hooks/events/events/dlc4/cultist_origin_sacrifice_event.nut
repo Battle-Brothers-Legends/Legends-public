@@ -33,10 +33,7 @@
 					local candleChanges = [];
 
 					foreach( bro in brothers ) {
-						if (bro.getSkills().hasEffect(::Legends.Effect.LegendAnimatedPlayerProperties))
-							continue;
-
-						if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist | ::Const.BackgroundType.Cultist) ||
+						if (bro.getBackground().isBackgroundType(this.Const.BackgroundType.ConvertedCultist | this.Const.BackgroundType.Cultist) ||
 							::Legends.Backgrounds.hasAny(bro,
 								::Legends.Background.LegendCommanderNecro,
 								::Legends.Background.LegendVala,
