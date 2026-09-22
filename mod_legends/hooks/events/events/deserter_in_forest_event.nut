@@ -1,6 +1,6 @@
-::mods_hookExactClass("events/events/deserter_in_forest_event", function(o) {
+::mods_hookExactClass("events/events/deserter_in_forest_event", function (o) {
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
 		foreach (s in this.m.Screens) {
 			if (s.ID == "A") {
@@ -8,22 +8,10 @@
 				s.Options[0].Text = "Right there.";
 			}
 			if (s.ID == "B") {
-				s.start <- function ( _event ) {
-					local roster = ::World.getTemporaryRoster();
-					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-					{
-						_event.m.Dude.getFlags().add("PlayerSkeleton");
-						_event.m.Dude.getFlags().add("undead");
-						_event.m.Dude.getFlags().add("skeleton");
-						_event.m.Dude.setStartValuesEx([::Legends.Background.Butcher]);
-						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
-					}
-					else
-					{
-						_event.m.Dude.setStartValuesEx([::Legends.Background.Deserter]);
-					}
+				s.start <- function (_event) {
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude.setStartValuesEx([(::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? ::Legends.Background.Butcher : ::Legends.Background.Deserter)]);
+
 					_event.m.Dude.getBackground().m.RawDescription = "You found %name% the deserter being chased through the forest. Though bounty hunters were hot on the trail, you elected to defend the fugitive and for that swore an oath to you.";
 					_event.m.Dude.getBackground().buildDescription(true);
 					this.Characters.push(_event.m.Dude.getImagePath());

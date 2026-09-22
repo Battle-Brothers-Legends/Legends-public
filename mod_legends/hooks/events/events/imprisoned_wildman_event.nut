@@ -53,19 +53,9 @@
 			if (s.ID == "Wildman1") {
 				s.Text = "[img]gfx/ui/events/event_100.png[/img]An outstanding capacity for violence is well-suited to a mercenary band. You agree to take the imprisoned wildling on.";
 				s.start <- function ( _event ) {
-					local roster = ::World.getTemporaryRoster();
-					_event.m.Dude = roster.create("scripts/entity/tactical/player");
-					if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
-						_event.m.Dude.getFlags().add("PlayerSkeleton");
-						_event.m.Dude.getFlags().add("undead");
-						_event.m.Dude.getFlags().add("skeleton");
-						_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
-						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-						::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
-					} else {
-						_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
-					}
-
+					_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+					_event.m.Dude.setStartValuesEx([::Legends.Background.Wildman]);
+					
 					_event.m.Dude.setTitle("the Animal");
 					_event.m.Dude.getBackground().m.RawDescription = "%name% was \'saved\' by you during a confrontation with an animal tamer-turned-enslaver. A sense of gratitude and debt overcomes any language barriers: the once imprisoned wildling serves the company loyally for the rescue.";
 					_event.m.Dude.getBackground().buildDescription(true);

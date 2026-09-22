@@ -1,7 +1,8 @@
-this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
+this.legion_origin_recruitment_event <- this.inherit("scripts/events/events/legends/scenario/legion/legion_event", {
 	m = {
 		Dude = null
 	},
+
 	function create() {
 		this.m.ID = "event.legion_origin_recruitment";
 		this.m.Title = "Along the road...";
@@ -12,25 +13,22 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Yes, join us.",
-				function getResult(_event) {
-					::World.getPlayerRoster().add(_event.m.Dude);
-					::World.getTemporaryRoster().clear();
-					_event.m.Dude.onHired();
-					_event.m.Dude = null;
-					return 0;
+			Options = [
+				{
+					Text = "Yes, join us.",
+					function getResult(_event) {
+						::World.getPlayerRoster().add(_event.m.Dude);
+						::World.getTemporaryRoster().clear();
+						_event.m.Dude.onHired();
+						_event.m.Dude = null;
+						return 0;
+					}
 				}
-			}],
+			],
+
 			function start(_event) {
-				local roster = ::World.getTemporaryRoster();
-				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				_event.m.Dude.getFlags().add("PlayerSkeleton");
-				_event.m.Dude.getFlags().add("undead");
-				_event.m.Dude.getFlags().add("skeleton");
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/legend_player_legion");
 				_event.m.Dude.setStartValuesEx(::Const.CharacterBackgroundsAnimated);
-				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-				::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
 				this.Characters.push(_event.m.Dude.getImagePath());
 				local nobles = ::World.FactionManager.getFactionsOfType(::Const.FactionType.NobleHouse);
 
@@ -43,20 +41,7 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 	}
 
 	function onUpdateScore() {
-		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
-			return;
-		}
-
-		local hasSkeleton = false;
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getFlags().has("PlayerSkeleton")) {
-				hasSkeleton = true;
-				break;
-			}
-		}
-
-		if (!hasSkeleton) {
+		if (!this.validateLegionEvent()) {
 			return;
 		}
 
@@ -85,6 +70,4 @@ this.legion_origin_recruitment_event <- this.inherit("scripts/events/event", {
 	function onClear() {
 		this.m.Dude = null;
 	}
-
 });
-

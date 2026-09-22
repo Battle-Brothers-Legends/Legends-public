@@ -1,43 +1,31 @@
-::mods_hookExactClass("events/events/sacrificed_man_event", function(o) {
+::mods_hookExactClass("events/events/sacrificed_man_event", function (o) {
 	local create = o.create;
-	o.create = function() {
+	o.create = function () {
 		create();
-		::Legends.Screens.hook(this, "Cultist", function(_screen) {
-			_screen.start <- function ( _event ) {
+		::Legends.Screens.hook(this, "Cultist", function (_screen) {
+			_screen.start <- function (_event) {
 				this.Characters.push(_event.m.Cultist.getImagePath());
-				local roster = ::World.getTemporaryRoster();
-				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-				{
-					_event.m.Dude.getFlags().add("PlayerSkeleton");
-					_event.m.Dude.getFlags().add("undead");
-					_event.m.Dude.getFlags().add("skeleton");
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Cultist]);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
-				}
-				else if (::World.Assets.getOrigin().getID() == "scenario.cultists")
-				{
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				if (::World.Assets.getOrigin().getID() == "scenario.cultists") {
 					_event.m.Dude.getBaseProperties().MeleeSkill += 10;
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Cultist]);
 				}
-				else
-				{
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Cultist]);
-				}
+				_event.m.Dude.setStartValuesEx([::Legends.Background.Cultist]);
 
 				_event.m.Dude.setTitle("the Sacrifice");
 				_event.m.Dude.getBackground().m.RawDescription = "You found this man as a sacrifice, but he arose from his fate to be a servant of Davkul. He asked to fight for you, and you, for some reason, actually agreed.";
 				_event.m.Dude.getBackground().buildDescription(true);
 
-				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null)
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand) != null) {
 					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Mainhand).removeSelf();
+				}
 
-				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null)
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand) != null) {
 					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Offhand).removeSelf();
+				}
 
-				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null)
+				if (_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head) != null) {
 					_event.m.Dude.getItems().getItemAtSlot(::Const.ItemSlot.Head).removeSelf();
+				}
 
 				this.Characters.push(_event.m.Dude.getImagePath());
 			}
@@ -45,38 +33,46 @@
 	}
 
 	o.onUpdateScore = function () {
-		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax())
+		if (::World.getPlayerRoster().getSize() >= ::World.Assets.getBrothersMax()) {
 			return;
+		}
 
 		local town = ::Legends.S.getClosestSettlement();
-		if (town == null)
+		if (town == null) {
 			return;
+		}
 
 		local distance = town.getTile().getDistanceTo(::World.State.getPlayer().getTile());
-		if (distance < 6 || distance > 12)
+		if (distance < 6 || distance > 12) {
 			return;
+		}
 
-		if (!::World.Assets.getStash().hasEmptySlot())
+		if (!::World.Assets.getStash().hasEmptySlot()) {
 			return;
+		}
 
 		local brothers = ::World.getPlayerRoster().getAll();
 		local candidates_cultist = [];
 		local candidates_other = [];
 
-		foreach( bro in brothers ) {
-			if (bro.getSkills().hasTrait(::Legends.Trait.Player))
+		foreach (bro in brothers) {
+			if (bro.getSkills().hasTrait(::Legends.Trait.Player)) {
 				continue;
-			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist))
+			}
+			if (bro.getBackground().isBackgroundType(::Const.BackgroundType.ConvertedCultist) || bro.getBackground().isBackgroundType(::Const.BackgroundType.Cultist)) {
 				candidates_cultist.push(bro);
-			else if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave))
+			} else if (!::Legends.Backgrounds.has(bro, ::Legends.Background.Slave)) {
 				candidates_other.push(bro);
+			}
 		}
 
-		if (candidates_other.len() == 0)
+		if (candidates_other.len() == 0) {
 			return;
+		}
 
-		if (candidates_cultist.len() != 0)
+		if (candidates_cultist.len() != 0) {
 			this.m.Cultist = candidates_cultist[::Math.rand(0, candidates_cultist.len() - 1)];
+		}
 
 		this.m.Other = candidates_other[::Math.rand(0, candidates_other.len() - 1)];
 		this.m.Score = 3;

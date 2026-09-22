@@ -13,7 +13,7 @@
 - Fixes an issue for the Legate in the legion origin where the 'command' skill was capping AP at 4, rather than giving +4 AP
 - Fixed an issue where if the player interacted or destroyed the black monolith as legion, the game would hang
 - Fixed an issue where the legendary ram hammer for legion had its graphic occasionally apply to random named 2h hammers
-- Legion now spawns in the steppes as opposed to the desert
+- Legion now spawns on top of the attached location it's burning in the steppes (or plains if necessary)
 
 **New camp contracts for Legion:**
 - Hunt: nobles (medium-hard)
@@ -808,3 +808,5 @@
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
 - background modifiers moved to character properties
 - background modifiers: terrain are now using objects instead of arrays
+- added `legend_player_legion` that sets all the relevant traits of a legion brother
+- `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs

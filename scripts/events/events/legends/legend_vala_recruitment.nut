@@ -31,20 +31,10 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 				}
 			}],
 			function start(_event) {
-				local roster = ::World.getTemporaryRoster();
-				_event.m.Vala = roster.create("scripts/entity/tactical/player");
-				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
-					_event.m.Vala.getFlags().add("PlayerSkeleton");
-					_event.m.Vala.getFlags().add("undead");
-					_event.m.Vala.getFlags().add("skeleton");
-				}
-
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Vala.setStartValuesEx([::Legends.Background.LegendVala]);
 
-				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
-					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.RacialSkeleton);
-					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.LegendFleshless);
-				} else {
+				if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
 					::Legends.Traits.grant(_event.m.Vala, ::Legends.Trait.Loyal);
 				}
 

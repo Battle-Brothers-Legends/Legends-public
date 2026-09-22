@@ -5,18 +5,8 @@
 		::Legends.Screens.hook(this, "C", function (_screen) {
 			_screen.Text = "%terrainImage%You take out your blade and cut the man down. He crumples onto his shoulders and splays out, his lashed back in the dirt. The soil may as well have been salt judging by his wailing. One of the whippers stands up.%SPEECH_ON%Hey, just what do you think you\'re doing? We ain\'t finished here!%SPEECH_OFF%%randombrother% draws %their_randombrother% weapon and the man backs off. The horse owner spits and shakes his head.%SPEECH_ON%Are you really going to defend this piece of work? Ain\'t that some fucking horseshit. I guess now I can say I\'ve seen it all which is exactly what I said when I caught this bastard porkin\' my dead horse!%SPEECH_OFF%The man catches his breath then points at the recently rescued.%SPEECH_ON%I hope you die on your first day out ya filly fiddling bastard.%SPEECH_OFF%";
 			_screen.start = function ( _event ) {
-				local roster = ::World.getTemporaryRoster();
-				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion") {
-					_event.m.Dude.getFlags().add("PlayerSkeleton");
-					_event.m.Dude.getFlags().add("undead");
-					_event.m.Dude.getFlags().add("skeleton");
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Vagabond]);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
-				} else {
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Vagabond]);
-				}
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude.setStartValuesEx([::Legends.Background.Vagabond]);
 
 				_event.m.Dude.setTitle("the Filly Fiddler");
 				_event.m.Dude.getBackground().m.RawDescription = "You found %name% being whipped for \'involving\' himself with a dead horse. Hopefully that past is, er, behind him now.";

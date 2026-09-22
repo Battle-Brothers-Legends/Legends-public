@@ -1,4 +1,4 @@
-this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/event", {
+this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/events/legends/scenario/legion/legion_event", {
 	m = {},
 
 	function create() {
@@ -6,40 +6,28 @@ this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/eve
 		this.m.Title = "Along the road...";
 		this.m.Cooldown = 80.0 * ::World.getTime().SecondsPerDay;
 		this.m.Screens.push({
-			//—
 			ID = "A",
 			Text = "[img]gfx/ui/events/event_101.png[/img]As you approach a slope, a strange sight unfolds — hundreds of muddle around a black monolith much smaller than the one you are already familiar with. Crowds of auxiliaries, labourers and unidentifiable legionaries circle the monument like ants in a deathspiral.\n Many are physically broken, hobbling along after what must be years of walking in circles. The less fortunate are crushed underfoot, still attempting to crawl in the hypnotic pattern. Given time, the rest of the structure may be uncovered purely by the unknowning toil of those it has drawn in.\n\n For the briefest of moments, you are drawn to it — even at this distance. The hum is quiet, yet soothing.",
 			Image = "",
 			List = [],
 			Characters = [],
-			Options = [{
-				Text = "Maybe this will be us one day...",
-				getResult = @(_event) 0
-			}],
+			Options = [
+				{
+					Text = "Maybe this will be us one day...",
+					getResult = @(_event)0
+				}
+			],
+
 			function start(_event) {}
 		});
 	}
 
 	function onUpdateScore() {
+		if (!this.validateLegionEvent()) {
+			return;
+		}
+
 		local currentTile = ::World.State.getPlayer().getTile();
-
-		//see 'static_fucntions' ::Legends.S.humansOnly for more details.
-		if (::World.Assets.getOrigin().getID() != "scenario.legend_risen_legion") {
-			return;
-		}
-
-		local hasSkeleton = false;
-		foreach (bro in ::World.getPlayerRoster().getAll()) {
-			if (bro.getFlags().has("PlayerSkeleton")) {
-				hasSkeleton = true;
-				break;
-			}
-		}
-
-		if (!hasSkeleton) {
-			return;
-		}
-
 		local locations = ::World.EntityManager.getLocations();
 		local nearSite = false;
 		foreach (v in locations) {
@@ -48,19 +36,10 @@ this.legion_origin_generic_deathspiral_event <- this.inherit("scripts/events/eve
 				break;
 			}
 		}
-
 		if (!nearSite) {
 			return;
 		}
 
 		this.m.Score = 3;
 	}
-
-	function onPrepare() {}
-
-	function onPrepareVariables(_vars) {}
-
-	function onClear() {}
-
 });
-

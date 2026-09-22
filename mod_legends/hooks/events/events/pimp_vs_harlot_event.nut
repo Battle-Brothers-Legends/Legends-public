@@ -25,7 +25,7 @@
 		::Legends.Screens.hook(this, "Monk", function(_screen) {
 			_screen.Text = "[img]gfx/ui/events/event_92.png[/img]%monk% the monk steps forward, taking the pimp by the hands. Were you to do that, the pimp would no doubt shrink back or strike you. But the holy figure does it with such grace and humility that the pimp simply stares. The holy one smiles warmly.%SPEECH_ON%This is not the path for you, that much is clear. You have not the means to handle this woman, and this is but one woman, when a pimp really needs many. The old gods tell me you are meant for a different path, one which is for hardier men. I daresay you are fit for a mercenary company. Leave the women-wrangling to the snake handlers.%SPEECH_OFF%The pimp thinks for a time, but you can tell the words have gotten to him. He asks if you\'d accept him into your company.";
 			_screen.start <- function ( _event ) {
-				_event.m.Monk.improveMood(1.0, "Led a man back onto the path of rightenousness");
+				_event.m.Monk.improveMood(1.0, "Led a man back onto the path of righteousness");
 
 				if (_event.m.Monk.getMoodState() >= ::Const.MoodState.Neutral)
 				{
@@ -37,21 +37,8 @@
 				}
 
 				this.Characters.push(_event.m.Monk.getImagePath());
-				local roster = ::World.getTemporaryRoster();
-				_event.m.Dude = roster.create("scripts/entity/tactical/player");
-				if (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion")
-				{
-					_event.m.Dude.getFlags().add("PlayerSkeleton");
-					_event.m.Dude.getFlags().add("undead");
-					_event.m.Dude.getFlags().add("skeleton");
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Pimp]);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.RacialSkeleton);
-					::Legends.Traits.grant(_event.m.Dude, ::Legends.Trait.LegendFleshless);
-				}
-				else
-				{
-					_event.m.Dude.setStartValuesEx([::Legends.Background.Pimp]);
-				}
+				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legend_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Dude.setStartValuesEx([::Legends.Background.Pimp]);
 
 				_event.m.Dude.setTitle("the Pimp");
 				_event.m.Dude.getBackground().m.RawDescription = "While visiting " + _event.m.Town.getName() + ", you found %name% quarreling with his only harlot. " + _event.m.Monk.getName() + " persuaded him to join the company and you agreed to take him along. Hopefully, he\'s better fighting in the shield wall than he is wrangling whores.";

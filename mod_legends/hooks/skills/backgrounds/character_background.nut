@@ -1580,6 +1580,9 @@
 			actor.m.XP = ::Const.LevelXP[this.m.Level - 1];
 		}
 
+		if(::MSU.isKindOf(actor, "legend_player_legion") && !::isKindOf(this, "legend_legion_background")) {
+			::Legends.Traits.grant(actor, ::Legends.Trait.LegendFleshless);
+		}
 	}
 	o.onCombatStarted <- function()
 	{
