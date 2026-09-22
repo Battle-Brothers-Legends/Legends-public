@@ -21,6 +21,10 @@ this.legend_full_draw_skill <- this.inherit("scripts/skills/actives/aimed_shot",
 		::Sound.play(this.m.SoundResumeOnUse[::Math.rand(0, this.m.SoundResumeOnUse.len() - 1)], 1.0, actor.getPos());
 		this.m.TargetTile.clear(::Const.Tactical.DetailFlag.SpecialOverlay);
 		this.consumeAmmo();
+
+		if (!this.m.TargetTile.IsOccupiedByActor) {
+			return false;
+		}
 		
 		if (!actor.isHiddenToPlayer() || this.m.TargetTile.IsVisibleForPlayer)
 		{
