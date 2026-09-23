@@ -1,4 +1,4 @@
-this.legend_assassin_commander_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_commander_assassin_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {
 		Tattoo = 0
 	},

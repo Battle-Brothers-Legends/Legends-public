@@ -1,4 +1,4 @@
-this.legend_beggar_commander_background <- this.inherit("scripts/skills/backgrounds/character_background", {
+this.legend_commander_beggar_background <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
 	function create()
 	{

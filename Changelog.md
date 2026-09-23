@@ -617,37 +617,27 @@
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
 - added color templates to event lists, instead of vanilla way, you can specify colors as `[color=%positive%]` now
 - defs created for backgrounds
-- new `RerollAttackChance` property in `CharacterProperties`, allows you to reroll a miss
 - background_stats created for background stat rolls and migrated them from bgs
-- bro sprite setting per background moved to bg's setGender; uses setBodyCharacteristics which accepts an object with fields to overwrite default sprites with (default are norther, all)
-- changed background.legend_peddler_commander -> background.legend_commander_peddler
-- legend_mage_background and legend_mage_commander_mage removed
+- background modifiers moved to character properties
+- background modifiers: terrain are now using objects instead of arrays
+- new `RerollAttackChance` property in `CharacterProperties`, allows you to reroll a miss
 - human gender now randomized using randomizeHumanGender (separately on bgs and humans), which respects the new mod setting
 - enemy gender now randomized using randomizeEnemyGender, which respects the new mod setting
-- Tabbard -> Tabard | tabbard -> tabard
-- Hesistant -> Hesitant
-- LegendExtendendAura -> LegendExtendedAura
-- legend_dilapitated_sling -> legend_dilapidated sling
-- camp buildings: getModifierToolip -> getModifierTooltip
-- Barter -> Haggle
+- bro sprite setting per background moved to bg's setGender; uses setBodyCharacteristics which accepts an object with fields to overwrite default sprites with (default are northern, all)
+- added `legend_player_legion` that sets all the relevant traits of a legion brother
+- `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
 - removed delayed event fix (Vanilla already fixed it in a better place in the chain, possibly fixes event bugs)
 - moved `player_party` bro and equipment strength calculations to difficulty helper
 - camp screen and building changes
 - camp flags are now indexed by building
 - camp buildings moved to ::Legends.Camp
+- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
 - food can no longer be placed in bag slots or eaten in combat
-- tile effect `shadows` -> `legend_shadow_mist`
 - blazing RSW and firefield now use their own fire effects
 - legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
-- `legend_gold_nugget_item` -> `legend_gold_ore_item`
-- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
 - added a bunch of QoL mods whose functions were superseded by Legends to incompat
 - Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
-- background modifiers moved to character properties
-- background modifiers: terrain are now using objects instead of arrays
-- added `legend_player_legion` that sets all the relevant traits of a legion brother
-- `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
 - submod scenarios are now displayed in the custom group on the scenario selection screen
 
 Refactors/deletions:
@@ -865,3 +855,20 @@ Refactors/deletions:
 - `scripts/skills/injury_permanent/legend_infected_injury` -> deleted
 - `scripts/skills/perks/perk_legend_sprint` -> deleted
 - `scripts/skills/special/legend_animated_player_properties` -> deleted
+- `legend_gold_nugget_item` -> `legend_gold_ore_item`
+- tile effect `shadows` -> `legend_shadow_mist`
+- `Tabbard` -> `Tabard` | `tabbard` -> `tabard` (layers)
+- `Hesistant` -> `Hesitant` (perk)
+- `legend_dilapitated_sling` -> `legend_dilapidated sling`
+- `getModifierToolip` -> `getModifierTooltip` camp building method
+- `Barter` -> `Haggle` (character property)
+- `Hunting` -> deleted (character property)
+- `legend_mage_background` -> deleted
+- `legend_mage_commander_mage` -> deleted
+- `legend_assassin_commander` -> `legend_commander_assassin`
+- `legend_beggar_commander` -> `legend_commander_beggar`
+- `legend_berserker_commander` -> `legend_commander_berserker`
+- `legend_necro_commander` -> `legend_commander_necro`
+- `legend_noble_commander` -> `legend_commander_noble`
+- `legend_peddler_commander` -> `legend_commander_peddler`
+- `legend_ranger_commander` -> `legend_commander_ranger`

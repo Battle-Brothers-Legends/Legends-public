@@ -1251,7 +1251,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     // @wiki_name "Assassin Commander",
     ID = "background.legend_commander_assassin",
-    Script = "scripts/skills/backgrounds/legend_assassin_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_assassin_background",
     Const = "LegendCommanderAssassin",
     Name = "Assassin",
     HiringCost = 10000,
@@ -1262,7 +1262,7 @@ backgroundDefs.push({
 ::Legends.Background.LegendCommanderBeggar <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_beggar",
-    Script = "scripts/skills/backgrounds/legend_beggar_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_beggar_background",
     Const = "LegendCommanderBeggar",
     Name = "Framed Beggar",
     HiringCost = 30,
@@ -1286,7 +1286,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     // @wiki_name "Berserker Commander",
     ID = "background.legend_commander_berserker",
-    Script = "scripts/skills/backgrounds/legend_berserker_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_berserker_background",
     Const = "LegendCommanderBerserker",
     Name = "Berserker",
     HiringCost = 10000,
@@ -1297,7 +1297,7 @@ backgroundDefs.push({
 ::Legends.Background.LegendCommanderNecro <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_necro",
-    Script = "scripts/skills/backgrounds/legend_necro_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_necro_background",
     Const = "LegendCommanderNecro",
     Name = "Master Necromancer",
     HiringCost = 1200000000000,
@@ -1308,7 +1308,7 @@ backgroundDefs.push({
 ::Legends.Background.LegendCommanderNoble <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_noble",
-    Script = "scripts/skills/backgrounds/legend_noble_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_noble_background",
     Const = "LegendCommanderNoble",
     Name = "Noble Usurper",
     HiringCost = 25000,
@@ -1319,7 +1319,7 @@ backgroundDefs.push({
 ::Legends.Background.LegendCommanderPeddler <- null;
 backgroundDefs.push({
     ID = "background.legend_commander_peddler",
-    Script = "scripts/skills/backgrounds/legend_peddler_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_peddler_background",
     Const = "LegendCommanderPeddler",
     Name = "Merchant",
     HiringCost = 10000,
@@ -1331,7 +1331,7 @@ backgroundDefs.push({
 backgroundDefs.push({
     // @wiki_name "Ranger Commander",
     ID = "background.legend_commander_ranger",
-    Script = "scripts/skills/backgrounds/legend_ranger_commander_background",
+    Script = "scripts/skills/backgrounds/legend_commander_ranger_background",
     Const = "LegendCommanderRanger",
     Name = "Ranger",
     HiringCost = 12000,
