@@ -6,7 +6,7 @@
 	{
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.Paladin);
-		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which increases their health and initiative.";
+		this.m.BackgroundDescription = "Oathtakers are brave warriors sworn to uphold a strict code, and are no strangers to combat. The faith in their cause might seem foolhardy for the nonbeliever, but for them it\'s a driving force which pushes their performance in battle to greater heights.";
 		this.m.GoodEnding = "%name% the Oathtaker stayed with the %companyname%, wielding Young Anselm\'s skull to proselytize knightly virtues unto the world. Most see %them% as something of an annoyance, but there is also some charm in a %person% who believes fully in matters of honor and pride and doing good. Last you heard, %they% singlehandedly saved a lord\'s princess from a gang of alley thieves. In celebration, he was wed to the damsel, though rumors abound that she is unhappy in bed, proclaiming that the Oathtaker insists on Young Anselm\'s skull watching from the corner. Whatever\'s going on, you\'re happy that the %person% is still doing %their% thing to the fullest.";
 		this.m.BadEnding = "Once an Oathtaker to the bone, %name% grew disenchanted with %their% fellow believers and one night had a dream that they were, in fact, the true heretics. %They% slew every Oathtaker in reach and then fled out, eventually joining the Oathbringers of all people. Last that was heard of %them%, %they% reclaimed Young Anselm\'s skull and smashed it with a hammer. Enraged, %their% new Oathbringer brethren promptly slew %them% down. %name%\'s corpse was found stabbed over a hundred times, ashy skull fragments powdering a bloodied, madly grinning face.";
 		this.m.Titles = [
@@ -187,6 +187,24 @@
 			[2, ::Legends.Helmet.Standard.adorned_closed_flat_top_with_mail],
 			[1, ::Legends.Helmet.Standard.adorned_full_helm]
 		]));
+	}
+
+	o.getGenericTooltip <- function() {
+		local ret = this.character_background.getGenericTooltip();
+		ret.push(
+			{
+				id = 3,
+				type = "hint",
+				icon = "ui/icons/special.png",
+				divider = "top",
+				text = "%_rate%% of base Resolve is added as a bonus to Hitpoints, Fatigue, and Initiative",
+				param = [
+					["_rate", this.m.ResolveConversion * 100]
+				]
+			}
+		);
+
+		return ret;
 	}
 
 });
