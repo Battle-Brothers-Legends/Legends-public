@@ -1434,7 +1434,7 @@ if (!("BackgroundModifiers" in ::Legends)) {
 
 ::Legends.BackgroundModifiers.LegendPuppetMaster <- {};
 
-::Legends.BackgroundModifiers.LegendRanger <- {
+::Legends.BackgroundModifiers.LegendWarden <- {
 	Ammo = 55,
 	Stash = 5,
 	Gathering = 0.50,

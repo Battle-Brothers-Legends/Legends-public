@@ -131,6 +131,14 @@
 ### Vala:
 - can no longer roll ranged skill stars
 
+### Ranger
+- renamed to warden
+
+### Commanders
+- assassin renamed to Master Assassin
+- berserker renamed to Chosen Berserker
+- peddler renamed to Merchant
+
 ## Perks
 
 ### New Perks
@@ -872,3 +880,4 @@ Refactors/deletions:
 - `legend_noble_commander` -> `legend_commander_noble`
 - `legend_peddler_commander` -> `legend_commander_peddler`
 - `legend_ranger_commander` -> `legend_commander_ranger`
+- `legend_ranger_background` -> `legend_warden_background`

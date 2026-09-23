@@ -27,7 +27,7 @@
 
 		local candidates = [];
 
-		foreach (bro in brothers) if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendRanger) ||
+		foreach (bro in brothers) if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendWarden) ||
 			(bro.getGender() == 1 && ::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Hunter,
 				::Legends.Background.Poacher,

@@ -234,7 +234,7 @@ if (!("Backgrounds" in ::Legends)) {
 	::Legends.Background.LegendArbalester,
 	::Legends.Background.LegendHouseGuard,
 	::Legends.Background.LegendFootSoldier,
-	::Legends.Background.LegendRanger,
+	::Legends.Background.LegendWarden,
 	::Legends.Background.LegendShieldmaiden,
 	::Legends.Background.LegendVala,
 	::Legends.Background.LegendHerbalist,

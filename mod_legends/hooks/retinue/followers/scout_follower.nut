@@ -16,7 +16,7 @@
 			::Legends.Backgrounds.getID(::Legends.Background.Wildman),
 			::Legends.Backgrounds.getID(::Legends.Background.Hunter),
 			::Legends.Backgrounds.getID(::Legends.Background.Lumberjack),
-			::Legends.Backgrounds.getID(::Legends.Background.LegendRanger),
+			::Legends.Backgrounds.getID(::Legends.Background.LegendWarden),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendMasterArcher),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),

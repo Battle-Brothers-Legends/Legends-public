@@ -16,7 +16,7 @@
 						_event.m.Dude.getBackground().m.RawDescription = "The forests scream and wail. Nature has been out of balance for a long time and %name% is one of the few chosen to listen.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					} else {
-						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendRanger]);
+						_event.m.Dude.setStartValuesEx([::Legends.Background.LegendWarden]);
 						_event.m.Dude.getBackground().m.RawDescription = "Part of an ancient order somewhere in the forests, %name% vowed to maintain balance of nature and all other things, even if violence was necessary.";
 						_event.m.Dude.getBackground().buildDescription(true);
 					}
@@ -39,7 +39,7 @@
 
 		local roster = ::World.getPlayerRoster().getAll();
 		foreach( bro in roster) {
-			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendRanger))
+			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendWarden))
 				return;
 
 			if (::Legends.Backgrounds.has(bro, ::Legends.Background.LegendCommanderRanger))

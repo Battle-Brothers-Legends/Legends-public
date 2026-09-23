@@ -1526,7 +1526,7 @@ if (!("BackgroundsStats" in ::Legends)) {
 	Initiative = [5, 5]
 }
 
-::Legends.BackgroundsStats.LegendRanger <- {
+::Legends.BackgroundsStats.LegendWarden <- {
 	Hitpoints = [-5, -5],
 	Bravery = [0, 0],
 	Stamina = [5, 10],

@@ -173,7 +173,7 @@
 				::Legends.Background.Hunter,
 				::Legends.Background.Poacher,
 				::Legends.Background.BeastSlayer,
-				::Legends.Background.LegendRanger,
+				::Legends.Background.LegendWarden,
 				::Legends.Background.LegendCommanderRanger
 			))
 				candidates_hunter.push(bro);

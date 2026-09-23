@@ -30,7 +30,7 @@
 			if (::Legends.Backgrounds.hasAny(bro,
 				::Legends.Background.Hunter,
 				::Legends.Background.Poacher,
-				::Legends.Background.LegendRanger,
+				::Legends.Background.LegendWarden,
 				::Legends.Background.LegendHerbalist,
 				::Legends.Background.Lumberjack)
 			)

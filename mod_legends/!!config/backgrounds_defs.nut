@@ -1249,11 +1249,10 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderAssassin <- null;
 backgroundDefs.push({
-    // @wiki_name "Assassin Commander",
     ID = "background.legend_commander_assassin",
     Script = "scripts/skills/backgrounds/legend_commander_assassin_background",
     Const = "LegendCommanderAssassin",
-    Name = "Assassin",
+    Name = "Master Assassin",
     HiringCost = 10000,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_53.png",
@@ -1284,11 +1283,10 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderBerserker <- null;
 backgroundDefs.push({
-    // @wiki_name "Berserker Commander",
     ID = "background.legend_commander_berserker",
     Script = "scripts/skills/backgrounds/legend_commander_berserker_background",
     Const = "LegendCommanderBerserker",
-    Name = "Berserker",
+    Name = "Chosen Berserker",
     HiringCost = 10000,
     DailyCost = 0,
     Icon = "ui/backgrounds/background_berserker.png",
@@ -1329,7 +1327,6 @@ backgroundDefs.push({
 
 ::Legends.Background.LegendCommanderRanger <- null;
 backgroundDefs.push({
-    // @wiki_name "Ranger Commander",
     ID = "background.legend_commander_ranger",
     Script = "scripts/skills/backgrounds/legend_commander_ranger_background",
     Const = "LegendCommanderRanger",
@@ -1843,12 +1840,12 @@ backgroundDefs.push({
     Icon = "ui/backgrounds/background_necromancer.png",
 });
 
-::Legends.Background.LegendRanger <- null;
+::Legends.Background.LegendWarden <- null;
 backgroundDefs.push({
-    ID = "background.legend_ranger",
-    Script = "scripts/skills/backgrounds/legend_ranger_background",
-    Const = "LegendRanger",
-    Name = "Ranger",
+    ID = "background.legend_warden",
+    Script = "scripts/skills/backgrounds/legend_warden_background",
+    Const = "LegendWarden",
+    Name = "Warden",
     HiringCost = 2500,
     DailyCost = 35,
     Icon = "ui/backgrounds/background_ranger.png",

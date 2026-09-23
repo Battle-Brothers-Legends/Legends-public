@@ -39,7 +39,7 @@
 				::Legends.Background.Monk,
 				::Legends.Background.MonkTurnedFlagellant,
 				::Legends.Background.LegendHerbalist,
-				::Legends.Background.LegendRanger,
+				::Legends.Background.LegendWarden,
 				::Legends.Background.LegendCommanderRanger,
 				::Legends.Background.LegendVala)
 			)

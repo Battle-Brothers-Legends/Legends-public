@@ -224,7 +224,7 @@
 				::Legends.Background.Hunter,
 				::Legends.Background.Poacher,
 				::Legends.Background.Sellsword,
-				::Legends.Background.LegendRanger,
+				::Legends.Background.LegendWarden,
 				::Legends.Background.LegendCommanderRanger,
 				::Legends.Background.LegendArbalester
 			)) {

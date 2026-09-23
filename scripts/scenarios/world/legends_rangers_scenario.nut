@@ -189,7 +189,7 @@ this.legends_rangers_scenario <- this.inherit("scripts/scenarios/world/starting_
 		this.addBroToRoster(_roster, ::Legends.Background.Poacher, 6);
 		this.addBroToRoster(_roster, ::Legends.Background.Wildman, 8);
 		this.addBroToRoster(_roster, ::Legends.Background.LegendHerbalist, 8);
-		this.addBroToRoster(_roster, ::Legends.Background.LegendRanger, 9);
+		this.addBroToRoster(_roster, ::Legends.Background.LegendWarden, 9);
 
 	}
 

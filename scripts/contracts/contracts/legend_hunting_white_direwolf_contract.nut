@@ -144,7 +144,7 @@ this.legend_hunting_white_direwolf_contract <- this.inherit("scripts/contracts/c
 
 					foreach( bro in bros )
 					{
-						if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendRanger) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger) || bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyBeast))
+						if (bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Houndmaster) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.Wildman) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.BeastSlayer) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendMuladi) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendWarden) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendVala) || bro.getBackground().getID() == ::Legends.Backgrounds.getID(::Legends.Background.LegendCommanderRanger) || bro.getSkills().hasPerk(::Legends.Perk.LegendFavouredEnemyBeast))
 						{
 							candidates.push(bro);
 						}

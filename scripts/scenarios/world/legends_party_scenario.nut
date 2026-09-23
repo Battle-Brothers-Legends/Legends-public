@@ -65,7 +65,7 @@ this.legends_party_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 		bros[4].setVeteranPerks(2);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Cocky);
 		::Legends.Traits.grant(bros[4], ::Legends.Trait.Weasel);
-		bros[5].setStartValuesEx([::Legends.Background.LegendRanger]);
+		bros[5].setStartValuesEx([::Legends.Background.LegendWarden]);
 		bros[5].getBackground().m.RawDescription = "{There is a quiet calm to %name%, with an intense gaze that seems to see more details than anyone else. A person of few words, it is clear the ranger holds a deep affinity with the land and sees orcs as a symbol of all that is wrong with the world.}";
 		bros[5].setPlaceInFormation(14);
 		bros[5].setVeteranPerks(2);
