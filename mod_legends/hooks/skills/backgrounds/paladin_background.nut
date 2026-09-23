@@ -1,4 +1,7 @@
 ::mods_hookExactClass("skills/backgrounds/paladin_background", function (o) {
+
+	o.m.ResolveConversion <- 0.10;
+
 	o.create = function ()
 	{
 		this.character_background.create();
@@ -60,13 +63,16 @@
 	o.getTooltip = function ()
 	{
 		local ret = this.character_background.getTooltip();
-		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * this.m.ResolveConversion);
 		ret.push({
 			id = 13,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "[color=%positive%]%_bonus%[/color] bonus to Hitpoints, Fatigue and Initiative from your base Resolve",
-			param = [["_bonus", bonus]]
+			text = "[color=%positive%]%_bonus%[/color] bonus to Hitpoints, Fatigue and Initiative (%_rate%% of base Resolve)",
+			param = [
+				["_bonus", ::Legends.S.addSign(bonus)],
+				["_rate", this.m.ResolveConversion * 100]
+			]
 		});
 		return ret;
 	}
@@ -84,7 +90,7 @@
 	o.onUpdate <- function ( _properties )
 	{
 		this.character_background.onUpdate(_properties);
-		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * 0.10);
+		local bonus = ::Math.round(this.getContainer().getActor().getBaseProperties().Bravery * this.m.ResolveConversion);
 		_properties.Initiative += bonus;
 		_properties.Hitpoints += bonus;
 		_properties.Stamina += bonus;
