@@ -620,6 +620,7 @@
 - fixed identical bag items losing track of active skills after unequipping the source of the active skill (usually first equipped item)
 - fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
 - fixed Thresh sometimes crashing while trying to apply an effect to a dead target
+- fixed missing skill icon for Wither
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

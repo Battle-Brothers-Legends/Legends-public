@@ -2027,8 +2027,8 @@ activesDefs.push({
 	Script = "scripts/skills/actives/wither_skill",
 	Const = "Wither",
 	Name = "Wither",
-	Icon = "skills/wither56_skill.png",
-	IconDisabled = "skills/wither56_skill_bw.png",
+	Icon = "skills/active_217.png",
+	IconDisabled = "skills/active_217_sw.png",
 	Overlay = "wither",
 });
 
