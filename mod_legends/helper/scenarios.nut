@@ -39,8 +39,8 @@
 	"scenario.legends_risen_legion": 403,
 	"scenario.legends_solo_necro": 404,
 	//random
-	"scenario.legends_random_3": 500,
-	"scenario.legends_random_party": 501,
-	"scenario.legends_random_solo": 502,
-	"scenario.random": 503,
+	"scenario.legends_random_3": 600,
+	"scenario.legends_random_party": 601,
+	"scenario.legends_random_solo": 602,
+	"scenario.random": 603,
 }

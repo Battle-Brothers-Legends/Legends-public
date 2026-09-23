@@ -9,7 +9,8 @@
 					Name = s.getName(),
 					Description = s.getDescription(),
 					Difficulty = s.getDifficultyForUI(),
-					Order = s.getOrder()
+					Order = s.getOrder(),
+					LegendsScenarioOrder = ::Legends.Scenarios.Order
 				};
 				ret.push(scenario);
 			}

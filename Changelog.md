@@ -611,6 +611,7 @@
 - fixed the veteran and expert party strength formulas (mostly results in veteran late nerf and expert late buff and slight early game normalization)
 - fixed identical bag items losing track of active skills after unequipping the source of the active skill (usually first equipped item)
 - fixed Jester's Hat removing the Battlefield Control granted Taunt skill in a specific case
+- fixed Thresh sometimes crashing while trying to apply an effect to a dead target
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
@@ -634,6 +635,22 @@
 - camp screen and building changes
 - camp flags are now indexed by building
 - camp buildings moved to ::Legends.Camp
+- food can no longer be placed in bag slots or eaten in combat
+- tile effect `shadows` -> `legend_shadow_mist`
+- blazing RSW and firefield now use their own fire effects
+- legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
+- `legend_gold_nugget_item` -> `legend_gold_ore_item`
+- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
+- added a bunch of QoL mods whose functions were superseded by Legends to incompat
+- Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
+- Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
+- background modifiers moved to character properties
+- background modifiers: terrain are now using objects instead of arrays
+- added `legend_player_legion` that sets all the relevant traits of a legion brother
+- `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
+- submod scenarios are now displayed in the custom group on the scenario selection screen
+
+Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`
 - `LegendTattos` -> `LegendTattoos`
 - `LegendFortify` -> deleted
@@ -801,19 +818,6 @@
 - `legend_porridge_effect` -> deleted
 - `legend_pudding_effect` -> deleted
 - `legend_rations_effect` -> deleted
-- food can no longer be placed in bag slots or eaten in combat
-- tile effect `shadows` -> `legend_shadow_mist`
-- blazing RSW and firefield now use their own fire effects
-- legend tile effects moved to tactical_state (like vanilla tile effects) so they can be spawned by other sources more conveniently
-- `legend_gold_nugget_item` -> `legend_gold_ore_item`
-- Hunting tent stuff removed / integrated into Gathering, including from background modifiers
-- added a bunch of QoL mods whose functions were superseded by Legends to incompat
-- Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
-- Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
-- background modifiers moved to character properties
-- background modifiers: terrain are now using objects instead of arrays
-- added `legend_player_legion` that sets all the relevant traits of a legion brother
-- `character_background`'s onAdded now handles adding the `Fleshless` trait to legion brothers who are using the regular bgs
 - `legend_commander_abstract_effect` -> moved to skills from skills/effects
 - `legend_backswing_effect` -> deleted
 - `legend_graze_prepared_effect` -> deleted

@@ -1040,11 +1040,22 @@ NewCampaignMenuModule.prototype.setBanners = function(_data)
 
 NewCampaignMenuModule.prototype.setStartingScenarios = function (_data) {
 	if (_data !== null && jQuery.isArray(_data)) {
+		for (var i = 0; i < _data.length; ++i) {
+			_data[i].RenderGroup = _data[i].LegendsScenarioOrder[_data[i].ID] !== undefined ? Math.floor(_data[i].Order / 100) : 5; // places scenarios that weren't defined in ::Legends.Scenarios.Order in the custom group
+		}
+
+		_data.sort(function (a, b) {
+			if (a.RenderGroup !== b.RenderGroup) {
+				return a.RenderGroup - b.RenderGroup;
+			}
+			return a.Order - b.Order;
+		});
+
 		this.mScenarios = _data;
 		var currentGroup = -1;
 
 		for (var i = 0; i < _data.length; ++i) {
-			var group = Math.floor(_data[i].Order / 100);
+			var group = _data[i].RenderGroup;
 
 			if (group !== currentGroup) {
 				currentGroup = group;
@@ -1065,7 +1076,8 @@ NewCampaignMenuModule.prototype.addScenarioHeader = function (_group, _row) {
 		case 2: headerText = 'Difficulty: <img src="' + Path.GFX + 'ui/images/difficulty_hard.png"/>'; break;
 		case 3: headerText = 'Solo Avatar'; break;
 		case 4: headerText = 'Special'; break;
-		case 5: headerText = 'Random'; break;
+		case 5: headerText = 'Custom'; break;
+		case 6: headerText = 'Random'; break;
 		default: return;
 	}
 
