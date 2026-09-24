@@ -622,6 +622,7 @@
 - fixed Thresh sometimes crashing while trying to apply an effect to a dead target
 - fixed missing Wither skill icon
 - fixed tavern rumours showing the base item's name only on layered composites
+- fixed a rare Lorekeeper Lightning Storm AI loop bug
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode
