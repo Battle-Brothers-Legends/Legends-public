@@ -17,6 +17,7 @@ this.legend_armor_spiked_collar_upgrade <- this.inherit("scripts/items/legend_ar
 		this.m.Condition = 20;
 		this.m.ConditionMax = 20;
 		this.m.StaminaModifier = -3;
+		this.m.InitiativeModifier = -6;
 	}
 
 	function updateVariant() {
@@ -37,12 +38,6 @@ this.legend_armor_spiked_collar_upgrade <- this.inherit("scripts/items/legend_ar
 			icon = "ui/icons/melee_defense.png",
 			text = "[color=%positive%]+3[/color] Melee Defense"
 		});
-		_tooltip.push({
-			id = 14,
-			type = "text",
-			icon = "ui/icons/initiative.png",
-			text = "[color=%negative%]-6[/color] Initiative"
-		});
 		return _tooltip;
 	}
 
@@ -58,7 +53,6 @@ this.legend_armor_spiked_collar_upgrade <- this.inherit("scripts/items/legend_ar
 	{
 		this.legend_armor_upgrade.onUpdateProperties(_properties);
 		_properties.MeleeDefense += 3;
-		_properties.Initiative -= 6;
 	}
 });
 

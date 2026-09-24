@@ -17,6 +17,7 @@ this.legend_armor_chain_and_mail_upgrade <- this.inherit("scripts/items/legend_a
 		this.m.Condition = 20;
 		this.m.ConditionMax = 20;
 		this.m.StaminaModifier = -3;
+		this.m.ResolveModifier = 3;
 	}
 
 	function updateVariant() {
@@ -31,12 +32,6 @@ this.legend_armor_chain_and_mail_upgrade <- this.inherit("scripts/items/legend_a
 	}
 
 	function updateTooltip( _tooltip )	{
-		_tooltip.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/bravery.png",
-			text = "[color=%positive%]+3[/color] Resolve"
-		});
 		_tooltip.push({
 			id = 10,
 			type = "text",
@@ -57,7 +52,6 @@ this.legend_armor_chain_and_mail_upgrade <- this.inherit("scripts/items/legend_a
 	function onUpdateProperties( _properties )
 	{
 		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.Bravery += 3;
 		_properties.TargetAttractionMult *= 2.0;
 	}
 });
