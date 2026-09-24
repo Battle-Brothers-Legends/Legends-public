@@ -882,3 +882,4 @@ Refactors/deletions:
 - `legend_peddler_commander` -> `legend_commander_peddler`
 - `legend_ranger_commander` -> `legend_commander_ranger`
 - `legend_ranger_background` -> `legend_warden_background`
+- `m.BraveryMult` (often found in children of `legend_named_armor_upgrade`) -> now handled as `m.ResolveMultiplier` in the super `legend_armor_upgrade`. For consistency with how other multipliers are stored and handled, it is now stored as, for example, `0.05` instead of `1.05`. This will break any submodded armor upgrades that make use of `m.BraveryMult`. To see an example of the impact of this change, look at how `scripts/items/legend_armor/named/legend_armor_cloak_emperors.nut` has changed

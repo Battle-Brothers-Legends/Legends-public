@@ -1,10 +1,10 @@
 this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
 	m = {
-		BraveryMult = 1.03,
+		ResolveMultiplier = 0.05,
 		Potential = {
 			Condition = { min = 10, max = 15 },
 			StaminaModifier = { min = 0, max = 0 },
-			BraveryMult = { min = 105, max = 110 }
+			ResolveMultiplier = { min = 5, max = 10 }
 		}
 	},
 	function create()
@@ -37,20 +37,15 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 		this.m.OverlayIconLarge = "legend_armor/inventory_tabard_named_" + variant + ".png";
 	}
 
-	function onUpdateProperties( _properties )
-	{
-		_properties.BraveryMult *= this.m.BraveryMult;
-	}
-
 	function onSerialize( _out )
 	{
-		_out.writeF32(this.m.BraveryMult);
+		_out.writeF32(this.m.ResolveMultiplier);
 		this.legend_named_armor_upgrade.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
 	{
-		this.m.BraveryMult = _in.readF32();
+		this.m.ResolveMultiplier = _in.readF32();
 		this.legend_named_armor_upgrade.onDeserialize(_in);
 	}
 

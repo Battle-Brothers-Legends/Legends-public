@@ -1,10 +1,10 @@
 this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
 	m = {
-		BraveryMult = 1.02,
+		ResolveMultiplier = 0.02,
 		Potential = {
 			Condition = { min = 30, max = 40 },
 			StaminaModifier = { min = 2, max = 2 },
-			BraveryMult = { min = 102, max = 105 }
+			ResolveMultiplier = { min = 2, max = 5 }
 		}
 	},
 	function create()
@@ -37,20 +37,15 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_rich_" + variant + ".png";
 	}
 
-	function onUpdateProperties( _properties )
-	{
-		_properties.BraveryMult *= this.m.BraveryMult;
-	}
-
 	function onSerialize( _out )
 	{
-		_out.writeF32(this.m.BraveryMult);
+		_out.writeF32(this.m.ResolveMultiplier);
 		this.legend_named_armor_upgrade.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
 	{
-		this.m.BraveryMult = _in.readF32();
+		this.m.ResolveMultiplier = _in.readF32();
 		this.legend_named_armor_upgrade.onDeserialize(_in);
 	}
 

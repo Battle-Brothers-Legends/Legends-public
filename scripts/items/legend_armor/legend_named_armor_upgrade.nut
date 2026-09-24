@@ -92,8 +92,8 @@ this.legend_named_armor_upgrade <- this.inherit("scripts/items/legend_armor/lege
 		if ("DirectDamageModifier" in this.m.Potential) {
 			this.m.DirectDamageModifier = ::Math.rand(this.m.Potential.DirectDamageModifier.min, this.m.Potential.DirectDamageModifier.max) * -1.0;
 		}
-		if ("BraveryMult" in this.m.Potential) {
-			this.m.BraveryMult = ::Math.rand(this.m.Potential.BraveryMult.min, this.m.Potential.BraveryMult.max) * 0.01;
+		if ("ResolveMultiplier" in this.m.Potential) {
+			this.m.ResolveMultiplier = ::Math.rand(this.m.Potential.ResolveMultiplier.min, this.m.Potential.ResolveMultiplier.max) * 0.01;
 		}
 	}
 

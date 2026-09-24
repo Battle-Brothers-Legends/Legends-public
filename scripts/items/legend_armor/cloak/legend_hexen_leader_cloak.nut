@@ -19,6 +19,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 		this.m.Condition = 25;
 		this.m.ConditionMax = 25;
 		this.m.StaminaModifier = -2;
+		this.m.ResolveMultiplier = 0.10;
 	}
 
 	function updateVariant()
@@ -40,7 +41,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases resolve by [color=%positive%]+10%[/color] and provides [color=%positive%]+40[/color] resolve at morale checks against fear, panic or mind control effects"
+			text = "[color=%positive%]+40[/color] resolve for morale checks against fear, panic or mind control effects"
 		});
 		return result;
 	}
@@ -51,7 +52,7 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 			id = 7,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "Increases resolve by [color=%positive%]+10%[/color] and provides [color=%positive%]+40[/color] resolve at morale checks against fear, panic or mind control effects"
+			text = "[color=%positive%]+40[/color] resolve for morale checks against fear, panic or mind control effects"
 		});
 	}
 
@@ -59,7 +60,6 @@ this.legend_hexen_leader_cloak <- this.inherit("scripts/items/legend_armor/legen
 	{
 		this.legend_armor_cloak.onUpdateProperties(_properties);
 		_properties.MoraleCheckBravery[1] += 40;
-		_properties.BraveryMult *= 1.10;
 	}
 		//Old. Should reuse this code somewhere. - Luft.
 	// function getTooltip()
