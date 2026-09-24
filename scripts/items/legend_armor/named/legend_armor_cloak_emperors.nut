@@ -1,10 +1,10 @@
 this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/legend_named_armor_upgrade", {
 	m = {
-		ResolveMultiplier = 0.05,
+		BraveryMult = 1.05,
 		Potential = {
 			Condition = { min = 30, max = 40 },
 			StaminaModifier = { min = 3, max = 3 },
-			ResolveMultiplier = { min = 5, max = 10 }
+			BraveryMult = { min = 105, max = 110 }
 		}
 	},
 	function create()
@@ -36,15 +36,20 @@ this.legend_armor_cloak_emperors <- this.inherit("scripts/items/legend_armor/leg
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_emperors_named_" + variant + ".png";
 	}
 
+	function onUpdateProperties( _properties )
+	{
+		_properties.BraveryMult *= this.m.BraveryMult;
+	}
+
 	function onSerialize( _out )
 	{
-		_out.writeF32(this.m.ResolveMultiplier);
+		_out.writeF32(this.m.BraveryMult);
 		this.legend_named_armor_upgrade.onSerialize(_out);
 	}
 
 	function onDeserialize( _in )
 	{
-		this.m.ResolveMultiplier = _in.readF32();
+		this.m.BraveryMult = _in.readF32();
 		this.legend_named_armor_upgrade.onDeserialize(_in);
 	}
 

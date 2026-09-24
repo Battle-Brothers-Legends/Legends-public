@@ -244,8 +244,8 @@ if (!("Items" in ::Legends)) {
 		else if (tooltip.id == 15 && tooltip.icon == "ui/icons/direct_damage.png") { //&& "DirectDamageModifier" in _item.m.Potential
 			tooltip.text += ::Legends.Items.Named.wrapTooltip(_item.m.Potential.DirectDamageModifier.max * -1 + "% to " + _item.m.Potential.DirectDamageModifier.min * -1 + "%");
 		}
-		else if (tooltip.id == 15 && tooltip.icon == "ui/icons/special.png" && tooltip.text.find("Resolve") != null && "ResolveMultiplier" in _item.m.Potential) {
-			tooltip.text += ::Legends.Items.Named.wrapTooltip((_item.m.Potential.ResolveMultiplier.min) + "% to " + (_item.m.Potential.ResolveMultiplier.max) + "%");
+		else if (tooltip.id == 15 && tooltip.icon == "ui/icons/special.png" && tooltip.text.find("Resolve") != null && "BraveryMult" in _item.m.Potential) {
+			tooltip.text += ::Legends.Items.Named.wrapTooltip((_item.m.Potential.BraveryMult.min - 100) + "% to " + (_item.m.Potential.BraveryMult.max - 100) + "%");
 		}
 	}
 }

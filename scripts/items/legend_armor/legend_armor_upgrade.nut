@@ -27,7 +27,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		InitiativeModifier = 0,		// Modifies Initiative of wearer
 		ThreatModifier = 0,		// Modifies Threat of wearer (The inverse of this is subtracted from Resolve of adjacent enemies)
 		ResolveModifier = 0,		// Modifies Resolve of wearer
-		ResolveMultiplier = 0.0,	// Multiplier to the Resolve of the wearer
 		DamageReceivedArmorMult = 0.0,		// Multiplier to the damage received by the currently worn body armor
 		FatiguePenaltyMultiplier = 0.0,		// The Fatigue cost of the currently equipped body armor is increased or reduced by this value as a fraction
 		Visible = true,
@@ -143,11 +142,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 	function getResolveModifier()
 	{
 		return this.m.ResolveModifier;
-	}
-
-	function getResolveMultiplier()
-	{
-		return this.m.ResolveMultiplier;
 	}
 
 	function getDamageReceivedArmorMult()
@@ -551,7 +545,6 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 		if (this.getInitiativeModifier() != 0) _properties.Initiative += this.getInitiativeModifier();
 		if (this.getThreatModifier() != 0) _properties.Threat += this.getThreatModifier();
 		if (this.getResolveModifier() != 0) _properties.Bravery += this.getResolveModifier();
-		if (this.getResolveMultiplier() != 0) _properties.BraveryMult *= 1.0 + this.getResolveMultiplier();
 	}
 
 	function onBeforeDamageReceived( _attacker, _skill, _hitInfo, _properties )
@@ -753,12 +746,12 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				]
 			});
 		}
-		if (this.getResolveMultiplier() != 0) {
+		if ("BraveryMult" in this.m) {
 			_tooltipList.push({
 				id = 15,
 				type = "text",
 				icon = "ui/icons/special.png",
-				text = "Increase the Resolve of the wearer by [color=%positive%]+" + ::Math.round(this.getResolveMultiplier() * 100.0) + "%[/color]"
+				text = "Increase the Resolve of the wearer by [color=%positive%]+" + ::Math.round(this.m.BraveryMult * 100.0 - 100) + "%[/color]"
 			});
 		}
 		if (this.getDamageReceivedArmorMult() != 0)
