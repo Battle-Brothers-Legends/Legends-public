@@ -37,11 +37,6 @@ this.legend_armor_cloak_rich <- this.inherit("scripts/items/legend_armor/legend_
 		this.m.OverlayIconLarge = "legend_armor/inventory_cloak_rich_" + variant + ".png";
 	}
 
-	function onUpdateProperties( _properties )
-	{
-		_properties.BraveryMult *= this.m.BraveryMult;
-	}
-
 	function onSerialize( _out )
 	{
 		_out.writeF32(this.m.BraveryMult);

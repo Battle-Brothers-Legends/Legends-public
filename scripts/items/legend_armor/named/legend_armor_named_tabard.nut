@@ -37,11 +37,6 @@ this.legend_armor_named_tabard <- this.inherit("scripts/items/legend_armor/legen
 		this.m.OverlayIconLarge = "legend_armor/inventory_tabard_named_" + variant + ".png";
 	}
 
-	function onUpdateProperties( _properties )
-	{
-		_properties.BraveryMult *= this.m.BraveryMult;
-	}
-
 	function onSerialize( _out )
 	{
 		_out.writeF32(this.m.BraveryMult);

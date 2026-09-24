@@ -17,6 +17,7 @@ this.legend_armor_sacred_shield_upgrade <- this.inherit("scripts/items/legend_ar
 		this.m.Condition = 10;
 		this.m.ConditionMax = 10;
 		this.m.StaminaModifier = -1;
+		this.m.BraveryMult = 1.05;
 	}
 
 	function updateVariant() {
@@ -28,30 +29,6 @@ this.legend_armor_sacred_shield_upgrade <- this.inherit("scripts/items/legend_ar
 		this.m.IconLarge = "legend_armor/inventory_pauldrons_belt_shield_"  + variant + ".png";
 		this.m.OverlayIcon = "legend_armor/icon_pauldrons_belt_shield_" + variant + ".png";
 		this.m.OverlayIconLarge = "legend_armor/inventory_pauldrons_belt_shield_"  + variant + ".png";
-	}
-
-	function updateTooltip( _tooltip )	{
-		_tooltip.push({
-			id = 14,
-			type = "text",
-			icon = "ui/icons/bravery.png",
-			text = "[color=%positive%]+5%[/color] Resolve"
-		});
-		return _tooltip;
-	}
-
-	function getTooltip()	{
-		return updateTooltip(this.legend_armor_upgrade.getTooltip());
-	}
-
-	function onArmorTooltip( _result )	{
-		this.legend_armor_upgrade.onArmorTooltip(updateTooltip(_result));
-	}
-
-	function onUpdateProperties( _properties )
-	{
-		this.legend_armor_upgrade.onUpdateProperties(_properties);
-		_properties.BraveryMult *= 1.05;
 	}
 });
 

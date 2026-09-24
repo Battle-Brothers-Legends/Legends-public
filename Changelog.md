@@ -882,3 +882,4 @@ Refactors/deletions:
 - `legend_peddler_commander` -> `legend_commander_peddler`
 - `legend_ranger_commander` -> `legend_commander_ranger`
 - `legend_ranger_background` -> `legend_warden_background`
+- `legend_armor_upgrade` now always stores `m.BraveryMult` (default value 1.0). Applying it in `onUpdateProperties` will now be handled there and children no longer need to individually apply it in `onUpdateProperties`. This impacts some named armor layers, such as `scripts/items/legend_armor/named/legend_armor_cloak_emperors.nut` for example. If an armor layer from your submod modifies `m.BraveryMult`, you should remove it from `onUpdateProperties` so it will not be doubly applied.
