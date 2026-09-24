@@ -182,12 +182,8 @@
 			::Sound.play(::Const.Sound.TavernRumor[::Math.rand(0, ::Const.Sound.TavernRumor.len() - 1)]);
 		}
 
-		if (this.m.RumorsGiven > ::Math.round(3 * ::World.Assets.m.ProfessionEffect.LegendCarouser)) {
-			if (_isPaidFor) {
-				return "The patrons raise their cups to you, but it seems there is nothing more to be learned by talking to them tonight.";
-			} else {
-				return "The patrons talk about this and that.";
-			}
+		if (this.m.RumorsGiven > ::Math.round(3 + ::World.Assets.m.ProfessionEffect.LegendCarouser)) {
+			return (_isPaidFor ? "The patrons raise their cups to you, but it seems there is nothing more to be learned by talking to them tonight." : "The patrons talk about this and that.");
 		} else {
 			this.m.LastRumorTime = ::Time.getVirtualTimeF();
 			local rumor = "";
@@ -197,11 +193,11 @@
 					::World.FactionManager.getFaction(this.m.Settlement.getFactions()[0]).addPlayerRelation(0.1);
 				}
 
-				rumor = rumor + ::Const.Strings.PayTavernRumorsIntro[::Math.rand(0, ::Const.Strings.PayTavernRumorsIntro.len() - 1)];
+				rumor += ::Const.Strings.PayTavernRumorsIntro[::Math.rand(0, ::Const.Strings.PayTavernRumorsIntro.len() - 1)];
 			} else if (this.m.LastRumor != "") {
 				return this.m.LastRumor;
 			} else {
-				rumor = rumor + "The patrons talk about this and that.";
+				rumor += "The patrons talk about this and that.";
 			}
 
 			local candidates = [];
@@ -215,12 +211,7 @@
 					candidates.extend(::Const.Strings.RumorsGeneral);
 				}
 
-				if (this.m.Settlement.isMilitary()) {
-					candidates.extend(::Const.Strings.RumorsMilitary);
-				} else {
-					candidates.extend(::Const.Strings.RumorsCivilian);
-				}
-
+				candidates.extend((this.m.Settlement.isMilitary() ? ::Const.Strings.RumorsMilitary : ::Const.Strings.RumorsCivilian));
 				candidates.extend(this.m.Settlement.getRumors());
 			} else if (r == 3) {
 				local best;
@@ -244,15 +235,7 @@
 						candidates.extend(::Const.Strings.RumorsContract);
 						this.m.ContractSettlement = this.WeakTableRef(best);
 					} else {
-						candidates.extend(::Const.Strings.RumorsGeneral);
-
-						if (this.m.Settlement.isMilitary()) {
-							candidates.extend(::Const.Strings.RumorsMilitary);
-						} else {
-							candidates.extend(::Const.Strings.RumorsCivilian);
-						}
-
-						candidates.extend(this.m.Settlement.getRumors());
+						candidates.extend(this.getGeneralRumors());
 					}
 				}
 			} else if (r == 4) {
@@ -276,26 +259,14 @@
 					candidates.extend(::Const.Strings.RumorsLocation);
 					this.m.Location = this.WeakTableRef(best);
 				} else {
-					candidates.extend(::Const.Strings.RumorsGeneral);
-
-					if (this.m.Settlement.isMilitary()) {
-						candidates.extend(::Const.Strings.RumorsMilitary);
-					} else {
-						candidates.extend(::Const.Strings.RumorsCivilian);
-					}
-
-					candidates.extend(this.m.Settlement.getRumors());
+					candidates.extend(this.getGeneralRumors());
 				}
 			} else if (r == 5) {
 				local best;
 				local bestDist = 9000;
 
 				foreach (s in ::World.EntityManager.getLocations()) {
-					if (s.isAlliedWithPlayer()) {
-						continue;
-					}
-
-					if (s.getLoot().isEmpty()) {
+					if (s.isAlliedWithPlayer() || s.getLoot().isEmpty()) {
 						continue;
 					}
 
@@ -317,9 +288,7 @@
 
 					if (best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Shield)) {
 						category = 1;
-					} else if (best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Armor)
-						|| best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Helmet))
-					{
+					} else if (best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Armor) || best.getLoot().getItems()[0].isItemType(::Const.Items.ItemType.Helmet)) {
 						category = 2;
 					}
 
@@ -327,8 +296,7 @@
 						candidates.extend(::Const.Strings.RumorsItemsOrcs[category]);
 					} else if (f.getType() == ::Const.FactionType.Goblins) {
 						candidates.extend(::Const.Strings.RumorsItemsGoblins[category]);
-					} else if (f.getType() == ::Const.FactionType.Undead
-						|| f.getType() == ::Const.FactionType.Zombies)
+					} else if (f.getType() == ::Const.FactionType.Undead || f.getType() == ::Const.FactionType.Zombies)
 					{
 						candidates.extend(::Const.Strings.RumorsItemsUndead[category]);
 					} else if (f.getType() == ::Const.FactionType.Barbarians) {
@@ -341,15 +309,7 @@
 
 					this.m.Location = this.WeakTableRef(best);
 				} else {
-					candidates.extend(::Const.Strings.RumorsGeneral);
-
-					if (this.m.Settlement.isMilitary()) {
-						candidates.extend(::Const.Strings.RumorsMilitary);
-					} else {
-						candidates.extend(::Const.Strings.RumorsCivilian);
-					}
-
-					candidates.extend(this.m.Settlement.getRumors());
+					candidates.extend(this.getGeneralRumors());
 				}
 			} else if (r == 6) {
 				local best;
@@ -377,15 +337,7 @@
 					candidates.extend(situation.getRumors());
 					this.m.ContractSettlement = this.WeakTableRef(best);
 				} else {
-					candidates.extend(::Const.Strings.RumorsGeneral);
-
-					if (this.m.Settlement.isMilitary()) {
-						candidates.extend(::Const.Strings.RumorsMilitary);
-					} else {
-						candidates.extend(::Const.Strings.RumorsCivilian);
-					}
-
-					candidates.extend(this.m.Settlement.getRumors());
+					candidates.extend(this.getGeneralRumors());
 				}
 			}
 
@@ -407,15 +359,27 @@
 		}
 	}
 
+	o.getGeneralRumors <- function () {
+		local ret = [];
+		ret.extend(::Const.Strings.RumorsGeneral);
+		ret.extend(this.m.Settlement.isMilitary() ? ::Const.Strings.RumorsMilitary : ::Const.Strings.RumorsCivilian);
+		ret.extend(this.m.Settlement.getRumors());
+		return ret;
+	}
+
 	local buildText = o.buildText;
 	o.buildText = function (_text) {
-		local text = buildText(_text);
 		local vars = [
+			[
+				"item",
+				this.m.Location != null && !this.m.Location.isNull() && !this.m.Location.getLoot().isEmpty() ? this.m.Location.getLoot().getItems()[0].makeName() : ""
+			],
 			[
 				"direction_settlement",
 				this.m.ContractSettlement != null && !this.m.ContractSettlement.isNull() ? ::Const.Strings.Direction8[this.m.Settlement.getTile().getDirection8To(this.m.ContractSettlement.getTile())] : ""
 			],
 		];
-		return this.buildTextFromTemplate(text, vars);
+		_text = this.buildTextFromTemplate(_text, vars);
+		return buildText(_text);
 	}
 });

@@ -199,7 +199,7 @@
 
 	local list = [];
 	foreach (entry in grouped) {
-		if (::MSU.isKindOf(entry.item, "weapon") || ::MSU.isKindOf(entry.item, "legend_armor") || ::MSU.isKindOf(entry.item, "legend_helmets")) {
+		if (::MSU.isKindOf(entry.item, "weapon") || ::MSU.isKindOf(entry.item, "legend_armor") || ::MSU.isKindOf(entry.item, "legend_helmet")) {
 			list.push({
 				id = 1,
 				icon = "ui/items/" + entry.item.getIcon(),
