@@ -54,7 +54,7 @@
 };
 
 ::Const.Tactical.Common.onApplyShadowMist <- function (_tile, _entity) {
-	if (!_entity.getFlags().has("alp") && _entity.getMoraleState == ::Const.MoraleState.Ignore) {
+	if (!_entity.getFlags().has("alp") && _entity.getMoraleState() == ::Const.MoraleState.Ignore) {
 		return;
 	}
 

@@ -343,6 +343,15 @@
 		_properties.HitChance[::Const.BodyPart.Head] += _offhand.m.ChanceToHitHead;
 	}
 
+	local use = o.use;
+	o.use = function ( _targetTile, _forFree = false ) {
+		if (this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing) {
+            return false;
+        }
+
+		return use(_targetTile, _forFree);
+	}
+
 	o.onVerifyTarget = function( _originTile, _targetTile )
 	{
 		if (this.m.IsTargetingActor && (_targetTile.IsEmpty || !_targetTile.getEntity().isAttackable() || !_targetTile.getEntity().isAlive() || _targetTile.getEntity().isDying()))

@@ -623,6 +623,7 @@
 - fixed missing Wither skill icon
 - fixed tavern rumours showing the base item's name only on layered composites
 - fixed a rare Lorekeeper Lightning Storm AI loop bug
+- attempted fix of entities sometimes attacking through the Fleeing state after getting put into it by a Riposte
 
 ### For modders:
 - it is now possible to use [i][/i] and [size=18px][/size] to customize ui text size easily with xbbcode

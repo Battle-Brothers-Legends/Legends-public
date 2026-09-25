@@ -970,7 +970,7 @@
 			IsByPlayer = false,
 			Timeout = ::Time.getRound() + _timeout,
 			Callback = @(_tile, _entity) ::Const.Tactical.Common.onApplyShadowMist(_tile, _entity),
-			Applicable = @(_a) _a.getFlags().has("alp") || _a.getMoraleState != ::Const.MoraleState.Ignore
+			Applicable = @(_a) _a.getFlags().has("alp") || _a.getMoraleState() != ::Const.MoraleState.Ignore
 		};
 
 		::Tactical.State.spawnEffectOnTile(_tile, effect.Type, effect, this.createEffectParticles(_tile, ::Const.Tactical.ShadowParticles));
