@@ -30,7 +30,6 @@ this.perk_legend_opportunist <- this.inherit("scripts/skills/skill", {
 			::Legends.Effect.SpiderPoison,
 			::Legends.Effect.LegendRedbackSpiderPoison,
 			::Legends.Effect.LegendZombiePoison,
-			::Legends.Effect.LegendRatPoison,
 			::Legends.Effect.LegendRswPoisonEffect,
 			::Legends.Effect.LegendRswBleedingEffect,
 		]) {
