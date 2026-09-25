@@ -33,7 +33,7 @@ this.legend_cannibal_recruitment <- this.inherit("scripts/events/event", {
 				}
 			],
 			function start(_event) {
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Cannibal = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Cannibal.setStartValuesEx([::Legends.Background.Butcher]);
 				if (::World.Assets.getOrigin().getID() != "scenario.legends_risen_legion") {
 					::Legends.Traits.grant(_event.m.Cannibal, ::Legends.Trait.LegendCannibalistic);
