@@ -65,7 +65,7 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		local actor = this.getContainer().getActor();
 		this.legend_helmet_upgrade.onUnequip();
 		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendHorrify) && !::Legends.Actives.has(actor, ::Legends.Active.HorrificScream)) {
-			::Legends.Actives.grant(this, ::Legends.Active.HorrificScream);
+			::Legends.Actives.grant(actor, ::Legends.Active.HorrificScream);
 		}
 	}
 });
