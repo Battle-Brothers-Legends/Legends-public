@@ -1,23 +1,19 @@
-::mods_hookExactClass("skills/actives/werewolf_bite", function(o)
-{
+::mods_hookExactClass("skills/actives/werewolf_bite", function (o) {
 	o.m.IsRestrained <- false;
 	o.m.IsSpent <- false;
 
-	o.isUsable <- function ()
-	{
+	o.isUsable <- function () {
 		return this.skill.isUsable() && !this.m.IsSpent;
 	}
 
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
-		this.m.Description = "Tear an enemy assunder with your teeth";
+		this.m.Description = "Tear an enemy asunder with your teeth";
 		this.m.IconDisabled = "skills/active_71_bw.png";
 	}
 
-	o.getTooltip <- function ()
-	{
+	o.getTooltip <- function () {
 		local p = this.getContainer().getActor().getCurrentProperties();
 		return [
 			{
@@ -44,33 +40,27 @@
 		];
 	}
 
-	o.onUpdate = function (_properties)
-	{
-		if (isUsable())
-		{
+	o.onUpdate = function (_properties) {
+		if (this.isUsable()) {
 			_properties.DamageRegularMin += 30;
 			_properties.DamageRegularMax += 50;
-			_properties.DamageArmorMult	*= 0.7;
+			_properties.DamageArmorMult *= 0.7;
 		}
 	}
 
 	local onUse = o.onUse;
-	o.onUse <- function( _user, _targetTile )
-	{
-		if (this.m.IsRestrained)
-		{
+	o.onUse <- function (_user, _targetTile) {
+		if (this.m.IsRestrained) {
 			this.m.IsSpent = true;
 		}
 		return onUse(_user, _targetTile);
 	}
 
-	o.onTurnStart <- function()
-	{
+	o.onTurnStart <- function () {
 		this.m.IsSpent = false;
 	}
 
-	o.setRestrained <- function( _f )
-	{
+	o.setRestrained <- function (_f) {
 		this.m.IsRestrained = _f;
 	}
 });

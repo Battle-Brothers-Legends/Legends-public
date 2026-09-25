@@ -23,15 +23,7 @@ if (!("Weapons" in ::Legends)) {
         }
 
         // Use same validation code as Attack of Opportunity
-        if (!skill.isActive()
-            || !skill.isAttack()
-            || !skill.isTargeted()
-            || skill.isIgnoredAsAOO()
-            || skill.isDisabled()
-            || !skill.isUsable()
-            || skill.getMinRange() > 1
-            || skill.isRanged())
-        {
+        if (!skill.isActive() || !skill.isAttack() || !skill.isTargeted() || skill.isIgnoredAsAOO() || skill.isDisabled() || !skill.isUsable() || skill.getMinRange() > 1 || skill.isRanged()) {
             continue;
         }
 
@@ -77,10 +69,7 @@ if (!("Weapons" in ::Legends)) {
     local items = _actor.getItems();
     local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
     local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-    return mh != null
-        && oh != null
-        && mh.isItemType(::Const.Items.ItemType.Weapon)
-        && oh.isItemType(::Const.Items.ItemType.Weapon);
+    return mh != null && oh != null && mh.isItemType(::Const.Items.ItemType.Weapon) && oh.isItemType(::Const.Items.ItemType.Weapon);
 }
 
 // Returns true if dual wielding weapons of the given type.

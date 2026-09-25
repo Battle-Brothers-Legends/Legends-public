@@ -242,95 +242,20 @@
 	}
 
 	local onMissed = o.onMissed;
-	o.onMissed = function ( _attacker, _skill, _dontShake = false )
-	{
-		// Attempt to Parry
-		local isParrying = false;
-		local validAttackerToParry = _attacker != null
-			&& _attacker.isAlive()
-			&& !_attacker.isAlliedWith(this)
-			&& _attacker.getTile().getDistanceTo(this.getTile()) == 1
-			&& ::Tactical.TurnSequenceBar.getActiveEntity() != null
-			&& ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID();
-		local validSkillToParry = _skill != null
-			&& !_skill.isIgnoringRiposte()
-			&& _skill.m.IsWeaponSkill;
-
-		if (this.getCurrentProperties().IsParrying
-			&& !this.getCurrentProperties().IsStunned
-			&& validAttackerToParry
-			&& validSkillToParry
-			&& !_attacker.getCurrentProperties().IsImmuneToDisarm
-			&& !_attacker.getSkills().hasEffect(::Legends.Effect.LegendParried)
-		) {
-			if (this.isHiddenToPlayer()) {
-				::Legends.Effects.grant(_attacker, ::Legends.Effect.LegendParried);
-				this.onBeforeRiposte(_attacker, _skill);
-			}
-			else {
-				isParrying = true;
-				local attacker = _attacker, skill = _skill;
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.5, this.onParryVisible.bindenv(this), {
-					Actor = this, // this is technically not needed here because of bindenv
-					Attacker = attacker,
-					Skill = skill
-				});
-			}
-
-			::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(this) + " Parries the attack from " + ::Const.UI.getColorizedEntityName(_attacker));
-		}
-		else
-		{
-			this.onBeforeRiposte(_attacker, _skill);
-		}
-
-		if (isParrying)
-			this.m.CurrentProperties.IsRiposting = false;
+	o.onMissed = function (_attacker, _skill, _dontShake = false) {
+		this.onBeforeRiposte(_attacker, _skill);
 		onMissed(_attacker, _skill, _dontShake);
 	}
 
-	o.onParryVisible <- function (_info)
-	{
-		if (_info.Attacker == null) {
-			::logInfo("attacker == null, wtf?");
-		}
-		if (_info.Skill == null) {
-			::logInfo("skill == null, wtf?");
-		}
-		if (_info.Actor == null) {
-			::logInfo("actor == null, wtf?");
-		}
-		if (this == null) {
-			::logInfo("this == null, wtf?");
-		}
-		// Animate and provide sound effects for the Parry, and apply the Vulnerable effect
-		::Tactical.spawnSpriteEffect("en_garde_square", this.createColor("#ffffff"), _info.Actor.getTile(),
-			::Const.Tactical.Settings.SkillOverlayOffsetX, ::Const.Tactical.Settings.SkillOverlayOffsetY,
-			::Const.Tactical.Settings.SkillOverlayScale, ::Const.Tactical.Settings.SkillOverlayScale,
-			::Const.Tactical.Settings.SkillOverlayStayDuration, 0, ::Const.Tactical.Settings.SkillOverlayFadeDuration
-		);
-		_info.Skill.spawnAttackEffect(_info.Attacker.getTile(), ::Const.Tactical.AttackEffectSlash);
-		::Tactical.getShaker().cancel(_info.Attacker);
-		::Tactical.getShaker().shake(_info.Attacker, _info.Actor.getTile(), 2);
-		local sound = ::Const.Sound.getParrySoundByWeaponType(_info.Skill);
-		// ::Sound.play("sounds/combat/legend_parried_01.wav", ::Const.Sound.Volume.Skill, _info.Actor.getPos())
-		::Sound.play(sound, ::Const.Sound.Volume.Skill, _info.Actor.getPos());
-		::Legends.Effects.grant(_info.Attacker, ::Legends.Effect.LegendParried);
-		::Tactical.EventLog.log(::Const.UI.getColorizedEntityName(_info.Attacker) + " is Vulnerable");
-		// Attempt to perform a Riposte after the Parry (with a delay so that it only begins after the Parry animation is finished)
-		this.onBeforeRiposte(_info.Attacker, _info.Skill, 1.5);
-	}
-
 	// Preparation to call onRiposte(). Given its own function so it can be easily reused
-	o.onBeforeRiposte <- function ( _attacker, _skill, _delayMultiplier=1 )
-	{
+	o.onBeforeRiposte <- function (_attacker, _skill) {
 		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
 			local skill = this.m.Skills.getAttackOfOpportunity();
+			local items = this.getItems();
+			local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
+			local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 
 			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
-			local items = this.getItems();
-        	local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
-        	local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 			if (mh == null && oh != null) {
 				local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
 				if (ohSkill != null) {
@@ -344,37 +269,28 @@
 					Skill = skill,
 					TargetTile = _attacker.getTile()
 				};
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onRiposte.bindenv(this), info);
-
-				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword)
-					&& ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword))
-				{
-					local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-					if (oh != null) {
-						local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
-						if (ohSkill != null) {
-							local ohInfo = {
-								User = this,
-								Skill = ohSkill,
-								TargetTile = _attacker.getTile()
-							};
-							::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * _delayMultiplier, this.onOffhandRiposte.bindenv(this), ohInfo);
-						}
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onRiposte.bindenv(this), info);
+				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword) && ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword)) {
+					local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+					if (ohSkill != null) {
+						local ohInfo = {
+							User = this,
+							Skill = ohSkill,
+							TargetTile = _attacker.getTile()
+						};
+						::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.2, this.onOffhandRiposte.bindenv(this), ohInfo);
 					}
+
 				}
 			}
-
-			this.getFlags().set("PerformedRiposte", true);
 		}
 	}
 
 	o.onOffhandRiposte <- function (_info) {
-		if (!_info.User.isAlive()) {
-			return;
+		if (!::Legends.S.isEntityNullOrDead(_info.User)) {
+			_info.Skill.useForFree(_info.TargetTile);
 		}
-		_info.Skill.useForFree(_info.TargetTile);
 	}
-
 
 	o.resetPerks <- function ()
 	{
