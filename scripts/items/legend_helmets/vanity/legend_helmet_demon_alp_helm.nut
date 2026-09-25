@@ -1,6 +1,6 @@
-
 this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/legend_helmet_upgrade", {
 	m = {},
+
 	function create() {
 		this.legend_helmet_upgrade.create();
 		this.m.ID = "armor.head.legend_helmet_demon_alp_helm";
@@ -39,7 +39,7 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 		return this.onArmorTooltip(result);
 	}
 
-	function onArmorTooltip( result ) {
+	function onArmorTooltip(result) {
 		result.push({
 			id = 6,
 			type = "text",
@@ -52,8 +52,8 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 
 	function onEquip() {
 		this.legend_helmet_upgrade.onEquip();
-		if (!this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendHorrify)) {
-			::Legends.Actives.grant(this, ::Legends.Effect.HorrificScream, function(_skill) {
+		if (!::Legends.Perks.has(this, ::Legends.Perk.LegendHorrify)) {
+			::Legends.Actives.grant(this, ::Legends.Effect.HorrificScream, function (_skill) {
 				_skill.m.ActionPointCost = 6;
 				_skill.m.FatigueCost = 30;
 				_skill.m.MaxRange = 4;
@@ -62,9 +62,9 @@ this.legend_helmet_demon_alp_helm <- this.inherit("scripts/items/legend_helmets/
 	}
 
 	function onUnequip() {
+		local actor = this.getContainer().getActor();
 		this.legend_helmet_upgrade.onUnequip();
-		if (this.getContainer().getActor().getSkills().hasPerk(::Legends.Perk.LegendHorrify))
-		{
+		if (::Legends.Perks.has(actor, ::Legends.Perk.LegendHorrify) && !::Legends.Actives.has(actor, ::Legends.Active.HorrificScream)) {
 			::Legends.Actives.grant(this, ::Legends.Active.HorrificScream);
 		}
 	}
