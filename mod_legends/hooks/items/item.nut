@@ -268,7 +268,7 @@
 	}
 
 	o.onRemovedFromBag = function () {
-		this.onUnequip();
+		this.item.onUnequip();
 	}
 
 	o.onEquipRuneSigil <- function ()
