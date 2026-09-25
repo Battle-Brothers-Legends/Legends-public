@@ -31,7 +31,7 @@ this.legend_vala_recruitment <- this.inherit("scripts/events/event", {
 				}
 			}],
 			function start(_event) {
-				_event.m.Dude = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
+				_event.m.Vala = ::World.getTemporaryRoster().create("scripts/entity/tactical/" + (::World.Assets.getOrigin().getID() == "scenario.legends_risen_legion" ? "legend_player_legion" : "player"));
 				_event.m.Vala.setStartValuesEx([::Legends.Background.LegendVala]);
 
 				if (::World.Assets.getOrigin().getID() != "scenario.legends_risen_legion") {
