@@ -78,7 +78,6 @@
 	local selectedDef = ::Legends.Runes.get(_selectedItem.getRuneVariant());
 	local equippedDef = ::Legends.Runes.get(_equippedItem.getRuneVariant());
 	if (selectedDef != null && equippedDef != null && selectedDef.Name == equippedDef.Name) {
-		// Note: The way "Gain" vs "Lose" is worded assumes higher bonus value always means better
 		local bonusDiff1 = _selectedItem.getRuneBonus1() - _equippedItem.getRuneBonus1();
 		local bonusDiff2 = _selectedItem.getRuneBonus2() - _equippedItem.getRuneBonus2();
 
@@ -96,8 +95,7 @@
 		if (bonusDiff1 != 0) {
 			local param1 = [];
 			param1.extend([
-				["diff", bonusDiff1 > 0 ? "Gain" : "Lose"],
-				["bonus1", ::Math.abs(bonusDiff1)],
+				["bonus1Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff1), bonusDiff1)],
 				["new", _selectedItem.getRuneBonus1()],
 				["old",_equippedItem.getRuneBonus1()]
 			]);
@@ -105,7 +103,7 @@
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
-				icon = bonusDiff1 > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+				icon = "ui/icons/special.png",
 				text = ::Legends.tooltip(selectedDef.CompareTooltip[0], param1)
 			});
 		}
@@ -113,8 +111,7 @@
 		if (bonusDiff2 != 0) {
 			local param2 = [];
 			param2.extend([
-				["diff", bonusDiff2 > 0 ? "Gain" : "Lose"],
-				["bonus2", ::Math.abs(bonusDiff2)],
+				["bonus2Diff", ::Legends.S.colorize(::Legends.S.addSign(bonusDiff2), bonusDiff2)],
 				["new", _selectedItem.getRuneBonus2()],
 				["old",_equippedItem.getRuneBonus2()]
 			]);
@@ -122,7 +119,7 @@
 			_tooltipList.push({
 				id = 20,
 				type = "hint",
-				icon = bonusDiff2 > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+				icon = "ui/icons/special.png",
 				text = ::Legends.tooltip(selectedDef.CompareTooltip[1], param2)
 			});
 		}
@@ -133,7 +130,7 @@
 				id = 20,
 				type = "hint",
 				icon = "ui/tooltips/positive.png",
-				text = "Gain the following rune effect:\n" + ::Legends.Runes.getTooltip(_selectedItem, selectedDef, true)
+				text = ::Legends.Runes.getTooltip(_selectedItem, selectedDef, true)
 			});
 		}
 		
@@ -142,7 +139,7 @@
 				id = 20,
 				type = "hint",
 				icon = "ui/tooltips/negative.png",
-				text = "Lose the following rune effect:\n" + ::Legends.Runes.getTooltip(_equippedItem, equippedDef, true)
+				text = ::Legends.Runes.getTooltip(_equippedItem, equippedDef, true)
 			})
 		}
 	}

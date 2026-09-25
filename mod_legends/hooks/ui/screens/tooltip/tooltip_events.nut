@@ -280,12 +280,6 @@
 			if (equippedLayer != null) {
 				tooltip.extend(equippedLayer.getCompareTooltip(2));
 				_item.applyCompareHints(tooltip, equippedLayer);
-
-				// Compare runes
-				if (_item.getRuneVariant() != null || equippedLayer.getRuneVariant() != null) {
-					::Legends.Runes.applyCompareHints(tooltip, _item, equippedLayer);
-				}
-
 				tooltip.top().divider <- "bottom";
 			}
 		}

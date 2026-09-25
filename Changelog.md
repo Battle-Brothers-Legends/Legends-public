@@ -650,6 +650,7 @@
 - Tooltip changes: new `section` attribute which allows types of `text`, `image`, and `progress-bar` to be sorted according to `section`. Defaults to 0 if unspecified
 - Tooltip changes: new `divider` values for `text` type: `parent-top` and `grandparent-top`
 - submod scenarios are now displayed in the custom group on the scenario selection screen
+- if you have custom armor layers that add tooltips due to special effects, you can check `mod_legends/helper/inventory/items_effects` to see how it might be handled by the new comparison tooltip
 
 Refactors/deletions:
 - `LegendExtendendAura` -> `LegendExtendedAura`

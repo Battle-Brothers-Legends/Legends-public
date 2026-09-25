@@ -598,13 +598,13 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			});
 
 			// Compare Armor value
-			compareMath = ::Math.abs(this.getConditionMax()) - ::Math.abs(_compareLayer.getConditionMax());
+			compareMath = this.getConditionMax() - _compareLayer.getConditionMax();
 			if (compareMath != 0) {
 				hasStatDiff = true;
 				compareArmor = {
 					id = 20,
 					type = "hint",
-					icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+					icon = "ui/icons/armor_body.png",
 					text = "%_diff% Armor (%_this_armor% vs %_compared_armor%)"
 					param = [
 						["_diff", ::Legends.S.colorize(::Legends.S.addSign(compareMath), compareMath)],
@@ -615,30 +615,18 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 			}
 
 			// Compare Fatigue Weight Penalty
-			compareMath = ::Math.abs(this.getStaminaModifier()) - ::Math.abs(_compareLayer.getStaminaModifier());
+			compareMath = this.getStaminaModifier() - _compareLayer.getStaminaModifier();
 			if (compareMath != 0) {
-				hasStatDiff = true;
-
-				local textWeight = "";
-				local textWeightComparison = " (" + ::Math.abs(this.getStaminaModifier()) + " vs " + ::Math.abs(_compareLayer.getStaminaModifier()) + ")";
-				
-				if (this.getStaminaModifier() == 0 && _compareLayer.getStaminaModifier() != 0) {
-					textWeight = "No Fatigue Weight Penalty";
-				} else if (this.getStaminaModifier() != 0 && _compareLayer.getStaminaModifier() == 0) {
-					textWeight = "Has Fatigue Weight Penalty";
-				} else {
-					textWeight = ::Legends.S.colorize(::Math.abs(compareMath) + (compareMath > 0 ? " more" : " less"), compareMath) + " Weight";
-				}
-				
+				hasStatDiff = true;				
 				compareWeight = {
 					id = 20,
 					type = "hint",
-					icon = compareMath > 0 ? "ui/tooltips/negative.png" : "ui/tooltips/positive.png",
-					text = "%_diff% (%_this_weight% vs %_compared_weight%)",
+					icon = "ui/icons/fatigue.png",
+					text = "%_diff% Fatigue Weight Penalty (%_this_weight% vs %_compared_weight%)",
 					param = [
-						["_diff", textWeight],
-						["_this_weight", ::Math.abs(this.getStaminaModifier())],
-						["_compared_weight", ::Math.abs(_compareLayer.getStaminaModifier())]
+						["_diff", ::Legends.S.colorize(::Legends.S.addSign(compareMath), compareMath)],
+						["_this_weight", this.getStaminaModifier()],
+						["_compared_weight", _compareLayer.getStaminaModifier()]
 					]
 				}
 			}
@@ -655,7 +643,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 					compareArmorPerWeight = {
 						id = 20,
 						type = "hint",
-						icon = compareMath > 0 ? "ui/tooltips/positive.png" : "ui/tooltips/negative.png",
+						icon = "ui/icons/fatigue.png",
 						text = "%_diff% Armor per 1 Weight (%_this_efficiency% vs %_other_efficiency%)",
 						param = [
 							["_diff", ::Legends.S.colorize((compareMath > 0 ? "+" : "") + format("%.1f", compareMath), compareMath)],
@@ -663,24 +651,7 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 							["_other_efficiency", format("%.1f", otherEfficiency)]
 						]
 					}
-				} else if (hasStatDiff) {
-					compareArmorPerWeight = {
-						id = 20,
-						type = "hint",
-						icon = "ui/tooltips/money_sw.png",
-						text = "Equal Armor per 1 Weight (%_efficiency%)",
-						param = [["_efficiency", format("%.1f", thisEfficiency)]]
-					}
 				}
-			}
-
-			if (!hasStatDiff) {
-				_tooltipList.push({
-					id = 20,
-					type = "hint",
-					icon = "ui/tooltips/money_sw.png",
-					text = "No armor stat difference",
-				});
 			}
 
 			if (compareArmor != null) {
@@ -695,107 +666,28 @@ this.legend_armor_upgrade <- this.inherit("scripts/items/item", {
 				_tooltipList.push(compareArmorPerWeight);
 			}
 
-			// TODO: Compare Effects
+			local length = _tooltipList.len();
+
+			::Legends.Items.Effects.applyCompareHints(_tooltipList, this, _compareLayer);
+
+			if (this.getRuneVariant() != null || _compareLayer.getRuneVariant() != null) {
+					::Legends.Runes.applyCompareHints(_tooltipList, this, _compareLayer);
+			}
+
+			if (!hasStatDiff && _tooltipList.len() == length) {
+				_tooltipList.push({
+					id = 20,
+					type = "hint",
+					icon = "ui/tooltips/money_sw.png",
+					text = "No difference",
+				});
+			}
 		}
 	}
 
 	function applyEffectTooltips( _tooltipList )
 	{
-		if (this.getInitiativeModifier() != 0)
-		{
-			_tooltipList.push({
-				id = 10,
-				type = "text",
-				icon = "ui/icons/initiative.png",
-				text = "%initMod% Initiative",
-				param = [
-					["initMod", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getInitiativeModifier()) + ::Math.abs(this.getInitiativeModifier()), this.getInitiativeModifier())]
-				]
-			});
-		}
-
-		if (this.getThreatModifier() != 0)
-		{
-			local invertedThreat = -1 * this.getThreatModifier();	// For this tooltip we want to show the actual effect on the enemy
-			_tooltipList.push({
-				id = 11,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "%changingWord% the Resolve of any opponent engaged in melee by %modifier%",
-				param = [
-					["changingWord", ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(invertedThreat))],
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(invertedThreat) + ::Math.abs(invertedThreat), invertedThreat)]
-				]
-			});
-		}
-		if (this.getResolveModifier() != 0)
-		{
-			_tooltipList.push({
-				id = 12,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "%resolveMod% Resolve",
-				param = [
-					["resolveMod", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getResolveModifier()) + ::Math.abs(this.getResolveModifier()), this.getResolveModifier())]
-				]
-			});
-		}
-		if (this.getDirectDamageModifier() != 0)
-		{
-			_tooltipList.push({
-				id = 15,
-				type = "text",
-				icon = "ui/icons/direct_damage.png",
-				text = "%changingWord% damage ignoring armor by %modifier%",
-				param = [
-					["changingWord", ::MSU.String.capitalizeFirst(::Legends.S.getChangingWord(this.getDirectDamageModifier()))],
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getDirectDamageModifier()) + ::Math.abs(this.getDirectDamageModifier()) + "%", this.getDirectDamageModifier())]
-				]
-			});
-		}
-		if (this.getBraveryMult() != 1) {
-			_tooltipList.push({
-				id = 15,
-				type = "text",
-				icon = "ui/icons/special.png",
-				text = "Increase the Resolve of the wearer by [color=%positive%]+" + ::Math.round(this.m.BraveryMult * 100.0 - 100) + "%[/color]"
-			});
-		}
-		if (this.getDamageReceivedArmorMult() != 0)
-		{
-			_tooltipList.push({
-				id = 16,
-				type = "text",
-				icon = "ui/icons/armor_body.png",
-				text = "Body Armor damage taken is %changingWord%d by %modifier%",
-				param = [
-					["changingWord", ::Legends.S.getChangingWord(getDamageReceivedArmorMult())],
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getDamageReceivedArmorMult()) + ::Math.abs(this.getDamageReceivedArmorMult()) + "%", this.getDamageReceivedArmorMult())]
-				]
-			});
-		}
-		if (this.getFatiguePenaltyMultiplier() != 0)
-		{
-			_tooltipList.push({
-				id = 17,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "Fatigue penalty of wearing body armor is %changingWord%d by %modifier%",
-				param = [
-					["changingWord", ::Legends.S.getChangingWord(getFatiguePenaltyMultiplier())],
-					["modifier", ::Legends.S.colorize("" + ::Legends.S.getSign(this.getFatiguePenaltyMultiplier()) + ::Math.abs(this.getFatiguePenaltyMultiplier()) + "%", this.getFatiguePenaltyMultiplier())]
-				]
-			});
-		}
-		if (this.getCurrentFatigueModifier() != 0)
-		{
-			_tooltipList.push({
-				id = 17,
-				type = "text",
-				icon = "ui/icons/fatigue.png",
-				text = "Fatigue Weight Penalty " + ::Legends.S.colorize("" + ::Legends.S.getSign(this.getCurrentFatigueModifier()) + ::Math.abs(this.getCurrentFatigueModifier()), this.getCurrentFatigueModifier())
-			});
-		}
+		::Legends.Items.Effects.applyEffectTooltips(_tooltipList, this);
 	}
 
 	function onSerialize( _out )
