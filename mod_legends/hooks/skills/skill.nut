@@ -345,7 +345,7 @@
 
 	local use = o.use;
 	o.use = function ( _targetTile, _forFree = false ) {
-		if (this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing) {
+		if (this.isAttack() && this.getContainer().getActor().getMoraleState() == ::Const.MoraleState.Fleeing) {
             return false;
         }
 
