@@ -70,7 +70,7 @@ this.legend_bladedancer_background <- this.inherit("scripts/skills/backgrounds/c
 
 	function onChangeAttributes()
 	{
-		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBountyHunter);
+		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendBladedancer);
 	}
 
 	function onAddEquipment()
