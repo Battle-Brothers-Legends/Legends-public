@@ -247,41 +247,37 @@
 		onMissed(_attacker, _skill, _dontShake);
 	}
 
-	// Preparation to call onRiposte(). Given its own function so it can be easily reused
+	// Check riposte conditions; skill counter condition will stop the vanilla riposte in onMissed automatically
 	o.onBeforeRiposte <- function (_attacker, _skill) {
 		if (this.m.CurrentProperties.IsRiposting && _attacker != null && !_attacker.isAlliedWith(this) && _attacker.getTile().getDistanceTo(this.getTile()) == 1 && ::Tactical.TurnSequenceBar.getActiveEntity() != null && ::Tactical.TurnSequenceBar.getActiveEntity().getID() == _attacker.getID() && _skill != null && !_skill.isIgnoringRiposte()) {
-			local skill = this.m.Skills.getAttackOfOpportunity();
 			local items = this.getItems();
 			local mh = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 			local oh = items.getItemAtSlot(::Const.ItemSlot.Offhand);
-
-			// prevents riposte from attacking with h2h if only oh sword equipped; shouldn't need to check for non-weapon ohs since riposte gets removed on unequip
-			if (mh == null && oh != null) {
-				local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
-				if (ohSkill != null) {
-					skill = ohSkill;
-				}
+			local riposteItem = this.m.Skills.getSkillByID(::Legends.Actives.getID(::Legends.Active.Riposte)).getItem().get();
+			local riposteSkill = null;
+			local ohRiposteSkill = null;
+			if (mh == riposteItem) {
+				riposteSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, mh);
+				ohRiposteSkill = oh != null ? ::Legends.Weapons.findPrimaryAttackSkill(this, oh) : null;
+			} else {
+				riposteSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
+				ohRiposteSkill = mh != null ? ::Legends.Weapons.findPrimaryAttackSkill(this, mh) : null;
 			}
 
-			if (skill != null) {
-				local info = {
-					User = this,
-					Skill = skill,
-					TargetTile = _attacker.getTile()
-				};
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onRiposte.bindenv(this), info);
-				if (::Legends.Perks.has(this, ::Legends.Perk.SpecSword) && ::Legends.Weapons.isDualWieldingWeaponType(this, ::Const.Items.WeaponType.Sword)) {
-					local ohSkill = ::Legends.Weapons.findPrimaryAttackSkill(this, oh);
-					if (ohSkill != null) {
-						local ohInfo = {
-							User = this,
-							Skill = ohSkill,
-							TargetTile = _attacker.getTile()
-						};
-						::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.2, this.onOffhandRiposte.bindenv(this), ohInfo);
-					}
+			local info = {
+				User = this,
+				Skill = riposteSkill,
+				TargetTile = _attacker.getTile()
+			};
+			::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onRiposte.bindenv(this), info);
 
+			if (ohRiposteSkill != null && ::Legends.Weapons.isDualWielding(this) && ::Legends.Perks.has(this, ::Legends.Perk.SpecSword)) {
+				local ohInfo = {
+					User = this,
+					Skill = ohRiposteSkill,
+					TargetTile = _attacker.getTile()
 				}
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.2, this.onOffhandRiposte.bindenv(this), ohInfo);
 			}
 		}
 	}

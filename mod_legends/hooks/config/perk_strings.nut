@@ -200,7 +200,7 @@ Master the art of swordfighting and using your opponent's mistakes to your advan
 
 • [color=%skill%]Flowing Slash[/color] now has [color=%positive%]20%[/color] chance to reroll the attack.
 
-• When [color=%status%]Dual Wielding[/color] swords, [color=%skill%]Riposte[/color] can trigger from both weapons, allowing two counter-attacks per missed enemy attack.
+• When [color=%status%]Dual Wielding[/color], [color=%skill%]Riposte[/color] can trigger from both weapons, allowing two counter-attacks per missed enemy attack.
 ";
 ::Const.Perks.PerkDefObjects[::Legends.Perk.SpecSword].Tooltip = ::Const.Strings.PerkDescription.SpecSword;
 ::Const.Strings.PerkDescription.SpecSpear <- @"
