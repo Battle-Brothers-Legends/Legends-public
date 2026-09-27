@@ -156,8 +156,8 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[],
-		[::Legends.Perk.LegendIncoming],
 		[],
+		[::Legends.Perk.LegendIncoming],
 		[::Legends.Perk.LegendCoordinatedVolleys],
 		[]
 	]
@@ -228,9 +228,9 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[],
-		[::Legends.Perk.LegendBloodbath],
+		[],
 		[::Legends.Perk.LegendCarnage],
-		[::Legends.Perk.LegendGruesomeFeast],
+		[::Legends.Perk.LegendGruesomeFeast, ::Legends.Perk.LegendBloodbath],
 		[::Legends.Perk.LegendDarkflight]
 	]
 };
@@ -247,8 +247,8 @@ if (!("Perks" in ::Const)) {
 			::Legends.Perk.LegendSpawnZombieLow,
 		],
 		[],
-		[::Legends.Perk.LegendExtendedAura],
 		[::Legends.Perk.LegendSpawnZombieMed],
+		[::Legends.Perk.LegendExtendedAura],
 		[::Legends.Perk.LegendReclamation],
 		[::Legends.Perk.LegendViolentDecomposition],
 		[::Legends.Perk.LegendSpawnZombieHigh]
@@ -284,8 +284,8 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendBackToBasics],
 		[],
 		[::Legends.Perk.InspiringPresence],
-		[::Legends.Perk.LegendShieldsUp],
-		[::Legends.Perk.LegendHoldTheLine],
+		[],
+		[::Legends.Perk.LegendHoldTheLine, ::Legends.Perk.LegendShieldsUp],
 		[::Legends.Perk.LegendForwardPush],
 		[::Legends.Perk.LegendInspire]
 	]
@@ -301,10 +301,10 @@ if (!("Perks" in ::Const)) {
 	Tree = [
 		[::Legends.Perk.LegendManipulative],
 		[::Legends.Perk.LegendStupefy],
+		[::Legends.Perk.LegendHorrify],
 		[],
-		[::Legends.Perk.LegendHorrify, ::Legends.Perk.LegendMagicStun],
 		[::Legends.Perk.LegendTerrifyingVisage],
-		[],
+		[::Legends.Perk.LegendMagicStun],
 		[]
 	]
 };

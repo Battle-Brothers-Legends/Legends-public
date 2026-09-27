@@ -172,6 +172,13 @@
 - `Poisoner` - renamed from `Poison Mastery`, moved to tier 5, now increases the number of attacks on poison coats, active removed
 - `Chain Lightning` - reworked graphical effects, executes faster, is now inversely affected by height difference, doesn't get blocked by cover anymore
 - `Sword Mastery` - riposte dual wielding bonus now works with all weapons
+- `Horrify` - moved to tier 3 (illusionist)
+- `Stun` - moved to tier 6 (illusionist)
+- `Shields Up!` - moved to tier 5 (commander)
+- `Incoming!` - moved to tier 5 (archer commander)
+- `Extended Aura` - moved to tier 4 (zombie summoning)
+- `Fashion Body` - moved to tier 3 (zombie summoning)
+- `Bloodbath` - moved to tier 6 (vampire)
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters
