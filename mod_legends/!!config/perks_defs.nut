@@ -2305,8 +2305,8 @@ perkDefObjects.push({
 	Script = "scripts/skills/perks/perk_legend_terrifying_visage",
 	Name = ::Const.Strings.PerkName.LegendTerrifyingVisage,
 	Tooltip = ::Const.Strings.PerkDescription.LegendTerrifyingVisage,
-	Icon = "ui/perks/perk_21.png",
-	IconDisabled = "ui/perks/perk_21_sw.png",
+	Icon = "ui/perks/legend_terrifying_visage.png",
+	IconDisabled = "ui/perks/legend_terrifying_visage_bw.png",
 	Const = "LegendTerrifyingVisage"
 });
 
