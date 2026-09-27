@@ -445,30 +445,12 @@
 		}
 
 		// Flip the offhand weapon sprite when dual wielding
-		if (this.hasSprite("shield_icon") && _appearance.Shield.len() != 0)
-		{
-			if (::Legends.Weapons.isDualWielding(this))
-			{
-				this.setAlwaysApplySpriteOffset(true);
-				local flip = !this.isAlliedWithPlayer();
-				local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-				local ohSprite = this.getSprite("shield_icon");
-				ohSprite.setHorizontalFlipping(!flip);
-				if (oh != null && oh.isItemType(::Const.Items.ItemType.TwoHanded))
-				{
-					// WIP, not sure if dual-wielding two handed weapons will stay
-					ohSprite.Scale = 0.80;
-					this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
-				}
-				else
-				{
-					ohSprite.Scale = 1.0;
-					this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
-				}
+		if (this.hasSprite("shield_icon")) {
+			if (_appearance.Shield.len() != 0 && ::Legends.Weapons.isDualWielding(this)) {
+				this.flipOffhandSprite();
 				this.m.IsOffhandFlipped = true;
-			}
-			else if (this.m.IsOffhandFlipped) //We only want to reset sprite position when it's actually needed
-			{
+			} else if (this.m.IsOffhandFlipped) {
+				//We only want to reset sprite position when it's actually needed
 				this.m.IsOffhandFlipped = false;
 				local ohSprite = this.getSprite("shield_icon");
 				ohSprite.setHorizontalFlipping(!this.isAlliedWithPlayer());
@@ -483,20 +465,24 @@
 	o.onFactionChanged = function () {
 		onFactionChanged();
 		if (this.hasSprite("shield_icon") && ::Legends.Weapons.isDualWielding(this)) {
-			this.setAlwaysApplySpriteOffset(true);
-			local flip = !this.isAlliedWithPlayer();
-			local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
-			local ohSprite = this.getSprite("shield_icon");
-			ohSprite.setHorizontalFlipping(!flip);
-			if (oh != null && oh.isItemType(::Const.Items.ItemType.TwoHanded)) {
-				// WIP, not sure if dual-wielding two handed weapons will stay
-				ohSprite.Scale = 0.80;
-				this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
-			} else {
-				ohSprite.Scale = 1.0;
-				this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
-			}
+			this.flipOffhandSprite();
 		}
+	}
+
+	o.flipOffhandSprite <- function () {
+		this.setAlwaysApplySpriteOffset(true);
+		local flip = !this.isAlliedWithPlayer();
+		local ohSprite = this.getSprite("shield_icon");
+		ohSprite.setHorizontalFlipping(!flip);
+		/*local oh = this.getItems().getItemAtSlot(::Const.ItemSlot.Offhand);
+		if (oh != null && oh.isItemType(::Const.Items.ItemType.TwoHanded)) {
+			// WIP, not sure if dual-wielding two handed weapons will stay
+			ohSprite.Scale = 0.80;
+			this.setSpriteOffset("shield_icon", this.createVec(flip ? -10 : 10, 0));
+		} else {*/
+		ohSprite.Scale = 1.0;
+		this.setSpriteOffset("shield_icon", this.createVec(flip ? -40 : 40, 0));
+		//}
 	}
 
 	local setHitpoints = o.setHitpoints;
