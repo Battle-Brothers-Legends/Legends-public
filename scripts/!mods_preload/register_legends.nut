@@ -18,7 +18,7 @@
 	"dlc_desert",
 	"dlc_paladins",
 	//"mod_events_delayed_fix_legends",
-	">blazing_deserts_plus(>=0.9)",
+	">blazing_deserts_plus(>=0.12)",
 	"!mod_tooltip_extension(<=1.01)"
 ].reduce(@(p, n) ::format("%s, %s", p, n)), function () {
 	::Legends.Mod <- ::MSU.Class.Mod(::Legends.ID, ::Legends.Version, ::Legends.Name);

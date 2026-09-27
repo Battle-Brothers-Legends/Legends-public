@@ -121,7 +121,7 @@
 					start();
 					this.Text = ::MSU.String.replace(this.Text, "The arena master", " The arena master");
 				}
-				
+
 			}
 			if (s.ID == "Overview")
 			{
@@ -170,64 +170,19 @@
 						::Legends.Arena.updateTraits(this.List, bro);
 					}
 
-					if (::World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") > 0 && ::World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon") % 5 == 0)
-					{
-						local r;
-						local a;
-						local u;
-
-						if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 5)
-							r = 1;
-						else if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 10)
-							r = 3;
-						else if (::World.Statistics.getFlags().getAsInt("ArenaFightsWon") == 15)
-							r = 2;
+					local won = ::World.Statistics.getFlags().getAsInt("ArenaRegularFightsWon");
+					if (won > 0 && won % 5 == 0) {
+						local totalFights = ::World.Statistics.getFlags().getAsInt("ArenaFightsWon");
+						local item = null;
+						if ([5, 10, 15].find(totalFights) != null)
+							item = ::Legends.Arena.pickLoot(totalFights, (totalFights / 5) - 1);
 						else
-							r = ::Math.rand(1, 3);
+							item = ::Legends.Arena.pickLoot(totalFights);
 
-						switch(r)
-						{
-						case 1:
-							a = ::Const.World.Common.pickArmor([
-									[1, ::Legends.Armor.Southern.gladiator_harness],
-							]);
-							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_light_gladiator_upgrade"));
-
-							this.List.push({
-								id = 12,
-								icon = "ui/items/" + a.getUpgrade().getIcon(),
-								text = "You gain a " + a.getName()
-							});
-							break;
-
-						case 2:
-							a = ::Const.World.Common.pickArmor([
-									[1, ::Legends.Armor.Southern.gladiator_harness],
-							]);
-							a.setUpgrade(this.new("scripts/items/legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"));
-							this.List.push({
-								id = 12,
-								icon = "ui/items/" + a.getUpgrade().getIcon(),
-								text = "You gain a " + a.getName()
-							});
-							break;
-
-						case 3:
-							a = ::new(::MSU.Array.rand([
-								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_crested",
-								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_split",
-								"scripts/items/legend_helmets/helm/legend_helmet_southern_gladiator_helm_masked"
-							]));
-							this.List.push({
-								id = 12,
-								icon = "ui/items/" + a.getIcon(),
-								text = "You gain a " + a.getName()
-							});
-							break;
-						}
+						this.List.push(::Legends.Arena.getLootEntry(item));
 
 						::World.Assets.getStash().makeEmptySlots(1);
-						::World.Assets.getStash().add(a);
+						::World.Assets.getStash().add(item);
 					}
 				}
 			}

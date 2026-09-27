@@ -1292,12 +1292,15 @@
 			_properties.XPGainMult *= 0.9;
 		}
 
-		foreach(k, v in ::Legends.BackgroundModifiers[::Legends.Backgrounds.findById(this.getID()).Const]) {
-			if (k != "Terrain") {
-				_properties.Modifiers[k] += v;
-			} else {
-				foreach(idx, value in v) {
-					_properties.Modifiers[k][idx] += value;
+		local def = ::Legends.Backgrounds.findById(this.getID());
+		if (def != null) {
+			foreach (k, v in ::Legends.BackgroundModifiers[def.Const]) {
+				if (k != "Terrain") {
+					_properties.Modifiers[k] += v;
+				} else {
+					foreach (idx, value in v) {
+						_properties.Modifiers[k][idx] += value;
+					}
 				}
 			}
 		}

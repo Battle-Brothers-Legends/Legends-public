@@ -1,6 +1,53 @@
 if (!("Arena" in ::Legends))
 	::Legends.Arena <- {};
 
+/* Loot - strings and weighted arrays allowed */
+::Legends.Arena.LootTable <- [
+	{
+		Predicate = @(_fights) true,
+		Loot = [
+			[1, "legend_armor/armor_upgrades/legend_light_gladiator_upgrade"]
+		]
+	},{
+		Predicate = @(_fights) true,
+		Loot = [
+			[1, "legend_helmets/helm/legend_helmet_southern_gladiator_helm_crested"],
+			[1, "legend_helmets/helm/legend_helmet_southern_gladiator_helm_split"],
+			[1, "legend_helmets/helm/legend_helmet_southern_gladiator_helm_masked"]
+		]
+	},{
+		Predicate = @(_fights) _fights > 5,
+		Loot = [
+			[1, "legend_armor/armor_upgrades/legend_heavy_gladiator_upgrade"]
+		]
+	}
+];
+
+::Legends.Arena.pickLoot <- function(_totalFights, _index = -1) {
+	local lootTable = ::Legends.Arena.LootTable.filter(@(_, _entry) _entry.Predicate(_totalFights));
+	local item = lootTable[_index == -1 ? ::Math.rand(0, lootTable.len() - 1) : _index];
+	item = ::Const.World.Common.pickItem(item, "scripts/items/");
+	if (::isKindOf(item, "legend_armor_upgrade")) {
+		local armor = ::Const.World.Common.pickArmor([[1, ::Legends.Armor.Southern.gladiator_harness]]);
+		armor.setUpgrade(item);
+		return armor;
+	}
+	return item;
+}
+
+::Legends.Arena.getLootEntry <- function (_item) {
+	local icon = _item.getIcon();
+	if (::Legends.Inventory.isItemLayered(_item) && _item.getUpgrade() != null) {
+		icon = _item.getUpgrade().getIcon();
+	}
+	return {
+		id = 12,
+		icon = "ui/items/" + icon,
+		text = "You gain a " + _item.getName()
+	};
+}
+
+
 ::Legends.Arena.getCollaredBros <- function () { return ::World.getPlayerRoster().getAll().filter(@(idx, bro) ::Legends.Arena.hasCollar(bro)); }
 
 ::Legends.Arena.hasCollar <- function (_bro) {
