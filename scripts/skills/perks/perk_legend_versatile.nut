@@ -30,18 +30,19 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + (this.m.RangedStacks * 10) + "[/color] Damage"
+				icon = "ui/icons/ranged_skill.png",
+				text = "[color=%positive%]+" + (this.m.RangedStacks * 10) + "%[/color] Ranged Damage"
 			});
 		}
-		else if (this.m.MeleeStacks > 0) {
+		if (this.m.MeleeStacks > 0) {
 			ret.push({
 				id = 10,
 				type = "text",
-				icon = "ui/icons/special.png",
-				text = "[color=%positive%]" + (this.m.MeleeStacks * 10) + "[/color] Damage"
+				icon = "ui/icons/melee_skill.png",
+				text = "[color=%positive%]+" + (this.m.MeleeStacks * 10) + "%[/color] Melee Damage"
 			});
 		}
+		return ret;
 	}
 
 	function getDescription() {
@@ -61,21 +62,30 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		this.m.IsHidden = true;
 	}
 
-	function onUpdate(_properties) {
-		if (this.m.MeleeStacks > 3) {
-			this.m.MeleeStacks = 3;
-		}
-		if (this.m.RangedStacks > 3) {
-			this.m.RangedStacks = 3;
-		}
+	function incrementMeleeStacks() {
+		if (this.m.MeleeStacks < 3) this.m.MeleeStacks += 1;
+	}
 
+	function decrementMeleeStacks() {
+		if (this.m.MeleeStacks > 0) this.m.MeleeStacks -= 1;
+	}
+
+	function incrementRangedStacks() {
+		if (this.m.RangedStacks < 3) this.m.RangedStacks += 1;
+	}
+
+	function decrementRangedStacks() {
+		if (this.m.RangedStacks > 0) this.m.RangedStacks -= 1;
+	}
+
+	function onUpdate(_properties) {
 		local baseProperties = this.getContainer().getActor().getBaseProperties();
 		local fraction = this.m.Bonus * 0.01;
 
 		_properties.MeleeSkill += ::Math.floor(baseProperties.getRangedSkill() * fraction);
 		_properties.RangedSkill += ::Math.floor(baseProperties.getMeleeSkill() * fraction);
 
-		this.m.IsHidden = this.m.MeleeStacks == 0 || this.m.RangedStacks == 0;
+		this.m.IsHidden = this.m.MeleeStacks == 0 && this.m.RangedStacks == 0;
 		if (this.m.MeleeStacks > 0) {
 			_properties.MeleeDamageMult *= (this.m.MeleeStacks * 0.10 + 1.00);
 		}
@@ -89,10 +99,10 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0 && this.m.SkillCount != ::Const.SkillCounter) {
 			this.m.SkillCount = ::Const.SkillCounter;
 			if (_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
-				this.m.MeleeStacks += 1;
+				this.decrementRangedStacks();
 			}
 			else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
-				this.m.RangedStacks -= 1;
+				this.decrementMeleeStacks();
 			}
 			if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0) {
 				this.getContainer().getActor().setDirty(true);
@@ -110,13 +120,13 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		}
 
 		if (_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
-			this.m.MeleeStacks += 1;
-			this.m.RangedStacks -= 1;
+			this.incrementMeleeStacks();
+			this.decrementRangedStacks();
 			this.m.SkillCount = ::Const.SkillCounter;
 		}
 		else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
-			this.m.MeleeStacks -= 1;
-			this.m.RangedStacks += 1;
+			this.incrementRangedStacks();
+			this.decrementMeleeStacks();
 			this.m.SkillCount = ::Const.SkillCounter;
 		}
 
