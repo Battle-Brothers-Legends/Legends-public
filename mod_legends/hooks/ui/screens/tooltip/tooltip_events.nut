@@ -265,10 +265,10 @@
 		local tooltip = [];
 
 		// Compare selected layer with equipped layer if applicable
-		if (::World.State.isInCharacterScreen() &&
-			::MSU.isKindOf(_item, "legend_armor_upgrade") &&
-			_entity != null &&
-			_itemOwner == "character-screen-inventory-list-module.stash") 
+		if (::World.State.isInCharacterScreen()
+			&& ::MSU.isKindOf(_item, "legend_armor_upgrade")
+			&& _entity != null
+			&& _itemOwner == "character-screen-inventory-list-module.stash")
 		{
 			local equippedLayer;
 			local armor = _entity.getItems().getItemAtSlot(::Const.ItemSlot.Body);
