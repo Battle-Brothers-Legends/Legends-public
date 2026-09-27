@@ -277,7 +277,7 @@
 					Skill = ohRiposteSkill,
 					TargetTile = _attacker.getTile()
 				}
-				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay * 1.2, this.onOffhandRiposte.bindenv(this), ohInfo);
+				::Time.scheduleEvent(::TimeUnit.Virtual, ::Const.Combat.RiposteDelay, this.onOffhandRiposte.bindenv(this), ohInfo);
 			}
 		}
 	}
