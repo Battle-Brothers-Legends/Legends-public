@@ -1962,7 +1962,7 @@ activesDefs.push({
 	Const = "WardogBite",
 	Name = "Bite",
 	Icon = "skills/active_84.png",
-	Icon = "skills/active_84_sw.png",
+	IconDisabled = "skills/active_84_sw.png",
 	Overlay = "active_84",
 });
 
@@ -2343,7 +2343,7 @@ activesDefs.push({
 ::Legends.Active.LegendDebilitate <- null; // active debilitate
 activesDefs.push({
 	ID = "actives.legend_debilitate",
-	Script = "scripts/skills/actives/legend_debilitate_skill", 
+	Script = "scripts/skills/actives/legend_debilitate_skill",
 	Const = "LegendDebilitate",
 	Name = "Debilitate",
 	Icon = "ui/perks/perk_34_active.png",
@@ -3685,7 +3685,7 @@ activesDefs.push({
 ::Legends.Active.LegendWhipDebilitate <- null; // active debilitate
 activesDefs.push({
 	ID = "actives.legend_debilitate",
-	Script = "scripts/skills/actives/legend_whip_debilitate_skill", 
+	Script = "scripts/skills/actives/legend_whip_debilitate_skill",
 	Const = "LegendWhipDebilitate",
 	Name = "Debilitate",
 	Icon = "ui/perks/perk_34_active.png",
