@@ -485,47 +485,41 @@
 		}
 	}
 
-	o.returnBrokenNetToOwner <- function()
-	{
+	o.returnBrokenNetToOwner <- function () {
 		local bros = {};
 
-		if (::Tactical.Entities.m.NetTiles.len() > 0) {
-			foreach (bro in ::World.getPlayerRoster().getAll())
-			{
-				bros[bro.getID()] <- bro;
-			}
+		foreach (bro in ::World.getPlayerRoster().getAll()) {
+			bros[bro.getID()] <- bro;
 		}
 
-		foreach (_, tile in ::Tactical.Entities.m.NetTiles)
-		{
-			if (!tile.IsContainingItems) continue;
+		local size = ::Tactical.getMapSize();
 
-			for (local i = tile.Items.len() - 1; i >= 0; --i)
-			{
-				local item = tile.Items[i];
+		for (local x = 0; x < size.X; x++) {
+			for (local y = 0; y < size.Y; y++) {
+				local tile = ::Tactical.getTileSquare(x, y);
 
-				if (!item.isItemType(::Const.Items.ItemType.Net) || item.m.OwnerID == null)
-					continue;
+				if (tile.IsContainingItems) {
 
-				if (!(item.m.OwnerID in bros))
-					continue;
+					for (local i = tile.Items.len() - 1; i >= 0; --i) {
+						local item = tile.Items[i];
 
-				local success = false;
+						if (!item.isItemType(::Const.Items.ItemType.Net) || item.m.OwnerID == null) {
+							continue;
+						}
+						if (!(item.m.OwnerID in bros)) {
+							continue;
+						}
 
-				if (bros[item.m.OwnerID].getItems().equip(item))
-					success = true;
+						local bro = bros[item.m.OwnerID];
 
-				if (!success)
-					success = bros[item.m.OwnerID].getItems().addToBag(item);
-
-				if (success)
-					tile.Items.remove(i).m.OwnerID = null;
+						if (bro.getItems().equip(item) || bro.getItems().addToBag(item)) {
+							tile.Items.remove(i).m.OwnerID = null;
+						}
+					}
+					tile.IsContainingItems = tile.Items.len() > 0;
+				}
 			}
-
-			tile.IsContainingItems = tile.Items.len() > 0;
 		}
-
-		::Tactical.Entities.m.NetTiles = {};
 	}
 
 	o.gatherLoot = function() {

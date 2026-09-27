@@ -1,6 +1,5 @@
 ::mods_hookExactClass("skills/actives/break_free_skill", function(o)
 {
-	o.m.DropNet <- false;
 	o.m.IsReinforcedNet <- false;
 	o.m.IsByNetSpecialist <- false;
 	//Not used by the new net drop, flags are applied in actives.throw_net
@@ -138,50 +137,6 @@
 					tileToSpawnAt.spawnDetail(this.m.Decal);
 					tileToSpawnAt.Properties.add("IsItemSpawned");
 				}
-			}
-
-			//DropNet Check
-			if (_user.getFlags().get("DropNet")) { //Check if break free attempt comes from a net
-				local net;
-				if (_user.getFlags().get("IsReinforcedNet") && _user.getFlags().get("IsByNetCasting")){
-					net = this.new("scripts/items/tools/reinforced_throwing_net");
-
-					// 50% chance the reinforced net is still reusable in battle with netcasting
-					if (::Math.rand(1,2) != 1){
-						net.m.Ammo = 0;
-						net.updateAmmo();
-					}
-				}
-				else if (_user.getFlags().get("IsReinforcedNet")) { //Reinforced Net without NetCasting
-					net = this.new("scripts/items/tools/reinforced_throwing_net");
-					net.m.Ammo = 0;
-					net.updateAmmo();
-			    }
-				else if (_user.getFlags().get("IsByNetCasting")) { //Normal Net w/ NetCasting
-					net = this.new("scripts/items/tools/throwing_net");
-
-					// 25% chance the net is still reusable in battle with netcasting
-					if (::Math.rand(1,4) != 1){
-						net.m.Ammo = 0;
-						net.updateAmmo();
-					}
-				}
-				else { //Normal Net without NetCasting
-					net = this.new("scripts/items/tools/throwing_net");
-					net.m.Ammo = 0;
-					net.updateAmmo();
-				}
-
-				if (net != null){
-					if (net.drop(this.getContainer().getActor().getTile())) {// drops the net on the tile
-						::logDebug("Dropped net on this tile");
-						::Tactical.Entities.addNetTiles(_targetTile);
-					}
-				}
-
-				_user.getFlags().remove("DropNet");
-   				_user.getFlags().remove("IsReinforcedNet");
-    			_user.getFlags().remove("IsByNetCasting");
 			}
 
 			_user.setDirty(true);
