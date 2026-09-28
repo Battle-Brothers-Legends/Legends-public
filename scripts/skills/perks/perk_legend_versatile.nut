@@ -5,6 +5,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		SkillCount = 0,
 		Bonus = 10
 	},
+
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendVersatile);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
@@ -15,16 +16,18 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getTooltip() {
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		},
-		{
-			id = 2,
-			type = "description",
-			text = this.getDescription()
-		}];
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			}
+		];
 
 		if (this.m.RangedStacks > 0) {
 			ret.push({
@@ -46,7 +49,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	}
 
 	function getDescription() {
-		return "Oftentimes better than a master of one."
+		return "Oftentimes better than a master of one.";
 	}
 
 	function onCombatStarted() {
@@ -63,19 +66,27 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	}
 
 	function incrementMeleeStacks() {
-		if (this.m.MeleeStacks < 3) this.m.MeleeStacks += 1;
+		if (this.m.MeleeStacks < 3) {
+			this.m.MeleeStacks += 1;
+		}
 	}
 
 	function decrementMeleeStacks() {
-		if (this.m.MeleeStacks > 0) this.m.MeleeStacks -= 1;
+		if (this.m.MeleeStacks > 0) {
+			this.m.MeleeStacks -= 1;
+		}
 	}
 
 	function incrementRangedStacks() {
-		if (this.m.RangedStacks < 3) this.m.RangedStacks += 1;
+		if (this.m.RangedStacks < 3) {
+			this.m.RangedStacks += 1;
+		}
 	}
 
 	function decrementRangedStacks() {
-		if (this.m.RangedStacks > 0) this.m.RangedStacks -= 1;
+		if (this.m.RangedStacks > 0) {
+			this.m.RangedStacks -= 1;
+		}
 	}
 
 	function onUpdate(_properties) {
@@ -95,15 +106,12 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTargetMissed( _skill, _targetEntity ) {
-		if ((this.m.MeleeStacks != 0 || this.m.RangedStacks != 0)
-			&& this.m.SkillCount != ::Const.SkillCounter) 
-		{
+	function onTargetMissed(_skill, _targetEntity) {
+		if ((this.m.MeleeStacks != 0 || this.m.RangedStacks != 0) && this.m.SkillCount != ::Const.SkillCounter) {
 			this.m.SkillCount = ::Const.SkillCounter;
 			if (_skill.isRanged()) {
 				this.decrementRangedStacks();
-			}
-			else if (!_skill.isRanged()) {
+			} else if (!_skill.isRanged()) {
 				this.decrementMeleeStacks();
 			}
 			if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0) {
@@ -112,7 +120,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 		}
 	}
 
-	function onTargetHit( _skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor ) {
+	function onTargetHit(_skill, _targetEntity, _bodyPart, _damageInflictedHitpoints, _damageInflictedArmor) {
 		if (_skill == null) {
 			return;
 		}
@@ -125,8 +133,7 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 			this.incrementMeleeStacks();
 			this.decrementRangedStacks();
 			this.m.SkillCount = ::Const.SkillCounter;
-		}
-		else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
+		} else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
 			this.incrementRangedStacks();
 			this.decrementMeleeStacks();
 			this.m.SkillCount = ::Const.SkillCounter;

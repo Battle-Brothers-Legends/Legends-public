@@ -1,14 +1,13 @@
 //Author: WNTR Jimmy
 this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
-    m = {
-    	ThreatModifier = 10,
-    	VisionModifier = 1,
-    	MeleeSkillMult = 1.10,
-    	RangedSkillMult = 1.10
-    },
+	m = {
+		ThreatModifier = 10,
+		VisionModifier = 1,
+		MeleeSkillMult = 1.10,
+		RangedSkillMult = 1.10
+	},
 
-	function create()
-	{
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNightRaider);
 		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 		this.m.IsHidden = true;
@@ -16,23 +15,24 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 
 	function onAdded() // make this perk work when added to non-player
 	{
-		if (!this.getContainer().getActor().isPlayerControlled())
-		{
+		if (!this.getContainer().getActor().isPlayerControlled()) {
 			this.onCombatStarted();
 		}
 	}
 
 	function getTooltip() {
-		local ret = [{
-			id = 1,
-			type = "title",
-			text = this.getName()
-		},
-		{
-			id = 2,
-			type = "description",
-			text = this.getDescription()
-		}];
+		local ret = [
+			{
+				id = 1,
+				type = "title",
+				text = this.getName()
+			},
+			{
+				id = 2,
+				type = "description",
+				text = this.getDescription()
+			}
+		];
 
 		ret.push({
 			id = 10,
@@ -76,25 +76,22 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			]
 		});
 
-		
 		return ret;
 	}
 
 	function getDescription() {
-		return "Gain enhanced vision and tactical advantages at night."
+		return "Gain enhanced vision and tactical advantages at night.";
 	}
 
-	function onUpdate( _properties )
-	{
-	    this.m.IsHidden = ::World.getTime().IsDaytime;
-	    _properties.IsAffectedByNight = false;
-	    if (!::World.getTime().IsDaytime)
-	    {
-	        _properties.Threat += this.m.ThreatModifier;
-	        _properties.Vision += this.m.VisionModifier;
-	        _properties.MeleeSkill *= this.m.MeleeSkillMult;
-	        _properties.RangedSkill *= this.m.RangedSkillMult;
-	    }
+	function onUpdate(_properties) {
+		this.m.IsHidden = ::World.getTime().IsDaytime;
+		_properties.IsAffectedByNight = false;
+		if (!::World.getTime().IsDaytime) {
+			_properties.Threat += this.m.ThreatModifier;
+			_properties.Vision += this.m.VisionModifier;
+			_properties.MeleeSkill *= this.m.MeleeSkillMult;
+			_properties.RangedSkill *= this.m.RangedSkillMult;
+		}
 	}
 
 });

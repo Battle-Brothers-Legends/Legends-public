@@ -125,7 +125,7 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 	function onSpawnPlayer() {
 		local randomVillage;
 
-		for (local i = 0; i != ::World.EntityManager.getSettlements().len(); i = ++i) {
+		for (local i = 0; i < ::World.EntityManager.getSettlements().len(); i++) {
 			randomVillage = ::World.EntityManager.getSettlements()[i];
 
 			if (!randomVillage.isMilitary() && !randomVillage.isIsolatedFromRoads() && randomVillage.getSize() == 1) {
@@ -139,14 +139,10 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 			local x = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.X - 1), ::Math.min(::Const.World.Settings.SizeX - 2, randomVillageTile.SquareCoords.X + 1));
 			local y = ::Math.rand(::Math.max(2, randomVillageTile.SquareCoords.Y - 1), ::Math.min(::Const.World.Settings.SizeY - 2, randomVillageTile.SquareCoords.Y + 1));
 
-			if (!::World.isValidTileSquare(x, y)) {
-			} else {
+			if (::World.isValidTileSquare(x, y)) {
 				local tile = ::World.getTileSquare(x, y);
 
-				if (tile.Type == ::Const.World.TerrainType.Ocean || tile.Type == ::Const.World.TerrainType.Shore) {
-				} else if (tile.getDistanceTo(randomVillageTile) == 0) {
-				} else if (!tile.HasRoad) {
-				} else {
+				if (tile.getDistanceTo(randomVillageTile) != 0 && tile.HasRoad && tile.Type != ::Const.World.TerrainType.Ocean && tile.Type != ::Const.World.TerrainType.Shore) {
 					randomVillageTile = tile;
 					break;
 				}
@@ -162,6 +158,9 @@ this.legends_free_company_scenario <- this.inherit("scripts/scenarios/world/star
 				"music/retirement_01.ogg"
 			], ::Const.Music.CrossFadeTime);
 			::World.Events.fire("event.legends_free_company_scenario_intro");
+			::World.Assets.m.Ammo = ::Math.min(::World.Assets.getMaxAmmo(), ::World.Assets.m.Ammo);
+			::World.Assets.m.ArmorParts = ::Math.min(::World.Assets.getMaxArmorParts(), ::World.Assets.m.ArmorParts);
+			::World.Assets.m.Medicine = ::Math.min(::World.Assets.getMaxMedicine(), ::World.Assets.m.Medicine);
 		}, null);
 	}
 
