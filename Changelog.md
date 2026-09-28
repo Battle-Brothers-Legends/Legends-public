@@ -179,6 +179,7 @@
 - `Extended Aura` - moved to tier 4 (zombie summoning)
 - `Fashion Body` - moved to tier 3 (zombie summoning)
 - `Bloodbath` - moved to tier 6 (vampire)
+- `Night Raider` - no longer grants +1 vision at night (the perk still nullifies the night penalty to vision). Taking the perk will now remove the Nyctophobia and Night Blindness traits if present
 
 ### Removed Perks
 - `Bags and Belts` - effect moved to the Balanced Rucksack consumable, removed from non-donkey player characters

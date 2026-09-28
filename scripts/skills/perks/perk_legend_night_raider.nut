@@ -1,11 +1,10 @@
 //Author: WNTR Jimmy
 this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
-	m = {
-		ThreatModifier = 10,
-		VisionModifier = 1,
-		MeleeSkillMult = 1.10,
-		RangedSkillMult = 1.10
-	},
+    m = {
+    	ThreatModifier = 10,
+    	MeleeSkillMult = 1.10,
+    	RangedSkillMult = 1.10
+    },
 
 	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendNightRaider);
@@ -34,24 +33,13 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			}
 		];
 
+		local inverseThreat = -1 * this.m.ThreatModifier;
 		ret.push({
 			id = 10,
 			type = "text",
 			icon = "ui/icons/special.png",
-			text = "%modifier% Resolve to adjacent enemies",
-			param = [
-				["modifier", ::Legends.S.colorize(::Legends.S.addSign(-1 * this.m.ThreatModifier), -1 * this.m.ThreatModifier)]
-			]
-		});
-
-		ret.push({
-			id = 10,
-			type = "text",
-			icon = "ui/icons/vision.png",
-			text = "%modifier% vision",
-			param = [
-				["modifier", ::Legends.S.colorize(::Legends.S.addSign(this.m.VisionModifier), this.m.VisionModifier)]
-			]
+			text = "[color=%negative%]%penalty%[/color] Resolve to adjacent enemies",
+			param = [["penalty", inverseThreat]]
 		});
 
 		local meleePercent = ::Math.round(this.m.MeleeSkillMult * 100 - 100);
@@ -59,10 +47,8 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/melee_skill.png",
-			text = "%modifier% Melee Skill",
-			param = [
-				["modifier", ::Legends.S.colorize(::Legends.S.addSign(meleePercent) + "%", meleePercent)]
-			]
+			text = "Gain [color=%positive%]%modifier%%[/color] Melee Skill",
+			param = [["modifier", meleePercent]]
 		});
 
 		local rangedPercent = ::Math.round(this.m.RangedSkillMult * 100 - 100);
@@ -70,27 +56,38 @@ this.perk_legend_night_raider <- this.inherit("scripts/skills/skill", {
 			id = 10,
 			type = "text",
 			icon = "ui/icons/ranged_skill.png",
-			text = "%modifier% Ranged Skill",
-			param = [
-				["modifier", ::Legends.S.colorize(::Legends.S.addSign(rangedPercent) + "%", rangedPercent)]
-			]
+			text = "Gain [color=%positive%]%modifier%%[/color] Ranged Skill",
+			param = [["modifier", rangedPercent]]
 		});
 
 		return ret;
 	}
 
 	function getDescription() {
-		return "Gain enhanced vision and tactical advantages at night.";
+		return "Gain tactical advantages at night.";
 	}
 
-	function onUpdate(_properties) {
-		this.m.IsHidden = ::World.getTime().IsDaytime;
-		_properties.IsAffectedByNight = false;
-		if (!::World.getTime().IsDaytime) {
-			_properties.Threat += this.m.ThreatModifier;
-			_properties.Vision += this.m.VisionModifier;
-			_properties.MeleeSkill *= this.m.MeleeSkillMult;
-			_properties.RangedSkill *= this.m.RangedSkillMult;
+	function onUpdate( _properties )
+	{
+	    this.m.IsHidden = ::World.getTime().IsDaytime;
+	    _properties.IsAffectedByNight = false;
+	    if (!::World.getTime().IsDaytime)
+	    {
+	        _properties.Threat += this.m.ThreatModifier;
+	        _properties.MeleeSkill *= this.m.MeleeSkillMult;
+	        _properties.RangedSkill *= this.m.RangedSkillMult;
+	    }
+	}
+
+	function onAdded()
+	{
+		if (this.m.Container.hasTrait(::Legends.Trait.LegendFearDark))
+		{
+			::Legends.Traits.remove(this, ::Legends.Trait.LegendFearDark);
+		}
+		if (this.m.Container.hasTrait(::Legends.Trait.NightBlind))
+		{
+			::Legends.Traits.remove(this, ::Legends.Trait.NightBlind);
 		}
 	}
 
