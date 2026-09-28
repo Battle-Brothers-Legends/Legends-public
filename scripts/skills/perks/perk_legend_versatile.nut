@@ -96,12 +96,14 @@ this.perk_legend_versatile <- this.inherit("scripts/skills/skill", {
 	}
 
 	function onTargetMissed( _skill, _targetEntity ) {
-		if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0 && this.m.SkillCount != ::Const.SkillCounter) {
+		if ((this.m.MeleeStacks != 0 || this.m.RangedStacks != 0)
+			&& this.m.SkillCount != ::Const.SkillCounter) 
+		{
 			this.m.SkillCount = ::Const.SkillCounter;
-			if (_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
+			if (_skill.isRanged()) {
 				this.decrementRangedStacks();
 			}
-			else if (!_skill.isRanged() && this.m.SkillCount != ::Const.SkillCounter) {
+			else if (!_skill.isRanged()) {
 				this.decrementMeleeStacks();
 			}
 			if (this.m.MeleeStacks != 0 && this.m.RangedStacks != 0) {
