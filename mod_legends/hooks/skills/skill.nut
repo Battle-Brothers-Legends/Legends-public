@@ -736,7 +736,7 @@
 		{
 			local levelDifference = ::Math.abs(myTile.Level - _targetTile.Level);
 			local malus = ::Const.Combat.LevelDifferenceToHitMalus * levelDifference;
-			row.text = red("-" + malus + "%") + " " + description;
+			row.text = red(malus + "%") + " " + description;
 		};
 
 		modifier["Target on bad terrain"] <- function ( row, description )
