@@ -2323,7 +2323,7 @@ activesDefs.push({
 	ID = "actives.legend_cacophony",
 	Script = "scripts/skills/actives/legend_cacophony_skill",
 	Const = "LegendCacophony",
-	Name = "Stupefy",
+	Name = "Cacophony",
 	Icon = "skills/daze_square.png",
 	IconDisabled = "skills/daze_square_bw.png",
 	Overlay = "daze_square",
