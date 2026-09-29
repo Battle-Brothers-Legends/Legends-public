@@ -78,8 +78,6 @@
 			available[r](this);
 			available.remove(r);
 		}
-
-		this.m.Block = this;
 	}
 
 	local onSerialize = o.onSerialize;
