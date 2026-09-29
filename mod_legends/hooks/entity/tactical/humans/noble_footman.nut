@@ -1,6 +1,6 @@
-::mods_hookExactClass("entity/tactical/humans/noble_footman", function(o) {
+::mods_hookExactClass("entity/tactical/humans/noble_footman", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
@@ -8,18 +8,16 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
 
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 			::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -28,55 +26,40 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r;
 		local banner = 3;
 
-		if (!::Tactical.State.isScenarioMode())
-		{
+		if (!::Tactical.State.isScenarioMode()) {
 			banner = ::World.FactionManager.getFaction(this.getFaction()).getBanner();
-		}
-		else
-		{
+		} else {
 			banner = this.getFaction();
 		}
 
 		this.m.Surcoat = banner;
 
-		if (::Math.rand(1, 100) <= 90)
-		{
+		if (::Math.rand(1, 100) <= 90) {
 			this.getSprite("surcoat").setBrush("surcoat_" + (banner < 10 ? "0" + banner : banner));
 		}
 
 		r = ::Math.rand(1, 4);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/military_pick"));
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
-		}
-		else if (r == 3)
-		{
+		} else if (r == 3) {
 			this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
-		}
-		else if (r == 4)
-		{
+		} else if (r == 4) {
 			this.m.Items.equip(this.new("scripts/items/weapons/morning_star"));
 		}
 
 		r = ::Math.rand(1, 2);
 		local shield;
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			shield = this.new("scripts/items/shields/faction_kite_shield");
-		}
-		else if (r == 2)
-		{
+		} else if (r == 2) {
 			shield = this.new("scripts/items/shields/faction_heater_shield");
 		}
 
@@ -94,48 +77,44 @@
 		// ]));
 
 		local helmet;
-		if (banner <= 4)
-			{
-				helmet = ::Const.World.Common.pickHelmet([
-					[5, ::Legends.Helmet.Standard.kettle_hat],
-					[5, ::Legends.Helmet.Standard.rondel_helm],
-					[4, ::Legends.Helmet.Standard.scale_helm],
-					[4, ::Legends.Helmet.Standard.kettle_hat_with_mail],
-					[3, ::Legends.Helmet.Standard.padded_kettle_hat],
-					[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
-					[2, ::Legends.Helmet.Standard.mail_coif],
-					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
-			}
-		else if (banner <= 7)
-			{
-				helmet = ::Const.World.Common.pickHelmet([
-					[5, ::Legends.Helmet.Standard.rondel_helm],
-					[4, ::Legends.Helmet.Standard.padded_flat_top_helmet],
-					[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
-					[3, ::Legends.Helmet.Standard.mail_coif],
-					[2, ::Legends.Helmet.Standard.flat_top_helmet],
-					[2, ::Legends.Helmet.Standard.scale_helm],
-					[1, ::Legends.Helmet.Standard.flat_top_with_mail],
-					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
-			}
-		else
-			{
-				helmet = ::Const.World.Common.pickHelmet([
-					[5, ::Legends.Helmet.Standard.nasal_helmet],
-					[5, ::Legends.Helmet.Standard.padded_nasal_helmet],
-					[4, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
-					[3, ::Legends.Helmet.Standard.mail_coif],
-					[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
-					[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
-				])
-			}
+		if (banner <= 4) {
+			helmet = ::Const.World.Common.pickHelmet([
+				[5, ::Legends.Helmet.Standard.kettle_hat],
+				[5, ::Legends.Helmet.Standard.rondel_helm],
+				[4, ::Legends.Helmet.Standard.scale_helm],
+				[4, ::Legends.Helmet.Standard.kettle_hat_with_mail],
+				[3, ::Legends.Helmet.Standard.padded_kettle_hat],
+				[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+				[2, ::Legends.Helmet.Standard.mail_coif],
+				[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
+			]);
+		} else if (banner <= 7) {
+			helmet = ::Const.World.Common.pickHelmet([
+				[5, ::Legends.Helmet.Standard.rondel_helm],
+				[4, ::Legends.Helmet.Standard.padded_flat_top_helmet],
+				[3, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+				[3, ::Legends.Helmet.Standard.mail_coif],
+				[2, ::Legends.Helmet.Standard.flat_top_helmet],
+				[2, ::Legends.Helmet.Standard.scale_helm],
+				[1, ::Legends.Helmet.Standard.flat_top_with_mail],
+				[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
+			]);
+		} else {
+			helmet = ::Const.World.Common.pickHelmet([
+				[5, ::Legends.Helmet.Standard.nasal_helmet],
+				[5, ::Legends.Helmet.Standard.padded_nasal_helmet],
+				[4, ::Legends.Helmet.Standard.nasal_helmet_with_mail],
+				[3, ::Legends.Helmet.Standard.mail_coif],
+				[2, ::Legends.Helmet.Standard.legend_enclave_vanilla_skullcap_01],
+				[1, ::Legends.Helmet.Standard.heavy_noble_house_helmet_00]
+			]);
+		}
 
-		if (helmet != null)
-			{
-				if ("setPlainVariant" in helmet) { helmet.setPlainVariant(); }
-				this.m.Items.equip(helmet);
+		if (helmet != null) {
+			if ("setPlainVariant" in helmet) {
+				helmet.setPlainVariant();
 			}
+			this.m.Items.equip(helmet);
+		}
 	}
 });

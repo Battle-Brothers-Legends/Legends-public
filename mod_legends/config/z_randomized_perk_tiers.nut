@@ -151,7 +151,7 @@
 		::Legends.Perk.ShieldExpert
     ],
     LegendaryPerks = [
-		::Legends.Perk.LegendSpecialistShieldSkill,
+		::Legends.Perk.LegendMasteryShields,
 		::Legends.Perk.ShieldBash,
 		::Legends.Perk.HoldOut,
 		::Legends.Perk.Underdog,
@@ -185,7 +185,7 @@
         [1, ["legend_wooden_pitchfork", 35], [::Legends.Perk.CoupDeGrace, ::Legends.Perk.LegendSpecialistFarmhand]],
         [1, ["legend_wooden_spear", 35], [::Legends.Perk.LegendSpecialistMilitia]],
         [1, ["legend_sickle", 35], [::Legends.Perk.LegendSpecialistHerbalist]],
-        [1, ["legend_staff", 35], [::Legends.Perk.LegendSpecialistSelfdefense, ::Legends.Perk.LegendSpecStaffStun, ::Legends.Perk.FortifiedMind]],
+        [1, ["legend_staff", 35], [::Legends.Perk.LegendDeflection, ::Legends.Perk.LegendStaffSpins, ::Legends.Perk.FortifiedMind]],
         [1, ["legend_shovel", 35], [::Legends.Perk.LegendSpecialistGravedigger]],
         [1, ["wooden_stick", 35], [::Legends.Perk.LegendOnslaught, ::Legends.Perk.Overwhelm, ::Legends.Perk.Colossus, ::Legends.Perk.Recover, ::Legends.Perk.LegendRebound]],
         [1, ["legend_hammer", 35], [::Legends.Perk.LegendSpecialistBlacksmith, ::Legends.Perk.Colossus]],
@@ -604,11 +604,10 @@
 		::Legends.Perk.BattleForged,
 		::Legends.Perk.Rotation,
 		::Legends.Perk.SteelBrow,
-		::Legends.Perk.LegendSpecialistShieldSkill,
+		::Legends.Perk.LegendMasteryShields,
 		::Legends.Perk.ShieldBash
     ],
     LegendaryPerks = [
-		::Legends.Perk.LegendDeflect,
 		::Legends.Perk.LegendBruiser
     ],
 	LegendaryTraits = [

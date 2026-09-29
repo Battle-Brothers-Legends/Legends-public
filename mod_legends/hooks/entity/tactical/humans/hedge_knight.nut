@@ -1,15 +1,14 @@
-::mods_hookExactClass("entity/tactical/humans/hedge_knight", function(o) {
+::mods_hookExactClass("entity/tactical/humans/hedge_knight", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
 		}
 	}
-	
+
 	local create = o.create;
-	o.create = function ()
-	{
+	o.create = function () {
 		create();
 		this.m.AIAgent = this.new("scripts/ai/tactical/agents/legend_hedge_knight_less_flanking_less_zoc");
 		this.m.AIAgent.setActor(this);
@@ -21,16 +20,14 @@
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.SteelBrow);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -41,15 +38,13 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+	o.assignRandomEquipment = function () {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			local weapons = [
 				"weapons/legend_zweihander",
 				"weapons/greataxe",
 				"weapons/two_handed_hammer",
-				"weapons/two_handed_flanged_mace",	// Moved all weapons into one array because Legends requires all DLCs anyways
+				"weapons/two_handed_flanged_mace", // Moved all weapons into one array because Legends requires all DLCs anyways
 				"weapons/two_handed_flail",
 				"weapons/bardiche"
 			];
@@ -57,8 +52,7 @@
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Body)) {
 			local armor = [
 				[1, ::Legends.Armor.Standard.coat_of_plates],
 				[1, ::Legends.Armor.Standard.coat_of_scales],
@@ -71,10 +65,7 @@
 			));
 		}
 
-
-
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Head)) {
 			local helmet = [
 				[30, ::Legends.Helmet.Standard.full_helm],
 				[10, ::Legends.Helmet.Standard.closed_flat_top_with_mail],
@@ -106,10 +97,8 @@
 		}
 	}
 
-	o.makeMiniboss = function ()
-	{
-		if (!this.actor.makeMiniboss())
-		{
+	o.makeMiniboss = function () {
+		if (!this.actor.makeMiniboss()) {
 			return false;
 		}
 
@@ -126,16 +115,13 @@
 
 		this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		local r = ::Math.rand(1, 2);
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(::Const.World.Common.pickArmor([
 				[1, ::Legends.Armor.Named.brown_coat_of_plates_armor],
 				[1, ::Legends.Armor.Named.golden_scale_armor],
 				[1, ::Legends.Armor.Named.green_coat_of_plates_armor]
 			]));
-		}
-		else
-		{
+		} else {
 			this.m.Items.equip(::Const.World.Common.pickHelmet([
 				[3, ::Legends.Helmet.Named.bascinet_named],
 				[3, ::Legends.Helmet.Named.kettle_helm_named],

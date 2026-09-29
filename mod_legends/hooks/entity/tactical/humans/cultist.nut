@@ -21,8 +21,8 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.HeadHunter);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBloodbath);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistCultist);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultHood);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecCultArmor);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendDedication);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendPenance);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleFlow);

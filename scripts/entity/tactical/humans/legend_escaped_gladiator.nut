@@ -11,14 +11,13 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendLithe);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		}
 	}
 
-	function assignRandomEquipment () {
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand))
-		{
+	function assignRandomEquipment() {
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Mainhand)) {
 			local weapons = [
 				"weapons/shamshir",
 				"weapons/shamshir",
@@ -29,8 +28,7 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 				"weapons/fighting_spear"
 			];
 
-			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/oriental/two_handed_scimitar",
 					"weapons/oriental/swordlance",
@@ -41,8 +39,7 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 				]);
 			}
 
-			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-			{
+			if (::Const.DLC.Wildmen && this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 				weapons.extend([
 					"weapons/two_handed_flail",
 					"weapons/two_handed_flanged_mace",
@@ -53,8 +50,7 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50)
-		{
+		if (this.getIdealRange() == 1 && ::Math.rand(1, 100) <= 50) {
 			local weapons = [
 				"weapons/throwing_axe",
 				"weapons/javelin",
@@ -64,15 +60,13 @@ this.legend_escaped_gladiator <- this.inherit("scripts/entity/tactical/humans/gl
 			this.m.Items.equip(this.new("scripts/items/" + weapons[::Math.rand(0, weapons.len() - 1)]));
 		}
 
-		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand))
-		{
+		if (this.m.Items.hasEmptySlot(::Const.ItemSlot.Offhand)) {
 			local offhand = [
 				"tools/throwing_net",
 				"shields/oriental/metal_round_shield"
 			];
 			this.m.Items.equip(this.new("scripts/items/" + offhand[::Math.rand(0, offhand.len() - 1)]));
 		}
-
 
 		this.m.Items.equip(::Const.World.Southern.pickArmor([
 			[1, ::Legends.Armor.Barbarian.nomad_gladiator_armor_00],

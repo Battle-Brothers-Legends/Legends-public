@@ -65,12 +65,12 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.LegendWither,
 					::Legends.Perk.LegendSpecialistCultist,
 					::Legends.Perk.LegendSpecialistReaper,
-					::Legends.Perk.LegendSpawnZombieLow,
+					::Legends.Perk.LegendMoldCarrion,
 					::Legends.Perk.LegendPossession
 				],
 				[
 					::Legends.Perk.LegendReclamation,
-					::Legends.Perk.LegendSpecCultHood,
+					::Legends.Perk.LegendDedication,
 					::Legends.Perk.FortifiedMind,
 					::Legends.Perk.Overwhelm,
 					::Legends.Perk.LegendTrueBeliever,
@@ -81,9 +81,9 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendMiasma,
 					::Legends.Perk.LegendFavouredEnemyCivilization,
-					::Legends.Perk.LegendSpawnZombieMed,
+					::Legends.Perk.LegendFashionBody,
 					::Legends.Perk.LegendChanneledPower,
-					::Legends.Perk.LegendSpecialistSelfdefense,
+					::Legends.Perk.LegendDeflection,
 					::Legends.Perk.LegendBloodbath
 				],
 				[
@@ -91,7 +91,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 					::Legends.Perk.SpecMace,
 					::Legends.Perk.SpecSword,
 					::Legends.Perk.SpecCleaver,
-					::Legends.Perk.LegendMasteryStaves,
+					::Legends.Perk.LegendMasteryMagicStaff,
 					::Legends.Perk.SpecPolearm,
 					::Legends.Perk.LegendPoisoner,
 					::Legends.Perk.LegendSpecBandage,
@@ -100,18 +100,18 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 				[
 					::Legends.Perk.LegendLacerate,
 					::Legends.Perk.LegendLithe,
-					::Legends.Perk.LegendSpecStaffStun,
+					::Legends.Perk.LegendStaffSpins,
 					::Legends.Perk.LegendFavouredEnemyBeast,
 					::Legends.Perk.LegendViolentDecomposition,
 					::Legends.Perk.LegendConservation,
 					::Legends.Perk.LegendCarnage,
-					::Legends.Perk.LegendSpawnZombieHigh
+					::Legends.Perk.LegendRemakeMan
 				],
 				[
 					::Legends.Perk.LegendFavouredEnemyOccult,
 					::Legends.Perk.LegendGruesomeFeast,
 					::Legends.Perk.LegendRebound,
-					::Legends.Perk.LegendSpecCultArmor,
+					::Legends.Perk.LegendPenance,
 					::Legends.Perk.Backstabber,
 					::Legends.Perk.CoupDeGrace
 				],
@@ -163,7 +163,7 @@ this.legend_commander_necro_background <- this.inherit("scripts/skills/backgroun
 	function onAdded()
 	{
 		if (this.m.IsNew) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSiphon);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendDrainingTouch);
 			::Legends.Traits.grant(this, ::Legends.Trait.Old);
 		}
 		this.character_background.onAdded();

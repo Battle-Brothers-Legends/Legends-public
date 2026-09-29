@@ -79,7 +79,7 @@ this.legend_commander_berserker_background <- this.inherit("scripts/skills/backg
 			],
 			[
 				::Legends.Perk.LegendLacerate,
-				::Legends.Perk.LegendForwardPush
+				::Legends.Perk.LegendPushForward
 			],
 			[
 				::Legends.Perk.LegendBigGameHunter,

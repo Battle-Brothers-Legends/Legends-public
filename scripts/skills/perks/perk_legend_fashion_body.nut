@@ -1,0 +1,28 @@
+this.perk_legend_fashion_body <- this.inherit("scripts/skills/skill", {
+	m = {},
+
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendFashionBody);
+		this.m.Icon = "ui/perks/possess56.png";
+		this.m.IconDisabled = "ui/perks/possess56_bw.png";
+	}
+
+	function onUnlocked() {
+		local stash = ::World.Assets.getStash();
+		stash.add(this.new("scripts/items/spawns/legend_zombie_item"));
+		stash.add(this.new("scripts/items/spawns/legend_zombie_item"));
+		stash.add(this.new("scripts/items/spawns/legend_zombie_item"));
+		::World.Assets.addMedicine(30);
+	}
+
+	function onAdded() {
+		if (!this.m.Container.hasActive(::Legends.Active.LegendSpawnZombieMed)) {
+			::Legends.Actives.grant(this, ::Legends.Active.LegendSpawnZombieMed);
+		}
+	}
+
+	function onRemoved() {
+		::Legends.Actives.remove(this, ::Legends.Active.LegendSpawnZombieMed);
+	}
+
+});

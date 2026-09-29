@@ -51,13 +51,11 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				::Legends.Perk.NineLives,
 				::Legends.Perk.Pathfinder,
 				::Legends.Perk.Steadfast,
-				::Legends.Perk.BagsAndBelts,
 				::Legends.Perk.Recover
 			],
 			[
 				::Legends.Perk.Dodge,
 				::Legends.Perk.HoldOut,
-				// ::Legends.Perk.LegendComposure,
 				::Legends.Perk.LegendAlert,
 				::Legends.Perk.LegendOnslaught,
 				::Legends.Perk.SteelBrow,
@@ -68,14 +66,8 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				::Legends.Perk.Rotation,
 				::Legends.Perk.LegendPeaceful,
 				::Legends.Perk.Taunt,
-				// ::Legends.Perk.LegendSprint
 			],
-			[
-				::Legends.Perk.LegendEfficientPacking,
-				::Legends.Perk.LegendAmmoBinding,
-				::Legends.Perk.LegendMedPackages,
-				::Legends.Perk.LegendToolsDrawers
-			],
+			[],
 			[
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.Footwork,
@@ -87,15 +79,10 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 				::Legends.Perk.Nimble,
 				::Legends.Perk.LegendRebound,
 				::Legends.Perk.LegendPacifist,
-				::Legends.Perk.LegendSkillfulStacking,
 				::Legends.Perk.LegendMuscularity,
 			],
 			[
 				::Legends.Perk.Fearsome,
-				// ::Legends.Perk.Stalwart,
-				::Legends.Perk.LegendAmmoBundles,
-				::Legends.Perk.LegendMedIngredients,
-				::Legends.Perk.LegendToolsSpares,
 			],
 			[],
 			[],
@@ -175,40 +162,34 @@ this.legend_donkey_background <- this.inherit("scripts/skills/backgrounds/charac
 			::Legends.Actives.grant(this, ::Legends.Active.LegendDonkeyKick);
 		}
 		local items = actor.getItems();
-			//ineloquent solution for forcing the item assigned to any of these slots via hotkey to be unassigned and returned to ground or stash. We squish this code later.
-			//Note that 'item.unequip();' does not work.
-		if (items.getItemAtSlot(::Const.ItemSlot.Offhand))
-		{
+		//ineloquent solution for forcing the item assigned to any of these slots via hotkey to be unassigned and returned to ground or stash. We squish this code later.
+		//Note that 'item.unequip();' does not work.
+		if (items.getItemAtSlot(::Const.ItemSlot.Offhand)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Offhand);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(::Const.ItemSlot.Mainhand))
-		{
+		if (items.getItemAtSlot(::Const.ItemSlot.Mainhand)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Mainhand);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(::Const.ItemSlot.Head))
-		{
+		if (items.getItemAtSlot(::Const.ItemSlot.Head)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Head);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(::Const.ItemSlot.Body))
-		{
+		if (items.getItemAtSlot(::Const.ItemSlot.Body)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Body);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(::Const.ItemSlot.Ammo))
-		{
+		if (items.getItemAtSlot(::Const.ItemSlot.Ammo)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Ammo);
 			item.drop();
 		}
 
-		if (items.getItemAtSlot(::Const.ItemSlot.Accessory))
-		{
+		if (items.getItemAtSlot(::Const.ItemSlot.Accessory)) {
 			local item = items.getItemAtSlot(::Const.ItemSlot.Accessory);
 			item.drop();
 		}

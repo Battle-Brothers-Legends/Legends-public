@@ -314,7 +314,6 @@
 		this.logDebug("perks before: "+ perks);
 		local hasStudent = false;
 		local hasGifted = false;
-		local hasAdaptive = false;
 
 		if (this.getLevel() >= 12 && this.getSkills().hasPerk(::Legends.Perk.Student))
 		{
@@ -325,11 +324,6 @@
 		{
 			perks = perks - 1;
 			hasGifted = true;
-		}
-		if (this.getSkills().hasPerk(::Legends.Perk.LegendAdaptive))
-		{
-			perks = perks - 1;
-			hasAdaptive = true;
 		}
 
 		local nonRefundable = [];
@@ -370,15 +364,6 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.Gifted, function (_perk) {
 				_perk.m.IsApplied = true;
 			}.bindenv(this));
-		}
-
-		if (hasAdaptive)
-		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendAdaptive, function (_perk) {
-				_perk.m.IsNew = true;
-			}.bindenv(this));
-			if (this.getLevel() >= 15)
-				this.m.PerkPointsSpent += 1;
 		}
 
 		foreach (item in items)

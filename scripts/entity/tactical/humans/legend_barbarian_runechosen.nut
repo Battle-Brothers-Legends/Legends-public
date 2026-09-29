@@ -85,7 +85,7 @@ this.legend_barbarian_runechosen <- this.inherit("scripts/entity/tactical/human"
 			::Legends.Perks.grant(this, ::Legends.Perk.Overwhelm);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		this.m.Hitpoints = b.Hitpoints * 1.25;

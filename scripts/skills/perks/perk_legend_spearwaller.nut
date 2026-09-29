@@ -1,0 +1,28 @@
+this.perk_legend_spearwaller <- this.inherit("scripts/skills/skill", {
+	m = {
+		SkillsToAdjust = [
+			::Legends.Active.Spearwall
+		]
+	},
+
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendSpearwaller);
+		this.m.Order = ::Const.SkillOrder.Last;
+	}
+
+	function onAfterUpdate(_properties) {
+		foreach (skill in this.m.SkillsToAdjust) {
+			_properties.SkillCostAdjustments.push({
+				ID = ::Legends.Actives.getID(skill),
+				APAdjust = -1,
+				FatigueMultAdjust = 0.5
+			});
+		}
+	}
+
+	function onAnySkillUsed(_skill, _targetEntity, _properties) {
+		if (this.getContainer().hasEffect(::Legends.Effect.Spearwall) && (::Tactical.TurnSequenceBar.getActiveEntity() == null || ::Tactical.TurnSequenceBar.getActiveEntity().getID() != this.getContainer().getActor().getID())) {
+			_properties.DamageTotalMult *= 1.25;
+		}
+	}
+});

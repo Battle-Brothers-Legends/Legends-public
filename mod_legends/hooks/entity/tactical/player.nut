@@ -850,11 +850,6 @@
 			++this.m.PerkPoints;
 		}
 
-		if (this.m.Level >= 15 && _id == ::Legends.Perks.getID(::Legends.Perk.LegendAdaptive))
-		{
-			++this.m.PerkPoints;
-		}
-
 		if (("State" in ::World) && ::World.State != null && ::World.Assets.getOrigin() != null)
 		{
 			::World.Assets.getOrigin().onUnlockPerk(this, _id);

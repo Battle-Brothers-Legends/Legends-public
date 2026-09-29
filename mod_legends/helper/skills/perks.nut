@@ -93,8 +93,8 @@ if (!("Perks" in ::Legends))
 ::Legends.Perks.onCreate <- function (_perk, _perkDef) {
 	local def = ::Const.Perks.PerkDefObjects[_perkDef];
 	_perk.m.ID = def.ID;
-	_perk.m.Name = ::Const.Strings.PerkName[def.Const];
-	_perk.m.Description = ::Const.Strings.PerkDescription[def.Const];
+	_perk.m.Name = def.Name;
+	_perk.m.Description = def.Tooltip;
 	_perk.m.Icon = def.Icon;
 	_perk.m.IconDisabled = def.IconDisabled;
 	_perk.m.Type = ::Const.SkillType.Perk;

@@ -47,7 +47,7 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendFeint);
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.BagsAndBelts);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -56,7 +56,6 @@ this.legend_noble_man_at_arms <- this.inherit("scripts/entity/tactical/human", {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBruiser);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendDeflect);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

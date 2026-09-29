@@ -65,7 +65,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.LegendWither,
 				::Legends.Perk.SteelBrow,
 				::Legends.Perk.Gifted,
-				::Legends.Perk.LegendSpecialistShieldSkill,
+				::Legends.Perk.LegendMasteryShields,
 				::Legends.Perk.LegendPerfectFit,
 			],
 			[
@@ -73,7 +73,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.LegendFavouredEnemyCivilization,
 				::Legends.Perk.Brawny,
 				::Legends.Perk.LegendRust,
-				::Legends.Perk.LegendSpecialistSelfdefense,
+				::Legends.Perk.LegendDeflection,
 				::Legends.Perk.LegendBloodbath
 			],
 			[
@@ -81,17 +81,16 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.SpecMace,
 				::Legends.Perk.SpecCleaver,
 				::Legends.Perk.SpecThrowing,
-				::Legends.Perk.LegendMasteryStaves,
-				::Legends.Perk.LegendPoisoner,
+				::Legends.Perk.LegendMasteryMagicStaff,
 				::Legends.Perk.LegendLacerate
 			],
 			[
 				::Legends.Perk.Underdog,
 				::Legends.Perk.LegendLithe,
-				::Legends.Perk.LegendSpecStaffStun,
+				::Legends.Perk.LegendStaffSpins,
 				::Legends.Perk.LegendFavouredEnemyBeast,
 				::Legends.Perk.LegendBlendIn,
-				::Legends.Perk.LegendInsects,
+				::Legends.Perk.LegendInsectSwarm,
 				::Legends.Perk.LegendCarnage
 			],
 			[
@@ -99,7 +98,7 @@ this.legend_puppet_master_background <- this.inherit("scripts/skills/backgrounds
 				::Legends.Perk.LegendFavouredEnemyOccult,
 				::Legends.Perk.Taunt,
 				::Legends.Perk.LegendViolentDecomposition,
-				::Legends.Perk.LegendSiphon,
+				::Legends.Perk.LegendDrainingTouch,
 				::Legends.Perk.BattleForged
 			],
 			[

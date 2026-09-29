@@ -3499,7 +3499,7 @@ if (!("BackgroundPerkTrees" in ::Legends)) {
 	Magic = []
 };
 
-::Legends.BackgroundPerkTrees.LegendRanger <- {
+::Legends.BackgroundPerkTrees.LegendWarden <- {
 	Weapon = [
 		::Const.Perks.CrossbowTree,
 		::Const.Perks.BowTree,

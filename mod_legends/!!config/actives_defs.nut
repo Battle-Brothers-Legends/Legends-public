@@ -2208,17 +2208,6 @@ activesDefs.push({
 	Overlay = "buckler_bash_square",
 });
 
-::Legends.Active.LegendCallLightning <- null;
-activesDefs.push({
-	ID = "actives.legend_call_lightning",
-	Script = "scripts/skills/actives/legend_call_lightning_skill",
-	Const = "LegendCallLightning",
-	Name = "Call Lightning",
-	Icon = "skills/storm_square.png",
-	IconDisabled = "skills/storm_square_bw.png",
-	Overlay = "storm_square",
-});
-
 ::Legends.Active.LegendCatBite <- null;
 activesDefs.push({
 	ID = "actives.legend_cat_bite",
@@ -2393,6 +2382,17 @@ activesDefs.push({
 	Icon = "skills/blooddrop_square.png",
 	IconDisabled = "skills/blooddrop_square_bw.png",
 	Overlay = "blooddrop_square",
+});
+
+::Legends.Active.LegendDrainingTouch <- null;
+activesDefs.push({
+	ID = "actives.legend_draining_touch",
+	Script = "scripts/skills/actives/legend_draining_touch_skill",
+	Const = "LegendDrainingTouch",
+	Name = "Draining Touch",
+	Icon = "skills/legend_draining_touch.png",
+	IconDisabled = "skills/legend_draining_touch_bw.png",
+	Overlay = "legend_draining_touch",
 });
 
 ::Legends.Active.LegendDrinkBeer <- null;
@@ -2945,23 +2945,23 @@ activesDefs.push({
 	Overlay = "missile_square",
 });
 
-::Legends.Active.LegendMagicSleep <- null;
+::Legends.Active.LegendSlumber <- null;
 activesDefs.push({
-	ID = "actives.legend_magic_sleep",
-	Script = "scripts/skills/actives/legend_magic_sleep_skill",
-	Const = "LegendMagicSleep",
+	ID = "actives.legend_slumber",
+	Script = "scripts/skills/actives/legend_slumber_skill",
+	Const = "LegendSlumber",
 	Name = "Slumber",
 	Icon = "skills/active_116.png",
 	IconDisabled = "skills/active_116_bw.png",
 	Overlay = "active_116",
 });
 
-::Legends.Active.LegendMagicStun <- null;
+::Legends.Active.LegendParalyze <- null;
 activesDefs.push({
-	ID = "actives.legend_stun",
-	Script = "scripts/skills/actives/legend_magic_stun_skill",
-	Const = "LegendMagicStun",
-	Name = "Stun",
+	ID = "actives.legend_paralyze",
+	Script = "scripts/skills/actives/legend_paralyze_skill",
+	Const = "LegendParalyze",
+	Name = "Paralyze",
 	Icon = "skills/stun56.png",
 	IconDisabled = "skills/stun56_bw.png",
 	Overlay = "stun56",
@@ -3306,17 +3306,6 @@ activesDefs.push({
 	Icon = "skills/dawg_bite.png",
 	IconDisabled = "skills/dawg_bite_sw.png",
 	Overlay = "dawg_bite",
-});
-
-::Legends.Active.LegendSiphon <- null;
-activesDefs.push({
-	ID = "actives.legend_siphon",
-	Script = "scripts/skills/actives/legend_siphon_skill",
-	Const = "LegendSiphon",
-	Name = "Life Siphon",
-	Icon = "skills/siphon_square.png",
-	IconDisabled = "skills/siphon_square_bw.png",
-	Overlay = "siphon_square",
 });
 
 ::Legends.Active.LegendSkinGhoulClaws <- null;

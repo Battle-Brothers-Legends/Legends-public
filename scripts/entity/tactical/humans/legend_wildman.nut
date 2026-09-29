@@ -63,9 +63,9 @@ this.legend_wildman <- this.inherit("scripts/entity/tactical/human", {
 		::Legends.Perks.grant(this, ::Legends.Perk.KillingFrenzy);
 		if(::Legends.isLegendaryDifficulty())
 		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendUnburdened);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendMuscularity);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendGrappler);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

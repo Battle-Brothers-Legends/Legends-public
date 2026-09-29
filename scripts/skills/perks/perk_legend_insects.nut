@@ -1,20 +1,16 @@
 this.perk_legend_insects <- this.inherit("scripts/skills/skill", {
 	m = {},
-	function create()
-	{
-		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendInsects);
+
+	function create() {
+		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendInsectSwarm);
 	}
 
-	function onAdded()
-	{
-		if (!this.m.Container.hasActive(::Legends.Active.Insects))
-		{
+	function onAdded() {
+		if (!this.m.Container.hasActive(::Legends.Active.Insects)) {
 			::Legends.Actives.grant(this, ::Legends.Active.Insects);
 		}
 	}
-		function onRemoved()
-	{
+	function onRemoved() {
 		::Legends.Actives.remove(this, ::Legends.Active.Insects);
 	}
-
 });

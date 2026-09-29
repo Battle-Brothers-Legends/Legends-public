@@ -10,7 +10,7 @@
 	o.getTooltip = function()
 	{
 		local tooltip = getTooltip();
-		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpecSpearWall))
+		if (this.getContainer().hasPerk(::Legends.Perk.LegendSpearwaller))
 		{
 			tooltip.push({
 				id = 7,

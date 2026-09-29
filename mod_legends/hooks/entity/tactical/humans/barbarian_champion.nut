@@ -25,7 +25,7 @@
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBalance);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendStrengthInNumbers);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 		this.m.Hitpoints = b.Hitpoints * 1.25;

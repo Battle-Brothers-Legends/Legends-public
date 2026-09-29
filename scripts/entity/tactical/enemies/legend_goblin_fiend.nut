@@ -68,7 +68,7 @@ this.legend_goblin_fiend <- this.inherit("scripts/entity/tactical/enemies/goblin
 		::Legends.Perks.grant(this, ::Legends.Perk.Berserk);
 		::Legends.Perks.remove(this, ::Legends.Perk.LegendTumble);
 		if(::Legends.isLegendaryDifficulty()) {
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendUberNimble);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendUnburdened);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendVengeance);
 		}
 		this.m.Skills.update();

@@ -88,7 +88,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.Pathfinder);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendAmbidextrous);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 		::Legends.Perks.grant(this, ::Legends.Perk.Colossus);
 		if (::Legends.isLegendaryDifficulty()) {
 			b.MeleeSkill += 10;

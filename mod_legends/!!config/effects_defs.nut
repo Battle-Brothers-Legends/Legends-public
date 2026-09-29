@@ -1744,14 +1744,6 @@ effectsDefs.push({
 	Const = "LegendValaTranceMalevolentEffect"
 });
 
-::Legends.Effect.LegendValaTrancePerspectiveEffect <- null;
-effectsDefs.push({
-	ID = "effects.legend_vala_trance_perspective_effect",
-	Script = "scripts/skills/effects/legend_vala_trance_perspective_effect",
-	Name = "Observed",
-	Const = "LegendValaTrancePerspectiveEffect"
-});
-
 ::Legends.Effect.LegendValaWardenDamage <- null;
 effectsDefs.push({
 	ID = "special.legend_vala_warden_damage",

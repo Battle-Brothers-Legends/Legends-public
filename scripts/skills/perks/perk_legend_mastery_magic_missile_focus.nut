@@ -3,7 +3,7 @@ this.perk_legend_mastery_magic_missile_focus <- this.inherit("scripts/skills/ski
 	function create()
 	{
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendMagicMissileFocus);
-		this.m.Icon = "ui/perks/missile_circle.png";
+		this.m.Icon = "ui/perks/legend_magic_missile.png";
 	}
 
 });

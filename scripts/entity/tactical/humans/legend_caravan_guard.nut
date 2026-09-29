@@ -1,8 +1,7 @@
 this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_randomized_unit_abstract", {
-	m = {
-	},
-	function create()
-	{
+	m = {},
+
+	function create() {
 		this.m.Type = ::Const.EntityType.CaravanGuard;
 		this.m.BloodType = ::Const.BloodType.Red;
 		this.m.XP = ::Const.Tactical.Actor.CaravanGuard.XP;
@@ -18,8 +17,7 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		}
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.legend_randomized_unit_abstract.onInit();
 		local b = this.m.BaseProperties;
 		b.setValues(::Const.Tactical.Actor.CaravanGuard);
@@ -39,9 +37,8 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		this.setAppearance();
 		this.getSprite("socket").setBrush("bust_base_caravan");
 		this.getSprite("dirt").Visible = true;
-		if(::Legends.isLegendaryDifficulty())
-		{
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+		if (::Legends.isLegendaryDifficulty()) {
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 			::Legends.Perks.grant(this, ::Legends.Perk.Underdog);
@@ -52,11 +49,9 @@ this.legend_caravan_guard <- this.inherit("scripts/entity/tactical/legend_random
 		}
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.legend_randomized_unit_abstract.assignRandomEquipment();
-		if (::Math.rand(1, 100) <= 35)
-		{
+		if (::Math.rand(1, 100) <= 35) {
 			this.getItems().addToBag(::Const.World.Common.pickItem([
 				[1, "weapons/throwing_axe"],
 				[1, "weapons/javelin"],

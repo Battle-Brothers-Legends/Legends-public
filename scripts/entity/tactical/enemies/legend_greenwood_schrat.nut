@@ -5,8 +5,8 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			::Legends.Rune.LegendRsaSafety
 		]
 	},
-	function create()
-	{
+
+	function create() {
 		this.m.Type = ::Const.EntityType.LegendGreenwoodSchrat;
 		this.m.BloodType = ::Const.BloodType.Wood;
 		this.m.XP = ::Const.Tactical.Actor.LegendGreenwoodSchrat.XP;
@@ -75,29 +75,27 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.m.AIAgent.setActor(this);
 
 		local rolls = ::Legends.S.extraLootChance(2);
-		for(local i = 0; i < rolls; i++) {
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.extend([
 				[50, "scripts/items/misc/legend_ancient_green_wood_item"],
 				[30, "scripts/items/misc/glowing_resin_item"],
 				[20, "scripts/items/misc/heart_of_the_forest_item"],
-				[20,  function () {
+				[20, function () {
 					local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 					local rune = ::new(::Legends.Runes.get(selected).Script);
 					rune.setRuneVariant(selected);
 					rune.setRuneBonus(true);
 					rune.updateRuneSigilToken();
 					return rune;
-				}.bindenv(this)],
+				}.bindenv(this)
+				],
 			]);
 		}
 	}
 
-	function playSound( _type, _volume, _pitch = 1.0 )
-	{
-		if (_type == ::Const.Sound.ActorEvent.DamageReceived)
-		{
-			if (!this.isArmedWithShield())
-			{
+	function playSound(_type, _volume, _pitch = 1.0) {
+		if (_type == ::Const.Sound.ActorEvent.DamageReceived) {
+			if (!this.isArmedWithShield()) {
 				_type = ::Const.Sound.ActorEvent.Other1;
 			}
 		}
@@ -105,16 +103,13 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.playSound(_type, _volume, _pitch);
 	}
 
-	function onDeath( _killer, _skill, _tile, _fatalityType )
-	{
+	function onDeath(_killer, _skill, _tile, _fatalityType) {
 		local flip = ::Math.rand(0, 100) < 50;
-		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled())
-		{
+		if (!::Tactical.State.isScenarioMode() && _killer != null && _killer.isPlayerControlled()) {
 			this.updateAchievement("ChoppingWood", 1, 1);
 		}
 
-		if (_tile != null)
-		{
+		if (_tile != null) {
 			local decal;
 			this.m.IsCorpseFlipped = flip;
 			local body = this.getSprite("body");
@@ -128,13 +123,10 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 			decal.Saturation = head.Saturation;
 			decal.Scale = 0.95;
 
-			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow)
-			{
+			if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Arrow) {
 				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_arrows", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
-			}
-			else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin)
-			{
+			} else if (_skill && _skill.getProjectileType() == ::Const.ProjectileType.Javelin) {
 				decal = _tile.spawnDetail("bust_schrat_green_body_01_dead_javelin", ::Const.Tactical.DetailFlag.Corpse, flip);
 				decal.Scale = 0.95;
 			}
@@ -156,8 +148,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		this.actor.onDeath(_killer, _skill, _tile, _fatalityType);
 	}
 
-	function generateCorpse( _tile, _fatalityType, _killer )
-	{
+	function generateCorpse(_tile, _fatalityType, _killer) {
 		local corpse = clone ::Const.Corpse;
 		corpse.CorpseName = "A Greenwood Schrat";
 		corpse.IsHeadAttached = true;
@@ -166,8 +157,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		return corpse;
 	}
 
-	function onInit()
-	{
+	function onInit() {
 		this.actor.onInit();
 		local clouds = ::Tactical.getWeather().createCloudSettings();
 		clouds.Type = this.getconsttable().CloudType.Fog;
@@ -189,8 +179,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		b.IsAffectedByInjuries = false;
 		b.IsImmuneToDisarm = true;
 
-		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay)
-		{
+		if (!::Tactical.State.isScenarioMode() && ::World.getTime().Days >= ::Const.World.Scaling.Beasts.LegendsGreenwoodSchratMeleeSkillIncreaseDay) {
 			b.MeleeSkill += 5;
 		}
 
@@ -228,15 +217,14 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			this.m.Hitpoints = 2 * b.Hitpoints;
 			b.MeleeSkill += 10;
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
@@ -244,9 +232,7 @@ this.legend_greenwood_schrat <- this.inherit("scripts/entity/tactical/actor", {
 		::Legends.S.scaleBaseProperties(b);
 	}
 
-	function assignRandomEquipment()
-	{
+	function assignRandomEquipment() {
 		this.m.Items.equip(this.new("scripts/items/shields/beasts/legend_greenwood_schrat_shield"));
 	}
-
 });

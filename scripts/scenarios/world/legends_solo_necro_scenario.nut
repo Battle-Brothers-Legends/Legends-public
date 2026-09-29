@@ -39,7 +39,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 		bros[0].getFlags().set("IsPlayerCharacter", true); //player character
 		::Legends.Traits.grant(bros[0], ::Legends.Trait.Player);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendPossession);
-		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendSpawnZombieLow);
+		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendMoldCarrion);
 		::Legends.Perks.grant(bros[0], ::Legends.Perk.LegendRaiseUndead);
 
 		bros[1].setStartValuesEx([::Legends.Background.LegendPuppet]); //ur a wizard, Harold
@@ -259,7 +259,7 @@ this.legends_solo_necro_scenario <- this.inherit("scripts/scenarios/world/starti
 
 	function onBuildPerkTree(_background) {
 		if (::Legends.Backgrounds.hasAny(_background, ::Legends.Background.Gravedigger, ::Legends.Background.Graverobber, ::Legends.Background.Cultist, ::Legends.Background.Anatomist)) {
-			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendSiphon);
+			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendDrainingTouch);
 		}
 	}
 

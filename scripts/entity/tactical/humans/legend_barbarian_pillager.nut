@@ -77,7 +77,7 @@ this.legend_barbarian_pillager <- this.inherit("scripts/entity/tactical/human", 
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendOnslaught);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendAlert);
 			::Legends.Perks.grant(this, ::Legends.Perk.SpecThrowing);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 

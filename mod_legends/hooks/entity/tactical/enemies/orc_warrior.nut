@@ -76,7 +76,7 @@
 		::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 		::Legends.Perks.grant(this, ::Legends.Perk.HoldOut);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);

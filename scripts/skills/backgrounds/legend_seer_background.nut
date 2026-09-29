@@ -44,7 +44,7 @@ this.legend_seer_background <- this.inherit("scripts/skills/backgrounds/characte
 
 		this.m.CustomPerkTree = [
 			[
-				::Legends.Perk.LegendSummonCat,
+				::Legends.Perk.LegendSummonFamiliar,
 				::Legends.Perk.CripplingStrikes,
 				::Legends.Perk.Recover
 			],

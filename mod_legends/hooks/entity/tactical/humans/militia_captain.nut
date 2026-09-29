@@ -1,23 +1,21 @@
-::mods_hookExactClass("entity/tactical/humans/militia_captain", function(o) {
+::mods_hookExactClass("entity/tactical/humans/militia_captain", function (o) {
 	local create = o.create;
-	o.create = function(){
+	o.create = function () {
 		create();
 		if (this.randomizeEnemyGender() == 1) {
 			this.setGender(1);
 		}
 	}
-	
+
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Recover);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.Rotation);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendSmashingShields);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendBackToBasics);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
@@ -27,51 +25,32 @@
 		}
 	}
 
-	o.assignRandomEquipment = function ()
-	{
+	o.assignRandomEquipment = function () {
 		local r = ::Math.rand(1, 7);
 
-		if (r == 1)
-		{
+		if (r == 1) {
 			this.m.Items.equip(this.new("scripts/items/weapons/billhook"));
-		}
-		else
-		{
-			if (r == 2)
-			{
+		} else {
+			if (r == 2) {
 				this.m.Items.equip(this.new("scripts/items/weapons/arming_sword"));
-			}
-			else if (r == 3)
-			{
+			} else if (r == 3) {
 				this.m.Items.equip(this.new("scripts/items/weapons/hand_axe"));
-			}
-			else if (r == 4)
-			{
+			} else if (r == 4) {
 				this.m.Items.equip(this.new("scripts/items/weapons/military_cleaver"));
-			}
-			else if (r == 5)
-			{
+			} else if (r == 5) {
 				this.m.Items.equip(this.new("scripts/items/weapons/boar_spear"));
-			}
-			else if (r == 6)
-			{
+			} else if (r == 6) {
 				this.m.Items.equip(this.new("scripts/items/weapons/falchion"));
-			}
-			else if (r == 7)
-			{
+			} else if (r == 7) {
 				this.m.Items.equip(this.new("scripts/items/weapons/shortsword"));
 			}
 
-			if (::Math.rand(1, 100) <= 75)
-			{
+			if (::Math.rand(1, 100) <= 75) {
 				r = ::Math.rand(1, 2);
 
-				if (r == 1)
-				{
+				if (r == 1) {
 					this.m.Items.equip(this.new("scripts/items/shields/wooden_shield"));
-				}
-				else if (r == 2)
-				{
+				} else if (r == 2) {
 					this.m.Items.equip(this.new("scripts/items/shields/kite_shield"));
 				}
 			}
@@ -88,6 +67,6 @@
 			[1, ::Legends.Helmet.Standard.mail_coif],
 			[1, ::Legends.Helmet.Standard.feathered_hat],
 			[1, ::Legends.Helmet.Standard.kettle_hat]
-		]))
+		]));
 	}
 });

@@ -144,7 +144,7 @@ if (!("Perks" in ::Const)) {
 	],
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
-		[::Legends.Perk.LegendSpecStaffStun],
+		[::Legends.Perk.LegendStaffSpins],
 		[::Legends.Perk.CoupDeGrace],
 		[],
 		[::Legends.Perk.SpecPolearm],
@@ -164,7 +164,7 @@ if (!("Perks" in ::Const)) {
 	Attributes = clone ::Legends.Backgrounds.EmptyAttr,
 	Tree = [
 		[::Legends.Perk.LegendStrengthInNumbers],
-		[::Legends.Perk.LegendSpecSpearWall],
+		[::Legends.Perk.LegendSpearwaller],
 		[],
 		[::Legends.Perk.SpecSpear],
 		[],
@@ -262,7 +262,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.ShieldBash],
 		[],
 		[::Legends.Perk.ShieldExpert],
-		[::Legends.Perk.LegendSpecialistShieldSkill],
+		[::Legends.Perk.LegendMasteryShields],
 		[],
 		[]
 	]
@@ -286,7 +286,7 @@ if (!("Perks" in ::Const)) {
 		],
 		[],
 		[
-			::Legends.Perk.LegendSpecUnarmed
+			::Legends.Perk.LegendMasteryUnarmed
 		],
 		[],
 		[

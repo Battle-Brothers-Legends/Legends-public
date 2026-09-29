@@ -64,21 +64,20 @@ this.legend_preserver_background <- this.inherit("scripts/skills/backgrounds/cha
 			::Legends.Perk.RallyTheTroops,
 			::Legends.Perk.InspiringPresence,
 			::Legends.Perk.LegendTrueBeliever,
-			::Legends.Perk.LegendSpecialistSelfdefense,
+			::Legends.Perk.LegendDeflection,
 			::Legends.Perk.LegendBloodbath
 		],
 		[
 			::Legends.Perk.SpecSword,
 			::Legends.Perk.SpecCleaver,
-			::Legends.Perk.LegendMasteryStaves,
+			::Legends.Perk.LegendMasteryMagicStaff,
 			::Legends.Perk.SpecPolearm,
 			::Legends.Perk.LegendMasterySlings,
-			::Legends.Perk.LegendPoisoner,
 			::Legends.Perk.LegendSpecBandage
 		],
 		[
 			::Legends.Perk.Nimble,
-			::Legends.Perk.LegendSpecStaffStun,
+			::Legends.Perk.LegendStaffSpins,
 			::Legends.Perk.LegendFavouredEnemyBeast,
 			::Legends.Perk.LegendBlendIn,
 			::Legends.Perk.LegendMindOverBody,

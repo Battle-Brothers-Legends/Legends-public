@@ -19,7 +19,7 @@
 		{
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.FortifiedMind);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendForwardPush);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendPushForward);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendHoldTheLine);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}

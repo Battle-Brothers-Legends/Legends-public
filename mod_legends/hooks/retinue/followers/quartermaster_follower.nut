@@ -13,7 +13,6 @@
 		];
 
 		this.addSkillRequirement("Have someone with the Skillful Stacking perk. Guaranteed on Vagabonds, Millers, Donkeys and many others", [
-			::Legends.Perks.getID(::Legends.Perk.LegendSkillfulStacking),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionMelee),
 			::Legends.Backgrounds.getID(::Legends.Background.LegendCompanionRanged)
 		]);

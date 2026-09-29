@@ -56,7 +56,7 @@
 	<sprite id="mini_daze56_circle" offsetY="35" ic="FF344955" img="skills\mini\mini_daze56_circle.png" />
 	<sprite id="deathtouch_square" ic="FF23165B" img="skills\deathtouch_square.png" />
 	<sprite id="blooddrop_square" ic="FF23165B" img="skills\blooddrop_square.png" />
-	<sprite id="siphon_square" ic="FF23165B" img="skills\siphon_square.png" />
+	<sprite id="legend_draining_touch" ic="FF23165B" img="skills\legend_draining_touch.png" />
 	<sprite id="en_garde_square" ic="2D6CB955" img="skills\en_garde_square.png" />
 	<sprite id="en_garde_circle" ic="2D6CB955" img="skills\en_garde_circle.png" />
 	<sprite id="mini_en_garde_circle" offsetY="35" ic="2D6CB955" img="skills\mini\mini_en_garde_circle.png" />

@@ -1,7 +1,7 @@
 this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_background", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.character_background.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorserider);
 		this.m.BackgroundDescription = "Horses are used to long and exhausting travels.";
@@ -41,13 +41,7 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 				::Legends.Perk.Taunt,
 				// ::Legends.Perk.LegendSprint
 			],
-			[
-				::Legends.Perk.LegendEfficientPacking,
-				::Legends.Perk.LegendAmmoBinding,
-				::Legends.Perk.LegendMedPackages,
-				::Legends.Perk.LegendToolsDrawers
-
-			],
+			[],
 			[
 				::Legends.Perk.LoneWolf,
 				::Legends.Perk.LegendBattleheart
@@ -61,10 +55,6 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			[
 				::Legends.Perk.Fearsome,
 				::Legends.Perk.Stalwart,
-				::Legends.Perk.LegendSkillfulStacking,
-				::Legends.Perk.LegendAmmoBundles,
-				::Legends.Perk.LegendMedIngredients,
-				::Legends.Perk.LegendToolsSpares
 			],
 			[],
 			[],
@@ -73,20 +63,15 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		];
 	}
 
-
-
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{  %name% was raised to pull plows on a farm. |  %name% was reared by a traveling merchant. | A donkey's life is tough %name% has been used for many things. | Though the work is dangerous, being a caravan donkey allowed %name% to see the world. | When her former owner died, %name% was put up for sale. | Hardy and resolute, %name% was the pick of the bunch. | Sold from owner to owner %name% has worked for more caravans than most traders.} {But the trader she worked for turned out to be abusive, nary a whip away from being a slave driver. A farmer bought %name% to free her, but eventually the cost got too great and she was sold again. | One day, goods went missing and she was blamed for it, promptly ending her time with the caravan. | But a caravan needs protection for a reason, and an ambush by brigands proved why. %name% barely made it out alive. | Years on the road went without a hitch until a new caravan master died on the road and %name% was left tied to a wagon without food until rescued. | Caravans are frequently attacked, and in one battle as the caravan hands fell %name% ran into the night. | Sadly, with the expanding war the caravan\'s profits were marginal. %name% was let go as the merchants retired their wagons. | After seeing the foul work of beasts on a their caravan, it didn\'t take long for %name% to find a new owner. | But war deprived the caravan of stock and soon its driver took to selling the donkeys.  %name% was among the last to be sold. | Sadly, her caravan began to sell human chattel. While the profits were enormous, it garnered the attention of a local militia - and their pitchforks. One ambush later and %name% was running for her life.} {Now %name% is being sold by a farmer for being too stubborn  | A donkey like %name% is no stranger to danger, making her a good fit for any mercenary group. | With her caravan days behind her, working for a sellsword was just another avenue for oats. | In %name%\'s mind, being a mercenary is a lot like being a caravanner. Just more carrots. | Well versed to traveling, %name% seems like a natural fit to the tasks already befit for a mercenary. | Years of road travel have molded %name% into quite the durable figure. Any group of mercenaries could use more donkeys like her.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorserider);
 	}
 
-	function onSetAppearance()
-	{
+	function onSetAppearance() {
 
 		local actor = this.getContainer().getActor();
 		local rider = actor.getRider();
@@ -111,31 +96,26 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 			"helmet_damage",
 			"body_blood"
 		];
-		foreach(s in Sprites)
-		{
-			if (!rider.hasSprite(s))
-			{
+		foreach (s in Sprites) {
+			if (!rider.hasSprite(s)) {
 				continue;
 			}
 			local brush = rider.getSprite(s).getBrush();
-			if (brush == null)
-			{
+			if (brush == null) {
 				continue;
 			}
-			if (!actor.hasSprite(s))
-			{
+			if (!actor.hasSprite(s)) {
 				actor.addSprite(s);
 			}
 			actor.getSprite(s).setBrush(brush.Name);
 		}
 
 		local offset = this.createVec(-20, 0);
-		foreach(s in Sprites)
-		{
+		foreach (s in Sprites) {
 			actor.setSpriteOffset(s, offset);
 		}
 
-		offset = this.createVec(10,0);
+		offset = this.createVec(10, 0);
 		local variant = ::Math.rand(0, 7);
 		local horse = actor.addSprite("horse_body");
 		horse.setBrush(actor.getHorse().getSprite("body").getBrush().Name);
@@ -151,17 +131,13 @@ this.legend_horserider <- this.inherit("scripts/skills/backgrounds/character_bac
 		actor.setSpriteOffset("injury_horse_body", offset);
 	}
 
-
-	function onAdded()
-	{
+	function onAdded() {
 		this.character_background.onAdded();
 		::Legends.Actives.grant(this, ::Legends.Active.LegendHorseKick);
 		//this.m.Container.add(this.new("scripts/skills/traits/legend_horse_trait")); //commenting this lets our player horserider use items lol
 	}
 
-
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.MeleeSkill] = 3;

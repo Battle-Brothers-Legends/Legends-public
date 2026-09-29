@@ -40,7 +40,7 @@ this.legend_vala_background <- this.inherit("scripts/skills/backgrounds/characte
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.Level = 2;
 		this.m.CustomPerkTree = [
-			[::Legends.Perk.LegendSpecialistSelfdefense],
+			[::Legends.Perk.LegendDeflection],
 			[],
 			[],
 			[],

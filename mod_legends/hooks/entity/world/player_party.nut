@@ -79,11 +79,11 @@
 			
 			// this is flawed because it sets zombie summon level rather than adding it
 			// if we have a low level bro with SpawnZombieLow he'll override the bro with higher level and summon zombie high
-			if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieHigh)) {
+			if (bro.getSkills().hasPerk(::Legends.Perk.LegendRemakeMan)) {
 				zombieSummonLevel = 7;
-			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieMed)) {
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendFashionBody)) {
 				zombieSummonLevel = 5;
-			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendSpawnZombieLow)) {
+			} else if (bro.getSkills().hasPerk(::Legends.Perk.LegendMoldCarrion)) {
 				zombieSummonLevel = 2;
 			}
 		}

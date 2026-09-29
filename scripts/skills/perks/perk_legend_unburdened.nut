@@ -1,49 +1,52 @@
 this.perk_legend_unburdened <- this.inherit("scripts/skills/skill", {
-	m = {},
-	function create()
-	{
+	m = {
+		DamageMult = 0.4,
+		IsHidden = false
+	},
+
+	function create() {
 		::Legends.Perks.onCreate(this, ::Legends.Perk.LegendUnburdened);
-		this.m.IconMini = "mini_meek";
-		this.m.Order = ::Const.SkillOrder.Perk | ::Const.SkillOrder.Any;
+		this.m.Type = ::Const.SkillType.Perk | ::Const.SkillType.StatusEffect;
 	}
 
-	function onAdded()
-	{
-		if (!this.m.IsNew)
-			return;
+	function getDescription() {
+		return "True berserkers prefer to shed their armor, trusting fully in their sharp instincts while reveling in the unadulterated primal slaughter.";
+	}
 
-		local addPerk = function ( _perk, _row = 0 )
-		{
-			local actor = this.getContainer().getActor();
-			if (!actor.isPlayerControlled())
-				return;
+	function getTooltip() {
+		local items = this.getContainer().getActor();
+		local tooltip = this.skill.getTooltip();
 
-			local bg = actor.getBackground();
-			local hasRow = false;
-			local direction = -1;
-			local row = _row;
-			while (row >= 0 && row <= 6)
-			{
-				if (bg.m.CustomPerkTree[row].len() < 13)
-				{
-					hasRow = true;
-					break;
-				}
-
-				row += direction;
-
-				if (row == -1)
-				{
-					row = _row;
-					direction = 1;
-				}
-			}
-
-			row = hasRow ? ::Math.max(0, ::Math.min(row, 6)) : _row;
-			bg.addPerk(_perk, row);
+		if (items.getItemAtSlot(::Const.ItemSlot.Body) == null && items.getItemAtSlot(::Const.ItemSlot.Head) == null) {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/icons/special.png",
+				text = "Only receive [color=%positive%]" + ::Math.round(this.m.DamageMult * 100) + "%[/color] of any damage to hitpoints from attacks"
+			});
+		} else {
+			tooltip.push({
+				id = 6,
+				type = "text",
+				icon = "ui/tooltips/warning.png",
+				text = "[color=%negative%]Effect disabled as the character is currently using armor.[/color]"
+			});
 		}
 
-		if (!this.getContainer().hasPerk(::Legends.Perk.Footwork))
-			addPerk(::Const.Perks.PerkDefs.Footwork, 5);
+		return tooltip;
+	}
+
+	function onBeforeDamageReceived(_attacker, _skill, _hitInfo, _properties) {
+		local items = this.getContainer().getActor();
+
+		if (items.getItemAtSlot(::Const.ItemSlot.Body) != null || items.getItemAtSlot(::Const.ItemSlot.Head) != null) {
+			return;
+		}
+
+		if (_attacker != null && _attacker.getID() == this.getContainer().getActor().getID() || _skill == null || !_skill.isAttack() || !_skill.isUsingHitchance()) {
+			return;
+		}
+
+		_properties.DamageReceivedRegularMult *= this.m.DamageMult;
 	}
 });

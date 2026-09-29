@@ -15,7 +15,7 @@ this.legend_leather_hood_blueprint <- this.inherit("scripts/crafting/blueprint",
 		];
 		this.init(ingredients);
 		this.initSkills([
-			::Legends.Perks.new(::Legends.Perk.LegendSpecCultHood),
+			::Legends.Perks.new(::Legends.Perk.LegendDedication),
 			::Legends.Professions.new(::Legends.Profession.LegendLeatherworking)
 		]);
 	}

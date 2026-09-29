@@ -75,7 +75,7 @@
 		this.m.Skills.add(this.new("scripts/skills/actives/hand_to_hand_orc"));
 		::Legends.Actives.grant(this, ::Legends.Active.Charge);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 		if(::Legends.isLegendaryDifficulty())
 		{
 			b.MeleeSkill += 10;

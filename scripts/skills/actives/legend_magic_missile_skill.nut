@@ -85,7 +85,7 @@ this.legend_magic_missile_skill <- this.inherit("scripts/skills/legend_magic_ski
 		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileFocus)) {
 			this.m.ActionPointCost -= 1;
 		}
-		if (this.m.Container.hasPerk(::Legends.Perk.LegendMagicMissileMastery)) {
+		if (this.m.Container.hasPerk(::Legends.Perk.LegendMasteryMagicMissile)) {
 			this.m.ActionPointCost -= 1;
 			this.m.FatigueCost -= 6;
 		}

@@ -220,16 +220,4 @@ this.legends_necro_scenario <- this.inherit("scripts/scenarios/world/starting_sc
 			});
 		}
 	}
-
-	// function isCultist( _background )
-	// {
-	// 	return _background.isBackgroundType(::Const.BackgroundType.ConvertedCultist | ::Const.BackgroundType.Cultist);
-	// }
-	//new end
-
-	function onBuildPerkTree(_background) {
-		if (_background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Gravedigger) || _background.getID() == ::Legends.Backgrounds.getID(::Legends.Background.Graverobber)) {
-			this.addScenarioPerk(_background, ::Const.Perks.PerkDefs.LegendResurrectionist);
-		}
-	}
 });

@@ -51,7 +51,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.Recover,
 				::Legends.Perk.LegendBalance,
 				::Legends.Perk.LegendSpecialistReaper,
-				::Legends.Perk.LegendSpawnZombieLow
+				::Legends.Perk.LegendMoldCarrion
 			],
 			[
 				::Legends.Perk.CoupDeGrace,
@@ -63,7 +63,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 			[
 				::Legends.Perk.Backstabber,
 				::Legends.Perk.LegendFavouredEnemyCivilization,
-				::Legends.Perk.LegendSpecialistSelfdefense,
+				::Legends.Perk.LegendDeflection,
 				::Legends.Perk.LegendBloodbath
 			],
 			[
@@ -71,15 +71,14 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.SpecMace,
 				::Legends.Perk.SpecCleaver,
 				::Legends.Perk.SpecPolearm,
-				::Legends.Perk.LegendMasteryStaves,
-				::Legends.Perk.LegendPoisoner,
+				::Legends.Perk.LegendMasteryMagicStaff,
 				::Legends.Perk.LegendLacerate,
-				::Legends.Perk.LegendSpawnZombieMed
+				::Legends.Perk.LegendFashionBody
 			],
 			[
 				::Legends.Perk.Underdog,
 				::Legends.Perk.LegendLithe,
-				::Legends.Perk.LegendSpecStaffStun,
+				::Legends.Perk.LegendStaffSpins,
 				::Legends.Perk.LegendBlendIn,
 				::Legends.Perk.LegendReclamation,
 				::Legends.Perk.LegendCarnage
@@ -94,7 +93,7 @@ this.legend_warlock_summoner_background <- this.inherit("scripts/skills/backgrou
 				::Legends.Perk.Fearsome,
 				::Legends.Perk.LegendPerfectFocus,
 				::Legends.Perk.LegendManipulative,
-				::Legends.Perk.LegendSpawnZombieHigh,
+				::Legends.Perk.LegendRemakeMan,
 				::Legends.Perk.LegendExtendedAura,
 				::Legends.Perk.LegendInTheZone
 			],

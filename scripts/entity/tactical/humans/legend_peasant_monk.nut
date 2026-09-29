@@ -30,11 +30,11 @@ this.legend_peasant_monk <- this.inherit("scripts/entity/tactical/human", {
 		local dirt = this.getSprite("dirt");
 		dirt.Visible = true;
 		dirt.Alpha = ::Math.rand(0, 255);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistSelfdefense);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecStaffStun);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendDeflection);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendStaffSpins);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPushTheAdvantage);
 		::Legends.Perks.grant(this, ::Legends.Perk.RallyTheTroops);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryStaves);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryMagicStaff);
 		this.getSprite("socket").setBrush("bust_base_militia");
 		if(::Legends.isLegendaryDifficulty())
 		{

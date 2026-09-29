@@ -319,7 +319,7 @@ if (!("Perks" in ::Const))
 	Tree = [
 		[],
 		[],
-		[::Legends.Perk.LegendSpecialistSelfdefense],
+		[::Legends.Perk.LegendDeflection],
 		[],
 		[],
 		[],
@@ -356,11 +356,11 @@ if (!("Perks" in ::Const))
 		[
 			// ::Legends.Perk.LegendSpecialistCultist
 		],
-		[::Legends.Perk.LegendSpecCultHood],
+		[::Legends.Perk.LegendDedication],
 		[],
 		[],
 		[],
-		[::Legends.Perk.LegendSpecCultArmor],
+		[::Legends.Perk.LegendPenance],
 		[::Legends.Perk.LegendLacerate]
 	]
 }
@@ -450,7 +450,7 @@ if (!("Perks" in ::Const))
 		[::Legends.Perk.LegendDogWhisperer],
 		[],
 		[::Legends.Perk.LegendDogHandling],
-		[::Legends.Perk.LegendPackleader],
+		[::Legends.Perk.LegendPackLeader],
 		[]
 	]
 };

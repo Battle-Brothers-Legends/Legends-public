@@ -1,7 +1,7 @@
 this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_horse", {
 	m = {},
-	function create()
-	{
+
+	function create() {
 		this.legend_horse.create();
 		::Legends.Backgrounds.onCreate(this, ::Legends.Background.LegendHorseCourser);
 		this.m.BackgroundDescription = "Coursers are swift and strong horses well-suited for war, hunting and transportation.";
@@ -20,7 +20,7 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 		this.m.AlignmentMin = ::Const.LegendMod.Alignment.Merciless;
 		this.m.AlignmentMax = ::Const.LegendMod.Alignment.Chivalrous;
 		this.m.CustomPerkTree = [
-				[
+			[
 				::Legends.Perk.Colossus,
 				::Legends.Perk.NineLives,
 				::Legends.Perk.Steadfast,
@@ -45,13 +45,8 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 				::Legends.Perk.LegendHorseCollection,
 				::Legends.Perk.LegendBackToBasics,
 				::Legends.Perk.LegendHorseCharge
-
 			],
 			[
-				::Legends.Perk.LegendEfficientPacking,
-				::Legends.Perk.LegendAmmoBinding,
-				::Legends.Perk.LegendMedPackages,
-				::Legends.Perk.LegendToolsDrawers,
 				::Legends.Perk.LegendHorseImpulsion
 			],
 			[
@@ -72,10 +67,6 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 			],
 			[
 				::Legends.Perk.Stalwart,
-				::Legends.Perk.LegendSkillfulStacking,
-				::Legends.Perk.LegendAmmoBundles,
-				::Legends.Perk.LegendMedIngredients,
-				::Legends.Perk.LegendToolsSpares,
 				::Legends.Perk.LegendHorseFlyingChange,
 				::Legends.Perk.LegendHorsePirouette,
 				::Legends.Perk.LegendHorsePassage
@@ -88,18 +79,15 @@ this.legend_horse_courser <- this.inherit("scripts/skills/backgrounds/legend_hor
 
 	}
 
-	function onBuildDescription()
-	{
+	function onBuildDescription() {
 		return "{%name% was raised as a fine riding horse.|%name% was reared by a Burgher.|Though the work is dangerous, being the steed of a Squire allowed %name% to see the world. | Fast as the lightning and sturdy as an oak, %name% was the pick of the bunch.|%name% has carried their owner to more important meetings than battles|%name% has an illustrious history of serving as the steed of notable Burghers, though none know why it has so often been sold on. | %name%'s swift speed has their owner's life numerous times. | More than once, %name% has stood steady as even men ran in fear, saving both the life and reputation of its owner. | When the former owner fell on hard times, %name% was put up for sale. | When its owner fell in battle, their comrades put %name% up for sale to help his widow | Though a fine a Courser as most others, the former owner still put %name% up for sale when he acquired an even finer steed. | Lost in a bet, %name% was put up for sale as the new owner was more interested in money than a steed.}";
 	}
 
-	function onChangeAttributes()
-	{
+	function onChangeAttributes() {
 		return ::Legends.Backgrounds.getStats(::Legends.Background.LegendHorseCourser);
 	}
 
-	function onAddEquipment()
-	{
+	function onAddEquipment() {
 		local talents = this.getContainer().getActor().getTalents();
 		talents.resize(::Const.Attributes.COUNT, 0);
 		talents[::Const.Attributes.Hitpoints] = 2;

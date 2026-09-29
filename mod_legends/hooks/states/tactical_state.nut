@@ -556,11 +556,7 @@
 				corpseSalvageThreshold += ::Legends.Perks.get(bro, ::Legends.Perk.LegendReclamation).m.LootChance;
 			}
 
-			if (::Legends.Perks.has(bro, ::Legends.Perk.LegendResurrectionist)) {
-				corpseSalvageThreshold += ::Legends.Perks.get(bro, ::Legends.Perk.LegendResurrectionist).m.LootChance;
-			}
-
-			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendSpawnZombieLow, ::Legends.Perk.LegendSpawnZombieMed, ::Legends.Perk.LegendSpawnZombieHigh)) {
+			if (::Legends.Perks.hasAny(bro, ::Legends.Perk.LegendMoldCarrion, ::Legends.Perk.LegendFashionBody, ::Legends.Perk.LegendRemakeMan)) {
 				zombieLoot = true;
 			}
 		}

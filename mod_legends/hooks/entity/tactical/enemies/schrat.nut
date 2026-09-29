@@ -1,5 +1,4 @@
-::mods_hookExactClass("entity/tactical/enemies/schrat", function(o)
-{
+::mods_hookExactClass("entity/tactical/enemies/schrat", function (o) {
 	o.m.DroppableRunes <- [
 		::Legends.Rune.LegendRsaEndurance,
 		::Legends.Rune.LegendRsaSafety
@@ -9,8 +8,7 @@
 	o.create = function () {
 		create();
 		local rolls = ::Legends.S.extraLootChance(1);
-		for(local i = 0; i < rolls; i++)
-		{
+		for (local i = 0; i < rolls; i++) {
 			this.m.OnDeathLootTable.push([1, function () {
 				local selected = this.m.DroppableRunes[::Math.rand(0, this.m.DroppableRunes.len() - 1)];
 				local rune = ::new(::Legends.Runes.get(selected).Script);
@@ -18,25 +16,24 @@
 				rune.setRuneBonus(true);
 				rune.updateRuneSigilToken();
 				return rune;
-			}.bindenv(this)]);
+			}.bindenv(this)
+			]);
 		}
 	}
 
 	local onInit = o.onInit;
-	o.onInit = function ()
-	{
+	o.onInit = function () {
 		onInit();
 		::Legends.Perks.grant(this, ::Legends.Perk.Stalwart);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendComposure);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPoisonImmunity);
-		if(::Legends.isLegendaryDifficulty())
-		{
+		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.CripplingStrikes);
 			::Legends.Perks.grant(this, ::Legends.Perk.CoupDeGrace);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldExpert);
 			::Legends.Perks.grant(this, ::Legends.Perk.ShieldBash);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLacerate);
-			::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecialistShieldSkill);
+			::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryShields);
 			::Legends.Traits.grant(this, ::Legends.Trait.Fearless);
 		}
 	}

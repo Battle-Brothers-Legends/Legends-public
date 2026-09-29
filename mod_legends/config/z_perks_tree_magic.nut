@@ -28,10 +28,10 @@ if (!("Perks" in ::Const)) {
 		"staves"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSpecialistSelfdefense],
+		[::Legends.Perk.LegendDeflection],
 		[],
 		[],
-		[::Legends.Perk.LegendMasteryStaves],
+		[::Legends.Perk.LegendMasteryMagicStaff],
 		[],
 		[],
 		[]
@@ -141,7 +141,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendPoisoner],
 		[::Legends.Perk.LegendSummonWolf],
 		[],
-		[::Legends.Perk.LegendBigGameHunter,]
+		[::Legends.Perk.LegendBigGameHunter]
 	]
 };
 
@@ -211,8 +211,8 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendRust],
 		[],
 		[],
-		[::Legends.Perk.LegendInsects],
-		[::Legends.Perk.LegendSiphon],
+		[::Legends.Perk.LegendInsectSwarm],
+		[::Legends.Perk.LegendDrainingTouch],
 		[::Legends.Perk.LegendMiasma]
 	]
 };
@@ -244,14 +244,14 @@ if (!("Perks" in ::Const)) {
 	],
 	Tree = [
 		[
-			::Legends.Perk.LegendSpawnZombieLow,
+			::Legends.Perk.LegendMoldCarrion,
 		],
 		[],
-		[::Legends.Perk.LegendSpawnZombieMed],
+		[::Legends.Perk.LegendFashionBody],
 		[::Legends.Perk.LegendExtendedAura],
 		[::Legends.Perk.LegendReclamation],
 		[::Legends.Perk.LegendViolentDecomposition],
-		[::Legends.Perk.LegendSpawnZombieHigh]
+		[::Legends.Perk.LegendRemakeMan]
 	]
 };
 
@@ -269,7 +269,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[::Legends.Perk.LegendMuscularity],
 		[::Legends.Perk.Berserk],
-		[::Legends.Perk.LegendBerserkerRage, ::Legends.Perk.LegendUberNimble]
+		[::Legends.Perk.LegendBerserkerRage, ::Legends.Perk.LegendUnburdened]
 	]
 };
 
@@ -286,7 +286,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.InspiringPresence],
 		[],
 		[::Legends.Perk.LegendHoldTheLine, ::Legends.Perk.LegendShieldsUp],
-		[::Legends.Perk.LegendForwardPush],
+		[::Legends.Perk.LegendPushForward],
 		[::Legends.Perk.LegendInspire]
 	]
 };
@@ -304,7 +304,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendHorrify],
 		[],
 		[::Legends.Perk.LegendTerrifyingVisage],
-		[::Legends.Perk.LegendMagicStun],
+		[::Legends.Perk.LegendParalyze],
 		[]
 	]
 };
@@ -317,7 +317,7 @@ if (!("Perks" in ::Const)) {
 		"conjuration"
 	],
 	Tree = [
-		[::Legends.Perk.LegendSummonCat],
+		[::Legends.Perk.LegendSummonFamiliar],
 		[::Legends.Perk.LegendSummonHound],
 		[::Legends.Perk.LegendSummonFalcon],
 		[],
@@ -341,7 +341,7 @@ if (!("Perks" in ::Const)) {
 		[],
 		[::Legends.Perk.LegendSummonStorm],
 		[],
-		[::Legends.Perk.LegendInsects]
+		[::Legends.Perk.LegendInsectSwarm]
 	]
 };
 
@@ -358,7 +358,7 @@ if (!("Perks" in ::Const)) {
 		[::Legends.Perk.LegendChainLightning],
 		[
 		],
-		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
+		[::Legends.Perk.LegendMasteryMagicMissile, ::Legends.Perk.LegendFirefield]
 	]
 };
 
@@ -374,9 +374,9 @@ if (!("Perks" in ::Const)) {
 		[],
 		[],
 		[::Legends.Perk.LegendMagicMissileFocus],
-		[::Legends.Perk.LegendChainLightning, ::Legends.Perk.LegendMagicSleep],
+		[::Legends.Perk.LegendChainLightning, ::Legends.Perk.LegendSlumber],
 		[::Legends.Perk.LegendScry],
-		[::Legends.Perk.LegendMagicMissileMastery, ::Legends.Perk.LegendFirefield]
+		[::Legends.Perk.LegendMasteryMagicMissile, ::Legends.Perk.LegendFirefield]		
 	]
 };
 

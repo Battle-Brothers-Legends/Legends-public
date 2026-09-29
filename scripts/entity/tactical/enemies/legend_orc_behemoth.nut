@@ -166,7 +166,7 @@ this.legend_orc_behemoth <- this.inherit("scripts/entity/tactical/legend_orc", {
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendTasteThePain);
 		::Legends.Effects.grant(this, ::Legends.Effect.BerserkerRage);
 		::Legends.Perks.grant(this, ::Legends.Perk.LegendPugilist);
-		::Legends.Perks.grant(this, ::Legends.Perk.LegendSpecUnarmed);
+		::Legends.Perks.grant(this, ::Legends.Perk.LegendMasteryUnarmed);
 		if (::Legends.isLegendaryDifficulty()) {
 			::Legends.Perks.grant(this, ::Legends.Perk.BattleForged);
 			::Legends.Perks.grant(this, ::Legends.Perk.LegendLastStand);
