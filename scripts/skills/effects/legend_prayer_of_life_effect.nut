@@ -9,6 +9,7 @@ this.legend_prayer_of_life_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfLife);
 		this.m.Description = "This character has had their vitality restored by a holy chant";
 		this.m.Icon = "ui/perks/prayer_green.png";
+		this.m.IconMini = "mini_prayer_green";
 		this.m.Overlay = "prayer_green";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;

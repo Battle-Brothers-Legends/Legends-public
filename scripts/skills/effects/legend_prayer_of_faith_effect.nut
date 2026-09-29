@@ -7,6 +7,7 @@ this.legend_prayer_of_faith_effect <- this.inherit("scripts/skills/skill", {
 		::Legends.Effects.onCreate(this, ::Legends.Effect.LegendPrayerOfFaith);
 		this.m.Description = "This character is being protected by a holy chant.";
 		this.m.Icon = "ui/perks/prayer_purple.png";
+		this.m.IconMini = "mini_prayer_purple";
 		this.m.Overlay = "prayer_purple";
 		this.m.Type = ::Const.SkillType.StatusEffect;
 		this.m.IsActive = false;

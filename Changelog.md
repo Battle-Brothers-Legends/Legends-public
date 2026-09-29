@@ -574,6 +574,7 @@
 - added a functionality allowing various weapon swapping with 1h weapons with tooltips
 - divided and reorganized the starting scenarios thematically; slowed scrolling speed so its easier to navigate
 - nets now return to their previous slots after throwing
+- prayer of hope and prayer of faith effects now have their respective mini icons (the ones that appear above the character in battle)
 
 ## Bug Fixes
 - tile effect `shadows` -> `legend_shadow_mist`
